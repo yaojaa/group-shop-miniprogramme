@@ -1,15 +1,15 @@
 <!--index.wxml-->
 <view class="container">
   <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
         <image src="{{item}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
   <view class='product-item-container'>
-    <block wx:for="{{proList}}">
-      <view class='product-item'>
+    <block wx:for="{{proList}}" wx:key="{{index}}">
+      <view class='product-item' catchtap='toDetail' data-post-id="{{item.id}}">
         <view class='item-img'>
           <image src='{{item.img}}'></image>
         </view>
