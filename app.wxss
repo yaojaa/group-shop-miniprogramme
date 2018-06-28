@@ -1,18 +1,100 @@
 /**app.wxss**/
+
 .container {
   height: 100%;
-  flex-direction: column;
-  align-items: center;
+}
+
+.page-body {
+  background: #f8f8f8;
+}
+
+.f10 {
+  font-size: 10px !important;
+}
+
+.f12 {
+  font-size: 12px !important;
+}
+
+.f13 {
+  font-size: 13px !important;
+}
+
+.f14 {
+  font-size: 14px !important;
+}
+
+.f15 {
+  font-size: 15px !important;
+}
+
+.f16 {
+  font-size: 16px !important;
+}
+
+.f18 {
+  font-size: 18px !important;
+}
+
+.f20 {
+  font-size: 20px !important;
+}
+
+.f24 {
+  font-size: 24px !important;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
-.f12{
-	font-size:12px
+  align-items: center;
 }
-.f14{
-	font-size:14px
+
+.text-hide {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
-.page-body{
-  background: #f8f8f8
+
+.text-red {
+  color: #d4282d !important;
+}
+
+.text-green {
+  color: #1aad19 !important;
+}
+
+.text-default {
+  color: #333;
+}
+
+.text-info {
+  color: #666;
+}
+
+.text-muted {
+  color: #999;
+}
+
+.bold {
+  font-weight: bold;
 }
