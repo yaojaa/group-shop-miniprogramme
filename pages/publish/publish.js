@@ -1,6 +1,15 @@
 //index.js
+//
+//
+//
 //获取应用实例
+var WxValidate = require("../../utils/wxValidate.js");
+
+console.log(WxValidate)
+
 const app = getApp()
+
+
 
 Page({
   data: {
@@ -12,8 +21,8 @@ Page({
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
-    title: 'sfssdfsdf',
-    content: 's9399393993',
+    title: '',
+    content: '',
     price: 5000,
     hasType:false,
     type: {},
@@ -48,7 +57,50 @@ Page({
       url: '../logs/logs'
     })
   },
+  initValidate:function(){
+        // 验证字段的规则
+        const rules = {
+            title:{
+              required:true
+            },
+            content:{
+              required:true
+            }
+        }
+
+        // 验证字段的提示信息，若不传则调用默认的信息
+        const messages = {
+            title:{
+              required:'请输入标题'
+            },
+            content:{
+              required:'请输入描述'
+            }
+        }
+        this.WxValidate = new WxValidate(rules, messages)
+
+
+  },
+  //提交表单
+    submitForm(e) {
+        
+        const params = e.detail.value
+ // 传入表单数据，调用验证方法
+        if (!this.WxValidate.checkForm(e)) {
+            const error = this.WxValidate.errorList[0]
+            wx.showModal({title:error.msg,showCancel:false})
+            return false
+        } 
+ wx.showModal({
+            title: '提交成功',
+            showCancel:false
+        })
+     
+    },
   onLoad: function () {
+
+    this.initValidate()
+
 
  
 

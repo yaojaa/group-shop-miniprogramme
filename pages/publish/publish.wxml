@@ -1,5 +1,7 @@
   <view class="page-body">
-<view>快速发布你的宝贝！</view>
+<view>快速发布你的宝贝！       
+</view>
+  <form bindsubmit="submitForm">
 <view class="weui-uploader weui-cells_form weui-cell">
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
@@ -25,32 +27,38 @@
 <view class="weui-cells weui-cells_form">
 
 <view class="weui-cell">
-  <input value="{{title}}" maxlength="50" placeholder="请输入商品标题" />
+  <input value="{{title}}" name="title" maxlength="50" placeholder="为宝贝添加个诱人的标题吧" />
 </view>
 
 
 <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="23"></textarea>
+                    <textarea name="content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="23"></textarea>
                 </view>
+
+  <view class="weui-uploader__input-box">
+     <text class="upload_txt">介绍图片</text>
+  </view>
+
             </view>
 
-
 </view>
+
+
 
 
 <view class="weui-cells weui-cells_form">
     <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">团购价:</view></view>
                     <view class="weui-cell__bd">
-                    <input  maxlength="50" placeholder="0.00" />
+                    <input name="price"  maxlength="50" placeholder="0.00" />
                     </view>
     </view>
 
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">属性规格：</view></view>
                     <view class="weui-cell__bd">
-                     <switch name="switch" checked="{{hasType}}" bindchange="switch2Change" />
+                 <switch name="switch" checked="{{hasType}}" bindchange="switch2Change" />
                     </view>
       </view>
 
@@ -76,9 +84,9 @@
 
 <view>
           <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">我的地址：</view></view>
+                    <view class="weui-cell__hd"><view class="weui-label">地址：</view></view>
                     <view class="weui-cell__bd">
-                    <input  maxlength="50" bindtap="chooseMap" placeholder="点击选择" />
+                    <input name="address"  maxlength="50" bindtap="chooseMap" placeholder="点击选择" />
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">></view>
@@ -100,12 +108,9 @@
 
 </view>
 
-<view class="weui-btn-area">
-            <button class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">发布
-            </button>
-        </view>
+<button formType="submit"   class="weui-btn weui-btn_primary">确定发布</button>
 
-
+</form>
        
 
    

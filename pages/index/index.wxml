@@ -1,14 +1,26 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-      <navigator url="/pages/publish/publish" hover-class="navigator-hover">发布</navigator>
-      <navigator url="/pages/goods/goods" hover-class="navigator-hover">详情</navigator>
-  </view>
+<view class="banner">
+ <view class="name">{{name}}</view>
+</view>
+
+	<view class="main-goods">
+		<view class="single-goods" wx:for="{{goods_list}}" wx:key="" bindtap="showDetail" data-index="{{index}}" data-goods-id="{{item.goods_id}}">
+			<image class="avatar" src="{{item.original_img}}" mode="aspectFill" />
+      <view class="weui-media-box__bd">
+			<text class="title">{{item.goods_name}}</text>
+			<view class="summary">
+				<text class="price">￥{{item.shop_price}}元</text>
+				<text class="sale">浏览{{item.click_count}}次</text>
+			</view>
+      </view>
+		</view>
+	</view>
+
+
+
+      <navigator url="/pages/publish/publish" hover-class="navigator-hover">
+      <button>发布</button>
+      </navigator>
+ 
 </view>

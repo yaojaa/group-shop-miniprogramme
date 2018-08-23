@@ -1,8 +1,24 @@
 /**index.wxss**/
+
+.banner{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 120px;
+  position: relative;
+  background:URL('./banner.jpg') 100%;
+}
+
+.name{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #fff;
+  font-weight: bold;
+  transform: translate(-50%,-50%)
+}
 .userinfo {
   display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .userinfo-avatar {
@@ -12,10 +28,50 @@
   border-radius: 50%;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.main-goods {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border-top: 1px solid #eee;
 }
 
-.usermotto {
-  margin-top: 200px;
+.main-goods .single-goods {
+display: flex
+}
+
+.main-goods image {
+	width: 120rpx;
+	height: 120rpx;
+	display: block;
+	margin: 20rpx;
+}
+.main-goods .weui-media-box__bd{
+  flex: 1
+}
+.main-goods .title {
+	color: #333;
+	font-size: 32rpx;
+	line-height: 28rpx;
+    overflow: hidden;
+}
+
+.main-goods .summary {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	
+}
+
+.main-goods .summary text {
+	font-size: 28rpx;
+	margin: 10rpx 20rpx;
+}
+
+.main-goods .summary .price {
+	color: red;
+}
+
+.main-goods .summary .sale {
+	color: gray;
 }
