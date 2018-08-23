@@ -1,25 +1,23 @@
 <!--index.wxml-->
 <view class="container">
-<view class="banner">
- <view class="name">{{name}}</view>
-</view>
-
-	<view class="main-goods">
-		<view class="single-goods" wx:for="{{goods_list}}" wx:key="" bindtap="showDetail" data-index="{{index}}" data-goods-id="{{item.goods_id}}">
-			<image class="avatar" src="{{item.original_img}}" mode="aspectFill" />
-      <view class="weui-media-box__bd">
-			<text class="title">{{item.goods_name}}</text>
-			<view class="summary">
-				<text class="price">￥{{item.shop_price}}元</text>
-				<text class="sale">浏览{{item.click_count}}次</text>
-			</view>
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='product-item-container'>
+    <view class='product-item' wx:for="{{proList}}" wx:key="{{index}}">
+      <view class='item-img'>
+        <image src='{{item.img}}'></image>
       </view>
-		</view>
-	</view>
-
-
-      <navigator url="/pages/publish/publish" hover-class="navigator-hover">
-      <button>发布</button>
-      </navigator>
- 
+      <view class='item-body'>
+        <view class='item-title'><text>{{item.title}}</text></view>
+        <view class='item-des'><text>{{item.info}}</text></view>
+        <view class='item-tag'><text>{{item.tag}}</text></view>
+        <view class='item-price'><text class="small">￥</text><text class='price'>{{item.price}}</text><text class='market-price'>￥{{item.marketPrice}}</text></view>
+      </view>
+    </view>
+  </view>
 </view>
