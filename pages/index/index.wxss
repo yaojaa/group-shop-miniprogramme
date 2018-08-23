@@ -10,9 +10,7 @@
 .product-item-container {
   padding: 0 20rpx;
   background-color: #fff;
-}
-
-.product-item-title {
+  padding-bottom: 180rpx;
 }
 
 .product-item {
@@ -64,9 +62,11 @@
   font-size: 15px;
   color: #474245;
   width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+
 }
 
 .product-item .item-body .item-tag text {
@@ -99,4 +99,18 @@
   font-size: 12px;
   text-decoration:line-through;
   margin-left: 10rpx;
+}
+.add-goods{
+  position: fixed;
+  left:50%;
+  margin-left:-50rpx;
+  bottom:30rpx;
+  background: rgb(255, 72, 145);
+  color:#fff;
+  width: 80rpx;
+  height:80rpx;
+  border-radius: 50%;
+  padding: 20rpx;
+  text-align: center;
+  font-size: 28rpx;
 }

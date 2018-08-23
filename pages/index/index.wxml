@@ -20,4 +20,7 @@
       </view>
     </view>
   </view>
+  <view class='add-goods'>
+  <text>发布商品</text>
+  </view>
 </view>
