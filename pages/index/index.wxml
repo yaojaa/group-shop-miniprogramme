@@ -18,7 +18,6 @@
 	</view>
 
 
-
       <navigator url="/pages/publish/publish" hover-class="navigator-hover">
       <button>发布</button>
       </navigator>

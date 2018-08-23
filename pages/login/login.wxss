@@ -1,0 +1,18 @@
+/* pages/login/login.wxss */
+.container{
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530094567300&di=592dca0adc85aee807a49434488b169a&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201509%2F14%2F20150914205321_FEJQi.thumb.700_0.jpeg') no-repeat;
+  background-size: 100% 100%;
+}
+.start-btn{
+  position: absolute;
+  bottom:100rpx;
+  left:0;
+  width:100%;
+  box-sizing: border-box;
+  padding:0 20%;
+}
