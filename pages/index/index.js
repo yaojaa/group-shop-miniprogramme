@@ -34,5 +34,10 @@ Page({
     wx.navigateTo({
       url: '../goods/goods?id='+postId,
     })
+  },
+  addGoods() {
+    wx.navigateTo({
+      url: '../publish/publish'
+    })
   }
 })

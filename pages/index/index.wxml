@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary" indicator-dots="{{false}}">
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
         <image src="{{item}}" class="slide-image" />
@@ -20,7 +20,7 @@
       </view>
     </view>
   </view>
-  <view class='add-goods'>
+  <view class='add-goods' bindtap='addGoods'>
   <text>发布商品</text>
   </view>
 </view>
