@@ -1,12 +1,11 @@
 {
   "pages": [
-    "pages/login/login",
-    "pages/index/index",
-    
-    "pages/goods/goods",
+    "pages/login/login","pages/index/index","pages/goods/goods",
     "pages/list/list",
-    "pages/publish/publish",
-    "pages/usercenter/usercenter"
+    "pages/usercenter/usercenter",
+    "pages/publish/publish", 
+    "pages/publish-success/publish-success",
+    "pages/authentication/authentication"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,7 +26,7 @@
       }
     ],
     "color": "#000000",
-    "selectColor": "#ff0000",
+    "selectedColor": "#ff0000",
     "backgroundColor": "#ffffff"
   }
 }

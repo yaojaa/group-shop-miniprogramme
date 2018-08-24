@@ -1,31 +1,20 @@
 <view class="container">
-  <view class="page-section page-section-spacing swiper">
-    <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
-      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-        <swiper-item>
-          <image src="{{item}}" class="slide-image" />
-        </swiper-item>
-      </block>
-    </swiper>
+  <view class="userInfo">
+     <image src="{{userInfo.photo}}" class="userImg" />
+     <view>
+      <view>{{userInfo.name}}</view>
+      <view>{{userInfo.isAuthen ? '认证商家' : '普通用户'}}</view>
+     </view>
+     <view>
+      <button>发布商品</button>
+     </view>
   </view>
-
-  <button class="edit_btn">编辑</button>
-  <button class="shareBtn" open-type="share">分享</button>
-
-  <view class="weui-article__h1">【现摘现发】广西西瓜新鲜当季水果8斤</view>
-  <view class="weui-article__p">没成一个爱心暖，平台自费购买一份产品。千载难逢的机会到了</view>
-
-  <view class="">
-    <text class="price">  ¥19.8</text> 已售：200件
-
+  <view class="btn-area">
+    <navigator url="/page/order/order?" hover-class="navigator-hover">待付款</navigator>
+    <navigator url="/page/order/order?" hover-class="navigator-hover">待收货</navigator>
+    <navigator url="/page/order/order?" hover-class="navigator-hover">全部订单</navigator>
   </view>
-  <text class="f12"> 配送方式：自取 青苹果社区1号楼 2单元 212</text>
-  <text class="f12"> 店主：13718123444</text>
   <view>
-
-
-
+    
   </view>
-
-
 </view>

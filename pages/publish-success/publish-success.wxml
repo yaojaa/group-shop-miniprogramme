@@ -1,0 +1,15 @@
+<view class="page-body">
+
+<view>发布成功！       
+</view>
+
+<view>请等待审核，通过后即可上架</view>
+
+<view> 
+  <navigator url="/authentication/authentication">申请认证后，可以开通在线支付
+  </navigator>
+
+</view>
+
+
+</view>

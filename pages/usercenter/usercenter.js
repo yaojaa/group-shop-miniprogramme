@@ -2,15 +2,19 @@
 //获取应用实例
 const app = getApp()
 
+const userInfo = app.globalData;
+
 Page({
   data: {
-    imgUrls: [
-      'https://j-image.missfresh.cn/img_20180625145444571.jpg?iopcmd=thumbnail&type=4&width=640',
-      'https://j-image.missfresh.cn/img_20180625145444571.jpg?iopcmd=thumbnail&type=4&width=640',
-      'https://j-image.missfresh.cn/img_20180625145444571.jpg?iopcmd=thumbnail&type=4&width=640'
-    ]
+    userInfo: {
+      photo: "/img/banner.jpg",
+      name: '王某人',
+      isAuthen: true
+    }
   },
   onLoad:function(option){
-    console.log(option)
+    console.log(option, app.globalData.userInfo)
+    let userInfo = app.globalData.userInfo;
+    this.setData(userInfo)
   }
 })
