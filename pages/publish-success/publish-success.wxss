@@ -1,0 +1,22 @@
+@import "../../utils/weui.wxss";
+.upload_btn{
+  border: 1px solid #c00
+}
+
+
+
+.weui-uploader{
+  padding: 10px 10px 0
+}
+
+.upload_txt{
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  width: 100%;
+  font-size: 18rpx;
+  color: #666;
+  text-align: center;
+  display: block
+}
+

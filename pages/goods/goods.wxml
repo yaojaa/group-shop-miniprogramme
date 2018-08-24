@@ -9,7 +9,6 @@
     </swiper>
   </view>
 
-  <button class="edit_btn">编辑</button>
   <button class="shareBtn" open-type="share">分享</button>
 
   <view class="weui-article__h1">【现摘现发】广西西瓜新鲜当季水果8斤</view>
@@ -26,6 +25,9 @@
 
 
   </view>
+
+  <navigator url="../">个人中心</navigator>
+
 
 
 </view>
