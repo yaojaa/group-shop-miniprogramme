@@ -20,7 +20,7 @@
       </view>
     </view>
   </view>
-  <view class='add-goods'>
+  <navigator class='add-goods' url="/pages/publish/publish">
   <text>发布商品</text>
-  </view>
+  </navigator>
 </view>

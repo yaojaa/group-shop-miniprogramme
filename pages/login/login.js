@@ -10,8 +10,9 @@ Page({
   },
   //事件处理函数
   bindViewTap: function () {
-    wx.redirectTo({
-      url: '../index/index'
+    console.log('页面跳转')
+    wx.reLaunch({
+      url: '/pages/index/index'
     })
   },
   onLoad: function () {
@@ -46,7 +47,7 @@ Page({
     }
   },
   getUserInfo: function (e) {
-    console.log(e)
+    console.log(e, '开启小团购按钮点击')
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

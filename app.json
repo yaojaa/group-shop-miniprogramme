@@ -5,7 +5,8 @@
     
     "pages/goods/goods",
     "pages/list/list",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/usercenter/usercenter"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,5 +14,20 @@
     "navigationBarTitleText": "社区麻团",
     "navigationBarTextStyle":"black",
     "backgroundColor": "#eeeeee"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/usercenter/usercenter",
+        "text": "我的"
+      }
+    ],
+    "color": "#000000",
+    "selectColor": "#ff0000",
+    "backgroundColor": "#ffffff"
   }
 }
