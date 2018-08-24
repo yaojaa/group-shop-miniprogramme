@@ -8,7 +8,7 @@
     </block>
   </swiper>
   <view class='product-item-container'>
-    <view class='product-item' wx:for="{{proList}}" wx:key="{{index}}">
+    <view class='product-item' wx:for="{{proList}}" wx:key="{{index}}" bindtap="toDetail">
       <view class='item-img'>
         <image src='{{item.img}}'></image>
       </view>
