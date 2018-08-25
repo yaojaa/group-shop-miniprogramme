@@ -3,7 +3,8 @@
     "pages/index/main",
     "pages/logs/main",
     "pages/counter/main",
-    "pages/goods/main"
+    "pages/goods/main",
+    "pages/publish/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/login/login","pages/index/index","pages/goods/goods",
+    "pages/list/list",
+    "pages/publish/main", 
+    "pages/publish-success/publish-success",
+    "pages/authentication/authentication"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "社区麻团",
+    "navigationBarTextStyle":"black",
+    "backgroundColor": "#eeeeee"
+  }
+}
