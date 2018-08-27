@@ -6,7 +6,7 @@
       <view>{{userInfo.isAuthen ? '认证商家' : '普通用户'}}</view>
      </view>
      <view>
-      <button>发布商品</button>
+      <button bindtap="tapTo">发布商品</button>
      </view>
   </view>
   <view class="btn-area">
@@ -15,6 +15,6 @@
     <navigator url="/page/order/order?" hover-class="navigator-hover">全部订单</navigator>
   </view>
   <view>
-    
+
   </view>
 </view>
