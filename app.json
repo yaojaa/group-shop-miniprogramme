@@ -9,6 +9,7 @@
     "pages/address/list/list",
     "pages/address/add/add",
     "pages/address/select/index",
+    "pages/identify/identify",
     "pages/address/edit/index"
   ],
   "window": {
