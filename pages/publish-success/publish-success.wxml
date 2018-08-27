@@ -1,15 +1,34 @@
 <view class="page-body">
 
-<view>发布成功！       
-</view>
-
-<view>请等待审核，通过后即可上架</view>
-
-<view> 
+<view class="weui-msg">
+      
+        <view class="weui-msg__text-area">
+        	<i-icon type="right" size="98" color="green" />
+            <view class="weui-msg__title">发布成功</view>
+            <view class="weui-msg__desc">请等待审核，通过后即可上架!
   <navigator url="/authentication/authentication">申请认证后，可以开通在线支付
   </navigator>
+            </view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                
 
-</view>
+                <button type="primary" size="default"  
+		 bindtap="viewGoods"> 查看商品 </button>
+
+
+            </view>
+        </view>
+        <view class="weui-msg__extra-area">
+            <view class="weui-footer">
+                <view class="weui-footer__links">
+                   底部链接文本
+                </view>
+                <view class="weui-footer__text">Copyright © 2008-2016 weui.io</view>
+            </view>
+        </view>
+    </view>
 
 
 </view>

@@ -110,7 +110,7 @@ Page({
     submitForm(e) {
 
        wx.navigateTo({
-            url: '../goods/goods'
+            url: '../publish-success/publish-success'
           })
                 
         const params = e.detail.value
