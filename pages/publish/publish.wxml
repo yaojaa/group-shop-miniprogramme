@@ -16,7 +16,7 @@
                                 </view>
                             </view>
                             <view class="weui-uploader__input-box" bindtap="chooseImage"  >
-                                <text class="upload_txt">图片/视频</text>
+                                <text class="upload_txt">宝贝相册</text>
                             </view>
                         </view>
                     </view>
@@ -38,21 +38,34 @@
 </view>
  <view class="weui-cell">
 
-  <i-panel title="动物">
-<i-checkbox value="{{animal}}" disabled="{{disabled}}" checked="{{checked}}" bindchange="handleAnimalChange">
-    </i-checkbox>
-</i-panel>
+        <i-icon type="picture" size="38" color="#80848f"/>
 
- + 添加介绍图片(选填)</view>
+
+   
+
+</view>
+
+
+
+<view class="weui-cell weui-cells_form" wx:if="{{morePic}}">
+   <view class="weui-uploader__input-box" bindtap="chooseImage"  >
+                                <text class="upload_txt">宝贝相册</text>
+   </view>
+</view>
+
+
+
 
 </view>
 
 
 
 
+
+
 <view class="weui-cells weui-cells_form">
     <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">团购价:</view></view>
+                    <view class="weui-cell__hd"><view class="weui-label">商品价格:</view></view>
                     <view class="weui-cell__bd">
                     <input name="price"  maxlength="50" placeholder="0.00" />
                     </view>
@@ -67,13 +80,15 @@
 
          <view class="weui-cell"  wx:if="{{hasType}}">
                     <view class="weui-cell__hd">
-                    <view class="weui-label">+</view>
+                    <view class="weui-label"><i-icon type="add" size="48" color="#80848f" /></view>
                     </view>
                     <view class="weui-cell__bd">
-                       <input  maxlength="50" placeholder="例:白色款" />
-  <input  maxlength="50" placeholder="例:99.8" />
-
-                    </view>
+                      <i-panel>
+                          <i-input value="{{ value1 }}" title="规格名称" autofocus placeholder="如：白色超大款" />
+                          <i-input value="{{ value2 }}" type="number" title="价格" placeholder="请输入价格" />
+                       
+                      </i-panel>
+                   </view>
       </view>
 
        <!-- <view class="weui-cell">
@@ -84,15 +99,17 @@
 <view wx:else> 自取 </view> 
                     </view>
       </view> -->
-
-<view>
+</view>
+<view class="weui-cells weui-cells_form">
           <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">地址：</view></view>
+                    <view class="weui-cell__hd"><view class="weui-label">发货地址：</view></view>
                     <view class="weui-cell__bd">
-                    <input name="address"  maxlength="50" bindtap="navigateToAddress" placeholder="点击选择" />
                     </view>
                     <view class="weui-cell__ft">
-                    <view class="weui-icon-warn">></view>
+                    <view class="weui-icon-warn">
+                                          <i-icon type="enter" size="28" />
+
+                    </view>
                      </view>
 
               
@@ -103,7 +120,6 @@
 
 </view>
 
-</view>
 
 <button formType="submit"   class="weui-btn weui-btn_primary">确定发布</button>
 
