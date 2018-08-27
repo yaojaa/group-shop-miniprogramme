@@ -8,26 +8,16 @@
       </block>
     </swiper>
   </view>
+  <view class="goods-title"><text>广西西瓜新鲜当季水果8斤</text></view>
+  <view class="goods-desc"><text>没成一个爱心暖，平台自费购买一份产品。千载难逢的机会到了</text></view>
 
-  <button class="shareBtn" open-type="share">分享</button>
-
-  <view class="weui-article__h1">【现摘现发】广西西瓜新鲜当季水果8斤</view>
-  <view class="weui-article__p">没成一个爱心暖，平台自费购买一份产品。千载难逢的机会到了</view>
-
-  <view class="">
-    <text class="price">  ¥19.8</text> 已售：200件
-
+  <view class="goods-price">
+    <view><text>¥19.8</text><text>¥29.8</text></view>
+    <view>
+    <text>已售：200件</text>
+    </view>
   </view>
-  <text class="f12"> 配送方式：自取 青苹果社区1号楼 2单元 212</text>
-  <text class="f12"> 店主：13718123444</text>
-  <view>
-
-
-
-  </view>
-
-  <navigator url="../">个人中心</navigator>
-
-
-
+  <text class="goods-addres"> 配送方式：自取 青苹果社区1号楼 2单元 212</text>
+  <text class="goods-iphone"> 店主：13718123444</text>
+  
 </view>

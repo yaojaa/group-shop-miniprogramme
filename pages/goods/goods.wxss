@@ -8,3 +8,21 @@
   width: 100%;
   height: 400rpx;
 }
+.goods-title{
+  font-size: 36rpx;
+  color:#333;
+}
+.goods-desc{
+  font-size: 30rpx;
+  color:#666;
+}
+.goods-price{
+  font-size: 32rpx;
+  color:rgb(255, 72, 145);
+}
+.goods-addres{
+  font-size: 26rpx;
+}
+.goods-iphone{
+  font-size: 26rpx;
+}
