@@ -12,6 +12,11 @@ Page({
       isAuthen: true
     }
   },
+  tapTo(){
+    wx.navigateTo({
+      url: '/pages/publish/publish',
+    })
+  },
   onLoad:function(option){
     console.log(option, app.globalData.userInfo)
     let userInfo = app.globalData.userInfo;

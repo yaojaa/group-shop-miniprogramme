@@ -5,7 +5,9 @@
     "pages/usercenter/usercenter",
     "pages/publish/publish", 
     "pages/publish-success/publish-success",
-    "pages/authentication/authentication"
+    "pages/authentication/authentication",
+    "pages/identify/identify"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

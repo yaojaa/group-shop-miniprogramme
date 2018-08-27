@@ -1,0 +1,31 @@
+@import "../../utils/weui.wxss";
+.container{
+  padding: 0 20rpx;
+  font-size: 14px;
+}
+.title{
+  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+}
+.session{
+  padding: 20px 0;
+}
+.input{
+  padding: 10px 0;
+  display: flex;
+}
+.input .label{
+  width: 100px;
+  text-align: right;
+  line-height: 40px;
+}
+.input input{
+  border: 1px solid #efefef;
+  height: 28px;
+  width: 200px;
+  line-height: 28px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  /* flex-grow: 1; */
+}
