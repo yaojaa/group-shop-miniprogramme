@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "发布您的宝贝"
+  "navigationBarTitleText": "发布您的宝贝",
+
+	"usingComponents": {
+		"i-checkbox-group": "../../iView/checkbox-group/index",
+	    "i-checkbox": "../../iView/checkbox/index"
+	}
 }
