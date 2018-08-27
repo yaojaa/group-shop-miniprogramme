@@ -68,4 +68,6 @@
   background: rgb(255, 72, 145);
   color:#fff;
   text-align: center;
+  font-weight: 400;
+  font-size: 32rpx;
 }
