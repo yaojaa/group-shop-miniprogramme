@@ -30,12 +30,18 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "用户中心启动",
-					"pathName": "pages/usercenter/usercenter"
+					"pathName": "pages/usercenter/usercenter",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单列表启动",
+					"pathName": "pages/orderList/orderList"
 				}
 			]
 		}

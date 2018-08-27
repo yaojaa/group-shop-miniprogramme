@@ -1,1 +1,8 @@
-{}
+{
+  "usingComponents": {
+    "i-cell": "/iView/cell/index",
+    "i-tabs": "/iView/tabs/index",
+    "i-tab": "/iView/tab/index",
+    "i-button": "/iView/button/index"
+  }
+}

@@ -6,15 +6,23 @@
       <view>{{userInfo.isAuthen ? '认证商家' : '普通用户'}}</view>
      </view>
      <view>
-      <button bindtap="tapTo">发布商品</button>
+      <i-button bind:click="tapTo" type="primary">发布商品</i-button>
      </view>
   </view>
-  <view class="btn-area">
+  <!-- <view class="btn-area">
     <navigator url="/page/order/order?" hover-class="navigator-hover">待付款</navigator>
     <navigator url="/page/order/order?" hover-class="navigator-hover">待收货</navigator>
     <navigator url="/page/order/order?" hover-class="navigator-hover">全部订单</navigator>
-  </view>
+  </view> -->
+  <i-tabs current="{{ current }}" bindchange="handleChange">
+    <i-tab key="tab1" title="待付款"></i-tab>
+    <i-tab key="tab2" title="待收货"></i-tab>
+    <i-tab key="tab3" title="全部订单"></i-tab>
+  </i-tabs>
   <view>
-
+    <i-cell title="我发布的商品" is-link url="/pages/dashboard/index"></i-cell>
+    <i-cell title="收货地址" is-link url="/pages/dashboard/index"></i-cell>
+    <i-cell title="申请认证" is-link url="/pages/dashboard/index"></i-cell>
+    <i-cell title="设置" is-link url="/pages/dashboard/index"></i-cell>
   </view>
 </view>
