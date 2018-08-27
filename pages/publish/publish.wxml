@@ -36,7 +36,14 @@
 
 
 </view>
- <view class="weui-cell">+ 添加介绍图片(选填)</view>
+ <view class="weui-cell">
+
+  <i-panel title="动物">
+<i-checkbox value="{{animal}}" disabled="{{disabled}}" checked="{{checked}}" bindchange="handleAnimalChange">
+    </i-checkbox>
+</i-panel>
+
+ + 添加介绍图片(选填)</view>
 
 </view>
 

@@ -7,10 +7,8 @@
     "pages/publish/publish", 
     "pages/publish-success/publish-success",
     "pages/authentication/authentication",
-    "pages/address/list/list",
-    "pages/address/add/add",
-    "pages/address/select/index",
-    "pages/address/edit/index"
+    "pages/identify/identify"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

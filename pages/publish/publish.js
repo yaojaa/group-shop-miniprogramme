@@ -5,8 +5,6 @@
 //获取应用实例
 var WxValidate = require("../../utils/wxValidate.js");
 
-console.log(WxValidate)
-
 const app = getApp()
 
 
@@ -29,6 +27,9 @@ Page({
     isGave:0,
     address:0,
     deliver:true,
+    animal:'动物',
+    disabled:false,
+    checked:true
   },
   onLoad:function(){
    
@@ -49,6 +50,9 @@ Page({
         var tempFilePaths = res.tempFilePaths
       }
     })
+  },
+  handleAnimalChange:function(){
+    
   },
   navigateToAddress: function () {
     wx.navigateTo({
