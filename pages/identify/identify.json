@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "身份认证"
+  "window": {"navigationBarTitleText": "身份认证"},
+  "usingComponents": {
+	    "i-input": "../../iView/input/index"
+	}
 }
