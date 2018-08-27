@@ -17,6 +17,9 @@ Page({
       url: '/pages/publish/publish',
     })
   },
+  handleChange(key){
+    console.log(key)
+  },
   onLoad:function(option){
     console.log(option, app.globalData.userInfo)
     let userInfo = app.globalData.userInfo;
