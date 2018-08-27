@@ -1,7 +1,5 @@
   <view class="page-body">
-<view>快速发布你的宝贝！       
-</view>
-  <form bindsubmit="submitForm">
+<form bindsubmit="submitForm">
 <view class="weui-uploader weui-cells_form weui-cell">
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
@@ -17,7 +15,7 @@
                                     <view class="weui-uploader__file-content">50%</view>
                                 </view>
                             </view>
-                            <view class="weui-uploader__input-box">
+                            <view class="weui-uploader__input-box" bindtap="chooseImage"  >
                                 <text class="upload_txt">图片/视频</text>
                             </view>
                         </view>
@@ -36,11 +34,9 @@
                     <textarea name="content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="23"></textarea>
                 </view>
 
-  <view class="weui-uploader__input-box">
-     <text class="upload_txt">介绍图片</text>
-  </view>
 
-            </view>
+</view>
+ <view class="weui-cell">+ 添加介绍图片(选填)</view>
 
 </view>
 
@@ -86,7 +82,7 @@
           <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">地址：</view></view>
                     <view class="weui-cell__bd">
-                    <input name="address"  maxlength="50" bindtap="chooseMap" placeholder="点击选择" />
+                    <input name="address"  maxlength="50" bindtap="navigateToAddress" placeholder="点击选择" />
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">></view>
@@ -96,13 +92,7 @@
                     
     </view>
 
-     <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">门牌号：</view></view>
-                    <view class="weui-cell__bd">
-                    <input  maxlength="50" bindtap="chooseMap" placeholder="例:16号楼293室" />
-                    </view>
 
-         </view>
 
 </view>
 

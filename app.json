@@ -5,7 +5,11 @@
     "pages/usercenter/usercenter",
     "pages/publish/publish", 
     "pages/publish-success/publish-success",
-    "pages/authentication/authentication"
+    "pages/authentication/authentication",
+    "pages/address/list/list",
+    "pages/address/add/add",
+    "pages/address/select/index",
+    "pages/address/edit/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
