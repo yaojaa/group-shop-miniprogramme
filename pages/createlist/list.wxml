@@ -13,8 +13,8 @@
         <view class="card-content">
           <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
           <view class="card-content-footer">
-            <button type="default" size="mini" class="button">默认尺寸</button>
-            <button type="default" size="mini" class="button">默认尺寸</button>
+            <button type="default" size="mini" class="button">更新介绍</button>
+            <button type="default" size="mini" class="button">管理</button>
           </view>
         </view>
       </view>
@@ -34,8 +34,8 @@
         <view class="card-content">
           <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
           <view class="card-content-footer">
-            <button type="default" size="mini" class="button">默认尺寸</button>
-            <button type="default" size="mini" class="button">默认尺寸</button>
+            <button type="default" size="mini" class="button">更新介绍</button>
+            <button type="default" size="mini" class="button">管理</button>
           </view>
         </view>
       </view>
