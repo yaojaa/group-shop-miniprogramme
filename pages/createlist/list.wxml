@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="session ct-header">
+    <view class="ct-title">我发布的商品</view>
+    <view class="ct-button"><button type="primary" size="mini"><text>+ </text> 发布一个</button></view>      
+  </view>
+  <view class="session">
+
+    <view class="card">
+      <view class="card-main">
+        <view class="card-img">
+          <image mode="aspectFit" src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
+        </view>
+        <view class="card-content">
+          <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
+          <view class="card-content-footer">
+            <button type="default" size="mini" class="button">默认尺寸</button>
+            <button type="default" size="mini" class="button">默认尺寸</button>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="line-chart">
+          <canvas canvas-id="canvas0"></canvas>
+        </view>
+        <view class="chart-des">400人浏览 30人付款</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-main">
+        <view class="card-img">
+          <image mode="aspectFit" src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
+        </view>
+        <view class="card-content">
+          <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
+          <view class="card-content-footer">
+            <button type="default" size="mini" class="button">默认尺寸</button>
+            <button type="default" size="mini" class="button">默认尺寸</button>
+          </view>
+        </view>
+      </view>
+      <view class="card-footer">
+        <view class="line-chart">
+          <canvas canvas-id="canvas1"></canvas>
+        </view>
+        <view class="chart-des">400人浏览 30人付款</view>
+      </view>
+    </view>
+
+
+  </view>
+</view>

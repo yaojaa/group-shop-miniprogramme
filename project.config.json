@@ -49,6 +49,12 @@
 					"name": "发布页",
 					"pathName": "pages/publish/publish",
 					"query": ""
+        },
+        {
+					"id": 2,
+					"name": "详情页启动",
+					"pathName": "pages/goods/goods",
+					"query": "id=110"
 				}
 			]
 		}

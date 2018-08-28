@@ -2,46 +2,49 @@
 
 .container {
   height: 100%;
+  color:#333;
 }
-
+.main{
+  padding: 26rpx;
+}
 .page-body {
   background: #f8f8f8;
 }
 
 .f10 {
-  font-size: 10px !important;
+  font-size: 20rpx !important;
 }
 
 .f12 {
-  font-size: 12px !important;
+  font-size: 24rpx !important;
 }
 
 .f13 {
-  font-size: 13px !important;
+  font-size: 26rpx !important;
 }
 
 .f14 {
-  font-size: 14px !important;
+  font-size: 28rpx !important;
 }
 
 .f15 {
-  font-size: 15px !important;
+  font-size: 30rpx !important;
 }
 
 .f16 {
-  font-size: 16px !important;
+  font-size: 32rpx !important;
 }
 
 .f18 {
-  font-size: 18px !important;
+  font-size: 36rpx !important;
 }
 
 .f20 {
-  font-size: 20px !important;
+  font-size: 40rpx !important;
 }
 
 .f24 {
-  font-size: 24px !important;
+  font-size: 48rpx !important;
 }
 
 .text-left {
@@ -68,11 +71,9 @@
   padding: 0 0;
   box-sizing: border-box;
 } 
-.f12{
-	font-size:12px;
-  align-items: center;
+.line-through{
+  text-decoration:line-through
 }
-
 .text-hide {
   display: -webkit-box;
   -webkit-box-orient: vertical;
