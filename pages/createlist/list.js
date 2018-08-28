@@ -1,6 +1,7 @@
 Page({
   data:{
-    
+    current:"tab1"
+
   },
   canvasIdErrorCallback: function (e) {
     console.error(e.detail.errMsg)
@@ -76,6 +77,13 @@ Page({
     wx.navigateTo({
       url: '/pages/publish/publish',
     })
+  },
+
+
+  handleChange({ detail }) {
+    this.setData({
+      current: detail.key
+    });
   },
 
 

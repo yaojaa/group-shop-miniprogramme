@@ -3,8 +3,13 @@
     <view class="ct-title">我发布的商品</view>
     <view class="ct-button"><button type="primary" size="mini" bindtap="tapTo"><text>+ </text> 发布一个</button></view>      
   </view>
+  <view class='session'>
+    <i-tabs current="{{ current }}" color="#f759ab" bindchange="handleChange">
+      <i-tab key="tab1" title="出售中"></i-tab>
+      <i-tab key="tab2" title="已下架"></i-tab>
+    </i-tabs>
+  </view>
   <view class="session">
-
     <view class="card">
       <view class="card-main">
         <view class="card-img">
@@ -13,8 +18,9 @@
         <view class="card-content">
           <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
           <view class="card-content-footer">
-            <button type="default" size="mini" class="button">更新介绍</button>
-            <button type="default" size="mini" class="button">管理</button>
+            <button type="default" size="mini" class="button">编辑</button>
+            <button type="default" size="mini" class="button">下架</button>
+            <button type="default" size="mini" class="button">删除</button>
           </view>
         </view>
       </view>
@@ -34,8 +40,9 @@
         <view class="card-content">
           <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
           <view class="card-content-footer">
-            <button type="default" size="mini" class="button">更新介绍</button>
-            <button type="default" size="mini" class="button">管理</button>
+            <button type="default" size="mini" class="button">编辑</button>
+            <button type="default" size="mini" class="button">下架</button>
+            <button type="default" size="mini" class="button">删除</button>
           </view>
         </view>
       </view>

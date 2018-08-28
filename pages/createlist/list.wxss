@@ -8,7 +8,7 @@
   display: flex;
   height: 50px;
   line-height: 50px;
-  border-bottom: 1px solid #dddee1;
+  /* border-bottom: 1px solid #f5f6f6; */
 }
 .ct-header .ct-title{
   flex-grow: 1;
@@ -25,7 +25,7 @@
 }
 .card{
   padding: 10px 0;
-  border-bottom: 1px solid #dddee1;
+  border-bottom: 1px solid #f5f6f6;
 }
 .card-main{
   position: relative;
@@ -58,7 +58,7 @@
   right: 0;
 }
 .card-content-footer button{
-  padding: 16rpx 18rpx;
+  padding: 16rpx 20rpx;
   line-height: 1;
   margin-left: 10px;
   vertical-align: bottom;

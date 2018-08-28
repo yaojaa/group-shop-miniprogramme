@@ -3,7 +3,9 @@
 	    "i-button": "../../iView/button/index",
 	    "i-cell-group": "../../iView/cell-group/index",
 	    "i-cell": "../../iView/cell/index",
-	    "i-icon": "../../iView/icon/index"
+	    "i-icon": "../../iView/icon/index",
+      "i-tabs": "../../iView/tabs/index",
+      "i-tab": "../../iView/tab/index"
 	}
 
 }
