@@ -1,7 +1,7 @@
 <view class="container">
   <view class="session ct-header">
     <view class="ct-title">我发布的商品</view>
-    <view class="ct-button"><button type="primary" size="mini"><text>+ </text> 发布一个</button></view>      
+    <view class="ct-button"><button type="primary" size="mini" bindtap="tapTo"><text>+ </text> 发布一个</button></view>      
   </view>
   <view class="session">
 

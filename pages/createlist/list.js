@@ -1,9 +1,6 @@
 Page({
   data:{
-    w0:0,
-    h0:0,
-    w1:0,
-    h1:0
+    
   },
   canvasIdErrorCallback: function (e) {
     console.error(e.detail.errMsg)
@@ -74,7 +71,12 @@ Page({
       gd.arc(e[0], e[1], 2, 0, 2 * Math.PI, true);
       gd.fill();
   	});
-  }
+  },
+  tapTo() {
+    wx.navigateTo({
+      url: '/pages/publish/publish',
+    })
+  },
 
 
 })
