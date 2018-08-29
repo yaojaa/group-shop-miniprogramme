@@ -19,8 +19,8 @@
           <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
           <view class="card-content-footer">
             <button type="default" size="mini" class="button">编辑</button>
-            <button type="default" size="mini" class="button">下架</button>
-            <button type="default" size="mini" class="button">删除</button>
+            <button type="default" size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">下架</button>
+            <button type="default" size="mini" class="button" data-id="2" data-type="delete" bindtap='openAlert'>删除</button>
           </view>
         </view>
       </view>
@@ -41,8 +41,8 @@
           <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
           <view class="card-content-footer">
             <button type="default" size="mini" class="button">编辑</button>
-            <button type="default" size="mini" class="button">下架</button>
-            <button type="default" size="mini" class="button">删除</button>
+            <button type="default" size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">下架</button>
+            <button type="default" size="mini" class="button" data-id="2" data-type="delete" bindtap='openAlert'>删除</button>
           </view>
         </view>
       </view>
@@ -56,4 +56,7 @@
 
 
   </view>
+  <i-modal title="温馨提示" visible="{{ visible }}" bind:ok="closeAlert" bind:cancel="closeAlert">
+    <view>{{alertMsg}}</view>
+  </i-modal>
 </view>
