@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.1.1",
-	"appid": "wx2a951d86e93a1879",
+	"appid": "wx7d6d663f860012f8",
 	"projectname": "group",
 	"isGameTourist": false,
 	"condition": {
@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -41,7 +41,20 @@
 				{
 					"id": -1,
 					"name": "订单列表启动",
-					"pathName": "pages/orderList/orderList"
+					"pathName": "pages/orderList/orderList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布页",
+					"pathName": "pages/publish/publish",
+					"query": ""
+        },
+        {
+					"id": 2,
+					"name": "详情页启动",
+					"pathName": "pages/goods/goods",
+					"query": "id=110"
 				}
 			]
 		}

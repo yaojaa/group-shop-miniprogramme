@@ -1,0 +1,84 @@
+@import "../../utils/weui.wxss";
+.container{
+}
+.session{
+  margin: 0 15px;
+}
+.ct-header{
+  display: flex;
+  height: 50px;
+  line-height: 50px;
+  /* border-bottom: 1px solid #f5f6f6; */
+}
+.ct-header .ct-title{
+  flex-grow: 1;
+  font-size: 16px;
+}
+.ct-header .ct-button{
+  text-align: right;
+  display: flex;
+  align-items: center;
+}
+.ct-header .ct-button button{
+  padding:8px 10px;
+  line-height: 1;
+}
+.card{
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f6f6;
+}
+.card-main{
+  position: relative;
+  display: flex;
+}
+.card-img{
+  margin-right: 10px;
+}
+.card-img image{
+  max-width: 128rpx;
+  max-height: 128rpx;
+  vertical-align: top;
+}
+.card-content{
+  width: 100px;
+  flex-grow: 1;
+}
+.card-title{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.card-content-footer{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.card-content-footer button{
+  padding: 16rpx 20rpx;
+  line-height: 1;
+  margin-left: 10px;
+  vertical-align: bottom;
+  font-size: 14px;
+}
+.card-footer{
+  padding-top: 10px;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+}
+.line-chart{
+  height: 100%;
+  flex-grow: 1;
+}
+.line-chart canvas{
+  width: 100%;
+  height: 100%;
+}
+.chart-des{
+  padding-left: 10px;
+  font-size: 14px;
+}

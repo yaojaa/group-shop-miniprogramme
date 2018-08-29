@@ -27,10 +27,8 @@ Page({
     isGave:0,
     address:0,
     deliver:true,
-    animal:'动物',
-    disabled:false,
-    checked:true
-  },
+    morePic:false
+      },
   onLoad:function(){
    
   },
@@ -51,8 +49,12 @@ Page({
       }
     })
   },
-  handleAnimalChange:function(){
-    
+  handleAnimalChange:function(event){
+
+    const detail = event.detail;
+        this.setData({
+            'morePic' : detail.value
+        })
   },
   navigateToAddress: function () {
     wx.navigateTo({
@@ -108,7 +110,7 @@ Page({
     submitForm(e) {
 
        wx.navigateTo({
-            url: '../goods/goods'
+            url: '../publish-success/publish-success'
           })
                 
         const params = e.detail.value

@@ -8,3 +8,66 @@
   width: 100%;
   height: 400rpx;
 }
+.goods-title{
+  font-size: 36rpx;
+  color:#333;
+  line-height: 1.4;
+}
+.goods-desc{
+  font-size: 30rpx;
+  line-height: 1.4;
+  color:#666;
+}
+.goods-price{
+  font-size: 26rpx;
+  color:#999;
+  padding: 0 0 25rpx;
+}
+.goods-price .price{
+  font-size: 36rpx;
+  color:rgb(255, 72, 145);
+  padding-right: 10rpx;
+}
+.goods-addres{
+  font-size: 26rpx;
+}
+.goods-phone{
+  font-size: 26rpx;
+}
+.wx-group{
+  font-size: 28rpx;
+  padding:14rpx;
+  text-align: center;
+  border:1rpx #f2f2f2 solid;
+  border-radius: 2px;
+  margin-top: 20rpx;
+}
+.wx-group-pic{
+  width: 46rpx;
+  height:46rpx;
+  vertical-align: middle;
+  padding-right: 20rpx;
+}
+.sub-title{
+  margin-top: 20rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  padding: 10rpx 0;
+  border-bottom:1rpx solid #f1f1f1;
+}
+.goods-content{
+  padding: 20rpx 0 100rpx;
+  font-size: 28rpx;
+}
+.footer-cart{
+  position: fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  line-height: 90rpx;
+  background: rgb(255, 72, 145);
+  color:#fff;
+  text-align: center;
+  font-weight: 400;
+  font-size: 32rpx;
+}
