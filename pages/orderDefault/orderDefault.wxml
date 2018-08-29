@@ -1,0 +1,63 @@
+<view class="container">
+  <view class="orderpress">
+    <i-steps>
+      <i-step status="finish">
+        <view slot="title">提交订单</view>
+      </i-step>
+      <i-step status="process">
+        <view slot="title">配送中</view>
+      </i-step>
+      <i-step status="">
+        <view slot="title">交易完成</view>
+      </i-step>
+    </i-steps>
+  </view>
+  <view class="orderstate">
+    <view class="textline">
+      <view class="textleft">订单状态</view>
+      <view>{{status[order.state]}}</view>
+    </view>
+    <view class="textline">
+      <view class="textleft">订单编号</view>
+      <view>{{order.id}}</view>
+    </view>
+    <view class="textline">
+      <view class="textleft">下单时间</view>
+      <view>{{order.createTime}}</view>
+    </view>
+  </view>
+  <view class="orderstate">
+    <view class="textline">
+      <view class="textleft">供货商家</view>
+      <view>{{order.shop}}</view>
+    </view>
+    <view class="textline">
+      <view class="textleft">商品金额</view>
+      <view>{{order.price}}</view>
+    </view>
+    <view class="textline">
+      <view class="textleft">收货地址</view>
+      <view>{{order.address}}</view>
+    </view>
+    <view class="textline">
+      <view class="textleft">收货人</view>
+      <view>{{order.address}}</view>
+    </view>
+    <view class="textline">
+      <view class="textleft">配送方式</view>
+      <view>{{order.address}}</view>
+    </view>
+  </view>
+  <view class="order">
+    <view class="goodsInfo" bindtap="toDefault">
+      <view style="background-image:url({{order.goodimg}})" class="goodimg"></view>
+      <view class="gooddef">
+        <view class="goodname">{{order.goodname}}</view>
+        <view class="price">
+          <view>￥{{order.price}}</view>
+          <view class="num">x {{order.num}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

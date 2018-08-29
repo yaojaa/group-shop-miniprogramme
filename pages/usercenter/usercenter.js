@@ -19,6 +19,9 @@ Page({
   },
   handleChange(key){
     console.log(key)
+    wx.navigateTo({
+      url: '/pages/orderList/orderList'
+    })
   },
   onLoad:function(option){
     console.log(option, app.globalData.userInfo)
