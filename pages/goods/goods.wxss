@@ -48,8 +48,7 @@
 }
 .sub-title{
   margin-top: 20rpx;
-  font-size: 36rpx;
-  font-weight: 500;
+  font-size: 32rpx;
   padding: 5px 15px;
   border-bottom:1rpx solid #f1f1f1;
 }
