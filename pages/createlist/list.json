@@ -5,7 +5,8 @@
 	    "i-cell": "../../iView/cell/index",
 	    "i-icon": "../../iView/icon/index",
       "i-tabs": "../../iView/tabs/index",
-      "i-tab": "../../iView/tab/index"
+      "i-tab": "../../iView/tab/index",
+      "i-modal": "../../iView/modal/index"
 	}
 
 }

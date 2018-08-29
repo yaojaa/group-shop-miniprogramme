@@ -10,6 +10,7 @@
 }
 .session{
   padding: 10px 0 20px;
+  margin-bottom: 40px;
 }
 .input{
   display: flex;

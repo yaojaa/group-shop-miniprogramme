@@ -60,6 +60,11 @@
 					"id": -1,
 					"name": "订单详情启动",
 					"pathName": "pages/orderDefault/orderDefault"
+				},
+				{
+					"name": "订单确认",
+					"pathName": "pages/order/index",
+					"query": "id=110"
 				}
 			]
 		}
