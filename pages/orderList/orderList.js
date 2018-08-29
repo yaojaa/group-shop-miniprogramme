@@ -18,17 +18,34 @@ Page({
         discount: 5,
         payment: 128.22,
         id: "0101010",
-        state: 1,
-        paytype: '1',
+        state: 0,
+        paytype: 1,
         phone: '18311111020'
       }
-    ]
+    ],
+    visible1: false,
+    cont: '',
+    value: 0
   },
   fncall(ev){
+
     let phoneNumber = ev.target.dataset.phone;
     wx.makePhoneCall({
       phoneNumber
     })
+  },
+  topay(){
+    // beacon
+    wx.setScreenBrightness({
+      value: 0.6
+    })
+    // wx.requestPayment({
+    //   timeStamp: new Date() + '',
+    //   nonceStr: Math.random().toString(36).substr(2),
+    //   package: 'dsdadasd',
+    //   signType: 'MD5',
+    //   paySign: 'asdfasfasdfas'
+    // })
   },
   onLoad: function (option) {
   }
