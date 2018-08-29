@@ -8,7 +8,7 @@
   display: flex;
   height: 50px;
   line-height: 50px;
-  border-bottom: 1px solid #dddee1;
+  /* border-bottom: 1px solid #f5f6f6; */
 }
 .ct-header .ct-title{
   flex-grow: 1;
@@ -20,12 +20,12 @@
   align-items: center;
 }
 .ct-header .ct-button button{
-  padding:10px;
+  padding:8px 10px;
   line-height: 1;
 }
 .card{
   padding: 10px 0;
-  border-bottom: 1px solid #dddee1;
+  border-bottom: 1px solid #f5f6f6;
 }
 .card-main{
   position: relative;
@@ -49,8 +49,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 16px;
-  height: 30px;
-  line-height: 30px;
+  height: 50rpx;
+  line-height: 50rpx;
 }
 .card-content-footer{
   position: absolute;
@@ -58,10 +58,11 @@
   right: 0;
 }
 .card-content-footer button{
-  padding: 10px;
+  padding: 16rpx 20rpx;
   line-height: 1;
   margin-left: 10px;
   vertical-align: bottom;
+  font-size: 14px;
 }
 .card-footer{
   padding-top: 10px;

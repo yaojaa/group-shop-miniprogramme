@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "i-icon": "/iView/icon/index"
+    "i-icon": "/iView/icon/index",
+    "i-button": "/iView/button/index"
   }
 }

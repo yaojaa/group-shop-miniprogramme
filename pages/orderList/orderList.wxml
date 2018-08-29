@@ -1,10 +1,10 @@
 <view class="container">
-  <view class="order" wx:for="{{orders}}">
-     <view class="topLine">
+  <view class="order" wx:for="{{orders}}" wx:key="id">
+    <view class="topLine">
       <view>{{item.shop}}<i-icon data-phone="{{item.phone}}" type="mobilephone" size="20" color="#80848f" bindtap='fncall' /></view>
       <view class="state">{{status[item.state]}}</view>
     </view>
-     <view class="goodsInfo">
+    <view class="goodsInfo">
       <view style="background-image:url({{item.goodimg}})" class="goodimg"></view>
       <view class="gooddef">
         <view class="goodname">{{item.goodname}}</view>
@@ -13,6 +13,9 @@
           <view class="num">x {{item.num}}</view>
         </view>
       </view>
-     </view>
+    </view>
+    <view style="margin-top:10px" bindtap='topay'>
+      <i-button type="primary" wx:if="{{item.state===0}}" size="small" long="{{true}}">去支付</i-button>
+    </view>
   </view>
 </view>
