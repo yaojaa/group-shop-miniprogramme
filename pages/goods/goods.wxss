@@ -17,11 +17,12 @@
   font-size: 30rpx;
   line-height: 1.4;
   color:#666;
+  margin-top: 5rpx;
 }
 .goods-price{
   font-size: 26rpx;
   color:#999;
-  padding: 0 0 25rpx;
+  padding: 5rpx 0 0;
 }
 .goods-price .price{
   font-size: 36rpx;
@@ -34,13 +35,10 @@
 .goods-phone{
   font-size: 26rpx;
 }
-.wx-group{
-  font-size: 28rpx;
-  padding:14rpx;
-  text-align: center;
-  border:1rpx #f2f2f2 solid;
-  border-radius: 2px;
-  margin-top: 20rpx;
+.goods-info{
+  padding: 10px 15px;
+  background: #fff;
+  margin-bottom: 20rpx;
 }
 .wx-group-pic{
   width: 46rpx;
@@ -52,12 +50,13 @@
   margin-top: 20rpx;
   font-size: 36rpx;
   font-weight: 500;
-  padding: 10rpx 0;
+  padding: 5px 15px;
   border-bottom:1rpx solid #f1f1f1;
 }
 .goods-content{
-  padding: 20rpx 0 100rpx;
+  padding: 15px 15px 120rpx;
   font-size: 28rpx;
+  background: #fff;
 }
 .footer-cart{
   position: fixed;
@@ -65,9 +64,25 @@
   left:0;
   right:0;
   line-height: 90rpx;
-  background: rgb(255, 72, 145);
+  background: #fff;
   color:#fff;
   text-align: center;
   font-weight: 400;
   font-size: 32rpx;
+  display: flex;
+  border-top:1rpx solid #f1f1f1;
+}
+.footer-cart .icon{
+  flex: 1;
+  margin-top: -4rpx;
+}
+.footer-cart .buy{
+   background: rgb(255, 72, 145);
+   flex: 2;
+}
+.goods-content image{
+  width: 100%;
+}
+.container{
+  background: #f8f8f8;
 }

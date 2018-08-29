@@ -104,3 +104,9 @@
 .bold {
   font-weight: bold;
 }
+.mb-sm{
+  margin-bottom: 20rpx;
+}
+.mt-sm{
+  margin-top: 20rpx;
+}

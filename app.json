@@ -8,8 +8,8 @@
     "pages/authentication/authentication",
     "pages/identify/identify",
     "pages/createlist/list",
-    "pages/orderList/orderList"
-   
+    "pages/orderList/orderList",
+    "pages/order/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

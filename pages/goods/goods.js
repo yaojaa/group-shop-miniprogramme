@@ -12,5 +12,20 @@ Page({
   },
   onLoad:function(option){
     console.log(option)
+  },
+  homepage(){
+    wx.switchTab({
+      url: '../index/index'
+    })
+  },
+  userpage() {
+    wx.switchTab({
+      url: '../usercenter/usercenter'
+    })
+  },
+  buy() {
+    wx.navigateTo({
+      url: '../order/index'
+    })
   }
 })
