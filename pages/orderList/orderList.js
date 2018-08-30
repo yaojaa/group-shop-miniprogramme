@@ -47,6 +47,11 @@ Page({
     //   paySign: 'asdfasfasdfas'
     // })
   },
+  toDefault() {
+    wx.navigateTo({
+      url: '/pages/orderDefault/orderDefault',
+    })
+  },
   onLoad: function (option) {
   }
 })

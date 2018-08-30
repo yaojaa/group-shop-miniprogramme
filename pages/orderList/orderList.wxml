@@ -4,7 +4,7 @@
       <view>{{item.shop}}<i-icon data-phone="{{item.phone}}" type="mobilephone" size="20" color="#80848f" bindtap='fncall' /></view>
       <view class="state">{{status[item.state]}}</view>
     </view>
-    <view class="goodsInfo">
+    <view class="goodsInfo" bindtap="toDefault">
       <view style="background-image:url({{item.goodimg}})" class="goodimg"></view>
       <view class="gooddef">
         <view class="goodname">{{item.goodname}}</view>

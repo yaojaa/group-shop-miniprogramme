@@ -9,6 +9,7 @@
     "pages/identify/identify",
     "pages/createlist/list",
     "pages/orderList/orderList",
+    "pages/orderDefault/orderDefault",   
     "pages/order/index"
   ],
   "window": {
