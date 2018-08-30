@@ -79,6 +79,6 @@
   height: 100%;
 }
 .chart-des{
-  padding-left: 10px;
+  padding-left: 20px;
   font-size: 14px;
 }
