@@ -25,7 +25,8 @@ Page({
     ],
     visible1: false,
     cont: '',
-    value: 0
+    value: 0,
+    current: 'tab1'
   },
   fncall(ev){
 
