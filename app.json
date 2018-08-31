@@ -8,6 +8,8 @@
     "pages/authentication/authentication",
     "pages/identify/identify",
     "pages/createlist/list",
+    "pages/orderconfirm/details",
+    "pages/ordermanage/list",
     "pages/orderList/orderList",
     "pages/orderDefault/orderDefault",   
     "pages/order/index"

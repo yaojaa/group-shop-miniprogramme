@@ -18,7 +18,7 @@
         <view class="card-content">
           <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
           <view class="card-content-footer">
-            <button type="default" size="mini" class="button">编辑</button>
+            <button type="default" size="mini" class="button" data-id="1" bindtap="tapTo">编辑</button>
             <button type="default" size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">下架</button>
             <button type="default" size="mini" class="button" data-id="2" data-type="delete" bindtap='openAlert'>删除</button>
           </view>
@@ -40,7 +40,7 @@
         <view class="card-content">
           <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
           <view class="card-content-footer">
-            <button type="default" size="mini" class="button">编辑</button>
+            <button type="default" size="mini" class="button" data-id="1" bindtap="tapTo">编辑</button>
             <button type="default" size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">下架</button>
             <button type="default" size="mini" class="button" data-id="2" data-type="delete" bindtap='openAlert'>删除</button>
           </view>
