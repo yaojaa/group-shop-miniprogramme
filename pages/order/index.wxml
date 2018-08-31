@@ -1,32 +1,39 @@
 <view class="container">
     <i-panel>
-        <i-cell-group>
-            <i-cell>
-                <view class='product-item'>
-                    <view class='item-img'>
-                        <image src='https://i.loli.net/2017/08/21/599a521472424.jpg'></image>
-                    </view>
-                    <view class='item-body'>
-                        <view class='item-title'>
-                            <text>库尔勒香梨95g-120g*5个库尔勒香梨95g-120g*5个</text>
-                        </view>
-                        <view class='item-type'>
-                            <text>类型：咖啡</text>
-                        </view>
-                    </view>
-                    <view class='item-side'>
-                        <text class="price">￥100</text>
-                    </view>
-                </view>
-            </i-cell>
-            <i-cell title="购买数量">
-                <i-input-number value="{{ num }}" min="1" max="100" bindchange="handleChange1" slot="footer" />
-            </i-cell>
-            <i-cell title="优惠金额" is-link>
-                <view class='text-red' slot="footer">-￥0</view>
-            </i-cell>
-        </i-cell-group>
+        <i-input value="{{ value1 }}" title="收货人" autofocus placeholder="名字" />
+        <i-input value="{{ value2 }}" type="number" title="联系电话" placeholder="请输入手机号" />
+        <i-input value="{{ value3 }}" type="textarea" title="详细地址" placeholder="请输入详细地址(最多50字)" maxlength="50" />
     </i-panel>
+    <view class='mt-sm'>
+        <i-panel>
+            <i-cell-group>
+                <i-cell>
+                    <view class='product-item'>
+                        <view class='item-img'>
+                            <image src='https://i.loli.net/2017/08/21/599a521472424.jpg'></image>
+                        </view>
+                        <view class='item-body'>
+                            <view class='item-title'>
+                                <text>库尔勒香梨95g-120g*5个库尔勒香梨95g-120g*5个</text>
+                            </view>
+                            <view class='item-type'>
+                                <text>类型：咖啡</text>
+                            </view>
+                        </view>
+                        <view class='item-side'>
+                            <text class="price">￥100</text>
+                        </view>
+                    </view>
+                </i-cell>
+                <i-cell title="购买数量">
+                    <i-input-number value="{{ num }}" min="1" max="100" bindchange="handleChange1" slot="footer" />
+                </i-cell>
+                <i-cell title="优惠金额" is-link>
+                    <view class='text-red' slot="footer">-￥0</view>
+                </i-cell>
+            </i-cell-group>
+        </i-panel>
+    </view>
     <view class='mt-sm'>
         <i-panel>
             <i-radio-group current="{{current}}" bindchange="handleFruitChange">
