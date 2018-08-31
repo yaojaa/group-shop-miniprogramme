@@ -1,0 +1,71 @@
+<view class="container">
+  <view class="session ct-header">
+    <view class="ct-title">商品详情</view>     
+  </view>
+  <view class="session">
+    <view class="card">
+      <view class="card-main">
+        <view class="card-img">
+          <image mode="aspectFit" src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
+        </view>
+        <view class="card-content">
+          <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
+          <view class="card-des">
+            <view>￥200</view>
+            <view>规格：20*3</view>
+            <view>数量：1</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="card-main">
+        <view class="card-img">
+          <image mode="aspectFit" src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
+        </view>
+        <view class="card-content">
+          <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
+          <view class="card-des">
+            <view>￥200</view>
+            <view>规格：20*3</view>
+            <view>数量：1</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="card-main">
+        <view class="card-img">
+          <image mode="aspectFit" src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
+        </view>
+        <view class="card-content">
+          <view class="card-title">标题标题标题标题标题标题标题标题标题标题标题标题</view>
+          <view class="card-des">
+            <view>￥200</view>
+            <view>规格：20*3</view>
+            <view>数量：1</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+
+  <view class="session ct-header ct-edit">
+    <view class="ct-title">发货单备注</view>     
+    <view class="beizhu">
+      <form bindsubmit="bindFormSubmit">
+        <view class="textarea">
+        <textarea placeholder="请输入订单备注" name="textarea"/></view>
+        <button form-type="submit" type='primary'>确认发货</button>
+      </form>
+    </view>
+  </view>
+
+
+  <i-modal title="温馨提示" visible="{{ visible }}" bind:ok="closeAlert" bind:cancel="closeAlert">
+    <view>{{alertMsg}}</view>
+  </i-modal>
+</view>

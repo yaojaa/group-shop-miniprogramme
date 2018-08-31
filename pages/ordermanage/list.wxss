@@ -79,7 +79,13 @@
 .order-list:last-child{
 	border: none;
 }
-
+.price-input{
+	border-bottom: 1px solid #efefef;
+	width: 60%;
+	border-radius: 5px;
+	margin:0 auto;
+	text-align: center;
+}
 
 icon{
 	display: block;
