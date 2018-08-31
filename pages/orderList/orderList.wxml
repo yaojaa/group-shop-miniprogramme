@@ -1,4 +1,9 @@
 <view class="container">
+  <i-tabs current="{{ current }}" bindchange="handleChange">
+    <i-tab key="tab1" title="待付款"></i-tab>
+    <i-tab key="tab2" title="待收货"></i-tab>
+    <i-tab key="tab3" title="全部订单"></i-tab>
+  </i-tabs>
   <view class="order" wx:for="{{orders}}" wx:key="id">
     <view class="topLine">
       <view>{{item.shop}}<i-icon data-phone="{{item.phone}}" type="mobilephone" size="20" color="#80848f" bindtap='fncall' /></view>
