@@ -82,7 +82,7 @@
 }
 
 .text-red {
-  color: #d4282d !important;
+  color: #FF5757 !important;
 }
 
 .text-green {
