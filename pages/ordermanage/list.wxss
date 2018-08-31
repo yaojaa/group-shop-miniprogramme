@@ -1,0 +1,86 @@
+@import "../../utils/weui.wxss";
+.container{
+}
+.session{
+}
+.search{
+	display: flex;
+	background: #efefef;
+	padding:10px 15px;
+	align-items: center;
+}
+.search-button{
+	width: 50px;
+	height: 30px;
+	line-height: 30px;
+	text-align: right;
+}
+.search-button button{
+	border: none;
+	text-indent: 0;
+	padding: 0;
+	color: #ff4891;
+}
+.search-main{
+	flex-grow: 1;
+	height: 30px;
+	display: flex;
+	background-color: #fff;
+	border-radius: 5px;
+	align-items: center;
+}
+.search-main .icon{
+	padding: 0 5px;
+}
+.search-main .input{
+	flex-grow: 1;
+	line-height: 30px;
+}
+
+.search-main .input input{
+	display: block;
+	width: 100%;
+	font-size: 14px;
+	min-height: 20px;
+}
+.order-list{
+	padding: 15px 0;
+	font-size: 14px;
+	border-bottom:1px solid #efefef;
+}
+.list-h{
+	line-height: 30px;
+	display: flex;
+}
+.list-h view{
+	width: 100px;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+	flex-grow: 1;
+	padding: 0 10px;
+}
+.list-p{
+	line-height: 20px;
+	padding: 4px 10px 0;
+}
+.list-button{
+	padding: 10px 10px 10px 0;
+	display: flex;
+}
+.list-button .button{
+	flex-grow: 1;
+	margin-left: 10px;
+	border-color: #efefef;
+	color: #333;
+	padding: 0;
+	width: 100px;
+}
+.order-list:last-child{
+	border: none;
+}
+
+
+icon{
+	display: block;
+}
