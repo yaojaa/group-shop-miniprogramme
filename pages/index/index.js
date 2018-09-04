@@ -1,11 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
 Page({
   data: {
     name: '甘露园南里二区',
-    userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgUrls: [
@@ -14,6 +12,7 @@ Page({
   },
   onLoad: function () {
     this.getProList()
+    console.log(app.globalData.userInfo);
   },
   getProList(){
     wx.request({
