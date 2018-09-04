@@ -12,7 +12,8 @@
     "pages/ordermanage/list",
     "pages/orderList/orderList",
     "pages/orderDefault/orderDefault",   
-    "pages/order/index"
+    "pages/order/index",
+    "pages/home/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -81,12 +81,16 @@
   overflow: hidden;
 }
 
+.text-white{
+  color:#fff;
+}
+
 .text-red {
-  color: #FF5757 !important;
+  color: #ff5757 !important;
 }
 
 .text-green {
-  color: #1aad19 !important;
+  color: #39ac69 !important;
 }
 
 .text-default {

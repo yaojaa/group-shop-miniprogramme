@@ -1,0 +1,14 @@
+<view class="container">
+    <view class="head-box">
+        <view class="text-justify head-hd">
+            <text class="text-white f14">认证</text>
+            <i-badge count="3">
+                <i-icon type="remind" size="20" color="#fff" />
+            </i-badge>
+        </view>
+        <view class="userinfo">
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </view>
+    </view>
+</view>

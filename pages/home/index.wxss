@@ -1,0 +1,21 @@
+.head-box{
+	background: #49b34d;
+}
+.head-hd{
+	padding:5px 15px;
+}
+.userinfo{
+	text-align: center;
+	color:#fff;
+}
+.userinfo-avatar{
+	width: 130rpx;
+	height: 130rpx;
+	display: block;
+	margin: 0 auto;
+	border-radius: 50%;
+}
+.userinfo-nickname{
+	padding:10rpx 0 20rpx;
+	display: block;
+}
