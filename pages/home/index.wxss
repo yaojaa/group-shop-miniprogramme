@@ -1,21 +1,122 @@
-.head-box{
-	background: #49b34d;
+.container {
+    background: #f8f8f8;
 }
-.head-hd{
-	padding:5px 15px;
+
+.head-box {
+    background: #49b34d;
 }
-.userinfo{
-	text-align: center;
-	color:#fff;
+
+.head-hd {
+    padding: 5px 15px;
 }
-.userinfo-avatar{
-	width: 130rpx;
-	height: 130rpx;
-	display: block;
-	margin: 0 auto;
-	border-radius: 50%;
+
+.userinfo {
+    text-align: center;
+    color: #fff;
 }
-.userinfo-nickname{
-	padding:10rpx 0 20rpx;
-	display: block;
+
+.userinfo-avatar {
+    width: 130rpx;
+    height: 130rpx;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.userinfo-nickname {
+    padding: 10rpx 0 20rpx;
+    display: block;
+}
+
+.count-box {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    background: #fff;
+    margin: 20rpx 0;
+}
+
+.count-item {
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    -o-flex: 1;
+    flex: 1;
+    text-align: center;
+    margin: 30rpx 0;
+    border-right: 1rpx solid #f2f2f2;
+}
+
+.count-item .label {
+    font-size: 24rpx;
+    color: #666;
+    display: block;
+}
+
+.count-item .num {
+    font-size: 32rpx;
+    color: #000;
+    display: block;
+    padding-top: 5rpx;
+}
+
+.goods-count {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+
+.goods-item {
+    background: #fff;
+    padding: 30rpx 0;
+    border-bottom:1rpx solid #f2f2f2;
+}
+
+.goods-body {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    padding:0  30rpx;
+}
+
+.goods-body .hd {
+    width: 120rpx;
+    height: 120rpx;
+}
+.goods-body .bd {
+	margin: 0 20rpx;
+	-webkit-flex: 1;
+	-moz-flex: 1;
+	-ms-flex: 1;
+	-o-flex: 1;
+	flex: 1;
+}
+.goods-body .bd .tit{
+	font-size: 16px;
+  color: #474245;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.goods-body .bd .link{
+	padding-top: 20rpx;
+}
+.goods-body .bd .link text{
+	font-size:13px;
+	color:#49b34d;
+}
+.goods-body .fd {
+	color:#999;
+	font-size: 28rpx
+}
+.goods-count .count-item{
+	margin:20rpx auto 0;
 }
