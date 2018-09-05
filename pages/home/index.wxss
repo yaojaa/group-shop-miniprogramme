@@ -118,5 +118,8 @@
 	font-size: 28rpx
 }
 .goods-count .count-item{
-	margin:20rpx auto 0;
+	margin:30rpx auto 0;
+}
+.goods-count .count-item .label{
+	color:#999;
 }
