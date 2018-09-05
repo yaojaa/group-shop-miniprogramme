@@ -123,3 +123,6 @@
 .goods-count .count-item .label{
 	color:#999;
 }
+.goods-count .count-item .num{
+	font-size: 28rpx;
+}
