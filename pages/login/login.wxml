@@ -7,6 +7,22 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view> -->
+  <view class="zan-box">
+    <view class="zan {{active}}">
+      <view class="zan-xin" bindtap="dianzan">
+        <image mode="aspectFit" src="{{xining}}"></image>
+      </view>
+      <view class="zan-out"></view>
+      <view class="zan-out-xin">
+        <image class="zan-mi-xin top" mode="aspectFit" src="{{xin[1]}}"></image>
+        <image class="zan-mi-xin top-left" mode="aspectFit" src="{{xin[1]}}"></image>
+        <image class="zan-mi-xin bottom-left" mode="aspectFit" src="{{xin[1]}}"></image>
+        <image class="zan-mi-xin bottom" mode="aspectFit" src="{{xin[1]}}"></image>
+        <image class="zan-mi-xin bottom-right" mode="aspectFit" src="{{xin[1]}}"></image>
+        <image class="zan-mi-xin top-right" mode="aspectFit" src="{{xin[1]}}"></image>
+      </view>
+    </view>
+  </view>
     <view class='start-btn text-center'>
         <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfo">开启小团购</button>
     </view>
