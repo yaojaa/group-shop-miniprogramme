@@ -8,20 +8,7 @@
     </block>
   </view> -->
   <view class="zan-box">
-    <view class="zan {{active}}">
-      <view class="zan-xin" bindtap="dianzan">
-        <image mode="aspectFit" src="{{xining}}"></image>
-      </view>
-      <view class="zan-out"></view>
-      <view class="zan-out-xin">
-        <image class="zan-mi-xin top" mode="aspectFit" src="{{xin[1]}}"></image>
-        <image class="zan-mi-xin top-left" mode="aspectFit" src="{{xin[1]}}"></image>
-        <image class="zan-mi-xin bottom-left" mode="aspectFit" src="{{xin[1]}}"></image>
-        <image class="zan-mi-xin bottom" mode="aspectFit" src="{{xin[1]}}"></image>
-        <image class="zan-mi-xin bottom-right" mode="aspectFit" src="{{xin[1]}}"></image>
-        <image class="zan-mi-xin top-right" mode="aspectFit" src="{{xin[1]}}"></image>
-      </view>
-    </view>
+    <i-xin selected = "1" bind:cancel="cancel"></i-xin>
   </view>
     <view class='start-btn text-center'>
         <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfo">开启小团购</button>

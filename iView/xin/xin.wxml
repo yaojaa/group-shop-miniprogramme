@@ -1,0 +1,17 @@
+
+  <view class="zan-box">
+    <view class="xin-class zan {{active}}" style="width: {{size}};height: {{size}}">
+      <view class="zan-xin" bindtap="dianzan">
+        <image mode="aspectFit" src="{{xining ? xining : cancelImg}}"></image>
+      </view>
+      <view class="zan-out"></view>
+      <view class="zan-out-xin">
+        <image class="zan-mi-xin top" mode="aspectFit" src="{{selectImg}}"></image>
+        <image class="zan-mi-xin top-left" mode="aspectFit" src="{{selectImg}}"></image>
+        <image class="zan-mi-xin bottom-left" mode="aspectFit" src="{{selectImg}}"></image>
+        <image class="zan-mi-xin bottom" mode="aspectFit" src="{{selectImg}}"></image>
+        <image class="zan-mi-xin bottom-right" mode="aspectFit" src="{{selectImg}}"></image>
+        <image class="zan-mi-xin top-right" mode="aspectFit" src="{{selectImg}}"></image>
+      </view>
+    </view>
+  </view>
