@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -59,12 +59,19 @@
 				{
 					"id": -1,
 					"name": "订单详情启动",
-					"pathName": "pages/orderDefault/orderDefault"
+					"pathName": "pages/orderDefault/orderDefault",
+					"query": ""
 				},
 				{
+					"id": -1,
 					"name": "订单确认",
 					"pathName": "pages/order/index",
 					"query": "id=110"
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/home/index"
 				}
 			]
 		}

@@ -4,7 +4,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    num: 1,
+    pay: [{
+      id: 1,
+      name: '在线支付',
+    }, {
+      id: 2,
+      name: '货到付款'
+    }],
+    current: '在线支付',
+    position: 'right',
+  },
+  handleChange1({ detail }) {
+    this.setData({
+      num: detail.value
+    })
+  },
+  handleFruitChange({ detail = {} }) {
+    this.setData({
+      current: detail.value
+    });
   },
 
   /**

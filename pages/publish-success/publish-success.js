@@ -5,7 +5,7 @@
 //获取应用实例
 var WxValidate = require("../../utils/wxValidate.js");
 
-console.log(WxValidate)
+//console.log(WxValidate)
 
 const app = getApp()
 

@@ -1,7 +1,7 @@
 {
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#49b34d",
-  "navigationBarTitleText": "确认订单",
+  "navigationBarTitleText": "麻麻团",
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "i-panel": "../../iView/panel/index",
@@ -10,6 +10,8 @@
     "i-radio-group": "../../iView/radio-group/index",
     "i-radio": "../../iView/radio/index",
     "i-input-number": "../../iView/input-number/index",
-    "i-input": "../../iView/input/index"
+    "i-input": "../../iView/input/index",
+    "i-badge": "../../iView/badge/index",
+    "i-icon": "../../iView/icon/index"
   }
 }

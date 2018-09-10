@@ -16,3 +16,12 @@
   box-sizing: border-box;
   padding:0 20%;
 }
+
+
+.zan-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  background-color: #efefef;
+}
