@@ -21,7 +21,7 @@
   </i-tabs>
   <view>
     <i-cell title="我发布的商品" is-link url="/pages/createlist/list"></i-cell>
-    <i-cell title="收货地址" is-link url="/pages/dashboard/index"></i-cell>
+    <!-- <i-cell title="收货地址" is-link url="/pages/dashboard/index"></i-cell> -->
     <i-cell title="申请认证" is-link url="/pages/identify/identify"></i-cell>
     <i-cell title="设置" is-link url="/pages/dashboard/index"></i-cell>
   </view>
