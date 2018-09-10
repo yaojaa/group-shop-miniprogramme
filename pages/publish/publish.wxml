@@ -102,7 +102,7 @@
 </view>
 <view class="weui-cells weui-cells_form">
           <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">发货地址：</view></view>
+                    <view class="weui-cell__hd"><view class="weui-label">配送方式：</view></view>
                     <view class="weui-cell__bd">
                     </view>
                     <view class="weui-cell__ft">
