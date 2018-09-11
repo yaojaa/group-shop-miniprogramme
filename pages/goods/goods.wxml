@@ -1,4 +1,6 @@
 <view class="container">
+<button>修改活动</button> <button>管理订单</button>
+
   <view class="page-section page-section-spacing swiper">
     <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
       <block wx:for="{{imgUrls}}" wx:key="{{index}}">
@@ -47,6 +49,24 @@
     <image src='/img/banner.jpg' mode="widthFix" /> ——信仰宗教的党员经教育后仍没转变，劝其退党或除名 条例第六十二条规定，信仰宗教的党员，应当加强思想教育，经党组织帮助教育仍没有转变的，应当劝其退党；劝而不退的，予以除名；参与利用宗教搞煽动活动的，给予开除党籍处分。
 
   </view>
+
+  <view class='sub-title'>
+    <text>最近参与</text>
+  </view>
+  <i-cell-group>
+    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+
+
+</i-cell-group>
+
+
   <view class='footer-cart'>
     <view class='icon' bindtap='homepage'>
       <i-icon type="homepage" size="26" color="#333" />

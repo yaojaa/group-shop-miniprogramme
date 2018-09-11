@@ -14,7 +14,11 @@
     text-align: center;
     color: #fff;
 }
-
+.new_btn{
+  position: absolute;
+  right: 10rpx;
+  top: 170rpx
+}
 .userinfo-avatar {
     width: 130rpx;
     height: 130rpx;
@@ -57,7 +61,7 @@
 
 .count-item .num {
     font-size: 32rpx;
-    color: #000;
+    color: #49b34d;
     display: block;
     padding-top: 5rpx;
 }

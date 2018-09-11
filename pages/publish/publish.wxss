@@ -3,12 +3,18 @@
   border: 1px solid #c00
 }
 
-
+.item{
+  border: 1px solid #ddd;
+  box-shadow: 0 0 2px #eee;
+  margin: 20rpx 20rpx
+}
 
 .weui-uploader{
   padding: 10px 10px 0
 }
-
+picker{
+  display: inline-block
+}
 .upload_txt{
   position: absolute;
   left: 0;
@@ -20,3 +26,19 @@
   display: block
 }
 
+.new_add_btn{
+  padding: 20rpx;
+  color: blue;
+  margin-bottom: 4rpx;
+  display: block
+}
+
+.item{
+  position: relative
+}
+
+.close{
+  position: absolute;
+  right:1rpx;
+  top:1rpx
+}

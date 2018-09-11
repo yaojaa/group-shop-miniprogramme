@@ -12,6 +12,7 @@
     "i-input-number": "../../iView/input-number/index",
     "i-input": "../../iView/input/index",
     "i-badge": "../../iView/badge/index",
-    "i-icon": "../../iView/icon/index"
+    "i-icon": "../../iView/icon/index",
+    "i-button": "../../iView/button/index"
   }
 }

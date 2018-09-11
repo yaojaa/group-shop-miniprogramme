@@ -16,6 +16,12 @@ Page({
             userInfo: app.globalData.userInfo,
         })
     },
+  new_btn: function(){
+    wx.navigateTo({
+      url: '../publish/publish'
+    })
+
+  },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

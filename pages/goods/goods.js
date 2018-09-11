@@ -14,12 +14,12 @@ Page({
     console.log(option)
   },
   homepage(){
-    wx.switchTab({
-      url: '../index/index'
+    wx.navigateTo({
+      url: '../home/index'
     })
   },
   userpage() {
-    wx.switchTab({
+    wx.navigateTo({
       url: '../usercenter/usercenter'
     })
   },

@@ -1,7 +1,7 @@
 <view class="container">
     <view class="head-box">
         <view class="text-justify head-hd">
-            <text class="text-white f14">认证</text>
+            <text class="text-white f14">已认证</text>
             <i-badge count="3">
                 <i-icon type="remind" size="20" color="#fff" />
             </i-badge>
@@ -10,11 +10,14 @@
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
         </view>
+        <view class="new_btn">
+        <i-button bind:click="new_btn"> +发布</i-button>
+       </view>
     </view>
     <view class="count-box">
         <view class="count-item">
             <text class="label">进行中</text>
-            <text class="num">100</text>
+            <text class="num">2</text>
         </view>
         <view class="count-item">
             <text class="label">粉丝管理</text>
@@ -48,8 +51,8 @@
                     <text class="num">100</text>
                 </view>
                 <view class="count-item">
-                    <text class="label">完成交易</text>
-                    <text class="num">10</text>
+                    <text class="label">转化率</text>
+                    <text class="num">10%</text>
                 </view>
                 <view class="count-item">
                     <text class="label">收款总额</text>
@@ -79,8 +82,8 @@
                     <text class="num">100</text>
                 </view>
                 <view class="count-item">
-                    <text class="label">完成交易</text>
-                    <text class="num">10</text>
+                    <text class="label">转换率</text>
+                    <text class="num">10%</text>
                 </view>
                 <view class="count-item">
                     <text class="label">收款总额</text>
