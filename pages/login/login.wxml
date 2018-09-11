@@ -8,7 +8,7 @@
     </block>
   </view> -->
   <view class="zan-box">
-    <i-xin selected = "1" bind:cancel="cancel"></i-xin>
+    <i-xin selected="1" bind:cancel="cancel"></i-xin>
   </view>
     <view class='start-btn text-center'>
         <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfo">开启小团购</button>

@@ -34,6 +34,10 @@ Component({
           type: String,
           value: ""
         },
+        color: {
+          type: String,
+          value: "#fc315b"
+        },
     },
 
     data: {

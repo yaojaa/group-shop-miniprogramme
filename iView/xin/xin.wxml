@@ -4,7 +4,7 @@
       <view class="zan-xin" bindtap="dianzan">
         <image mode="aspectFit" src="{{xining ? xining : cancelImg}}"></image>
       </view>
-      <view class="zan-out"></view>
+      <view class="zan-out" style="border-color: {{color}}"></view>
       <view class="zan-out-xin">
         <image class="zan-mi-xin top" mode="aspectFit" src="{{selectImg}}"></image>
         <image class="zan-mi-xin top-left" mode="aspectFit" src="{{selectImg}}"></image>
