@@ -1,3 +1,5 @@
+const app = getApp()
+
 Page({
 
   /**
@@ -5,6 +7,8 @@ Page({
    */
   data: {
     num: 1,
+    give_type:1,//送货方式
+    nickName:'',
     pay: [{
       id: 1,
       name: '在线支付',
@@ -30,6 +34,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    this.setData({
+      nickName: app.globalData.userInfo.nickName
+    });
+
+    console.log(app.globalData.userInfo)
+
     
   },
 

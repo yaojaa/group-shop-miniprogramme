@@ -3,7 +3,7 @@
   background: #f0f0f0;
   display: flex;
   justify-content: space-around;
-  padding: 20px;
+  padding: 20rpx;
 }
 .userImg{
   width: 80px;

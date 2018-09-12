@@ -1,9 +1,7 @@
 {
   "pages": [
     "pages/login/login","pages/index/index","pages/goods/goods",
-    "pages/list/list",
-    "pages/usercenter/usercenter",
-    "pages/publish/publish", 
+    "pages/list/list","pages/publish/publish", 
     "pages/publish-success/publish-success",
     "pages/authentication/authentication",
     "pages/identify/identify",
@@ -13,28 +11,14 @@
     "pages/orderList/orderList",
     "pages/orderDefault/orderDefault",   
     "pages/order/index",
-    "pages/home/index"
-  ],
+    "pages/home/index",
+    "pages/ucenter/ucenter"
+      ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "社区麻团",
     "navigationBarTextStyle":"black",
     "backgroundColor": "#eeeeee"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/usercenter/usercenter",
-        "text": "我的"
-      }
-    ],
-    "color": "#000000",
-    "selectedColor": "#ff0000",
-    "backgroundColor": "#ffffff"
   }
 }

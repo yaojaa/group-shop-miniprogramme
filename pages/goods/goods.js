@@ -19,8 +19,9 @@ Page({
     })
   },
   userpage() {
+    console.log('userpage')
     wx.navigateTo({
-      url: '../usercenter/usercenter'
+      url: '../ucenter/ucenter'
     })
   },
   buy() {
