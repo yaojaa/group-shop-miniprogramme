@@ -1,5 +1,6 @@
 .container {
     background: #f8f8f8;
+    padding-bottom: 180rpx;
 }
 
 .head-box {
@@ -61,7 +62,7 @@
 
 .count-item .num {
     font-size: 32rpx;
-    color: #49b34d;
+    color: #333;
     display: block;
     padding-top: 5rpx;
 }
@@ -128,5 +129,21 @@
 	color:#999;
 }
 .goods-count .count-item .num{
-	font-size: 28rpx;
+    font-size: 28rpx;
+    color:#666
 }
+.add-goods{
+    position: fixed;
+    left:50%;
+    margin-left:-50rpx;
+    bottom:30rpx;
+    background: #49b34d;
+    box-shadow: 0 3px 12px rgba(59,202,70,0.43);
+    color:#fff;
+    width: 80rpx;
+    height:80rpx;
+    border-radius: 50%;
+    padding: 20rpx;
+    text-align: center;
+    font-size: 28rpx;
+  }
