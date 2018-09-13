@@ -14,13 +14,14 @@ Page({
     console.log(option)
   },
   homepage(){
-    wx.switchTab({
-      url: '../index/index'
+    wx.navigateTo({
+      url: '../home/index'
     })
   },
   userpage() {
-    wx.switchTab({
-      url: '../usercenter/usercenter'
+    console.log('userpage')
+    wx.navigateTo({
+      url: '../ucenter/ucenter'
     })
   },
   buy() {

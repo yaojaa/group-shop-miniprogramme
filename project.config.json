@@ -7,9 +7,9 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"compileType": "miniprogram",
+	"compileType": "plugin",
 	"libVersion": "2.1.1",
-	"appid": "wx7d6d663f860012f8",
+	"appid": "wxe15467ce01d6a579",
 	"projectname": "group",
 	"isGameTourist": false,
 	"condition": {
@@ -22,20 +22,27 @@
 			"list": []
 		},
 		"plugin": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/goods/goods",
+					"query": ""
+				}
+			]
 		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "用户中心启动",
-					"pathName": "pages/usercenter/usercenter",
+					"pathName": "pages/ucenter/ucenter",
 					"query": ""
 				},
 				{
@@ -71,7 +78,20 @@
 				{
 					"id": -1,
 					"name": "首页",
-					"pathName": "pages/home/index"
+					"pathName": "pages/home/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布页",
+					"pathName": "pages/publish/publish",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/ucenter/ucenter",
+					"query": ""
 				}
 			]
 		}

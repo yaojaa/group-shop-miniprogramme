@@ -11,10 +11,14 @@ Page({
   //事件处理函数
   bindViewTap: function () {
     wx.reLaunch({
-      url: '/pages/index/index'
+      url: '/pages/home/index'
     })
   },
   onLoad: function () {
+
+    console.log(app.globalData.userInfo)
+
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

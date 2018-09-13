@@ -1,4 +1,4 @@
-  <view class="page-body">
+<view class="page-body">
 <form bindsubmit="submitForm">
 <view class="weui-uploader weui-cells_form weui-cell">
                         <view class="weui-uploader__bd">
@@ -38,7 +38,8 @@
 </view>
  <view class="weui-cell">
 
-        <i-icon type="picture" size="38" color="#80848f"/>
+        <i-icon type="picture" size="36" color="#80848f"/>
+        <i-icon type="video" size="38" color="#80848f"/>
 
 
    
@@ -58,73 +59,136 @@
 
 </view>
 
+<i-panel title="团购商品">
+<view class="weui-cells_form">
 
-
-
-
-
-<view class="weui-cells weui-cells_form">
-    <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">商品价格:</view></view>
+  <view class="item">
+        <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">商品名称:</view></view>
+                    <view class="weui-cell__bd">
+                    <input name="price"  maxlength="50" placeholder="如：白色超大款" />
+                    </view>
+    </view>
+     <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">价格:</view></view>
                     <view class="weui-cell__bd">
                     <input name="price"  maxlength="50" placeholder="0.00" />
                     </view>
     </view>
-
      <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">属性规格：</view></view>
+                    <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
                     <view class="weui-cell__bd">
-                 <switch name="switch" checked="{{hasType}}" bindchange="switch2Change" />
+                    <input name="price"  maxlength="50" placeholder="0.00" value="1000" />
                     </view>
-      </view>
+    </view>
 
-         <view class="weui-cell"  wx:if="{{hasType}}">
-                    <view class="weui-cell__hd">
-                    <view class="weui-label"><i-icon type="add" size="48" color="#80848f" /></view>
-                    </view>
-                    <view class="weui-cell__bd">
-                      <i-panel>
-                          <i-input value="{{ value1 }}" title="规格名称" autofocus placeholder="如：白色超大款" />
-                          <i-input value="{{ value2 }}" type="number" title="价格" placeholder="请输入价格" />
-                       
-                      </i-panel>
-                   </view>
-      </view>
+        <i-icon  class="close" type="delete_fill" size="28" />
 
-       <!-- <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">是否送货</view></view>
+  </view>
+
+
+  <view class="item">
+        <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">商品名称:</view></view>
                     <view class="weui-cell__bd">
-                    <switch bindchange="deliverChange"  checked="deliver" name="switch" /> <view wx:if="{{length > 5}}"> 1 </view>
-<view wx:elif="{{deliver}}"> 送货上门 </view>
-<view wx:else> 自取 </view> 
+                    <input name="price"  maxlength="50" placeholder="如：白色超大款" />
                     </view>
-      </view> -->
+    </view>
+     <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">价格:</view></view>
+                    <view class="weui-cell__bd">
+                    <input name="price"  maxlength="50" placeholder="0.00" />
+                    </view>
+    </view>
+     <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
+                    <view class="weui-cell__bd">
+                    <input name="price"  maxlength="50" placeholder="0.00" value="1000" />
+                    </view>
+                    
+    </view>
+    <i-icon  class="close" type="delete_fill" size="28" />
+
+  </view>
+
+  <text class="new_add_btn"> +新商品</text> 
+
 </view>
-<view class="weui-cells weui-cells_form">
-          <view class="weui-cell">
+</i-panel>
+
+
+<i-panel title="设置" >
+<view class="weui-cells_form">
+
+<view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">配送方式：</view></view>
                     <view class="weui-cell__bd">
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                                          <i-icon type="enter" size="28" />
+                                       自提   <i-icon type="enter" size="28" />
 
                     </view>
                      </view>
 
-              
                     
+</view>
+
+<view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">活动时间：</view></view>
+                    <view class="weui-cell__bd">
+
+                    </view>
+                    <view class="weui-cell__ft">
+                    <view class="weui-icon-warn">
+                                      
+<picker mode="date" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+    <view class="picker">
+      年: {{time}}
     </view>
+  </picker>
+<picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+    <view class="picker">
+      时间: {{time}}
+    </view>
+  </picker>
+                                      
+                                      
+
+                    </view>
+                     </view>
 
 
 
 </view>
 
+<view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">活动地点：</view></view>
+                    <view class="weui-cell__bd">
+                    </view>
+                    <view class="weui-cell__ft">
+                    <view class="weui-icon-warn">
+                      请选择位置     <i-icon type="enter" size="28" />
+
+                    </view>
+                     </view>
+
+                    
+</view>
+  
+</view>
+       
+</i-panel>
+                    
+
+
+
+
+
+
+
 
 <button formType="submit"   class="weui-btn weui-btn_primary">确定发布</button>
 
 </form>
-       
-
-   
 </view>
