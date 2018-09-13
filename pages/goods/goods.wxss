@@ -84,4 +84,5 @@
 }
 .container{
   background: #f8f8f8;
+  margin:26rpx
 }

@@ -1,5 +1,17 @@
 <view class="container">
-<button>修改活动</button> <button>管理订单</button>
+<!--发布者可见管理按钮-->
+
+
+<navigator  hover-class="navigator-hover" url="../publish/publish?id=6">修改活动</navigator>
+
+<navigator  hover-class="navigator-hover" url="../orderDefault/orderDefault">管理订单</navigator>
+<!--发布者可见管理按钮-->
+
+<view class="user-header">
+<i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="xlarge">梁</i-avatar>
+<text>红叶舞秋山</text>
+<i-icon type="mobilephone" /> <i-icon type="interactive" />
+</view>
 
   <view class="page-section page-section-spacing swiper">
     <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
@@ -54,7 +66,8 @@
     <text>最近参与</text>
   </view>
   <i-cell-group>
-    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
+    <i-cell ><i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large">梁</i-avatar>
+   灰色 2 2018.12.12 9:49</i-cell>
     <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
     <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
     <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
