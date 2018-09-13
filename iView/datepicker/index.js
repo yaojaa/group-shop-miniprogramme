@@ -57,6 +57,7 @@ Component({
       mm: [0],
     },
     hidden: true,
+    bottom: "-300px"
   },
 
   ready() {
@@ -117,12 +118,14 @@ Component({
     },
     openPicker() {
       this.setData({
-        hidden: false
+        hidden: false,
+        bottom: 0,
       });
     },
     closePicker() {
       this.setData({
-        hidden: true
+        hidden: true,
+        bottom: "-300px"
       });
     },
 

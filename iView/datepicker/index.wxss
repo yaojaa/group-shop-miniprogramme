@@ -14,10 +14,11 @@
 .picker{
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: -300px;
   width: 100%;
   background-color: #fff;
   z-index: 100;
+  transition: all 0.3s;
 }
 .picker-title{
   height: 40px;
