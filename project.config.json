@@ -8,6 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "plugin",
+  "pluginRoot": "./plugin",
 	"libVersion": "2.1.1",
 	"appid": "wxe15467ce01d6a579",
 	"projectname": "group",
