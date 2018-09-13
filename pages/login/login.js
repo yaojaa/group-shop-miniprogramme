@@ -55,5 +55,8 @@ Page({
   },
   cancel(e){
     console.log(5456546,e)
+  },
+  bindchange(e){
+    console.log(e)
   }
 })

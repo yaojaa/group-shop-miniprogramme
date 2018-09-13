@@ -1,5 +1,6 @@
 {"usingComponents": {
     "i-card": "../../iView/card/index",
+    "i-datepicker": "../../iView/datepicker/index",
     "i-xin": "../../iView/xin/xin"
 }
 }
