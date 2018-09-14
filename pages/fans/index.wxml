@@ -1,0 +1,36 @@
+<view class="container">
+    <view class="fans-box text-justify">
+        <view class="f14"><button size="mini">全部粉丝：234</button></view>
+        <view class="btn-group">
+            <button type="primary" size="mini">微信通知</button>
+            <button size="mini" type="primary">群发短信</button>
+        </view>
+    </view>
+    <i-panel class="cell-panel-demo">
+        <i-cell-group>
+            <i-cell wx:for="{{10}}" class="guest-box">
+                <view class="guest-item">
+                    <view class="hd">
+                        <image class="avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+                    </view>
+                    <view class="bd">
+                        <view class="text-justify">
+                            <view class="name">{{userInfo.nickName}}</view>
+                            <view class="info">
+                                <view class="num">
+                                    <i-icon type="browse_fill" size="20" color="#999" />
+                                    <text>110</text>
+                                </view>
+                                <view class="num">
+                                    <i-icon type="financial_fill" size="20" color="#999" />
+                                    <text>120</text>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="date">{{index+1}}天前</view>
+                    </view>
+                </view>
+            </i-cell>
+        </i-cell-group>
+    </i-panel>
+</view>

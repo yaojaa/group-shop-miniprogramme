@@ -141,17 +141,9 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                                      
-<picker mode="date" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-    <view class="picker">
-      年: {{time}}
-    </view>
-  </picker>
-<picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-    <view class="picker">
-      时间: {{time}}
-    </view>
-  </picker>
+<i-datepicker> </i-datepicker>
+                                     
+<i-datepicker></i-datepicker>
                                       
                                       
 
@@ -168,7 +160,8 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                      请选择位置     <i-icon type="enter" size="28" />
+                          <navigator url="/pages/map/index">请选择地址     <i-icon type="enter" size="28" />
+</navigator>
 
                     </view>
                      </view>

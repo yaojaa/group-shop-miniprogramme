@@ -1,0 +1,59 @@
+<view class="container">
+<view class='session'>
+  <view class='limit'>
+    <view class='header'>
+      <text>限制参与人在设定地点周边才能接龙</text>
+      <switch bindchange="limitChange"/>
+    </view>
+    <view wx:if="{{ hidden }}" class='control'>
+      <view>周边半径范围（km）</view>
+      <view>
+        <i-input-number value="{{ limitVal }}" min="0" max="100" step="{{step}}" bindchange="handleChange" />
+      </view>
+    </view>
+  </view>
+  <view class='line'></view>
+<block wx:for="{{newAddress}}" wx:key="id">
+  <view class='address'>
+    <view class='icon-img'>
+      <image mode="aspectFit" src="{{location}}"></image>
+    </view>
+    <view class='content'>
+      <view class='name'>{{item.name}}</view>
+      <view class='des'>{{item.address}}</view>
+    </view>
+    <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
+  </view>
+  <view class='line'></view>
+</block>
+  <view class='add-address' bindtap='addAddress'><text class='icon'>+</text><text>新地点</text></view>
+</view>
+<block wx:if="{{oldAddress.length > 0}}">
+<view class='history'>历史记录（{{oldAddress.length}}），点击下面记录添加活动地点</view>
+<view class='session'>
+<block wx:for="{{oldAddress}}" wx:key="id">
+  <view class='address'>
+    <view class='icon-img'>
+      <image mode="aspectFit" src="{{location}}"></image>
+    </view>
+    <view class='content' data-id="{{item.id}}" bindtap='moveAddress'>
+      <view class='name'>{{item.name}}</view>
+      <view class='des'>{{item.address}}</view>
+    </view>
+    <view class='delete' bindtap='deleteAddress' data-type="old" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
+  </view>
+  <view class='line'></view>
+</block>
+</view>
+</block>
+
+
+
+
+<i-button i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>
+
+
+
+
+
+</view>

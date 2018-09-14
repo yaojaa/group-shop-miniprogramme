@@ -17,10 +17,8 @@
             <text class="num">2</text>
         </view>
         <view class="count-item">
-        <navigator url="../fans/index">
-            <text class="label">粉丝管理</text>
+            <text class="label" bindtap="fansPage">粉丝管理</text>
             <text class="num">100</text>
-            </navigator>
         </view>
         <view class="count-item">
             <text class="label">总收入</text>
@@ -28,11 +26,9 @@
         </view>
     </view>
     <view class="goods-box">
-      <view class="goods-item">
+        <view class="goods-item">
             <view class="goods-body">
-          <navigator url="../goods/goods?id=001">
-      <image src='https://i.loli.net/2017/08/21/599a521472424.jpg' class='hd'></image>
-     </navigator>
+                <image src='https://i.loli.net/2017/08/21/599a521472424.jpg' class='hd'></image>
                 <view class="bd">
                     <view class="tit">黑龙江大黑米</view>
                     <view class="link">
@@ -61,7 +57,6 @@
                 </view>
             </view>
         </view>
-
         <view class="goods-item">
             <view class="goods-body">
                 <image src='https://i.loli.net/2017/08/21/599a521472424.jpg' class='hd'></image>

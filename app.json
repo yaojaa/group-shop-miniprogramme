@@ -12,10 +12,12 @@
     "pages/orderDefault/orderDefault",   
     "pages/order/index",
     "pages/home/index",
+    "pages/map/index",
     "pages/ucenter/ucenter",
      "pages/fans/index",
-          "pages/paySuccess/index"
-      ],
+     "pages/paySuccess/index"
+    ],
+
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
