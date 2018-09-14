@@ -16,13 +16,16 @@ Page({
             userInfo: app.globalData.userInfo,
         })
     },
-  new_btn: function(){
-    wx.navigateTo({
-      url: '../publish/publish'
-    })
-
-  },
-
+    new_btn: function() {
+        wx.navigateTo({
+            url: '../publish/publish'
+        })
+    },
+    fansPage(){
+        wx.navigateTo({
+            url: '../fans/index'
+        })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

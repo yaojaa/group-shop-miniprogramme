@@ -17,7 +17,7 @@
             <text class="num">2</text>
         </view>
         <view class="count-item">
-            <text class="label">粉丝管理</text>
+            <text class="label" bindtap="fansPage">粉丝管理</text>
             <text class="num">100</text>
         </view>
         <view class="count-item">

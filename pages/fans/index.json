@@ -1,1 +1,15 @@
-{}
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "粉丝管理",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee",
+    "usingComponents":
+    {
+        "i-button": "../../iView/button/index",
+        "i-cell-group": "../../iView/cell-group/index",
+        "i-cell": "../../iView/cell/index",
+        "i-panel": "../../iView/panel/index",
+        "i-icon": "../../iView/icon/index"
+    }
+}
