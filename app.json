@@ -13,7 +13,8 @@
     "pages/order/index",
     "pages/home/index",
     "pages/ucenter/ucenter",
-     "pages/fans/index"
+     "pages/fans/index",
+          "pages/paySuccess/index"
       ],
   "window": {
     "backgroundTextStyle": "light",

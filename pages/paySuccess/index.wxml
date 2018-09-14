@@ -1,0 +1,25 @@
+<view class="container">
+
+	<view class="box">
+		<view class="tit">订购/支付成功</view>
+		<view class="gooodsList">
+			<i-panel title="商品名称">
+				<i-cell>草莓味  x 2</i-cell>
+				<i-cell>草莓味  x 2</i-cell>
+				<i-cell>草莓味  x 2</i-cell>
+				<i-cell>草莓味  x 2</i-cell>
+				<i-cell>草莓味  x 2</i-cell>
+				<i-cell>草莓味  x 2</i-cell>
+
+			</i-panel>
+		</view>
+
+
+
+			<view>昵称 日期 </view>
+
+	</view>
+
+	<button>将以上结果分享到微信群～～</button>
+  
+</view>

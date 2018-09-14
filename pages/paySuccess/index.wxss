@@ -1,0 +1,27 @@
+.box{
+	padding: 26rpx;
+	background: #f8f8f8;
+	margin: 30rpx;
+	box-shadow: 2px 3px 4px #eee
+}
+.tit{
+	text-align: center;
+	font-size: 38rpx
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

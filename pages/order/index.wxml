@@ -50,6 +50,6 @@
             <text class='f20 text-red'>￥100</text>
         </view>
        <navigator url="../paySuccess/index?goodsId=001">
-       </navigator> <view class='buy-btn'>立即支付</view>
+        <view class='buy-btn'>立即支付</view></navigator>
     </view>
 </view>
