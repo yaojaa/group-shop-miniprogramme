@@ -7,8 +7,8 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"compileType": "plugin",
-  "pluginRoot": "./plugin",
+	"compileType": "miniprogram",
+	"pluginRoot": "plugin/",
 	"libVersion": "2.1.1",
 	"appid": "wxe15467ce01d6a579",
 	"projectname": "group",
@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 9,
 			"list": [
 				{
 					"id": 0,
@@ -92,6 +92,12 @@
 					"id": -1,
 					"name": "个人中心",
 					"pathName": "pages/ucenter/ucenter",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "粉丝管理",
+					"pathName": "pages/fans/index",
 					"query": ""
 				}
 			]
