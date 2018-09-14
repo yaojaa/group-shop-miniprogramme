@@ -52,7 +52,12 @@
     </i-cell-group>
   </i-panel>
 
-
+ <i-panel>
+    <i-cell-group>
+      <i-cell title="商品规格1">¥99.8   <i-input-number value="1" min="1" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
+       <i-cell title="商品规格2">¥929.8   <i-input-number value="1" min="1" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
+    </i-cell-group>
+  </i-panel>
   <view class='sub-title'>
     <text>商品详情</text>
   </view>
@@ -87,6 +92,8 @@
     <view class='icon' bindtap='userpage'>
       <i-icon type="addressbook" size="26" color="#333" />
     </view>
-    <text class='buy' bindtap='buy'>立即购买</text>
+    <text  class='buy'  bindtap='buy'>已选 2 </text>
+        <text class='buy' bindtap='buy'> 立即购买</text>
+
   </view>
 </view>
