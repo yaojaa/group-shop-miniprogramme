@@ -22,25 +22,13 @@
     <view class='mt-sm'>
         <i-panel>
             <i-cell-group>
-                <i-cell>
-                    <view class='product-item'>
-                        <view class='item-img'>
-                            <image src='https://i.loli.net/2017/08/21/599a521472424.jpg'></image>
-                        </view>
-                        <view class='item-body'>
-                            <view class='item-title'>
-                                <text>95g-120g*5个</text>
-                            </view>
-                            <view class='item-type'>
-                                <text>类型：咖啡</text>
-                            </view>
-                        </view>
-                        <view class='item-side'>
-                            <text class="price">￥100</text>
-                        </view>
-                    </view>
+                <i-cell title="商品规格1">
+                    <i-input-number value="{{ num }}" min="1" max="100" bindchange="handleChange1" slot="footer" />
                 </i-cell>
-                <i-cell title="购买数量">
+                                <i-cell title="商品规格2">
+                    <i-input-number value="{{ num }}" min="1" max="100" bindchange="handleChange1" slot="footer" />
+                </i-cell>
+                                <i-cell title="商品规格3">
                     <i-input-number value="{{ num }}" min="1" max="100" bindchange="handleChange1" slot="footer" />
                 </i-cell>
                 <i-cell title="优惠金额" is-link>
@@ -61,6 +49,7 @@
         <view class='total'>实付款：
             <text class='f20 text-red'>￥100</text>
         </view>
-        <view class='buy-btn'>立即支付</view>
+       <navigator url="../paySuccess/index?goodsId=001">
+       </navigator> <view class='buy-btn'>立即支付</view>
     </view>
 </view>

@@ -8,10 +8,10 @@
 		"newFeature": true
 	},
 	"compileType": "plugin",
-  "pluginRoot": "./plugin",
+	"pluginRoot": "./plugin",
 	"libVersion": "2.1.1",
 	"appid": "wxe15467ce01d6a579",
-	"projectname": "group",
+	"projectname": "%E7%A4%BE%E5%8C%BA%E9%BA%BB%E9%BA%BB%E5%9B%A2",
 	"isGameTourist": false,
 	"condition": {
 		"search": {

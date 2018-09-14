@@ -4,6 +4,8 @@
     "i-cell-group": "../../iView/cell-group/index",
     "i-cell": "../../iView/cell/index",
     "i-panel": "../../iView/panel/index",
-    "i-avatar": "../../iView/avatar/index"
+    "i-avatar": "../../iView/avatar/index",
+    "i-input-number": "../../iView/input-number/index"
+        
   }
 }
