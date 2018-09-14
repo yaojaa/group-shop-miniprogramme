@@ -12,6 +12,7 @@
     "pages/orderDefault/orderDefault",   
     "pages/order/index",
     "pages/home/index",
+    "pages/map/index",
     "pages/ucenter/ucenter"
       ],
   "window": {
