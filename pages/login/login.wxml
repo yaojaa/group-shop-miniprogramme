@@ -14,12 +14,12 @@
     <!-- <view class="zan-box">
       <i-datepicker bind:change="bindchange" time-class="picker-time" date="2020-10-25" time="00:30"></i-datepicker>
     </view> -->
-
+<!-- 
     <view class="zan-box">
       <navigator url="/pages/map/index">添加新地址</navigator>
-    </view>
+    </view> -->
 
-    <view class='start-btn text-center'>
-        <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfo">开启社区麻麻团</button>
+    <view class='start-btn text-center' wx:if="{{!hasScope}}">
+        <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">开启社区麻麻团</button>
     </view>
 </view>

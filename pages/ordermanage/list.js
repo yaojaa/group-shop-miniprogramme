@@ -1,3 +1,7 @@
+const app = getApp()
+
+
+
 Page({
   data:{
     current: "tab1",
@@ -5,7 +9,27 @@ Page({
     alertMsg: "确定执行？",
     eidePriceVisible: false,
     searchContent:"",
-    deleteShow: true
+    deleteShow: true,
+    dataList:[]
+
+  },
+  onLoad:function(optiton){
+
+
+    let goods_id = optiton.goods_id
+
+
+      wx.request({
+      url: 'https://www.daohangwa.com/api/seller/get_order_list',
+      data: { goods_id:goods_id,
+      token:app.globalData.token
+      },
+      success:(res) => {
+        this.setData({
+          dataList:res.data.data
+        })
+      }
+    })
 
   },
   onReady: function (e) {

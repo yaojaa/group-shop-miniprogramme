@@ -8,10 +8,34 @@ Page({
       'https://j-image.missfresh.cn/img_20180625145444571.jpg?iopcmd=thumbnail&type=4&width=640',
       'https://j-image.missfresh.cn/img_20180625145444571.jpg?iopcmd=thumbnail&type=4&width=640',
       'https://j-image.missfresh.cn/img_20180625145444571.jpg?iopcmd=thumbnail&type=4&width=640'
-    ]
+    ],
+    goods:{}
   },
   onLoad:function(option){
-    console.log(option)
+
+          wx.request({
+           url: 'https://www.daohangwa.com/api//goods/get_goods_info',
+              data: {
+
+                goods_id:option.goods_id
+
+              },
+              success:  (res) =>{
+                if(res.data.code == 0){
+
+                  console.log(res.data.data.goods)
+
+                  this.setData({
+                    goods:res.data.data.goods
+                  })
+                }
+              }
+      })
+
+
+
+
+
   },
   homepage(){
     wx.navigateTo({

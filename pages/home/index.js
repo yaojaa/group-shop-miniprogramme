@@ -1,17 +1,43 @@
 const app = getApp()
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        userInfo: {}
+        userInfo: {},
+        goodslist:[]
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        console.log('home!!!!',app.globalData.token)
+
+           wx.request({
+              url: 'https://www.daohangwa.com/api/seller/get_goods_list',
+              data: {
+                token: app.globalData.token || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.DAiIyEJCRNLFeWoeJWSRr7yEVQarmacOirlZ8UsVJxc'
+              },
+              success:  (res) =>{
+
+
+                if(res.data.code == 0){
+
+                    this.setData({
+                        goodslist:res.data.data.goodslist
+                    })
+
+                 
+                }
+
+              }
+            })
+
+
         this.setData({
             userInfo: app.globalData.userInfo,
         })

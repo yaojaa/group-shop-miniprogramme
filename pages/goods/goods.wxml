@@ -24,7 +24,7 @@
   </view>
   <view class='goods-info'>
   <view class="goods-title">
-    <text>广西西瓜新鲜当季水果8广西西瓜当季水</text>
+    <text>{{goods.goods_name}}</text>
   </view>
   <view class="goods-desc">
     <text>没成一个爱心暖，平台自费购买一份了</text>

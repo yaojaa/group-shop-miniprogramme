@@ -26,14 +26,24 @@
         </view>
     </view>
     <view class="goods-box">
-        <view class="goods-item">
+        <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}" >
             <view class="goods-body">
-                <image src='https://i.loli.net/2017/08/21/599a521472424.jpg' class='hd'></image>
+               <navigator url="../goods/goods?goods_id={{item.goods_id}}">
+                <image src='{{original_img}}' class='hd'></image>
+              </navigator>
+
                 <view class="bd">
-                    <view class="tit">黑龙江大黑米</view>
+                    <view class="tit">{{item.goods_name}}</view>
                     <view class="link">
-                        <text>修改</text><text> | </text>
-                        <text>订单管理</text>
+                       
+                        <navigator url="../publish/publish?goods_id={{item.goods_id}}">
+                        <button size="mini">编辑修改</button>
+                        </navigator>
+
+                       <navigator url="../ordermanage/list?goods_id={{item.goods_id}}">
+                       <button size="mini">订单管理</button>
+                        </navigator>
+
                     </view>
                 </view>
                 <view class="fd">进行中</view>
@@ -50,68 +60,6 @@
                 <view class="count-item">
                     <text class="label">转化率</text>
                     <text class="num">10%</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">收款总额</text>
-                    <text class="num">￥3423</text>
-                </view>
-            </view>
-        </view>
-        <view class="goods-item">
-            <view class="goods-body">
-                <image src='https://i.loli.net/2017/08/21/599a521472424.jpg' class='hd'></image>
-                <view class="bd">
-                    <view class="tit">黑龙江大黑米</view>
-                    <view class="link">
-                        <text>修改</text><text> | </text>
-                        <text>订单管理</text>
-                    </view>
-                </view>
-                <view class="fd">进行中</view>
-            </view>
-            <view class="goods-count">
-                <view class="count-item">
-                    <text class="label">浏览次数</text>
-                    <text class="num">100</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">订单数量</text>
-                    <text class="num">100</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">转换率</text>
-                    <text class="num">10%</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">收款总额</text>
-                    <text class="num">￥3423</text>
-                </view>
-            </view>
-        </view>
-        <view class="goods-item">
-            <view class="goods-body">
-                <image src='https://i.loli.net/2017/08/21/599a521472424.jpg' class='hd'></image>
-                <view class="bd">
-                    <view class="tit">黑龙江大黑米</view>
-                    <view class="link">
-                        <text>修改</text><text> | </text>
-                        <text>订单管理</text>
-                    </view>
-                </view>
-                <view class="fd">进行中</view>
-            </view>
-            <view class="goods-count">
-                <view class="count-item">
-                    <text class="label">浏览次数</text>
-                    <text class="num">100</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">订单数量</text>
-                    <text class="num">100</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">完成交易</text>
-                    <text class="num">10</text>
                 </view>
                 <view class="count-item">
                     <text class="label">收款总额</text>

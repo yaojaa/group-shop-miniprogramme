@@ -109,6 +109,22 @@ Page({
   //提交表单
     submitForm(e) {
 
+
+      ///seller/add_edit_goods
+      ///
+      wx.request({
+           url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
+              data: {
+
+              },
+              success:  (res) =>{
+                if(res.data.code == 0){
+                 
+                }
+              }
+      })
+
+
        wx.navigateTo({
             url: '../publish-success/publish-success'
           })
