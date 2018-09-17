@@ -11,10 +11,6 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgUrls: [
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
@@ -27,8 +23,11 @@ Page({
     isGave:0,
     address:0,
     deliver:true,
-    morePic:false
-      },
+    morePic:false,
+    goddsInfo:{
+      goods_name:''
+      }
+    },
   onLoad:function(){
    
   },
@@ -125,9 +124,9 @@ Page({
       })
 
 
-       wx.navigateTo({
-            url: '../publish-success/publish-success'
-          })
+       // wx.navigateTo({
+       //      url: '../publish-success/publish-success'
+       //    })
                 
         const params = e.detail.value
      // 传入表单数据，调用验证方法
