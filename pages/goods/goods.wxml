@@ -1,99 +1,92 @@
 <view class="container">
-<!--发布者可见管理按钮-->
-
-
-<navigator  hover-class="navigator-hover" url="../publish/publish?id=6">修改活动</navigator>
-
-<navigator  hover-class="navigator-hover" url="../orderDefault/orderDefault">管理订单</navigator>
-<!--发布者可见管理按钮-->
-
-<view class="user-header">
-<i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="xlarge">梁</i-avatar>
-<text>红叶舞秋山</text>
-<i-icon type="mobilephone" /> <i-icon type="interactive" />
-</view>
-
-  <view class="page-section page-section-spacing swiper">
-    <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
-      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-        <swiper-item>
-          <image src="{{item}}" class="slide-image" />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-  <view class='goods-info'>
-  <view class="goods-title">
-    <text>{{goods.goods_name}}</text>
-  </view>
-  <view class="goods-desc">
-    <text>没成一个爱心暖，平台自费购买一份了</text>
-  </view>
-  <view class="goods-price text-justify">
-    <view>
-      <text class="price">¥19.8</text>
-      <text class='line-through'>¥29.8</text>
+    <view class="goods-sticky text-justify">
+        <view class="user-header">
+            <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="small">梁</i-avatar>
+            <text class="f13"> 红叶舞秋山</text>
+           <!--  <i-icon type="mobilephone" />
+            <i-icon type="interactive" /> -->
+        </view>
+        <view class="manage">
+            <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>
+            <navigator class="min-btn-s" url="../orderDefault/orderDefault">管理订单</navigator>
+        </view>
     </view>
-    <view>
-      <text>已售：200件</text>
+    <view class="page-section page-section-spacing swiper">
+        <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
+            <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+                <swiper-item>
+                    <image src="{{item}}" class="slide-image" />
+                </swiper-item>
+            </block>
+        </swiper>
     </view>
-  </view>
-  </view>
-  <i-panel>
+    <view class='goods-info'>
+        <view class="goods-title">
+            <text>{{goods.goods_name}}</text>
+        </view>
+        <view class="goods-desc">
+            <text>没成一个爱心暖，平台自费购买一份了</text>
+        </view>
+        <view class="goods-price text-justify">
+            <view>
+                <text class="price">¥19.8</text>
+                <text class='line-through'>¥29.8</text>
+            </view>
+            <view>
+                <text>已售：200件</text>
+            </view>
+        </view>
+    </view>
+    <i-panel>
+        <i-cell-group>
+            <i-cell title="配送方式：自取 青苹果社区1号楼 2单元 212"></i-cell>
+            <i-cell title="店主：13718123444"></i-cell>
+            <i-cell is-link>
+                <view class='wx-group'>
+                    <image src='/img/wx-group.png' class='wx-group-pic'></image>
+                    <text>加入社区群 免费领取5元优惠卷</text>
+                </view>
+            </i-cell>
+        </i-cell-group>
+    </i-panel>
+    <i-panel>
+        <i-cell-group>
+            <i-cell title="商品规格1">¥99.8
+                <i-input-number value="1" min="1" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
+            <i-cell title="商品规格2">¥929.8
+                <i-input-number value="1" min="1" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
+        </i-cell-group>
+    </i-panel>
+    <view class='sub-title'>
+        <text>商品详情</text>
+    </view>
+    <view class='goods-content'>
+        ——干扰巡视或不落实整改要求，严重者开除党籍 条例第五十五条明确，干扰巡视巡察工作或者不落实巡视巡察整改要求，情节较轻的，给予警告或者严重警告处分；情节较重的，给予撤销党内职务或者留党察看处分；情节严重的，给予开除党籍处分。
+        <image src='/img/banner.jpg' mode="widthFix" /> ——信仰宗教的党员经教育后仍没转变，劝其退党或除名 条例第六十二条规定，信仰宗教的党员，应当加强思想教育，经党组织帮助教育仍没有转变的，应当劝其退党；劝而不退的，予以除名；参与利用宗教搞煽动活动的，给予开除党籍处分。
+    </view>
+    <view class='sub-title'>
+        <text>最近参与</text>
+    </view>
     <i-cell-group>
-      <i-cell title="配送方式：自取 青苹果社区1号楼 2单元 212"></i-cell>
-      <i-cell title="店主：13718123444"></i-cell>
-      <i-cell is-link>
-      <view class='wx-group'>
-        <image src='/img/wx-group.png' class='wx-group-pic'></image>
-        <text>加入社区群 免费领取5元优惠卷</text>
-      </view>
-    </i-cell>
+        <i-cell>
+            <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large">梁</i-avatar>
+            灰色 2 2018.12.12 9:49</i-cell>
+        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
+        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
+        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
+        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
+        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
+        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
+        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
     </i-cell-group>
-  </i-panel>
-
- <i-panel>
-    <i-cell-group>
-      <i-cell title="商品规格1">¥99.8   <i-input-number value="1" min="1" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
-       <i-cell title="商品规格2">¥929.8   <i-input-number value="1" min="1" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
-    </i-cell-group>
-  </i-panel>
-  <view class='sub-title'>
-    <text>商品详情</text>
-  </view>
-  <view class='goods-content'>
-    ——干扰巡视或不落实整改要求，严重者开除党籍 条例第五十五条明确，干扰巡视巡察工作或者不落实巡视巡察整改要求，情节较轻的，给予警告或者严重警告处分；情节较重的，给予撤销党内职务或者留党察看处分；情节严重的，给予开除党籍处分。
-    <image src='/img/banner.jpg' mode="widthFix" /> ——信仰宗教的党员经教育后仍没转变，劝其退党或除名 条例第六十二条规定，信仰宗教的党员，应当加强思想教育，经党组织帮助教育仍没有转变的，应当劝其退党；劝而不退的，予以除名；参与利用宗教搞煽动活动的，给予开除党籍处分。
-
-  </view>
-
-  <view class='sub-title'>
-    <text>最近参与</text>
-  </view>
-  <i-cell-group>
-    <i-cell ><i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large">梁</i-avatar>
-   灰色 2 2018.12.12 9:49</i-cell>
-    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
-    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
-    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
-    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
-    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
-    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
-    <i-cell >   灰色 2 2018.12.12 9:49</i-cell>
-
-
-</i-cell-group>
-
-
-  <view class='footer-cart'>
-    <view class='icon' bindtap='homepage'>
-      <i-icon type="homepage" size="26" color="#333" />
-    </view>
-    <view class='icon' bindtap='userpage'>
-      <i-icon type="addressbook" size="26" color="#333" />
-    </view>
-    <text  class='buy'  bindtap='buy'>已选 2 </text>
+    <view class='footer-cart'>
+        <view class='icon' bindtap='homepage'>
+            <i-icon type="homepage" size="26" color="#333" />
+        </view>
+        <view class='icon' bindtap='userpage'>
+            <i-icon type="addressbook" size="26" color="#333" />
+        </view>
+        <text class='buy' bindtap='buy'>已选 2 </text>
         <text class='buy' bindtap='buy'> 立即购买</text>
-
-  </view>
+    </view>
 </view>
