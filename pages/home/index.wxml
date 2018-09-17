@@ -13,8 +13,9 @@
             </view>
         </view>
         <view class='add-goods' bindtap="new_btn">
-        <i-icon type="add" size="20"/><text>发布商品</text>
-    </view>
+            <i-icon type="add" size="20" />
+            <text>发布商品</text>
+        </view>
     </view>
     <view class="count-box">
         <view class="count-item">
@@ -39,12 +40,9 @@
                 <view class="bd">
                     <view class="tit">{{item.goods_name}}</view>
                     <view class="link">
-                        <navigator url="../publish/publish?goods_id={{item.goods_id}}">
-                            <button size="mini">编辑修改</button>
-                        </navigator>
-                        <navigator url="../ordermanage/list?goods_id={{item.goods_id}}">
-                            <button size="mini">订单管理</button>
-                        </navigator>
+                        <text bindtap="editPage" data-url="{{item.goods_id}}">编辑修改</text>
+                        <text> | </text>
+                        <text bindtap="detailPage" data-url="{{item.goods_id}}">订单管理</text>
                     </view>
                 </view>
                 <view class="fd">进行中</view>
@@ -69,5 +67,4 @@
             </view>
         </view>
     </view>
-    
 </view>

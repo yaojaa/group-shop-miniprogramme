@@ -7,37 +7,26 @@ Page({
      */
     data: {
         userInfo: {},
-        goodslist:[]
+        goodslist: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
-        console.log('home!!!!',app.globalData.token)
-
-           wx.request({
-              url: 'https://www.daohangwa.com/api/seller/get_goods_list',
-              data: {
+        wx.request({
+            url: 'https://www.daohangwa.com/api/seller/get_goods_list',
+            data: {
                 token: app.globalData.token || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.DAiIyEJCRNLFeWoeJWSRr7yEVQarmacOirlZ8UsVJxc'
-              },
-              success:  (res) =>{
-
-
-                if(res.data.code == 0){
-
+            },
+            success: (res) => {
+                if (res.data.code == 0) {
                     this.setData({
-                        goodslist:res.data.data.goodslist
+                        goodslist: res.data.data.goodslist
                     })
-
-                 
                 }
-
-              }
-            })
-
-
+            }
+        })
         this.setData({
             userInfo: app.globalData.userInfo,
         })
@@ -47,9 +36,21 @@ Page({
             url: '../publish/publish'
         })
     },
-    fansPage(){
+    fansPage() {
         wx.navigateTo({
             url: '../fans/index'
+        })
+    },
+    editPage(e) {
+        let url = e.currentTarget.dataset.url
+        wx.navigateTo({
+            url: '../publish/publish?goods_id=' + url,
+        })
+    },
+    detailPage(e) {
+        let url = e.currentTarget.dataset.url
+        wx.navigateTo({
+            url: '../ordermanage/list?goods_id=' + url,
         })
     },
     /**
