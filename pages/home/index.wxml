@@ -1,15 +1,20 @@
 <view class="container">
     <view class="head-box">
-        <view class="text-justify head-hd">
-            <text class="text-white f14">已认证</text>
+        <view class="msg-tips">
             <i-badge count="3">
                 <i-icon type="remind" size="20" color="#fff" />
             </i-badge>
         </view>
         <view class="userinfo">
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+            <view class="userinfo-bd">
+                <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+                <text class="text-white f14">已认证</text>
+            </view>
         </view>
+        <view class='add-goods' bindtap="new_btn">
+        <i-icon type="add" size="20"/><text>发布商品</text>
+    </view>
     </view>
     <view class="count-box">
         <view class="count-item">
@@ -26,24 +31,20 @@
         </view>
     </view>
     <view class="goods-box">
-        <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}" >
+        <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
             <view class="goods-body">
-               <navigator url="../goods/goods?goods_id={{item.goods_id}}">
-                <image src='{{original_img}}' class='hd'></image>
-              </navigator>
-
+                <navigator url="../goods/goods?goods_id={{item.goods_id}}">
+                    <image src='{{original_img}}' class='hd'></image>
+                </navigator>
                 <view class="bd">
                     <view class="tit">{{item.goods_name}}</view>
                     <view class="link">
-                       
                         <navigator url="../publish/publish?goods_id={{item.goods_id}}">
-                        <button size="mini">编辑修改</button>
+                            <button size="mini">编辑修改</button>
                         </navigator>
-
-                       <navigator url="../ordermanage/list?goods_id={{item.goods_id}}">
-                       <button size="mini">订单管理</button>
+                        <navigator url="../ordermanage/list?goods_id={{item.goods_id}}">
+                            <button size="mini">订单管理</button>
                         </navigator>
-
                     </view>
                 </view>
                 <view class="fd">进行中</view>
@@ -68,7 +69,5 @@
             </view>
         </view>
     </view>
-    <view class='add-goods' bindtap="new_btn">
-    <text>发布商品</text>
-    </view>
+    
 </view>
