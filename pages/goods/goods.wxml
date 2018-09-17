@@ -69,15 +69,15 @@
     </view>
     <i-cell-group>
         <i-cell>
-            <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large">梁</i-avatar>
-            灰色 2 2018.12.12 9:49</i-cell>
-        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
-        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
-        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
-        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
-        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
-        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
-        <i-cell> 灰色 2 2018.12.12 9:49</i-cell>
+            <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="small">梁</i-avatar>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
+            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
+            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
+            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
+            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
+            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
+            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
+            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
     </i-cell-group>
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
