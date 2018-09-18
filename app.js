@@ -158,22 +158,19 @@ App({
 
     console.group('app.js onLaunch')
 
-    this.getOpenId()
 
-    .then(()=>{
+    Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
 
-          console.group('获取到openId')
+        console.log('Promise all result',result)
+        console.log('获取到openId',result[0])
+        console.log('获取到hasScope',result[1])
+        let hasScope = result[1]
 
+       if(hasScope){
 
-          this.getUserInfoScopeSetting().then((hasScope)=>{
-          console.group('获取到hasScope:',hasScope)
-
-                if(hasScope){
-
-                  this.getUserInfo().then((res)=>{
-         console.group('获取到UserInfo:',res)
-                    this.login_third(res).then(()=>{ 
-          console.group('登陆成功:',res)
+                  this.getUserInfo().then((ures)=>{
+         console.log('获取到UserInfo:',ures)
+                    this.login_third(ures).then((res)=>{ 
                        if(this.userLoginReadyCallback){
                           this.userLoginReadyCallback(res)
                         }
@@ -185,13 +182,9 @@ App({
 
                 }
 
-              })
-
-
 
 
     })
-
 
     console.groupEnd()
 
