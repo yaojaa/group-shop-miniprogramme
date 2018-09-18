@@ -5,33 +5,65 @@
 //获取应用实例
 var WxValidate = require("../../utils/wxValidate.js");
 
+const qiniuUploader = require("../../utils/qiniuUploader");
+
 const app = getApp()
 
-
+const util = require('../../utils/util.js')
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgUrls: [
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
-    title: '',
-    content: '',
     price: 5000,
-    hasType:false,
     type: {},
     isGave:0,
     address:0,
     deliver:true,
-    morePic:false
-      },
+    morePic:false,
+    goodsInfo:[{
+      name:'',
+      price :'',
+      stock:1000
+      }
+      ]
+    },
+    //添加商品
+    addNew:function(){
+
+      const dataTpl = {
+      name:'',
+      price :'',
+      stock:1000
+      }
+      this.data.goodsInfo = this.data.goodsInfo.concat([dataTpl])
+
+      this.setData({
+        goodsInfo: this.data.goodsInfo
+      })
+
+    },
+    //删除商品
+    removeGoods:function(e){
+
+      console.log(e)
+      let index =e.currentTarget.dataset.index
+      console.log(index)
+
+         this.data.goodsInfo.splice(index,1)
+
+
+          this.setData({
+                goodsInfo:this.data.goodsInfo
+              })
+
+    },
   onLoad:function(){
    
   },
+
   switch2Change:function(e){
     this.setData({ hasType: e.detail.value})
   },
@@ -85,21 +117,21 @@ Page({
   initValidate:function(){
         // 验证字段的规则
         const rules = {
-            title:{
+            goods_name:{
               required:true
             },
-            content:{
+            goods_content:{
               required:true
             }
         }
 
         // 验证字段的提示信息，若不传则调用默认的信息
         const messages = {
-            title:{
+            goods_name:{
               required:'请输入标题'
             },
-            content:{
-              required:'请输入描述'
+            goods_content:{
+              goods_content:'请输入描述'
             }
         }
         this.WxValidate = new WxValidate(rules, messages)
@@ -110,32 +142,32 @@ Page({
     submitForm(e) {
 
 
-      ///seller/add_edit_goods
-      ///
-      wx.request({
-           url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
-              data: {
+        console.log(e.detail.value)
 
-              },
+     // 传入表单数据，调用验证方法
+        if (!this.WxValidate.checkForm(e)) {
+          console.log(this.WxValidate.errorList)
+            const error = this.WxValidate.errorList[0]
+            wx.showModal({title:error.msg,showCancel:false})
+            return false
+        } 
+
+
+        let data = Object.assign({token:app.globalData.token},e.detail.value)
+
+           wx.request({
+           url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
+              data,
               success:  (res) =>{
                 if(res.data.code == 0){
                  
                 }
               }
-      })
+           })
 
 
-       wx.navigateTo({
-            url: '../publish-success/publish-success'
-          })
-                
-        const params = e.detail.value
-     // 传入表单数据，调用验证方法
-        if (!this.WxValidate.checkForm(e)) {
-            const error = this.WxValidate.errorList[0]
-            wx.showModal({title:error.msg,showCancel:false})
-            return false
-        } 
+
+
  wx.showModal({
             title: '提交成功',
             showCancel:false
@@ -183,5 +215,6 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  inputDuplex:util.inputDuplex
 })

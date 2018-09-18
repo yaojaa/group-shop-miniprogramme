@@ -5,7 +5,7 @@
     "i-cell": "../../iView/cell/index",
     "i-panel": "../../iView/panel/index",
     "i-avatar": "../../iView/avatar/index",
-    "i-input-number": "../../iView/input-number/index"
-        
+    "i-input-number": "../../iView/input-number/index",
+    "i-modal": "../../iView/modal/index"
   }
 }

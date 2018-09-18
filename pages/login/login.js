@@ -14,6 +14,10 @@ Page({
         hasScope:result.authSetting['scope.userInfo'] ? true : false
       })
     }
+
+    app.userLoginReadyCallback = ()=>{
+        app.redirect2Home() 
+    }
   },
   getUserInfoEvt: function (e) {
     app.globalData.userInfo = e.detail.userInfo

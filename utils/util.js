@@ -14,6 +14,20 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+//input双向绑定 注意context
+
+const inputDuplex = function(e) {
+      console.log(e)
+      let context = this
+      let name = e.currentTarget.dataset.key;
+      let nameMap = {}
+      nameMap[name] = e.detail.value
+      console.log('setData',nameMap)
+      context.setData(nameMap)
+
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  inputDuplex:inputDuplex
 }

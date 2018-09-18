@@ -25,13 +25,13 @@
 <view class="weui-cells weui-cells_form">
 
 <view class="weui-cell">
-  <input value="{{title}}" name="title" maxlength="50" placeholder="为宝贝添加个诱人的标题吧" />
+  <input  name="goods_name" maxlength="50" placeholder="为宝贝添加个诱人的标题吧" />
 </view>
 
 
 <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea name="content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="23"></textarea>
+                    <textarea auto-height="true" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="223"></textarea>
                 </view>
 
 
@@ -62,56 +62,33 @@
 <i-panel title="团购商品">
 <view class="weui-cells_form">
 
-  <view class="item">
+  <view class="item" wx:for="{{goodsInfo}}" wx:key="$this">
         <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">商品名称:</view></view>
                     <view class="weui-cell__bd">
-                    <input name="price"  maxlength="50" placeholder="如：白色超大款" />
+                    <input  value="{{item.name}}" bindinput="inputDuplex" data-key="goodsInfo[{{index}}].name"  maxlength="50" placeholder="如：白色超大款" />
                     </view>
     </view>
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">价格:</view></view>
                     <view class="weui-cell__bd">
-                    <input name="price"  maxlength="50" placeholder="0.00" />
+                    <input  value="{{item.price}}"  maxlength="50" placeholder="0.00" />
                     </view>
     </view>
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
                     <view class="weui-cell__bd">
-                    <input name="price"  maxlength="50" placeholder="0.00" value="1000" />
+                    <input  maxlength="50" placeholder="0.00" value="{{item.stock}}" />
                     </view>
     </view>
-
-        <i-icon  class="close" type="delete_fill" size="28" />
+{{index}}
+        <i-icon data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="28" />
 
   </view>
 
 
-  <view class="item">
-        <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">商品名称:</view></view>
-                    <view class="weui-cell__bd">
-                    <input name="price"  maxlength="50" placeholder="如：白色超大款" />
-                    </view>
-    </view>
-     <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">价格:</view></view>
-                    <view class="weui-cell__bd">
-                    <input name="price"  maxlength="50" placeholder="0.00" />
-                    </view>
-    </view>
-     <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
-                    <view class="weui-cell__bd">
-                    <input name="price"  maxlength="50" placeholder="0.00" value="1000" />
-                    </view>
-                    
-    </view>
-    <i-icon  class="close" type="delete_fill" size="28" />
 
-  </view>
-
-  <text class="new_add_btn"> +新商品</text> 
+  <text class="new_add_btn" bindtap="addNew"> +新商品</text> 
 
 </view>
 </i-panel>
