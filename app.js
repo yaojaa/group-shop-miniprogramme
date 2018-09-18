@@ -153,6 +153,9 @@ App({
   onLaunch: function () {
 
 
+    console.log('getCurrentPages()',getCurrentPages())
+
+
     console.group('app.js onLaunch')
 
     this.getOpenId()
@@ -171,7 +174,10 @@ App({
          console.group('获取到UserInfo:',res)
                     this.login_third(res).then(()=>{ 
           console.group('登陆成功:',res)
-                      this.redirect2Home() 
+                       if(this.userLoginReadyCallback){
+                          this.userLoginReadyCallback(res)
+                        }
+                    
                     })
                     .catch( e => console.log(e) )
 

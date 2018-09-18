@@ -66,7 +66,7 @@
         <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">商品名称:</view></view>
                     <view class="weui-cell__bd">
-                    <input  value="{{item.name}}"  maxlength="50" placeholder="如：白色超大款" />
+                    <input  value="{{item.name}}" bindinput="inputDuplex" data-key="goodsInfo[{{index}}].name"  maxlength="50" placeholder="如：白色超大款" />
                     </view>
     </view>
      <view class="weui-cell">
@@ -81,8 +81,8 @@
                     <input  maxlength="50" placeholder="0.00" value="{{item.stock}}" />
                     </view>
     </view>
-
-        <i-icon  class="close" type="delete_fill" size="28" />
+{{index}}
+        <i-icon data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="28" />
 
   </view>
 

@@ -9,7 +9,7 @@ const qiniuUploader = require("../../utils/qiniuUploader");
 
 const app = getApp()
 
-
+const util = require('../../utils/util.js')
 
 Page({
   data: {
@@ -30,6 +30,7 @@ Page({
       }
       ]
     },
+    //添加商品
     addNew:function(){
 
       const dataTpl = {
@@ -37,10 +38,26 @@ Page({
       price :'',
       stock:1000
       }
+      this.data.goodsInfo = this.data.goodsInfo.concat([dataTpl])
 
       this.setData({
-        goodsInfo:[dataTpl].concat(this.data.goodsInfo)
+        goodsInfo: this.data.goodsInfo
       })
+
+    },
+    //删除商品
+    removeGoods:function(e){
+
+      console.log(e)
+      let index =e.currentTarget.dataset.index
+      console.log(index)
+
+         this.data.goodsInfo.splice(index,1)
+
+
+          this.setData({
+                goodsInfo:this.data.goodsInfo
+              })
 
     },
   onLoad:function(){
@@ -198,5 +215,6 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  inputDuplex:util.inputDuplex
 })
