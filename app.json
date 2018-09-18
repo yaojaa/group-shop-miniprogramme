@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/paySuccess/index",
     "pages/login/login","pages/index/index","pages/goods/goods",
     "pages/list/list","pages/publish/publish", 
     "pages/publish-success/publish-success",
@@ -14,8 +15,7 @@
     "pages/home/index",
     "pages/map/index",
     "pages/ucenter/ucenter",
-     "pages/fans/index",
-     "pages/paySuccess/index"
+     "pages/fans/index"
     ],
 
   "window": {

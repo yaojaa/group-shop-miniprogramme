@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    share: false,
 
   },
 
@@ -60,7 +61,24 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
+    // if (res.from === 'button') {
+    //   // 来自页面内转发按钮
+    //   console.log(res.target)
+    // }
+    console.log(res)
+    this.setData({
+      share: true
+    })
+    return {
+      path: '/pages/share/share?id=123',
+      success: (res) => {
+        console.log("转发成功", res);
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
 
   }
 })
