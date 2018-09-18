@@ -12,6 +12,7 @@ page{
   height: 360rpx;
   z-index: -1;
   /* background-color: #49b34d; */
+  /* display: none; */
 }
 .background image{
   width: 100%;
@@ -21,7 +22,7 @@ page{
   padding: 0 15px;
 }
 .header{
-  display: flex;
+  display: none;
   align-items: center;
   height: 260rpx;
 }
@@ -30,14 +31,16 @@ page{
   color: #fff;
 }
 .order{
+  margin-top: 15px;
   background-color: #fff;
   border-radius: 8px;
+  overflow-x: hidden;
 }
 .order .title{
-  font-size: 18px;
-  height: 60px;
-  line-height: 60px;
-  padding: 10px 20px 0;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  padding:0  20px;
 }
 .line{
   position: relative;

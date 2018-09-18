@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/paySuccess/index",
     "pages/login/login","pages/index/index","pages/goods/goods",
     "pages/list/list","pages/publish/publish", 
     "pages/publish-success/publish-success",
@@ -14,6 +13,7 @@
     "pages/order/index",
     "pages/home/index",
     "pages/map/index",
+    "pages/paySuccess/index",
     "pages/ucenter/ucenter",
      "pages/fans/index"
     ],

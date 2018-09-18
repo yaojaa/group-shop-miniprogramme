@@ -66,19 +66,9 @@ Page({
     //   // 来自页面内转发按钮
     //   console.log(res.target)
     // }
-    console.log(res)
-    this.setData({
-      share: true
-    })
     return {
-      path: '/pages/share/share?id=123',
-      success: (res) => {
-        console.log("转发成功", res);
-      },
-      fail: (res) => {
-        console.log("转发失败", res);
-      }
+      title:"dkdk",
+      path: '/page/user?id=123'
     }
-
   }
 })
