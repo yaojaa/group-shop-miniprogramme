@@ -84,5 +84,27 @@
 }
 .container{
   background: #f8f8f8;
-  margin:26rpx
+  padding-top: 52px;
+}
+.goods-sticky{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  border-bottom: 1rpx solid #f2f2f2;
+  background: #fff;
+  z-index: 9;
+  padding: 10px 15px;
+  height:52px;
+}
+.min-btn-s{
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 10px;
+  background: #49b34d;
+  border-radius: 3px;
+  color:#fff;
+}
+.min-btn-s+.min-btn-s{
+  margin-left: 10px;
 }
