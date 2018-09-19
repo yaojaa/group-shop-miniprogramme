@@ -31,7 +31,7 @@ page{
   color: #fff;
 }
 .order{
-  margin-top: 15px;
+  margin-top: 5px;
   background-color: #fff;
   border-radius: 8px;
   overflow-x: hidden;
@@ -41,6 +41,7 @@ page{
   height: 40px;
   line-height: 40px;
   padding:0  20px;
+  font-weight: bold;
 }
 .line{
   position: relative;
@@ -66,7 +67,7 @@ page{
   right: -26px;
 }
 .goodsList{
-  padding: 15px 20px;
+  padding: 5px 20px;
 }
 .goodsList .goods{
   padding: 5px 0;
@@ -102,7 +103,7 @@ page{
 .paycell .pay{
   display: flex;
   justify-content: space-between;
-  line-height: 60px;
+  line-height: 30px;
   padding: 0 20px;
 }
 .paycell .pay .left{
@@ -124,7 +125,7 @@ page{
   height: 5px;
   overflow: hidden;
   justify-content: space-around;
-  padding: 20px 5px 0;
+  padding: 2px 5px 0;
 }
 .paycell .icon view{
   height: 10px;

@@ -13,7 +13,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    imgUrls: [
+    photoUrls: [
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
@@ -34,10 +34,11 @@ Page({
     addNew:function(){
 
       const dataTpl = {
-      name:'',
-      price :'',
-      stock:1000
-      }
+            name:'',
+            price :'',
+            stock:1000
+            }
+
       this.data.goodsInfo = this.data.goodsInfo.concat([dataTpl])
 
       this.setData({
@@ -48,9 +49,17 @@ Page({
     //删除商品
     removeGoods:function(e){
 
-      console.log(e)
+       
+       if(this.data.goodsInfo.length <=1)  {
+        wx.showToast({
+         title: '请至少保留一个商品',
+         icon:'none'  //标题
+       })
+
+        return
+      }
+
       let index =e.currentTarget.dataset.index
-      console.log(index)
 
          this.data.goodsInfo.splice(index,1)
 
@@ -72,13 +81,27 @@ Page({
   },
   chooseImage:function(){
     wx.chooseImage({
-      count: 1, // 默认9
+      count: 5, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
+      success:  (res)=> {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
-      }
+        var files = res.tempFilePaths
+        var filePath = res.tempFilePaths[0]
+
+        this.data.photoUrls = this.data.photoUrls.concat(files)
+
+        this.setData({
+          photoUrls:this.data.photoUrls
+        })
+
+          //  qiniuUploader.upload(filePath, (rslt) => {
+ 
+          //  this.setData({
+          //   'imageURL': rslt.imageURL
+          // });
+          //  })
+    }
     })
   },
   handleAnimalChange:function(event){

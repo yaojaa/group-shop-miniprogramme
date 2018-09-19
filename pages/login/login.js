@@ -7,7 +7,12 @@ Page({
     hasScope:true
   },
   onLoad: function () {
+          console.log('我page先执行@')
 
+
+    this.setData({
+      hasScope:app.globalData.hasScope
+    })
     app.userScopeReadyCallback=(result)=>{
       console.log('userScopeReadyCallback',result)
       this.setData({

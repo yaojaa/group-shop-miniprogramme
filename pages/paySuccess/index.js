@@ -67,8 +67,8 @@ Page({
     //   console.log(res.target)
     // }
     return {
-      title:"dkdk",
-      path: '/page/user?id=123'
+      title:"红叶舞秋山刚刚下单成功了",
+      path: '/pages/goods/goods'
     }
   }
 })

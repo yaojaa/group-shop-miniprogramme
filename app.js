@@ -61,15 +61,19 @@ App({
    return new Promise((resolve, reject)=>{
      wx.getSetting({
        success: res => {
-
+        console.log('我app先执行@')
         if (this.userScopeReadyCallback) {
                   this.userScopeReadyCallback(res)
            }
 
+
          if (res.authSetting['scope.userInfo']) {
+           this.globalData.hasScope = true
            resolve(true)
 
          } else {
+            this.globalData.hasScope = false
+
            resolve(false)
          }
        }
@@ -88,6 +92,10 @@ App({
               console.log('getUserInfo', res)
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
+
+            if (this.userInfoReadyCallback) {
+                  this.userInfoReadyCallback(this.globalData.userInfo)
+           }
               resolve(res)
             }
           })
@@ -149,6 +157,12 @@ App({
         url:'/pages/home/index'
       })
   },
+  redirectToLogin:function(){
+
+     wx.redirectTo({
+        url:'/pages/login/login'
+      })
+  },
 
   onLaunch: function () {
 
@@ -169,7 +183,6 @@ App({
        if(hasScope){
 
                   this.getUserInfo().then((ures)=>{
-         console.log('获取到UserInfo:',ures)
                     this.login_third(ures).then((res)=>{ 
                        if(this.userLoginReadyCallback){
                           this.userLoginReadyCallback(res)
@@ -193,6 +206,7 @@ App({
   globalData: {
     userInfo: null,
     token:null,
-    openid:null
+    openid:null,
+    hasScope:false //授权获取用户信息状态
   }
 })

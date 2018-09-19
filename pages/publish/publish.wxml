@@ -3,9 +3,9 @@
 <view class="weui-uploader weui-cells_form weui-cell">
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
-                                <view class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></view>
-                                <view class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></view>
-                                <view class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></view>
+                                <view wx:for="{{photoUrls}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item}})">
+                                </view>
+                              
                                 <view class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
                                     <view class="weui-uploader__file-content">
                                         <i class="weui-icon-warn"></i>
@@ -15,7 +15,7 @@
                                     <view class="weui-uploader__file-content">50%</view>
                                 </view>
                             </view>
-                            <view class="weui-uploader__input-box" bindtap="chooseImage"  >
+                            <view  wx:if="{{photoUrls.length < 6}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
                                 <text class="upload_txt">宝贝相册</text>
                             </view>
                         </view>
@@ -31,7 +31,7 @@
 
 <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea auto-height="true" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="223"></textarea>
+                    <textarea style="height: 200px" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="223"></textarea>
                 </view>
 
 
@@ -81,8 +81,7 @@
                     <input  maxlength="50" placeholder="0.00" value="{{item.stock}}" />
                     </view>
     </view>
-{{index}}
-        <i-icon data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="28" />
+        <i-icon wx:if="{{goodsInfo.length >1 }}" data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="38" />
 
   </view>
 

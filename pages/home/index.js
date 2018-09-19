@@ -27,9 +27,42 @@ Page({
                 }
             }
         })
-        this.setData({
-            userInfo: app.globalData.userInfo,
+
+        app.getUserInfoScopeSetting().then(scopeUser=> {
+
+            if(!scopeUser){
+                app.redirectToLogin()
+            }
+            return
+
         })
+
+        
+
+        if(app.globalData.userInfo){
+
+         this.setData({
+            userInfo: app.globalData.userInfo
+            })
+
+
+        }else{
+
+           app.userInfoReadyCallback=(userInfo)=>{
+            console.log('userInfoReadyCallback')
+             this.setData({
+            userInfo: userInfo,
+           })
+        }
+
+
+        }
+
+
+        
+
+
+       
     },
     new_btn: function() {
         wx.navigateTo({

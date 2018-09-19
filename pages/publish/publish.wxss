@@ -42,3 +42,21 @@ picker{
   right:1rpx;
   top:1rpx
 }
+.weui-uploader__file {
+
+position:relative;
+margin-right:9rpx;
+margin-bottom:9rpx;
+width:135rpx;
+height:135rpx;
+background-size: cover;
+}
+
+.weui-uploader__input-box {
+
+width:133rpx;
+height:133rpx;
+border:1px solid #d9d9d9;
+
+}
+

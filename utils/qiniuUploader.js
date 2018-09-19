@@ -5,7 +5,7 @@ var config = {
     qiniuRegion: '',
     qiniuImageURLPrefix: '',
     qiniuUploadToken: '',
-    qiniuUploadTokenURL: '',
+    qiniuUploadTokenURL: 'https://www.daohangwa.com/api/qiniu/get_token',
     qiniuUploadTokenFunction: null,
     qiniuShouldUseQiniuFileName: false
 }
