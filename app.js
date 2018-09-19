@@ -132,6 +132,7 @@ App({
 
                     console.log('服务器登录成功 token is', res.data.data.token, this)
                     this.globalData.token = res.data.data.token
+                    this.globalData.userInfo = res.data.data
 
                     wx.setStorageSync('token',res.data.data.token)
                     resolve(res)

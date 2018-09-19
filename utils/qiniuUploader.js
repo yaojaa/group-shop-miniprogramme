@@ -2,8 +2,8 @@
 (function() {
 
 var config = {
-    qiniuRegion: '',
-    qiniuImageURLPrefix: '',
+    qiniuRegion: 'ECN',
+    qiniuImageURLPrefix: 'http://pf9b8sd73.bkt.clouddn.com',
     qiniuUploadToken: '',
     qiniuUploadTokenURL: 'https://www.daohangwa.com/api/qiniu/get_token',
     qiniuUploadTokenFunction: null,
@@ -106,6 +106,7 @@ function doUpload(filePath, success, fail, options, progress, cancelTask) {
             //do something
             var imageUrl = config.qiniuImageURLPrefix + '/' + dataObject.key;
             dataObject.imageURL = imageUrl;
+            dataObject.thumber = imageUrl+'-thumber';
             console.log(dataObject);
             if (success) {
               success(dataObject);
@@ -138,7 +139,7 @@ function getQiniuToken(callback) {
   wx.request({
     url: config.qiniuUploadTokenURL,
     success: function (res) {
-      var token = res.data.uptoken;
+      var token = res.data.data.uptoken;
       if (token && token.length > 0) {
         config.qiniuUploadToken = token;
         if (callback) {
@@ -157,7 +158,7 @@ function getQiniuToken(callback) {
 function uploadURLFromRegionCode(code) {
     var uploadURL = null;
     switch(code) {
-        case 'ECN': uploadURL = 'https://up.qbox.me'; break;
+        case 'ECN': uploadURL = 'https://up-z1.qiniup.com'; break;
         case 'NCN': uploadURL = 'https://up-z1.qbox.me'; break;
         case 'SCN': uploadURL = 'https://up-z2.qbox.me'; break;
         case 'NA': uploadURL = 'https://up-na0.qbox.me'; break;

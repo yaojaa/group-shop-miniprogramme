@@ -99,6 +99,7 @@ Page({
           longitude,
           scale: 28,
           success(e){
+            console.log(e)
             if(!e.name || !e.address) return;
 
             _this.data.newAddress.unshift({
