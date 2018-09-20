@@ -30,7 +30,7 @@ page{
   padding: 0 15px 125px;
 }
 .header{
-  display: none;
+  display: flex;
   align-items: center;
   height: 130px;
 }
@@ -48,9 +48,8 @@ page{
   font-size: 16px;
   height: 40px;
   line-height: 40px;
-  margin:0  20px;
+  padding:0  20px;
   font-weight: bold;
-  border-bottom: 1px dotted #ccc;
 }
 .line{
   position: relative;
@@ -179,3 +178,20 @@ page{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+
+
+.painter{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
