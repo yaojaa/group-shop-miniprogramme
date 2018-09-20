@@ -28,14 +28,7 @@ Page({
             }
         })
 
-        app.getUserInfoScopeSetting().then(scopeUser=> {
 
-            if(!scopeUser){
-                app.redirectToLogin()
-            }
-            return
-
-        })
 
         
 
@@ -48,19 +41,25 @@ Page({
 
         }else{
 
+            app.userScopeReadyCallback= scopeUser=>{
+
+                if(!scopeUser){
+                app.redirectToLogin()
+                }
+            return
+
+            }
+
+          
+
+        }
+
            app.userInfoReadyCallback=(userInfo)=>{
             console.log('userInfoReadyCallback')
              this.setData({
             userInfo: userInfo,
            })
         }
-
-
-        }
-
-
-        
-
 
        
     },
