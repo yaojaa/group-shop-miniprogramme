@@ -14,10 +14,40 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+            console.log('home onLoad',app.globalData.userInfo)
+
+        if(app.globalData.userInfo){
+
+         this.setData({
+            userInfo: app.globalData.userInfo
+            })
+
+         this.getGoodsList(userInfo.token)
+
+
+        }else{
+
+        app.userLoginReadyCallback=(userInfo)=>{
+            console.log('userLoginReadyCallback',userInfo)
+             this.setData({
+            userInfo: userInfo
+           })
+         this.getGoodsList(userInfo.token)
+        }
+
+
+        }
+
+
+
+
+       
+    },
+    getGoodsList:function(token){
         wx.request({
             url: 'https://www.daohangwa.com/api/seller/get_goods_list',
             data: {
-                token: app.globalData.token || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.DAiIyEJCRNLFeWoeJWSRr7yEVQarmacOirlZ8UsVJxc'
+                token: app.globalData.token
             },
             success: (res) => {
                 if (res.data.code == 0) {
@@ -27,41 +57,6 @@ Page({
                 }
             }
         })
-
-
-
-        
-
-        if(app.globalData.userInfo){
-
-         this.setData({
-            userInfo: app.globalData.userInfo
-            })
-
-
-        }else{
-
-            app.userScopeReadyCallback= scopeUser=>{
-
-                if(!scopeUser){
-                app.redirectToLogin()
-                }
-            return
-
-            }
-
-          
-
-        }
-
-           app.userInfoReadyCallback=(userInfo)=>{
-            console.log('userInfoReadyCallback')
-             this.setData({
-            userInfo: userInfo,
-           })
-        }
-
-       
     },
     new_btn: function() {
         wx.navigateTo({
