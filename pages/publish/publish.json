@@ -7,8 +7,8 @@
         "i-icon": "../../iView/icon/index",
         "i-panel": "../../iView/panel/index",
         "i-input": "../../iView/input/index",
-        "i-datepicker":"../../iView/datepicker/index"
-
-
+        "i-icon": "../../iView/icon/index",
+        "i-datepicker":"../../iView/datepicker/index",
+         "i-spin": "../../iView/spin/index"
 	}
 }

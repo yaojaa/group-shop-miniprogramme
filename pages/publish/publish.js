@@ -11,22 +11,20 @@ const app = getApp()
 
 const util = require('../../utils/util.js')
 
+const qiniuImagprefix = 'http://pf9b8sd73.bkt.clouddn.com/'
+
 Page({
   data: {
-    photoUrls: [
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
-    price: 5000,
-    type: {},
+    photoUrls: [],
     isGave:0,
     address:0,
     deliver:true,
     morePic:false,
-    goodsInfo:[{
-      name:'',
+    photoProgess:false,
+    spec_item:[{
+      key_name:'',
       price :'',
-      stock:1000
+      store_count:1000
       }
       ]
     },
@@ -34,15 +32,15 @@ Page({
     addNew:function(){
 
       const dataTpl = {
-            name:'',
+            key_name:'',
             price :'',
-            stock:1000
+            store_count:1000
             }
 
-      this.data.goodsInfo = this.data.goodsInfo.concat([dataTpl])
+      this.data.spec_item = this.data.spec_item.concat([dataTpl])
 
       this.setData({
-        goodsInfo: this.data.goodsInfo
+        spec_item: this.data.spec_item
       })
 
     },
@@ -50,7 +48,7 @@ Page({
     removeGoods:function(e){
 
        
-       if(this.data.goodsInfo.length <=1)  {
+       if(this.data.spec_item.length <=1)  {
         wx.showToast({
          title: '请至少保留一个商品',
          icon:'none'  //标题
@@ -60,14 +58,10 @@ Page({
       }
 
       let index =e.currentTarget.dataset.index
-
-         this.data.goodsInfo.splice(index,1)
-
-
+         this.data.spec_item.splice(index,1)
           this.setData({
-                goodsInfo:this.data.goodsInfo
+                spec_item:this.data.spec_item
               })
-
     },
   onLoad:function(){
    
@@ -79,6 +73,7 @@ Page({
   deliverChange: function (e) {
     this.setData({ deliver: e.detail.value })
   },
+  //上传相册
   chooseImage:function(){
     wx.chooseImage({
       count: 5, // 默认9
@@ -87,22 +82,64 @@ Page({
       success:  (res)=> {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var files = res.tempFilePaths
-        var filePath = res.tempFilePaths[0]
+        var filePath = res.tempFilePaths
 
-        this.data.photoUrls = this.data.photoUrls.concat(files)
+        if(files.length>5){
+          wx.showToast({
+            title:'请不要多于5张',
+            icon:'none'
+          })
+        }
+
+        this.setData({
+          photoProgess:true
+        })
+
+        files.forEach((filePath,index,ary)=>{
+
+
+            qiniuUploader.upload(filePath, (rslt) => {
+
+              console.log(rslt)
+
+              this.data.photoUrls = this.data.photoUrls.concat([rslt.thumber])
+    
+                 this.setData({
+                  'photoUrls': this.data.photoUrls,
+                   'photoProgess':false
+                })
+                 //最后一张上传完成时，不显示loading
+                
+                if(index === ary.length-1){
+                    this.setData({
+                   'photoProgess':false
+                })
+
+                }
+           })
+
+        })
 
         this.setData({
           photoUrls:this.data.photoUrls
         })
 
-          //  qiniuUploader.upload(filePath, (rslt) => {
- 
-          //  this.setData({
-          //   'imageURL': rslt.imageURL
-          // });
-          //  })
+         
     }
     })
+  },
+  //删除一张照片
+  removePhoto:function(e){
+    console.log(e)
+   let index =e.currentTarget.dataset.index
+       console.log(index)
+   console.log(this.data.photoUrls)
+
+    this.data.photoUrls.splice(index,1)
+   console.log(this.data.photoUrls)
+   this.setData({
+    'photoUrls':this.data.photoUrls
+   })
   },
   handleAnimalChange:function(event){
 
@@ -161,7 +198,7 @@ Page({
 
 
   },
-  //提交表单
+    //提交表单
     submitForm(e) {
 
 
@@ -176,14 +213,41 @@ Page({
         } 
 
 
-        let data = Object.assign({token:app.globalData.token},e.detail.value)
+
+        let data = Object.assign({token:app.globalData.token},
+          e.detail.value, //表单的数据
+          {spec_item:JSON.stringify(this.data.spec_item)}, //商品数组数据
+          {goods_images:this.data.photoUrls},
+          {
+            sell_address:[],
+            delivery_method:1,
+            sell_start_time:'',
+            sell_end_time :''
+          }
+          )
 
            wx.request({
+           method:'post',
+           header: {
+
+             "content-type": "application/x-www-form-urlencoded"
+
+           },
            url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
               data,
               success:  (res) =>{
                 if(res.data.code == 0){
+
+                   wx.showModal({
+                        title: '提交成功',
+                        showCancel:false
+                    })
                  
+                }else{
+                     wx.showModal({
+                        title: res.data.msg,
+                        showCancel:false
+                    })
                 }
               }
            })
@@ -191,10 +255,7 @@ Page({
 
 
 
- wx.showModal({
-            title: '提交成功',
-            showCancel:false
-        })
+
      
     },
   onLoad: function () {

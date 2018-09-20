@@ -3,6 +3,12 @@
   border: 1px solid #c00
 }
 
+.progress{
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: 0
+}
 .item{
   border: 1px solid #ddd;
   box-shadow: 0 0 2px #eee;
@@ -10,7 +16,7 @@
 }
 
 .weui-uploader{
-  padding: 10px 10px 0
+  padding: 25px 10px 0
 }
 picker{
   display: inline-block
@@ -40,8 +46,10 @@ picker{
 .close{
   position: absolute;
   right:1rpx;
-  top:1rpx
+  top:1rpx;
+
 }
+
 .weui-uploader__file {
 
 position:relative;
@@ -52,6 +60,11 @@ height:135rpx;
 background-size: cover;
 }
 
+.weui-uploader__file .close{
+  right:-10rpx;
+  top:-20rpx;
+  z-index: 99
+}
 .weui-uploader__input-box {
 
 width:133rpx;

@@ -1,23 +1,19 @@
 <view class="page-body">
+<view class="progress" wx:if="{{photoProgess}}" ><i-spin size="large"></i-spin>
+</view>
 <form bindsubmit="submitForm">
 <view class="weui-uploader weui-cells_form weui-cell">
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <view wx:for="{{photoUrls}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item}})">
+                                   <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#80848f" size="26" type="delete_fill" />
                                 </view>
-                              
-                                <view class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
-                                    <view class="weui-uploader__file-content">
-                                        <i class="weui-icon-warn"></i>
-                                    </view>
-                                </view>
-                                <view class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
-                                    <view class="weui-uploader__file-content">50%</view>
-                                </view>
+                            <view  wx:if="{{photoUrls.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
+                                <text class="upload_txt">
+宝贝相册</text>
                             </view>
-                            <view  wx:if="{{photoUrls.length < 6}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
-                                <text class="upload_txt">宝贝相册</text>
-                            </view>
+                         </view>
+
                         </view>
                     </view>
 
@@ -50,7 +46,7 @@
 
 <view class="weui-cell weui-cells_form" wx:if="{{morePic}}">
    <view class="weui-uploader__input-box" bindtap="chooseImage"  >
-                                <text class="upload_txt">宝贝相册</text>
+         <text class="upload_txt">宝贝相册</text>
    </view>
 </view>
 
@@ -62,26 +58,26 @@
 <i-panel title="团购商品">
 <view class="weui-cells_form">
 
-  <view class="item" wx:for="{{goodsInfo}}" wx:key="$this">
+  <view class="item" wx:for="{{spec_item}}" wx:key="$this">
         <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">商品名称:</view></view>
                     <view class="weui-cell__bd">
-                    <input  value="{{item.name}}" bindinput="inputDuplex" data-key="goodsInfo[{{index}}].name"  maxlength="50" placeholder="如：白色超大款" />
+                    <input  value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="如：白色超大款" />
                     </view>
     </view>
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">价格:</view></view>
                     <view class="weui-cell__bd">
-                    <input  value="{{item.price}}"  maxlength="50" placeholder="0.00" />
+                    <input  value="{{item.price}}"   bindinput="inputDuplex" data-key="spec_item[{{index}}].price"    maxlength="50" placeholder="0.00" />
                     </view>
     </view>
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
                     <view class="weui-cell__bd">
-                    <input  maxlength="50" placeholder="0.00" value="{{item.stock}}" />
+                    <input  maxlength="50"  bindinput="inputDuplex" data-key="spec_item[{{index}}].store_count"  placeholder="0.00" value="{{item.store_count}}" />
                     </view>
     </view>
-        <i-icon wx:if="{{goodsInfo.length >1 }}" data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="38" />
+        <i-icon wx:if="{{spec_item.length >1 }}" data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="38" />
 
   </view>
 

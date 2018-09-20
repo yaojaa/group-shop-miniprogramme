@@ -61,9 +61,9 @@ App({
    return new Promise((resolve, reject)=>{
      wx.getSetting({
        success: res => {
-        console.log('我app先执行@')
+        console.log('getUserInfoScopeSetting执行@')
         if (this.userScopeReadyCallback) {
-                  this.userScopeReadyCallback(res)
+             this.userScopeReadyCallback(res)
            }
 
 
@@ -132,6 +132,7 @@ App({
 
                     console.log('服务器登录成功 token is', res.data.data.token, this)
                     this.globalData.token = res.data.data.token
+                    this.globalData.userInfo = res.data.data
 
                     wx.setStorageSync('token',res.data.data.token)
                     resolve(res)
@@ -178,14 +179,13 @@ App({
         console.log('Promise all result',result)
         console.log('获取到openId',result[0])
         console.log('获取到hasScope',result[1])
-        let hasScope = result[1]
 
-       if(hasScope){
+       if(result[1]){
 
                   this.getUserInfo().then((ures)=>{
                     this.login_third(ures).then((res)=>{ 
                        if(this.userLoginReadyCallback){
-                          this.userLoginReadyCallback(res)
+                          this.userLoginReadyCallback(res.data.data)
                         }
                     
                     })
@@ -193,6 +193,8 @@ App({
 
                   })
 
+                }else{
+                  this.redirectToLogin()
                 }
 
 
