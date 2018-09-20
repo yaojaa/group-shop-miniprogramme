@@ -38,7 +38,6 @@
 .goods-info{
   padding: 10px 15px;
   background: #fff;
-  margin-bottom: 20rpx;
 }
 .wx-group-pic{
   width: 46rpx;
@@ -83,18 +82,15 @@
   width: 100%;
 }
 .container{
-  background: #f8f8f8;
-  padding-top: 52px;
+  padding: 10px;
+  background-image: -webkit-linear-gradient(rgba(73,179,77,0.3) 40%, #f2f2f2)
 }
 .goods-sticky{
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
+  width: 100%;
   border-bottom: 1rpx solid #f2f2f2;
   background: #fff;
   z-index: 9;
-  padding: 10px 15px;
+  padding: 10px ;
   height:52px;
 }
 .min-btn-s{
@@ -107,4 +103,19 @@
 }
 .min-btn-s+.min-btn-s{
   margin-left: 10px;
+}
+.code-pic{
+  width: 300rpx;
+  height:300rpx;
+}
+.user-header .name{
+  display: inline-block;
+  padding-left: 10px;
+}
+.user-header .avatar{
+  vertical-align: top;
+  display: inline-block;
+}
+.user-header .name text{
+  display: block;
 }
