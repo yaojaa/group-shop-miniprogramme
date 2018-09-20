@@ -1,4 +1,5 @@
 // pages/paySuccess/index.js
+const app = getApp()
 Page({
 
   /**
@@ -67,7 +68,7 @@ Page({
     //   console.log(res.target)
     // }
     return {
-      title:"红叶舞秋山刚刚下单成功了",
+      title: app.globalData.userInfo.nickName + '刚刚购买了',
       path: '/pages/goods/goods'
     }
   }

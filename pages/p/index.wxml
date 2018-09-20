@@ -1,4 +1,12 @@
-<view class="container">
+<view class="body">
+<image style='width:720rpx;' src="{{imagePath}}"></image>
+  <view class='painter'>
+    <painter palette="{{painterData}}" bind:imgOK="onImgOk" bind:imgErr="onImgErr"/>
+  </view>
+  
+<scroll-view scroll-y class='scroll-view' scroll-top="{{scrollTop}}">
+
+
   <view class='background'>
     <image mode="aspectFill" src="/img/b.png"></image>
   </view>
@@ -8,7 +16,7 @@
     </view>
     <view class='order'>
       <view class='title'>澳大利亚进口脐橙 澳橙12个装 </view>
-      <!-- <view class='line'></view> -->
+      <view class='line'></view>
       <view class="goodsList">
         <view class='goods'>
           <view class='cell'>
@@ -85,6 +93,8 @@
     </view>
 
   </view>
+
+</scroll-view>
 
   <view class='share'>
 	  <button type='primary' open-type="share">将以上结果分享到微信群～～</button>

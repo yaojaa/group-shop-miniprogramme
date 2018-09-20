@@ -1,0 +1,5 @@
+{
+	"usingComponents":{
+	  "painter":"/iView/painter/painter"
+	}
+}
