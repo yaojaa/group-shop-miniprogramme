@@ -16,7 +16,7 @@ Page({
         wx.request({
             url: 'https://www.daohangwa.com/api//goods/get_goods_info',
             data: {
-                goods_id: 24 //option.goods_id
+                goods_id: option.goods_id
             },
             success: (res) => {
                 if (res.data.code == 0) {

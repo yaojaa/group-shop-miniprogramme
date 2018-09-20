@@ -51,7 +51,7 @@
             </i-cell>
         </i-cell-group>
     </i-panel> -->
-    <view class="mt-sm">
+    <view >
         <i-panel>
             <i-cell-group>
                 <i-cell title="商品规格1">
