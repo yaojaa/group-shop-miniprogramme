@@ -19,7 +19,7 @@ Page({
             app.userScopeReadyCallback=(result)=>{
               console.log('11111111userScopeReadyCallback', result.authSetting['scope.userInfo'] ? true : false)
               this.setData({
-                hasScope:result.authSetting['scope.userInfo'] ? true : false
+                hasScope: result.authSetting['scope.userInfo'] ? false : true
               })
 
               console.log(this.data.hasScope)

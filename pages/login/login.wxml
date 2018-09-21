@@ -19,7 +19,7 @@
       <navigator url="/pages/map/index">添加新地址</navigator>
     </view> -->
 
-    <view class='start-btn text-center' wx:if="{{!hasScope}}">
+    <view class='start-btn text-center' wx:if="{{hasScope}}">
         <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">开启社区麻麻团</button>
     </view>
 </view>
