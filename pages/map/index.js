@@ -1,3 +1,5 @@
+const app = getApp()
+
 Page({
   data: {
     limitVal: 1,
@@ -11,11 +13,11 @@ Page({
   onLoad: function () {
     let _this = this;
     // this.openLocation(this);
-
+    // 
     wx.getStorage({
       key: 'historyAddress',
       success: function(res) {
-        console.log(res)
+
         if(res.data.length > 0){
         _this.setData({
           oldAddress: res.data
@@ -93,10 +95,13 @@ Page({
       delta: 1
     })
 
-    console.log(this.data.newAddress,this.data.limitVal)
+    app.globalData.sell_address = this.data.newAddress
+
+    // console.log(this.data.newAddress,this.data.limitVal)
   },
 
   openLocation(_this){
+    console.log('aaaa')
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success(res) {
@@ -107,7 +112,6 @@ Page({
           longitude,
           scale: 28,
           success(e){
-            console.log(e)
             if(!e.name || !e.address) return;
 
             _this.data.newAddress.unshift({

@@ -142,7 +142,13 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                          <navigator url="/pages/map/index">请选择地址     <i-icon type="enter" size="28" />
+                          <navigator url="/pages/map/index">
+
+                            <text wx:if="{{sell_address.length}}">{{sell_address[0].name}}</text>
+                            <text>选择地址</text>
+
+
+                            <i-icon type="enter" size="28" />
 </navigator>
 
                     </view>

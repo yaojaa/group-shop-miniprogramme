@@ -16,6 +16,7 @@ Page({
     photoUrls: [],
     intro_pics:[],
     delivery_method:0,//配送方式
+    sell_address:[],
     isGave:0,
     address:0,
     deliver:true,
@@ -94,6 +95,14 @@ Page({
   },
   onShow:function(){
         console.log('onshow....')
+        if(app.globalData.sell_address){
+
+          this.setData({
+            sell_address:app.globalData.sell_address
+          })
+        }
+
+        console.log(this.data.sell_address)
 
   },
 
