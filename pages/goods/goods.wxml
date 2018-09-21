@@ -1,9 +1,14 @@
 <view class="container">
     <view class="goods-sticky text-justify">
         <view class="user-header">
-            <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="small">梁</i-avatar>
-            <text class="f13"> 红叶舞秋山</text>
-           <!--  <i-icon type="mobilephone" />
+            <view class="avatar">
+                <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="default" shape="square">梁</i-avatar>
+            </view>
+            <view class="name">
+                <text class="f13">红叶舞秋山</text>
+                <text class="f12 text-muted">有 15 人来看</text>
+            </view>
+            <!-- <i-icon type="mobilephone" />
             <i-icon type="interactive" /> -->
         </view>
         <view class="manage">
@@ -24,39 +29,40 @@
         <view class="goods-title">
             <text>{{goods.goods_name}}</text>
         </view>
-        <view class="goods-desc">
-            <text>没成一个爱心暖，平台自费购买一份了</text>
-        </view>
         <view class="goods-price text-justify">
             <view>
-                <text class="price">¥19.8</text>
-                <text class='line-through'>¥29.8</text>
+                <text class="price">¥19.8</text>/起
+                <!-- <text class='line-through'>¥29.8</text> -->
             </view>
             <view>
                 <text>已售：200件</text>
             </view>
         </view>
     </view>
-    <i-panel>
+    <!-- <i-panel>
         <i-cell-group>
             <i-cell title="配送方式：自取 青苹果社区1号楼 2单元 212"></i-cell>
             <i-cell title="店主：13718123444"></i-cell>
-            <i-cell is-link>
+            <i-cell is-link bindtap="codeShow">
                 <view class='wx-group'>
                     <image src='/img/wx-group.png' class='wx-group-pic'></image>
                     <text>加入社区群 免费领取5元优惠卷</text>
                 </view>
             </i-cell>
         </i-cell-group>
-    </i-panel>
-    <i-panel>
-        <i-cell-group>
-            <i-cell title="商品规格1">¥99.8
-                <i-input-number value="1" min="1" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
-            <i-cell title="商品规格2">¥929.8
-                <i-input-number value="1" min="1" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
-        </i-cell-group>
-    </i-panel>
+    </i-panel> -->
+    <view >
+        <i-panel>
+            <i-cell-group>
+                <i-cell title="商品规格1">
+                    <text class="text-red">¥99.8</text>
+                    <i-input-number value="1" min="0" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
+                <i-cell title="商品规格2">
+                    <text class="text-red">¥99.8</text>
+                    <i-input-number value="1" min="0" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
+            </i-cell-group>
+        </i-panel>
+    </view>
     <view class='sub-title'>
         <text>商品详情</text>
     </view>
@@ -70,14 +76,29 @@
     <i-cell-group>
         <i-cell>
             <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="small">梁</i-avatar>
-            <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
-            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
-            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
-            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
-            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
-            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
-            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
-            <i-cell> <text class="f12"> 灰色 2 2018.12.12 9:49</text></i-cell>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text>
+        </i-cell>
+        <i-cell>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text>
+        </i-cell>
+        <i-cell>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text>
+        </i-cell>
+        <i-cell>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text>
+        </i-cell>
+        <i-cell>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text>
+        </i-cell>
+        <i-cell>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text>
+        </i-cell>
+        <i-cell>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text>
+        </i-cell>
+        <i-cell>
+            <text class="f12"> 灰色 2 2018.12.12 9:49</text>
+        </i-cell>
     </i-cell-group>
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
@@ -89,4 +110,7 @@
         <text class='buy' bindtap='buy'>已选 2 </text>
         <text class='buy' bindtap='buy'> 立即购买</text>
     </view>
+    <!--   <i-modal title="群二维码" visible="{{ code }}" bind:ok="codeHide" bind:cancel="codeHide">
+        <image class="code-pic" src="https://file.iviewui.com/weapp/dist/e5da9fdc97a0b3fb16c115d379820583.jpg" />
+    </i-modal> -->
 </view>
