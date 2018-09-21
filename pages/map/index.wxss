@@ -98,3 +98,15 @@ button.button{
   width: 100%;
   font-size: 16px;
 }
+.get-location button{
+  border: none;
+  font-size: 14px;
+  color: #999;
+  height: 50px;
+  line-height: 40px;
+  text-align: left;
+  padding-left: 15px;
+}
+.get-location button .icon{
+  font-size: 20px;
+}

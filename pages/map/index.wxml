@@ -26,7 +26,10 @@
   </view>
   <view class='line'></view>
 </block>
-  <view class='add-address' bindtap='addAddress'><text class='icon'>+</text><text>新地点</text></view>
+  <view class='add-address' wx:if="{{openLocation}}" bindtap='addAddress'><text class='icon'>+</text><text>新地点</text></view>
+  <view class='get-location' wx:else>
+    <button plain open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>新地点</text></button>
+  </view>
 </view>
 <block wx:if="{{oldAddress.length > 0}}">
 <view class='history'>历史记录（{{oldAddress.length}}），点击下面记录添加活动地点</view>

@@ -8,6 +8,7 @@ Page({
     location: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTM2ODk2NDM1MjY0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE4OTYiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUxMiAxMjhhMjU2IDI1NiAwIDAgMC0yNTYgMjU2YzAgMTIzLjUyIDk3LjkyIDI3NS44NCAyMDggNDgzLjg0YTU1LjA0IDU1LjA0IDAgMCAwIDk2IDBDNjcwLjA4IDY1OS44NCA3NjggNTA3LjUyIDc2OCAzODRhMjU2IDI1NiAwIDAgMC0yNTYtMjU2eiBtMCAzODRhMTI4IDEyOCAwIDEgMSAxMjgtMTI4IDEyOCAxMjggMCAwIDEtMTI4IDEyOHoiIGZpbGw9IiMwMDYxYjIiIHAtaWQ9IjE4OTciPjwvcGF0aD48L3N2Zz4=",
     newAddress: [],
     oldAddress: [],
+    openLocation: true,
 
   },
   onLoad: function () {
@@ -133,8 +134,28 @@ Page({
 
           }
         })
+      },
+      fail(e){
+        wx.showToast({ icon:'none', title: "允许授权后才能添加地址" })
+        _this.setData({
+          openLocation: false
+        })
       }
     })
+  },
+
+  openSet(e){
+    if(e.detail.authSetting['scope.userLocation']){
+      this.openLocation();
+      this.setData({
+        openLocation: true
+      })
+    } else {
+      wx.showToast({ icon: 'none', title: "允许授权后才能添加地址" })
+      this.setData({
+        openLocation: false
+      })
+    }
   },
 
   getIndex(arr, id){
