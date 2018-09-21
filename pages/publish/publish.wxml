@@ -1,5 +1,5 @@
 <view class="page-body">
-<view class="progress" wx:if="{{photoProgess}}" ><i-spin size="large"></i-spin>
+<view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>
 </view>
 <form bindsubmit="submitForm">
 <view class="weui-uploader weui-cells_form weui-cell">
@@ -27,18 +27,26 @@
 
 <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea style="height: 200px" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="223"></textarea>
+                    <textarea style="height: 100px" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="5"></textarea>
                 </view>
+
+                
 
 
 </view>
- <view class="weui-cell">
 
-        <i-icon type="picture" size="36" color="#80848f"/>
-        <i-icon type="video" size="38" color="#80848f"/>
+<view class="weui-cell picture-item" wx:for="{{intro_pics}}"  wx:key="*this">
+
+                  <image src="{{item}}"  mode="aspectFill" />
+                   <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#999" size="18" type="close" />
+</view>
 
 
-   
+<view class="new_add_btn" bindtap="addPicture">
+
+<i-icon type="add" size="20" color="#80848f"/>介绍图片  <view wx:if="{{pictureProgress}}" class="loading">
+<i-spin size="large"></i-spin>
+</view>
 
 </view>
 
@@ -82,8 +90,11 @@
   </view>
 
 
+<view class="new_add_btn" bindtap="addGoods">
 
-  <text class="new_add_btn" bindtap="addNew"> +新商品</text> 
+        <i-icon type="add"  bindtap="addNew" size="20" color="#80848f"/> 新商品
+
+</view>
 
 </view>
 </i-panel>
@@ -98,7 +109,10 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                                       自提   <i-icon type="enter" size="28" />
+        <i-switch value="{{delivery_method}}" size="large" bindchange="deliveryChange" slot="footer">
+            <view slot="open">自提</view>
+            <view slot="close">送货</view>
+        </i-switch>              
 
                     </view>
                      </view>
@@ -113,12 +127,8 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-<i-datepicker> </i-datepicker>
-                                     
-<i-datepicker></i-datepicker>
-                                      
-                                      
-
+<i-datepicker title="开始日期" time="00:00" binddatachange="start_time"> </i-datepicker>
+<i-datepicker title="结束日期" time="00:00" bind:datachange="end_time"></i-datepicker>
                     </view>
                      </view>
 

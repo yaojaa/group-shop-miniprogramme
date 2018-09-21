@@ -5,22 +5,23 @@
 //获取应用实例
 var WxValidate = require("../../utils/wxValidate.js");
 
-const qiniuUploader = require("../../utils/qiniuUploader");
 
 const app = getApp()
 
 const util = require('../../utils/util.js')
 
-const qiniuImagprefix = 'http://pf9b8sd73.bkt.clouddn.com/'
 
 Page({
   data: {
     photoUrls: [],
+    intro_pics:[],
+    delivery_method:0,//配送方式
     isGave:0,
     address:0,
     deliver:true,
     morePic:false,
-    photoProgess:false,
+    photoProgress:false,
+    pictureProgress:false,
     spec_item:[{
       key_name:'',
       price :'',
@@ -29,7 +30,7 @@ Page({
       ]
     },
     //添加商品
-    addNew:function(){
+    addGoods:function(){
 
       const dataTpl = {
             key_name:'',
@@ -63,8 +64,37 @@ Page({
                 spec_item:this.data.spec_item
               })
     },
+    //添加介绍图片
+    addPicture:function(){
+
+      util.uploadPicture({
+        successData:(result)=>{
+          console.log(result)
+          this.data.intro_pics = this.data.intro_pics.concat([result])
+
+          this.setData({
+            intro_pics:this.data.intro_pics
+          })
+
+          console.log(this.data.intro_pics)
+        },
+        progressState:(s)=>{
+          console.log('上传状态',s)
+          this.setData({
+          pictureProgress:s
+        })
+
+        }
+      })
+    },
   onLoad:function(){
+
+    console.log('onLoad....')
    
+  },
+  onShow:function(){
+        console.log('onshow....')
+
   },
 
   switch2Change:function(e){
@@ -75,58 +105,27 @@ Page({
   },
   //上传相册
   chooseImage:function(){
-    wx.chooseImage({
-      count: 5, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success:  (res)=> {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var files = res.tempFilePaths
-        var filePath = res.tempFilePaths
 
-        if(files.length>5){
-          wx.showToast({
-            title:'请不要多于5张',
-            icon:'none'
+
+      util.uploadPicture({
+        successData:(result)=>{
+          console.log(result)
+          this.data.photoUrls = this.data.photoUrls.concat([result])
+
+          this.setData({
+            photoUrls:this.data.photoUrls
           })
+
+          console.log(this.data.photoUrls)
+        },
+        progressState:(s)=>{
+          console.log('上传状态',s)
+          this.setData({
+          photoProgress:s
+        })
+
         }
-
-        this.setData({
-          photoProgess:true
-        })
-
-        files.forEach((filePath,index,ary)=>{
-
-
-            qiniuUploader.upload(filePath, (rslt) => {
-
-              console.log(rslt)
-
-              this.data.photoUrls = this.data.photoUrls.concat([rslt.thumber])
-    
-                 this.setData({
-                  'photoUrls': this.data.photoUrls,
-                   'photoProgess':false
-                })
-                 //最后一张上传完成时，不显示loading
-                
-                if(index === ary.length-1){
-                    this.setData({
-                   'photoProgess':false
-                })
-
-                }
-           })
-
-        })
-
-        this.setData({
-          photoUrls:this.data.photoUrls
-        })
-
-         
-    }
-    })
+      })
   },
   //删除一张照片
   removePhoto:function(e){
@@ -257,6 +256,24 @@ Page({
 
 
      
+    },
+    deliveryChange:function(e){
+      console.log(e)
+      this.setData({
+        delivery_method:e.detail.value?1:0
+      })
+    },
+    start_time:function(e){
+      this.setData({
+        sell_start_time:e.detail.join('-')
+      })
+
+    },
+    end_time:function(e){
+        this.setData({
+        sell_end_time:e.detail.join('-')
+      })
+
     },
   onLoad: function () {
 

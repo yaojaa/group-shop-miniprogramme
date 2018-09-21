@@ -22,7 +22,7 @@ Page({
             userInfo: app.globalData.userInfo
             })
 
-         this.getGoodsList(userInfo.token)
+         this.getGoodsList(app.globalData.userInfo.token)
 
 
         }else{

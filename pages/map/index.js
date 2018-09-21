@@ -10,14 +10,20 @@ Page({
   },
   onLoad: function () {
     let _this = this;
-    this.openLocation(this);
+    // this.openLocation(this);
 
     wx.getStorage({
       key: 'historyAddress',
       success: function(res) {
+        console.log(res)
+        if(res.data.length > 0){
         _this.setData({
           oldAddress: res.data
         })
+       }else{
+        _this.openLocation(_this);
+       }
+
       },
     })
 
@@ -86,6 +92,8 @@ Page({
     wx.navigateBack({
       delta: 1
     })
+
+    console.log(this.data.newAddress,this.data.limitVal)
   },
 
   openLocation(_this){
@@ -106,8 +114,8 @@ Page({
               id: new Date().getTime(),
               name: e.name,
               address: e.address,
-              lat: e.latitude,
-              lon: e.longitude
+              latitude: e.latitude,
+              longitude: e.longitude
             })
             _this.setData({
               newAddress: _this.data.newAddress

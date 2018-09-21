@@ -5,7 +5,7 @@ const days = []
 const hours = [];
 const minutes = [];
 
-for (let i = 1990; i <= d.getFullYear() + 1000; i++) {
+for (let i = 2018; i <= d.getFullYear() + 10; i++) {
   years.push(i.toString())
 }
 
@@ -19,8 +19,8 @@ for (let i = 0; i < 24; i++) {
   hours.push(i.toString())
 }
 
-for (let i = 0; i < 60; i++) {
-  if (i < 10) i = "0" + i;
+for (let i = 0; i < 60; i+=5) {
+  if (i < 10) i = parseInt("0" + i);
   minutes.push(i.toString())
 }
 
@@ -35,6 +35,10 @@ Component({
     time: {   //格式 HH：MM
       type: String,
       value: d.getHours() + ':' + d.getMinutes()
+    },
+    title: {   //格式 HH：MM
+      type: String,
+      value: '请选择日期'
     }
   },
 
@@ -114,7 +118,7 @@ Component({
         default:
           break;
       }
-     
+     console.log('change')
     },
     openPicker() {
       this.setData({
@@ -130,6 +134,7 @@ Component({
     },
 
     confirm(){
+      console.log('确定')
       this.closePicker(); 
       this.setData({
         year: this.data.year,
@@ -138,6 +143,8 @@ Component({
         hour: this.data.hour,
         minute: this.data.minute
       })
+            this.triggerEvent('datachange', [this.data.year, this.data.month, this.data.day, this.data.hour, this.data.minute])
+
       this.triggerEvent('change', [this.data.year, this.data.month, this.data.day, this.data.hour, this.data.minute])
     },
 

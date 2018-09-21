@@ -61,7 +61,7 @@ App({
    return new Promise((resolve, reject)=>{
      wx.getSetting({
        success: res => {
-        console.log('getUserInfoScopeSetting执行@')
+         console.log('getUserInfoScopeSetting执行@', this.userScopeReadyCallback)
         if (this.userScopeReadyCallback) {
              this.userScopeReadyCallback(res)
            }

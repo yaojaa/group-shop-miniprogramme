@@ -40,9 +40,8 @@
                 <view class="bd">
                     <view class="tit">{{item.goods_name}}</view>
                     <view class="link">
-                        <text bindtap="editPage" data-url="{{item.goods_id}}">编辑修改</text>
-                        <text> | </text>
-                        <text bindtap="detailPage" data-url="{{item.goods_id}}">订单管理</text>
+                      <button size="mini" bindtap="editPage" data-url="{{item.goods_id}}">编辑修改</button>
+                        <button size="mini" bindtap="detailPage" data-url="{{item.goods_id}}">订单管理</button>
                     </view>
                 </view>
                 <view class="fd">进行中</view>

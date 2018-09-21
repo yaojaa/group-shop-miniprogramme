@@ -9,20 +9,32 @@ Page({
   onLoad: function () {
           console.log('我page先执行@')
 
+          if(app.globalData.userInfo){
+               this.setData({
+                  hasScope:app.globalData.hasScope
+                })
 
-    this.setData({
-      hasScope:app.globalData.hasScope
-    })
-    app.userScopeReadyCallback=(result)=>{
-      console.log('userScopeReadyCallback',result)
-      this.setData({
-        hasScope:result.authSetting['scope.userInfo'] ? true : false
-      })
-    }
+          }else{
 
-    app.userLoginReadyCallback = ()=>{
-        app.redirect2Home() 
-    }
+            app.userScopeReadyCallback=(result)=>{
+              console.log('11111111userScopeReadyCallback', result.authSetting['scope.userInfo'] ? true : false)
+              this.setData({
+                hasScope:result.authSetting['scope.userInfo'] ? true : false
+              })
+
+              console.log(this.data.hasScope)
+            }
+
+            app.userLoginReadyCallback = ()=>{
+                app.redirect2Home() 
+            }
+
+          }
+
+
+
+ 
+
   },
   getUserInfoEvt: function (e) {
     app.globalData.userInfo = e.detail.userInfo

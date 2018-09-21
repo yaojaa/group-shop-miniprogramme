@@ -47,6 +47,9 @@ picker{
   position: absolute;
   right:1rpx;
   top:1rpx;
+  background: #fff;
+  border-radius: 100%;
+  border:1rpx solid #ccc;
 
 }
 
@@ -71,5 +74,26 @@ width:133rpx;
 height:133rpx;
 border:1px solid #d9d9d9;
 
+}
+.new_add_btn{
+  font-size:14px;
+  line-height: 2.0;
+  color: #37a;
+  position: relative;
+}
+.loading{
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  top: 5rpx
+}
+
+.picture-item image{
+
+   width: 100%
+}
+
+.i-icon-close{
+  background: #fff
 }
 
