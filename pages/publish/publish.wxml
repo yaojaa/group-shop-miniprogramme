@@ -38,7 +38,7 @@
 <view class="weui-cell picture-item" wx:for="{{intro_pics}}"  wx:key="*this">
 
                   <image src="{{item}}"  mode="aspectFill" />
-                   <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#999" size="18" type="close" />
+                   <i-icon class="close" data-index="{{index}}" bindtap="removePictrue" color="#999" size="18" type="close" />
 </view>
 
 
@@ -145,7 +145,7 @@
                           <navigator url="/pages/map/index">
 
                             <text wx:if="{{sell_address.length}}">{{sell_address[0].name}}</text>
-                            <text>选择地址</text>
+                            <text wx:else>选择地址</text>
 
 
                             <i-icon type="enter" size="28" />

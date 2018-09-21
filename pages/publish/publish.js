@@ -88,13 +88,21 @@ Page({
         }
       })
     },
+    removePictrue(e){
+
+   let index =e.currentTarget.dataset.index
+
+    this.data.intro_pics.splice(index,1)
+   this.setData({
+    'intro_pics':this.data.intro_pics
+   })
+
+    },
   onLoad:function(){
 
-    console.log('onLoad....')
    
   },
   onShow:function(){
-        console.log('onshow....')
         if(app.globalData.sell_address){
 
           this.setData({
@@ -209,9 +217,7 @@ Page({
     //提交表单
     submitForm(e) {
 
-
         console.log(e.detail.value)
-
      // 传入表单数据，调用验证方法
         if (!this.WxValidate.checkForm(e)) {
           console.log(this.WxValidate.errorList)
@@ -221,26 +227,44 @@ Page({
         } 
 
 
+        if(this.data.sell_address.length<=0){
+           wx.showModal({title:'请选择地理位置',showCancel:false})
+            return false
+        }
+
+        if(this.data.photoUrls.length <=0 ){
+           wx.showModal({title:'请上传商品相册',showCancel:false})
+            return false
+        }
+
+        if(this.data.spec_item[0].name =='' || this.data.spec_item[0].price == '' ){
+           wx.showModal({title:'请添加商品规则和价格',showCancel:false})
+            return false
+        }
+
+
+      
 
         let data = Object.assign({token:app.globalData.token},
           e.detail.value, //表单的数据
           {spec_item:JSON.stringify(this.data.spec_item)}, //商品数组数据
           {goods_images:this.data.photoUrls},
           {
-            sell_address:[],
-            delivery_method:1,
-            sell_start_time:'',
-            sell_end_time :''
+            sell_address:this.data.sell_address,
+            delivery_method:this.data.delivery_method,
+            sell_start_time:this.data.sell_start_time,
+            sell_end_time :this.data.sell_end_time,
+            intro_pics:this.data.intro_pics
           }
           )
 
            wx.request({
            method:'post',
-           header: {
+           // header: {
 
-             "content-type": "application/x-www-form-urlencoded"
+           //   "content-type": "application/x-www-form-urlencoded"
 
-           },
+           // },
            url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
               data,
               success:  (res) =>{

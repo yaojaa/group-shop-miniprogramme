@@ -146,7 +146,7 @@ Page({
 
   openSet(e){
     if(e.detail.authSetting['scope.userLocation']){
-      this.openLocation();
+      this.openLocation(this);
       this.setData({
         openLocation: true
       })
