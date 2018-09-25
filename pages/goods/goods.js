@@ -58,7 +58,6 @@ Page({
         })
     },
     userpage() {
-        console.log('userpage')
         wx.navigateTo({
             url: '../ucenter/ucenter'
         })

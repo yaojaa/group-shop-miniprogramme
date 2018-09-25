@@ -117,7 +117,7 @@
                     <text class=" text-red f20">¥99.8</text>
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
-                <view class="settlement">去结算</view>
+                <view class="settlement" bindtap="buy">去结算</view>
             </view>
         </view>
     </i-action-sheet>
