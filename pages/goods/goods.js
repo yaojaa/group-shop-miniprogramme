@@ -10,12 +10,15 @@ Page({
             'https://j-image.missfresh.cn/img_20180625145444571.jpg?iopcmd=thumbnail&type=4&width=640'
         ],
         goods: {},
-        code:false
+        code:false,
+        cartPanel:false
     },
     onLoad: function(option) {
+        console.log('token',app.globalData.token)
         wx.request({
-            url: 'https://www.daohangwa.com/api//goods/get_goods_info',
+            url: 'https://www.daohangwa.com/api/goods/get_goods_info',
             data: {
+                token :app.globalData.token || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1fQ.5hiBPB_iUhTuvYhDP4n_0MZvXJGhOL0cLtG62qFpw50',
                 goods_id: option.goods_id
             },
             success: (res) => {
@@ -37,6 +40,17 @@ Page({
       this.setData({
           code:true
       })
+    },
+    cartPanelHide(){
+      this.setData({
+          cartPanel:false
+      })
+    },
+    cartPanelShow(){
+      this.setData({
+          cartPanel:true
+      })
+      
     },
     homepage() {
         wx.navigateTo({

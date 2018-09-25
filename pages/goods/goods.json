@@ -6,6 +6,9 @@
     "i-panel": "../../iView/panel/index",
     "i-avatar": "../../iView/avatar/index",
     "i-input-number": "../../iView/input-number/index",
-    "i-modal": "../../iView/modal/index"
+    "i-modal": "../../iView/modal/index",
+    "i-action-sheet": "../../iView/action-sheet/index",
+    "i-button": "../../iView/button/index",
+    "i-card": "../../iView/card/index"
   }
 }

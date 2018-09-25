@@ -44,6 +44,7 @@ Page({
        
     },
     getGoodsList:function(token){
+        console.log(app.globalData.token)
         wx.request({
             url: 'https://www.daohangwa.com/api/seller/get_goods_list',
             data: {

@@ -60,17 +60,16 @@
 }
 
 .text-justify {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 0 0;
-  box-sizing: border-box;
-} 
+  align-items: center;
+}
 .line-through{
   text-decoration:line-through
 }
@@ -113,4 +112,7 @@
 }
 .mt-sm{
   margin-top: 20rpx;
+}
+.ml-sm{
+  margin-left: 20rpx;
 }
