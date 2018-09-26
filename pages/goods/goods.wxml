@@ -88,11 +88,16 @@
             <i-icon type="addressbook" size="26" color="#333" />
             <text class="label">个人中心</text>
         </view>
+        <view class='icon' bindtap="codeShow">
+            <i-icon type="customerservice" size="26" color="#333" />
+            <text class="label">联系商家</text>
+        </view>
         <text class='buy' bindtap='cartPanelShow'> 立即购买</text>
     </view>
-    <!--   <i-modal title="群二维码" visible="{{ code }}" bind:ok="codeHide" bind:cancel="codeHide">
-        <image class="code-pic" src="https://file.iviewui.com/weapp/dist/e5da9fdc97a0b3fb16c115d379820583.jpg" />
-    </i-modal> -->
+      <i-modal title="联系商家" visible="{{ code }}" bind:ok="codeHide" bind:cancel="codeHide">
+        <i-cell title="店主微信号：wx190sf"></i-cell>
+        <i-cell title="店主手机号：13718123444"></i-cell>
+    </i-modal>
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="cart-panel-hd">
