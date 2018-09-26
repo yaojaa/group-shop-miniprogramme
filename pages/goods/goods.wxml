@@ -12,15 +12,15 @@
             <i-icon type="interactive" /> -->
         </view>
         <view class="share-box">
-            <image src="/img/circle.png" class="wx-icon"/>
-            <image src="/img/share.png"  class="wx-icon"/>
+            <image src="/img/circle.png" class="wx-icon" />
+            <image src="/img/share.png" class="wx-icon" />
         </view>
-        <!-- <view class="manage">
+    </view>
+    <view class="page-section page-section-spacing swiper goods-manage">
+        <view class="manage">
             <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>
             <navigator class="min-btn-s" url="../orderDefault/orderDefault">管理订单</navigator>
-        </view> -->
-    </view>
-    <view class="page-section page-section-spacing swiper">
+        </view>
         <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
             <block wx:for="{{imgUrls}}" wx:key="{{index}}">
                 <swiper-item>
@@ -94,7 +94,7 @@
         </view>
         <text class='buy' bindtap='cartPanelShow'> 立即购买</text>
     </view>
-      <i-modal title="联系商家" visible="{{ code }}" bind:ok="codeHide" bind:cancel="codeHide">
+    <i-modal title="联系商家" visible="{{ code }}" bind:ok="codeHide" bind:cancel="codeHide">
         <i-cell title="店主微信号：wx190sf"></i-cell>
         <i-cell title="店主手机号：13718123444"></i-cell>
     </i-modal>

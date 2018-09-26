@@ -126,7 +126,7 @@ page {
     display: inline-block;
     font-size: 12px;
     padding: 3px 10px;
-    background: #49b34d;
+    background: rgba(0,0,0,0.5);
     border-radius: 3px;
     color: #fff;
 }
@@ -212,4 +212,13 @@ page {
   height: 26px;
   display: inline-block;
   margin-left: 10px;
+}
+.goods-manage{
+  position: relative;
+}
+.goods-manage .manage{
+  position: absolute;
+  top:10rpx;
+  right:20rpx;
+  z-index: 9999;
 }
