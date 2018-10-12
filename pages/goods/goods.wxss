@@ -6,8 +6,8 @@
 }
 
 .swiper-primary image {
-    width: 100%;
-    height: 400rpx;
+  width: 100%
+
 }
 
 .goods-title {
@@ -143,9 +143,11 @@ page {
 .user-header .name {
     display: inline-block;
     padding-left: 10px;
+      padding-top: 7px
+
 }
 .user-header .name text{
-  line-height: 1.4em;
+  line-height: 0.9;
   display: inline-block;
 }
 .user-header .avatar {
@@ -222,3 +224,21 @@ page {
   right:20rpx;
   z-index: 9999;
 }
+
+.share-box button{
+    border:none;
+    padding: 0;
+    margin: 0;
+    background-color:transparent;
+}
+
+.share-box button::after{
+border: none;
+}
+.countdownTime{
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+

@@ -1,20 +1,34 @@
 <view class="container">
-    
+        <i-message id="message" />
+
     <!--自提-->
 
-     <i-panel wx:if="{{give_type==1}}">
+     <i-panel wx:if="{{give_type==2}}">
         <i-input value="{{ nickName }}" title="收货人" autofocus placeholder="名字" />
-        <i-input value="{{ value2 }}" type="number" title="联系电话" placeholder="请输入手机号" />
+        <i-input value="{{ mobile }}" type="number" title="联系电话" placeholder="请输入手机号" />
     </i-panel>
 
 
 
    <!--送货上门-->
 
-    <i-panel wx:if="{{give_type==2}}">
-        <i-input value="{{ nickName }}" title="收货人" autofocus placeholder="名字" />
-        <i-input value="{{ value2 }}" type="number" title="联系电话" placeholder="请输入手机号" />
-        <i-input value="{{ value3 }}" type="textarea" title="详细地址" placeholder="请输入详细地址(最多50字)" maxlength="50" />
+<i-panel wx:if="{{give_type==1}}" title="确认订单">
+
+
+
+  <view class="address">
+   <input bindinput="mobileChange" value="{{ mobile }}"  placeholder="请输入手机号" /> 
+
+   <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button> 
+  </view>
+
+        
+    <!--         <view class="i-cell i-input">
+            
+            <view class="i-cell-hd i-input-title">收货地址：</view> -->
+        <!--     <input value="{{ address }}" type="textarea" title="收货地址" placeholder="请输收货地址(最多50字)" maxlength="50" /> -->
+     <!--    </view> -->
+
     </i-panel>
 
 
@@ -22,34 +36,29 @@
     <view class='mt-sm'>
         <i-panel>
             <i-cell-group>
-                <i-cell title="商品规格1">
-                    <i-input-number value="{{ num }}" min="1" max="100" bindchange="handleChange1" slot="footer" />
+                <i-cell title="{{item.key_name}}" wx:for="{{cart}}">
+                    <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleChange1" slot="footer" /> <text class="text-red">¥{{item.price}}</text>
                 </i-cell>
-                                <i-cell title="商品规格2">
-                    <i-input-number value="{{ num }}" min="1" max="100" bindchange="handleChange1" slot="footer" />
-                </i-cell>
-                                <i-cell title="商品规格3">
-                    <i-input-number value="{{ num }}" min="1" max="100" bindchange="handleChange1" slot="footer" />
-                </i-cell>
-                <i-cell title="优惠金额" is-link>
+              <!--   <i-cell title="优惠金额" is-link>
                     <view class='text-red' slot="footer">-￥0</view>
-                </i-cell>
+                </i-cell> -->
             </i-cell-group>
         </i-panel>
     </view>
-    <view class='mt-sm'>
+ <!--    <view class='mt-sm'>
         <i-panel>
             <i-radio-group current="{{current}}" bindchange="handleFruitChange">
                 <i-radio wx:for="{{pay}}" position="{{position}}" wx:key="{{item.id}}" value="{{item.name}}">
                 </i-radio>
             </i-radio-group>
         </i-panel>
-    </view>
+    </view> -->
     <view class='footer-pay'>
-        <view class='total'>实付款：
-            <text class='f20 text-red'>￥100</text>
+        <view class='total'>需付款：
+            <text class='f20 text-red'>￥{{amountMoney}}</text>
         </view>
-       <navigator url="../paySuccess/index?goodsId=001">
-        <view class='buy-btn'>立即支付</view></navigator>
+<!--          <button disabled="{{hasgoods}}" class='buy-btn' bindtap="order2pay">立即确认</button> -->
+
+        <button disabled="{{hasgoods}}" class='buy-btn' bindtap="order2pay">立即支付</button>
     </view>
 </view>

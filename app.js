@@ -32,6 +32,8 @@ App({
                       success: (response) => {
                         // 获取openId
                         this.openId = response.data.data.openid;
+
+                        this.session_key =response.data.data.session_key;
                         // TODO 缓存 openId
                         this.globalData.openid = this.openId;
                         resolve(response.data.data.openid)
@@ -120,6 +122,7 @@ App({
                 url: 'https://www.daohangwa.com/api/user/login_third',
                 method: 'POST',
                 data: {openid: this.openId,
+                  session_key:this.session_key,
                   nickname: res.userInfo.nickName,
                   head_pic: res.userInfo.avatarUrl,
                   encryptedData: res.encryptedData

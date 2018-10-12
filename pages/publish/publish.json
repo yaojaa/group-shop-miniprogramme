@@ -9,6 +9,7 @@
         "i-input": "../../iView/input/index",
         "i-icon": "../../iView/icon/index",
         "i-datepicker":"../../iView/datepicker/index",
-         "i-spin": "../../iView/spin/index"
+         "i-spin": "../../iView/spin/index",
+        "i-action-sheet": "../../iView/action-sheet/index"
 	}
 }

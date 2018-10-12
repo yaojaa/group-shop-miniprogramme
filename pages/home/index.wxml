@@ -5,13 +5,14 @@
                 <i-icon type="remind" size="20" color="#fff" />
             </i-badge>
         </view>
+        <navigator url="../identify/identify">
         <view class="userinfo">
             <image class="userinfo-avatar" src="{{userInfo.head_pic}}" mode="cover"></image>
             <view class="userinfo-bd">
                 <text class="userinfo-nickname">{{userInfo.nickname}} {{userInfo.user_id}}</text>
-                <text class="text-white f14">已认证</text>
             </view>
         </view>
+    </navigator>
         <view class='add-goods' bindtap="new_btn">
             <i-icon type="add" size="20" />
             <text>发布商品</text>
@@ -23,47 +24,59 @@
             <text class="num">2</text>
         </view>
         <view class="count-item">
-            <text class="label" bindtap="fansPage">粉丝管理</text>
+            <text class="label" bindtap="fansPage">顾客管理</text>
             <text class="num">100</text>
         </view>
         <view class="count-item">
             <text class="label">总收入</text>
-            <text class="num">￥100</text>
+            <text class="num">￥0</text>
         </view>
     </view>
-    <view class="goods-box">
-        <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
-            <view class="goods-body">
-                <navigator url="../goods/goods?goods_id={{item.goods_id}}">
-                    <image src='{{original_img}}' class='hd'></image>
-                </navigator>
-                <view class="bd">
-                    <view class="tit">{{item.goods_name}}</view>
-                    <view class="link">
-                      <button size="mini" bindtap="editPage" data-url="{{item.goods_id}}">编辑修改</button>
-                        <button size="mini" bindtap="detailPage" data-url="{{item.goods_id}}">订单管理</button>
+
+
+
+    <view wx:if="{{goodslist.length == 0}}">
+         <view class='new-goods' bindtap="new_btn">
+            <i-icon type="add" size="22" />
+            <text>发布一个商品</text>
+        </view>
+   </view>
+
+        <view wx:else class="goods-box">
+            <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
+                <view class="goods-body">
+                    <navigator url="../goods/goods?goods_id={{item.goods_id}}">
+                        <image src='{{item.original_img}}' class='hd'></image>
+                    </navigator>
+                    <view class="bd">
+                        <view class="tit">{{item.goods_name}}</view>
+                        <view class="link">
+                          <button size="mini" bindtap="editPage" data-url="{{item.goods_id}}">编辑修改</button>
+                            <button size="mini" bindtap="detailPage" data-url="{{item.goods_id}}">订单管理</button>
+                        </view>
+                    </view>
+                    <view class="fd">进行中</view>
+                </view>
+                <view class="goods-count">
+                    <view class="count-item">
+                        <text class="label">浏览次数</text>
+                        <text class="num">100</text>
+                    </view>
+                    <view class="count-item">
+                        <text class="label">订单数量</text>
+                        <text class="num">100</text>
+                    </view>
+                    <view class="count-item">
+                        <text class="label">转化率</text>
+                        <text class="num">10%</text>
+                    </view>
+                    <view class="count-item">
+                        <text class="label">收款总额</text>
+                        <text class="num">￥3423</text>
                     </view>
                 </view>
-                <view class="fd">进行中</view>
-            </view>
-            <view class="goods-count">
-                <view class="count-item">
-                    <text class="label">浏览次数</text>
-                    <text class="num">100</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">订单数量</text>
-                    <text class="num">100</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">转化率</text>
-                    <text class="num">10%</text>
-                </view>
-                <view class="count-item">
-                    <text class="label">收款总额</text>
-                    <text class="num">￥3423</text>
-                </view>
             </view>
         </view>
-    </view>
+
+
 </view>

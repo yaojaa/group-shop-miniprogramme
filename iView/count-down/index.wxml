@@ -1,4 +1,4 @@
-<text class="countdown-class">
-  {{time}}
+<text style="font-size:12px; display:inline">
+   剩余时间：{{time}}
 </text>
 

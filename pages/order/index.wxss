@@ -94,6 +94,24 @@
   padding: 0 15px;
 }
 .footer-pay .buy-btn{
+    border-radius: 0;
+    color: #fff;
+
   flex: 1;
   background: #49b34d;
+}
+
+.footer-pay .buy-btn:disabled{
+      border-radius: 0;
+
+}
+
+.address{
+  padding: 10px
+}
+
+.address button{
+  position: absolute;
+  right: 10px;
+  top: 10px
 }

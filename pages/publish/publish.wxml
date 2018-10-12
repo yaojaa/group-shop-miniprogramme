@@ -6,10 +6,10 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <view wx:for="{{photoUrls}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item}})">
-                                   <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#80848f" size="26" type="delete_fill" />
+                      <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#80848f" size="26" type="close" />
                                 </view>
                             <view  wx:if="{{photoUrls.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
-                                <text class="upload_txt">
+                            <text class="upload_txt">
 宝贝相册</text>
                             </view>
                          </view>
@@ -20,22 +20,19 @@
 
 <view class="weui-cells weui-cells_form">
 
-<view class="weui-cell">
-  <input  name="goods_name" maxlength="50" placeholder="为宝贝添加个诱人的标题吧" />
-</view>
-
+  <view class="weui-cell">
+    <input  name="goods_name" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="为宝贝添加个诱人的标题吧" />
+  </view>
 
 <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea style="height: 100px" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="5"></textarea>
+                    <textarea  value="{{goods_content}}" style="height: 100px" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="5"></textarea>
                 </view>
-
-                
 
 
 </view>
 
-<view class="weui-cell picture-item" wx:for="{{intro_pics}}"  wx:key="*this">
+<view class="weui-cell picture-item" wx:key="{{item.index}}" wx:for="{{intro_pics}}"  wx:key="*this">
 
                   <image src="{{item}}"  mode="aspectFill" />
                    <i-icon class="close" data-index="{{index}}" bindtap="removePictrue" color="#999" size="18" type="close" />
@@ -76,15 +73,15 @@
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">价格:</view></view>
                     <view class="weui-cell__bd">
-                    <input  value="{{item.price}}"   bindinput="inputDuplex" data-key="spec_item[{{index}}].price"    maxlength="50" placeholder="0.00" />
+                    <input  value="{{item.price}}" type="digit"    bindinput="inputDuplex" data-key="spec_item[{{index}}].price"    maxlength="50" placeholder="0.00" />
                     </view>
     </view>
-     <view class="weui-cell">
+<!--      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
                     <view class="weui-cell__bd">
                     <input  maxlength="50"  bindinput="inputDuplex" data-key="spec_item[{{index}}].store_count"  placeholder="0.00" value="{{item.store_count}}" />
                     </view>
-    </view>
+    </view> -->
         <i-icon wx:if="{{spec_item.length >1 }}" data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="38" />
 
   </view>
@@ -121,20 +118,45 @@
 </view>
 
 <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">订单确认：</view></view>
+                    <view class="weui-cell__bd">
+                    </view>
+                    <view class="weui-cell__ft">
+                    <view class="weui-icon-warn">
+                <i-button type="ghost" bindtap="handleOpen1">{{actions1[orderStyle-1].name}}</i-button> <i-icon type="enter" size="28" />
+
+
+                    </view>
+                     </view>
+
+                    
+</view>
+
+<i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />
+
+<view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">活动时间：</view></view>
                     <view class="weui-cell__bd">
 
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-<i-datepicker title="开始日期" time="00:00" binddatachange="start_time"> </i-datepicker>
-<i-datepicker title="结束日期" time="00:00" bind:datachange="end_time"></i-datepicker>
+                      默认发布后15天 <i-icon type="enter" size="28" />
+
+<!-- <i-datepicker title="开始日期" time="00:00" binddatachange="start_time"> </i-datepicker>
+<i-datepicker title="结束日期" time="00:00" bind:datachange="end_time"></i-datepicker> -->
                     </view>
                      </view>
 
 
 
 </view>
+
+
+
+
+
+
 
 <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">活动地点：</view></view>

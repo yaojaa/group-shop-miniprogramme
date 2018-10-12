@@ -10,6 +10,7 @@
     "i-radio-group": "../../iView/radio-group/index",
     "i-radio": "../../iView/radio/index",
     "i-input-number": "../../iView/input-number/index",
-    "i-input": "../../iView/input/index"
+    "i-input": "../../iView/input/index",
+    "i-message": "../../iView/message/index"
   }
 }

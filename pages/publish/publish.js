@@ -10,12 +10,18 @@ const app = getApp()
 
 const util = require('../../utils/util.js')
 
+const date = new Date()
+
+const default_start_time = util.formatTime(date)
+date.setDate(date.getDate() + 15);
+const default_end_time = util.formatTime(date)
+
 
 Page({
   data: {
     photoUrls: [],
     intro_pics:[],
-    delivery_method:0,//配送方式
+    delivery_method:1,//配送方式
     sell_address:[],
     isGave:0,
     address:0,
@@ -23,13 +29,26 @@ Page({
     morePic:false,
     photoProgress:false,
     pictureProgress:false,
+    sell_start_time: default_start_time,
+    sell_end_time:default_end_time,
     spec_item:[{
       key_name:'',
       price :'',
-      store_count:1000
+      store_count:'1000'
       }
-      ]
+      ],
+      orderStyle:1,
+      visible1:false,
+       actions1: [
+            {
+                name: '先提交订单到货支付',
+            },
+            {
+                name: '提交订单并完成支付'
+            }
+        ]
     },
+
     //添加商品
     addGoods:function(){
 
@@ -98,11 +117,10 @@ Page({
    })
 
     },
-  onLoad:function(){
 
-   
-  },
-  onShow:function(){
+  onShow:function(option){
+
+
         if(app.globalData.sell_address){
 
           this.setData({
@@ -113,7 +131,6 @@ Page({
         console.log(this.data.sell_address)
 
   },
-
   switch2Change:function(e){
     this.setData({ hasType: e.detail.value})
   },
@@ -207,7 +224,7 @@ Page({
               required:'请输入标题'
             },
             goods_content:{
-              goods_content:'请输入描述'
+              required:'请输入描述'
             }
         }
         this.WxValidate = new WxValidate(rules, messages)
@@ -243,11 +260,11 @@ Page({
         }
 
 
-      
+      console.log(this.data)
 
         let data = Object.assign({token:app.globalData.token},
           e.detail.value, //表单的数据
-          {spec_item:JSON.stringify(this.data.spec_item)}, //商品数组数据
+          {spec_item:this.data.spec_item}, //商品数组数据
           {goods_images:this.data.photoUrls},
           {
             sell_address:this.data.sell_address,
@@ -257,23 +274,21 @@ Page({
             intro_pics:this.data.intro_pics
           }
           )
-
+           //提交
            wx.request({
            method:'post',
            // header: {
 
            //   "content-type": "application/x-www-form-urlencoded"
-
            // },
            url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
               data,
               success:  (res) =>{
                 if(res.data.code == 0){
 
-                   wx.showModal({
-                        title: '提交成功',
-                        showCancel:false
-                    })
+                   wx.redirectTo({
+                    url:'../goods/goods?goods_id='+res.data.data.goods_id
+                   })
                  
                 }else{
                      wx.showModal({
@@ -308,47 +323,96 @@ Page({
       })
 
     },
-  onLoad: function () {
+    handleOpen1 () {
+        this.setData({
+            visible1: true
+        });
+    },
+     handleCancel1 () {
+        this.setData({
+            visible1: false
+        });
+    },
+    handleClickItem1 ({ detail }) {
+        const index = detail.index + 1;
+
+         this.setData({
+            orderStyle:index,
+            visible1: false
+        });
+    },
+    onLoad: function (option) {
+
+
+        //编辑的时候
+        //
+           console.log('发布页onLoad：',option.goods_id)
+
+        if(option.goods_id){
+           console.log('发布页onLoad：',option.goods_id)
+
+
+          wx.request({
+           method:'get',
+           url: 'https://www.daohangwa.com/api/seller/get_goods_detail',
+           data:{
+            token :app.globalData.token,
+            goods_id:option.goods_id
+           },
+              success:  (res) =>{
+
+                let d =res.data
+                let gs =res.data.data.goods
+                if(d.code == 0){
+
+                  this.setData({
+                    photoUrls:d.data.images,
+                    goods_name:gs.goods_name,
+                    goods_content:gs.goods_content,
+                    sell_address:res.data.data.sell_address,
+                    delivery_method:gs.delivery_method,
+                    intro_pics:gs.intro_pics,
+                     sell_start_time:gs.sell_start_time,
+                      sell_end_time :gs.sell_end_time,
+                      spec_item:res.data.data.spec_goods_price
+                  })
+
+
+
+        // let data = Object.assign({token:app.globalData.token},
+        //   e.detail.value, //表单的数据
+        //   {spec_item:this.data.spec_item}, //商品数组数据
+        //   {goods_images:this.data.photoUrls},
+        //   {
+        //     sell_address:this.data.sell_address,
+        //     delivery_method:this.data.delivery_method,
+        //     sell_start_time:this.data.sell_start_time,
+        //     sell_end_time :this.data.sell_end_time,
+        //     intro_pics:this.data.intro_pics
+        //   }
+        //   )
+
+
+                  
+
+
+                 
+                 
+                }else{
+                     wx.showModal({
+                        title: res.data.msg,
+                        showCancel:false
+                    })
+                }
+              }
+           })
+
+        }
+
 
     this.initValidate()
 
 
- 
-
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
   },
   inputDuplex:util.inputDuplex
 })

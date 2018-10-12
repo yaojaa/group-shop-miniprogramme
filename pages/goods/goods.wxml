@@ -2,29 +2,35 @@
     <view class="goods-sticky text-justify">
         <view class="user-header">
             <view class="avatar">
-                <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="default" shape="square">梁</i-avatar>
+                <i-avatar src="{{seller_user.head_pic}}" size="large" shape="square"></i-avatar>
             </view>
             <view class="name">
-                <text class="f13">红叶舞秋山</text>
-                <text class="f12 text-muted">有 15 人来看</text>
+             <text class="f14">{{seller_user.nickname}}  </text>
+           
+          
+
             </view>
+
+           
+
             <!-- <i-icon type="mobilephone" />
             <i-icon type="interactive" /> -->
-        </view>
-        <view class="share-box">
-            <image src="/img/circle.png" class="wx-icon" />
-            <image src="/img/share.png" class="wx-icon" />
+        </view>  
+        <view class="share-box" >
+            <button open-type="share"><image src="/img/share.png" class="wx-icon" /></button>
+<!--             <image src="/img/circle.png" class="wx-icon" />
+ -->            
         </view>
     </view>
     <view class="page-section page-section-spacing swiper goods-manage">
-        <view class="manage">
+      <!--   <view class="manage">
             <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>
             <navigator class="min-btn-s" url="../orderDefault/orderDefault">管理订单</navigator>
-        </view>
+        </view> -->
         <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
             <block wx:for="{{imgUrls}}" wx:key="{{index}}">
                 <swiper-item>
-                    <image src="{{item}}" class="slide-image" />
+                    <image src="{{item}}?imageView2/1/w/750/h/400/q/95" class="slide-image" />
                 </swiper-item>
             </block>
         </swiper>
@@ -34,48 +40,69 @@
             <text>{{goods.goods_name}}</text>
         </view>
         <view class="goods-price text-justify">
-            <view>
-                <text class="price">¥19.8</text>/起
+            <view  wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}">
+                <text class="price">¥{{item.price}}</text>/{{item.key_name}}
                 <!-- <text class='line-through'>¥29.8</text> -->
             </view>
-            <view>
-                <text>已售：200件</text>
-            </view>
+           
         </view>
+         <view>
+                  <block wx:if="{{countdownTime}}">
+         已售：200件  
+            <i-count-down
+            target="{{countdownTime}}"
+            clear-timer="{{clearTimer}}"
+            format="{{myFormat}}"
+            i-class ="countdownTime"
+            show-day="{{true}}">       
+            </i-count-down>
+            </block>
+         </view>
     </view>
+
+    <view class='goods-content'>
+        {{goods.goods_content}}
+  
+    </view>
+
+
     <i-panel>
         <i-cell-group>
-            <i-cell label="住邦2000商务中心" value="北京市朝阳区八里庄西里">
+            <i-cell wx:for="{{sell_address}}" label="{{item.name}}-{{item.address}}">
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
-            <!--  <i-cell title="配送方式：自取 青苹果社区1号楼 2单元 212"></i-cell>
-            <i-cell title="店主：13718123444"></i-cell>
-            <i-cell is-link bindtap="codeShow">
-                <view class='wx-group'>
-                    <image src='/img/wx-group.png' class='wx-group-pic'></image>
-                    <text>加入社区群 免费领取5元优惠卷</text>
-                </view>
-            </i-cell> -->
+
+
+                             
         </i-cell-group>
     </i-panel>
-    <view class='sub-title'>
+
+    <i-panel>
+
+    </i-panel>
+ <!--    <view class='sub-title'>
         <text>商品详情</text>
-    </view>
-    <view class='goods-content'>
-        ——干扰巡视或不落实整改要求，严重者开除党籍 条例第五十五条明确，干扰巡视巡察工作或者不落实巡视巡察整改要求，情节较轻的，给予警告或者严重警告处分；情节较重的，给予撤销党内职务或者留党察看处分；情节严重的，给予开除党籍处分。
-        <image src='/img/banner.jpg' mode="widthFix" /> ——信仰宗教的党员经教育后仍没转变，劝其退党或除名 条例第六十二条规定，信仰宗教的党员，应当加强思想教育，经党组织帮助教育仍没有转变的，应当劝其退党；劝而不退的，予以除名；参与利用宗教搞煽动活动的，给予开除党籍处分。
-    </view>
+    </view> -->
+
+
     <view class='sub-title'>
-        <text>最近参与</text>
+        <text>最近参与({{orderCount}})</text>
     </view>
     <i-cell-group>
-        <i-cell wx:for="{{ 5 }}">
+        <i-cell wx:for="{{ orderUsers }}">
             <view class="text-justify f12">
                 <view>
-                    <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="small"></i-avatar>
-                    <text> 秋山红叶</text>
+                    <i-avatar src="{{item.user.head_pic}}" size="small"></i-avatar>
+                    <text> {{item.user.nickname}}</text>
+                       <text wx:for="{{item.specs}}" wx:for-item="gds"> 
+
+                        {{gds.spec_key_name}} ✖️ {{gds.goods_num}}
+
+                       </text>
+
+                        
                 </view>
-                <view class="text-muted">2018.12.12 9:49</view>
+                <view class="text-muted">{{item.order.add_time}}</view>
             </view>
         </i-cell>
     </i-cell-group>
@@ -86,13 +113,10 @@
         </view>
         <view class='icon' bindtap='userpage'>
             <i-icon type="addressbook" size="26" color="#333" />
-            <text class="label">个人中心</text>
+            <text class="label">订单</text>
         </view>
-        <view class='icon' bindtap="codeShow">
-            <i-icon type="customerservice" size="26" color="#333" />
-            <text class="label">联系商家</text>
-        </view>
-        <text class='buy' bindtap='cartPanelShow'> 立即购买</text>
+      
+        <text class='buy' bindtap='cartPanelShow'> 立即订购</text>
     </view>
     <i-modal title="联系商家" visible="{{ code }}" bind:ok="codeHide" bind:cancel="codeHide">
         <i-cell title="店主微信号：wx190sf"></i-cell>
@@ -101,29 +125,29 @@
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="cart-panel-hd">
-                <image src="https://img10.360buyimg.com/n7//jfs/t1/4614/17/6055/758805/5ba1a278Ee39414f4/f72cba5ae28cc892.png" class="goods-thumbnail" />
+                <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
                 <view></view>
             </view>
             <view class="type-box">
                 <i-panel>
                     <i-cell-group>
-                        <i-cell title="商品规格1">
-                            <text class="text-red">¥99.8</text>
-                            <i-input-number value="1" min="0" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
-                        <i-cell title="商品规格2">
-                            <text class="text-red">¥99.8</text>
-                            <i-input-number value="1" min="0" max="100" bindchange="handleChange1" slot="footer" /></i-cell>
+                        <i-cell title="" wx:for="{{spec_goods_price}}">
+                           {{item.key_name}} <text class="text-red"> ¥{{item.price}}</text>
+                            <i-input-number id="{{index}}"  value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" /></i-cell>
                     </i-cell-group>
                 </i-panel>
             </view>
             <view class="cart-footer">
                 <view class="total">
-                    <text class="f12 text-default">合计（0件）：</text>
-                    <text class=" text-red f20">¥99.8</text>
+                    <text class="f12 text-default">合计：</text>
+                    <text class=" text-red f20">¥{{amountMoney}}</text>
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
                 <view class="settlement" bindtap="buy">去结算</view>
             </view>
         </view>
     </i-action-sheet>
+
+    <i-message id="message" />
+
 </view>

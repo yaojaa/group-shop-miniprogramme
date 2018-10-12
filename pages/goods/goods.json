@@ -9,6 +9,8 @@
     "i-modal": "../../iView/modal/index",
     "i-action-sheet": "../../iView/action-sheet/index",
     "i-button": "../../iView/button/index",
-    "i-card": "../../iView/card/index"
+    "i-card": "../../iView/card/index",
+    "i-message": "../../iView/message/index",
+    "i-count-down": "../../iView/count-down/index"
   }
 }

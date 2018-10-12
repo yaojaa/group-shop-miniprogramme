@@ -21,7 +21,8 @@ Page({
 
       wx.request({
       url: 'https://www.daohangwa.com/api/seller/get_order_list',
-      data: { goods_id:goods_id,
+      data: { 
+      goods_id:goods_id,
       token:app.globalData.token
       },
       success:(res) => {
