@@ -189,3 +189,42 @@
     text-align: center;
     color: #888
 }
+
+/**订单*/
+
+.order{
+  padding: 10px;
+  font-size: 14px;
+}
+.order .state{
+  color: #ff6754;
+}
+.order .topLine{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.order .goodsInfo{
+  display: flex;
+  justify-content: space-between;
+}
+.order .goodimg{
+  width: 80px;
+  height: 80px;
+  margin-right: 14px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.order .goodname{
+  margin-right: 12px;
+}
+.order .gooddef{
+  display: flex;
+}
+.order .gooddef .price{
+  text-align: right;
+}
+.order .num{
+  color: #999;
+}

@@ -13,6 +13,7 @@ Page({
     goods_id:'',
     hasgoods:false,
     address:'',
+    cover_pic:'',
     mobile:'',
     pay: [{
       id: 1,
@@ -30,6 +31,22 @@ Page({
     console.log(e.detail.errMsg) 
     console.log(e.detail.iv) 
     console.log(e.detail.encryptedData) 
+    wx.request({
+      url:'https://www.daohangwa.com/api/user/get_wx_mobile',
+      method:'post',
+      data:{
+        token:app.globalData.token,
+        iv:e.detail.iv,
+        encryptedData:e.detail.encryptedData
+      },
+      success:(res)=>{
+
+        this.setData({
+          mobile:res.data.data.phoneNumber
+        })
+
+      }
+    })
   } ,
   mobileChange(e){
 
@@ -50,7 +67,7 @@ Page({
     }, function() {
 
             let amountMoney = 0;
-            this.data.cart.forEach(value=> amountMoney +=parseInt(value.price)*parseInt(value.item_num))
+            this.data.cart.forEach(value=> amountMoney +=value.price*parseInt(value.item_num))
 
             let hasgoods = amountMoney == 0?true : false
 
@@ -77,12 +94,16 @@ Page({
       cart.forEach(value=> amountMoney +=parseInt(value.price*100)*parseInt(value.item_num))
 
 
+    console.log(wx.getStorageSync('goods').sell_address[0].address)
+
 
     this.setData({
       nickName: app.globalData.userInfo.nickname,
       goods_id:options.goods_id,
       cart:wx.getStorageSync('cart') || [],
-      amountMoney:amountMoney/100
+      address:wx.getStorageSync('goods').sell_address[0].address,
+      amountMoney:amountMoney/100,
+      cover_pic:wx.getStorageSync('goods').cover_pic
         })
 
 
@@ -146,6 +167,9 @@ Page({
               )
     
   },
+  sendTemplateMessage(){
+
+  },
    pay:function(order_id,total_fee) {  
    var total_fee = total_fee;   
        wx.login({ success: res => { 
@@ -181,7 +205,7 @@ Page({
                 })
 
                 wx.redirectTo({
-                  url:'../paySuccess/index'
+                  url:'../paySuccess/index？order_id='+order_id
                 })
                 
               },

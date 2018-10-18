@@ -109,24 +109,17 @@
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
             <i-icon type="homepage" size="26" color="#333" />
-            <text class="label">首页</text>
+            <text class="label">我的</text>
         </view>
-        <view class='icon' bindtap='userpage'>
-            <i-icon type="addressbook" size="26" color="#333" />
-            <text class="label">订单</text>
-        </view>
-      
+     
         <text class='buy' bindtap='cartPanelShow'> 立即订购</text>
     </view>
-    <i-modal title="联系商家" visible="{{ code }}" bind:ok="codeHide" bind:cancel="codeHide">
-        <i-cell title="店主微信号：wx190sf"></i-cell>
-        <i-cell title="店主手机号：13718123444"></i-cell>
-    </i-modal>
+
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="cart-panel-hd">
                 <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
-                <view></view>
+                请选择数量
             </view>
             <view class="type-box">
                 <i-panel>
@@ -143,11 +136,14 @@
                     <text class=" text-red f20">¥{{amountMoney}}</text>
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
-                <view class="settlement" bindtap="buy">去结算</view>
+                <view class="settlement" bindtap="buy">下一步</view>
             </view>
         </view>
     </i-action-sheet>
 
     <i-message id="message" />
+
+        <canvas canvas-id="canvas-1"></canvas>
+
 
 </view>

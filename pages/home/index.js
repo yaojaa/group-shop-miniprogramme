@@ -23,6 +23,8 @@ Page({
 
          this.getGoodsList(app.globalData.userInfo.token)
 
+         this.getBuyList(app.globalData.userInfo.token)
+
 
         }else{
 
@@ -32,6 +34,8 @@ Page({
             userInfo: userInfo
            })
          this.getGoodsList(userInfo.token)
+         this.getBuyList(app.globalData.userInfo.token)
+
         }
 
 
@@ -53,6 +57,23 @@ Page({
                 if (res.data.code == 0) {
                     this.setData({
                         goodslist: res.data.data.goodslist
+                    })
+                }
+            }
+        })
+    },
+
+    getBuyList:function(token){
+
+        wx.request({
+            url: 'https://www.daohangwa.com/api/user/get_order_list',
+            data: {
+                token: app.globalData.token
+            },
+            success: (res) => {
+                if (res.data.code == 0) {
+                    this.setData({
+                        orders: res.data.data.order_list.splice(0,5)
                     })
                 }
             }

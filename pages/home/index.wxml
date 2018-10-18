@@ -9,7 +9,9 @@
         <view class="userinfo">
             <image class="userinfo-avatar" src="{{userInfo.head_pic}}" mode="cover"></image>
             <view class="userinfo-bd">
-                <text class="userinfo-nickname">{{userInfo.nickname}} {{userInfo.user_id}}</text>
+                <text class="userinfo-nickname">{{userInfo.nickname}} </text>
+                                <text class="userinfo-nickname">完善信息</text>
+
             </view>
         </view>
     </navigator>
@@ -20,22 +22,47 @@
     </view>
     <view class="count-box">
         <view class="count-item">
-            <text class="label">进行中</text>
+            <text class="label">我参与的</text>
             <text class="num">2</text>
         </view>
+           <view class="count-item">
+            <text class="label">我发布的</text>
+            <text class="num">0</text>
+        </view>
         <view class="count-item">
-            <text class="label" bindtap="fansPage">顾客管理</text>
+            <text class="label" bindtap="fansPage">我的粉丝</text>
             <text class="num">100</text>
         </view>
-        <view class="count-item">
-            <text class="label">总收入</text>
-            <text class="num">￥0</text>
-        </view>
+     
     </view>
 
+<i-panel title="最近参与">
+    <view style="padding: 15px;">
+          <view class="order" wx:for="{{orders}}" wx:key="id">
+    <view class="topLine">
+      <view>{{item.consignee}}<i-icon data-phone="{{item.mobile}}" type="mobilephone" size="20" color="#80848f" bindtap='fncall' /></view>
+      <view class="state">{{status[item.state]}}</view>
+    </view>
+    <view class="goodsInfo" bindtap="toDefault">
+      <view style="background-image:url({{item.goodimg}})" class="goodimg"></view>
+      <view class="gooddef">
+        <view class="goodname">{{item.goodname}}</view>
+        <view class="price">
+          <view>￥{{item.price}}</view>
+          <view class="num">x {{item.num}}</view>
+        </view>
+      </view>
+    </view>
+    <view style="margin-top:10px" bindtap='topay'>
+      <i-button type="primary" wx:if="{{item.state===0}}" size="small" long="{{true}}">去支付</i-button>
+    </view>
+  </view>
 
-
-    <view wx:if="{{goodslist.length == 0}}">
+    </view>
+</i-panel>
+<i-panel title="最近发布的团购">
+    <view style="padding: 1px;">
+            <view wx:if="{{goodslist.length == 0}}">
          <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />
             <text>发布一个商品</text>
@@ -53,9 +80,13 @@
                         <view class="link">
                           <button size="mini" bindtap="editPage" data-url="{{item.goods_id}}">编辑修改</button>
                             <button size="mini" bindtap="detailPage" data-url="{{item.goods_id}}">订单管理</button>
+
+                           
+
+
                         </view>
                     </view>
-                    <view class="fd">进行中</view>
+                    <view class="fd">开团中</view>
                 </view>
                 <view class="goods-count">
                     <view class="count-item">
@@ -77,6 +108,9 @@
                 </view>
             </view>
         </view>
+    </view>
+</i-panel>
+
 
 
 </view>

@@ -2,6 +2,8 @@
 //获取应用实例
 const util = require('../../utils/util')
 const {  $Message } = require('../../iView/base/index');
+import * as zrender from '../../utils/zrender/zrender';
+import * as zrhelper from '../../utils/zrender/zrender-helper';
 
 const app = getApp()
 
@@ -23,17 +25,37 @@ Page({
         orderUsers:[]
     }, 
     onShareAppMessage: function (res) {
-      console.log(this.data.goods.goods_id)
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target,this.data.goods.goods_id)
     }
+
+    let zr = zrhelper.createZrender('canvas-1', 360, 720);
+
+    var image = new zrender.Image({
+        style: {
+            x: 0,
+            y: 0,
+            image: '../../images/koala.jpg',
+            width: 32,
+            height: 24,
+            text: 'koala'
+        }
+    });
+    zr.add(image);
+
+
     return {
       title: '开团啦！'+this.data.goods.goods_name,
       path: '/pages/goods/goods?goods_id='+this.data.goods.goods_id    }
   },
     onLoad: function(option) {
         console.log('token',app.globalData.token)
+
+
+
+
+
         wx.request({
             url: 'https://www.daohangwa.com/api/goods/get_goods_info',
             data: {
@@ -155,6 +177,7 @@ Page({
        wx.getLocation({
         type: 'wgs84',
         success: (res) =>{
+          console.log(res)
           var latitude = res.latitude
           var longitude = res.longitude
           var speed = res.speed
@@ -162,11 +185,11 @@ Page({
 
 
 
-          this.data.sell_address.forEach(value=>{
+         this.data.sell_address.forEach(value=>{
 
 
-      const la2 = value.latitude
-      const lo2 = value.longitude
+                const la2 = value.latitude
+                const lo2 = value.longitude
 
                let dis =  util.distance(latitude,longitude,la2,lo2)
                //大于3公里
@@ -206,6 +229,11 @@ Page({
 
       let shopcar = this.data.spec_goods_price.filter(value=> value.item_num>0)
         wx.setStorageSync('cart',shopcar)
+        wx.setStorageSync('goods',{
+          goods_name:this.data.goods.goods_name,
+          sell_address:this.data.sell_address,
+          cover_pic:this.data.imgUrls[0]
+        })
 
         wx.navigateTo({
             url: '../order/index?goods_id='+this.data.goods.goods_id

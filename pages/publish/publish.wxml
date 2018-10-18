@@ -60,14 +60,14 @@
 
 </view>
 
-<i-panel title="团购商品">
+<i-panel title="商品规格">
 <view class="weui-cells_form">
 
   <view class="item" wx:for="{{spec_item}}" wx:key="$this">
         <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">商品名称:</view></view>
+                    <view class="weui-cell__hd"><view class="weui-label">规格:</view></view>
                     <view class="weui-cell__bd">
-                    <input  value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="如：白色超大款" />
+                    <input  value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="如：白色、大号、10斤" />
                     </view>
     </view>
      <view class="weui-cell">
@@ -89,7 +89,7 @@
 
 <view class="new_add_btn" bindtap="addGoods">
 
-        <i-icon type="add"  bindtap="addNew" size="20" color="#80848f"/> 新商品
+        <i-icon type="add"  bindtap="addNew" size="20" color="#80848f"/> 新增规格
 
 </view>
 
@@ -107,8 +107,8 @@
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
         <i-switch value="{{delivery_method}}" size="large" bindchange="deliveryChange" slot="footer">
-            <view slot="open">自提</view>
-            <view slot="close">送货</view>
+            <view slot="open">邮寄</view>
+            <view slot="close">自提</view>
         </i-switch>              
 
                     </view>
@@ -118,7 +118,7 @@
 </view>
 
 <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">订单确认：</view></view>
+                    <view class="weui-cell__hd"><view class="weui-label">收款方式：</view></view>
                     <view class="weui-cell__bd">
                     </view>
                     <view class="weui-cell__ft">
@@ -141,7 +141,7 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                      默认发布后15天 <i-icon type="enter" size="28" />
+                      默认发布后5天 <i-icon type="enter" size="28" />
 
 <!-- <i-datepicker title="开始日期" time="00:00" binddatachange="start_time"> </i-datepicker>
 <i-datepicker title="结束日期" time="00:00" bind:datachange="end_time"></i-datepicker> -->

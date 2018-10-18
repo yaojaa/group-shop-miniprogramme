@@ -5,7 +5,7 @@
 
      <i-panel wx:if="{{give_type==2}}">
         <i-input value="{{ nickName }}" title="收货人" autofocus placeholder="名字" />
-        <i-input value="{{ mobile }}" type="number" title="联系电话" placeholder="请输入手机号" />
+        <i-input value="{{ mobile }}" type="number" title="联系电话" placeholder="输入手机号方便联系" />
     </i-panel>
 
 
@@ -22,21 +22,23 @@
    <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button> 
   </view>
 
-        
-    <!--         <view class="i-cell i-input">
+      <view class="i-cell i-input">
             
-            <view class="i-cell-hd i-input-title">收货地址：</view> -->
-        <!--     <input value="{{ address }}" type="textarea" title="收货地址" placeholder="请输收货地址(最多50字)" maxlength="50" /> -->
-     <!--    </view> -->
+         <input value="{{address}}" type="textarea" title="收货地址" placeholder="请输收货地址(最多50字)" maxlength="50" />
+          <input value="" type="textarea" title="收货地址" placeholder="楼号、门牌号" maxlength="50" />
+      </view>
 
     </i-panel>
 
 
 
+
+
+
     <view class='mt-sm'>
-        <i-panel>
+    <image src="{{cover_pic}}" />   <i-panel>
             <i-cell-group>
-                <i-cell title="{{item.key_name}}" wx:for="{{cart}}">
+                <i-cell title="{{item.key_name}}" wx:for="{{cart}}" wx:key="{{index}}">
                     <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleChange1" slot="footer" /> <text class="text-red">¥{{item.price}}</text>
                 </i-cell>
               <!--   <i-cell title="优惠金额" is-link>

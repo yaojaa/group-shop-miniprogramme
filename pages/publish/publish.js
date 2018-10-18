@@ -41,10 +41,10 @@ Page({
       visible1:false,
        actions1: [
             {
-                name: '先提交订单到货支付',
+                name: '当面付款',
             },
             {
-                name: '提交订单并完成支付'
+                name: '在线支付'
             }
         ]
     },

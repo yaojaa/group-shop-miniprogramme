@@ -23,37 +23,22 @@
     <i-tab key="tab3" title="未发货"></i-tab>
   </i-tabs>
   <view class='session'>
-    <view class='order-list'>
+    <view class='order-list' wx:for="{{dataList}}">
       <view class='list-h'>
-        <view>收货人：飞翔的蜗牛飞翔的蜗牛飞翔的蜗牛</view>
-        <view>状态：已发货</view>
-      </view>
-      <view class='list-h'>
-        <view>总金额：999</view>
-        <view>应付：997</view>
-        <view>状态：是否支付</view>
-      </view>
-      <view class='list-p'>订单编号：55454443.3434354</view>
-      <view class='list-p'>订单编号：55454443.3434354</view>
-      <view class='list-button'>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="toConfirm">确认订单</button>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">无效订单</button>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openPriceAlert">修改费用</button>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">去发货</button>
-      </view>
-    </view>
-    <view class='order-list'>
-      <view class='list-h'>
-        <view>收货人：飞翔的蜗牛飞翔的蜗牛飞翔的蜗牛</view>
-        <view>状态：已发货</view>
+        <view>订购人：{{item.consignee}}</view>
+        <view>订单编号：55454443.3434354</view>
+
       </view>
       <view class='list-h'>
-        <view>总金额：999</view>
-        <view>应付：997</view>
-        <view>状态：是否支付</view>
+        <view>{{item.pay_status==1?'已支付':'未支付'}}</view>
+        <view>发货状态：{{item.shipping_status==0?'未发货':'已发货' }}</view>
       </view>
-      <view class='list-p'>订单编号：55454443.3434354</view>
-      <view class='list-p'>订单编号：55454443.3434354</view>
+      <view class='list-h' wx:for="{{item.goods}}" wx:for-item="g">
+          <view>{{g.spec_key_name}}</view> <view> X{{g.goods_num}}</view> <view>{{g.goods_price}}</view>
+      </view>
+        <view>总金额：{{item.total_amount}}</view>
+
+      
       <view class='list-button'>
         <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="toConfirm">确认订单</button>
         <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">无效订单</button>
