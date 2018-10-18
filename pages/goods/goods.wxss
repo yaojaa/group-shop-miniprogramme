@@ -176,7 +176,8 @@ page {
     margin-left: 10px;
 }
 
-.type-box {}
+.type-box {
+}
 
 .cart-footer {
     display: -webkit-flex;
@@ -212,7 +213,12 @@ page {
     background: #49b34d;
 }
 
-.cart-panel-hd {}
+.cart-panel-hd {
+    background-color: #f2f2f2;
+    padding: 7px 15px;
+    font-size: 14px;
+    color:#666;
+}
 
 .share-box {
     height: 56rpx;

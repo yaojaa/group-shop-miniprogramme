@@ -10,9 +10,9 @@
             <i-icon type="interactive" /> -->
         </view>
         <view class="share-box">
-            <view bindtap="share">
+            <button open-type="share">
                 <image src="/img/share.png" class="wx-icon" />
-            </view>
+            </button>
             <!--             <image src="/img/circle.png" class="wx-icon" />
  -->
         </view>
@@ -93,13 +93,19 @@
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="cart-panel-hd">
-                <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
-                请选择数量
+                <!--   <image src="{{imgUrls[0]}}" class="goods-thumbnail" /> -->
+                请选择规格数量
             </view>
-            <view title="" wx:for="{{spec_goods_price}}" class="type-box text-justify">
-                <view><text class="text-red f16"> ¥{{item.price}}</text> / {{item.key_name}}</view>
-                <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
-            </view>
+            <i-panel>
+            <i-cell-group>
+                <i-cell wx:for="{{spec_goods_price}}">
+                    <view class="type-box text-justify">
+                        <view><text class="text-red f16"> ¥{{item.price}}</text> / {{item.key_name}}</view>
+                        <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
+                    </view>
+                </i-cell>
+            </i-cell-group>
+        </i-panel>
             <view class="cart-footer">
                 <view class="total">
                     <text class="f12 text-default">合计：</text>
