@@ -32,6 +32,14 @@
                 </block>
             </swiper>
         </view>
+        <view class="countdownTime">
+            <block wx:if="{{countdownTime}}">
+                <view class="time-block-box">
+                    <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="time-block" show-day="{{true}}">
+                    </i-count-down>
+                </view>
+            </block>
+        </view>
         <view class='goods-info'>
             <view class="goods-title">
                 <text>{{goods.goods_name}}</text>
@@ -43,19 +51,12 @@
                     <!-- <text class='line-through'>¥29.8</text> -->
                 </view>
             </view>
-            <view>
-                <block wx:if="{{countdownTime}}">
-                    已售：200件
-                    <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="countdownTime" show-day="{{true}}">
-                    </i-count-down>
-                </block>
-            </view>
         </view>
-        <i-cell wx:for="{{sell_address}}" title="{{item.name}}-{{item.address}}" i-class="address-item">
-                    <i-icon type="coordinates_fill" slot="icon" />
-                </i-cell>
-        <i-panel>
-        </i-panel>
+        <view class="scale-1px" style="padding: 0 10px">
+            <i-cell wx:for="{{sell_address}}" title="{{item.name}}-{{item.address}}" i-class="address-item">
+                <i-icon type="coordinates_fill" slot="icon" color="#375aa0" />
+            </i-cell>
+        </view>
         <view class='sub-title scale-b-1px'>
             <text>商品详情</text>
         </view>
@@ -95,15 +96,9 @@
                 <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
                 请选择数量
             </view>
-            <view class="type-box">
-                <i-panel>
-                    <i-cell-group>
-                        <i-cell title="" wx:for="{{spec_goods_price}}">
-                            {{item.key_name}} <text class="text-red"> ¥{{item.price}}</text>
-                            <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
-                        </i-cell>
-                    </i-cell-group>
-                </i-panel>
+            <view title="" wx:for="{{spec_goods_price}}" class="type-box text-justify">
+                <view><text class="text-red f16"> ¥{{item.price}}</text> / {{item.key_name}}</view>
+                <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
             </view>
             <view class="cart-footer">
                 <view class="total">

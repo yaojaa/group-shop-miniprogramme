@@ -249,10 +249,17 @@ page {
 
 .countdownTime {
     font-size: 14px;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
+    background-color: #ffeaea;
+    color: #FF5757;
+    margin:0 -15px;
+    text-align: center;
+    overflow: hidden;
+    padding: 7px;
 }
+.time-block{
+    
+}
+
 
 .container {
     padding: 10px;
@@ -265,7 +272,7 @@ page {
     background: #fff;
     border-radius:3px;
     position: relative;
-    padding: 15px;
+    padding: 15px 15px 0;
 }
 .top-jiao{
     width: 30rpx;

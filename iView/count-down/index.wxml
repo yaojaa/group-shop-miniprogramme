@@ -1,4 +1,4 @@
-<text style="font-size:12px; display:inline">
+<view>
    剩余时间：{{time}}
-</text>
+</view>
 
