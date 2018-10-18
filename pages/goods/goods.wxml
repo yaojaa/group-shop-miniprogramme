@@ -1,10 +1,11 @@
 <view class="container">
-    <view class="goods-sticky text-justify">
-        <view class="user-header">
-            <image class="avatar" src="{{seller_user.head_pic}}"></image>
+    <view class="goods-sticky">
+         <image class="user-avatar" src="{{seller_user.head_pic}}"></image>
+        <view class="user-info">
+           
             <view class="name">
                 <view class="f14">{{seller_user.nickname}} </view>
-                <view class="f12 text-muted">有3人看过</view>
+                <!-- <view class="f12 text-muted">有3人看过</view> -->
             </view>
             <!-- <i-icon type="mobilephone" />
             <i-icon type="interactive" /> -->
@@ -17,9 +18,7 @@
  -->
         </view>
     </view>
-    <view class="page-wrap">
-        <image src="/img/top-jiao.png" class="top-jiao" />
-        <view class="page-section page-section-spacing swiper goods-manage">
+    <view class="page-section page-section-spacing swiper goods-manage">
             <!--   <view class="manage">
             <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>
             <navigator class="min-btn-s" url="../orderDefault/orderDefault">管理订单</navigator>
@@ -32,6 +31,7 @@
                 </block>
             </swiper>
         </view>
+    <view class="page-wrap">
         <view class="countdownTime">
             <block wx:if="{{countdownTime}}">
                 <view class="time-block-box">

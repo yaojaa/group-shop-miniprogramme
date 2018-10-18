@@ -112,7 +112,14 @@ page {
 
 
 .goods-sticky {
-    margin-bottom: 13px;
+    background-color: #fff;
+    padding: 6px 15px;
+     display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
 }
 
 .min-btn-s {
@@ -133,33 +140,35 @@ page {
     height: 300rpx;
 }
 
-.user-header {
-    height: 76rpx;
+.user-info {
+   -webkit-flex: 1;
+   -moz-flex: 1;
+   -ms-flex: 1;
+   -o-flex: 1;
+   flex: 1;
 }
 
-.user-header .name {
+.user-info .name {
     display: inline-block;
     padding-left: 10px;
+    line-height: 1.4;
 }
 
-.user-header .name text {
+.user-info .name text {
     line-height: 0.9;
     display: inline-block;
 }
 
-.user-header .avatar {
-    width: 76rpx;
-    height: 76rpx;
-    border-radius: 3px;
+.user-avatar {
+    width: 56rpx;
+    height: 56rpx;
+    border-radius: 50%;
     overflow-y: hidden;
-    border: 1px solid #fff;
-    margin: 0;
-    padding: 0;
     display: inline-block;
     vertical-align: top;
 }
 
-.user-header .name text {
+.user-info .name text {
     display: block;
 }
 
@@ -222,6 +231,7 @@ page {
 
 .share-box {
     height: 56rpx;
+    overflow: hidden;
 }
 
 .share-box .wx-icon {
@@ -229,6 +239,7 @@ page {
     height: 56rpx;
     display: inline-block;
     margin-left: 10px;
+    vertical-align: top;
 }
 
 .goods-manage {
@@ -268,17 +279,16 @@ page {
 
 
 .container {
-    padding: 10px;
-    background: #eee;
+    background: #fff;
     padding-bottom: 60px;
     /*background-image: -webkit-linear-gradient(rgba(73,179,77,0.3) 40%, #f2f2f2)*/
 }
 
 .page-wrap {
     background: #fff;
-    border-radius:3px;
+
     position: relative;
-    padding: 15px 15px 0;
+    padding: 0 15px;
 }
 .top-jiao{
     width: 30rpx;
