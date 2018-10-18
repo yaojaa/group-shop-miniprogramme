@@ -116,3 +116,42 @@
 .ml-sm{
   margin-left: 20rpx;
 }
+
+.scale-b-1px{
+  position: relative;
+  border:none;
+}
+.scale-b-1px:after{
+  content: '';
+  position: absolute;
+  left:0;
+  right:0;
+  bottom: 0px;
+  background: #e9eaec;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+
+.scale-1px{
+  position: relative;
+  border:none;
+}
+.scale-1px:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #e9eaec;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 200%;
+  height: 200%;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+}

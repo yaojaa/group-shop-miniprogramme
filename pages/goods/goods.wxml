@@ -1,120 +1,94 @@
 <view class="container">
     <view class="goods-sticky text-justify">
         <view class="user-header">
-            <view class="avatar">
-                <i-avatar src="{{seller_user.head_pic}}" size="large" shape="square"></i-avatar>
-            </view>
+            <image class="avatar" src="{{seller_user.head_pic}}"></image>
             <view class="name">
-             <text class="f14">{{seller_user.nickname}}  </text>
-           
-          
-
+                <view class="f14">{{seller_user.nickname}} </view>
+                <view class="f12 text-muted">有3人看过</view>
             </view>
-
-           
-
             <!-- <i-icon type="mobilephone" />
             <i-icon type="interactive" /> -->
-        </view>  
-        <view class="share-box" >
-            <button open-type="share"><image src="/img/share.png" class="wx-icon" /></button>
-<!--             <image src="/img/circle.png" class="wx-icon" />
- -->            
+        </view>
+        <view class="share-box">
+            <view bindtap="share">
+                <image src="/img/share.png" class="wx-icon" />
+            </view>
+            <!--             <image src="/img/circle.png" class="wx-icon" />
+ -->
         </view>
     </view>
-    <view class="page-section page-section-spacing swiper goods-manage">
-      <!--   <view class="manage">
+    <view class="page-wrap">
+        <image src="/img/top-jiao.png" class="top-jiao" />
+        <view class="page-section page-section-spacing swiper goods-manage">
+            <!--   <view class="manage">
             <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>
             <navigator class="min-btn-s" url="../orderDefault/orderDefault">管理订单</navigator>
         </view> -->
-        <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
-            <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-                <swiper-item>
-                    <image src="{{item}}?imageView2/1/w/750/h/400/q/95" class="slide-image" />
-                </swiper-item>
-            </block>
-        </swiper>
-    </view>
-    <view class='goods-info'>
-        <view class="goods-title">
-            <text>{{goods.goods_name}}</text>
+            <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
+                <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+                    <swiper-item>
+                        <image src="{{item}}?imageView2/1/w/750/h/400/q/95" class="slide-image" />
+                    </swiper-item>
+                </block>
+            </swiper>
         </view>
-        <view class="goods-price text-justify">
-            <view  wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}">
-                <text class="price">¥{{item.price}}</text>/{{item.key_name}}
-                <!-- <text class='line-through'>¥29.8</text> -->
+        <view class='goods-info'>
+            <view class="goods-title">
+                <text>{{goods.goods_name}}</text>
             </view>
-           
-        </view>
-         <view>
-                  <block wx:if="{{countdownTime}}">
-         已售：200件  
-            <i-count-down
-            target="{{countdownTime}}"
-            clear-timer="{{clearTimer}}"
-            format="{{myFormat}}"
-            i-class ="countdownTime"
-            show-day="{{true}}">       
-            </i-count-down>
-            </block>
-         </view>
-    </view>
-
-    <view class='goods-content'>
-        {{goods.goods_content}}
-  
-    </view>
-
-
-    <i-panel>
-        <i-cell-group>
-            <i-cell wx:for="{{sell_address}}" label="{{item.name}}-{{item.address}}">
-                <i-icon type="coordinates_fill" slot="icon" />
-            </i-cell>
-
-
-                             
-        </i-cell-group>
-    </i-panel>
-
-    <i-panel>
-
-    </i-panel>
- <!--    <view class='sub-title'>
-        <text>商品详情</text>
-    </view> -->
-
-
-    <view class='sub-title'>
-        <text>最近参与({{orderCount}})</text>
-    </view>
-    <i-cell-group>
-        <i-cell wx:for="{{ orderUsers }}">
-            <view class="text-justify f12">
-                <view>
-                    <i-avatar src="{{item.user.head_pic}}" size="small"></i-avatar>
-                    <text> {{item.user.nickname}}</text>
-                       <text wx:for="{{item.specs}}" wx:for-item="gds"> 
-
-                        {{gds.spec_key_name}} ✖️ {{gds.goods_num}}
-
-                       </text>
-
-                        
+            <view class="goods-price">
+                <view wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}" class="goods-price-item text-justify scale-1px">
+                    <text class="price">¥{{item.price}}</text>
+                    <text>{{item.key_name}}</text>
+                    <!-- <text class='line-through'>¥29.8</text> -->
                 </view>
-                <view class="text-muted">{{item.order.add_time}}</view>
             </view>
-        </i-cell>
-    </i-cell-group>
+            <view>
+                <block wx:if="{{countdownTime}}">
+                    已售：200件
+                    <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="countdownTime" show-day="{{true}}">
+                    </i-count-down>
+                </block>
+            </view>
+        </view>
+        <i-cell wx:for="{{sell_address}}" title="{{item.name}}-{{item.address}}" i-class="address-item">
+                    <i-icon type="coordinates_fill" slot="icon" />
+                </i-cell>
+        <i-panel>
+        </i-panel>
+        <view class='sub-title scale-b-1px'>
+            <text>商品详情</text>
+        </view>
+        <view class='goods-content'>
+            {{goods.goods_content}}
+        </view>
+        <view class='sub-title scale-b-1px'>
+            最近参与({{orderCount}})
+        </view>
+        <i-cell-group>
+            <i-cell wx:for="{{ orderUsers }}" i-class="buyer-item-box">
+                <view class="buyer-item">
+                    <image class="buyer-avatar" src="{{seller_user.head_pic}}"></image>
+                    <view class="buyer-info">
+                        <view class="name">{{item.user.nickname}} </view>
+                        <view class="type">
+                            <view wx:for="{{item.specs}}" wx:for-item="gds">
+                                {{gds.spec_key_name}} ✕ {{gds.goods_num}}
+                            </view>
+                        </view>
+                    </view>
+                    <view class="buyer-date">{{item.order.add_time}}</view>
+                </view>
+            </i-cell>
+        </i-cell-group>
+    </view>
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
             <i-icon type="homepage" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
-     
         <text class='buy' bindtap='cartPanelShow'> 立即订购</text>
     </view>
-
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="cart-panel-hd">
@@ -125,8 +99,9 @@
                 <i-panel>
                     <i-cell-group>
                         <i-cell title="" wx:for="{{spec_goods_price}}">
-                           {{item.key_name}} <text class="text-red"> ¥{{item.price}}</text>
-                            <i-input-number id="{{index}}"  value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" /></i-cell>
+                            {{item.key_name}} <text class="text-red"> ¥{{item.price}}</text>
+                            <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
+                        </i-cell>
                     </i-cell-group>
                 </i-panel>
             </view>
@@ -140,10 +115,6 @@
             </view>
         </view>
     </i-action-sheet>
-
     <i-message id="message" />
-
-        <canvas canvas-id="canvas-1"></canvas>
-
-
+    <canvas canvas-id="canvas-1"></canvas>
 </view>
