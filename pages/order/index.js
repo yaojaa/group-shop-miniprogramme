@@ -13,6 +13,7 @@ Page({
     goods_id:'',
     hasgoods:false,
     address:'',
+    goods_name:'',
     cover_pic:'',
     mobile:'',
     pay: [{
@@ -103,7 +104,8 @@ Page({
       cart:wx.getStorageSync('cart') || [],
       address:wx.getStorageSync('goods').sell_address[0].address,
       amountMoney:amountMoney/100,
-      cover_pic:wx.getStorageSync('goods').cover_pic
+      cover_pic:wx.getStorageSync('goods').cover_pic,
+      goods_name:wx.getStorageSync('goods').goods_name,
         })
 
 
