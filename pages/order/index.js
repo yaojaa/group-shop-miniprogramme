@@ -94,7 +94,6 @@ Page({
       cart.forEach(value=> amountMoney +=parseInt(value.price*100)*parseInt(value.item_num))
 
 
-    console.log(wx.getStorageSync('goods').sell_address[0].address)
 
 
     this.setData({
@@ -125,6 +124,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   order2pay: function () {
+
+    let address = wx.getStorageSync('goods').sell_address[0].address
+
 
     if(this.data.mobile ==''){
       $Message({
@@ -205,7 +207,7 @@ Page({
                 })
 
                 wx.redirectTo({
-                  url:'../paySuccess/index？order_id='+order_id
+                  url:'../paySuccess/index?order_id='+order_id
                 })
                 
               },

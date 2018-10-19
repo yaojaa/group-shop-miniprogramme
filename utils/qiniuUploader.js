@@ -3,7 +3,7 @@
 
 var config = {
     qiniuRegion: 'ECN',
-    qiniuImageURLPrefix: 'http://pf9b8sd73.bkt.clouddn.com',
+    qiniuImageURLPrefix: 'http://img.daohangwa.com',
     qiniuUploadToken: '',
     qiniuUploadTokenURL: 'https://www.daohangwa.com/api/qiniu/get_token',
     qiniuUploadTokenFunction: null,

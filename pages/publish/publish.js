@@ -13,15 +13,17 @@ const util = require('../../utils/util.js')
 const date = new Date()
 
 const default_start_time = util.formatTime(date)
-date.setDate(date.getDate() + 15);
+date.setDate(date.getDate() + 5);
 const default_end_time = util.formatTime(date)
 
+console.log(default_start_time)
 
 Page({
   data: {
+    isShowTimePicker:false,
     photoUrls: [],
-    intro_pics:[],
-    delivery_method:1,//配送方式
+    content_imgs:[],
+    delivery_method:2,//配送方式配送方式 1:送货 2:自提',
     sell_address:[],
     isGave:0,
     address:0,
@@ -31,6 +33,8 @@ Page({
     pictureProgress:false,
     sell_start_time: default_start_time,
     sell_end_time:default_end_time,
+    picker_start_time:default_start_time.split(' ')[0],
+    picker_end_time:default_end_time.split(' ')[0],
     spec_item:[{
       key_name:'',
       price :'',
@@ -46,7 +50,22 @@ Page({
             {
                 name: '在线支付'
             }
+        ],
+        actions2: [
+            {
+                name: '用户自提',
+            },
+            {
+                name: '快递邮寄'
+            }
         ]
+    },
+    showTimePicker:function(){
+
+      this.setData({
+        isShowTimePicker:true
+      })
+
     },
 
     //添加商品
@@ -68,7 +87,6 @@ Page({
     //删除商品
     removeGoods:function(e){
 
-       
        if(this.data.spec_item.length <=1)  {
         wx.showToast({
          title: '请至少保留一个商品',
@@ -90,13 +108,13 @@ Page({
       util.uploadPicture({
         successData:(result)=>{
           console.log(result)
-          this.data.intro_pics = this.data.intro_pics.concat([result])
+          this.data.content_imgs = this.data.content_imgs.concat([result])
 
           this.setData({
-            intro_pics:this.data.intro_pics
+            content_imgs:this.data.content_imgs
           })
 
-          console.log(this.data.intro_pics)
+          console.log(this.data.content_imgs)
         },
         progressState:(s)=>{
           console.log('上传状态',s)
@@ -111,9 +129,9 @@ Page({
 
    let index =e.currentTarget.dataset.index
 
-    this.data.intro_pics.splice(index,1)
+    this.data.content_imgs.splice(index,1)
    this.setData({
-    'intro_pics':this.data.intro_pics
+    'content_imgs':this.data.content_imgs
    })
 
     },
@@ -271,7 +289,7 @@ Page({
             delivery_method:this.data.delivery_method,
             sell_start_time:this.data.sell_start_time,
             sell_end_time :this.data.sell_end_time,
-            intro_pics:this.data.intro_pics
+            content_imgs:this.data.content_imgs
           }
           )
            //提交
@@ -306,7 +324,7 @@ Page({
      
     },
     deliveryChange:function(e){
-      console.log(e)
+      console.log(e.detail.value)
       this.setData({
         delivery_method:e.detail.value?1:0
       })
@@ -328,6 +346,11 @@ Page({
             visible1: true
         });
     },
+    handleOpen2 () {
+        this.setData({
+            visible2: true
+        });
+    },
      handleCancel1 () {
         this.setData({
             visible1: false
@@ -339,6 +362,15 @@ Page({
          this.setData({
             orderStyle:index,
             visible1: false
+        });
+    },
+
+    handleClickItem2 ({ detail }) {
+        const index = detail.index + 1;
+
+         this.setData({
+            delivery_method:index,
+            visible2: false
         });
     },
     onLoad: function (option) {
@@ -371,7 +403,7 @@ Page({
                     goods_content:gs.goods_content,
                     sell_address:res.data.data.sell_address,
                     delivery_method:gs.delivery_method,
-                    intro_pics:gs.intro_pics,
+                    content_imgs:gs.content_imgs,
                      sell_start_time:gs.sell_start_time,
                       sell_end_time :gs.sell_end_time,
                       spec_item:res.data.data.spec_goods_price
@@ -388,7 +420,7 @@ Page({
         //     delivery_method:this.data.delivery_method,
         //     sell_start_time:this.data.sell_start_time,
         //     sell_end_time :this.data.sell_end_time,
-        //     intro_pics:this.data.intro_pics
+        //     content_imgs:this.data.content_imgs
         //   }
         //   )
 

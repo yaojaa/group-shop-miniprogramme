@@ -54,11 +54,31 @@ Page({
   },
 
   toConfirm({target}){
-    let url = '/pages/orderconfirm/details';
-    if (target.dataset.id) url = url + '?id=' + target.dataset.id;
-    wx.navigateTo({
-      url: url,
+
+     wx.request({
+        url: 'https://www.daohangwa.com/api/seller/set_order_action',
+        data: {
+            token: app.globalData.token,
+            order_id:target.data.order_id
+        },
+        success: (res) => {
+            if (res.data.code == 0) {
+                this.setData({
+                    orders: res.data.data
+                })
+            }
+        }
     })
+
+
+
+
+
+    // let url = '/pages/orderconfirm/details';
+    // if (target.dataset.id) url = url + '?id=' + target.dataset.id;
+    // wx.navigateTo({
+    //   url: url,
+    // })
   },
 
   handleChange({ detail }) {

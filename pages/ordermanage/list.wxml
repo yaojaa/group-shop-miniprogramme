@@ -13,7 +13,7 @@
         </view>
       </view>
       <view class='search-button'>
-        <button plain='true'size='mini'>搜索</button>
+        <button plain='true' size='mini'>搜索</button>
       </view>
     </view>
   </view>
@@ -38,11 +38,13 @@
       </view>
         <view>总金额：{{item.total_amount}}</view>
 
+      pay_status == 0 && order_status == 0
       
       <view class='list-button'>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="toConfirm">确认订单</button>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">无效订单</button>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openPriceAlert">修改费用</button>
+        <button wx:if="" plain='true' size="mini" class="button" data-id="{{item.order_id}}" data-type="cancel" bindtap="toConfirm">确认订单</button>
+      
+        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openPriceAlert">支付</button>
+
         <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">去发货</button>
       </view>
     </view>

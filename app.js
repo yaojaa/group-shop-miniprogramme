@@ -9,10 +9,6 @@ App({
   //请求维系获取openId
   getOpenId:function(){
 
-    console.log('getOpenId:function()')
-
-    console.log('Promise',wx.login)
-
     return new Promise((resolve,reject)=>{
 
                     // 登录
@@ -171,12 +167,6 @@ App({
   onLaunch: function () {
 
 
-    console.log('getCurrentPages()',getCurrentPages())
-
-
-    console.group('app.js onLaunch')
-
-
     Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
 
         console.log('Promise all result',result)
@@ -197,7 +187,7 @@ App({
                   })
 
                 }else{
-                  this.redirectToLogin()
+                 // this.redirectToLogin()
                 }
 
 
