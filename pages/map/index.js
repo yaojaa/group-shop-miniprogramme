@@ -46,6 +46,11 @@ Page({
     })
     
   },
+  inputAddressDes({ detail }){
+    let val = detail.value.replace(/^(\s*)|(\s*)$/g, "");
+    this.data.newAddress[0].details = val;
+
+  },
   addAddress(){
     this.openLocation(this);
   },
@@ -89,9 +94,35 @@ Page({
       newAddress: _this.data.newAddress
     })
 
+    console.log(this.data)
+
+  },
+  selectAddress(e){
+    let data = e.currentTarget.dataset;
+    let _this = this;
+    let address = this.data.newAddress.splice(this.getIndex(this.data.newAddress, data.id), 1)[0];
+    // console.log(this.data.newAddress)
+    this.data.newAddress.unshift(address);
+    wx.showToast({ title: "添加成功" })
+    _this.setData({
+      newAddress: _this.data.newAddress
+    })
+
+    console.log(this.data)
   },
 
-  submit(){
+  submit() {
+    if (!this.data.newAddress[0]) {
+      wx.showToast({ title: "请先添加地址", icon: "none" })
+      return;
+    }
+    if (!this.data.newAddress[0].details) {
+      wx.showToast({ title: "请填写详细地址", icon: "none" })
+      return;
+    }
+
+
+
     wx.navigateBack({
       delta: 1
     })

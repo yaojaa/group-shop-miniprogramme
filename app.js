@@ -165,6 +165,8 @@ App({
   },
 
   onLaunch: function () {
+var pages = getCurrentPages() 
+console.log('当前加载的页面是：',pages)
 
 
     Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
