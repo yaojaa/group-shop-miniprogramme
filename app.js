@@ -164,9 +164,7 @@ App({
       })
   },
 
-  onLaunch: function () {
-var pages = getCurrentPages() 
-console.log('当前加载的页面是：',pages)
+  onLaunch: function (option) {
 
 
     Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
@@ -189,7 +187,10 @@ console.log('当前加载的页面是：',pages)
                   })
 
                 }else{
-                 // this.redirectToLogin()
+                  if(option.path !=='pages/goods/goods'){
+                    this.redirectToLogin()
+                  }
+                  
                 }
 
 
