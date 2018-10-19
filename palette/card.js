@@ -11,8 +11,8 @@ export default class LastMayday {
 
 const wid = 750;
 const hei = 600;
-const startTop = 10;
-const startLeft = 10;
+const startTop = 2;
+const startLeft = 2;
 const headSize = 26;
 function topArr({ headImg, userName, address, date, content }){
   return [
@@ -33,8 +33,8 @@ function topArr({ headImg, userName, address, date, content }){
       type: 'image',
       url: headImg,
       css: {
-        top: `${startTop + 30}rpx`,
-        left: `${40 + startLeft}rpx`,
+        top: `${startTop + 10}rpx`,
+        left: `${20 + startLeft}rpx`,
         width: '50rpx',
         height: '50rpx',
       },
@@ -44,33 +44,34 @@ function topArr({ headImg, userName, address, date, content }){
       type: 'text',
       text: userName,
       css: {
-        top: `${startTop + 36}rpx`,
-        left: `${116 + startLeft}rpx`,
+        top: `${startTop + 12}rpx`,
+        left: `${84 + startLeft}rpx`,
         color: '#333',
-        fontSize: "30rpx",
-        width: '120rpx',
+        fontSize: "34rpx",
+        width: '300rpx',
+        lineHeight: "50rpx",
         maxLines: 1,
       },
     },
     //地址
-    {
-      type: 'text',
-      text: address,
-      css: {
-        top: `${startTop + 40}rpx`,
-        left: `${260 + startLeft}rpx`,
-        color: '#333',
-        fontSize: "30rpx",
-        width: '100rpx',
-        maxLines: 1,
-      },
-    },
+    // {
+    //   type: 'text',
+    //   text: address,
+    //   css: {
+    //     top: `${startTop + 40}rpx`,
+    //     left: `${260 + startLeft}rpx`,
+    //     color: '#333',
+    //     fontSize: "30rpx",
+    //     width: '100rpx',
+    //     maxLines: 1,
+    //   },
+    // },
     //截团时间
     {
       type: 'text',
       text: ` 截团时间：${ date }`,
       css: {
-        top: `${startTop + 44}rpx`,
+        top: `${startTop + 16}rpx`,
         right: `${20 + startLeft}rpx`,
         color: '#666',
         fontSize: "28rpx"
@@ -81,12 +82,12 @@ function topArr({ headImg, userName, address, date, content }){
       type: 'text',
       text: content,
       css: {
-        top: `${startTop + 110}rpx`,
+        top: `${startTop + 86}rpx`,
         left: `${20 + startLeft}rpx`,
-        color: '#333',
+        color: '#000',
         fontSize: "28rpx",
         width: `${wid - 40 - 2 * startLeft}rpx`,
-        maxLines: 8,
+        maxLines: 10,
         lineHeight: '48rpx'
       },
     },
@@ -103,7 +104,7 @@ function headArr(urlsArr) {
         type: 'image',
         url: e,
         css: {
-          bottom: `${ startTop + 30 }rpx`,
+          bottom: `${ startTop }rpx`,
           left: `${ startLeft + 20 + 30 * index }rpx`,
           width: `${ headSize }rpx`,
           height: `${ headSize }rpx`,
@@ -116,16 +117,22 @@ function headArr(urlsArr) {
     }
   })
 
+  let txt = `${flag}已接${urlsArr.length}人`;
+  let tWid = "200rpx";
+  if(urlsArr.length == 0){
+    txt = "一大波人正在赶来...";
+    tWid = "400rpx";
+  }
 
   heads.push({
     type: 'text',
-    text: `${flag}已接${urlsArr.length}人`,
+    text: txt,
     css: {
-      bottom: `${startTop + 30}rpx`,
+      bottom: `${ startTop + 3 }rpx`,
       left: `${startLeft + 20 + 30 * heads.length}rpx`,
       fontSize: '24rpx',
       color: "#333",
-      width: "200rpx",
+      width: tWid,
       lineHeight: `${headSize}rpx`,
       maxLines: 1,
     },
