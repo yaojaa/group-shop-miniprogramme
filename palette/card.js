@@ -3,8 +3,7 @@ export default class LastMayday {
     return ({
       width: `${ wid }rpx`,
       height: `${ hei }rpx`,
-      background: '#f5f5f5',
-      // borderRadius: "10px",
+      background: '#fff',
       views: topArr({ headImg, userName, address, date, content}).concat(headArr(headsImgArr)),
     });
   }
@@ -12,23 +11,23 @@ export default class LastMayday {
 
 const wid = 750;
 const hei = 600;
-const startTop = 20;
-const startLeft = 20;
+const startTop = 10;
+const startLeft = 10;
 const headSize = 26;
 function topArr({ headImg, userName, address, date, content }){
   return [
     //绘制背景边框
-    {
-      type: 'rect',
-      css: {
-        top: `${startTop}rpx`,
-        left: `${startLeft}rpx`,
-        color: '#fff',
-        borderRadius: '6rpx',
-        width: `${wid - 2 * startTop}rpx`,
-        height: `${hei - 2 * startLeft}rpx`,
-      },
-    },
+    // {
+    //   type: 'rect',
+    //   css: {
+    //     top: `${startTop}rpx`,
+    //     left: `${startLeft}rpx`,
+    //     color: '#fff',
+    //     borderRadius: '6rpx',
+    //     width: `${wid - 2 * startTop}rpx`,
+    //     height: `${hei - 2 * startLeft}rpx`,
+    //   },
+    // },
     //头像
     {
       type: 'image',
