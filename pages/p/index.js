@@ -13,7 +13,7 @@ Page({
   onReady: function () {
     console.log("p==", app.globalData.userInfo)
     this.setData({
-      painterData: new Card().palette(),
+      painterData: new Card().palette("sfsfsafasdflajsflj"),
     });
 
   },

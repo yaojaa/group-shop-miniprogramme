@@ -1,4 +1,8 @@
 <view class="container">
+  <view class='painter'>
+    <image src="{{imagePath}}"></image>
+    <painter palette="{{painterData}}" bind:imgOK="onImgOk" bind:imgErr="onImgErr"/>
+  </view>
     <view class="goods-sticky">
          <image class="user-avatar" src="{{seller_user.head_pic}}"></image>
         <view class="user-info">
@@ -117,5 +121,5 @@
         </view>
     </i-action-sheet>
     <i-message id="message" />
-    <canvas canvas-id="canvas-1"></canvas>
+    <!-- <canvas canvas-id="canvas-1"></canvas> -->
 </view>

@@ -2,8 +2,10 @@
 //获取应用实例
 const util = require('../../utils/util')
 const {  $Message } = require('../../iView/base/index');
-import * as zrender from '../../utils/zrender/zrender';
-import * as zrhelper from '../../utils/zrender/zrender-helper';
+// import * as zrender from '../../utils/zrender/zrender';
+// import * as zrhelper from '../../utils/zrender/zrender-helper';
+import Card from '../../palette/card'; 
+const qiniuUploader = require("../../utils/qiniuUploader");
 
 const app = getApp()
 
@@ -22,39 +24,66 @@ Page({
         orderCount:0,
         clearTimer:false,
         myFormat:['天', '时', '分', '秒'],
-        orderUsers:[]
-    }, 
+        orderUsers: [],
+        painterData: {},
+        imagePath: "",
+  },
+  onReady: function () {
+    console.log("p==", Card)
+    let cardConfig = {  //绘制配置
+      headImg: '../../palette/sky.jpg', 
+      userName: "用户名用户名",
+      address: "地址地址地址地址地址", 
+      date: "18-10 10:18", 
+      content: '商品描述商品描述商品描述商品描述商品描述333\n\n商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述', 
+      headsImgArr: ['../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg'] 
+    };
+    //绘制图片
+    this.setData({
+      painterData: new Card().palette(cardConfig),
+    });
+
+  },
+  onImgOk(e) { //绘制成功
+    let _this = this;
+    qiniuUploader.upload(e.detail.path, (rslt) => {
+      _this.setData({
+        imagePath: `http://img.daohangwa.com/${rslt.key}`
+      })
+    })
+  },
+  onImgErr(e) { //绘制失败
+    console.log("绘制失败=======>>>>", e)
+  },
     onShareAppMessage: function (res) {
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target,this.data.goods.goods_id)
     }
 
-    let zr = zrhelper.createZrender('canvas-1', 360, 720);
+    // let zr = zrhelper.createZrender('canvas-1', 360, 720);
 
-    var image = new zrender.Image({
-        style: {
-            x: 0,
-            y: 0,
-            image: '../../images/koala.jpg',
-            width: 32,
-            height: 24,
-            text: 'koala'
-        }
-    });
-    zr.add(image);
+    // var image = new zrender.Image({
+    //     style: {
+    //         x: 0,
+    //         y: 0,
+    //         image: '../../images/koala.jpg',
+    //         width: 32,
+    //         height: 24,
+    //         text: 'koala'
+    //     }
+    // });
+    // zr.add(image);
 
 
     return {
       title: '开团啦！'+this.data.goods.goods_name,
-      path: '/pages/goods/goods?goods_id='+this.data.goods.goods_id    }
+      imageUrl: this.data.imagePath,
+      path: '/pages/goods/goods?goods_id='+this.data.goods.goods_id  
+    }
   },
     onLoad: function(option) {
         console.log('token',app.globalData.token)
-
-
-
-
 
         wx.request({
             url: 'https://www.daohangwa.com/api/goods/get_goods_info',
@@ -240,3 +269,6 @@ Page({
         })
     }
 })
+
+
+
