@@ -1,9 +1,9 @@
 <view class="container">
     <view class="head-box">
         <view class="msg-tips">
-            <i-badge count="3">
+            <!-- <i-badge count="3">
                 <i-icon type="remind" size="20" color="#fff" />
-            </i-badge>
+            </i-badge> -->
         </view>
         <navigator url="../identify/identify">
         <view class="userinfo">
@@ -30,46 +30,63 @@
             <text class="num">0</text>
         </view>
         <view class="count-item">
-            <text class="label" bindtap="fansPage">我的粉丝</text>
-            <text class="num">100</text>
+            <text class="label" bindtap="fansPage">金额</text>
+            <text class="num">0</text>
         </view>
      
     </view>
 
-<i-panel title="最近参与">
-    <view style="padding: 15px;">
-          <view class="order" wx:for="{{orders}}" wx:key="id">
-    <view class="topLine">
-      <view>{{item.consignee}}<i-icon data-phone="{{item.mobile}}" type="mobilephone" size="20" color="#80848f" bindtap='fncall' /></view>
-      <view class="state">{{status[item.state]}}</view>
-    </view>
-    <view class="goodsInfo" bindtap="toDefault">
-      <view style="background-image:url({{item.goodimg}})" class="goodimg"></view>
-      <view class="gooddef">
-        <view class="goodname">{{item.goodname}}</view>
-        <view class="price">
-          <view>￥{{item.price}}</view>
-          <view class="num">x {{item.num}}</view>
+
+<i-panel title="我参与的">
+    <view style="padding: 5px 10px;">
+
+         <view class='order' wx:for="{{orders}}" wx:key="id">
+      <view class='title'>{{item.goods.goods_name}} <text> 订单{{['待确认','已确认','已收货','已取消','已完成','已作废'][item.order_status]}}
+</text> </view>
+      <!-- <view class='line'></view> -->
+      <view class="goodsList" wx:for="{{item.order_goods}}" wx:for-item="order" wx:key="@index">
+        <view class='goods'>
+          <view class='cell'>
+            <view class='left'>{{order.spec_key_name}} x {{order.goods_num}}</view>
+            <view class='right'><text>￥</text>{{item.goods_price}}</view>
+          </view>
+        
+        </view>
+    
+     
+      </view>
+      <view class="user">
+        <view class='name'>{{item.consignee}}</view>
+        <view class='date'>2018-08-12</view>
+      </view>
+      <view class='line'></view>
+      <view class='paycell'>
+        <view class='pay'>
+          <view class='left'>   {{['待支付','已支付','支付失败'][item.pay_status]}}   <i-button wx:if="{{item.pay_status!==1}}" type="primary" size="small" long="{{true}}">去支付</i-button></view>
+          <view class='right'>￥{{item.goods_price}}</view>
+        </view>
+        <view class='icon'>
+         
         </view>
       </view>
-    </view>
-    <view style="margin-top:10px" bindtap='topay'>
-      <i-button type="primary" wx:if="{{item.state===0}}" size="small" long="{{true}}">去支付</i-button>
-    </view>
   </view>
+
+
 
     </view>
 </i-panel>
-<i-panel title="最近发布的团购">
-    <view style="padding: 1px;">
-            <view wx:if="{{goodslist.length == 0}}">
+
+
+   <view wx:if="{{goodslist.length == 0}}">
          <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />
             <text>发布一个商品</text>
         </view>
    </view>
 
-        <view wx:else class="goods-box">
+<i-panel title="我发布的" wx:if="{{goodslist.length > 0}}">
+    <view >
+        <view  class="goods-box">
             <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                 <view class="goods-body">
                     <navigator url="../goods/goods?goods_id={{item.goods_id}}">
@@ -97,10 +114,7 @@
                         <text class="label">订单数量</text>
                         <text class="num">100</text>
                     </view>
-                    <view class="count-item">
-                        <text class="label">转化率</text>
-                        <text class="num">10%</text>
-                    </view>
+                  
                     <view class="count-item">
                         <text class="label">收款总额</text>
                         <text class="num">￥3423</text>

@@ -13,7 +13,7 @@
         </view>
       </view>
       <view class='search-button'>
-        <button plain='true'size='mini'>搜索</button>
+        <button plain='true' size='mini'>搜索</button>
       </view>
     </view>
   </view>
@@ -25,25 +25,27 @@
   <view class='session'>
     <view class='order-list' wx:for="{{dataList}}">
       <view class='list-h'>
-        <view>订购人：{{item.consignee}}</view>
-        <view>订单编号：55454443.3434354</view>
-
+        <view>订购人：{{item.consignee}} {{item.mobile}} </view>
+        <text class="state warning">订单{{['待确认','已确认','已收货','已取消','已完成','已作废'][item.order_status]}}</text>
       </view>
       <view class='list-h'>
-        <view>{{item.pay_status==1?'已支付':'未支付'}}</view>
         <view>发货状态：{{item.shipping_status==0?'未发货':'已发货' }}</view>
       </view>
       <view class='list-h' wx:for="{{item.goods}}" wx:for-item="g">
           <view>{{g.spec_key_name}}</view> <view> X{{g.goods_num}}</view> <view>{{g.goods_price}}</view>
       </view>
-        <view>总金额：{{item.total_amount}}</view>
-
+        <view class='list-h'>
+            <view>总金额：{{item.total_amount}} {{item.pay_status==1?'已支付':'未支付'}}</view>
+        </view>
       
-      <view class='list-button'>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="toConfirm">确认订单</button>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">无效订单</button>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openPriceAlert">修改费用</button>
-        <button plain='true' size="mini" class="button" data-id="1" data-type="cancel" bindtap="openAlert">去发货</button>
+      <view class="list-button">
+     
+        <i-button class="button" shape="circle" wx:if="{{item.order_status == 0}}" bindtap="toConfirm" type="success"  long="true" size="large">确认订单</i-button>
+      <i-button class="button"  shape="circle" wx:if="{{item.order_status == 0 || item.pay_status!==1 }}" bindtap="toConfirm" type="error"  long="true" size="large">取消订单</i-button>
+      
+ <!--        <i-button wx:if="{{item.pay_status !== 1}}" plain='true' size="large" data-id="1"  bindtap="openPriceAlert">支付</i-button> -->
+
+    
       </view>
     </view>
 

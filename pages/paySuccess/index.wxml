@@ -7,56 +7,26 @@
       <view class='title'>订购/支付成功</view>
     </view>
     <view class='order'>
-      <view class='title'>澳大利亚进口脐橙 澳橙12个装 </view>
+      <view class='title'>{{order_goods[0].goods_name}}</view>
       <!-- <view class='line'></view> -->
       <view class="goodsList">
-        <view class='goods'>
+        <view class='goods' wx:for="{{order_goods}}"  wx:key="@index">
           <view class='cell'>
-            <view class='left'>草莓味草莓味草莓味草莓味草莓味草莓味草莓味草莓味草莓味草莓味草莓味草莓味草莓味</view>
-            <view class='right'><text>￥</text>28</view>
-          </view>
-          <view class='des cell'>
-            <view class='left'>奶酪、冰水</view>
-            <view class='right'>x2</view>
-          </view>
-        </view>
-        <view class='goods'>
-          <view class='cell'>
-            <view class='left'>草莓味草莓味</view>
-            <view class='right'><text>￥</text>28</view>
-          </view>
-          <view class='des cell'>
-            <view class='left'>奶酪、冰水</view>
-            <view class='right'>x2</view>
-          </view>
-        </view>
-        <view class='goods'>
-          <view class='cell'>
-            <view class='left'>草莓味草莓味</view>
-            <view class='right'><text>￥</text>28</view>
-          </view>
-          <view class='des cell'>
-            <view class='left'>奶酪、冰水</view>
-            <view class='right'>x2</view>
-          </view>
-        </view>
-        <view class='goods'>
-          <view class='cell'>
-            <view class='left'>草莓味草莓味草</view>
-            <view class='right'><text>￥</text>28</view>
+            <view class='left'>{{item.spec_key_name}} x {{item.goods_num}}</view>
+            <view class='right'><text>￥</text>{{item.goods_price}}</view>
           </view>
         </view>
       </view>
       <view class="user">
         <view class='img'><open-data type="userAvatarUrl"></open-data></view>
         <view class='name'><open-data type="userNickName"></open-data></view>
-        <view class='date'>2018-08-12</view>
+        <view class='date'>{{order_time}}</view>
       </view>
       <view class='line'></view>
       <view class='paycell'>
         <view class='pay'>
           <view class='left'>实付</view>
-          <view class='right'><text>￥</text>28.00</view>
+          <view class='right'><text>￥</text>{{orders_info.order_amount}}</view>
         </view>
         <view class='icon'>
           <view></view>

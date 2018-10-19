@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -61,7 +61,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=2"
+					"query": "goods_id=1"
 				},
 				{
 					"id": -1,
@@ -100,15 +100,22 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "支付成功！",
 					"pathName": "pages/paySuccess/index",
-					"query": ""
+					"query": "order_id=2"
 				},
 				{
 					"id": -1,
 					"name": "添加地址",
-					"pathName": "pages/map/index"
+					"pathName": "pages/map/index",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "支付成功",
+					"pathName": "pages/paySuccess/index",
+					"query": "order_id=4"
 				}
 			]
 		}

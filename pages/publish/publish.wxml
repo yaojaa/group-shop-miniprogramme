@@ -106,10 +106,12 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-        <i-switch value="{{delivery_method}}" size="large" bindchange="deliveryChange" slot="footer">
+                       <i-button type="ghost" bindtap="handleOpen2">{{actions2[delivery_method-1].name}}</i-button> <i-icon type="enter" size="28" />
+
+       <!--  <i-switch value="{{delivery_method}}" size="large" bindchange="deliveryChange" slot="footer">
             <view slot="open">邮寄</view>
             <view slot="close">自提</view>
-        </i-switch>              
+        </i-switch>      -->         
 
                     </view>
                      </view>
@@ -117,7 +119,7 @@
                     
 </view>
 
-<view class="weui-cell">
+<!-- <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">收款方式：</view></view>
                     <view class="weui-cell__bd">
                     </view>
@@ -125,14 +127,15 @@
                     <view class="weui-icon-warn">
                 <i-button type="ghost" bindtap="handleOpen1">{{actions1[orderStyle-1].name}}</i-button> <i-icon type="enter" size="28" />
 
-
                     </view>
                      </view>
 
                     
-</view>
+</view> -->
 
 <i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />
+
+<i-action-sheet visible="{{ visible2 }}" actions="{{ actions2 }}" show-cancel bind:cancel="handleCancel2" bind:click="handleClickItem2" />
 
 <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">活动时间：</view></view>
@@ -141,12 +144,16 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
+                     <view class="timePicker" wx:if="{{!isShowTimePicker}}" bindtap="showTimePicker">
                       默认发布后5天 <i-icon type="enter" size="28" />
-
-<!-- <i-datepicker title="开始日期" time="00:00" binddatachange="start_time"> </i-datepicker>
-<i-datepicker title="结束日期" time="00:00" bind:datachange="end_time"></i-datepicker> -->
                     </view>
-                     </view>
+
+<view class="timePicker" wx:if="{{isShowTimePicker}}">
+<i-datepicker label="起：" title="开始日期" date="{{picker_start_time}}"  time="00:00" binddatachange="start_time"> </i-datepicker>
+<i-datepicker  label="至：" title="结束日期" date="{{picker_end_time}}" time="00:00" bind:datachange="end_time"></i-datepicker>
+</view>
+    </view>
+ </view>
 
 
 

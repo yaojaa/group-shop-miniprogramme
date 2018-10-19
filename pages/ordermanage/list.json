@@ -2,7 +2,9 @@
 	"usingComponents": {
       "i-modal": "../../iView/modal/index",
       "i-tabs": "../../iView/tabs/index",
-      "i-tab": "../../iView/tab/index"
+      "i-tab": "../../iView/tab/index",
+      "i-button": "../../iView/button/index"
+
 	}
 
 }
