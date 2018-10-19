@@ -7,6 +7,8 @@ Page({
    */
   data: {
     share: false,
+    order_id:'',
+    ordersInfo:''
 
   },
 
@@ -15,7 +17,30 @@ Page({
    */
   onLoad: function (options) {
 
+    this.data.order_id = options.order_id
+
+    console.log(options)
+   this.getOrderInfo()
     
+
+  },
+
+  getOrderInfo(){
+
+     wx.request({
+            url: 'https://www.daohangwa.com/api/user/get_order_detail',
+            data: {
+                token: app.globalData.token,
+                order_id:this.data.order_id
+            },
+            success: (res) => {
+                if (res.data.code == 0) {
+                    this.setData({
+                        orders: res.data.data
+                    })
+                }
+            }
+        })
 
   },
 

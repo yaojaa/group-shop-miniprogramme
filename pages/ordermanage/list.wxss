@@ -65,7 +65,7 @@
 	padding: 4px 10px 0;
 }
 .list-button{
-	padding: 10px 10px 10px 0;
+	padding: 10px ;
 	display: flex;
 }
 .list-button .button{
@@ -74,7 +74,6 @@
 	border-color: #efefef;
 	color: #333;
 	padding: 0;
-	width: 100px;
 }
 .order-list:last-child{
 	border: none;
@@ -89,4 +88,14 @@
 
 icon{
 	display: block;
+}
+.state{
+	text-align: right;
+	color: #999;
+	padding-right: 15rpx
+}
+
+.state.warning{
+	color: #ff9900
+
 }

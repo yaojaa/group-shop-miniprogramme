@@ -39,6 +39,10 @@ Component({
     title: {   //格式 HH：MM
       type: String,
       value: '请选择日期'
+    },
+    label:{
+      type: String,
+      value: '请选择日期'
     }
   },
 
