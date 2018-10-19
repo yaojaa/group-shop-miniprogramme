@@ -1,6 +1,7 @@
 .container{
   background: #f8f8f8;
-  min-height: 100vh;
+  padding-bottom: 60px;
+  min-height: calc(100vh - 60px);
 }
 .product-item {
   background: #fff;
@@ -107,12 +108,51 @@
 }
 
 .address{
-  padding: 10px
+
 }
 
 .address button{
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 56px;
   z-index:999
+}
+.order-panel{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  background-color: #fff;
+}
+.goods-cover{
+  width: 100rpx;
+  height:100rpx;
+  margin-right: 10px;
+}
+.order-panel .name{
+  font-size: 16px;
+  color:#333;
+}
+.seller-info{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+}
+.seller-info .cover{
+  width: 40rpx;
+  height:40rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.seller-info .name{
+  font-size: 14px;
+  color:#333;
 }

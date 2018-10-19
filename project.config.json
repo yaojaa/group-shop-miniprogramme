@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -108,7 +108,8 @@
 				{
 					"id": -1,
 					"name": "添加地址",
-					"pathName": "pages/map/index"
+					"pathName": "pages/map/index",
+					"query": ""
 				}
 			]
 		}

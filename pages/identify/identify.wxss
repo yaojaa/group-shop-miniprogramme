@@ -1,35 +1,8 @@
 @import "../../utils/weui.wxss";
 .container{
-  padding: 0 20rpx;
-  font-size: 14px;
+   background: #f8f8f8;
+   min-height: 100vh;
 }
-.title{
-  font-size: 16px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center
-}
-.session{
-  padding: 10px 0 20px;
-  margin-bottom: 40px;
-}
-.input{
-  display: flex;
-  border-bottom: 1px solid #efefef;
-  padding:5px 0;
-  margin: 0 15px;
-  line-height: 40px;
-}
-.input .label{
-  /* width: 100px; */
-  /* text-align: right; */
-}
-.input input{
-  height: 28px;
-  min-height: auto;
-  width: 200px;
-  line-height: 28px;
-  padding: 6px 5px;
-  border-radius: 6px;
-  flex-grow: 1;
+.btn-wrap{
+  margin:15px;
 }
