@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -110,6 +110,24 @@
 					"name": "添加地址",
 					"pathName": "pages/map/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情页启动",
+					"pathName": "pages/publish-success/publish-success",
+					"query": "goods_id=1"
+				},
+				{
+					"id": -1,
+					"name": "详情页启动",
+					"pathName": "pages/goods/goods",
+					"query": "goods_id=1"
+				},
+				{
+					"id": -1,
+					"name": "支付成功",
+					"pathName": "pages/paySuccess/index",
+					"query": "goods_id=1"
 				}
 			]
 		}

@@ -69,7 +69,7 @@
         <i-cell-group>
             <i-cell wx:for="{{ orderUsers }}" i-class="buyer-item-box">
                 <view class="buyer-item">
-                    <image class="buyer-avatar" src="{{seller_user.head_pic}}"></image>
+                    <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
                     <view class="buyer-info">
                         <view class="name">{{item.user.nickname}} </view>
                         <view class="type">
