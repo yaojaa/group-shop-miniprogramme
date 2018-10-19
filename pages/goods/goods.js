@@ -6,6 +6,7 @@ const {  $Message } = require('../../iView/base/index');
 // import * as zrhelper from '../../utils/zrender/zrender-helper';
 import Card from '../../palette/card'; 
 const qiniuUploader = require("../../utils/qiniuUploader");
+let cardConfig = {};
 
 const app = getApp()
 
@@ -29,19 +30,6 @@ Page({
         imagePath: "",
   },
   onReady: function () {
-    console.log("p==", Card)
-    let cardConfig = {  //绘制配置
-      headImg: '../../palette/sky.jpg', 
-      userName: "用户名用户名",
-      address: "地址地址地址地址地址", 
-      date: "18-10 10:18", 
-      content: '商品描述商品描述商品描述商品描述商品描述333\n\n商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述', 
-      headsImgArr: ['../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg', '../../palette/avatar.jpg'] 
-    };
-    //绘制图片
-    this.setData({
-      painterData: new Card().palette(cardConfig),
-    });
 
   },
   onImgOk(e) { //绘制成功
@@ -110,6 +98,18 @@ Page({
                         spec_goods_price:spec_goods_price,
                         countdownTime:new Date(res.data.data.goods.sell_end_time*1000).getTime()
                     })
+
+
+
+                  cardConfig = {  //绘制配置
+                    headImg: this.data.seller_user.head_pic,
+                    userName: this.data.seller_user.nickname,
+                    address: res.data.data.sell_address[0].name,
+                    date: util.formatTime(new Date(res.data.data.goods.sell_end_time * 1000)).replace(/^(\d{4}-)|(:\d{2})$/g,""),
+                    content: this.data.goods.goods_content,
+                    headsImgArr: []
+                  };
+
                 }
             
             //计算位置
@@ -180,10 +180,19 @@ Page({
 
 
               if (res.data.code == 0) {
+
+                res.data.data.lists.forEach(e => {
+                  cardConfig.headsImgArr.push(e.user.head_pic)
+                })
+
+
+                //绘制图片
                 this.setData({
+                  painterData: new Card().palette(cardConfig),
                   orderUsers:res.data.data.lists,
                   orderCount:res.data.data.lists.length
                 })
+                
               }
 
 

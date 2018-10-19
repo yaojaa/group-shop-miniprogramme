@@ -96,7 +96,8 @@ function topArr({ headImg, userName, address, date, content }){
 
 function headArr(urlsArr) {
   let heads = [];
-  let maxNum = Math.floor((wid - 2 * startLeft - 200)/30 -1);
+  let maxNum = Math.floor((wid - 2 * startLeft - 200) / 30 - 1);
+  let flag = "";
   urlsArr.forEach((e, index) => {
     if(index < maxNum){
       heads.push({
@@ -109,26 +110,27 @@ function headArr(urlsArr) {
           height: `${ headSize }rpx`,
         },
       })
-    } else if (index == maxNum) {
-      let flag = "";
+    } else if (index == maxNum && urlsArr.length > maxNum) {
       if (maxNum < urlsArr.length) {
         flag = "... ";
       }
-      heads.push({
-        type: 'text',
-        text: `${flag}已接${urlsArr.length}人`,
-        css: {
-          bottom: `${startTop + 30}rpx`,
-          left: `${startLeft + 20 + 30 * index}rpx`,
-          fontSize: '24rpx',
-          color: "#333",
-          width: "200rpx",
-          lineHeight: `${headSize}rpx`,
-          maxLines: 1,
-        },
-      }, )
     }
   })
+
+
+  heads.push({
+    type: 'text',
+    text: `${flag}已接${urlsArr.length}人`,
+    css: {
+      bottom: `${startTop + 30}rpx`,
+      left: `${startLeft + 20 + 30 * heads.length}rpx`,
+      fontSize: '24rpx',
+      color: "#333",
+      width: "200rpx",
+      lineHeight: `${headSize}rpx`,
+      maxLines: 1,
+    },
+  }, )
 
   return heads;
 }
