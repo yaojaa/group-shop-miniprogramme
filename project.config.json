@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -112,22 +112,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "详情页启动",
-					"pathName": "pages/publish-success/publish-success",
-					"query": "goods_id=1"
-				},
-				{
-					"id": -1,
-					"name": "详情页启动",
-					"pathName": "pages/goods/goods",
-					"query": "goods_id=1"
-				},
-				{
-					"id": -1,
+					"id": 12,
 					"name": "支付成功",
 					"pathName": "pages/paySuccess/index",
-					"query": "goods_id=1"
+					"query": "order_id=4"
 				}
 			]
 		}

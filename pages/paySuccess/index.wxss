@@ -111,11 +111,14 @@ page{
 .goodsList .goods .des .right{
   font-size: 12px;
 }
-
+.paycell{
+  padding-top: 5px;
+}
 .paycell .pay{
   display: flex;
   justify-content: space-between;
   line-height: 30px;
+
   padding: 0 20px;
 }
 .paycell .pay .left{
@@ -129,7 +132,7 @@ page{
 .paycell .pay .right text{
   color: #999;
   font-size: 14px;
-  vertical-align:super;
+ /* vertical-align:super;*/
   font-weight: normal;
 }
 .paycell .icon{
@@ -167,8 +170,8 @@ page{
   font-size: 16px;
 }
 .user .img{
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   overflow: hidden;
 }
