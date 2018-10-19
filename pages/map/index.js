@@ -46,6 +46,9 @@ Page({
     })
     
   },
+  inputAddressDes({ detail }){
+    console.log(detail.value.replace(/^(\s*)|(\s*)$/g,""))
+  },
   addAddress(){
     this.openLocation(this);
   },
@@ -88,6 +91,8 @@ Page({
       oldAddress: _this.data.oldAddress,
       newAddress: _this.data.newAddress
     })
+
+    console.log(this.data)
 
   },
 
