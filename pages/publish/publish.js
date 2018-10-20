@@ -147,6 +147,12 @@ Page({
             sell_address:app.globalData.sell_address
           })
           
+          wx.setStorage({
+            key: 'nowCheckAddress',
+            data: this.data.sell_address,
+            success(e) { }
+          })
+
 
         }
 
