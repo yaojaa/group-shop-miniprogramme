@@ -1,5 +1,6 @@
 const app = getApp()
 
+const { $Message } = require('../../iView/base/index');
 
 
 Page({
@@ -10,7 +11,19 @@ Page({
     eidePriceVisible: false,
     searchContent:"",
     deleteShow: true,
-    dataList:[]
+    dataList:[],
+    visible1:false,
+    visible2:false,
+    actionsConfirm: [
+            {
+                name: '取消'
+            },
+            {
+                name: '确认',
+                color: '#ed3f14',
+                loading: false
+            }
+        ]
 
   },
   onLoad:function(optiton){
@@ -53,36 +66,91 @@ Page({
     })
   },
 
-  toConfirm({target}){
+  openShipping(){
+       this.setData({
+      visible2:true
+    })
+  },
 
-    console.log(target)
+  //发货
+  toShipping({target}){
 
-     wx.request({
-        url: 'https://www.daohangwa.com/api/seller/set_order_action',
-        method:'post',
-        data: {
-            token: app.globalData.token,
-            order_id:target.dataset.id,
-            action:'confirm'
-        },
-        success: (res) => {
-            if (res.data.code == 0) {
-                this.setData({
-                    orders: res.data.data
-                })
-            }
-        }
+    this.setData({
+      visible2:true,
+      order_id:target.dataset.id
     })
 
-
-
-
-
-    // let url = '/pages/orderconfirm/details';
-    // if (target.dataset.id) url = url + '?id=' + target.dataset.id;
-    // wx.navigateTo({
-    //   url: url,
+    //  wx.request({
+    //     url: 'https://www.daohangwa.com/api/seller/set_order_action',
+    //     method:'post',
+    //     data: {
+    //         token: app.globalData.token,
+    //         order_id:target.dataset.id,
+    //         action:'confirm'
+    //     },
+    //     success: (res) => {
+    //         if (res.data.code == 0) {
+    //             this.setData({
+    //                 orders: res.data.data
+    //             })
+    //         }
+    //     }
     // })
+
+
+  },
+  openConfirm({target}){
+    this.setData({
+      visible1:true,
+      order_id:target.dataset.id
+    })
+  },
+
+  toConfirm({ detail }){
+
+      if (detail.index === 0) {
+            this.setData({
+                visible1: false
+            });
+        } else {
+            const action = [...this.data.actionsConfirm];
+            action[1].loading = true;
+
+            this.setData({
+                actionsConfirm: action
+            })
+
+             wx.request({
+                url: 'https://www.daohangwa.com/api/seller/set_order_action',
+                method:'post',
+                data: {
+                    token: app.globalData.token,
+                    order_id:this.data.order_id,
+                    action:'confirm'
+                },
+                success: (res) => {
+
+                    action[1].loading = false;
+
+                    if (res.data.code == 0) {
+
+                      this.setData({
+                          visible1: false,
+                          actionsConfirm: action
+                        });
+                        $Message({
+                            content: '订单确认成功',
+                            type: 'success'
+                        });
+                        
+                    }
+                }
+            })
+
+          }
+
+            
+  
   },
 
   handleChange({ detail }) {
