@@ -20,8 +20,9 @@ for (let i = 0; i < 24; i++) {
 }
 
 for (let i = 0; i < 60; i+=5) {
-  if (i < 10) i = parseInt("0" + i);
+  if (i < 10) i = "0" + i;
   minutes.push(i.toString())
+  i = parseInt(i)
 }
 
 Component({

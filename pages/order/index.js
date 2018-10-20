@@ -8,7 +8,7 @@ Page({
    */
   data: {
     num: 1,
-    give_type:1,//送货方式
+    delivery_method:1,//送货方式
     nickName:'',
     goods_id:'',
     hasgoods:false,
@@ -94,8 +94,8 @@ Page({
 
       cart.forEach(value=> amountMoney +=parseInt(value.price*100)*parseInt(value.item_num))
 
-
-
+      console.log(app.globalData.userInfo.nickname)
+       
 
     this.setData({
       nickName: app.globalData.userInfo.nickname,
@@ -105,6 +105,7 @@ Page({
       amountMoney:amountMoney/100,
       cover_pic:wx.getStorageSync('goods').cover_pic,
       goods_name:wx.getStorageSync('goods').goods_name,
+      delivery_method:wx.getStorageSync('goods').delivery_method,
         })
 
 

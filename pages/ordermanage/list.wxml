@@ -40,7 +40,7 @@
       
       <view class="list-button">
      
-        <i-button class="button" shape="circle" wx:if="{{item.order_status == 0}}" bindtap="toConfirm" type="success"  long="true" size="large">确认订单</i-button>
+        <i-button data-id="{{item.order_id}}" class="button" shape="circle" wx:if="{{item.order_status == 0}}" bindtap="toConfirm" type="success"  long="true" size="large">确认订单</i-button>
       <i-button class="button"  shape="circle" wx:if="{{item.order_status == 0 || item.pay_status!==1 }}" bindtap="toConfirm" type="error"  long="true" size="large">取消订单</i-button>
       
  <!--        <i-button wx:if="{{item.pay_status !== 1}}" plain='true' size="large" data-id="1"  bindtap="openPriceAlert">支付</i-button> -->

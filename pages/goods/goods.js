@@ -82,7 +82,7 @@ Page({
             success: (res) => {
                 if (res.data.code == 0) {
 
-                  console.log(res.data.data.goods.sell_end_time)
+                  console.log(res.data.data.goods)
 
                   let  spec_goods_price = res.data.data.spec_goods_price
 
@@ -270,7 +270,8 @@ Page({
         wx.setStorageSync('goods',{
           goods_name:this.data.goods.goods_name,
           sell_address:this.data.sell_address,
-          cover_pic:this.data.imgUrls[0]
+          cover_pic:this.data.imgUrls[0],
+          delivery_method:this.data.goods.delivery_method
         })
 
         wx.navigateTo({

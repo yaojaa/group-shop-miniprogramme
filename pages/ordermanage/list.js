@@ -55,11 +55,15 @@ Page({
 
   toConfirm({target}){
 
+    console.log(target)
+
      wx.request({
         url: 'https://www.daohangwa.com/api/seller/set_order_action',
+        method:'post',
         data: {
             token: app.globalData.token,
-            order_id:target.data.order_id
+            order_id:target.dataset.id,
+            action:'confirm'
         },
         success: (res) => {
             if (res.data.code == 0) {

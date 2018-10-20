@@ -16,7 +16,6 @@ const default_start_time = util.formatTime(date)
 date.setDate(date.getDate() + 5);
 const default_end_time = util.formatTime(date)
 
-console.log(default_start_time)
 
 Page({
   data: {
@@ -33,8 +32,12 @@ Page({
     pictureProgress:false,
     sell_start_time: default_start_time,
     sell_end_time:default_end_time,
-    picker_start_time:default_start_time.split(' ')[0],
-    picker_end_time:default_end_time.split(' ')[0],
+    picker:{
+      start_date:default_start_time.split(' ')[0],
+      end_date:default_end_time.split(' ')[0],
+      start_time:'00:00',
+      end_time:'24:00',
+    },
     spec_item:[{
       key_name:'',
       price :'',
@@ -117,7 +120,6 @@ Page({
           console.log(this.data.content_imgs)
         },
         progressState:(s)=>{
-          console.log('上传状态',s)
           this.setData({
           pictureProgress:s
         })
@@ -273,7 +275,7 @@ Page({
         }
 
         if(this.data.spec_item[0].name =='' || this.data.spec_item[0].price == '' ){
-           wx.showModal({title:'请添加商品规则和价格',showCancel:false})
+           wx.showModal({title:'请填写规则或价格',showCancel:false})
             return false
         }
 
@@ -325,18 +327,21 @@ Page({
     deliveryChange:function(e){
       console.log(e.detail.value)
       this.setData({
-        delivery_method:e.detail.value?1:0
+        delivery_method:e.detail.value?1:2
       })
     },
     start_time:function(e){
+      let t = e.detail //"2018", "10", "20", "16", "00"
       this.setData({
-        sell_start_time:e.detail.join('-')
+        sell_start_time:t[0]+'-'+t[1]+'-'+t[2]+' '+t[3]+':'+t[4]
       })
 
     },
     end_time:function(e){
+        let t = e.detail //"2018", "10", "20", "16", "00"
+
         this.setData({
-        sell_end_time:e.detail.join('-')
+        sell_end_time:t[0]+'-'+t[1]+'-'+t[2]+' '+t[3]+':'+t[4]
       })
 
     },
@@ -392,8 +397,18 @@ Page({
            },
               success:  (res) =>{
 
+
                 let d =res.data
                 let gs =res.data.data.goods
+
+
+
+                let starFormatTime = util.formatTime(new Date(gs.sell_start_time*1000))
+                let endFormatTime = util.formatTime(new Date(gs.sell_end_time*1000))
+
+                console.log('返回的开始时间',starFormatTime)
+                console.log('返回的结束时间',endFormatTime)
+
                 if(d.code == 0){
 
                   this.setData({
@@ -403,31 +418,18 @@ Page({
                     sell_address:res.data.data.sell_address,
                     delivery_method:gs.delivery_method,
                     content_imgs:gs.content_imgs,
-                     sell_start_time:gs.sell_start_time,
+                      sell_start_time:gs.sell_start_time,
                       sell_end_time :gs.sell_end_time,
-                      spec_item:res.data.data.spec_goods_price
+                      picker:{
+                        start_date:starFormatTime.split(' ')[0],
+                        start_time:starFormatTime.split(' ')[1],
+                        end_date:endFormatTime.split(' ')[0],
+                        end_time:endFormatTime.split(' ')[1],
+                      },
+                      spec_item:res.data.data.spec_goods_price,
+                      isShowTimePicker:true
                   })
 
-
-
-        // let data = Object.assign({token:app.globalData.token},
-        //   e.detail.value, //表单的数据
-        //   {spec_item:this.data.spec_item}, //商品数组数据
-        //   {goods_images:this.data.photoUrls},
-        //   {
-        //     sell_address:this.data.sell_address,
-        //     delivery_method:this.data.delivery_method,
-        //     sell_start_time:this.data.sell_start_time,
-        //     sell_end_time :this.data.sell_end_time,
-        //     content_imgs:this.data.content_imgs
-        //   }
-        //   )
-
-
-                  
-
-
-                 
                  
                 }else{
                      wx.showModal({
