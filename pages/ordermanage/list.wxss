@@ -99,3 +99,14 @@ icon{
 	color: #ff9900
 
 }
+
+.success{
+	color: #19be6b
+
+}
+
+.error{
+	color: #ed3f14
+
+
+}
