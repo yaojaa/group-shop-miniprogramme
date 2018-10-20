@@ -7,12 +7,16 @@
         <i-input title="主营项目：" placeholder="主营项目"/>
     </i-panel>
   </view> -->
-    <i-panel title="请完善你的个人资料">
-        <i-input value="" type="number" title="手机号" auto-focus placeholder="请输入手机号" />
-        <i-input value="" type="text" title="手机号" placeholder="输入您的微信账号" />
-        <i-input value="" type="text" title="居住地址" placeholder="不用具体到门牌号" />
-    </i-panel>
-    <view class='btn-wrap'>
-        <button type="primary">保存</button>
+    <view class="info-box">
+        <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">使用微信绑定的手机号</button>
+        <i-panel title="请完善你的个人资料">
+            <i-input value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
+            <i-input value="{{wxnumber}}" type="text" title="微信号" placeholder="输入您的微信账号" />
+            <i-input value="{{address}}" type="text" title="居住地址" placeholder="不用具体到门牌号" />
+        </i-panel>
     </view>
+    <view class='btn-wrap'>
+        <button type="primary" bindtap="postInfo">保存</button>
+    </view>
+    <i-toast id="toast" />
 </view>

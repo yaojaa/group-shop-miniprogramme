@@ -2,6 +2,7 @@
   "window": {"navigationBarTitleText": "身份认证"},
   "usingComponents": {
   	  "i-panel": "../../iView/panel/index",
-	    "i-input": "../../iView/input/index"
+	    "i-input": "../../iView/input/index",
+	    "i-toast": "../../iView/toast/index"
 	}
 }

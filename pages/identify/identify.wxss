@@ -6,3 +6,12 @@
 .btn-wrap{
   margin:15px;
 }
+.info-box{
+	position: relative;
+}
+.getMobile{
+	position: absolute;
+	right:15px;
+	top:52px;
+	z-index: 9;
+}
