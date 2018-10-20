@@ -146,6 +146,8 @@ Page({
           this.setData({
             sell_address:app.globalData.sell_address
           })
+          
+
         }
 
         console.log(this.data.sell_address)
@@ -428,6 +430,13 @@ Page({
                       },
                       spec_item:res.data.data.spec_goods_price,
                       isShowTimePicker:true
+                  })
+
+
+                  wx.setStorage({
+                    key: 'nowCheckAddress',
+                    data: this.data.sell_address,
+                    success(e) { }
                   })
 
                  

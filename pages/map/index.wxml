@@ -22,7 +22,7 @@
     <view class='content'>
       <view class='name'>{{item.name}}</view>
       <view class='des'>{{item.address}}</view>
-      <view class='des'>提货点：<input value="{{item.details}}" bindinput='inputAddressDes' placeholder="请输入详细门牌号如：2号楼3单元203" type="text" name=""/></view>
+      <view class='des'>提货点：<input value="{{item.door_number}}" bindinput='inputAddressDes' placeholder="请输入详细门牌号如：2号楼3单元203" type="text" name=""/></view>
 
     </view>
     <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
@@ -35,7 +35,7 @@
     <view class='content' data-id="{{item.id}}" bindtap='selectAddress'>
       <view class='name'>{{item.name}}</view>
       <view class='des'>{{item.address}}</view>
-      <view wx:if="{{item.details}}">详细门牌号：{{item.details}}</view>
+      <view wx:if="{{item.door_number}}">详细门牌号：{{item.door_number}}</view>
 
     </view>
     <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
@@ -66,7 +66,7 @@
     <view class='content' data-id="{{item.id}}" bindtap='moveAddress'>
       <view class='name'>{{item.name}}</view>
       <view class='des'>{{item.address}}</view>
-      <view class='des' wx:if="{{item.details}}">详细门牌号：{{item.details}}</view>
+      <view class='des' wx:if="{{item.door_number}}">提货点：{{item.door_number}}</view>
     </view>
     <view class='delete' bindtap='deleteAddress' data-type="old" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
   </view>

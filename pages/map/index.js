@@ -32,6 +32,19 @@ Page({
 
       },
     })
+    wx.getStorage({
+      key: 'nowCheckAddress',
+      success: function (res) {
+        console.log("=====++++",res)
+
+        if (res.data && res.data[0]) {
+          _this.setData({
+            newAddress: res.data
+          })
+        }
+
+      },
+    })
 
   },
   limitChange(e) {
@@ -51,7 +64,7 @@ Page({
   },
   inputAddressDes({ detail }){
     let val = detail.value.replace(/^(\s*)|(\s*)$/g, "");
-    this.data.newAddress[0].details = val;
+    this.data.newAddress[0].door_number = val;
 
   },
   addAddress(){
@@ -128,7 +141,7 @@ Page({
       wx.showToast({ title: "请先添加地址", icon: "none" })
       return;
     }
-    if (!this.data.newAddress[0].details && this.data.buyType == 1) {
+    if (!this.data.newAddress[0].door_number && this.data.buyType == 1) {
       wx.showToast({ title: "请填写详细地址", icon: "none" })
       return;
     }
