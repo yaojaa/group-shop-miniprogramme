@@ -99,8 +99,6 @@ Page({
                         countdownTime:new Date(res.data.data.goods.sell_end_time*1000).getTime()
                     })
 
-
-
                   cardConfig = {  //绘制配置
                     headImg: this.data.seller_user.head_pic,
                     userName: this.data.seller_user.nickname,
