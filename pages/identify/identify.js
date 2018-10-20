@@ -27,6 +27,11 @@ Page({
                         content: '保存存成',
                         type: 'success'
                     });
+                }else{
+                	$Toast({
+                        content: res.data.msg,
+                        type: 'error'
+                    });
                 }
             }
         })
