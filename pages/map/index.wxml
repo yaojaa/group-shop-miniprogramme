@@ -14,7 +14,8 @@
   </view>
   <view class='line'></view>
 <block wx:for="{{newAddress}}" wx:key="id">
-  <view class='address' wx:if="{{index == 0}}">
+  <view class='address'>
+  <!-- <view class='address' wx:if="{{index == 0}}"> -->
     <view class='icon-img'>
       <image mode="aspectFit" src="{{location}}"></image>
     </view>
@@ -24,10 +25,10 @@
       <view class='des'>提货点：<input value="{{item.details}}" bindinput='inputAddressDes' placeholder="请输入详细门牌号如：2号楼3单元203" type="text" name=""/></view>
 
     </view>
-    <view class='delete'><icon type="success" size="18"/></view>
+    <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
   </view>
 
-  <view class='address' wx:else>
+  <!-- <view class='address' wx:else>
     <view class='icon-img'>
       <image mode="aspectFit" data-id="{{item.id}}" src="{{location}}"></image>
     </view>
@@ -38,11 +39,12 @@
 
     </view>
     <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
-  </view>
+  </view> -->
 
 
   <view class='line'></view>
 </block>
+<block wx:if="{{!newAddress[0]}}">
   <view class='add-address' wx:if="{{openLocation}}" bindtap='addAddress'>
 <i-button  class="button" shape="circle" type="success"  long="true" size="large">+添加地点</i-button>
 
@@ -51,6 +53,7 @@
   <view class='get-location' wx:else>
     <button plain open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>新地点</text></button>
   </view>
+</block>
 </view>
 <block wx:if="{{oldAddress.length > 0}}">
 <view class='history'>历史记录（{{oldAddress.length}}），点击下面记录添加活动地点</view>
