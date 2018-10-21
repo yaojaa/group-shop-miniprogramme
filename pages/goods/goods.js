@@ -229,10 +229,10 @@ Page({
 
                let dis =  util.distance(latitude,longitude,la2,lo2)
                //大于3公里
-               if(dis>3){
+               if(dis>3 && this.data.delivery_method ==2){
 
                $Message({
-                content: '您的位置不在范围内,将不能参与哦',
+                content: '您的位置不在取货范围内,请注意！',
                 type: 'warning',
                 duration: 5
               })

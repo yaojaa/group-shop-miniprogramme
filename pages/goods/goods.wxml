@@ -37,16 +37,22 @@
         </view>
     <view class="page-wrap">
         <view class="countdownTime">
-            <block wx:if="{{countdownTime}}">
+            <block wx:if="{{countdownTime && goods._expires ==0 }}">
                 <view class="time-block-box">
                     <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="time-block" show-day="{{true}}">
                     </i-count-down>
                 </view>
             </block>
+
+            <block wx:else>
+                {{['开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires+1]}}
+            </block>
+            
         </view>
         <view class='goods-info'>
             <view class="goods-title">
                 <text>{{goods.goods_name}}</text>
+
             </view>
             <view class="goods-price">
                 <view wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}" class="goods-price-item text-justify scale-1px">

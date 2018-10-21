@@ -92,6 +92,22 @@
   color: #39ac69 !important;
 }
 
+.warning{
+  color: #ff9900
+
+}
+
+.success{
+  color: #19be6b
+
+}
+
+.error{
+  color: #ed3f14
+
+
+}
+
 .text-default {
   color: #333;
 }

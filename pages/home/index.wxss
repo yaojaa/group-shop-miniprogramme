@@ -268,7 +268,7 @@
   display: flex;
   justify-content: space-between;
   line-height: 30px;
-  padding: 0 20px;
+  padding: 10px 20px 0;
 }
 .paycell .pay .left{
   font-size: 16px;

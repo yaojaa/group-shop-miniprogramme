@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -122,6 +122,12 @@
 					"name": "完善资料",
 					"pathName": "pages/identify/identify",
 					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "订单管理",
+					"pathName": "pages/ordermanage/list",
+					"query": "id=21"
 				}
 			]
 		}

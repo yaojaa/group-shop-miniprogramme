@@ -89,6 +89,7 @@ Page({
    */
   onLoad: function (options) {
 
+
       let amountMoney = 0;
       let cart = wx.getStorageSync('cart')
 
@@ -106,6 +107,7 @@ Page({
       cover_pic:wx.getStorageSync('goods').cover_pic,
       goods_name:wx.getStorageSync('goods').goods_name,
       delivery_method:wx.getStorageSync('goods').delivery_method,
+      mobile:app.globalData.userInfo.mobile
         })
 
 

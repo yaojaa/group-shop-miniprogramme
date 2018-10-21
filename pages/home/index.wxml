@@ -17,7 +17,7 @@
     </navigator>
         <view class='add-goods' bindtap="new_btn">
             <i-icon type="add" size="20" />
-            <text>发布商品</text>
+            <text>发布团购</text>
         </view>
     </view>
     <view class="count-box">
@@ -48,7 +48,7 @@
         <view class='goods'>
           <view class='cell'>
             <view class='left'>{{order.spec_key_name}} x {{order.goods_num}}</view>
-            <view class='right'><text>￥</text>{{item.goods_price}}</view>
+            <view class='right'><text class="warning">￥{{order.goods_price}}</text></view>
           </view>
         
         </view>
@@ -57,13 +57,13 @@
       </view>
       <view class="user">
         <view class='name'>{{item.consignee}}</view>
-        <view class='date'>2018-08-12</view>
+        <view class='date'>{{item.pay_time}}</view>
       </view>
       <view class='line'></view>
       <view class='paycell'>
         <view class='pay'>
           <view class='left'>   {{['待支付','已支付','支付失败'][item.pay_status]}}   <i-button wx:if="{{item.pay_status!==1}}" type="primary" size="small" long="{{true}}">去支付</i-button></view>
-          <view class='right'>￥{{item.goods_price}}</view>
+          <view class="right warning">￥{{item.goods_price}}</view>
         </view>
         <view class='icon'>
          
@@ -103,7 +103,11 @@
 
                         </view>
                     </view>
-                    <view class="fd">开团中</view>
+                    <view class="fd">
+
+<!--                                 _expires //是否过期 1正常 2未开始 3已过期
+ -->{{['开团中','未开始','已截团'][item._expires]}}
+                </view>
                 </view>
                 <view class="goods-count">
                     <view class="count-item">
