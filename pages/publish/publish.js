@@ -16,9 +16,15 @@ const default_start_time = util.formatTime(date)
 date.setDate(date.getDate() + 5);
 const default_end_time = util.formatTime(date)
 
+import Card from '../../palette/card';
+const qiniuUploader = require("../../utils/qiniuUploader");
+let cardConfig = {};
+cardConfig.headsImgArr = [];
 
 Page({
   data: {
+    painterData: {},
+    imagePath: "",
     isShowTimePicker:false,
     photoUrls: [],
     content_imgs:[],
@@ -259,9 +265,43 @@ Page({
 
 
   },
+  onImgOk(e) { //绘制成功
+    let _this = this;
+    console.log(e)
+    qiniuUploader.upload(e.detail.path, (rslt) => {
+      let data = {
+        goods_id: this.data.goods_id,
+        shareimg: rslt.imageURL
+      };
+      wx.request({
+        method: 'post',
+        url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
+        data,
+        success: (res) => {
+          wx.hideLoading()
+          if (res.data.code == 0) {
+             wx.redirectTo({
+               url: '../goods/goods?goods_id=' + this.data.goods_id
+             })
+
+          } else {
+            wx.showModal({
+              title: res.data.msg,
+              showCancel: false
+            })
+          }
+        }
+      })
+      // _this.setData({
+      //   imagePath: `http://img.daohangwa.com/${rslt.key}`
+      // })
+    })
+  },
+  onImgErr(e) { //绘制失败
+    console.log("绘制失败=======>>>>", e)
+  },
     //提交表单
     submitForm(e) {
-
         console.log(e.detail.value)
      // 传入表单数据，调用验证方法
         if (!this.WxValidate.checkForm(e)) {
@@ -301,6 +341,7 @@ Page({
             content_imgs:this.data.content_imgs
           }
           )
+          wx.showLoading()
            //提交
            wx.request({
            method:'post',
@@ -311,13 +352,23 @@ Page({
            url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
               data,
               success:  (res) =>{
-                if(res.data.code == 0){
+                if (res.data.code == 0) {
+                    //绘制配置
+                  cardConfig.headImg = app.globalData.userInfo.head_pic;
+                  cardConfig.userName = app.globalData.userInfo.nickname;
+                  cardConfig.address = this.data.sell_address;
+                  cardConfig.date = util.formatTime(new Date(this.data.sell_end_time)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
+                  cardConfig.content = e.detail.value.goods_content;
+                  this.data.goods_id = res.data.data.goods_id;
 
-                   wx.redirectTo({
-                    url:'../goods/goods?goods_id='+res.data.data.goods_id
-                   })
+                  this.getOrderUserList(this.data.goods_id)
+
+                  //  wx.redirectTo({
+                  //   url:'../goods/goods?goods_id='+res.data.data.goods_id
+                  //  })
                  
                 }else{
+                  wx.hideLoading()
                      wx.showModal({
                         title: res.data.msg,
                         showCancel:false
@@ -437,6 +488,7 @@ Page({
                       spec_item:res.data.data.spec_goods_price,
                       isShowTimePicker:true
                   })
+                  app.globalData.sell_address = this.data.sell_address
 
 
                   wx.setStorage({
@@ -459,6 +511,40 @@ Page({
 
 
     this.initValidate()
+
+
+  },
+  getOrderUserList(goods_id) {
+
+    wx.request({
+      url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
+      data: {
+        token: app.globalData.token,
+        goods_id: goods_id
+      },
+      success: (res) => {
+
+
+
+        if (res.data.code == 0) {
+
+          res.data.data.lists.forEach(e => {
+            cardConfig.headsImgArr.push(e.user.head_pic)
+          })
+
+
+          //绘制图片
+          this.setData({
+            painterData: new Card().palette(cardConfig)
+          })
+
+        }
+
+
+
+
+      }
+    })
 
 
   },

@@ -73,6 +73,8 @@ Page({
     onLoad: function(option) {
         console.log('token',app.globalData.token)
 
+      this.getShareImg(option.goods_id);
+
         wx.request({
             url: 'https://www.daohangwa.com/api/goods/get_goods_info',
             data: {
@@ -164,43 +166,70 @@ Page({
         wx.navigateTo({
             url: '../home/index'
         })
-    },
-    getOrderUserList(goods_id){
+  },
+  getOrderUserList(goods_id) {
 
-      wx.request({
-            url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
-            data: {
-                token :app.globalData.token,
-                goods_id: goods_id
-            },
-            success: (res) => {
-
-
-
-              if (res.data.code == 0) {
-
-                res.data.data.lists.forEach(e => {
-                  cardConfig.headsImgArr.push(e.user.head_pic)
-                })
-
-
-                //绘制图片
-                this.setData({
-                  painterData: new Card().palette(cardConfig),
-                  orderUsers:res.data.data.lists,
-                  orderCount:res.data.data.lists.length
-                })
-                
-              }
+    wx.request({
+      method: 'post',
+      url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
+      data: {
+        token: app.globalData.token,
+        goods_id: goods_id
+      },
+      success: (res) => {
 
 
 
+        if (res.data.code == 0) {
 
-            }
+          res.data.data.lists.forEach(e => {
+            cardConfig.headsImgArr.push(e.user.head_pic)
           })
-      
 
-    },
+
+          //绘制图片
+          this.setData({
+            // painterData: new Card().palette(cardConfig),
+            orderUsers: res.data.data.lists,
+            orderCount: res.data.data.lists.length
+          })
+
+        }
+
+
+
+
+      }
+    })
+
+
+  },
+  getShareImg(goods_id) {
+
+    wx.request({
+      url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
+      data: {
+        goods_id: goods_id
+      },
+      success: (res) => {
+        console.log("shareIMg", res)
+
+        if (res.data.code == 0) {
+          res.data.data.lists.forEach(e => {
+            cardConfig.headsImgArr.push(e.user.head_pic)
+          })
+          //绘制图片
+          this.setData({
+            imagePath: res.data.data.shareImg
+          })
+
+        }
+
+      }
+    })
+
+
+  },
     userpage() {
         wx.navigateTo({
             url: '../orderList/orderList'
