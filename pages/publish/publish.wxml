@@ -1,4 +1,8 @@
 <view class="page-body">
+  <view class='painter'>
+    <image src="{{imagePath}}"></image>
+    <painter palette="{{painterData}}" bind:imgOK="onImgOk" bind:imgErr="onImgErr"/>
+  </view>
 <view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>
 </view>
 <form bindsubmit="submitForm">
