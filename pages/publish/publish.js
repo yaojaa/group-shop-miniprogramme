@@ -18,8 +18,8 @@ const default_end_time = util.formatTime(date)
 
 import Card from '../../palette/card';
 const qiniuUploader = require("../../utils/qiniuUploader");
-let cardConfig = {};
-cardConfig.headsImgArr = [];
+let cardConfig = {};//绘制卡片配置信息
+cardConfig.headsImgArr = [];//绘制卡片订购头像集合
 
 Page({
   data: {

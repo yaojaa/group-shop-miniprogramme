@@ -6,7 +6,7 @@
           <icon type="search" size="14"/>
         </view>
         <view class='input'>
-          <input placeholder="收货人 订单号" bindinput="searchInput" value="{{searchContent}}" />
+          <input placeholder="微信昵称或手机号" bindinput="searchInput" value="{{searchContent}}" />
         </view>
         <view class='icon delete' bindtap="deleteSearchContent" hidden="{{deleteShow}}">
           <icon type="clear" size="14"/>
@@ -17,11 +17,11 @@
       </view>
     </view>
   </view>
-  <i-tabs color="#ff4891" current="{{ current }}" bindchange="handleChange">
+<!--   <i-tabs color="#ff4891" current="{{ current }}" bindchange="handleChange">
     <i-tab key="tab1" title="全部"></i-tab>
     <i-tab key="tab2" title="待确认"></i-tab>
     <i-tab key="tab3" title="待发货"></i-tab>
-  </i-tabs>
+  </i-tabs> -->
   <view class='session'>
     <view class='order-list' wx:for="{{dataList}}" wx:key="{{index}}">
       <view class='list-h'>
@@ -29,7 +29,7 @@
         
         <!-- <text class="state warning">{{['您有新订单待确认','订单已确认','已收货','已取消','已完成','已作废'][item.order_status]}}</text> -->
     
-    <text class="state warning" wx:if="{{item.order_status==0}}">您有新订单待处理</text>
+    <text class="state warning" wx:if="{{item.order_status==0}}">新订单待处理！</text>
     <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text>
         <text class="state success" wx:if="{{item.shipping_status==1}}">已发货</text>
 
@@ -60,22 +60,26 @@
     <button class="button" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm" >确认订单</button>
   </form>
 
+ <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true" >
+    <button class="button" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openCancel" >取消订单</button>
+  </form>
 
 
-  <i-button  data-id="{{item.order_id}}" class="button"  shape="circle" wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindtap="openCancel" type="error"  long="true" size="large">取消订单</i-button>
+ <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true" >
+    <button class="button" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openPay" >已线下支付</button>
+  </form>
 
-  <i-button  data-id="{{item.order_id}}" class="button"  shape="circle" wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindtap="openPay" type="warning"  long="true" size="large">已线下支付</i-button>
+ <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true" >
+    <button class="button" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openTips" >提醒取货</button>
+  </form>
 
 
-         <i-button data-id="{{item.order_id}}" class="button" shape="circle" wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindtap="openShipping" type="success"  long="true" size="large">提醒取货</i-button>
 
-       <i-button data-id="{{item.order_id}}" class="button" shape="circle" wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindtap="openShipping" type="success"  long="true" size="large">确认发货</i-button>
- 
-      
-      
- <!--        <i-button wx:if="{{item.pay_status !== 1}}" plain='true' size="large" data-id="1"  bindtap="openPriceAlert">支付</i-button> -->
+ <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true" >
+    <button class="button" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openShipping" >确认发货</button>
+  </form>
 
-    
+
       </view>
     </view>
 
@@ -97,6 +101,11 @@
   <i-modal title="确认已支付" visible="{{ visible4_pay }}"  bind:ok="setPay" bind:cancel="closePay">
     <view class="price-input"><input bindinput="noteInput" value="{{note}}"  placeholder="备注(选填)"  /></view>
   </i-modal>
+
+  <i-modal title="提醒取货" visible="{{ visible5_tips }}"  bind:ok="setPay" bind:cancel="closePay">
+    <view class="price-input"><input bindinput="noteInput" value="{{note}}"  placeholder="如：请明天周六到2号楼203取货"  /></view>
+  </i-modal>
+
 
 
 <i-message id="message" />

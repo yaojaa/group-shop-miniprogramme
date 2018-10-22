@@ -226,21 +226,18 @@ Page({
   getShareImg(goods_id) {
 
     wx.request({
+      method: "post",
       url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
       data: {
         goods_id: goods_id
       },
       success: (res) => {
-        console.log("shareIMg", res)
+        console.log("shareIMg", res.data.data.shareimg, this.data.imagePath)
 
         if (res.data.code == 0) {
-          // res.data.data.lists.forEach(e => {
-          //   cardConfig.headsImgArr.push(e.user.head_pic)
-          // })
-          // //绘制图片
-          // this.setData({
-          //   imagePath: res.data.data.shareImg
-          // })
+          this.setData({
+            imagePath: res.data.data.shareimg
+          })
 
         }
 

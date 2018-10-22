@@ -16,6 +16,7 @@ Page({
     visible2:false,
     visible3:false,//取消订单
     visible4_pay:false,//设为支付
+    visible5_tips:false, //提醒取货
     note:'',//备注
     actionsConfirm: [
             {
@@ -126,6 +127,7 @@ Page({
                 token: app.globalData.token,
                 order_id:this.data.order_id,
                 note:this.data.note,
+                form_id:this.data.formId,
                 action:'pay'
             },
             success: (res) => {
@@ -187,7 +189,9 @@ Page({
                 order_id:this.data.order_id,
                 note:this.data.note,
                 shipping_name:'',
-                invoice_no:''
+                invoice_no:'',
+                form_id:this.data.formId
+
             },
             success: (res) => {
                    this.setData({
@@ -247,7 +251,9 @@ Page({
                 data: {
                     token: app.globalData.token,
                     order_id:this.data.order_id,
-                    action:'cancel'
+                    action:'cancel',
+                    form_id:this.data.formId
+
                 },
                 success: (res) => {
 
@@ -303,7 +309,7 @@ Page({
                     token: app.globalData.token,
                     order_id:this.data.order_id,
                     action:'confirm',
-                    formId:this.data.formId
+                    form_id:this.data.formId
                 },
                 success: (res) => {
 
@@ -375,6 +381,8 @@ Page({
   },
    formSubmit: function (e) {
     this.data.formId = e.detail.formId
+
+    console.log(this.data.formId)
    }
 
 })
