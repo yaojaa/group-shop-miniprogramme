@@ -193,25 +193,35 @@
 /**订单*/
 
 .order{
-  margin: 5px;
+  margin: 32rpx 0;
   background-color: #fffcf7;
-  border-radius: 8px;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0px 0px 3px #ddd
 }
 .order .title{
-  font-size: 16px;
-  height: 40px;
-  line-height: 40px;
-  margin:0  20px;
+  font-size: 28rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  margin:0  10rpx;
+  padding: 0 10rpx;
   font-weight: bold;
   border-bottom: 1px dotted #ccc;
+}
+
+.order .title .state{
+  font-size: 12px;
+  color: #999;
+  position: absolute;
+  right: 15rpx;
+  top: 5rpx
 }
 .line{
   position: relative;
   height: 0;
   font-size: 0;
   border-top: 1px dotted #ccc;
-  margin: 0 20px;
+  margin: 10px 5px;
 }
 .line::before
 ,.line::after{
@@ -305,7 +315,7 @@
   border-top: 1px dotted #ccc;
   padding: 10px 0;
   margin: 0 20px;
-  font-size: 16px;
+  font-size: 26rpx;
 }
 .user .img{
   height: 40px;
@@ -320,4 +330,29 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+
+
+.yuan1{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: #fff;
+            left: -10px;
+            top:40px;
+            box-shadow: inset -1px -1px 3px #ddd
+
+        }
+.yuan2{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+    right: -10px;
+    top:40px;
+    box-shadow: inset 1px 1px 3px #ddd
 }

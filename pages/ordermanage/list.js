@@ -213,6 +213,7 @@ Page({
 
   },
   openConfirm({target}){
+    console.log(target)
     this.setData({
       visible1:true,
       order_id:target.dataset.id
@@ -301,7 +302,8 @@ Page({
                 data: {
                     token: app.globalData.token,
                     order_id:this.data.order_id,
-                    action:'confirm'
+                    action:'confirm',
+                    formId:this.data.formId
                 },
                 success: (res) => {
 
@@ -370,7 +372,9 @@ Page({
   },
   trim(str){ 
     return str.replace(/(^\s*)|(\s*$)/g, ""); 
-  }
-
+  },
+   formSubmit: function (e) {
+    this.data.formId = e.detail.formId
+   }
 
 })

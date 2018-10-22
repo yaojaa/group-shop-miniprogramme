@@ -12,6 +12,7 @@ const app = getApp()
 
 Page({
     data: {
+      hasScope:false,//是否授权
         imgUrls: [
         ],
         goods: {},
@@ -30,6 +31,15 @@ Page({
         imagePath: "",
   },
   onReady: function () {
+
+    app.getUserInfoScopeSetting().then(res=>{
+
+      this.setData({
+        hasScope:res
+      })
+
+
+    })
 
   },
   onImgOk(e) { //绘制成功
@@ -78,7 +88,7 @@ Page({
         wx.request({
             url: 'https://www.daohangwa.com/api/goods/get_goods_info',
             data: {
-                token :app.globalData.token,
+                // token :app.globalData.token,
                 goods_id: option.goods_id
             },
             success: (res) => {
@@ -101,14 +111,14 @@ Page({
                         countdownTime:new Date(res.data.data.goods.sell_end_time*1000).getTime()
                     })
 
-                  cardConfig = {  //绘制配置
-                    headImg: this.data.seller_user.head_pic,
-                    userName: this.data.seller_user.nickname,
-                    address: res.data.data.sell_address[0].name,
-                    date: util.formatTime(new Date(res.data.data.goods.sell_end_time * 1000)).replace(/^(\d{4}-)|(:\d{2})$/g,""),
-                    content: this.data.goods.goods_content,
-                    headsImgArr: []
-                  };
+                  // cardConfig = {  //绘制配置
+                  //   headImg: this.data.seller_user.head_pic,
+                  //   userName: this.data.seller_user.nickname,
+                  //   address: res.data.data.sell_address[0].name,
+                  //   date: util.formatTime(new Date(res.data.data.goods.sell_end_time * 1000)).replace(/^(\d{4}-)|(:\d{2})$/g,""),
+                  //   content: this.data.goods.goods_content,
+                  //   headsImgArr: []
+                  // };
 
                 }
             
@@ -167,6 +177,15 @@ Page({
             url: '../home/index'
         })
   },
+   getUserInfoEvt: function (e) {
+    app.globalData.userInfo = e.detail.userInfo
+    app.login_third(e.detail).then((res)=>{ 
+          console.group('登陆成功:',res)
+                     this.buy()
+                    })
+    .catch( e => console.log(e) )
+
+  },
   getOrderUserList(goods_id) {
 
     wx.request({
@@ -182,12 +201,12 @@ Page({
 
         if (res.data.code == 0) {
 
-          res.data.data.lists.forEach(e => {
-            cardConfig.headsImgArr.push(e.user.head_pic)
-          })
+          // res.data.data.lists.forEach(e => {
+          //   cardConfig.headsImgArr.push(e.user.head_pic)
+          // })
 
 
-          //绘制图片
+          // //绘制图片
           this.setData({
             // painterData: new Card().palette(cardConfig),
             orderUsers: res.data.data.lists,
@@ -215,13 +234,13 @@ Page({
         console.log("shareIMg", res)
 
         if (res.data.code == 0) {
-          res.data.data.lists.forEach(e => {
-            cardConfig.headsImgArr.push(e.user.head_pic)
-          })
-          //绘制图片
-          this.setData({
-            imagePath: res.data.data.shareImg
-          })
+          // res.data.data.lists.forEach(e => {
+          //   cardConfig.headsImgArr.push(e.user.head_pic)
+          // })
+          // //绘制图片
+          // this.setData({
+          //   imagePath: res.data.data.shareImg
+          // })
 
         }
 
@@ -286,6 +305,8 @@ Page({
 
     },
     buy() {
+
+
 
       if(this.data.amountMoney == 0){
         return 

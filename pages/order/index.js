@@ -29,9 +29,7 @@ Page({
     total:0
   },
   getPhoneNumber (e) { 
-    console.log(e.detail.errMsg) 
-    console.log(e.detail.iv) 
-    console.log(e.detail.encryptedData) 
+
     wx.request({
       url:'https://www.daohangwa.com/api/user/get_wx_mobile',
       method:'post',
@@ -168,7 +166,7 @@ Page({
 
 
 
-                this.pay(res.data.data.order_id,1)
+                this.pay(res.data.data.order_id)
            }
               }
               )
@@ -177,8 +175,7 @@ Page({
   sendTemplateMessage(){
 
   },
-   pay:function(order_id,total_fee) {  
-   var total_fee = total_fee;   
+   pay:function(order_id) {  
        wx.login({ success: res => { 
        var code = res.code;      
        wx.request({
@@ -206,14 +203,17 @@ Page({
                   url:'https://www.daohangwa.com/api/pay/orderpay',
                   data:{
                   token:app.globalData.token,
-                  order_id:order_id
+                  order_id:order_id,
+                  success:()=>{
+                      wx.redirectTo({
+                       url:'../paySuccess/index?order_id='+order_id
+                     })
+                  }
                   }
 
                 })
 
-                wx.redirectTo({
-                  url:'../paySuccess/index?order_id='+order_id
-                })
+               
                 
               },
               fail: function (res) { 

@@ -23,11 +23,11 @@
     <view class="count-box">
         <view class="count-item">
             <text class="label">我参与的</text>
-            <text class="num">2</text>
+            <text class="num">{{order_number}}</text>
         </view>
            <view class="count-item">
             <text class="label">我发布的</text>
-            <text class="num">0</text>
+            <text class="num">{{goods_number}}</text>
         </view>
         <view class="count-item">
             <text class="label" bindtap="fansPage">金额</text>
@@ -40,8 +40,8 @@
 <i-panel title="我参与的">
     <view style="padding: 5px 10px;">
 
-         <view class='order' wx:for="{{orders}}" wx:key="id">
-      <view class='title'>{{item.goods.goods_name}} <text> 订单{{['待确认','已确认','已收货','已取消','已完成','已作废'][item.order_status]}}
+   <view class='order' wx:for="{{orders}}" wx:key="id">
+      <view class='title'>{{item.goods.goods_name}} <text class="state"> {{['待确认','已确认','已收货','已取消','已完成','已作废'][item.order_status]}}
 </text> </view>
       <!-- <view class='line'></view> -->
       <view class="goodsList" wx:for="{{item.order_goods}}" wx:for-item="order" wx:key="@index">
@@ -57,20 +57,21 @@
       </view>
       <view class="user">
         <view class='name'>{{item.consignee}}</view>
-        <view class='date'>{{item.pay_time}}</view>
+        <view class='date'>{{item._format_add_time}}</view>
       </view>
       <view class='line'></view>
       <view class='paycell'>
         <view class='pay'>
-          <view class='left'>   {{['待支付','已支付','支付失败'][item.pay_status]}}   <i-button wx:if="{{item.pay_status!==1}}" type="primary" size="small" long="{{true}}">去支付</i-button></view>
+          <view class='left'>   {{['待支付','已支付','支付失败'][item.pay_status]}}   </view>
           <view class="right warning">￥{{item.goods_price}}</view>
         </view>
-        <view class='icon'>
-         
-        </view>
-      </view>
+<view class="yuan1"></view>
+<view class="yuan2"></view>
+
   </view>
 
+   <i-button bindtap="pay" data-id="{{item.order_id}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+        </view>
 
 
     </view>
@@ -96,7 +97,7 @@
                         <view class="tit">{{item.goods_name}}</view>
                         <view class="link">
                           <button size="mini" bindtap="editPage" data-url="{{item.goods_id}}">编辑修改</button>
-                            <button size="mini" bindtap="detailPage" data-url="{{item.goods_id}}">订单管理</button>
+                           
 
                            
 
@@ -106,22 +107,22 @@
                     <view class="fd">
 
 <!--                                 _expires //是否过期 1正常 2未开始 3已过期
- -->{{['开团中','未开始','已截团'][item._expires]}}
+ -->{{['','开团中','未开始','已截团'][item._expires]}}
                 </view>
                 </view>
                 <view class="goods-count">
                     <view class="count-item">
                         <text class="label">浏览次数</text>
-                        <text class="num">100</text>
+                        <text class="num">{{item._visit_count}}</text>
                     </view>
-                    <view class="count-item">
-                        <text class="label">订单数量</text>
-                        <text class="num">100</text>
+                    <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}">
+                        <text class="label">订单管理</text>
+                        <text class="num">{{item._order_count}}</text>
                     </view>
                   
                     <view class="count-item">
                         <text class="label">收款总额</text>
-                        <text class="num">￥3423</text>
+                        <text class="num">￥{{item._order_amount}}</text>
                     </view>
                 </view>
             </view>

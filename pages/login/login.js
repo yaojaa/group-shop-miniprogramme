@@ -7,7 +7,6 @@ Page({
     hasScope:true
   },
   onLoad: function () {
-          console.log('我page先执行@')
 
           if(app.globalData.userInfo){
                this.setData({

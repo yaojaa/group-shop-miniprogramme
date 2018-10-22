@@ -37,7 +37,7 @@
         </view>
     <view class="page-wrap">
         <view class="countdownTime">
-            <block wx:if="{{countdownTime && goods._expires ==0 }}">
+            <block wx:if="{{countdownTime && goods._expires ==1 }}">
                 <view class="time-block-box">
                     <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="time-block" show-day="{{true}}">
                     </i-count-down>
@@ -45,7 +45,7 @@
             </block>
 
             <block wx:else>
-                {{['开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires+1]}}
+                {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
             </block>
             
         </view>
@@ -93,6 +93,11 @@
             </i-cell>
         </i-cell-group>
     </view>
+    <view class="piclist">
+        <view class="pic" wx:for="{{goods.content_imgs}}" wx:for-item="img" >
+                  <image src="{{img}}" mode="widthFix" />
+         </view>
+     </view>
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
             <i-icon type="homepage" size="26" color="#333" />
@@ -103,7 +108,7 @@
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="cart-panel-hd">
-                <!--   <image src="{{imgUrls[0]}}" class="goods-thumbnail" /> -->
+                  <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
                 请选择规格数量
             </view>
             <i-panel>
@@ -122,7 +127,10 @@
                     <text class=" text-red f20">¥{{amountMoney}}</text>
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
-                <view class="settlement" bindtap="buy">下一步</view>
+                <view wx:if="{{!hasScope}}">
+                    <button class="settlement" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">下一步</button>
+                </view> 
+                <view wx:else class="settlement" bindtap="buy">下一步</view>
             </view>
         </view>
     </i-action-sheet>

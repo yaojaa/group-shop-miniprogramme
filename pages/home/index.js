@@ -7,6 +7,8 @@ Page({
      */
     data: {
         userInfo: {},
+        order_number:0,
+        goods_number:0,
         goodslist: []
     },
 
@@ -56,7 +58,8 @@ Page({
             success: (res) => {
                 if (res.data.code == 0) {
                     this.setData({
-                        goodslist: res.data.data.goodslist
+                        goodslist: res.data.data.goodslist,
+                        goods_number:res.data.data.goodslist.length
                     })
                 }
             }
@@ -73,7 +76,9 @@ Page({
             success: (res) => {
                 if (res.data.code == 0) {
                     this.setData({
-                        orders: res.data.data.order_list.splice(0,5)
+                        order_number:res.data.data.order_list.length,
+                        orders: res.data.data.order_list
+
                     })
                 }
             }
@@ -100,6 +105,60 @@ Page({
         wx.navigateTo({
             url: '../ordermanage/list?goods_id=' + url,
         })
+    },
+    pay({target}) {
+
+        console.log(target)
+
+        let  order_id = target.dataset.id;
+     
+       wx.login({ success: res => { 
+       var code = res.code;      
+       wx.request({
+       url: 'https://www.daohangwa.com/api/pay/pay',
+       method: "POST", 
+       data: { 
+        order_id:order_id,
+       code: code, 
+       token :app.globalData.token,
+
+       }, 
+       success: function (res) {  //后端返回的数据 
+             var data = res.data.data;          
+             console.log(data);          
+             console.log(data["timeStamp"]);          
+         wx.requestPayment({
+              timeStamp: data['timeStamp'],
+              nonceStr: data['nonceStr'], 
+              package: data['package'], 
+              signType: data['signType'], 
+              paySign: data['paySign'], 
+              success: function (res) { 
+              
+                wx.request({
+                  url:'https://www.daohangwa.com/api/pay/orderpay',
+                  data:{
+                  token:app.globalData.token,
+                  order_id:order_id
+                  }
+
+                })
+
+                wx.redirectTo({
+                  url:'../paySuccess/index?order_id='+order_id
+                })
+                
+              },
+              fail: function (res) { 
+               
+               }
+                  
+              });  
+                 }
+                       })
+                }
+              })   
+
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

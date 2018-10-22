@@ -54,8 +54,13 @@
       
       <view class="list-button">
      
-  <i-button data-id="{{item.order_id}}" class="button" shape="circle" wx:if="{{item.order_status == 0 && item.pay_status == 1}}" bindtap="openConfirm" type="success"  long="true" size="large">确认订单</i-button>
+
   
+  <form wx:if="{{item.order_status == 0 && item.pay_status == 1}}" bindsubmit="formSubmit" report-submit="true" >
+    <button class="button" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm" >确认订单</button>
+  </form>
+
+
 
   <i-button  data-id="{{item.order_id}}" class="button"  shape="circle" wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindtap="openCancel" type="error"  long="true" size="large">取消订单</i-button>
 

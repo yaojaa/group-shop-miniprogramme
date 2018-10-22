@@ -348,3 +348,11 @@
   left: -200%;
   top: 0;
 }
+.pic{
+    text-align: center;
+    width: 100%
+}
+
+.pic img{
+    width: 100%
+}

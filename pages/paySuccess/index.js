@@ -94,7 +94,7 @@ Page({
         //   console.log(res.target)
         // }
         return {
-            title: app.globalData.userInfo.nickName + '刚刚购买了',
+            title: app.globalData.userInfo.nickname + '刚刚购买了',
             path: '/pages/goods/goods'
         }
     }
