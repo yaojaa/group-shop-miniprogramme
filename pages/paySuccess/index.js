@@ -25,7 +25,8 @@ Page({
         wx.request({
             url: 'https://www.daohangwa.com/api/user/get_order_detail',
             data: {
-                token: app.globalData.token,
+                //token: app.globalData.token,
+                token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1fQ.5hiBPB_iUhTuvYhDP4n_0MZvXJGhOL0cLtG62qFpw50',
                 order_id: this.data.order_id
             },
             success: (res) => {
@@ -33,15 +34,22 @@ Page({
                     this.setData({
                         orders_info: res.data.data.order,
                         order_goods: res.data.data.order_goods,
-                        order_time: this.getLocalTime(res.data.data.order.add_time)
+                        order_time: this.timetrans(res.data.data.order.add_time)
                     })
                 }
             }
         })
 
     },
-    getLocalTime(nS) {
-        return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+    timetrans(date){
+        var date = new Date(date*1000);//如果date为10位不需要乘1000
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+        var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+        var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+        var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+        return Y+M+D+h+m+s;
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -94,7 +102,7 @@ Page({
         //   console.log(res.target)
         // }
         return {
-            title: app.globalData.userInfo.nickName + '刚刚购买了',
+            title: app.globalData.userInfo.nickname + '刚刚购买了',
             path: '/pages/goods/goods'
         }
     }

@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -115,7 +115,7 @@
 					"id": 12,
 					"name": "支付成功",
 					"pathName": "pages/paySuccess/index",
-					"query": "order_id=4"
+					"query": "order_id=7"
 				},
 				{
 					"id": -1,

@@ -43,7 +43,7 @@ page{
   background-color: #f7efe3;
   border-radius: 8px;
   overflow-x: hidden;
-  border:1px solid #fff9ee
+  /*border:1px solid #fff9ee*/
 }
 .order .title{
   font-size: 16px;
@@ -167,7 +167,7 @@ page{
   border-top: 1px dotted #ccc;
   padding: 10px 0;
   margin: 0 20px;
-  font-size: 16px;
+  font-size: 30rpx;
 }
 .user .img{
   height: 30px;
@@ -176,7 +176,7 @@ page{
   overflow: hidden;
 }
 .user .name{
-  width: 100px;
+  width: 200rpx;
   flex-grow: 1;
   padding-left: 10px;
   white-space: nowrap;
