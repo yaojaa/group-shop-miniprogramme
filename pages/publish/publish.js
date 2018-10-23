@@ -16,9 +16,8 @@ const default_start_time = util.formatTime(date)
 date.setDate(date.getDate() + 5);
 const default_end_time = util.formatTime(date)
 
-import Card from '../../palette/card';
 const qiniuUploader = require("../../utils/qiniuUploader");
-let cardConfig = {};//绘制卡片配置信息
+const cardConfig = {};//绘制卡片配置信息
 cardConfig.headsImgArr = [];//绘制卡片订购头像集合
 
 Page({
@@ -361,7 +360,8 @@ Page({
                   cardConfig.content = e.detail.value.goods_content;
                   this.data.goods_id = res.data.data.goods_id;
 
-                  this.getOrderUserList(this.data.goods_id)
+                  // this.getOrderUserList(this.data.goods_id)
+                  util.drawShareImg(cardConfig, this.data.goods_id, this);
 
                   //  wx.redirectTo({
                   //   url:'../goods/goods?goods_id='+res.data.data.goods_id
@@ -514,39 +514,27 @@ Page({
 
 
   },
-  getOrderUserList(goods_id) {
+  // getOrderUserList(goods_id) {
 
-    wx.request({
-      url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
-      data: {
-        token: app.globalData.token,
-        goods_id: goods_id
-      },
-      success: (res) => {
+  //   wx.request({
+  //     url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
+  //     data: {
+  //       token: app.globalData.token,
+  //       goods_id: goods_id
+  //     },
+  //     success: (res) => {
+  //       if (res.data.code == 0) {
+  //         res.data.data.lists.forEach(e => {
+  //           cardConfig.headsImgArr.push(e.user.head_pic)
+  //         })
+  //         //绘制图片
+  //         this.setData({
+  //           painterData: new Card().palette(cardConfig)
+  //         })
 
-
-
-        if (res.data.code == 0) {
-
-          res.data.data.lists.forEach(e => {
-            cardConfig.headsImgArr.push(e.user.head_pic)
-          })
-
-
-          //绘制图片
-          this.setData({
-            painterData: new Card().palette(cardConfig)
-          })
-
-        }
-
-
-
-
-      }
-    })
-
-
-  },
+  //       }
+  //     }
+  //   })
+  // },
   inputDuplex:util.inputDuplex
 })

@@ -183,3 +183,8 @@ page{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.painter{
+  position: fixed;
+  left: -200%;
+  top: 0;
+}

@@ -1,4 +1,8 @@
 <view class="container">
+  <view class='painter'>
+    <image src="{{imagePath}}"></image>
+    <painter palette="{{painterData}}" bind:imgOK="onImgOk" bind:imgErr="onImgErr"/>
+  </view>
     <i-message id="message" />
     <!--自提-->
     <i-panel  class="address" wx:if="{{delivery_method==1}}">

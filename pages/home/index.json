@@ -13,6 +13,7 @@
     "i-input": "../../iView/input/index",
     "i-badge": "../../iView/badge/index",
     "i-icon": "../../iView/icon/index",
-    "i-button": "../../iView/button/index"
+    "i-button": "../../iView/button/index",
+    "painter": "/iView/painter/painter"
   }
 }

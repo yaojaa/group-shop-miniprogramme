@@ -1,5 +1,6 @@
 // pages/paySuccess/index.js
 const app = getApp()
+const util = require('../../utils/util')
 Page({
 
     /**
@@ -11,7 +12,9 @@ Page({
         order_id: '',
         ordersInfo: '',
         order_goods: '',
-        order_time: '',
+      order_time: '',
+      imagePath: "",
+      goods_id: ""
     },
 
     /**
@@ -20,6 +23,8 @@ Page({
     onLoad: function(options) {
         this.data.order_id = options.order_id
         this.getOrderInfo();
+        util.getShareImg(options.goods_id, this);
+        this.data.goods_id = options.goods_id;
     },
     getOrderInfo() {
         wx.request({
@@ -102,8 +107,9 @@ Page({
         //   console.log(res.target)
         // }
         return {
-            title: app.globalData.userInfo.nickname + '刚刚购买了',
-            path: '/pages/goods/goods'
+          title: app.globalData.userInfo.nickname + '刚刚购买了',
+          imageUrl: this.data.imagePath,
+          path: '/pages/goods/goods?goods_id=' + this.data.goods_id  
         }
     }
 })

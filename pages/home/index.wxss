@@ -356,3 +356,9 @@
     top:40px;
     box-shadow: inset 1px 1px 3px #ddd
 }
+
+.painter{
+  position: fixed;
+  left: -200%;
+  top: 0;
+}

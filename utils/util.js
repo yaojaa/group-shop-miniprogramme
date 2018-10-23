@@ -1,5 +1,6 @@
 const qiniuUploader = require("./qiniuUploader");
-
+import Card from '../palette/card';
+const app = getApp();
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -85,10 +86,57 @@ const distance =  (la1, lo1, la2, lo2) => {
   return s
 }
 
+//绘制分享图片
+const drawShareImg = (cardConfig, goods_id, _this) => {
+    wx.request({
+      url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
+      data: {
+        token: app.globalData.token,
+        goods_id: goods_id
+      },
+      success: (res) => {
+        if (res.data.code == 0) {
+          res.data.data.lists.forEach(e => {
+            cardConfig.headsImgArr.push(e.user.head_pic)
+          })
+          //绘制图片
+          _this.setData({
+            painterData: new Card().palette(cardConfig)
+          })
+
+        }
+      }
+    })
+}
+
+//获取分享图片
+const getShareImg = (goods_id, _this) => {
+  wx.request({
+    method: "post",
+    url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
+    data: {
+      goods_id: goods_id
+    },
+    success: (res) => {
+      console.log("shareIMg", res.data.data.shareimg, _this.data.imagePath)
+
+      if (res.data.code == 0) {
+        _this.setData({
+          imagePath: res.data.data.shareimg
+        })
+
+      }
+
+    }
+  })
+}
+
 
 module.exports = {
   formatTime,
   inputDuplex,
   uploadPicture,
-  distance
+  distance,
+  drawShareImg,
+  getShareImg
 }
