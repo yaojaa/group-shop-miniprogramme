@@ -1,0 +1,11 @@
+{
+  "window": {
+    "navigationBarTitleText": "申请提现"
+  },
+  "usingComponents": {
+    "i-panel": "../../iView/panel/index",
+    "i-input": "../../iView/input/index",
+    "i-toast": "../../iView/toast/index",
+    "i-button": "../../iView/button/index"
+  }
+}

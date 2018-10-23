@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -128,6 +128,11 @@
 					"name": "订单管理",
 					"pathName": "pages/ordermanage/list",
 					"query": "id=21"
+				},
+				{
+					"id": -1,
+					"name": "提现",
+					"pathName": "pages/withdrawal/index"
 				}
 			]
 		}

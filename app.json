@@ -16,7 +16,8 @@
     "pages/paySuccess/index",
     "pages/p/index",
     "pages/ucenter/ucenter",
-     "pages/fans/index"
+    "pages/fans/index",
+    "pages/withdrawal/index"
     ],
 
   "window": {
