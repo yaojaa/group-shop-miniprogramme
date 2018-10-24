@@ -146,22 +146,22 @@ Page({
   onShow:function(option){
 
 
-        if(app.globalData.sell_address){
+        // if(app.globalData.sell_address){
 
-          this.setData({
-            sell_address:app.globalData.sell_address
-          })
+        //   this.setData({
+        //     sell_address:app.globalData.sell_address
+        //   })
           
-          wx.setStorage({
-            key: 'nowCheckAddress',
-            data: this.data.sell_address,
-            success(e) { }
-          })
+        //   wx.setStorage({
+        //     key: 'nowCheckAddress',
+        //     data: this.data.sell_address,
+        //     success(e) { }
+        //   })
 
 
-        }
+        // }
 
-        console.log(this.data.sell_address)
+        // console.log(this.data.sell_address)
 
   },
   switch2Change:function(e){

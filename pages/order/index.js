@@ -270,8 +270,7 @@ Page({
        }, 
        success: function (res) {  //后端返回的数据 
              var data = res.data.data;          
-             console.log(data);          
-             console.log(data["timeStamp"]);          
+        
          wx.requestPayment({
               timeStamp: data['timeStamp'],
               nonceStr: data['nonceStr'], 
@@ -280,27 +279,27 @@ Page({
               paySign: data['paySign'], 
               success: function (res) { 
               
+                //通知后台的
                 wx.request({
                   url:'https://www.daohangwa.com/api/pay/orderpay',
                   data:{
                   token:app.globalData.token,
                   order_id:order_id,
-                  success:()=>{
-                    util.drawShareImg(cardConfig, _this.data.goods_id, _this);
-                    //   wx.redirectTo({
-                    //    url:'../paySuccess/index?order_id='+order_id
-                    //  })
+                  success:(res)=>{
+
+                    console.log('通知后台成功',res)
+                   
                   }
                   }
 
                 })
 
-                 wx.redirectTo({
-                       url:'../paySuccess/index?order_id='+order_id
-                 })
 
-               
-                
+             util.drawShareImg(cardConfig, _this.data.goods_id, _this);
+             wx.redirectTo({
+                   url:'../paySuccess/index?order_id='+order_id
+             })
+
               },
               fail: function (res) { 
                
