@@ -11,6 +11,7 @@
     "i-radio": "../../iView/radio/index",
     "i-input-number": "../../iView/input-number/index",
     "i-input": "../../iView/input/index",
-    "i-message": "../../iView/message/index"
+    "i-message": "../../iView/message/index",
+    "painter": "/iView/painter/painter"
   }
 }

@@ -83,7 +83,7 @@ Page({
     onLoad: function(option) {
         console.log('token',app.globalData.token)
 
-      this.getShareImg(option.goods_id);
+      util.getShareImg(option.goods_id, this);
 
         wx.request({
             url: 'https://www.daohangwa.com/api/goods/get_goods_info',
@@ -223,29 +223,6 @@ Page({
 
 
   },
-  getShareImg(goods_id) {
-
-    wx.request({
-      method: "post",
-      url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
-      data: {
-        goods_id: goods_id
-      },
-      success: (res) => {
-        console.log("shareIMg", res.data.data.shareimg, this.data.imagePath)
-
-        if (res.data.code == 0) {
-          this.setData({
-            imagePath: res.data.data.shareimg
-          })
-
-        }
-
-      }
-    })
-
-
-  },
     userpage() {
         wx.navigateTo({
             url: '../orderList/orderList'
@@ -326,7 +303,9 @@ Page({
           goods_name:this.data.goods.goods_name,
           sell_address:this.data.sell_address,
           cover_pic:this.data.imgUrls[0],
-          delivery_method:this.data.goods.delivery_method
+          delivery_method:this.data.goods.delivery_method,
+          sell_end_time: this.data.goods.sell_end_time,
+          goods_content: this.data.goods.goods_content
         })
 
         wx.navigateTo({

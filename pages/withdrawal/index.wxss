@@ -1,0 +1,24 @@
+.container{
+   background: #f8f8f8;
+   min-height: 100vh;
+   padding: 15px;
+   box-sizing: border-box;
+}
+.money-box{
+	text-align: center;
+	padding: 20px 0;
+}
+.money-box>view{
+	display: inline-block;
+}
+.money-yuan{
+	font-size: 40rpx;
+	font-weight: bold;
+}
+.money-num{
+	font-size: 80rpx;
+	font-weight: bold;
+}
+.withdraw-box{
+	margin-bottom: 20px;
+}

@@ -39,6 +39,16 @@ Page({
     })
 
 
+//获取用户授权状态
+    wx.getSetting({
+      success(res) {
+        console.log(res.authSetting)
+        _this.setData({
+          openLocation: res.authSetting["scope.userLocation"]
+        })
+      }
+    })
+
   },
   limitChange(e) {
     this.setData({

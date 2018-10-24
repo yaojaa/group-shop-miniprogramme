@@ -74,7 +74,7 @@
            <text>{{goods.goods_content}}</text> 
         </view>
         <view class='sub-title scale-b-1px'>
-            最近参与({{orderCount}})
+            最近参与 ({{orderCount}})
         </view>
 
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
@@ -88,9 +88,9 @@
                 <view class="buyer-item">
                     <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
                     <view class="buyer-info">
-                        <view class="name">{{item.user.nickname}} </view>
+                        <view class="name"> {{item.user._number}}  {{item.user.nickname}}  </view>
                         <view class="type">
-                            <view wx:for="{{item.specs}}" wx:for-item="gds">
+                            <view wx:for="{{item.specs}}" wx:key="index" wx:for-item="gds">
                                 {{gds.spec_key_name}} ✕ {{gds.goods_num}}
                             </view>
                         </view>

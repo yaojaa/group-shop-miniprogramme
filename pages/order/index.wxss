@@ -156,3 +156,9 @@
   font-size: 14px;
   color:#333;
 }
+
+.painter{
+  position: fixed;
+  left: -200%;
+  top: 0;
+}

@@ -1,4 +1,8 @@
 <view class="container">
+  <view class='painter'>
+    <image src="{{imagePath}}"></image>
+    <painter palette="{{painterData}}" bind:imgOK="onImgOk" bind:imgErr="onImgErr"/>
+  </view>
     <view class="head-box">
         <view class="msg-tips">
             <!-- <i-badge count="3">
@@ -40,7 +44,7 @@
 <i-panel title="我参与的">
     <view style="padding: 5px 10px;">
 
-   <view class='order' wx:for="{{orders}}" wx:key="id">
+   <view class='order' wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
       <view class='title'>{{item.goods.goods_name}} <text class="state"> {{['待确认','已确认','已收货','已取消','已完成','已作废'][item.order_status]}}
 </text> </view>
       <!-- <view class='line'></view> -->
@@ -70,7 +74,7 @@
 
   </view>
 
-   <i-button bindtap="pay" data-id="{{item.order_id}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+   <i-button bindtap="pay" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
         </view>
 
 

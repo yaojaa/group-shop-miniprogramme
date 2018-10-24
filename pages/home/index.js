@@ -1,5 +1,11 @@
 const app = getApp()
 
+
+const util = require('../../utils/util.js')
+const qiniuUploader = require("../../utils/qiniuUploader");
+const cardConfig = {};//绘制卡片配置信息
+cardConfig.headsImgArr = [];//绘制卡片订购头像集合
+
 Page({
 
     /**
@@ -9,8 +15,13 @@ Page({
         userInfo: {},
         order_number:0,
         goods_number:0,
-        goodslist: [],
-        store_money:0
+        store_money:0,
+      goodslist: [],
+      painterData: {},
+      imagePath: "",
+      goods_id: "",
+      order_id: ""
+        
     },
 
     /**
@@ -131,12 +142,60 @@ Page({
         wx.navigateTo({
             url: '../ordermanage/list?goods_id=' + url,
         })
-    },
+  },
+  onImgOk(e) { //绘制成功
+    let _this = this;
+    console.log(e)
+    qiniuUploader.upload(e.detail.path, (rslt) => {
+      let data = {
+        goods_id: this.data.goods_id,
+        shareimg: rslt.imageURL
+      };
+      wx.request({
+        method: 'post',
+        url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
+        data,
+        success: (res) => {
+          wx.hideLoading()
+          if (res.data.code == 0) {
+             wx.redirectTo({
+                url:'../paySuccess/index?order_id=' + _this.data.order_id + "&goods_id=" + _this.data.goods.id
+              })
+
+          } else {
+            wx.showModal({
+              title: res.data.msg,
+              showCancel: false
+            })
+          }
+        }
+      })
+      // _this.setData({
+      //   imagePath: `http://img.daohangwa.com/${rslt.key}`
+      // })
+    })
+  },
+  onImgErr(e) { //绘制失败
+    console.log("绘制失败=======>>>>", e)
+  },
     pay({target}) {
 
         console.log(target)
 
         let  order_id = target.dataset.id;
+        let index  = target.dataset.idx;
+
+
+      //绘制配置
+      cardConfig.headImg = app.globalData.userInfo.head_pic;
+      cardConfig.userName = app.globalData.userInfo.nickname;
+
+      cardConfig.address = this.data.orders[index].goods.address;
+      cardConfig.date = util.formatTime(new Date(this.data.orders[index].goods.sell_end_time*1000)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
+      cardConfig.content = this.data.orders[index].goods.goods_content;
+      this.data.goods_id = this.data.orders[index].goods.goods_id;
+
+
      
        wx.login({ success: res => { 
        var code = res.code;      
@@ -160,6 +219,7 @@ Page({
               signType: data['signType'], 
               paySign: data['paySign'], 
               success: function (res) { 
+                console.log(res)
               
                 wx.request({
                   url:'https://www.daohangwa.com/api/pay/orderpay',
@@ -170,13 +230,17 @@ Page({
 
                 })
 
-                wx.redirectTo({
-                  url:'../paySuccess/index?order_id='+order_id
-                })
+
+                util.drawShareImg(cardConfig, this.data.goods_id, this);
+
+
+                // wx.redirectTo({
+                //   url:'../paySuccess/index?order_id='+order_id
+                // })
                 
               },
               fail: function (res) { 
-               
+                console.log("fail",res)
                }
                   
               });  

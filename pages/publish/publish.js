@@ -16,9 +16,8 @@ const default_start_time = util.formatTime(date)
 date.setDate(date.getDate() + 5);
 const default_end_time = util.formatTime(date)
 
-import Card from '../../palette/card';
 const qiniuUploader = require("../../utils/qiniuUploader");
-let cardConfig = {};//绘制卡片配置信息
+const cardConfig = {};//绘制卡片配置信息
 cardConfig.headsImgArr = [];//绘制卡片订购头像集合
 
 Page({
@@ -83,7 +82,7 @@ Page({
       const dataTpl = {
             key_name:'',
             price :'',
-            store_count:1000
+            store_count:''
             }
 
       this.data.spec_item = this.data.spec_item.concat([dataTpl])
@@ -302,7 +301,6 @@ Page({
   },
     //提交表单
     submitForm(e) {
-        console.log(e.detail.value)
 
         if(this.data.photoUrls.length <=0 ){
            wx.showModal({title:'请上传商品相册',showCancel:false})
@@ -319,40 +317,43 @@ Page({
         } 
 
 
-
-
-        console.log(this.data.spec_item)
-
-
-
-      
+        //校验规则名
+        let hasKeyName = true;
         
-        this.data.spec_item.some((value,index)=>{
+        this.data.spec_item.every((value,index)=>{
 
-          console.log(value)
+          if(value.key_name.trim() =='' || value.price.trim()==''){
 
-           if(value.store_count ==''){
+            hasKeyName = false
 
-            this.data.spec_item[index].store_count = 1000
+             return false
 
+          }else{
+            return true
           }
-
-          if(value.key_name ==''){
-            wx.showModal({title:'请填写规则名',showCancel:false})
-          }
-
-           return true
-
-
-         
 
         })
 
+        if(!hasKeyName){
+           wx.showModal({title:'请填写规则名称和价格',showCancel:false})
+           return 
+        }
+
+           
        
         if(this.data.sell_address.length<=0){
            wx.showModal({title:'请选择地理位置',showCancel:false})
             return false
         }
+
+        //默认重置库存为1000
+        this.data.spec_item.forEach((value,index)=>{
+
+          if(value.store_count ==''){
+            this.data.spec_item[index].store_count = 1000
+          }
+
+        })
 
 
 
@@ -388,7 +389,8 @@ Page({
                   cardConfig.content = e.detail.value.goods_content;
                   this.data.goods_id = res.data.data.goods_id;
 
-                  this.getOrderUserList(this.data.goods_id)
+                  // this.getOrderUserList(this.data.goods_id)
+                  util.drawShareImg(cardConfig, this.data.goods_id, this);
 
                   //  wx.redirectTo({
                   //   url:'../goods/goods?goods_id='+res.data.data.goods_id
@@ -570,5 +572,6 @@ Page({
 
 
   },
+ 
   inputDuplex:util.inputDuplex
 })

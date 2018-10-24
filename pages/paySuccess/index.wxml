@@ -1,4 +1,7 @@
 <view class="container">
+  <view class='painter'>
+    <image src="{{imagePath}}"></image>
+  </view>
   <view class='background'>
     <image mode="aspectFill" src="/img/b.png"></image>
   </view>
