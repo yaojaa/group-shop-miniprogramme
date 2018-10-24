@@ -2,11 +2,6 @@
 //获取应用实例
 const util = require('../../utils/util')
 const {  $Message } = require('../../iView/base/index');
-// import * as zrender from '../../utils/zrender/zrender';
-// import * as zrhelper from '../../utils/zrender/zrender-helper';
-import Card from '../../palette/card'; 
-const qiniuUploader = require("../../utils/qiniuUploader");
-let cardConfig = {};
 
 const app = getApp()
 
@@ -27,7 +22,6 @@ Page({
         clearTimer:false,
         myFormat:['天', '时', '分', '秒'],
         orderUsers: [],
-        painterData: {},
         imagePath: "",
   },
   onShow:function(){
@@ -47,37 +41,11 @@ Page({
     })
 
   },
-  onImgOk(e) { //绘制成功
-    let _this = this;
-    qiniuUploader.upload(e.detail.path, (rslt) => {
-      _this.setData({
-        imagePath: `http://img.daohangwa.com/${rslt.key}`
-      })
-    })
-  },
-  onImgErr(e) { //绘制失败
-    console.log("绘制失败=======>>>>", e)
-  },
     onShareAppMessage: function (res) {
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target,this.data.goods.goods_id)
     }
-
-    // let zr = zrhelper.createZrender('canvas-1', 360, 720);
-
-    // var image = new zrender.Image({
-    //     style: {
-    //         x: 0,
-    //         y: 0,
-    //         image: '../../images/koala.jpg',
-    //         width: 32,
-    //         height: 24,
-    //         text: 'koala'
-    //     }
-    // });
-    // zr.add(image);
-
 
     return {
       title: this.data.goods.goods_name,
@@ -115,15 +83,6 @@ Page({
                         spec_goods_price:spec_goods_price,
                         countdownTime:new Date(res.data.data.goods.sell_end_time*1000).getTime()
                     })
-
-                  // cardConfig = {  //绘制配置
-                  //   headImg: this.data.seller_user.head_pic,
-                  //   userName: this.data.seller_user.nickname,
-                  //   address: res.data.data.sell_address[0].name,
-                  //   date: util.formatTime(new Date(res.data.data.goods.sell_end_time * 1000)).replace(/^(\d{4}-)|(:\d{2})$/g,""),
-                  //   content: this.data.goods.goods_content,
-                  //   headsImgArr: []
-                  // };
 
                 }
             
@@ -205,15 +164,7 @@ Page({
 
 
         if (res.data.code == 0) {
-
-          // res.data.data.lists.forEach(e => {
-          //   cardConfig.headsImgArr.push(e.user.head_pic)
-          // })
-
-
-          // //绘制图片
           this.setData({
-            // painterData: new Card().palette(cardConfig),
             orderUsers: res.data.data.lists,
             orderCount: res.data.data.lists.length
           })

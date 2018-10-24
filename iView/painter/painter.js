@@ -2,12 +2,14 @@ import Pen from './lib/pen';
 import Downloader from './lib/downloader';
 
 const util = require('./lib/util');
+const qiniuUploader = require("../../utils/qiniuUploader");
 
 const downloader = new Downloader();
 
 // 最大尝试的绘制次数
 const MAX_PAINT_COUNT = 5;
 Component({
+  externalClasses: ['draw-class'],
   canvasWidthInPx: 0,
   canvasHeightInPx: 0,
   paintCount: 0,
@@ -18,6 +20,13 @@ Component({
     customStyle: {
       type: String,
     },
+    link_url: {
+      type: String,
+    },
+    goods_id:{
+      type: Number,
+    },
+
     palette: {
       type: Object,
       observer: function (newVal, oldVal) {
@@ -187,6 +196,8 @@ Component({
           }
           // 比例相符时才证明绘制成功，否则进行强制重绘制
           if (Math.abs((infoRes.width * that.canvasHeightInPx - that.canvasWidthInPx * infoRes.height) / (infoRes.height * that.canvasHeightInPx)) < 0.01) {
+            console.log(that)
+            that.imgOK(filePath);
             that.triggerEvent('imgOK', { path: filePath });
           } else {
             that.startPaint();
@@ -199,7 +210,38 @@ Component({
         },
       });
     },
+    imgOK(filePath) { //绘制成功
+      let _this = this;
+      qiniuUploader.upload(filePath, (rslt) => {
+        let data = {
+          goods_id: this.properties.goods_id,
+          shareimg: rslt.imageURL
+        };
+        wx.request({
+          method: 'post',
+          url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
+          data,
+          success: (res) => {
+            // wx.hideLoading()
+            if (res.data.code == 0) {
+              wx.redirectTo({
+                url: _this.properties.link_url
+              })
+
+            } else {
+              wx.showModal({
+                title: res.data.msg,
+                showCancel: false
+              })
+            }
+          }
+        })
+      })
+    },
   },
+
+
+
 });
 
 let screenK = 0.5;

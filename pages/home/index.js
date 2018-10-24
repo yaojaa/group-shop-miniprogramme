@@ -2,7 +2,7 @@ const app = getApp()
 
 
 const util = require('../../utils/util.js')
-const qiniuUploader = require("../../utils/qiniuUploader");
+
 const cardConfig = {};//绘制卡片配置信息
 cardConfig.headsImgArr = [];//绘制卡片订购头像集合
 
@@ -18,9 +18,9 @@ Page({
         store_money:0,
       goodslist: [],
       painterData: {},
-      imagePath: "",
       goods_id: "",
-      order_id: ""
+      order_id: "",
+      link_url:"",
         
     },
 
@@ -144,39 +144,7 @@ Page({
         })
   },
   onImgOk(e) { //绘制成功
-    let _this = this;
-    console.log(e)
-    qiniuUploader.upload(e.detail.path, (rslt) => {
-      let data = {
-        goods_id: _this.data.goods_id,
-        shareimg: rslt.imageURL
-      };
-      wx.request({
-        method: 'post',
-        url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
-        data,
-        success: (res) => {
-          wx.hideLoading()
-          if (res.data.code == 0) {
-             wx.redirectTo({
-                url:'../paySuccess/index?order_id=' + _this.data.order_id + "&goods_id=" + _this.data.goods_id
-              })
-
-          } else {
-            wx.showModal({
-              title: res.data.msg,
-              showCancel: false
-            })
-          }
-        }
-      })
-      // _this.setData({
-      //   imagePath: `http://img.daohangwa.com/${rslt.key}`
-      // })
-    })
-  },
-  onImgErr(e) { //绘制失败
-    console.log("绘制失败=======>>>>", e)
+          wx.hideLoading()            
   },
     pay({target}) {
 
@@ -195,6 +163,7 @@ Page({
       cardConfig.content = this.data.orders[index].goods.goods_content;
       this.data.goods_id = this.data.orders[index].goods.goods_id;
       this.data.order_id = order_id;
+      this.data.link_url = '/pages/paySuccess/index?order_id=' + order_id + "&goods_id=" + this.data.goods_id
 
       console.log(this.data, cardConfig)
 

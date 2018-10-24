@@ -1,8 +1,5 @@
 <view class="container">
-  <view class='painter'>
-    <image src="{{imagePath}}"></image>
-    <painter palette="{{painterData}}" bind:imgOK="onImgOk" bind:imgErr="onImgErr"/>
-  </view>
+    <painter goods_id="{{goods_id}}" link_url="{{link_url}}" palette="{{painterData}}" bind:imgOK="onImgOk"/>
     <i-message id="message" />
     <!--自提-->
     <i-panel  class="address" wx:if="{{delivery_method==2}}">

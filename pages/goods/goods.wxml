@@ -1,7 +1,6 @@
 <view class="container">
   <view class='painter'>
     <image src="{{imagePath}}"></image>
-    <painter palette="{{painterData}}" bind:imgOK="onImgOk" bind:imgErr="onImgErr"/>
   </view>
     <view class="goods-sticky">
          <image class="user-avatar" src="{{seller_user.head_pic}}"></image>
