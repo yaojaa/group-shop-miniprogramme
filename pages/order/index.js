@@ -69,7 +69,7 @@ Page({
     let id = e.target.id
     let key ="cart["+id+"].item_num"
 
- 
+
     this.setData({
       [key]:e.detail.value    
     }, function() {
@@ -188,14 +188,25 @@ Page({
       return
     }
 
+    this.data.cart.forEach((value,index)=>{
+
+      if(value.item_num == 0){
+        this.data.cart.splice(index,1)
+      }
+
+
+    })
+
+
+
+
      wx.request({
            method:'post',
            url: 'https://www.daohangwa.com/api/cart/create_order',
            data:{
             token :app.globalData.token,
             goods_id:this.data.goods_id,
-            spec_item:wx.getStorageSync('cart'),
-            consignee: this.data.nickName,
+            spec_item:this.data.cart,
             address:[{'consignee': this.data.nickName, 
                       'province_name': '0', 
                       'city_name': '0', 
@@ -225,7 +236,9 @@ Page({
   },
 
    pay:function(order_id) {  
-     let _this = this;
+
+    console.log(this)
+     var _this = this;
        wx.login({ success: res => { 
        var code = res.code;      
        wx.request({
@@ -247,6 +260,9 @@ Page({
               signType: data['signType'], 
               paySign: data['paySign'], 
               success:  (res) =>{ 
+
+                    console.log( _this.data.goods_id, _this)
+
 
                 util.drawShareImg(cardConfig, _this.data.goods_id, _this);
                
