@@ -234,7 +234,7 @@ Page({
 
                 })
 
-
+                wx.showLoading()
                 util.drawShareImg(cardConfig, _this.data.goods_id, _this);
 
 
