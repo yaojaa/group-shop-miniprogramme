@@ -12,6 +12,6 @@
     "i-card": "../../iView/card/index",
     "i-message": "../../iView/message/index",
     "i-count-down": "../../iView/count-down/index",
-    "painter": "/iView/painter/painter"
+    "painter": "../../iView/painter/painter"
   }
 }

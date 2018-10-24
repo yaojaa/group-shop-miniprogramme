@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 16,
 			"list": [
 				{
 					"id": 0,
@@ -132,7 +132,13 @@
 				{
 					"id": -1,
 					"name": "提现",
-					"pathName": "pages/withdrawal/index"
+					"pathName": "pages/withdrawal/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "支付成功",
+					"pathName": "pages/paySuccess/index"
 				}
 			]
 		}

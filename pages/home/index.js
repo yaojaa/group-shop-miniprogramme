@@ -148,7 +148,7 @@ Page({
     console.log(e)
     qiniuUploader.upload(e.detail.path, (rslt) => {
       let data = {
-        goods_id: this.data.goods_id,
+        goods_id: _this.data.goods_id,
         shareimg: rslt.imageURL
       };
       wx.request({
@@ -159,7 +159,7 @@ Page({
           wx.hideLoading()
           if (res.data.code == 0) {
              wx.redirectTo({
-                url:'../paySuccess/index?order_id=' + _this.data.order_id + "&goods_id=" + _this.data.goods.id
+                url:'../paySuccess/index?order_id=' + _this.data.order_id + "&goods_id=" + _this.data.goods_id
               })
 
           } else {
@@ -183,7 +183,8 @@ Page({
         console.log(target)
 
         let  order_id = target.dataset.id;
-        let index  = target.dataset.idx;
+      let index = target.dataset.idx;
+      let _this = this;     
 
 
       //绘制配置
@@ -194,6 +195,9 @@ Page({
       cardConfig.date = util.formatTime(new Date(this.data.orders[index].goods.sell_end_time*1000)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
       cardConfig.content = this.data.orders[index].goods.goods_content;
       this.data.goods_id = this.data.orders[index].goods.goods_id;
+      this.data.order_id = order_id;
+
+      console.log(this.data, cardConfig)
 
 
      
@@ -209,7 +213,7 @@ Page({
 
        }, 
        success: function (res) {  //后端返回的数据 
-             var data = res.data.data;          
+             var data = res.data.data;     
              console.log(data);          
              console.log(data["timeStamp"]);          
          wx.requestPayment({
@@ -230,8 +234,8 @@ Page({
 
                 })
 
-
-                util.drawShareImg(cardConfig, this.data.goods_id, this);
+                wx.showLoading()
+                util.drawShareImg(cardConfig, _this.data.goods_id, _this);
 
 
                 // wx.redirectTo({
