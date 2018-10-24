@@ -30,6 +30,11 @@ Page({
         painterData: {},
         imagePath: "",
   },
+  onShow:function(){
+    this.setData({
+      cartPanel:false
+    })
+  },
   onReady: function () {
 
     app.getUserInfoScopeSetting().then(res=>{

@@ -63,7 +63,7 @@
             </view>
         </view>
         <view class="scale-1px" style="padding: 0 10px">
-            <i-cell wx:for="{{sell_address}} " title="{{item.name}}" i-class="address-item">
+            <i-cell wx:for="{{sell_address}}" wx:key="index" title="{{item.name}}" i-class="address-item">
                 <i-icon type="coordinates_fill" slot="icon" color="#375aa0" />
             </i-cell>
         </view>

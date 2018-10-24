@@ -23,6 +23,12 @@
     <i-tab key="tab3" title="待发货"></i-tab>
   </i-tabs> -->
   <view class='session'>
+    <view wx:if="{{dataList.length == 0}}">
+
+
+<i-divider content=" 此团购暂时还没有订单 :( "></i-divider>
+
+    </view>
     <view class='order-list' wx:for="{{dataList}}" wx:key="{{index}}">
       <view class='list-h'>
         <view>订购人：{{item.consignee}} {{item.mobile}} </view>
@@ -57,11 +63,11 @@
 
   
   <form wx:if="{{item.order_status == 0 && item.pay_status == 1}}" bindsubmit="formSubmit" report-submit="true" >
-    <button class="button" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm" >确认订单</button>
+    <button class="button success" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm" >确认订单</button>
   </form>
 
  <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true" >
-    <button class="button" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openCancel" >取消订单</button>
+    <button class="button success" shape="circle"  formType="submit" data-id="{{item.order_id}}" bindtap="openCancel" >取消订单</button>
   </form>
 
 

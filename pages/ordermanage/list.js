@@ -58,6 +58,9 @@ Page({
 
   },
   getOrderList(){
+
+    return new Promise((resolve, reject)=>{
+
       wx.request({
       url: 'https://www.daohangwa.com/api/seller/get_order_list',
       data: { 
@@ -68,8 +71,15 @@ Page({
         this.setData({
           dataList:res.data.data.orderlist
         })
+        resolve(res.data.data)
+      },
+      fail:(err)=>{
+        reject(err)
       }
     })
+
+    })
+
   },
   noteInput(e){
     console.log(e)
@@ -432,6 +442,40 @@ Page({
     this.data.formId = e.detail.formId
 
     console.log(this.data.formId)
-   }
+   },
+
+    // 下拉刷新
+  onPullDownRefresh: function () {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+
+    this.getOrderList().then(()=>{
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
+    })
+    // wx.request({
+    //   url: 'https://xxx/?page=0',
+    //   method: "GET",
+    //   header: {
+    //     'content-type': 'application/text'
+    //   },
+    //   success: function (res) {
+    //     that.setData({
+    //       moment: res.data.data
+    //     });
+    //     // 设置数组元素
+    //     that.setData({
+    //       moment: that.data.moment
+    //     });
+    //     console.log(that.data.moment);
+    //     // 隐藏导航栏加载框
+    //     wx.hideNavigationBarLoading();
+    //     // 停止下拉动作
+    //     wx.stopPullDownRefresh();
+    //   }
+    // })
+  }
 
 })

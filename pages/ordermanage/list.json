@@ -1,10 +1,15 @@
-{
+{   
+	"enablePullDownRefresh": true,
+	"window":{
+		"backgroundTextStyle":"dark"
+	},
 	"usingComponents": {
       "i-modal": "../../iView/modal/index",
       "i-tabs": "../../iView/tabs/index",
       "i-tab": "../../iView/tab/index",
       "i-button": "../../iView/button/index",
-     "i-message": "../../iView/message/index"
+     "i-message": "../../iView/message/index",
+     "i-divider": "../../iView/divider/index"
 
 	}
 

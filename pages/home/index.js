@@ -180,7 +180,6 @@ Page({
   },
     pay({target}) {
 
-        console.log(target)
 
         let  order_id = target.dataset.id;
       let index = target.dataset.idx;
@@ -235,12 +234,13 @@ Page({
                 })
 
                 wx.showLoading()
+               
                 util.drawShareImg(cardConfig, _this.data.goods_id, _this);
 
 
-                // wx.redirectTo({
-                //   url:'../paySuccess/index?order_id='+order_id
-                // })
+                wx.redirectTo({
+                  url:'../paySuccess/index?order_id='+order_id
+                })
                 
               },
               fail: function (res) { 

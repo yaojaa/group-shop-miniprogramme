@@ -33,9 +33,13 @@
             <text class="label">我发布的</text>
             <text class="num">{{goods_number}}</text>
         </view>
+        
         <view class="count-item">
-            <text class="label" bindtap="fansPage">金额</text>
+          <navigator url="../withdrawal/index">
+            <text class="label" >进账</text>
             <text class="num">¥{{store_money}}</text>
+          </navigator>
+
         </view>
      
     </view>

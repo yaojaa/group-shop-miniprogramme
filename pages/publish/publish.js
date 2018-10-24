@@ -354,6 +354,8 @@ Page({
           }
 
         })
+        
+        
 
 
 
@@ -475,7 +477,7 @@ Page({
 
         //编辑的时候
         //
-           console.log('发布页onLoad：',option.goods_id)
+     console.log('发布页onLoad：',option.goods_id)
 
         if(option.goods_id){
           this.data.goods_id = option.goods_id
@@ -524,9 +526,6 @@ Page({
                  
                  app.globalData.sell_address = this.data.sell_address
 
-
-              
-                 
                 }else{
                      wx.showModal({
                         title: res.data.msg,

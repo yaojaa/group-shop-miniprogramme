@@ -119,7 +119,6 @@ const getShareImg = (goods_id, _this) => {
       goods_id: goods_id
     },
     success: (res) => {
-      console.log("shareIMg", res.data.data.shareimg, _this.data.imagePath)
 
       if (res.data.code == 0) {
         _this.setData({
