@@ -63,7 +63,8 @@
 
 .goods-content {
     padding: 10px 0;
-    font-size: 28rpx;
+    font-size: 32rpx;
+    line-height:1.7;
     background: #fff;
 }
 
@@ -348,11 +349,12 @@
   left: -200%;
   top: 0;
 }
-.pic{
+.piclist{
+    padding-top:10px;
     text-align: center;
     width: 100%
 }
 
-.pic img{
+.piclist image{
     width: 100%
 }

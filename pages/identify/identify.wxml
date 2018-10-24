@@ -1,22 +1,13 @@
 <view class="container">
-    <!-- <view class="session">
-    <i-panel title="商家认证后可以开通在线收款">
-        <i-input title="姓名：" placeholder="姓名" />
-        <i-input type="number" title="联系电话：" placeholder="联系电话" />
-        <i-input title="店铺名称：" placeholder="店铺名称"/>
-        <i-input title="主营项目：" placeholder="主营项目"/>
-    </i-panel>
-  </view> -->
     <view class="info-box">
         <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">使用微信绑定的手机号</button>
-        <i-panel title="请完善你的个人资料">
-            <i-input value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
+        <i-panel title="完善你的联系方式">
+            <i-input bindchange="changeMobile" value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
             <i-input value="{{wxnumber}}" type="text" title="微信号" placeholder="输入您的微信账号" />
-            <i-input value="{{address}}" type="text" title="居住地址" placeholder="不用具体到门牌号" />
         </i-panel>
     </view>
     <view class='btn-wrap'>
         <button type="primary" bindtap="postInfo">保存</button>
     </view>
-    <i-toast id="toast" />
+<i-message id="message" />
 </view>

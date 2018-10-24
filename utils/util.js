@@ -18,6 +18,7 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+
 //input双向绑定 注意context
 
 const inputDuplex = function(e) {

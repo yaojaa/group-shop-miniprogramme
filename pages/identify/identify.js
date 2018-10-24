@@ -1,14 +1,12 @@
 const app = getApp()
-const { $Toast } = require('../../iView/base/index');
+const { $Message } = require('../../iView/base/index');
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        userinfo: 'userinfo',
         mobile: '',
-        address: '',
         wxnumber: ''
     },
     postInfo() {
@@ -18,22 +16,26 @@ Page({
             data: {
                 token: app.globalData.token,
                 mobile: this.data.mobile,
-                wxnumber: this.data.wxnumber,
-                address: this.data.address
+                wxnumber: this.data.wxnumber
             },
             success: (res) => {
                 if (res.data.code == 0) {
-                    $Toast({
-                        content: '保存存成',
+                    $Message({
+                        content: '保存成功',
                         type: 'success'
                     });
                 }else{
-                	$Toast({
+                	$Message({
                         content: res.data.msg,
                         type: 'error'
                     });
                 }
             }
+        })
+    },
+    changeMobile(e){
+        this.setData({
+            mobile:e.detail.value
         })
     },
     getPhoneNumber(e) {
@@ -66,8 +68,7 @@ Page({
                 if (res.data.code == 0) {
                     this.setData({
                         mobile: res.data.data.userinfo.mobile,
-                        wxnumber: res.data.data.userinfo.wxnumber,
-                        address: res.data.data.userinfo.address
+                        wxnumber: res.data.data.userinfo.wxnumber
                     })
 
                 }

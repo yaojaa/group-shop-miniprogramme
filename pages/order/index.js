@@ -1,4 +1,6 @@
 const app = getApp()
+
+let address ={}
 const { $Message } = require('../../iView/base/index');
 const util = require('../../utils/util.js')
 const qiniuUploader = require("../../utils/qiniuUploader");
@@ -127,7 +129,19 @@ Page({
     cardConfig.content = goods.goods_content;
 
 
+    //1邮递2自提 两种情况默认地址不同
+    if(this.data.delivery_method ==1){
+      //address =
 
+    }else if(this.data.delivery_method ==2){
+
+      //address =
+
+
+    }
+
+
+//onload 获取地理位置
  wx.getLocation({
   type: 'wgs84',
   success: function(res) {
@@ -135,6 +149,20 @@ Page({
     var longitude = res.longitude
     var speed = res.speed
     var accuracy = res.accuracy
+       wx.request({
+      url:'https://apis.map.qq.com/ws/geocoder/v1/?location=39.984154,116.307490&key=FKRBZ-RK4WU-5XMV4-B44DB-D4LOH-G3F73&get_poi=1',
+      method:'get',
+      success:(res)=>{
+
+        address = res.data.result.address_component
+
+      }
+    })
+
+
+
+
+
   }
 })
 
@@ -201,11 +229,11 @@ Page({
             spec_item:wx.getStorageSync('cart'),
             consignee: this.data.nickName,
             address:[{'consignee': this.data.nickName, 
-                      'province_name': '河北省', 
-                      'city_name': '廊坊市', 
-                      'district_name': '安次区', 
-                      'address': '北小营小区5号楼301', 
-                      'mobile': this.data.mobile || '13333333333'
+                      'province_name': '0', 
+                      'city_name': '0', 
+                      'district_name': '0', 
+                      'address': address, 
+                      'mobile': this.data.mobile
                     }
                    ]
            },
@@ -220,15 +248,13 @@ Page({
 
               this.data.order_id = res.data.data.order_id;
 
-                this.pay(res.data.data.order_id)
+                this.pay(parseInt(res.data.data.order_id))
            }
               }
               )
     
   },
-  sendTemplateMessage(){
 
-  },
    pay:function(order_id) {  
      let _this = this;
        wx.login({ success: res => { 
@@ -259,22 +285,12 @@ Page({
                 wx.request({
                   url:'https://www.daohangwa.com/api/pay/orderpay',
                   data:{
-                  token:app.globalData.token,
-                  order_id:order_id,
-                  success:()=>{
-                    console.log("pay",res)
-
-
-
-                    //   wx.redirectTo({
-                    //    url:'../paySuccess/index?order_id='+order_id
-                    //  })
-                  }
-                  }
+                    token:app.globalData.token,
+                    order_id:order_id,
+                  },
+                  success:()=>{}
 
                 })
-
-               
                 
               },
               fail: function (res) { 

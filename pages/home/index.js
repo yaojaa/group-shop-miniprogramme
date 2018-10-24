@@ -15,6 +15,7 @@ Page({
         userInfo: {},
         order_number:0,
         goods_number:0,
+        store_money:0,
       goodslist: [],
       painterData: {},
       imagePath: "",
@@ -34,9 +35,13 @@ Page({
             userInfo: app.globalData.userInfo
             })
 
-         this.getGoodsList(app.globalData.userInfo.token)
+         let token = app.globalData.userInfo.token
 
-         this.getBuyList(app.globalData.userInfo.token)
+         this.getGoodsList(token)
+
+         this.getBuyList(token)
+
+         this.get_store_info(token)
 
 
         }else{
@@ -44,7 +49,7 @@ Page({
         app.userLoginReadyCallback=(userInfo)=>{
             console.log('userLoginReadyCallback',userInfo)
              this.setData({
-            userInfo: userInfo
+             userInfo: userInfo
            })
          this.getGoodsList(userInfo.token)
          this.getBuyList(app.globalData.userInfo.token)
@@ -58,6 +63,27 @@ Page({
 
 
        
+    },
+    
+
+    get_store_info(token){
+
+        wx.request({
+            url: 'https://www.daohangwa.com/api/seller/get_store_info',
+            data: {
+                token: token
+            },
+            success: (res) => {
+                if (res.data.code == 0) {
+                    this.setData({
+                        store_money: res.data.data.store_money
+                    })
+                }
+            }
+        })
+
+        
+
     },
     getGoodsList:function(token){
         console.log(app.globalData.token)
@@ -169,6 +195,7 @@ Page({
       cardConfig.date = util.formatTime(new Date(this.data.orders[index].goods.sell_end_time*1000)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
       cardConfig.content = this.data.orders[index].goods.goods_content;
       this.data.goods_id = this.data.orders[index].goods.goods_id;
+      this.data.order_id = order_id;
 
       console.log(this.data, cardConfig)
 

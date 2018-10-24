@@ -5,13 +5,13 @@
   </view>
     <i-message id="message" />
     <!--自提-->
-    <i-panel  class="address" wx:if="{{delivery_method==1}}">
+    <i-panel  class="address" wx:if="{{delivery_method==2}}">
               <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
         <i-input value="{{ nickName }}" title="收货人" autofocus placeholder="名字" />
         <i-input value="{{ mobile }}" type="number" title="联系电话" placeholder="输入手机号方便联系" />
     </i-panel>
     <!--送货上门-->
-    <view class="address" wx:if="{{delivery_method==2}}">
+    <view class="address" wx:if="{{delivery_method==1}}">
         <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
         <i-panel>
             <i-input value='{{nickName}}' title="联系人" placeholder="请输入姓名" />

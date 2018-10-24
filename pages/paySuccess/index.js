@@ -30,8 +30,7 @@ Page({
         wx.request({
             url: 'https://www.daohangwa.com/api/user/get_order_detail',
             data: {
-                //token: app.globalData.token,
-                token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1fQ.5hiBPB_iUhTuvYhDP4n_0MZvXJGhOL0cLtG62qFpw50',
+                token: app.globalData.token,
                 order_id: this.data.order_id
             },
             success: (res) => {

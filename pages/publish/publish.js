@@ -46,7 +46,7 @@ Page({
     spec_item:[{
       key_name:'',
       price :'',
-      store_count:'1000'
+      store_count:'',
       }
       ],
       orderStyle:1,
@@ -82,7 +82,7 @@ Page({
       const dataTpl = {
             key_name:'',
             price :'',
-            store_count:1000
+            store_count:''
             }
 
       this.data.spec_item = this.data.spec_item.concat([dataTpl])
@@ -301,7 +301,13 @@ Page({
   },
     //提交表单
     submitForm(e) {
-        console.log(e.detail.value)
+
+        if(this.data.photoUrls.length <=0 ){
+           wx.showModal({title:'请上传商品相册',showCancel:false})
+            return false
+        }
+
+
      // 传入表单数据，调用验证方法
         if (!this.WxValidate.checkForm(e)) {
           console.log(this.WxValidate.errorList)
@@ -311,20 +317,43 @@ Page({
         } 
 
 
+        //校验规则名
+        let hasKeyName = true;
+        
+        this.data.spec_item.every((value,index)=>{
+
+          if(value.key_name.trim() =='' || value.price.trim()==''){
+
+            hasKeyName = false
+
+             return false
+
+          }else{
+            return true
+          }
+
+        })
+
+        if(!hasKeyName){
+           wx.showModal({title:'请填写规则名称和价格',showCancel:false})
+           return 
+        }
+
+           
+       
         if(this.data.sell_address.length<=0){
            wx.showModal({title:'请选择地理位置',showCancel:false})
             return false
         }
 
-        if(this.data.photoUrls.length <=0 ){
-           wx.showModal({title:'请上传商品相册',showCancel:false})
-            return false
-        }
+        //默认重置库存为1000
+        this.data.spec_item.forEach((value,index)=>{
 
-        if(this.data.spec_item[0].name =='' || this.data.spec_item[0].price == '' ){
-           wx.showModal({title:'请填写规则或价格',showCancel:false})
-            return false
-        }
+          if(value.store_count ==''){
+            this.data.spec_item[index].store_count = 1000
+          }
+
+        })
 
 
 
@@ -419,6 +448,11 @@ Page({
             visible1: false
         });
     },
+     handleCancel2 () {
+      this.setData({
+          visible2: false
+      })
+    },
     handleClickItem1 ({ detail }) {
         const index = detail.index + 1;
 
@@ -465,8 +499,7 @@ Page({
                 let starFormatTime = util.formatTime(new Date(gs.sell_start_time*1000))
                 let endFormatTime = util.formatTime(new Date(gs.sell_end_time*1000))
 
-                console.log('返回的开始时间',starFormatTime)
-                console.log('返回的结束时间',endFormatTime)
+
 
                 if(d.code == 0){
 
@@ -488,15 +521,11 @@ Page({
                       spec_item:res.data.data.spec_goods_price,
                       isShowTimePicker:true
                   })
-                  app.globalData.sell_address = this.data.sell_address
+                 
+                 app.globalData.sell_address = this.data.sell_address
 
 
-                  wx.setStorage({
-                    key: 'nowCheckAddress',
-                    data: this.data.sell_address,
-                    success(e) { }
-                  })
-
+              
                  
                 }else{
                      wx.showModal({
@@ -514,27 +543,35 @@ Page({
 
 
   },
-  // getOrderUserList(goods_id) {
+  getOrderUserList(goods_id) {
 
-  //   wx.request({
-  //     url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
-  //     data: {
-  //       token: app.globalData.token,
-  //       goods_id: goods_id
-  //     },
-  //     success: (res) => {
-  //       if (res.data.code == 0) {
-  //         res.data.data.lists.forEach(e => {
-  //           cardConfig.headsImgArr.push(e.user.head_pic)
-  //         })
-  //         //绘制图片
-  //         this.setData({
-  //           painterData: new Card().palette(cardConfig)
-  //         })
+    wx.request({
+      url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
+      data: {
+        token: app.globalData.token,
+        goods_id: goods_id
+      },
+      success: (res) => {
 
-  //       }
-  //     }
-  //   })
-  // },
+        if (res.data.code == 0) {
+
+          res.data.data.lists.forEach(e => {
+            cardConfig.headsImgArr.push(e.user.head_pic)
+          })
+
+          //绘制图片
+          this.setData({
+            painterData: new Card().palette(cardConfig)
+          })
+
+        }
+
+
+      }
+    })
+
+
+  },
+ 
   inputDuplex:util.inputDuplex
 })
