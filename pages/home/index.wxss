@@ -204,9 +204,12 @@
   height: 86rpx;
   line-height: 86rpx;
   margin:0  10rpx;
-  padding: 0 10rpx;
+  padding: 0 90rpx 0 10rpx;
   font-weight: bold;
   border-bottom: 1px dotted #ccc;
+ overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
 }
 
 .order .title .state{
@@ -278,7 +281,7 @@
   display: flex;
   justify-content: space-between;
   line-height: 30px;
-  padding: 10px 20px 0;
+  padding: 10px 20px;
 }
 .paycell .pay .left{
   font-size: 16px;
@@ -313,9 +316,8 @@
   justify-content: space-between;
   align-items: center;
   border-top: 1px dotted #ccc;
-  padding: 10px 0;
-  margin: 0 20px;
-  font-size: 26rpx;
+  padding: 10px;
+  font-size: 22rpx;
 }
 .user .img{
   height: 40px;

@@ -47,7 +47,7 @@ Page({
     spec_item:[{
       key_name:'',
       price :'',
-      store_count:'1000'
+      store_count:'',
       }
       ],
       orderStyle:1,
@@ -303,6 +303,13 @@ Page({
     //提交表单
     submitForm(e) {
         console.log(e.detail.value)
+
+        if(this.data.photoUrls.length <=0 ){
+           wx.showModal({title:'请上传商品相册',showCancel:false})
+            return false
+        }
+
+
      // 传入表单数据，调用验证方法
         if (!this.WxValidate.checkForm(e)) {
           console.log(this.WxValidate.errorList)
@@ -312,18 +319,38 @@ Page({
         } 
 
 
+
+
+        console.log(this.data.spec_item)
+
+
+
+      
+        
+        this.data.spec_item.some((value,index)=>{
+
+          console.log(value)
+
+           if(value.store_count ==''){
+
+            this.data.spec_item[index].store_count = 1000
+
+          }
+
+          if(value.key_name ==''){
+            wx.showModal({title:'请填写规则名',showCancel:false})
+          }
+
+           return true
+
+
+         
+
+        })
+
+       
         if(this.data.sell_address.length<=0){
            wx.showModal({title:'请选择地理位置',showCancel:false})
-            return false
-        }
-
-        if(this.data.photoUrls.length <=0 ){
-           wx.showModal({title:'请上传商品相册',showCancel:false})
-            return false
-        }
-
-        if(this.data.spec_item[0].name =='' || this.data.spec_item[0].price == '' ){
-           wx.showModal({title:'请填写规则或价格',showCancel:false})
             return false
         }
 
@@ -419,6 +446,11 @@ Page({
             visible1: false
         });
     },
+     handleCancel2 () {
+      this.setData({
+          visible2: false
+      })
+    },
     handleClickItem1 ({ detail }) {
         const index = detail.index + 1;
 
@@ -465,8 +497,7 @@ Page({
                 let starFormatTime = util.formatTime(new Date(gs.sell_start_time*1000))
                 let endFormatTime = util.formatTime(new Date(gs.sell_end_time*1000))
 
-                console.log('返回的开始时间',starFormatTime)
-                console.log('返回的结束时间',endFormatTime)
+
 
                 if(d.code == 0){
 
@@ -488,15 +519,11 @@ Page({
                       spec_item:res.data.data.spec_goods_price,
                       isShowTimePicker:true
                   })
-                  app.globalData.sell_address = this.data.sell_address
+                 
+                 app.globalData.sell_address = this.data.sell_address
 
 
-                  wx.setStorage({
-                    key: 'nowCheckAddress',
-                    data: this.data.sell_address,
-                    success(e) { }
-                  })
-
+              
                  
                 }else{
                      wx.showModal({
@@ -524,14 +551,11 @@ Page({
       },
       success: (res) => {
 
-
-
         if (res.data.code == 0) {
 
           res.data.data.lists.forEach(e => {
             cardConfig.headsImgArr.push(e.user.head_pic)
           })
-
 
           //绘制图片
           this.setData({
@@ -539,8 +563,6 @@ Page({
           })
 
         }
-
-
 
 
       }

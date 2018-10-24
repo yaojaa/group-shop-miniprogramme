@@ -31,7 +31,7 @@
         </view>
         <view class="count-item">
             <text class="label" bindtap="fansPage">金额</text>
-            <text class="num">0</text>
+            <text class="num">¥{{store_money}}</text>
         </view>
      
     </view>
@@ -62,7 +62,7 @@
       <view class='line'></view>
       <view class='paycell'>
         <view class='pay'>
-          <view class='left'>   {{['待支付','已支付','支付失败'][item.pay_status]}}   </view>
+          <view class="left success">   {{['待支付','已支付','支付失败'][item.pay_status]}}   </view>
           <view class="right warning">￥{{item.goods_price}}</view>
         </view>
 <view class="yuan1"></view>

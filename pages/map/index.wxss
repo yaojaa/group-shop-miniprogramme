@@ -34,10 +34,15 @@
   overflow: hidden;
 }
 .add-address{
-  padding: 0 15px;
+  padding: 15px;
   height: 50px;
-  display: flex;
-  align-items: center;
+  text-align:center
+}
+
+.add-address button{
+  display: inline-block;
+  margin: 0 auto;
+  text-align:center
 }
 .add-address text{
   vertical-align: middle;
@@ -109,4 +114,8 @@ button.button{
 }
 .get-location button .icon{
   font-size: 20px;
+}
+
+.address .content .door_number{
+  font-size: 26rpx
 }

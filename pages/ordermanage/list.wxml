@@ -47,7 +47,7 @@
 
               <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
               <text class="error" wx:if="{{item.pay_status==0}}">待支付</text>
-              <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text>
+              <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text> {{item._format_add_time}}
 
             </view>
         </view>
@@ -102,7 +102,7 @@
     <view class="price-input"><input bindinput="noteInput" value="{{note}}"  placeholder="备注(选填)"  /></view>
   </i-modal>
 
-  <i-modal title="提醒取货" visible="{{ visible5_tips }}"  bind:ok="setPay" bind:cancel="closePay">
+  <i-modal title="提醒取货" visible="{{ visible5_tips }}"  bind:ok="setTips" bind:cancel="closeTips">
     <view class="price-input"><input bindinput="noteInput" value="{{note}}"  placeholder="如：请明天周六到2号楼203取货"  /></view>
   </i-modal>
 

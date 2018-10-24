@@ -78,7 +78,7 @@ page{
 }
 .goodsList{
   padding: 5px 20px;
-  height: 128px;
+  min-height: 60px;
   overflow-y: auto;
 }
 .goodsList .goods{

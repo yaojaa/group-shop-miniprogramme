@@ -63,19 +63,26 @@
             </view>
         </view>
         <view class="scale-1px" style="padding: 0 10px">
-            <i-cell wx:for="{{sell_address}}" title="{{item.name}}-{{item.address}}" i-class="address-item">
+            <i-cell wx:for="{{sell_address}}" title="{{item.name}}" i-class="address-item">
                 <i-icon type="coordinates_fill" slot="icon" color="#375aa0" />
             </i-cell>
         </view>
         <view class='sub-title scale-b-1px'>
-            <text>商品详情</text>
+            <text>介绍描述：</text>
         </view>
         <view class='goods-content'>
-            {{goods.goods_content}}
+           <text>{{goods.goods_content}}</text> 
         </view>
         <view class='sub-title scale-b-1px'>
             最近参与({{orderCount}})
         </view>
+
+        <i-cell-group wx:if="{{orderUsers.length ==0}}">
+            <i-cell  i-class="buyer-item-box">
+                一大波人正在赶来...
+            </i-cell>
+        </i-cell-group>
+
         <i-cell-group>
             <i-cell wx:for="{{ orderUsers }}" i-class="buyer-item-box">
                 <view class="buyer-item">
@@ -93,11 +100,13 @@
             </i-cell>
         </i-cell-group>
     </view>
-    <view class="piclist">
+
+ <view class="piclist">
         <view class="pic" wx:for="{{goods.content_imgs}}" wx:for-item="img" >
-                  <image src="{{img}}" mode="widthFix" />
+                  <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
          </view>
-     </view>
+</view>
+   
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
             <i-icon type="homepage" size="26" color="#333" />

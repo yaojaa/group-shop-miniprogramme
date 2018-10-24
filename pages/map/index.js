@@ -5,17 +5,15 @@ Page({
     limitVal: 1,
     hidden: false,
     step: 1,
-    location: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTM2ODk2NDM1MjY0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE4OTYiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUxMiAxMjhhMjU2IDI1NiAwIDAgMC0yNTYgMjU2YzAgMTIzLjUyIDk3LjkyIDI3NS44NCAyMDggNDgzLjg0YTU1LjA0IDU1LjA0IDAgMCAwIDk2IDBDNjcwLjA4IDY1OS44NCA3NjggNTA3LjUyIDc2OCAzODRhMjU2IDI1NiAwIDAgMC0yNTYtMjU2eiBtMCAzODRhMTI4IDEyOCAwIDEgMSAxMjgtMTI4IDEyOCAxMjggMCAwIDEtMTI4IDEyOHoiIGZpbGw9IiMwMDYxYjIiIHAtaWQ9IjE4OTciPjwvcGF0aD48L3N2Zz4=",
     newAddress: [],
     oldAddress: [],
     openLocation: true,
-    buyType:1,
+    buyType:2,
 
   },
   onLoad: function (e) {
     let _this = this;
     // this.openLocation(this);
-    // 
     this.data.buyType = e.delivery_method;
 
     wx.getStorage({
@@ -32,19 +30,14 @@ Page({
 
       },
     })
-    wx.getStorage({
-      key: 'nowCheckAddress',
-      success: function (res) {
-        console.log("=====++++",res)
 
-        if (res.data && res.data[0]) {
-          _this.setData({
-            newAddress: res.data
-          })
-        }
-
-      },
+    console.log('app.globalData.sell_address',app.globalData.sell_address)
+  
+    //拿app.globalData的地址
+    _this.setData({
+      newAddress: app.globalData.sell_address || []
     })
+
 
   },
   limitChange(e) {
@@ -107,14 +100,8 @@ Page({
       this.data.oldAddress.unshift(this.data.newAddress[0]);
     }
 
-    // this.data.newAddress.unshift(this.data.oldAddress.splice(this.getIndex(this.data.oldAddress, data.id), 1)[0]); //删除历史纪录展示并加入新地址
-
     this.data.newAddress = this.data.oldAddress.splice(this.getIndex(this.data.oldAddress, data.id), 1);
-    
 
-    console.log(this.data.oldAddress,this.newAddress)
-
-    wx.showToast({ title: "添加成功" })
     _this.setData({
       oldAddress: _this.data.oldAddress,
       newAddress: _this.data.newAddress
@@ -141,22 +128,35 @@ Page({
       wx.showToast({ title: "请先添加地址", icon: "none" })
       return;
     }
-    if (!this.data.newAddress[0].door_number && this.data.buyType == 1) {
-      wx.showToast({ title: "请填写详细地址", icon: "none" })
+    if (!this.data.newAddress[0].door_number && this.data.buyType == 2) {
+      wx.showToast({ title: "请填写取货点", icon: "none" })
       return;
     }
+
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];  //上一个页面
+
+    prevPage.setData({
+      sell_address:this.data.newAddress
+    })
 
     wx.navigateBack({
       delta: 1
     })
 
-    app.globalData.sell_address = this.data.newAddress
+    wx.setStorage({
+              key: "historyAddress",
+              data: this.data.newAddress.concat(this.data.oldAddress),
+              success() {}
+     })
+
+
 
     // console.log(this.data.newAddress,this.data.limitVal)
   },
 
   openLocation(_this){
-    console.log('aaaa')
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success(res) {
@@ -171,30 +171,20 @@ Page({
 
             _this.data.oldAddress = _this.data.newAddress.concat(_this.data.oldAddress);
 
-            // _this.data.newAddress.unshift({
-            //   id: new Date().getTime(),
-            //   name: e.name,
-            //   address: e.address,
-            //   latitude: e.latitude,
-            //   longitude: e.longitude
-            // })
+        
             _this.data.newAddress = [{
               id: new Date().getTime(),
               name: e.name,
               address: e.address,
               latitude: e.latitude,
-              longitude: e.longitude
+              longitude: e.longitude,
+              door_number:''
             }];
 
             _this.setData({
               newAddress: _this.data.newAddress
             })
 
-            wx.setStorage({
-              key: "historyAddress",
-              data: _this.data.newAddress.concat(_this.data.oldAddress),
-              success() {}
-            })
 
           }
         })

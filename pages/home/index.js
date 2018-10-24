@@ -9,7 +9,8 @@ Page({
         userInfo: {},
         order_number:0,
         goods_number:0,
-        goodslist: []
+        goodslist: [],
+        store_money:0
     },
 
     /**
@@ -23,9 +24,13 @@ Page({
             userInfo: app.globalData.userInfo
             })
 
-         this.getGoodsList(app.globalData.userInfo.token)
+         let token = app.globalData.userInfo.token
 
-         this.getBuyList(app.globalData.userInfo.token)
+         this.getGoodsList(token)
+
+         this.getBuyList(token)
+
+         this.get_store_info(token)
 
 
         }else{
@@ -33,7 +38,7 @@ Page({
         app.userLoginReadyCallback=(userInfo)=>{
             console.log('userLoginReadyCallback',userInfo)
              this.setData({
-            userInfo: userInfo
+             userInfo: userInfo
            })
          this.getGoodsList(userInfo.token)
          this.getBuyList(app.globalData.userInfo.token)
@@ -47,6 +52,27 @@ Page({
 
 
        
+    },
+    
+
+    get_store_info(token){
+
+        wx.request({
+            url: 'https://www.daohangwa.com/api/seller/get_store_info',
+            data: {
+                token: token
+            },
+            success: (res) => {
+                if (res.data.code == 0) {
+                    this.setData({
+                        store_money: res.data.data.store_money
+                    })
+                }
+            }
+        })
+
+        
+
     },
     getGoodsList:function(token){
         console.log(app.globalData.token)

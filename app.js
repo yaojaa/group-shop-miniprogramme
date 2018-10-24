@@ -128,7 +128,7 @@ App({
 
                   if (res.data.code === 0) {
 
-                    console.log('服务器登录成功 token is', res.data.data.token, this)
+                    console.log('服务器登录成功 token is', res.data.data)
                     this.globalData.token = res.data.data.token
                     this.globalData.userInfo = res.data.data
 

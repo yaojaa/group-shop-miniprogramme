@@ -1,8 +1,10 @@
 <view class="page-body">
+  
   <view class='painter'>
     <image src="{{imagePath}}"></image>
     <painter palette="{{painterData}}" bind:imgOK="onImgOk" bind:imgErr="onImgErr"/>
   </view>
+
 <view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>
 </view>
 <form bindsubmit="submitForm">
@@ -80,12 +82,12 @@
                     <input  value="{{item.price}}" type="digit"    bindinput="inputDuplex" data-key="spec_item[{{index}}].price"    maxlength="50" placeholder="0.00" />
                     </view>
     </view>
-<!--      <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
+     <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">数量:</view></view>
                     <view class="weui-cell__bd">
-                    <input  maxlength="50"  bindinput="inputDuplex" data-key="spec_item[{{index}}].store_count"  placeholder="0.00" value="{{item.store_count}}" />
+                    <input  maxlength="50"  bindinput="inputDuplex" data-key="spec_item[{{index}}].store_count"  placeholder="不限制" value="{{item.store_count}}" />
                     </view>
-    </view> -->
+    </view>
         <i-icon wx:if="{{spec_item.length >1 }}" data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="28" />
 
   </view>

@@ -1,8 +1,9 @@
 {
-  "window": {"navigationBarTitleText": "身份认证"},
+  "window": {"navigationBarTitleText": "完善信息方便联系"},
   "usingComponents": {
   	  "i-panel": "../../iView/panel/index",
 	    "i-input": "../../iView/input/index",
-	    "i-toast": "../../iView/toast/index"
+	    "i-toast": "../../iView/toast/index",
+	    "i-message": "../../iView/message/index"
 	}
 }

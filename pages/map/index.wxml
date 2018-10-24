@@ -2,7 +2,7 @@
 <view class='session'>
   <view class='limit'>
     <view class='header'>
-      <text>添加您的活动提货点或发货位置</text>
+      <text>添加提货点或发货位置</text>
       <!-- <switch bindchange="limitChange"/> -->
     </view>
  <!--    <view wx:if="{{ hidden }}" class='control'>
@@ -17,12 +17,12 @@
   <view class='address'>
   <!-- <view class='address' wx:if="{{index == 0}}"> -->
     <view class='icon-img'>
-      <image mode="aspectFit" src="{{location}}"></image>
+      <i-icon type="coordinates" />
     </view>
     <view class='content'>
       <view class='name'>{{item.name}}</view>
       <view class='des'>{{item.address}}</view>
-      <view class='des'>提货点：<input value="{{item.door_number}}" bindinput='inputAddressDes' placeholder="请输入详细门牌号如：2号楼3单元203" type="text" name=""/></view>
+      <view class='des door_number'>提货点：<input value="{{item.door_number}}" bindinput='inputAddressDes' placeholder="请输入详细门牌号如：2号楼3单元203" type="text" name=""/></view>
 
     </view>
     <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
@@ -46,7 +46,7 @@
 </block>
 <block wx:if="{{!newAddress[0]}}">
   <view class='add-address' wx:if="{{openLocation}}" bindtap='addAddress'>
-<i-button  class="button" shape="circle" type="success"  long="true" size="large">+添加地点</i-button>
+<i-button inline="true"  class="button" shape="circle" type="success"  long="true" size="large">+添加地点</i-button>
 
 
   </view>
@@ -61,7 +61,7 @@
 <block wx:for="{{oldAddress}}" wx:key="id">
   <view class='address'>
     <view class='icon-img'>
-      <image mode="aspectFit" src="{{location}}"></image>
+      <i-icon type="coordinates" />
     </view>
     <view class='content' data-id="{{item.id}}" bindtap='moveAddress'>
       <view class='name'>{{item.name}}</view>

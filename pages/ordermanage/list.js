@@ -107,6 +107,21 @@ Page({
      })
   },
 
+  
+
+  openTips({target}){
+       this.setData({
+      visible5_tips:true,
+      order_id:target.dataset.id
+    })
+  },
+
+  closeTips({target}){
+       this.setData({
+       visible5_tips:false
+          })
+  },
+
   openPay({target}){
        this.setData({
       visible4_pay:true,
@@ -163,6 +178,40 @@ Page({
   //     参数：order_id=123 action='pay' note='备注信息'
   //     方式：POST
   // }
+  // 
+  //提醒取货
+  setTips(e){
+
+            wx.request({
+            url: 'https://www.daohangwa.com/api/seller/delivery_handle',
+            method:'post',
+            data: {
+                token: app.globalData.token,
+                order_id:this.data.order_id,
+                note:this.data.note
+            },
+            success: (res) => {
+                   this.setData({
+                    visible2:false
+                   })
+                 if (res.data.code == 0) {
+                        this.getOrderList()
+                        $Message({
+                            content: '提醒取货成功',
+                            type: 'success'
+                        });
+                        this.data.note = ''
+                    }else{
+
+                       $Message({
+                            content: res.data.msg,
+                            type: 'error'
+                        });
+                    }
+            }
+        })
+
+  },
 
 
   //发货
