@@ -16,14 +16,14 @@ const default_start_time = util.formatTime(date)
 date.setDate(date.getDate() + 5);
 const default_end_time = util.formatTime(date)
 
-const qiniuUploader = require("../../utils/qiniuUploader");
 const cardConfig = {};//绘制卡片配置信息
 cardConfig.headsImgArr = [];//绘制卡片订购头像集合
 
 Page({
   data: {
     painterData: {},
-    imagePath: "",
+    link_url:"",
+    goods_id:"",
     isShowTimePicker:false,
     photoUrls: [],
     content_imgs:[],
@@ -265,39 +265,7 @@ Page({
 
   },
   onImgOk(e) { //绘制成功
-    let _this = this;
-    console.log(e)
-    qiniuUploader.upload(e.detail.path, (rslt) => {
-      let data = {
-        goods_id: this.data.goods_id,
-        shareimg: rslt.imageURL
-      };
-      wx.request({
-        method: 'post',
-        url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
-        data,
-        success: (res) => {
-          wx.hideLoading()
-          if (res.data.code == 0) {
-             wx.redirectTo({
-               url: '../goods/goods?goods_id=' + this.data.goods_id
-             })
-
-          } else {
-            wx.showModal({
-              title: res.data.msg,
-              showCancel: false
-            })
-          }
-        }
-      })
-      // _this.setData({
-      //   imagePath: `http://img.daohangwa.com/${rslt.key}`
-      // })
-    })
-  },
-  onImgErr(e) { //绘制失败
-    console.log("绘制失败=======>>>>", e)
+    wx.hideLoading()
   },
     //提交表单
     submitForm(e) {
@@ -388,9 +356,10 @@ Page({
                   cardConfig.date = util.formatTime(new Date(this.data.sell_end_time)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
                   cardConfig.content = e.detail.value.goods_content;
                   this.data.goods_id = res.data.data.goods_id;
+                  this.data.link_url = '/pages/goods/goods?goods_id=' + this.data.goods_id;
 
                   // this.getOrderUserList(this.data.goods_id)
-                  util.drawShareImg(cardConfig, this.data.goods_id, this);
+                  util.drawShareImg(cardConfig, this);
 
                   //  wx.redirectTo({
                   //   url:'../goods/goods?goods_id='+res.data.data.goods_id
