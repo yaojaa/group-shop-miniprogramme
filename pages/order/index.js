@@ -53,6 +53,11 @@ Page({
           mobile:res.data.data.phoneNumber
         })
 
+      },
+      fail:()=>{
+        $Message({
+        content:'获取失败！请手动填写手机号'
+          })
       }
     })
   } ,
@@ -261,7 +266,6 @@ Page({
               paySign: data['paySign'], 
               success:  (res) =>{ 
 
-                    console.log( _this.data.goods_id, _this)
 
 
                 util.drawShareImg(cardConfig, _this.data.goods_id, _this);

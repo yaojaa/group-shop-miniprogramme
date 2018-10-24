@@ -23,7 +23,7 @@ Page({
     onLoad: function(options) {
         this.data.order_id = options.order_id
         this.getOrderInfo();
-        util.getShareImg(options.goods_id, this);
+
         this.data.goods_id = options.goods_id;
     },
     getOrderInfo() {

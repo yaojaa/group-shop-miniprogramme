@@ -66,6 +66,9 @@
     font-size: 32rpx;
     line-height:1.7;
     background: #fff;
+    word-wrap:break-word;
+    overflow:hidden;
+    word-break:break-all;
 }
 
 .footer-cart {
@@ -358,3 +361,4 @@
 .piclist image{
     width: 100%
 }
+

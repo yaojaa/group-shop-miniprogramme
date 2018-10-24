@@ -88,13 +88,14 @@ const distance =  (la1, lo1, la2, lo2) => {
 }
 
 //绘制分享图片
-const drawShareImg = (cardConfig, _this) => {
+const drawShareImg = (cardConfig,goods_id, _this) => {
   console.log(_this)
     wx.request({
       url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
+      method:'post',
       data: {
         token: app.globalData.token,
-        goods_id: _this.data.goods_id
+        goods_id: goods_id
       },
       success: (res) => {
         if (res.data.code == 0) {
@@ -102,6 +103,7 @@ const drawShareImg = (cardConfig, _this) => {
             cardConfig.headsImgArr.push(e.user.head_pic)
           })
           //绘制图片
+          console.log('new Card().palette(cardConfig)',new Card().palette(cardConfig))
           _this.setData({
             painterData: new Card().palette(cardConfig),
             goods_id: _this.data.goods_id,

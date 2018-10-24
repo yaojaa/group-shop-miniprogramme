@@ -15,7 +15,7 @@
         </view>
         <view class="share-box">
             <button open-type="share">
-              分享  <image src="/img/share.png" class="wx-icon" />
+              <image src="/img/share.png" class="wx-icon" />
             </button>
             <!--             <image src="/img/circle.png" class="wx-icon" />
  -->
@@ -61,9 +61,9 @@
                 </view>
             </view>
         </view>
-        <view class="scale-1px" style="padding: 0 10px">
-            <i-cell wx:for="{{sell_address}}" wx:key="index" title="{{item.name}}" i-class="address-item">
-                <i-icon type="coordinates_fill" slot="icon" color="#375aa0" />
+        <view class="scale-1px" style="padding: 0 5px">
+            <i-cell wx:for="{{sell_address}}" wx:key="index" title="{{item.name+' '+item.door_number}}" i-class="address-item">
+                <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
         </view>
         <view class='sub-title scale-b-1px'>
@@ -85,9 +85,15 @@
         <i-cell-group>
             <i-cell wx:for="{{ orderUsers }}" i-class="buyer-item-box">
                 <view class="buyer-item">
+
+
+
+
                     <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
+
                     <view class="buyer-info">
-                        <view class="name"> {{item.user._number}}  {{item.user.nickname}}  </view>
+                          
+                        <view class="name"> <text class="number">{{item._number}} </text>{{item.user.nickname}}   </view>
                         <view class="type">
                             <view wx:for="{{item.specs}}" wx:key="index" wx:for-item="gds">
                                 {{gds.spec_key_name}} ✕ {{gds.goods_num}}

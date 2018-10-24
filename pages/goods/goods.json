@@ -11,6 +11,8 @@
     "i-button": "../../iView/button/index",
     "i-card": "../../iView/card/index",
     "i-message": "../../iView/message/index",
-    "i-count-down": "../../iView/count-down/index"
+    "i-count-down": "../../iView/count-down/index",
+    "i-badge": "../../iView/badge/index"
+
   }
 }

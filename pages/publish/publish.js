@@ -361,7 +361,7 @@ Page({
                   this.data.link_url = '/pages/goods/goods?goods_id=' + this.data.goods_id;
 
                   // this.getOrderUserList(this.data.goods_id)
-                  util.drawShareImg(cardConfig, this);
+                  util.drawShareImg(cardConfig,this.data.goods_id, this);
 
                   //  wx.redirectTo({
                   //   url:'../goods/goods?goods_id='+res.data.data.goods_id
@@ -481,8 +481,8 @@ Page({
                     sell_address:res.data.data.sell_address,
                     delivery_method:gs.delivery_method,
                     content_imgs:gs.content_imgs,
-                      sell_start_time:gs.sell_start_time,
-                      sell_end_time :gs.sell_end_time,
+                      sell_start_time:starFormatTime,
+                      sell_end_time :endFormatTime,
                       picker:{
                         start_date:starFormatTime.split(' ')[0],
                         start_time:starFormatTime.split(' ')[1],
