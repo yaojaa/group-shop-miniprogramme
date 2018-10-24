@@ -253,6 +253,8 @@ Page({
               signType: data['signType'], 
               paySign: data['paySign'], 
               success: function (res) { 
+
+                util.drawShareImg(cardConfig, _this.data.goods_id, _this);
               
                 wx.request({
                   url:'https://www.daohangwa.com/api/pay/orderpay',
@@ -260,10 +262,10 @@ Page({
                   token:app.globalData.token,
                   order_id:order_id,
                   success:()=>{
+                    console.log("pay",res)
 
 
 
-                    util.drawShareImg(cardConfig, _this.data.goods_id, _this);
                     //   wx.redirectTo({
                     //    url:'../paySuccess/index?order_id='+order_id
                     //  })
@@ -276,6 +278,7 @@ Page({
                 
               },
               fail: function (res) { 
+                console.log("pay",res)
                
                }
                   

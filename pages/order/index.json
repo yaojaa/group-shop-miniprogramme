@@ -12,6 +12,6 @@
     "i-input-number": "../../iView/input-number/index",
     "i-input": "../../iView/input/index",
     "i-message": "../../iView/message/index",
-    "painter": "/iView/painter/painter"
+    "painter": "../../iView/painter/painter"
   }
 }
