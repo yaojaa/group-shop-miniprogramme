@@ -281,7 +281,7 @@ Page({
               success: function (res) { 
 
                 util.drawShareImg(cardConfig, _this.data.goods_id, _this);
-                wx.hideLoading()
+                wx.showLoading()
                 wx.request({
                   url:'https://www.daohangwa.com/api/pay/orderpay',
                   data:{
