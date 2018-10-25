@@ -38,6 +38,7 @@
 		},
 		"miniprogram": {
 			"current": 3,
+
 			"list": [
 				{
 					"id": 0,
@@ -127,7 +128,7 @@
 					"id": 14,
 					"name": "订单管理",
 					"pathName": "pages/ordermanage/list",
-					"query": "id=21"
+					"query": "token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.DAiIyEJCRNLFeWoeJWSRr7yEVQarmacOirlZ8UsVJxc"
 				},
 				{
 					"id": -1,
