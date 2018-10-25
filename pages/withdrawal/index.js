@@ -51,7 +51,7 @@ Page({
         wx.request({
             url: 'https://www.daohangwa.com/api/seller/get_store_info',
             data: {
-                token: app.gloablData.token
+                token: app.globalData.token
             },
             success: (res) => {
                 if (res.data.code == 0) {

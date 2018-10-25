@@ -38,6 +38,12 @@ Page({
             mobile:e.detail.value
         })
     },
+    changeWX(e){
+
+          this.setData({
+            wxnumber:e.detail.value
+        })
+    },
     getPhoneNumber(e) {
         wx.request({
             url: 'https://www.daohangwa.com/api/user/get_wx_mobile',

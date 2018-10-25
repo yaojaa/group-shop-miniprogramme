@@ -63,6 +63,7 @@
 .address .icon-img image{
   height: 24px;
   width: 100%;
+  padding-left:20rpx
 }
 .address .content{
   width: 200px;

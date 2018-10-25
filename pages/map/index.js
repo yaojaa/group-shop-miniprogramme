@@ -177,15 +177,28 @@ Page({
           longitude,
           scale: 28,
           success(e){
+            console.log(e)
             if(!e.name || !e.address) return;
+
+
+             wx.request({
+            url:'https://apis.map.qq.com/ws/geocoder/v1/?key=FKRBZ-RK4WU-5XMV4-B44DB-D4LOH-G3F73&get_poi=1',
+            data:{
+              location:e.latitude+','+e.longitude
+            },
+            method:'get',
+            success:(res)=>{
+              let map =res.data.result.address_component
 
             _this.data.oldAddress = _this.data.newAddress.concat(_this.data.oldAddress);
 
-        
             _this.data.newAddress = [{
               id: new Date().getTime(),
               name: e.name,
               address: e.address,
+              province_name: map.province,
+              district_name:map.district,
+              city_name:map.city,
               latitude: e.latitude,
               longitude: e.longitude,
               door_number:''
@@ -194,6 +207,21 @@ Page({
             _this.setData({
               newAddress: _this.data.newAddress
             })
+
+            app.globalData.sell_address = _this.data.newAddress
+
+
+
+            },
+            fail:(err)=>{
+             reject(err)
+            }
+
+          })
+
+
+
+
 
 
           }

@@ -1,6 +1,13 @@
 <view class="container">
   <view class='session'>
-    <view class="search">
+
+    <view class="goods_name">
+      {{goods_name}}
+    </view>
+
+
+<!-- 搜索暂时不做-->
+  <!--     <view class="search">
       <view class="search-main">
         <view class='icon'>
           <icon type="search" size="14"/>
@@ -15,7 +22,7 @@
       <view class='search-button'>
         <button plain='true' size='mini'>搜索</button>
       </view>
-    </view>
+    </view> -->
   </view>
 <!--   <i-tabs color="#ff4891" current="{{ current }}" bindchange="handleChange">
     <i-tab key="tab1" title="全部"></i-tab>

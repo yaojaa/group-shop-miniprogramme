@@ -139,8 +139,10 @@ Page({
     },
     detailPage(e) {
         let url = e.currentTarget.dataset.url
+        let name = e.currentTarget.dataset.name
+
         wx.navigateTo({
-            url: '../ordermanage/list?goods_id=' + url,
+            url: '../ordermanage/list?goods_id=' + url+'&goods_name='+name,
         })
   },
   onImgOk(e) { //绘制成功
@@ -149,7 +151,7 @@ Page({
     pay({target}) {
 
 
-        let  order_id = target.dataset.id;
+      let  order_id = target.dataset.id;
       let index = target.dataset.idx;
       let _this = this;     
 
@@ -158,14 +160,12 @@ Page({
       cardConfig.headImg = app.globalData.userInfo.head_pic;
       cardConfig.userName = app.globalData.userInfo.nickname;
 
-      cardConfig.address = this.data.orders[index].goods.address;
       cardConfig.date = util.formatTime(new Date(this.data.orders[index].goods.sell_end_time*1000)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
       cardConfig.content = this.data.orders[index].goods.goods_content;
       this.data.goods_id = this.data.orders[index].goods.goods_id;
       this.data.order_id = order_id;
       this.data.link_url = '/pages/paySuccess/index?order_id=' + order_id + "&goods_id=" + this.data.goods_id
 
-      console.log(this.data, cardConfig)
 
 
      

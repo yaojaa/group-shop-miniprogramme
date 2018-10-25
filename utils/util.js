@@ -88,9 +88,18 @@ const distance =  (la1, lo1, la2, lo2) => {
 }
 
 //绘制分享图片
-const drawShareImg = (cardConfig,goods_id, _this) => {
-  console.log(_this)
-    wx.request({
+const get_painter_data_and_draw = function(goods_id){
+
+  let cardConfig ={
+    headsImgArr:[]
+  } // { headImg, userName,  date, content, headsImgArr }
+      cardConfig.headImg = app.globalData.userInfo.head_pic;
+      cardConfig.userName = app.globalData.userInfo.nickname;
+ 
+
+ //获取人
+ var getUserList = function(cb){
+  wx.request({
       url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
       method:'post',
       data: {
@@ -102,17 +111,37 @@ const drawShareImg = (cardConfig,goods_id, _this) => {
           res.data.data.lists.forEach(e => {
             cardConfig.headsImgArr.push(e.user.head_pic)
           })
-          //绘制图片
-          console.log('new Card().palette(cardConfig)',new Card().palette(cardConfig))
-          _this.setData({
-            painterData: new Card().palette(cardConfig),
-            goods_id: _this.data.goods_id,
-            link_url: _this.data.link_url
-          })
-
-        }
+         let  painterData = new Card().palette(cardConfig)
+            cb(painterData)
+          }
       }
     })
+
+ }
+  //获取内容
+    wx.request({
+            url: 'https://www.daohangwa.com/api/goods/get_goods_info',
+            data: {
+                token :app.globalData.token,
+                goods_id: goods_id
+            },
+            success: (res) => {
+             if (res.data.code == 0) {
+             cardConfig.headImg = res.data.data.seller_user.head_pic;
+             cardConfig.userName = res.data.data.seller_user.nickname;
+             cardConfig.date = util.formatTime(new Date( res.data.data.sell_end_time)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
+             cardConfig.content = res.data.data.goods.goods_content
+
+             getUserList((res)=>{
+              console.log('绘制的图片为',res)
+             })
+
+                }
+              }
+          })
+  
+
+
 }
 
 //获取分享图片
@@ -142,6 +171,6 @@ module.exports = {
   inputDuplex,
   uploadPicture,
   distance,
-  drawShareImg,
+  // drawShareImg,
   getShareImg
 }

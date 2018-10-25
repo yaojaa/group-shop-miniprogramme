@@ -4,17 +4,17 @@
     <!--自提-->
     <i-panel  class="address" wx:if="{{delivery_method==2}}">
               <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
-        <i-input value="{{ nickName }}" title="收货人" autofocus placeholder="名字" />
-        <i-input value="{{ mobile }}" type="number" title="联系电话" placeholder="输入手机号方便联系" />
+        <i-input value="{{ nickName }}" title="收货人" id="nickName" bind:change="inputTodata"   placeholder="请输入姓名" />
+        <i-input value="{{ mobile }}" id="mobile" bind:change="inputTodata" type="number" title="联系电话" placeholder="输入手机号方便联系" />
     </i-panel>
     <!--送货上门-->
     <view class="address" wx:if="{{delivery_method==1}}">
         <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
         <i-panel>
-            <i-input value='{{nickName}}' title="联系人" placeholder="请输入姓名" />
-            <i-input value="{{mobile}}" title="手机号" placeholder="请输入手机号" bindinput="mobileChange" />
-            <i-input value="{{ address }}" type="text" title="地址" placeholder="请输收货地址(最多50字)" />
-            <i-input value="" type="textarea" title="门牌号" placeholder="楼号、门牌号" />
+            <i-input value='{{nickName}}' id="nickName" bind:change="inputTodata" title="收货人" placeholder="请输入姓名" />
+            <i-input value="{{mobile}}" title="手机号" placeholder="请输入手机号" id="mobile" bind:change ="inputChange" />
+            <i-input value="{{ address }}" id="address" bind:change="inputTodata" type="text" title="地址" placeholder="请输收货地址(最多50字)" />
+           <!--  <i-input value="" id="door_number" bind:change="inputTodata" type="textarea" title="门牌号" placeholder="楼号、门牌号" /> -->
         </i-panel>
     </view>
     <view class='mt-sm'>

@@ -1,10 +1,10 @@
 export default class LastMayday {
-  palette({ headImg, userName, address, date, content, headsImgArr }) {
+  palette({ headImg, userName,  date, content, headsImgArr }) {
     return ({
       width: `${ wid }rpx`,
       height: `${ hei }rpx`,
       background: '#fff',
-      views: topArr({ headImg, userName, address, date, content}).concat(headArr(headsImgArr)),
+      views: topArr({ headImg, userName, date, content}).concat(headArr(headsImgArr)),
     });
   }
 }
@@ -14,7 +14,7 @@ const hei = 600;
 const startTop = 2;
 const startLeft = 2;
 const headSize = 26;
-function topArr({ headImg, userName, address, date, content }){
+function topArr({ headImg, userName, date, content }){
   return [
     //绘制背景边框
     // {

@@ -46,9 +46,15 @@
     <view style="padding: 5px 10px;">
 
    <view class='order' wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
-      <view class='title'>{{item.goods.goods_name}} <text class="state"> {{['待确认','已确认','已收货','已取消','已完成','已作废'][item.order_status]}}
-</text> </view>
-      <!-- <view class='line'></view> -->
+      <view class='title'>
+        <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}">
+        {{item.goods.goods_name}} <text class="state"> {{['等待确认','已确认','已收货','已取消','已完成','已作废'][item.order_status]}}
+
+        
+</text> 
+</navigator>
+</view>
+      <!-- 发货状态 0未发货 1已发货 2部分发货 -->
       <view class="goodsList" wx:for="{{item.order_goods}}" wx:for-item="order" wx:key="@index">
         <view class='goods'>
           <view class='cell'>
@@ -67,7 +73,12 @@
       <view class='line'></view>
       <view class='paycell'>
         <view class='pay'>
-          <view class="left success">   {{['待支付','已支付','支付失败'][item.pay_status]}}   </view>
+          <view class="left success">   {{['待支付','已支付','支付失败'][item.pay_status]}} 
+
+          <!--订单确认后显示取货状态-->
+          <text wx:if="{{item.order_status == 1}}">{{['等待取货','已取货'][item.shipping_status]}}</text> 
+
+          </view>
           <view class="right warning">￥{{item.goods_price}}</view>
         </view>
 <view class="yuan1"></view>
@@ -120,15 +131,18 @@
                         <text class="label">浏览次数</text>
                         <text class="num">{{item._visit_count}}</text>
                     </view>
-                    <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}">
-                        <text class="label">订单管理</text>
-                        <text class="num">{{item._order_count}}</text>
-                    </view>
+                    
                   
                     <view class="count-item">
                         <text class="label">收款总额</text>
                         <text class="num">￥{{item._order_amount}}</text>
                     </view>
+
+                    <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}"> 
+                        <text class="label">订单管理</text>
+                        <text class="num">{{item._order_count}}</text>
+                    </view>
+
                 </view>
             </view>
         </view>

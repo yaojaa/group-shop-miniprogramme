@@ -352,20 +352,16 @@ Page({
               success:  (res) =>{
                 if (res.data.code == 0) {
                     //绘制配置
-                  cardConfig.headImg = app.globalData.userInfo.head_pic;
-                  cardConfig.userName = app.globalData.userInfo.nickname;
-                  cardConfig.address = this.data.sell_address;
-                  cardConfig.date = util.formatTime(new Date(this.data.sell_end_time)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
-                  cardConfig.content = e.detail.value.goods_content;
-                  this.data.goods_id = res.data.data.goods_id;
-                  this.data.link_url = '/pages/goods/goods?goods_id=' + this.data.goods_id;
+                 
+                  // this.data.goods_id = res.data.data.goods_id;
+                  // this.data.link_url = '/pages/goods/goods?goods_id=' + this.data.goods_id;
 
                   // this.getOrderUserList(this.data.goods_id)
-                  util.drawShareImg(cardConfig,this.data.goods_id, this);
+                  // util.drawShareImg(cardConfig,this.data.goods_id, this);
 
-                  //  wx.redirectTo({
-                  //   url:'../goods/goods?goods_id='+res.data.data.goods_id
-                  //  })
+                   wx.redirectTo({
+                    url:'../goods/goods?goods_id='+res.data.data.goods_id
+                   })
                  
                 }else{
                   wx.hideLoading()

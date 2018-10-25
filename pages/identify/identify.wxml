@@ -3,7 +3,7 @@
         <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">使用微信绑定的手机号</button>
         <i-panel title="完善你的联系方式">
             <i-input bindchange="changeMobile" value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
-            <i-input value="{{wxnumber}}" type="text" title="微信号" placeholder="输入您的微信账号" />
+            <i-input bindchange="changeWX" value="{{wxnumber}}" type="text" title="微信号" placeholder="输入您的微信账号" />
         </i-panel>
     </view>
     <view class='btn-wrap'>

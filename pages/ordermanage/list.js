@@ -7,7 +7,7 @@ Page({
   data:{
     current: "tab1",
     visible: false,
-    alertMsg: "确定执行？",
+    goods_name: "",
     eidePriceVisible: false,
     searchContent:"",
     deleteShow: true,
@@ -45,8 +45,11 @@ Page({
 
 
 
-    let goods_id = optiton.goods_id
-    this.data.goods_id = goods_id
+     this.setData({
+      goods_id :optiton.goods_id,
+      goods_name :optiton.goods_name
+
+     })
      this.getOrderList()
 
 

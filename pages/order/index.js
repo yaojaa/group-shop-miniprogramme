@@ -22,6 +22,10 @@ Page({
     goods_id:'',
     hasgoods:false,
     address:'',
+    province_name:'',
+    city_name:'',
+    district_name:'',
+    // door_number:'',
     goods_name:'',
     cover_pic:'',
     mobile:'',
@@ -49,9 +53,20 @@ Page({
       },
       success:(res)=>{
 
-        this.setData({
-          mobile:res.data.data.phoneNumber
-        })
+       if(res.data.code ==0){
+           this.setData({
+            mobile:res.data.data.phoneNumber
+          })
+
+         if(!app.globalData.userInfo.mobile){
+           app.globalData.userInfo.mobile = res.data.data.phoneNumber
+         } 
+
+       }else{
+          $Message({
+             content:'获取失败！请手动填写手机号'
+          })
+       }
 
       },
       fail:()=>{
@@ -66,8 +81,20 @@ Page({
     this.setData({
       mobile:e.detail.value    
     })
-
   },
+
+  inputTodata(e){
+    console.log('inputChang',e)
+
+    let key = e.target.id
+
+    console.log(e.detail.detail.value)
+
+      this.setData({
+      [key]:e.detail.detail.value    
+    })
+  },
+
   handleChange1(e) {
 
 
@@ -95,6 +122,98 @@ Page({
 
 
   },
+  getUserloaction(){
+    //onload 获取地理位置
+    return new Promise((reslove,reject)=>{
+
+       wx.getLocation({
+        type: 'wgs84',
+        success: function(res) {
+          var latitude = res.latitude
+          var longitude = res.longitude
+          // var speed = res.speed
+          // var accuracy = res.accuracy
+            wx.request({
+            url:'https://apis.map.qq.com/ws/geocoder/v1/?key=FKRBZ-RK4WU-5XMV4-B44DB-D4LOH-G3F73&get_poi=1',
+            data:{
+              location:latitude+','+longitude
+            },
+            method:'get',
+            success:(res)=>{
+              reslove(res.data.result.address_component)
+            },
+            fail:(err)=>{
+             reject(err)
+            }
+
+          })
+           },
+           fail:(err)=>{
+            reject(err)
+           }
+         })
+
+    })
+
+  },
+
+  //获取用户默认地址
+  getDefaultAddress(cb){
+
+    let addressObj = {}
+
+
+        //1邮递    2自提 两种情况默认地址不同
+    if(this.data.delivery_method ==1){
+      //邮递时 先获取上次存储的位置 为空则默认获取定位位置
+      //
+      console.log('app.globalData.userInfo.address',app.globalData.userInfo.address)
+      //
+      if(app.globalData.userInfo.address!==null && typeof app.globalData.userInfo.address !=='undefined'  ){
+        return cb(app.globalData.userInfo.address)
+
+      }else{
+
+        this.getUserloaction().then((map)=>{
+
+          console.log(map)
+
+          addressObj.province_name = map.province
+          addressObj.district_name = map.district
+          addressObj.city_name = map.city
+          addressObj.address = map.province+map.city+map.district+map.street+map.street_number
+         return cb(addressObj)
+
+        })
+
+
+      }
+
+     //自提时候为卖家商品地址
+    }else if(this.data.delivery_method ==2){
+
+      goods_address = wx.getStorageSync('goods').sell_address[0].address
+
+// address:"北京市大兴区四海路"
+// door_number:"1-103"
+// goods_id:14
+// id:1540388000206
+// latitude:"39.7534100"
+// longitude:"116.4883500"
+// name:"金域东郡10号楼"
+// sell_address_id:17
+// 
+       addressObj = Object.assign(addressObj,goods_address)
+
+       return cb(addressObj)
+  
+
+
+
+    }
+
+
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -108,76 +227,38 @@ Page({
 
       cart.forEach(value=> amountMoney +=parseInt(value.price*100)*parseInt(value.item_num))
 
-      console.log(app.globalData.userInfo.nickname)
+
+      this.getDefaultAddress((s)=>{
+
+
+        this.setData({
+          address:s.address,
+          province_name:s.province_name,
+          city_name:s.city_name,
+          district_name:s.district_name
+        })
+
+
+      })
        
 
     this.setData({
       nickName: app.globalData.userInfo.nickname,
       goods_id:options.goods_id,
       cart:wx.getStorageSync('cart') || [],
-      address:wx.getStorageSync('goods').sell_address[0].address,
       amountMoney:amountMoney/100,
       cover_pic:wx.getStorageSync('goods').cover_pic,
       goods_name:wx.getStorageSync('goods').goods_name,
       delivery_method:wx.getStorageSync('goods').delivery_method,
-      mobile:app.globalData.userInfo.mobile
+      mobile:app.globalData.userInfo.mobile 
         })
       
 
 
-    //绘制配置
-    cardConfig.headImg = app.globalData.userInfo.head_pic;
-    cardConfig.userName = app.globalData.userInfo.nickname;
-
-    cardConfig.address = this.data.address;
-    cardConfig.date = util.formatTime(new Date(goods.sell_end_time * 1000)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
-    cardConfig.content = goods.goods_content;
-
-
-    //1邮递2自提 两种情况默认地址不同
-    if(this.data.delivery_method ==1){
-      //address =
-
-    }else if(this.data.delivery_method ==2){
-
-      //address =
-
-
-    }
-
-
-//onload 获取地理位置
- wx.getLocation({
-  type: 'wgs84',
-  success: function(res) {
-    var latitude = res.latitude
-    var longitude = res.longitude
-    var speed = res.speed
-    var accuracy = res.accuracy
-       wx.request({
-      url:'https://apis.map.qq.com/ws/geocoder/v1/?location=39.984154,116.307490&key=FKRBZ-RK4WU-5XMV4-B44DB-D4LOH-G3F73&get_poi=1',
-      method:'get',
-      success:(res)=>{
-
-        address = res.data.result.address_component
-
-      }
-    })
-
-
-
-
-
-  }
-})
-
-
-    
+   
+  
   },
 
-  onImgOk(e) { //绘制成功
-          wx.hideLoading()
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -186,6 +267,16 @@ Page({
     let address = wx.getStorageSync('goods').sell_address[0].address
 
 
+      if(this.data.nickName ==''){
+      $Message({
+        content:'请填写收货人'
+      })
+      return
+    }
+
+
+   
+
     if(this.data.mobile ==''){
       $Message({
         content:'请填写手机号码'
@@ -193,14 +284,41 @@ Page({
       return
     }
 
+
+    if(this.data.delivery_method ==1 && this.data.address.length<10){
+      $Message({
+        content:'请填写收货地址'
+      })
+      return
+    }
+
+
+
+    // if(this.data.delivery_method ==1 && this.data.door_number.length<4 ){
+    //   $Message({
+    //     content:'请填写门牌号'
+    //   })
+    // }
+
+         //清除购物车里为0的。
+
     this.data.cart.forEach((value,index)=>{
 
       if(value.item_num == 0){
         this.data.cart.splice(index,1)
       }
 
-
     })
+
+
+    let addressData = {
+                      'consignee': this.data.nickName, 
+                      'province_name': this.data.province_name,
+                      'city_name': this.data.city_name,
+                      'district_name': this.data.district_name,
+                      'address': this.data.address, 
+                      'mobile': this.data.mobile
+                    }
 
 
 
@@ -212,14 +330,7 @@ Page({
             token :app.globalData.token,
             goods_id:this.data.goods_id,
             spec_item:this.data.cart,
-            address:[{'consignee': this.data.nickName, 
-                      'province_name': '0', 
-                      'city_name': '0', 
-                      'district_name': '0', 
-                      'address': address, 
-                      'mobile': this.data.mobile
-                    }
-                   ]
+            address:[addressData]
            },
            success:  (res) =>{
 
@@ -229,11 +340,13 @@ Page({
               })
             }
 
+            app.globalData.userInfo.address = addressData
+
 
               this.data.order_id = res.data.data.order_id;
               this.data.link_url = '/pages/paySuccess/index?order_id=' + this.data.order_id + "&goods_id=" + this.data.goods_id
 
-                this.pay(parseInt(res.data.data.order_id))
+            this.pay(parseInt(this.data.order_id))
            }
               }
               )
@@ -265,11 +378,6 @@ Page({
               signType: data['signType'], 
               paySign: data['paySign'], 
               success:  (res) =>{ 
-
-
-
-                util.drawShareImg(cardConfig, _this.data.goods_id, _this);
-               
 
                 wx.showLoading()
 
