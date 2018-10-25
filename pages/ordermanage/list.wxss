@@ -145,7 +145,7 @@ icon {
 	display: inline-block;
 }
 .mg-r4{
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 }
 .list-button{
 	font-size: 0; 
