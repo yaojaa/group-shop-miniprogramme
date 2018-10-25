@@ -98,7 +98,7 @@ const get_painter_data_and_draw = function(goods_id){
  
 
  //获取人
- var getUserList = function(cb){
+ var getUserList = function(goods_id,cb){
   wx.request({
       url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
       method:'post',
@@ -112,7 +112,7 @@ const get_painter_data_and_draw = function(goods_id){
             cardConfig.headsImgArr.push(e.user.head_pic)
           })
          let  painterData = new Card().palette(cardConfig)
-            cb(painterData)
+              cb(painterData)
           }
       }
     })
@@ -129,11 +129,15 @@ const get_painter_data_and_draw = function(goods_id){
              if (res.data.code == 0) {
              cardConfig.headImg = res.data.data.seller_user.head_pic;
              cardConfig.userName = res.data.data.seller_user.nickname;
-             cardConfig.date = util.formatTime(new Date( res.data.data.sell_end_time)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
+             cardConfig.date = formatTime(new Date(res.data.data.goods.sell_end_time*1000)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
              cardConfig.content = res.data.data.goods.goods_content
 
-             getUserList((res)=>{
+             getUserList(goods_id,(res)=>{
               console.log('绘制的图片为',res)
+              console.log(this)
+               this.setData({
+              painterData:res
+                 })
              })
 
                 }
@@ -171,6 +175,6 @@ module.exports = {
   inputDuplex,
   uploadPicture,
   distance,
-  // drawShareImg,
+  get_painter_data_and_draw,
   getShareImg
 }

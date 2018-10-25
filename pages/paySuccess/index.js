@@ -14,7 +14,8 @@ Page({
         order_goods: '',
       order_time: '',
       imagePath: "",
-      goods_id: ""
+      goods_id: "",
+      painterData:{}
     },
 
     /**
@@ -24,7 +25,13 @@ Page({
         this.data.order_id = options.order_id
         this.getOrderInfo();
 
-        this.data.goods_id = options.goods_id;
+        this.setData({
+          goods_id:options.goods_id
+        })
+
+        util.get_painter_data_and_draw.call(this,options.goods_id)
+
+
     },
     getOrderInfo() {
         wx.request({

@@ -266,6 +266,9 @@ Page({
   },
   onImgOk(e) { //绘制成功
     wx.hideLoading()
+      wx.redirectTo({
+        url:'../goods/goods?goods_id='+this.data.goods_id
+     })
   },
     //提交表单
     submitForm(e) {
@@ -352,16 +355,20 @@ Page({
               success:  (res) =>{
                 if (res.data.code == 0) {
                     //绘制配置
+                    //
+                  this.setData({
+                    goods_id:res.data.data.goods_id
+                  })
                  
-                  // this.data.goods_id = res.data.data.goods_id;
+                   // this.data.goods_id = res.data.data.goods_id;
                   // this.data.link_url = '/pages/goods/goods?goods_id=' + this.data.goods_id;
 
                   // this.getOrderUserList(this.data.goods_id)
                   // util.drawShareImg(cardConfig,this.data.goods_id, this);
+                  // 
+                  util.get_painter_data_and_draw.call(this,this.data.goods_id)
 
-                   wx.redirectTo({
-                    url:'../goods/goods?goods_id='+res.data.data.goods_id
-                   })
+                 
                  
                 }else{
                   wx.hideLoading()
@@ -476,7 +483,7 @@ Page({
                     goods_content:gs.goods_content,
                     sell_address:res.data.data.sell_address,
                     delivery_method:gs.delivery_method,
-                    content_imgs:gs.content_imgs,
+                    content_imgs:gs.content_imgs || [],
                       sell_start_time:starFormatTime,
                       sell_end_time :endFormatTime,
                       picker:{
@@ -507,35 +514,35 @@ Page({
 
 
   },
-  getOrderUserList(goods_id) {
+  // getOrderUserList(goods_id) {
 
-    wx.request({
-      url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
-      data: {
-        token: app.globalData.token,
-        goods_id: goods_id
-      },
-      success: (res) => {
+  //   wx.request({
+  //     url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
+  //     data: {
+  //       token: app.globalData.token,
+  //       goods_id: goods_id
+  //     },
+  //     success: (res) => {
 
-        if (res.data.code == 0) {
+  //       if (res.data.code == 0) {
 
-          res.data.data.lists.forEach(e => {
-            cardConfig.headsImgArr.push(e.user.head_pic)
-          })
+  //         res.data.data.lists.forEach(e => {
+  //           cardConfig.headsImgArr.push(e.user.head_pic)
+  //         })
 
-          //绘制图片
-          this.setData({
-            painterData: new Card().palette(cardConfig)
-          })
+  //         //绘制图片
+  //         this.setData({
+  //           painterData: new Card().palette(cardConfig)
+  //         })
 
-        }
-
-
-      }
-    })
+  //       }
 
 
-  },
+  //     }
+  //   })
+
+
+  // },
  
   inputDuplex:util.inputDuplex
 })

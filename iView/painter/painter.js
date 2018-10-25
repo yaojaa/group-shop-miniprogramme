@@ -224,9 +224,9 @@ Component({
           success: (res) => {
             // wx.hideLoading()
             if (res.data.code == 0) {
-              wx.redirectTo({
-                url: _this.properties.link_url
-              })
+              // wx.redirectTo({
+              //   url: _this.properties.link_url
+              // })
 
             } else {
               wx.showModal({

@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "i-panel": "/iView/panel/index",
-    "i-cell": "/iView/cell/index"
+    "i-cell": "/iView/cell/index",
+    "painter": "../../iView/painter/painter"
+
   }
 }

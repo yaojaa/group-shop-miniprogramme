@@ -1,5 +1,5 @@
 <view class="page-body">
-<painter goods_id="{{goods_id}}" link_url="{{link_url}}" palette="{{painterData}}" bind:imgOK="onImgOk"/>
+<painter palette="{{painterData}}" goods_id="{{goods_id}}" bind:imgOK="onImgOk"/>
 
 <view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>
 </view>

@@ -1,7 +1,5 @@
 <view class="container">
-  <view class='painter'>
-    <image src="{{imagePath}}"></image>
-  </view>
+<painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgOK="onImgOk"/>
   <view class='background'>
     <image mode="aspectFill" src="/img/b.png"></image>
   </view>
