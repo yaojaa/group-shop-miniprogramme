@@ -34,7 +34,7 @@
             <view class='list-h mg-r1 text-justify'>
               <view><text class="text-info">订购人：</text>{{item.consignee}} {{item.mobile}} </view>
                 <!-- <text class="state warning">{{['您有新订单待确认','订单已确认','已收货','已取消','已完成','已作废'][item.order_status]}}</text> -->
-                <text class="state warning" wx:if="{{item.order_status==0}}">新订单待处理！</text>
+                <text class="state warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
                 <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text>
                 <text class="state success" wx:if="{{item.shipping_status==1}}">已发货</text>
                 <text class="state success" wx:if="{{item.order_status==3}}">订单已取消</text>
@@ -60,16 +60,16 @@
                     <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm">确认订单</button>
                 </form>
                 <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openCancel">取消订单</button>
+                    <button class="button" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openCancel">取消订单</button>
                 </form>
                 <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openPay">已线下支付</button>
+                    <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openPay">已线下支付</button>
                 </form>
                 <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>
+                    <button class="button warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>
                 </form>
                 <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
+                    <button class="button warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
                 </form>
             </view>
         </view>
