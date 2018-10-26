@@ -43,7 +43,7 @@
                 <view>发货状态：{{item.shipping_status==0?'未发货':'已发货' }}</view>
             </view>
             <view class='list-h mg-r3' wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
-                <view>{{g.spec_key_name}} X{{g.goods_num}} {{g.goods_price}}</view>
+                <view>{{g.spec_key_name}} X{{g.goods_num}} {{g.goods_num*g.goods_price}}</view>
       
                 <view></view>
             </view>
