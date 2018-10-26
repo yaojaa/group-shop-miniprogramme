@@ -37,8 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
-
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -140,6 +139,12 @@
 					"id": -1,
 					"name": "支付成功",
 					"pathName": "pages/paySuccess/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "地图",
+					"pathName": "pages/userLocation/index",
 					"query": ""
 				}
 			]

@@ -1,0 +1,12 @@
+.container{
+  width:100%;
+  height:calc( 100vh - 66px);
+}
+#myMap{
+  width:100%;
+  height:100%;
+}
+.address-box{
+  width: 100%;
+  height: 66px;
+}
