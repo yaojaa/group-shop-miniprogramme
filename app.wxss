@@ -84,11 +84,11 @@
   color:#fff;
 }
 
-.text-red {
+.text-red,.danger {
   color: #ff5757 !important;
 }
 
-.text-green {
+.text-green,.success {
   color: #39ac69 !important;
 }
 

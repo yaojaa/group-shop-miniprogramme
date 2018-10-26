@@ -2,6 +2,7 @@ const app = getApp()
 
 
 const util = require('../../utils/util.js')
+const { $Message } = require('../../iView/base/index');
 
 
 Page({
@@ -122,6 +123,30 @@ Page({
                 }
             }
         })
+    },
+    //确认收货
+    confirm_order({target}){
+
+          wx.request({
+            url: 'https://www.daohangwa.com/api/user/confirm_order',
+            method:'POST',
+            data: {
+                token: app.globalData.token,
+                order_id:target.dataset.id
+            },
+            success: (res) => {
+                if (res.data.code == 0) {
+                   $Message({
+                       content:'确认成功'
+                    })
+                    this.getBuyList()
+
+                }
+            }
+        })
+
+
+
     },
     new_btn: function() {
         wx.navigateTo({

@@ -3,7 +3,7 @@
 
 <view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>
 </view>
-<form bindsubmit="submitForm">
+<form bindsubmit="submitForm" >
 <view class="weui-uploader weui-cells_form weui-cell">
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">

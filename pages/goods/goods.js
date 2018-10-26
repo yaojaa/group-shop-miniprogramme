@@ -85,6 +85,7 @@ Page({
                         sell_address: res.data.data.sell_address,
                         seller_user: res.data.data.seller_user,
                         spec_goods_price: spec_goods_price,
+                        delivery_method:res.data.data.goods.delivery_method,
                         countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
                     })
 
@@ -216,11 +217,15 @@ Page({
                     const lo2 = value.longitude
 
                     let dis = util.distance(latitude, longitude, la2, lo2)
+
+                    console.log('dis距离是',dis,this.data.delivery_method)
+
+
                     //大于3公里
                     if (dis > 3 && this.data.delivery_method == 2) {
 
                         $Message({
-                            content: '您的位置不在取货范围内,请注意！',
+                            content: '您的位置不在取货范围内',
                             type: 'warning',
                             duration: 5
                         })

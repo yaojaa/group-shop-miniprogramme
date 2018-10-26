@@ -46,9 +46,8 @@ page{
   /*border:1px solid #fff9ee*/
 }
 .order .title{
-  font-size: 16px;
-  height: 40px;
-  line-height: 40px;
+  font-size: 32rpx;
+  line-height: 1.7;
   margin:0  20px;
   font-weight: bold;
   border-bottom: 1px dotted #ccc;

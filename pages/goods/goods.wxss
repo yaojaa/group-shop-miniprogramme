@@ -371,4 +371,10 @@
 .piclist image{
     width: 100%
 }
-
+.number{
+    font-size: 36rpx;
+    color: #999;
+    display: inline-block;
+    width: 80rpx;
+    text-align: center;
+}

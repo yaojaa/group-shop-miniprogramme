@@ -18,6 +18,8 @@
     "i-badge": "../../iView/badge/index",
     "i-icon": "../../iView/icon/index",
     "i-button": "../../iView/button/index",
-    "painter": "../../iView/painter/painter"
+    "painter": "../../iView/painter/painter",
+    "i-message": "../../iView/message/index"
+
   }
 }

@@ -14,7 +14,7 @@
         <view class='goods' wx:for="{{order_goods}}"  wx:key="@index">
           <view class='cell'>
             <view class='left'>{{item.spec_key_name}} x {{item.goods_num}}</view>
-            <view class='right'><text>￥</text>{{item.goods_price}}</view>
+            <view class='right'><text>￥</text>{{item.goods_price*item.goods_num}}</view>
           </view>
         </view>
       </view>

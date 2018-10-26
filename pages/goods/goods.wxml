@@ -62,7 +62,7 @@
             </view>
         </view>
          <view  style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="index" data-good-id="{{goods.goods_id}}" >
-            <i-cell title="{{item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
+            <i-cell title="{{ (goods.delivery_method == 1 ?'发货地：':'取货地址：') +item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
         </view>
@@ -86,21 +86,21 @@
             <i-cell wx:for="{{ orderUsers }}" i-class="buyer-item-box">
                 <view class="buyer-item">
 
-
+<text class="number">{{item.create_number}} </text>
 
 
                     <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
 
                     <view class="buyer-info">
                           
-                        <view class="name"> <text class="number">{{item._number}} </text>{{item.user.nickname}}   </view>
+                        <view class="name"> {{item.user.nickname}}   </view>
                         <view class="type">
                             <view wx:for="{{item.specs}}" wx:key="index" wx:for-item="gds">
                                 {{gds.spec_key_name}} ✕ {{gds.goods_num}}
                             </view>
                         </view>
                     </view>
-                    <view class="buyer-date">{{item.order.add_time}}</view>
+                    <view class="buyer-date">{{item.add_time}}</view>
                 </view>
             </i-cell>
         </i-cell-group>
@@ -158,5 +158,4 @@
         </view>
     </i-action-sheet>
     <i-message id="message" />
-    <!-- <canvas canvas-id="canvas-1"></canvas> -->
 </view>

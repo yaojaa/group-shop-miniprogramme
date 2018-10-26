@@ -134,6 +134,8 @@
 }
 
 .goods-body .bd .link {
+
+padding:16rpx 0 0 5rpx
     
 }
 
@@ -215,10 +217,10 @@ white-space: nowrap;
 
 .order .title .state{
   font-size: 12px;
-  color: #999;
   position: absolute;
   right: 15rpx;
-  top: 5rpx
+  top: 5rpx;
+  font-weight:normal
 }
 .line{
   position: relative;
@@ -345,7 +347,7 @@ white-space: nowrap;
             border-radius: 20px;
             background-color: #fff;
             left: -10px;
-            top:80rpx;
+            top:72rpx;
             box-shadow: inset -1px -1px 3px #ddd
 
         }
@@ -356,6 +358,15 @@ white-space: nowrap;
     border-radius: 20px;
     background-color: #fff;
     right: -10px;
-    top:80rpx;
+    top:72rpx;
     box-shadow: inset 1px 1px 3px #ddd
+}
+
+button.edit-btn,.button-hover{
+  display: inline-block;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: #ffd200
 }
