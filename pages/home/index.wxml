@@ -86,7 +86,7 @@
 
   </view>
 
-   <i-button bindtap="pay" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+   <i-button bindtap="pay"  data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
         </view>
 
 
@@ -112,7 +112,12 @@
                     <view class="bd">
                         <view class="tit">{{item.goods_name}}</view>
                         <view class="link">
-                          <button size="mini" bindtap="editPage" data-url="{{item.goods_id}}">修改</button>
+
+         <form  bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true" >
+                    <button   formType="submit" size="mini" >修改</button>
+         </form> 
+
+
                            
 <!-- <i-button shape="circle" size="small" data-url="{{item.goods_id}}" bind:click="editPage" >修改</i-button> -->
 

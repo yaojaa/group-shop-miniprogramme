@@ -1,5 +1,5 @@
 <view class="container">
-    <painter goods_id="{{goods_id}}" link_url="{{link_url}}" palette="{{painterData}}" bind:imgOK="onImgOk"/>
+
     <i-message id="message" />
     <!--自提-->
     <i-panel  class="address" wx:if="{{delivery_method==2}}">
@@ -54,7 +54,10 @@
         <view class='total'>需付款：
             <text class='f20 text-red'>￥{{amountMoney}}</text>
         </view>
-        <!--          <button disabled="{{hasgoods}}" class='buy-btn' bindtap="order2pay">立即确认</button> -->
-        <button disabled="{{hasgoods}}" class='buy-btn' bindtap="order2pay">立即支付</button>
+
+         <form disabled="{{hasgoods}}" bindsubmit="formSubmit" report-submit="true" data-fn="order2pay"> 
+                    <button class="buy-btn"  shape="circle" formType="submit">立即支付</button>
+         </form>
+
     </view>
 </view>

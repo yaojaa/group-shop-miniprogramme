@@ -67,7 +67,7 @@
             </i-cell>
         </view>
         <view class='sub-title scale-b-1px'>
-            <text>介绍描述：{{imagePath}}</text>
+            <text>介绍描述：</text>
         </view>
         <view class='goods-content'>
            <text>{{goods.goods_content}}</text> 

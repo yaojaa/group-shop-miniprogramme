@@ -154,6 +154,8 @@ Page({
 
 
       let  order_id = target.dataset.id;
+      let  goods_id = target.dataset.goods_id;
+
       let index = target.dataset.idx;
       let _this = this;     
 
@@ -197,7 +199,7 @@ Page({
 
 
                 wx.redirectTo({
-                  url:'../paySuccess/index?order_id='+order_id
+                  url:'../paySuccess/index?order_id='+order_id+'&goods_id='+goods_id
                 })
                 
               },
@@ -261,5 +263,9 @@ Page({
      */
     onShareAppMessage: function() {
 
-    }
+    },
+     formSubmit:function(e){
+    util.formSubmitCollectFormId.call(this,e)
+  }
+
 })

@@ -208,6 +208,7 @@ Page({
                 token: app.globalData.token,
                 order_id:this.data.order_id,
                 note:this.data.note,
+                form_id:this.data.formId,
                 type:10
             },
             success: (res) => {
@@ -221,6 +222,11 @@ Page({
                             type: 'success'
                         });
                         this.data.note = ''
+
+                         this.setData({
+                          visible5_tips: false
+                    });
+
                     }else{
 
                        $Message({

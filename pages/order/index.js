@@ -248,8 +248,8 @@ Page({
       amountMoney:amountMoney/100,
       cover_pic:wx.getStorageSync('goods').cover_pic,
       goods_name:wx.getStorageSync('goods').goods_name,
-      delivery_method:wx.getStorageSync('goods').delivery_method,
-      mobile:app.globalData.userInfo.mobile 
+      delivery_method:options.delivery_method,
+      mobile:app.globalData.userInfo.mobile || ''
         })
       
 
@@ -262,6 +262,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   order2pay: function () {
+
 
     let address = wx.getStorageSync('goods').sell_address[0].address
 
@@ -455,5 +456,8 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+  formSubmit:function(e){
+    util.formSubmitCollectFormId.call(this,e)
   }
 })
