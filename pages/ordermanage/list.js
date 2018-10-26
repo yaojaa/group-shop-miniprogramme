@@ -174,6 +174,7 @@ Page({
                         });
 
                         this.data.note = ''
+                        this.toConfirm({index:-1})
                         
                     }else{
 

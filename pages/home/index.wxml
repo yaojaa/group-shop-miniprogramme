@@ -54,7 +54,7 @@
          <text class="state" wx:if="{{item.shipping_status==1}}">已发货
         </text>
 
-        <text class="state" wx:if="{{item.pay_status==1 && item.shipping_status==0}}"> {{['等待确认','已确认请等待通知','已收货','已取消','已完成','已作废'][item.order_status]}}
+        <text class="state" wx:if="{{item.pay_status==1 && item.shipping_status==0}}"> {{['等待确认','等待配货','已收货','已取消','已完成','已作废'][item.order_status]}}
         </text>
      </view>
 </navigator>

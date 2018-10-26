@@ -61,7 +61,7 @@
                 </view>
             </view>
         </view>
-         <view class="scale-1px" style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="index" data-good-id="{{goods.goods_id}}" >
+         <view  style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="index" data-good-id="{{goods.goods_id}}" >
             <i-cell title="{{item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>

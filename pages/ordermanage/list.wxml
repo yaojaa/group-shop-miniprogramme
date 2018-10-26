@@ -35,7 +35,7 @@
               <view><text class="text-info">订购人：</text>{{item.consignee}} {{item.mobile}} </view>
                 <!-- <text class="state warning">{{['您有新订单待确认','订单已确认','已收货','已取消','已完成','已作废'][item.order_status]}}</text> -->
                 <text class="state warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
-                <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text>
+              <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
                 <text class="state success" wx:if="{{item.shipping_status==1}}">已发货</text>
                 <text class="state success" wx:if="{{item.order_status==3}}">订单已取消</text>
             </view>

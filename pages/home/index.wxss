@@ -345,7 +345,7 @@ white-space: nowrap;
             border-radius: 20px;
             background-color: #fff;
             left: -10px;
-            top:40px;
+            top:80rpx;
             box-shadow: inset -1px -1px 3px #ddd
 
         }
@@ -356,6 +356,6 @@ white-space: nowrap;
     border-radius: 20px;
     background-color: #fff;
     right: -10px;
-    top:40px;
+    top:80rpx;
     box-shadow: inset 1px 1px 3px #ddd
 }
