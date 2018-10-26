@@ -186,6 +186,7 @@ App({
                   })
 
                 }else{
+                  console.log('option',option)
                   if(option.path !=='pages/goods/goods'){
                     this.redirectToLogin()
                   }

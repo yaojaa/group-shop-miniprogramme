@@ -4,8 +4,7 @@ let address ={}
 const { $Message } = require('../../iView/base/index');
 const util = require('../../utils/util.js')
 
-const cardConfig = {};//绘制卡片配置信息
-cardConfig.headsImgArr = [];//绘制卡片订购头像集合
+
 
 Page({
 
@@ -285,12 +284,12 @@ Page({
     }
 
 
-    if(this.data.delivery_method ==1 && this.data.address.length<10){
-      $Message({
-        content:'请填写收货地址'
-      })
-      return
-    }
+    // if(this.data.delivery_method ==1 && this.data.address.length<10){
+    //   $Message({
+    //     content:'请填写收货地址'
+    //   })
+    //   return
+    // }
 
 
 

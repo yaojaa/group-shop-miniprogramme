@@ -158,6 +158,8 @@ const getShareImg = (goods_id, _this) => {
     },
     success: (res) => {
 
+      console.log('获取分享图片',res.data.data.shareimg)
+
       if (res.data.code == 0) {
         _this.setData({
           imagePath: res.data.data.shareimg

@@ -249,7 +249,11 @@ Page({
 
 
       if(this.data.amountMoney == 0){
-        return 
+        return  $Message({
+                content: '请选择数量',
+                type: 'warning',
+                duration: 5
+              })
       }
 
 

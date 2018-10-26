@@ -125,6 +125,7 @@ Page({
   openTips({target}){
        this.setData({
       visible5_tips:true,
+      note:'亲，您团购的商品到货啦，来取吧',
       order_id:target.dataset.id
     })
   },
@@ -195,13 +196,19 @@ Page({
   //提醒取货
   setTips(e){
 
+    if(this.data.note == ''){
+      this.data.note = '亲，您团购的商品到货啦，来取吧'
+    }
+
+   
             wx.request({
-            url: 'https://www.daohangwa.com/api/seller/delivery_handle',
+            url: 'https://www.daohangwa.com/api/seller/send_tmp_msg ',
             method:'post',
             data: {
                 token: app.globalData.token,
                 order_id:this.data.order_id,
-                note:this.data.note
+                note:this.data.note,
+                type:10
             },
             success: (res) => {
                    this.setData({
@@ -210,7 +217,7 @@ Page({
                  if (res.data.code == 0) {
                         this.getOrderList()
                         $Message({
-                            content: '提醒取货成功',
+                            content: '提醒成功',
                             type: 'success'
                         });
                         this.data.note = ''
