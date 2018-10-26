@@ -1,0 +1,11 @@
+<view class="container">
+ 
+    <map id="myMap" latitude="{{address.latitude}}" longitude="{{address.longitude}}" markers="{{markers}}"  show-location></map>
+    <view class='address-box'>
+
+      <i-cell title="{{address.name+' '+address.door_number}}" label="{{address.address}}" i-class="address-item">
+        <i-icon type="coordinates_fill" slot="icon" />
+      </i-cell>
+    </view>
+
+</view>

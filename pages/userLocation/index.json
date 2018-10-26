@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-icon": "../../iView/icon/index",
+    "i-cell": "../../iView/cell/index"
+  }
+}
