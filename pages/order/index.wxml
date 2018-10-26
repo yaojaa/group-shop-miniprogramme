@@ -55,7 +55,7 @@
             <text class='f20 text-red'>￥{{amountMoney}}</text>
         </view>
 
-         <form disabled="{{hasgoods}}" bindsubmit="formSubmit" report-submit="true" data-fn="order2pay"> 
+         <form style="flex:2"  disabled="{{hasgoods}}" bindsubmit="formSubmit" report-submit="true" data-fn="order2pay"> 
                     <button class="buy-btn"  shape="circle" formType="submit">立即支付</button>
          </form>
 

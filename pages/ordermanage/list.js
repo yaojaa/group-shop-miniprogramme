@@ -203,7 +203,7 @@ Page({
 
    
             wx.request({
-            url: 'https://www.daohangwa.com/api/seller/send_tmp_msg ',
+            url: 'https://www.daohangwa.com/api/seller/send_tmp_msg',
             method:'post',
             data: {
                 token: app.globalData.token,
@@ -473,27 +473,6 @@ Page({
         // 停止下拉动作
         wx.stopPullDownRefresh();
     })
-    // wx.request({
-    //   url: 'https://xxx/?page=0',
-    //   method: "GET",
-    //   header: {
-    //     'content-type': 'application/text'
-    //   },
-    //   success: function (res) {
-    //     that.setData({
-    //       moment: res.data.data
-    //     });
-    //     // 设置数组元素
-    //     that.setData({
-    //       moment: that.data.moment
-    //     });
-    //     console.log(that.data.moment);
-    //     // 隐藏导航栏加载框
-    //     wx.hideNavigationBarLoading();
-    //     // 停止下拉动作
-    //     wx.stopPullDownRefresh();
-    //   }
-    // })
   }
 
 })

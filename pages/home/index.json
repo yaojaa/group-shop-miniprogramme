@@ -3,6 +3,10 @@
   "navigationBarBackgroundColor": "#49b34d",
   "navigationBarTitleText": "开心麻团儿",
   "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+  "window":{
+    "backgroundTextStyle":"dark"
+  },
   "usingComponents": {
     "i-panel": "../../iView/panel/index",
     "i-cell-group": "../../iView/cell-group/index",

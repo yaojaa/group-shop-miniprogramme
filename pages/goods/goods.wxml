@@ -145,12 +145,12 @@
                     <text class=" text-red f20">¥{{amountMoney}}</text>
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
-                <view wx:if="{{!hasScope}}">
+                <view wx:if="{{!hasScope}}" style="flex:2" >
                     <button class="settlement" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">下一步</button>
                 </view> 
 
 
-          <form wx:else bindsubmit="formSubmit" data-fn="buy" report-submit="true">
+          <form style="flex:2"  wx:else bindsubmit="formSubmit" data-fn="buy" report-submit="true">
                     <button class="settlement" shape="circle" formType="submit" d>下一步</button>
          </form> 
 

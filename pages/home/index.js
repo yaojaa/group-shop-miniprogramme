@@ -264,6 +264,16 @@ Page({
     onShareAppMessage: function() {
 
     },
+        // 下拉刷新
+  onPullDownRefresh: function () {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    this.getBuyList()
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
+  },
      formSubmit:function(e){
     util.formSubmitCollectFormId.call(this,e)
   }

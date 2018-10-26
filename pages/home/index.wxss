@@ -205,7 +205,7 @@
   height: 86rpx;
   line-height: 86rpx;
   margin:0  10rpx;
-  padding: 0 90rpx 0 10rpx;
+  padding: 0 160rpx 0 10rpx;
   font-weight: bold;
   border-bottom: 1px dotted #ccc;
  overflow: hidden;
@@ -261,6 +261,7 @@ white-space: nowrap;
   white-space: nowrap;
   text-overflow: ellipsis;
   flex-grow: 1;
+  font-size:32rpx
 }
 .goodsList .goods .cell .right{
   font-size: 14px;
@@ -288,12 +289,12 @@ white-space: nowrap;
   color: #999;
 }
 .paycell .pay .right{
-  font-size: 26px;
+  font-size: 50rpx;
   font-weight: bold;
 }
 .paycell .pay .right text{
   color: #999;
-  font-size: 14px;
+  font-size: 28rpx;
   vertical-align:super;
   font-weight: normal;
 }
