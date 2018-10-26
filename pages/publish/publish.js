@@ -542,6 +542,5 @@ Page({
 
   // },
  
-  inputDuplex:util.inputDuplex,
-  formSubmit:util.formSubmitCollectFormId
+  inputDuplex:util.inputDuplex
 })
