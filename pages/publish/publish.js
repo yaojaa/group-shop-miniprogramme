@@ -16,8 +16,6 @@ const default_start_time = util.formatTime(date)
 date.setDate(date.getDate() + 5);
 const default_end_time = util.formatTime(date)
 
-const cardConfig = {};//绘制卡片配置信息
-cardConfig.headsImgArr = [];//绘制卡片订购头像集合
 
 Page({
   data: {
@@ -544,5 +542,6 @@ Page({
 
   // },
  
-  inputDuplex:util.inputDuplex
+  inputDuplex:util.inputDuplex,
+  formSubmit:util.formSubmitCollectFormId
 })

@@ -29,8 +29,18 @@ Page({
           goods_id:options.goods_id
         })
 
+        //开始绘制
+
         util.get_painter_data_and_draw.call(this,options.goods_id)
 
+
+    },
+    onImgOk(e){
+
+      console.log('成功后返回的',e)
+      this.setData({
+        imagePath:e.detail.path
+      })
 
     },
     getOrderInfo() {
@@ -86,7 +96,7 @@ Page({
         //   console.log(res.target)
         // }
         return {
-          title: app.globalData.userInfo.nickname + '刚刚购买了',
+          title: app.globalData.userInfo.nickname + '刚刚参与了团购',
           imageUrl: this.data.imagePath,
           path: '/pages/goods/goods?goods_id=' + this.data.goods_id  
         }

@@ -24,10 +24,13 @@ Page({
         orderUsers: [],
         imagePath: "",
   },
-  onShow:function(){
+  onShow:function(option){
     this.setData({
       cartPanel:false
     })
+    console.log('(this.data.goods_id',this.data.goods_id)
+   this.getOrderUserList(this.data.goods_id)
+
   },
   onReady: function () {
 
@@ -55,6 +58,8 @@ Page({
   },
     onLoad: function(option) {
         console.log('token',app.globalData.token)
+
+      this.data.goods_id = option.goods_id
 
       util.getShareImg(option.goods_id, this);
 
@@ -249,7 +254,11 @@ Page({
 
 
       if(this.data.amountMoney == 0){
-        return 
+        return  $Message({
+                content: '请选择数量',
+                type: 'warning',
+                duration: 5
+              })
       }
 
 
@@ -265,7 +274,7 @@ Page({
         })
 
         wx.navigateTo({
-            url: '../order/index?goods_id='+this.data.goods.goods_id
+            url: '../order/index?goods_id='+this.data.goods.goods_id+'&delivery_method='+this.data.goods.delivery_method
         })
     }
 })

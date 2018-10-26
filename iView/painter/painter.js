@@ -198,7 +198,7 @@ Component({
           if (Math.abs((infoRes.width * that.canvasHeightInPx - that.canvasWidthInPx * infoRes.height) / (infoRes.height * that.canvasHeightInPx)) < 0.01) {
             console.log(that)
             that.imgOK(filePath);
-            that.triggerEvent('imgOK', { path: filePath });
+            // that.triggerEvent('imgOK', { path: filePath });
           } else {
             that.startPaint();
           }
@@ -217,13 +217,20 @@ Component({
           goods_id: this.properties.goods_id,
           shareimg: rslt.imageURL
         };
+        console.group('//绘制成功准备提交接口保存')
         wx.request({
           method: 'post',
           url: 'https://www.daohangwa.com/api/goods/set_goods_shareimg',
           data,
           success: (res) => {
+            console.log('返回的结果：',res)
             // wx.hideLoading()
             if (res.data.code == 0) {
+
+              console.log('提交接口保存成功',{ path: rslt.imageURL })
+
+            _this.triggerEvent('imgOK', { path: rslt.imageURL });
+
               // wx.redirectTo({
               //   url: _this.properties.link_url
               // })

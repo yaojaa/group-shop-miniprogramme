@@ -95,11 +95,12 @@
   padding: 0 15px;
 }
 .footer-pay .buy-btn{
-    border-radius: 0;
-    color: #fff;
-
+  border-radius: 0;
+  color: #fff;
   flex: 1;
   background: #49b34d;
+  height:100%;
+  line-height: 2.8
 }
 
 .footer-pay .buy-btn:disabled{

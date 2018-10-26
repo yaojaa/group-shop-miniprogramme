@@ -158,6 +158,8 @@ const getShareImg = (goods_id, _this) => {
     },
     success: (res) => {
 
+      console.log('获取分享图片',res.data.data.shareimg)
+
       if (res.data.code == 0) {
         _this.setData({
           imagePath: res.data.data.shareimg
@@ -169,6 +171,34 @@ const getShareImg = (goods_id, _this) => {
   })
 }
 
+//收集formID
+ const formSubmitCollectFormId=function (e) {
+  console.log('全局收集formid',this)
+      
+
+
+
+  wx.request({
+    method: "post",
+    url: 'https://www.daohangwa.com/api/common/gather_formid',
+    data: {
+      form_id: e.detail.formId
+    },
+    success: (res) => {
+    }
+  })
+
+  if(e.currentTarget.dataset.fn){
+
+    console.log(this)
+      //执行原跳转事件
+      this[e.currentTarget.dataset.fn](e);
+  }
+
+}
+
+
+
 
 module.exports = {
   formatTime,
@@ -176,5 +206,6 @@ module.exports = {
   uploadPicture,
   distance,
   get_painter_data_and_draw,
-  getShareImg
+  getShareImg,
+  formSubmitCollectFormId
 }

@@ -3,8 +3,6 @@ const app = getApp()
 
 const util = require('../../utils/util.js')
 
-const cardConfig = {};//绘制卡片配置信息
-cardConfig.headsImgArr = [];//绘制卡片订购头像集合
 
 Page({
 
@@ -47,7 +45,6 @@ Page({
         }else{
 
         app.userLoginReadyCallback=(userInfo)=>{
-            console.log('userLoginReadyCallback',userInfo)
              this.setData({
              userInfo: userInfo
            })
@@ -57,6 +54,11 @@ Page({
         }
 
 
+        }
+
+
+        if(typeof this.data.userInfo.token == 'undefined'){
+          app.redirectToLogin()
         }
 
 
@@ -152,23 +154,13 @@ Page({
 
 
       let  order_id = target.dataset.id;
+      let  goods_id = target.dataset.goods_id;
+
       let index = target.dataset.idx;
       let _this = this;     
 
 
       //绘制配置
-      cardConfig.headImg = app.globalData.userInfo.head_pic;
-      cardConfig.userName = app.globalData.userInfo.nickname;
-
-      cardConfig.date = util.formatTime(new Date(this.data.orders[index].goods.sell_end_time*1000)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
-      cardConfig.content = this.data.orders[index].goods.goods_content;
-      this.data.goods_id = this.data.orders[index].goods.goods_id;
-      this.data.order_id = order_id;
-      this.data.link_url = '/pages/paySuccess/index?order_id=' + order_id + "&goods_id=" + this.data.goods_id
-
-
-
-     
        wx.login({ success: res => { 
        var code = res.code;      
        wx.request({
@@ -204,11 +196,10 @@ Page({
 
                 wx.showLoading()
                
-                util.drawShareImg(cardConfig, _this.data.goods_id, _this);
 
 
                 wx.redirectTo({
-                  url:'../paySuccess/index?order_id='+order_id
+                  url:'../paySuccess/index?order_id='+order_id+'&goods_id='+goods_id
                 })
                 
               },
@@ -272,5 +263,9 @@ Page({
      */
     onShareAppMessage: function() {
 
-    }
+    },
+     formSubmit:function(e){
+    util.formSubmitCollectFormId.call(this,e)
+  }
+
 })

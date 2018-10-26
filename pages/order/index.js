@@ -4,8 +4,7 @@ let address ={}
 const { $Message } = require('../../iView/base/index');
 const util = require('../../utils/util.js')
 
-const cardConfig = {};//绘制卡片配置信息
-cardConfig.headsImgArr = [];//绘制卡片订购头像集合
+
 
 Page({
 
@@ -249,8 +248,8 @@ Page({
       amountMoney:amountMoney/100,
       cover_pic:wx.getStorageSync('goods').cover_pic,
       goods_name:wx.getStorageSync('goods').goods_name,
-      delivery_method:wx.getStorageSync('goods').delivery_method,
-      mobile:app.globalData.userInfo.mobile 
+      delivery_method:options.delivery_method,
+      mobile:app.globalData.userInfo.mobile || ''
         })
       
 
@@ -263,6 +262,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   order2pay: function () {
+
 
     let address = wx.getStorageSync('goods').sell_address[0].address
 
@@ -285,12 +285,12 @@ Page({
     }
 
 
-    if(this.data.delivery_method ==1 && this.data.address.length<10){
-      $Message({
-        content:'请填写收货地址'
-      })
-      return
-    }
+    // if(this.data.delivery_method ==1 && this.data.address.length<10){
+    //   $Message({
+    //     content:'请填写收货地址'
+    //   })
+    //   return
+    // }
 
 
 
@@ -456,5 +456,8 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+  formSubmit:function(e){
+    util.formSubmitCollectFormId.call(this,e)
   }
 })
