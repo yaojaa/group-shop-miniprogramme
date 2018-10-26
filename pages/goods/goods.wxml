@@ -117,7 +117,11 @@
             <i-icon type="homepage" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
-        <text class='buy' bindtap='cartPanelShow'> 立即订购</text>
+
+   <form style="flex:2"  bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
+    <button class="buy" formType="submit">立即订购</button>
+   </form> 
+
     </view>
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
@@ -144,7 +148,12 @@
                 <view wx:if="{{!hasScope}}">
                     <button class="settlement" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">下一步</button>
                 </view> 
-                <view wx:else class="settlement" bindtap="buy">下一步</view>
+
+
+          <form wx:else bindsubmit="formSubmit" data-fn="buy" report-submit="true">
+                    <button class="settlement" shape="circle" formType="submit" d>下一步</button>
+         </form> 
+
             </view>
         </view>
     </i-action-sheet>

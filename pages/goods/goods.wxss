@@ -101,6 +101,8 @@
     background: #49b34d;
     flex: 2;
     line-height: 48px;
+    color: #fff;
+    border-radius: 0
 }
 
 .goods-content image {
@@ -216,6 +218,14 @@
     -o-flex: 1;
     flex: 1;
     background: #49b34d;
+    border-radius: 0;
+    color: #fff;
+    height: 100%
+}
+
+.cart-footer .settlement button{
+    color:#fff;
+    border-radius: 0;
 }
 
 .cart-panel-hd {

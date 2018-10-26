@@ -2,6 +2,7 @@ const app = getApp()
 
 const { $Message } = require('../../iView/base/index');
 
+const util = require('../../utils/util.js')
 
 Page({
   data:{
@@ -156,7 +157,7 @@ Page({
                 token: app.globalData.token,
                 order_id:this.data.order_id,
                 note:this.data.note,
-                form_id:this.data.formId,
+                
                 action:'pay'
             },
             success: (res) => {
@@ -208,7 +209,7 @@ Page({
                 token: app.globalData.token,
                 order_id:this.data.order_id,
                 note:this.data.note,
-                form_id:this.data.formId,
+                
                 type:10
             },
             success: (res) => {
@@ -265,7 +266,7 @@ Page({
                 note:this.data.note,
                 shipping_name:'',
                 invoice_no:'',
-                form_id:this.data.formId
+              
 
             },
             success: (res) => {
@@ -327,7 +328,7 @@ Page({
                     token: app.globalData.token,
                     order_id:this.data.order_id,
                     action:'cancel',
-                    form_id:this.data.formId
+                  
 
                 },
                 success: (res) => {
@@ -384,7 +385,7 @@ Page({
                     token: app.globalData.token,
                     order_id:this.data.order_id,
                     action:'confirm',
-                    form_id:this.data.formId
+                  
                 },
                 success: (res) => {
 
@@ -457,7 +458,8 @@ Page({
    formSubmit: function (e) {
     this.data.formId = e.detail.formId
 
-    console.log(this.data.formId)
+    util.formSubmitCollectFormId(e)
+
    },
 
     // 下拉刷新

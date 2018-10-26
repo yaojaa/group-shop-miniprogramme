@@ -276,7 +276,10 @@ Page({
         wx.navigateTo({
             url: '../order/index?goods_id='+this.data.goods.goods_id+'&delivery_method='+this.data.goods.delivery_method
         })
-    }
+    },
+   formSubmit:function(e){
+    util.formSubmitCollectFormId.call(this,e)
+  }
 })
 
 

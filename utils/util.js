@@ -182,7 +182,8 @@ const getShareImg = (goods_id, _this) => {
     method: "post",
     url: 'https://www.daohangwa.com/api/common/gather_formid',
     data: {
-      form_id: e.detail.formId
+      form_id: e.detail.formId,
+      token:app.globalData.token
     },
     success: (res) => {
     }

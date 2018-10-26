@@ -285,12 +285,12 @@ Page({
     }
 
 
-    // if(this.data.delivery_method ==1 && this.data.address.length<10){
-    //   $Message({
-    //     content:'请填写收货地址'
-    //   })
-    //   return
-    // }
+    if(this.data.delivery_method ==1 && this.data.address.length<10){
+      $Message({
+        content:'请填写收货地址'
+      })
+      return
+    }
 
 
 
