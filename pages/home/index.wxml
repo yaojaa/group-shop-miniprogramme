@@ -12,7 +12,7 @@
             <view class="userinfo-bd">
                 <text class="userinfo-nickname">{{userInfo.nickname}} </text>
           <form  bindsubmit="formSubmit" report-submit="true">
-                    <button size="small" class="edit-btn" formType="submit">完善信息</button>
+                    <button size="small" hover-class="none"   class="edit-btn" formType="submit">完善信息</button>
          </form> 
 
 

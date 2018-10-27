@@ -84,11 +84,11 @@
   color:#fff;
 }
 
-.text-red,.danger {
+.text-red {
   color: #ff5757 !important;
 }
 
-.text-green,.success {
+.text-green{
   color: #39ac69 !important;
 }
 
@@ -101,6 +101,17 @@
   color: #19be6b
 
 }
+
+button.danger{
+  background: #ff5757;
+  color: #fff
+}
+
+button.warning{
+  background: #ff9900;
+  color: #fff
+}
+
 
 .error{
   color: #ed3f14

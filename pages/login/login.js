@@ -36,7 +36,7 @@ Page({
 
   },
   getUserInfoEvt: function (e) {
-    app.globalData.userInfo = e.detail.userInfo
+    // app.globalData.userInfo = e.detail.userInfo
     app.login_third(e.detail).then((res)=>{ 
           console.group('登陆成功:',res)
                       app.redirect2Home() 

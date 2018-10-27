@@ -1,8 +1,8 @@
 <view class="container">
 	<view class="text-justify f14">
 		<view>余额（元）</view>
-		<view>余额明细</view>
-	</view>
+<!-- 		<view>余额明细</view>
+ -->	</view>
 	<view class="money-box"><view class="money-yuan">¥</view><view class="money-num">{{store_money}}</view></view>
 	<view class="withdraw-box">
 	<i-input value="" tapchange="inputMoney" title="提现金额" autofocus placeholder="0.00" />

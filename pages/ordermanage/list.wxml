@@ -31,8 +31,12 @@
             <i-divider content=" 此团购暂时还没有订单 :( "></i-divider>
         </view>
         <view class='order-list' wx:for="{{dataList}}" wx:key="{{index}}">
+            <text class="_number">{{item.create_number}}</text>
             <view class='list-h mg-r1 text-justify'>
-              <view><text class="text-info">订购人：</text>{{item.consignee}} {{item.mobile}} </view>
+    <view class="header-line">
+        <i-icon type="mobilephone" size="28" data-mobile="{{item.mobile}}" bindtap="calluser" /> 
+
+        <text class="user-info">{{item.consignee}}</text>  </view>
                 <!-- <text class="state warning">{{['您有新订单待确认','订单已确认','已收货','已取消','已完成','已作废'][item.order_status]}}</text> -->
                 <text class="state warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
               <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
@@ -42,15 +46,17 @@
             <view class='list-h mg-r2 text-justify' wx:if="{{item.order_status==1}}">
                 <view>发货状态：{{item.shipping_status==0?'未发货':'已发货' }}</view>
             </view>
-            <view class='list-h mg-r3' wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
-                <view>{{g.spec_key_name}} X{{g.goods_num}} {{g.goods_num*g.goods_price}}</view>
+            <view class='list-price mg-r3' wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
+                <view>{{g.spec_key_name}}</view>
+                 <view>X{{g.goods_num}}</view>
+                   <view>¥ {{g.goods_num*g.goods_price}} </view>
       
-                <view></view>
+                
             </view>
             <view class='list-h mg-r4 text-justify scale-b-1px'>
                 <view>总金额： <text class="warning">¥{{item.total_amount}} </text>
                     <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
-                    <text class="error" wx:if="{{item.pay_status==0}}">待支付</text>
+                    <text class="error" wx:if="{{item.pay_status==0}}">未支付</text>
                     <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text> 
                 </view>
                 <view class="text-muted text-right">{{item._format_add_time}}</view>
@@ -60,10 +66,10 @@
                     <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm">确认订单</button>
                 </form>
                 <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openCancel">取消订单</button>
+                    <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openCancel">取消订单</button>
                 </form>
                 <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openPay">已线下支付</button>
+                    <button class="button danger" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openPay">已线下支付</button>
                 </form>
                 <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
                     <button class="button warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>

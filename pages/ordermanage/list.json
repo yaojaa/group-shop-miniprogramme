@@ -1,5 +1,6 @@
 {   
 	"enablePullDownRefresh": true,
+	"navigationBarTitleText": "管理团购订单",
 	"window":{
 		"backgroundTextStyle":"dark"
 	},
@@ -9,7 +10,8 @@
       "i-tab": "../../iView/tab/index",
       "i-button": "../../iView/button/index",
      "i-message": "../../iView/message/index",
-     "i-divider": "../../iView/divider/index"
+     "i-divider": "../../iView/divider/index",
+    "i-icon": "../../iView/icon/index"
 
 	}
 

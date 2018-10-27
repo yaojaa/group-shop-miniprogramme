@@ -34,7 +34,8 @@
 
 .userinfo-nickname {
     display: block;
-    font-size:32rpx
+    font-size:40rpx;
+    padding-top: 43rpx
 }
 
 .userinfo-bd {
@@ -169,12 +170,12 @@ padding:16rpx 0 0 5rpx
     background: #FFA14E;
     color: #fff;
     width: 180rpx;
-    height: 60rpx;
-    line-height: 60rpx;
+    height: 70rpx;
+    line-height: 70rpx;
     text-align: center;
-    border-radius: 30rpx 0 0 30rpx;
+    border-radius: 35rpx 0 0 35rpx;
     text-align: center;
-    font-size: 28rpx;
+    font-size: 30rpx;
 }
 .link button{
     margin-right: 10px
@@ -368,5 +369,10 @@ button.edit-btn,.button-hover{
   border: none;
   margin: 0;
   padding: 0;
-  color: #ffd200
+  color: #ffd200;
+  box-shadow:none
+}
+
+button::after{
+border: none;
 }

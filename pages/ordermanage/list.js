@@ -44,6 +44,11 @@ Page({
   },
   onLoad:function(optiton){
 
+    if(!app.globalData.token){
+      app.globalData.token = wx.getStorageSync('token')
+      console.log('获取到了token')
+    }
+
 
 
      this.setData({
@@ -60,6 +65,12 @@ Page({
 
 
 
+  },
+  calluser(e){
+    console.log(e)
+    wx.makePhoneCall({
+      phoneNumber: e.target.dataset.mobile
+    })
   },
   getOrderList(){
 

@@ -34,14 +34,16 @@ Page({
         })
     },
     changeMobile(e){
+        console.log(e.detail.detail.value)
         this.setData({
-            mobile:e.detail.value
+            mobile:e.detail.detail.value
         })
     },
     changeWX(e){
 
+        console.log(e.detail.detail.value)
           this.setData({
-            wxnumber:e.detail.value
+            wxnumber:e.detail.detail.value
         })
     },
     getPhoneNumber(e) {
@@ -73,8 +75,8 @@ Page({
             success: (res) => {
                 if (res.data.code == 0) {
                     this.setData({
-                        mobile: res.data.data.userinfo.mobile,
-                        wxnumber: res.data.data.userinfo.wxnumber
+                        mobile: res.data.data.userinfo.mobile ,
+                        wxnumber:res.data.data.userinfo.wxnumber
                     })
 
                 }
