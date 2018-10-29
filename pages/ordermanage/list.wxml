@@ -1,83 +1,50 @@
 <view class="container">
-    <view class='session'>
-        <view class="goods_name">
-            {{goods_name}}
-        </view>
-        <!-- 搜索暂时不做-->
-        <!--     <view class="search">
-      <view class="search-main">
-        <view class='icon'>
-          <icon type="search" size="14"/>
-        </view>
-        <view class='input'>
-          <input placeholder="微信昵称或手机号" bindinput="searchInput" value="{{searchContent}}" />
-        </view>
-        <view class='icon delete' bindtap="deleteSearchContent" hidden="{{deleteShow}}">
-          <icon type="clear" size="14"/>
-        </view>
-      </view>
-      <view class='search-button'>
-        <button plain='true' size='mini'>搜索</button>
-      </view>
-    </view> -->
+    <view wx:if="{{dataList.length == 0}}">
+        <i-divider content=" 此团购暂时还没有订单 :( "></i-divider>
     </view>
-    <!--   <i-tabs color="#ff4891" current="{{ current }}" bindchange="handleChange">
-    <i-tab key="tab1" title="全部"></i-tab>
-    <i-tab key="tab2" title="待确认"></i-tab>
-    <i-tab key="tab3" title="待发货"></i-tab>
-  </i-tabs> -->
-    <view class='session'>
-        <view wx:if="{{dataList.length == 0}}">
-            <i-divider content=" 此团购暂时还没有订单 :( "></i-divider>
+    <view class="order-title">商品名称：{{goods_name}}</view>
+    <view class="order-item" wx:for="{{dataList}}" wx:key="{{index}}">
+        <view class="order-hd">
+            <view class="number">{{item.create_number}}</view>
+            <view class="user-info"><text class="name">{{item.consignee}}</text><text class="tel" bindtap="calluser">{{item.mobile}}</text></view>
+            <view class="order-status">
+                <text class="state text-warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
+                <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
+                <text class="state text-primary" wx:if="{{item.shipping_status==1}}">已发货</text>
+                <text class="state text-info" wx:if="{{item.order_status==3}}">订单已取消</text>
+                <block wx:if="{{item.order_status==1}}"><text class="state text-primary">{{item.shipping_status==0?'未发货':'已发货' }}</text></block>
+                <text class="date">{{item._format_add_time}}</text>
+            </view>
         </view>
-        <view class='order-list' wx:for="{{dataList}}" wx:key="{{index}}">
-            <text class="_number">{{item.create_number}}</text>
-            <view class='list-h mg-r1 text-justify'>
-    <view class="header-line">
-        <i-icon type="mobilephone" size="28" data-mobile="{{item.mobile}}" bindtap="calluser" /> 
-
-        <text class="user-info">{{item.consignee}}</text>  </view>
-                <!-- <text class="state warning">{{['您有新订单待确认','订单已确认','已收货','已取消','已完成','已作废'][item.order_status]}}</text> -->
-                <text class="state warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
-              <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
-                <text class="state success" wx:if="{{item.shipping_status==1}}">已发货</text>
-                <text class="state success" wx:if="{{item.order_status==3}}">订单已取消</text>
+        <view class="order-bd">
+            <view class="type text-justify  scale-b-1px" wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
+                <view>{{g.spec_key_name}} X{{g.goods_num}}</view>
+                <view class="text-info">¥ {{g.goods_num*g.goods_price}} </view>
             </view>
-            <view class='list-h mg-r2 text-justify' wx:if="{{item.order_status==1}}">
-                <view>发货状态：{{item.shipping_status==0?'未发货':'已发货' }}</view>
-            </view>
-            <view class='list-price mg-r3' wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
-                <view>{{g.spec_key_name}}</view>
-                 <view>X{{g.goods_num}}</view>
-                   <view>¥ {{g.goods_num*g.goods_price}} </view>
-      
-                
-            </view>
-            <view class='list-h mg-r4 text-justify scale-b-1px'>
+            <view class="total text-justify">
                 <view>总金额： <text class="warning">¥{{item.total_amount}} </text>
-                    <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
-                    <text class="error" wx:if="{{item.pay_status==0}}">未支付</text>
-                    <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text> 
                 </view>
-                <view class="text-muted text-right">{{item._format_add_time}}</view>
+                <view class="text-right"> <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
+                    <text class="error" wx:if="{{item.pay_status==0}}">未支付</text>
+                    <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text> </view>
             </view>
-            <view class="list-button">
-                <form wx:if="{{item.order_status == 0 && item.pay_status == 1}}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm">确认订单</button>
-                </form>
-                <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openCancel">取消订单</button>
-                </form>
-                <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button danger" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openPay">已线下支付</button>
-                </form>
-                <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>
-                </form>
-                <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
-                </form>
-            </view>
+        </view>
+        <view class="order-fd">
+            <form wx:if="{{item.order_status == 0 && item.pay_status == 1}}" bindsubmit="formSubmit" report-submit="true">
+                <button class="btn btn-success" formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm">确认订单</button>
+            </form>
+            <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
+                <button class="btn btn-danger" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openCancel">取消订单</button>
+            </form>
+            <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
+                <button class="btn btn-primary" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openPay">已线下支付</button>
+            </form>
+            <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
+                <button class="btn btn-warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>
+            </form>
+            <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
+                <button class="btn btn-info" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
+            </form>
         </view>
     </view>
     <i-modal title="订单确认" visible="{{ visible1 }}" actions="{{ actionsConfirm }}" bind:click="toConfirm">

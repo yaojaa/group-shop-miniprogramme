@@ -92,6 +92,10 @@
   color: #39ac69 !important;
 }
 
+
+
+
+
 .warning{
   color: #ff9900
 
@@ -127,6 +131,20 @@ button.warning{
 
 .text-muted {
   color: #999;
+}
+
+.text-primary {
+  color: #62a8ea !important;
+}
+.text-success {
+  color: #47b34f !important;
+}
+
+.text-warning {
+  color: #f2a654 !important;
+}
+.text-danger {
+  color: #f96868 !important;
 }
 
 .bold {

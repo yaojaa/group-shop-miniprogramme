@@ -1,238 +1,150 @@
 @import "../../utils/weui.wxss";
 
-.container{
-  background: #f8f8f8;
-  min-height:100vh;
+.container {
+    background: #f8f8f8;
+    min-height: 100vh;
 }
 
-.session {}
 
-.search {
-    display: flex;
-    background: #efefef;
-    padding: 10px 15px;
-    align-items: center;
-}
-
-.search-button {
-    width: 50px;
-    height: 30px;
-    line-height: 30px;
-    text-align: right;
-}
-
-.search-button button {
-    border: none;
-    text-indent: 0;
-    padding: 0;
-    color: #ff4891;
-}
-
-.search-main {
-    flex-grow: 1;
-    height: 30px;
-    display: flex;
-    background-color: #fff;
-    border-radius: 5px;
-    align-items: center;
-}
-
-.search-main .icon {
-    padding: 0 5px;
-}
-
-.search-main .input {
-    flex-grow: 1;
-    line-height: 30px;
-}
-
-.search-main .input input {
-    display: block;
-    width: 100%;
-    font-size: 14px;
-    min-height: 20px;
-}
-
-.goods_name {
-    padding: 20rpx;
-    font-size: 28rpx;
-    word-break: keep-all;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: #999
-}
-
-.order-list {
-    padding: 5rpx 0 10rpx;
-    font-size: 28rpx;
-    border-bottom: 1px solid #efefef;
+._number {
     position: relative;
+    display: inline-block;
+    width: 50rpx;
+    padding: 10rpx 0;
+    background: #ccc;
+    text-align: center;
+    border-top-left-radius: 3rpx;
+    color: #fff
+}
+
+._number:before {
+    height: 0;
+    width: 0;
+    border-bottom: 6rpx solid #bbb;
+    border-right: 6rpx solid transparent;
+    right: -6rpx;
+    top: 0;
+}
+
+._number:before,
+._number:after {
+    content: "";
+    position: absolute;
+}
+
+._number:after {
+    height: 0;
+    width: 0;
+    border-left: 25rpx solid #ccc;
+    border-right: 25rpx solid #ccc;
+    border-bottom: 7rpx solid transparent;
+    bottom: -5rpx;
+    left: 0;
+}
+
+button.button-hover {
+    color: #fff
+}
+
+/*新样式*/
+.order-title{
+    font-size: 32rpx;
+    padding: 15rpx 15px;
+    color:#333;
+}
+.order-item{
+    padding: 10px 15px;
     background: #fff;
+    margin-bottom: 10px;
 }
-
-.header-line{
-        padding-left: 62rpx
+.order-hd{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+}
+.order-hd .number{
+    width: 50rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    background: #eee;
+    color:#333;
+    font-size: 14px;
+    border-radius: 50%;
+    overflow-y: hidden;
+}
+.order-hd .user-info{
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    -o-flex: 1;
+    flex: 1;
+    margin:15rpx;
+    line-height: 1.2;
+}
+.order-hd .user-info text{
+    display: block;
+}
+.order-hd .user-info .name{
+    color:#333;
+    font-size: 30rpx;
+}
+.order-hd .user-info .tel{
+    color:#666;
+    font-size: 10px;
+}
+.order-hd .order-status{
+    width: 200rpx;
+    text-align: right;
+    font-size: 28rpx;
+    line-height: 1.2;
+}
+.order-hd .order-status .state{
+    font-size: 30rpx;
+    display: block;
+}
+.order-hd .order-status .date{
+    font-size: 10px;
+    color:#999;
+}
+.order-hd .order-status{
 
 }
-
-.order-list::before {
+.order-bd {
+    position: relative;
+}
+.order-bd::before {
     content: '';
     left: 0;
     right: 0;
-    top: 0;
+    bottom: 0;
     height: 1px;
     position: absolute;
     background: -webkit-repeating-linear-gradient(135deg, #F47530 0, #F47530 20%, transparent 0, transparent 25%, #c0e8d9 0, #c0e8d9 45%, transparent 0, transparent 50%);
     background: repeating-linear-gradient(-45deg, #F47530 0, #F47530 20%, transparent 0, transparent 25%, #c0e8d9 0, #c0e8d9 45%, transparent 0, transparent 50%);
     background-size: 80px;
 }
-.user-info{
-    font-size: 38rpx;
-    color: #666;
-
-}
-
-.list-h {
-    line-height: 30px;
-    padding: 0 10px;
-
-}
-.list-price{
-    display: flex;
+.order-bd .type{
+    margin:0 -15px 1px;
     background: #fffef6;
-    color: #666;
-    border-bottom: 1px dotted #eee;
-    padding:8rpx 20rpx;
+    padding: 5px 15px;
+    font-size: 28rpx;
 }
-
-.list-price view {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex: 1;
-    padding: 0 10px;
+.order-bd .item{
+    padding: 10rpx 0;
 }
-
-
-.list-h view {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex-grow: 1;
-    padding: 15rpx 20rpx;
+.order-bd .total{
+    padding: 5px 0px;
+    font-size: 28rpx;
+    color:#666;
 }
-
-.list-p {
-    line-height: 20px;
-    padding: 4px 10px 0;
-}
-
-.list-button {
-    padding: 18rpx;
-}
-
-.order-list:last-child {
-    border: none;
-}
-
-.price-input {
-    border-bottom: 1px solid #efefef;
-    width: 60%;
-    border-radius: 5px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-icon {
-    display: block;
-}
-
-.state {
+.order-fd{
+    padding-top: 10px;
     text-align: right;
-    color: #999;
-    padding-right: 15rpx
 }
-
-.state.warning {
-    color: #ff9900
-}
-
-button.success{
-    background-color: #19be6b;
-    color: #fff;
-
-}
-
-.success {
-    color: #19be6b
-}
-
-button.error{
-    background-color: #ed3f14;
-     color: #fff
-}
-
-
-
-.error {
-    color: #ed3f14
-}
-
-.button {
-	margin:0;
-	    padding: 20rpx 38rpx;
-    font-size: 32rpx;
-	text-align: center;
-	line-height: 1.2rem;
-	display: inline-block;
-}
-.mg-r4{
-	padding-bottom: 5px;
-}
-.list-button{
-	font-size: 0; 
-}
-.list-button form{
-	font-size: 0;
-}
-.list-button form+form{
-	margin-left: 10px;
-}
-
-._number {
-  display: inline-block;
-  width: 50rpx;
-  padding: 10rpx 0;
-  background: #ccc;
-  top: -6rpx;
-  left: 10rpx;
-  position: absolute;
-  text-align: center;
-  border-top-left-radius: 3rpx;
-  color: #fff
-}
-._number:before {
-   height: 0;
-   width: 0;
-   border-bottom: 6rpx solid #8D5A20;
-   border-right: 6rpx solid transparent;
-   right: -6rpx;
-   top: 0;
-}
-._number:before, ._number:after {
-    content: "";
-    position: absolute;
-}
-._number:after {
-    height: 0;
-    width: 0;
-    border-left: 30rpx solid #F47530;
-    border-right: 30rpx solid #F47530;
-    border-bottom: 7rpx solid transparent;
-    bottom: -5rpx;
-    left: 0;
-}
-
-button.button-hover{
-    color: #fff
+.order-fd form+form{
+    margin-left: 10px;
 }
