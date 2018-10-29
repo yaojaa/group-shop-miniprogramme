@@ -115,6 +115,7 @@ button.button-hover {
 }
 .order-bd {
     position: relative;
+    margin:0 -15px;
 }
 .order-bd::before {
     content: '';
@@ -128,7 +129,6 @@ button.button-hover {
     background-size: 80px;
 }
 .order-bd .type{
-    margin:0 -15px 1px;
     background: #fffef6;
     padding: 5px 15px;
     font-size: 28rpx;
@@ -137,7 +137,7 @@ button.button-hover {
     padding: 10rpx 0;
 }
 .order-bd .total{
-    padding: 5px 0px;
+    padding: 5px 15px;
     font-size: 28rpx;
     color:#666;
 }
