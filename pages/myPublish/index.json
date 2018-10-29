@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTitleText": "我发布的",
+  "usingComponents": {
+    "i-panel": "../../iView/panel/index"
+  }
+}

@@ -1,1 +1,8 @@
-{}
+{
+  "navigationBarTitleText": "我参与的",
+  "usingComponents": {
+  	"i-button": "../../iView/button/index",
+    "i-panel": "../../iView/panel/index",
+    "i-message": "../../iView/message/index"
+  }
+}

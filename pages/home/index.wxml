@@ -1,24 +1,22 @@
 <view class="container">
- <painter goods_id="{{goods_id}}" link_url="{{link_url}}" palette="{{painterData}}" bind:imgOK="onImgOk"/>
+    <painter goods_id="{{goods_id}}" link_url="{{link_url}}" palette="{{painterData}}" bind:imgOK="onImgOk" />
     <view class="head-box">
         <view class="msg-tips">
             <!-- <i-badge count="3">
                 <i-icon type="remind" size="20" color="#fff" />
             </i-badge> -->
         </view>
-        <navigator url="../identify/identify"  hover-class="none">
-        <view class="userinfo"  hover-class="none">
-            <image class="userinfo-avatar" src="{{userInfo.head_pic}}" mode="cover"></image>
-            <view class="userinfo-bd">
-                <text class="userinfo-nickname">{{userInfo.nickname}} </text>
-          <form  bindsubmit="formSubmit" report-submit="true">
-                    <button size="small"   class="edit-btn" formType="submit">完善信息</button>
-         </form> 
-
-
+        <navigator url="../identify/identify" hover-class="none">
+            <view class="userinfo" hover-class="none">
+                <image class="userinfo-avatar" src="{{userInfo.head_pic}}" mode="cover"></image>
+                <view class="userinfo-bd">
+                    <text class="userinfo-nickname">{{userInfo.nickname}} </text>
+                    <form bindsubmit="formSubmit" report-submit="true">
+                        <button size="small" class="edit-btn" formType="submit">完善信息</button>
+                    </form>
+                </view>
             </view>
-        </view>
-    </navigator>
+        </navigator>
         <view class='add-goods' bindtap="new_btn">
             <i-icon type="add" size="20" />
             <text>发布团购</text>
@@ -26,166 +24,125 @@
     </view>
     <view class="count-box">
         <view class="count-item">
-            <text class="label">我参与的</text>
-            <text class="num">{{order_number}}</text>
+            <navigator url="../myPartake/index" hover-class="none">
+                <text class="label">我参与的</text>
+                <text class="num">{{order_number}}</text>
+            </navigator>
         </view>
-           <view class="count-item">
-            <text class="label">我发布的</text>
-            <text class="num">{{goods_number}}</text>
-        </view>
-        
         <view class="count-item">
-          <navigator url="../withdrawal/index" hover-class="none">
-            <text class="label" >进账</text>
-            <text class="num">¥{{store_money}}</text>
-          </navigator>
-
+            <navigator url="../myPublish/index" hover-class="none">
+                <text class="label">我发布的</text>
+                <text class="num">{{goods_number}}</text>
+            </navigator>
         </view>
-     
+        <view class="count-item">
+            <navigator url="../withdrawal/index" hover-class="none">
+                <text class="label">进账</text>
+                <text class="num">¥{{store_money}}</text>
+            </navigator>
+        </view>
     </view>
-
-
-<i-panel title="我参与的">
-    <view style="padding: 5px 10px;">
-
-   <view class='order' wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
-    <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}" hover-class="none">
-      <view class='title'>
-       
-         <text>{{item.goods.goods_name}} </text>
-
-  <text class="state" wx:if="{{item.shipping_status==1 && item.order_status!==2}}">已发货</text>
-   <text class="state success" wx:if="{{item.order_status==2}}">已完成</text>
-      <text class="state" wx:if="{{item.order_status==3}}">已取消</text>
-
-        <text class="state" wx:if="{{item.pay_status==1 && item.shipping_status==0}}"> {{['等待确认','等待配货','已完成','已取消','已完成','已作废'][item.order_status]}}
-          <!--已完成 其实为已收货-->
-        </text>
-     </view>
-</navigator>
-
-      <!-- 发货状态 0未发货 1已发货 2部分发货 -->
-      <view class="goodsList" wx:for="{{item.order_goods}}" wx:for-item="order" wx:key="@index">
-        <view class='goods'>
-          <view class='cell'>
-            <view class='left'>{{order.spec_key_name}} x {{order.goods_num}}</view>
-            <view class='right'><text class="warning">￥{{order.goods_price}}</text></view>
-          </view>
-        
-        </view>
-    
-     
-      </view>
-      <view class="user">
-        <view class='name'>{{item.consignee}}</view>
-        <view class='date'>{{item._format_add_time}}</view>
-      </view>
-      <view class='line'></view>
-      <view class='paycell'>
-        <view class='pay'>
-          <view class="left"> 
-
-<!--             {{['待支付','已支付','支付失败'][item.pay_status]}} 
+    <i-panel title="我参与的">
+        <view style="padding: 5px 10px;">
+            <view class='order' wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
+                <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}" hover-class="none">
+                    <view class='title'>
+                        <text>{{item.goods.goods_name}} </text>
+                        <text class="state" wx:if="{{item.shipping_status==1 && item.order_status!==2}}">已发货</text>
+                        <text class="state success" wx:if="{{item.order_status==2}}">已完成</text>
+                        <text class="state" wx:if="{{item.order_status==3}}">已取消</text>
+                        <text class="state" wx:if="{{item.pay_status==1 && item.shipping_status==0}}"> {{['等待确认','等待配货','已完成','已取消','已完成','已作废'][item.order_status]}}
+                            <!--已完成 其实为已收货-->
+                        </text>
+                    </view>
+                </navigator>
+                <!-- 发货状态 0未发货 1已发货 2部分发货 -->
+                <view class="goodsList" wx:for="{{item.order_goods}}" wx:for-item="order" wx:key="@index">
+                    <view class='goods'>
+                        <view class='cell'>
+                            <view class='left'>{{order.spec_key_name}} x {{order.goods_num}}</view>
+                            <view class='right'><text class="warning">￥{{order.goods_price}}</text></view>
+                        </view>
+                    </view>
+                </view>
+                <view class="user">
+                    <view class='name'>{{item.consignee}}</view>
+                    <view class='date'>{{item._format_add_time}}</view>
+                </view>
+                <view class='line'></view>
+                <view class='paycell'>
+                    <view class='pay'>
+                        <view class="left">
+                            <!--             {{['待支付','已支付','支付失败'][item.pay_status]}} 
  --><text wx:if="{{item.pay_status == 1}}" class="success">已支付</text>
-<text wx:else class="danger">未支付</text>
-
-          <!--订单确认后显示取货状态-->
-        <!--   <text wx:if="{{item.order_status == 1}}">{{['等待取货','已取货'][item.shipping_status]}}</text>  -->
-
-          </view>
-          <view class="right warning">￥{{item.goods_price}}</view>
+                            <text wx:else class="danger">未支付</text>
+                            <!--订单确认后显示取货状态-->
+                            <!--   <text wx:if="{{item.order_status == 1}}">{{['等待取货','已取货'][item.shipping_status]}}</text>  -->
+                        </view>
+                        <view class="right warning">￥{{item.goods_price}}</view>
+                    </view>
+                    <view class="yuan1"></view>
+                    <view class="yuan2"></view>
+                </view>
+                <view class="list-flex" wx:if="{{item.order_status !==3}}">
+                    <view class="flex-item">
+                        <i-button bindtap="pay" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+                    </view>
+                    <view class="flex-item">
+                        <i-button bindtap="cancel_order" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="default" size="small" long="{{fasle}}">取消订单</i-button>
+                    </view>
+                </view>
+                <i-button bindtap="confirm_order" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.shipping_status==1 && item.order_status!==2}}" type="success" size="small" long="{{fasle}}">确认已取货</i-button>
+            </view>
         </view>
-<view class="yuan1"></view>
-<view class="yuan2"></view>
-
-  </view>
-
- 
-<view class="list-flex" wx:if="{{item.order_status !==3}}">
-  <view class="flex-item">
-    <i-button bindtap="pay"  data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
-    </view>
-
-  <view class="flex-item">
-   <i-button bindtap="cancel_order"  data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="default" size="small" long="{{fasle}}">取消订单</i-button>
- </view>
-</view>
-
- <i-button bindtap="confirm_order"  data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.shipping_status==1 && item.order_status!==2}}" type="success" size="small" long="{{fasle}}">确认已取货</i-button>
-
-
-        </view>
-
-
-    </view>
-</i-panel>
-
-
-   <view wx:if="{{goodslist.length == 0}}">
-         <view class='new-goods' bindtap="new_btn">
+    </i-panel>
+    <view wx:if="{{goodslist.length == 0}}">
+        <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />
             <text>发布一个商品</text>
         </view>
-   </view>
-
-<i-panel title="我发布的" wx:if="{{goodslist.length > 0}}">
-    <view >
-        <view  class="goods-box">
-            <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
-                <view class="goods-body">
-                    <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
-                        <image src='{{item.original_img}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
-                    </navigator>
-                    <view class="bd">
-                       <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
-                        <view class="tit">{{item.goods_name}}</view>
-                       </navigator>
-                        <view class="link">
-
-
-         <form  bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true" >
-              <button   formType="submit" size="mini" > 修 改 </button>
-         </form> 
-
-
-                           
-<!-- <i-button shape="circle" size="small" data-url="{{item.goods_id}}" bind:click="editPage" >修改</i-button> -->
-
-                           
-
-
+    </view>
+    <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}">
+        <view>
+            <view class="goods-box">
+                <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
+                    <view class="goods-body">
+                        <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+                            <image src='{{item.original_img}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
+                        </navigator>
+                        <view class="bd">
+                            <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+                                <view class="tit">{{item.goods_name}}</view>
+                            </navigator>
+                            <view class="link">
+                                <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
+                                    <button formType="submit" size="mini"> 修 改 </button>
+                                </form>
+                                <!-- <i-button shape="circle" size="small" data-url="{{item.goods_id}}" bind:click="editPage" >修改</i-button> -->
+                            </view>
+                        </view>
+                        <view class="fd">
+                            <!--                                 _expires //是否过期 1正常 2未开始 3已过期
+ -->{{['','开团中','未开始','已截团'][item._expires]}}
                         </view>
                     </view>
-                    <view class="fd">
-
-<!--                                 _expires //是否过期 1正常 2未开始 3已过期
- -->{{['','开团中','未开始','已截团'][item._expires]}}
-                </view>
-                </view>
-                <view class="goods-count">
-                    <view class="count-item">
-                        <text class="label">浏览次数</text>
-                        <text class="num">{{item.pageview}}</text>
+                    <view class="goods-count">
+                        <view class="count-item">
+                            <text class="label">浏览次数</text>
+                            <text class="num">{{item.pageview}}</text>
+                        </view>
+                        <view class="count-item">
+                            <text class="label">收款总额</text>
+                            <text class="num">￥{{item._order_amount}}</text>
+                        </view>
+                        <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
+                            <text class="label text-primary">订单管理</text>
+                            <text class="num">{{item._order_count}}</text>
+                        </view>
                     </view>
-                    
-                  
-                    <view class="count-item">
-                        <text class="label">收款总额</text>
-                        <text class="num">￥{{item._order_amount}}</text>
-                    </view>
-
-                    <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}"> 
-                        <text class="label text-primary">订单管理</text>
-                        <text class="num">{{item._order_count}}</text>
-                    </view>
-
                 </view>
             </view>
         </view>
-    </view>
-</i-panel>
-
+    </i-panel>
     <i-message id="message" />
-
-
 </view>
