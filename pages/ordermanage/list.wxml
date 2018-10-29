@@ -6,14 +6,13 @@
     <view class="order-item" wx:for="{{dataList}}" wx:key="{{index}}">
         <view class="order-hd">
             <view class="number">{{item.create_number}}</view>
-            <view class="user-info"><text class="name">{{item.consignee}}</text><text class="tel" bindtap="calluser">{{item.mobile}}</text></view>
+            <view class="user-info"><text class="name">{{item.consignee}}</text><text class="tel" bindtap="calluser" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
             <view class="order-status">
                 <text class="state text-warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
                 <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
-                <text class="state text-primary" wx:if="{{item.shipping_status==1}}">已发货</text>
-                <text class="state text-info" wx:if="{{item.order_status==3}}">订单已取消</text>
+<!--                 <text class="state text-primary" wx:if="{{item.shipping_status==1}}">已发货</text>
+ -->                <text class="state text-info" wx:if="{{item.order_status==3}}">订单已取消</text>
                 <block wx:if="{{item.order_status==1}}"><text class="state text-primary">{{item.shipping_status==0?'未发货':'已发货' }}</text></block>
-                <text class="date">{{item._format_add_time}}</text>
             </view>
         </view>
         <view class="order-bd">
@@ -22,9 +21,9 @@
                 <view class="text-info">¥ {{g.goods_num*g.goods_price}} </view>
             </view>
             <view class="total text-justify">
-                <view>总金额： <text class="warning">¥{{item.total_amount}} </text>
+                <view>总金额： <text class="warning f18">¥{{item.total_amount}} </text>
                 </view>
-                <view class="text-right"> <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
+                <view class="text-right"> <text class="order-date">{{item._format_add_time}}</text><text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="error" wx:if="{{item.pay_status==0}}">未支付</text>
                     <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text> </view>
             </view>
@@ -43,7 +42,7 @@
                 <button class="btn btn-warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>
             </form>
             <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                <button class="btn btn-info" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
+                <button class="btn btn-success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
             </form>
         </view>
     </view>
