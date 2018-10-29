@@ -35,7 +35,6 @@
 .userinfo-nickname {
     display: block;
     font-size:40rpx;
-    padding-top: 43rpx
 }
 
 .userinfo-bd {
@@ -155,18 +154,18 @@ padding:16rpx 0 0 5rpx
 }
 
 .goods-count .count-item .label {
-    color: #999;
+    color: #666;
 }
 
 .goods-count .count-item .num {
     font-size: 28rpx;
-    color: #666
+    color: #333
 }
 
 .add-goods {
     position: absolute;
     right: 0;
-    top:80rpx;
+    top:70rpx;
     background: #FFA14E;
     color: #fff;
     width: 180rpx;
@@ -371,6 +370,7 @@ button.edit-btn,.button-hover{
   padding: 0;
   color: #ffd200;
   box-shadow:none;
+  line-height: 1.2;
 }
 
 button::after{
