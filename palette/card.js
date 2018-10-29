@@ -83,12 +83,12 @@ function topArr({ headImg, userName, date, content }){
       text: content,
       css: {
         top: `${startTop + 86}rpx`,
-        left: `${20 + startLeft}rpx`,
+        left:  '0rpx',
         color: '#000',
         fontSize: "34rpx",
-        width: `${wid - 40 - 2 * startLeft}rpx`,
+        width: `${wid}rpx`,
         maxLines: 8,
-        lineHeight: '48rpx'
+        lineHeight: '55rpx'
       },
     },
   ];

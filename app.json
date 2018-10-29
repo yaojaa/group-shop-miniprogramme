@@ -15,8 +15,6 @@
     "pages/map/index",
     "pages/paySuccess/index",
     "pages/p/index",
-    "pages/ucenter/ucenter",
-    "pages/fans/index",
     "pages/withdrawal/index",
     "pages/userLocation/index"
     ],
