@@ -339,3 +339,16 @@ fieldset[disabled] .btn-link {
   margin-left: auto;
   margin-right: auto;
 }
+
+.list-flex{
+  display: flex;
+}
+
+.flex-item{
+  -webkit-flex:1;
+-moz-flex:1;
+-ms-flex:1;
+-o-flex:1;
+flex:1;
+
+}

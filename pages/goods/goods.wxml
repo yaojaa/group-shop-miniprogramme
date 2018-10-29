@@ -29,7 +29,7 @@
             <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
                 <block wx:for="{{imgUrls}}" wx:key="{{index}}">
                     <swiper-item>
-                        <image src="{{item}}?imageView2/1/w/750/h/400/q/95" class="slide-image" />
+                        <image bindtap="imgPreview" data-list="{{imgUrls}}"  mode="aspctFit" src="{{item}}?imageView2/1/w/750/h/400/q/95" class="slide-image" />
                     </swiper-item>
                 </block>
             </swiper>
@@ -53,10 +53,10 @@
                 <text>{{goods.goods_name}}</text>
 
             </view>
-            <view class="goods-price">
-                <view wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}" class="goods-price-item text-justify scale-1px">
-                    <text class="price">¥{{item.price}}</text>
-                    <text>{{item.key_name}}</text>
+            <view class="goods-price" bindtap="cartPanelShow">
+                <view wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}" class="goods-price-item scale-1px">
+                    <text>{{item.key_name}}</text> <text class="price">¥{{item.price}}</text>
+
                     <!-- <text class='line-through'>¥29.8</text> -->
                 </view>
             </view>
@@ -73,7 +73,7 @@
            <text>{{goods.goods_content}}</text> 
         </view>
         <view class='sub-title scale-b-1px'>
-            最近参与 ({{orderCount}})
+            最近参与:
         </view>
 
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
@@ -119,7 +119,7 @@
         </view>
 
    <form style="flex:2"  bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
-    <button class="buy" formType="submit">立即订购</button>
+    <button class="buy" formType="submit">立即参团</button>
    </form> 
 
     </view>
@@ -157,5 +157,13 @@
             </view>
         </view>
     </i-action-sheet>
+
+    <i-modal title="标题" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
+ <i-panel title="标题">
+    <view style="padding: 15px;">PANEL 内容区域</view>
+</i-panel>
+</i-modal>
+
+
     <i-message id="message" />
 </view>

@@ -34,14 +34,13 @@
             <text class="_number">{{item.create_number}}</text>
             <view class='list-h mg-r1 text-justify'>
     <view class="header-line">
-        <i-icon type="mobilephone" size="28" data-mobile="{{item.mobile}}" bindtap="calluser" /> 
 
-        <text class="user-info">{{item.consignee}}</text>  </view>
+        <text class="user-info"  bindtap="calluser">{{item.consignee}} {{item.mobile}}</text>  </view>
                 <!-- <text class="state warning">{{['您有新订单待确认','订单已确认','已收货','已取消','已完成','已作废'][item.order_status]}}</text> -->
                 <text class="state warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
-              <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
+                <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text>
                 <text class="state success" wx:if="{{item.shipping_status==1}}">已发货</text>
-                <text class="state success" wx:if="{{item.order_status==3}}">订单已取消</text>
+                <text class="state" wx:if="{{item.order_status==3}}">订单已取消</text>
             </view>
             <view class='list-h mg-r2 text-justify' wx:if="{{item.order_status==1}}">
                 <view>发货状态：{{item.shipping_status==0?'未发货':'已发货' }}</view>
@@ -54,12 +53,15 @@
                 
             </view>
             <view class='list-h mg-r4 text-justify scale-b-1px'>
-                <view>总金额： <text class="warning">¥{{item.total_amount}} </text>
+                <view>总金额： <text>¥{{item.total_amount}} </text>
                     <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="error" wx:if="{{item.pay_status==0}}">未支付</text>
                     <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text> 
                 </view>
                 <view class="text-muted text-right">{{item._format_add_time}}</view>
+            </view>
+            <view class='list-h mg-r4 text-justify scale-b-1px'>
+            {{item.user_note}}
             </view>
             <view class="list-button">
                 <form wx:if="{{item.order_status == 0 && item.pay_status == 1}}" bindsubmit="formSubmit" report-submit="true">
@@ -72,10 +74,10 @@
                     <button class="button danger" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openPay">已线下支付</button>
                 </form>
                 <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>
+                    <button class="button warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">微信提醒</button>
                 </form>
                 <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                    <button class="button warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
+                    <button class="button success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
                 </form>
             </view>
         </view>
@@ -86,14 +88,28 @@
     <i-modal title="取消订单" visible="{{ visible3 }}" actions="{{ actionsCancel }}" bind:click="toCancel">
         <view>确定要取消这个订单吗？</view>
     </i-modal>
+
     <i-modal title="确认发货" visible="{{ visible2 }}" bind:ok="toShipping" bind:cancel="closeShipping">
-        <view class="price-input"><input bindinput="noteInput" value="{{note}}" placeholder="备注(选填)" /></view>
-    </i-modal>
+    
+    <!--快递发货的情况-->  
+      <view wx:if="{{delivery_method == 1}}"> 
+         <view class="price-input"><input bindinput="noteInput" value="{{comperny}}" placeholder="快递公司" /></view>
+         <view class="price-input"><input bindinput="noteInput" value="{{number}}" placeholder="单号" /></view>
+      </view>
+
+      <view class="price-input"><input bindinput="noteInput" value="{{note}}" placeholder="备注(选填)" /></view>
+
+   </i-modal>
+
     <i-modal title="确认已支付" visible="{{ visible4_pay }}" bind:ok="setPay" bind:cancel="closePay">
         <view class="price-input"><input bindinput="noteInput" value="{{note}}" placeholder="备注(选填)" /></view>
     </i-modal>
-    <i-modal title="提醒取货" visible="{{ visible5_tips }}" bind:ok="setTips" bind:cancel="closeTips">
-        <view class="price-input"><input bindinput="noteInput" value="{{note}}" placeholder="如：请明天周六到2号楼203取货" /></view>
+    <i-modal title="发送微信提醒" visible="{{ visible5_tips }}" bind:ok="setTips" bind:cancel="closeTips">
+        <view>
+            <text>仅能发送一次，通常用来通知取货</text>
+            <input class="notmsg" bindinput="noteInput"  placeholder=" 如：请明天周六到2号楼333取货" />
+            
+        </view>
     </i-modal>
     <i-message id="message" />
 </view>

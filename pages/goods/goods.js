@@ -10,6 +10,7 @@ Page({
         hasScope: false, //是否授权
         imgUrls: [],
         goods: {},
+        visibleU:false,
         seller_user: {},
         sell_address: [],
         spec_goods_price: [],
@@ -17,7 +18,6 @@ Page({
         cartPanel: false,
         amountMoney: 0,
         countdownTime: 0,
-        orderCount: 0,
         clearTimer: false,
         myFormat: ['天', '时', '分', '秒'],
         orderUsers: [],
@@ -176,9 +176,8 @@ Page({
 
                 if (res.data.code == 0) {
                     this.setData({
-                        orderUsers: res.data.data.lists,
-                        orderCount: res.data.data.lists.length
-                    })
+                        orderUsers: res.data.data.lists
+                  })
 
                 }
 
@@ -225,7 +224,7 @@ Page({
                     if (dis > 3 && this.data.delivery_method == 2) {
 
                         $Message({
-                            content: '您的位置不在取货范围内',
+                            content: '温馨提醒：您的位置不在取货范围内哦',
                             type: 'warning',
                             duration: 5
                         })

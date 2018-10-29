@@ -43,7 +43,7 @@
 
 <view class="new_add_btn" bindtap="addPicture">
 
-<i-icon type="add" size="20" color="#80848f"/>介绍图片  <view wx:if="{{pictureProgress}}" class="loading">
+<i-icon type="add" size="20" color="#80848f"/>图文介绍（选填） <view wx:if="{{pictureProgress}}" class="loading">
 <i-spin size="large"></i-spin>
 </view>
 
@@ -102,24 +102,17 @@
 <i-panel title="设置" >
 <view class="weui-cells_form">
 
-<view class="weui-cell">
+<!-- <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">配送方式：</view></view>
                     <view class="weui-cell__bd">
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                       <i-button type="ghost" bindtap="handleOpen2">{{actions2[delivery_method-1].name}}</i-button> <i-icon type="enter" size="28" />
-
-       <!--  <i-switch value="{{delivery_method}}" size="large" bindchange="deliveryChange" slot="footer">
-            <view slot="open">邮寄</view>
-            <view slot="close">自提</view>
-        </i-switch>      -->         
-
+                       <i-button type="ghost" bindtap="handleOpen2">{{actions2[delivery_method-1].name}}</i-button> <i-icon type="enter" size="28" />        
                     </view>
                      </view>
 
-                    
-</view>
+</view> -->
 
 <!-- <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">收款方式：</view></view>
@@ -147,7 +140,7 @@
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
                      <view class="timePicker" wx:if="{{!isShowTimePicker}}" bindtap="showTimePicker">
-                       默认发布后5天
+                       默认发布后7天
                       <i-icon type="enter" size="28" />
                     </view>
 
@@ -176,7 +169,7 @@
                     <view class="weui-icon-warn">
                           <navigator url="/pages/map/index?delivery_method={{delivery_method}}">
 
-                            <text wx:if="{{sell_address.length}}">{{sell_address[0].name}}</text>
+                            <text wx:if="{{sell_address.length}}">{{sell_address[0].name}}>{{sell_address[0].door_number}}</text>
                             <text wx:else>选择地址</text>
 
 

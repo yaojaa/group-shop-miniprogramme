@@ -370,7 +370,7 @@ button.edit-btn,.button-hover{
   margin: 0;
   padding: 0;
   color: #ffd200;
-  box-shadow:none
+  box-shadow:none;
 }
 
 button::after{

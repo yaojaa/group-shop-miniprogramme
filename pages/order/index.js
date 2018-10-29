@@ -106,13 +106,13 @@ Page({
     }, function() {
 
             let amountMoney = 0;
-            this.data.cart.forEach(value=> amountMoney +=value.price*parseInt(value.item_num))
+            this.data.cart.forEach(value=> amountMoney += value.price*100*parseInt(value.item_num))
 
             let hasgoods = amountMoney == 0?true : false
 
 
             this.setData({
-              amountMoney:amountMoney,
+              amountMoney:amountMoney/100,
               hasgoods : hasgoods
             })
     })

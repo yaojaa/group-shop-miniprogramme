@@ -124,6 +124,31 @@ Page({
             }
         })
     },
+
+    //取消订单
+    
+       cancel_order({target}){
+
+          wx.request({
+            url: 'https://www.daohangwa.com/api/user/cancel_order',
+            method:'POST',
+            data: {
+                token: app.globalData.token,
+                order_id:target.dataset.id
+            },
+            success: (res) => {
+                if (res.data.code == 0) {
+                   $Message({
+                       content:'订单取消成功',
+                        type: 'success'
+                    })
+                    this.getBuyList()
+
+                }
+            }
+        })
+        },
+      
     //确认收货
     confirm_order({target}){
 
@@ -167,9 +192,10 @@ Page({
     detailPage(e) {
         let url = e.currentTarget.dataset.url
         let name = e.currentTarget.dataset.name
+        let delivery_method = e.currentTarget.dataset.delivery_method
 
         wx.navigateTo({
-            url: '../ordermanage/list?goods_id=' + url+'&goods_name='+name,
+            url: '../ordermanage/list?goods_id=' + url+'&goods_name='+name+'&delivery_method='+delivery_method,
         })
   },
   onImgOk(e) { //绘制成功

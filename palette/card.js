@@ -85,9 +85,9 @@ function topArr({ headImg, userName, date, content }){
         top: `${startTop + 86}rpx`,
         left: `${20 + startLeft}rpx`,
         color: '#000',
-        fontSize: "28rpx",
+        fontSize: "34rpx",
         width: `${wid - 40 - 2 * startLeft}rpx`,
-        maxLines: 10,
+        maxLines: 8,
         lineHeight: '48rpx'
       },
     },

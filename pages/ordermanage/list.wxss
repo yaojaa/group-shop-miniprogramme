@@ -82,14 +82,14 @@
     top: 0;
     height: 1px;
     position: absolute;
-    background: -webkit-repeating-linear-gradient(135deg, #F47530 0, #F47530 20%, transparent 0, transparent 25%, #c0e8d9 0, #c0e8d9 45%, transparent 0, transparent 50%);
-    background: repeating-linear-gradient(-45deg, #F47530 0, #F47530 20%, transparent 0, transparent 25%, #c0e8d9 0, #c0e8d9 45%, transparent 0, transparent 50%);
+    background: -webkit-repeating-linear-gradient(135deg, #eee 0, #eee 20%, transparent 0, transparent 25%, #ddd 0, #ddd 45%, transparent 0, transparent 50%);
+    background: repeating-linear-gradient(-45deg, #eee 0, #eee 20%, transparent 0, transparent 25%, #ddd 0, #ddd 45%, transparent 0, transparent 50%);
     background-size: 80px;
 }
 .user-info{
-    font-size: 38rpx;
+    font-size: 32rpx;
     color: #666;
-
+    padding-left: 30rpx
 }
 
 .list-h {
@@ -137,16 +137,22 @@
 
 .price-input {
     border-bottom: 1px solid #efefef;
-    width: 60%;
+    width: 900%;
     border-radius: 5px;
     margin: 0 auto;
     text-align: center;
 }
 
-icon {
-    display: block;
-}
 
+.notmsg{
+    width: 85%;
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 50rpx;
+    padding:3px;
+
+}
 .state {
     text-align: right;
     color: #999;
@@ -180,17 +186,20 @@ button.error{
 
 .button {
 	margin:0;
-	    padding: 20rpx 38rpx;
+	padding: 20rpx 38rpx;
     font-size: 32rpx;
 	text-align: center;
 	line-height: 1.2rem;
 	display: inline-block;
+    width: 40%
 }
 .mg-r4{
 	padding-bottom: 5px;
 }
 .list-button{
 	font-size: 0; 
+    text-align: center;
+    margin-bottom: 30rpx
 }
 .list-button form{
 	font-size: 0;
@@ -214,7 +223,7 @@ button.error{
 ._number:before {
    height: 0;
    width: 0;
-   border-bottom: 6rpx solid #8D5A20;
+   border-bottom: 6rpx solid #ccc;
    border-right: 6rpx solid transparent;
    right: -6rpx;
    top: 0;
@@ -226,8 +235,8 @@ button.error{
 ._number:after {
     height: 0;
     width: 0;
-    border-left: 30rpx solid #F47530;
-    border-right: 30rpx solid #F47530;
+    border-left: 25rpx solid #ccc;
+    border-right: 25rpx solid #ccc;
     border-bottom: 7rpx solid transparent;
     bottom: -5rpx;
     left: 0;
