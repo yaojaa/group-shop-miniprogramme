@@ -13,7 +13,7 @@ const util = require('../../utils/util.js')
 const date = new Date()
 
 const default_start_time = util.formatTime(date)
-date.setDate(date.getDate() + 5);
+date.setDate(date.getDate() + 7);
 const default_end_time = util.formatTime(date)
 
 

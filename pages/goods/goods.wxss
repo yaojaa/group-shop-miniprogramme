@@ -353,8 +353,10 @@
     padding-right: 10px;
 }
 .goods-price-item{
-    margin:10px 0;
+    margin:10px 4px 0 0;
     padding: 6px 10px;
+    display: inline-block;
+    font-size: 36rpx
 }
 
 .painter{

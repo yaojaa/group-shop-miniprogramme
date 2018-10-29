@@ -5,7 +5,7 @@
     <i-panel  class="address" wx:if="{{delivery_method==2}}">
               <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
         <i-input value="{{ nickName }}" title="收货人" id="nickName" bind:change="inputTodata"   placeholder="请输入姓名" />
-        <i-input value="{{ mobile }}" id="mobile" bind:change="inputTodata" type="number" title="联系电话" placeholder="输入手机号方便联系" />
+        <i-input value="{{ mobile }}" id="mobile" bind:change="inputTodata" type="number" title="联系电话" placeholder="输入手机号" />
     </i-panel>
     <!--送货上门-->
     <view class="address" wx:if="{{delivery_method==1}}">

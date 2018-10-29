@@ -2,7 +2,7 @@
 <view class='session'>
   <view class='limit'>
     <view class='header'>
-      <text>添加提货点或发货位置</text>
+      <text>添加提货地点</text>
       <!-- <switch bindchange="limitChange"/> -->
     </view>
  <!--    <view wx:if="{{ hidden }}" class='control'>
@@ -17,7 +17,7 @@
   <view class='address'>
   <!-- <view class='address' wx:if="{{index == 0}}"> -->
     <view class='icon-img'>
-      <i-icon type="coordinates" />
+      <i-icon type="coordinates" size="28" />
     </view>
     <view class='content'>
       <view class='name'>{{item.name}}</view>
@@ -89,7 +89,7 @@
 
 
 
-<i-button i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>
+<i-button wx:if="{{newAddress.length}}"  i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>
 
 
 

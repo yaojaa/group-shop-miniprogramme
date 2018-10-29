@@ -56,6 +56,8 @@
 
   <text class="state" wx:if="{{item.shipping_status==1 && item.order_status!==2}}">已发货</text>
    <text class="state success" wx:if="{{item.order_status==2}}">已完成</text>
+      <text class="state" wx:if="{{item.order_status==3}}">已取消</text>
+
         <text class="state" wx:if="{{item.pay_status==1 && item.shipping_status==0}}"> {{['等待确认','等待配货','已完成','已取消','已完成','已作废'][item.order_status]}}
           <!--已完成 其实为已收货-->
         </text>
@@ -85,7 +87,7 @@
 
 <!--             {{['待支付','已支付','支付失败'][item.pay_status]}} 
  --><text wx:if="{{item.pay_status == 1}}" class="success">已支付</text>
-<text wx:else class="danger">待支付</text>
+<text wx:else class="danger">未支付</text>
 
           <!--订单确认后显示取货状态-->
         <!--   <text wx:if="{{item.order_status == 1}}">{{['等待取货','已取货'][item.shipping_status]}}</text>  -->
@@ -98,9 +100,16 @@
 
   </view>
 
-   <i-button bindtap="pay"  data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+ 
+<view class="list-flex" wx:if="{{item.order_status !==3}}">
+  <view class="flex-item">
+    <i-button bindtap="pay"  data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+    </view>
 
-
+  <view class="flex-item">
+   <i-button bindtap="cancel_order"  data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="default" size="small" long="{{fasle}}">取消订单</i-button>
+ </view>
+</view>
 
  <i-button bindtap="confirm_order"  data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.shipping_status==1 && item.order_status!==2}}" type="success" size="small" long="{{fasle}}">确认已取货</i-button>
 
@@ -125,10 +134,12 @@
             <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                 <view class="goods-body">
                     <navigator url="../goods/goods?goods_id={{item.goods_id}}">
-                        <image src='{{item.original_img}}' class='hd'></image>
+                        <image src='{{item.original_img}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
                     </navigator>
                     <view class="bd">
+                       <navigator url="../goods/goods?goods_id={{item.goods_id}}">
                         <view class="tit">{{item.goods_name}}</view>
+                       </navigator>
                         <view class="link">
 
 
@@ -163,7 +174,7 @@
                         <text class="num">￥{{item._order_amount}}</text>
                     </view>
 
-                    <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}"> 
+                    <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}"> 
                         <text class="label">订单管理</text>
                         <text class="num">{{item._order_count}}</text>
                     </view>
