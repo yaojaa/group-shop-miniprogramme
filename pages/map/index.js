@@ -188,8 +188,8 @@ Page({
             },
             method:'get',
             success:(res)=>{
+              console.log(res)
               let map =res.data.result.address_component
-
             _this.data.oldAddress = _this.data.newAddress.concat(_this.data.oldAddress);
 
             _this.data.newAddress = [{
