@@ -94,7 +94,7 @@ Page({
                 //计算位置
                 this.computeDistance()
 
-                this.getOrderUserList(option.goods_id)
+               // this.getOrderUserList(option.goods_id)
 
             }
         })

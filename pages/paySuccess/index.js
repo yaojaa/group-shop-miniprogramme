@@ -15,6 +15,7 @@ Page({
       order_time: '',
       imagePath: "",
       goods_id: "",
+      create_number:1,
       painterData:{}
     },
 
@@ -55,6 +56,7 @@ Page({
                     this.setData({
                         orders_info: res.data.data.order,
                         order_goods: res.data.data.order_goods,
+                        create_number:res.data.data.order.create_number,
                         order_time: this.timetrans(res.data.data.order.add_time)
                     })
                 }
@@ -96,7 +98,7 @@ Page({
         //   console.log(res.target)
         // }
         return {
-          title: app.globalData.userInfo.nickname + '刚刚参与了团购',
+          title:  '「No.'+this.data.create_number+'」'+app.globalData.userInfo.nickname + '刚刚成功参团',
           imageUrl: this.data.imagePath,
           path: '/pages/goods/goods?goods_id=' + this.data.goods_id  
         }
