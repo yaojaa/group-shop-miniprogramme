@@ -12,7 +12,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    painterData: {},
     order_id:"",
     link_url:"",
     num: 1,
@@ -389,6 +388,7 @@ Page({
                   },
                   success:()=>{
 
+                   wx.hideLoading()
                    wx.redirectTo({
                          url:'../paySuccess/index?order_id='+order_id+'&goods_id='+this.data.goods_id
                    })

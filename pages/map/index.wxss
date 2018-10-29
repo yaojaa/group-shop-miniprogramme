@@ -122,6 +122,6 @@ button.button{
   font-size: 26rpx;
 }
 .address .content .door_number input{
-  font-size: 28rpx;
+  font-size: 32rpx;
   color:#333;
 }

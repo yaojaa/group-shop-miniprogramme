@@ -1,5 +1,9 @@
 {
   "navigationBarTitleText": "我参与的",
+    "enablePullDownRefresh": true,
+  "window":{
+    "backgroundTextStyle":"dark"
+  },
   "usingComponents": {
   	"i-button": "../../iView/button/index",
     "i-panel": "../../iView/panel/index",

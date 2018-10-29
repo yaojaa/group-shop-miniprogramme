@@ -30,7 +30,7 @@ Page({
             }
         })
     },
-    getBuyList: function(token) {
+    getBuyList: function() {
 
         wx.request({
             url: 'https://www.daohangwa.com/api/user/get_order_list',
@@ -192,9 +192,15 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
-
-    },
+    onPullDownRefresh: function () {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    this.getBuyList()
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
+  },
 
     /**
      * 页面上拉触底事件的处理函数

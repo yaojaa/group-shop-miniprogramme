@@ -169,7 +169,7 @@
                     <view class="weui-icon-warn">
                           <navigator url="/pages/map/index?delivery_method={{delivery_method}}">
 
-                            <text wx:if="{{sell_address.length}}">{{sell_address[0].name}}>{{sell_address[0].door_number}}</text>
+                            <text wx:if="{{sell_address.length}}">{{sell_address[0].name}} {{sell_address[0].door_number}}</text>
                             <text wx:else>选择地址</text>
 
 

@@ -1,4 +1,5 @@
 const app = getApp()
+const { $Message } = require('../../iView/base/index');
 
 Page({
 
@@ -8,7 +9,7 @@ Page({
   data: {
 
     store_money:0,
-    inputMoney:0
+    inputMoney:20
     
   },
 
@@ -38,6 +39,12 @@ Page({
                 success: (res) => {
                     if (res.data.code == 0) {
                    
+                    }else{
+
+                       $Message({
+                         content:res.data.msg,
+                         type:'error'
+                      })
                     }
                 }
             })

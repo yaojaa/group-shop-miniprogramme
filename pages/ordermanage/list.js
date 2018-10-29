@@ -137,7 +137,6 @@ Page({
   openTips({target}){
        this.setData({
       visible5_tips:true,
-      note:'亲，您团购的商品到货啦，来取吧',
       order_id:target.dataset.id
     })
   },
@@ -210,7 +209,7 @@ Page({
   setTips(e){
 
     if(this.data.note == ''){
-      this.data.note = '亲，您团购的商品到货啦，来取吧'
+      this.data.note = '如：亲，您团购的商品到货啦，来我家取吧'
     }
 
    
@@ -234,8 +233,6 @@ Page({
                             content: '提醒成功',
                             type: 'success'
                         });
-                        this.data.note = ''
-
                          this.setData({
                           visible5_tips: false
                     });

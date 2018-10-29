@@ -22,7 +22,8 @@
     <view class='content'>
       <view class='name'>{{item.name}}</view>
       <view class='des'>{{item.address}}</view>
-      <view class='des door_number'>提货点：<input value="{{item.door_number}}" bindinput='inputAddressDes' placeholder="请输入详细门牌号如：2号楼3单元203" type="text" name=""/></view>
+      <view class='des door_number'>
+        <text class="text-danger">提货点：</text><input value="{{item.door_number}}" bindinput='inputAddressDes' autofocus="true" placeholder="如：2号楼3单元203" type="text" name=""/></view>
 
     </view>
     <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
@@ -55,11 +56,11 @@
     <button plain open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
   </view>
 </block>
-<block wx:else>
+<!-- <block wx:else>
   <view class='add-address' bindtap='addAddress'>
     <i-button  class="button" shape="circle" type="success"  long="true" size="large">+更改地点</i-button>
   </view>
-</block>
+</block> -->
 
 
 

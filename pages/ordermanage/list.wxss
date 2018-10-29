@@ -169,3 +169,9 @@ button.button-hover {
     display: inline-block;
     padding-right: 10px;
 }
+
+.price-input input{
+    border-radius: 3px;
+    border:1px solid #ddd;
+    padding: 3px 0
+}

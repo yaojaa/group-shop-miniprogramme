@@ -2,7 +2,10 @@
     <view wx:if="{{dataList.length == 0}}">
         <i-divider content=" 此团购暂时还没有订单 :( "></i-divider>
     </view>
-    <view class="order-title">商品名称：{{goods_name}}</view>
+    <view class="order-title text-primary">
+        <navigator url="/pages/goods/goods?goods_id={{goods_id}}">{{goods_name}}
+        </navigator>
+        </view>
     <view class="order-item" wx:for="{{dataList}}" wx:key="{{index}}">
         <view class="order-hd">
             <view class="number">{{item.create_number}}</view>
@@ -53,13 +56,20 @@
         <view>确定要取消这个订单吗？</view>
     </i-modal>
     <i-modal title="确认发货" visible="{{ visible2 }}" bind:ok="toShipping" bind:cancel="closeShipping">
-        <view class="price-input"><input bindinput="noteInput" value="{{note}}" placeholder="备注(选填)" /></view>
+        <view class="price-input">
+            已经给Ta发完货了吗？
+<!--             <input bindinput="noteInput" value="{{note}}" placeholder="备注(选填)" />
+ -->        </view>
     </i-modal>
     <i-modal title="确认已支付" visible="{{ visible4_pay }}" bind:ok="setPay" bind:cancel="closePay">
-        <view class="price-input"><input bindinput="noteInput" value="{{note}}" placeholder="备注(选填)" /></view>
+        <view class="price-input">
+          请确认Ta已经线下支付过了哦
+        </view>
     </i-modal>
     <i-modal title="提醒取货" visible="{{ visible5_tips }}" bind:ok="setTips" bind:cancel="closeTips">
-        <view class="price-input"><input bindinput="noteInput" value="{{note}}" placeholder="如：请明天周六到2号楼203取货" /></view>
+        <view>发送微信通知，每人仅能发送一次哦</view>
+        <view class="price-input">
+            <input bindinput="noteInput" value="{{note}}" placeholder="如：请明天周六到2号楼203取货" /></view>
     </i-modal>
     <i-message id="message" />
 </view>
