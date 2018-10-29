@@ -49,7 +49,7 @@
     <view style="padding: 5px 10px;">
 
    <view class='order' wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
-    <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}">
+    <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}" hover-class="none">
       <view class='title'>
        
          <text>{{item.goods.goods_name}} </text>
@@ -133,11 +133,11 @@
         <view  class="goods-box">
             <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                 <view class="goods-body">
-                    <navigator url="../goods/goods?goods_id={{item.goods_id}}">
+                    <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
                         <image src='{{item.original_img}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
                     </navigator>
                     <view class="bd">
-                       <navigator url="../goods/goods?goods_id={{item.goods_id}}">
+                       <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
                         <view class="tit">{{item.goods_name}}</view>
                        </navigator>
                         <view class="link">

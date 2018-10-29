@@ -16,7 +16,9 @@
     "pages/paySuccess/index",
     "pages/p/index",
     "pages/withdrawal/index",
-    "pages/userLocation/index"
+    "pages/userLocation/index",
+    "pages/myPartake/index",
+    "pages/myPublish/index"
     ],
 
   "window": {
