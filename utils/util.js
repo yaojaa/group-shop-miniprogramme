@@ -92,10 +92,7 @@ const get_painter_data_and_draw = function(goods_id){
 
   let cardConfig ={
     headsImgArr:[]
-  } // { headImg, userName,  date, content, headsImgArr }
-      cardConfig.headImg = app.globalData.userInfo.head_pic;
-      cardConfig.userName = app.globalData.userInfo.nickname;
- 
+  } 
 
  //获取人
  var getUserList = function(goods_id,cb){
@@ -118,8 +115,26 @@ const get_painter_data_and_draw = function(goods_id){
     })
 
  }
-  //获取内容
-    wx.request({
+  //获取内容Storage _card_data
+      try {
+        var _card_data = wx.getStorageSync('_card_data')
+        console.log(typeof _card_data)
+        if (_card_data) {
+
+          cardConfig = Object.assign(cardConfig,_card_data)
+
+                 getUserList(goods_id,(res)=>{
+                   this.setData({
+                       painterData:res,
+                       goods_id:goods_id
+                     })
+                 })
+        
+        }
+      } catch (e) {
+
+
+            wx.request({
             url: 'https://www.daohangwa.com/api/goods/get_goods_info',
             data: {
                 token :app.globalData.token,
@@ -127,22 +142,20 @@ const get_painter_data_and_draw = function(goods_id){
             },
             success: (res) => {
              if (res.data.code == 0) {
-             cardConfig.headImg = res.data.data.seller_user.head_pic;
-             cardConfig.userName = res.data.data.seller_user.nickname;
-             cardConfig.date = formatTime(new Date(res.data.data.goods.sell_end_time*1000)).replace(/^(\d{4}-)|(:\d{2})$/g, "");
-             cardConfig.content = res.data.data.goods.goods_content
-
              getUserList(goods_id,(res)=>{
-              console.log('绘制的图片为',res)
-              console.log(this)
                this.setData({
-              painterData:res
+                   painterData:res,
+                   goods_id:goods_id
                  })
              })
-
                 }
               }
           })
+        
+      }  
+
+
+
   
 
 

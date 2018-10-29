@@ -17,8 +17,6 @@
             <button open-type="share">
               <image src="/img/share.png" class="wx-icon" />
             </button>
-            <!--             <image src="/img/circle.png" class="wx-icon" />
- -->
         </view>
     </view>
     <view class="page-section page-section-spacing swiper goods-manage">
@@ -55,14 +53,14 @@
             </view>
             <view class="goods-price" bindtap="cartPanelShow">
                 <view wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}" class="goods-price-item scale-1px">
-                    <text>{{item.key_name}}</text> <text class="price">¥{{item.price}}</text>
+                    <text>{{item.key_name}}</text> / <text class="price">¥{{item.price}}</text>
 
                     <!-- <text class='line-through'>¥29.8</text> -->
                 </view>
             </view>
         </view>
          <view  style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="index" data-good-id="{{goods.goods_id}}" >
-            <i-cell title="{{ (goods.delivery_method == 1 ?'发货地：':'取货地址：') +item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
+            <i-cell title="{{ (goods.delivery_method == 1 ?'发货地：':'取货地点：') +item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
         </view>
@@ -78,7 +76,9 @@
 
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
             <i-cell  i-class="buyer-item-box">
-                一大波人正在赶来...
+             <button open-type="share">
+              一大波人正在赶来...继续去喊人
+            </button>
             </i-cell>
         </i-cell-group>
 
@@ -104,13 +104,24 @@
                 </view>
             </i-cell>
         </i-cell-group>
-    </view>
 
- <view class="piclist">
+         <view wx:if="{{goods.content_imgs.length}}">
+ <view class='sub-title scale-b-1px'>
+            图文介绍:
+        </view>
+ <view class="piclist" >
+    
+
         <view class="pic" wx:for="{{goods.content_imgs}}" wx:for-item="img" >
                   <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
          </view>
 </view>
+</view>
+
+
+    </view>
+
+
    
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>

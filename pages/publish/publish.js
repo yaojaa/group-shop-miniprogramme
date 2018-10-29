@@ -113,14 +113,12 @@ Page({
 
       util.uploadPicture({
         successData:(result)=>{
-          console.log(result)
           this.data.content_imgs = this.data.content_imgs.concat([result])
 
           this.setData({
             content_imgs:this.data.content_imgs
           })
 
-          console.log(this.data.content_imgs)
         },
         progressState:(s)=>{
           this.setData({
@@ -174,17 +172,14 @@ Page({
 
       util.uploadPicture({
         successData:(result)=>{
-          console.log(result)
           this.data.photoUrls = this.data.photoUrls.concat([result])
 
           this.setData({
             photoUrls:this.data.photoUrls
           })
 
-          console.log(this.data.photoUrls)
         },
         progressState:(s)=>{
-          console.log('上传状态',s)
           this.setData({
           photoProgress:s
         })
@@ -194,13 +189,10 @@ Page({
   },
   //删除一张照片
   removePhoto:function(e){
-    console.log(e)
    let index =e.currentTarget.dataset.index
-       console.log(index)
-   console.log(this.data.photoUrls)
+  
 
     this.data.photoUrls.splice(index,1)
-   console.log(this.data.photoUrls)
    this.setData({
     'photoUrls':this.data.photoUrls
    })
@@ -263,7 +255,12 @@ Page({
 
   },
   onImgOk(e) { //绘制成功
-    wx.hideLoading()
+
+      wx.hideLoading()
+      this.jump()
+
+  },
+  jump(){
       wx.redirectTo({
         url:'../goods/goods?goods_id='+this.data.goods_id
      })
@@ -279,7 +276,6 @@ Page({
 
      // 传入表单数据，调用验证方法
         if (!this.WxValidate.checkForm(e)) {
-          console.log(this.WxValidate.errorList)
             const error = this.WxValidate.errorList[0]
             wx.showModal({title:error.msg,showCancel:false})
             return false
@@ -324,11 +320,10 @@ Page({
 
         })
         
-        
 
 
-
-        let data = Object.assign({token:app.globalData.token},{goods_id:this.data.goods_id},
+        let data = Object.assign({token:app.globalData.token},
+          {goods_id:this.data.goods_id || ''},
           e.detail.value, //表单的数据
           {spec_item:this.data.spec_item}, //商品数组数据
           {goods_images:this.data.photoUrls},
@@ -341,32 +336,44 @@ Page({
           }
           )
           wx.showLoading()
+           
+           /**** 生成分享卡片配置 ***/
+          const reg2=/([\u00A9\u00AE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9-\u21AA\u231A-\u231B\u2328\u23CF\u23E9-\u23F3\u23F8-\u23FA\u24C2\u25AA-\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u2604\u260E\u2611\u2614-\u2615\u2618\u261D\u2620\u2622-\u2623\u2626\u262A\u262E-\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u2660\u2663\u2665-\u2666\u2668\u267B\u267F\u2692-\u2697\u2699\u269B-\u269C\u26A0-\u26A1\u26AA-\u26AB\u26B0-\u26B1\u26BD-\u26BE\u26C4-\u26C5\u26C8\u26CE-\u26CF\u26D1\u26D3-\u26D4\u26E9-\u26EA\u26F0-\u26F5\u26F7-\u26FA\u26FD\u2702\u2705\u2708-\u270D\u270F\u2712\u2714\u2716\u271D\u2721\u2728\u2733-\u2734\u2744\u2747\u274C\u274E\u2753-\u2755\u2757\u2763-\u2764\u2795-\u2797\u27A1\u27B0\u27BF\u2934-\u2935\u2B05-\u2B07\u2B1B-\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299]|\uD83C[\uDC04\uDCCF\uDD70-\uDD71\uDD7E-\uDD7F\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01-\uDE02\uDE1A\uDE2F\uDE32-\uDE3A\uDE50-\uDE51\uDF00-\uDF21\uDF24-\uDF93\uDF96-\uDF97\uDF99-\uDF9B\uDF9E-\uDFF0\uDFF3-\uDFF5\uDFF7-\uDFFF])|(\uD83D[\uDC00-\uDCFD\uDCFF-\uDD3D\uDD49-\uDD4E\uDD50-\uDD67\uDD6F-\uDD70\uDD73-\uDD7A\uDD87\uDD8A-\uDD8D\uDD90\uDD95-\uDD96\uDDA4-\uDDA5\uDDA8\uDDB1-\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA-\uDE4F\uDE80-\uDEC5\uDECB-\uDED2\uDEE0-\uDEE5\uDEE9\uDEEB-\uDEEC\uDEF0\uDEF3-\uDEF6])|(\uD83E[\uDD10-\uDD1E\uDD20-\uDD27\uDD30\uDD33-\uDD3A\uDD3C-\uDD3E\uDD40-\uDD45\uDD47-\uDD4B\uDD50-\uDD5E\uDD80-\uDD91\uDDC0])/g
+
+          let _content = e.detail.value.goods_content
+             _content =_content.replace(reg2,"").replace(/\n/g," ")
+
+          let cardLocalData={
+            headImg:app.globalData.userInfo.head_pic,
+            userName:app.globalData.userInfo.nickname,
+            date:this.data.sell_end_time,
+            content:_content
+          }
+
+           wx.removeStorageSync('_card_data')
+
+           try {
+              wx.setStorageSync('_card_data', cardLocalData)
+            } catch (e) { 
+
+              console.log(e)
+
+           }
+
+
+
+
            //提交
            wx.request({
            method:'post',
-           // header: {
-
-           //   "content-type": "application/x-www-form-urlencoded"
-           // },
            url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
               data,
               success:  (res) =>{
                 if (res.data.code == 0) {
-                    //绘制配置
-                    //
-                  this.setData({
-                    goods_id:res.data.data.goods_id
-                  })
-                 
-                   // this.data.goods_id = res.data.data.goods_id;
-                  // this.data.link_url = '/pages/goods/goods?goods_id=' + this.data.goods_id;
+              
+             
+                 util.get_painter_data_and_draw.call(this,res.data.data.goods_id)
 
-                  // this.getOrderUserList(this.data.goods_id)
-                  // util.drawShareImg(cardConfig,this.data.goods_id, this);
-                  // 
-                  util.get_painter_data_and_draw.call(this,this.data.goods_id)
-
-                 
                  
                 }else{
                   wx.hideLoading()
@@ -385,7 +392,6 @@ Page({
      
     },
     deliveryChange:function(e){
-      console.log(e.detail.value)
       this.setData({
         delivery_method:e.detail.value?1:2
       })
@@ -446,12 +452,7 @@ Page({
 
 
         //编辑的时候
-        //
-     console.log('发布页onLoad：',option.goods_id)
-
         if(option.goods_id){
-          this.data.goods_id = option.goods_id
-
 
           wx.request({
            method:'get',
@@ -462,11 +463,8 @@ Page({
            },
               success:  (res) =>{
 
-
                 let d =res.data
                 let gs =res.data.data.goods
-
-
 
                 let starFormatTime = util.formatTime(new Date(gs.sell_start_time*1000))
                 let endFormatTime = util.formatTime(new Date(gs.sell_end_time*1000))
@@ -512,35 +510,7 @@ Page({
 
 
   },
-  // getOrderUserList(goods_id) {
-
-  //   wx.request({
-  //     url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
-  //     data: {
-  //       token: app.globalData.token,
-  //       goods_id: goods_id
-  //     },
-  //     success: (res) => {
-
-  //       if (res.data.code == 0) {
-
-  //         res.data.data.lists.forEach(e => {
-  //           cardConfig.headsImgArr.push(e.user.head_pic)
-  //         })
-
-  //         //绘制图片
-  //         this.setData({
-  //           painterData: new Card().palette(cardConfig)
-  //         })
-
-  //       }
-
-
-  //     }
-  //   })
-
-
-  // },
+ 
  
   inputDuplex:util.inputDuplex
 })
