@@ -62,3 +62,8 @@
 .space-k{
   padding: 0 1px;
 }
+.tit-text{
+  color:#000;
+  text-align: left;
+  font-size: 48rpx
+}
