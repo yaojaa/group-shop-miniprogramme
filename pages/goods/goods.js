@@ -288,5 +288,11 @@ Page({
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
-    }
+    },
+    calluser(e){
+    console.log(e)
+        wx.makePhoneCall({
+          phoneNumber: e.target.dataset.mobile
+        })
+      }
 })

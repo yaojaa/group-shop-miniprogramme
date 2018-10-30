@@ -158,17 +158,15 @@
 }
 
 .user-avatar {
-    width: 56rpx;
-    height: 56rpx;
+    width: 60rpx;
+    height: 60rpx;
     border-radius: 50%;
     overflow-y: hidden;
     display: inline-block;
     vertical-align: top;
 }
 
-.user-info .name text {
-    display: block;
-}
+
 
 .cart-panel {
     text-align: left;
@@ -236,13 +234,13 @@
 }
 
 .share-box {
-    height: 56rpx;
+    height: 60rpx;
     overflow: hidden;
 }
 
 .share-box .wx-icon {
-    width: 56rpx;
-    height: 56rpx;
+    width: 60rpx;
+    height: 60rpx;
     display: inline-block;
     margin-left: 10px;
     vertical-align: top;
