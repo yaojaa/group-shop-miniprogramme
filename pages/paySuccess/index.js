@@ -12,11 +12,18 @@ Page({
         order_id: '',
         ordersInfo: '',
         order_goods: '',
-      order_time: '',
-      imagePath: "",
-      goods_id: "",
-      create_number:1,
-      painterData:{}
+        order_time: '',
+        imagePath: "",
+        goods_id: "",
+        create_number: 1,
+        painterData: {},
+        wordArr: [
+            '一马当先，英勇参团',
+            '好事成双，从此生活不悲凉',
+            '三人行有师傅，无人行没准儿有亲属',
+            '但愿人长久 千里共拼团',
+            '拼一个最爱的宝贝儿，来告别单身'
+        ]
     },
 
     /**
@@ -27,21 +34,21 @@ Page({
         this.getOrderInfo();
 
         this.setData({
-          goods_id:options.goods_id
+            goods_id: options.goods_id
         })
 
         //开始绘制
 
-        util.get_painter_data_and_draw.call(this,options.goods_id)
+        util.get_painter_data_and_draw.call(this, options.goods_id)
 
 
     },
-    onImgOk(e){
+    onImgOk(e) {
 
-      console.log('成功后返回的',e)
-      this.setData({
-        imagePath:e.detail.path
-      })
+        console.log('成功后返回的', e)
+        this.setData({
+            imagePath: e.detail.path
+        })
 
     },
     getOrderInfo() {
@@ -56,7 +63,7 @@ Page({
                     this.setData({
                         orders_info: res.data.data.order,
                         order_goods: res.data.data.order_goods,
-                        create_number:res.data.data.order.create_number,
+                        create_number: res.data.data.order.create_number,
                         order_time: this.timetrans(res.data.data.order.add_time)
                     })
                 }
@@ -64,17 +71,17 @@ Page({
         })
 
     },
-    timetrans(date){
-        var date = new Date(date*1000);//如果date为10位不需要乘1000
+    timetrans(date) {
+        var date = new Date(date * 1000); //如果date为10位不需要乘1000
         var Y = date.getFullYear() + '-';
-        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
         var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
         var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-        var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
-        var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
-        return Y+M+D+h+m+s;
+        var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+        var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+        return Y + M + D + h + m + s;
     },
- 
+
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
@@ -93,14 +100,21 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function(res) {
+        let shareTitle = this.data.wordArr[this.data.create_number] || ''
         // if (res.from === 'button') {
         //   // 来自页面内转发按钮
         //   console.log(res.target)
         // }
         return {
-          title:  '「No.'+this.data.create_number+'」'+app.globalData.userInfo.nickname + '刚刚成功参团',
-          imageUrl: this.data.imagePath,
-          path: '/pages/goods/goods?goods_id=' + this.data.goods_id  
+            title: '「No.' + this.data.create_number + '」' + app.globalData.userInfo.nickname + '刚刚成功参团 '+ shareTitle,
+            imageUrl: this.data.imagePath,
+            path: '/pages/goods/goods?goods_id=' + this.data.goods_id,
+            complete(){
+                console.log('ok')
+                wx.navigateTo({
+                    url: '../pages/home/index'
+                })
+            }
         }
     }
 })
