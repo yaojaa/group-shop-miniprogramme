@@ -399,7 +399,11 @@ Page({
                 
               },
               fail: function (res) { 
-                console.log("pay",res)
+                   wx.hideLoading()
+
+                wx.redirectTo({
+                         url:'../home/index'
+                   })
                
                }
                   

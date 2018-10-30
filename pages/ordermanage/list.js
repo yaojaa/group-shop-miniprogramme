@@ -375,6 +375,8 @@ Page({
 
   toConfirm({ detail }){
 
+    console.log(detail)
+
       if (detail.index === 0) {
             this.setData({
                 visible1: false

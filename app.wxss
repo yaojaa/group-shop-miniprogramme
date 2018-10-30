@@ -368,5 +368,8 @@ fieldset[disabled] .btn-link {
 -ms-flex:1;
 -o-flex:1;
 flex:1;
+}
 
+.gray-all{
+  filter:grayScale(1);
 }

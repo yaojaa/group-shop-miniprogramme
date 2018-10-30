@@ -1,12 +1,9 @@
 {
   "pages": [
     "pages/login/login","pages/index/index","pages/goods/goods",
-    "pages/list/list","pages/publish/publish", 
+    "pages/publish/publish", 
     "pages/publish-success/publish-success",
-    "pages/authentication/authentication",
     "pages/identify/identify",
-    "pages/createlist/list",
-    "pages/orderconfirm/details",
     "pages/ordermanage/list",
     "pages/orderList/orderList",
     "pages/orderDefault/orderDefault",   
@@ -14,7 +11,6 @@
     "pages/home/index",
     "pages/map/index",
     "pages/paySuccess/index",
-    "pages/p/index",
     "pages/withdrawal/index",
     "pages/userLocation/index",
     "pages/myPartake/index",
