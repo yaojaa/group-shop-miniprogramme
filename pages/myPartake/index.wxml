@@ -1,5 +1,11 @@
 <view class="container">
-	    <i-panel title="我参与的">
+    <view wx:if="{{orders.length == 0}}">
+        <view class='new-goods'>
+            <i-icon type="add" size="22" />
+            <text>暂无内容</text>
+        </view>
+    </view>
+    <i-panel title="我参与的" wx:if="{{orders.length > 0}}">
         <view style="padding: 5px 10px;">
             <view class='order' wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
                 <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}" hover-class="none">

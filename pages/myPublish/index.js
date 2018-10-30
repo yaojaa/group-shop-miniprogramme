@@ -47,6 +47,11 @@ Page({
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
     },
+    new_btn: function() {
+        wx.navigateTo({
+            url: '../publish/publish'
+        })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
