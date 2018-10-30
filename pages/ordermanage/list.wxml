@@ -29,10 +29,12 @@
             </view>
             <view class="total text-justify">
                 <view>总金额： <text class="warning f18">¥{{item.total_amount}} </text>
-                </view>
-                <view class="text-right"> <text class="order-date">{{item._format_add_time}}</text><text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
+                      <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="error" wx:if="{{item.pay_status==0}}">未支付</text>
-                    <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text> </view>
+                    <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text>
+                </view>
+                <view class="text-right"> <text class="order-date">{{item._format_add_time}}</text>
+                   </view>
             </view>
         </view>
         <view class="order-fd">

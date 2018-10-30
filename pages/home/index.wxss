@@ -291,7 +291,7 @@ white-space: nowrap;
   color: #999;
 }
 .paycell .pay .right{
-  font-size: 50rpx;
+  font-size: 38rpx;
   font-weight: bold;
 }
 .paycell .pay .right text{
