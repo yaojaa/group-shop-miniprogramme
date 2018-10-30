@@ -14,25 +14,37 @@ App({
                     // 登录
               wx.login({
                 success: res => {
-
-          console.log('wx.login success')
-
                   // 发送 res.code 到后台换取 openId, sessionKey, unionId
                   if (res.code) {
                     //发起网络请求
                     wx.request({
-                      url: 'https://www.daohangwa.com/api/user/get_openid?appid=wxe15467ce01d6a579&secret=c5a0779552af01a0390964d1e3402964&js_code=' + res.code + '&grant_type=authorization_code',
+                      url: 'https://www.daohangwa.com/api/user/get_openid?appid=wx6ac9955f87c289f0&secret=250316f2d8d7bc841239fd11b538913c&js_code='+res.code+'&grant_type=authorization_code',
                       data: {
                         code: res.code
                       },
                       success: (response) => {
                         // 获取openId
-                        this.openId = response.data.data.openid;
+                        // 
+                        if(response.data.code == 0){
 
+                        this.openId = response.data.data.openid;
                         this.session_key =response.data.data.session_key;
                         // TODO 缓存 openId
                         this.globalData.openid = this.openId;
                         resolve(response.data.data.openid)
+                        }else{
+                           wx.showToast({
+                            title: '用户登录态失败！',
+                            duration: 3000
+                            })
+                        }
+ 
+                      },
+                      fail:(err)=>{
+                         wx.showToast({
+                        title: '用户登录态失败！',
+                         duration: 3000
+                      })
                       }
                     })
                   } else {

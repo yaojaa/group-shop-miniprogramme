@@ -37,7 +37,8 @@ Page({
     current: '在线支付',
     position: 'right',
     cart:[],
-    total:0
+    total:0,
+    loading:false
   },
   getPhoneNumber (e) { 
 
@@ -320,7 +321,9 @@ Page({
                     }
 
 
-
+     this.setData({
+      loading:true
+     })
 
      wx.request({
            method:'post',
@@ -389,6 +392,9 @@ Page({
                   success:()=>{
 
                    wx.hideLoading()
+                    this.setData({
+                    loading:false
+                   })
                    wx.redirectTo({
                          url:'../paySuccess/index?order_id='+order_id+'&goods_id='+this.data.goods_id
                    })

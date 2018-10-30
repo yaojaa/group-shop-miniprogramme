@@ -20,6 +20,6 @@
     </view> -->
 
     <view class='start-btn text-center' wx:if="{{hasScope}}">
-        <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">进入开心小麻团</button>
+        <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">进入开心麻团儿</button>
     </view>
 </view>

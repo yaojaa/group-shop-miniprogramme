@@ -56,7 +56,7 @@
         </view>
 
          <form style="flex:2"  disabled="{{hasgoods}}" bindsubmit="formSubmit" report-submit="true" data-fn="order2pay"> 
-                    <button class="buy-btn"  shape="circle" formType="submit">立即支付</button>
+                    <button disabled="{{loading}}" class="buy-btn"  shape="circle" formType="submit">立即支付</button>
          </form>
 
     </view>

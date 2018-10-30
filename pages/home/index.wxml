@@ -42,7 +42,7 @@
             </navigator>
         </view>
     </view>
-    <i-panel title="我参与的">
+    <i-panel title="最近参与的">
         <view style="padding: 5px 10px;">
             <view class="order {{item.order_status==3?'gray-all':''}}" wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
                 <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}" hover-class="none">
@@ -99,10 +99,10 @@
     <view wx:if="{{goodslist.length == 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />
-            <text>发布一个商品</text>
+            <text>发布一个团购</text>
         </view>
     </view>
-    <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}">
+    <i-panel title="最近发布的" wx:if="{{goodslist.length > 0}}">
         <view>
             <view class="goods-box">
                 <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
@@ -118,6 +118,10 @@
                                 <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
                                     <button formType="submit" size="mini"> 修 改 </button>
                                 </form>
+
+                              <!--       <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
+                                    <button formType="submit" size="mini"> 截团 </button>
+                                </form> -->
                                 <!-- <i-button shape="circle" size="small" data-url="{{item.goods_id}}" bind:click="editPage" >修改</i-button> -->
                             </view>
                         </view>

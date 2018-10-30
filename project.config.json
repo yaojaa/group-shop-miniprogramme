@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.1.1",
-	"appid": "wxe15467ce01d6a579",
-	"projectname": "group",
+	"appid": "wx6ac9955f87c289f0",
+	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,

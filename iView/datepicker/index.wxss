@@ -65,5 +65,8 @@
 .tit-text{
   color:#000;
   text-align: left;
-  font-size: 48rpx
+  font-size: 40rpx;
+  position: absolute;
+  left: 10px;
+  top: 5px
 }

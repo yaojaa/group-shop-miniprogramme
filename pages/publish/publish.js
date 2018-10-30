@@ -323,7 +323,7 @@ Page({
 
 
         let data = Object.assign({token:app.globalData.token},
-          {goods_id:this.data.goods_id || ''},
+          {goods_id:this.data.goods_id},
           e.detail.value, //表单的数据
           {spec_item:this.data.spec_item}, //商品数组数据
           {goods_images:this.data.photoUrls},
@@ -453,6 +453,10 @@ Page({
 
         //编辑的时候
         if(option.goods_id){
+
+          this.setData({
+            goods_id:option.goods_id
+          })
 
           wx.request({
            method:'get',

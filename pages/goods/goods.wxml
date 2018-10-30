@@ -7,8 +7,13 @@
         <view class="user-info">
            
             <view class="name">
-                <view class="f14">{{seller_user.nickname}}  <text bindtap="calluser" data-mobile="{{seller_user.mobile}}" class="text-info">{{seller_user.mobile}}</text></view>
-                <view class="f12 text-muted"  wx:if="{{seller_user.wxnumber.length > 0 }}"><text>微信号：{{seller_user.wxnumber}}</text></view>
+                <view class="f14">{{seller_user.nickname}}  
+                    </view>
+                <view class="f12 text-muted" >
+
+                    <text  wx:if="{{seller_user.wxnumber.length > 0 }}">电话:{{seller_user.mobile}} 微信:{{seller_user.wxnumber}} </text>
+<!-- <text bindtap="calluser" data-mobile="{{seller_user.mobile}}" class="text-info"></text>
+ -->                </view>
             </view>
             <!-- <i-icon type="mobilephone" />
             <i-icon type="interactive" /> -->

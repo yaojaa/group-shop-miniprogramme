@@ -1,7 +1,8 @@
 <view class="time-class" bindtap='openPicker'>{{label}}{{year}}-{{month}}-{{day}}  {{hour}}:{{minute}}</view>
 <view class='picker-mask' hidden='{{hidden}}' bindtap='closePicker'></view>
 <view class='picker pick-class' style='bottom:{{bottom}}'>
-  <view class='picker-title'> {{title}}
+  <view class='picker-title'> 
+    <text class="tit-text">{{title}}</text>
     <button size="mini" plain bindtap='closePicker'>取消</button>
     <button class='right' size='mini' plain bindtap='confirm'>确定</button>
   </view>

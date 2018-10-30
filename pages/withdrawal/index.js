@@ -9,7 +9,7 @@ Page({
   data: {
 
     store_money:0,
-    inputMoney:20
+    inputMoney:0
     
   },
 
@@ -21,10 +21,14 @@ Page({
     this.get_store_info()
     
   },
-  inputMoney(e){
-    this.setData({
+  inputMoneyChange(e){
+    console.log(e)
+    if(e.detail.value){
+          this.setData({
       inputMoney:e.detail.value
     })
+    }
+
   },
   getMoney(){
 
@@ -32,13 +36,19 @@ Page({
 
               wx.request({
                 url: 'https://www.daohangwa.com/api/seller/finance_apply_withdrawal',
+                method:'post',
                 data: {
                     token: app.globalData.token,
                     money:this.data.inputMoney
                 },
                 success: (res) => {
                     if (res.data.code == 0) {
-                   
+
+                       $Message({
+                         content:'申请提现成功',
+                         type:'success'
+                      })
+
                     }else{
 
                        $Message({
@@ -63,7 +73,8 @@ Page({
             success: (res) => {
                 if (res.data.code == 0) {
                     this.setData({
-                        store_money: res.data.data.store_money
+                        store_money: res.data.data.store_money,
+                        inputMoney:res.data.data.store_money
                     })
                 }
             }

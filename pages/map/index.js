@@ -8,7 +8,7 @@ Page({
     newAddress: [],
     oldAddress: [],
     openLocation: true,
-    buyType:2,
+    buyType:2
 
   },
   onLoad: function (e) {
@@ -31,7 +31,6 @@ Page({
       },
     })
 
-    console.log('app.globalData.sell_address',app.globalData.sell_address)
   
     //拿app.globalData的地址
     _this.setData({
@@ -42,10 +41,30 @@ Page({
 //获取用户授权状态
     wx.getSetting({
       success(res) {
-        console.log(res.authSetting)
-        _this.setData({
-          openLocation: res.authSetting["scope.userLocation"]
+      if(res.authSetting["scope.userLocation"]){
+
+         _this.setData({
+          openLocation: true
         })
+      }else{
+
+        wx.authorize({
+        scope: 'scope.userLocation',
+        success (res) {
+          console.log('您已同意',res)
+          _this.addAddress()
+
+           _this.setData({
+          openLocation: true
+        })
+          // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+        }
+        })
+      }
+
+
+
+
       }
     })
 

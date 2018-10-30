@@ -5,7 +5,7 @@
  -->	</view>
 	<view class="money-box"><view class="money-yuan">¥</view><view class="money-num">{{store_money}}</view></view>
 	<view class="withdraw-box">
-	<i-input value="{{input_money}}" type="number" tapchange="inputMoney" title="提现金额" autofocus placeholder="0.00" />
+	<i-input value="{{inputMoney}}" type="number" bindchange="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
 	</view>
 	<button type="primary"  bindtap="getMoney"> 提现 </button>
 
