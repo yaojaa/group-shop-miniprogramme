@@ -162,10 +162,10 @@ Page({
             success: (res) => {
                 if (res.data.code == 0) {
                    $Message({
-                       content:'确认成功'
+                       content:'确认完成',
+                       type:'success'
                     })
                     this.getBuyList()
-
                 }
             }
         })

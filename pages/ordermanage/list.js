@@ -184,7 +184,7 @@ Page({
                         });
 
                         this.data.note = ''
-                        this.toConfirm({index:-1})
+                        this.toConfirm({detail:{index:-1}})
                         
                     }else{
 
@@ -317,6 +317,8 @@ Page({
   },
 //取消订单
   toCancel({detail}){
+
+    
 
         if (detail.index === 0) {
             this.setData({

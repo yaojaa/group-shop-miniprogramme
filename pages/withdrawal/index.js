@@ -34,7 +34,7 @@ Page({
                 url: 'https://www.daohangwa.com/api/seller/finance_apply_withdrawal',
                 data: {
                     token: app.globalData.token,
-                    inputMoney:this.data.inputMoney
+                    money:this.data.inputMoney
                 },
                 success: (res) => {
                     if (res.data.code == 0) {
