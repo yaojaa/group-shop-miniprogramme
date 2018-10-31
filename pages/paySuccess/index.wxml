@@ -59,8 +59,13 @@
 
   <view class='share'>
 	  <button type='primary' open-type="share">将以上结果分享到微信群～～</button>
+
+     <form  bindsubmit="formSubmit" data-fn="goback" report-submit="true">
+    <button type='defaut' formType="submit">返 回</button>
+   </form> 
   </view>
 
-
+  <view class='back'>
+  </view>
   
 </view>

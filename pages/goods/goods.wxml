@@ -114,17 +114,17 @@
  <view class='sub-title scale-b-1px'>
             图文介绍:
         </view>
- <view class="piclist" >
     
-
-        <view class="pic" wx:for="{{goods.content_imgs}}" wx:for-item="img" >
-                  <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
-         </view>
-</view>
-</view>
-
-
     </view>
+</view>
+
+<view class="piclist-container">
+<block class="pic" wx:for="{{goods.content_imgs}}" wx:for-item="img" >
+                  <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
+</block>
+</view>
+
+
 
 
    
@@ -174,11 +174,6 @@
         </view>
     </i-action-sheet>
 
-    <i-modal title="标题" visible="{{ visible1 }}" bind:ok="handleClose1" bind:cancel="handleClose1">
- <i-panel title="标题">
-    <view style="padding: 15px;">PANEL 内容区域</view>
-</i-panel>
-</i-modal>
 
 
     <i-message id="message" />

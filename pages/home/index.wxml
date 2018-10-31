@@ -141,7 +141,7 @@
                         </view>
                         <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
                             <text class="label text-primary">订单管理</text>
-                            <text class="num">{{item._order_count}}</text>
+                            <text class="num text-primary">{{item._order_count}}</text>
                         </view>
                     </view>
                 </view>

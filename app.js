@@ -145,6 +145,8 @@ App({
                     this.globalData.userInfo = res.data.data
 
                     wx.setStorageSync('token',res.data.data.token)
+                    wx.setStorageSync('userInfo',res.data.data)
+
                     resolve(res)
 
                   } else {
@@ -177,6 +179,8 @@ App({
 
   onLaunch: function (option) {
 
+  
+
 
     Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
 
@@ -187,6 +191,17 @@ App({
        if(result[1]){
 
                   this.getUserInfo().then((ures)=>{
+                      if(wx.getStorageSync('token')){
+
+                         this.globalData.token = wx.getStorageSync('token')
+                         this.globalData.userInfo = wx.getStorageSync('userInfo')
+
+                          console.log('已经登录.退出')
+                          if(this.userLoginReadyCallback){
+                          this.userLoginReadyCallback(this.globalData.userInfo)
+                          }
+                          return
+                        }
                     this.login_third(ures).then((res)=>{ 
                        if(this.userLoginReadyCallback){
                           this.userLoginReadyCallback(res.data.data)

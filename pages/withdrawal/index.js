@@ -45,7 +45,7 @@ Page({
                     if (res.data.code == 0) {
 
                        $Message({
-                         content:'申请提现成功',
+                         content:'申请提现成功，请耐心等待审核',
                          type:'success'
                       })
 

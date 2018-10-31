@@ -16,33 +16,41 @@ Page({
     // this.openLocation(this);
     this.data.buyType = e.delivery_method;
 
+
+        //拿app.globalData的地址
+    if(app.globalData.sell_address && app.globalData.sell_address.length){
+      _this.setData({
+        newAddress: app.globalData.sell_address
+      })
+    }
+
+
     wx.getStorage({
       key: 'historyAddress',
       success: function(res) {
-
+        console.log(res)
         if(res.data.length > 0){
         _this.setData({
           oldAddress: res.data
         })
-       }else{
+       }else if(!app.globalData.sell_address || app.globalData.sell_address.length==0){
+
         _this.openLocation(_this);
+
+
        }
 
       },
     })
 
   
-    //拿app.globalData的地址
-    _this.setData({
-      newAddress: app.globalData.sell_address || []
-    })
+
 
 
 //获取用户授权状态
     wx.getSetting({
       success(res) {
       if(res.authSetting["scope.userLocation"]){
-
          _this.setData({
           openLocation: true
         })
@@ -51,13 +59,10 @@ Page({
         wx.authorize({
         scope: 'scope.userLocation',
         success (res) {
-          console.log('您已同意',res)
           _this.addAddress()
-
            _this.setData({
           openLocation: true
         })
-          // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
         }
         })
       }

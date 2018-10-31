@@ -58,7 +58,7 @@ Page({
         }
 
 
-        if(typeof this.data.userInfo.token == 'undefined'){
+        if(typeof app.globalData.token == 'undefined' || app.globalData.token ==null ){
           app.redirectToLogin()
         }
 

@@ -15,7 +15,7 @@ Page({
     order_id:"",
     link_url:"",
     num: 1,
-    delivery_method:1,//送货方式
+    delivery_method:2,//送货方式
     nickName:'',
     goods_id:'',
     hasgoods:false,
@@ -38,7 +38,8 @@ Page({
     position: 'right',
     cart:[],
     total:0,
-    loading:false
+    loading:false,
+    create_remark:''
   },
   getPhoneNumber (e) { 
 
@@ -191,7 +192,7 @@ Page({
      //自提时候为卖家商品地址
     }else if(this.data.delivery_method ==2){
 
-      goods_address = wx.getStorageSync('goods').sell_address[0].address
+      let goods_address = wx.getStorageSync('goods').sell_address[0]
 
 // address:"北京市大兴区四海路"
 // door_number:"1-103"
@@ -202,9 +203,8 @@ Page({
 // name:"金域东郡10号楼"
 // sell_address_id:17
 // 
-       addressObj = Object.assign(addressObj,goods_address)
 
-       return cb(addressObj)
+       return cb(goods_address)
   
 
 
@@ -226,9 +226,21 @@ Page({
 
       cart.forEach(value=> amountMoney +=parseInt(value.price*100)*parseInt(value.item_num))
 
+      this.setData({
+          nickName: app.globalData.userInfo.nickname,
+          goods_id:options.goods_id,
+          cart:wx.getStorageSync('cart') || [],
+          amountMoney:amountMoney/100,
+          cover_pic:wx.getStorageSync('goods').cover_pic,
+          goods_name:wx.getStorageSync('goods').goods_name,
+          delivery_method:options.delivery_method,
+          mobile:app.globalData.userInfo.mobile || ''
+      })
+
 
       this.getDefaultAddress((s)=>{
 
+        console.log('getDefaultAddress',s)
 
         this.setData({
           address:s.address,
@@ -237,25 +249,13 @@ Page({
           district_name:s.district_name
         })
 
-
       })
-       
 
-    this.setData({
-      nickName: app.globalData.userInfo.nickname,
-      goods_id:options.goods_id,
-      cart:wx.getStorageSync('cart') || [],
-      amountMoney:amountMoney/100,
-      cover_pic:wx.getStorageSync('goods').cover_pic,
-      goods_name:wx.getStorageSync('goods').goods_name,
-      delivery_method:options.delivery_method,
-      mobile:app.globalData.userInfo.mobile || ''
-        })
+
+        
+
       
-
-
-   
-  
+    
   },
 
   /**
@@ -332,6 +332,7 @@ Page({
             token :app.globalData.token,
             goods_id:this.data.goods_id,
             spec_item:this.data.cart,
+            create_remark:this.data.create_remark,
             address:[addressData]
            },
            success:  (res) =>{
@@ -346,7 +347,6 @@ Page({
 
 
               this.data.order_id = res.data.data.order_id;
-              this.data.link_url = '/pages/paySuccess/index?order_id=' + this.data.order_id + "&goods_id=" + this.data.goods_id
 
             this.pay(parseInt(this.data.order_id))
            }

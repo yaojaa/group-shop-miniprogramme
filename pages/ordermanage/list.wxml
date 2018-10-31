@@ -29,6 +29,7 @@
                 <view>{{g.spec_key_name}} X{{g.goods_num}}</view>
                 <view class="text-info">¥ {{g.goods_num*g.goods_price}} </view>
             </view>
+            <view class="remark" wx:if="{{item.create_remark}}">{{item.create_remark}}</view>
             <view class="total text-justify">
                 <view>总金额： <text class="warning f18">¥{{item.total_amount}} </text>
                       <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>

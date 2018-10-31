@@ -16,6 +16,8 @@
             <i-input value="{{ address }}" id="address" bind:change="inputTodata" type="text" title="地址" placeholder="请输收货地址(最多50字)" />
            <!--  <i-input value="" id="door_number" bind:change="inputTodata" type="textarea" title="门牌号" placeholder="楼号、门牌号" /> -->
         </i-panel>
+
+ 
     </view>
     <view class='mt-sm'>
         <!-- <view class="seller-info">
@@ -41,6 +43,10 @@
                 </i-cell> -->
             </i-cell-group>
         </i-panel>
+
+    <i-panel>
+        <i-input value="{{create_remark}}" title="留言" id="create_remark" bind:change="inputTodata"   placeholder="没什么好说的..." />
+    </i-panel>
     </view>
     <!--    <view class='mt-sm'>
         <i-panel>

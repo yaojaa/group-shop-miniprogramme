@@ -22,4 +22,8 @@
     <view class='start-btn text-center' wx:if="{{hasScope}}">
         <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">进入开心麻团儿</button>
     </view>
+    <view class='start-btn text-center' wx:else>
+      加载中...请稍后
+    </view>  
+
 </view>

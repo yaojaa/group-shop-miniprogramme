@@ -150,14 +150,17 @@ page{
 }
 
 .share{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
   box-sizing: border-box;
+
+  text-align: center;
 }
 .share button{
-  border-radius: 0;
+    width: 80%;
+
+  border-radius: 5px;
+    display: inline-block;
+  margin: 20rpx auto;
+
 }
 
 .user{

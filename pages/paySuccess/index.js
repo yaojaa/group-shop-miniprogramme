@@ -15,15 +15,18 @@ Page({
         order_time: '',
         imagePath: "",
         goods_id: "",
-        create_number: 1,
+        create_number: 11,
         painterData: {},
-        wordArr: [
-            '一马当先，英勇参团',
-            '好事成双，从此生活不悲凉',
-            '三人行有师傅，无人行没准儿有亲属',
-            '但愿人长久 千里共拼团',
-            '拼一个最爱的宝贝儿，来告别单身'
-        ]
+        numers:'❶❶❷❸❹❺❻❼❽❾❿'.split(''),
+        wordArr: {
+            1:'一马当先勇者胜！',
+            2:'不知细叶谁裁出二月春风似剪刀',
+            3:'三生有幸团到此物',
+            5:'黄鹤楼中吹玉笛江城五月落梅花',
+            6:'666',
+            9:'但愿人长久 千里共拼团',
+            11:'拼一个最爱的宝贝儿，来告别单身'
+        }
     },
 
     /**
@@ -39,7 +42,7 @@ Page({
 
         //开始绘制
 
-        util.get_painter_data_and_draw.call(this, options.goods_id)
+        util.get_painter_data_and_draw.call(this,options.goods_id,true)
 
 
     },
@@ -95,18 +98,22 @@ Page({
     onReachBottom: function() {
 
     },
+    goback(){
+
+       wx.redirectTo({
+          url:'../home/index'
+       })
+
+    },
 
     /**
      * 用户点击右上角分享
      */
     onShareAppMessage: function(res) {
         let shareTitle = this.data.wordArr[this.data.create_number] || ''
-        // if (res.from === 'button') {
-        //   // 来自页面内转发按钮
-        //   console.log(res.target)
-        // }
+        let numberIcon = this.data.create_number<=10? this.data.numers[this.data.create_number]:'「No.'+this.data.create_number+'」'
         return {
-            title: '「No.' + this.data.create_number + '」' + app.globalData.userInfo.nickname + '刚刚成功参团 '+ shareTitle,
+            title: numberIcon + app.globalData.userInfo.nickname + '成功参团👍'+shareTitle,
             imageUrl: this.data.imagePath,
             path: '/pages/goods/goods?goods_id=' + this.data.goods_id,
             complete(){
@@ -116,5 +123,8 @@ Page({
                 })
             }
         }
-    }
+    },
+     formSubmit:function(e){
+       util.formSubmitCollectFormId.call(this,e)
+     }
 })

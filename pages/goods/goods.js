@@ -114,7 +114,7 @@ Page({
 
         let key = "spec_goods_price[" + id + "].item_num"
 
-        this.data.spec_goods_price[id].item_num = e.detail.value
+        this.data.spec_goods_price[id].item_num = parseInt(e.detail.value)
 
 
 
