@@ -338,6 +338,9 @@ Page({
            success:  (res) =>{
 
             if(res.data.code !== 0){
+              this.setData({
+                  loading: false
+              })
               return $Message({
                 content:res.data.msg
               })
