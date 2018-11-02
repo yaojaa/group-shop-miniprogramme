@@ -4,29 +4,35 @@ const app = getApp()
 Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    hasScope:true
+    hasScope:false
   },
   onLoad: function () {
 
-          if(app.globalData.userInfo){
+    console.log('登录页onload')
+
+
+            // app.userLoginReadyCallback = ()=>{
+            //     app.redirect2Home() 
+            // }
+
+          if(app.hasToken()){
                this.setData({
-                  hasScope:app.globalData.hasScope
+                  hasScope:true
                 })
+
+            app.redirect2Home()
 
           }else{
 
             app.userScopeReadyCallback=(result)=>{
-              console.log('11111111userScopeReadyCallback', result.authSetting['scope.userInfo'] ? true : false)
+                  console.log('userScopeReadyCallback',result)
               this.setData({
-                hasScope: result.authSetting['scope.userInfo'] ? false : true
+                hasScope:result
               })
 
-              console.log(this.data.hasScope)
             }
 
-            app.userLoginReadyCallback = ()=>{
-                app.redirect2Home() 
-            }
+
 
           }
 
@@ -35,10 +41,14 @@ Page({
  
 
   },
+  /***点击授权按钮***/
   getUserInfoEvt: function (e) {
-    // app.globalData.userInfo = e.detail.userInfo
+
+  
+
     app.login_third(e.detail).then((res)=>{ 
           console.group('登陆成功:',res)
+          wx.hideLoading()
                       app.redirect2Home() 
                     })
     .catch( e => console.log(e) )

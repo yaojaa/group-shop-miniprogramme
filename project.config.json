@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 20,
 			"list": [
 				{
 					"id": 0,
@@ -152,6 +152,20 @@
 					"name": "订单管理页",
 					"pathName": "pages/ordermanage/list",
 					"query": "goods_id=1&goods_name=备受各位好评的石门柑橘再次开团了"
+				},
+				{
+					"id": 19,
+					"name": "强制更新调试",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "强制更新调试",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": "1001"
 				}
 			]
 		}

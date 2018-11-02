@@ -49,7 +49,8 @@ Page({
       data:{
         token:app.globalData.token,
         iv:e.detail.iv,
-        encryptedData:e.detail.encryptedData
+        encryptedData:e.detail.encryptedData,
+        session_key:wx.getStorageSync('session_key')
       },
       success:(res)=>{
 
@@ -64,14 +65,14 @@ Page({
 
        }else{
           $Message({
-             content:'获取失败！请手动填写手机号'
+             content:'哎呦出小差了，麻烦手动填写下'
           })
        }
 
       },
       fail:()=>{
         $Message({
-        content:'获取失败！请手动填写手机号'
+        content:'哎呦出小差了，麻烦手动填写下'
           })
       }
     })
@@ -84,7 +85,6 @@ Page({
   },
 
   inputTodata(e){
-    console.log('inputChang',e)
 
     let key = e.target.id
 
@@ -175,8 +175,6 @@ Page({
       }else{
 
         this.getUserloaction().then((map)=>{
-
-          console.log(map)
 
           addressObj.province_name = map.province
           addressObj.district_name = map.district

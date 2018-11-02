@@ -92,6 +92,8 @@ Page({
       goods_id:this.data.goods_id,
       token:app.globalData.token,
       cpage:this.data.cpage
+      // order_status:[1]
+      // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
       },
       success:(res) => {
 

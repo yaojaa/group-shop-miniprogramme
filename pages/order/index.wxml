@@ -45,7 +45,7 @@
         </i-panel>
 
     <i-panel>
-        <i-input value="{{create_remark}}" title="留言" id="create_remark" bind:change="inputTodata"   placeholder="没什么好说的..." />
+        <i-input value="{{create_remark}}" title="留言" id="create_remark" bind:change="inputTodata"   placeholder="稍句话或留个地址..." />
     </i-panel>
     </view>
     <!--    <view class='mt-sm'>

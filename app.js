@@ -29,7 +29,10 @@ App({
 
                         this.openId = response.data.data.openid;
                         this.session_key =response.data.data.session_key;
-                        // TODO 缓存 openId
+                        //  缓存 session_key
+                        // 
+                       wx.setStorageSync('session_key',response.data.data.session_key)
+
                         this.globalData.openid = this.openId;
                         resolve(response.data.data.openid)
                         }else{
@@ -71,10 +74,6 @@ App({
    return new Promise((resolve, reject)=>{
      wx.getSetting({
        success: res => {
-        if (this.userScopeReadyCallback) {
-             this.userScopeReadyCallback(res)
-           }
-
 
          if (res.authSetting['scope.userInfo']) {
            this.globalData.hasScope = true
@@ -85,6 +84,12 @@ App({
 
            resolve(false)
          }
+
+         if (this.userScopeReadyCallback) {
+             this.userScopeReadyCallback(this.globalData.hasScope)
+           }
+
+
        }
      })
    })
@@ -98,7 +103,6 @@ App({
 
           wx.getUserInfo({
             success: res => {
-              console.log('getUserInfo', res)
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
 
@@ -143,7 +147,7 @@ App({
                     console.log('服务器登录成功 token is', res.data.data)
                     this.globalData.token = res.data.data.token
                     this.globalData.userInfo = res.data.data
-
+                    // wx.setStorageSync('session_key',res.data.data.token)
                     wx.setStorageSync('token',res.data.data.token)
                     wx.setStorageSync('userInfo',res.data.data)
 
@@ -177,31 +181,80 @@ App({
       })
   },
 
+  /****checkssion*****/
+
+  checkSession(){
+    wx.checkSession({
+　　　　success: function(res){
+　　　　　　console.log("处于登录态");
+　　　　},
+　　　　fail: (res)=>{
+　　　　　　console.log("需要重新登录");
+          this.get_openid()
+　
+　　　　}
+　　})
+  },
+
+  /***检测版本更新**/
+
+  checkAppVersion(){
+    const updateManager = wx.getUpdateManager()
+
+      updateManager.onCheckForUpdate(function (res) {
+        // 请求完新版本信息的回调
+      })
+
+      updateManager.onUpdateReady(function () {
+        wx.showModal({
+          title: '更新提示',
+          content: '新版本已经准备好，是否重启应用？',
+          success: function (res) {
+            if (res.confirm) {
+              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+              updateManager.applyUpdate()
+            }
+          }
+        })
+        
+      })
+
+      updateManager.onUpdateFailed(function () {
+        // 新的版本下载失败
+      })
+  },
+
   onLaunch: function (option) {
 
-  
+    console.group('启动检测---')
+    console.log('hasToken',this.hasToken())
+    console.log('option',option)
 
 
-    Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
+    if(this.hasToken()){
 
-        console.log('Promise all result',result)
-        console.log('获取到openId',result[0])
-        console.log('获取到hasScope',result[1])
+      this.globalData.token = wx.getStorageSync('token')
+      this.globalData.userInfo = wx.getStorageSync('userInfo')
 
+      console.log('已经登录.退出')
+      if(this.userLoginReadyCallback){
+      this.userLoginReadyCallback(this.globalData.userInfo)
+      }
+
+       if(option.path !=='pages/goods/goods'){
+                    this.redirect2Home()
+       }
+
+
+    /**未登录或者缓存失效用户*/
+    }else{
+
+    console.log('无token')
+
+     Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
+      console.log('result',result)
        if(result[1]){
-
                   this.getUserInfo().then((ures)=>{
-                      if(wx.getStorageSync('token')){
-
-                         this.globalData.token = wx.getStorageSync('token')
-                         this.globalData.userInfo = wx.getStorageSync('userInfo')
-
-                          console.log('已经登录.退出')
-                          if(this.userLoginReadyCallback){
-                          this.userLoginReadyCallback(this.globalData.userInfo)
-                          }
-                          return
-                        }
                     this.login_third(ures).then((res)=>{ 
                        if(this.userLoginReadyCallback){
                           this.userLoginReadyCallback(res.data.data)
@@ -211,22 +264,27 @@ App({
                     .catch( e => console.log(e) )
 
                   })
-
                 }else{
-                  console.log('option',option)
                   if(option.path !=='pages/goods/goods'){
                     this.redirectToLogin()
                   }
-                  
                 }
-
-
-
     })
+
+
+
+
+
+
+    }
+
 
     console.groupEnd()
 
-   
+
+    this.checkAppVersion()
+
+
   },
   globalData: {
     userInfo: null,
