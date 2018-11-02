@@ -15,17 +15,22 @@ Page({
         order_time: '',
         imagePath: "",
         goods_id: "",
-        create_number: 11,
+        create_number: 54,
         painterData: {},
         numers:'❶❶❷❸❹❺❻❼❽❾❿'.split(''),
         wordArr: {
             1:'一马当先勇者胜！',
             2:'不知细叶谁裁出二月春风似剪刀',
             3:'三生有幸团到此物',
+            4:'参团是一种积极的生活态度～',
             5:'黄鹤楼中吹玉笛江城五月落梅花',
             6:'666',
+            7:'如果我做了皇后，必须封你当太子',
+            8:'喝醉了我谁也不服，我只扶墙',
             9:'但愿人长久 千里共拼团',
-            11:'拼一个最爱的宝贝儿，来告别单身'
+            11:'拼一个最爱的宝贝儿，来告别单身',
+            12:'天哪，我的衣服又瘦了！',
+            13:'不吃饱哪有力气减肥啊？'
         }
     },
 
@@ -65,6 +70,7 @@ Page({
                 if (res.data.code == 0) {
                     this.setData({
                         orders_info: res.data.data.order,
+                        goods_name:res.data.data.goods.goods_name,
                         order_goods: res.data.data.order_goods,
                         create_number: res.data.data.order.create_number,
                         order_time: this.timetrans(res.data.data.order.add_time)
@@ -110,7 +116,7 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function(res) {
-        let shareTitle = this.data.wordArr[this.data.create_number] || ''
+        let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...'+this.data.goods_name
         let numberIcon = this.data.create_number<=10? this.data.numers[this.data.create_number]:'「No.'+this.data.create_number+'」'
         return {
             title: numberIcon + app.globalData.userInfo.nickname + '成功参团👍'+shareTitle,

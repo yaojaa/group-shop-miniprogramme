@@ -16,7 +16,9 @@ Page({
             data: {
                 token: app.globalData.token,
                 mobile: this.data.mobile,
-                wxnumber: this.data.wxnumber
+                wxnumber: this.data.wxnumber,
+                session_key:wx.getStorageSync('session_key')
+
             },
             success: (res) => {
                 if (res.data.code == 0) {
