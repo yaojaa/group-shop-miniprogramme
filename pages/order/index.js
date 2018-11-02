@@ -221,18 +221,23 @@ Page({
 
 
       let amountMoney = 0;
-      let cart = wx.getStorageSync('cart');
-      let goods = wx.getStorageSync('goods');
+      let cartSource = wx.getStorageSync('cart')
+      let cart = typeof cartSource ==='string' ? JSON.parse(cartSource) : cartSource ;
+
+      let goodsSource = wx.getStorageSync('goods');
+
+      let goods = typeof goodsSource ==='string' ? JSON.parse(goodsSource) : goodsSource ;
+
 
       cart.forEach(value=> amountMoney +=parseInt(value.price*100)*parseInt(value.item_num))
 
       this.setData({
           nickName: app.globalData.userInfo.nickname,
           goods_id:options.goods_id,
-          cart:wx.getStorageSync('cart') || [],
+          cart:cart|| [],
           amountMoney:amountMoney/100,
-          cover_pic:wx.getStorageSync('goods').cover_pic,
-          goods_name:wx.getStorageSync('goods').goods_name,
+          cover_pic:goods.cover_pic,
+          goods_name:goods.goods_name,
           delivery_method:options.delivery_method,
           mobile:app.globalData.userInfo.mobile || ''
       })
@@ -306,6 +311,9 @@ Page({
 
       if(value.item_num == 0){
         this.data.cart.splice(index,1)
+        this.setData({
+          cart:this.data.cart
+        })
       }
 
     })

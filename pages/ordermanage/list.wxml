@@ -1,7 +1,5 @@
 <view class="container">
-    <view wx:if="{{dataList.length == 0}}">
-        <i-divider content=" 此团购暂时还没有订单 :( "></i-divider>
-    </view>
+
     <view class="order-title text-primary">
         <navigator url="/pages/goods/goods?goods_id={{goods_id}}">{{goods_name}}
         </navigator>
@@ -58,6 +56,10 @@
             </form>
         </view>
     </view>
+
+<!--      <i-load-more  tip="没有更多了" loading="{{loading}}" />
+ -->
+
     <i-modal title="订单确认" visible="{{ visible1 }}" actions="{{ actionsConfirm }}" bind:click="toConfirm">
         <view>确认订单信息无误，可以接单</view>
     </i-modal>

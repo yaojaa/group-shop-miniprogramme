@@ -19,6 +19,8 @@ Page({
     visible4_pay:false,//设为支付
     visible5_tips:false, //提醒取货
     note:'',//备注
+    loading:false,
+    cpage:1,
     actionsConfirm: [
             {
                 name: '取消'
@@ -72,23 +74,48 @@ Page({
       phoneNumber: e.target.dataset.mobile
     })
   },
+
+  resetPageNumber(){
+    this.setData({
+      cpage:1
+    })
+  },
   getOrderList(){
 
     return new Promise((resolve, reject)=>{
+
+      wx.showLoading()
 
       wx.request({
       url: 'https://www.daohangwa.com/api/seller/get_order_list',
       data: { 
       goods_id:this.data.goods_id,
-      token:app.globalData.token
+      token:app.globalData.token,
+      cpage:this.data.cpage
       },
       success:(res) => {
+
+        var resdata
+
+        if(this.data.cpage<=1){
+
+           resdata = res.data.data.orderlist
+
+        }else{
+
+           resdata = this.data.dataList.concat(res.data.data.orderlist)
+        }
+
         this.setData({
-          dataList:res.data.data.orderlist
+          dataList:resdata,
+          loading:false
         })
+        wx.hideLoading()
+
         resolve(res.data.data)
       },
       fail:(err)=>{
+        wx.hideLoading()
         reject(err)
       }
     })
@@ -97,7 +124,6 @@ Page({
 
   },
   noteInput(e){
-    console.log(e)
         let noteContent = this.trim(e.detail.value);
         this.setData({
           note:noteContent
@@ -175,7 +201,7 @@ Page({
                     visible4_pay:false
                    })
                  if (res.data.code == 0) {
-
+                       this.resetPageNumber()
                        this.getOrderList()
 
                         $Message({
@@ -228,6 +254,7 @@ Page({
                     visible2:false
                    })
                  if (res.data.code == 0) {
+                  this.resetPageNumber()
                         this.getOrderList()
                         $Message({
                             content: '提醒成功',
@@ -283,6 +310,7 @@ Page({
                     visible2:false
                    })
                  if (res.data.code == 0) {
+                  this.resetPageNumber()
                         this.getOrderList()
                         $Message({
                             content: '发货成功',
@@ -351,7 +379,7 @@ Page({
                         })
 
                     if (res.data.code == 0) {
-
+                        this.resetPageNumber()
                         this.getOrderList()
 
                      
@@ -406,7 +434,7 @@ Page({
                     action[1].loading = false;
 
                     if (res.data.code == 0) {
-
+                      this.resetPageNumber()
                       this.getOrderList()
 
                       this.setData({
@@ -479,13 +507,29 @@ Page({
   onPullDownRefresh: function () {
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
-
+    this.resetPageNumber()
     this.getOrderList().then(()=>{
         // 隐藏导航栏加载框
         wx.hideNavigationBarLoading();
         // 停止下拉动作
         wx.stopPullDownRefresh();
     })
-  }
+  },
+  /**
+     * 页面上拉触底事件的处理函数
+     */
+ onReachBottom: function () {
+        if (this.data.cpage && !this.data.loading) {
+            this.setData({
+                cpage: this.data.cpage + 1,  //每次触发上拉事件，把requestPageNum+1
+            })
+             this.getOrderList().then(()=>{
+               // 隐藏导航栏加载框
+                wx.hideNavigationBarLoading();
+                // 停止下拉动作
+                wx.stopPullDownRefresh();
+            })
+        }
+    }
 
 })

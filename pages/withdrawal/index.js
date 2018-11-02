@@ -1,5 +1,6 @@
 const app = getApp()
 const { $Message } = require('../../iView/base/index');
+const util = require('../../utils/util')
 
 Page({
 
@@ -9,7 +10,9 @@ Page({
   data: {
 
     store_money:0,
-    inputMoney:0
+    inputMoney:0,
+    withdrawalslist:[],
+    totalpage:1
     
   },
 
@@ -19,13 +22,14 @@ Page({
   onLoad: function (options) {
 
     this.get_store_info()
+    this.finance_withdrawal_list()
     
   },
   inputMoneyChange(e){
-    console.log(e)
-    if(e.detail.value){
+    console.log(e.detail.detail.value)
+    if(e.detail.detail.value){
           this.setData({
-      inputMoney:e.detail.value
+      inputMoney:e.detail.detail.value
     })
     }
 
@@ -83,6 +87,27 @@ Page({
         
 
     },
+    //获取提醒记录
+   finance_withdrawal_list(){
+
+            wx.request({
+            url: 'https://www.daohangwa.com/api/seller/finance_withdrawal_list',
+            data: {
+                token: app.globalData.token
+            },
+            success: (res) => {
+
+                if (res.data.code == 0) {
+     res.data.data.withdrawalslist.create_time = util.formatTime(new Date(res.data.data.withdrawalslist.create_time*1000))
+
+                    this.setData({
+                        withdrawalslist: res.data.data.withdrawalslist                      })
+                }
+            }
+        })
+
+   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

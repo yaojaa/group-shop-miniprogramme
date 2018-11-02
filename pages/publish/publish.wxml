@@ -28,7 +28,7 @@
 
 <view class="weui-cell">
   <view class="weui-cell__bd">
-      <textarea maxlength="500"  value="{{goods_content}}" style="height: 100px" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="6"></textarea>
+      <textarea maxlength="1000"  value="{{goods_content}}" style="height: 100px" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="6"></textarea>
   </view>
 
 

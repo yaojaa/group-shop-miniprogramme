@@ -11,7 +11,8 @@
       "i-button": "../../iView/button/index",
      "i-message": "../../iView/message/index",
      "i-divider": "../../iView/divider/index",
-    "i-icon": "../../iView/icon/index"
+    "i-icon": "../../iView/icon/index",
+    "i-load-more": "../../iView/load-more/index"
 
 	}
 

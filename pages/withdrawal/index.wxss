@@ -22,3 +22,8 @@
 .withdraw-box{
 	margin-bottom: 20px;
 }
+.list{
+	padding: 30rpx;
+	font-size: 12px;
+	color: #999
+}

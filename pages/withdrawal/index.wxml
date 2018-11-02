@@ -9,6 +9,18 @@
 	</view>
 	<button type="primary"  bindtap="getMoney"> 提现 </button>
 
+
+	<view class="list" wx:if="{{withdrawalslist.length}}">
+
+		<view class="item" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
+			
+			申请记录
+			 金额：{{item.money}}
+			状态：{{["审核中","审核通过","提现成功"][item.status]}}
+		</view>
+
+    </view>
+
 	    <i-message id="message" />
 
 </view>
