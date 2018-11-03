@@ -71,18 +71,18 @@
                 <button class="btn btn-success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
             </form>
         </view>
-        <form bindsubmit="order_remarkSubmit" report-submit="true">
+       <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
             <view class="note-box">
                 <i-icon type="brush" size="14" class="note-icon" />
                 <view class="note-input">
-                    <i-input type="text" name="order_remark" value="{{item.order_remark}}" placeholder="怕忘记最好备注一下" i-class="input-bd" data-id="{{item.order_id}}" bind:blur=""/>
+                    <i-input type="text" name="order_remark" value="{{item.order_remark}}" placeholder="怕忘记最好备注一下" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
                 </view>
-                <view class="note-submit">
+                <!-- <view class="note-submit">
                     <input type="hidden" hidden="true" name="order_id" value="{{item.order_id}}" />
                     <button shape="circle" size="mini" formType="submit" data-id="{{item.order_id}}">保存</button>
-                </view>
+                </view> -->
             </view>
-        </form>
+        <!-- </form> -->
     </view>
     <!--      <i-load-more  tip="没有更多了" loading="{{loading}}" />
  -->

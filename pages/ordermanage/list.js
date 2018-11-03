@@ -171,10 +171,10 @@ Page({
   },
   /***写订单备注**/
   order_remarkSubmit(e){
-     console.log(e)
-     var marke_value = e.detail.value.order_remark
-     var order_id = e.detail.value.order_id
 
+     var marke_value = e.detail.detail.value
+     var order_id = e.target.dataset.id
+     console.log(marke_value,order_id)
      if(marke_value =='' || order_id==''){return}
 
       wx.request({
