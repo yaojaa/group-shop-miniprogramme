@@ -4,22 +4,22 @@
         </navigator>
     </view>
     <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-        <i-tab key="1" title="有效订单：{{valid_order.count}}个"></i-tab>
-        <i-tab key="2" title="未发货{{shipping_0.count}}人"></i-tab>
-        <i-tab key="3" title="已发货{{shipping_1.count}}人"></i-tab>
+        <i-tab key="3" title="有效订单{{valid_order.count}}"></i-tab>
+        <i-tab key="0" title="未发货{{shipping_0.count}}人"></i-tab>
+        <i-tab key="1" title="已发货{{shipping_1.count}}人"></i-tab>
     </i-tabs>
     <view class="totalCount">
-        <block wx:if="{{tab == 1 }}">
+        <block wx:if="{{tab == 3 }}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{valid_order.spec}}">
               <view>{{item.spec_key_name}}</view>
               <view class="text-muted">需<text class="text-danger">{{item.num}}</text>个</view></view>
         </block>
-        <block  wx:if="{{tab == 2}}">
+        <block  wx:if="{{tab == 0}}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_0.spec}}">
              <view>{{item.spec_key_name}}</view>
               <view class="text-muted">需<text class="text-danger">{{item.num}}</text>个</view></view>
         </block>
-        <block  wx:if="{{tab == 3}}">
+        <block  wx:if="{{tab == 1}}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_1.spec}}"> <view>{{item.spec_key_name}}</view>
               <view class="text-muted">需<text class="text-danger">{{item.num}}</text>个</view></view>
         </block>

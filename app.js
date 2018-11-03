@@ -86,6 +86,7 @@ App({
          }
 
          if (this.userScopeReadyCallback) {
+             console.log('触发callback',this.userScopeReadyCallback)
              this.userScopeReadyCallback(this.globalData.hasScope)
            }
 

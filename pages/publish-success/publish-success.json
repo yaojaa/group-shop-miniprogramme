@@ -3,7 +3,9 @@
 
 	"usingComponents": {
 	 
-        "i-icon": "../../iView/icon/index"
+        "i-icon": "../../iView/icon/index",
+        "painter": "/iView/painter/painter"
+
 
 	}
 }

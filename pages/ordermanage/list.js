@@ -6,7 +6,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data:{
-    tab:1,
+    tab:3,
     current: "tab1",
     visible: false,
     goods_name: "",
@@ -22,6 +22,7 @@ Page({
     note:'',//备注
     loading:false,
     cpage:1,
+    shipping_status:'',
     shipping_0:{},
     shipping_1:{},
     valid_order:{},
@@ -71,9 +72,14 @@ Page({
 
   },
   handleTab ({ detail }) {
+    console.log(detail)
         this.setData({
-            tab: detail.key
-        });
+            tab: detail.key,
+            cpage:1,
+            shipping_status:detail.key==3?'':detail.key
+        })
+
+        this.getOrderList()
     },
   onReady: function (e) {
 
@@ -112,7 +118,7 @@ Page({
     })
   },
 
-  resetPageNumber(){
+  resetPageNumber(e){
     this.setData({
       cpage:1
     })
@@ -120,15 +126,14 @@ Page({
   getOrderList(){
 
     return new Promise((resolve, reject)=>{
-
       wx.showLoading()
-
       wx.request({
       url: 'https://www.daohangwa.com/api/seller/get_order_list',
       data: { 
       goods_id:this.data.goods_id,
       token:app.globalData.token,
-      cpage:this.data.cpage
+      cpage:this.data.cpage,
+      shipping_status:this.data.shipping_status
       // order_status:[1]
       // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
       },

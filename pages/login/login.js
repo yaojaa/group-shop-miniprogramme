@@ -30,6 +30,10 @@ Page({
                 hasScope:result
               })
 
+              if(result){
+                 app.redirect2Home()
+              }
+
             }
 
 

@@ -254,15 +254,9 @@ Page({
 
 
   },
-  onImgOk(e) { //绘制成功
-
-      wx.hideLoading()
-      this.jump()
-
-  },
   jump(){
       wx.redirectTo({
-        url:'../goods/goods?goods_id='+this.data.goods_id
+        url:'../publish-success/publish-success?goods_id='+this.data.goods_id
      })
   },
     //提交表单
@@ -369,14 +363,11 @@ Page({
            url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
               data,
               success:  (res) =>{
+                 wx.hideLoading()
                 if (res.data.code == 0) {
-              
-             
-                 util.get_painter_data_and_draw.call(this,res.data.data.goods_id)
+                    this.jump()
 
-                 
                 }else{
-                  wx.hideLoading()
                      wx.showModal({
                         title: res.data.msg,
                         showCancel:false

@@ -20,3 +20,30 @@
   display: block
 }
 
+.weui-msg{
+  padding: 20rpx 0 30rpx
+}
+
+.weui-msg__opr-area{
+  width: 500rpx;
+  border-radius: 5rpx;
+  border: 1px solid #ddd;
+  margin: 30rpx auto;
+  background: #fff;
+  padding: 10rpx;
+
+}
+
+.weui-msg__opr-area image{
+  width: 100%
+}
+
+.weui-btn-area{
+  width: 80%;
+  margin:0 auto;
+
+}
+
+.weui-btn-area button{
+  margin-bottom: 36rpx
+}

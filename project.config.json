@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 21,
 			"list": [
 				{
 					"id": 0,
@@ -167,6 +167,19 @@
 					"pathName": "pages/login/login",
 					"query": "",
 					"scene": "1001"
+				},
+				{
+					"id": 21,
+					"name": "发布成功",
+					"pathName": "pages/publish-success/publish-success",
+					"query": "goods_id=3",
+					"scene": "1001"
+				},
+				{
+					"id": 22,
+					"name": "编辑商品",
+					"pathName": "pages/publish/publish",
+					"query": "goods_id=2"
 				}
 			]
 		}
