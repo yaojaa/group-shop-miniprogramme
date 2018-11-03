@@ -3,7 +3,24 @@
     <view class="order-title text-primary">
         <navigator url="/pages/goods/goods?goods_id={{goods_id}}">{{goods_name}}
         </navigator>
-        </view>
+    </view>
+    <view class="totalCount">
+
+     <block>
+       <text>有效订单：{{valid_order.count}}个</text> 
+       <text class="spec" wx-key="index" wx:for="{{valid_order.spec}}">{{item.spec_key_name}}需{{item.num}}个</text >
+    </block>
+     
+     <block>未发货{{shipping_0.count}}人  
+        <text class="spec" wx-key="index" wx:for="{{shipping_0.spec}}">{{item.spec_key_name}}需{{item.num}}个</text >
+     </block>
+      
+      <block>已发货{{shipping_1.count}}人：
+         <text class="spec" wx-key="index" wx:for="{{shipping_1.spec}}">{{item.spec_key_name}}需{{item.num}}个</text>
+    </block>
+   
+
+    </view>
     <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="{{index}}">
         <view class="order-hd">
             <view class="number">{{item.create_number}}</view>
@@ -55,6 +72,22 @@
                 <button class="btn btn-success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
             </form>
         </view>
+
+<form class="remarkForm weui-flex" bindsubmit="order_remarkSubmit" report-submit="true">
+
+
+<view class="weui-flex__item"> <i-icon type="brush" size="38" /></view>
+
+<view class="weui-flex__item"> 
+<input type="text" name="order_remark"  value="{{item.order_remark}}" placeholder="怕忘记最好备注一下"/> 
+</view>
+
+<view class="weui-flex__item"> 
+<input type="hidden"  hidden="true" name="order_id"  value="{{item.order_id}}" />
+<button  shape="circle" formType="submit" data-id="{{item.order_id}}">保存</button>
+</view>
+         </form>
+
     </view>
 
 <!--      <i-load-more  tip="没有更多了" loading="{{loading}}" />

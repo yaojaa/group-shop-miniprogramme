@@ -27,3 +27,8 @@
 	font-size: 12px;
 	color: #999
 }
+.erweima{
+	text-align: center;
+	margin-top: 20px;
+	line-height: 1.9
+}

@@ -21,6 +21,9 @@ Page({
     note:'',//备注
     loading:false,
     cpage:1,
+    shipping_0:{},
+    shipping_1:{},
+    valid_order:{},
     actionsConfirm: [
             {
                 name: '取消'
@@ -48,8 +51,9 @@ Page({
 
     if(!app.globalData.token){
       app.globalData.token = wx.getStorageSync('token')
-      console.log('获取到了token')
     }
+
+
 
 
 
@@ -60,6 +64,8 @@ Page({
      })
      this.getOrderList()
 
+     this.getStatistics()
+
 
 
   },
@@ -68,8 +74,33 @@ Page({
 
 
   },
+
+  getStatistics(){
+
+       wx.request({
+      url: 'https://www.daohangwa.com/api/seller/get_order_statistics_by_goods_id',
+      data: { 
+      goods_id:this.data.goods_id,
+      token:app.globalData.token      // order_status:[1]
+      // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
+      },
+      success:(res) => {
+
+        if(res.data.code ==0){
+
+          this.setData({
+              shipping_0:res.data.data.shipping_0,
+              shipping_1:res.data.data.shipping_1,
+              valid_order:res.data.data.valid_order
+          })
+        }
+
+      }
+     }
+     )
+
+  },
   calluser(e){
-    console.log(e)
     wx.makePhoneCall({
       phoneNumber: e.target.dataset.mobile
     })
@@ -132,6 +163,45 @@ Page({
         })
 
   },
+  /***写订单备注**/
+  order_remarkSubmit(e){
+     console.log(e)
+     var marke_value = e.detail.value.order_remark
+     var order_id = e.detail.value.order_id
+
+     if(marke_value =='' || order_id==''){return}
+
+      wx.request({
+      url: 'https://www.daohangwa.com/api/seller/set_order_remark',
+      method:'post',
+      data: {
+          token: app.globalData.token,
+          order_id:order_id,
+          order_remark:marke_value,
+        
+      },
+      success: (res) => {
+        if(res.data.code == 0){
+           $Message({
+           content:'备注成功',
+           type:'success'
+           })
+        }else{
+           $Message({
+           content:res.data.msg,
+           type:'error'
+           })
+
+        }
+       
+
+
+      }
+    })
+
+  },
+
+
   searchInput(e){
     this.deleteShow = e.detail.value.length > 0 ? false : true;
     this.searchContent = this.trim(e.detail.value);
@@ -282,7 +352,6 @@ Page({
   //发货
   toShipping(e){
 
-    console.log(e)
 
 // 3 发货
 //   if(order_status == 1 && shipping_status == 0){
@@ -525,6 +594,7 @@ Page({
             this.setData({
                 cpage: this.data.cpage + 1,  //每次触发上拉事件，把requestPageNum+1
             })
+             this.getStatistics()
              this.getOrderList().then(()=>{
                // 隐藏导航栏加载框
                 wx.hideNavigationBarLoading();

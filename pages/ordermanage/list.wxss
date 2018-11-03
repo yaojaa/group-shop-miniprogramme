@@ -171,3 +171,26 @@ button.button-hover {
     color: #999;
     padding: 18rpx 20rpx 10rpx
 }
+.totalCount{
+    font-size:28rpx;
+    color:#666;
+    margin:15rpx;
+        border-radius: 3px;
+    border:1px solid #333;
+
+}
+
+.totalCount .spec{
+    display: inline-block;
+    margin: 0 20rpx
+}
+
+.remarkForm{
+    display: flex;
+}
+.weui-flex__item{
+    flex: 1;
+    display: inline-block;
+}
+
+

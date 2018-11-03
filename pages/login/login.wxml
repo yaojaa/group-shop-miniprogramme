@@ -18,7 +18,6 @@
     <view class="zan-box">
       <navigator url="/pages/map/index">添加新地址</navigator>
     </view> -->
-{{hasScope}}
     <view class='start-btn text-center' wx:if="{{!hasScope}}">
         <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">进入开心麻团儿</button>
     </view>
