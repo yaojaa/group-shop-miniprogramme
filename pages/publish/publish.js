@@ -365,6 +365,9 @@ Page({
               success:  (res) =>{
                  wx.hideLoading()
                 if (res.data.code == 0) {
+                  this.setData({
+                      goods_id:res.data.data.goods_id
+                    })
                     this.jump()
 
                 }else{

@@ -145,6 +145,7 @@ const get_painter_data_and_draw = function(goods_id,isBuyPage){
 
           let _content = res.data.data.goods.goods_content
              // _content =_content.replace(reg2,"").replace(/\n/g," ")
+             _content =_content.replace(/\n/g," ")
 
           let cardLocalData={
             headImg:res.data.data.seller_user.head_pic,

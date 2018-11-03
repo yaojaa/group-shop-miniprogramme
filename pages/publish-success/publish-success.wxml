@@ -16,7 +16,7 @@
         <view class="weui-msg__opr-area" >
 
             <view class="weui-msg__desc">
-               <text wx:if="{{!imagePath}}"> 努力生成中...</text>
+               <text wx:if="{{!imagePath}}"> 努力生成中...大概需要10秒</text>
 
             </view>
 
