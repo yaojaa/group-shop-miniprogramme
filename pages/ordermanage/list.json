@@ -1,19 +1,21 @@
-{   
-	"enablePullDownRefresh": true,
-	"navigationBarTitleText": "管理团购订单",
-	"window":{
-		"backgroundTextStyle":"dark"
-	},
-	"usingComponents": {
-      "i-modal": "../../iView/modal/index",
-      "i-tabs": "../../iView/tabs/index",
-      "i-tab": "../../iView/tab/index",
-      "i-button": "../../iView/button/index",
-     "i-message": "../../iView/message/index",
-     "i-divider": "../../iView/divider/index",
-    "i-icon": "../../iView/icon/index",
-    "i-load-more": "../../iView/load-more/index"
-
-	}
+{
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "管理团购订单",
+    "window":
+    {
+        "backgroundTextStyle": "dark"
+    },
+    "usingComponents":
+    {
+        "i-modal": "../../iView/modal/index",
+        "i-tabs": "../../iView/tabs/index",
+        "i-tab": "../../iView/tab/index",
+        "i-button": "../../iView/button/index",
+        "i-message": "../../iView/message/index",
+        "i-divider": "../../iView/divider/index",
+        "i-icon": "../../iView/icon/index",
+        "i-load-more": "../../iView/load-more/index",
+        "i-input": "../../iView/input/index"
+    }
 
 }

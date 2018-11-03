@@ -6,6 +6,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data:{
+    tab:1,
     current: "tab1",
     visible: false,
     goods_name: "",
@@ -69,6 +70,11 @@ Page({
 
 
   },
+  handleTab ({ detail }) {
+        this.setData({
+            tab: detail.key
+        });
+    },
   onReady: function (e) {
 
 

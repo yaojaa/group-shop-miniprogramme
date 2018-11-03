@@ -115,7 +115,6 @@ button.button-hover {
 
 }
 .order-bd {
-    position: relative;
     margin:0 -15px;
 }
 
@@ -133,7 +132,6 @@ button.button-hover {
     color:#666;
 }
 .order-fd{
-    padding-top: 10px;
     text-align: left;
 /*    display: -webkit-flex;
     display: -moz-flex;
@@ -150,15 +148,16 @@ button.button-hover {
 }
 .order-fd form+form{
     margin-left: 10px;
+
 }
 .order-fd .btn{
 /*    display: block;*/
+margin: 10px 0;
 }
 .order-date{
     font-size: 12px;
     color:#999;
     display: inline-block;
-    padding-right: 10px;
 }
 
 .price-input input{
@@ -172,17 +171,14 @@ button.button-hover {
     padding: 18rpx 20rpx 10rpx
 }
 .totalCount{
-    font-size:28rpx;
-    color:#666;
-    margin:15rpx;
-        border-radius: 3px;
-    border:1px solid #333;
-
+    background: #fff;
+    padding: 10px 15px;
+    font-size: 28rpx;
+    margin-bottom: 10px;
 }
 
 .totalCount .spec{
-    display: inline-block;
-    margin: 0 20rpx
+    padding: 5px 0;
 }
 
 .remarkForm{
@@ -192,5 +188,31 @@ button.button-hover {
     flex: 1;
     display: inline-block;
 }
+.note-box{
+    position: relative;
+    margin-bottom: -5px;
+}
+.note-icon{
+    position: absolute;
+    left:0px;
+    top:3px;
+    z-index: 11;
+}
+.note-input{
+    font-size: 14px;
+    line-height: 1.2;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: -1px;
+    overflow: hidden;
+}
 
+.note-input .input-bd{
+    padding: 0px 70px 0px 20px;
+}
+.note-submit{
+    position: absolute;
+    top:5px;
+    right:0px;
+}
 
