@@ -75,7 +75,7 @@
             <view class="note-box">
                 <i-icon type="brush" size="14" class="note-icon" />
                 <view class="note-input">
-                    <i-input type="text" name="order_remark" value="{{item.order_remark}}" placeholder="怕忘记最好备注一下" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
+                    <i-input type="text" name="order_remark" value="{{item.order_remark}}" placeholder="备注.." i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
                 </view>
                 <!-- <view class="note-submit">
                     <input type="hidden" hidden="true" name="order_id" value="{{item.order_id}}" />

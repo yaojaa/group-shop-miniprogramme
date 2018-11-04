@@ -72,7 +72,6 @@ Page({
 
   },
   handleTab ({ detail }) {
-    console.log(detail)
         this.setData({
             tab: detail.key,
             cpage:1,
@@ -398,9 +397,9 @@ Page({
                             content: '发货成功',
                             type: 'success'
                         });
-                        this.data.note = ''
+                        this.data.note = '',
+                        this.getStatistics()
                     }else{
-
                        $Message({
                             content: res.data.msg,
                             type: 'error'
