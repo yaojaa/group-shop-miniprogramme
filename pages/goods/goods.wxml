@@ -82,7 +82,7 @@
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
             <i-cell  i-class="buyer-item-box">
              <button open-type="share">
-              一大波人正在赶来...继续去喊人
+              一大波人正在赶来...去喊人
             </button>
             </i-cell>
         </i-cell-group>

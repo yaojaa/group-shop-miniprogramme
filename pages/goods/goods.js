@@ -190,6 +190,19 @@ Page({
             success: (res) => {
 
 
+               res.data.data.lists.map(value=>{
+                console.log(value)
+                    value.specs.map(val=> {
+
+                        console.log(val.spec_key_name)
+
+                         val.spec_key_name = val.spec_key_name.substr(0,2)+'***'
+
+                    })
+                })
+
+
+
 
                 if (res.data.code == 0) {
                     this.setData({
