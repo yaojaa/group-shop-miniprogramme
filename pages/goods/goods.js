@@ -33,14 +33,31 @@ Page({
     },
     onReady: function() {
 
-        app.getUserInfoScopeSetting().then(res => {
 
-            this.setData({
-                hasScope: res
+     wx.getSetting({
+       success: res => {
+
+         if (res.authSetting['scope.userInfo']) {
+           app.globalData.hasScope = true
+
+         } else {
+            app.globalData.hasScope = false
+         }
+
+         this.setData({
+                hasScope: app.globalData.hasScope
             })
+       }
+     })
 
 
-        })
+
+
+      
+
+            
+
+
 
     },
     onShareAppMessage: function(res) {

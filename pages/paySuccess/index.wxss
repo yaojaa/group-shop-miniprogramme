@@ -27,7 +27,7 @@ page{
 }
 .content{
   height: 100%;
-  padding: 0 15px 125px;
+  padding: 0 15px 200rpx;
 }
 .header{
   display: none;
@@ -155,7 +155,7 @@ page{
   text-align: center;
 }
 .share button{
-    width: 80%;
+    width: 86%;
 
   border-radius: 5px;
     display: inline-block;
@@ -190,4 +190,15 @@ page{
   position: fixed;
   left: -200%;
   top: 0;
+}
+
+.back{
+  margin-top: 130rpx;
+  display:block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.back button{
+  text-align: center;
 }

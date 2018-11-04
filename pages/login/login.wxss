@@ -28,3 +28,7 @@
 .picker-time{
   color: #1aaff9;
 }
+
+.button-hover{
+  color: #999
+}

@@ -99,7 +99,7 @@ App({
 
   //获取用户信息
 
-  getUserInfo:function(){
+  getUserInfo:function(nocallback){
    return new Promise((resolve, reject)=>{
 
           wx.getUserInfo({
@@ -107,7 +107,7 @@ App({
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
 
-            if (this.userInfoReadyCallback) {
+            if (this.userInfoReadyCallback ) {
                   this.userInfoReadyCallback(this.globalData.userInfo)
            }
               resolve(res)
@@ -266,8 +266,12 @@ App({
 
                   })
                 }else{
-                  if(option.path !=='pages/goods/goods'){
-                    this.redirectToLogin()
+                  if(option.path =='pages/goods/goods' || option.path=='pages/login/login'){
+                    
+                      console.log('无授权停止',option.path =='pages/goods/goods' || option.path=='pages/login/login')
+                    
+                  }else{
+                    //this.redirectToLogin()
                   }
                 }
     })

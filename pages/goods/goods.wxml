@@ -64,7 +64,7 @@
                 </view>
             </view>
         </view>
-         <view  style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="index" data-good-id="{{goods.goods_id}}" >
+         <view  style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}" >
             <i-cell title="{{ (goods.delivery_method == 1 ?'发货地：':'取货地点：') +item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
@@ -87,8 +87,8 @@
             </i-cell>
         </i-cell-group>
 
-        <i-cell-group>
-            <i-cell wx:for="{{ orderUsers }}" i-class="buyer-item-box">
+        <i-cell-group >
+            <i-cell wx:for="{{ orderUsers }}"  wx:key="{{index}}" i-class="buyer-item-box">
                 <view class="buyer-item">
 
 <text class="number">{{item.create_number}} </text>
@@ -119,7 +119,7 @@
 </view>
 
 <view class="piclist-container">
-<block class="pic" wx:for="{{goods.content_imgs}}" wx:for-item="img" >
+<block class="pic" wx:for="{{goods.content_imgs}}"  wx:key="{{index}}" wx:for-item="img" >
                   <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
 </block>
 </view>
@@ -145,16 +145,22 @@
                   <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
                 请选择规格数量
             </view>
+            
+
+            <scroll-view scroll-y style="height: 200px;">
+
             <i-panel>
-            <i-cell-group>
-                <i-cell wx:for="{{spec_goods_price}}">
+            <i-cell-group style="max-height:500rpx;overflow: scroll;">
+                <i-cell wx:for="{{spec_goods_price}}"  wx:key="{{index}}">
                     <view class="type-box text-justify">
                         <view><text class="text-red f16"> ¥{{item.price}}</text> / {{item.key_name}}</view>
                         <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
                     </view>
                 </i-cell>
             </i-cell-group>
-        </i-panel>
+             </i-panel>
+           </scroll-view>
+
             <view class="cart-footer">
                 <view class="total">
                     <text class="f12 text-default">合计：</text>

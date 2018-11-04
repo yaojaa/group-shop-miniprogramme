@@ -55,7 +55,9 @@ Page({
             data: {
                 token: app.globalData.token,
                 iv: e.detail.iv,
-                encryptedData: e.detail.encryptedData
+                encryptedData: e.detail.encryptedData,
+                session_key:wx.getStorageSync('session_key')
+
             },
             success: (res) => {
                 this.setData({

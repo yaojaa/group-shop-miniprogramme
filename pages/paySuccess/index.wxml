@@ -35,22 +35,9 @@
           <view></view>
           <view></view>
           <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
+
+  
+     
         </view>
       </view>
     </view>
@@ -58,14 +45,15 @@
   </view>
 
   <view class='share'>
-	  <button type='primary' open-type="share">将结果分享回群里</button>
-<!-- 
-     <form  bindsubmit="formSubmit" data-fn="goback" report-submit="true">
-    <button type='defaut' formType="submit">返 回</button>
-   </form>  -->
+	  <button type='primary' open-type="share">帮分享回群</button>
+
+
   </view>
 
   <view class='back'>
+     <form  bindsubmit="formSubmit" data-fn="goback" report-submit="true">
+    <button type="defaut" size="mini" formType="submit">残忍返回</button>
+    </form> 
   </view>
   
 </view>

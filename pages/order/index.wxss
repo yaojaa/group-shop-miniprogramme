@@ -114,9 +114,10 @@
 
 .address button{
   position: absolute;
-  right: 10px;
-  top: 110rpx;
-  z-index:999
+  right: 10rpx;
+  z-index:999;
+  font-size:12px;
+  bottom:20rpx
 }
 .order-panel{
   display: -webkit-flex;

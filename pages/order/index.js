@@ -230,14 +230,14 @@ Page({
       cart.forEach(value=> amountMoney +=parseInt(value.price*100)*parseInt(value.item_num))
 
       this.setData({
-          nickName: app.globalData.userInfo.nickname,
+          nickName: app.globalData.userInfo.nickname || wx.getStorageSync('userInfo').nickname,
           goods_id:options.goods_id,
           cart:cart|| [],
           amountMoney:amountMoney/100,
           cover_pic:goods.cover_pic,
           goods_name:goods.goods_name,
           delivery_method:options.delivery_method,
-          mobile:app.globalData.userInfo.mobile || ''
+          mobile:app.globalData.userInfo.mobile || wx.getStorageSync('userInfo').mobile
       })
 
 
