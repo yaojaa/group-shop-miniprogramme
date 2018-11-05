@@ -167,8 +167,8 @@ margin: 10px 0;
 }
 .remark{
     font-size: 24rpx;
-    color: #999;
-    padding: 18rpx 20rpx 10rpx
+    color: #666;
+    padding: 18rpx 20rpx 18rpx
 }
 .totalCount{
     background: #fff;

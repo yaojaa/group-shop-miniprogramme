@@ -584,6 +584,22 @@ Page({
 
    },
 
+   /**
+   * 长按复制
+   */
+  copy: function (e) {
+    var that = this;
+    console.log(e);
+    wx.setClipboardData({
+      data: that.data.OrderModel.OrderNo,
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+        });
+      }
+    });
+  },
+
     // 下拉刷新
   onPullDownRefresh: function () {
     // 显示顶部刷新图标
