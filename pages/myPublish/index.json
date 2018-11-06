@@ -1,5 +1,6 @@
 {
-  "navigationBarTitleText": "我发布的",
+  "navigationBarTitleText": "我发布的团购",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "i-panel": "../../iView/panel/index"
   }

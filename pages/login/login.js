@@ -7,14 +7,7 @@ Page({
     hasScope:false
   },
   onLoad: function () {
-
     console.log('登录页onload')
-
-
-            // app.userLoginReadyCallback = ()=>{
-            //     app.redirect2Home() 
-            // }
-
           if(app.hasToken()){
                this.setData({
                   hasScope:true

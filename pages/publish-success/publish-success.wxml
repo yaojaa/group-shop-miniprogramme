@@ -1,5 +1,6 @@
 <view class="page-body">
-<painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgOK="onImgOk"/>
+<painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgErr="onImgErr"
+ bind:imgOK="onImgOk"/>
 
 <view class="weui-msg">
       

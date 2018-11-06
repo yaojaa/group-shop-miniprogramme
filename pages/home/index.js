@@ -117,7 +117,7 @@ Page({
                 if (res.data.code == 0) {
                     this.setData({
                         order_number:res.data.data.order_list.length,
-                        orders: res.data.data.order_list
+                        orders: res.data.data.order_list.slice(0,5)
 
                     })
                 }
@@ -313,20 +313,11 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function() {
-
-            return {
+       return {
             title: '我' + app.globalData.userInfo.nickname + '推荐各位以后就用这个小程序开团了',
             imageUrl: 'http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.03hMdd9Rsjdcce875f246857c443f2bc70752f3a66da.png',
-            path: '/pages/goods/goods?goods_id=' + this.data.goods_id,
-            complete(){
-                wx.navigateTo({
-                    url: '../pages/home/index'
-                })
+            path: '/pages/login/login'
             }
-        }
-
-     
-
     },
         // 下拉刷新
   onPullDownRefresh: function () {

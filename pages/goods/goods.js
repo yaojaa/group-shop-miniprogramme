@@ -73,7 +73,15 @@ Page({
         }
     },
     onLoad: function(option) {
-        console.log('token', app.globalData.token)
+
+        wx.showLoading({
+              title: '玩命加载中...',
+        })
+        //没有传ID的情况跳转
+
+        if(!option.id){
+
+        }
 
         this.data.goods_id = option.goods_id
 
@@ -86,6 +94,7 @@ Page({
                 goods_id: option.goods_id
             },
             success: (res) => {
+                wx.hideLoading()
                 if (res.data.code == 0) {
 
                     console.log(res.data.data.goods)

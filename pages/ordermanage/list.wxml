@@ -27,7 +27,7 @@
     <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="{{index}}">
         <view class="order-hd">
             <view class="number">{{item.create_number}}</view>
-            <view class="user-info"><text class="name">{{item.consignee}}</text><text class="tel" bindtap="calluser" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
+            <view class="user-info"><text class="name">{{item.consignee}}</text><text class="tel"  bindlongpress="copy" data-text="{{item.mobile}}" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
             <view class="order-status">
                 <text class="state text-warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
                 <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
@@ -45,7 +45,7 @@
             </view>
             <view  class="remark scale-b-1px"  wx:if="{{item.create_remark}}">
 
-               <text selectable="true"  data-text="{{item.create_remark}} "> 
+               <text selectable="true" data-text="{{item.create_remark}}" bindlongtap="copy"  data-text="{{item.create_remark}} "> 
                    留言：{{item.create_remark}} 
                </text>
 

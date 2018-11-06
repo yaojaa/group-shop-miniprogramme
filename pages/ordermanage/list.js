@@ -26,6 +26,7 @@ Page({
     shipping_0:{},
     shipping_1:{},
     valid_order:{},
+    totalpage:1,
     actionsConfirm: [
             {
                 name: '取消'
@@ -151,7 +152,9 @@ Page({
 
         this.setData({
           dataList:resdata,
-          loading:false
+          loading:false,
+          totalpage:res.data.data.page.totalpage
+
         })
         wx.hideLoading()
 
@@ -591,10 +594,11 @@ Page({
     var that = this;
     console.log(e);
     wx.setClipboardData({
-      data: that.data.OrderModel.OrderNo,
+      data: e.currentTarget.dataset.text,
       success: function (res) {
         wx.showToast({
           title: '复制成功',
+          icon:'none'
         });
       }
     });
@@ -605,6 +609,8 @@ Page({
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
     this.resetPageNumber()
+    this.getStatistics()
+
     this.getOrderList().then(()=>{
         // 隐藏导航栏加载框
         wx.hideNavigationBarLoading();
@@ -620,7 +626,14 @@ Page({
             this.setData({
                 cpage: this.data.cpage + 1,  //每次触发上拉事件，把requestPageNum+1
             })
-             this.getStatistics()
+
+
+            if(this.data.cpage>this.data.totalpage){
+                return 
+            }
+
+
+
              this.getOrderList().then(()=>{
                // 隐藏导航栏加载框
                 wx.hideNavigationBarLoading();

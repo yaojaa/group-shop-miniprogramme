@@ -17,9 +17,7 @@
                 </view>
             </view>
         </navigator>
-        <view class='add-goods' bindtap="new_btn">
-            <i-icon type="add" size="20" />
-            <text>发布团购</text>
+        <view class='add-goods' bindtap="new_btn"><i-icon type="add" size="20" /><text>发布团购</text>
         </view>
     </view>
     <view class="count-box">

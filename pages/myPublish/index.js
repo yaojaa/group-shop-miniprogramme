@@ -7,27 +7,67 @@ Page({
      */
     data: {
         goodslist: [],
+        cpage:1,
+        totalpage:1,
+        loading:false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        wx.request({
-            url: 'https://www.daohangwa.com/api/seller/get_goods_list',
-            data: {
-                token: app.globalData.token
-            },
-            success: (res) => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        goodslist: res.data.data.goodslist,
-                        goods_number: res.data.data.goodslist.length
-                    })
-                }
-            }
-        })
 
+
+        this.getGoodlist()
+
+
+    },
+    getGoodlist(){
+                this.setData({
+                    loading:true
+                })
+                wx.showLoading()
+
+        return new Promise((reslove,reject)=>{
+
+             wx.request({
+                    url: 'https://www.daohangwa.com/api/seller/get_goods_list',
+                    data: {
+                        token: app.globalData.token,
+                        cpage:this.data.cpage
+                    },
+                    success: (res) => {
+                        var resdata =[]
+                        if (res.data.code == 0) {
+                            
+                            if(this.data.cpage<=1){
+                               resdata = res.data.data.goodslist
+                            }else{
+                               resdata = this.data.goodslist.concat(res.data.data.goodslist)
+                            }
+                            this.setData({
+                                goodslist: resdata,
+                                totalpage:res.data.data.page.totalpage
+                            })
+                            reslove(resdata)
+                        }else{
+                            reject(res.data.msg)
+                        }
+                        wx.hideLoading()
+                        this.setData({
+                            loading:false
+                        })
+                    },
+                    fail:(err)=>{
+                        reject(err)
+                        this.setData({
+                            loading:false
+                        })
+                        wx.hideLoading()
+                    }
+                })
+
+        })
     },
     editPage(e) {
         let url = e.currentTarget.dataset.url
@@ -87,11 +127,33 @@ Page({
 
     },
 
-    /**
+   /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
+        console.log('bottom')
+                    console.log(this.data.cpage ,this.data.totalpage,this.data.loading)
 
+        if (this.data.cpage && !this.data.loading) {
+
+            console.log('sssss')
+
+            this.setData({
+                cpage: this.data.cpage + 1,  //每次触发上拉事件，把requestPageNum+1
+            })
+
+            if(this.data.cpage>this.data.totalpage){
+                return 
+            }
+
+
+             this.getGoodlist().then(()=>{
+               // 隐藏导航栏加载框
+                wx.hideNavigationBarLoading();
+                // 停止下拉动作
+                wx.stopPullDownRefresh();
+            })
+        }
     },
 
     /**
