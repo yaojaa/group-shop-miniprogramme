@@ -5,6 +5,14 @@
             <i-input bind:change="changeMobile" value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
             <i-input bind:change="changeWX" value="{{wxnumber}}" type="text" title="微信号" placeholder="输入您的微信账号" />
         </i-panel>
+
+    <!--     <i-panel title="上传你的微信收款码：">
+          <view >
+            <image src="{{photoUrl}}" />
+              <button bindtap="chooseImage" size="mini">+上传</button>
+          </view>
+       </i-panel> -->
+
     </view>
     <view class='btn-wrap'>
         <button type="primary" bindtap="postInfo">保存</button>

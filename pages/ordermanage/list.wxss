@@ -48,9 +48,10 @@ button.button-hover {
 
 /*新样式*/
 .order-title{
-    font-size: 32rpx;
+    font-size: 28rpx;
     padding: 15rpx 15px;
     color:#333;
+    position: relative;
 }
 .order-item{
     padding: 15px 15px 15px;
@@ -91,11 +92,13 @@ button.button-hover {
 .order-hd .user-info .name{
     color:#333;
     font-size: 30rpx;
+    width: 260rpx;
+    text-overflow: ellipsis;
+    display: inline-block;
 }
 .order-hd .user-info .tel{
-    color:#666;
-    font-size: 26rpx;
-    padding-left: 6px;
+    color:#999;
+    font-size: 24rpx
 }
 .order-hd .order-status{
     width: 200rpx;
@@ -172,13 +175,14 @@ margin: 10px 0;
 }
 .totalCount{
     background: #fff;
-    padding: 10px 15px;
+    padding: 0 25px;
     font-size: 28rpx;
     margin-bottom: 10px;
 }
 
 .totalCount .spec{
     padding: 5px 0;
+    color: #999
 }
 
 .remarkForm{
@@ -214,5 +218,23 @@ margin: 10px 0;
     position: absolute;
     top:5px;
     right:0px;
+}
+.spec_item{
+
+    flex: 1;
+    font-size: 24rpx;
+    color: #666
+}
+.actionsButtons{
+    position: absolute;
+    right: 5rpx;
+    top: 18%
+}
+.goods_title{
+    max-width: 300rpx;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+      white-space: nowrap;
 }
 

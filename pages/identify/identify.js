@@ -1,5 +1,7 @@
 const app = getApp()
-const { $Message } = require('../../iView/base/index');
+const { $Message } = require('../../iView/base/index')
+const util = require('../../utils/util.js')
+
 Page({
 
     /**
@@ -7,7 +9,8 @@ Page({
      */
     data: {
         mobile: '',
-        wxnumber: ''
+        wxnumber: '',
+        photoUrl:''
     },
     postInfo() {
         wx.request({
@@ -67,6 +70,27 @@ Page({
             }
         })
     },
+     //上传相册
+  chooseImage:function(){
+
+      util.uploadPicture({
+        successData:(result)=>{
+
+            console.log(result)
+
+          this.setData({
+            photoUrl:result 
+          })
+
+        },
+        progressState:(s)=>{
+          this.setData({
+          photoProgress:s
+        })
+
+        }
+      })
+  },
     /**
      * 生命周期函数--监听页面加载
      */

@@ -27,6 +27,7 @@ Page({
     shipping_1:{},
     valid_order:{},
     totalpage:1,
+    switchOrderList:true,//折叠展开订单
     actionsConfirm: [
             {
                 name: '取消'
@@ -56,6 +57,12 @@ Page({
       app.globalData.token = wx.getStorageSync('token')
     }
 
+   const localSwichStatus = wx.getStorageSync('switchOrderList')
+   
+       this.setData({
+            switchOrderList : localSwichStatus
+        })
+
 
 
 
@@ -73,19 +80,52 @@ Page({
 
   },
   handleTab ({ detail }) {
+
         this.setData({
             tab: detail.key,
             cpage:1,
             shipping_status:detail.key==3?'':detail.key
         })
+          //点击未发货  订单状态.0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
+         if(detail.key==0){
+
+          this.setData({
+             order_status:'0,1'
+           })
+
+         }
+         // //点击已发货 
+
+         // if(detail.key == 1){
+         //  this.setData({
+         //    order_status:'1,2,4'
+         //  })
+         // }
+
+
+        //全部订单
+        if(detail.key==3){
+          this.setData({
+            order_status:''
+          })
+        }
 
         this.getOrderList()
     },
   onReady: function (e) {
 
+   
+
 
 
   },
+      onChangeOrderSwitch(event){
+        const detail = event.detail;
+        this.setData({
+            'switchOrderList' : detail.value
+        })
+        wx.setStorageSync('switchOrderList',detail.value)
+    },
 
   getStatistics(){
 
@@ -133,8 +173,9 @@ Page({
       goods_id:this.data.goods_id,
       token:app.globalData.token,
       cpage:this.data.cpage,
-      shipping_status:this.data.shipping_status
-      // order_status:[1]
+      shipping_status:this.data.shipping_status,
+      order_status:this.data.order_status,
+      pagesize:30
       // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
       },
       success:(res) => {
@@ -181,7 +222,6 @@ Page({
 
      var marke_value = e.detail.detail.value
      var order_id = e.target.dataset.id
-     console.log(marke_value,order_id)
      if(marke_value =='' || order_id==''){return}
 
       wx.request({
@@ -191,7 +231,6 @@ Page({
           token: app.globalData.token,
           order_id:order_id,
           order_remark:marke_value,
-        
       },
       success: (res) => {
         if(res.data.code == 0){
@@ -323,7 +362,6 @@ Page({
       this.data.note = '如：亲，您团购的商品到货啦，来我家取吧'
     }
 
-   
             wx.request({
             url: 'https://www.daohangwa.com/api/seller/send_tmp_msg',
             method:'post',
@@ -331,7 +369,6 @@ Page({
                 token: app.globalData.token,
                 order_id:this.data.order_id,
                 note:this.data.note,
-                
                 type:10
             },
             success: (res) => {
@@ -339,8 +376,6 @@ Page({
                     visible2:false
                    })
                  if (res.data.code == 0) {
-                  this.resetPageNumber()
-                        this.getOrderList()
                         $Message({
                             content: '提醒成功',
                             type: 'success'

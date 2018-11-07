@@ -2,8 +2,6 @@
 App({
   //是否本地有token
   hasToken:function(){
-    console.log('getStorageSync',wx.getStorageSync('token'))
-
     return !!wx.getStorageSync('token')
   },
   //请求维系获取openId
@@ -86,7 +84,6 @@ App({
          }
 
          if (this.userScopeReadyCallback) {
-             console.log('触发callback',this.userScopeReadyCallback)
              this.userScopeReadyCallback(this.globalData.hasScope)
            }
 
@@ -168,8 +165,6 @@ App({
   },
 
   redirect2Home:function(){
-
-      console.log('wx.redirectTo...home...index')
 
       wx.redirectTo({
         url:'/pages/home/index'

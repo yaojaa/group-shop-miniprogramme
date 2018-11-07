@@ -23,12 +23,18 @@ Page({
         orderUsers: [],
         imagePath: "",
     },
-    onShow: function(option) {
+    onShow: function() {
+
+        console.log('onshow....')
+
         this.setData({
             cartPanel: false
         })
-        console.log('(this.data.goods_id', this.data.goods_id)
-        this.getOrderUserList(this.data.goods_id)
+
+        if(this.data.goods_id){
+            this.getOrderUserList(this.data.goods_id)
+        }
+        
 
     },
     onReady: function() {
@@ -74,14 +80,25 @@ Page({
     },
     onLoad: function(option) {
 
+                console.log('onLoad....',option)
+
+
         wx.showLoading({
               title: '玩命加载中...',
         })
         //没有传ID的情况跳转
+        //
+        if(!option.goods_id){
 
-        if(!option.id){
+             wx.redirectTo({
+                url:'../login/login'
+              })
+
+             return
 
         }
+
+
 
         this.data.goods_id = option.goods_id
 

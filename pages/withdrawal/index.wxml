@@ -19,15 +19,14 @@
 			状态：{{["审核中","审核通过","提现成功"][item.status]}}
 		</view>
 
-		<view class="erweima">
+	
+    </view>
 
-			<text>快速提现实时到账联系客服微信：yaojaa</text>
+    	<view class="erweima">
+
+			<text style="font-size: 14px">提现请联系微信：yaojaa 实时到账</text>
 
 		</view>
-
-
-
-    </view>
 
 	    <i-message id="message" />
 

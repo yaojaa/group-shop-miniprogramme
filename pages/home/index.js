@@ -315,7 +315,7 @@ Page({
     onShareAppMessage: function() {
        return {
             title: '我' + app.globalData.userInfo.nickname + '推荐各位以后就用这个小程序开团了',
-            imageUrl: 'http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.03hMdd9Rsjdcce875f246857c443f2bc70752f3a66da.png',
+            imageUrl: 'http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.qr6svasJ7BWN1b8c4ad3d976fdedcbce1c383b653238.jpg',
             path: '/pages/login/login'
             }
     },

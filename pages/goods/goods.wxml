@@ -101,7 +101,7 @@
                         <view class="name"> {{item.user.nickname}}   </view>
                         <view class="type">
                             <view wx:for="{{item.specs}}" wx:key="index" wx:for-item="gds">
-                                {{gds.spec_key_name}} ✕ {{gds.goods_num}}
+                                {{gds.spec_key_name}} × {{gds.goods_num}}
                             </view>
                         </view>
                     </view>

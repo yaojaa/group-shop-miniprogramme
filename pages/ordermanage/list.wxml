@@ -1,33 +1,51 @@
 <view class="container">
     <view class="order-title text-primary">
-        <navigator url="/pages/goods/goods?goods_id={{goods_id}}">{{goods_name}}
+        <navigator url="/pages/goods/goods?goods_id={{goods_id}}">
+            <text class="goods_title">{{goods_name}}</text>
         </navigator>
+
+
+        <view class="actionsButtons">
+
+           <view>
+        <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
+            <view slot="open">展开</view>
+            <view slot="close">收起</view>
+        </i-switch>
+         </view>
+       </view>
     </view>
     <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-        <i-tab key="3" title="有效订单{{valid_order.count}}"></i-tab>
+        <i-tab key="3" title="订单{{valid_order.count}}"></i-tab>
         <i-tab key="0" title="未发货{{shipping_0.count}}人"></i-tab>
         <i-tab key="1" title="已发货{{shipping_1.count}}人"></i-tab>
     </i-tabs>
+
+
+
+
     <view class="totalCount">
         <block wx:if="{{tab == 3 }}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{valid_order.spec}}">
               <view>{{item.spec_key_name}}</view>
-              <view class="text-muted">需<text class="text-danger">{{item.num}}</text>个</view></view>
+              <view class="text-muted"><text class="text-danger">{{item.num}}</text>个</view></view>
         </block>
         <block  wx:if="{{tab == 0}}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_0.spec}}">
              <view>{{item.spec_key_name}}</view>
-              <view class="text-muted">需<text class="text-danger">{{item.num}}</text>个</view></view>
+              <view class="text-muted"><text class="text-danger">{{item.num}}</text>个</view></view>
         </block>
         <block  wx:if="{{tab == 1}}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_1.spec}}"> <view>{{item.spec_key_name}}</view>
-              <view class="text-muted">需<text class="text-danger">{{item.num}}</text>个</view></view>
+              <view class="text-muted"><text class="text-danger">{{item.num}}</text>个</view></view>
         </block>
     </view>
     <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="{{index}}">
         <view class="order-hd">
             <view class="number">{{item.create_number}}</view>
-            <view class="user-info"><text class="name">{{item.consignee}}</text><text class="tel"  bindlongpress="copy" data-text="{{item.mobile}}" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
+            <view class="user-info"><text class="name">{{item.consignee}}</text>
+
+                <text  class="tel"  bindlongpress="copy" data-text="{{item.mobile}}" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
             <view class="order-status">
                 <text class="state text-warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
                 <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
@@ -38,19 +56,19 @@
                 </block>
             </view>
         </view>
-        <view class="order-bd">
+        <view class="order-bd" wx:if="{{switchOrderList}}">
             <view class="type text-justify  scale-b-1px" wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
-                <view>{{g.spec_key_name}} X{{g.goods_num}}</view>
+                <view>{{g.spec_key_name}} ×{{g.goods_num}}</view>
                 <view class="text-info">¥ {{g.goods_num*g.goods_price}} </view>
             </view>
-            <view  class="remark scale-b-1px"  wx:if="{{item.create_remark}}">
+            <view   class="remark scale-b-1px"  wx:if="{{switchOrderList && item.create_remark}}">
 
-               <text selectable="true" data-text="{{item.create_remark}}" bindlongtap="copy"  data-text="{{item.create_remark}} "> 
+               <text  selectable="true" data-text="{{item.create_remark}}" bindlongtap="copy"  data-text="{{item.create_remark}} "> 
                    留言：{{item.create_remark}} 
                </text>
 
             </view>
-            <view class="total text-justify scale-b-1px">
+            <view class="total text-justify scale-b-1px" wx:if="{{switchOrderList}}">
                 <view>总金额： <text class="warning f18">¥{{item.total_amount}} </text>
                     <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="error" wx:if="{{item.pay_status==0}}">未支付</text>
@@ -61,6 +79,14 @@
             </view>
         </view>
         <view class="order-fd scale-b-1px">
+
+           <!--  <view class="spec_item">
+                
+            <text  wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
+                {{g.spec_key_name}} ×{{g.goods_num}}
+            </text>
+            </view> -->
+
             <form wx:if="{{item.order_status == 0 && item.pay_status == 1}}" bindsubmit="formSubmit" report-submit="true">
                 <button class="btn btn-success" formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm">确认订单</button>
             </form>
@@ -78,7 +104,7 @@
             </form>
         </view>
        <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
-            <view class="note-box">
+            <view class="note-box" wx:if="{{switchOrderList}}">
                 <i-icon type="brush" size="14" class="note-icon" />
                 <view class="note-input">
                     <i-input type="text" name="order_remark" value="{{item.order_remark}}" placeholder="备注" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
