@@ -8,10 +8,11 @@
         <view class="actionsButtons">
 
            <view>
-        <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
+            <button size="mini" bindtap="exportExcel">导出Excel</button>
+      <!--   <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
             <view slot="open">展开</view>
             <view slot="close">收起</view>
-        </i-switch>
+        </i-switch> -->
          </view>
        </view>
     </view>
@@ -40,7 +41,7 @@
               <view class="text-muted"><text class="text-danger">{{item.num}}</text>个</view></view>
         </block>
     </view>
-    <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="{{index}}">
+    <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="index" wx:for-index="bindex">
         <view class="order-hd">
             <view class="number">{{item.create_number}}</view>
             <view class="user-info"><text class="name">{{item.consignee}}</text>
@@ -56,19 +57,19 @@
                 </block>
             </view>
         </view>
-        <view class="order-bd" wx:if="{{switchOrderList}}">
+        <view class="order-bd" >
             <view class="type text-justify  scale-b-1px" wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
                 <view>{{g.spec_key_name}} ×{{g.goods_num}}</view>
                 <view class="text-info">¥ {{g.goods_num*g.goods_price}} </view>
             </view>
-            <view   class="remark scale-b-1px"  wx:if="{{switchOrderList && item.create_remark}}">
+            <view   class="remark scale-b-1px"  wx:if="{{item.create_remark}}">
 
                <text  selectable="true" data-text="{{item.create_remark}}" bindlongtap="copy"  data-text="{{item.create_remark}} "> 
                    留言：{{item.create_remark}} 
                </text>
 
             </view>
-            <view class="total text-justify scale-b-1px" wx:if="{{switchOrderList}}">
+            <view class="total text-justify scale-b-1px">
                 <view>总金额： <text class="warning f18">¥{{item.total_amount}} </text>
                     <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="error" wx:if="{{item.pay_status==0}}">未支付</text>
@@ -99,12 +100,12 @@
             <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
                 <button class="btn btn-warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>
             </form>
-            <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                <button class="btn btn-success" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openShipping">确认发货</button>
+            <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" data-id="{{item.order_id}}" data-bindex="{{bindex}}"  data-fn="openShipping"  report-submit="true">
+                <button  class="btn btn-success" shape="circle" formType="submit"   >确认发货</button>
             </form>
         </view>
        <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
-            <view class="note-box" wx:if="{{switchOrderList}}">
+            <view class="note-box">
                 <i-icon type="brush" size="14" class="note-icon" />
                 <view class="note-input">
                     <i-input type="text" name="order_remark" value="{{item.order_remark}}" placeholder="备注" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />

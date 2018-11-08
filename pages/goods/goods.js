@@ -197,11 +197,20 @@ Page({
     },
     getUserInfoEvt: function(e) {
         app.globalData.userInfo = e.detail.userInfo
-        app.login_third(e.detail).then((res) => {
+        wx.showLoading()
+        app.getOpenId().then((openid)=>{
+            console.log(openid)
+             app.globalData.openid = openid
+             app.login_third(e.detail).then((res) => {
                 console.group('登陆成功:', res)
+                wx.hideLoading()
                 this.buy()
             })
             .catch(e => console.log(e))
+
+
+        })
+
 
     },
     getOrderUserList(goods_id) {

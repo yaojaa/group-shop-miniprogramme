@@ -227,8 +227,8 @@ margin: 10px 0;
 }
 .actionsButtons{
     position: absolute;
-    right: 5rpx;
-    top: 18%
+    right: 10rpx;
+    top: 20%
 }
 .goods_title{
     max-width: 300rpx;

@@ -27,7 +27,7 @@ Page({
     shipping_1:{},
     valid_order:{},
     totalpage:1,
-    switchOrderList:true,//折叠展开订单
+    // switchOrderList:false,//折叠展开订单
     actionsConfirm: [
             {
                 name: '取消'
@@ -72,6 +72,13 @@ Page({
       goods_name :optiton.goods_name
 
      })
+
+     wx.setNavigationBarTitle({
+    title: '管理订单: '+optiton.goods_name
+    })
+
+
+
      this.getOrderList()
 
      this.getStatistics()
@@ -93,6 +100,11 @@ Page({
              order_status:'0,1'
            })
 
+         }else{
+           this.setData({
+            order_status:''
+          })
+
          }
          // //点击已发货 
 
@@ -104,11 +116,11 @@ Page({
 
 
         //全部订单
-        if(detail.key==3){
-          this.setData({
-            order_status:''
-          })
-        }
+        // if(detail.key==3){
+        //   this.setData({
+        //     order_status:''
+        //   })
+        // }
 
         this.getOrderList()
     },
@@ -157,6 +169,34 @@ Page({
       phoneNumber: e.target.dataset.mobile
     })
   },
+  /****/
+
+  exportExcel(){
+     wx.showToast({title:'开始为你生成...',icon:'none'})
+
+     wx.request({
+      url: 'https://www.daohangwa.com/api/seller/order_export_by_goods_id',
+      data: { 
+      goods_id:this.data.goods_id,
+      token:app.globalData.token
+      },
+      success:(res) => {
+
+        wx.setClipboardData({
+        data: res.data.data.filepath,
+        success: function(res) {
+            wx.showToast({title:'文件地址已复制,去粘贴打开吧！注意不要泄露哦',duration:5000,icon:'none'})
+        }
+      })
+
+        
+      }
+     }
+    )
+
+  },
+
+
 
   resetPageNumber(e){
     this.setData({
@@ -234,10 +274,9 @@ Page({
       },
       success: (res) => {
         if(res.data.code == 0){
-           $Message({
-           content:'备注成功',
-           type:'success'
-           })
+
+          wx.showToast({title:'备注成功'})
+         
         }else{
            $Message({
            content:res.data.msg,
@@ -270,9 +309,12 @@ Page({
   },
 
   openShipping({target}){
-       this.setData({
+
+    console.log(target)
+     this.setData({
       visible2:true,
-      order_id:target.dataset.id
+      order_id:target.dataset.id,
+      currentIndex: target.dataset.bindex
     })
   },
 
@@ -328,10 +370,7 @@ Page({
                        this.resetPageNumber()
                        this.getOrderList()
 
-                        $Message({
-                            content: '设为支付成功',
-                            type: 'success'
-                        });
+                        wx.showToast({title:'设为支付成功'})
 
                         this.data.note = ''
                         this.toConfirm({detail:{index:-1}})
@@ -376,10 +415,7 @@ Page({
                     visible2:false
                    })
                  if (res.data.code == 0) {
-                        $Message({
-                            content: '提醒成功',
-                            type: 'success'
-                        });
+                        wx.showToast({ title: "提醒成功" })
                          this.setData({
                           visible5_tips: false
                     });
@@ -400,7 +436,7 @@ Page({
   //发货
   toShipping(e){
 
-
+   
 // 3 发货
 //   if(order_status == 1 && shipping_status == 0){
 //       发货接口：/seller/delivery_handle
@@ -429,13 +465,19 @@ Page({
                     visible2:false
                    })
                  if (res.data.code == 0) {
-                  this.resetPageNumber()
-                        this.getOrderList()
-                        $Message({
-                            content: '发货成功',
-                            type: 'success'
-                        });
-                        this.data.note = '',
+                  // this.resetPageNumber()
+                        // this.getOrderList()
+                        wx.showToast({ title: "发货成功" })
+// this.data.dataList
+                        var key='dataList['+this.data.currentIndex+'].shipping_status';
+
+                        console.log(key)
+                        this.setData({
+                          [key] : 1
+                        })
+
+
+                        // this.data.note = '',
                         this.getStatistics()
                     }else{
                        $Message({
@@ -501,11 +543,8 @@ Page({
                         this.resetPageNumber()
                         this.getOrderList()
 
-                     
-                        $Message({
-                            content: '订单已取消',
-                            type: 'success'
-                        });
+
+                        wx.showToast({ title: "订单已取消" })
                         
                     }else{
 
@@ -618,7 +657,7 @@ Page({
    formSubmit: function (e) {
     this.data.formId = e.detail.formId
 
-    util.formSubmitCollectFormId(e)
+    util.formSubmitCollectFormId.call(this,e)
 
    },
 

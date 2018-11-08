@@ -234,6 +234,10 @@ const getShareImg = (goods_id, _this) => {
 }
 
 
+ /**
+ * 下载保存一个文件
+ */
+
 
 
 module.exports = {
