@@ -9,7 +9,8 @@ Page({
         goodslist: [],
         cpage:1,
         totalpage:1,
-        loading:false
+        loading:false,
+        pagesize:30
     },
 
     /**

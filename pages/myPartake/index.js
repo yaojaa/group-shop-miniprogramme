@@ -17,7 +17,8 @@ Page({
         wx.request({
             url: 'https://www.daohangwa.com/api/user/get_order_list',
             data: {
-                token: app.globalData.token
+                token: app.globalData.token,
+                pagesize:30
             },
             success: (res) => {
                 if (res.data.code == 0) {

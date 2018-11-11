@@ -1,5 +1,4 @@
 <view class="page-body">
-<painter palette="{{painterData}}" goods_id="{{goods_id}}" bind:imgOK="onImgOk"/>
 
 <view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>
 </view>
@@ -166,10 +165,11 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                          <navigator url="/pages/map/index?delivery_method={{delivery_method}}">
+                   <navigator url="/pages/map/index?delivery_method={{delivery_method}}">
 
-                            <text wx:if="{{sell_address.length}}">{{sell_address[0].name}} {{sell_address[0].door_number}}</text>
-                            <text wx:else>选择地址</text>
+                            <block wx:if="{{sell_address.length}}">
+                            {{sell_address[0].name}} {{sell_address[0].door_number}}</block>
+                            <block wx:else>选择地址</block>
 
 
                             <i-icon type="enter" size="28" />
