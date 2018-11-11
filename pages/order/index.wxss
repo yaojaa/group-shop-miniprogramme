@@ -110,6 +110,19 @@
 
 .address{
 
+  position: relative;
+
+
+}
+
+.address button.delivery_method1{
+
+   position: absolute;
+  right: 10rpx;
+  z-index:999;
+  font-size:12px;
+  top:114rpx
+
 }
 
 .address button{
@@ -117,7 +130,7 @@
   right: 10rpx;
   z-index:999;
   font-size:12px;
-  bottom:20rpx
+  top:114rpx
 }
 .order-panel{
   display: -webkit-flex;

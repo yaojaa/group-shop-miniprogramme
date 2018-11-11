@@ -179,6 +179,19 @@ Page({
         })
     },
     cartPanelShow() {
+
+
+        if(this.data.spec_goods_price.length==1){
+
+            let value = this.data.spec_goods_price[0]
+
+            this.setData({
+                'spec_goods_price[0].item_num':1,
+                amountMoney:parseInt(value.price * 100)/100
+            })
+        }
+
+
         this.setData({
             cartPanel: true
         })
@@ -317,7 +330,7 @@ Page({
     },
     buy() {
 
-
+        //默认选一份
 
         if (this.data.amountMoney == 0) {
             return $Message({
@@ -329,6 +342,7 @@ Page({
 
 
         let shopcar = this.data.spec_goods_price.filter(value => value.item_num > 0)
+        
         wx.setStorageSync('cart', shopcar)
         wx.setStorageSync('goods', {
             goods_name: this.data.goods.goods_name,
