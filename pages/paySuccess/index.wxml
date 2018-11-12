@@ -45,15 +45,10 @@
   </view>
 
   <view class='share'>
-	  <button type='primary' open-type="share">帮分享回群</button>
+	  <button type='primary' open-type="share">分享告知结果</button>
 
 
   </view>
 
-  <view class='back'>
-     <form  bindsubmit="formSubmit" data-fn="goback" report-submit="true">
-    <button type="defaut" size="mini" formType="submit">残忍返回</button>
-    </form> 
-  </view>
   
 </view>

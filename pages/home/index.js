@@ -93,13 +93,13 @@ Page({
             url: 'https://www.daohangwa.com/api/seller/get_goods_list',
             data: {
                 token: app.globalData.token,
-                pagesize:100
+                pagesize:5
             },
             success: (res) => {
                 if (res.data.code == 0) {
                     this.setData({
                         goodslist: res.data.data.goodslist,
-                        goods_number:res.data.data.goodslist.length
+                        goods_number:res.data.data.page.total
                     })
                 }
             }
@@ -112,13 +112,13 @@ Page({
             url: 'https://www.daohangwa.com/api/user/get_order_list',
             data: {
                 token: app.globalData.token,
-                pagesize:100
+                pagesize:5
             },
             success: (res) => {
                 if (res.data.code == 0) {
                     this.setData({
-                        order_number:res.data.data.order_list.length,
-                        orders: res.data.data.order_list.slice(0,5)
+                        order_number:res.data.data.page.total,
+                        orders: res.data.data.order_list
 
                     })
                 }

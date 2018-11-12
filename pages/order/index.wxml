@@ -4,7 +4,7 @@
     <!--自提-->
     <i-panel  class="address" wx:if="{{delivery_method==2}}">
               
-        <i-input value="{{ nickName }}" title="微信昵称" id="nickName" bind:change="inputTodata"   placeholder="请输入微信昵称" />
+        <i-input value="{{ consignee }}" title="微信或群昵称" id="consignee" bind:change="inputTodata"   placeholder="请输入微信昵称" />
         <i-input value="{{ mobile }}" id="mobile" bind:change="inputTodata" type="number" title="联系电话" placeholder="输入手机号" />
         <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
     </i-panel>
@@ -12,7 +12,7 @@
     <view class="address" wx:if="{{delivery_method==1}}">
         <button class="delivery_method1" open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
         <i-panel>
-            <i-input value='{{nickName}}' id="nickName" bind:change="inputTodata" title="收货人" placeholder="请输入姓名" />
+            <i-input value='{{consignee}}' id="consignee" bind:change="inputTodata" title="收货人" placeholder="请输入姓名" />
             <i-input value="{{mobile}}" title="手机号" placeholder="请输入手机号" id="mobile" bind:change ="inputChange" />
             <i-input value="{{ address }}" id="address" bind:change="inputTodata" type="text" title="地址" placeholder="请输收货地址(最多50字)" />
            <!--  <i-input value="" id="door_number" bind:change="inputTodata" type="textarea" title="门牌号" placeholder="楼号、门牌号" /> -->
@@ -27,8 +27,8 @@
               {{nickName}}
             </view>
         </view> -->
-        <div class="order-panel">
-          <image src="{{cover_pic}}?imageView2/1/w/100/h/100/q/75" class="goods-cover" />
+        <div class="order-panel" wx:if="{{cover_pic}}">
+          <image with="50" height="50" src="{{cover_pic}}?imageView2/1/w/100/h/100/q/75" class="goods-cover" />
           <view class="name">
             {{goods_name}}
           </view>

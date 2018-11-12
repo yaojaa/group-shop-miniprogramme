@@ -143,12 +143,12 @@
   background-color: #fff;
 }
 .goods-cover{
-  width: 100rpx;
-  height:100rpx;
+  width: 50rpx;
+  height:50rpx;
   margin-right: 10px;
 }
 .order-panel .name{
-  font-size: 16px;
+  font-size: 26rpx;
   color:#333;
 }
 .seller-info{

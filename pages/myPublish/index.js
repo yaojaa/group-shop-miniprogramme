@@ -10,7 +10,9 @@ Page({
         cpage:1,
         totalpage:1,
         loading:false,
-        pagesize:30
+        pagesize:30,
+        total:'--'
+
     },
 
     /**
@@ -132,12 +134,7 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-        console.log('bottom')
-                    console.log(this.data.cpage ,this.data.totalpage,this.data.loading)
-
         if (this.data.cpage && !this.data.loading) {
-
-            console.log('sssss')
 
             this.setData({
                 cpage: this.data.cpage + 1,  //每次触发上拉事件，把requestPageNum+1

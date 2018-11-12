@@ -182,9 +182,7 @@ Page({
 
 
         if(this.data.spec_goods_price.length==1){
-
             let value = this.data.spec_goods_price[0]
-
             this.setData({
                 'spec_goods_price[0].item_num':1,
                 amountMoney:parseInt(value.price * 100)/100

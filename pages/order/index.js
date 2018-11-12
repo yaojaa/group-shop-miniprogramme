@@ -16,7 +16,7 @@ Page({
     link_url:"",
     num: 1,
     delivery_method:2,//送货方式
-    nickName:'',
+    consignee:'',
     goods_id:'',
     hasgoods:false,
     address:'',
@@ -40,6 +40,40 @@ Page({
     total:0,
     loading:false,
     create_remark:''
+  },
+
+  getaddressList(){
+
+    return new Promise((reslove,reject)=>{ 
+      wx.request({
+      url:'https://www.daohangwa.com/api/user/get_address_list',
+      method:'post',
+      data:{
+        token:app.globalData.token
+      },
+      success:(res)=>{
+
+       if(res.data.code ==0 && res.data.data.length>0){
+
+          reslove(res.data.data[0])
+   
+         }else{
+          reject(false)
+         }
+         },
+      fail:()=>{
+        reject(false)
+      }
+
+       })
+
+    })
+
+
+    
+
+
+
   },
   getPhoneNumber (e) { 
 
@@ -87,8 +121,6 @@ Page({
   inputTodata(e){
 
     let key = e.target.id
-
-    console.log(e.detail.detail.value)
 
       this.setData({
       [key]:e.detail.detail.value    
@@ -163,49 +195,34 @@ Page({
     let addressObj = {}
 
 
+
+
         //1邮递    2自提 两种情况默认地址不同
     if(this.data.delivery_method ==1){
       //邮递时 先获取上次存储的位置 为空则默认获取定位位置
-      //
-      console.log('app.globalData.userInfo.address',app.globalData.userInfo.address)
-      //
-      if(app.globalData.userInfo.address!==null && typeof app.globalData.userInfo.address !=='undefined'  ){
-        return cb(app.globalData.userInfo.address)
+      
+            this.getaddressList().then((data)=>{
+                cb(data)
+            },()=>{
 
-      }else{
-
-        this.getUserloaction().then((map)=>{
+          this.getUserloaction().then((map)=>{
 
           addressObj.province_name = map.province
           addressObj.district_name = map.district
           addressObj.city_name = map.city
           addressObj.address = map.province+map.city+'请输入完整地址'
-         return cb(addressObj)
+          return cb(addressObj)
 
         })
 
+        })
 
-      }
 
      //自提时候为卖家商品地址
     }else if(this.data.delivery_method ==2){
 
       let goods_address = wx.getStorageSync('goods').sell_address[0]
-
-// address:"北京市大兴区四海路"
-// door_number:"1-103"
-// goods_id:14
-// id:1540388000206
-// latitude:"39.7534100"
-// longitude:"116.4883500"
-// name:"金域东郡10号楼"
-// sell_address_id:17
-// 
-
        return cb(goods_address)
-  
-
-
 
     }
 
@@ -230,14 +247,13 @@ Page({
       cart.forEach(value=> amountMoney +=parseInt(value.price*100)*parseInt(value.item_num))
 
       this.setData({
-          nickName: app.globalData.userInfo.nickname || wx.getStorageSync('userInfo').nickname,
+          consignee: app.globalData.userInfo.nickname || wx.getStorageSync('userInfo').nickname,
           goods_id:options.goods_id,
           cart:cart|| [],
           amountMoney:amountMoney/100,
           cover_pic:goods.cover_pic,
           goods_name:goods.goods_name,
           delivery_method:options.delivery_method,
-          mobile:app.globalData.userInfo.mobile || wx.getStorageSync('userInfo').mobile
       })
 
 
@@ -249,7 +265,10 @@ Page({
           address:s.address,
           province_name:s.province_name,
           city_name:s.city_name,
-          district_name:s.district_name
+          district_name:s.district_name,
+          mobile:s.mobile || app.globalData.userInfo.mobile || wx.getStorageSync('userInfo').mobile,
+          consignee:s.consignee || app.globalData.userInfo.nickname || wx.getStorageSync('userInfo').nickname
+
         })
 
       })
@@ -288,9 +307,10 @@ Page({
     }
 
 
-    if(this.data.delivery_method ==1 && this.data.address.length<10){
-      $Message({
-        content:'请填写收货地址'
+    if(this.data.delivery_method ==1 && this.data.address.length<8){
+      wx.showToast({
+        title:'请填写完整收货地址',
+        icon:'none'
       })
       return
     }
@@ -318,7 +338,7 @@ Page({
 
 
     let addressData = {
-                      'consignee': this.data.nickName, 
+                      'consignee': this.data.consignee, 
                       'province_name': this.data.province_name,
                       'city_name': this.data.city_name,
                       'district_name': this.data.district_name,
@@ -414,10 +434,9 @@ Page({
                 
               },
               fail: function (res) { 
-                   wx.hideLoading()
-
+                wx.hideLoading()
                 wx.redirectTo({
-                         url:'../home/index'
+                         url:'../myPartake/index'
                    })
                
                }

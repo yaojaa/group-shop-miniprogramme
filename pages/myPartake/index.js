@@ -8,46 +8,55 @@ Page({
      */
     data: {
         orders: [],
+        cpage:1,
+        totalpage:1,
+        loading:true,
+        total:'--'
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+       this.getBuyList()
+    },
+    getBuyList: function() {
+
+        return new Promise((reslove,reject)=>{
+
+        this.data.loading = true
+
         wx.request({
             url: 'https://www.daohangwa.com/api/user/get_order_list',
             data: {
                 token: app.globalData.token,
-                pagesize:30
+                cpage:this.data.cpage,
+                pagesize:10
             },
             success: (res) => {
+
+                var resdata= []
                 if (res.data.code == 0) {
+
+                      if(this.data.cpage<=1){
+                               resdata = res.data.data.goodslist
+                            }else{
+                               resdata = this.data.goodslist.concat(res.data.data.goodslist)
+                       }
+
+
                     this.setData({
                         order_number: res.data.data.order_list.length,
-                        orders: res.data.data.order_list
-
+                        orders: res.data.data.order_list,
+                        loading:false,
+                        totalpage:res.data.data.page.totalpage,
+                        total:res.data.data.page.total,
                     })
                 }
             }
         })
-    },
-    getBuyList: function() {
 
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/get_order_list',
-            data: {
-                token: app.globalData.token
-            },
-            success: (res) => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        order_number: res.data.data.order_list.length,
-                        orders: res.data.data.order_list
-
-                    })
-                }
-            }
-        })
+      })
     },
     //取消订单
 
@@ -67,7 +76,6 @@ Page({
                         type: 'success'
                     })
                     this.getBuyList()
-
                 }
             }
         })
@@ -203,11 +211,29 @@ Page({
         wx.stopPullDownRefresh();
   },
 
-    /**
+   /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
+        console.log('boottom',this.data.cpage,this.data.loading)
+        if (this.data.cpage && !this.data.loading) {
 
+            this.setData({
+                cpage: this.data.cpage + 1,  //每次触发上拉事件，把requestPageNum+1
+            })
+
+            if(this.data.cpage>this.data.totalpage){
+                return 
+            }
+
+
+             this.getBuyList().then(()=>{
+               // 隐藏导航栏加载框
+                wx.hideNavigationBarLoading();
+                // 停止下拉动作
+                wx.stopPullDownRefresh();
+            })
+        }
     },
 
     /**
