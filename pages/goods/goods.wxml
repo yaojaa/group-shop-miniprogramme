@@ -84,7 +84,9 @@
         </view>
         <view class='goods-content'>
            <text>{{goods.goods_content}}</text> 
-        </view>
+
+<!--            <button bindtap='copyDetail' size="mini">复制文字接龙信息</button>
+ -->        </view>
         <view class='sub-title scale-b-1px'>
             最近参与:
         </view>
@@ -143,10 +145,7 @@
             <i-icon type="homepage" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
-        <view class='icon' bindtap='copyDetail'>
-            <i-icon type="barrage" size="26" color="#333" />
-            <text class="label">复制接龙信息</text>
-        </view>
+     
    <form style="flex:2"  bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
     <button class="buy" formType="submit">立即参团</button>
    </form> 

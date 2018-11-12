@@ -361,15 +361,15 @@ Page({
             item.specs.forEach((k,v)=>{
                spec+=k.spec_key_name+"x"+k.goods_num+" \b "
             })
-           userList.push((index+1)+'、'+item.user.nickname+"\n"+spec)
+           userList.push((index+1)+'、'+item.user.nickname+" \b "+spec)
         })
         var content = this.data.goods.goods_name+ "\n"+ this.data.goods.goods_content+ "\n"
-        +userList.join('\n')+"\n"+'请使用小程序接龙哦🌹'
+        +userList.join('\n')+"\n"+'请在小程序里接龙哦🌹'
         wx.setClipboardData({
             data:content,
             success: function(res) {
                 wx.showToast({
-                  title: '复制成功',
+                  title: '复制成功，去粘贴吧',
                   icon: 'success',
                   duration: 2000
                 })

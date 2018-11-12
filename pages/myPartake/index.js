@@ -39,15 +39,14 @@ Page({
                 if (res.data.code == 0) {
 
                       if(this.data.cpage<=1){
-                               resdata = res.data.data.goodslist
+                               resdata = res.data.data.order_list
                             }else{
-                               resdata = this.data.goodslist.concat(res.data.data.goodslist)
+                               resdata = this.data.orders.concat(res.data.data.order_list)
                        }
 
 
                     this.setData({
-                        order_number: res.data.data.order_list.length,
-                        orders: res.data.data.order_list,
+                        orders: resdata,
                         loading:false,
                         totalpage:res.data.data.page.totalpage,
                         total:res.data.data.page.total,
