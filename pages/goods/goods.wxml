@@ -91,7 +91,7 @@
             <i-cell wx:for="{{ orderUsers }}"  wx:key="{{index}}" i-class="buyer-item-box">
                 <view class="buyer-item">
 
-<text class="number">{{item.create_number}} </text>
+ <text class="number">{{item.create_number}} </text>
 
 
                     <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
@@ -133,7 +133,10 @@
             <i-icon type="homepage" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
-
+        <view class='icon' bindtap='copyDetail'>
+            <i-icon type="barrage" size="26" color="#333" />
+            <text class="label">复制接龙信息</text>
+        </view>
    <form style="flex:2"  bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
     <button class="buy" formType="submit">立即参团</button>
    </form> 
