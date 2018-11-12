@@ -55,16 +55,6 @@ Page({
             })
        }
      })
-
-
-
-
-      
-
-            
-
-
-
     },
     onShareAppMessage: function(res) {
         if (res.from === 'button') {
@@ -363,5 +353,27 @@ Page({
         wx.makePhoneCall({
           phoneNumber: e.target.dataset.mobile
         })
-      }
+      },
+     copyDetail() {
+        var userList=[]
+        this.data.orderUsers.forEach((item,index)=>{
+            let spec=''
+            item.specs.forEach((k,v)=>{
+               spec+=k.spec_key_name+"x"+k.goods_num+" \b "
+            })
+           userList.push((index+1)+'、'+item.user.nickname+"\n"+spec)
+        })
+        var content = this.data.goods.goods_name+ "\n"+ this.data.goods.goods_content+ "\n"
+        +userList.join('\n')+"\n"+'请使用小程序接龙哦🌹'
+        wx.setClipboardData({
+            data:content,
+            success: function(res) {
+                wx.showToast({
+                  title: '复制成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+            }
+        });
+    }
 })
