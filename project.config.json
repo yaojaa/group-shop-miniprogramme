@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 23,
 			"list": [
 				{
 					"id": 0,
@@ -182,6 +182,13 @@
 					"name": "编辑商品",
 					"pathName": "pages/publish/publish",
 					"query": "goods_id=13",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "地理位置",
+					"pathName": "pages/map/index",
+					"query": "goods_id=36",
 					"scene": "1001"
 				}
 			]

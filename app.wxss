@@ -334,6 +334,38 @@ fieldset[disabled] .btn-link {
 .btn-round{
   border-radius: 1000px;
 }
+
+.center{
+  text-align: center;
+}
+
+.button-area{
+
+  border-radius:20rpx;
+  box-shadow: 0px 0px 20rpx #e2e2e2;
+  line-height: 1.6;
+  font-size: 33rpx;
+  width: 80%;
+  display: inline-block;
+  margin: 0 auto;
+  background: #fff;
+  padding: 24rpx 12rpx;
+
+}
+
+.button-area:active{
+    box-shadow: 0px 0px 20rpx #67f300;
+
+}
+
+.button-area.active{
+
+    background: #f3ffd3;
+    background: linear-gradient(180deg, #fff 0%, #fbfff2 80%, #fcfff5 100%);
+
+}
+
+
 .btn-block {
   display: block;
   width: 100%;
@@ -358,16 +390,27 @@ fieldset[disabled] .btn-link {
   margin-right: auto;
 }
 
+.left{
+  text-align: left;
+}
+
 .list-flex{
   display: flex;
 }
 
 .flex-item{
-  -webkit-flex:1;
--moz-flex:1;
--ms-flex:1;
--o-flex:1;
+
 flex:1;
+}
+
+.flex-item-3{
+
+flex:3;
+}
+
+.flex-item-5{
+
+flex:5;
 }
 
 .gray-all{

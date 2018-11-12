@@ -64,11 +64,21 @@
                 </view>
             </view>
         </view>
-         <view  style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}" >
-            <i-cell title="{{ (goods.delivery_method == 1 ?'发货地：':'取货地点：') +item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
+
+        <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
+
+            <i-cell title="发货方式" label="快递邮寄 送货上门" i-class="address-item">
+                <i-icon type="coordinates_fill" slot="icon" />
+            </i-cell>
+
+        </view>
+        <view wx:if="{{goods.delivery_method == 2}}"  style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}" >
+            <i-cell title="{{'取货地点 '+item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
         </view>
+
+
         <view class='sub-title scale-b-1px'>
             <text>介绍描述：</text>
         </view>
@@ -150,7 +160,7 @@
             </view>
             
 
-            <scroll-view scroll-y style="height: 200px;">
+            <scroll-view scroll-y style="max-height:500px;">
 
             <i-panel>
             <i-cell-group style="max-height:500rpx;overflow: scroll;">

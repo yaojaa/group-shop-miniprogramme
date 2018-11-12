@@ -179,7 +179,7 @@ Page({
           addressObj.province_name = map.province
           addressObj.district_name = map.district
           addressObj.city_name = map.city
-          addressObj.address = map.province+map.city+map.district+map.street+map.street_number
+          addressObj.address = map.province+map.city+'请输入完整地址'
          return cb(addressObj)
 
         })

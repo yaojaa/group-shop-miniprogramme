@@ -27,6 +27,7 @@ Page({
     shipping_1:{},
     valid_order:{},
     totalpage:1,
+    delivery_method:0,
     // switchOrderList:false,//折叠展开订单
     actionsConfirm: [
             {
@@ -234,7 +235,8 @@ Page({
         this.setData({
           dataList:resdata,
           loading:false,
-          totalpage:res.data.data.page.totalpage
+          totalpage:res.data.data.page.totalpage,
+          delivery_method:res.data.data.goods.delivery_method
 
         })
         wx.hideLoading()

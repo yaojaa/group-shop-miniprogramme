@@ -28,17 +28,21 @@
     <view class="totalCount">
         <block wx:if="{{tab == 3 }}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{valid_order.spec}}">
-              <view>{{item.spec_key_name}}</view>
-              <view class="text-muted"><text class="text-danger">{{item.num}}</text>个</view></view>
+              <view>{{item.spec_key_name}}
+                <text class="text-danger">{{item.num}}</text>件
+            </view>
+        </view>
         </block>
         <block  wx:if="{{tab == 0}}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_0.spec}}">
-             <view>{{item.spec_key_name}}</view>
-              <view class="text-muted"><text class="text-danger">{{item.num}}</text>个</view></view>
+             <view>{{item.spec_key_name}}
+              <text class="text-danger">{{item.num}}</text>件
+            </view>
+        </view>
         </block>
         <block  wx:if="{{tab == 1}}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_1.spec}}"> <view>{{item.spec_key_name}}</view>
-              <view class="text-muted"><text class="text-danger">{{item.num}}</text>个</view></view>
+            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_1.spec}}"> <view>{{item.spec_key_name}}
+              <text class="text-danger">{{item.num}}</text>件</view></view>
         </block>
     </view>
     <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="index" wx:for-index="bindex">
@@ -62,9 +66,17 @@
                 <view>{{g.spec_key_name}} ×{{g.goods_num}}</view>
                 <view class="text-info">¥ {{g.goods_num*g.goods_price}} </view>
             </view>
+
+              <view   class="copy-address f14 scale-b-1px"  wx:if="{{delivery_method==1}}">
+              <text data-text="{{item.consignee+','+item.mobile+','+item.address+','+item.goods[0].goods_num}}" bindlongpress="copy" > 
+                  {{item.address}} （长按一键复制）
+               </text>
+           </view>
+
+
             <view   class="remark scale-b-1px"  wx:if="{{item.create_remark}}">
 
-               <text  selectable="true" data-text="{{item.create_remark}}" bindlongtap="copy"  data-text="{{item.create_remark}} "> 
+               <text  selectable="true" data-text="{{item.create_remark}}" bindlongpress="copy"  data-text="{{item.create_remark}} "> 
                    留言：{{item.create_remark}} 
                </text>
 

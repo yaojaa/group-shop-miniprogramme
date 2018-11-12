@@ -1,4 +1,5 @@
 const app = getApp()
+const util = require('../../utils/util.js')
 
 Page({
   data: {
@@ -8,13 +9,14 @@ Page({
     newAddress: [],
     oldAddress: [],
     openLocation: true,
-    buyType:2
+    delivery_method:2,
+    userLocation:{}
 
   },
   onLoad: function (e) {
     let _this = this;
     // this.openLocation(this);
-    this.data.buyType = e.delivery_method;
+    this.data.delivery_method = e.delivery_method;
 
 
         //拿app.globalData的地址
@@ -25,59 +27,75 @@ Page({
     }
 
 
-    wx.getStorage({
-      key: 'historyAddress',
-      success: function(res) {
-        console.log(res)
-        if(res.data.length > 0){
-        _this.setData({
-          oldAddress: res.data
-        })
-       }else if(!app.globalData.sell_address || app.globalData.sell_address.length==0){
-
-        _this.openLocation(_this);
-
-
-       }
-
-      },
-    })
-
-  
-
 
 
 //获取用户授权状态
     wx.getSetting({
-      success(res) {
-      if(res.authSetting["scope.userLocation"]){
-         _this.setData({
-          openLocation: true
-        })
-      }else{
+      success:(res)=> {
+      if(!res.authSetting["scope.userLocation"]){
 
         wx.authorize({
         scope: 'scope.userLocation',
-        success (res) {
-          _this.addAddress()
-           _this.setData({
-          openLocation: true
-        })
+        success: (res)=> {
+            util.getUserloaction().then((res)=>{
+              console.log(res)
+              this.setData({
+                userLocation:res
+              })
+            })
         }
         })
+      }else{
+            util.getUserloaction().then((res)=>{
+              console.log(res)
+
+              this.setData({
+                userLocation:res
+              })
+              
+            })
       }
-
-
-
 
       }
     })
+
+
 
   },
   limitChange(e) {
     this.setData({
       hidden: e.detail.value
     })
+  },
+  //选择快递方式
+  noAddress(){
+    
+
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];  //上一个页面
+
+
+    prevPage.setData({
+      sell_address:[{
+        name:'快递邮寄',
+        door_number:'送货上门',
+        address:this.data.userLocation.street_number,
+        city_name:this.data.userLocation.city,
+        province_name:this.data.userLocation.province,
+        district_name:this.data.userLocation.district,
+        latitude:this.data.userLocation.latitude,
+        longitude:this.data.userLocation.longitude
+
+      }],
+      delivery_method:1
+    })
+
+    wx.navigateBack({
+      delta: 1
+    })
+
+
   },
   handleChange({ detail }) {
     if(detail.value == 1){
@@ -95,6 +113,7 @@ Page({
 
   },
   addAddress(){
+    console.log('addAddress')
     this.openLocation(this);
   },
   deleteAddress(e){
@@ -127,23 +146,7 @@ Page({
       })
     }
   },
-  moveAddress(e){
-    let data = e.currentTarget.dataset;
-    let _this = this;
-    if(this.data.newAddress[0]){
-      this.data.oldAddress.unshift(this.data.newAddress[0]);
-    }
 
-    this.data.newAddress = this.data.oldAddress.splice(this.getIndex(this.data.oldAddress, data.id), 1);
-
-    _this.setData({
-      oldAddress: _this.data.oldAddress,
-      newAddress: _this.data.newAddress
-    })
-
-    console.log(this.data)
-
-  },
   selectAddress(e){
     let data = e.currentTarget.dataset;
     let _this = this;
@@ -162,8 +165,8 @@ Page({
       wx.showToast({ title: "请先添加地址", icon: "none" })
       return;
     }
-    if (!this.data.newAddress[0].door_number && this.data.buyType == 2) {
-      wx.showToast({ title: "请填写取货点", icon: "none" })
+    if (!this.data.newAddress[0].door_number && this.data.delivery_method == 2) {
+      wx.showToast({ title: "请填写门牌号", icon: "none" })
       return;
     }
 
@@ -179,15 +182,6 @@ Page({
       delta: 1
     })
 
-    wx.setStorage({
-              key: "historyAddress",
-              data: this.data.newAddress.concat(this.data.oldAddress),
-              success() {}
-     })
-
-
-
-    // console.log(this.data.newAddress,this.data.limitVal)
   },
 
   openLocation(_this){
@@ -217,7 +211,6 @@ Page({
             _this.data.oldAddress = _this.data.newAddress.concat(_this.data.oldAddress);
 
             _this.data.newAddress = [{
-              id: new Date().getTime(),
               name: e.name,
               address: e.address,
               province_name: map.province,

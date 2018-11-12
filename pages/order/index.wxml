@@ -4,13 +4,13 @@
     <!--自提-->
     <i-panel  class="address" wx:if="{{delivery_method==2}}">
               
-        <i-input value="{{ nickName }}" title="收货人" id="nickName" bind:change="inputTodata"   placeholder="请输入姓名" />
+        <i-input value="{{ nickName }}" title="微信昵称" id="nickName" bind:change="inputTodata"   placeholder="请输入微信昵称" />
         <i-input value="{{ mobile }}" id="mobile" bind:change="inputTodata" type="number" title="联系电话" placeholder="输入手机号" />
         <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
     </i-panel>
     <!--送货上门-->
     <view class="address" wx:if="{{delivery_method==1}}">
-        <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
+        <button class="delivery_method1" open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
         <i-panel>
             <i-input value='{{nickName}}' id="nickName" bind:change="inputTodata" title="收货人" placeholder="请输入姓名" />
             <i-input value="{{mobile}}" title="手机号" placeholder="请输入手机号" id="mobile" bind:change ="inputChange" />
@@ -28,7 +28,7 @@
             </view>
         </view> -->
         <div class="order-panel">
-          <image src="{{cover_pic}}" class="goods-cover" />
+          <image src="{{cover_pic}}?imageView2/1/w/100/h/100/q/75" class="goods-cover" />
           <view class="name">
             {{goods_name}}
           </view>
@@ -46,7 +46,7 @@
         </i-panel>
 
     <i-panel>
-        <i-input value="{{create_remark}}" title="留言" id="create_remark" bind:change="inputTodata"   placeholder="稍句话或留个地址..." />
+        <i-input value="{{create_remark}}" title="留言" id="create_remark" bind:change="inputTodata"   placeholder="稍句话..." />
     </i-panel>
     </view>
     <!--    <view class='mt-sm'>

@@ -89,11 +89,11 @@ Page({
 
     },
     getGoodsList:function(token){
-        console.log(app.globalData.token)
         wx.request({
             url: 'https://www.daohangwa.com/api/seller/get_goods_list',
             data: {
-                token: app.globalData.token
+                token: app.globalData.token,
+                pagesize:100
             },
             success: (res) => {
                 if (res.data.code == 0) {
@@ -111,7 +111,8 @@ Page({
         wx.request({
             url: 'https://www.daohangwa.com/api/user/get_order_list',
             data: {
-                token: app.globalData.token
+                token: app.globalData.token,
+                pagesize:100
             },
             success: (res) => {
                 if (res.data.code == 0) {
@@ -198,9 +199,7 @@ Page({
             url: '../ordermanage/list?goods_id=' + url+'&goods_name='+name+'&delivery_method='+delivery_method,
         })
   },
-  onImgOk(e) { //绘制成功
-          wx.hideLoading()            
-  },
+  
     pay({target}) {
 
 

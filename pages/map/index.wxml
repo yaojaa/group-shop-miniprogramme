@@ -1,32 +1,36 @@
 <view class="container">
-<view class='session'>
+<view class="bgimg">
+
   <view class='limit'>
-    <view class='header'>
+  <!--   <view class='header'>
       <text>添加提货地点</text>
-      <!-- <switch bindchange="limitChange"/> -->
-    </view>
+      <switch bindchange="limitChange"/>
+    </view> -->
  <!--    <view wx:if="{{ hidden }}" class='control'>
       <view>周边半径范围（km）</view>
       <view>
         <i-input-number value="{{ limitVal }}" min="0" max="100" step="{{step}}" bindchange="handleChange" />
       </view>
     </view> -->
+
   </view>
-  <view class='line'></view>
+  <view class='title'>  活动位置与配送方式：
+</view>
 <block wx:for="{{newAddress}}" wx:key="id">
-  <view class='address'>
+  <view class='address button-area'>
   <!-- <view class='address' wx:if="{{index == 0}}"> -->
     <view class='icon-img'>
-      <i-icon type="coordinates" size="28" />
+      <i-icon type="coordinates" size="48" color="#ddd" />
     </view>
     <view class='content'>
       <view class='name'>{{item.name}}</view>
       <view class='des'>{{item.address}}</view>
       <view class='des door_number'>
-        <text class="text-danger">提货点：</text><input value="{{item.door_number}}" bindinput='inputAddressDes' autofocus="true" placeholder="如：2号楼3单元203" type="text" name=""/></view>
+        <text class="text-danger">门牌号：</text>
+        <input value="{{item.door_number}}" bindinput='inputAddressDes' focus='ture' placeholder="如：2号楼3单元203" type="text" name=""/></view>
 
     </view>
-    <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
+    <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="28"/></view>
   </view>
 
   <!-- <view class='address' wx:else>
@@ -42,32 +46,46 @@
     <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
   </view> -->
 
-
-  <view class='line'></view>
 </block>
-<block wx:if="{{!newAddress[0]}}">
-  <view class='add-address' wx:if="{{openLocation}}" bindtap='addAddress'>
 
-<i-button inline="true"  class="button" shape="circle" type="success"  long="true" size="large">+添加地点</i-button>
 
+<view class="center" wx:if="{{!newAddress[0]}}">
+
+<view class='button-area active marTop50 list-flex' wx:if="{{openLocation}}" bindtap='addAddress'>
+<view class="flex-item">
+
+<i-icon type="add" size="50" color="#c6c6c6" /> 
+</view>
+<view class="flex-item-5 left">
+  <view class="f18 text-default"> 添加您的提货地址 </view>
+<view class="f14 text-muted">方便买家上门取货</view>
+ </view>
 
   </view>
   <view class='get-location' wx:else>
     <button plain open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
   </view>
-</block>
-<!-- <block wx:else>
-  <view class='add-address' bindtap='addAddress'>
-    <i-button  class="button" shape="circle" type="success"  long="true" size="large">+更改地点</i-button>
-  </view>
-</block> -->
-
-
+</view>
 
 
 
 </view>
-<block wx:if="{{oldAddress.length > 0}}">
+
+
+<view bindtap='noAddress' class='button-area  marTop50 list-flex' wx:if="{{newAddress.length==0}}">
+<view class="flex-item">
+<i-icon type="success"  size="34" color="#c6c6c6" />
+</view>
+<view class="flex-item-5 left">
+  <view class="f18 text-default">快递邮寄 <text class="f14 text-muted">无提货点，邮寄方式</text> </view>
+ </view>
+
+
+</view>
+
+
+
+<!-- <block wx:if="{{oldAddress.length > 0}}">
 <view class='history'>历史记录（{{oldAddress.length}}），点击下面记录添加活动地点</view>
 <view class='session'>
 <block wx:for="{{oldAddress}}" wx:key="id">
@@ -85,7 +103,7 @@
   <view class='line'></view>
 </block>
 </view>
-</block>
+</block> -->
 
 
 

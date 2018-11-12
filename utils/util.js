@@ -235,9 +235,44 @@ const getShareImg = (goods_id, _this) => {
 
 
  /**
- * 下载保存一个文件
+ * 获取用户的地理位置 并解析出省市区
  */
 
+ const getUserloaction =function(){
+    //onload 获取地理位置
+    return new Promise((reslove,reject)=>{
+
+       wx.getLocation({
+        type: 'wgs84',
+        success: function(res) {
+          var latitude = res.latitude
+          var longitude = res.longitude
+          // var speed = res.speed
+          // var accuracy = res.accuracy
+            wx.request({
+            url:'https://apis.map.qq.com/ws/geocoder/v1/?key=FKRBZ-RK4WU-5XMV4-B44DB-D4LOH-G3F73&get_poi=1',
+            data:{
+              location:latitude+','+longitude
+            },
+            method:'get',
+            success:(res)=>{
+              reslove(Object.assign({},res.data.result.address_component,
+                {latitude,longitude}))
+            },
+            fail:(err)=>{
+             reject(err)
+            }
+
+          })
+           },
+           fail:(err)=>{
+            reject(err)
+           }
+         })
+
+    })
+
+  }
 
 
 module.exports = {
@@ -247,5 +282,6 @@ module.exports = {
   distance,
   get_painter_data_and_draw,
   getShareImg,
-  formSubmitCollectFormId
+  formSubmitCollectFormId,
+  getUserloaction
 }
