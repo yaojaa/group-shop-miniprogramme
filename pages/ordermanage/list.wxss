@@ -239,6 +239,6 @@ margin: 10px 0;
 }
 
 .copy-address{
-    padding: 3rpx 15rpx 10rpx
+    padding: 2rpx 15rpx 12rpx
 }
 

@@ -226,7 +226,7 @@ const getShareImg = (goods_id, _this) => {
 
   if(e.currentTarget.dataset.fn){
 
-    console.log(this)
+    console.log(this,e.currentTarget.dataset.fn)
       //执行原跳转事件
       this[e.currentTarget.dataset.fn](e);
   }

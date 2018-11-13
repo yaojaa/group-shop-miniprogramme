@@ -24,7 +24,7 @@
                     <view class='goods'>
                         <view class='cell'>
                             <view class='left'>{{order.spec_key_name}} x {{order.goods_num}}</view>
-                            <view class='right'><text class="warning">￥{{order.goods_price}}</text></view>
+                            <view class='right'><text >{{order.goods_price}}</text></view>
                         </view>
                     </view>
                 </view>
@@ -42,7 +42,7 @@
                             <!--订单确认后显示取货状态-->
                             <!--   <text wx:if="{{item.order_status == 1}}">{{['等待取货','已取货'][item.shipping_status]}}</text>  -->
                         </view>
-                        <view class="right">￥{{item.goods_price}}</view>
+                        <view class="right text-muted f18">￥{{item.goods_price}}</view>
                     </view>
                     <view class="yuan1"></view>
                     <view class="yuan2"></view>

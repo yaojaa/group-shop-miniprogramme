@@ -51,7 +51,7 @@
 
 <view class="center" wx:if="{{!newAddress[0]}}">
 
-<view class='button-area active marTop50 list-flex' wx:if="{{openLocation}}" bindtap='addAddress'>
+<view class="button-area {{delivery_method==2?'active':''}} marTop50 list-flex"wx:if="{{openLocation}}" bindtap='addAddress'>
 <view class="flex-item">
 
 <i-icon type="add" size="50" color="#c6c6c6" /> 
@@ -72,7 +72,7 @@
 </view>
 
 
-<view bindtap='noAddress' class='button-area  marTop50 list-flex' wx:if="{{newAddress.length==0}}">
+<view bindtap='noAddress' class="button-area {{delivery_method==1?'active':''}}  marTop50 list-flex" wx:if="{{newAddress.length==0}}">
 <view class="flex-item">
 <i-icon type="success"  size="34" color="#c6c6c6" />
 </view>

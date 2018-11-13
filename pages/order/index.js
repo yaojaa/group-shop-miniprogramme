@@ -266,7 +266,7 @@ Page({
           province_name:s.province_name,
           city_name:s.city_name,
           district_name:s.district_name,
-          mobile:s.mobile || app.globalData.userInfo.mobile || wx.getStorageSync('userInfo').mobile,
+          mobile:this.data.mobile || s.mobile || app.globalData.userInfo.mobile || wx.getStorageSync('userInfo').mobile,
           consignee:s.consignee || app.globalData.userInfo.nickname || wx.getStorageSync('userInfo').nickname
 
         })

@@ -16,16 +16,23 @@ Page({
   onLoad: function (e) {
     let _this = this;
     // this.openLocation(this);
-    this.data.delivery_method = e.delivery_method;
+    this.setData({
+      delivery_method:e.delivery_method
+    })
 
 
         //拿app.globalData的地址
+        //
+    if(e.delivery_method ==2){
+
+
     if(app.globalData.sell_address && app.globalData.sell_address.length){
       _this.setData({
         newAddress: app.globalData.sell_address
       })
     }
 
+    }
 
 
 
@@ -175,7 +182,8 @@ Page({
     var prevPage = pages[pages.length - 2];  //上一个页面
 
     prevPage.setData({
-      sell_address:this.data.newAddress
+      sell_address:this.data.newAddress,
+      delivery_method:2
     })
 
     wx.navigateBack({
