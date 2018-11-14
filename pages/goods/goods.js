@@ -119,13 +119,19 @@ Page({
                         seller_user: res.data.data.seller_user,
                         spec_goods_price: spec_goods_price,
                         delivery_method:res.data.data.goods.delivery_method,
+                        endTime: res.data.data.goods.sell_end_time,
                         countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
                     })
 
+                     //计算位置
+                if(res.data.data.goods.delivery_method ==2){
+                    this.computeDistance()
                 }
 
-                //计算位置
-                this.computeDistance()
+                }
+
+
+                
 
                // this.getOrderUserList(option.goods_id)
 
@@ -197,6 +203,10 @@ Page({
         })
     },
     getUserInfoEvt: function(e) {
+        console.log(e)
+        if(e.detail.errMsg!=="getUserInfo:ok"){
+            return wx.showToast({'title':'允许一下又不会怀孕',icon:'none'})
+        }
         app.globalData.userInfo = e.detail.userInfo
         wx.showLoading()
         app.getOpenId().then((openid)=>{
@@ -225,14 +235,17 @@ Page({
             },
             success: (res) => {
 
-                //***后两位
+             
+
+                if (res.data.code == 0) {
+
+                       //***后两位
                res.data.data.lists.map(value=>{
                     value.specs.map(val=> {
                     val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g,'*')
                     })
                 })
 
-                if (res.data.code == 0) {
                     this.setData({
                         orderUsers: res.data.data.lists
                   })
@@ -275,18 +288,15 @@ Page({
 
                     let dis = util.distance(latitude, longitude, la2, lo2)
 
-                    console.log('dis距离是',dis,this.data.delivery_method)
 
 
                     //大于3公里
                     if (dis > 3 && this.data.delivery_method == 2) {
-
                         $Message({
                             content: '温馨提醒：您的位置不在取货范围内哦',
                             type: 'warning',
-                            duration: 5
+                            duration: 3
                         })
-
                     }
 
 
@@ -355,21 +365,27 @@ Page({
         })
       },
      copyDetail() {
+        var price='规则：\n'
+        this.data.spec_goods_price.forEach((item,index)=>{
+             price+= item.key_name +' \b 💰'+item.price +"元\n目前接龙人员名单：\n"
+        })
         var userList=[]
         this.data.orderUsers.forEach((item,index)=>{
-            let spec=''
+             let spec=''
             item.specs.forEach((k,v)=>{
-               spec+=k.spec_key_name+"x"+k.goods_num+" \b "
+               spec+=k.spec_key_name+' ✖️ '+k.goods_num+'\b ' 
             })
-           userList.push((index+1)+'、'+item.user.nickname+" \b "+spec)
+           userList.push((index+1)+'.'+item.user.nickname+" \b "+spec + (item.pay_status==1?"(已付)":"") )
         })
-        var content = this.data.goods.goods_name+ "\n"+ this.data.goods.goods_content+ "\n"
-        +userList.join('\n')+"\n"+'请在小程序里接龙哦🌹'
+        var content ='团长:'+this.data.seller_user.nickname+ "帮大家开团啦～～\n"+this.data.goods.goods_name+ "\n"+ this.data.goods.goods_content+ "\n"
+        +price+userList.join('\n')+
+        "\n ⏰ 截团时间:" +util.formatTime(new Date(this.data.endTime*1000))+
+        "\n"+'为节约时间，请大家继续在小程序里接龙哦🌹'
         wx.setClipboardData({
             data:content,
             success: function(res) {
                 wx.showToast({
-                  title: '复制成功，去粘贴吧',
+                  title: '已复制去粘贴吧',
                   icon: 'success',
                   duration: 2000
                 })

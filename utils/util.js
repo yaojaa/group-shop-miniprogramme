@@ -160,7 +160,6 @@ const get_painter_data_and_draw = function(goods_id,isBuyPage){
 
 
          getUserList(goods_id,(res)=>{
-          console.log(this)
                this.setData({
                    painterData:res,
                    goods_id:goods_id
@@ -195,9 +194,6 @@ const getShareImg = (goods_id, _this) => {
       goods_id: goods_id
     },
     success: (res) => {
-
-      console.log('获取分享图片',res.data.data.shareimg)
-
       if (res.data.code == 0) {
         _this.setData({
           imagePath: res.data.data.shareimg

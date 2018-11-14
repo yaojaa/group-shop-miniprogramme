@@ -77,7 +77,22 @@ Page({
   },
   getPhoneNumber (e) { 
 
-    wx.request({
+
+    wx.checkSession({
+      success: () =>{
+        this.getMobile(e)
+      },
+      fail: ()=> {
+        // session_key 已经失效，需要重新执行登录流程
+       app.getOpenId().then( ()=> this.getMobile(e))//重新登录
+      }
+    })
+
+ 
+  } ,
+
+  getMobile(e){
+       wx.request({
       url:'https://www.daohangwa.com/api/user/get_wx_mobile',
       method:'post',
       data:{
@@ -101,6 +116,8 @@ Page({
           $Message({
              content:'哎呦出小差了，麻烦手动填写下'
           })
+
+          
        }
 
       },
@@ -110,7 +127,7 @@ Page({
           })
       }
     })
-  } ,
+  },
   mobileChange(e){
 
     this.setData({
@@ -210,7 +227,7 @@ Page({
           addressObj.province_name = map.province
           addressObj.district_name = map.district
           addressObj.city_name = map.city
-          addressObj.address = map.province+map.city+'请输入完整地址'
+          addressObj.address = map.province+map.city+'+完整地址'
           return cb(addressObj)
 
         })
@@ -266,7 +283,7 @@ Page({
           province_name:s.province_name,
           city_name:s.city_name,
           district_name:s.district_name,
-          mobile:this.data.mobile || s.mobile || app.globalData.userInfo.mobile || wx.getStorageSync('userInfo').mobile,
+          mobile:s.mobile || app.globalData.userInfo.mobile || wx.getStorageSync('userInfo').mobile,
           consignee:s.consignee || app.globalData.userInfo.nickname || wx.getStorageSync('userInfo').nickname
 
         })
@@ -316,7 +333,6 @@ Page({
     }
 
 
-
     // if(this.data.delivery_method ==1 && this.data.door_number.length<4 ){
     //   $Message({
     //     content:'请填写门牌号'
@@ -350,6 +366,8 @@ Page({
      this.setData({
       loading:true
      })
+
+     console.log(addressData)
 
      wx.request({
            method:'post',

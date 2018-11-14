@@ -61,8 +61,11 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=36",
-					"scene": "1001"
+					"query": "goods_id=51",
+					"scene": "1036",
+					"referrerInfo": {
+						"appId": "wx6ac9955f87c289f0"
+					}
 				},
 				{
 					"id": 4,

@@ -32,7 +32,7 @@
             <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
                 <block wx:for="{{imgUrls}}" wx:key="{{index}}">
                     <swiper-item>
-                        <image bindtap="imgPreview" data-list="{{imgUrls}}"  mode="aspctFit" src="{{item}}?imageView2/1/w/750/h/400/q/95" class="slide-image" />
+                        <image bindtap="imgPreview" data-list="{{imgUrls}}"  mode="widthFix" src="{{item}}?imageView2/1/w/750/h/400/q/95" class="slide-image" />
                     </swiper-item>
                 </block>
             </swiper>
@@ -80,20 +80,20 @@
 
 
         <view class='sub-title scale-b-1px'>
-            <text>介绍描述：</text>
+           <i-icon type="suspend" color="#4dc332" />介绍描述
         </view>
         <view class='goods-content'>
            <text>{{goods.goods_content}}</text> 
-
-<!--            <button bindtap='copyDetail' size="mini">复制文字接龙信息</button>
- -->        </view>
+           
+           <view><button bindtap='copyDetail' size="mini">复制文字接龙信息</button></view>
+        </view>
         <view class='sub-title scale-b-1px'>
-            最近参与:
+         <i-icon type="suspend" color="#4dc332" />最近参与
         </view>
 
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
             <i-cell  i-class="buyer-item-box">
-             <button open-type="share">
+             <button size="mini" open-type="share">
               一大波人正在赶来...去喊人
             </button>
             </i-cell>

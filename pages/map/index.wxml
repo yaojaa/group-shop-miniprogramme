@@ -63,7 +63,7 @@
 
   </view>
   <view class='get-location' wx:else>
-    <button plain open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
+    <button  open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
   </view>
 </view>
 

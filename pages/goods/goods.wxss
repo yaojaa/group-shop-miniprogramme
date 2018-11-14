@@ -29,7 +29,7 @@
 }
 
 .goods-price .price {
-    font-size: 36rpx;
+    font-size: 32rpx;
     color: #FF5757;
     padding-right: 10rpx;
 }
@@ -58,7 +58,6 @@
     margin-top: 20rpx;
     font-size: 32rpx;
     padding: 5px 0;
-/*    border-bottom: 1rpx solid #f1f1f1;*/
 }
 
 .goods-content {
@@ -354,7 +353,7 @@
     margin:10px 4px 0 0;
     padding: 6px 10px;
     display: inline-block;
-    font-size: 36rpx
+    font-size: 32rpx
 }
 
 .painter{

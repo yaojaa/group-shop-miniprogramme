@@ -13,7 +13,7 @@
         <button class="delivery_method1" open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button>
         <i-panel>
             <i-input value='{{consignee}}' id="consignee" bind:change="inputTodata" title="收货人" placeholder="请输入姓名" />
-            <i-input value="{{mobile}}" title="手机号" placeholder="请输入手机号" id="mobile" bind:change ="inputChange" />
+            <i-input value="{{mobile}}" title="手机号" placeholder="请输入手机号" id="mobile" bind:change="inputTodata" />
             <i-input value="{{ address }}" id="address" bind:change="inputTodata" type="text" title="地址" placeholder="请输收货地址(最多50字)" />
            <!--  <i-input value="" id="door_number" bind:change="inputTodata" type="textarea" title="门牌号" placeholder="楼号、门牌号" /> -->
         </i-panel>

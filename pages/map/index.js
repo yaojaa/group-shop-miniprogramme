@@ -45,7 +45,6 @@ Page({
         scope: 'scope.userLocation',
         success: (res)=> {
             util.getUserloaction().then((res)=>{
-              console.log(res)
               this.setData({
                 userLocation:res
               })
@@ -54,7 +53,6 @@ Page({
         })
       }else{
             util.getUserloaction().then((res)=>{
-              console.log(res)
 
               this.setData({
                 userLocation:res
@@ -172,7 +170,7 @@ Page({
       wx.showToast({ title: "请先添加地址", icon: "none" })
       return;
     }
-    if (!this.data.newAddress[0].door_number && this.data.delivery_method == 2) {
+    if (!this.data.newAddress[0].door_number ) {
       wx.showToast({ title: "请填写门牌号", icon: "none" })
       return;
     }
@@ -234,6 +232,8 @@ Page({
             })
 
             app.globalData.sell_address = _this.data.newAddress
+
+            console.log('_this.data.newAddress',_this.data.newAddress)
 
 
 

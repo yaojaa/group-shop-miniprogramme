@@ -68,7 +68,7 @@
             </view>
 
               <view   class="copy-address f14 scale-b-1px"  wx:if="{{delivery_method==1}}">
-              <text data-text="{{item.consignee+','+item.mobile+','+item.address+','+item.goods[0].goods_num}}" bindlongpress="copy" > 
+              <text data-text="{{item.address+','+item.consignee+','+item.mobile+','+item.goods[0].goods_num}}" bindlongpress="copy" > 
                   {{item.address}} （长按一键复制）
                </text>
            </view>
