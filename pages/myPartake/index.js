@@ -113,8 +113,6 @@ Page({
         let index = target.dataset.idx;
         let _this = this;
 
-
-        //绘制配置
         wx.login({
             success: res => {
                 var code = res.code;

@@ -18,6 +18,40 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const  countTime =(nowDate,endDate)=> {  
+
+              //获取当前时间  
+             var now =new Date(nowDate).getTime();  
+             //设置截止时间  
+             var endDate = new Date(endDate); 
+             var end = endDate.getTime();  
+
+             
+             //时间差  
+             var leftTime = end-now; 
+             //定义变量 d,h,m,s保存倒计时的时间  
+             var d,h,m,s;
+             var str = ''  
+             if (leftTime >= 0) {  
+                 d = Math.floor(leftTime/1000/60/60/24);  
+                 h = Math.floor(leftTime/1000/60/60%24);  
+                 m = Math.floor(leftTime/1000/60%60);  
+                 s = Math.floor(leftTime/1000%60);  
+
+                   //将倒计时赋值到div中  
+                 str+= d+"天";  
+                 str+= h+"时";  
+                 str+= m+"分";  
+                 str+= s+"秒";
+                 console.log(str)
+                 return str  
+
+             } else {
+              return str+='已经结束'
+             }
+           
+         }  
+
 
 //input双向绑定 注意context
 
@@ -105,9 +139,12 @@ const get_painter_data_and_draw = function(goods_id,isBuyPage){
       },
       success: (res) => {
         if (res.data.code == 0) {
-          res.data.data.lists.forEach(e => {
+            cardConfig.buyCount = res.data.data.lists.length
+          let data =res.data.data.lists.slice(0,9)
+          data.forEach(e => {
             cardConfig.headsImgArr.push(e.user.head_pic)
           })
+
          let  painterData = new Card().palette(cardConfig)
               cb(painterData)
           }
@@ -147,11 +184,14 @@ const get_painter_data_and_draw = function(goods_id,isBuyPage){
              // _content =_content.replace(reg2,"").replace(/\n/g," ")
              _content =_content.replace(/\n/g," ")
 
+          console.log('countTime',countTime( res.header.Date,new Date(res.data.data.goods.sell_end_time*1000)))
+
           let cardLocalData={
             headImg:res.data.data.seller_user.head_pic,
             userName:res.data.data.seller_user.nickname,
-            date:formatTime(new Date(res.data.data.goods.sell_end_time*1000)),
-            content:_content
+            date:countTime( res.header.Date,new Date(res.data.data.goods.sell_end_time*1000)),
+            content:_content,
+            cover:res.data.data.goods.local_cover
           }
 
           Object.assign(cardConfig,cardLocalData)

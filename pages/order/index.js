@@ -77,16 +77,22 @@ Page({
   },
   getPhoneNumber (e) { 
 
+    app.getOpenId().then(()=> this.getMobile(e))//重新登录
 
-    wx.checkSession({
-      success: () =>{
-        this.getMobile(e)
-      },
-      fail: ()=> {
-        // session_key 已经失效，需要重新执行登录流程
-       app.getOpenId().then( ()=> this.getMobile(e))//重新登录
-      }
-    })
+
+
+    // wx.checkSession({
+    //   success: () =>{
+    //     console.log('没过期')
+    //    app.getOpenId().then( ()=> this.getMobile(e))//重新登录
+    //   },
+    //   fail: ()=> {
+    //    console.log('过期了')
+
+    //     // session_key 已经失效，需要重新执行登录流程
+    //    app.getOpenId().then( ()=> this.getMobile(e))//重新登录
+    //   }
+    // })
 
  
   } ,

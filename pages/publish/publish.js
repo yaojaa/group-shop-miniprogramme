@@ -256,7 +256,7 @@ Page({
   },
   jump(){
       wx.redirectTo({
-        url:'../publish-success/publish-success?goods_id='+this.data.goods_id
+        url:'../publish-success/publish-success?goods_id='+this.data.goods_id+'&goods_name='+this.data.goods_name
      })
   },
     //提交表单
@@ -341,7 +341,8 @@ Page({
             headImg:app.globalData.userInfo.head_pic,
             userName:app.globalData.userInfo.nickname,
             date:this.data.sell_end_time,
-            content:_content
+            content:_content,
+            cover:this.data.photoUrls[0].replace('http','https')
           }
 
            wx.removeStorageSync('_card_data')

@@ -6,8 +6,11 @@
         </view>
     </view>
     <i-panel title="我参与的 ({{total}})" wx:if="{{orders.length > 0}}">
+
         <view style="padding: 5px 10px;">
-            <view class='order' wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
+            <view class="order {{item.order_status==3?'gray-all':''}}" wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
+                 
+
                 <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}" hover-class="none">
                     <view class='title'>
                         <text>{{item.goods.goods_name}} </text>
@@ -23,27 +26,36 @@
                 <view class="goodsList" wx:for="{{item.order_goods}}" wx:for-item="order" wx:key="@index">
                     <view class='goods'>
                         <view class='cell'>
-                            <view class='left'>{{order.spec_key_name}} x {{order.goods_num}}</view>
-                            <view class='right'><text >{{order.goods_price}}</text></view>
+                            <view class='left'>{{order.spec_key_name}} × {{order.goods_num}}</view>
+                            <view class='right'><text>￥{{order.goods_price}}</text></view>
                         </view>
                     </view>
                 </view>
                 <view class="user">
-                    <view class='name'>{{item.consignee}}</view>
+                    <view class='name'>{{item.consignee}} {{item.mobile}}</view>
                     <view class='date'>{{item._format_add_time}}</view>
+                    
                 </view>
+                <view class="user"> <text class='name f12' wx:if="{{item.goods.delivery_method ==1}}"> {{item.address}}   </text></view>
                 <view class='line'></view>
+
                 <view class='paycell'>
                     <view class='pay'>
                         <view class="left">
                             <!--             {{['待支付','已支付','支付失败'][item.pay_status]}} 
- --><text wx:if="{{item.pay_status == 1}}" class="success">已支付</text>
-                            <text wx:else class="danger">未支付</text>
-                            <!--订单确认后显示取货状态-->
-                            <!--   <text wx:if="{{item.order_status == 1}}">{{['等待取货','已取货'][item.shipping_status]}}</text>  -->
-                        </view>
-                        <view class="right text-muted f18">￥{{item.goods_price}}</view>
+                     --><text wx:if="{{item.pay_status == 1}}">
+                        
+                    <text  class="success"> 已支付</text>
+                    <text  class="get_number" wx:if="{{item.goods.delivery_method ==2}}">凭证序号: <text class="warning">{{item.create_number}}</text></text>
+                    </text>
+
+                    <text wx:else class="danger">未支付</text>
+
+                                                <!--订单确认后显示取货状态-->
+                                                <!--   <text wx:if="{{item.order_status == 1}}">{{['等待取货','已取货'][item.shipping_status]}}</text>  -->
                     </view>
+<!--                         <view class="right ">￥{{item.goods_price}}</view>
+ -->                    </view>
                     <view class="yuan1"></view>
                     <view class="yuan2"></view>
                 </view>
@@ -56,8 +68,10 @@
                     </view>
                 </view>
                 <i-button bindtap="confirm_order" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.shipping_status==1 && item.order_status!==2}}" type="success" size="small" long="{{fasle}}">确认已取货</i-button>
+
             </view>
         </view>
+        
     </i-panel>
     <i-message id="message" />
 </view>

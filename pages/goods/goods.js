@@ -373,7 +373,7 @@ Page({
         this.data.orderUsers.forEach((item,index)=>{
              let spec=''
             item.specs.forEach((k,v)=>{
-               spec+=k.spec_key_name+' ✖️ '+k.goods_num+'\b ' 
+               spec+=k.spec_key_name+' × '+k.goods_num+'\b ' 
             })
            userList.push((index+1)+'.'+item.user.nickname+" \b "+spec + (item.pay_status==1?"(已付)":"") )
         })

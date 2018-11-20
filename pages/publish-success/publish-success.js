@@ -12,6 +12,8 @@ Page({
 
      util.get_painter_data_and_draw.call(this,options.goods_id)
      this.data.goods_id =options.goods_id
+     this.data.goods_name =options.goods_name
+
    
   },
 
@@ -20,7 +22,7 @@ Page({
      */
    onShareAppMessage: function() {
         return {
-            title: app.globalData.userInfo.nickname + '刚刚开了一个团👍快来看看',
+            title: this.data.goods_name,
             imageUrl: this.data.imagePath,
             path: '/pages/goods/goods?goods_id=' + this.data.goods_id
             }

@@ -37,9 +37,9 @@
 
 
          </view>
-            <view class="weui-footer">
-                <view class="weui-footer__text">后期将增加更多分享图效果，我们不一样 不一样...</view>
-            </view>
+           <!--  <view class="weui-footer">
+                <view class="weui-footer__text">后期将增加更多分享图效果</view>
+            </view> -->
         </view>
     </view>
 

@@ -50,7 +50,7 @@
             <view class="number">{{item.create_number}}</view>
             <view class="user-info"><text class="name">{{item.consignee}}</text>
 
-                <text  class="tel"  bindlongpress="copy" data-text="{{item.mobile}}" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
+                <text  class="tel"  bindlongpress="calluser" data-text="{{item.mobile}}" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
             <view class="order-status">
                 <text class="state text-warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
                 <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->

@@ -1,10 +1,10 @@
 export default class LastMayday {
-  palette({ headImg, userName,  date, content, headsImgArr }) {
+  palette({ headImg, userName,  date, content, cover,buyCount,headsImgArr }) {
     return ({
       width: `${ wid }rpx`,
       height: `${ hei }rpx`,
       background: '#fff',
-      views: topArr({ headImg, userName, date, content}).concat(headArr(headsImgArr)),
+      views: topArr({ headImg, userName, date, content,cover}).concat(headArr(headsImgArr,buyCount)),
     });
   }
 }
@@ -13,9 +13,37 @@ const wid = 750;
 const hei = 600;
 const startTop = 2;
 const startLeft = 2;
-const headSize = 26;
-function topArr({ headImg, userName, date, content }){
+const headSize = 66;
+function topArr({ headImg, userName, date, content,cover,buyCount }){
+
+
+    // var realLength = 0, len = content.length, charCode = -1;
+    //          for (var i = 0; i < len; i++) {
+    //             charCode = content.charCodeAt(i);
+    //             console.log(charCode)
+    //              if (charCode >= 0 && charCode <= 128){
+    //               realLength += 1;
+    //              }else if(charCode>50000){
+    //               realLength += 1
+    //              }
+    //              else{
+    //              realLength += 2;}
+    //          }
+
   return [
+
+          //商品封面
+    {
+      type: 'image',
+      url: cover,
+      css: {
+        top: `419rpx`,
+        left:  '0rpx',
+        width: `${wid/4-13}rpx`,
+        height:`${wid/4-13}rpx`,
+        borderRadius:`${(wid/4-13)/2}rpx`
+      }
+    },
     //绘制背景边框
     // {
     //   type: 'rect',
@@ -66,10 +94,10 @@ function topArr({ headImg, userName, date, content }){
     //     maxLines: 1,
     //   },
     // },
-    //截团时间
+    //剩余时间：
     {
       type: 'text',
-      text: ` 截团时间：${ date }`,
+      text: ` 剩余时间：${ date }`,
       css: {
         top: `${startTop + 16}rpx`,
         right: `${20 + startLeft}rpx`,
@@ -82,57 +110,50 @@ function topArr({ headImg, userName, date, content }){
       type: 'text',
       text: content,
       css: {
-        top: `${startTop + 86}rpx`,
+        top: `${startTop + 84}rpx`,
         left:  '0rpx',
         color: '#000',
         fontSize: "34rpx",
         width: `${wid}rpx`,
-        maxLines: 8,
+        maxLines: 6,
         lineHeight: '55rpx'
-      },
-    },
+      }
+    }
+
   ];
 }
 
-function headArr(urlsArr) {
+function headArr(urlsArr,buyCount) {
   let heads = [];
-  let maxNum = Math.floor((wid - 2 * startLeft - 200) / 30 - 1);
-  let flag = "";
   urlsArr.forEach((e, index) => {
-    if(index < maxNum){
       heads.push({
         type: 'image',
         url: e,
         css: {
-          bottom: `${ startTop }rpx`,
-          left: `${ startLeft + 20 + 30 * index }rpx`,
+          top: '500rpx',
+          left: `${ 200  + 70 * index }rpx`,
           width: `${ headSize }rpx`,
           height: `${ headSize }rpx`,
+          borderRadius:`${ headSize}rpx`
         },
       })
-    } else if (index == maxNum && urlsArr.length > maxNum) {
-      if (maxNum < urlsArr.length) {
-        flag = "... ";
-      }
-    }
+   
   })
 
-  let txt = `${flag}已接${urlsArr.length}人`;
-  let tWid = "200rpx";
-  if(urlsArr.length == 0){
-    txt = "一大波人正在赶来...";
-    tWid = "400rpx";
-  }
-
+  let txt = '已有'+buyCount+'人参与';
+  // if(urlsArr.length == 0){
+  //   txt = "一大波人正在赶来...";
+  //   tWid = "400rpx";
+  // }
+  //
   heads.push({
     type: 'text',
     text: txt,
     css: {
-      bottom: `${ startTop + 3 }rpx`,
-      left: `${startLeft + 20 + 30 * heads.length}rpx`,
-      fontSize: '24rpx',
+      bottom: `80rpx`,
+      left: `${wid/4+18}rpx`,
+      fontSize: '28rpx',
       color: "#333",
-      width: tWid,
       lineHeight: `${headSize}rpx`,
       maxLines: 1,
     },
