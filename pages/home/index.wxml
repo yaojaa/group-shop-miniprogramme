@@ -156,19 +156,19 @@
             <navigator url="../publish/publish" hover-class="none" class="tmp-item">
                 <image class="tmp-cover" src="/img/tmp_icon2.jpg" mode="cover"></image>
                 <view class="label">
-                    <text>团苹果拉\n小区自取</text>
+                    <text>蔬菜预订\n货到付款</text>
                 </view>
             </navigator>
             <navigator url="../publish/publish" hover-class="none" class="tmp-item">
                 <image class="tmp-cover" src="/img/tmp_icon3.jpg" mode="cover"></image>
                 <view class="label">
-                    <text>团苹果拉\n小区自取</text>
+                    <text>自产大米\n送货到家</text>
                 </view>
             </navigator>
             <navigator url="../publish/publish" hover-class="none" class="tmp-item">
                 <image class="tmp-cover" src="/img/tmp_icon4.jpg" mode="cover"></image>
                 <view class="label">
-                    <text>团苹果拉\n小区自取</text>
+                    <text>玩具服饰\n快递包邮</text>
                 </view>
             </navigator>
         </view>
