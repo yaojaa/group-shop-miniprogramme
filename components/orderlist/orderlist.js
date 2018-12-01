@@ -1,12 +1,19 @@
-const app = getApp()
+// components/orderlist/orderlist.js
 const util = require('../../utils/util.js')
 const { $Message } = require('../../iView/base/index');
-Page({
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
         orders: [],
         cpage:1,
         totalpage:1,
@@ -14,13 +21,12 @@ Page({
         total:'--'
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function(options) {
-      this.getBuyList()
-    },
-    getBuyList: function() {
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+
+    getBuyList() {
 
         return new Promise((reslove,reject)=>{
 
@@ -109,28 +115,9 @@ Page({
 
         let order_id = target.dataset.id;
         let goods_id = target.dataset.goods_id;
-        let wx_collection_code = target.dataset.wx_collection_code;
-
-
-
-        let collection_methods =  target.dataset.collection_methods
 
         let index = target.dataset.idx;
         let _this = this;
-
-
-        if(collection_methods==2){
-
-        var src = wx_collection_code; //获取data-src
-        //图片预览
-        wx.previewImage({
-            current: src, // 当前显示图片的http链接
-            urls: [src] // 需要预览的图片http链接列表
-        })
-        return
-        }
-
-
 
         wx.login({
             success: res => {
@@ -185,77 +172,17 @@ Page({
             }
         })
 
-    },
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-    // 显示顶部刷新图标
-    wx.showNavigationBarLoading();
-    this.getBuyList()
-        // 隐藏导航栏加载框
-        wx.hideNavigationBarLoading();
-        // 停止下拉动作
-        wx.stopPullDownRefresh();
-  },
-
-   /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-        console.log('boottom',this.data.cpage,this.data.loading)
-        if (this.data.cpage && !this.data.loading) {
-
-            this.setData({
-                cpage: this.data.cpage + 1,  //每次触发上拉事件，把requestPageNum+1
-            })
-
-            if(this.data.cpage>this.data.totalpage){
-                return 
-            }
-
-
-             this.getBuyList().then(()=>{
-               // 隐藏导航栏加载框
-                wx.hideNavigationBarLoading();
-                // 停止下拉动作
-                wx.stopPullDownRefresh();
-            })
-        }
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
     }
+
+  },
+  lifetimes: {
+    attached: function() {
+      // 在组件实例进入页面节点树时执行
+      // this.getBuyList()
+       console.log('attached')
+    },
+    detached: function() {
+      // 在组件实例被从页面节点树移除时执行
+    },
+  }
 })

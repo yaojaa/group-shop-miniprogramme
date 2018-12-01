@@ -24,7 +24,10 @@
 
     	<view class="erweima">
 
-			<text style="font-size: 14px">提现请联系微信：yaojaa 实时到账</text>
+			<text style="font-size: 12px;line-height: 1.2">提现微信收取手续费0.6%，平台不收任何费用。
+			24小时内到账，有疑问可联系客服微信：yaojaa。
+			发布商品的时候，选择线下收款可避免手续费。
+		</text>
 
 		</view>
 

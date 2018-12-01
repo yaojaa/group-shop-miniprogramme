@@ -47,15 +47,16 @@ Page({
       store_count:'',
       }
       ],
-      orderStyle:1,
+      collection_methods:2, //(1:平台代收,2:商户微信收款码)
       visible1:false,
        actions1: [
+           
             {
-                name: '当面付款',
+                name: '先收款 微信即时支付'
             },
-            {
-                name: '在线支付'
-            }
+             {
+                name: '先统计报名 线下收款',
+            },
         ],
         actions2: [
             {
@@ -324,6 +325,7 @@ Page({
           {
             sell_address:this.data.sell_address,
             delivery_method:this.data.delivery_method,
+            collection_methods:this.data.collection_methods,
             sell_start_time:this.data.sell_start_time,
             sell_end_time :this.data.sell_end_time,
             content_imgs:this.data.content_imgs
@@ -426,11 +428,13 @@ Page({
           visible2: false
       })
     },
+
+    /**收款方式**/
     handleClickItem1 ({ detail }) {
         const index = detail.index + 1;
 
          this.setData({
-            orderStyle:index,
+            collection_methods:index,
             visible1: false
         });
     },

@@ -24,19 +24,19 @@
         <view class="count-item">
             <navigator url="../myPartake/index" hover-class="none">
                 <text class="label">我参与的</text>
-                <text class="num">{{order_number}}</text>
+                <text class="num text-primary">{{order_number}}</text>
             </navigator>
         </view>
         <view class="count-item">
             <navigator url="../myPublish/index" hover-class="none">
                 <text class="label">我发布的</text>
-                <text class="num">{{goods_number}}</text>
+                <text class="num text-primary">{{goods_number}}</text>
             </navigator>
         </view>
         <view class="count-item">
             <navigator url="../withdrawal/index" hover-class="none">
-                <text class="label">进账</text>
-                <text class="num">¥{{store_money}}</text>
+                <text class="label">余额</text>
+                <text class="num text-primary">¥{{store_money}}</text>
             </navigator>
         </view>
     </view>
@@ -79,7 +79,7 @@
                             <text class="num">￥{{item._order_amount}}</text>
                         </view>
                         <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
-                            <text class="label text-primary">订单管理</text>
+                            <text class="label ">订单管理</text>
                             <text class="num text-primary">{{item._order_count}}</text>
                         </view>
                     </view>
@@ -131,7 +131,7 @@
                      --><text wx:if="{{item.pay_status == 1}}">
                         
                     <text  class="success"> 已支付</text>
-                    <text  class="get_number" wx:if="{{item.goods.delivery_method ==2}}">凭证序号: <text class="warning">{{item.create_number}}</text></text>
+                    <text  class="get_number" wx:if="{{item.goods.delivery_method ==2}}">取货号: <text class="warning">{{item.create_number}}</text></text>
                     </text>
 
                     <text wx:else class="danger">未支付</text>
@@ -146,7 +146,10 @@
                 </view>
                 <view class="list-flex" wx:if="{{item.order_status !==3}}">
                     <view class="flex-item">
-                        <i-button bindtap="pay" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+                        <i-button bindtap="pay" 
+                         data-wx_collection_code="{{item.store.wx_collection_code}}"
+                         data-collection_methods="{{item.collection_methods}}" 
+                        data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
                     </view>
                     <view class="flex-item">
                         <i-button bindtap="cancel_order" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="default" size="small" long="{{fasle}}">取消订单</i-button>

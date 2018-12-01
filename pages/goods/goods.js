@@ -22,6 +22,7 @@ Page({
         myFormat: ['天', '时', '分', '秒'],
         orderUsers: [],
         imagePath: "",
+        collection_methods:''
     },
     onShow: function() {
 
@@ -119,6 +120,7 @@ Page({
                         seller_user: res.data.data.seller_user,
                         spec_goods_price: spec_goods_price,
                         delivery_method:res.data.data.goods.delivery_method,
+                        collection_methods:res.data.data.goods. collection_methods,
                         endTime: res.data.data.goods.sell_end_time,
                         countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
                     })
@@ -352,35 +354,38 @@ Page({
         })
 
         wx.navigateTo({
-            url: '../order/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
+            url: '../order/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method + '&collection_methods=' + this.data.goods.collection_methods
         })
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
     },
     calluser(e){
-    console.log(e)
         wx.makePhoneCall({
           phoneNumber: e.target.dataset.mobile
         })
       },
      copyDetail() {
-        var price='规则：\n'
+        var price='规格：\n'
         this.data.spec_goods_price.forEach((item,index)=>{
-             price+= item.key_name +' \b 💰'+item.price +"元\n目前接龙人员名单：\n"
+             price+= item.key_name +' \b 💰'+item.price +"元\n"
         })
         var userList=[]
+        var len = this.data.orderUsers.length
         this.data.orderUsers.forEach((item,index)=>{
              let spec=''
             item.specs.forEach((k,v)=>{
                spec+=k.spec_key_name+' × '+k.goods_num+'\b ' 
             })
-           userList.push((index+1)+'.'+item.user.nickname+" \b "+spec + (item.pay_status==1?"(已付)":"") )
+           userList.unshift((len-index)+'.'+item.user.nickname+" \b "+spec + (item.pay_status==1?"(已付)":"未付") )
         })
-        var content ='团长:'+this.data.seller_user.nickname+ "帮大家开团啦～～\n"+this.data.goods.goods_name+ "\n"+ this.data.goods.goods_content+ "\n"
-        +price+userList.join('\n')+
-        "\n ⏰ 截团时间:" +util.formatTime(new Date(this.data.endTime*1000))+
-        "\n"+'为节约时间，请大家继续在小程序里接龙哦🌹'
+        var content =this.data.goods.goods_name+ "\n"+ this.data.goods.goods_content+ "\n"
+        +price
+        +'----'+this.data.seller_user.nickname+ "\n"
+        +"⏰ 截团时间:" +util.formatTime(new Date(this.data.endTime*1000))
+        +"\n"+'为节约时间，请大家继续在小程序里接龙哦:\n'
+        +userList.join('\n')
+
         wx.setClipboardData({
             data:content,
             success: function(res) {

@@ -195,7 +195,15 @@ App({
   /***检测版本更新**/
 
   checkAppVersion(){
-    const updateManager = wx.getUpdateManager()
+
+    if(typeof wx.getUpdateManager == 'undefined' ){
+      return 
+    }
+
+
+    const updateManager = wx.getUpdateManager() || false
+
+
 
       updateManager.onCheckForUpdate(function (res) {
         // 请求完新版本信息的回调
@@ -237,7 +245,9 @@ App({
       this.userLoginReadyCallback(this.globalData.userInfo)
       }
 
-       if(option.path !=='pages/goods/goods'){
+
+
+       if(option.path !=='pages/goods/goods' && option.path!=='pages/ordermanage/list'){
                     this.redirect2Home()
        }
 

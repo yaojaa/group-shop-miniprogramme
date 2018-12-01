@@ -7,6 +7,7 @@
   "usingComponents": {
   	"i-button": "../../iView/button/index",
     "i-panel": "../../iView/panel/index",
-    "i-message": "../../iView/message/index"
+    "i-message": "../../iView/message/index",
+    "orderlist":"../../components/orderlist/orderlist"
   }
 }

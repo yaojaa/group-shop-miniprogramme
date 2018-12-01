@@ -30,9 +30,11 @@ page{
   padding: 0 15px 200rpx;
 }
 .header{
-  display: none;
-  align-items: center;
-  height: 130px;
+ align-items: center;
+  height: 100rpx;
+  text-align: center;
+  display: block;
+  line-height: 150rpx
 }
 .header .title{
   font-size: 24px;
@@ -78,7 +80,6 @@ page{
 }
 .goodsList{
   padding: 5px 20px;
-  min-height: 60px;
   overflow-y: auto;
 }
 .goodsList .goods{

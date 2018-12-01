@@ -28,6 +28,7 @@ Page({
     valid_order:{},
     totalpage:1,
     delivery_method:0,
+    sendAll:false,
     // switchOrderList:false,//折叠展开订单
     actionsConfirm: [
             {
@@ -125,6 +126,14 @@ Page({
 
         this.getOrderList()
     },
+
+    switchSendAll(e){
+
+      this.setData({
+        sendAll:e.detail.value
+      })
+
+    },
   onReady: function (e) {
 
    
@@ -216,7 +225,7 @@ Page({
       cpage:this.data.cpage,
       shipping_status:this.data.shipping_status,
       order_status:this.data.order_status,
-      pagesize:30
+      pagesize:80
       // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
       },
       success:(res) => {
@@ -311,8 +320,6 @@ Page({
   },
 
   openShipping({target}){
-
-    console.log(target)
      this.setData({
       visible2:true,
       order_id:target.dataset.id,
@@ -400,15 +407,31 @@ Page({
   setTips(e){
 
     if(this.data.note == ''){
-      this.data.note = '如：亲，您团购的商品到货啦，来我家取吧'
+
+      return wx.showToast({title:'没有输入内容',icon:'none'})
+     
     }
+
+    var order_id=''
+
+    if(this.data.sendAll){
+
+       order_id = this.data.dataList.map((item,index)=>{
+          return item.order_id
+         })
+
+
+    }else{
+      order_id = this.data.order_id
+    }
+
 
             wx.request({
             url: 'https://www.daohangwa.com/api/seller/send_tmp_msg',
             method:'post',
             data: {
                 token: app.globalData.token,
-                order_id:this.data.order_id,
+                order_id:order_id,
                 note:this.data.note,
                 type:10
             },
@@ -417,7 +440,7 @@ Page({
                     visible2:false
                    })
                  if (res.data.code == 0) {
-                        wx.showToast({ title: "提醒成功" })
+                        wx.showToast({ title: "发送成功，请不要重复提醒哦" })
                          this.setData({
                           visible5_tips: false
                     });
@@ -431,6 +454,16 @@ Page({
                     }
             }
         })
+
+  },
+
+  /**群发提醒**/
+
+  sendTipsAll(){
+
+    this.dataList.forEach()
+
+
 
   },
 

@@ -112,7 +112,8 @@ function doUpload(filePath, success, fail, options, progress, cancelTask) {
               success(dataObject);
             }
           } catch(e) {
-            console.log('parse JSON failed, origin String is: ' + dataString)
+            console.log(e)
+            console.log('parse JSON failed, origin String is: '+ typeof dataString + dataString)
             if (fail) {
               fail(e);
             }

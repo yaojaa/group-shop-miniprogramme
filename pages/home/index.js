@@ -203,12 +203,28 @@ Page({
     pay({target}) {
 
 
-      let  order_id = target.dataset.id;
-      let  goods_id = target.dataset.goods_id;
+          let order_id = target.dataset.id;
+        let goods_id = target.dataset.goods_id;
+        let wx_collection_code = target.dataset.wx_collection_code;
 
-      let index = target.dataset.idx;
-      let _this = this;     
 
+
+        let collection_methods =  target.dataset.collection_methods
+
+        let index = target.dataset.idx;
+        let _this = this;
+
+
+        if(collection_methods==2){
+
+        var src = wx_collection_code; //获取data-src
+        //图片预览
+        wx.previewImage({
+            current: src, // 当前显示图片的http链接
+            urls: [src] // 需要预览的图片http链接列表
+        })
+        return
+        }
 
       //绘制配置
        wx.login({ success: res => { 

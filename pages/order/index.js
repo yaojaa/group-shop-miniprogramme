@@ -277,6 +277,7 @@ Page({
           cover_pic:goods.cover_pic,
           goods_name:goods.goods_name,
           delivery_method:options.delivery_method,
+          collection_methods:options.collection_methods || 1
       })
 
 
@@ -373,7 +374,6 @@ Page({
       loading:true
      })
 
-     console.log(addressData)
 
      wx.request({
            method:'post',
@@ -401,12 +401,26 @@ Page({
 
               this.data.order_id = res.data.data.order_id;
 
-            this.pay(parseInt(this.data.order_id))
+               //创建订单成功
+               if(this.data.collection_methods==1){
+                   this.pay(parseInt(this.data.order_id))
+
+                 }else{
+                  this.jumpToSuccess()
+                }
+           
+
            }
               }
               )
     
   },
+
+   jumpToSuccess(){
+     wx.redirectTo({
+         url:'../paySuccess/index?order_id='+this.data.order_id+'&goods_id='+this.data.goods_id+'&collection_methods='+this.data.collection_methods
+      })
+   },
 
    pay:function(order_id) {  
 
@@ -448,9 +462,8 @@ Page({
                     this.setData({
                     loading:false
                    })
-                   wx.redirectTo({
-                         url:'../paySuccess/index?order_id='+order_id+'&goods_id='+this.data.goods_id
-                   })
+                   
+                   this.jumpToSuccess()
 
                   }
 

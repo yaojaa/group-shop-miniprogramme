@@ -13,6 +13,7 @@ Page({
         ordersInfo: '',
         order_goods: '',
         order_time: '',
+        wx_collection_code:'',
         imagePath: "",
         goods_id: "",
         create_number: 54,
@@ -42,7 +43,8 @@ Page({
         this.getOrderInfo();
 
         this.setData({
-            goods_id: options.goods_id
+            goods_id: options.goods_id,
+            collection_methods:options.collection_methods || 1
         })
 
         //开始绘制
@@ -53,11 +55,19 @@ Page({
     },
     onImgOk(e) {
 
-        console.log('成功后返回的', e)
         this.setData({
             imagePath: e.detail.path
         })
 
+    },
+    imgPreview: function(event) {
+        console.log(event.currentTarget.dataset)
+        var src = event.currentTarget.dataset.url; //获取data-src
+        //图片预览
+        wx.previewImage({
+            current: src, // 当前显示图片的http链接
+            urls: [src] // 需要预览的图片http链接列表
+        })
     },
     getOrderInfo() {
         wx.request({
@@ -73,6 +83,7 @@ Page({
                         goods_name:res.data.data.goods.goods_name,
                         order_goods: res.data.data.order_goods,
                         create_number: res.data.data.order.create_number,
+                        wx_collection_code:res.data.data.store.wx_collection_code,
                         order_time: this.timetrans(res.data.data.order.add_time)
                     })
                 }

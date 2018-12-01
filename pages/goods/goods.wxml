@@ -185,7 +185,7 @@
 
 
           <form style="flex:2"  wx:else bindsubmit="formSubmit" data-fn="buy" report-submit="true">
-                    <button class="settlement" shape="circle" formType="submit" d>下一步</button>
+                    <button class="settlement" shape="circle" formType="submit">下一步</button>
          </form> 
 
             </view>

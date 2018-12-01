@@ -15,3 +15,38 @@
 	top:52px;
 	z-index: 9;
 }
+
+.uploader__file {
+
+position:relative;
+margin:19rpx auto;
+width: 90%;
+}
+
+.uploader__file img{
+	width:100%;
+}
+.uploader__file image{
+	width:100%;
+}
+.uploader__file .close{
+  right:16rpx;
+  top:16rpx;
+  z-index: 99;
+  position: absolute;
+  background: #000;
+  width:32px;
+  height:32px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0
+}
+.weui-uploader__input-box {
+
+width:133rpx;
+height:133rpx;
+border:1px solid #d9d9d9;
+text-align: center;
+margin: 30rpx
+
+}

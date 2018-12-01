@@ -1,0 +1,47 @@
+<view class="container">
+ 
+  <view class='title'>  订单确认与收款方式：</view>
+
+  <view class='address button-area'>
+    <view class='icon-img'>
+      <i-icon type="success" size="48" color="#00af10" />
+    </view>
+    <view class='content'>
+      <view class='name'>微信实时收款</view>
+      <view class='des'>微信收取0.6%的手续费</view>
+    </view>
+  </view>
+
+  <view class='address button-area'>
+    <view class='icon-img'>
+      <i-icon type="success" size="48" color="#ddd" />
+    </view>
+    <view class='content'>
+      <view class='name'>使用微信收款码</view>
+      <view class='des'>微信 - 钱包 - 收付款 - 二维码收款</view>
+    </view>
+  </view>
+
+
+
+<!--   <view class='address button-area'>
+    <view class='icon-img'>
+      <i-icon type="success" size="48" color="#ddd" />
+    </view>
+    <view class='content'>
+      <view class='name'>先报名货到付款</view>
+      <view class='des'>后续使用微信收款码</view>
+    </view>
+  </view>
+ -->
+
+
+
+
+<i-button wx:if="{{newAddress.length}}"  i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>
+
+
+
+
+
+</view>

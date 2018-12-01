@@ -58,7 +58,7 @@
 </view>
 <view class="flex-item-5 left">
   <view class="f18 text-default"> 添加您的提货地址 </view>
-<view class="f14 text-muted">方便买家上门取货</view>
+<view class="f14 text-muted">方便参与人上门取货</view>
  </view>
 
   </view>
@@ -77,7 +77,8 @@
 <i-icon type="success"  size="34" color="#c6c6c6" />
 </view>
 <view class="flex-item-5 left">
-  <view class="f18 text-default">快递邮寄 <text class="f14 text-muted">无提货点，邮寄方式</text> </view>
+  <view class="f18 text-default"> <view>邮寄或上门送货</view>
+   <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
  </view>
 
 

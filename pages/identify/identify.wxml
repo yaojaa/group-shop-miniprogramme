@@ -1,21 +1,56 @@
 <view class="container">
+
     <view class="info-box">
-        <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">使用微信绑定的手机号</button>
+        <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">微信绑定的手机号</button>
         <i-panel title="完善你的联系方式">
             <i-input bind:change="changeMobile" value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
-            <i-input bind:change="changeWX" value="{{wxnumber}}" type="text" title="微信号" placeholder="输入您的微信账号" />
+
+              <i-input bind:change="changeMobile" value="{{wxnumber}}" type="number" title="微信号" placeholder="微信号" />
         </i-panel>
 
-    <!--     <i-panel title="上传你的微信收款码：">
+<!--         <i-panel title="微信个人或群二维码：">
           <view >
-            <image src="{{photoUrl}}" />
-              <button bindtap="chooseImage" size="mini">+上传</button>
+
+   <view  id="uploaderFiles">
+             
+      <view class="uploader__file" wx:if="{{wxnumber}}">
+         <image src="{{wxnumber}}" data-src="{{wxnumber}}"  bindtap="imgPreview" />
+       
+          <view class="close"> <i-icon  bindtap="removePhoto" color="#80848f" size="32" type="close" />
+          </view>
+       </view>
+
+                            <view  wx:if="{{!wxnumber}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
+                            </view>
+                         </view>
+
+
+
           </view>
        </i-panel> -->
+
+      <i-panel title="微信赞赏码：">
+          <view>
+            <view class="f14 text-red" style="padding: 10rpx 30rpx">注意不是收款码，否则用户无法长按识别付款。微信--钱包--收付款--赞赏码
+            </view>
+
+           <view class="uploader__file" wx:if="{{wx_collection_code}}">
+         <image mode="widthFix" src="{{wx_collection_code}}" data-src="{{wx_collection_code}}"  bindtap="imgPreview" />
+       
+          <view class="close"> <i-icon  bindtap="removePhoto" color="#80848f" size="32" type="close" />
+          </view>
+       </view>
+
+        <view  data-type="wx_collection_code" wx:if="{{!wx_collection_code}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
+         </view>
+        
+          </view>
+       </i-panel>
 
     </view>
     <view class='btn-wrap'>
         <button type="primary" bindtap="postInfo">保存</button>
-    </view>
+    </view> 
+  
 <i-message id="message" />
 </view>

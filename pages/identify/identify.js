@@ -10,7 +10,8 @@ Page({
     data: {
         mobile: '',
         wxnumber: '',
-        photoUrl:''
+        photoUrl:'',
+        wx_collection_code:''
     },
     postInfo() {
         wx.request({
@@ -20,6 +21,7 @@ Page({
                 token: app.globalData.token,
                 mobile: this.data.mobile,
                 wxnumber: this.data.wxnumber,
+                wx_collection_code:this.data.wx_collection_code,
                 session_key:wx.getStorageSync('session_key')
 
             },
@@ -71,15 +73,17 @@ Page({
         })
     },
      //上传相册
-  chooseImage:function(){
+  chooseImage:function(e){
+
+    console.log(e.currentTarget.dataset.type)
+
+    const key = e.currentTarget.dataset.type
 
       util.uploadPicture({
         successData:(result)=>{
 
-            console.log(result)
-
           this.setData({
-            photoUrl:result 
+            [key]:result 
           })
 
         },
@@ -91,6 +95,23 @@ Page({
         }
       })
   },
+
+    //预览图片
+  imgPreview: function(event) {
+        console.log(event.currentTarget.dataset)
+        var src = event.currentTarget.dataset.src; //获取data-src
+        //图片预览
+        wx.previewImage({
+            current: src, // 当前显示图片的http链接
+            urls: [src] // 需要预览的图片http链接列表
+        })
+    },
+    removePhoto(){
+
+        this.setData({
+            wx_collection_code:''
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -104,7 +125,8 @@ Page({
                 if (res.data.code == 0) {
                     this.setData({
                         mobile: res.data.data.userinfo.mobile ,
-                        wxnumber:res.data.data.userinfo.wxnumber
+                        wxnumber:res.data.data.userinfo.wxnumber,
+                        wx_collection_code:res.data.data.store.wx_collection_code
                     })
 
                 }

@@ -58,12 +58,20 @@
         </i-panel>
     </view> -->
     <view class='footer-pay'>
-        <view class='total'>需付款：
+        <view class='total'>金额：
             <text class='f20 text-red'>￥{{amountMoney}}</text>
         </view>
 
          <form style="flex:2"  disabled="{{hasgoods}}" bindsubmit="formSubmit" report-submit="true" data-fn="order2pay"> 
-                    <button disabled="{{loading}}" class="buy-btn"  shape="circle" formType="submit">立即支付</button>
+                 <button disabled="{{loading}}" class="buy-btn"  shape="circle" formType="submit">
+                    <block wx:if="{{collection_methods==1}}">
+                        立即支付
+                    </block>
+                   <block wx:if="{{collection_methods==2}}">
+                        立即参与
+                    </block>
+
+                </button>
          </form>
 
     </view>
