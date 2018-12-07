@@ -103,7 +103,7 @@ Page({
         })
         //没有传ID的情况跳转
         //
-        if(!option.goods_idn && !option.scene){
+        if(!option.goods_id && !option.scene){
 
              wx.redirectTo({
                 url:'../login/login'
