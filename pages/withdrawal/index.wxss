@@ -29,6 +29,6 @@
 }
 .erweima{
 	text-align: center;
-	margin-top: 20px;
-	line-height: 1.9
+	margin: 20px 0;
+	line-height: 1.2
 }

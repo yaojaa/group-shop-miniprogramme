@@ -24,13 +24,20 @@
 
     	<view class="erweima">
 
-			<text style="font-size: 12px;line-height: 1.2">提现微信收取手续费0.6%，平台不收任何费用。
-			24小时内到账，有疑问可联系客服微信：yaojaa。
+			<text style="font-size: 12px;">提现微信收取手续费0.6%，平台不收任何费用。
+			24小时内到账，有疑问可联系客服。
 			发布商品的时候，选择线下收款可避免手续费。
 		</text>
 
+		
+
+
 		</view>
 
+		<view class="center">
+			<button size="mini"  open-type="contact" bindcontact="handleContact">欢迎来撩</button> 
 	    <i-message id="message" />
+		</view>
+
 
 </view>
