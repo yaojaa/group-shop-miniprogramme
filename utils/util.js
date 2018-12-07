@@ -218,11 +218,6 @@ const get_painter_data_and_draw = function(goods_id,isBuyPage){
         
       }  
 
-
-
-  
-
-
 }
 
 //获取分享图片
@@ -244,6 +239,9 @@ const getShareImg = (goods_id, _this) => {
     }
   })
 }
+
+
+
 
 //收集formID
  const formSubmitCollectFormId=function (e) {
@@ -310,6 +308,66 @@ const getShareImg = (goods_id, _this) => {
 
   }
 
+const  WX = {}
+  /**封装request请求**/
+const  request =(url,data,method)=>{
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: url,
+      data: data,
+      method:method,
+      header: { 
+        'content-type': 'application/json',
+        'SID':wx.getStorageSync('SID')
+      },
+      success: function (res) {//服务器返回数据
+        if (res.statusCode == 200) {
+          resolve(res)
+        }else if(res.statusCode == 403){
+
+          reject('未登录')
+         // redirectToLogin()
+
+        } else {//返回错误提示信息
+          reject(res.data)
+        }
+      },
+      error: function (e) {
+        reject('网络出错'+e)
+      }
+    })
+  })
+}
+
+/**封装GET请求**/
+ WX.get = (url,data)=>{
+  return request(url,data,'get')
+}
+
+/**封装POST请求**/
+ WX.post = (url,data)=>{
+  return request(url,data,'POST')
+}
+
+
+/***生成小程序码**
+***返回小程序码图片路径**/
+const getQrcode = (o)=>{
+  return new Promise((resolve,reject)=>{
+  WX.post("https://www.daohangwa.com/api/common/get_xcx_qrcode", 
+    {scene:o.scene,page:o.page,width:o.width || 430}
+    )
+  .then((res)=>{
+    console.log(res,res.code)
+    if(res.data.code ==0){
+      resolve(res.data.data.qrcode_url)
+    }else{
+      reject(res.msg)
+    }
+  })
+   })
+}
+
 
 module.exports = {
   formatTime,
@@ -319,5 +377,6 @@ module.exports = {
   get_painter_data_and_draw,
   getShareImg,
   formSubmitCollectFormId,
-  getUserloaction
+  getUserloaction,
+  getQrcode
 }

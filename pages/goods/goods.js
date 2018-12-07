@@ -37,6 +37,16 @@ Page({
         if(this.data.goods_id){
             this.getOrderUserList(this.data.goods_id)
         }
+
+    util.getQrcode({
+        page:'pages/goods/goods',
+        scene:'85'
+    })
+    .then((res)=>{
+
+        console.log(res)
+    })
+    .catch(e=> console.log(e))
         
 
     },
@@ -82,6 +92,8 @@ Page({
     },
     onLoad: function(option) {
 
+        console.log(option)
+
         this.setData({
             copy:option.copy || false
         })
@@ -91,7 +103,7 @@ Page({
         })
         //没有传ID的情况跳转
         //
-        if(!option.goods_id){
+        if(!option.goods_idn && !option.scene){
 
              wx.redirectTo({
                 url:'../login/login'
@@ -103,7 +115,7 @@ Page({
 
 
 
-        this.data.goods_id = option.goods_id
+        this.data.goods_id = option.goods_id || option.scene
 
         util.getShareImg(option.goods_id, this);
 
@@ -111,7 +123,7 @@ Page({
             url: 'https://www.daohangwa.com/api/goods/get_goods_info',
             data: {
                 // token :app.globalData.token,
-                goods_id: option.goods_id
+                goods_id: this.data.goods_id
             },
             success: (res) => {
                 wx.hideLoading()
