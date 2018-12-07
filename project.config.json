@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -81,10 +81,11 @@
 					"query": "goods_id=68&delivery_method=1&collection_methods=2"
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "首页",
 					"pathName": "pages/home/index",
-					"query": ""
+					"query": "",
+					"scene": "1011"
 				},
 				{
 					"id": -1,

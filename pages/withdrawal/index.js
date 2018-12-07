@@ -53,6 +53,8 @@ Page({
                          type:'success'
                       })
 
+                       this.get_store_info()
+
                     }else{
 
                        $Message({

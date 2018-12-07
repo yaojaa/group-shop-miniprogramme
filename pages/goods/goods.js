@@ -22,7 +22,9 @@ Page({
         myFormat: ['天', '时', '分', '秒'],
         orderUsers: [],
         imagePath: "",
-        collection_methods:''
+        collection_methods:'',
+        copy:false,
+        msgvisible:false
     },
     onShow: function() {
 
@@ -69,10 +71,20 @@ Page({
             path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id
         }
     },
+    copy:function(){
+
+         wx.redirectTo({
+                url:'../publish/publish?goods_id='+this.data.goods_id
+         })
+
+
+        
+    },
     onLoad: function(option) {
 
-                console.log('onLoad....',option)
-
+        this.setData({
+            copy:option.copy || false
+        })
 
         wx.showLoading({
               title: '玩命加载中...',
@@ -125,6 +137,10 @@ Page({
                         countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
                     })
 
+                    wx.setNavigationBarTitle({
+                      title: '【'+res.data.data.seller_user.nickname +'】 '+ res.data.data.goods.goods_name//页面标题为路由参数
+                    })
+
                      //计算位置
                 if(res.data.data.goods.delivery_method ==2){
                     this.computeDistance()
@@ -143,6 +159,11 @@ Page({
     codeHide() {
         this.setData({
             code: false
+        })
+    },
+    ok_i_know(){
+        this.setData({
+            msgvisible: false
         })
     },
     codeShow() {
@@ -294,11 +315,11 @@ Page({
 
                     //大于3公里
                     if (dis > 3 && this.data.delivery_method == 2) {
-                        $Message({
-                            content: '温馨提醒：您的位置不在取货范围内哦',
-                            type: 'warning',
-                            duration: 3
-                        })
+                        setTimeout(()=>{
+                            this.setData({
+                                msgvisible:true
+                            })
+                        },3000)
                     }
 
 

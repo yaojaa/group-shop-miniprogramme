@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "⏰正在打开...",
   "usingComponents": {
     "i-icon": "../../iView/icon/index",
     "i-cell-group": "../../iView/cell-group/index",

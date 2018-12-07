@@ -47,7 +47,7 @@ Page({
       store_count:'',
       }
       ],
-      collection_methods:2, //(1:平台代收,2:商户微信收款码)
+      collection_methods:1, //(1:平台代收,2:商户微信收款码)
       visible1:false,
        actions1: [
            
@@ -302,7 +302,7 @@ Page({
            
        
         if(this.data.sell_address.length<=0){
-           wx.showModal({title:'请选择地理位置',showCancel:false})
+           wx.showModal({title:'请选择配送方式',showCancel:false})
             return false
         }
 
@@ -447,22 +447,15 @@ Page({
             visible2: false
         });
     },
-    onLoad: function (option) {
+    /**回显数据**/
 
-
-        //编辑的时候
-        if(option.goods_id){
-
-          this.setData({
-            goods_id:option.goods_id
-          })
-
-          wx.request({
+    getPublishedData(goods_id){
+        wx.request({
            method:'get',
            url: 'https://www.daohangwa.com/api/seller/get_goods_detail',
            data:{
             token :app.globalData.token,
-            goods_id:option.goods_id
+            goods_id:goods_id
            },
               success:  (res) =>{
 
@@ -482,6 +475,7 @@ Page({
                     goods_content:gs.goods_content,
                     sell_address:res.data.data.sell_address,
                     delivery_method:gs.delivery_method,
+                     collection_methods:gs.collection_methods,
                     content_imgs:gs.content_imgs || [],
                       sell_start_time:starFormatTime,
                       sell_end_time :endFormatTime,
@@ -505,6 +499,26 @@ Page({
                 }
               }
            })
+    },
+
+
+    onLoad: function (option) {
+
+
+        //编辑的时候
+        if(option.goods_id){
+
+          this.setData({
+            goods_id:option.goods_id
+          })
+
+          this.getPublishedData(option.goods_id)
+
+        }
+
+        if(option.copy){
+
+          this.getPublishedData(option.copy)
 
         }
 

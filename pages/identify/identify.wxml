@@ -31,10 +31,10 @@
 
       <i-panel title="微信赞赏码：">
           <view>
-            <view class="f14 text-red" style="padding: 10rpx 30rpx">注意不是收款码，否则用户无法长按识别付款。微信--钱包--收付款--赞赏码
+            <view class="f14 text-red" style="padding: 10rpx 30rpx">将在线下收款时启用，注意不是收款码，否则无法长按识别付款。微信--钱包--收付款--赞赏码
             </view>
 
-           <view class="uploader__file" wx:if="{{wx_collection_code}}">
+         <view class="uploader__file" wx:if="{{wx_collection_code}}">
          <image mode="widthFix" src="{{wx_collection_code}}" data-src="{{wx_collection_code}}"  bindtap="imgPreview" />
        
           <view class="close"> <i-icon  bindtap="removePhoto" color="#80848f" size="32" type="close" />

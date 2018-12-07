@@ -29,20 +29,20 @@
         <block wx:if="{{tab == 3 }}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{valid_order.spec}}">
               <view>{{item.spec_key_name}}
-                <text class="text-danger">{{item.num}}</text>件
+                <text class="text-danger">× {{item.num}}</text>
             </view>
         </view>
         </block>
         <block  wx:if="{{tab == 0}}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_0.spec}}">
              <view>{{item.spec_key_name}}
-              <text class="text-danger">{{item.num}}</text>件
+              <text class="text-danger">× {{item.num}}</text>
             </view>
         </view>
         </block>
         <block  wx:if="{{tab == 1}}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_1.spec}}"> <view>{{item.spec_key_name}}
-              <text class="text-danger">{{item.num}}</text>件</view></view>
+              <text class="text-danger">× {{item.num}}</text></view></view>
         </block>
     </view>
     <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="index" wx:for-index="bindex">

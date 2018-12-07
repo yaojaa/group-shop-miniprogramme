@@ -40,6 +40,8 @@
             </navigator>
         </view>
     </view>
+    <official-account></official-account>
+
     <i-panel title="最近发布的" wx:if="{{goodslist.length > 0}}">
         <view>
             <view class="goods-box">
@@ -56,6 +58,12 @@
                                 <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
                                     <button formType="submit" size="mini"> 修 改 </button>
                                 </form>
+
+                                  <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" data-fn="copyGoods" report-submit="true">
+                                    <button formType="submit" size="mini"> 复 制 </button>
+                                </form>
+
+
                                 <!--       <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
                                     <button formType="submit" size="mini"> 截团 </button>
                                 </form> -->
@@ -134,7 +142,11 @@
                 </view>
                 <view class="list-flex" wx:if="{{item.order_status !==3}}">
                     <view class="flex-item">
-                        <i-button bindtap="pay" data-wx_collection_code="{{item.store.wx_collection_code}}" data-collection_methods="{{item.collection_methods}}" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+                        <i-button bindtap="pay" data-wx_collection_code="{{item.store.wx_collection_code}}" data-collection_methods="{{item.collection_methods}}" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1 &&item.collection_methods ==1 }}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+
+                         <i-button disabled="true" wx:if="{{item.pay_status!==1 && item.collection_methods ==2}}"> 
+                          取货时线下支付
+                         </i-button>
                     </view>
                     <view class="flex-item">
                         <i-button bindtap="cancel_order" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="default" size="small" long="{{fasle}}">取消订单</i-button>
@@ -144,13 +156,13 @@
             </view>
         </view>
     </i-panel>
-    <view class="tmp-box">
+ <!--    <view class="tmp-box">
         <view class="tmp-hd">快速发布模板</view>
         <view class="tmp-bd">
-            <navigator url="../publish/publish" hover-class="none" class="tmp-item">
+            <navigator url="../goods/goods?goods_id=84&copy=true" hover-class="none" class="tmp-item">
                 <image class="tmp-cover" src="/img/tmp_icon1.jpg" mode="cover"></image>
                 <view class="label">
-                    <text>团苹果拉\n小区自取</text>
+                    <text>台湾鲜猪肉\n小区自取</text>
                 </view>
             </navigator>
             <navigator url="../publish/publish" hover-class="none" class="tmp-item">
@@ -172,7 +184,7 @@
                 </view>
             </navigator>
         </view>
-    </view>
+    </view> -->
     <view wx:if="{{goodslist.length == 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />

@@ -1,7 +1,15 @@
 <view class="container">
+
+
+<!-- <view class="pageloading">
+    加载中...
+</view> -->
+
+
   <view class='painter'>
     <image src="{{imagePath}}"></image>
   </view>
+  <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
     <view class="goods-sticky">
          <image class="user-avatar" src="{{seller_user.head_pic}}"></image>
         <view class="user-info">
@@ -191,6 +199,23 @@
             </view>
         </view>
     </i-action-sheet>
+
+
+     <i-modal visible="{{ msgvisible }}" show-ok="{{false}}" show-cancel="{{false}}">
+        <view class='modal-bd text-center '>
+           您的位置不在取货范围内
+        </view>
+ <view class='modal-bd text-center '>
+           请确认能取货再下单哦
+        </view>
+        <view class="modal-fd">
+
+         <form data-fn="ok_i_know" bindsubmit="formSubmit" report-submit="true">
+                <button class="btn btn-success" formType="submit"> 我知道了</button>
+        </form>
+
+        </view>
+    </i-modal>
 
 
 

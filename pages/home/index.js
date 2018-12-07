@@ -199,11 +199,20 @@ Page({
             url: '../ordermanage/list?goods_id=' + url+'&goods_name='+name+'&delivery_method='+delivery_method,
         })
   },
+  //复制商品
+  copyGoods(e){
+    const goods_id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url:'../publish/publish?copy='+goods_id
+    })
+
+
+  },
   
     pay({target}) {
 
 
-          let order_id = target.dataset.id;
+        let order_id = target.dataset.id;
         let goods_id = target.dataset.goods_id;
         let wx_collection_code = target.dataset.wx_collection_code;
 

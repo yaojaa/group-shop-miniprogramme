@@ -62,7 +62,11 @@
 
                         data-wx_collection_code="{{item.store.wx_collection_code}}"
 
-                         data-collection_methods="{{item.collection_methods}}" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+                         data-collection_methods="{{item.collection_methods}}" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1 && item.collection_methods ==1 }}" type="success" size="small" long="{{fasle}}">去支付</i-button>
+
+                           <i-button disabled="true" wx:if="{{item.pay_status!==1 && item.collection_methods ==2}}"> 
+                          取货时线下支付
+                         </i-button>
                     </view>
                     <view class="flex-item">
                         <i-button bindtap="cancel_order" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="default" size="small" long="{{fasle}}">取消订单</i-button>

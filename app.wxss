@@ -2,8 +2,8 @@
 
 .container {
   height: 100%;
-  color:#333;
-}
+  color:#333
+  }
 .main{
   padding: 26rpx;
 }

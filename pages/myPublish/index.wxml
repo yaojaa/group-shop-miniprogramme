@@ -26,6 +26,10 @@
                                 <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
                                     <button formType="submit" size="mini"> 修 改 </button>
                                 </form>
+
+                                 <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" data-fn="copyGoods" report-submit="true">
+                                   <button formType="submit" size="mini"> 复 制 </button>
+                                 </form>
                                 <!-- <i-button shape="circle" size="small" data-url="{{item.goods_id}}" bind:click="editPage" >修改</i-button> -->
                             </view>
                         </view>
