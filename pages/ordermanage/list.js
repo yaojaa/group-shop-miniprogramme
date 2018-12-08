@@ -149,6 +149,37 @@ Page({
         wx.setStorageSync('switchOrderList',detail.value)
     },
 
+
+  /**删除订单***/
+
+  removeOrder(e){
+
+    const order_id = e.target.dataset.order_id
+
+    wx.showModal({
+      title:'确定要删除吗？',
+      success:(res)=>{
+
+        if(res.confirm){
+          util.WX.post('/api/seller/delete_order',{
+            token:app.globalData.token,
+            order_id:order_id
+          }).then(res=>{
+            if(res.data.code ==0){
+              wx.showToast({title:'订单删除成功'})
+            }else{
+              wx.showToast({title:'订单删除失败'})
+
+            }
+          })
+        }
+
+      }
+    })
+
+
+  },
+
   getStatistics(){
 
        wx.request({

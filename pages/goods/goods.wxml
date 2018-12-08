@@ -5,6 +5,7 @@
     加载中...
 </view> -->
 
+    <official-account></official-account>
 
   <view class='painter'>
     <image src="{{imagePath}}"></image>

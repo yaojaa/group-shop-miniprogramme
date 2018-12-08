@@ -53,7 +53,9 @@
             <view class="order-status">
                 <text class="state text-warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
                 <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
-                <text class="state text-info" wx:if="{{item.order_status==3}}">订单已取消</text>
+                <text bindtap="removeOrder" data-order_id="{{item.order_id}}" class="state text-info" wx:if="{{item.order_status==3}}">订单已取消
+                 删除
+                </text>
                 <text class="state text-success" wx:if="{{item.order_status==2}}">已完成</text>
                 <block wx:if="{{item.order_status==1}}">
                     <text class="state text-primary">{{item.shipping_status==0?'未发货':'已发货' }}</text>

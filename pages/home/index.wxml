@@ -156,40 +156,42 @@
             </view>
         </view>
     </i-panel>
- <!--    <view class="tmp-box">
-        <view class="tmp-hd">快速发布模板</view>
-        <view class="tmp-bd">
-            <navigator url="../goods/goods?goods_id=84&copy=true" hover-class="none" class="tmp-item">
-                <image class="tmp-cover" src="/img/tmp_icon1.jpg" mode="cover"></image>
-                <view class="label">
-                    <text>台湾鲜猪肉\n小区自取</text>
-                </view>
-            </navigator>
-            <navigator url="../publish/publish" hover-class="none" class="tmp-item">
-                <image class="tmp-cover" src="/img/tmp_icon2.jpg" mode="cover"></image>
-                <view class="label">
-                    <text>蔬菜预订\n货到付款</text>
-                </view>
-            </navigator>
-            <navigator url="../publish/publish" hover-class="none" class="tmp-item">
-                <image class="tmp-cover" src="/img/tmp_icon3.jpg" mode="cover"></image>
-                <view class="label">
-                    <text>自产大米\n送货到家</text>
-                </view>
-            </navigator>
-            <navigator url="../publish/publish" hover-class="none" class="tmp-item">
-                <image class="tmp-cover" src="/img/tmp_icon4.jpg" mode="cover"></image>
-                <view class="label">
-                    <text>玩具服饰\n快递包邮</text>
-                </view>
-            </navigator>
-        </view>
-    </view> -->
-    <view wx:if="{{goodslist.length == 0}}">
+ 
+    <view wx:if="{{goodslist.length > 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />
-            <text>发布一个团购</text>
+            <text>发布一个团购 </text>
         </view>
+        <view class="tip_txt">点击下方模板可快速创建:</view>
+
+ <view class="tmp-box">
+        <view class="tmp-bd">
+            <navigator url="../publish/publish?copy=86" hover-class="none" class="tmp-item">
+                <image class="tmp-cover" src="/img/tmp_icon1.jpg" mode="cover"></image>
+                <view class="label">
+                    <text>先收款\n用户自取</text>
+                </view>
+            </navigator>
+            <navigator url="../publish/publish?copy=90" hover-class="none" class="tmp-item">
+                <image class="tmp-cover" src="/img/tmp_icon2.jpg" mode="cover"></image>
+                <view class="label">
+                    <text>先报名\n用户自取</text>
+                </view>
+            </navigator>
+            <navigator url="../publish/publish?copy=91" hover-class="none" class="tmp-item">
+                <image class="tmp-cover" src="/img/tmp_icon3.jpg" mode="cover"></image>
+                <view class="label">
+                    <text>先收款\n送货上门</text>
+                </view>
+            </navigator>
+            <navigator url="../publish/publish?copy=92" hover-class="none" class="tmp-item">
+                <image class="tmp-cover" src="/img/tmp_icon4.jpg" mode="cover"></image>
+                <view class="label">
+                    <text>先收款\n快递邮寄</text>
+                </view>
+            </navigator>
+        </view>
+    </view> 
     </view>
     <i-message id="message" />
 </view>

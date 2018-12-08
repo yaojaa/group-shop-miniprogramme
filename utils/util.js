@@ -313,7 +313,7 @@ const  WX = {}
 const  request =(url,data,method)=>{
   return new Promise((resolve, reject) => {
     wx.request({
-      url: url,
+      url:'https://www.daohangwa.com'+url,
       data: data,
       method:method,
       header: { 
@@ -354,7 +354,7 @@ const  request =(url,data,method)=>{
 ***返回小程序码图片路径**/
 const getQrcode = (o)=>{
   return new Promise((resolve,reject)=>{
-  WX.post("https://www.daohangwa.com/api/common/get_xcx_qrcode", 
+  WX.post("/api/common/get_xcx_qrcode", 
     {scene:o.scene,page:o.page,width:o.width || 430}
     )
   .then((res)=>{
@@ -378,5 +378,6 @@ module.exports = {
   getShareImg,
   formSubmitCollectFormId,
   getUserloaction,
-  getQrcode
+  getQrcode,
+  WX
 }
