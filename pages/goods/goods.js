@@ -38,13 +38,14 @@ Page({
             this.getOrderUserList(this.data.goods_id)
         }
 
+    //生成商品二维码
     util.getQrcode({
-        page:'pages/goods/goods',
-        scene:'85'
+        page:'pages/goods/goods', 
+        scene:'85'//商品ID
     })
     .then((res)=>{
 
-        console.log(res)
+        console.log('图片路径：',res) 
     })
     .catch(e=> console.log(e))
         
