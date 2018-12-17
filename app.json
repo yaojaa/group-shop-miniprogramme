@@ -1,12 +1,15 @@
 {
   "pages": [
-    "pages/login/login","pages/index/index","pages/goods/goods",
-    "pages/publish/publish", 
+    "pages/login/login",
+    "pages/example/example",
+    "pages/index/index",
+    "pages/goods/goods",
+    "pages/publish/publish",
     "pages/publish-success/publish-success",
     "pages/identify/identify",
     "pages/ordermanage/list",
     "pages/orderList/orderList",
-    "pages/orderDefault/orderDefault",   
+    "pages/orderDefault/orderDefault",
     "pages/order/index",
     "pages/home/index",
     "pages/map/index",
@@ -16,13 +19,12 @@
     "pages/myPartake/index",
     "pages/myPublish/index",
     "pages/paymethod/index"
-    ],
-
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "开心麻团儿",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle": "black",
     "backgroundColor": "#eeeeee"
-     }
+  }
 }

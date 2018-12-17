@@ -1,0 +1,3 @@
+<view class='view'>
+  <share-painter palette="{{template}}" bind:imgOK="onImgOK" />
+</view>
