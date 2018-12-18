@@ -1,16 +1,5 @@
-style{
+.style{
   position: fixed;
   left: -200%;
   top: 0;
-}
-/* 内容样式 */
-des-content{
-  position: fixed;
-  left: -200%;
-  top: 0;
-  width: 690rpx;
-  background-color: #fff;
-  z-index: 99999999;
-  font-size: 34rpx;
-  line-height: 56rpx;
 }

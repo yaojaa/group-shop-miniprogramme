@@ -1,15 +1,21 @@
 import util from '../utils/util';
 export default class LastMayday {
-  palette() {
+  palette(config) {
+    console.log('ddd',config)
+    const width = config.width || 750; //宽度
+    const imgHeight = config.goodsImg.height || 400; //商品图片高度
+    const headImgSize = config.headImg.size || 140; //头像尺寸
+    const desLeft = config.content.margin || 30; //文章两侧边距
+    const qrcodeSize = config.qrcode.size || 300; //二维码尺
     return ({
       width: `${width}rpx`,
       height: '1300rpx',
-      background: '#eee',
+      background: '#fff',
       views: [
         //商品图片
         {
           type: 'image',
-          url: '../../img/banner.jpg',
+          url: config.goodsImg.src,
           css: {
             width: `${width}rpx`,
             height: `${imgHeight}rpx`,
@@ -19,7 +25,7 @@ export default class LastMayday {
         //头像
         {
           type: 'image',
-          url: '/palette/avatar.jpg',
+          url: config.headImg.src,
           css: {
             top: `${imgHeight - headImgSize/2}rpx`,
             left: `${width/2}rpx`,
@@ -34,7 +40,7 @@ export default class LastMayday {
         //user name
         {
           type: 'text',
-          text: '开心麻麻团',
+          text: config.userName,
           css: {
             top: `${imgHeight + headImgSize/2 + 10}rpx`,
             left: `${width/2}rpx`,
@@ -46,23 +52,11 @@ export default class LastMayday {
           }
         },
         //商品描述
-        {
-          type: 'text',
-          text: '商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品商品',
-          css: {
-            top: `${imgHeight + headImgSize/2 + 80}rpx`,
-            left: `${desLeft}rpx`,
-            color: '#000',
-            fontSize: "34rpx",
-            width: `${width - desLeft*2}rpx`,
-            maxLines: 6,
-            lineHeight: '56rpx'
-          }
-        },
+        __content(config.content, imgHeight, headImgSize, width, desLeft),
         //二维码
         {
           type: 'image',
-          url: '/palette/avatar.jpg',
+          url: config.qrcode.src,
           css: {
             top: `${imgHeight + headImgSize / 2 + 90 + 220}rpx`,
             left: `${width / 2}rpx`,
@@ -75,7 +69,7 @@ export default class LastMayday {
         //长按识别二维码
         {
           type: 'text',
-          text: '开心麻麻团',
+          text: config.userName,
           css: {
             top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + 220}rpx`,
             left: `${width / 2}rpx`,
@@ -90,23 +84,28 @@ export default class LastMayday {
   }
 }
 
-const width = 750; //宽度
-const imgHeight = 400; //商品图片高度
-const headImgSize = 140; //头像尺寸
-const desLeft = 30; //文章两侧边距
-const qrcodeSize = 300; //二维码尺寸
 
-// getQrcode()
-function getQrcode(){
-  util.getQrcode({
-    page: 'pages/goods/goods',
-    scene: '85'
-  })
-  .then(res => {
-    console.log(res)
-  })
-  .catch(e => {
-    console.log(e)
-  })
+function __content(content, imgHeight, headImgSize, width, desLeft){
+  var obj = null;
+
+  content.des.forEach(e => {
+    obj = {
+      type: 'text',
+        text: e.txt,
+          css: {
+          top: `${imgHeight + headImgSize / 2 + 80}rpx`,
+          left: `${desLeft}rpx`,
+          color: '#000',
+          fontSize: "34rpx",
+          width: `${width - desLeft * 2}rpx`,
+          maxLines: 6,
+          lineHeight: '56rpx'
+      }
+    }
+  });
+
+  return obj;
+
 }
+
 

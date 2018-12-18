@@ -1,5 +1,6 @@
 const qiniuUploader = require("./qiniuUploader");
 import Card from '../palette/card';
+import shareCard from '../palette/shareCard';
 const app = getApp();
 
 const formatTime = date => {
@@ -349,7 +350,6 @@ const  request =(url,data,method)=>{
   return request(url,data,'POST')
 }
 
-
 /***生成小程序码**
 ***返回小程序码图片路径**/
 const getQrcode = (o)=>{
@@ -368,6 +368,34 @@ const getQrcode = (o)=>{
    })
 }
 
+//绘制分享朋友圈图片
+function drawShareFriends(_this){
+  var config = _this.data.shareCardConfig;
+  var height = 0;
+  getQrcode({
+    page: config.qrcode.url,
+    scene: config.qrcode.id
+  })
+  .then(res => {
+    config.qrcode.src = res;
+    wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(function (rects) {
+      rects = rects[0];
+      rects.forEach((e, i) => {
+        config.content.des[i].width = Math.ceil(e.width);
+        config.content.des[i].height = Math.ceil(e.height);
+        height += Math.ceil(e.height);
+        config.height = height;
+      })
+      _this.setData({
+        template: new shareCard().palette(config),
+      });
+    });
+  })
+  .catch(e => {
+    console.log(e)
+  })
+}
+
 
 module.exports = {
   formatTime,
@@ -379,5 +407,6 @@ module.exports = {
   formSubmitCollectFormId,
   getUserloaction,
   getQrcode,
-  WX
+  WX,
+  drawShareFriends
 }

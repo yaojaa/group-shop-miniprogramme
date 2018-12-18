@@ -1,3 +1,1 @@
-<view class='style'>
-  <canvas canvas-id="k-canvas" style="{{painterStyle}}{{customStyle}}" />
-</view>
+<canvas canvas-id="k-canvas" style="{{painterStyle}}{{customStyle}}" />

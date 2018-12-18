@@ -1,4 +1,4 @@
-import shareCard from '../../palette/shareCard';
+import util from '../../utils/util'
 
 Page({
   imagePath: '',
@@ -8,7 +8,42 @@ Page({
    */
   data: {
     template: {},
-    shareCardConfig: {},
+    shareCardConfig: {
+      width: 750,//默认750
+      goodsImg: {
+        src: '../../img/banner.jpg',
+        height: 400 //默认400
+      },
+      headImg:{
+        src: '/palette/avatar.jpg',
+        size: 140, //默认140
+      },
+      userName:'开心麻团儿',
+      content:{
+        des: [
+          {
+            txt:
+              '1111品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述'
+          },
+          {
+            txt:
+              '2222品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述'
+          },
+          {
+            txt:
+              '3333品描描述'
+          },
+          ],  //一个元素一个段落
+        margin: 30, //左右边界默认30
+      },
+      qrcode:{
+        src:'',
+        url:'pages/goods/goods',
+        id:'85',
+        size: 300 //二维码显示尺寸默认300
+      }
+
+    },
   },
 
   onImgOK(e) {
@@ -20,20 +55,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var obj = wx.createSelectorQuery();
-    obj.selectAll('.des-content').boundingClientRect();
-    obj.exec(function (rects) {
-      rects = rects[0];
-      console.log(rects)
-      console.log(rects.length)
-      rects.forEach(e => {
-        console.log(Math.ceil(e.width))
-        console.log(Math.ceil(e.height))
-        console.log('line', Math.ceil(e.height/60*670/e.width))
-      })
-    });
-    this.setData({
-      template: new shareCard().palette(),
-    });
+    util.drawShareFriends(this);
   },
 });
