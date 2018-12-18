@@ -382,8 +382,9 @@ function drawShareFriends(_this){
       rects = rects[0];
       rects.forEach((e, i) => {
         config.content.des[i].width = Math.ceil(e.width);
-        config.content.des[i].height = Math.ceil(e.height);
-        height += Math.ceil(e.height);
+        config.content.des[i].height = Math.ceil(e.height) + 5;
+        height += config.content.des[i].height;
+        // console.log(config.content.des[i].height)
         config.height = height;
       })
       _this.setData({
