@@ -381,6 +381,19 @@ function drawShareFriends(_this) {
       wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
         resolve(rects);
       })
+    }),
+    new Promise(resolve => {
+      wx.request({
+        url: 'https://www.daohangwa.com/api/goods/get_goods_info',
+        data: {
+          token: app.globalData.token,
+          goods_id: config.qrcode.id
+        },
+        success: (res) => {
+          resolve(res.data);
+        }
+
+      })
     })
   ])
     .then(res => {
@@ -401,17 +414,7 @@ function drawShareFriends(_this) {
     .catch(e => {
       console.log(e)
     });
-  wx.request({
-    url: 'https://www.daohangwa.com/api/goods/get_goods_info',
-    data: {
-      token: app.globalData.token,
-      goods_id: config.qrcode.id
-    },
-    success: (res) => {
-      console.log('goods', res);
-    }
-
-  })
+ 
 
   // getQrcode({
   //   page: config.qrcode.url,
