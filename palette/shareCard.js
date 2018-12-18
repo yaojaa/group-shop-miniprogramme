@@ -52,7 +52,7 @@ export default class LastMayday {
       //二维码
       {
         type: 'image',
-        url: config.qrcode.src,
+        url: 'https://www.daohangwa.com/public/upload/xcx_code/036efb196dee7f419bdfc90948758f1a.png',
         css: {
           top: `${imgHeight + headImgSize / 2 + 90 + config.height * dpr}rpx`,
           left: `${width / 2}rpx`,
@@ -65,7 +65,7 @@ export default class LastMayday {
       //长按识别二维码
       {
         type: 'text',
-        text: config.userName,
+        text: '长按识别二维码',
         css: {
           top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height * dpr}rpx`,
           left: `${width / 2}rpx`,
