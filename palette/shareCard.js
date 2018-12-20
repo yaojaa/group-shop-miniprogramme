@@ -94,6 +94,7 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
     for( let j = 1; j<= i; j++){
       h+=content.des[j-1].height;
     };
+    console.log('line',Math.floor(e.height / 56 * dpr));
     arr.push({
       type: 'text',
         text: e.txt,
@@ -103,7 +104,7 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
           color: '#000',
           fontSize: "34rpx",
           width: `${width - desLeft * 2}rpx`,
-          maxLines: 6,
+            maxLines: Math.ceil(e.height / 56 * dpr),
           lineHeight: '56rpx'
       }
     })

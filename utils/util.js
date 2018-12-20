@@ -377,11 +377,6 @@ function drawShareFriends(_this) {
       page: config.qrcode.url,
       scene: config.qrcode.id
     }),
-    new Promise((resolve, reject) => {
-      wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
-        resolve(rects);
-      })
-    }),
     new Promise(resolve => {
       wx.request({
         url: 'https://www.daohangwa.com/api/goods/get_goods_info',
@@ -399,17 +394,25 @@ function drawShareFriends(_this) {
     .then(res => {
       console.log(res)
       config.qrcode.src = res[0];
-      let rects = res[1][0];
-      rects.forEach((e, i) => {
-        config.content.des[i].width = Math.ceil(e.width);
-        config.content.des[i].height = Math.ceil(e.height) + 5;
-        height += config.content.des[i].height;
-
-        config.height = height;
-      })
+      config.content.des[0].txt = res[1].data.goods.goods_content;
       _this.setData({
-        template: new shareCard().palette(config),
-      });
+        shareCardConfig: _this.data.shareCardConfig
+      }); 
+      wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
+        rects = rects[0];
+        console.log(rects)
+        rects.forEach((e, i) => {
+          config.content.des[i].width = Math.ceil(e.width);
+          config.content.des[i].height = Math.ceil(e.height) + 10;
+          height += config.content.des[i].height;
+          config.height = height;
+        })
+        _this.setData({
+          template: new shareCard().palette(config),
+        });
+
+      })
+      
     })
     .catch(e => {
       console.log(e)
