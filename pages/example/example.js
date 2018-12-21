@@ -10,8 +10,8 @@ Page({
     shareCardConfig: {
       width: 750,
       goodsImg: {
-        // src: '../../img/banner.jpg',
-        height: 400 //默认400
+        src: '../../img/banner.jpg',
+        height: 380 //默认400
       },
       headImg: {
         // src: '/palette/avatar.jpg',

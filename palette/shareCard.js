@@ -54,7 +54,7 @@ export default class LastMayday {
         type: 'image',
         url: config.qrcode.src,
         css: {
-          top: `${imgHeight + headImgSize / 2 + 80 + config.height}rpx`,
+          top: `${imgHeight + headImgSize / 2 + 90 + config.height}rpx`,
           left: `${width / 2}rpx`,
           width: `${qrcodeSize}rpx`,
           height: `${qrcodeSize}rpx`,

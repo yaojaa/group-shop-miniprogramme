@@ -401,7 +401,7 @@ function drawShareFriends(_this) {
     config.content.fontSize = config.content.fontSize || 34;
     config.headImg.src = res[1].data.seller_user.head_pic;
     config.userName = res[1].data.seller_user.nickname;
-    config.goodsImg.src = res[1].data.images[0];
+    // config.goodsImg.src = res[1].data.images[0];
 
     let goods_content = res[1].data.goods.goods_content;
     //分段
