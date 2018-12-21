@@ -5,23 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgPath:'',
     template: {},
     shareCardConfig: {
-      width: 750,//默认750
+      width: 750,
       goodsImg: {
-        src: '../../img/banner.jpg',
+        // src: '../../img/banner.jpg',
         height: 400 //默认400
       },
       headImg: {
-        src: '/palette/avatar.jpg',
+        // src: '/palette/avatar.jpg',
         size: 140, //默认140
       },
       userName: '开心麻团儿',
       content: {
         des: [],  //一个元素一个段落
         margin: 30, //左右边界默认30
-        lineHeight: 70,
-        fontSize: 34,
+        lineHeight: 56,
+        fontSize: 30,
       },
       qrcode: {
         src: '',
@@ -34,6 +35,9 @@ Page({
   },
 
   onImgOK(e) {
+    this.setData({
+      imgPath: e.detail.path
+    })
     console.log('imgOk', e);
   },
 

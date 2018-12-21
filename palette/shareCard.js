@@ -1,12 +1,12 @@
 export default class LastMayday {
   palette(config) {
-    // console.log('ddd',config)
     const width = config.width || 750; //宽度
     const imgHeight = config.goodsImg.height || 400; //商品图片高度
     const headImgSize = config.headImg.size || 140; //头像尺寸
     const desLeft = config.content.margin || 30; //文章两侧边距
     const qrcodeSize = config.qrcode.size || 300; //二维码尺
-    const dpr = config.content.des[0].width ? width / (config.content.des[0].width + desLeft * 2) : 1;
+    const dpr = config.content.des[0].width ? (width - desLeft * 2) / config.content.des[0].width : 1;
+    
     const topArr = [
       //商品图片
       {
@@ -52,9 +52,9 @@ export default class LastMayday {
       //二维码
       {
         type: 'image',
-        url: 'https://www.daohangwa.com/public/upload/xcx_code/036efb196dee7f419bdfc90948758f1a.png',
+        url: config.qrcode.src,
         css: {
-          top: `${imgHeight + headImgSize / 2 + 90 + config.height * dpr}rpx`,
+          top: `${imgHeight + headImgSize / 2 + 80 + config.height}rpx`,
           left: `${width / 2}rpx`,
           width: `${qrcodeSize}rpx`,
           height: `${qrcodeSize}rpx`,
@@ -67,7 +67,7 @@ export default class LastMayday {
         type: 'text',
         text: '长按识别二维码',
         css: {
-          top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height * dpr}rpx`,
+          top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
           left: `${width / 2}rpx`,
           align: 'center',
           color: '#999',
@@ -78,7 +78,7 @@ export default class LastMayday {
     ];
     return ({
       width: `${width}rpx`,
-      height: `${imgHeight + headImgSize + config.height * dpr + qrcodeSize + 80}rpx`,
+      height: `${imgHeight + headImgSize + config.height + qrcodeSize + 80}rpx`,
       background: '#fff',
       views: topArr.concat(__content(config.content, imgHeight, headImgSize, width, desLeft, dpr), bottomArr)
     });
@@ -94,19 +94,18 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
     for( let j = 1; j<= i; j++){
       h+=content.des[j-1].height;
     };
-    console.log('line', Math.floor(e.height / content.lineHeight * dpr), e.lines);
     arr.push({
       type: 'text',
         text: e.txt,
-          css: {
-          top: `${imgHeight + headImgSize / 2 + 80 + h*dpr}rpx`,
-          left: `${desLeft}rpx`,
-          color: '#000',
-          fontSize: `${content.fontSize}rpx`,
-          width: `${width - desLeft * 2}rpx`,
-          maxLines: Math.ceil(e.height / content.lineHeight * dpr),
-          // maxlines: e.lines,
-          lineHeight: `${content.lineHeight - content.lineHeight/e.lines/dpr}rpx`
+        css: {
+        top: `${imgHeight + headImgSize / 2 + 80 + h}rpx`,
+        left: `${desLeft}rpx`,
+        color: '#000',
+        fontSize: `${content.fontSize}rpx`,
+        width: `${width - desLeft * 2}rpx`,
+        // maxLines: Math.ceil(e.height / content.lineHeight * dpr),
+        maxLines: e.lines,
+        lineHeight: `${content.lineHeight}rpx`
       }
     })
   });
