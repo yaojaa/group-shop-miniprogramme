@@ -7,7 +7,7 @@
   background-color: #fff;
   z-index: 99999999;
   font-size: 34rpx;
-  line-height: 60rpx;
+  line-height: 56rpx;
   word-break: break-all;
   word-wrap: break-word;
 }

@@ -94,7 +94,7 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
     for( let j = 1; j<= i; j++){
       h+=content.des[j-1].height;
     };
-    console.log('line',Math.floor(e.height / 56 * dpr));
+    console.log('line', Math.floor(e.height / content.lineHeight * dpr), e.lines);
     arr.push({
       type: 'text',
         text: e.txt,
@@ -102,10 +102,11 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
           top: `${imgHeight + headImgSize / 2 + 80 + h*dpr}rpx`,
           left: `${desLeft}rpx`,
           color: '#000',
-          fontSize: "34rpx",
+          fontSize: `${content.fontSize}rpx`,
           width: `${width - desLeft * 2}rpx`,
-            maxLines: Math.ceil(e.height / 56 * dpr),
-          lineHeight: '56rpx'
+          maxLines: Math.ceil(e.height / content.lineHeight * dpr),
+          // maxlines: e.lines,
+          lineHeight: `${content.lineHeight - content.lineHeight/e.lines/dpr}rpx`
       }
     })
   });

@@ -394,17 +394,30 @@ function drawShareFriends(_this) {
     .then(res => {
       console.log(res)
       config.qrcode.src = res[0];
-      config.content.des[0].txt = res[1].data.goods.goods_content;
+      // config.content.des[0].txt = res[1].data.goods.goods_content;
+      config.content.lineHeight = config.content.lineHeight || 56;
+      config.content.fontSize = config.content.fontSize || 34;
+
+      let goods_content = res[1].data.goods.goods_content;
+      //分段
+      goods_content.split(/[\r\n↵]/g).forEach((e,i) => {
+        config.content.des.push({txt:e});
+      })
+
+      //内容赋值获取高度
       _this.setData({
         shareCardConfig: _this.data.shareCardConfig
-      }); 
+      });
+
       wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
         rects = rects[0];
         console.log(rects)
         rects.forEach((e, i) => {
           config.content.des[i].width = Math.ceil(e.width);
-          config.content.des[i].height = Math.ceil(e.height) + 10;
+          config.content.des[i].lines = Math.floor(Math.ceil(e.height) / config.content.lineHeight * (config.width - config.content.margin * 2) / Math.ceil(e.width));
+          config.content.des[i].height = Math.ceil(e.height) + config.content.lineHeight * config.content.des[i].lines/4 + 2;
           height += config.content.des[i].height;
+
           config.height = height;
         })
         _this.setData({
@@ -417,31 +430,6 @@ function drawShareFriends(_this) {
     .catch(e => {
       console.log(e)
     });
- 
-
-  // getQrcode({
-  //   page: config.qrcode.url,
-  //   scene: config.qrcode.id
-  // })
-  // .then(res => {
-  //   config.qrcode.src = res;
-  //   wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(function (rects) {
-  //     rects = rects[0];
-  //     rects.forEach((e, i) => {
-  //       config.content.des[i].width = Math.ceil(e.width);
-  //       config.content.des[i].height = Math.ceil(e.height) + 5;
-  //       height += config.content.des[i].height;
-
-  //       config.height = height;
-  //     })
-  //     _this.setData({
-  //       template: new shareCard().palette(config),
-  //     });
-  //   });
-  // })
-  // .catch(e => {
-  //   console.log(e)
-  // })
 
 }
 

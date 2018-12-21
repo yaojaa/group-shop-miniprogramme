@@ -18,17 +18,15 @@ Page({
       },
       userName: '开心麻团儿',
       content: {
-        des: [
-          {
-            txt: '1111品描述商品描述商商'
-          }
-        ],  //一个元素一个段落
+        des: [],  //一个元素一个段落
         margin: 30, //左右边界默认30
+        lineHeight: 70,
+        fontSize: 34,
       },
       qrcode: {
         src: '',
         url: 'pages/goods/goods',
-        id: '85',
+        id: '125',
         size: 300 //二维码显示尺寸默认300
       }
 
