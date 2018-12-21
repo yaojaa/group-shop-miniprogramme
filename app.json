@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/example/example",
     "pages/login/login",
     "pages/index/index",
     "pages/goods/goods",
@@ -18,6 +17,7 @@
     "pages/userLocation/index",
     "pages/myPartake/index",
     "pages/myPublish/index",
+    "pages/example/example",
     "pages/paymethod/index"
   ],
   "window": {

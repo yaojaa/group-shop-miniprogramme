@@ -369,8 +369,9 @@ const getQrcode = (o)=>{
 }
 
 //绘制分享朋友圈图片
-function drawShareFriends(_this) {
+function drawShareFriendsAll(_this) {
   var config = _this.data.shareCardConfig;
+  console.log(config);
   var height = 0;
   if (!config.qrcode.id){
     return;
@@ -395,13 +396,6 @@ function drawShareFriends(_this) {
     })
   ])
   .then(res => {
-    config.qrcode.src = res[0];
-
-    config.content.lineHeight = config.content.lineHeight || 56;
-    config.content.fontSize = config.content.fontSize || 34;
-    config.headImg.src = res[1].data.seller_user.head_pic;
-    config.userName = res[1].data.seller_user.nickname;
-    // config.goodsImg.src = res[1].data.images[0];
 
     let goods_content = res[1].data.goods.goods_content;
     //分段
@@ -413,6 +407,14 @@ function drawShareFriends(_this) {
     _this.setData({
       shareCardConfig: _this.data.shareCardConfig
     }, () => {
+
+      config.qrcode.src = res[0];
+      config.content.lineHeight = config.content.lineHeight || 56;
+      config.content.fontSize = config.content.fontSize || 34;
+      config.headImg.src = res[1].data.seller_user.head_pic;
+      config.userName = res[1].data.seller_user.nickname;
+      config.goodsImg.src = res[1].data.images[0];
+
       //获取文本高度 绘制图片
       wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
         rects = rects[0];
@@ -440,6 +442,51 @@ function drawShareFriends(_this) {
   });
 }
 
+function drawShareFriends(_this,res) {
+  var config = _this.data.shareCardConfig;
+  var height = 0;
+  // res[1] = res[1].data;
+
+  let goods_content = res[1].data.goods.goods_content;
+  //分段
+  goods_content.split(/[\r\n↵]/g).forEach((e, i) => {
+    config.content.des.push({ txt: e });
+  })
+
+  //内容赋值获取高度
+  _this.setData({
+    shareCardConfig: _this.data.shareCardConfig
+  }, () => {
+
+    config.qrcode.src = res[0];
+    config.content.lineHeight = config.content.lineHeight || 56;
+    config.content.fontSize = config.content.fontSize || 34;
+    config.headImg.src = res[1].data.seller_user.head_pic;
+    config.userName = res[1].data.seller_user.nickname;
+    config.goodsImg.src = res[1].data.images[0];
+
+    //获取文本高度 绘制图片
+    wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
+      rects = rects[0];
+      let dpr = (config.width - config.content.margin * 2) / rects[0].width;
+
+      rects.forEach((e, i) => {
+        config.content.des[i].width = Math.ceil(e.width);
+        config.content.des[i].lines = Math.ceil(e.height / config.content.lineHeight * dpr);
+        config.content.des[i].height = config.content.des[i].lines * config.content.lineHeight;
+        height += config.content.des[i].height;
+
+        config.height = height;
+      })
+      _this.setData({
+        template: new shareCard().palette(config),
+      });
+
+    })
+
+  });
+}
+
 
 module.exports = {
   formatTime,
@@ -452,5 +499,6 @@ module.exports = {
   getUserloaction,
   getQrcode,
   WX,
+  drawShareFriendsAll,
   drawShareFriends
 }
