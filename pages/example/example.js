@@ -27,7 +27,7 @@ Page({
       qrcode: {
         src: '',
         url: 'pages/goods/goods',
-        id: '125',
+        id: '124',
         size: 300 //二维码显示尺寸默认300
       }
 
