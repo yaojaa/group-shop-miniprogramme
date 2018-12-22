@@ -49,9 +49,10 @@
 	  <button type='primary' open-type="share">分享查看结果</button>
   </view>
 
-    <view class='share' wx:if="{{collection_methods==2&& wx_collection_code!=''}}">
+    <view class='share' wx:if="{{collection_methods==2 && wx_collection_code}}">
     <button type='primary' bindtap="imgPreview" data-url="{{wx_collection_code}}">收款码支付 ¥{{orders_info.order_amount}}</button>
   </view>
 
-  
+      <official-account></official-account>
+
 </view>

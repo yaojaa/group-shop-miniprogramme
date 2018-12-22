@@ -369,7 +369,9 @@ Page({
                  wx.hideLoading()
                 if (res.data.code == 0) {
                   this.setData({
-                      goods_id:res.data.data.goods_id
+                      goods_id:res.data.data.goods_id,
+                      goods_name:e.detail.value.goods_name
+
                     })
                     this.jump()
 
@@ -449,7 +451,7 @@ Page({
     },
     /**回显数据**/
 
-    getPublishedData(goods_id){
+    getPublishedData(goods_id,isCopy){
         wx.request({
            method:'get',
            url: 'https://www.daohangwa.com/api/seller/get_goods_detail',
@@ -462,8 +464,8 @@ Page({
                 let d =res.data
                 let gs =res.data.data.goods
 
-                let starFormatTime = util.formatTime(new Date(gs.sell_start_time*1000))
-                let endFormatTime = util.formatTime(new Date(gs.sell_end_time*1000))
+                let starFormatTime =isCopy?default_start_time : util.formatTime(new Date(gs.sell_start_time*1000))
+                let endFormatTime = isCopy?default_end_time : util.formatTime(new Date(gs.sell_end_time*1000))
 
 
 
@@ -518,7 +520,7 @@ Page({
 
         if(option.copy){
 
-          this.getPublishedData(option.copy)
+          this.getPublishedData(option.copy,true)
 
         }
 

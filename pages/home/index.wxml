@@ -1,4 +1,17 @@
 <view class="container">
+
+
+<view class="loader" wx:if="{{is_loading}}">
+    <view class="face">
+        <view class="circle"></view>
+    </view>
+    <view class="face">
+        <view class="circle"></view>
+    </view>
+</view>
+
+
+
     <view class="head-box">
         <view class="msg-tips">
             <!-- <i-badge count="3">
@@ -18,6 +31,16 @@
         </navigator>
         <view class='add-goods' bindtap="new_btn">
             <i-icon type="add" size="20" /><text>发布团购</text>
+        </view>
+
+          <view class="waveAnimation">
+            
+            <view class="waveWrapperInner bgMiddle">
+                <view class="wave waveMiddle" style="background-image: url('http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.83GAEsZLKac0ba75e0c9c558e20911df32aa3cc7a5bd.png');"></view>
+            </view>
+            <view class="waveWrapperInner bgBottom">
+                <view class="wave waveBottom" style="background-image: url('http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.u6qLXMSLXkDQba75e0c9c558e20911df32aa3cc7a5bd.png');"></view>
+            </view>
         </view>
     </view>
     <view class="count-box">
@@ -62,17 +85,11 @@
                                   <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" data-fn="copyGoods" report-submit="true">
                                     <button formType="submit" size="mini"> 复 制 </button>
                                 </form>
-
-
-                                <!--       <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
-                                    <button formType="submit" size="mini"> 截团 </button>
-                                </form> -->
-                                <!-- <i-button shape="circle" size="small" data-url="{{item.goods_id}}" bind:click="editPage" >修改</i-button> -->
                             </view>
                         </view>
                         <view class="fd">
                             <!--                                 _expires //是否过期 1正常 2未开始 3已过期
- -->{{['','开团中','未开始','已截团'][item._expires]}}
+ -->{{['','开团中','未开始','已截团'][item._expires]}} 
                         </view>
                     </view>
                     <view class="goods-count">
@@ -89,6 +106,12 @@
                             <text class="num text-primary">{{item._order_count}}</text>
                         </view>
                     </view>
+
+                    
+                <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->
+                   
+
+
                 </view>
             </view>
         </view>
@@ -157,7 +180,7 @@
         </view>
     </i-panel>
  
-    <view wx:if="{{goodslist.length > 0}}">
+    <view wx:if="{{goodslist.length >= 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />
             <text>发布一个团购 </text>
@@ -172,7 +195,7 @@
                     <text>先收款\n用户自取</text>
                 </view>
             </navigator>
-            <navigator url="../publish/publish?copy=90" hover-class="none" class="tmp-item">
+            <navigator url="../publish/publish?copy=70" hover-class="none" class="tmp-item">
                 <image class="tmp-cover" src="/img/tmp_icon2.jpg" mode="cover"></image>
                 <view class="label">
                     <text>先报名\n用户自取</text>
@@ -184,7 +207,7 @@
                     <text>先收款\n送货上门</text>
                 </view>
             </navigator>
-            <navigator url="../publish/publish?copy=92" hover-class="none" class="tmp-item">
+            <navigator url="../publish/publish?copy=97" hover-class="none" class="tmp-item">
                 <image class="tmp-cover" src="/img/tmp_icon4.jpg" mode="cover"></image>
                 <view class="label">
                     <text>先收款\n快递邮寄</text>

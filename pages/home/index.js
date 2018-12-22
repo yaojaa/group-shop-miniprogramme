@@ -20,6 +20,7 @@ Page({
       goods_id: "",
       order_id: "",
       link_url:"",
+      is_loading:true
         
     },
 
@@ -99,7 +100,8 @@ Page({
                 if (res.data.code == 0) {
                     this.setData({
                         goodslist: res.data.data.goodslist,
-                        goods_number:res.data.data.page.total
+                        goods_number:res.data.data.page.total,
+                        is_loading:false
                     })
                 }
             }
@@ -205,6 +207,43 @@ Page({
     wx.navigateTo({
       url:'../publish/publish?copy='+goods_id
     })
+
+
+  },
+
+  rmGoods(e){
+   const goods_id = e.currentTarget.dataset.id
+
+    wx.showModal({
+  title: '确定要删除吗？',
+  success:(res)=> {
+    if (res.confirm) {
+                wx.request({
+                  url:'https://www.daohangwa.com/api/seller/goods_del',
+                  data:{
+                  token:app.globalData.token,
+                  goods_id:goods_id
+                  },
+                  success:(res)=>{
+
+                    if(res.data.code == 0){
+                      wx.showToast({
+                        title:'删除成功'
+                      })
+
+                      this.getGoodsList()
+                    }
+                  }
+                })
+    } else if (res.cancel) {
+      console.log('用户点击取消')
+    }
+  }
+})
+
+
+
+
 
 
   },
@@ -338,7 +377,7 @@ Page({
      */
     onShareAppMessage: function() {
        return {
-            title: '我' + app.globalData.userInfo.nickname + '推荐各位以后就用这个小程序开团了',
+            title: '一个开团小助理，可以方便的收款接单、管理发货，都说好用',
             imageUrl: 'http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.qr6svasJ7BWN1b8c4ad3d976fdedcbce1c383b653238.jpg',
             path: '/pages/login/login'
             }

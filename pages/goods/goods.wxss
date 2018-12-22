@@ -2,7 +2,7 @@
 
 .swiper-primary {
     width: 100%;
-    height: 400rpx;
+    height: 550rpx;
 }
 
 .swiper-primary image {
