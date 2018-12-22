@@ -1,0 +1,6 @@
+<view class='share-painter'>
+  <view class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{shareCardConfig.content.lineHeight || 56}}rpx; font-size: {{shareCardConfig.content.fontSize || 34}}rpx;' wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}">{{item.txt}}</view>
+  <share-painter palette="{{template}}" bind:imgOK="onImgOK" />
+
+  <image class='image' wx:show="{{imgPath}}" src='{{imgPath}}' mode='aspectFit'></image>
+</view>

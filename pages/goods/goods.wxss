@@ -395,5 +395,88 @@
     bottom: 0;
     right: 0;
     z-index: 99;
-    background: #c00
+    background: #c00;
+}
+.share-friends{
+  position: fixed;
+  left: 6%;
+  right: 6%;
+  top: 3%;
+  bottom: 3%;
+  padding-bottom: 45px;
+  z-index: 999999999;
+}
+.share-mark{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99999999;
+}
+.share-bottom-btn{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.share-f-btn{
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  border-radius: 20px;
+  width: 48%;
+  font-size: 14px;
+  background-color: #47b34f;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.btn-download{
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+.icon-img{
+  width: 20px;
+  height: 16px;
+  padding-bottom: 2px;
+  vertical-align: middle;
+}
+.share-friends-img{
+  height: 100%;
+}
+.share-friends-img image{
+  width: 100%;
+  height: 100%;
+}
+.share-friends-loading{
+  background-color: rgba(0,0,0,0) !important;
+  height: 80% !important;
+}
+.share-friends-loading-txt{
+  color: #fff;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.share-friends-loading-txt text{
+  padding-top: 100rpx;
+}
+
+/* 绘制分享朋友圈图片内容样式 */
+.share-painter .des-content{
+  position: fixed;
+  left: -200%;
+  top: 0;
+  width: 690rpx;
+  background-color: #fff;
+  font-size: 34rpx;
+  line-height: 56rpx;
+  word-break: break-all;
+  word-wrap: break-word;
 }

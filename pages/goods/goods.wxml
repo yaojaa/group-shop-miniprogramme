@@ -28,7 +28,7 @@
             <i-icon type="interactive" /> -->
         </view>
         <view class="share-box">
-            <button open-type="share">
+            <button bindtap='openShareFriends'>
               <image src="/img/share.png" class="wx-icon" />
             </button>
         </view>
@@ -217,6 +217,30 @@
 
         </view>
     </i-modal>
+
+    <view class='share-mark' hidden="{{!showShareFriendsCard}}"></view>
+    <view class='share-friends' hidden="{{!showShareFriendsCard}}">
+        <view class='share-friends-img'>
+          <i-spin wx:if="{{!shareFriendsImg}}" i-class='share-friends-loading' fix size="large"></i-spin>
+          <view wx:if="{{!shareFriendsImg}}" class='share-friends-loading-txt'><text>绘制中，请稍等...</text></view>
+          <image wx:if="{{shareFriendsImg}}" class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
+        </view>
+        <view class='share-bottom-btn'>
+          <button open-type="share" class="share-f-btn" type="success" bindtap='closeShareFriends'>
+            <image class='icon-img' src='../../img/wx.png' mode='aspectFit'></image>
+            <text>分享给好友</text>
+          </button>
+          <button class="share-f-btn btn-download" bindtap='savaSelfImages'>
+            <image class='icon-img' src='../../img/xz.png' mode='aspectFit'></image>
+            <text>保存到相册</text>
+          </button>
+        </view>
+    </view>
+
+    <view class='share-painter'>
+      <view class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{shareCardConfig.content.lineHeight || 56}}rpx; font-size: {{shareCardConfig.content.fontSize || 34}}rpx;' wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}">{{item.txt}}</view>
+      <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
+    </view>
 
 
 

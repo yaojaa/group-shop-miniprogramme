@@ -24,7 +24,33 @@ Page({
         imagePath: "",
         collection_methods:'',
         copy:false,
-        msgvisible:false
+        msgvisible:false,
+        showShareFriendsCard: false,
+        shareFriendsImg:'',
+      template: {},
+      shareCardConfig: {
+        width: 750,
+        goodsImg: {
+          height: 380 //默认400
+        },
+        headImg: {
+          size: 140, //默认140
+        },
+        userName: '开心麻团儿',
+        content: {
+          des: [],  //一个元素一个段落
+          margin: 30, //左右边界默认30
+          lineHeight: 52,
+          fontSize: 30,
+        },
+        qrcode: {
+          src: '',
+          url: 'pages/goods/goods',
+          id: '124',
+          size: 300 //二维码显示尺寸默认300
+        }
+
+      },
     },
     onShow: function() {
 
@@ -37,18 +63,6 @@ Page({
         if(this.data.goods_id){
             this.getOrderUserList(this.data.goods_id)
         }
-
-    //生成商品二维码
-    util.getQrcode({
-        page:'pages/goods/goods', 
-        scene:'85'//商品ID
-    })
-    .then((res)=>{
-
-        console.log('图片路径：',res) 
-    })
-    .catch(e=> console.log(e))
-        
 
     },
     onReady: function() {
@@ -81,6 +95,30 @@ Page({
             imageUrl: this.data.imagePath,
             path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id
         }
+  },
+  openShareFriends() {
+    this.setData({
+      showShareFriendsCard: true
+    })
+  },
+  closeShareFriends() {
+    this.setData({
+      showShareFriendsCard: false
+    })
+  },
+  savaSelfImages(){
+    if (this.data.shareFriendsImg) {
+      wx.saveImageToPhotosAlbum({
+        filePath: this.data.shareFriendsImg,
+      });
+      this.closeShareFriends();
+    }
+  },
+    onFriendsImgOK(e) {
+      this.setData({
+        shareFriendsImg: e.detail.path
+      })
+      console.log('imgOk', e);
     },
     copy:function(){
 
@@ -99,6 +137,7 @@ Page({
             copy:option.copy || false
         })
 
+
         wx.showLoading({
               title: '玩命加载中...',
         })
@@ -114,60 +153,126 @@ Page({
 
         }
 
-
-
         this.data.goods_id = option.goods_id || option.scene
 
         util.getShareImg(option.goods_id, this);
 
-        wx.request({
+      Promise.all([
+        util.getQrcode({
+          page: 'pages/goods/goods',
+          scene: this.data.goods_id
+        }),
+        new Promise(resolve => {
+          wx.request({
             url: 'https://www.daohangwa.com/api/goods/get_goods_info',
             data: {
-                // token :app.globalData.token,
-                goods_id: this.data.goods_id
+              // token: app.globalData.token,
+              goods_id: this.data.goods_id
             },
             success: (res) => {
-                wx.hideLoading()
-                if (res.data.code == 0) {
+              resolve(res);
+            }
 
-                    console.log(res.data.data.goods)
+          })
+        })
+      ])
+      .then(arr=>{
+        console.log('arr',arr);
+        let res = arr[1];
+        //绘制朋友圈图片
+        util.drawShareFriends(this,[arr[0], res.data]);
+        wx.hideLoading()
+        if (res.data.code == 0) {
 
-                    let spec_goods_price = res.data.data.spec_goods_price
+          console.log(res.data.data.goods)
 
-                    spec_goods_price.map(value => {
-                        value.item_num = 0
-                    })
+          let spec_goods_price = res.data.data.spec_goods_price
 
-                    this.setData({
-                        goods: res.data.data.goods,
-                        imgUrls: res.data.data.images,
-                        sell_address: res.data.data.sell_address,
-                        seller_user: res.data.data.seller_user,
-                        spec_goods_price: spec_goods_price,
-                        delivery_method:res.data.data.goods.delivery_method,
-                        collection_methods:res.data.data.goods. collection_methods,
-                        endTime: res.data.data.goods.sell_end_time,
-                        countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
-                    })
+          spec_goods_price.map(value => {
+            value.item_num = 0
+          })
 
-                    wx.setNavigationBarTitle({
-                      title: '【'+res.data.data.seller_user.nickname +'】 '+ res.data.data.goods.goods_name//页面标题为路由参数
-                    })
+          this.setData({
+            goods: res.data.data.goods,
+            imgUrls: res.data.data.images,
+            sell_address: res.data.data.sell_address,
+            seller_user: res.data.data.seller_user,
+            spec_goods_price: spec_goods_price,
+            delivery_method: res.data.data.goods.delivery_method,
+            collection_methods: res.data.data.goods.collection_methods,
+            endTime: res.data.data.goods.sell_end_time,
+            countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
+          })
 
-                     //计算位置
-                if(res.data.data.goods.delivery_method ==2){
-                    this.computeDistance()
-                }
+          wx.setNavigationBarTitle({
+            title: '【' + res.data.data.seller_user.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
+          })
 
-                }
+          //计算位置
+          if (res.data.data.goods.delivery_method == 2) {
+            this.computeDistance()
+          }
+
+        }
+
+
+
+
+      })
+      .catch(e=>{console.log(e)})
+
+        // wx.request({
+        //     url: 'https://www.daohangwa.com/api/goods/get_goods_info',
+        //     data: {
+        //         // token :app.globalData.token,
+        //         goods_id: this.data.goods_id
+        //     },
+        //     success: (res) => {
+        //         wx.hideLoading()
+        //         if (res.data.code == 0) {
+
+        //             console.log(res.data.data.goods)
+
+        //             let spec_goods_price = res.data.data.spec_goods_price
+
+        //             spec_goods_price.map(value => {
+        //                 value.item_num = 0
+        //             })
+
+        //             this.setData({
+        //                 goods: res.data.data.goods,
+        //                 imgUrls: res.data.data.images,
+        //                 sell_address: res.data.data.sell_address,
+        //                 seller_user: res.data.data.seller_user,
+        //                 spec_goods_price: spec_goods_price,
+        //                 delivery_method:res.data.data.goods.delivery_method,
+        //                 collection_methods:res.data.data.goods. collection_methods,
+        //                 endTime: res.data.data.goods.sell_end_time,
+        //                 countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
+        //             })
+
+        //             wx.setNavigationBarTitle({
+        //               title: '【'+res.data.data.seller_user.nickname +'】 '+ res.data.data.goods.goods_name//页面标题为路由参数
+        //             })
+
+        //              //计算位置
+        //         if(res.data.data.goods.delivery_method ==2){
+        //             this.computeDistance()
+        //         }
+
+        //         }
 
 
                 
 
-               // this.getOrderUserList(option.goods_id)
+        //        // this.getOrderUserList(option.goods_id)
 
-            }
-        })
+        //     }
+        // })
+
+
+
+
     },
     codeHide() {
         this.setData({

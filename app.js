@@ -165,7 +165,7 @@ App({
   },
 
   redirect2Home:function(){
-
+    
       wx.redirectTo({
         url:'/pages/home/index'
       })
