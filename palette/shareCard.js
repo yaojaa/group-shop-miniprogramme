@@ -17,7 +17,7 @@ export default class LastMayday {
         css: {
           width: `${width}rpx`,
           height: `${imgHeight}rpx`,
-          // mode: 'scaleToFill'
+          mode: 'widthFix'
         },
       },
       //头像

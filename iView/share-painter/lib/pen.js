@@ -230,22 +230,43 @@ export default class Painter {
     let rHeight;
     let startX = 0;
     let startY = 0;
-    if (view.sHeight > view.sWidth) {
-      rHeight = Math.round((view.sWidth / width) * height);
-      rWidth = view.sWidth;
-    } else {
-      rWidth = Math.round((view.sHeight / height) * width);
-      rHeight = view.sHeight;
-    }
-    if (view.sWidth > rWidth) {
-      startX = Math.round((view.sWidth - rWidth) / 2);
-    }
-    if (view.sHeight > rHeight) {
-      startY = Math.round((view.sHeight - rHeight) / 2);
-    }
-    if (view.css && view.css.mode === 'scaleToFill') {
+
+    if (view.css && view.css.mode === 'widthFix') {
+
+      if(view.sWidth / view.sHeight > width / height){
+        rWidth = Math.round((view.sHeight / height) * width);
+        rHeight = view.sHeight;
+      }else{
+        rHeight = Math.round((view.sWidth / width) * height);
+        rWidth = view.sWidth;
+      }
+
+      if (view.sWidth > rWidth) {
+        startX = Math.round((view.sWidth - rWidth) / 2);
+      }
+      if (view.sHeight > rHeight) {
+        startY = Math.round((view.sHeight - rHeight) / 2);
+      }
+
+      this.ctx.drawImage(view.url, startX, startY, rWidth, rHeight, -(width / 2), -(height / 2), width, height);
+    }else if (view.css && view.css.mode === 'scaleToFill') {
       this.ctx.drawImage(view.url, -(width / 2), -(height / 2), width, height);
     } else {
+
+      if (view.sHeight > view.sWidth) {
+        rHeight = Math.round((view.sWidth / width) * height);
+        rWidth = view.sWidth;
+      } else {
+        rWidth = Math.round((view.sHeight / height) * width);
+        rHeight = view.sHeight;
+      }
+      if (view.sWidth > rWidth) {
+        startX = Math.round((view.sWidth - rWidth) / 2);
+      }
+      if (view.sHeight > rHeight) {
+        startY = Math.round((view.sHeight - rHeight) / 2);
+      }
+
       this.ctx.drawImage(view.url, startX, startY, rWidth, rHeight, -(width / 2), -(height / 2), width, height);
     }
     this.ctx.restore();
