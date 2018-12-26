@@ -6,6 +6,8 @@ export default class LastMayday {
     const desLeft = config.content.margin || 30; //文章两侧边距
     const qrcodeSize = config.qrcode.size || 300; //二维码尺
     const dpr = config.content.des[0].width ? (width - desLeft * 2) / config.content.des[0].width : 1;
+
+    // console.log(config.goodsImg.src)
     
     const topArr = [
       //商品图片

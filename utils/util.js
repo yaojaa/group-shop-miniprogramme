@@ -463,7 +463,8 @@ function drawShareFriends(_this,res) {
     config.content.fontSize = config.content.fontSize || 34;
     config.headImg.src = res[1].data.seller_user.head_pic;
     config.userName = res[1].data.seller_user.nickname;
-    config.goodsImg.src = res[1].data.images[0];
+    // config.goodsImg.src = res[1].data.images[0];
+    config.goodsImg.src = res[1].data.goods.local_cover;
 
     //获取文本高度 绘制图片
     wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
