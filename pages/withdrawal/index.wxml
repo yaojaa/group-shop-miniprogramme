@@ -35,7 +35,7 @@
 		</view>
 
 		<view class="center">
-			<button size="mini"  open-type="contact" bindcontact="handleContact">欢迎来撩</button> 
+			<button size="mini"  open-type="contact" bindcontact="handleContact">快速提现联系客服</button> 
 	    <i-message id="message" />
 		</view>
 

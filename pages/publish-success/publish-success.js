@@ -22,7 +22,7 @@ Page({
      */
    onShareAppMessage: function() {
         return {
-            title: this.data.goods_name,
+            title: this.data.goods_name ||'我开了一个团推荐大家看看',
             imageUrl: this.data.imagePath,
             path: '/pages/goods/goods?goods_id=' + this.data.goods_id
             }

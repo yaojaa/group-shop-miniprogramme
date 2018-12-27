@@ -10,10 +10,9 @@ Page({
   data: {
 
     store_money:0,
-    inputMoney:0,
+    inputMoney:'',
     withdrawalslist:[],
     totalpage:1
-    
   },
 
   /**
@@ -66,6 +65,12 @@ Page({
             })
 
 
+    }else{
+     $Message({
+               content:'请输入金额',
+               type:'error'
+            })
+
     }
 
   },
@@ -79,8 +84,7 @@ Page({
             success: (res) => {
                 if (res.data.code == 0) {
                     this.setData({
-                        store_money: res.data.data.store_money,
-                        inputMoney:res.data.data.store_money
+                        store_money: res.data.data.store_money
                     })
                 }
             }

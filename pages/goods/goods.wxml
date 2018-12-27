@@ -41,7 +41,7 @@
             <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
                 <block wx:for="{{imgUrls}}" wx:key="{{index}}">
                     <swiper-item>
-                        <image bindtap="imgPreview" data-list="{{imgUrls}}"  mode="widthFix" src="{{item}}?imageView2/1/w/750/h/400/q/95" class="slide-image" />
+                        <image bindtap="imgPreview" data-list="{{imgUrls}}"  mode="widthFix" src="{{item}}?imageView2/1/w/750/h/550/q/95" class="slide-image" />
                     </swiper-item>
                 </block>
             </swiper>
@@ -94,7 +94,7 @@
         <view class='goods-content'>
            <text>{{goods.goods_content}}</text> 
            
-           <view><button bindtap='copyDetail' size="mini">复制文字接龙信息</button></view>
+           <view style="padding: 20rpx 0"><button bindtap='copyDetail' size="mini">生成文字接龙</button></view>
         </view>
         <view class='sub-title scale-b-1px'>
          <i-icon type="suspend" color="#4dc332" />最近参与
@@ -133,7 +133,7 @@
 
          <view wx:if="{{goods.content_imgs.length}}">
  <view class='sub-title scale-b-1px'>
-            图文介绍:
+         <i-icon type="suspend" color="#4dc332" />图文介绍
         </view>
     
     </view>
@@ -218,9 +218,9 @@
         </view>
     </i-modal>
 
-    <view class='share-mark' hidden="{{!showShareFriendsCard}}"></view>
+    <view class='share-mark' hidden="{{!showShareFriendsCard}}" bindtap='closeShareFriends'></view>
     <view class='share-friends' hidden="{{!showShareFriendsCard}}">
-        <view class='share-friends-img'>
+        <view class='share-friends-img' bindtap='closeShareFriends'>
           <i-spin wx:if="{{!shareFriendsImg}}" i-class='share-friends-loading' fix size="large"></i-spin>
           <view wx:if="{{!shareFriendsImg}}" class='share-friends-loading-txt'><text>努力生成中,请稍等...</text></view>
           <image wx:if="{{shareFriendsImg}}" class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
