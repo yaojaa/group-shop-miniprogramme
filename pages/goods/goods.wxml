@@ -218,9 +218,9 @@
         </view>
     </i-modal>
 
-    <view class='share-mark' hidden="{{!showShareFriendsCard}}"></view>
+    <view class='share-mark' hidden="{{!showShareFriendsCard}}" bindtap='closeShareFriends'></view>
     <view class='share-friends' hidden="{{!showShareFriendsCard}}">
-        <view class='share-friends-img'>
+        <view class='share-friends-img' bindtap='closeShareFriends'>
           <i-spin wx:if="{{!shareFriendsImg}}" i-class='share-friends-loading' fix size="large"></i-spin>
           <view wx:if="{{!shareFriendsImg}}" class='share-friends-loading-txt'><text>努力生成中,请稍等...</text></view>
           <image wx:if="{{shareFriendsImg}}" class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
