@@ -270,7 +270,7 @@ const getShareImg = (goods_id, _this) => {
 
 
  /**
- * 获取用户的地理位置 并解析出省市区
+ * 获取用户的地理位置 并解析出省市区 ，注意接口调用次数
  */
 
  const getUserloaction =function(){
@@ -349,6 +349,8 @@ const  request =(url,data,method)=>{
  WX.post = (url,data)=>{
   return request(url,data,'POST')
 }
+
+
 
 /***生成小程序码**
 ***返回小程序码图片路径**/
