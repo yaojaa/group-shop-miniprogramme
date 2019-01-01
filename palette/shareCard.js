@@ -109,7 +109,7 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
       h += content.des[j-1].height;
     };
     if(i == 0){
-      titleStyle.color = "#a6e4f7";
+      // titleStyle.color = "#a6e4f7";
       titleStyle.fontSize = content.title.fontSize;
       titleStyle.lineHeight = content.title.lineHeight;
       titleStyle.fontWeight = "bold";
