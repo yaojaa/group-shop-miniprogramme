@@ -238,7 +238,7 @@
     </view>
 
     <view class='share-painter'>
-      <view class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{shareCardConfig.content.lineHeight || 56}}rpx; font-size: {{shareCardConfig.content.fontSize || 34}}rpx;' wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}">{{item.txt}}</view>
+      <view wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
       <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
     </view>
 

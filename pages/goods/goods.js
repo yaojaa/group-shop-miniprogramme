@@ -42,11 +42,13 @@ Page({
           margin: 30, //左右边界默认30
           lineHeight: 52,
           fontSize: 30,
+          title:{
+            fontSize: 32,
+            lineHeight: 52,
+          },
         },
         qrcode: {
           src: '',
-          url: 'pages/goods/goods',
-          id: '124',
           size: 300 //二维码显示尺寸默认300
         }
 

@@ -70,9 +70,20 @@ export default class LastMayday {
         text: '长按识别二维码',
         css: {
           top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
-          left: `${width / 2}rpx`,
+          left: `${width / 2 - 26}rpx`,
           align: 'center',
           color: '#999',
+          fontSize: "24rpx",
+          lineHeight: '30rpx'
+        }
+      },
+      {
+        type: 'text',
+        text: '参与',
+        css: {
+          top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
+          left: `${width / 2 + 64}rpx`,
+          color: "#a6e4f7",
           fontSize: "24rpx",
           lineHeight: '30rpx'
         }
@@ -93,21 +104,29 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
 
   content.des.forEach((e,i) => {
     let h = 0;
+    let titleStyle = {};
     for( let j = 1; j<= i; j++){
-      h+=content.des[j-1].height;
+      h += content.des[j-1].height;
     };
+    if(i == 0){
+      titleStyle.color = "#a6e4f7";
+      titleStyle.fontSize = content.title.fontSize;
+      titleStyle.lineHeight = content.title.lineHeight;
+      titleStyle.fontWeight = "bold";
+    }
     arr.push({
       type: 'text',
         text: e.txt,
         css: {
         top: `${imgHeight + headImgSize / 2 + 80 + h}rpx`,
         left: `${desLeft}rpx`,
-        color: '#000',
-        fontSize: `${content.fontSize}rpx`,
+        color: titleStyle.color || '#000',
+        fontSize: `${titleStyle.fontSize || content.fontSize}rpx`,
         width: `${width - desLeft * 2}rpx`,
         // maxLines: Math.ceil(e.height / content.lineHeight * dpr),
         maxLines: e.lines,
-        lineHeight: `${content.lineHeight}rpx`
+        lineHeight: `${content.lineHeight}rpx`,
+        fontWeight: titleStyle.fontWeight || ''
       }
     })
   });
