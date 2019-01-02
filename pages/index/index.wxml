@@ -1,51 +1,45 @@
 <!--index.wxml-->
 <view class="container">
-
-  <view class="location">
-    <i-icon type="coordinates_fill" /> {{userloaction.city}} {{userloaction.district}}  {{userloaction.street_number}}  
-  </view>
-
-  <view class='product-item-container'>
-    <block wx:for="{{proList}}" wx:key="{{index}}">
-    <view class='product-item' bindtap="toDetail" data-post-id="{{item.id}}">
-     
-      <view class='item-body'>
-        <view class="item-avatar">
-         <view class="right"><i-icon type="coordinates" />0.33KM</view>
-          <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="default"></i-avatar>   <text class="user_name">{{item.user_name}}</text> 
-
-
-        </view>
-        <view class='item-title'><text>{{item.title}}</text> <text class="small">￥</text><text class='price'>{{item.price}}</text></view>
-        <view class='item-des'><text>{{item.info}}</text></view>
-        <view class="flex_box">
-        <view class='item-img flex_item' wx:for-key="idx" wx:for-item="im"  wx:for="{{item.img_list}}">
-        <image width="100" src="{{im}}"></image>
-       </view>
-          
-        </view>
-
-        <view class="buyer-list flex_box">
-          <view class="user flex_item">已有<text class="text-red">32</text>人参与</view>
-         <view class="btn flex_item"><button>立即查看</button> </view> 
-        </view>
-
-       
-
-
-      </view>
+    <view class="location flex-box align-center">
+        <i-icon type="coordinates_fill" size="16" /> 
+        <text>{{userloaction.city}} {{userloaction.district}} {{userloaction.street_number}}</text>
     </view>
-    </block>
-  </view>
-<!--   <view class='add-goods' bindtap='addGoods'>
+    <view class='product-item-container'>
+        <block wx:for="{{proList}}" wx:key="{{index}}">
+            <view class='product-item' bindtap="toDetail" data-post-id="{{item.id}}">
+                <view class='item-body'>
+                    <view class="text-justify">
+                        <view class="item-avatar">
+                            <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="default"></i-avatar> <text class="user_name f14">{{item.user_name}}</text>
+                        </view>
+                        <view>
+                            <i-icon type="coordinates" color="#999" /><text class="f12 text-muted">0.33KM</text></view>
+                    </view>
+                    <view class='item-title'><text>{{item.title}}</text> <text class="small f12 text-red">￥</text><text class='text-red'>{{item.price}}</text></view>
+                    <view class='item-des'><text>{{item.info}}</text></view>
+                    <view class="item-cover-box">
+                        <scroll-view class="item-cover-scroll" scroll-x>
+                            <view class='item-cover' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}">
+                                <image class="cover" src="{{im}}"></image>
+                            </view>
+                        </scroll-view>
+                    </view>
+                    <view class="buyer-list text-justify">
+                        <view class="user f12">已有<text class="text-red">32</text>人参与</view>
+                        <view> <button class="btn">立即查看</button></view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <!--   <view class='add-goods' bindtap='addGoods'>
   <text>+发布</text>
   </view> -->
-<view class="footer_bar"> 
-  <i-tab-bar current="nearby" color="#188f00" bindchange="handleChange">
-    <i-tab-bar-item key="nearby" icon="homepage" current-icon="homepage_fill" title="附近"></i-tab-bar-item>
-    <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
-    <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
-</i-tab-bar>
-</view>
-
+    <view class="footer_bar">
+        <i-tab-bar current="nearby" color="#188f00" bindchange="handleChange">
+            <i-tab-bar-item key="nearby" icon="homepage" current-icon="homepage_fill" title="附近"></i-tab-bar-item>
+            <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
+            <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
+        </i-tab-bar>
+    </view>
 </view>

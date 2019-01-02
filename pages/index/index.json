@@ -1,10 +1,10 @@
 {
-  "navigationBarTitleText": "开心小麻团 发现附近好货",
-  "usingComponents": {
-    "i-icon": "../../iView/icon/index",
-    "i-avatar": "../../iView/avatar/index",
-      "i-tab-bar": "../../iView/tab-bar/index",
-    "i-tab-bar-item": "../../iView/tab-bar-item/index"
-
-}
+    "navigationBarTitleText": "开心小麻团 发现附近好货",
+    "usingComponents":
+    {
+        "i-icon": "../../iView/icon/index",
+        "i-avatar": "../../iView/avatar/index",
+        "i-tab-bar": "../../iView/tab-bar/index",
+        "i-tab-bar-item": "../../iView/tab-bar-item/index"
+    }
 }

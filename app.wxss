@@ -398,6 +398,9 @@ fieldset[disabled] .btn-link {
   display: flex;
 }
 
+.flex-box{
+  display: flex;
+}
 .flex-item{
 
 flex:1;
@@ -412,7 +415,9 @@ flex:3;
 
 flex:5;
 }
-
+.align-center{
+  align-items: center;
+}
 .gray-all{
   filter:grayScale(1);
 }
