@@ -19,7 +19,7 @@
                     <view class='item-des'><text>{{item.info}}</text></view>
                     <view class="item-cover-box">
                         <scroll-view class="item-cover-scroll" scroll-x>
-                            <view class='item-cover' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}">
+                            <view class='item-cover' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
                                 <image class="cover" src="{{im}}"></image>
                             </view>
                         </scroll-view>
