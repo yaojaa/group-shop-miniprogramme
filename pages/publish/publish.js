@@ -452,9 +452,10 @@ Page({
     /**回显数据**/
 
     getPublishedData(goods_id,isCopy){
+
         wx.request({
            method:'get',
-           url: 'https://www.daohangwa.com/api/seller/get_goods_detail',
+           url: 'https://www.daohangwa.com/api/goods/get_goods_info',
            data:{
             token :app.globalData.token,
             goods_id:goods_id
@@ -507,6 +508,7 @@ Page({
     onLoad: function (option) {
 
 
+
         //编辑的时候
         if(option.goods_id){
 
@@ -514,13 +516,7 @@ Page({
             goods_id:option.goods_id
           })
 
-          this.getPublishedData(option.goods_id)
-
-        }
-
-        if(option.copy){
-
-          this.getPublishedData(option.copy,true)
+          this.getPublishedData(option.goods_id,option.copy?true:false)
 
         }
 

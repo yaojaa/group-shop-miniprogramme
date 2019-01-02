@@ -526,3 +526,10 @@ button::after {
         transform: rotate(1turn);
     }
 }
+
+.footer_bar{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999
+}

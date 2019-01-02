@@ -94,7 +94,7 @@ App({
 
   },
 
-  //获取用户信息
+  //获取微信用户信息
 
   getUserInfo:function(nocallback){
    return new Promise((resolve, reject)=>{
@@ -167,7 +167,7 @@ App({
   redirect2Home:function(){
     
       wx.redirectTo({
-        url:'/pages/home/index'
+        url:'/pages/index/index'
       })
   },
   redirectToLogin:function(){
@@ -200,10 +200,7 @@ App({
       return 
     }
 
-
     const updateManager = wx.getUpdateManager() || false
-
-
 
       updateManager.onCheckForUpdate(function (res) {
         // 请求完新版本信息的回调
@@ -245,17 +242,14 @@ App({
       this.userLoginReadyCallback(this.globalData.userInfo)
       }
 
-
-
-       if(option.path !=='pages/goods/goods' && option.path!=='pages/ordermanage/list'){
+      //从其它页面进入返回到首页
+     if(option.path !=='pages/goods/goods' && option.path!=='pages/ordermanage/list'){
                     this.redirect2Home()
        }
 
 
     /**未登录或者缓存失效用户*/
     }else{
-
-    console.log('无token')
 
      Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
       console.log('result',result)
@@ -288,8 +282,6 @@ App({
 
     }
 
-
-    console.groupEnd()
 
 
     this.checkAppVersion()
