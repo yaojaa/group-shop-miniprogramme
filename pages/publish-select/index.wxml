@@ -1,0 +1,92 @@
+<view class="container">
+<view class="bgimg">
+  <view class='title'>  快速发布团购
+</view>
+
+<view class="center">
+  <view class="button-area flex_box">
+  <view class="flex-item">
+  <i-icon type="success"  size="34" color="#c6c6c6" />
+  </view>
+  <view class="flex-item-5 left">
+    <view class="f18 text-default"> <view>邮寄或上门送货</view>
+     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+   </view>
+  </view>
+</view>
+
+<view class="center">
+  <view class="button-area flex_box">
+  <view class="flex-item">
+  <i-icon type="success"  size="34" color="#c6c6c6" />
+  </view>
+  <view class="flex-item-5 left">
+    <view class="f18 text-default"> <view>邮寄或上门送货</view>
+     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+   </view>
+  </view>
+</view>
+
+<view class="center">
+  <view class="button-area flex_box">
+  <view class="flex-item">
+  <i-icon type="success"  size="34" color="#c6c6c6" />
+  </view>
+  <view class="flex-item-5 left">
+    <view class="f18 text-default"> <view>邮寄或上门送货</view>
+     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+   </view>
+  </view>
+</view>
+
+<view class="center">
+  <view class="button-area">
+  <view class="flex-item">
+  <i-icon type="success"  size="34" color="#c6c6c6" />
+  </view>
+  <view class="flex-item-5 left">
+    <view class="f18 text-default"> <view>邮寄或上门送货</view>
+     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+   </view>
+  </view>
+</view>
+
+
+
+</view>
+
+
+
+
+
+
+<!-- <block wx:if="{{oldAddress.length > 0}}">
+<view class='history'>历史记录（{{oldAddress.length}}），点击下面记录添加活动地点</view>
+<view class='session'>
+<block wx:for="{{oldAddress}}" wx:key="id">
+  <view class='address'>
+    <view class='icon-img'>
+      <i-icon type="coordinates" />
+    </view>
+    <view class='content' data-id="{{item.id}}" bindtap='moveAddress'>
+      <view class='name'>{{item.name}}</view>
+      <view class='des'>{{item.address}}</view>
+      <view class='des' wx:if="{{item.door_number}}">提货点：{{item.door_number}}</view>
+    </view>
+    <view class='delete' bindtap='deleteAddress' data-type="old" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
+  </view>
+  <view class='line'></view>
+</block>
+</view>
+</block> -->
+
+
+
+
+<i-button wx:if="{{newAddress.length}}"  i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>
+
+
+
+
+
+</view>

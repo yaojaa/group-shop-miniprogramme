@@ -11,20 +11,23 @@
      
       <view class='item-body'>
         <view class="item-avatar">
-          <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="default"></i-avatar>  {{item.user_name}}
+         <view class="right"><i-icon type="coordinates" />0.33KM</view>
+          <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="default"></i-avatar>   <text class="user_name">{{item.user_name}}</text> 
 
-          <view class="right">剩余5小时22分</view>
+
         </view>
         <view class='item-title'><text>{{item.title}}</text> <text class="small">￥</text><text class='price'>{{item.price}}</text></view>
         <view class='item-des'><text>{{item.info}}</text></view>
-        <view class='item-tag'><text>{{item.tag}}</text></view>
-
         <view class="flex_box">
-
         <view class='item-img flex_item' wx:for-key="idx" wx:for-item="im"  wx:for="{{item.img_list}}">
         <image width="100" src="{{im}}"></image>
        </view>
           
+        </view>
+
+        <view class="buyer-list flex_box">
+          <view class="user flex_item">已有<text class="text-red">32</text>人参与</view>
+         <view class="btn flex_item"><button>立即查看</button> </view> 
         </view>
 
        
@@ -38,10 +41,10 @@
   <text>+发布</text>
   </view> -->
 <view class="footer_bar"> 
-  <i-tab-bar current="{{ 1 }}" color="#f759ab" bindchange="handleChange">
-    <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="附近"></i-tab-bar-item>
-    <i-tab-bar-item key="remind" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
-    <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
+  <i-tab-bar current="nearby" color="#188f00" bindchange="handleChange">
+    <i-tab-bar-item key="nearby" icon="homepage" current-icon="homepage_fill" title="附近"></i-tab-bar-item>
+    <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
+    <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
 </i-tab-bar>
 </view>
 

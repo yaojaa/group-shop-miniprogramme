@@ -1,0 +1,60 @@
+.container{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  padding: 10px 0 60px;
+  box-sizing: border-box;
+  font-size: 14px;
+  overflow-y: scroll;
+}
+.session{
+  background-color: #fff;
+}
+
+
+
+button.button{
+  background: #1aad19 !important;
+  width: 86%;
+  font-size: 16px;
+  display: block;
+  margin: 88rpx auto;
+  border-radius: 10rpx
+}
+.get-location button{
+  border: none;
+  font-size: 14px;
+  color: #999;
+  height: 50px;
+  line-height: 40px;
+  text-align: left;
+  padding-left: 15px;
+}
+.get-location button .icon{
+  font-size: 20px;
+}
+
+.address .content .door_number{
+  font-size: 26rpx;
+  margin-top: 10px
+}
+.address .content .door_number input{
+  font-size: 32rpx;
+  color:#333;
+}
+
+.marTop50{
+  margin-top: 60rpx
+}
+
+.title{
+  font-weight: bold;
+  font-size: 32rpx;
+  margin: 30rpx 0 40rpx 80rpx
+}
+
+.flex_box{
+  display: flex;
+}

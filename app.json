@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/goods/goods",
     "pages/publish/publish",
+    "pages/publish-select/index",
     "pages/publish-success/publish-success",
     "pages/identify/identify",
     "pages/ordermanage/list",

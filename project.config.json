@@ -61,7 +61,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=123&copy=123",
+					"query": "goods_id=133&copy=123",
 					"scene": "1001"
 				},
 				{

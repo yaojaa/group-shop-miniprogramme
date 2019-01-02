@@ -217,4 +217,15 @@
     </view> 
     </view>
     <i-message id="message" />
+
+ <view class="footer_bar"> 
+  <i-tab-bar current="home" color="#188f00" bindchange="handleChange">
+    <i-tab-bar-item key="nearby" icon="homepage" current-icon="homepage_fill" title="附近"></i-tab-bar-item>
+    <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
+    <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
+ </i-tab-bar>
+</view>
+
+
+
 </view>
