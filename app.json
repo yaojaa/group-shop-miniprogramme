@@ -19,7 +19,8 @@
     "pages/myPartake/index",
     "pages/myPublish/index",
     "pages/example/example",
-    "pages/paymethod/index"
+    "pages/paymethod/index",
+    "pages/userhome/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

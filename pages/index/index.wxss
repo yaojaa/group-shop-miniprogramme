@@ -56,7 +56,7 @@
 }
 .buyer-list button{
   background: #49b34d;
-  box-shadow: 0 3px 12px rgba(59,202,70,0.43);
+/*  box-shadow: 0 3px 12px rgba(59,202,70,0.43);*/
   color:#FFF;
 }
 
@@ -64,4 +64,18 @@
   position: fixed;
   bottom: 0;
   width: 100%
+}
+.avatar-group{
+  display: flex;
+  padding-left: 10rpx;
+}
+.avatar-group .avatar{
+  width: 54rpx;
+  height: 54rpx;
+  border-radius: 50%;
+  margin-left: -10rpx;
+  border:4rpx solid #fff;
+}
+.ml-xs{
+  margin-left: 6rpx;
 }

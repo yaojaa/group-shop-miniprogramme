@@ -80,6 +80,9 @@
   overflow: hidden;
 }
 
+.text-hide.two {
+  -webkit-line-clamp: 2;
+}
 .text-white{
   color:#fff;
 }
