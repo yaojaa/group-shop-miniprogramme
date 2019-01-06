@@ -58,3 +58,14 @@ button.button{
 .flex_box{
   display: flex;
 }
+
+.tmp-cover {
+    width: 100rpx;
+    height: 100rpx;
+    vertical-align: top;
+    margin-right:20rpx
+}
+
+.button-area{
+  margin:40rpx auto
+}

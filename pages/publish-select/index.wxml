@@ -1,28 +1,19 @@
 <view class="container">
 <view class="bgimg">
-  <view class='title'>  快速发布团购
+  <view class='title'>  快速发布，选择你喜欢的开团方式：
 </view>
 
 <view class="center">
   <view class="button-area flex_box">
   <view class="flex-item">
-  <i-icon type="success"  size="34" color="#c6c6c6" />
-  </view>
-  <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>邮寄或上门送货</view>
-     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
-   </view>
-  </view>
-</view>
 
-<view class="center">
-  <view class="button-area flex_box">
-  <view class="flex-item">
-  <i-icon type="success"  size="34" color="#c6c6c6" />
-  </view>
+    <image class="tmp-cover" mode="cover" src="/img/tmp_icon1.jpg"></image>
+
+<!--   <i-icon type="success"  size="34" color="#c6c6c6" />
+ -->  </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>邮寄或上门送货</view>
-     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+    <view class="f18 text-default"> <view>用户自取 在线收款</view>
+     <text class="f14 text-muted">使用小程序代收款，后期可随时提现</text> </view>
    </view>
   </view>
 </view>
@@ -30,26 +21,39 @@
 <view class="center">
   <view class="button-area flex_box">
   <view class="flex-item">
-  <i-icon type="success"  size="34" color="#c6c6c6" />
+    <image class="tmp-cover" mode="cover" src="/img/tmp_icon2.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>邮寄或上门送货</view>
+    <view class="f18 text-default"> <view>用户自取 线下收款</view>
+     <text class="f14 text-muted">微信红包或者收款码收款</text> </view>
+   </view>
+  </view>
+</view>
+
+<view class="center">
+  <view class="button-area flex_box">
+  <view class="flex-item">
+    <image class="tmp-cover" mode="cover" src="/img/tmp_icon3.jpg"></image>
+  </view>
+  <view class="flex-item-5 left">
+    <view class="f18 text-default"> <view>快递包邮|送货上门</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
   </view>
 </view>
 
 <view class="center">
-  <view class="button-area">
+  <view class="button-area flex_box">
   <view class="flex-item">
-  <i-icon type="success"  size="34" color="#c6c6c6" />
+    <image class="tmp-cover" mode="cover" src="/img/tmp_icon4.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>邮寄或上门送货</view>
-     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+    <view class="f18 text-default"> <view>自定义</view>
+     <text class="f14 text-muted">收款方式 配送方式自己选择</text> </view>
    </view>
   </view>
 </view>
+
 
 
 
