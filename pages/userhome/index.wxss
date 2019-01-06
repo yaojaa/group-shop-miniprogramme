@@ -16,13 +16,13 @@
 	padding-top: 100rpx;
 }
 .user-bg{
-	border-radius: 50%;
+	border-radius: 120%;
 	position: absolute;
-	width: 960rpx;
-	height: 600rpx;
+	width: 1920rpx;
+	height: 1200rpx;
 	left:50%;
-	top:-300rpx;
-	margin-left: -480rpx;
+	top:-900rpx;
+	margin-left: -960rpx;
 	z-index: 1;
 }
 
