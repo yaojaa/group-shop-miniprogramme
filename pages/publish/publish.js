@@ -19,6 +19,7 @@ const default_end_time = util.formatTime(date)
 
 Page({
   data: {
+    height:'300',//文本框的高度
     painterData: {},
     link_url:"",
     goods_id:"",
@@ -142,6 +143,8 @@ Page({
 
   onShow:function(option){
 
+  
+
 
         // if(app.globalData.sell_address){
 
@@ -159,6 +162,13 @@ Page({
         // }
 
         // console.log(this.data.sell_address)
+
+  },
+  getInput(e){
+
+      this.setData({
+      currentInput: e.detail.value
+    })
 
   },
   switch2Change:function(e){

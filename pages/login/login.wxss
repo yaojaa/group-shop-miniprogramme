@@ -5,7 +5,6 @@
   bottom:0;
   left:0;
   right:0;
-  background:url('http://pf9b8sd73.bkt.clouddn.com/start.jpg') no-repeat;
   background-size: 100% 100%;
 }
 .start-btn{

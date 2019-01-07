@@ -1,19 +1,19 @@
 <view class="container">
 <view class="bgimg">
 
-  <view class='limit'>
-  <!--   <view class='header'>
+<!--   <view class='limit'>
+    <view class='header'>
       <text>添加提货地点</text>
       <switch bindchange="limitChange"/>
-    </view> -->
- <!--    <view wx:if="{{ hidden }}" class='control'>
-      <view>周边半径范围（km）</view>
+    </view>
+    <view wx:if="{{ hidden }}" class='control'>
+      <view>限制预定周边半径范围（km）</view>
       <view>
         <i-input-number value="{{ limitVal }}" min="0" max="100" step="{{step}}" bindchange="handleChange" />
       </view>
-    </view> -->
+    </view>
 
-  </view>
+  </view> -->
   <view class='title'>  活动位置与配送方式：
 </view>
 <block wx:for="{{newAddress}}" wx:key="id">
@@ -31,7 +31,13 @@
 
     </view>
     <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="28"/></view>
+
+    
+
+
   </view>
+
+
 
   <!-- <view class='address' wx:else>
     <view class='icon-img'>
@@ -57,14 +63,18 @@
 <i-icon type="add" size="50" color="#c6c6c6" /> 
 </view>
 <view class="flex-item-5 left">
-  <view class="f18 text-default"> 添加您的提货地址 </view>
+  <view class="f18 text-default"> 自取，添加提货地址 </view>
 <view class="f14 text-muted">方便参与人上门取货</view>
  </view>
 
+
+
   </view>
+
   <view class='get-location' wx:else>
     <button  open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
   </view>
+
 </view>
 
 
@@ -107,6 +117,7 @@
 </block> -->
 
 
+<i-button  i-class='button' bind:click="submit" type="success" long="true">选好了</i-button>
 
 
 <i-button wx:if="{{newAddress.length}}"  i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>

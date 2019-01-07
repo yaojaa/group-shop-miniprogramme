@@ -118,8 +118,9 @@ Page({
 
   },
   addAddress(){
-    console.log('addAddress')
     this.openLocation(this);
+        console.log(this.openLocation)
+
   },
   deleteAddress(e){
     let data = e.currentTarget.dataset;
@@ -191,9 +192,11 @@ Page({
   },
 
   openLocation(_this){
+    console.log('openLocation')
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success(res) {
+        console.log(res)
         const latitude = res.latitude
         const longitude = res.longitude
         wx.chooseLocation({
@@ -239,7 +242,7 @@ Page({
 
             },
             fail:(err)=>{
-             reject(err)
+             console.log(err)
             }
 
           })
@@ -262,6 +265,7 @@ Page({
   },
 
   openSet(e){
+    console.log(e)
     if(e.detail.authSetting['scope.userLocation']){
       this.openLocation(this);
       this.setData({

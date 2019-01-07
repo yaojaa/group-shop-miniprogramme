@@ -109,3 +109,32 @@ border:1px solid #d9d9d9;
 font-size:32rpx
 }
 
+#textareawrap{
+
+  width: 100%;
+  position: relative;
+ 
+}
+
+#textareawrap text{
+   display:block;
+   visibility:hidden;
+   word-break:break-all;
+   word-wrap:break-word;
+       min-height: 300rpx
+
+}
+
+#textareawrap .weui-textarea {
+    height:100%;
+    position: absolute;
+    overflow-y:hidden;
+    word-break:break-all;
+    word-wrap:break-word;
+    left: 0;
+    top: 0;
+    min-height: 300rpx
+}
+
+
+

@@ -27,7 +27,10 @@
 
 <view class="weui-cell">
   <view class="weui-cell__bd">
-      <textarea maxlength="1000"  value="{{goods_content}}" style="height: 300rpx" name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="6"></textarea>
+    <view class='row' id="textareawrap" catchtap="onFocus">
+      <text>{{currentInput}}</text>
+      <textarea  maxlength="2000" bindinput="getInput"   value="{{goods_content}}"  name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="6"></textarea>
+    </view>
   </view>
 
 
