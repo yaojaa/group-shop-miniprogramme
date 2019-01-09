@@ -5,7 +5,7 @@
         <i-panel title="完善你的联系方式">
             <i-input bind:change="changeMobile" value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
 
-              <i-input bind:change="changeMobile" value="{{wxnumber}}" type="number" title="微信号" placeholder="微信号" />
+              <i-input bind:change="changeWX" value="{{wxnumber}}" type="text" title="微信号" placeholder="微信号" />
         </i-panel>
 
 <!--         <i-panel title="微信个人或群二维码：">
