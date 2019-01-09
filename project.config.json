@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 27,
 			"list": [
 				{
 					"id": 0,
@@ -206,10 +206,17 @@
 					"scene": "1014"
 				},
 				{
-					"id": -1,
+					"id": 26,
 					"name": "index",
-					"pathName": "pages/home/index",
+					"pathName": "pages/userhome/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人主页",
+					"pathName": "pages/userhome/index",
+					"query": "goods_id=133&copy=123",
+					"scene": "1001"
 				}
 			]
 		}

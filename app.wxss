@@ -59,6 +59,11 @@
   text-align: center;
 }
 
+button.linenear_bg{
+  background:-webkit-linear-gradient(left top,#a3df00,#69b90b);
+  background:linear-gradient(left top,#a3df00,#69b90b);
+}
+
 .text-justify {
   display: -webkit-box !important;
   display: -webkit-flex !important;
@@ -80,6 +85,9 @@
   overflow: hidden;
 }
 
+.text-hide.two {
+  -webkit-line-clamp: 2;
+}
 .text-white{
   color:#fff;
 }

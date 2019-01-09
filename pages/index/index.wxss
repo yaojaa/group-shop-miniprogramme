@@ -102,7 +102,7 @@
   color:#fff;
   border-radius: 5px;
   padding:3rpx;
-  width: 140rpx
+  width: 140rpx;
   font-size: 24rpx;
 }
 
@@ -124,12 +124,27 @@
 
 .flex_item{
 
-  flex: 1
-
+  flex: 1;
+  box-shadow: 0 3px 12px rgba(59,202,70,0.43);
+  color:#FFF;
 }
 
 .footer_bar{
   position: fixed;
   bottom: 0;
   width: 100%
+}
+.avatar-group{
+  display: flex;
+  padding-left: 10rpx;
+}
+.avatar-group .avatar{
+  width: 54rpx;
+  height: 54rpx;
+  border-radius: 50%;
+  margin-left: -10rpx;
+  border:4rpx solid #fff;
+}
+.ml-xs{
+  margin-left: 6rpx;
 }

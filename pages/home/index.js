@@ -91,6 +91,15 @@ Page({
 
        
     },
+
+    goHome(){
+
+      wx.redirectTo({
+        url:'../userhome/index'
+      })
+
+
+    },
     
 
     get_store_info(token){

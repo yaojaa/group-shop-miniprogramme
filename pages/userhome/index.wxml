@@ -1,0 +1,36 @@
+<view class="container cf">
+	 <view class="white-bg">
+	  <image class="user-bg" src="../../img/bg.jpg"></image>
+    <view class="user-head">
+        <view class="content">
+            <view class="avatar">
+                <open-data type="userAvatarUrl"></open-data>
+            </view>
+            <view class="name">
+                <open-data type="userNickName"></open-data>
+            </view>
+            <view class="des">开心麻团创始人，专注推广地理标志性农产品，让原生态放心食材走进千家万户</view>
+            <view class="info f12">累计<text class="text-default">1313</text>访问 粉丝1113 <text class=""> 回头率 3% </text> <text class="text-red">高</text></view>
+        </view>
+    </view>
+    </view>
+    <view class="goods-box">
+        <view class="goods-item flex-box" wx:for="{{5}}" wx:key="index">
+            <image class="cover" src="../../img/goods2.jpg"></image>
+            <view class="content">
+                <view class="title text-hide">好吃的石门蜜橘，错过这次在等一年，吃过的都说好</view>
+                <view class="des text-hide two">最先尝的就是果冻橙，很软，很你懂的。超级好吃，口感真的像果冻，还超级甜，我的两个宝贝特别爱</view>
+                <view class="flex-box align-center">
+                    <view class="avatar-group">
+                        <image class="avatar" src="../../img/wx.jpg" wx:for="{{4}}" wx:key="index"></image>
+                    </view>
+                    <view class="user f12 ml-xs text-muted">已有<text class="text-red">32</text>人参与</view>
+                </view>
+                <view class="bottom text-justify">
+                    <view class="price bold text-red"><text class="f12">￥</text>29.9</view>
+                    <view> <button class="btn buy linenear_bg">立即查看</button></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
