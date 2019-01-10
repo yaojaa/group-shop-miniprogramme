@@ -52,6 +52,8 @@ Page({
      */
     onLoad: function(options) {
 
+      console.log(app.globalData.userInfo)
+
         if(app.globalData.userInfo){
 
          this.setData({

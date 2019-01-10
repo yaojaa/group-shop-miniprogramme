@@ -82,7 +82,11 @@
     font-size: 32rpx;
     color: #333;
     display: block;
-    padding-top: 5rpx;
+    padding: 15rpx 0;
+}
+
+.count-item.active{
+    border-bottom: 2px solid #6dbf0c
 }
 
 .goods-count {

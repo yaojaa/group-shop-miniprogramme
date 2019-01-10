@@ -14,16 +14,16 @@ App({
                 success: res => {
                   // 发送 res.code 到后台换取 openId, sessionKey, unionId
                   if (res.code) {
-                    //发起网络请求
+                    //发起网络请求index/get_openid
                     wx.request({
-                      url: 'https://www.daohangwa.com/api/user/get_openid?appid=wx6ac9955f87c289f0&secret=250316f2d8d7bc841239fd11b538913c&js_code='+res.code+'&grant_type=authorization_code',
+                      url: 'https://www.kaixinmatuan.cn/api/index/get_openid?appid=wx6ac9955f87c289f0&secret=250316f2d8d7bc841239fd11b538913c&js_code='+res.code+'&grant_type=authorization_code',
                       data: {
                         code: res.code
                       },
                       success: (response) => {
                         // 获取openId
                         // 
-                        if(response.data.code == 0){
+                        if(response.data.code == 200){
 
                         this.openId = response.data.data.openid;
                         this.session_key =response.data.data.session_key;
@@ -128,7 +128,7 @@ App({
 
     return new Promise((resolve, reject)=>{
               wx.request({
-                url: 'https://www.daohangwa.com/api/user/login_third',
+                url: 'https://www.kaixinmatuan.cn/api/index/login_by_openid',
                 method: 'POST',
                 data: {openid: this.openId,
                   session_key:this.session_key,
@@ -138,16 +138,12 @@ App({
                 },
                 success: (res) => {
 
-                  console.log('login_third data',res)
-
-                  if (res.data.code === 0) {
-
-                    console.log('服务器登录成功 token is', res.data.data)
+                  if (res.data.code === 200) {
                     this.globalData.token = res.data.data.token
-                    this.globalData.userInfo = res.data.data
+                    this.globalData.userInfo = res.data.data.user
                     // wx.setStorageSync('session_key',res.data.data.token)
                     wx.setStorageSync('token',res.data.data.token)
-                    wx.setStorageSync('userInfo',res.data.data)
+                    wx.setStorageSync('userInfo',res.data.data.user)
 
                     resolve(res)
 

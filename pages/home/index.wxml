@@ -10,16 +10,16 @@
     </view>
 </view>
 
-
+    
 
     <view class="head-box">
         <view class="msg-tips">
-            <!-- <i-badge count="3">
+            <i-badge count="3">
                 <i-icon type="remind" size="20" color="#fff" />
-            </i-badge> -->
+            </i-badge>
         </view>
             <view class="userinfo" hover-class="none">
-                <image bindtap="goHome" class="userinfo-avatar" src="{{userInfo.head_pic}}" mode="cover"></image>
+                <image bindtap="goHome" class="userinfo-avatar" src="{{userInfo.headimg}}" mode="cover"></image>
                 <view class="userinfo-bd">
                     <text class="userinfo-nickname">{{userInfo.nickname}} </text>
                 
@@ -28,6 +28,11 @@
                         <button size="small" class="edit-btn" formType="submit">完善信息</button>
                     </form>
                 </navigator>
+
+                 <navigator url="../withdrawal/index" hover-class="none">
+                <text class="label">余额</text>
+                <text class="num text-primary">¥{{store_money}}</text>
+            </navigator>
                 </view>
             </view>
         <view class='add-goods' bindtap="new_btn">
@@ -45,79 +50,31 @@
         </view>
     </view>
     <view class="count-box">
-        <view class="count-item">
+        <view class="count-item active">
             <navigator url="../myPartake/index" hover-class="none">
-                <text class="label">我参与的</text>
                 <text class="num text-primary">{{order_number}}</text>
+                                <text class="label">我参与的</text>
+
             </navigator>
         </view>
         <view class="count-item">
             <navigator url="../myPublish/index" hover-class="none">
-                <text class="label">我发布的</text>
                 <text class="num text-primary">{{goods_number}}</text>
+                                <text class="label">我发布的</text>
+
             </navigator>
         </view>
-        <view class="count-item">
-            <navigator url="../withdrawal/index" hover-class="none">
-                <text class="label">余额</text>
-                <text class="num text-primary">¥{{store_money}}</text>
+
+         <view class="count-item">
+            <navigator url="../myPublish/index" hover-class="none">
+                <text >开个团</text>
             </navigator>
         </view>
+
     </view>
     <official-account></official-account>
 
-    <i-panel title="最近发布的" wx:if="{{goodslist.length > 0}}">
-        <view>
-            <view class="goods-box">
-                <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
-                    <view class="goods-body">
-                        <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
-                            <image src='{{item.original_img}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
-                        </navigator>
-                        <view class="bd">
-                            <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
-                                <view class="tit">{{item.goods_name}}</view>
-                            </navigator>
-                            <view class="link">
-                                <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
-                                    <button formType="submit" size="mini"> 修 改 </button>
-                                </form>
-
-                                  <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" data-fn="copyGoods" report-submit="true">
-                                    <button formType="submit" size="mini"> 复 制 </button>
-                                </form>
-                            </view>
-                        </view>
-                        <view class="fd">
-                            <!--                                 _expires //是否过期 1正常 2未开始 3已过期
- -->{{['','开团中','未开始','已截团'][item._expires]}} 
-                        </view>
-                    </view>
-                    <view class="goods-count">
-                        <view class="count-item">
-                            <text class="label">浏览次数</text>
-                            <text class="num">{{item.pageview}}</text>
-                        </view>
-                        <view class="count-item">
-                            <text class="label">收款总额</text>
-                            <text class="num">￥{{item._order_amount}}</text>
-                        </view>
-                        <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
-                            <text class="label ">订单管理</text>
-                            <text class="num text-primary">{{item._order_count}}</text>
-                        </view>
-                    </view>
-
-                    
-                <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->
-                   
-
-
-                </view>
-            </view>
-        </view>
-    </i-panel>
-    <i-panel title="最近参与的">
+    <i-panel>
         <view style="padding: 5px 10px;">
             <view class="order {{item.order_status==3?'gray-all':''}}" wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
                 <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}" hover-class="none">
@@ -180,6 +137,59 @@
             </view>
         </view>
     </i-panel>
+
+    <i-panel title="最近发布的" wx:if="{{goodslist.length > 0}}">
+        <view>
+            <view class="goods-box">
+                <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
+                    <view class="goods-body">
+                        <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+                            <image src='{{item.original_img}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
+                        </navigator>
+                        <view class="bd">
+                            <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+                                <view class="tit">{{item.goods_name}}</view>
+                            </navigator>
+                            <view class="link">
+                                <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
+                                    <button formType="submit" size="mini"> 修 改 </button>
+                                </form>
+
+                                  <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" data-fn="copyGoods" report-submit="true">
+                                    <button formType="submit" size="mini"> 复 制 </button>
+                                </form>
+                            </view>
+                        </view>
+                        <view class="fd">
+                            <!--                                 _expires //是否过期 1正常 2未开始 3已过期
+ -->{{['','开团中','未开始','已截团'][item._expires]}} 
+                        </view>
+                    </view>
+                    <view class="goods-count">
+                        <view class="count-item">
+                            <text class="label">浏览次数</text>
+                            <text class="num">{{item.pageview}}</text>
+                        </view>
+                        <view class="count-item">
+                            <text class="label">收款总额</text>
+                            <text class="num">￥{{item._order_amount}}</text>
+                        </view>
+                        <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
+                            <text class="label ">订单管理</text>
+                            <text class="num text-primary">{{item._order_count}}</text>
+                        </view>
+                    </view>
+
+                    
+                <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->
+                   
+
+
+                </view>
+            </view>
+        </view>
+    </i-panel>
+    
  
     <view wx:if="{{goodslist.length >= 0}}">
         <view class='new-goods' bindtap="new_btn">
@@ -219,13 +229,13 @@
     </view>
     <i-message id="message" />
 
- <view class="footer_bar"> 
+<!--  <view class="footer_bar"> 
   <i-tab-bar current="home" color="#188f00" bindchange="handleChange">
     <i-tab-bar-item key="nearby" icon="homepage" current-icon="homepage_fill" title="附近"></i-tab-bar-item>
     <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
     <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
  </i-tab-bar>
-</view>
+</view> -->
 
 
 
