@@ -12,7 +12,7 @@ Page({
      */
     data: {
       example: [// solt 组件示例
-        { id: 1, name:'Q1'},
+        { id: 1, name:'Q1', sort_title: '单图示例'},
         { id: 2, name:'Q2'},
         { id: 3, name:'Q3'},
         { id: 4, name:'Q4'},
