@@ -10,6 +10,10 @@
     </view>
 </view>
 
+<sort datas="{{example}}">
+  <view wx:for='{{example}}' wx:key='{{itme.id}}' slot='{{index}}'>slot-{{item.id}}-slot</view>
+</sort>
+
 
 
     <view class="head-box">

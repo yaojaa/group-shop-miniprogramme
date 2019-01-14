@@ -19,7 +19,8 @@
     "i-icon": "../../iView/icon/index",
     "i-button": "../../iView/button/index",
     "painter": "../../iView/painter/painter",
-    "i-message": "../../iView/message/index"
+    "i-message": "../../iView/message/index",
+    "sort": "../../iView/sort/xin"
 
   }
 }

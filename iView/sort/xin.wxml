@@ -1,0 +1,9 @@
+<view wx:for='{{datas}}' wx:key='{{item.id}}' data-id='{{item.id}}'>
+  <view class='sort'>
+    <view class='title'>单图</view>
+    <view class='cell top' bindtap='toTop'></view>
+    <view class='cell down disable' bindtap='toDown'></view>
+    <view class='cell clear' bindtap='delete'></view>
+  </view>
+  <slot name='{{index}}'></slot>
+</view>

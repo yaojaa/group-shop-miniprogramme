@@ -11,6 +11,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+      example: [{ id: 1 }, { id: 2 }],// solt
         userInfo: {},
         order_number:0,
         goods_number:0,
@@ -28,6 +29,44 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+      // solt
+      setTimeout(() => {
+        console.log('change')
+        this.setData({
+          example: [{ id: 3 }, { id: 2 }]
+        })
+      }, 2000)
+      setTimeout(() => {
+        console.log('change')
+        this.setData({
+          example: [{ id: 4 }, { id: 3 }]
+        })
+      }, 3000)
+      setTimeout(() => {
+        console.log('change')
+        this.setData({
+          example: [{ id: 5 }, { id: 4 }]
+        })
+      }, 4000)
+      setTimeout(() => {
+        console.log('change')
+        this.setData({
+          example: [{ id: 6 }, { id: 5 }]
+        })
+      }, 5000)
+      setTimeout(() => {
+        console.log('change')
+        this.setData({
+          example: [{ id: 7 }, { id: 23 }]
+        })
+      }, 6000)
+      setTimeout(() => {
+        console.log('change')
+        this.setData({
+          example: [{ id: 8 }, { id: 6 }]
+        })
+      }, 7000)
+      // solt
 
         if(app.globalData.userInfo){
 
