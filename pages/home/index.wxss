@@ -526,3 +526,18 @@ button::after {
         transform: rotate(1turn);
     }
 }
+
+/* sort example */
+.sort{
+  padding: 0 40rpx;
+}
+.sort-style{
+  height: 400rpx;
+  line-height: 400rpx;
+  text-align: center;
+  background-color: #efefef;
+}
+.sort-color{
+  color: #f00;
+  font-size: 48rpx;
+}

@@ -9,12 +9,13 @@
         <view class="circle"></view>
     </view>
 </view>
-
-<sort datas="{{example}}">
-  <view wx:for='{{example}}' wx:key='{{itme.id}}' slot='{{index}}'>slot-{{item.id}}-slot</view>
+<!-- 排序 -->
+<sort datas="{{example}}" s-class="sort" bind:change="sortChange">
+    <view class='sort-style' wx:for='{{example}}' wx:key='{{item.id}}' slot='{{index}}'>
+        <text class='sort-color'>--{{item.id}}{{item.name}}--</text>
+    </view>
 </sort>
-
-
+<!-- 排序 -->
 
     <view class="head-box">
         <view class="msg-tips">
