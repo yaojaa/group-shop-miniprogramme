@@ -1,0 +1,40 @@
+<!--pages/create_shop.wxml-->
+<view class="container">
+	<i-notice-bar icon="systemprompt" >
+    专属独立个人小店 永久免费 限量内测申请..
+</i-notice-bar>
+<i-panel title="创建专属个人小店">
+    <i-input value="" placeholder="请输入小店名字" />
+    <i-input type="textarea" maxlength="200" value="" placeholder="输入小店的介绍" />
+    <i-input value="" placeholder="联系微信号" />
+      
+  <picker
+    mode="region"
+    bindchange="bindRegionChange"
+    value="{{region}}"
+    custom-item="{{customItem}}"
+  >
+    <view class="picker">
+      所在地：{{region[0]}}- {{region[1]}}-{{region[2]}}
+    </view>
+  </picker>
+</i-panel>
+
+<i-panel title="背景图（最多可传5张）">
+
+	<view class="bgbox">
+		<view class="bg_item">蓝色妖姬</view>
+		<view class="bg_item">蓝色妖姬</view>
+		<view class="bg_item">蓝色妖姬</view>
+		<view class="bg_item">蓝色妖姬</view>
+	</view>
+
+
+</i-panel>
+
+<view class="footer-btn">
+	<button>立即创建</button>
+</view>
+
+
+</view>

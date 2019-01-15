@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 26,
 			"list": [
 				{
 					"id": 0,
@@ -204,6 +204,13 @@
 					"pathName": "pages/ordermanage/list",
 					"query": "goods_id=61&goods_name=石门蜜橘金鱼团团群邻居专享&delivery_method=2",
 					"scene": "1014"
+				},
+				{
+					"id": 26,
+					"name": "创建店铺",
+					"pathName": "pages/create_shop/create_shop",
+					"query": "",
+					"scene": "1001"
 				}
 			]
 		}
