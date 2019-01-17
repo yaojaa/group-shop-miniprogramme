@@ -2,16 +2,131 @@
     background: #f8f8f8;
 }
 
-.head-box {
-    background: #49b34d;
-    position: relative;
-    padding: 30px 15px;
+
+.head-box{
+  height: 522rpx;
+  background:url('http://img.countinsight.com/business/img/home_bg@2x.png');
+  background-size: 100%;
+  background: #49b34d;
+  position: relative;
+  width: 100%;
 }
+.user-name{
+  position: absolute;
+  left: 30rpx;
+  top: 30rpx;
+  color: #fff
+}
+
+.user-name .name{
+    font-size: 32rpx;
+    color: #fff;
+    padding-left: 10rpx
+}
+
+.home-avatar {
+width:68rpx;
+height:68rpx;
+border-radius: 50%;
+vertical-align:middle;
+
+}
+
+.head-box .number{
+  text-align: center;
+  width: 300rpx;
+  margin: 0 auto;
+  padding-top: 160rpx;
+  font-size: 48rpx;
+  color: #fff
+}
+
+.head-box .number .text{
+  font-size: 28rpx;
+  opacity: 0.8
+
+}
+
+.head-box .creat_btn{
+    color: #fff;
+    border-radius: 9px 0 0 9px;
+    position: absolute;
+    background: #9966cc;
+    padding: 5rpx ;
+    text-align: center;
+    right:  0;
+    width: 190rpx;
+    top: 180rpx
+}
+
+.head-box .creat_btn button{
+    background: transparent;
+    border: none;
+    padding:0;
+    margin: 0;
+    font-size: 24rpx;
+    color: #fff
+}
+.head-box .creat_btn button:after{
+    border: none;
+    box-shadow: none;
+}
+
+.main_nav_box{
+  height:212rpx;
+  overflow:hidden;
+  border-radius:8rpx;
+  background-color:rgba(255, 255, 255, 1);
+  box-shadow:0px 7px 6px 0px #eee;
+  position:absolute;
+  left:30rpx;
+  right:30rpx;
+  top:350rpx;
+  z-index:19;
+  display: flex;
+
+}
+
+.main_nav_box .item{
+  flex: 1;
+  text-align: center;
+  padding-top: 30rpx;
+  border-right: 1px solid #eee;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx
+
+}
+
+.new_add{
+
+    margin-top: -10rpx
+}
+
+.main_nav_box .item:last-child{
+  border: none;
+}
+
+.main_nav_box .item .num{
+  color: #FA7268;
+  font-size: 36rpx;
+  padding-bottom: 10rpx;
+  font-weight: 400;
+}
+.main_nav_box .item .tit{
+  color: #333;
+  font-size: 24rpx
+}
+
+
+
+
 
 .msg-tips {
     position: absolute;
-    top: 4px;
+    top: 14px;
     right: 15px;
+    font-size: 20rpx;
+    color: #ffcc33
 }
 
 .userinfo {
@@ -536,4 +651,18 @@ button::after {
   bottom: 0;
   width: 100%;
   z-index: 999
+}
+/* sort example */
+.sort{
+  padding: 0 40rpx;
+}
+.sort-style{
+  height: 400rpx;
+  line-height: 400rpx;
+  text-align: center;
+  background-color: #efefef;
+}
+.sort-color{
+  color: #f00;
+  font-size: 48rpx;
 }

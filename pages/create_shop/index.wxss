@@ -1,0 +1,6 @@
+/* pages/create_shop.wxss */
+@import "../../utils/weui.wxss";
+.container{
+	background: #f3f3e9;
+	padding: 20px
+}

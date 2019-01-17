@@ -1,7 +1,10 @@
 {
-	"description": "项目配置文件。",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -11,7 +14,10 @@
 	"libVersion": "2.1.1",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
-	"isGameTourist": false,
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -22,7 +28,7 @@
 			"list": []
 		},
 		"plugin": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -33,11 +39,10 @@
 			]
 		},
 		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 26,
 			"list": [
 				{
 					"id": 0,
@@ -61,7 +66,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=133&copy=123",
+					"query": "goods_id=85",
 					"scene": "1001"
 				},
 				{
@@ -154,8 +159,9 @@
 				{
 					"id": 18,
 					"name": "订单管理页",
-					"pathName": "pages/ordermanage/list",
-					"query": "goods_id=1&goods_name=备受各位好评的石门柑橘再次开团了"
+					"pathName": "pages/create_shop/create_shop",
+					"query": "",
+					"scene": "1001"
 				},
 				{
 					"id": 19,
@@ -207,15 +213,9 @@
 				},
 				{
 					"id": 26,
-					"name": "index",
-					"pathName": "pages/userhome/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "个人主页",
-					"pathName": "pages/userhome/index",
-					"query": "goods_id=133&copy=123",
+					"name": "创建店铺",
+					"pathName": "pages/create_shop/index",
+					"query": "",
 					"scene": "1001"
 				}
 			]

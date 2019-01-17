@@ -20,8 +20,14 @@
     "pages/myPublish/index",
     "pages/example/example",
     "pages/paymethod/index",
-    "pages/userhome/index"
+    "pages/userhome/index",
+    "pages/create_shop/index"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于获取附近的团购活动"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

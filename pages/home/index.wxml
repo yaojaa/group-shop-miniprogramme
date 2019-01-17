@@ -10,33 +10,61 @@
     </view>
 </view>
 
-    
+<!-- 排序 -->
+<!-- <sort datas="{{example}}" s-class="sort" bind:change="sortChange">
+    <view class='sort-style' wx:for='{{example}}' wx:key='{{item.id}}' slot='{{index}}'>
+        <text class='sort-color'>--{{item.id}}{{item.name}}--</text>
+    </view>
+</sort> -->
+<!-- 排序 -->
 
     <view class="head-box">
+        <view class="user-name">
+
+        <image  src="https://image.countinsight.com/business/1ee33a5020829a50ba3bfdb7c91133c6.jpg" class="round mr-df  align-self-center home-avatar"></image>
+<!-- 
+        <image bindtap="goHome" class=" home-avatar userinfo-avatar" src="{{userInfo.headimg}}" mode="cover"></image> -->
+
+        <text class="name">{{userInfo.nickname}}</text>
+        </view>
+
+
         <view class="msg-tips">
             <i-badge count="3">
-                <i-icon type="remind" size="20" color="#fff" />
+               您有新的订单 <i-icon type="remind" size="20" color="#fff" />
             </i-badge>
         </view>
-            <view class="userinfo" hover-class="none">
-                <image bindtap="goHome" class="userinfo-avatar" src="{{userInfo.headimg}}" mode="cover"></image>
-                <view class="userinfo-bd">
-                    <text class="userinfo-nickname">{{userInfo.nickname}} </text>
-                
-                <navigator url="../identify/identify" hover-class="none">
-                    <form bindsubmit="formSubmit" report-submit="true">
-                        <button size="small" class="edit-btn" formType="submit">完善信息</button>
-                    </form>
-                </navigator>
 
-                 <navigator url="../withdrawal/index" hover-class="none">
-                <text class="label">余额</text>
-                <text class="num text-primary">¥{{store_money}}</text>
-            </navigator>
-                </view>
+
+        <view class="creat_btn">
+            <button bindtap="goCreate">创建专属小店</button>
+        </view>
+
+  
+        <view class="number">
+          <navigator url="../withdrawal/index" hover-class="none">
+            <h3>¥{{store_money}}</h3>
+            <view class="text">今日进账</view>   
+            </navigator> 
+        </view>
+
+        <view class="main_nav_box">
+
+            <view class="item">
+                <view class="num">{{order_number}}</view>
+                <view class="tit"> 我参与的 </view>
             </view>
-        <view class='add-goods' bindtap="new_btn">
-            <i-icon type="add" size="20" /><text>发布团购</text>
+
+              <view class="item">
+                <view class="num">{{goods_number}}</view>
+                <view class="tit"> 我发布的</view>
+            </view>
+
+              <view class="item"  bindtap="new_btn">
+                <view class="new_add"><i-icon color="#FA7268" type="add" size="34" /></view>
+               <view class="tit">发布团购</view>
+            </view>
+            
         </view>
 
           <view class="waveAnimation">
@@ -49,7 +77,12 @@
             </view>
         </view>
     </view>
-    <view class="count-box">
+
+
+
+
+   
+<!--     <view class="count-box">
         <view class="count-item active">
             <navigator url="../myPartake/index" hover-class="none">
                 <text class="num text-primary">{{order_number}}</text>
@@ -71,7 +104,7 @@
             </navigator>
         </view>
 
-    </view>
+    </view> -->
     <official-account></official-account>
 
     <i-panel>

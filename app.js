@@ -239,9 +239,9 @@ App({
       }
 
       //从其它页面进入返回到首页
-     if(option.path !=='pages/goods/goods' && option.path!=='pages/ordermanage/list'){
-                    this.redirect2Home()
-       }
+     // if( option.path !=='pages/goods/goods' && option.path!=='pages/ordermanage/list'){
+     //                this.redirect2Home()
+     //   }
 
 
     /**未登录或者缓存失效用户*/

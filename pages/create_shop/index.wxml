@@ -1,0 +1,41 @@
+<!--pages/create_shop.wxml-->
+<view class="container">
+	<i-notice-bar icon="systemprompt" >
+    专属独立个人小店 永久免费 限量内测申请..
+</i-notice-bar>
+<i-panel title="创建专属个人小店">
+    <i-input title="小店名字" value="" placeholder="请输入小店名字" />
+    <i-input  title="小店介绍"  type="textarea" maxlength="200" value="" placeholder="输入小店的介绍" />
+  <picker
+    mode="region"
+    bindchange="bindRegionChange"
+    value="{{region}}"
+    custom-item="{{customItem}}"
+  >
+    <view class="picker">
+      所在地：{{region[0]}}- {{region[1]}}-{{region[2]}}
+    </view>
+  </picker>
+</i-panel>
+
+<i-input title="详情地址" value="" placeholder="请输入街道社区地址" />
+
+<i-panel title="主页背景图（最多可传5张）">
+
+     <view class="uploader__file" wx:if="{{111}}">
+         <image mode="widthFix" src="{{wx_collection_code}}" data-src="{{wx_collection_code}}"  bindtap="imgPreview" />
+       
+          <view class="close"> <i-icon  bindtap="removePhoto" color="#80848f" size="32" type="close" />
+          </view>
+       </view>
+
+ <view  data-type="wx_collection_code" class="weui-uploader__input-box" bindtap="chooseImage"  >
+         </view>
+</i-panel>
+
+<view class="footer-btn">
+	<button>立即创建</button>
+</view>
+
+
+</view>

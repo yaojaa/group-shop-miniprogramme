@@ -1,6 +1,6 @@
 <view class="container">
 <view class="bgimg">
-  <view class='title'>  快速发布，选择你喜欢的开团方式：
+  <view class='title'>  快速发布，选择你的开团方式：
 </view>
 
 <view class="center">
@@ -36,7 +36,7 @@
     <image class="tmp-cover" mode="cover" src="/img/tmp_icon3.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>快递包邮|送货上门</view>
+    <view class="f18 text-default"> <view>快递包邮或送货上门</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
   </view>
