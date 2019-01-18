@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 26,
 			"list": [
 				{
 					"id": 0,
@@ -61,7 +61,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=133&copy=123",
+					"query": "goods_id=85",
 					"scene": "1001"
 				},
 				{
@@ -206,10 +206,11 @@
 					"scene": "1014"
 				},
 				{
-					"id": -1,
-					"name": "index",
-					"pathName": "pages/home/index",
-					"query": ""
+					"id": 26,
+					"name": "创建店铺",
+					"pathName": "pages/create_shop/create_shop",
+					"query": "",
+					"scene": "1001"
 				}
 			]
 		}

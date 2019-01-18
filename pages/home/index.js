@@ -11,6 +11,14 @@ Page({
      * 页面的初始数据
      */
     data: {
+      example: [// solt 组件示例
+        { id: 1, name:'Q1', sort_title: '单图示例'},
+        { id: 2, name:'Q2'},
+        { id: 3, name:'Q3'},
+        { id: 4, name:'Q4'},
+        { id: 5, name:'Q5'},
+        { id: 6, name:'Q6'}
+      ],
         userInfo: {},
         order_number:0,
         goods_number:0,
@@ -350,6 +358,12 @@ Page({
                 }
               })   
 
+    },
+    sortChange(e) {// solt 组件示例
+      this.setData({
+        example: e.detail
+      })
+      console.log('sort',e.detail);
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
