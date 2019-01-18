@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<view class="container">
+
+      <h2 class="title">加盟商登录</h2>
+    <view class="form-box">
+  
+    <view class="form-avatar-item">
+      <view class="form-item">
+
+
+        <input type="text" data-key="phone" bindchange="inputDuplex" class="form-input" name="title" value="" placeholder="输入手机号" placeholder-style="color:#fff" />
+          <view class='form-input-btn'>
+          <view class='getcode' bindtap="getCode">获取验证码</view>
+        </view>
+      </view>
+      <view class="form-item">
+        <input type="text" class="form-input" name="title" value="" placeholder="输入验证码"  placeholder-style="color:#fff" />
+      
+      </view>
+
+    <view class="form-item">
+      <official-account>关注</official-account>
+        <button class='login_btn' bindtap="loginSubmit">
+            <text class='iconfont  iconfont-spin mr-xs'></text> 登 录
+        </button>
+
+    </view>
+
+    </view>
+  </view>
+
+
+</view>

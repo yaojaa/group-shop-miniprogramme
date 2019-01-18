@@ -6,17 +6,11 @@
 <i-panel title="创建专属个人小店">
     <i-input title="小店名字" value="" placeholder="请输入小店名字" />
     <i-input  title="小店介绍"  type="textarea" maxlength="200" value="" placeholder="输入小店的介绍" />
-  <picker
-    mode="region"
-    bindchange="bindRegionChange"
-    value="{{region}}"
-    custom-item="{{customItem}}"
-  >
-    <view class="picker">
-      所在地：{{region[0]}}- {{region[1]}}-{{region[2]}}
-    </view>
-  </picker>
+
 </i-panel>
+
+<van-area area-list="{{ area_list }}"></van-area>
+
 
 <i-input title="详情地址" value="" placeholder="请输入街道社区地址" />
 
