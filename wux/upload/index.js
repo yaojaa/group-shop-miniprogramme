@@ -1,6 +1,12 @@
-Component({
-    externalClasses: ['wux-class'],
+import baseComponent from '../helpers/baseComponent'
+import classNames from '../helpers/classNames'
+
+baseComponent({
     properties: {
+        prefixCls: {
+            type: String,
+            value: 'wux-upload',
+        },
         max: {
             type: Number,
             value: -1,
@@ -29,7 +35,10 @@ Component({
         },
         header: {
             type: Object,
-            value: {},
+            value: {
+                'Authorization': wx.getStorageSync('token'),
+                'content-type' : 'multipart/form-data'
+            },
         },
         formData: {
             type: Object,
@@ -84,6 +93,31 @@ Component({
         uploadCount: 9,
         uploadFileList: [],
     },
+    computed: {
+        classes() {
+            const { prefixCls, disabled, listType } = this.data
+            const wrap = classNames(prefixCls, {
+                [`${prefixCls}--${listType}`]: listType,
+                [`${prefixCls}--disabled`]: disabled,
+            })
+            const files = `${prefixCls}__files`
+            const file = `${prefixCls}__file`
+            const thumb = `${prefixCls}__thumb`
+            const remove = `${prefixCls}__remove`
+            const select = `${prefixCls}__select`
+            const button = `${prefixCls}__button`
+
+            return {
+                wrap,
+                files,
+                file,
+                thumb,
+                remove,
+                select,
+                button,
+            }
+        },
+    },
     methods: {
         /** 
          * 计算最多可以选择的图片张数
@@ -122,6 +156,7 @@ Component({
          * 从本地相册选择图片或使用相机拍照
          */
         onSelect() {
+            console.log('onSelect')
             const {
                 uploadCount,
                 uploadMax,
@@ -133,6 +168,7 @@ Component({
             } = this.data
             const { uploadCount: count } = this.calcValue(uploadCount, uploadMax - fileList.length)
             const success = (res) => {
+                console.log(res)
                 this.tempFilePaths = res.tempFilePaths.map((item) => ({ url: item, uid: this.getUid() }))
                 this.triggerEvent('before', {...res, fileList })
 
@@ -142,14 +178,19 @@ Component({
                 }
             }
 
-            // disabled
+            // // disabled
             if (disabled) return
+
+                console.log( count,
+                sizeType,
+                sourceType,
+                success)
 
             wx.chooseImage({
                 count,
                 sizeType,
                 sourceType,
-                success,
+                success
             })
         },
         /**
@@ -274,9 +315,18 @@ Component({
             const file = this.tempFilePaths.shift()
             const { uid, url: filePath } = file
 
+
+            console.log( filePath)
+
             if (!url || !filePath || disabled) return
 
             this.onStart(file)
+
+           console.log( url,
+                filePath,
+                name,
+                header,
+                formData)
 
             this.uploadTask[uid] = wx.uploadFile({
                 url,

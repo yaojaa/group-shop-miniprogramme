@@ -110,3 +110,7 @@
 .ml-xs{
   margin-left: 6rpx;
 }
+
+.white-bg image{
+	width: 100%
+}

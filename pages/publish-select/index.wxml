@@ -1,9 +1,9 @@
 <view class="container">
 <view class="bgimg">
-  <view class='title'>  快速发布，选择你的开团方式：
+  <view class='title'>  快速发布，从修改模板开始：
 </view>
 
-<view class="center">
+<view class="center" >
   <view class="button-area flex_box">
   <view class="flex-item">
 
@@ -12,7 +12,7 @@
 <!--   <i-icon type="success"  size="34" color="#c6c6c6" />
  -->  </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>用户自取 在线收款</view>
+    <view class="f18 text-default"> <view>用户自取 在线收款模板</view>
      <text class="f14 text-muted">使用小程序代收款，后期可随时提现</text> </view>
    </view>
   </view>
@@ -24,7 +24,7 @@
     <image class="tmp-cover" mode="cover" src="/img/tmp_icon2.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>用户自取 线下收款</view>
+    <view class="f18 text-default"> <view>用户自取线下收款模板</view>
      <text class="f14 text-muted">微信红包或者收款码收款</text> </view>
    </view>
   </view>
@@ -36,7 +36,7 @@
     <image class="tmp-cover" mode="cover" src="/img/tmp_icon3.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>快递包邮或送货上门</view>
+    <view class="f18 text-default"> <view>快递包邮或送货上门模板</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
   </view>

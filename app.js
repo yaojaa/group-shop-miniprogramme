@@ -144,7 +144,6 @@ App({
                     // wx.setStorageSync('session_key',res.data.data.token)
                     wx.setStorageSync('token',res.data.data.token)
                     wx.setStorageSync('userInfo',res.data.data.user)
-
                     resolve(res)
 
                   } else {

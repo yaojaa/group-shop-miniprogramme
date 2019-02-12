@@ -57,6 +57,7 @@ const  countTime =(nowDate,endDate)=> {
 //input双向绑定 注意context
 
 const inputDuplex = function(e) {
+        console.log(e)
       let context = this
       let name = e.currentTarget.dataset.key;
       let nameMap = {}
@@ -314,11 +315,12 @@ const  WX = {}
 const  request =(url,data,method)=>{
   return new Promise((resolve, reject) => {
     wx.request({
-      url:'https://www.daohangwa.com'+url,
+      url:'https://www.kaixinmatuan.cn'+url,
       data: data,
       method:method,
       header: { 
         'content-type': 'application/json',
+        'Authorization': wx.getStorageSync('token'),
         'SID':wx.getStorageSync('SID')
       },
       success: function (res) {//服务器返回数据

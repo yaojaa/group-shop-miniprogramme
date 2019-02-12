@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 26,
+			"current": 27,
 			"list": [
 				{
 					"id": 0,
@@ -222,6 +222,12 @@
 					"pathName": "pages/create_shop/index",
 					"query": "",
 					"scene": "1001"
+				},
+				{
+					"id": 27,
+					"name": "个人主页",
+					"pathName": "pages/userhome/index",
+					"query": ""
 				}
 			]
 		}

@@ -6,6 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrls: [
+      'http://www.51pptmoban.com/d/file/2018/05/17/ba0172ce98cc25c03fb2986e55205655.jpg',
+      'http://www.wendangwang.com/pic/60ce9ebec47d22cc9b6ab14c/6-810-jpg_6-1080-0-0-1080.jpg',
+      'http://www.pptbz.com/d/file/p/201708/5f02717ee482f36516721d482cbbe86b.jpg'
+    ],
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000
 
   },
 

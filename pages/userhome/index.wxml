@@ -1,6 +1,19 @@
 <view class="container cf">
-	 <view class="white-bg">
-	  <image class="user-bg" src="../../img/bg.jpg"></image>
+<view class="white-bg">
+
+    <swiper
+  indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}"
+  interval="{{interval}}"
+  duration="{{duration}}"
+   >
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image mode="widthFix" src="{{item}}" class="slide-image" width="750rpx" height="150" />
+    </swiper-item>
+  </block>
+</swiper>
+	 
     <view class="user-head">
         <view class="content">
             <view class="avatar">
@@ -13,7 +26,7 @@
             <view class="info f12">累计<text class="text-default">1313</text>访问 粉丝1113 <text class=""> 回头率 3% </text> <text class="text-red">高</text></view>
         </view>
     </view>
-    </view>
+</view>
     <view class="goods-box">
         <view class="goods-item flex-box" wx:for="{{5}}" wx:key="index">
             <image class="cover" src="../../img/goods2.jpg"></image>
