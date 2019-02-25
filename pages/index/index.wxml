@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+    <i-imgs></i-imgs>
     <view class="location flex-box align-center">
         <i-icon type="coordinates_fill" size="16" /> 
         <text>{{userloaction.city}} {{userloaction.district}} {{userloaction.street_number}}</text>
