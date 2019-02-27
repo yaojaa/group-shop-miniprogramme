@@ -1,15 +1,13 @@
 
-<view class="img-box" style="height: {{imgs.height + 'rpx'}}">
+<!-- <view class="img-box" style="height: {{imgs.height + 'rpx'}}">
 	<view class="image">
 		<image style="width: 1000px; left: {{left}}" bindtap="onClick" mode="aspectFill" src="http://img.daohangwa.com/tmp_8cbbbcf280c40dc791a3548983f5e0f3398108c0fd95d363.jpg"></image>
 	</view>
-</view>
+</view> -->
 
 
 <view class="img-box">
-	<view class="image">
-		<block wx:for="{{imgsPath}}">
-			<image mode="aspectFill" style="{{item.style}}" src="{{item.src}}"></image>
-		</block>
+	<view wx:for="{{imgsPath}}" wx:key="{{item.src}}" hidden="{{item.hidden}}" class="image" animation="{{item.animationOuter}}">
+			<image animation="{{item.animationImg}}" mode="aspectFill" style="width: {{item.width + 'px'}}; height: {{item.height + 'px'}}" src="{{item.src}}"></image>
 	</view>
 </view>
