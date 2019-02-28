@@ -29,10 +29,18 @@ Component({
       //   animationImg: ''
       // }
     ],
-    index: 0
+    index: 0,
+    item: {
+
+    },
+    animationImg: '',
   },
   ready(){
-    this.animation = wx.createAnimation();
+    this.animation = wx.createAnimation({
+
+      duration: 800,
+      timingFunction: 'ease',
+    });
     this.init();
   },
 
@@ -76,6 +84,7 @@ Component({
                   hidden: i == this.data.index ? false : true,
                   time: 3000,
                   timing: 'ease',
+                  scale: 1,
                   animationOuter: '',
                   animationImg: ''
                 })
@@ -88,6 +97,7 @@ Component({
                   hidden: i == this.data.index ? false : true,
                   time: 3000,
                   timing: 'ease',
+                  scale: 1,
                   animationOuter: '',
                   animationImg: ''
                 })
@@ -101,6 +111,7 @@ Component({
                   hidden: i == this.data.index ? false : true,
                   time: 3000,
                   timing: 'ease',
+                  scale: 1,
                   animationOuter: '',
                   animationImg: ''
                 })
@@ -108,9 +119,7 @@ Component({
               }
             }
           })
-          this.setData({
-            imgsPath: this.data.imgsPath
-          });
+          this.animationFun();
         })
       });
       
@@ -147,18 +156,50 @@ Component({
 
 
     animationFun(){
+      let i = this.data.index;
+      let img = this.data.imgsPath[i];
+      this.data.imgsPath.forEach(e => {
+        e.hidden = true;
+        e.animationOuter = '';
+        e.animationImg = '';
+        e.scale = 1;
+      })
+      img.hidden = false;
+      if(img.type == 0){
+        img.scale = 0;
+        this.animation.scale(1);
+        img.animationOuter = this.animation.export();
+      }else if(img.type == 1){
+        this.animation.top(-img.height);
+        img.animationImg = this.animation.export();
+      }else{
+        this.animation.left(-img.width);
+        img.animationImg = this.animation.export();
+      }
+      console.log(this.animation)
+      // this.setData({
+      //   imgsPath: this.data.imgsPath
+      // });
+      this.setData({
+        item: img,
+      })
+      setTimeout(()=>{
+        var animation = wx.createAnimation({
+      
+      duration: 800,
+      timingFunction: 'ease',
+    });
+        console.log(animation);
+        animation.top(100);
+        this.setData({
+
+        animationOuter: animation.export()
+        })
+      },1000)
 
 
 
     },
-
-
-
-    onClick(){ //点击动画   测试
-      this.setData({
-        left: '-1000px'
-      })
-    }
 
   },
 });
