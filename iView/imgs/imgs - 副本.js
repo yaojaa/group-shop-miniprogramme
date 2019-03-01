@@ -19,11 +19,12 @@ Component({
   },
   data: {
     imgsPath:[], // 图片信息集合
-    index: 4, // 动画下标
+    index: 0, // 动画下标
     animationDuration: 10, // 动画持续时间基数
     imgBoxSize: {}, // 容器实际尺寸
   },
   ready(){
+    this.animation = wx.createAnimation();
     this.init();
   },
 
@@ -63,7 +64,7 @@ Component({
                   type: '0', //0正方形  1横图  2竖图
                   hidden: i == this.data.index ? false : true,
                   scale: 0,
-                  transition: this.getAnimationParam(size.s/2)
+                  getAnimationParam: this.getAnimationParam(size.s/2)
                 })
               }else if(b > 1){ //横图
                 this.data.imgsPath.push({
@@ -72,8 +73,7 @@ Component({
                   type: '1', //0正方形  1横图  2竖图
                   hidden: i == this.data.index ? false : true,
                   scale: 1,
-                  x: 0,
-                  transition: this.getAnimationParam(Math.abs(size.w - this.data.imgBoxSize.w)),
+                  getAnimationParam: this.getAnimationParam(Math.abs(size.w - this.data.imgBoxSize.w)),
                 })
 
               }else{  //竖图
@@ -83,8 +83,7 @@ Component({
                   type: '2', //0正方形  1横图  2竖图
                   hidden: i == this.data.index ? false : true,
                   scale: 1,
-                  y: 0,
-                  transition: this.getAnimationParam(Math.abs(size.h - this.data.imgBoxSize.h)),
+                  getAnimationParam: this.getAnimationParam(Math.abs(size.h - this.data.imgBoxSize.h)),
                 })
 
               }
@@ -98,7 +97,10 @@ Component({
     },
 
     getAnimationParam(size){
-      return "transition: all "+ size*this.data.animationDuration/1000 +"s";
+      return {
+        duration: size*this.data.animationDuration,
+        timingFunction: "linear"
+      }
     },
 
     getImageInfo(filePath) {
@@ -161,23 +163,23 @@ Component({
         this.setData({
           imgsPath: this.data.imgsPath
         }, () => {
-          // setTimeout(() => {
+          setTimeout(() => {
 
-          //   if(this.data.index == this.data.imgsPath.length - 1){
-          //     this.data.index = 0;
-          //   }else{
-          //     this.data.index ++;
-          //   }
+            if(this.data.index == this.data.imgsPath.length - 1){
+              this.data.index = 0;
+            }else{
+              this.data.index ++;
+            }
 
-          //   this.animationReset(img);
+            this.animationReset(img);
 
-          //   this.setData({
-          //     imgsPath: this.data.imgsPath
-          //   }, () => {
-          //     this.animationFun();
-          //   })
+            this.setData({
+              imgsPath: this.data.imgsPath
+            }, () => {
+              this.animationFun();
+            })
 
-          // }, img.getAnimationParam.duration);
+          }, img.getAnimationParam.duration);
         });
 
       });
@@ -185,18 +187,13 @@ Component({
     },
 
     animationType(img){
+      let animation = wx.createAnimation(img.getAnimationParam);
       if(img.type == 0){
-
-        img.scale = img.size.s/img.size.w, img.size.s/img.size.w;
-
+        img.animationOu = animation.scale(img.size.s/img.size.w, img.size.s/img.size.w).step().export();
       }else if(img.type == 1){
-
-        img.x = -img.size.w + this.data.imgBoxSize.w;
-
+        img.animationImg = animation.translateX(-img.size.w + this.data.imgBoxSize.w).step().export();
       }else{
-
-        img.y = -img.size.h + this.data.imgBoxSize.h;
-
+        img.animationImg = animation.translateY(-img.size.h + this.data.imgBoxSize.h).step().export();
       }
     },
 

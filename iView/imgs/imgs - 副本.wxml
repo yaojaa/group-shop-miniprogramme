@@ -1,0 +1,8 @@
+<view class="img-box" style="height: {{imgs.height + 'rpx'}}">
+	<view wx:for="{{imgsPath}}" style="transform: scale({{item.scale}});" wx:key="{{item.src}}" hidden="{{item.hidden}}" class="image" animation="{{item.animationOuter}}">
+		<view style="width: {{item.size.w + 'px'}}; height: {{item.size.h + 'px'}}">
+			<image animation="{{item.animationImg}}" mode="aspectFill" src="{{item.src}}"></image>
+		</view>
+			
+	</view>
+</view>

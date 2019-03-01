@@ -1,8 +1,50 @@
-<view class="img-box" style="height: {{imgs.height + 'rpx'}}">
+<!-- <view class="img-box" style="height: {{imgs.height + 'rpx'}}">
 	<view wx:for="{{imgsPath}}" style="transform: scale({{item.scale}});" wx:key="{{item.src}}" hidden="{{item.hidden}}" class="image" animation="{{item.animationOuter}}">
 		<view style="width: {{item.size.w + 'px'}}; height: {{item.size.h + 'px'}}">
 			<image animation="{{item.animationImg}}" mode="aspectFill" src="{{item.src}}"></image>
 		</view>
 			
 	</view>
+</view> -->
+<view class="img-box" style="height: {{ imgs.height + 'rpx' }}">
+	<!-- <view wx:for="{{ imgsPath }}" wx:for-item = "img" wx:key="{{index}}" style=" transform: scale({{ img.scale }}); {{ img.transition }};" class="image">
+		<view hidden="{{ img.hidden }}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }};{{ item.style }}, {{ img.transition }}; {{ img.animationImg }}">
+			<image mode="aspectFill" src="{{ img.src }}"></image>
+		</view>
+	</view> -->
+
+	
+
+
+	<block wx:for="{{ imgsPath }}" wx:for-item = "img" wx:key="{{index}}">
+
+		<!-- 正方形 -->
+	<view wx:if=" {{img.type == 0}} " hidden="{{ img.hidden }}" style=" transform: scale({{ img.scale }});{{ img.transition }};" class="image">
+		<view style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}">
+			<image mode="aspectFill" src="{{ img.src }}"></image>
+		</view>
+	</view>
+
+		<!-- 横图 -->
+	<view wx:elif=" {{img.type == 1}} " hidden="{{ img.hidden }}" class="image">
+		<view style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateX({{ img.x }});{{ img.transition }};">
+			<image mode="aspectFill" src="{{ img.src }}"></image>
+		</view>
+	</view>
+		<!-- 竖图 -->
+	<view wx:else=" {{img.type == 2}} " hidden="{{ img.hidden }}" class="image">
+		<view style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateY({{ img.y }});{{ img.transition }};">
+			<image mode="aspectFill" src="{{ img.src }}"></image>
+		</view>
+	</view>
+
+	</block>
+
+
+
+
+
+
+
+
 </view>
