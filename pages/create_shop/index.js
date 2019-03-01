@@ -17,23 +17,7 @@ Page({
         options1: data,
         title1:'点击选择',
         value2: [],
-
-        fileList: [{
-                uid: 0,
-                status: 'done',
-                url: 'http://img.atomstone.com/staitc-imguser_bg1.jpg',
-            },
-            {
-                uid: 1,
-                status: 'done',
-                url: 'http://img.atomstone.com/staitc-imguser_bg2.jpg',
-            },
-            {
-                uid: 2,
-                status: 'done',
-                url: 'http://img.atomstone.com/staitc-imguser_bg3.jpg',
-            }
-        ]
+        store_slide:[]
     },
    bindRegionChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -56,14 +40,17 @@ Page({
         //     })
         // }
     },
-    onSuccess(e) {
-        console.log('onSuccess', e)
+    onSuccess(e,l) {
+        console.log('onSuccess图片上传成功',e,l)
+
+        this.data.store_slide.push(e.detail.url)
+
+
     },
     onFail(e) {
         console.log('onFail', e)
     },
     onComplete(e) {
-        console.log('onComplete', e)
         wx.hideLoading()
     },
     onProgress(e) {
@@ -146,6 +133,14 @@ Page({
         district_id:this.data.district_id,
         store_slide:this.data.store_slide,
         address:this.data.address
+
+      }).then(res=>{
+        console.log(res,res.data)
+        if(res.data.code == 0){
+          wx.redirectTo({
+            url:'../create_shop_success/index'
+          })
+        }
 
       })
 

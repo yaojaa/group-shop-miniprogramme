@@ -1,0 +1,14 @@
+<!--pages/create_shop.wxml-->
+<view class="container">
+
+   <wux-result
+    title="恭喜 创建成功"
+    label="红叶舞秋山的小店"
+    buttons="{{ buttons }}"
+    extra="Copyright © 2018 开心麻团"
+    fixed
+    bind:click="onClick"
+/>
+	
+
+</view>

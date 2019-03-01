@@ -227,6 +227,8 @@ baseComponent({
          * @param {Object} res 请求响应对象
          */
         onSuccess(file, res) {
+            console.log('上传文件成功时的回调函数',res)
+
             const fileList = [...this.data.uploadFileList]
             const index = fileList.map((item) => item.uid).indexOf(file.uid)
 
@@ -244,7 +246,7 @@ baseComponent({
                 // replace
                 fileList.splice(index, 1, targetItem)
 
-                this.triggerEvent('success', info)
+                this.triggerEvent('success', res.data)
 
                 this.onChange(info)
             }
@@ -334,7 +336,13 @@ baseComponent({
                 name,
                 header,
                 formData,
-                success: (res) => this.onSuccess(file, res),
+                success: (res) => {
+
+                    console.log(res)
+
+
+                    this.onSuccess(file, res)
+                },
                 fail: (res) => this.onFail(file, res),
                 complete: (res) => {
                     delete this.uploadTask[uid]

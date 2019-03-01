@@ -50,7 +50,7 @@
 
 <i-panel i-class="shadow-panel" title="店铺轮播图（最多可传5张）">
 
-       <wux-upload listType="picture-card" fileList="{{ fileList }}" controlled url="https://up-z1.qiniup.com" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
+       <wux-upload listType="picture-card" fileList="{{ fileList }}"  url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
             <text><wux-icon type="md-add" /></text>
         </wux-upload>
 

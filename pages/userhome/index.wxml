@@ -28,6 +28,7 @@
     </view>
 </view>
     <view class="goods-box">
+        <h1>----为您推荐---</h1>
         <view class="goods-item flex-box" wx:for="{{5}}" wx:key="index">
             <image class="cover" src="../../img/goods2.jpg"></image>
             <view class="content">

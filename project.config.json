@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 28,
 			"list": [
 				{
 					"id": 0,
@@ -228,6 +228,12 @@
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "创建成功",
+					"pathName": "pages/create_shop_success/index",
+					"scene": null
 				}
 			]
 		}
