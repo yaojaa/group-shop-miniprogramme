@@ -3,16 +3,6 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
-    imgs:{
-        src:[
-          "https://www.daohangwa.com/public/upload/local_cover/tmp_71a8a18f8d4e18b8cf892a4c3e28424cf3997fe5c76f3157.jpg",
-          "https://www.daohangwa.com/public/upload/local_cover/wx6ac9955f87c289f0.o6zAJsx6hMSC0UBabsyLYJuKY6ew.7z0KiIbdNBif8c155dfc2e203591a2bc726215709f2e.jpg",
-          "https://www.daohangwa.com/public/upload/local_cover/tmp_8789e959d03e6124356439808cc0354c81fd598848c33517.jpg",
-          "https://www.daohangwa.com/public/upload/local_cover/tmp_cd85c827575f94b291aacf7552af15971fe3b1083d6d6374.jpg",
-          "https://wx.qlogo.cn/mmopen/vi_32/QIbmMAaoLUEQg7pwSpjOEtMOPLxXxBsjQ4RNaIZQ7u7gngDjvU3RJC4ibez6ia2pX98dnnGserc9tqoniaicRg5aGA/132",
-        ],
-        height: 800
-    },
     name: '甘露园南里二区',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),

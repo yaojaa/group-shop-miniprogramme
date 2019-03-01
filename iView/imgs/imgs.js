@@ -14,6 +14,7 @@ Component({
     animationDuration: 10, // 动画持续时间基数
     imgBoxSize: {}, // 容器实际尺寸
     img: {}, //页面当前图片
+    bigImgsHidden: true, //查看大图
   },
   ready(){
     // this.init();
@@ -72,6 +73,10 @@ Component({
                 })
               }
             }
+          })
+
+          this.setData({
+            imgsPath: this.data.imgsPath
           })
 
           this.animationFun(true);
@@ -139,6 +144,18 @@ Component({
 
       });
 
+    },
+
+    checkBigImg(){
+      this.setData({
+        bigImgsHidden: false
+      })
+    },
+
+    closeBigImg(){
+      this.setData({
+        bigImgsHidden: true
+      })
     },
 
     animationType(img, r){

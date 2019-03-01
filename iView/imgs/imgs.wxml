@@ -1,4 +1,4 @@
-<view class="img-box" style="height: {{ imgs.height + 'rpx' }}">
+<view class="img-box" style="height: {{ imgs.height + 'rpx' }}" bindtap="checkBigImg">
 	<block wx:if="{{img.index%2 > 0}}">
 		<!-- 正方形 -->
 	<view wx:if="{{img.type == 0}}" class="flex-cc">
@@ -35,4 +35,12 @@
 		<image mode="aspectFill" src="{{ img.src }}"></image>
 	</view>
 	</block>
+</view>
+
+<view class="swiper" hidden="{{bigImgsHidden}}" bindtap="closeBigImg">
+	<swiper indicator-dots class="slide-image">
+    <swiper-item wx:for="{{imgsPath}}">
+      <image src="{{item.src}}" mode="aspectFit" class="slide-image"/>
+    </swiper-item>
+	</swiper>
 </view>

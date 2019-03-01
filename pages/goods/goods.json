@@ -15,6 +15,7 @@
     "i-message": "../../iView/message/index",
     "i-count-down": "../../iView/count-down/index",
     "i-badge": "../../iView/badge/index",
-    "share-painter": "/iView/share-painter/share-painter"
+    "share-painter": "/iView/share-painter/share-painter",
+    "i-imgs": "../../iView/imgs/imgs"
   }
 }

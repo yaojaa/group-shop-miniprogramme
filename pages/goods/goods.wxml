@@ -33,6 +33,9 @@
             </button>
         </view>
     </view>
+    <!-- 动画相册 -->
+    <i-imgs imgs="{{imgs}}"></i-imgs>
+
     <view class="page-section page-section-spacing swiper goods-manage">
             <!--   <view class="manage">
             <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>

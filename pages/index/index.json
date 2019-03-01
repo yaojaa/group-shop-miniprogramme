@@ -5,7 +5,6 @@
         "i-icon": "../../iView/icon/index",
         "i-avatar": "../../iView/avatar/index",
         "i-tab-bar": "../../iView/tab-bar/index",
-        "i-tab-bar-item": "../../iView/tab-bar-item/index",
-        "i-imgs": "../../iView/imgs/imgs"
+        "i-tab-bar-item": "../../iView/tab-bar-item/index"
     }
 }
