@@ -57,7 +57,6 @@ Component({
                   src: e.path,
                   size: size,
                   type: '1', //0正方形  1横图  2竖图
-                  scale: 1,
                   x: 0,
                   duration: this.getDuration(Math.abs(size.w - this.data.imgBoxSize.w))
                 })
@@ -67,7 +66,6 @@ Component({
                   src: e.path,
                   size: size,
                   type: '2', //0正方形  1横图  2竖图
-                  scale: 1,
                   y: 0,
                   duration: this.getDuration(Math.abs(size.h - this.data.imgBoxSize.h))
                 })
