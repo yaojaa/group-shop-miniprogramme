@@ -1,25 +1,15 @@
 .img-box{
+	height: 600rpx;
+	overflow: hidden;
+}
+.flex-cc{
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
 }
-.img-box .image{
-	height: 100%;
-	overflow: hidden;
-	/*position: relative;*/
-	/*left: 0;
-	top: 0;*/
-	/*opacity: 0;*/
-	/*transition: all 3s ease; 
-	transform: scale(0.1);*/
-}
-.img-box .image image{/*
-	position: absolute;
-	left: 0;
-	top: 0;*/
+.img-box image{
 	width: 100%;
 	height: 100%;
-	/*transform: scale(1,1);
-	transition: all 3s ease; */
 }

@@ -2,16 +2,7 @@ Component({
   properties: {
     imgs: {
       type: Object,
-      value: {
-        src:[
-          "https://www.daohangwa.com/public/upload/local_cover/tmp_71a8a18f8d4e18b8cf892a4c3e28424cf3997fe5c76f3157.jpg",
-          "https://www.daohangwa.com/public/upload/local_cover/wx6ac9955f87c289f0.o6zAJsx6hMSC0UBabsyLYJuKY6ew.7z0KiIbdNBif8c155dfc2e203591a2bc726215709f2e.jpg",
-          "https://www.daohangwa.com/public/upload/local_cover/tmp_8789e959d03e6124356439808cc0354c81fd598848c33517.jpg",
-          "https://www.daohangwa.com/public/upload/local_cover/tmp_cd85c827575f94b291aacf7552af15971fe3b1083d6d6374.jpg",
-          "https://wx.qlogo.cn/mmopen/vi_32/QIbmMAaoLUEQg7pwSpjOEtMOPLxXxBsjQ4RNaIZQ7u7gngDjvU3RJC4ibez6ia2pX98dnnGserc9tqoniaicRg5aGA/132",
-        ],
-        height: 600
-      },
+      value: {},
       observer: function (newVal, oldVal) {
         this.init();
       },
@@ -19,28 +10,23 @@ Component({
   },
   data: {
     imgsPath:[], // 图片信息集合
-    index: 4, // 动画下标
+    index: 0, // 动画下标
     animationDuration: 10, // 动画持续时间基数
     imgBoxSize: {}, // 容器实际尺寸
+    img: {}, //页面当前图片
   },
   ready(){
-    this.init();
+    // this.init();
   },
 
   methods: {
-    isEmpty(object) {
-      for (const i in object) {
-        return false;
-      }
-      return true;
-    },
-
     init() {
       let imageInfo = [];
 
       if (this.isEmpty(this.properties.imgs)) {
         return;
       }
+
       this.properties.imgs.src.forEach(e => {
         imageInfo.push(this.getImageInfo(e))
       });
@@ -50,6 +36,7 @@ Component({
 
           this.data.imgBoxSize.w = rects[0][0].width;
           this.data.imgBoxSize.h = rects[0][0].height;
+          this.data.imgsPath = [];
 
           arr.forEach((e, i) => {
             let b = e.width/e.height;
@@ -61,19 +48,17 @@ Component({
                   src: e.path,
                   size: size,
                   type: '0', //0正方形  1横图  2竖图
-                  hidden: i == this.data.index ? false : true,
                   scale: 0,
-                  transition: this.getAnimationParam(size.s/2)
+                  duration: this.getDuration(size.s/2)
                 })
               }else if(b > 1){ //横图
                 this.data.imgsPath.push({
                   src: e.path,
                   size: size,
                   type: '1', //0正方形  1横图  2竖图
-                  hidden: i == this.data.index ? false : true,
                   scale: 1,
                   x: 0,
-                  transition: this.getAnimationParam(Math.abs(size.w - this.data.imgBoxSize.w)),
+                  duration: this.getDuration(Math.abs(size.w - this.data.imgBoxSize.w))
                 })
 
               }else{  //竖图
@@ -81,28 +66,21 @@ Component({
                   src: e.path,
                   size: size,
                   type: '2', //0正方形  1横图  2竖图
-                  hidden: i == this.data.index ? false : true,
                   scale: 1,
                   y: 0,
-                  transition: this.getAnimationParam(Math.abs(size.h - this.data.imgBoxSize.h)),
+                  duration: this.getDuration(Math.abs(size.h - this.data.imgBoxSize.h))
                 })
-
               }
             }
           })
 
-          this.animationFun();
+          this.animationFun(true);
         })
       });
       
     },
 
-    getAnimationParam(size){
-      return "transition: all "+ size*this.data.animationDuration/1000 +"s";
-    },
-
     getImageInfo(filePath) {
-
       return new Promise(resolve => {
         wx.getImageInfo({
           src: filePath,
@@ -115,6 +93,74 @@ Component({
         });
       })
 
+    },
+
+    animationFun(random){
+      let i = this.data.index;
+      let img = this.data.imgsPath[i];
+      console.log(random)
+      //初始数据
+      this.animationReset(random);
+
+      if(img.type == 0){
+        img.transition = this.getAnimationParam(img.duration);
+      }else if(img.type == 1){
+        img.transition = this.getAnimationParam(img.duration);
+      }else{
+        img.transition = this.getAnimationParam(img.duration);
+      }
+
+      img.index = i;
+
+      // 初始渲染
+      this.setData({
+        img: img
+      },() => {
+
+        //添加动画效果值
+        this.animationType(img, random);
+
+        // 加载动画
+        this.setData({
+          img: img
+        }, () => {
+          setTimeout(() => {
+
+            if(this.data.index == this.data.imgsPath.length - 1){
+              this.data.index = 0;
+            }else{
+              this.data.index ++;
+            }
+
+            this.animationFun(this.getRandom());
+
+          }, img.duration*1000);
+        });
+
+      });
+
+    },
+
+    animationType(img, r){
+      if(img.type == 0){
+        img.scale = img.size.s/img.size.w;
+      }else if(img.type == 1){
+        img.x = r ? this.data.imgBoxSize.w - img.size.w : 0;
+      }else{
+        img.y = r ? this.data.imgBoxSize.h - img.size.h : 0;
+      }
+    },
+
+    animationReset(r){
+      this.data.imgsPath.forEach(e => {
+        if(e.type == 0){
+          e.scale = 0;
+        }else if(e.type == 1){
+          e.x = r ? 0 : this.data.imgBoxSize.w - e.size.w;
+        }else{
+          e.y = r ? 0 : this.data.imgBoxSize.h - e.size.h;
+        };
+      })
     },
 
     widthHeight(w, h, _w, _h){
@@ -137,79 +183,24 @@ Component({
       return size;
     },
 
-    animationFun(){
-      let i = this.data.index;
-      let img = this.data.imgsPath[i];
-
-      this.data.imgsPath.forEach(e => {
-        e.hidden = true;
-        // e.scale = 1;
-      })
-
-      // if(img.type == 0){
-      //   img.scale = 0;
-      // }
-
-      img.hidden = false;
-      
-      this.setData({
-        imgsPath: this.data.imgsPath
-      },() => {
-
-        this.animationType(img);
-
-        this.setData({
-          imgsPath: this.data.imgsPath
-        }, () => {
-          // setTimeout(() => {
-
-          //   if(this.data.index == this.data.imgsPath.length - 1){
-          //     this.data.index = 0;
-          //   }else{
-          //     this.data.index ++;
-          //   }
-
-          //   this.animationReset(img);
-
-          //   this.setData({
-          //     imgsPath: this.data.imgsPath
-          //   }, () => {
-          //     this.animationFun();
-          //   })
-
-          // }, img.getAnimationParam.duration);
-        });
-
-      });
-
+    getDuration(size){
+      return size*this.data.animationDuration/1000;
     },
 
-    animationType(img){
-      if(img.type == 0){
-
-        img.scale = img.size.s/img.size.w, img.size.s/img.size.w;
-
-      }else if(img.type == 1){
-
-        img.x = -img.size.w + this.data.imgBoxSize.w;
-
-      }else{
-
-        img.y = -img.size.h + this.data.imgBoxSize.h;
-
-      }
+    getAnimationParam(duration){
+      return "transition: all "+ duration +"s";
     },
 
-    animationReset(img){
-      let animation = wx.createAnimation({duration: 0});
-      if(img.type == 0){
-        img.animationOuter = animation.scale(0).step().export();
-      }else if(img.type == 1){
-        img.animationImg = animation.translateX(0).step().export();
-      }else{
-        img.animationImg = animation.translateY(0).step().export();
+    getRandom(){
+      return parseInt(Math.random()*9+1)%2 == 0;
+    },
+
+    isEmpty(object) {
+      for (const i in object) {
+        return false;
       }
-    }
+      return true;
+    },
 
   },
 });
