@@ -105,13 +105,7 @@ Component({
       //初始数据
       this.animationReset(random);
 
-      if(img.type == 0){
-        img.transition = this.getAnimationParam(img.duration);
-      }else if(img.type == 1){
-        img.transition = this.getAnimationParam(img.duration);
-      }else{
-        img.transition = this.getAnimationParam(img.duration);
-      }
+      img.transition = this.getAnimationParam(img.duration);
 
       img.index = i;
 
@@ -137,7 +131,7 @@ Component({
 
             this.animationFun(this.getRandom());
 
-          }, img.duration*1000);
+          }, img.duration*1000+300);
         });
 
       });
