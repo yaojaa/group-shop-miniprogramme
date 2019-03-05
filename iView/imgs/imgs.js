@@ -39,37 +39,11 @@ Component({
           this.data.imgBoxSize.h = rects[0][0].height;
           this.data.imgsPath = [];
 
-          arr.forEach((e, i) => {
-            let b = e.width/e.height;
-            let size = this.widthHeight(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e.width, e.height);
-
+          arr.forEach(e => {
+            // let b = e.width/e.height;
+            // let size = this.widthHeight(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e.width, e.height);
             if(e.errMsg == "getImageInfo:ok"){
-              if(b == 1){  //正方形
-                this.data.imgsPath.push({
-                  src: e.path,
-                  size: size,
-                  type: '0', //0正方形  1横图  2竖图
-                  scale: 0,
-                  duration: this.getDuration(size.s/2)
-                })
-              }else if(b > 1){ //横图
-                this.data.imgsPath.push({
-                  src: e.path,
-                  size: size,
-                  type: '1', //0正方形  1横图  2竖图
-                  x: 0,
-                  duration: this.getDuration(Math.abs(size.w - this.data.imgBoxSize.w))
-                })
-
-              }else{  //竖图
-                this.data.imgsPath.push({
-                  src: e.path,
-                  size: size,
-                  type: '2', //0正方形  1横图  2竖图
-                  y: 0,
-                  duration: this.getDuration(Math.abs(size.h - this.data.imgBoxSize.h))
-                })
-              }
+              this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e));
             }
           })
 
@@ -172,24 +146,63 @@ Component({
       })
     },
 
-    widthHeight(w, h, _w, _h){
-      let wh = w/h; //容器宽高
-      let _wh = _w/_h; //原始图片宽高
-      let size = {}; // 处理后图片尺寸
+    // widthHeight(w, h, _w, _h){
+    //   let wh = w/h; //容器宽高
+    //   let _wh = _w/_h; //原始图片宽高
+    //   let size = {}; // 处理后图片尺寸
+    //   if(_w == _h){
+    //     size.w = Math.min(w, h);
+    //     size.h = size.w;
+    //     size.s = Math.max(w, h); //缩放限值
+    //   }else if(wh > _wh){
+    //     size.w = w;
+    //     size.h = _h/_w*w;
+    //   }else{
+    //     size.h = h;
+    //     size.w = _w/_h*h;
+    //   }
+    //   return size;
+    // },
 
-      if(_w == _h){
+    getImgsOpt(w, h, e){
+      let opt = null;
+      let size = {};
+      let b = e.width / e.height;
+      let _b = w / h;
+
+      if(b == 1){  //正方形
         size.w = Math.min(w, h);
         size.h = size.w;
         size.s = Math.max(w, h); //缩放限值
-      }else if(wh > _wh){
-        size.w = w;
-        size.h = _h/_w*w;
-      }else{
+        opt = {
+          src: e.path,
+          size: size,
+          type: '0', //0正方形  1横图  2竖图
+          scale: 0,
+          duration: this.getDuration(size.s/2)
+        };
+      }else if(b > _b){ //横图
         size.h = h;
-        size.w = _w/_h*h;
-      }
-
-      return size;
+        size.w = e.width/e.height*h;
+        opt = {
+          src: e.path,
+          size: size,
+          type: '1', //0正方形  1横图  2竖图
+          x: 0,
+          duration: this.getDuration(Math.abs(size.w - w))
+        };
+      }else{  //竖图
+        size.w = w;
+        size.h = e.height/e.width*w;
+        opt = {
+          src: e.path,
+          size: size,
+          type: '2', //0正方形  1横图  2竖图
+          y: 0,
+          duration: this.getDuration(Math.abs(size.h - h))
+        };
+      };
+      return opt;
     },
 
     getDuration(size){
