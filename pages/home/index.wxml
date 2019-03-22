@@ -47,7 +47,7 @@
             <view class="text">今日进账</view>   
             </navigator> 
         </view>
-
+<!-- 
         <view class="main_nav_box">
 
             <view class="item">
@@ -65,7 +65,7 @@
                <view class="tit">发布团购</view>
             </view>
             
-        </view>
+        </view> -->
 
           <view class="waveAnimation">
             
@@ -106,6 +106,45 @@
 
     </view> -->
     <official-account></official-account>
+
+    <i-card title="我的订单" extra="全部" >
+    <view slot="content">
+
+
+<i-grid>
+    <i-grid-item>
+        <i-grid-icon>
+           <i-icon type="barrage" />
+        </i-grid-icon>
+        <i-grid-label>Grid</i-grid-label>
+    </i-grid-item>
+
+       <i-grid-item>
+        <i-grid-icon>
+           <i-icon type="barrage" />
+        </i-grid-icon>
+        <i-grid-label>Grid</i-grid-label>
+    </i-grid-item>
+
+       <i-grid-item>
+        <i-grid-icon>
+           <i-icon type="barrage" />
+        </i-grid-icon>
+        <i-grid-label>Grid</i-grid-label>
+    </i-grid-item>
+
+       <i-grid-item>
+        <i-grid-icon>
+           <i-icon type="barrage" />
+        </i-grid-icon>
+        <i-grid-label>Grid</i-grid-label>
+    </i-grid-item>
+  
+</i-grid>
+        
+
+    </view>
+</i-card>
 
     <i-panel>
         <view style="padding: 5px 10px;">

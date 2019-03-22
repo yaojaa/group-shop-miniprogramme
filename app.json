@@ -33,6 +33,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "开心麻团儿",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#eeeeee"
+    "backgroundColor": "#eeeeee",
+    "navigationStyle": "custom"
   }
 }

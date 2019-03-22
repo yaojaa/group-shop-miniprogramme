@@ -1,13 +1,5 @@
 {
 	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": [
-			{
-				"value": "img",
-				"type": "folder"
-			}
-		]
-	},
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
@@ -47,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 28,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
@@ -95,10 +87,11 @@
 					"scene": "1011"
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "发布页",
-					"pathName": "pages/publish/publish",
-					"query": ""
+					"pathName": "pages/publish-select/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -233,6 +226,7 @@
 					"id": -1,
 					"name": "创建成功",
 					"pathName": "pages/create_shop_success/index",
+					"query": "",
 					"scene": null
 				}
 			]

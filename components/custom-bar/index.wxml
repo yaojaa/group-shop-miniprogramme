@@ -1,0 +1,9 @@
+<view class="topBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight+6}}px;background-color:{{backColor}}">
+ 
+
+ <view class="icon" wx:if="{{showIcon}}" bindtap="goback">
+ 	<i-icon  size="{{backIconSize}}" color="{{backIconColor}}"  type="return" />
+ </view> 
+ <view class="tit" wx:if="{{title}}">{{title}}</view>
+ <slot></slot>
+</view>

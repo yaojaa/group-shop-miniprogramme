@@ -1,0 +1,35 @@
+.topBar{
+  color: #000;
+  height: 30px;
+  line-height: 30px;
+}
+
+.tit{
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
+	display: inline-block;
+}
+
+.fixed{
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 7px;
+	background: #fff;
+	border-radius: 15px;
+    border: 1px solid #eee;
+	opacity: .75;
+	min-width: 30px;
+	padding-left: 6px;
+	padding-right: 6px
+}
+
+.icon{
+	position: absolute;
+	left: 10px
+}
+
+.icon:active{
+	color: #666
+}

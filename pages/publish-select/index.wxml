@@ -1,8 +1,26 @@
+
+
+
+  <i-custom-bar title="" showIcon="{{true}}"> </i-custom-bar>
+
 <view class="container">
-<view class="bgimg">
-  <view class='title'>  快速发布，从修改模板开始：
+
+
+<view class="circle_warpper" >
+
+     <view class="circle">
+
+       <i-icon size="42" color="#ffffff"  type="add" />
+       <view class="new">发布新商品</view>
+       
+     </view>
 </view>
 
+
+
+<view class="smallTit">
+  选择模板快速创建：
+</view>
 <view class="center" >
   <view class="button-area flex_box">
   <view class="flex-item">
@@ -12,11 +30,13 @@
 <!--   <i-icon type="success"  size="34" color="#c6c6c6" />
  -->  </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>用户自取 在线收款模板</view>
-     <text class="f14 text-muted">使用小程序代收款，后期可随时提现</text> </view>
+    <view class="f16 text-default"> <view>社区团购在线收款模板</view>
+     <text class="f14 text-muted">小程序代收款，可随时提现</text> </view>
    </view>
   </view>
 </view>
+
+
 
 <view class="center">
   <view class="button-area flex_box">
@@ -24,7 +44,7 @@
     <image class="tmp-cover" mode="cover" src="/img/tmp_icon2.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>用户自取线下收款模板</view>
+    <view class="f16 text-default"> <view>社区团购线下收款模板</view>
      <text class="f14 text-muted">微信红包或者收款码收款</text> </view>
    </view>
   </view>
@@ -36,58 +56,35 @@
     <image class="tmp-cover" mode="cover" src="/img/tmp_icon3.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>快递包邮或送货上门模板</view>
+    <view class="f16 text-default"> <view>快递包邮送货上门模板</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
   </view>
 </view>
 
+<view class="smallTit">
+  从已有商品复制：
+</view>
+
 <view class="center">
   <view class="button-area flex_box">
   <view class="flex-item">
-    <image class="tmp-cover" mode="cover" src="/img/tmp_icon4.jpg"></image>
+       <i-icon size="24" color="#999"  type="task" />
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>自定义</view>
-     <text class="f14 text-muted">收款方式 配送方式自己选择</text> </view>
+    <view class="f16 text-default"> <view>选择已有商品</view>
+      </view>
    </view>
   </view>
 </view>
 
 
-
-
-</view>
-
-
-
+<!-- <view class="smallTit">
+  从供应商库选择：
+</view> -->
 
 
 
-<!-- <block wx:if="{{oldAddress.length > 0}}">
-<view class='history'>历史记录（{{oldAddress.length}}），点击下面记录添加活动地点</view>
-<view class='session'>
-<block wx:for="{{oldAddress}}" wx:key="id">
-  <view class='address'>
-    <view class='icon-img'>
-      <i-icon type="coordinates" />
-    </view>
-    <view class='content' data-id="{{item.id}}" bindtap='moveAddress'>
-      <view class='name'>{{item.name}}</view>
-      <view class='des'>{{item.address}}</view>
-      <view class='des' wx:if="{{item.door_number}}">提货点：{{item.door_number}}</view>
-    </view>
-    <view class='delete' bindtap='deleteAddress' data-type="old" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
-  </view>
-  <view class='line'></view>
-</block>
-</view>
-</block> -->
-
-
-
-
-<i-button wx:if="{{newAddress.length}}"  i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>
 
 
 

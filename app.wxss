@@ -2,7 +2,10 @@
 
 .container {
   height: 100%;
-  color:#333
+  color:#333;
+  width: 100%;
+  margin: 0;
+  padding: 0
   }
 .main{
   padding: 26rpx;
@@ -501,3 +504,4 @@ flex:5;
 .waveAnimation .waveBottom { 
     animation: move_wave 15s linear infinite; 
 } 
+

@@ -1,11 +1,28 @@
 /**index.wxss**/
+page{
+  height: 100vh;
+  overflow: hidden;
+}
+
 .flex{
   display: flex;
 }
 .container{
   padding-bottom: 100rpx;
+  background-image: url('http://img.atomstone.com/top_bar_bg2.png');
   background-color: #f6f6f6;
+  background-size: 100% auto;
   min-height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.tit-slogan{
+  margin-left: 10px
+}
+
+.small{
+  font-size: 14px;
+  color: #666
 }
 .location{
   padding:30rpx;
