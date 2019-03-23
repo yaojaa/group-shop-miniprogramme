@@ -234,6 +234,11 @@ Page({
             url: '../fans/index'
         })
     },
+    goSite(){
+       wx.navigateTo({
+            url: '../userhome/index'
+        })
+    },
     editPage(e) {
         let url = e.currentTarget.dataset.url
         wx.navigateTo({

@@ -1,6 +1,5 @@
-<view class="topBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight+6}}px;background-color:{{backColor}}">
+<view class="topBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight+6}}px;background-color:{{backColor}};background-image: url('{{backImage}}');">
  
-
  <view class="icon" wx:if="{{showIcon}}" bindtap="goback">
  	<i-icon  size="{{backIconSize}}" color="{{backIconColor}}"  type="return" />
  </view> 

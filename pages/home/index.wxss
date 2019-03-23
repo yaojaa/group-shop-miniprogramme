@@ -1,20 +1,21 @@
 .container {
-    background: #f8f8f8;
+
 }
 
 
 .head-box{
-  height: 522rpx;
-  background:url('http://img.countinsight.com/business/img/home_bg@2x.png');
-  background-size: 100%;
-  background: #49b34d;
+  position: relative;
+  background: url('http://img.atomstone.com/u_center_bg.jpg') center top no-repeat #fff;
+  background-size: 100% auto;
+  height: 322rpx;
   position: relative;
   width: 100%;
+  padding-top: 200rpx
 }
 .user-name{
   position: absolute;
   left: 30rpx;
-  top: 30rpx;
+  top: 130rpx;
   color: #fff
 }
 
@@ -36,9 +37,9 @@ vertical-align:middle;
   text-align: center;
   width: 300rpx;
   margin: 0 auto;
-  padding-top: 160rpx;
+  padding-top: 60rpx;
   font-size: 48rpx;
-  color: #fff
+  color: #333
 }
 
 .head-box .number .text{
@@ -51,7 +52,7 @@ vertical-align:middle;
     color: #fff;
     border-radius: 9px 0 0 9px;
     position: absolute;
-    background: #9966cc;
+    background: #333;
     padding: 5rpx ;
     text-align: center;
     right:  0;
@@ -236,6 +237,7 @@ vertical-align:middle;
     display: -o-flex;
     display: flex;
     padding: 0 30rpx;
+    position: relative;
 }
 
 .goods-body .hd {
@@ -275,7 +277,10 @@ vertical-align:middle;
 
 .goods-body .fd {
     color: #999;
-    font-size: 28rpx
+    font-size: 28rpx;
+    position: absolute;
+    right: 0;
+    top: 0
 }
 
 .goods-count .count-item {

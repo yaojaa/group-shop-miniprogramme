@@ -21,7 +21,8 @@
     "pages/example/example",
     "pages/paymethod/index",
     "pages/userhome/index",
-    "pages/create_shop/index"
+    "pages/create_shop/index",
+    "pages/b-login/login"
   ],
   "permission": {
     "scope.userLocation": {

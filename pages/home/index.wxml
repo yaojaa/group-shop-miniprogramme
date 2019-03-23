@@ -1,5 +1,5 @@
 <view class="container">
-
+<i-custom-bar showIcon="{{true}}" backColor="'transparent'" title="红叶舞秋山" >   </i-custom-bar>
 
 <view class="loader" wx:if="{{is_loading}}">
     <view class="face">
@@ -21,23 +21,27 @@
     <view class="head-box">
         <view class="user-name">
 
-        <image  src="https://image.countinsight.com/business/1ee33a5020829a50ba3bfdb7c91133c6.jpg" class="round mr-df  align-self-center home-avatar"></image>
-<!-- 
-        <image bindtap="goHome" class=" home-avatar userinfo-avatar" src="{{userInfo.headimg}}" mode="cover"></image> -->
+        <open-data bindtap="goHome" class="home-avatar userinfo-avatar"  type="userAvatarUrl"></open-data>
 
-        <text class="name">{{userInfo.nickname}}</text>
+        <text class="name"><open-data type="userNickName"></open-data></text>
         </view>
 
 
-        <view class="msg-tips">
+
+
+  <!--       <view class="msg-tips">
             <i-badge count="3">
                您有新的订单 <i-icon type="remind" size="20" color="#fff" />
             </i-badge>
+        </view> -->
+
+
+        <view class="creat_btn"  bindtap="goCreate">
+            <button>创建专属小店</button>
         </view>
 
-
-        <view class="creat_btn">
-            <button bindtap="goCreate">创建专属小店</button>
+         <view class="creat_btn"  bindtap="goSite">
+            <button>我的店铺</button>
         </view>
 
   
@@ -66,7 +70,7 @@
             </view>
             
         </view> -->
-
+<!-- 
           <view class="waveAnimation">
             
             <view class="waveWrapperInner bgMiddle">
@@ -75,7 +79,7 @@
             <view class="waveWrapperInner bgBottom">
                 <view class="wave waveBottom" style="background-image: url('http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.u6qLXMSLXkDQba75e0c9c558e20911df32aa3cc7a5bd.png');"></view>
             </view>
-        </view>
+        </view> -->
     </view>
 
 
@@ -105,112 +109,19 @@
         </view>
 
     </view> -->
-    <official-account></official-account>
-
-    <i-card title="我的订单" extra="全部" >
+<!--     <official-account></official-account>
+ -->
+<i-panel  title="我的订单" extra="全部" >
     <view slot="content">
 
 
-<i-grid>
-    <i-grid-item>
-        <i-grid-icon>
-           <i-icon type="barrage" />
-        </i-grid-icon>
-        <i-grid-label>Grid</i-grid-label>
-    </i-grid-item>
 
-       <i-grid-item>
-        <i-grid-icon>
-           <i-icon type="barrage" />
-        </i-grid-icon>
-        <i-grid-label>Grid</i-grid-label>
-    </i-grid-item>
-
-       <i-grid-item>
-        <i-grid-icon>
-           <i-icon type="barrage" />
-        </i-grid-icon>
-        <i-grid-label>Grid</i-grid-label>
-    </i-grid-item>
-
-       <i-grid-item>
-        <i-grid-icon>
-           <i-icon type="barrage" />
-        </i-grid-icon>
-        <i-grid-label>Grid</i-grid-label>
-    </i-grid-item>
-  
-</i-grid>
         
 
     </view>
-</i-card>
+</i-panel >
 
-    <i-panel>
-        <view style="padding: 5px 10px;">
-            <view class="order {{item.order_status==3?'gray-all':''}}" wx:for="{{orders}}" wx:for-index="idx" wx:key="id">
-                <navigator url="/pages/goods/goods?goods_id={{item.goods.goods_id}}" hover-class="none">
-                    <view class='title'>
-                        <text>{{item.goods.goods_name}} </text>
-                        <text class="state" wx:if="{{item.shipping_status==1 && item.order_status!==2}}">已发货</text>
-                        <text class="state success" wx:if="{{item.order_status==2}}">已完成</text>
-                        <text class="state" wx:if="{{item.order_status==3}}">已取消</text>
-                        <text class="state" wx:if="{{item.pay_status==1 && item.shipping_status==0}}"> {{['等待确认','等待配货','已完成','已取消','已完成','已作废'][item.order_status]}}
-                            <!--已完成 其实为已收货-->
-                        </text>
-                    </view>
-                </navigator>
-                <!-- 发货状态 0未发货 1已发货 2部分发货 -->
-                <view class="goodsList" wx:for="{{item.order_goods}}" wx:for-item="order" wx:key="@index">
-                    <view class='goods'>
-                        <view class='cell'>
-                            <view class='left'>{{order.spec_key_name}} × {{order.goods_num}}</view>
-                            <view class='right'><text>￥{{order.goods_price}}</text></view>
-                        </view>
-                    </view>
-                </view>
-                <view class="user">
-                    <view class='name'>{{item.consignee}} {{item.mobile}}</view>
-                    <view class='date'>{{item._format_add_time}}</view>
-                </view>
-                <view class="user"> <text class='name f12' wx:if="{{item.goods.delivery_method ==1}}"> {{item.address}} </text></view>
-                <view class='line'></view>
-                <view class='paycell'>
-                    <view class='pay'>
-                        <view class="left">
-                            <!--             {{['待支付','已支付','支付失败'][item.pay_status]}} 
-                     --><text wx:if="{{item.pay_status == 1}}">
-                                <text class="success"> 已支付</text>
-                                <text class="get_number" wx:if="{{item.goods.delivery_method ==2}}">取货号: <text class="warning">{{item.create_number}}</text></text>
-                            </text>
-                            <text wx:else class="danger">未支付</text>
-                            <!--订单确认后显示取货状态-->
-                            <!--   <text wx:if="{{item.order_status == 1}}">{{['等待取货','已取货'][item.shipping_status]}}</text>  -->
-                        </view>
-                        <!--                         <view class="right ">￥{{item.goods_price}}</view>
- -->
-                    </view>
-                    <view class="yuan1"></view>
-                    <view class="yuan2"></view>
-                </view>
-                <view class="list-flex" wx:if="{{item.order_status !==3}}">
-                    <view class="flex-item">
-                        <i-button bindtap="pay" data-wx_collection_code="{{item.store.wx_collection_code}}" data-collection_methods="{{item.collection_methods}}" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1 &&item.collection_methods ==1 }}" type="success" size="small" long="{{fasle}}">去支付</i-button>
-
-                         <i-button disabled="true" wx:if="{{item.pay_status!==1 && item.collection_methods ==2}}"> 
-                          取货时线下支付
-                         </i-button>
-                    </view>
-                    <view class="flex-item">
-                        <i-button bindtap="cancel_order" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.pay_status!==1}}" type="default" size="small" long="{{fasle}}">取消订单</i-button>
-                    </view>
-                </view>
-                <i-button bindtap="confirm_order" data-goods_id="{{item.goods_id}}" data-id="{{item.order_id}}" data-idx="{{idx}}" wx:if="{{item.shipping_status==1 && item.order_status!==2}}" type="success" size="small" long="{{fasle}}">确认已取货</i-button>
-            </view>
-        </view>
-    </i-panel>
-
-    <i-panel title="最近发布的" wx:if="{{goodslist.length > 0}}">
+ <i-panel title="最近发布的" wx:if="{{goodslist.length > 0}}">
         <view>
             <view class="goods-box">
                 <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
@@ -227,8 +138,12 @@
                                     <button formType="submit" size="mini"> 修 改 </button>
                                 </form>
 
-                                  <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" data-fn="copyGoods" report-submit="true">
-                                    <button formType="submit" size="mini"> 复 制 </button>
+                                <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" data-fn="copyGoods" report-submit="true">
+                                    <button formType="submit" size="mini"> 管理订单 </button>
+                                </form>
+
+                                <form bindsubmit="formSubmit" data-id="{{item.goods_id}}"  report-submit="true">
+                                    <button formType="submit" size="mini"> <i-icon type="unfold" /> </button>
                                 </form>
                             </view>
                         </view>
@@ -268,36 +183,6 @@
             <i-icon type="add" size="22" />
             <text>发布一个团购 </text>
         </view>
-        <view class="tip_txt">点击下方模板可快速创建:</view>
-
- <view class="tmp-box">
-        <view class="tmp-bd">
-            <navigator url="../publish/publish?copy=86" hover-class="none" class="tmp-item">
-                <image class="tmp-cover" src="/img/tmp_icon1.jpg" mode="cover"></image>
-                <view class="label">
-                    <text>先收款\n用户自取</text>
-                </view>
-            </navigator>
-            <navigator url="../publish/publish?copy=70" hover-class="none" class="tmp-item">
-                <image class="tmp-cover" src="/img/tmp_icon2.jpg" mode="cover"></image>
-                <view class="label">
-                    <text>先报名\n用户自取</text>
-                </view>
-            </navigator>
-            <navigator url="../publish/publish?copy=91" hover-class="none" class="tmp-item">
-                <image class="tmp-cover" src="/img/tmp_icon3.jpg" mode="cover"></image>
-                <view class="label">
-                    <text>先收款\n送货上门</text>
-                </view>
-            </navigator>
-            <navigator url="../publish/publish?copy=97" hover-class="none" class="tmp-item">
-                <image class="tmp-cover" src="/img/tmp_icon4.jpg" mode="cover"></image>
-                <view class="label">
-                    <text>先收款\n快递邮寄</text>
-                </view>
-            </navigator>
-        </view>
-    </view> 
     </view>
     <i-message id="message" />
 

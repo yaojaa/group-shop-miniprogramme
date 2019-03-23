@@ -10,6 +10,11 @@ Component({
         value:''
 
       },
+        backImage:{
+        type:String,
+        value:''
+
+      },
       showIcon:{
         type:Boolean,
         value:false

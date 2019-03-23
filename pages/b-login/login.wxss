@@ -1,0 +1,80 @@
+/**index.wxss**/
+
+.container{
+	position: relative;
+	background: url('http://img.atomstone.com/b_login_bg.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	background-position: center center
+}
+.title{
+	padding:260rpx 0 0 120rpx;
+	font-size: 48rpx;
+	color: #fff;
+	font-weight: 400;
+	display: block;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-box{
+	margin:180rpx 80rpx;
+	background: none
+}
+.login_btn{
+
+margin-top:90rpx;
+width: 590rpx;
+height: 88rpx;
+opacity: 0.9;
+border-radius: 8rpx;
+background-color: #fff;
+color: #333
+
+}
+.form-input {
+	color: #fff
+}
+
+.getcode{
+	width:176rpx;
+height:39rpx;
+line-height:26rpx;
+opacity:0.8;
+color:#fff;
+font-size:32rpx;
+padding-top:10rpx;
+padding-left:10rpx;
+text-align:right;
+border-left:1px solid #fff;
+
+}
+
+.getcode:active{
+	color:#7224d8
+}
+
+.on{
+	background:#7224d8;color: #fff
+}
+
+.icon1,.icon2{
+	width: 50rpx;
+	display: inline-block;
+}
+.icon1 image{
+	width: 28rpx;
+}
+
+.icon2 image{
+	width: 34rpx;
+}
+.form-item {
+	display: flex;
+	padding: 20px 0
+}

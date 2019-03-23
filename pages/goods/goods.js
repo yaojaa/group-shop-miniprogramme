@@ -140,9 +140,9 @@ Page({
         })
 
 
-        wx.showLoading({
-              title: '玩命加载中...',
-        })
+        // wx.showLoading({
+        //       title: '玩命加载中...',
+        // })
         //没有传ID的情况跳转
         //
         if(!option.goods_id && !option.scene){
@@ -159,69 +159,69 @@ Page({
 
         util.getShareImg(option.goods_id, this);
 
-      Promise.all([
-        util.getQrcode({
-          page: 'pages/goods/goods',
-          scene: this.data.goods_id
-        }),
-        new Promise(resolve => {
-          wx.request({
-            url: 'https://www.daohangwa.com/api/goods/get_goods_info',
-            data: {
-              // token: app.globalData.token,
-              goods_id: this.data.goods_id
-            },
-            success: (res) => {
-              resolve(res);
-            }
+      // Promise.all([
+      //   util.getQrcode({
+      //     page: 'pages/goods/goods',
+      //     scene: this.data.goods_id
+      //   }),
+      //   new Promise(resolve => {
+      //     wx.request({
+      //       url: 'https://www.daohangwa.com/api/goods/get_goods_info',
+      //       data: {
+      //         // token: app.globalData.token,
+      //         goods_id: this.data.goods_id
+      //       },
+      //       success: (res) => {
+      //         resolve(res);
+      //       }
 
-          })
-        })
-      ])
-      .then(arr=>{
-        console.log('arr',arr);
-        let res = arr[1];
-        //绘制朋友圈图片
-        util.drawShareFriends(this,[arr[0], res.data]);
-        wx.hideLoading()
-        if (res.data.code == 0) {
+      //     })
+      //   })
+      // ])
+      // .then(arr=>{
+      //   console.log('arr',arr);
+      //   let res = arr[1];
+      //   //绘制朋友圈图片
+      //   util.drawShareFriends(this,[arr[0], res.data]);
+      //   wx.hideLoading()
+      //   if (res.data.code == 0) {
 
-          console.log(res.data.data.goods)
+      //     console.log(res.data.data.goods)
 
-          let spec_goods_price = res.data.data.spec_goods_price
+      //     let spec_goods_price = res.data.data.spec_goods_price
 
-          spec_goods_price.map(value => {
-            value.item_num = 0
-          })
+      //     spec_goods_price.map(value => {
+      //       value.item_num = 0
+      //     })
 
-          this.setData({
-            goods: res.data.data.goods,
-            imgUrls: res.data.data.images,
-            sell_address: res.data.data.sell_address,
-            seller_user: res.data.data.seller_user,
-            spec_goods_price: spec_goods_price,
-            delivery_method: res.data.data.goods.delivery_method,
-            collection_methods: res.data.data.goods.collection_methods,
-            endTime: res.data.data.goods.sell_end_time,
-            countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
-          })
+      //     this.setData({
+      //       goods: res.data.data.goods,
+      //       imgUrls: res.data.data.images,
+      //       sell_address: res.data.data.sell_address,
+      //       seller_user: res.data.data.seller_user,
+      //       spec_goods_price: spec_goods_price,
+      //       delivery_method: res.data.data.goods.delivery_method,
+      //       collection_methods: res.data.data.goods.collection_methods,
+      //       endTime: res.data.data.goods.sell_end_time,
+      //       countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
+      //     })
 
-          wx.setNavigationBarTitle({
-            title: '【' + res.data.data.seller_user.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
-          })
+      //     wx.setNavigationBarTitle({
+      //       title: '【' + res.data.data.seller_user.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
+      //     })
 
-          //计算位置
-          if (res.data.data.goods.delivery_method == 2) {
-            this.computeDistance()
-          }
+      //     //计算位置
+      //     if (res.data.data.goods.delivery_method == 2) {
+      //       this.computeDistance()
+      //     }
 
-        }
-
-
+      //   }
 
 
-      })
-      .catch(e=>{console.log(e)})
+
+
+      // })
+      // .catch(e=>{console.log(e)})
 
         // wx.request({
         //     url: 'https://www.daohangwa.com/api/goods/get_goods_info',

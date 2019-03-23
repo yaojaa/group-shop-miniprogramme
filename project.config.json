@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 29,
 			"list": [
 				{
 					"id": 0,
@@ -226,6 +226,13 @@
 					"id": -1,
 					"name": "创建成功",
 					"pathName": "pages/create_shop_success/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "加盟商登录",
+					"pathName": "pages/b-login/login",
 					"query": "",
 					"scene": null
 				}

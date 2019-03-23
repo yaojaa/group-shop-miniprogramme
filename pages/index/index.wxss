@@ -1,19 +1,18 @@
 /**index.wxss**/
 page{
   height: 100vh;
-  overflow: hidden;
 }
 
 .flex{
   display: flex;
 }
 .container{
-  padding-bottom: 100rpx;
-  background-image: url('http://img.atomstone.com/top_bar_bg2.png');
-  background-color: #f6f6f6;
   background-size: 100% auto;
-  min-height: 100vh;
   background-repeat: no-repeat;
+}
+.product-item-container{
+  margin-top:180rpx;
+  margin-bottom: 150rpx
 }
 
 .tit-slogan{
@@ -30,20 +29,23 @@ page{
   background-color: #fff;
 }
 .product-item {
-  padding: 30rpx;
-  background: #fff;
+  margin: 20rpx;
+  padding: 25rpx;
+  background: #f9f9f9;
   position: relative;
   box-sizing: border-box;
-  border-bottom: 1rpx solid #f5f5f5;
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
+  border-radius: 5px;
+  box-shadow: 0 3px 8px #f3f3f3;
+
 }
 .user_name{
   margin-left: 20rpx;
 }
 .item-title{
   font-size: 36rpx;
-  font-weight: bold;
   padding: 20rpx 0 10rpx;
+  color: #333
 }
 .item-des{
   font-size: 28rpx;
@@ -67,6 +69,7 @@ page{
   width: 220rpx;
   height: 220rpx;
   vertical-align: middle;
+  border-radius: 3px
 }
 .buyer-list{
   margin-top: 20rpx;

@@ -1,7 +1,15 @@
 .topBar{
   color: #000;
-  height: 30px;
-  line-height: 30px;
+  height: 38px;
+  line-height: 38px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
 .tit{
