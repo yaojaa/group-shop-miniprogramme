@@ -1,4 +1,13 @@
 <view class="i-class i-panel">
-    <view wx:if="{{ title }}" class="i-panel-title {{ hideTop ? 'i-panel-title-hide-top' : '' }}">{{ title }}</view>
+    <view wx:if="{{ title }}" class="i-panel-title {{ hideTop ? 'i-panel-title-hide-top' : '' }}">{{ title }}
+
+    	
+    <view class="extra" wx:if="{{ extra }}">
+    	{{extra}} <i-icon type="enter" size="12" color="#999" />
+    </view>	 
+
+
+
+    </view>
     <view class="i-panel-content {{ hideBorder ? 'i-panel-without-border' : '' }}"><slot></slot></view>
 </view>

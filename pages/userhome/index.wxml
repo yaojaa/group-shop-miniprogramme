@@ -1,7 +1,15 @@
-<view class="container cf">
-<view class="white-bg">
+  <i-custom-bar> 
+    <view class="tit-icon">
 
-    <swiper
+        <i-icon type="setup" size="30" color="#666" />
+
+        <i-icon type="share" size="30" color="#666" /> 
+    </view>
+</i-custom-bar>
+
+<view class="container cf">
+ <swiper 
+  class="swiper"
   indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}"
   interval="{{interval}}"
@@ -9,28 +17,25 @@
    >
   <block wx:for="{{imgUrls}}">
     <swiper-item>
-      <image mode="widthFix" src="{{item}}" class="slide-image" width="750rpx" height="150" />
+      <image src="{{item}}" height="300" class="slide-image"  />
     </swiper-item>
   </block>
 </swiper>
 	 
-    <view class="user-head">
-        <view class="content">
+<view class="user-head">
             <view class="avatar">
                 <open-data type="userAvatarUrl"></open-data>
+
             </view>
-            <view class="name">
-                <open-data type="userNickName"></open-data>
-            </view>
+              <view class="name">红叶舞秋山</view>
+
             <view class="des">开心麻团创始人，专注推广地理标志性农产品，让原生态放心食材走进千家万户</view>
-            <view class="info f12">累计<text class="text-default">1313</text>访问 粉丝1113 <text class=""> 回头率 3% </text> <text class="text-red">高</text></view>
-        </view>
+            <view class="info f12">累计<text class="text-default">1313</text>访问 粉丝1113 
+            </view>
     </view>
-</view>
     <view class="goods-box">
-        <h1>----为您推荐---</h1>
         <view class="goods-item flex-box" wx:for="{{5}}" wx:key="index">
-            <image class="cover" src="../../img/goods2.jpg"></image>
+            <image class="cover" src="http://www.51pptmoban.com/d/file/2018/05/17/ba0172ce98cc25c03fb2986e55205655.jpg"></image>
             <view class="content">
                 <view class="title text-hide">好吃的石门蜜橘，错过这次在等一年，吃过的都说好</view>
                 <view class="des text-hide two">最先尝的就是果冻橙，很软，很你懂的。超级好吃，口感真的像果冻，还超级甜，我的两个宝贝特别爱</view>

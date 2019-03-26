@@ -1,3 +1,7 @@
+
+  <i-custom-bar title="" showIcon="{{true}}"> </i-custom-bar>
+
+
 <view class="page-body">
 
 <view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>

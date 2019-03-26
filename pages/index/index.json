@@ -6,7 +6,9 @@
         "i-avatar": "../../iView/avatar/index",
         "i-tab-bar": "../../iView/tab-bar/index",
         "i-tab-bar-item": "../../iView/tab-bar-item/index",
-        "i-custom-bar": "../../components/custom-bar/index"
+        "i-custom-bar": "../../components/custom-bar/index",
+            "i-divider": "../../iView/divider/index"
+
 
     }
 }

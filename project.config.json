@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.4",
+	"libVersion": "2.6.2",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
 	"debugOptions": {
@@ -39,13 +39,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 29,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "用户中心启动",
-					"pathName": "pages/ucenter/ucenter",
-					"query": ""
+					"name": "pages/home/index",
+					"pathName": "pages/home/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -234,6 +235,13 @@
 					"name": "加盟商登录",
 					"pathName": "pages/b-login/login",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "详情页",
+					"pathName": "pages/goods/goods",
+					"query": "goods_id=14",
 					"scene": null
 				}
 			]

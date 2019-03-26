@@ -20,11 +20,15 @@
 
     <view class="head-box">
         <view class="user-name">
+        <open-data bindtap="goHome" class="home-avatar userinfo-avatar"  type="userAvatarUrl">
+            
+        </open-data>
+                
+      <!--   <text class="name"><open-data type="userNickName"></open-data>
+        </text> -->
 
-        <open-data bindtap="goHome" class="home-avatar userinfo-avatar"  type="userAvatarUrl"></open-data>
+        </view> <i-icon type="businesscard_fill"  size="28" color="#fff" />
 
-        <text class="name"><open-data type="userNickName"></open-data></text>
-        </view>
 
 
 
@@ -36,19 +40,19 @@
         </view> -->
 
 
-        <view class="creat_btn"  bindtap="goCreate">
+     <!--    <view class="creat_btn"  bindtap="goCreate">
             <button>创建专属小店</button>
-        </view>
+        </view> -->
 
          <view class="creat_btn"  bindtap="goSite">
-            <button>我的店铺</button>
+            <i-icon  size="28" color="#fff" type="homepage_fill" />
         </view>
 
   
         <view class="number">
           <navigator url="../withdrawal/index" hover-class="none">
             <h3>¥{{store_money}}</h3>
-            <view class="text">今日进账</view>   
+            <view class="text">账户余额</view>   
             </navigator> 
         </view>
 <!-- 
@@ -111,17 +115,39 @@
     </view> -->
 <!--     <official-account></official-account>
  -->
-<i-panel  title="我的订单" extra="全部" >
+<i-panel  title="我的订单" extra="查看全部订单" >
     <view slot="content">
 
+        <view class="flex-box myorder">
+            <view class="flex-item">
+                <view class="icon">
+                    <i-icon type="redpacket" size="28" color="#4fac05" />
+                </view>
+            待付款</view>
+            <view class="flex-item"> <view class="icon">
+                    <i-icon type="commodity" size="28" color="#4fac05" />
+                </view>
+            待发货</view>
+            <view class="flex-item">
+             <view class="icon">
+                    <i-icon type="service" size="28" color="#4fac05" />
+                </view>
+            待收货</view>
+            <view class="flex-item"> <view class="icon">
+                    <i-icon type="interactive" size="28" color="#4fac05" />
 
-
-        
-
+                </view>
+            待评价</view>
+            <view class="flex-item">
+             <view class="icon">
+                    <i-icon type="customerservice" size="28" color="#4fac05" />
+                </view>
+            退款售后</view>
+        </view>
     </view>
 </i-panel >
 
- <i-panel title="最近发布的" wx:if="{{goodslist.length > 0}}">
+ <i-panel title="我的商品" wx:if="{{goodslist.length > 0}}" extra="查看全部商品">
         <view>
             <view class="goods-box">
                 <view class="goods-item" wx:key="{{goods_id}}" wx:for="{{goodslist}}">
@@ -134,8 +160,10 @@
                                 <view class="tit">{{item.goods_name}}</view>
                             </navigator>
                             <view class="link">
+                                收款总计：￥{{item._order_amount}}
+
                                 <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
-                                    <button formType="submit" size="mini"> 修 改 </button>
+                                    <button formType="submit" size="mini"> 修改编辑 </button>
                                 </form>
 
                                 <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" data-fn="copyGoods" report-submit="true">
@@ -154,12 +182,14 @@
                     </view>
                     <view class="goods-count">
                         <view class="count-item">
-                            <text class="label">浏览次数</text>
+                            <i-icon type="browse" /><text class="label">浏览次数</text>
                             <text class="num">{{item.pageview}}</text>
+
+
                         </view>
                         <view class="count-item">
-                            <text class="label">收款总额</text>
-                            <text class="num">￥{{item._order_amount}}</text>
+                            <text class="label">修改编辑</text>
+                            <text class="num"></text>
                         </view>
                         <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
                             <text class="label ">订单管理</text>

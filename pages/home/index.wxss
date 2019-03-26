@@ -1,5 +1,7 @@
 .container {
 
+    background: #f8f8f8
+
 }
 
 
@@ -7,7 +9,7 @@
   position: relative;
   background: url('http://img.atomstone.com/u_center_bg.jpg') center top no-repeat #fff;
   background-size: 100% auto;
-  height: 322rpx;
+  height: 200rpx;
   position: relative;
   width: 100%;
   padding-top: 200rpx
@@ -16,7 +18,12 @@
   position: absolute;
   left: 30rpx;
   top: 130rpx;
-  color: #fff
+  color: #fff;
+  width: 130rpx;
+  height: 130rpx;
+  overflow: hidden;
+  border-radius: 130rpx
+
 }
 
 .user-name .name{
@@ -52,7 +59,6 @@ vertical-align:middle;
     color: #fff;
     border-radius: 9px 0 0 9px;
     position: absolute;
-    background: #333;
     padding: 5rpx ;
     text-align: center;
     right:  0;
@@ -214,13 +220,7 @@ vertical-align:middle;
 }
 
 .goods-item {
-    padding: 30rpx 0;
-    border: 1rpx solid #f2f2f2;
-    margin: 15px 10px;
-    border-radius: 10px;
-    background: #fffffe;
-    box-shadow: 1px 1px 3px #eee;
-    position: relative
+    margin: 15px 10px 10px 0;
 }
 
 .goods-item .rm_btn{
@@ -236,7 +236,7 @@ vertical-align:middle;
     display: -ms-flex;
     display: -o-flex;
     display: flex;
-    padding: 0 30rpx;
+    padding: 0 20rpx;
     position: relative;
 }
 
@@ -336,6 +336,18 @@ vertical-align:middle;
 }
 
 /**订单*/
+.myorder{
+    font-size: 12px;
+    color: #666;
+    padding: 15px 0
+
+}
+.myorder .flex-item{
+    text-align: center;
+}
+.myorder .flex-item .icon{
+    margin-bottom: 10px
+}
 
 .order {
     margin: 32rpx 0;

@@ -1,51 +1,48 @@
 <view class="container">
-
-
-<!-- <view class="pageloading">
+    <imgs imgs="{{imgs}}"></imgs>
+    <!-- <view class="pageloading">
     加载中...
 </view> -->
-
-    <official-account></official-account>
-
-  <view class='painter'>
-    <image src="{{imagePath}}"></image>
-  </view>
-  <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
+    <!--     <official-account></official-account>
+ -->
+    <view class='painter'>
+        <image src="{{imagePath}}"></image>
+    </view>
+    <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
     <view class="goods-sticky">
-         <image class="user-avatar" src="{{seller_user.head_pic}}"></image>
+        <image class="user-avatar" src="{{seller_user.head_pic}}"></image>
         <view class="user-info">
-           
             <view class="name">
-                <view class="f14">{{seller_user.nickname}}  
-                    </view>
-                <view class="f12 text-muted" >
-
-                    <text  wx:if="{{seller_user.wxnumber.length > 0 }}">电话:{{seller_user.mobile}} 微信:{{seller_user.wxnumber}} </text>
-<!-- <text bindtap="calluser" data-mobile="{{seller_user.mobile}}" class="text-info"></text>
- -->                </view>
+                <view class="f14">红叶舞秋山{{seller_user.nickname}}
+                </view>
+                <view class="f12 text-muted">
+                    <text wx:if="{{seller_user.wxnumber.length > 0 }}">电话:{{seller_user.mobile}} 微信:{{seller_user.wxnumber}} </text>
+                    <!-- <text bindtap="calluser" data-mobile="{{seller_user.mobile}}" class="text-info"></text>
+ -->
+                </view>
             </view>
             <!-- <i-icon type="mobilephone" />
             <i-icon type="interactive" /> -->
         </view>
         <view class="share-box">
             <button bindtap='openShareFriends'>
-              <image src="/img/share.png" class="wx-icon" />
+                <image src="/img/share.png" class="wx-icon" />
             </button>
         </view>
     </view>
     <view class="page-section page-section-spacing swiper goods-manage">
-            <!--   <view class="manage">
+        <!--   <view class="manage">
             <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>
             <navigator class="min-btn-s" url="../orderDefault/orderDefault">管理订单</navigator>
         </view> -->
-            <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
+        <!--      <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
                 <block wx:for="{{imgUrls}}" wx:key="{{index}}">
                     <swiper-item>
                         <image bindtap="imgPreview" data-list="{{imgUrls}}"  mode="widthFix" src="{{item}}?imageView2/1/w/750/h/550/q/95" class="slide-image" />
                     </swiper-item>
                 </block>
-            </swiper>
-        </view>
+            </swiper> -->
+    </view>
     <view class="page-wrap">
         <view class="countdownTime">
             <block wx:if="{{countdownTime && goods._expires ==1 }}">
@@ -54,72 +51,68 @@
                     </i-count-down>
                 </view>
             </block>
-
             <block wx:else>
-                {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
+                已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
             </block>
-            
         </view>
         <view class='goods-info'>
             <view class="goods-title">
-                <text>{{goods.goods_name}}</text>
-
+                <text>{{goods.goods_name}}生态鲜腐竹</text>
             </view>
             <view class="goods-price" bindtap="cartPanelShow">
                 <view wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}" class="goods-price-item scale-1px">
                     <text>{{item.key_name}}</text> / <text class="price">¥{{item.price}}</text>
-
                     <!-- <text class='line-through'>¥29.8</text> -->
                 </view>
             </view>
         </view>
-
         <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
-
             <i-cell title="发货方式" label="快递邮寄 送货上门" i-class="address-item">
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
-
         </view>
-        <view wx:if="{{goods.delivery_method == 2}}"  style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}" >
+        <view wx:if="{{goods.delivery_method == 2}}" style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}">
             <i-cell title="{{'取货地点 '+item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
         </view>
+ 
+        <view class='goods-content-wraper'>
+            <view class="googs-title flex-box">
+
+                <view class="flex-item" style="width: 200rpx">
+                    <image class="userinfo-avatar" src="https://www.daohangwa.com/public/upload/local_cover/tmp_8789e959d03e6124356439808cc0354c81fd598848c33517.jpg" />   
+
+                    <text class="text-muted">{{seller_user.nickname}}   红叶舞秋山 </text>
+
+                    
+                </view>
+           </view>
+            <view class='goods-content'>
+                <text>{{goods.goods_content}}精选非转基因大豆，精选非转基因大豆精选非转基因大豆，精选非转基因大豆精选非转基因大豆，精选非转基因大豆精选非转基因大豆精选非转基因大豆精选非转基因大豆，精选非转基因大</text>
+            </view>
+        </view>
+
+          <view style="padding: 20rpx 0"><button bindtap='copyDetail' size="mini">生成文字接龙</button></view>
 
 
         <view class='sub-title scale-b-1px'>
-           <i-icon type="suspend" color="#4dc332" />介绍描述
+            <i-icon type="suspend" color="#4dc332" />最近参与
         </view>
-        <view class='goods-content'>
-           <text>{{goods.goods_content}}</text> 
-           
-           <view style="padding: 20rpx 0"><button bindtap='copyDetail' size="mini">生成文字接龙</button></view>
-        </view>
-        <view class='sub-title scale-b-1px'>
-         <i-icon type="suspend" color="#4dc332" />最近参与
-        </view>
-
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
-            <i-cell  i-class="buyer-item-box">
-             <button size="mini" open-type="share">
-              一大波人正在赶来...去喊人
-            </button>
+            <i-cell i-class="buyer-item-box">
+                <button size="mini" open-type="share">
+                    一大波人正在赶来...去喊人
+                </button>
             </i-cell>
         </i-cell-group>
-
-        <i-cell-group >
-            <i-cell wx:for="{{ orderUsers }}"  wx:key="{{index}}" i-class="buyer-item-box">
+        <i-cell-group>
+            <i-cell wx:for="{{ orderUsers }}" wx:key="{{index}}" i-class="buyer-item-box">
                 <view class="buyer-item">
-
- <text class="number">{{item.create_number}} </text>
-
-
+                    <text class="number">{{item.create_number}} </text>
                     <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
-
                     <view class="buyer-info">
-                          
-                        <view class="name"> {{item.user.nickname}}   </view>
+                        <view class="name"> {{item.user.nickname}} </view>
                         <view class="type">
                             <view wx:for="{{item.specs}}" wx:key="index" wx:for-item="gds">
                                 {{gds.spec_key_name}} × {{gds.goods_num}}
@@ -130,119 +123,100 @@
                 </view>
             </i-cell>
         </i-cell-group>
-
-         <view wx:if="{{goods.content_imgs.length}}">
- <view class='sub-title scale-b-1px'>
-         <i-icon type="suspend" color="#4dc332" />图文介绍
+        <view wx:if="{{goods.content_imgs.length}}">
+            <view class='sub-title scale-b-1px'>
+                <i-icon type="suspend" color="#4dc332" />图文介绍
+            </view>
         </view>
-    
     </view>
-</view>
 
-<view class="piclist-container">
-<block class="pic" wx:for="{{goods.content_imgs}}"  wx:key="{{index}}" wx:for-item="img" >
-                  <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
-</block>
-</view>
+    <view class='sub-title scale-b-1px'>
+    <i-icon type="suspend" color="#4dc332" />朋友评价
+    </view>
 
+    <comment></comment>
 
-
-
-   
+    <view class="piclist-container">
+        <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
+            <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
+        </block>
+    </view>
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
             <i-icon type="homepage" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
-     
-   <form style="flex:2"  bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
-    <button class="buy" formType="submit">立即参团</button>
-   </form> 
-
+        <form style="flex:2" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
+            <button class="buy" formType="submit">立即参团</button>
+        </form>
     </view>
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="cart-panel-hd">
-                  <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
+                <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
                 请选择规格数量
             </view>
-            
-
             <scroll-view scroll-y style="max-height:500px;">
-
-            <i-panel>
-            <i-cell-group style="max-height:500rpx;overflow: scroll;">
-                <i-cell wx:for="{{spec_goods_price}}"  wx:key="{{index}}">
-                    <view class="type-box text-justify">
-                        <view><text class="text-red f16"> ¥{{item.price}}</text> / {{item.key_name}}</view>
-                        <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
-                    </view>
-                </i-cell>
-            </i-cell-group>
-             </i-panel>
-           </scroll-view>
-
+                <i-panel>
+                    <i-cell-group style="max-height:500rpx;overflow: scroll;">
+                        <i-cell wx:for="{{spec_goods_price}}" wx:key="{{index}}">
+                            <view class="type-box text-justify">
+                                <view><text class="text-red f16"> ¥{{item.price}}</text> / {{item.key_name}}</view>
+                                <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
+                            </view>
+                        </i-cell>
+                    </i-cell-group>
+                </i-panel>
+            </scroll-view>
             <view class="cart-footer">
                 <view class="total">
                     <text class="f12 text-default">合计：</text>
                     <text class=" text-red f20">¥{{amountMoney}}</text>
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
-                <view wx:if="{{!hasScope}}" style="flex:2" >
+                <view wx:if="{{!hasScope}}" style="flex:2">
                     <button class="settlement" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">下一步</button>
-                </view> 
-
-
-          <form style="flex:2"  wx:else bindsubmit="formSubmit" data-fn="buy" report-submit="true">
+                </view>
+                <form style="flex:2" wx:else bindsubmit="formSubmit" data-fn="buy" report-submit="true">
                     <button class="settlement" shape="circle" formType="submit">下一步</button>
-         </form> 
-
+                </form>
             </view>
         </view>
     </i-action-sheet>
-
-
-     <i-modal visible="{{ msgvisible }}" show-ok="{{false}}" show-cancel="{{false}}">
+    <i-modal visible="{{ msgvisible }}" show-ok="{{false}}" show-cancel="{{false}}">
         <view class='modal-bd text-center '>
-           您的位置不在取货范围内
+            您的位置不在取货范围内
         </view>
- <view class='modal-bd text-center '>
-           请确认能取货再下单哦
+        <view class='modal-bd text-center '>
+            请确认能取货再下单哦
         </view>
         <view class="modal-fd">
-
-         <form data-fn="ok_i_know" bindsubmit="formSubmit" report-submit="true">
+            <form data-fn="ok_i_know" bindsubmit="formSubmit" report-submit="true">
                 <button class="btn btn-success" formType="submit"> 我知道了</button>
-        </form>
-
+            </form>
         </view>
     </i-modal>
-
     <view class='share-mark' hidden="{{!showShareFriendsCard}}" bindtap='closeShareFriends'></view>
     <view class='share-friends' hidden="{{!showShareFriendsCard}}">
         <view class='share-friends-img' bindtap='closeShareFriends'>
-          <i-spin wx:if="{{!shareFriendsImg}}" i-class='share-friends-loading' fix size="large"></i-spin>
-          <view wx:if="{{!shareFriendsImg}}" class='share-friends-loading-txt'><text>努力生成中,请稍等...</text></view>
-          <image wx:if="{{shareFriendsImg}}" class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
+            <i-spin wx:if="{{!shareFriendsImg}}" i-class='share-friends-loading' fix size="large"></i-spin>
+            <view wx:if="{{!shareFriendsImg}}" class='share-friends-loading-txt'><text>努力生成中,请稍等...</text></view>
+            <image wx:if="{{shareFriendsImg}}" class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
         </view>
         <view class='share-bottom-btn'>
-          <button open-type="share" class="share-f-btn" type="success" bindtap='closeShareFriends'>
-            <image class='icon-img' src='../../img/wx.png' mode='aspectFit'></image>
-            <text>分享给好友</text>
-          </button>
-          <button class="share-f-btn btn-download" bindtap='savaSelfImages'>
-            <image class='icon-img' src='../../img/xz.png' mode='aspectFit'></image>
-            <text>保存到相册</text>
-          </button>
+            <button open-type="share" class="share-f-btn" type="success" bindtap='closeShareFriends'>
+                <image class='icon-img' src='../../img/wx.png' mode='aspectFit'></image>
+                <text>分享给好友</text>
+            </button>
+            <button class="share-f-btn btn-download" bindtap='savaSelfImages'>
+                <image class='icon-img' src='../../img/xz.png' mode='aspectFit'></image>
+                <text>保存到相册</text>
+            </button>
         </view>
     </view>
-
     <view class='share-painter'>
-      <view wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
-      <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
+        <view wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
+        <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
     </view>
-
-
-
     <i-message id="message" />
 </view>

@@ -10,8 +10,11 @@
 
      <view class="circle">
 
+      <navigator url="../publish/publish">
+
        <i-icon size="42" color="#ffffff"  type="add" />
        <view class="new">发布新商品</view>
+     </navigator>
        
      </view>
 </view>
