@@ -1,0 +1,6 @@
+/* pages/upload_pics.wxss */
+@import "../../utils/weui.wxss";
+.picture-item image{
+
+   width: 100%
+}

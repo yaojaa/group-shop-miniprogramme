@@ -8,17 +8,18 @@
     <view class='painter'>
         <image src="{{imagePath}}"></image>
     </view>
-    <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
-    <view class="goods-sticky">
-        <image class="user-avatar" src="{{seller_user.head_pic}}"></image>
+<!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
+ -->    
+
+ <view class="goods-sticky">
         <view class="user-info">
             <view class="name">
-                <view class="f14">红叶舞秋山{{seller_user.nickname}}
+                <view class="f18">{{goods.goods_name}}生态鲜腐竹
                 </view>
                 <view class="f12 text-muted">
-                    <text wx:if="{{seller_user.wxnumber.length > 0 }}">电话:{{seller_user.mobile}} 微信:{{seller_user.wxnumber}} </text>
-                    <!-- <text bindtap="calluser" data-mobile="{{seller_user.mobile}}" class="text-info"></text>
- -->
+                    <text wx:if="{{seller_user.wxnumber.length > 0 }}"></text>
+                    快递邮寄 自取：金域东郡1-1-103
+  
                 </view>
             </view>
             <!-- <i-icon type="mobilephone" />
@@ -26,23 +27,11 @@
         </view>
         <view class="share-box">
             <button bindtap='openShareFriends'>
-                <image src="/img/share.png" class="wx-icon" />
+                <i-icon type="share" size="28" color="#666" /> <text class="text-muted f12">分享</text>
             </button>
         </view>
     </view>
-    <view class="page-section page-section-spacing swiper goods-manage">
-        <!--   <view class="manage">
-            <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>
-            <navigator class="min-btn-s" url="../orderDefault/orderDefault">管理订单</navigator>
-        </view> -->
-        <!--      <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
-                <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-                    <swiper-item>
-                        <image bindtap="imgPreview" data-list="{{imgUrls}}"  mode="widthFix" src="{{item}}?imageView2/1/w/750/h/550/q/95" class="slide-image" />
-                    </swiper-item>
-                </block>
-            </swiper> -->
-    </view>
+
     <view class="page-wrap">
         <view class="countdownTime">
             <block wx:if="{{countdownTime && goods._expires ==1 }}">
@@ -61,10 +50,15 @@
             </view>
             <view class="goods-price" bindtap="cartPanelShow">
                 <view wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}" class="goods-price-item scale-1px">
-                    <text>{{item.key_name}}</text> / <text class="price">¥{{item.price}}</text>
+                    <text>{{item.key_name}}</text> / <text class="price">¥{{item.price}}99.00</text>
                     <!-- <text class='line-through'>¥29.8</text> -->
                 </view>
             </view>
+              <view class="share-box">
+            <button bindtap='openShareFriends'>
+                <i-icon type="share" size="28" color="#666" /> <text class="text-muted f12">分享</text>
+            </button>
+        </view>
         </view>
         <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
             <i-cell title="发货方式" label="快递邮寄 送货上门" i-class="address-item">

@@ -1,5 +1,5 @@
 
-  <i-custom-bar title="" showIcon="{{true}}"> </i-custom-bar>
+  <i-custom-bar backColor="#fff" showIcon="{{true}}" title="发布"> </i-custom-bar>
 
 
 <view class="page-body">

@@ -431,6 +431,6 @@ module.exports = {
   formSubmitCollectFormId,
   getUserloaction,
   getQrcode,
-  WX,
+  wx:WX,
   drawShareFriends
 }

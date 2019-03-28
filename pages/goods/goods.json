@@ -17,6 +17,8 @@
     "i-badge": "../../iView/badge/index",
     "share-painter": "/iView/share-painter/share-painter",
     "imgs": "../../components/imgs/imgs",
-    "comment": "../../components/comment/index"
+    "comment": "../../components/comment/index",
+    "i-panel": "../../iView/panel/index"
+
   }
 }

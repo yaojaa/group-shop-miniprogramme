@@ -31,36 +31,12 @@ Page({
       is_loading:true
         
     },
-   handleChange ({ detail }) {
-        this.setData({
-            current: detail.key
-        })
-
-        if(detail.key =='publish'){
-           wx.navigateTo({
-              url:'../publish/publish'
-            })
-        }
-
-        if(detail.key =='publish'){
-           wx.navigateTo({
-              url:'../publish/publish'
-            })
-        }
-
-        if(detail.key =='nearby'){
-           wx.navigateTo({
-              url:'../index/index'
-            })
-        }
-       
-  },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
 
-      console.log(app.globalData.userInfo)
+      console.log('app.globalData.userInfo',app.globalData.userInfo)
 
         if(app.globalData.userInfo){
 
@@ -387,6 +363,26 @@ Page({
       })
       console.log('sort',e.detail);
     },
+    /**
+     * 获取用户基本信息
+     */
+    getUserInfo: function() {
+      util.wx.get('/user/get_user_info').then(res=>{
+        
+        this.setData({
+          userInfo:res.data.data
+        })
+
+      })
+
+    },
+
+
+    
+
+
+
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

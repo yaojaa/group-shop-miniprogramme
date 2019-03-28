@@ -75,6 +75,11 @@ Page({
       })
 
     },
+    addPicture(){
+      wx.navigateTo({
+        url:'../upload_pics/upload_pics'
+      })
+    },
 
     //添加商品
     addGoods:function(){
@@ -110,36 +115,7 @@ Page({
                 spec_item:this.data.spec_item
               })
     },
-    //添加介绍图片
-    addPicture:function(){
 
-      util.uploadPicture({
-        successData:(result)=>{
-          this.data.content_imgs = this.data.content_imgs.concat([result])
-
-          this.setData({
-            content_imgs:this.data.content_imgs
-          })
-
-        },
-        progressState:(s)=>{
-          this.setData({
-          pictureProgress:s
-        })
-
-        }
-      })
-    },
-    removePictrue(e){
-
-   let index =e.currentTarget.dataset.index
-
-    this.data.content_imgs.splice(index,1)
-   this.setData({
-    'content_imgs':this.data.content_imgs
-   })
-
-    },
 
   onShow:function(option){
 
@@ -371,11 +347,9 @@ Page({
 
 
            //提交
-           wx.request({
-           method:'post',
-           url: 'https://www.daohangwa.com/api/seller/add_edit_goods',
-              data,
-              success:  (res) =>{
+           //
+           util.wx.post('/api/seller/goods_add_or_edit',data).then(
+            res=>{
                  wx.hideLoading()
                 if (res.data.code == 0) {
                   this.setData({
@@ -391,12 +365,8 @@ Page({
                         showCancel:false
                     })
                 }
-              }
-           })
-
-
-
-
+            })
+          
 
      
     },
@@ -463,14 +433,10 @@ Page({
 
     getPublishedData(goods_id,isCopy){
 
-        wx.request({
-           method:'get',
-           url: 'https://www.daohangwa.com/api/goods/get_goods_info',
-           data:{
-            token :app.globalData.token,
+      util.wx.post('/seller_tuangou/get_goods_detail',{
             goods_id:goods_id
-           },
-              success:  (res) =>{
+
+      }).then(      (res) =>{
 
                 let d =res.data
                 let gs =res.data.data.goods
@@ -510,8 +476,9 @@ Page({
                         showCancel:false
                     })
                 }
-              }
-           })
+              })
+
+         
     },
 
 

@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 31,
 			"list": [
 				{
 					"id": 0,
@@ -95,10 +95,11 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "个人中心",
-					"pathName": "pages/ucenter/ucenter",
-					"query": ""
+					"pathName": "pages/home/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 9,
@@ -242,6 +243,13 @@
 					"name": "详情页",
 					"pathName": "pages/goods/goods",
 					"query": "goods_id=14",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布页",
+					"pathName": "pages/publish/publish",
+					"query": "",
 					"scene": null
 				}
 			]

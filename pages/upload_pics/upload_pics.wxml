@@ -1,0 +1,19 @@
+<!--pages/upload_pics.wxml-->
+<i-custom-bar backColor="#fff" showIcon="{{true}}" title="上传介绍图片"> </i-custom-bar>
+<view class="container mtop100">
+    <view class="weui-cell picture-item" wx:key="{{item.index}}" wx:for="{{content_imgs}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill" />
+        <i-icon class="close" data-index="{{index}}" bindtap="removePictrue" color="#999" size="28" type="close" />
+    </view>
+
+    
+  
+    <view class="button-area flex-box" style="width: 250rpx" bindtap="addPicture">
+        <view class="flex-item">
+            <i-icon type="add" size="28" color="#c6c6c6" />
+        </view>
+        <view class="flex-item-5 center">
+            <view class="f18 text-info">点击上传 </view>
+        </view>
+    </view>
+</view>

@@ -233,17 +233,10 @@
 }
 
 .share-box {
-    height: 60rpx;
     overflow: hidden;
 }
 
-.share-box .wx-icon {
-    width: 60rpx;
-    height: 60rpx;
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: top;
-}
+
 
 .goods-manage {
     position: relative;

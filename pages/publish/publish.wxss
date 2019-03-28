@@ -1,4 +1,8 @@
 @import "../../utils/weui.wxss";
+
+.page-body{
+  margin-top: 100px
+}
 .upload_btn{
   border: 1px solid #c00
 }

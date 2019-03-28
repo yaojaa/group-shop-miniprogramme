@@ -12,22 +12,25 @@
   height: 200rpx;
   position: relative;
   width: 100%;
-  padding-top: 200rpx
+  padding-top: 150rpx
 }
-.user-name{
-  position: absolute;
-  left: 30rpx;
-  top: 130rpx;
+.set-icon{
+    position: absolute;
+    right: -16rpx;
+    top: -16rpx
+}
+.user-avatar{
+
   color: #fff;
-  width: 130rpx;
-  height: 130rpx;
-  overflow: hidden;
-  border-radius: 130rpx
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 110rpx;
+  position: relative;
 
 }
 
-.user-name .name{
-    font-size: 32rpx;
+.user-name{
+    font-size: 28rpx;
     color: #fff;
     padding-left: 10rpx
 }

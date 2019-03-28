@@ -22,7 +22,8 @@
     "pages/paymethod/index",
     "pages/userhome/index",
     "pages/create_shop/index",
-    "pages/b-login/login"
+    "pages/b-login/login",
+    "pages/upload_pics/upload_pics"
   ],
   "permission": {
     "scope.userLocation": {

@@ -28,6 +28,8 @@
         "i-card": "../../iView/card/index",
         "i-grid-item": "../../iView/grid-item/index",
         "i-grid-label": "../../iView/grid-label/index",
+        "i-row": "../../iView/row/index",
+        "i-col": "../../iView/col/index",
         "i-custom-bar": "../../components/custom-bar/index"
 
     }
