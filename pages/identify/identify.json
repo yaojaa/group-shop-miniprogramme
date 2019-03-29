@@ -10,7 +10,11 @@
         "i-toast": "../../iView/toast/index",
         "i-message": "../../iView/message/index",
         "i-icon": "../../iView/icon/index",
-        "i-custom-bar": "../../components/custom-bar/index"
+        "i-custom-bar": "../../components/custom-bar/index",
+        "wux-cell-group": "../../wux/cell-group/index",
+        "wux-cell": "../../wux/cell/index",
+        "wux-input": "../../wux/input/index"
+
 
     }
 }

@@ -314,8 +314,10 @@ Page({
             collection_methods:this.data.collection_methods,
             sell_start_time:this.data.sell_start_time,
             sell_end_time :this.data.sell_end_time,
-            content_imgs:this.data.content_imgs
-          }
+            content_imgs:this.data.content_imgs,
+            cat_id:8
+          },
+
           )
           wx.showLoading()
            
