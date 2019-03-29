@@ -41,6 +41,40 @@ Page({
         })
 
     },
+     swapArray(index1, index2) {
+        var arr =this.data.content_imgs
+       arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+
+       this.setData({
+        content_imgs:arr
+       })
+        
+
+     },
+    toUp(e){
+      let index = e.currentTarget.dataset.index
+        if(index!= 0){
+       this.swapArray(index, index-1);
+      }
+
+    },
+
+    toDown(e){
+      let index = e.currentTarget.dataset.index
+         if(index!= this.data.content_imgs.length-1){
+           this.swapArray(index, index+1);
+       }else{
+
+       }
+
+    },
+    onBack(){
+
+
+        console.log('返回啦。。。')
+
+
+    },
     /**
      * 生命周期函数--监听页面加载
      */

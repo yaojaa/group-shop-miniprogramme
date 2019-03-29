@@ -1,8 +1,6 @@
-  <i-custom-bar> 
-    <view class="tit-icon">
-
+<i-custom-bar showIcon="{{showIcon}}"> 
+    <view class="tit-icon" >
         <i-icon type="setup" size="30" color="#666" />
-
         <i-icon type="share" size="30" color="#666" /> 
     </view>
 </i-custom-bar>

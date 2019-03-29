@@ -59,6 +59,8 @@ Component({
           delta: 1
         })
 
+        this.triggerEvent('onBack')
+
 
       }
 

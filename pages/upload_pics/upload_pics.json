@@ -2,7 +2,10 @@
     "usingComponents":
     {
         "i-custom-bar": "../../components/custom-bar/index",
-        "i-icon": "../../iView/icon/index"
+        "sort": "../../components/sort/sort",
+        "i-icon": "../../iView/icon/index",
+        "i-button": "../../iView/button/index"
+
 
     }
 }

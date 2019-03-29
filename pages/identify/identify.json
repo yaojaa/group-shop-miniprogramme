@@ -1,11 +1,16 @@
 {
-  "window": {"navigationBarTitleText": "完善信息方便联系"},
-  "usingComponents": {
-  	  "i-panel": "../../iView/panel/index",
-	    "i-input": "../../iView/input/index",
-	    "i-toast": "../../iView/toast/index",
-	    "i-message": "../../iView/message/index",
-	    "i-icon": "../../iView/icon/index"
+    "window":
+    {
+        "navigationBarTitleText": "完善信息方便联系"
+    },
+    "usingComponents":
+    {
+        "i-panel": "../../iView/panel/index",
+        "i-input": "../../iView/input/index",
+        "i-toast": "../../iView/toast/index",
+        "i-message": "../../iView/message/index",
+        "i-icon": "../../iView/icon/index",
+        "i-custom-bar": "../../components/custom-bar/index"
 
-	}
+    }
 }

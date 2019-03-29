@@ -23,7 +23,7 @@
         "i-message": "../../iView/message/index",
         "i-tab-bar": "../../iView/tab-bar/index",
         "i-tab-bar-item": "../../iView/tab-bar-item/index",
-        "sort": "../../iView/sort/sort",
+        "sort": "../../components/sort/sort",
         "i-icon": "../../iView/icon/index",
         "i-card": "../../iView/card/index",
         "i-grid-item": "../../iView/grid-item/index",

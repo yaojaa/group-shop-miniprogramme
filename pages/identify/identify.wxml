@@ -1,12 +1,24 @@
-<view class="container">
+<i-custom-bar showIcon="{{true}}" backColor="#fff" title="个人信息">  </i-custom-bar>
 
-    <view class="info-box">
+
+<view class="container ">
+
+
+
+    <view class="info-box mtop100">
+
+     <i-panel title="完善联系方式">
+
         <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">微信绑定的手机号</button>
-        <i-panel title="完善你的联系方式">
             <i-input bind:change="changeMobile" value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
 
               <i-input bind:change="changeWX" value="{{wxnumber}}" type="text" title="微信号" placeholder="微信号" />
-        </i-panel>
+
+              <view class="address">
+                收货地址
+              </view>
+     </i-panel>
+
 
 <!--         <i-panel title="微信个人或群二维码：">
           <view >

@@ -9,7 +9,7 @@
         </view>
     </view>
     <!-- 排序 -->
-    <!-- <sort datas="{{example}}" s-class="sort" bind:change="sortChange">
+<!--     <sort datas="{{example}}" s-class="sort" bind:change="sortChange">
     <view class='sort-style' wx:for='{{example}}' wx:key='{{item.id}}' slot='{{index}}'>
         <text class='sort-color'>--{{item.id}}{{item.name}}--</text>
     </view>
@@ -18,6 +18,8 @@
     <view class="head-box">
         <i-row>
             <i-col offset="1" span="5" i-class="col-class">
+                
+            <navigator url="../identify/identify">
                 <view class="user-avatar" >
                  <open-data bindtap="goHome" type="userAvatarUrl">
                 </open-data>
@@ -26,6 +28,7 @@
                    <i-icon type="setup_fill" color="#ffa70f" size="22" />
                 </view>
                 </view>
+            </navigator>
 
                 
                 
