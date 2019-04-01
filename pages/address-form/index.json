@@ -1,0 +1,17 @@
+{
+    "navigationBarTitleText": "添加地址",
+    "usingComponents":
+    {
+        "van-cell": "../../vant/cell/index",
+        "van-field": "../../vant/field/index",
+        "van-cell-group": "../../vant/cell-group/index",
+        "van-notify": "../../vant/notify/index",
+        "van-checkbox": "../../vant/checkbox/index",
+        "van-checkbox-group": "../../vant/checkbox-group/index",
+        "van-area": "../../vant/area/index",
+        "van-popup": "../../vant/popup/index",
+        "wux-cell-group": "../../wux/cell-group/index",
+        "wux-cell": "../../wux/cell/index",
+        "wux-cascader": "../../wux/cascader/index"
+    }
+}
