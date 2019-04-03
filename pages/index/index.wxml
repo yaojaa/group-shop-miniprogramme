@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
 
-<i-custom-bar backColor="#ffffff" backImage="http://img.atomstone.com/top_bar_bg.jpg"> <view class="tit-slogan">发现身边的口碑好货 <text class="small">{{userloaction.city}} {{userloaction.district}}</text></view>   </i-custom-bar>
+<i-custom-bar backColor="#ffffff" backImage="http://img.atomstone.com/top_bar_bg.jpg"> <view class="tit-slogan">发现身边的团购 <text class="small">{{userloaction.city}} {{userloaction.district}}</text></view>   </i-custom-bar>
   <!--   <view class="location flex-box align-center">
         <i-icon type="coordinates_fill" size="16" />
         <text>{{userloaction.city}} {{userloaction.district}} {{userloaction.street_number}}</text>
@@ -88,7 +88,8 @@
             </view>
         </block>
     
-        <i-divider content="加载已经完成,没有其他数据"></i-divider>
+       <navigator url="../wxgroup/index"> <i-divider content="没有更多了,试试查找附近的团购群"></i-divider> </navigator>
+
 
     </view>
 

@@ -10,7 +10,7 @@
 <view class="weui-uploader weui-cells_form weui-cell">
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
-                                <view wx:for="{{photoUrls}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item}})">
+                                <view wx:for="{{photoUrls}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item.img_url}}-small)">
                       <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#80848f" size="26" type="close" />
                                 </view>
                             <view  wx:if="{{photoUrls.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
@@ -46,9 +46,17 @@
 </view>
 
 
-<view class="new_add_btn" bindtap="addPicture">
+<view class="new_add_btn" data-type="video" bindtap="addPicture">
 
-<i-icon type="add" size="20" color="#80848f"/>图文介绍（选填） <view wx:if="{{pictureProgress}}" class="loading">
+<i-icon type="add" size="16" color="#69b90b"  />视频短片（选填） <view wx:if="{{pictureProgress}}" class="loading">
+<i-spin size="large"></i-spin>
+</view>
+
+</view>
+
+<view class="new_add_btn" data-type="photo" bindtap="addPicture">
+
+<i-icon type="add" size="16" color="#69b90b"/>图文介绍（选填） <view wx:if="{{pictureProgress}}" class="loading">
 <i-spin size="large"></i-spin>
 </view>
 
@@ -67,15 +75,24 @@
 
 </view>
 
-<i-panel title="商品规格">
+<i-panel i-class="no-margin" title="商品规格">
 <view class="weui-cells_form">
 
   <view class="item" wx:for="{{spec_item}}" wx:key="$this">
         <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">规格:</view></view>
-                    <view class="weui-cell__bd">
-                    <input  value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="如：白色、大号、10斤" />
+                    <view class="weui-cell__bd" class="width70">
+                    <input   value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="如：白色、大号、10斤" />
+
+                   
+
                     </view>
+
+                    <view class="weui-cell__bd">
+                      <i-icon type="picture" size="32" color="#666" />
+                    </view>
+
+
     </view>
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">价格:</view></view>
@@ -83,11 +100,20 @@
                     <input  value="{{item.price}}" type="digit"    bindinput="inputDuplex" data-key="spec_item[{{index}}].price"    maxlength="50" placeholder="0.00" />
                     </view>
     </view>
+            <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">描述:</view></view>
+                    <view class="weui-cell__bd" class="width70">
+                    <input   value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="简短描述或亮点" />      
+                    </view>
+
+
+    </view>
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
                     <view class="weui-cell__bd">
                     <input  maxlength="50"  bindinput="inputDuplex" data-key="spec_item[{{index}}].store_count"  placeholder="不限制" value="{{item.store_count}}" />
                     </view>
+
     </view>
         <i-icon wx:if="{{spec_item.length >1 }}" data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="28" />
 
@@ -104,7 +130,7 @@
 </i-panel>
 
 
-<i-panel title="设置" >
+<i-panel title="设置" i-class="no-margin">
 <view class="weui-cells_form">
 
 <view class="weui-cell">
@@ -141,6 +167,8 @@
 
 <i-action-sheet visible="{{ visible2 }}" actions="{{ actions2 }}" show-cancel bind:cancel="handleCancel2" bind:click="handleClickItem2" />
 
+
+
 <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">结束时间：</view></view>
                     <view class="weui-cell__bd">
@@ -174,17 +202,18 @@
                     <view class="weui-cell__bd">
                     </view>
                     <view class="weui-cell__ft">
-                    <view class="weui-icon-warn">
-                   <navigator url="/pages/map/index?delivery_method={{delivery_method}}">
+                    <view class="weui-icon-warn" bindtap="handleOpen2">
+                 <!--   <navigator url="/pages/map/index?delivery_method={{delivery_method}}"> -->
+                         <text wx:if="{{delivery_method==0}}">选择配送方式</text> 
 
-                            <block wx:if="{{sell_address.length}}">
-                         <text wx:if="{{delivery_method==2}}">自取：</text>   {{sell_address[0].name}} {{sell_address[0].door_number}}</block>
-                            <block wx:else>选择配送方式</block>
+                         <text wx:if="{{delivery_method==1}}">邮寄：</text> 
+
+                         <text wx:if="{{delivery_method==2}}">自取：</text> 
 
 
                             <i-icon type="enter" size="28" />
-</navigator>
-
+<!-- </navigator>
+ -->
                     </view>
                      </view>
 
@@ -197,7 +226,7 @@
                     
 
 
-<button formType="submit"   class="weui-btn weui-btn_primary">确定发布</button>
+<button formType="submit"   class="weui-btn weui-btn_primary linenear_bg">确定发布</button>
 
 
 

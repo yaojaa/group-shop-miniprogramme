@@ -26,7 +26,7 @@ Page({
     isShowTimePicker:false,
     photoUrls: [],
     content_imgs:[],
-    delivery_method:2,//配送方式配送方式 1:送货 2:自提',
+    delivery_method:0,//配送方式配送方式 1:送货 2:自提',
     sell_address:[],
     isGave:0,
     address:0,
@@ -46,10 +46,13 @@ Page({
       key_name:'',
       price :'',
       store_count:'',
+      img:'',
+      des:''
       }
       ],
       collection_methods:1, //(1:平台代收,2:商户微信收款码)
       visible1:false,
+      visible2:false,
        actions1: [
            
             {
@@ -75,9 +78,10 @@ Page({
       })
 
     },
-    addPicture(){
+    addPicture(e){
+      const type = e.currentTarget.dataset.type
       wx.navigateTo({
-        url:'../upload_pics/upload_pics'
+        url:'../upload_pics/upload_pics?type='+type
       })
     },
 
@@ -154,25 +158,78 @@ Page({
     this.setData({ deliver: e.detail.value })
   },
   //上传相册
-  chooseImage:function(){
+  chooseImage:function(e){
 
+    wx.chooseImage({  
+    count: 9,  //最多可以选择的图片总数  
+    sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+    success:  (res) =>{  
+      // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
+      var tempFilePaths = res.tempFilePaths;  
 
-      util.uploadPicture({
-        successData:(result)=>{
-          this.data.photoUrls = this.data.photoUrls.concat([result])
+      //启动上传等待中...  
+      wx.showToast({  
+        title: '正在上传...',  
+        icon: 'loading',  
+        mask: true,  
+        duration: 10000  
+      })
 
-          this.setData({
-            photoUrls:this.data.photoUrls
-          })
+      console.log(app.globalData)
 
-        },
-        progressState:(s)=>{
-          this.setData({
-          photoProgress:s
+      var uploadImgCount = 0;  
+      for (var i = 0, h = tempFilePaths.length; i < h; i++) {  
+        wx.uploadFile({  
+          url: util.config.apiUrl + '/api/seller/upload',  
+          filePath: tempFilePaths[i],  
+          name: 'file',  
+          formData: {  
+            'imgIndex': i  
+          },  
+          header: {  
+            "Content-Type": "multipart/form-data",
+            "Authorization":app.globalData.token  
+          },  
+          success:  (res)=> {  
+            uploadImgCount++;  
+            console.log('上传成功结果',JSON.parse(res.data))
+            var data = JSON.parse(res.data); 
+
+            console.log(data.data.file_url) 
+            this.data.photoUrls.push({
+              img_url:data.data.file_url,
+              is_cover:this.data.photoUrls.length>0 ? 0:1
+            })  
+
+            console.log(this.data.photoUrls)
+
+            this.setData({
+              photoUrls:this.data.photoUrls
+            })
+  
+            //如果是最后一张,则隐藏等待中  
+            if (uploadImgCount == tempFilePaths.length) {  
+              wx.hideToast();  
+            }  
+          },  
+          fail: function (res) {  
+            wx.hideToast();  
+            wx.showModal({  
+              title: '错误提示',  
+              content: '上传图片失败',  
+              showCancel: false,  
+              success: function (res) { }  
+            })  
+          }  
         })
 
-        }
-      })
+}
+
+
+    }
+  })
+
   },
   //删除一张照片
   removePhoto:function(e){
@@ -332,7 +389,7 @@ Page({
             userName:app.globalData.userInfo.nickname,
             date:this.data.sell_end_time,
             content:_content,
-            cover:this.data.photoUrls[0].replace('http','https')
+            cover:this.data.photoUrls[0].img_url
           }
 
            wx.removeStorageSync('_card_data')
@@ -353,7 +410,7 @@ Page({
            util.wx.post('/api/seller/goods_add_or_edit',data).then(
             res=>{
                  wx.hideLoading()
-                if (res.data.code == 0) {
+                if (res.data.code == 200) {
                   this.setData({
                       goods_id:res.data.data.goods_id,
                       goods_name:e.detail.value.goods_name
@@ -485,6 +542,9 @@ Page({
 
 
     onLoad: function (option) {
+
+
+      util.wx.get('/api/seller/get_cat_list')
 
 
 

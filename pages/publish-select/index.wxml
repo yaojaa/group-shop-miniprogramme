@@ -1,9 +1,13 @@
 
 
 
-  <i-custom-bar title="" showIcon="{{true}}"> </i-custom-bar>
+  <i-custom-bar title="开团有礼品啦" showIcon="{{true}}"> </i-custom-bar>
 
-<view class="container">
+<view class="container mtop100">
+
+     <wux-notice-bar mode="link"   loop leading="3000" action="" content="开心麻团2.0内测阶段，发布满3个团购且总人数满100人，赠送生态鲜腐竹4盒" bind:click="onClick">
+            <text slot="footer" style="color: #a1a1a1; margin-left: 10px;">去领取</text>
+  </wux-notice-bar>
 
 
 <view class="circle_warpper" >
@@ -33,7 +37,7 @@
 <!--   <i-icon type="success"  size="34" color="#c6c6c6" />
  -->  </view>
   <view class="flex-item-5 left">
-    <view class="f16 text-default"> <view>社区团购在线收款模板</view>
+    <view class="f16 text-default"> <view>团购在线收款模板</view>
      <text class="f14 text-muted">小程序代收款，可随时提现</text> </view>
    </view>
   </view>
@@ -41,7 +45,7 @@
 
 
 
-<view class="center">
+<!-- <view class="center">
   <view class="button-area flex_box">
   <view class="flex-item">
     <image class="tmp-cover" mode="cover" src="/img/tmp_icon2.jpg"></image>
@@ -51,7 +55,7 @@
      <text class="f14 text-muted">微信红包或者收款码收款</text> </view>
    </view>
   </view>
-</view>
+</view> -->
 
 <view class="center">
   <view class="button-area flex_box">

@@ -1,7 +1,8 @@
 /* pages/upload_pics.wxss */
 @import "../../utils/weui.wxss";
 .picture-item{
-	padding: 10px 10%
+	padding: 10px 10%;
+	background: #f8f8f8
 }
 .picture-item image{
 
@@ -10,4 +11,25 @@
    
 }
 
+.footer-btn{
+	position: fixed;
+	bottom: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.footer-btn .btn{
+	color:#fff;
+	margin: 0 auto;
+	display: block;
+	width: 300rpx
+}
+.icons{
+	position: absolute;
+	right: 10px;
+	top: 10px
+}
+.icon-list{
+	margin-bottom: 10px
+}
 
