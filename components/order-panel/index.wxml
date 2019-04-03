@@ -1,0 +1,44 @@
+<view class="goods-panel ph-df white-bg mv-sm cf">
+    <view class="goods-panel-hd pv-sm flex align-center">
+        <view class="flex-sub mr-df">
+            <view class="flex align-center" wx:if="{{item.order_type == 1}}">
+                <image src="http://leileiimg.countinsight.com/front/img/shop_lt.png" class="shop-tb mr-xs">
+                </image>
+                <view class="flex-sub text-hide">{{item.shop_info.shop_name}}</view>
+            </view>
+            <view class="flex align-center" wx:else>
+                <view class="flex-sub text-hide">家居商品</view>
+            </view>
+        </view>
+        <view class="primary-text">{{item.order_status_name}}{{item.refund_status_name}}</view>
+    </view>
+    <view class="solid-bottom"></view>
+    <view class="goods-panel-bd pb-df">
+        <navigator url="{{item.order_refund_id?'../refund-detail/index?id='+item.order_refund_id:'../order-detail/index?id='+item.order_code}}" hover-class="none" class="flex mt-df goods-panel-item" wx:for="{{item.goods_list}}" wx:key="{{index}}" wx:for-item="goods">
+            <image src="{{goods.goods_img}}" class="cover mr-sm"></image>
+            <view class="flex-sub por">
+                <view class="text-hide two-line  bold title">
+                    {{goods.goods_name}}
+                </view>
+                <view class="text-muted mt-xs text-sm des"><text class="pr-sm" wx:for="{{goods.sku_type}}" wx:key="{{index}}" wx:for-item="type">{{type}}</text></view>
+                <view class="text-justify bt-bar">
+                    <view class="price bold">￥{{item.order_refund_id?goods.goods_price/100:goods.goods_sale_price/100}}</view>
+                    <view class="text-muted"><text>x </text>
+                        <text>{{goods.goods_num}}</text></view>
+                </view>
+            </view>
+        </navigator>
+        <view wx:if="{{!item.order_refund_id}}">
+            <view class="text-justify mt-df">
+                <view class="text-gray"><text wx:if="{{item.order_reduce_price>0}}">优惠：￥{{item.order_reduce_price/100}}</text></view>
+                <view class="text-right " wx:if="{{total}}"><text class="text-gray">共{{item.order_goods_num}}件 {{item.order_status_all == 1 ?'应付':'已付'}}金额：</text>
+                    <text class="primary-text">￥{{item.order_online_price/100}}</text></view>
+            </view>
+            <view class="text-sm text-muted mt-xs text-right" wx:if="{{item.order_need_price>0}}">到店在付：￥{{item.order_need_price/100}}</view>
+        </view>
+    </view>
+    <view class="solid-bottom"></view>
+    <view class="goods-panel-fd flex justify-end align-center por">
+        <slot></slot>
+    </view>
+</view>

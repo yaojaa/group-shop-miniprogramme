@@ -1,0 +1,3 @@
+.goods-panel-fd{
+	min-height: 0;
+}
