@@ -1,6 +1,8 @@
 // pages/upload_pics.js
 const util = require('../../utils/util.js')
 
+console.log(util)
+
 Page({
 
     /**
@@ -8,7 +10,8 @@ Page({
      */
     data: {
 
-        content_imgs: []
+        content_imgs: [],
+        type:'photo' //上传文件的类型 图片或者视频 photo || video 
 
     },
     //添加介绍图片
@@ -79,6 +82,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        this.setData({
+            type : options.type || 'photo'
+        })
 
     },
 

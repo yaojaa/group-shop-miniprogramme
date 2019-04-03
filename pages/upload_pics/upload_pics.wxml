@@ -2,26 +2,47 @@
 <i-custom-bar bind:onBack="onBack" backColor="#fff" showIcon="{{true}}" title="上传介绍图片"> </i-custom-bar>
 <view class="container mtop100">
 
-    <view style="width: 250rpx;text-align: center;">
-      <i-button bind:click="addPicture" type="success" shape="circle" size="large">+ 点击上传</i-button>
+   
+
+    <view class="weui-cell picture-item " wx:key="{{item.index}}" wx:for="{{content_imgs}}" wx:key="*this">
+
+    	<view>
+    		        <image src="{{item}}" mode="aspectFill" />
+
+    	</view>
+
+    	<view class="icons">
+
+    		<view class="icon-list">
+    			      <i-icon class="close" data-index="{{index}}" bindtap="toUp" color="#999" size="28" type="packup" />
+    		</view>
+
+    		<view class="icon-list">
+    			  <i-icon class="close" data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
+    		</view>
+
+    		<view class="icon-list">
+    			   <i-icon class="close" data-index="{{index}}" bindtap="removePictrue" color="#999" size="28" type="close" />
+    		</view>
+    		       
+
+    	</view>
+
+
+
+   
+
+        
+
+
+
+        
     </view>
 
-    <view class="weui-cell picture-item" wx:key="{{item.index}}" wx:for="{{content_imgs}}" wx:key="*this">
-        <image src="{{item}}" mode="aspectFill" />
 
 
-
-         <i-icon class="close" data-index="{{index}}" bindtap="toUp" color="#999" size="28" type="packup" />
-
-          <i-icon class="close" data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
-
-
-
-        <i-icon class="close" data-index="{{index}}" bindtap="removePictrue" color="#999" size="28" type="close" />
-    </view>
-
-
-
-
+ <view class="footer-btn">
+      <button bindtap="addPicture" class="btn btn-round btn-lg linenear_bg" >+ 点击上传</button>
+ </view>
 
 </view>

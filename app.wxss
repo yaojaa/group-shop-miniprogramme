@@ -67,6 +67,10 @@ button.linenear_bg{
   background:linear-gradient(left top,#a3df00,#69b90b);
 }
 
+button.linenear_bg:active{
+  color: green
+}
+
 .text-justify {
   display: -webkit-box !important;
   display: -webkit-flex !important;
@@ -227,7 +231,7 @@ button.warning{
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
-  border-radius: 4px;
+  border-radius: 50px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -348,6 +352,7 @@ fieldset[disabled] .btn-link {
 
 .center{
   text-align: center;
+  margin: 0 auto
 }
 
 .button-area{

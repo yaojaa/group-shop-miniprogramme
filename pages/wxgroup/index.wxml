@@ -1,0 +1,40 @@
+<!--pages/create_shop.wxml-->
+<i-custom-bar showIcon="{{ture}}" title="您附近有2个微信群"> 
+</i-custom-bar>
+
+<view class="container mtop100">
+
+<wux-toptips id="wux-toptips" />
+
+<i-panel  i-class="shadow-panel"  wx:for="{{groups}}" >
+    <wux-cell-group >
+            <wux-cell hover-class="none">
+
+                <view class="title">{{item.title}} </view> 
+
+                 <view class="des f12">{{item.des}} </view> 
+<i-button bind:click="showDetail" type="success" shape="circle" size="small">加入</i-button>
+
+         
+            </wux-cell>
+        </wux-cell-group>
+
+
+
+</i-panel>
+
+<i-modal title="加群主好友邀请入群" visible="{{ visible1 }}" bind:cancel="handleClose2" bind:ok="handleClose1"  show-cancel="fasle" ok-text ="复制">
+    <view>yaojaa</view>
+</i-modal>
+
+
+
+
+
+
+<view class="footer-btn">
+	<button bindtap="add" class="btn linenear_bg">群主登记</button>
+</view>
+
+
+</view>

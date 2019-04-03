@@ -55,15 +55,15 @@
 </block>
 
 
-<view class="center" wx:if="{{!newAddress[0]}}">
+<view class="center">
 
-<view class="button-area {{delivery_method==2?'active':''}} marTop50 list-flex"wx:if="{{openLocation}}" bindtap='addAddress'>
+<view class="button-area {{delivery_method==2?'active':''}} marTop50 list-flex" wx:if="{{openLocation}}" bindtap='addAddress'>
 <view class="flex-item">
 
 <i-icon type="add" size="50" color="#c6c6c6" /> 
 </view>
 <view class="flex-item-5 left">
-  <view class="f18 text-default"> 自取，添加提货地址 </view>
+  <view class="f18 text-default"> 添加提货地址 </view>
 <view class="f14 text-muted">方便参与人上门取货</view>
  </view>
 
@@ -117,7 +117,7 @@
 </block> -->
 
 
-<i-button  i-class='button' bind:click="submit" type="success" long="true">选好了</i-button>
+<!-- <i-button  i-class='button linenear_bg' bind:click="submit" type="success" long="true">选好了</i-button> -->
 
 
 <i-button wx:if="{{newAddress.length}}"  i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>

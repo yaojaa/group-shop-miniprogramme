@@ -9,11 +9,12 @@
 		]
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.2",
@@ -47,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 31,
+			"current": 33,
 			"list": [
 				{
 					"id": 0,
@@ -258,6 +259,19 @@
 					"name": "发布页",
 					"pathName": "pages/publish/publish",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "上传图片",
+					"pathName": "pages/upload_pics/upload_pics",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择",
+					"pathName": "pages/map/index",
 					"scene": null
 				}
 			]

@@ -35,14 +35,24 @@ picker{
 }
 
 .new_add_btn{
-  padding: 20rpx;
-  color: blue;
-  margin-bottom: 4rpx;
-  display: block
+  padding: 10px 20rpx;
+  color: #555;
+  margin:15rpx;
+  border-radius: 15rpx;
+  background: #f8f8f8;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.2
 }
 
 .item{
-  position: relative
+  position:relative;
+background:#f8f8f8;
+border-radius:10rpx;
+
+}
+.width70{
+  width: 70%;
 }
 
 .close{
@@ -51,13 +61,13 @@ picker{
   top:1rpx;
   background: #fff;
   border-radius: 100%;
-  border:1rpx solid #ccc;
   line-height: 1;
   width: 26px;
   height: 26px;
   overflow: hidden;
 
 }
+
 
 .weui-uploader__file {
 
@@ -82,12 +92,7 @@ height:133rpx;
 border:1px solid #d9d9d9;
 
 }
-.new_add_btn{
-  font-size:14px;
-  line-height: 2.0;
-  color: #37a;
-  position: relative;
-}
+
 .loading{
   display: inline-block;
   position: absolute;
@@ -132,6 +137,10 @@ font-size:32rpx
     left: 0;
     top: 0;
     min-height: 300rpx
+}
+.page-body .no-margin{
+  margin:15px 0;
+  border-radius: 0
 }
 
 
