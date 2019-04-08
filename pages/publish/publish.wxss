@@ -1,5 +1,7 @@
 @import "../../utils/weui.wxss";
 
+page{
+}
 .page-body{
   margin-top: 100px
 }
@@ -143,5 +145,63 @@ font-size:32rpx
   border-radius: 0
 }
 
+.picture-item{
+  padding: 10px 10%;
+  position: relative;
+}
+.picture-item image{
+
+   border-radius: 5px;
+   width: 78%;
+   box-shadow: 0px 0px 3px #ccc
+
+}
+
+
+
+video{
+  margin: 5px auto 120rpx;
+  width: 100%
+}
+
+.footer-btn{
+  position: fixed;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-btn .btn{
+  margin: 0 15px;
+  display: inline-block;
+  width: 220rpx;
+
+}
+
+.con{
+  height: 75vh;
+  overflow-y: scroll;
+  padding-bottom: 60px
+}
+.icons{
+  position: absolute;
+  right: 10px;
+  top: 10px
+}
+.icon-list{
+  margin-bottom: 10px
+}
+.loading{
+  text-align: center;
+}
+.inline{
+  display: inline-block;
+}
+.poptit{
+  font-size: 20px;
+  font-weight: bold;
+  color: #666;
+  line-height: 2.2
+}
 
 

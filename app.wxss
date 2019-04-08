@@ -65,9 +65,20 @@
 button.linenear_bg{
   background:-webkit-linear-gradient(left top,#a3df00,#69b90b);
   background:linear-gradient(left top,#a3df00,#69b90b);
+  color: #fff
 }
 
 button.linenear_bg:active{
+  color: green
+}
+
+button.linenear_bg_light{
+  background:-webkit-linear-gradient(left top,#f8f8f8,#eee);
+  background:linear-gradient(left top,#f8f8f8,#eee);
+  color: #444
+}
+
+button.linenear_bg_light:active{
   color: green
 }
 

@@ -4,6 +4,8 @@
 
 <view class="page-body">
 
+  <image src ="https://static.kaixinmatuan.cn/c9f0f895fb98ab9159f51fd0297e236d201904071039046385.png" />
+
 <view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>
 </view>
 <form bindsubmit="submitForm" >
@@ -33,62 +35,122 @@
   <view class="weui-cell__bd">
     <view class='row' id="textareawrap" catchtap="onFocus">
       <text>{{currentInput}}</text>
-      <textarea  maxlength="2000" bindinput="getInput"   value="{{goods_content}}"  name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="6"></textarea>
+      <textarea  style="display: none;" maxlength="2000" bindinput="getInput"   value="{{goods_content}}"  name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="6"></textarea>
     </view>
   </view>
 
 
 </view>
 
-<view class="weui-cell picture-item" wx:key="{{item.index}}" wx:for="{{content_imgs}}"  wx:key="*this">
-                  <image src="{{item}}"  mode="aspectFill" />
-                   <i-icon class="close" data-index="{{index}}" bindtap="removePictrue" color="#999" size="28" type="close" />
+
+
+<view class="new_add_btn" data-type="video" bindtap="addVideo">
+<i-badge  dot="{{content_video}}" >
+
+<i-icon type="add" size="16" color="#69b90b"  />视频短片（选填） 
+</i-badge>
 </view>
 
+<view class="new_add_btn" data-type="photo" bindtap="add">
+<i-badge count="{{content_imgs.length}}">
+    <view class="demo-badge">
+      <i-icon type="add" size="16" color="#69b90b"/>图文介绍（选填)
+    </view>
 
-<view class="new_add_btn" data-type="video" bindtap="addPicture">
-
-<i-icon type="add" size="16" color="#69b90b"  />视频短片（选填） <view wx:if="{{pictureProgress}}" class="loading">
-<i-spin size="large"></i-spin>
+</i-badge>
 </view>
 
+<!--上传图片弹框-->
+<wux-popup catchtouchmove="ture"  position="bottom" visible="{{ visible_pictures }}" bind:close="onClose2">
+      <view class="poptit">上传介绍图片</view>
+
+    <view class="con">
+      <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
+
+      <view class="img-list">
+          <image mode="widthFix" src="{{item}}"/>
+          {{item}}
+      </view>
+
+      <view class="icons">
+
+        <view class="icon-list">
+                <i-icon  data-index="{{index}}" bindtap="toUp" color="#999" size="28" type="packup" />
+        </view>
+
+        <view class="icon-list">
+             
+            <i-icon  data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
+        </view>
+
+        <view class="icon-list">
+             <i-icon  data-index="{{index}}" bindtap="removePictrue" color="#999" size="28" type="close" />
+        </view>
+               
+
+      </view>
+        
+    </view>
+
+ <view class="footer-btn">
+      <button bindtap="addPicture" class="btn btn-round linenear_bg_light" >
+        + 继续添加
+      </button>
+
+      <button bindtap="addPictureDone" class="btn btn-round linenear_bg" >
+        完成
+      </button>
+
+ </view>
+    </view>
+</wux-popup>
+
+<!--上传视频弹框-->
+
+<wux-popup catchtouchmove="ture"  position="bottom" visible="{{ visible_video }}" bind:close="onClose2">
+  <view class="poptit">上传视频</view>
+
+<view class="con_video">
+
+   <video
+    id="myVideo"
+    src="{{content_video}}"
+    controls
+  ></video>
+
+
+ <view class="footer-btn">
+      <button bindtap="removeVideo" class="btn btn-round linenear_bg_light" >
+        移除
+      </button>
+
+      <button bindtap="addVideoDone" class="btn btn-round linenear_bg" >
+        完成
+      </button>
+
+ </view>
+    </view>
+</wux-popup>
+
+
+
+
+
+
 </view>
 
-<view class="new_add_btn" data-type="photo" bindtap="addPicture">
-
-<i-icon type="add" size="16" color="#69b90b"/>图文介绍（选填） <view wx:if="{{pictureProgress}}" class="loading">
-<i-spin size="large"></i-spin>
-</view>
-
-</view>
-
-
-
-<view class="weui-cell weui-cells_form" wx:if="{{morePic}}">
-   <view class="weui-uploader__input-box" bindtap="chooseImage"  >
-         <text class="upload_txt">宝贝相册</text>
-   </view>
-</view>
-
-
-
-
-</view>
-
-<i-panel i-class="no-margin" title="商品规格">
+<i-panel i-class="no-margin" title="商品规格名">
 <view class="weui-cells_form">
 
   <view class="item" wx:for="{{spec_item}}" wx:key="$this">
         <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">规格:</view></view>
+                    <view class="weui-cell__hd"><view class="weui-label">名称:</view></view>
                     <view class="weui-cell__bd" class="width70">
                     <input   value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="如：白色、大号、10斤" />
 
-                   
-
                     </view>
 
-                    <view class="weui-cell__bd">
+                    <view class="weui-cell__bd" data-index="{{index}}" bindtap="addSpecPic">
                       <i-icon type="picture" size="32" color="#666" />
                     </view>
 
@@ -103,7 +165,7 @@
             <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">描述:</view></view>
                     <view class="weui-cell__bd" class="width70">
-                    <input   value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="简短描述或亮点" />      
+                    <input   value="{{item.spec_desc}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].spec_desc"  maxlength="50" placeholder="选填、简短描述或亮点" />      
                     </view>
 
 
@@ -111,7 +173,7 @@
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
                     <view class="weui-cell__bd">
-                    <input  maxlength="50"  bindinput="inputDuplex" data-key="spec_item[{{index}}].store_count"  placeholder="不限制" value="{{item.store_count}}" />
+                    <input  maxlength="50"  bindinput="inputDuplex" data-key="spec_item[{{index}}].store_count"  placeholder="默认不限制" value="{{item.store_count}}" />
                     </view>
 
     </view>

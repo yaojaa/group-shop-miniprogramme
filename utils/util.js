@@ -83,8 +83,19 @@ const uploadPicture = function(option) {
 
     const successHandle = function(res){
 
-            var files = res.tempFilePaths
+                    console.log(res)
+
+             if(options.type == 'video'){
+               var files = []
+                 files.push(res.tempFilePath)
+             }else{
+                var files = res.tempFilePaths
+
+             }
+
+
             var imgCount = 0
+
 
             options.progressState(true)
 
@@ -111,12 +122,33 @@ const uploadPicture = function(option) {
                           return console.log(e)
                         }
 
+                        console.log('data',data.code,data.msg)
+
+                        if(data.code == 200){
+
                         options.successData(data.data.file_url)
                         options.progressState(false)
 
-                        if (imgCount === ary.length - 1) {
+                        }else{
+
+                            wx.showToast({
+                                title:data.msg,
+                                icon:'success'
+                            })
+                        }
+
+
+
+                        if (imgCount === files.length - 1) {
                             options.progressState(false)
                         }
+
+                    },
+                    fail:(err)=>{
+                       wx.showToast({
+                                title:JSON.stringify(err),
+                                icon:'success'
+                            })
 
                     }
                 })

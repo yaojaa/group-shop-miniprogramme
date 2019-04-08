@@ -11,19 +11,39 @@ Page({
     data: {
 
         content_imgs: [],
-        type:'photo' //上传文件的类型 图片或者视频 photo || video 
+        content_video:'' ,
+        type: 'photo' //上传文件的类型 图片或者视频 photo || video 
 
     },
     //添加介绍图片
     addPicture: function() {
 
         util.uploadPicture({
+            type: this.data.type,
             successData: (result) => {
-                this.data.content_imgs = this.data.content_imgs.concat([result])
 
-                this.setData({
-                    content_imgs: this.data.content_imgs
+                if (this.data.type == 'video') {
+                    console.log('video uploaded',result)
+                    this.setData({
+                        content_video:result
+                    })
+
+                } else {
+
+                    this.data.content_imgs = this.data.content_imgs.concat([result])
+
+                    this.setData({
+                        content_imgs: this.data.content_imgs
+                    })
+
+
+                }
+
+                wx.showToast({
+                    title:'上传成功',
+                    icon:'none'
                 })
+
 
             },
             progressState: (s) => {
@@ -44,38 +64,44 @@ Page({
         })
 
     },
-     swapArray(index1, index2) {
-        var arr =this.data.content_imgs
-       arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+    swapArray(index1, index2) {
+        var arr = this.data.content_imgs
+        arr[index1] = arr.splice(index2, 1, arr[index1])[0];
 
-       this.setData({
-        content_imgs:arr
-       })
-        
+        this.setData({
+            content_imgs: arr
+        })
 
-     },
-    toUp(e){
-      let index = e.currentTarget.dataset.index
-        if(index!= 0){
-       this.swapArray(index, index-1);
-      }
+
+    },
+    toUp(e) {
+        let index = e.currentTarget.dataset.index
+        if (index != 0) {
+            this.swapArray(index, index - 1);
+        }
 
     },
 
-    toDown(e){
-      let index = e.currentTarget.dataset.index
-         if(index!= this.data.content_imgs.length-1){
-           this.swapArray(index, index+1);
-       }else{
+    toDown(e) {
+        let index = e.currentTarget.dataset.index
+        if (index != this.data.content_imgs.length - 1) {
+            this.swapArray(index, index + 1);
+        } else {
 
-       }
+        }
 
     },
-    onBack(){
-
-
-        console.log('返回啦。。。')
-
+    onBack() {
+        //设置副页面的已上传图片数量icon
+        if(this.data.content_imgs.length){
+        var pages = getCurrentPages();
+        var currPage = pages[pages.length - 1];   //当前页面
+        var prevPage = pages[pages.length - 2];  //上一个页面
+        // 直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+        prevPage.setData({
+          content_imgs: this.data.content_imgs
+        })
+}
 
     },
     /**
@@ -83,8 +109,16 @@ Page({
      */
     onLoad: function(options) {
 
+        var pages = getCurrentPages();
+        var currPage = pages[pages.length - 1];   //当前页面
+        var prevPage = pages[pages.length - 2];  //上一个页面
+
+        console.log(prevPage.data.content_imgs)
+
         this.setData({
-            type : options.type || 'photo'
+            type: options.type || 'photo',
+            title: options.type == 'video' ? '上传小视频' : '上传图文介绍',
+            content_imgs:prevPage.data.content_imgs
         })
 
     },
