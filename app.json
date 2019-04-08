@@ -24,8 +24,11 @@
     "pages/create_shop/index",
     "pages/b-login/login",
     "pages/upload_pics/upload_pics",
-    "pages/wxgroup/index"
-
+    "pages/wxgroup/index",
+    "pages/address/index",
+    "pages/address-form/index",
+    "pages/order-list/index",
+    "pages/order-detail/index"
   ],
   "permission": {
     "scope.userLocation": {

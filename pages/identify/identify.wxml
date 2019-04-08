@@ -9,7 +9,7 @@
                 <wux-cell hover-class="none">
                     <wux-input clear label="微信" bind:change="changeWX" placeholder="输入您的微信号" />
                 </wux-cell>
-                <wux-cell hover-class="none" title="收货地址" is-link ></wux-cell>
+                <wux-cell hover-class="none" title="收货地址" is-link url="../address/index" ></wux-cell>
             </wux-cell-group>
             <!--    <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">微信绑定的手机号</button>
             <i-input bind:change="changeMobile" value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
