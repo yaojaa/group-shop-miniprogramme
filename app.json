@@ -28,7 +28,8 @@
     "pages/address/index",
     "pages/address-form/index",
     "pages/order-list/index",
-    "pages/order-detail/index"
+    "pages/order-detail/index",
+    "pages/wxgroup_add/index"
   ],
   "permission": {
     "scope.userLocation": {

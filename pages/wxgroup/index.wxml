@@ -6,25 +6,25 @@
 
 <wux-toptips id="wux-toptips" />
 
-<i-panel  i-class="shadow-panel"  wx:for="{{groups}}" >
+<i-panel  i-class="shadow-panel"  wx:for="{{groups}}" hideBorder="true">
     <wux-cell-group >
             <wux-cell hover-class="none">
 
                 <view class="title">{{item.title}} </view> 
 
-                 <view class="des f12">{{item.des}} </view> 
-<i-button bind:click="showDetail" type="success" shape="circle" size="small">加入</i-button>
+                 <view class="des f14">{{item.des}} </view> 
+<i-button bind:click="showDetail"  shape="circle" size="small">加入</i-button>
 
          
             </wux-cell>
-        </wux-cell-group>
+</wux-cell-group>
 
 
 
 </i-panel>
 
-<i-modal title="加群主好友邀请入群" visible="{{ visible1 }}" bind:cancel="handleClose2" bind:ok="handleClose1"  show-cancel="fasle" ok-text ="复制">
-    <view>yaojaa</view>
+<i-modal title="申请加入" visible="{{ visible1 }}" bind:cancel="handleClose2" bind:ok="handleClose1"  show-cancel="fasle" ok-text="提交">
+    <input type="text" name="user_wx" placeholder="输入您的微信号，等待邀请" />	
 </i-modal>
 
 

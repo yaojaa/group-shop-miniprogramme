@@ -69,10 +69,12 @@ Page({
                 name: '用户自提'
             }
         ],
+
         content_imgs_length: '',
         visible_pictures: false, //上传图片弹层是否显示
         visible_video:false
     },
+
     showTimePicker: function() {
 
         this.setData({
@@ -89,10 +91,12 @@ Page({
             type: 'photo',
             successData: (result) => {
 
-                this.data.spec_item[index] = this.data.spec_item[index].concat([result])
-                // this.setData({
-                //     spec_pic: this.data.content_imgs
-                // })
+              const key = 'spec_item['+index+'].spec_pic'
+
+              const newVal = this.data.spec_item[index].spec_pic.concat([result])
+                this.setData({
+                    [key]: newVal
+                })
 
             },
             progressState: (s) => {
@@ -631,10 +635,19 @@ Page({
     handleClickItem2({ detail }) {
         const index = detail.index + 1;
 
+        console.log(index)
+
+
+
         this.setData({
             delivery_method: index,
             visible2: false
         });
+        if(index==2){
+          wx.navigateTo({
+            url:'../map/index'
+          })
+        }
     },
     /**回显数据**/
 

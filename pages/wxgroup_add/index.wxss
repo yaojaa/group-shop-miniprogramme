@@ -27,3 +27,6 @@
 	width: 100%;
 	text-align: center;
 }
+.map_btn{
+	width: 120px;
+}

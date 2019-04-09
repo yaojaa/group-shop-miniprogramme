@@ -1,21 +1,12 @@
-<view class="container">
+<i-custom-bar backColor="#fff" showIcon="{{true}}" title="添加提货地点"> </i-custom-bar>
+
+
+<view class="container mtop100">
+
 <view class="bgimg">
 
-<!--   <view class='limit'>
-    <view class='header'>
-      <text>添加提货地点</text>
-      <switch bindchange="limitChange"/>
-    </view>
-    <view wx:if="{{ hidden }}" class='control'>
-      <view>限制预定周边半径范围（km）</view>
-      <view>
-        <i-input-number value="{{ limitVal }}" min="0" max="100" step="{{step}}" bindchange="handleChange" />
-      </view>
-    </view>
+  
 
-  </view> -->
-  <view class='title'>  活动位置与配送方式：
-</view>
 <block wx:for="{{newAddress}}" wx:key="id">
   <view class='address button-area'>
   <!-- <view class='address' wx:if="{{index == 0}}"> -->
@@ -27,8 +18,23 @@
       <view class='des'>{{item.address}}</view>
       <view class='des door_number'>
         <text class="text-danger">门牌号：</text>
-        <input value="{{item.door_number}}" bindinput='inputAddressDes' focus='ture' placeholder="如：2号楼3单元203" type="text" name=""/></view>
+        <input value="{{item.door_number}}" bindinput='inputAddressDes' focus='ture' placeholder="如：2号楼3单元203" type="text" name=""/>
+      </view>
 
+<!--       <view class='limit'>
+    <view class='header'>
+      <text>限制参与</text>
+      <switch bindchange="limitChange"/>
+    </view>
+    <view wx:if="{{ hidden }}" class='control'>
+      <view>周边半径范围（km）</view>
+      <view>
+        <i-input-number value="{{ limitVal }}" min="0" max="100" step="{{step}}" bindchange="handleChange" />
+      </view>
+    </view>
+
+  </view>
+ -->
     </view>
     <view class='delete' bindtap='deleteAddress' data-type="new" data-id="{{item.id}}"><icon type="clear" size="28"/></view>
 
@@ -55,21 +61,15 @@
 </block>
 
 
-<view class="center">
+<view class="center" style="margin-top:60rpx">
 
-<view class="button-area {{delivery_method==2?'active':''}} marTop50 list-flex" wx:if="{{openLocation}}" bindtap='addAddress'>
-<view class="flex-item">
+<view  wx:if="{{openLocation}}" bindtap='addAddress'>
+   <button  class="btn btn-round linenear_bg" >
+      <i-icon type="add" size="20" color="#fff" /> 
+  地图标注 
+      </button>
 
-<i-icon type="add" size="50" color="#c6c6c6" /> 
 </view>
-<view class="flex-item-5 left">
-  <view class="f18 text-default"> 添加提货地址 </view>
-<view class="f14 text-muted">方便参与人上门取货</view>
- </view>
-
-
-
-  </view>
 
   <view class='get-location' wx:else>
     <button  open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
@@ -80,20 +80,6 @@
 
 
 </view>
-
-
-<view bindtap='noAddress' class="button-area {{delivery_method==1?'active':''}}  marTop50 list-flex" wx:if="{{newAddress.length==0}}">
-<view class="flex-item">
-<i-icon type="success"  size="34" color="#c6c6c6" />
-</view>
-<view class="flex-item-5 left">
-  <view class="f18 text-default"> <view>邮寄或上门送货</view>
-   <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
- </view>
-
-
-</view>
-
 
 
 <!-- <block wx:if="{{oldAddress.length > 0}}">
@@ -120,8 +106,9 @@
 <!-- <i-button  i-class='button linenear_bg' bind:click="submit" type="success" long="true">选好了</i-button> -->
 
 
-<i-button wx:if="{{newAddress.length}}"  i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>
-
+   <button wx:if="{{newAddress.length}}" bindtap="addPicture" class="btn btn-round linenear_bg_light" >
+        完成返回
+   </button>
 
 
 

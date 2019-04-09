@@ -118,6 +118,7 @@ Page({
 
   },
   addAddress(){
+    wx.showLoading()
     this.openLocation(this);
         console.log(this.openLocation)
 
@@ -215,11 +216,12 @@ Page({
             },
             method:'get',
             success:(res)=>{
-              console.log(res)
+              wx.hideLoading()
+
               let map =res.data.result.address_component
             _this.data.oldAddress = _this.data.newAddress.concat(_this.data.oldAddress);
 
-            _this.data.newAddress = [{
+            _this.data.newAddress.push({
               name: e.name,
               address: e.address,
               province_name: map.province,
@@ -228,7 +230,7 @@ Page({
               latitude: e.latitude,
               longitude: e.longitude,
               door_number:''
-            }];
+            });
 
             _this.setData({
               newAddress: _this.data.newAddress

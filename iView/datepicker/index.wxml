@@ -9,32 +9,32 @@
   <view class='picker-body'>
     <picker-view indicator-class="picker-row-out indicator-class" class='picker-cow' value="{{value.y}}" data-type="year" bindchange="bindChange">
       <picker-view-column>
-        <view wx:for="{{years}}" wx:key="item" class='picker-row'>{{item}}</view>
+        <view wx:for="{{years}}" wx:key="item" class='picker-row'>{{item}}年</view>
       </picker-view-column>
     </picker-view>
     <view class="space-k"></view>
     <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.m}}" data-type="month" bindchange="bindChange">
       <picker-view-column>
-        <view wx:for="{{months}}" wx:key="item" class='picker-row'>{{item}}</view>
+        <view wx:for="{{months}}" wx:key="item" class='picker-row'>{{item}}月</view>
       </picker-view-column>
     </picker-view>
     <view class='space-k'></view>
     <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.d}}" data-type="day" bindchange="bindChange">
       <picker-view-column>
-        <view wx:for="{{days}}" wx:key="item"  class='picker-row'>{{item}}</view>
+        <view wx:for="{{days}}" wx:key="item"  class='picker-row'>{{item}}日</view>
       </picker-view-column>
     </picker-view>
     <view class='space'> </view>
     <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.h}}" data-type="hour" bindchange="bindChange">
       <picker-view-column>
-        <view wx:for="{{hours}}" wx:key="item"  class='picker-row'>{{item}}</view>
+        <view wx:for="{{hours}}" wx:key="item"  class='picker-row'>{{item}}点</view>
       </picker-view-column>
     </picker-view>
-    <view class='space'>:</view>
-    <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.mm}}" data-type="minute" bindchange="bindChange">
+<!--     <view class='space'>:</view>
+ -->    <!-- <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.mm}}" data-type="minute" bindchange="bindChange">
       <picker-view-column>
         <view wx:for="{{minutes}}" wx:key="item" class='picker-row'>{{item}}</view>
       </picker-view-column>
-    </picker-view>
+    </picker-view> -->
   </view>
 </view>
