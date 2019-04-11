@@ -1,9 +1,5 @@
-
-  <i-custom-bar backColor="#fff" showIcon="{{true}}" title="发布"> </i-custom-bar>
-
-
+<i-custom-bar backColor="#fff" showIcon="{{true}}" title="新发布"> </i-custom-bar>
 <view class="page-body">
-
 <view class="progress" wx:if="{{photoProgress}}" ><i-spin size="large"></i-spin>
 </view>
 <form bindsubmit="submitForm" >
@@ -11,7 +7,7 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <view wx:for="{{photoUrls}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item.img_url}}-small)">
-                      <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#80848f" size="26" type="close" />
+                      <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#ccc" size="26" type="close" />
                                 </view>
                             <view  wx:if="{{photoUrls.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
                             <text class="upload_txt">
@@ -33,7 +29,7 @@
   <view class="weui-cell__bd">
     <view class='row' id="textareawrap" catchtap="onFocus">
       <text>{{currentInput}}</text>
-      <textarea  style="display: none;" maxlength="2000" bindinput="getInput"   value="{{goods_content}}"  name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="6"></textarea>
+      <textarea  style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput"   value="{{goods_content}}"  name="goods_content" class="weui-textarea"  placeholder="商品描述、介绍、特色等" rows="6"></textarea>
     </view>
   </view>
 
@@ -43,7 +39,7 @@
 
 
 <view class="new_add_btn" data-type="video" bindtap="addVideo">
-<i-badge  dot="{{content_video}}" >
+<i-badge  dot="{{goods_video.length}}" >
 
 <i-icon type="add" size="16" color="#69b90b"  />视频短片（选填） 
 </i-badge>
@@ -59,43 +55,22 @@
 </view>
 
 <!--上传规格图弹框-->
-<wux-popup catchtouchmove="ture"  position="bottom" visible="{{ visible_pictures }}" bind:close="onClose2">
-    <view class="poptit">上传规格图片</view>
+<wux-popup catchtouchmove="true"  position="bottom" visible="{{ visible_spec }}">
+    <view class="poptit">上传商品规格图片</view>
 
     <view class="con">
-      <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
-
+      <view class="picture-item" wx:key="{{item}}" wx:for="{{current_spec_imgs}}">
       <view class="img-list">
           <image mode="widthFix" src="{{item}}"/>
-          {{item}}
       </view>
-
-      <view class="icons">
-
-        <view class="icon-list">
-                <i-icon  data-index="{{index}}" bindtap="toUp" color="#999" size="28" type="packup" />
-        </view>
-
-        <view class="icon-list">
-             
-            <i-icon  data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
-        </view>
-
-        <view class="icon-list">
-             <i-icon  data-index="{{index}}" bindtap="removePictrue" color="#999" size="28" type="close" />
-        </view>
-               
-
-      </view>
-        
     </view>
 
  <view class="footer-btn">
-      <button bindtap="addPicture" class="btn btn-round linenear_bg_light" >
+      <button bindtap="addSpecPic" class="btn btn-round linenear_bg_light" >
         + 继续添加
       </button>
 
-      <button bindtap="addPictureDone" class="btn btn-round linenear_bg" >
+      <button bindtap="addspecPictureDone" class="btn btn-round linenear_bg" >
         完成
       </button>
 
@@ -105,14 +80,13 @@
 
 <!--上传图片弹框-->
 <wux-popup catchtouchmove="ture"  position="bottom" visible="{{ visible_pictures }}" bind:close="onClose2">
-    <view class="poptit">上传介绍图片</view>
+    <view class="poptit">上传详情介绍图片</view>
 
     <view class="con">
       <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
 
       <view class="img-list">
           <image mode="widthFix" src="{{item}}"/>
-          {{item}}
       </view>
 
       <view class="icons">
@@ -157,7 +131,7 @@
 
    <video
     id="myVideo"
-    src="{{content_video}}"
+    src="{{goods_video}}"
     controls
   ></video>
 
@@ -185,20 +159,20 @@
 <i-panel i-class="no-margin" title="商品规格名">
 <view class="weui-cells_form">
 
-  <view class="item" wx:for="{{spec_item}}" wx:key="$this">
+  <view class="item" wx:for="{{spec}}" wx:key="$this">
         <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">名称:</view></view>
                     <view class="weui-cell__bd" class="width70">
-                    <input   value="{{item.key_name}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].key_name"  maxlength="50" placeholder="如：白色、大号、10斤" />
+                    <input   value="{{item.spec_name}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_name"  maxlength="50" placeholder="如：白色、大号、10斤" />
 
                     </view>
                  <!--添加规格图片-->
                     <view class="weui-cell__bd" data-index="{{index}}" bindtap="addSpecPic">
-                      <view wx:if="item.spec_pic.length">
-                        <image src="{{item.spec_pic[0]}}"/>
+                      <view wx:if="{{item.spec_pic.length}}">
+                        <image class="spec_pic_small" src="{{item.spec_pic[0]}}-small"/>
                       </view>
                       <view wx:else>
-                      <i-icon type="picture" size="32" color="#666" />
+                      <i-icon type="picture" size="22" color="#999" />
                       </view>
                     </view>
                  <!--添加规格图片-->
@@ -208,13 +182,13 @@
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">价格:</view></view>
                     <view class="weui-cell__bd">
-                    <input  value="{{item.price}}" type="digit"    bindinput="inputDuplex" data-key="spec_item[{{index}}].price"    maxlength="50" placeholder="0.00" />
+                    <input  value="{{item.spec_price}}" type="digit"    bindinput="inputDuplex" data-key="spec[{{index}}].spec_price"    maxlength="50" placeholder="0.00" />
                     </view>
     </view>
             <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">描述:</view></view>
                     <view class="weui-cell__bd" class="width70">
-                    <input   value="{{item.spec_desc}}" bindinput="inputDuplex" data-key="spec_item[{{index}}].spec_desc"  maxlength="50" placeholder="选填、简短描述或亮点" />      
+                    <input   value="{{item.spec_desc}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_desc"  maxlength="50" placeholder="选填、简短描述或亮点" />      
                     </view>
 
 
@@ -222,11 +196,12 @@
      <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">库存:</view></view>
                     <view class="weui-cell__bd">
-                    <input  maxlength="50"  bindinput="inputDuplex" data-key="spec_item[{{index}}].store_count"  placeholder="默认不限制" value="{{item.store_count}}" />
+                    <input  maxlength="50" type="number"  bindinput="inputDuplex" data-key="spec[{{index}}].spec_stock"  placeholder="默认不限制" value="{{item.spec_stock}}" />
                     </view>
+                     <view class="weui-cell__bd"></view>
 
     </view>
-        <i-icon wx:if="{{spec_item.length >1 }}" data-index="{{index}}" bindtap="removeGoods"  class="close" type="delete_fill" size="28" />
+        <i-icon wx:if="{{spec.length >1 }}" data-index="{{index}}" bindtap="removeGoods" color="#999"  class="close" type="trash" size="28" />
 
   </view>
 
@@ -339,7 +314,7 @@
                     
 
 
-<button formType="submit"   class="weui-btn weui-btn_primary linenear_bg">确定发布</button>
+<button style="margin: 15px" formType="submit"   class="weui-btn weui-btn_primary linenear_bg">确定发布</button>
 
 
 

@@ -36,16 +36,18 @@ Page({
         uploadProgress: false,
         sell_start_time: default_start_time,
         sell_end_time: default_end_time,
+        goods_video: '',
+
         picker: {
             start_date: default_start_time.split(' ')[0],
             end_date: default_end_time.split(' ')[0],
             start_time: '00:00',
             end_time: '24:00',
         },
-        spec_item: [{
-            key_name: '',
-            price: '',
-            store_count: '',
+        spec: [{
+            spec_name: '',
+            spec_price: '',
+            spec_stock: '',
             spec_pic: [],
             spec_desc: ''
         }],
@@ -72,7 +74,10 @@ Page({
 
         content_imgs_length: '',
         visible_pictures: false, //上传图片弹层是否显示
-        visible_video:false
+        visible_video: false,
+        visible_spec: false, //规格图
+        current_spec_index: 0,
+        displayTextArea: 'block'
     },
 
     showTimePicker: function() {
@@ -83,25 +88,48 @@ Page({
 
     },
     //上传规格图
-    addSpecPic(e){
+    addSpecPic(e) {
+        console.log(e)
+        var index = e.currentTarget.dataset.index || ''
+        if (index !== '') {
+            this.data.current_spec_index = index
+        } else {
+            index = this.data.current_spec_index
+        }
 
-      const index = e.currentTarget.dataset.index
+       
+        if (this.data.spec[index].spec_pic.length) {
+            return this.setData({
+                    visible_spec: true
+                })
+        }
 
-           util.uploadPicture({
+        console.log("index", index)
+
+        console.log("spec", this.data.spec)
+
+
+        util.uploadPicture({
             type: 'photo',
             successData: (result) => {
 
-              const key = 'spec_item['+index+'].spec_pic'
+                const key = 'spec[' + index + '].spec_pic'
 
-              const newVal = this.data.spec_item[index].spec_pic.concat([result])
+                const newVal = this.data.spec[index].spec_pic.concat([result])
+
+                console.log(key)
+                console.log(newVal)
+
                 this.setData({
-                    [key]: newVal
+                    [key]: newVal,
+                    current_spec_imgs: newVal
                 })
 
             },
             progressState: (s) => {
                 this.setData({
-                    uploadProgress: s
+                    uploadProgress: s,
+                    visible_spec: true
                 })
 
             }
@@ -109,6 +137,11 @@ Page({
 
 
 
+    },
+    addspecPictureDone() {
+        this.setData({
+            visible_spec: false
+        })
     },
     // addPicture(e){
     //   const type = e.currentTarget.dataset.type
@@ -124,35 +157,35 @@ Page({
         })
 
     },
-    addVideoDone(){
+    addVideoDone() {
 
-      this.setData({
+        this.setData({
             visible_video: false
         })
 
     },
 
-    addVideo(){
+    addVideo() {
 
-      if(this.data.content_video){
-        this.setData({
-          visible_video:true
-        })
-      }else{
-        this.addVideoCore()
-      }
+        if (this.data.goods_video) {
+            this.setData({
+                visible_video: true
+            })
+        } else {
+            this.addVideoCore()
+        }
 
-       
+
     },
 
-    addVideoCore(){
-            util.uploadPicture({
+    addVideoCore() {
+        util.uploadPicture({
             type: 'video',
             successData: (result) => {
 
-              this.setData({
-                content_video:result
-              })
+                this.setData({
+                    goods_video: result
+                })
 
             },
             progressState: (s) => {
@@ -165,11 +198,11 @@ Page({
         })
     },
 
-    removeVideo(){
-      this.setData({
-        visible_video:false,
-        content_video:''
-      })
+    removeVideo() {
+        this.setData({
+            visible_video: false,
+            goods_video: ''
+        })
     },
 
     add() {
@@ -188,6 +221,8 @@ Page({
         util.uploadPicture({
             type: type,
             successData: (result) => {
+
+
 
                 this.data.content_imgs = this.data.content_imgs.concat([result])
                 console.log('this.data.content_imgs', this.data.content_imgs)
@@ -242,23 +277,19 @@ Page({
     //添加商品
     addGoods: function() {
 
-        const dataTpl = {
-            key_name: '',
-            price: '',
-            store_count: ''
-        }
+        const dataTpl = Object.assign({}, this.data.spec[0])
 
-        this.data.spec_item = this.data.spec_item.concat([dataTpl])
+        this.data.spec = this.data.spec.concat([dataTpl])
 
         this.setData({
-            spec_item: this.data.spec_item
+            spec: this.data.spec
         })
 
     },
     //删除商品
     removeGoods: function(e) {
 
-        if (this.data.spec_item.length <= 1) {
+        if (this.data.spec.length <= 1) {
             wx.showToast({
                 title: '请至少保留一个商品',
                 icon: 'none' //标题
@@ -268,11 +299,12 @@ Page({
         }
 
         let index = e.currentTarget.dataset.index
-        this.data.spec_item.splice(index, 1)
+        this.data.spec.splice(index, 1)
         this.setData({
-            spec_item: this.data.spec_item
+            spec: this.data.spec
         })
     },
+
 
 
     onShow: function(option) {
@@ -477,9 +509,9 @@ Page({
         //校验规则名
         let hasKeyName = true;
 
-        this.data.spec_item.every((value, index) => {
+        this.data.spec.every((value, index) => {
 
-            if (value.key_name.trim() == '' || value.price.trim() == '') {
+            if (value.spec_name.trim() == '' || value.spec_price.trim() == '') {
 
                 hasKeyName = false
 
@@ -498,25 +530,25 @@ Page({
 
 
 
-        if (this.data.sell_address.length <= 0) {
+        if (this.data.delivery_method == 0) {
             wx.showModal({ title: '请选择配送方式', showCancel: false })
             return false
         }
 
         //默认重置库存为1000
-        this.data.spec_item.forEach((value, index) => {
+        // this.data.spec.forEach((value, index) => {
 
-            if (value.store_count == '') {
-                this.data.spec_item[index].store_count = 1000
-            }
+        //     if (value.store_count == '') {
+        //         this.data.spec[index].store_count = 1000
+        //     }
 
-        })
+        // })
 
 
 
         let data = Object.assign({ token: app.globalData.token }, { goods_id: this.data.goods_id },
             e.detail.value, //表单的数据
-            { spec_item: this.data.spec_item }, //商品数组数据
+            { spec: this.data.spec }, //商品数组数据
             { goods_images: this.data.photoUrls }, {
                 sell_address: this.data.sell_address,
                 delivery_method: this.data.delivery_method,
@@ -643,10 +675,10 @@ Page({
             delivery_method: index,
             visible2: false
         });
-        if(index==2){
-          wx.navigateTo({
-            url:'../map/index'
-          })
+        if (index == 2) {
+            wx.navigateTo({
+                url: '../map/index'
+            })
         }
     },
     /**回显数据**/
@@ -684,7 +716,7 @@ Page({
                         end_date: endFormatTime.split(' ')[0],
                         end_time: endFormatTime.split(' ')[1],
                     },
-                    spec_item: res.data.data.spec_goods_price,
+                    spec: res.data.data.spec_goods_price,
                     isShowTimePicker: true
                 })
 
@@ -701,11 +733,33 @@ Page({
 
     },
 
+    watch: {
+        visible_pictures: (newValue, val, context) => {
+
+            context.setData({
+                displayTextArea: newValue ? 'none' : 'block'
+            })
+
+        },
+        visible_video: (newValue, val, context) => {
+            context.setData({
+                displayTextArea: newValue ? 'none' : 'block'
+            })
+        },
+        visible_spec: (newValue, val, context) => {
+            context.setData({
+                displayTextArea: newValue ? 'none' : 'block'
+            })
+        },
+
+    },
+
 
     onLoad: function(option) {
 
 
-        util.wx.get('/api/seller/get_cat_list')
+        getApp().setWatcher(this.data, this.watch, this); // 设置监听器
+
 
 
 

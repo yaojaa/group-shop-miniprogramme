@@ -16,23 +16,7 @@ Page({
   onLoad: function (e) {
     let _this = this;
     // this.openLocation(this);
-    this.setData({
-      delivery_method:e.delivery_method
-    })
-
-
-        //拿app.globalData的地址
-        //
-    if(e.delivery_method ==2){
-
-
-    if(app.globalData.sell_address && app.globalData.sell_address.length){
-      _this.setData({
-        newAddress: app.globalData.sell_address
-      })
-    }
-
-    }
+ 
 
 
 
@@ -41,9 +25,12 @@ Page({
       success:(res)=> {
       if(!res.authSetting["scope.userLocation"]){
 
+        console.log('!scope.userLocation')
+
         wx.authorize({
         scope: 'scope.userLocation',
         success: (res)=> {
+
             util.getUserloaction().then((res)=>{
               this.setData({
                 userLocation:res
@@ -63,6 +50,23 @@ Page({
 
       }
     })
+//获取用户已经填写的提货点
+//
+  var pages = getCurrentPages();
+    
+    var prevPage = pages[pages.length - 2];  //上一个页面
+
+    if(prevPage && prevPage.data.sell_address.length){
+
+      this.setData({
+        newAddress:prevPage.data.sell_address
+      })
+    }
+
+
+    console.log('prevPage.data.sell_address',prevPage.data.sell_address)
+
+
 
 
 
@@ -166,8 +170,8 @@ Page({
     })
 
   },
-
-  submit() {
+  //完成保存
+  done() {
     if (!this.data.newAddress[0]) {
       wx.showToast({ title: "请先添加地址", icon: "none" })
       return;
@@ -181,10 +185,8 @@ Page({
     var currPage = pages[pages.length - 1];   //当前页面
     var prevPage = pages[pages.length - 2];  //上一个页面
 
-    prevPage.setData({
-      sell_address:this.data.newAddress,
-      delivery_method:2
-    })
+    prevPage.data.sell_address=this.data.newAddress
+ 
 
     wx.navigateBack({
       delta: 1

@@ -17,8 +17,8 @@
       <view class='name'>{{item.name}}</view>
       <view class='des'>{{item.address}}</view>
       <view class='des door_number'>
-        <text class="text-danger">门牌号：</text>
-        <input value="{{item.door_number}}" bindinput='inputAddressDes' focus='ture' placeholder="如：2号楼3单元203" type="text" name=""/>
+        <text class="text-danger">详细地址：</text>
+        <input value="{{item.door_number}}" bindinput='inputAddressDes' focus='ture' placeholder="如：8号楼8-818、东门、西门、物业" type="text" name=""/>
       </view>
 
 <!--       <view class='limit'>
@@ -61,12 +61,11 @@
 </block>
 
 
-<view class="center" style="margin-top:60rpx">
+<view class="center" style="margin-top:60rpx" wx:if="{{newAddress.length==0}}">
 
 <view  wx:if="{{openLocation}}" bindtap='addAddress'>
    <button  class="btn btn-round linenear_bg" >
-      <i-icon type="add" size="20" color="#fff" /> 
-  地图标注 
+      <i-icon type="add" size="20" color="#fff" />地图标注地点 
       </button>
 
 </view>
@@ -78,11 +77,23 @@
 </view>
 
 
+ <view class="footer-btn" wx:if="{{newAddress.length}}">
+      <button bindtap="addAddress" class="btn btn-round linenear_bg_light" >
+        + 增加提货点
+      </button>
+
+      <button bindtap="done" class="btn btn-round linenear_bg" >
+        完成
+      </button>
+
+ </view>
+
+
 
 </view>
 
 
-<!-- <block wx:if="{{oldAddress.length > 0}}">
+<block wx:if="{{oldAddress.length > 0}}">
 <view class='history'>历史记录（{{oldAddress.length}}），点击下面记录添加活动地点</view>
 <view class='session'>
 <block wx:for="{{oldAddress}}" wx:key="id">
@@ -100,15 +111,13 @@
   <view class='line'></view>
 </block>
 </view>
-</block> -->
+</block>
 
 
 <!-- <i-button  i-class='button linenear_bg' bind:click="submit" type="success" long="true">选好了</i-button> -->
 
 
-   <button wx:if="{{newAddress.length}}" bindtap="addPicture" class="btn btn-round linenear_bg_light" >
-        完成返回
-   </button>
+
 
 
 

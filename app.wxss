@@ -1560,3 +1560,17 @@ flex:5;
     color: #ccc;
 }
 
+.footer-btn{
+  position: fixed;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-btn .btn{
+  margin: 0 15px;
+  display: inline-block;
+  width: 220rpx;
+
+}
+

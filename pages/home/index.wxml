@@ -17,15 +17,15 @@
     <!-- 排序 -->
     <view class="head-box">
         <i-row>
-            <i-col offset="1" span="5" i-class="col-class">
+            <i-col offset="1" span="4" i-class="col-class">
                 
             <navigator url="../identify/identify">
                 <view class="user-avatar" >
-                 <open-data bindtap="goHome" type="userAvatarUrl">
+                 <open-data class="user-avatar" bindtap="goHome" type="userAvatarUrl">
                 </open-data>
 
                 <view class="set-icon">
-                   <i-icon type="setup_fill" color="#ffa70f" size="22" />
+                   <i-icon type="setup_fill" color="#ffa70f" size="16" />
                 </view>
                 </view>
             </navigator>
@@ -34,11 +34,17 @@
                 
             </i-col>
             <i-col span="14" i-class="col-class"> 
-                <text class="user-name f18">{{userInfo.nickname}}</text>
+
+                <view class="user-name f16">{{userInfo.nickname}}</view>
+                <view class="user-account f12">我的账户 (¥124.00)</view>
+
+
             </i-col>
-            <i-col span="4" i-class="col-class">
+            <i-col span="5" i-class="col-class">
                 <view  bindtap="goSite">
-                    <i-icon size="28" color="#fff" type="homepage_fill" />
+                    <i-icon size="30" color="#fff" type="homepage" />
+
+                    <i-icon  size="30" color="#fff" type="group" />
                 </view>
             </i-col>
         </i-row>

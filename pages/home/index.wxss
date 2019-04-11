@@ -16,23 +16,28 @@
 }
 .set-icon{
     position: absolute;
-    right: -16rpx;
-    top: -16rpx
+    right: 0;
+    bottom: 0
 }
 .user-avatar{
 
-  color: #fff;
   width: 110rpx;
   height: 110rpx;
-  border-radius: 110rpx;
+  border-radius: 50%;
   position: relative;
+  overflow: hidden;
 
 }
 
 .user-name{
     font-size: 28rpx;
     color: #fff;
-    padding-left: 10rpx
+    padding-top: 10px
+}
+.user-account{
+    font-size: 22rpx;
+    color: #fff;
+    margin-top: 5px
 }
 
 .home-avatar {

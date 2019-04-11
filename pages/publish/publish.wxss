@@ -59,9 +59,8 @@ border-radius:10rpx;
 
 .close{
   position: absolute;
-  right:1rpx;
-  top:1rpx;
-  background: #fff;
+  right:15rpx;
+  bottom:15rpx;
   border-radius: 100%;
   line-height: 1;
   width: 26px;
@@ -85,7 +84,8 @@ background-size: cover;
 .weui-uploader__file .close{
   right:-10rpx;
   top:-20rpx;
-  z-index: 99
+  z-index: 99;
+  background:#333
 }
 .weui-uploader__input-box {
 
@@ -164,22 +164,15 @@ video{
   width: 100%
 }
 
-.footer-btn{
-  position: fixed;
-  bottom: 20px;
-  text-align: center;
-  width: 100%;
-}
-
-.footer-btn .btn{
-  margin: 0 15px;
-  display: inline-block;
-  width: 220rpx;
-
+.spec_pic_small{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px #fff
 }
 
 .con{
-  height: 75vh;
+  height: 70vh;
   overflow-y: scroll;
   padding-bottom: 60px
 }
