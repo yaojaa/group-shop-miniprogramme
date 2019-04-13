@@ -6,8 +6,6 @@
     "pages/publish/publish",
     "pages/publish-select/index",
     "pages/publish-success/publish-success",
-    "pages/identify/identify",
-    "pages/ordermanage/list",
     "pages/orderList/orderList",
     "pages/orderDefault/orderDefault",
     "pages/order/index",
@@ -38,7 +36,7 @@
   },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "white",
     "navigationBarTitleText": "开心麻团儿",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#eeeeee",

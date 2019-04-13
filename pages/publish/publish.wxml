@@ -62,11 +62,12 @@
       <view class="picture-item" wx:key="{{item}}" wx:for="{{current_spec_imgs}}">
       <view class="img-list">
           <image mode="widthFix" src="{{item}}"/>
+          <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
       </view>
     </view>
 
  <view class="footer-btn">
-      <button bindtap="addSpecPic" class="btn btn-round linenear_bg_light" >
+      <button bindtap="addSpecPicContinue" class="btn btn-round linenear_bg_light" >
         + 继续添加
       </button>
 
@@ -88,23 +89,16 @@
       <view class="img-list">
           <image mode="widthFix" src="{{item}}"/>
       </view>
-
       <view class="icons">
-
         <view class="icon-list">
                 <i-icon  data-index="{{index}}" bindtap="toUp" color="#999" size="28" type="packup" />
         </view>
-
         <view class="icon-list">
-             
             <i-icon  data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
         </view>
-
         <view class="icon-list">
              <i-icon  data-index="{{index}}" bindtap="removePictrue" color="#999" size="28" type="close" />
         </view>
-               
-
       </view>
         
     </view>
@@ -125,13 +119,14 @@
 <!--上传视频弹框-->
 
 <wux-popup catchtouchmove="ture"  position="bottom" visible="{{ visible_video }}" bind:close="onClose2">
-  <view class="poptit">上传视频</view>
+  <view class="poptit">上传视频(不大于25M)</view>
 
 <view class="con_video">
 
    <video
     id="myVideo"
     src="{{goods_video}}"
+    poster="{{goods_video_cover}}"
     controls
   ></video>
 
@@ -172,7 +167,7 @@
                         <image class="spec_pic_small" src="{{item.spec_pic[0]}}-small"/>
                       </view>
                       <view wx:else>
-                      <i-icon type="picture" size="22" color="#999" />
+                      <i-icon type="picture" size="22" color="#888" />
                       </view>
                     </view>
                  <!--添加规格图片-->
@@ -201,8 +196,7 @@
                      <view class="weui-cell__bd"></view>
 
     </view>
-        <i-icon wx:if="{{spec.length >1 }}" data-index="{{index}}" bindtap="removeGoods" color="#999"  class="close" type="trash" size="28" />
-
+<icon  wx:if="{{spec.length >1 }}" data-index="{{index}}" bindtap="removeGoods" color="#ccc"  class="close" type="clear" size="26"/>
   </view>
 
 

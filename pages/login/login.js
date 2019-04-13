@@ -45,14 +45,20 @@ Page({
   /***点击授权按钮***/
   getUserInfoEvt: function (e) {
 
-    console.log(e)
+    console.log(e,e.detail.errMsg.indexOf('fail'))
 
-    if(e.detail.errMsg =='getUserInfo:fail auth deny'){
+    wx.showLoading()
+
+    if(e.detail.errMsg.indexOf('fail') >= 0){
 
        wx.showToast({
          title: '请允许授权',//提示文字
-         duration:2000//显示时长
+         duration:2000,
+         icon:'none'
+         //显示时长
       })
+
+       
        return
      }
 

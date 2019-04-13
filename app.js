@@ -226,12 +226,12 @@ App({
     console.log('hasToken',this.hasToken())
     console.log('option',option)
 
-    wx.getSystemInfo({
-      success(res){
-        console.log(res)
-      }
-    }
-    )
+    // wx.getSystemInfo({
+    //   success(res){
+    //     console.log(res)
+    //   }
+    // }
+    // )
 
 
     if(this.hasToken()){

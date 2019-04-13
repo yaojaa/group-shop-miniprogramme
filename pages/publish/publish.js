@@ -37,6 +37,7 @@ Page({
         sell_start_time: default_start_time,
         sell_end_time: default_end_time,
         goods_video: '',
+        goods_video_cover:'',
 
         picker: {
             start_date: default_start_time.split(' ')[0],
@@ -87,6 +88,7 @@ Page({
         })
 
     },
+
     //上传规格图
     addSpecPic(e) {
         console.log(e)
@@ -108,18 +110,24 @@ Page({
 
         console.log("spec", this.data.spec)
 
+        this.addSpecPicCore(index)
+      
 
-        util.uploadPicture({
-            type: 'photo',
-            successData: (result) => {
+    },
+
+    addSpecPicContinue(){
+         this.addSpecPicCore(this.data.current_spec_index)
+    },
+
+    addSpecPicCore(index){
+
+          util.uploadPicture({
+            success: (result) => {
 
                 const key = 'spec[' + index + '].spec_pic'
 
                 const newVal = this.data.spec[index].spec_pic.concat([result])
-
-                console.log(key)
-                console.log(newVal)
-
+                console.log('newVal',newVal)
                 this.setData({
                     [key]: newVal,
                     current_spec_imgs: newVal
@@ -134,14 +142,25 @@ Page({
 
             }
         })
-
-
-
     },
     addspecPictureDone() {
         this.setData({
             visible_spec: false
         })
+    },
+    removeSpecPhoto(e){
+        const imgIndex = e.currentTarget.dataset.index
+        console.log(this.data.current_spec_index,imgIndex)
+
+        this.data.spec[this.data.current_spec_index].spec_pic.splice(imgIndex, 1)
+        const newData = this.data.spec[this.data.current_spec_index].spec_pic
+        const key = 'spec['+this.data.current_spec_index+'].spec_pic'
+
+        this.setData({
+            [key]: newData,
+            current_spec_imgs:newData
+        })
+
     },
     // addPicture(e){
     //   const type = e.currentTarget.dataset.type
@@ -179,23 +198,66 @@ Page({
     },
 
     addVideoCore() {
-        util.uploadPicture({
-            type: 'video',
-            successData: (result) => {
+
+        wx.chooseVideo({
+          sourceType: ['album', 'camera'],
+          maxDuration: 180,
+          camera: 'back',
+          success:(res)=> {
+
+            this.setData({
+                visible_video: true
+            })
+
+            var videoFile = res.tempFilePath
+            var videothumb = res.thumbTempFilePath
+                console.log('选择视频',res)
+
+            let p1 = util.uploadFile({filePath:videoFile})
+            let p2 = util.uploadFile({filePath:videothumb})
+
+            Promise.all([p1,p2]).then((result)=>{
 
                 this.setData({
-                    goods_video: result
+                    goods_video:result[0].data.file_url,
+                    goods_video_cover:result[1].data.file_url
                 })
 
-            },
-            progressState: (s) => {
-                this.setData({
-                    uploadProgress: s,
-                    visible_video: true
+                console.log({
+                    goods_video:result[0].data.file_url,
+                    goods_video_cover:result[1].data.file_url
                 })
 
-            }
+            })
+
+
+
+
+
+
+
+
+          }
         })
+
+
+        // util.uploadPicture({
+        //     type: 'video',
+        //     successData: (result) => {
+
+        //         this.setData({
+        //             goods_video: result
+        //         })
+
+        //     },
+        //     progressState: (s) => {
+        //         this.setData({
+        //             uploadProgress: s,
+        //             visible_video: true
+        //         })
+
+        //     }
+        // })
     },
 
     removeVideo() {
@@ -211,30 +273,23 @@ Page({
                 visible_pictures: true
             })
         } else {
-            this.addPicture('photo')
+            this.addPicture()
         }
     },
 
     //添加介绍图片
-    addPicture(type) {
+    addPicture() {
 
         util.uploadPicture({
-            type: type,
-            successData: (result) => {
+            success: (result) => {
 
-
+                console.log('result',result)
 
                 this.data.content_imgs = this.data.content_imgs.concat([result])
                 console.log('this.data.content_imgs', this.data.content_imgs)
                 this.setData({
                     content_imgs: this.data.content_imgs
                 })
-
-                // wx.showToast({
-                //     title: '上传成功',
-                //     icon: 'none'
-                // })
-
 
             },
             progressState: (s) => {
@@ -494,7 +549,7 @@ Page({
 
         if (this.data.photoUrls.length <= 0) {
             wx.showModal({ title: '请上传商品相册', showCancel: false })
-            return false
+            return util.playSound('../../img/error.mp3')
         }
 
 
@@ -502,7 +557,7 @@ Page({
         if (!this.WxValidate.checkForm(e)) {
             const error = this.WxValidate.errorList[0]
             wx.showModal({ title: error.msg, showCancel: false })
-            return false
+            return util.playSound('../../img/error.mp3')
         }
 
 

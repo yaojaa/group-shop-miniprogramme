@@ -9,7 +9,7 @@
 		]
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -17,7 +17,7 @@
 		"nodeModules": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
+	"libVersion": "2.6.0",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
 	"debugOptions": {
@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 34,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -73,8 +73,8 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=85",
-					"scene": "1001"
+					"query": "goods_id=1",
+					"scene": 1001
 				},
 				{
 					"id": 4,
@@ -160,10 +160,11 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "地图",
-					"pathName": "pages/userLocation/index",
-					"query": ""
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 18,
@@ -279,7 +280,15 @@
 					"id": -1,
 					"name": "登记群",
 					"pathName": "pages/wxgroup_add/index",
+					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "地图",
+					"pathName": "pages/publish/publish",
+					"query": "",
+					"scene": 1008
 				}
 			]
 		}

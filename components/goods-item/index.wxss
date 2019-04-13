@@ -1,130 +1,120 @@
-.comment-item {
-    padding: 30rpx;
+.goods-item {
+    margin: 15px 10px 10px 0;
+}
+
+.goods-item .rm_btn{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: rgb(204, 203, 203)
+}
+
+.goods-body {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    padding: 0 20rpx;
+    position: relative;
+}
+
+.goods-body .hd {
+    width: 120rpx;
+    height: 120rpx;
+}
+
+.goods-body .bd {
+    margin: 0 20rpx;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    -o-flex: 1;
+    flex: 1;
+    border-radius: 10px
+}
+
+.goods-body .bd .tit {
+    font-size: 16px;
+    color: #474245;
+    width: 80%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.goods-body .bd .link {
+
+    padding: 14rpx 0 0 5rpx
+}
+
+.goods-body .bd .link text {
+    font-size: 13px;
+    color: #49b34d;
+}
+
+.goods-body .fd {
+    color: #999;
+    font-size: 28rpx;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.goods-count .count-item {
+    margin: 30rpx auto 0;
+}
+
+.goods-count .count-item .label {
+    color: #666;
+}
+
+.goods-count .count-item .num {
+    font-size: 28rpx;
+    color: #333
+}
+.count-box {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
     background: #fff;
 }
 
-.comment-item .avatar {
-    width: 64rpx;
-    height: 64rpx;
-    border-radius: 100%;
-}
-
-.comment-item-hd {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 22rpx;
-}
-
-.user-box {
-    display: flex;
-    align-items: center;
-}
-.user-box .avatar{
-    margin-right: 20rpx;
-}
-.user-box .info{
+.count-item {
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    -o-flex: 1;
     flex: 1;
+    text-align: center;
+    margin: 30rpx 0;
+    border-right: 1rpx solid #f2f2f2;
 }
-.user-box .info .title{
 
-}
-.user-box .info .date{
-    font-size: 20rpx;
-    color:#999;
-}
-.comment-item-bd .content{
-    line-height:1.6;
-}
-.comment-item-bd .photo{
-    margin-top: 10rpx;
-    display: flex;
-    flex-wrap:wrap;
-    margin-right: -15rpx;
-    overflow: hidden;
-}
-.comment-item-bd .photo image{
-    border-radius: 8rpx;
-    width: 220rpx;
-    height: 220rpx;
-}
-.comment-item-bd .photo .photo-item{
-    width: 220rpx;
-    height: 220rpx;
-    margin-right: 15rpx;
-    margin-top: 15rpx;
-}
-.reply-box{
-    background: #f8f8f8;
-    border-radius: 8rpx;
-    padding: 24rpx;
-    margin-top: 24rpx;
-    position: relative;
-}
-.reply-box:after{
-    content: '';
-    width: 16rpx;
-    height: 16rpx;
-    position: absolute;
-    top:-8rpx;
-    left:100rpx;
-    background: #f8f8f8;
-    transform: rotate(-45deg);
-}
-.reply-box .title{
-    color:#999;
-}
-.reply-content{
-    display: flex;
-    margin-top: 22rpx;
-}
-.reply-hd{
-    margin-right: 20rpx;
-}
-.reply-bd{
-    flex: 1;
-}
-.reply-bd .head .info{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.reply-bd .head .info .date{
-    font-size: 20rpx;
-    color:#999;
-}
-.reply-bd .head .info .name{
-    font-weight: bold;
-}
-.reply-bd .head .address{
-    font-size: 20rpx;
-    color:#666;
-}
-.reply-bd .content{
-    margin-top: 16rpx;
-    line-height:1.6;
-}
-.comment-item-fd {
-    text-align: right;
-    padding-top: 30rpx;
-    display: flex;
-    justify-content: flex-end;
-}
-.diary-btn{
-    width: 180rpx;
-    height: 60rpx;
-    border-radius: 100px;
-    background: #F9F5FD;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.count-item .label {
     font-size: 24rpx;
+    color: #666;
+    display: block;
 }
-.diary-btn .icon{
-    width: 24rpx;
-    height: 24rpx;
-    margin-right: 6rpx;
+
+.count-item .num {
+    font-size: 32rpx;
+    color: #333;
+    display: block;
+    padding: 15rpx 0;
 }
-.comment-item-bd .content{
-    margin-top: 28rpx;
+
+.count-item.active{
+    border-bottom: 2px solid #6dbf0c
+}
+
+.goods-count {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
 }

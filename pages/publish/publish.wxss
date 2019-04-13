@@ -196,5 +196,7 @@ video{
   color: #666;
   line-height: 2.2
 }
-
+.img-list{
+  position: relative;
+}
 

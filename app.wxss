@@ -22,6 +22,10 @@
   font-size: 24rpx !important;
 }
 
+.f12px {
+  font-size: 12px !important;
+}
+
 .f13 {
   font-size: 26rpx !important;
 }
@@ -432,6 +436,14 @@ fieldset[disabled] .btn-link {
 
 flex:1;
 }
+
+
+
+.flex-item-2{
+
+flex:2;
+}
+
 
 .flex-item-3{
 

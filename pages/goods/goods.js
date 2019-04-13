@@ -8,16 +8,10 @@ const app = getApp()
 Page({
     data: {
         imgs:{ // 动画相册配置
-            src:[
-                "https://www.daohangwa.com/public/upload/local_cover/wx6ac9955f87c289f0.o6zAJsx6hMSC0UBabsyLYJuKY6ew.7z0KiIbdNBif8c155dfc2e203591a2bc726215709f2e.jpg",
-                "https://www.daohangwa.com/public/upload/local_cover/tmp_8789e959d03e6124356439808cc0354c81fd598848c33517.jpg",
-                "https://www.daohangwa.com/public/upload/local_cover/tmp_cd85c827575f94b291aacf7552af15971fe3b1083d6d6374.jpg",
-                "https://wx.qlogo.cn/mmopen/vi_32/QIbmMAaoLUEQg7pwSpjOEtMOPLxXxBsjQ4RNaIZQ7u7gngDjvU3RJC4ibez6ia2pX98dnnGserc9tqoniaicRg5aGA/132",
-            ],
+            src:[],
             height: 500
         },
         hasScope: false, //是否授权
-        imgUrls: [],
         goods: {},
         visibleU:false,
         seller_user: {},
@@ -140,6 +134,43 @@ Page({
 
         
     },
+
+    getGoodsInfo(id){
+      util.wx.get('/api/goods/get_goods_detail',{goods_id:id})
+      .then(res=>{
+        console.log(res)
+
+        if (res.data.code == 200) {
+
+          console.log(res.data.data.goods)
+
+          // let spec_goods_price = res.data.data.spec_goods_price
+
+          // spec_goods_price.map(value => {
+          //   value.item_num = 0
+          // })
+          const d = res.data.data
+
+          this.setData({
+            goods:d.goods,
+            'imgs.src': d.goods.goods_images,
+            // sell_address: res.data.data.sell_address,
+            // seller_user: res.data.data.seller_user,
+            // spec_goods_price: spec_goods_price,
+            // delivery_method: res.data.data.goods.delivery_method,
+            // collection_methods: res.data.data.goods.collection_methods,
+            // endTime: res.data.data.goods.sell_end_time,
+            // countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
+          })
+
+          // wx.setNavigationBarTitle({
+          //   title: '【' + res.data.data.seller_user.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
+          // })
+
+
+      }
+    })
+    },
     onLoad: function(option) {
 
         console.log(option)
@@ -148,21 +179,23 @@ Page({
             copy:option.copy || false
         })
 
+        this.getGoodsInfo(option.goods_id)
+
 
         // wx.showLoading({
         //       title: '玩命加载中...',
         // })
         //没有传ID的情况跳转
         //
-        if(!option.goods_id && !option.scene){
+        // if(!option.goods_id && !option.scene){
 
-             wx.redirectTo({
-                url:'../login/login'
-              })
+        //      wx.redirectTo({
+        //         url:'../login/login'
+        //       })
 
-             return
+        //      return
 
-        }
+        // }
 
         this.data.goods_id = option.goods_id || option.scene
 
