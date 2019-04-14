@@ -1,4 +1,4 @@
-<i-custom-bar title="我的订单" showIcon="{{true}}"> </i-custom-bar>
+<i-custom-bar title="物流详情" showIcon="{{true}}"> </i-custom-bar>
 <view class="container gray-wrap cf" style="margin-top:80rpx;">
     <view class="p-df white-bg flex mv-sm align-center">
         <view class="wuliu-box">

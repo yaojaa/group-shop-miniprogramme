@@ -1,43 +1,53 @@
-<view class="container gray-wrap cf">
-    <block wx:if="{{address.length>0}}">
-        <view class="fixed-btn">
-            <navigator url="../address-form/index" class="btn xxl primary block">
-                添加新地址
-            </navigator>
-        </view>
-        <view class="content-wrap">
-            <view class="white-bg mv-sm">
-                <van-swipe-cell right-width="{{ 60 }}" wx:for="{{address}}" wx:key="{{index}}" disable>
+<i-custom-bar title="收货地址" showIcon="{{true}}"> </i-custom-bar>
+<view class="container gray-wrap cf" style="margin-top:80rpx;">
+    <view class="fixed-btn">
+        <navigator url="../address-form/index" class="btn xxl primary block" bindtap="submit">
+            添加新地址
+        </navigator>
+    </view>
+    <view class="content-wrap">
+        <view class="white-bg mv-sm">
+            <van-swipe-cell right-width="{{ 60 }}">
+                <view class="address-item">
+                    <view class="flex align-center">
+                        <view class="ttm-checkbox align-self-center checked">
+                            <van-icon name="success" custom-class="iconsuccess" />
+                        </view>
+                        <view class="bd">
+                            <view class="text-lg bold"><text class="mr-sm">金城武</text><text class="mr-sm">18888888888</text><text class="btn lt primary">默认</text></view>
+                            <view class="text-gray mt-xs">
+                                湖北武汉市武昌区中南路街道武汉市
+                                武昌区明主二路白宫101单元2楼
+                            </view>
+                        </view>
+                        <navigator url="../address-form/index" hover-class="none" class="fd solid-left">
+                            <view class="iconfont icon-edit text-gray"></view>
+                        </navigator>
+                    </view>
+                </view>
+                <view slot="right" class="address-del">删除</view>
+            </van-swipe-cell>
+            <block wx:for="{{3}}" wx:key="{{index}}">
+                <van-swipe-cell right-width="{{ 60 }}">
                     <view class="address-item">
                         <view class="flex align-center">
-                            <view class="mr-df ttm-checkbox align-self-center {{item.user_address_id==selected?'checked':''}}" wx:if="{{source}}" data-id="{{item.user_address_id}}" bindtap="setSelected">
-                                <van-icon name="success" custom-class="iconsuccess" />
-                            </view>
-                            <view class="bd" data-id="{{item.user_address_id}}" bindtap="setSelected">
-                                <view class="text-lg bold"><text class="mr-sm">{{item.user_address_addressee}}</text><text class="mr-sm">{{item.user_address_phone}}</text>
-                                    <text wx:if="{{item.user_address_is_default==1}}" class="btn lt primary">默认</text>
+                            <view class="bd">
+                                <view class="text-lg bold"><text class="mr-sm">金城武</text><text class="mr-sm">18888888888</text><!-- <text class="btn lt primary">默认</text> -->
                                 </view>
                                 <view class="text-gray mt-xs">
-                                    {{item.user_address_detail}}
+                                    湖北武汉市武昌区中南路街道武汉市
+                                    武昌区明主二路白宫101单元2楼
                                 </view>
                             </view>
-                            <navigator url="../address-form/index?id={{item.user_address_id}}" hover-class="none" class="fd solid-left">
+                            <navigator url="../address-form/index" hover-class="none" class="fd solid-left">
                                 <view class="iconfont icon-edit text-gray"></view>
                             </navigator>
                         </view>
                     </view>
-                    <view slot="right" class="address-del coral" bindtap="remove" data-id="{{item.user_address_id}}" data-add="{{item}}">删除</view>
+                    <view slot="right" class="address-del">删除</view>
                 </van-swipe-cell>
-            </view>
-        </view>
-    </block>
-    <view class="no-content white-bg" style="height:100vh" wx:else>
-        <view class="no-content-bd">
-            <image src="http://leileiimg.countinsight.com/front/img/address_none.png" class="no-content-icon"></image>
-            <view class="no-content-des"><text>暂无收获地址</text></view>
-            <view class="no-content-btn">
-                <navigator url="../address-form/index" class="btn primary lg round w-min-xl">添加</navigator>
-            </view>
+                <view class="solid-bottom"></view>
+            </block>
         </view>
     </view>
 </view>

@@ -10,6 +10,8 @@
         "van-checkbox-group": "../../vant/checkbox-group/index",
         "van-area": "../../vant/area/index",
         "van-popup": "../../vant/popup/index",
-        "i-custom-bar": "../../components/custom-bar/index"
+        "wux-cell-group": "../../wux/cell-group/index",
+        "wux-cell": "../../wux/cell/index",
+        "wux-cascader": "../../wux/cascader/index"
     }
 }

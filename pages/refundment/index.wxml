@@ -1,4 +1,4 @@
-<i-custom-bar title="我的订单" showIcon="{{true}}"> </i-custom-bar>
+<i-custom-bar title="退换货" showIcon="{{true}}"> </i-custom-bar>
 <view class="container cf" style="margin-top:80rpx;">
     <view class="fixed-btn">
     <button class="btn xxl primary block" bindtap="submit">

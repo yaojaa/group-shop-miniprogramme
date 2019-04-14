@@ -1,4 +1,4 @@
-<i-custom-bar title="我的订单" showIcon="{{true}}"> </i-custom-bar>
+<i-custom-bar title="退货详情" showIcon="{{true}}"> </i-custom-bar>
 <view class="container cf" style="margin-top:80rpx;">
     <view class="primary ph-df pv-sm text-white">
         <view class="text-xl">申请退款中</view>
