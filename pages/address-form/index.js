@@ -13,12 +13,14 @@ Page({
         areaModal: false,
         areaList: [],
         areaValue: '',
-        addressee: '',
-        phone: '',
+        consignee: '',
+        mobile: '',
         path: '',
-        area: '',
+        address: '',
         is_default: '',
+        province: '',
         city: '',
+        district: ''
 
     },
     addressDefault(event) {
@@ -47,16 +49,18 @@ Page({
     },
     submit() {
         // /api/front/address/create 
-        const apiURL = this.isEdit ? '/api/front/address/modify' : '/api/front/address/create'
+        const apiURL = this.isEdit ? '/api/user/edit_address' : '/api/user/edit_address'
         const msg = this.isEdit ? '编辑成功' : '添加成功'
 
         var data = {
-            addressee: this.data.addressee,
-            phone: this.data.phone,
-            path: this.data.path,
-            area: this.data.area,
+            consignee: this.data.consignee,
+            mobile: this.data.mobile,
+            province: '',
+            city: '',
+            district: '',
+            address: this.data.address,
             is_default: this.data.is_default,
-            //city: this.data.city
+
         }
 
         if (this.isEdit) {
@@ -91,7 +95,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        
+
         this.setData({
             areaList: areaData,
             source: options.source || false
@@ -112,10 +116,10 @@ Page({
             .then(res => {
                 if (res.data.code == 0) {
                     this.setData({
-                        addressee: res.data.data.user_address_addressee,
-                        phone: res.data.data.user_address_phone,
+                        consignee: res.data.data.user_address_consignee,
+                        mobile: res.data.data.user_address_mobile,
                         path: res.data.data.user_address_path,
-                        area: res.data.data.user_address_area,
+                        address: res.data.data.user_address_area,
                         city: res.data.data.user_address_prefix,
                         is_default: res.data.data.user_address_is_default
                     })

@@ -48,12 +48,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 33,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/home/index",
-					"pathName": "pages/home/index",
+					"name": "当前开发页",
+					"pathName": "pages/address-form/index",
 					"query": "",
 					"scene": null
 				},
@@ -272,6 +272,7 @@
 					"id": -1,
 					"name": "选择",
 					"pathName": "pages/map/index",
+					"query": "",
 					"scene": null
 				}
 			]

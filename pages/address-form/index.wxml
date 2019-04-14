@@ -1,21 +1,21 @@
 <view class="container gray-wrap  cf">
+    <i-custom-bar showIcon="{{true}}" backColor="'transparent'" fixed="{{false}}" title="添加收货地址"></i-custom-bar>
     <van-cell-group custom-class="mv-sm">
-        <van-field bindchange="inputDuplex" data-key="addressee"  value="{{addressee}}" label="收货人" input-align="right" placeholder="请输入姓名" />
+        <van-field bindchange="inputDuplex" data-key="addressee" value="{{addressee}}" label="收货人" input-align="right" placeholder="请输入姓名" />
         <van-field bindchange="inputDuplex" data-key="phone" value="{{phone}}" label="联系电话" input-align="right" placeholder="请填写手机号" type="number" />
         <van-field label="所在地区" value="{{city}}" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleAreaModal" />
-
-        <van-field bindchange="inputDuplex" data-key="area"  value="{{area}}" label="详细地址" type="textarea" placeholder="请填写详细地址，不少于5个字" autosize />
+        <van-field bindchange="inputDuplex" data-key="area" value="{{area}}" label="详细地址" type="textarea" placeholder="请填写详细地址，不少于5个字" autosize />
     </van-cell-group>
     <view class="ph-df mt-xs">
         <van-checkbox value="{{ is_default }}" bind:change="addressDefault" checked-color="#8E50E0">设为默认地址</van-checkbox>
     </view>
     <view class="m-df mt-xl">
-        <button class="btn xxl primary block" bindtap="submit">
+        <button class="btn-success" bindtap="submit">
             提交
         </button>
     </view>
     <van-notify id="custom-selector" />
     <van-popup show="{{ areaModal }}" position="bottom" bind:close="handleAreaModal">
-        <van-area area-list="{{ areaList }}"  bind:change="" bind:cancel="handleAreaModal" bind:confirm="handleArea" value="{{path}}" id="area" />
+        <van-area area-list="{{ areaList }}" bind:change="" bind:cancel="handleAreaModal" bind:confirm="handleArea" value="{{path}}" id="area" />
     </van-popup>
 </view>
