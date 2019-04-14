@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "商品评价",
+    "usingComponents":
+    {
+        "wux-upload": "../../wux/upload/index",
+        "van-rate": "../../vant/rate/index",
+        "van-notify": "../../vant/notify/index",
+        "van-dialog": "../../vant/dialog/index"
+    }
+}

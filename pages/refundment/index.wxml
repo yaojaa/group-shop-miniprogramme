@@ -1,0 +1,92 @@
+<i-custom-bar title="我的订单" showIcon="{{true}}"> </i-custom-bar>
+<view class="container cf" style="margin-top:80rpx;">
+    <view class="fixed-btn">
+    <button class="btn xxl primary block" bindtap="submit">
+        提交
+    </button>
+    </view>
+    <view class="content-wrap">
+        <view class="goods-panel white-bg cf ph-df">
+            <view class="goods-panel-bd pb-df">
+                <navigator url="../service-detail/index" hover-class="none" class="flex mt-df goods-panel-item">
+                    <image src="http://img.countinsight.com/user/img/f100.png" class="cover mr-sm"></image>
+                    <view class="flex-sub por">
+                        <view class="text-hide two-line text-black bold title">
+                            美白补水滋润护理头部按摩
+                        </view>
+                        <view class="text-muted mt-xs text-sm des"></view>
+                        <view class="text-justify bt-bar">
+                            <view class="price secondary-text bold">￥1000</view>
+                            <view class="text-muted"><text>x </text>
+                                <text>2</text></view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <!-- 图款商品start -->
+        <view class="text-justify ph-df mb-df">
+            <view class="">选择退款/退货数量</view>
+            <van-stepper value="{{ goodsNumber }}" integer min="1" max="2" step="1" bind:change="changeGoodsNumber" />
+        </view>
+        <view class="ph-df mb-df">
+            <van-radio-group value="{{ tkType }}" bind:change="changeTkType">
+                <view class="flex align-center justify-between">
+                    <van-radio name="1" custom-class="label-block">
+                        <view class="text-center">
+                            <view class="">我要退款</view>
+                            <view class="text-sm">未收到货</view>
+                        </view>
+                    </van-radio>
+                    <van-radio name="2" custom-class="label-block">
+                        <view class="text-center">
+                            <view class="">我要退款退货</view>
+                            <view class="text-sm">已收到货</view>
+                        </view>
+                    </van-radio>
+                </view>
+            </van-radio-group>
+        </view>
+        <!-- end -->
+        <van-cell-group>
+            <van-field value="{{problemTitle}}" required label="退款原因" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleProblemModal" required />
+            <van-field value="￥1000" error="{{true}}" label="退款金额" input-align="right" readonly="{{true}}" required />
+            <van-field value="" label="退款原因" type="textarea" placeholder="请填写退款原因" autosize required />
+        </van-cell-group>
+        <view class="m-df">
+            <view class="mb-sm f15">上传凭证（最多3张）</view>
+            <wux-upload listType="picture-card" fileList="{{ fileList }}" max="3" url="https://dev.countinsight.com/api/business/fileupload/image" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:remove="onRemove">
+                <text>上传图片</text>
+            </wux-upload>
+        </view>
+    </view>
+    <van-notify id="custom-selector" />
+    <van-dialog id="van-dialog" />
+    <van-popup show="{{ problemModal }}" position="bottom" bind:close="handleProblemModal">
+        <view class="text-center p-df text-lg">退款原因</view>
+        <view class="pv-df">
+            <van-radio-group value="{{ problemValue }}">
+                <van-cell-group border="{{false}}">
+                    <van-cell title="买多了/买错了" clickable title-width="600rpx" border="{{false}}" data-name="1" data-title="买多了/买错了" bind:click="changeProblem">
+                        <van-radio name="1" />
+                    </van-cell>
+                    <van-cell title="商家说可以现金/刷卡付款来享受团购折扣" clickable title-width="600rpx" border="{{false}}" data-name="2" data-title="商家说可以现金/刷卡付款来享受团购折扣" bind:click="changeProblem">
+                        <van-radio name="2" />
+                    </van-cell>
+                    <van-cell title="计划有变，没有时间消费" clickable title-width="600rpx" border="{{false}}" data-name="3" data-title="计划有变，没有时间消费" bind:click="changeProblem">
+                        <van-radio name="3" />
+                    </van-cell>
+                    <van-cell title="商家没有打电话预约电话" clickable title-width="600rpx" border="{{false}}" data-name="4" data-title="商家没有打电话预约电话" bind:click="changeProblem">
+                        <van-radio name="4" />
+                    </van-cell>
+                    <van-cell title="评价不好" clickable title-width="600rpx" border="{{false}}" data-name="5" data-title="评价不好" bind:click="changeProblem">
+                        <van-radio name="5" />
+                    </van-cell>
+                    <van-cell title="后悔了，不想要了" clickable title-width="600rpx" border="{{false}}" data-name="6" data-title="后悔了，不想要了" bind:click="changeProblem">
+                        <van-radio name="6" />
+                    </van-cell>
+                </van-cell-group>
+            </van-radio-group>
+        </view>
+    </van-popup>
+</view>

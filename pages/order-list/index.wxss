@@ -1,3 +1,4 @@
+@import "../../css/common.wxss";
 .custom-tab-df .van-tab {
     font-size: 28rpx;
 }

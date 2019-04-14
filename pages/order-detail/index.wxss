@@ -1,8 +1,1 @@
-.order-fixed-footer .btn{
-    margin-top: 20rpx;
-    margin-bottom: 20rpx;
-}
-.diary-btn .icon {
-    width: 24rpx;
-    height: 24rpx;
-}
+@import "../../css/common.wxss";

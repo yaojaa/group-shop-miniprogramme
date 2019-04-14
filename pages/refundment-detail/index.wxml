@@ -1,0 +1,25 @@
+<i-custom-bar title="我的订单" showIcon="{{true}}"> </i-custom-bar>
+<view class="container cf" style="margin-top:80rpx;">
+    <view class="primary ph-df pv-sm text-white">
+        <view class="text-xl">申请退款中</view>
+        <view class="text-sm"></view>
+    </view>
+    <view class="item-list p-df mb-df">
+        <view class="item">
+            <text class="text-gray">退款金额：</text>
+            <text class="secondary-text">￥400</text>
+        </view>
+        <view class="item">
+            <text class="text-gray">退回账户：</text>
+            <text class="">微信or支付宝or银联</text>
+        </view>
+        <view class="item">
+            <text class="text-gray">到账时间：</text>
+            <text class="">已到账</text>
+        </view>
+    </view>
+    <view class="ph-df">
+        <view class="">退款进度</view>
+    </view>
+    <van-steps steps="{{ steps }}" active="{{ active }}" direction="vertical" active-color="#49b34d" />
+</view>

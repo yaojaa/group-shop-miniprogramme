@@ -1,0 +1,49 @@
+<i-custom-bar title="我的订单" showIcon="{{true}}"> </i-custom-bar>
+<view class="container cf" style="margin-top:80rpx;">
+    <view class="fixed-btn">
+        <button class="btn xxl primary block" bindtap="submit">
+            提交
+        </button>
+    </view>
+    <view class="ph-df content-wrap">
+        <view class="flex align-center mt-df pb-sm">
+            <text class="">物流评价：</text>
+            <van-rate value="{{ emsStar }}" bind:change="handleTechnicianStar" size="18" />
+        </view>
+        <view class="">
+            <view class="solid-bottom"></view>
+            <view class="goods-panel-bd pb-df">
+                <navigator url="../goods-detail/index" hover-class="none" class="flex mt-df goods-panel-item">
+                    <image src="http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg" class="cover mr-sm"></image>
+                    <view class="flex-sub por">
+                        <view class="text-hide two-line text-black bold title">
+                            FACIAL DRINK 修丽可强效补水
+                        </view>
+                        <view class="text-muted mt-xs text-sm des">15ml</view>
+                        <view class="text-justify bt-bar">
+                            <view class="text-default bold">￥1000</view>
+                            <view class="text-muted"><text>x </text>
+                                <text>2</text></view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+            <view class="flex align-center mt-sm mb-sm">
+                <text class="">商品评价：</text>
+                <van-rate value="{{ goodsStar }}" bind:change="handleShopStar" size="18" />
+            </view>
+            <view class="gray-bg-df mb-df">
+                <textarea placeholder="说说使用过的感受，对其他小伙伴帮助很大哦……" class="textarea-df" placeholder-style="color:#adadad" />
+                </view>
+        <view class="mb-df">
+           <wux-upload listType="picture-card" fileList="{{ fileList }}" max="4" url="https://dev.countinsight.com/api/business/fileupload/image" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:remove="onRemove">
+            <text>上传图片</text>
+        </wux-upload>
+        </view>
+        </view>
+    </view>
+
+
+    <van-notify id="custom-selector" />
+    <van-dialog id="van-dialog" />
+</view>

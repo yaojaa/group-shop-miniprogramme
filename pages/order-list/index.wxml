@@ -1,5 +1,6 @@
-<view class="container gray-wrap cf">
-    <van-tabs active="{{ 0 }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" swipe-threshold="{{4}}" color="#8E50E0">
+<i-custom-bar title="我的订单" showIcon="{{true}}"> </i-custom-bar>
+<view class="container gray-wrap cf" style="margin-top:80rpx;">
+    <van-tabs active="{{ 0 }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" swipe-threshold="{{4}}" color="#49b34d">
         <van-tab title="全部"></van-tab>
         <van-tab title="待付款"></van-tab>
         <van-tab title="待使用"></van-tab>
@@ -8,61 +9,56 @@
         <van-tab title="退款/售后"></van-tab>
     </van-tabs>
     <view class="order-coentent" wx:if="{{status !== 5}}">
-        <view class="order-box" wx:if="{{order_list.length>0}}">
-            <block wx:for="{{order_list}}" wx:key="{{index}}">
+        <view class="order-box">
+            <block wx:for="{{4}}" wx:key="{{index}}">
                 <order-list item="{{item}}">
-                    <text class="right-text" wx:if="{{item.order_status_all == 1}}">等待付款中</text>
-                    <button class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.order_status_all == 1}}" data-order="{{item.order_code}}" bindtap="handleCancelOrder">取消订单</button>
-                    <navigator url="../order-detail/index?id={{item.order_code}}" class="btn round primary w-min-big mv-sm ml-sm" wx:if="{{item.order_status_all == 1}}">
+                    <!--                     <text class="right-text">等待付款中</text>-->
+                    <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-order="{{item.order_code}}" bindtap="handleCancelOrder">取消订单</button>
+                    <navigator url="../order-detail/index" class="btn round primary w-min-big mv-sm ml-sm" wx:if="{{item.order_status_all == 1}}">
                         付款
                     </navigator>
-                    <button class="btn round primary w-min-big mv-sm ml-sm" bindtap="getOrderCode" wx:if="{{item.order_status_all == 2}}" data-order="{{item.order_code}}">查看券码</button>
-                    <button class="btn round primary w-min-big mv-sm ml-sm" bindtap="handleConfirmReceipt" wx:if="{{item.order_status_all == 3 && item.allow_confirm}}" data-order="{{item.order_code}}">确认收货</button>
-                    <navigator url="../ems-list/index?id={{item.order_code}}" class="btn round primary w-min-big mv-sm ml-sm" wx:if="{{item.order_status_all == 3 && item.allow_confirm}}">
+                    <!--                 <button class="btn round primary w-min-big mv-sm ml-sm" bindtap="handleConfirmReceipt" data-order="{{item.order_code}}">确认收货</button> -->
+                    <navigator url="../ems-detail/index" class="btn round primary w-min-big mv-sm ml-sm">
                         查看物流
                     </navigator>
-                    <navigator url="../complain/index?id={{item.order_code}}" class="btn round primary w-min-big mv-sm ml-sm" wx:if="{{(item.order_status_all == 4 && item.order_type == 1) || (item.order_status_all == 5 && item.order_type == 1)}}">
+                    <!-- <navigator url="../complain/index" class="btn round primary w-min-big mv-sm ml-sm" >
                         投诉
-                    </navigator>
-                    <navigator url="{{item.order_type == 1?'../evaluate-service/index?id='+item.order_code:'../evaluate-goods/index?id='+item.order_code}}" class="btn round primary w-min-big mv-sm ml-sm" wx:if="{{item.order_status_all == 4 }}">
+                    </navigator> -->
+                    <navigator url="../evaluate/index" class="btn round primary w-min-big mv-sm ml-sm">
                         评价
                     </navigator>
-                    <navigator url="../actree-add/index?id={{item.order_code}}" class="btn round hollow gray w-min-lg mv-sm ml-sm diary-btn mv-sm" wx:if="{{(item.order_status_all == 4 && item.order_type == 1) || (item.order_status_all == 5 && item.order_type == 1)}}">
-                        <image src="http://leileiimg.countinsight.com/front/img/diary_btn_icon.png" class="icon mr-sm"></image>
-                        <text></text>美丽档案
-                    </navigator>
                 </order-list>
             </block>
         </view>
-        <view class="no-content white-bg" style="height:calc(100vh - 88rpx)" wx:else>
+        <!-- <view class="no-content white-bg" style="height:calc(100vh - 88rpx)">
             <view class="no-content-bd">
-                <image src="http://leileiimg.countinsight.com/front/img/test_none.png" class="no-content-icon"></image>
+                <image src="http://image.countinsight.com/front/img/test_none.png" class="no-content-icon"></image>
                 <view class="no-content-des"><text>您还没有相关订单</text></view>
                 <view class="no-content-btn">
                     <navigator open-type="switchTab" url="../mei-ya/index" class="btn primary lg round w-min-xl">去逛逛</navigator>
                 </view>
             </view>
-        </view>
+        </view> -->
     </view>
     <view class="order-coentent" wx:else>
-        <view class="refund-box" wx:if="{{refund_list.length>0}}">
-            <block wx:for="{{refund_list}}" wx:key="{{index}}">
+        <view class="refund-box">
+            <block wx:for="{{2}}" wx:key="{{index}}">
                 <order-list item="{{item}}" total="{{false}}">
-                    <navigator url="../refundment-detail/index?id={{item.order_refund_id}}" class="btn round primary w-min-big mv-sm ml-sm">
-                        {{item.order_refund_status==1 || item.order_refund_status==2 || item.order_refund_status==3?'退款进度':'退款详情'}}
+                    <navigator url="../refundment-detail/index" class="btn round primary w-min-big mv-sm ml-sm">
+                        退款详情
                     </navigator>
                 </order-list>
             </block>
         </view>
-        <view class="no-content white-bg" style="height:calc(100vh - 88rpx)" wx:else>
+        <!-- <view class="no-content white-bg" style="height:calc(100vh - 88rpx)" wx:else>
             <view class="no-content-bd">
-                <image src="http://leileiimg.countinsight.com/front/img/test_none.png" class="no-content-icon"></image>
+                <image src="http://image.countinsight.com/front/img/test_none.png" class="no-content-icon"></image>
                 <view class="no-content-des"><text>您还没有相关订单</text></view>
                 <view class="no-content-btn">
                     <navigator open-type="switchTab" url="../mei-ya/index" class="btn primary lg round w-min-xl">去逛逛</navigator>
                 </view>
             </view>
-        </view>
+        </view> -->
     </view>
     <van-notify id="custom-selector" />
     <van-dialog id="van-dialog" />

@@ -1,149 +1,63 @@
-<view class="container gray-wrap cf">
-    <view class="order-fixed-footer flex justify-end ph-df">
-        <button class="btn round primary hollow w-min-big  ml-sm" wx:if="{{order_info.order_status_all == 1}}" bindtap="handleCancelOrder" data-status="{{order_info.order_status_all}}">取消订单</button>
-        <button class="btn round primary w-min-big  ml-sm" wx:if="{{order_info.order_status_all == 1}}" bindtap="getWxMiniData" data-type="{{order_info.order_type}}" disabled="{{btn_load}}">
-            付款
-        </button>
-        <button class="btn round primary w-min-big  ml-sm" bindtap="handleConfirmReceipt" wx:if="{{order_info.order_status_all == 3 && order_info.allow_confirm}}" data-order="{{order_info.order_code}}">确认收货</button>
-        <navigator url="../ems-list/index?id={{order_info.order_code}}" class="btn round primary w-min-big  ml-sm" wx:if="{{order_info.order_status_all == 3 && order_info.allow_confirm}}">
-            查看物流
-        </navigator>
-        <navigator url="../complain/index?id={{order_info.order_code}}" class="btn round primary w-min-big  ml-sm" wx:if="{{(order_info.order_status_all == 4 && order_info.order_type == 1) || (order_info.order_status_all == 5 && order_info.order_type == 1)}}">
-            投诉
-        </navigator>
-        <navigator url="{{order_info.order_type == 1?'../evaluate-service/index?id='+order_info.order_code:'../evaluate-goods/index?id='+order_info.order_code}}" class="btn round primary w-min-big  ml-sm" wx:if="{{order_info.order_status_all == 4 }}">
-            评价
-        </navigator>
-        <navigator url="../actree-add/index?id={{order_info.order_code}}" class="btn round hollow gray w-min-lg  ml-sm diary-btn " wx:if="{{(order_info.order_status_all == 4 && order_info.order_type == 1) || (order_info.order_status_all == 5 && order_info.order_type == 1)}}">
-            <image src="http://leileiimg.countinsight.com/front/img/diary_btn_icon.png" class="icon mr-sm"></image>
-            <text></text>美丽档案
-        </navigator>
+<i-custom-bar title="订单详情" showIcon="{{true}}"> </i-custom-bar>
+<view class="container gray-wrap cf" style="margin-top:80rpx;">
+    <view class="order-fixed-footer flex justify-end ph-df pv-sm shadow-df">
+        <!--  <navigator open-type="switchTab" url="../mei-ya/index" class="btn round primary hollow w-min-lg ml-sm">返回首页</navigator> -->
+        <button class="btn round primary w-min-lg ml-sm" bindtap="handleConfirmReceipt">取消订单</button>
+        <!--         <navigator url="../ems-list/index" class="btn round primary w-min-lg ml-sm">查看物流</navigator> -->
     </view>
     <view class="order-wrap">
-        <view class="primary ph-df pv-sm text-white mb-sm order-status-bar">
-            <view class="text-xl">{{order_info.order_status_name}}</view>
-            <view class="text-sm" wx:if="{{order_info.order_status_all == 1}}">{{order_info.remain_pay_time}}分钟订单关闭</view>
-            <view class="text-sm" wx:if="{{order_info.order_status_all == 2}}">预约到店时间：{{order_info.order_reserve_time}}</view>
+        <view class="primary ph-df pv-sm text-white mb-sm">
+            <view class="text-xl">待付款</view>
+            <view class="text-sm">59分钟订单关闭</view>
         </view>
-        <view class="white-bg p-df" wx:if="{{order_info.order_type == 1}}">
-            <view class="text-justify">
-                <text class="bold">{{order_info.shop_info.shop_name}}</text>
-            </view>
-            <view class="item-list text-sm mt-xs">
-                <view class="item">
-                    <text class="text-muted">电话：</text>
-                    <text class="text-gray">{{order_info.shop_info.shop_service_phone}}</text>
-                </view>
-                <view class="item flex">
-                    <text class="text-muted">地址：</text>
-                    <text class="text-gray flex-sub">{{order_info.shop_info.shop_address}}</text>
-                </view>
-            </view>
-        </view>
-        <view class="white-bg p-df flex" wx:if="{{order_info.order_type == 2}}">
-           <!--  <van-icon name="location" custom-style="margin-top:4rpx;" color="#999" /> -->
+        <view class="white-bg ph-df pv-sm mb-sm flex">
+            <van-icon name="location" custom-style="margin-top:4rpx;" color="#999" />
             <view class="flex-sub ml-xs">
-                <view><text class="mr-df bold">{{order_info.user_info.order_user_name}}</text>
-                    <text>{{order_info.user_info.order_user_phone}}</text></view>
-                <view class="pt-xs text-sm text-gray">{{order_info.user_info.order_user_address}}</view>
+                <view><text class="mr-df">李小姐</text>
+                    <text>18812456548</text></view>
+                <view class="pt-xs text-sm text-gray">东亿国际子钰生活·青年路·朝阳区·北京市</view>
             </view>
         </view>
-        <view class="goods-panel ph-df white-bg cf mt-sm">
+        <view class="goods-panel ph-df white-bg cf">
             <view class="goods-panel-bd pb-df">
-                <view class="mt-df goods-panel-item" wx:for="{{order_info.goods_list}}" wx:key="{{index}}">
-                    <navigator url="{{order_info.order_type == 1?'../service-detail/index?id='+item.goods_id:'../goods-detail/index?id='+item.goods_id}}" hover-class="none" class="flex">
-                        <image src="{{item.goods_img}}" class="cover mr-sm"></image>
+                <view class="mt-df goods-panel-item" wx:for="{{1}}" wx:key="{{index}}">
+                    <navigator url="../goods-detail/index" hover-class="none" class="flex">
+                        <image src="http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg" class="cover mr-sm"></image>
                         <view class="flex-sub por">
-                            <view class="text-hide two-line  bold title">
-                                {{item.goods_name}}
+                            <view class="text-hide two-line text-black bold title">
+                                生态腐竹，包你吃一次忘不掉
                             </view>
-                            <view class="text-muted mt-xs text-sm des"><text class="pr-sm" wx:for="{{item.sku_type}}" wx:key="{{index}}" wx:for-item="type">{{type}}</text></view>
+                            <view class="text-muted mt-xs text-sm des">500ml</view>
                             <view class="text-justify bt-bar">
-                                <view class="price bold">￥{{item.goods_total_price/100}}</view>
+                                <view class="price bold">￥5.8</view>
                                 <view class="text-muted"><text>x </text>
-                                    <text>{{item.goods_num}}</text></view>
+                                    <text>2</text></view>
                             </view>
                         </view>
                     </navigator>
                     <view class="mt-sm text-right">
-                        <button class="btn round primary w-min-lg ml-sm" bindtap="handleCancelOrder" data-status="{{order_info.order_status_all}}" wx:if="{{order_info.order_status_all == 2 }}">申请退款</button>
-                        <navigator url="../refundment/index?id={{order_info.order_code}}&sku={{item.sku_code}}" class="btn round primary w-min-big  ml-sm" wx:if="{{order_info.order_status_all == 3 && item.allow_refund}}">
-                            申请退款
-                        </navigator>
-                        <view class="text-muted" wx:if="{{order_info.order_status_all == 3 && !item.allow_refund}}">已申请退款</view>
+                        <navigator url="../refundment/index" hover-class="none" class="btn round primary w-min-lg ml-sm">申请退款</navigator>
                     </view>
                 </view>
             </view>
         </view>
-        <view class="solid-bottom"></view>
-        <view class="white-bg p-df">
-            <view class="item-list text-sm lh-df">
-                <view class="item text-justify" wx:if="{{order_info.order_finish_time}}">
-                    <view class="text-gray">使用日期</view>
-                    <view>￥{{order_info.order_finish_time}}</view>
+        <van-cell-group custom-class="mb-sm">
+            <van-cell title="订单总价" value="￥400" border="{{ false }}" />
+            <van-cell title="优惠金额" value="-￥200" border="{{ false }}" />
+            <van-cell title="应付金额" value="¥100" border="{{ false }}" title-class="bold" value-class="secondary-text" />
+        </van-cell-group>
+        <van-cell-group custom-class="mb-sm">
+            <van-cell title="订单编号" border="{{ false }}">
+                <view class="">
+                    <button class="btn gray hollow xs round ">复制</button>
+                    <text class="text-gray ml-sm">56789937387</text>
                 </view>
-                <view class="item text-justify">
-                    <view class="text-gray">订单总价</view>
-                    <view>￥{{order_info.order_total_price/100}}</view>
-                </view>
-                <view class="item text-justify" wx:if="{{order_info.order_activity_price>0}}">
-                    <view class="text-gray">多人同行优惠</view>
-                    <view>{{order_info.activity_info.activity_detail.goods_num}}人同行 ¥{{order_info.activity_info.activity_detail.offer_price/100}}/人</view>
-                </view>
-                <view class="item text-justify">
-                    <view class="text-gray">优惠券</view>
-                    <view>-￥{{order_info.order_coupon_price/100}}</view>
-                </view>
-                <view class="item text-justify" wx:if="{{order_info.order_total_price-order_info.order_sale_price>0}}">
-                    <view class="text-gray">到店再付</view>
-                    <view>￥{{(order_info.order_total_price-order_info.order_sale_price)/100}}</view>
-                </view>
-                <view class="item text-justify" wx:if="{{order_info.order_type==2}}">
-                    <view class="text-gray">运费</view>
-                    <view>{{order_info.is_free_dis?'包邮':'+￥'+order_info.order_dis_price/100}}</view>
-                </view>
-                <view class="item text-justify text-lg">
-                    <view class="">{{order_info.order_status_all == 1 ?'应付':'已付'}}金额</view>
-                    <view class="primary-text">￥{{order_info.order_online_price/100}}</view>
-                </view>
-            </view>
-        </view>
-        <view class="service-code mv-sm cf white-bg" wx:if="{{order_info.view_qr}}">
-            <van-cell-group>
-                <image src="http://leileiimg.countinsight.com/front/img/code.png" class="code"></image>
-                <view class="text-center pt-xs pb-lg">向店员出示二维码即可享受服务</view>
-                <van-cell title="有效期" value="{{order_info.order_service_expire_time}}" value-class="text-gray" />
-                <van-cell title="预约到店时间" wx:if="{{order_info.order_reserve_time}}" value="{{order_info.order_reserve_time}}" value-class="text-gray" />
-            </van-cell-group>
-        </view>
-        <view class="white-bg p-df mv-sm">
-            <view class="mb-sm">订单信息</view>
-            <view class="item-list text-gray text-sm lh-df">
-                <view class="item flex" wx:if="{{order_info.order_type == 1}}"><text class="order-item-min-w">手机号：</text><text>{{order_info.user_phone}}</text></view>
-                <view class="item flex"><text class="order-item-min-w">订单编号：</text>
-                    <text>{{order_info.order_code}}</text>
-                    <text class="ph-sm text-muted">|</text>
-                    <text class="primary-text" bindtap="copyOrder" data-text="{{order_info.order_code}}">复制</text></view>
-                <view class="item flex" wx:if="{{order_info.pay_code}}"><text class="order-item-min-w">微信交易号：</text>
-                    <text>{{order_info.pay_code}}</text></view>
-                <view class="item flex"><text class="order-item-min-w">创建时间：</text>
-                    <text>{{order_info.order_ctime}}</text></view>
-                <view class="item flex" wx:if="{{order_info.order_pay_time}}"><text class="order-item-min-w">付款时间：</text>
-                    <text>{{order_info.order_pay_time}}</text></view>
-                <view class="item flex" wx:if="{{order_info.order_type == 2 && order_info.order_dis_time}}">
-                    <view class="order-item-min-w">发货时间：</view>
-                    <view class="flex-sub">{{order_info.order_dis_time}}</view>
-                </view>
-                <view class="item flex">
-                    <view class="order-item-min-w" wx:if="{{order_info.order_remark}}">备注：</view>
-                    <view class="flex-sub">{{order_info.order_remark}}</view>
-                </view>
-            </view>
-        </view>
+            </van-cell>
+            <van-cell title="***交易号" value="56789937387" border="{{ false }}" value-class="text-gray" />
+            <van-cell title="创建时间" value="2018.09.07 23:33:43" border="{{ false }}" value-class="text-gray" />
+            <van-cell title="付款时间" value="2018.09.07 23:33:43" border="{{ false }}" value-class="text-gray" />
+            <van-cell title="发货时间" value="2018.09.07 23:33:43" border="{{ false }}" value-class="text-gray" />
+        </van-cell-group>
     </view>
     <van-dialog id="van-dialog" />
-    <van-notify id="custom-selector" />
-    <view class="load-box" wx:if="{{loading}}">
-        <wux-spin wux-class="spin" size="large" />
-    </view>
 </view>
