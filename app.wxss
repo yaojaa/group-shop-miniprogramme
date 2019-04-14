@@ -22,6 +22,10 @@
   font-size: 24rpx !important;
 }
 
+.f12px {
+  font-size: 12px !important;
+}
+
 .f13 {
   font-size: 26rpx !important;
 }
@@ -65,9 +69,20 @@
 button.linenear_bg{
   background:-webkit-linear-gradient(left top,#a3df00,#69b90b);
   background:linear-gradient(left top,#a3df00,#69b90b);
+  color: #fff
 }
 
 button.linenear_bg:active{
+  color: green
+}
+
+button.linenear_bg_light{
+  background:-webkit-linear-gradient(left top,#f8f8f8,#eee);
+  background:linear-gradient(left top,#f8f8f8,#eee);
+  color: #444
+}
+
+button.linenear_bg_light:active{
   color: green
 }
 
@@ -421,6 +436,14 @@ fieldset[disabled] .btn-link {
 
 flex:1;
 }
+
+
+
+.flex-item-2{
+
+flex:2;
+}
+
 
 .flex-item-3{
 
@@ -1547,5 +1570,19 @@ flex:5;
 
 .search-default .van-icon {
     color: #ccc;
+}
+
+.footer-btn{
+  position: fixed;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-btn .btn{
+  margin: 0 15px;
+  display: inline-block;
+  width: 220rpx;
+
 }
 

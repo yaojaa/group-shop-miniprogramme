@@ -68,89 +68,105 @@ const inputDuplex = function(e) {
     nameMap[name] = e.detail.value
     context.setData(nameMap)
 }
+
+
+const uploadFile = function(opt) {
+
+    return new Promise((reslove, reject) => {
+        wx.uploadFile({
+            url: config.apiUrl + '/api/seller/upload',
+            filePath: opt.filePath,
+            name: 'file',
+            header: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": app.globalData.token
+            },
+            success: function(res) {
+
+                if (typeof res.data == 'string') {
+                    res = JSON.parse(res.data)
+                }
+                console.log('res.data.data',res)
+                reslove(res)
+
+            },
+            fail: function(e) {
+
+                reject(e)
+
+            }
+        })
+    })
+
+
+
+}
+
+
+
 //上传图片封装
 const uploadPicture = function(option) {
 
     let options = Object.assign({
         count: 9, //选择图片数量
-        max: 5, //每次最大上传数量
-        sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
-        progressState: function() {},
-        successData: function() {} //上传成功回调
+        max: 9, //每次最大上传数量
+        sizeType: ['original'] // 可以指定是原图还是压缩图，默认二者都有
+
     }, option)
 
 
+    const successHandle = function(res) {
 
-    const successHandle = function(res){
+        var files = res.tempFilePaths
+        var imgCount = 0
+        options.progressState(true)
 
-            var files = res.tempFilePaths
-            var imgCount = 0
+        files.forEach((filePath, i) => {
 
-            options.progressState(true)
+            uploadFile({
+                    filePath: filePath
+                }).then(res => {
+                    console.log('一张图片成功',res)
+                    console.log('res.data.file_url',res.data.file_url)
 
-            files.forEach((filePath,i) => {
-
-                wx.uploadFile({
-                    url:config.apiUrl + '/api/seller/upload',
-                    filePath: filePath,
-                    name: 'file',
-                    formData: {
-                        'imgIndex': i
-                    },
-                    header: {
-                        "Content-Type": "multipart/form-data",
-                        "Authorization": app.globalData.token
-                    },
-                    success: (res) => {
+                    if (res.code == 200) {
                         imgCount++
-                        try{
-                          var data = JSON.parse(res.data);
 
-                        }
-                        catch(e){
-                          return console.log(e)
-                        }
+                        options.success(res.data.file_url)
 
-                        options.successData(data.data.file_url)
-                        options.progressState(false)
+                    } else {
 
-                        if (imgCount === ary.length - 1) {
-                            options.progressState(false)
-                        }
-
+                        wx.showToast({
+                            title: res.msg,
+                            icon: 'success'
+                        })
                     }
+
+                    if (imgCount === files.length - 1) {
+                        options.progressState(false)
+                    }
+
+                })
+                .catch((err) => {
+                    wx.showToast({
+                        title: JSON.stringify(err),
+                        icon: 'success'
+                    })
+                    options.progressState(false)
+
                 })
 
-
-
-            })
+        })
 
 
 
     }
 
-   if(options.type =='video'){
-
-    wx.chooseVideo({
-      sourceType: ['album', 'camera'],
-      maxDuration: 60,
-      camera: 'back',
-      success:successHandle
-    })
 
 
-
-    }else{
-            wx.chooseImage({
-                count: 5, // 默认9
-                sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
-                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-                success: successHandle
-            })
-    }
-
-
-
+   wx.chooseImage(Object.assign(option,{
+    success:successHandle
+   }))
 
 
 
@@ -465,6 +481,24 @@ function drawShareFriends(_this, res) {
     });
 }
 
+//播放背景音乐
+const playSound = function(url){
+console.log(url)
+const innerAudioContext = wx.createInnerAudioContext()
+innerAudioContext.autoplay = true
+innerAudioContext.src = 'http://static.kaixinmatuan.cn/error.mp3'
+console.log(innerAudioContext)
+innerAudioContext.onPlay(() => {
+  console.log('开始播放')
+})
+innerAudioContext.onError((res) => {
+  console.log(res.errMsg)
+  console.log(res.errCode)
+})
+
+}
+
+
 
 module.exports = {
     formatTime,
@@ -478,5 +512,7 @@ module.exports = {
     getQrcode,
     wx: WX,
     drawShareFriends,
-    config
+    config,
+    playSound,
+    uploadFile
 }

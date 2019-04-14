@@ -1,61 +1,85 @@
 <!--index.wxml-->
 <view class="container">
-    <i-custom-bar backColor="#ffffff" backImage="http://img.atomstone.com/top_bar_bg.jpg" fixed="{{true}}">
-        <view class="tit-slogan">发现身边的团购 <text class="small">{{userloaction.city}} {{userloaction.district}}</text></view>
-    </i-custom-bar>
-    <!--   <view class="location flex-box align-center">
+
+<i-custom-bar backColor="#ffffff" backImage="http://img.atomstone.com/top_bar_bg.jpg"> <view class="tit-slogan">身边好物 跟着买就对了 <text class="small">{{userloaction.city}} {{userloaction.district}}</text></view>   </i-custom-bar>
+  <!--   <view class="location flex-box align-center">
         <i-icon type="coordinates_fill" size="16" />
         <text>{{userloaction.city}} {{userloaction.district}} {{userloaction.street_number}}</text>
     </view> -->
-    <!-- <scroll-view scroll-y
+
+<!-- <scroll-view scroll-y
     style="height:calc(100% - 100px);"> -->
     <view class='product-item-container'>
         <block wx:for="{{proList}}" wx:key="{{index}}">
-            <view class='product-item' bindtap="toDetail" data-post-id="{{item.id}}">
+            <view class='product-item'  data-post-id="{{item.id}}">
                 <view class='item-body'>
                     <view class="clearfix">
                         <view class="item-avatar">
                             <navigator url="../userhome/index">
-                                <image class="avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
-                            </navigator>
+                            <image class="avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+                        </navigator>
                         </view>
+
                         <view class="item-name">
-                            <text class="f14">{{item.user_name}}</text>
+                             <text class="f14">{{item.user_name}}</text>
                             <view class="time f12 text-muted">剩余时间：3天</view>
                         </view>
+
+
                         <view class="right-info">
                             <i-icon type="coordinates" color="#999" /><text class="f12 text-muted">0.33KM</text></view>
                     </view>
-                    <view class='item-title'><text>{{item.title}}</text> <text class="small f12 text-red">￥</text><text class='text-red'>{{item.price}}</text></view>
+                    <view class='item-title' bindtap="toDetail"><text>{{item.title}}</text> <text class="small f12 text-red">￥</text><text class='text-red'>{{item.price}}</text></view>
                     <view class='item-des'><text>{{item.info}}</text></view>
-                    <view class="item-cover-box">
+                    <view class="item-cover-box" bindtap="toDetail">
                         <block wx:if="{{item.img_list.length == 1}}">
-                            <view class="item-img-box-one">
-                                <image mode="widthFix" class="cover1" src="{{item.img_list[0]}}"></image>
-                            </view>
+                         <view class="item-img-box-one">
+
+                           <image mode="widthFix" class="cover1" src="{{item.img_list[0]}}"></image>
+                       </view>
                         </block>
-                        <block wx:if="{{item.img_list.length == 2}}">
-                            <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
-                                <image mode="widthFix" class="cover" src="{{im}}"></image>
+
+                         <block wx:if="{{item.img_list.length == 2}}">
+
+                             <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
+                                <image  mode="widthFix" class="cover" src="{{im}}"></image>
                             </view>
+
+
+                            
                         </block>
+
                         <block wx:if="{{item.img_list.length == 3}}">
-                            <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
-                                <image mode="widthFix" class="cover" src="{{im}}"></image>
+
+                             <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
+                                <image  mode="widthFix" class="cover" src="{{im}}"></image>
                             </view>
+                            
                         </block>
+
                         <block wx:if="{{item.img_list.length == 4}}">
+                            
                         </block>
-                        <!--  <scroll-view class="item-cover-scroll" scroll-x>
+
+
+
+
+
+
+
+                       <!--  <scroll-view class="item-cover-scroll" scroll-x>
                             <view class='item-cover' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
                                 <image class="cover" src="{{im}}"></image>
                             </view>
                         </scroll-view> -->
+
+
+
                     </view>
                     <view class="buyer-list text-justify">
                         <view class="flex-box align-center">
                             <view class="avatar-group">
-                                <image class="avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" wx:for="{{4}}" wx:key="index"></image>
+                                <image class="avatar" src="../../img/wx.jpg" wx:for="{{4}}" wx:key="index"></image>
                             </view>
                             <view class="user text-muted f12 ml-xs"><text class="text-red">32</text>人参与，其中有<text class="text-red">8</text>位好友 </view>
                         </view>
@@ -63,10 +87,13 @@
                 </view>
             </view>
         </block>
-        <navigator url="../wxgroup/index">
-            <i-divider content="没有更多了,试试查找附近的团购群"></i-divider>
-        </navigator>
+    
+       <navigator url="../wxgroup/index"> <i-divider content="没有更多了,试试查找附近的团购群"></i-divider> </navigator>
+
+
     </view>
+
+
     <!--   <view class='add-goods' bindtap='addGoods'>
   <text>+发布</text>
   </view> -->

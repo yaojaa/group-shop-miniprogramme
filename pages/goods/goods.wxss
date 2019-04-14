@@ -343,10 +343,28 @@
     padding-right: 10px;
 }
 .goods-price-item{
-    margin:10px 4px 0 0;
     padding: 6px 10px;
-    display: inline-block;
-    font-size: 32rpx
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 18rpx;
+    margin-bottom: 10px;
+     background:-webkit-linear-gradient( top,#f9f9f9,#fff,#f9f9f9);
+  background:linear-gradient( top,#f9f9f9,#f9f9f9);
+}
+
+.goods-price-item .input-number{
+  position: absolute;
+  right: 19rpx;
+  top: 28rpx
+}
+.pics{
+  width: 100rpx
+}
+.pics image{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 8rpx
 }
 
 .painter{
@@ -507,3 +525,4 @@
   margin-top: -50rpx;
   margin-left:20rpx;
 }
+

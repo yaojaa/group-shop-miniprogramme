@@ -1,5 +1,24 @@
 <view class="container">
     <imgs imgs="{{imgs}}"></imgs>
+
+            <view class="countdownTime">
+            <block wx:if="{{countdownTime && goods._expires ==1 }}">
+                <view class="time-block-box">
+                    <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="time-block" show-day="{{true}}">
+                    </i-count-down>
+                </view>
+            </block>
+            <block wx:else>
+                已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
+            </block>
+            <view class="right-text"><view class="share-box">
+            <button bindtap='openShareFriends'>
+                <i-icon type="share" size="28" color="#666" /> <text class="text-muted f12">分享</text>
+            </button>
+        </view></view>
+        </view>
+
+
     <!-- <view class="pageloading">
     加载中...
 </view> -->
@@ -10,55 +29,56 @@
     </view>
 <!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
  -->    
-
+   <view class="goods-title">
+                <text>{{goods.goods_name}}</text>
+   </view>
  <view class="goods-sticky">
         <view class="user-info">
             <view class="name">
-                <view class="f18">{{goods.goods_name}}生态鲜腐竹
-                </view>
+               
                 <view class="f12 text-muted">
                     <text wx:if="{{seller_user.wxnumber.length > 0 }}"></text>
-                    快递邮寄 自取：金域东郡1-1-103
+                                  <text>{{goods.goods_name}}</text>
+  快递邮寄 自取：金域东郡1-1-103
   
                 </view>
             </view>
             <!-- <i-icon type="mobilephone" />
             <i-icon type="interactive" /> -->
         </view>
-        <view class="share-box">
-            <button bindtap='openShareFriends'>
-                <i-icon type="share" size="28" color="#666" /> <text class="text-muted f12">分享</text>
-            </button>
-        </view>
+        
     </view>
 
     <view class="page-wrap">
-        <view class="countdownTime">
-            <block wx:if="{{countdownTime && goods._expires ==1 }}">
-                <view class="time-block-box">
-                    <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="time-block" show-day="{{true}}">
-                    </i-count-down>
-                </view>
-            </block>
-            <block wx:else>
-                已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
-            </block>
-        </view>
+
         <view class='goods-info'>
-            <view class="goods-title">
-                <text>{{goods.goods_name}}生态鲜腐竹</text>
-            </view>
-            <view class="goods-price" bindtap="cartPanelShow">
-                <view wx:for="{{spec_goods_price}}" wx:key="{{item.item_id}}" class="goods-price-item scale-1px">
+         
+            <view class="goods-price" >
+
+                <view class="goods-price-item flex-box">
+                    <view class="pics flex-item">
+ <image  src="https://www.daohangwa.com/public/upload/local_cover/tmp_8789e959d03e6124356439808cc0354c81fd598848c33517.jpg" />                     </view>
+
+                     <view class="flex-item-5">
+
+                    <view class="f14 text-default">一盒 <text class="price"> ¥99.00</text></view> 
+                    <view class="f12px text-info">描述简介</view> 
+                </view>
+                 <i-input-number i-class="input-number" id="1" value="0" min="0" max="100"  bindchange="handleCountChange" slot="footer" />
+                </view>
+
+                <view class="goods-price-item">
+                    <view class="f14 text-default">相思玫瑰 <text class="price"> ¥99.00</text></view> 
+                    <view class="f12px text-info">描述简介</view> 
+                 <i-input-number i-class="input-number" id="1" value="0" min="0" max="100"  slot="footer" />
+                </view>
+
+                <view wx:for="{{spec}}" wx:key="{{item.item_id}}" class="goods-price-item scale-1px">
                     <text>{{item.key_name}}</text> / <text class="price">¥{{item.price}}99.00</text>
                     <!-- <text class='line-through'>¥29.8</text> -->
                 </view>
             </view>
-              <view class="share-box">
-            <button bindtap='openShareFriends'>
-                <i-icon type="share" size="28" color="#666" /> <text class="text-muted f12">分享</text>
-            </button>
-        </view>
+              
         </view>
         <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
             <i-cell title="发货方式" label="快递邮寄 送货上门" i-class="address-item">
@@ -83,7 +103,7 @@
                 </view>
            </view>
             <view class='goods-content'>
-                <text>{{goods.goods_content}}精选非转基因大豆，精选非转基因大豆精选非转基因大豆，精选非转基因大豆精选非转基因大豆，精选非转基因大豆精选非转基因大豆精选非转基因大豆精选非转基因大豆，精选非转基因大</text>
+                <text>{{goods.goods_content}}</text>
             </view>
         </view>
 
@@ -103,13 +123,13 @@
         <i-cell-group>
             <i-cell wx:for="{{ orderUsers }}" wx:key="{{index}}" i-class="buyer-item-box">
                 <view class="buyer-item">
-                    <text class="number">{{item.create_number}} </text>
                     <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
                     <view class="buyer-info">
-                        <view class="name"> {{item.user.nickname}} </view>
+                        <view class="name"> {{item.user.nickname}} <text class="number">{{item.create_number}} </text>
+</view>
                         <view class="type">
                             <view wx:for="{{item.specs}}" wx:key="index" wx:for-item="gds">
-                                {{gds.spec_key_name}} × {{gds.goods_num}}
+                                 跟 {{gds.spec_key_name}} × {{gds.goods_num}}
                             </view>
                         </view>
                     </view>

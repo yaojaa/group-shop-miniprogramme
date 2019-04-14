@@ -1,13 +1,23 @@
 <!--pages/upload_pics.wxml-->
-<i-custom-bar bind:onBack="onBack" backColor="#fff" showIcon="{{true}}" title="上传介绍图片"> </i-custom-bar>
+<i-custom-bar bind:onBack="onBack" backColor="#fff" showIcon="{{true}}" title="{{title}}"> </i-custom-bar>
 <view class="container mtop100">
 
-   
+    <view class="loading" wx:if="{{pictureProgress}}" ><i-spin i-class="inline" size="large"></i-spin>
+</view>
 
-    <view class="weui-cell picture-item " wx:key="{{item.index}}" wx:for="{{content_imgs}}" wx:key="*this">
+    <view class="weui-cell video" wx:if="{{type=='video' && content_video}}">
 
-    	<view>
-    		        <image src="{{item}}" mode="aspectFill" />
+        <video
+    id="myVideo"
+    src="{{content_video}}"
+    controls
+  ></video>
+    </view>
+
+    <view class="weui-cell picture-item " wx:if="{{type=='photo'}}" wx:key="{{item.index}}" wx:for="{{content_imgs}}" wx:key="*this">
+
+    	<view class="img-list">
+    		        <image src="{{item}}-small"/>
 
     	</view>
 
@@ -42,7 +52,11 @@
 
 
  <view class="footer-btn">
-      <button bindtap="addPicture" class="btn btn-round btn-lg linenear_bg" >+ 点击上传</button>
+      <button bindtap="addPicture" class="btn btn-round btn-lg linenear_bg" >
+        <block wx:if="{{content_imgs.length==0}}">+ 点击上传</block>
+        <block wx:else>+ 继续添加</block>
+      </button>
+
  </view>
 
 </view>

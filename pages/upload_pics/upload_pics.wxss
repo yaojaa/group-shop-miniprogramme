@@ -2,13 +2,18 @@
 @import "../../utils/weui.wxss";
 .picture-item{
 	padding: 10px 10%;
-	background: #f8f8f8
 }
 .picture-item image{
 
-   width: 100%;
    border-radius: 5px;
-   
+
+}
+
+
+
+video{
+	margin: 0 auto;
+	width: 100%
 }
 
 .footer-btn{
@@ -31,5 +36,11 @@
 }
 .icon-list{
 	margin-bottom: 10px
+}
+.loading{
+	text-align: center;
+}
+.inline{
+	display: inline-block;
 }
 

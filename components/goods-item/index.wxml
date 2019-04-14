@@ -1,22 +1,42 @@
-<view class="comment-item cf custom-class">
-    <view class="comment-item-hd" wx:if="{{user}}">
-        <view class="user-box">
-            <image src="{{item.user_info_user_img}}" class="avatar"></image>
-            <view class="info">
-                <view class="name">{{item.user_info_user_name}}</view>
-                <view class="date">{{item.create_time}}</view>
-            </view>
+<view class="goods-item">
+    <view class="goods-body">
+        <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+            <image src='{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
+        </navigator>
+        <view class="bd">
+            <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+                <view class="tit">{{item.goods_name}}</view>
+            </navigator>
+              <view class="link">
+                                <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
+                                    <button formType="submit" size="mini"> 修改编辑 </button>
+                                </form>
+                              
+                                <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" report-submit="true">
+                                    <button formType="submit" size="mini">
+                                        <i-icon type="unfold" /> </button>
+                                </form>
+                            </view>
         </view>
-        <van-rate value="{{ item.good_type==1? item.shop_score : item.goods_score }}" size="15" color="#F7C546" void-color="#ccc" readonly custom-class="df-rate"></van-rate>
+        <view class="fd">
+            <!--                                 _expires //是否过期 1正常 2未开始 3已过期
+ -->{{['','开团中','未开始','已截团'][item._expires]}}
+        </view>
     </view>
-    <view class="comment-item-bd cf">
-        <view class="content">
-            {{item.comment_content}}
+    <view class="goods-count">
+        <view class="count-item">
+            <text class="num">{{item.pageview_count}}</text>
+            <i-icon type="browse" /><text class="label">浏览次数</text>
         </view>
-        <view class="photo" wx:if="{{item.comment_img.length>0}}">
-            <view class="photo-item" wx:for="{{item.comment_img}}" wx:for-item="pic" wx:key="{{index}}" bindtap="previewImage" data-current="{{ pic }}" data-url="{{item.comment_img}}">
-                <image src="{{pic}}"></image>
-            </view>
+        <view class="count-item">
+            <text class="num">{{item.pageview}}</text>
+            <i-icon type="browse" /><text class="label">收款总额</text>
+        </view>
+        <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
+            <text class="num text-primary">{{item._order_count}}</text>
+            <i-icon type="browse" />
+            <text class="label ">订单管理</text>
         </view>
     </view>
+    <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->
 </view>

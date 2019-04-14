@@ -1,5 +1,7 @@
 @import "../../utils/weui.wxss";
 
+page{
+}
 .page-body{
   margin-top: 100px
 }
@@ -57,9 +59,8 @@ border-radius:10rpx;
 
 .close{
   position: absolute;
-  right:1rpx;
-  top:1rpx;
-  background: #fff;
+  right:15rpx;
+  bottom:15rpx;
   border-radius: 100%;
   line-height: 1;
   width: 26px;
@@ -83,7 +84,8 @@ background-size: cover;
 .weui-uploader__file .close{
   right:-10rpx;
   top:-20rpx;
-  z-index: 99
+  z-index: 99;
+  background:#333
 }
 .weui-uploader__input-box {
 
@@ -143,5 +145,58 @@ font-size:32rpx
   border-radius: 0
 }
 
+.picture-item{
+  padding: 10px 10%;
+  position: relative;
+}
+.picture-item image{
 
+   border-radius: 5px;
+   width: 78%;
+   box-shadow: 0px 0px 3px #ccc
+
+}
+
+
+
+video{
+  margin: 5px auto 120rpx;
+  width: 100%
+}
+
+.spec_pic_small{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px #fff
+}
+
+.con{
+  height: 70vh;
+  overflow-y: scroll;
+  padding-bottom: 60px
+}
+.icons{
+  position: absolute;
+  right: 10px;
+  top: 10px
+}
+.icon-list{
+  margin-bottom: 10px
+}
+.loading{
+  text-align: center;
+}
+.inline{
+  display: inline-block;
+}
+.poptit{
+  font-size: 20px;
+  font-weight: bold;
+  color: #666;
+  line-height: 2.2
+}
+.img-list{
+  position: relative;
+}
 

@@ -4,8 +4,11 @@
 
 
 <view class="container mtop100">
-<i-panel  i-class="shadow-panel">
-    <wux-cell-group >
+<i-panel  i-class="shadow-panel" hideBorder="true">
+    <wux-cell-group title="群信息" >
+        <wux-cell hover-class="none">
+               <wux-input placeholder="群主微信号"  controlled="{{true}}" value="{{ store_name }}" bind:change="inputDuplex" data-key="store_name" />
+            </wux-cell>
             <wux-cell hover-class="none">
                <wux-input placeholder="输入群名称"  controlled="{{true}}" value="{{ store_name }}" bind:change="inputDuplex" data-key="store_name" />
             </wux-cell>
@@ -13,25 +16,38 @@
             <wux-cell hover-class="none">
                 <wux-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro"   hasCount rows="3" cursorSpacing="80" placeholder="输入群规则介绍" />
             </wux-cell>
+
+
         </wux-cell-group>
 
 </i-panel>
 
 
-<i-panel  i-class="shadow-panel" >
-    <view class="page__bd">
-        <wux-cell-group title="">
-            <wux-cell title="选择所在地" extra="{{ title1 }}" bind:click="onOpen1">
-            </wux-cell>
-        </wux-cell-group>
-    </view>
+<i-panel  i-class="shadow-panel" hideBorder="true" >
+   
 
-    <wux-cell-group >
-            <wux-cell hover-class="none">
-        <i-button bind:click="openMap">+地图标注</i-button>
+    <wux-cell-group title="群位置" >
+      <wux-cell i-class="i-cell-last" hover-class="none">
+        
+        <view class="flex-box">
 
-            </wux-cell>
-        </wux-cell-group>
+            <view class="flex-item"><i-button i-class="map_btn" size="small" shape="circle" bind:click="openMap"><i-icon size="22" type="coordinates" />地图标注</i-button></view>
+        
+        <view class="flex-item">
+
+        <view class="name f14">{{name}}</view>
+        <view class="f12">{{address}}</view></view>
+
+
+
+        </view>
+
+        
+
+
+
+      </wux-cell>
+     </wux-cell-group>
 
 </i-panel>
 

@@ -4,7 +4,7 @@
   "usingComponents": {
   	     "i-panel": "../../iView/panel/index",
         "i-button": "../../iView/button/index",
-        "i-modal": "../../iView/modal/index",
+        "i-icon": "../../iView/icon/index",
         "wux-cell-group": "../../wux/cell-group/index",
         "wux-cell": "../../wux/cell/index",
         "wux-cascader": "../../wux/cascader/index",

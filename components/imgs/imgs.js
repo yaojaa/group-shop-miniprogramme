@@ -29,7 +29,7 @@ Component({
       }
 
       this.properties.imgs.src.forEach(e => {
-        imageInfo.push(this.getImageInfo(e))
+        imageInfo.push(this.getImageInfo(e.img_url))
       });
       
       Promise.all(imageInfo).then(arr => {

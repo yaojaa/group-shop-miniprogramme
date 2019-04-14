@@ -11,24 +11,10 @@ Page({
    * 页面的初始数据
    */
    data: {
-        groups:[
-        {
-          title:'金鱼团团群',
-          des:'金域东郡业主团购群,加群需要认证业主',
-          master:'yaojaa'
-        },
-                {
-          title:'金鱼团团群',
-          des:'金域东郡业主团购群,加群需要认证业主',
-          master:'yaojaa'
-        },
-                {
-          title:'金鱼团团群',
-          des:'金域东郡业主团购群,加群需要认证业主',
-          master:'yaojaa'
-        }
-
-        ]
+        address:"",
+        latitude:'',
+        longitude:'',
+        name:''
     },
    bindRegionChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -38,6 +24,15 @@ Page({
   },
 
   openMap(){
+
+    wx.chooseLocation({
+      success:(res)=>{
+        console.log(res)
+
+        this.setData(res)
+      },
+      fail:()=>{}
+    })
 
     
   },
