@@ -160,16 +160,16 @@
             <i-icon type="homepage" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
+        <view class='icon' bindtap='homepage'>
+            <i-icon type="homepage" size="26" color="#333" />
+            <text class="label">结算</text>
+        </view>
         <form style="flex:2" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
-            <button class="buy" formType="submit">立即参团</button>
+            <button class="buy linenear_bg" formType="submit">立即参团</button>
         </form>
     </view>
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
-            <view class="cart-panel-hd">
-                <image src="{{imgUrls[0]}}" class="goods-thumbnail" />
-                请选择规格数量
-            </view>
             <scroll-view scroll-y style="max-height:500px;">
                 <i-panel>
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">

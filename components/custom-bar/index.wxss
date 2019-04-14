@@ -6,10 +6,13 @@
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 100;
   background-size: 100% auto;
   background-position: center top;
   background-repeat: no-repeat;
+}
+.back{
+	z-index:99
 }
 
 .tit{

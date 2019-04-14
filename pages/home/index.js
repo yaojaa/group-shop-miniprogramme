@@ -20,7 +20,8 @@ Page({
         goods_id: "",
         order_id: "",
         link_url: "",
-        is_loading: true
+        is_loading: true,
+        scrollTop:0
 
     },
     /**
@@ -416,6 +417,12 @@ Page({
     onReachBottom: function() {
 
     },
+    onPageScroll:function(e){
+    console.log(e);//{scrollTop:99}
+    this.setData({
+      scrollTop:e.scrollTop
+    })
+  },
 
     /**
      * 用户点击右上角分享

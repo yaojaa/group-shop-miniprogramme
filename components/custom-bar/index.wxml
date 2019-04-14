@@ -5,3 +5,6 @@
     <view class="tit" wx:if="{{title}}">{{title}}</view>
     <slot></slot>
 </view>
+
+<view class="back topBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight+6}}px;background-color:#47a000;opacity:{{opacity}}">
+</view>

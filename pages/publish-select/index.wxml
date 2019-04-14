@@ -69,11 +69,11 @@
   </view>
 </view>
 
-<view class="smallTit">
+<!-- <view class="smallTit">
   从已有商品复制：
-</view>
+</view> -->
 
-<view class="center">
+<!-- <view class="center">
   <view class="button-area flex_box">
   <view class="flex-item">
        <i-icon size="24" color="#999"  type="task" />
@@ -83,7 +83,7 @@
       </view>
    </view>
   </view>
-</view>
+</view> -->
 
 
 <!-- <view class="smallTit">

@@ -5,36 +5,53 @@ Component({
      * 组件的属性列表
      */
     properties: {
-      backColor:{
-        type:String,
-        value:''
+        backColor: {
+            type: String,
+            value: ''
 
-      },
-        backImage:{
-        type:String,
-        value:''
+        },
+        backImage: {
+            type: String,
+            value: ''
 
-      },
-      showIcon:{
-        type:Boolean,
-        value:false
-      },
-      backIconSize:{
-        type:String,
-        value:'26'
-      },
-      backIconColor:{
-        type:String,
-        value:'#000'
-      },
-       title:{
-        type:String,
-        value:''
-      },
-      fixed:{
-        type:Boolean,
-        value:false
-      }
+        },
+        showIcon: {
+            type: Boolean,
+            value: false
+        },
+        backIconSize: {
+            type: String,
+            value: '26'
+        },
+        backIconColor: {
+            type: String,
+            value: '#000'
+        },
+        title: {
+            type: String,
+            value: ''
+        },
+        fixed: {
+            type: Boolean,
+            value: false
+        },
+        height: {
+            type: Number,
+            value: 200, 
+        },
+        scrollTop: {
+            type: Number,
+            value: 0, 
+            observer: function(newVal, oldVal) {
+               // 属性值变化时执行
+               console.log(newVal,oldVal,this.data.height)
+
+               this.setData({
+                opacity:newVal/this.data.height
+               })
+
+           }
+        }
 
     },
 
@@ -43,26 +60,28 @@ Component({
      */
     data: {
 
-        statusBarHeight: 0
+        statusBarHeight: 0,
+        opacity:0
 
     },
+
 
     /**
      * 组件的方法列表
      */
     methods: {
-      goback(){
+        goback() {
 
-        console.log('navigateBack')
+            console.log('navigateBack')
 
-        wx.navigateBack({
-          delta: 1
-        })
+            wx.navigateBack({
+                delta: 1
+            })
 
-        this.triggerEvent('onBack')
+            this.triggerEvent('onBack')
 
 
-      }
+        }
 
     },
     lifetimes: {
@@ -89,13 +108,17 @@ Component({
             }
 
 
+            console.log('this.scrollTop', this.scrollTop)
+
+
 
 
 
             // 在组件实例进入页面节点树时执行
         },
+
         detached() {
             // 在组件实例被从页面节点树移除时执行
-        },
+        }
     }
 })

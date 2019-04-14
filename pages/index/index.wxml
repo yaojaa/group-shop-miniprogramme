@@ -22,7 +22,7 @@
 
                         <view class="item-name">
                              <text class="f14">{{item.user_name}}</text>
-                            <view class="time f12 text-muted">剩余时间：3天</view>
+                            <view class="time f12px text-muted">剩余时间：3天</view>
                         </view>
 
 

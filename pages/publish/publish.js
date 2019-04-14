@@ -45,13 +45,7 @@ Page({
             start_time: '00:00',
             end_time: '24:00',
         },
-        spec: [{
-            spec_name: '',
-            spec_price: '',
-            spec_stock: '',
-            spec_pic: [],
-            spec_desc: ''
-        }],
+        spec: [],
         collection_methods: 1, //(1:平台代收,2:商户微信收款码)
         visible1: false,
         visible2: false,
@@ -332,7 +326,13 @@ Page({
     //添加商品
     addGoods: function() {
 
-        const dataTpl = Object.assign({}, this.data.spec[0])
+        const dataTpl = {
+            spec_name: '',
+            spec_price: '',
+            spec_stock: '',
+            spec_pic: [],
+            spec_desc: ''
+        }
 
         this.data.spec = this.data.spec.concat([dataTpl])
 

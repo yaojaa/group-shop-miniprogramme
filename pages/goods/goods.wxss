@@ -97,8 +97,7 @@
 }
 
 .footer-cart .buy {
-    background: #49b34d;
-    flex: 2;
+    flex: 3;
     line-height: 48px;
     color: #fff;
     border-radius: 0

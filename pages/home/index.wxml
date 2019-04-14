@@ -1,5 +1,5 @@
 <view class="container">
-    <i-custom-bar showIcon="{{true}}" title="我的" backColor="'transparent'" > </i-custom-bar>
+    <i-custom-bar scrollTop="{{scrollTop}}" showIcon="{{true}}" title="我的" backColor="'transparent'" height="100" > </i-custom-bar>
     <view class="loader" wx:if="{{is_loading}}">
         <view class="face">
             <view class="circle"></view>
@@ -163,18 +163,18 @@
             </view>
         </view>
     </i-panel>
-    <view wx:if="{{goodslist.length >= 0}}">
+   <!--  <view wx:if="{{goodslist.length >= 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />
             <text>发布一个团购 </text>
         </view>
-    </view>
+    </view> -->
     <i-message id="message" />
-    <!--  <view class="footer_bar"> 
+     <view class="footer_bar"> 
   <i-tab-bar current="home" color="#188f00" bindchange="handleChange">
-    <i-tab-bar-item key="nearby" icon="homepage" current-icon="homepage_fill" title="附近"></i-tab-bar-item>
+    <i-tab-bar-item key="nearby" icon="homepage" current-icon="homepage_fill" title="发现"></i-tab-bar-item>
     <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
     <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
  </i-tab-bar>
-</view> -->
+</view>
 </view>
