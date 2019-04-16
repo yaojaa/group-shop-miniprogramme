@@ -1,45 +1,24 @@
-import areaData from '../../utils/area'
-import Notify from '../../vant/notify/notify'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        default: false,
-        areaModal:false,
-        areaList:areaData,
-        activeArea:'110101',
-        areaValue:''
+        steps: [{
+                text: '快件已发货',
+                desc: '2019-07-10 09:30'
+            },
+            {
+                text: '物流状态',
+                desc: '2019-07-11 10:00'
+            },
+            {
+                text: '物流状态',
+                desc: '2019-07-12 12:40'
+            }
+        ]
     },
-    addressDefault(event) {
-        this.setData({
-            default: event.detail
-        });
 
-    },
-    handleAreaModal() {
-        this.setData({
-            areaModal: !this.data.areaModal
-        });
-
-    },
-    handleArea(event) {
-      let area = event.detail.detail
-      this.setData({
-            activeArea: area.code,
-            areaValue:area.province+'/'+area.city+'/'+area.county,
-            areaModal: !this.data.areaModal
-        });
-    },
-    submit() {
-        Notify({
-            text: '保存成功',
-            duration: 1000,
-            selector: '#custom-selector',
-            backgroundColor: '#39b54a'
-        })
-    },
     /**
      * 生命周期函数--监听页面加载
      */

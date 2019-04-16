@@ -1,45 +1,18 @@
-import areaData from '../../utils/area'
-import Notify from '../../vant/notify/notify'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        default: false,
-        areaModal:false,
-        areaList:areaData,
-        activeArea:'110101',
-        areaValue:''
+        steps: [{
+            text: '退款成功',
+            desc: '退款金额将退回您的原账户，请注意查收，如预期未收到，联系客服'
+        }, {
+            text: '退款申请已提交',
+            desc: '您的退款申请已成功提交 2018.09.07 23:33:43'
+        }]
     },
-    addressDefault(event) {
-        this.setData({
-            default: event.detail
-        });
 
-    },
-    handleAreaModal() {
-        this.setData({
-            areaModal: !this.data.areaModal
-        });
-
-    },
-    handleArea(event) {
-      let area = event.detail.detail
-      this.setData({
-            activeArea: area.code,
-            areaValue:area.province+'/'+area.city+'/'+area.county,
-            areaModal: !this.data.areaModal
-        });
-    },
-    submit() {
-        Notify({
-            text: '保存成功',
-            duration: 1000,
-            selector: '#custom-selector',
-            backgroundColor: '#39b54a'
-        })
-    },
     /**
      * 生命周期函数--监听页面加载
      */

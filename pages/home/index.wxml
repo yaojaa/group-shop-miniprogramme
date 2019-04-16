@@ -121,28 +121,28 @@
     <i-panel title="我的订单" extra="查看全部订单">
         <view slot="content">
             <view class="flex-box myorder">
-                <view class="flex-item">
+                <navigator url="../order-list/index" hover-class="none" class="flex-item">
                     <view class="icon">
                         <i-icon type="redpacket" size="28" color="#4fac05" />
                     </view>
                     待付款
-                </view>
+                </navigator>
                 <!--    <view class="flex-item"> <view class="icon">
                     <i-icon type="commodity" size="28" color="#4fac05" />
                 </view>
             待发货</view> -->
-                <view class="flex-item">
+                <navigator url="../order-list/index" hover-class="none" class="flex-item">
                     <view class="icon">
                         <i-icon type="service" size="28" color="#4fac05" />
                     </view>
                     待收货
-                </view>
-                <view class="flex-item">
+                </navigator>
+                <navigator url="../order-list/index" hover-class="none" class="flex-item">
                     <view class="icon">
                         <i-icon type="interactive" size="28" color="#4fac05" />
                     </view>
                     待评价
-                </view>
+                </navigator>
                 <!--             <view class="flex-item">
              <view class="icon">
                     <i-icon type="customerservice" size="28" color="#4fac05" />

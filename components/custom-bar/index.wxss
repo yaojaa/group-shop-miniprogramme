@@ -2,9 +2,6 @@
   color: #000;
   height: 38px;
   line-height: 38px;
-  position: fixed;
-  left: 0;
-  top: 0;
   width: 100%;
   z-index: 100;
   background-size: 100% auto;
@@ -26,14 +23,8 @@
 	position: fixed;
 	z-index: 10;
 	top: 0;
-	left: 7px;
-	background: #fff;
-	border-radius: 15px;
-    border: 1px solid #eee;
-	opacity: .75;
-	min-width: 30px;
-	padding-left: 6px;
-	padding-right: 6px
+	left:0;
+	right:0;
 }
 
 .icon{

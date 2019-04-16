@@ -61,7 +61,6 @@ Page({
             message: '请确认商品是否收到？',
             confirmButtonText: '确认收货'
         }).then(() => {
-            
             util.wx.get('/api/front/order/confirm', { "order_code": order })
                 .then(res => {
                     if (res.data.code == 0) {
@@ -90,29 +89,29 @@ Page({
         this.setData({
             loading: true
         })
-        util.wx.get('/api/front/order/index', { "page": 1, "page_size": 100, status: this.data.status })
-            .then(res => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        loading: false,
-                        order_list: res.data.data
-                    })
-                }
-            })
+        // util.wx.get('/api/front/order/index', { "page": 1, "page_size": 100, status: this.data.status })
+        //     .then(res => {
+        //         if (res.data.code == 0) {
+        //             this.setData({
+        //                 loading: false,
+        //                 order_list: res.data.data
+        //             })
+        //         }
+        //     })
     },
     getRefundList() {
         this.setData({
             loading: true
         })
-        util.wx.get('/api/front/order/refundList', { "page": 1, "page_size": 100 })
-            .then(res => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        loading: false,
-                        refund_list: res.data.data
-                    })
-                }
-            })
+        // util.wx.get('/api/front/order/refundList', { "page": 1, "page_size": 100 })
+        //     .then(res => {
+        //         if (res.data.code == 0) {
+        //             this.setData({
+        //                 loading: false,
+        //                 refund_list: res.data.data
+        //             })
+        //         }
+        //     })
     },
     filterOrder(event) {
         let order = event.detail.index
@@ -125,32 +124,7 @@ Page({
             this.getOrderList()
         }
     },
-    getOrderCode(event) {
-        let { order } = event.target.dataset
-        this.setData({
-            loading: true
-        })
-        util.wx.get('/api/front/order/getQr', { "order_code": order })
-            .then(res => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        loading: false,
-                        code: true,
-                        code_img: res.data.data
-                    })
-                } else {
-                    this.setData({
-                        loading: false
-                    })
-                    Notify({
-                        text: res.data.msg,
-                        duration: 1000,
-                        selector: '#custom-selector',
-                        backgroundColor: '#d0021b'
-                    })
-                }
-            })
-    },
+   
     /**
      * 生命周期函数--监听页面加载
      */

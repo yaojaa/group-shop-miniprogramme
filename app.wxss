@@ -673,7 +673,7 @@ flex:5;
 }
 
 .gradual-bg {
-    background-image: -webkit-linear-gradient(left, #8E50E0, #A573E6);
+    background-image: -webkit-linear-gradient(left, #49b34d, #49b34d);
 }
 
 .white-bg {
@@ -817,7 +817,7 @@ flex:5;
 }
 
 .custom-tab-df .van-tab--active {
-    color: #8E50E0;
+    color: #49b34d;
     font-weight: bold;
 }
 
@@ -834,7 +834,7 @@ flex:5;
 }
 
 .label-block.checked .van-radio__icon--checked {
-    color: #8E50E0;
+    color: #49b34d;
 }
 
 .label-block .van-radio__label {
@@ -843,7 +843,7 @@ flex:5;
 }
 
 .label-block.checked .van-radio__label {
-    color: #8E50E0;
+    color: #49b34d;
 }
 
 .label-block .van-radio__icon--check {
@@ -863,8 +863,8 @@ flex:5;
 }
 
 .checkbox-label.van-checkbox-label--checked {
-    border: 1px #8E50E0 solid;
-    background-color: #8E50E0;
+    border: 1px #49b34d solid;
+    background-color: #49b34d;
 }
 
 .checkbox-label .van-checkbox__label {
@@ -890,8 +890,8 @@ flex:5;
 }
 
 .radio-label.checked {
-    border: 1px #8E50E0 solid;
-    background-color: #8E50E0;
+    border: 1px #49b34d solid;
+    background-color: #49b34d;
 }
 
 .radio-label .van-radio__label {
@@ -916,8 +916,8 @@ flex:5;
 }
 
 .ttm-checkbox.checked {
-    border: 1px solid #8E50E0;
-    background-color: #8E50E0;
+    border: 1px solid #49b34d;
+    background-color: #49b34d;
 }
 
 .ttm-checkbox .iconsuccess {
@@ -1363,7 +1363,7 @@ flex:5;
     height: 40rpx !important;
     padding: 0rpx !important;
     border-radius: 50% !important;
-    border: 1px solid #8E50E0;
+    border: 1px solid #49b34d;
     text-align: center;
 }
 
@@ -1372,12 +1372,12 @@ flex:5;
 }
 
 .round-plus {
-    background-color: #8E50E0 !important;
+    background-color: #49b34d !important;
 }
 
 .round-minus.van-stepper__minus::after,
 .round-minus.van-stepper__minus::before {
-    background-color: #8E50E0;
+    background-color: #49b34d;
     left: 0rpx !important;
 }
 
@@ -1586,3 +1586,51 @@ flex:5;
 
 }
 
+.goods-panel-bd .cover {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 8rpx;
+}
+
+.goods-panel-bd .bt-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+.goods-panel .diary-btn .icon {
+    width: 24rpx;
+    height: 24rpx;
+}
+
+.goods-panel-fd .right-text {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.goods-panel-hd .shop-tb{
+    width: 48rpx;
+    height: 48rpx;
+}
+.order-fixed-footer{
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: #fff;
+    z-index: 8;
+}
+.service-code .code{
+    width: 300rpx;
+    height: 300rpx;
+    margin: 0rpx auto;
+    padding: 30rpx;
+    display: block;
+}
+.order-fixed-footer+.order-wrap{
+    padding-bottom: 100rpx;
+}

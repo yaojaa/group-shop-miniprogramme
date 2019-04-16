@@ -2,7 +2,6 @@
     "navigationBarTitleText": "订单详情",
     "usingComponents":
     {
-    	  "van-notify": "../../vant/notify/index",
         "van-cell": "../../vant/cell/index",
         "van-cell-group": "../../vant/cell-group/index",
         "van-icon": "../../vant/icon/index",

@@ -1,0 +1,22 @@
+<i-custom-bar title="物流详情" showIcon="{{true}}"> </i-custom-bar>
+<view class="container gray-wrap cf" style="margin-top:80rpx;">
+    <view class="p-df white-bg flex mv-sm align-center">
+        <view class="wuliu-box">
+            <view class="iconfont icon-wuliuqiache text-xxl"></view>
+        </view>
+        <view class="flex-sub ml-df">
+            <view class="item-list">
+                <view class="item">
+                    <text class="text-gray">物流公司：</text>
+                    <text>顺丰快递</text>
+                </view>
+                <view class="item text-justify">
+                    <view> <text class="text-gray">物流单号：</text>
+                        <text>3847224592</text></view>
+                    <button class="btn gray hollow xs round ">复制</button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <van-steps steps="{{ steps }}" active="{{ active }}" direction="vertical" active-color="#49b34d" />
+</view>

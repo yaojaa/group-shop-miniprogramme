@@ -1,35 +1,25 @@
-<i-custom-bar showIcon="{{showIcon}}"> 
-    <view class="tit-icon" >
+<i-custom-bar showIcon="{{showIcon}}">
+    <view class="tit-icon">
         <i-icon type="setup" size="30" color="#666" />
-        <i-icon type="share" size="30" color="#666" /> 
+        <i-icon type="share" size="30" color="#666" />
     </view>
 </i-custom-bar>
-
 <view class="container cf">
- <swiper 
-  class="swiper"
-  indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}"
-  interval="{{interval}}"
-  duration="{{duration}}"
-   >
-  <block wx:for="{{imgUrls}}">
-    <swiper-item>
-      <image src="{{item}}" height="300" class="slide-image"  />
-    </swiper-item>
-  </block>
-</swiper>
-	 
-<view class="user-head">
-            <view class="avatar">
-                <open-data type="userAvatarUrl"></open-data>
-
-            </view>
-              <view class="name">红叶舞秋山</view>
-
-            <view class="des">开心麻团创始人，专注推广地理标志性农产品，让原生态放心食材走进千家万户</view>
-            <view class="info f12">累计<text class="text-default">1313</text>访问 成交1113笔 
-            </view>
+    <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{imgUrls}}">
+            <swiper-item>
+                <image src="{{item}}" height="300" class="slide-image" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="user-head">
+        <view class="avatar">
+            <open-data type="userAvatarUrl"></open-data>
+        </view>
+        <view class="name">红叶舞秋山</view>
+        <view class="des">开心麻团创始人，专注推广地理标志性农产品，让原生态放心食材走进千家万户</view>
+        <view class="info f12">累计<text class="text-default">1313</text>访问 成交1113笔
+        </view>
     </view>
     <view class="goods-box">
         <view class="goods-item flex-box" wx:for="{{5}}" wx:key="index">
@@ -39,7 +29,7 @@
                 <view class="des text-hide two">最先尝的就是果冻橙，很软，很你懂的。超级好吃，口感真的像果冻，还超级甜，我的两个宝贝特别爱</view>
                 <view class="flex-box align-center">
                     <view class="avatar-group">
-                        <image class="avatar" src="../../img/wx.jpg" wx:for="{{4}}" wx:key="index"></image>
+                        <image class="avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" wx:for="{{4}}" wx:key="index"></image>
                     </view>
                     <view class="user f12 ml-xs text-muted">已有<text class="text-red">32</text>人参与</view>
                 </view>

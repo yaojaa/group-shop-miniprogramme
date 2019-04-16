@@ -1,0 +1,4 @@
+
+<view class="loading-box" wx:if="{{loading}}">
+    <image src="http://image.countinsight.com/front/img/loading.gif" class="loading"></image>
+</view>
