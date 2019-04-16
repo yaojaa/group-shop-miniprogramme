@@ -41,9 +41,9 @@ Page({
 
             this.getGoodsList(token)
 
-            this.getBuyList(token)
+            //this.getBuyList(token)
 
-            this.get_store_info(token)
+            //this.get_store_info(token)
 
 
         } else {

@@ -16,7 +16,7 @@ Page({
         visibleU:false,
         seller_user: {},
         sell_address: [],
-        spec_goods_price: [],
+        goods_spec: [],
         code: false,
         cartPanel: false,
         amountMoney: 0,
@@ -142,21 +142,22 @@ Page({
 
         if (res.data.code == 200) {
 
-          console.log(res.data.data.goods)
 
-          // let spec_goods_price = res.data.data.spec_goods_price
+          // let goods_spec = res.data.data.goods_spec
 
-          // spec_goods_price.map(value => {
+          // goods_spec.map(value => {
           //   value.item_num = 0
           // })
           const d = res.data.data
+
+          console.log('done',res.data.data.goods.goods_images)
 
           this.setData({
             goods:d.goods,
             'imgs.src': d.goods.goods_images,
             // sell_address: res.data.data.sell_address,
             // seller_user: res.data.data.seller_user,
-            // spec_goods_price: spec_goods_price,
+            goods_spec: d.goods.goods_spec,
             // delivery_method: res.data.data.goods.delivery_method,
             // collection_methods: res.data.data.goods.collection_methods,
             // endTime: res.data.data.goods.sell_end_time,

@@ -75,7 +75,7 @@ Component({
     animationFun(random){
       let i = this.data.index;
       let img = this.data.imgsPath[i];
-      console.log(random)
+      console.log(img)
       //初始数据
       this.animationReset(random);
 

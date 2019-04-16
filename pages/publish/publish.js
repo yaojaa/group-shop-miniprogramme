@@ -45,7 +45,14 @@ Page({
             start_time: '00:00',
             end_time: '24:00',
         },
-        spec: [],
+        spec: [
+        {
+            spec_name: '',
+            spec_price: '',
+            spec_stock: '',
+            spec_pic: [],
+            spec_desc: ''
+        }],
         collection_methods: 1, //(1:平台代收,2:商户微信收款码)
         visible1: false,
         visible2: false,

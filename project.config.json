@@ -9,7 +9,7 @@
 		]
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -73,7 +73,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=1",
+					"query": "goods_id=38",
 					"scene": 1001
 				},
 				{
