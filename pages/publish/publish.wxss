@@ -1,9 +1,9 @@
 @import "../../utils/weui.wxss";
 
-page{
-}
+
 .page-body{
-  margin-top: 100px
+  margin-top: 100px;
+  position: relative;
 }
 .upload_btn{
   border: 1px solid #c00
@@ -44,7 +44,8 @@ picker{
   background: #f8f8f8;
   display: inline-block;
   font-size: 12px;
-  line-height: 1.2
+  line-height: 1.2;
+  position: relative;
 }
 
 .item{
@@ -199,5 +200,15 @@ video{
 .img-list{
   position: relative;
 }
-
+.i-loading{
+  position: absolute;
+  right: 5px;
+  top: 5px
+}
+.pic_loading{
+  text-align: center;
+  width: 20px;
+  display: block;
+  margin: 0 auto
+}
 

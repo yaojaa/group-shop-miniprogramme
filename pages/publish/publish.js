@@ -33,20 +33,19 @@ Page({
         deliver: true,
         morePic: false,
         photoProgress: false,
-        uploadProgress: false,
-        sell_start_time: default_start_time,
-        sell_end_time: default_end_time,
+        uploadProgress: false,//介绍图loading
+        start_time: default_start_time,
+        end_time: default_end_time,
         goods_video: '',
-        goods_video_cover:'',
+        goods_video_cover: '',
 
         picker: {
             start_date: default_start_time.split(' ')[0],
             end_date: default_end_time.split(' ')[0],
-            start_time: '00:00',
-            end_time: '24:00',
+            start_time: '00:00:00',
+            end_time: '24:00:00',
         },
-        spec: [
-        {
+        spec: [{
             spec_name: '',
             spec_price: '',
             spec_stock: '',
@@ -79,7 +78,8 @@ Page({
         visible_video: false,
         visible_spec: false, //规格图
         current_spec_index: 0,
-        displayTextArea: 'block'
+        displayTextArea: 'block',
+        video_progress:false
     },
 
     showTimePicker: function() {
@@ -100,11 +100,11 @@ Page({
             index = this.data.current_spec_index
         }
 
-       
+
         if (this.data.spec[index].spec_pic.length) {
             return this.setData({
-                    visible_spec: true
-                })
+                visible_spec: true
+            })
         }
 
         console.log("index", index)
@@ -112,23 +112,23 @@ Page({
         console.log("spec", this.data.spec)
 
         this.addSpecPicCore(index)
-      
+
 
     },
 
-    addSpecPicContinue(){
-         this.addSpecPicCore(this.data.current_spec_index)
+    addSpecPicContinue() {
+        this.addSpecPicCore(this.data.current_spec_index)
     },
 
-    addSpecPicCore(index){
+    addSpecPicCore(index) {
 
-          util.uploadPicture({
+        util.uploadPicture({
             success: (result) => {
 
                 const key = 'spec[' + index + '].spec_pic'
 
                 const newVal = this.data.spec[index].spec_pic.concat([result])
-                console.log('newVal',newVal)
+                console.log('newVal', newVal)
                 this.setData({
                     [key]: newVal,
                     current_spec_imgs: newVal
@@ -149,17 +149,17 @@ Page({
             visible_spec: false
         })
     },
-    removeSpecPhoto(e){
+    removeSpecPhoto(e) {
         const imgIndex = e.currentTarget.dataset.index
-        console.log(this.data.current_spec_index,imgIndex)
+        console.log(this.data.current_spec_index, imgIndex)
 
         this.data.spec[this.data.current_spec_index].spec_pic.splice(imgIndex, 1)
         const newData = this.data.spec[this.data.current_spec_index].spec_pic
-        const key = 'spec['+this.data.current_spec_index+'].spec_pic'
+        const key = 'spec[' + this.data.current_spec_index + '].spec_pic'
 
         this.setData({
             [key]: newData,
-            current_spec_imgs:newData
+            current_spec_imgs: newData
         })
 
     },
@@ -201,35 +201,37 @@ Page({
     addVideoCore() {
 
         wx.chooseVideo({
-          sourceType: ['album', 'camera'],
-          maxDuration: 180,
-          camera: 'back',
-          success:(res)=> {
-
-            this.setData({
-                visible_video: true
-            })
-
-            var videoFile = res.tempFilePath
-            var videothumb = res.thumbTempFilePath
-                console.log('选择视频',res)
-
-            let p1 = util.uploadFile({filePath:videoFile})
-            let p2 = util.uploadFile({filePath:videothumb})
-
-            Promise.all([p1,p2]).then((result)=>{
+            sourceType: ['album', 'camera'],
+            maxDuration: 180,
+            camera: 'back',
+            success: (res) => {
 
                 this.setData({
-                    goods_video:result[0].data.file_url,
-                    goods_video_cover:result[1].data.file_url
+                    video_progress: true
                 })
 
-                console.log({
-                    goods_video:result[0].data.file_url,
-                    goods_video_cover:result[1].data.file_url
+                var videoFile = res.tempFilePath
+                var videothumb = res.thumbTempFilePath
+
+                let p1 = util.uploadFile({ filePath: videoFile })
+                let p2 = util.uploadFile({ filePath: videothumb })
+
+                Promise.all([p1, p2]).then((result) => {
+
+                    this.setData({
+                        goods_video: result[0].data.file_url,
+                        goods_video_cover: result[1].data.file_url,
+                        video_progress: false
+                    })
+
+                    console.log('视频上传成功',this)
+                    this.setData({
+                            visible_video: true
+                        })
+
+
                 })
 
-            })
 
 
 
@@ -237,8 +239,7 @@ Page({
 
 
 
-
-          }
+            }
         })
 
 
@@ -281,15 +282,20 @@ Page({
     //添加介绍图片
     addPicture() {
 
+        this.setData({
+                    uploadProgress: true
+                })
+
         util.uploadPicture({
             success: (result) => {
 
-                console.log('result',result)
+                console.log('result', result)
 
                 this.data.content_imgs = this.data.content_imgs.concat([result])
                 console.log('this.data.content_imgs', this.data.content_imgs)
                 this.setData({
-                    content_imgs: this.data.content_imgs
+                    content_imgs: this.data.content_imgs,
+                    uploadProgress:false
                 })
 
             },
@@ -417,11 +423,8 @@ Page({
                 var tempFilePaths = res.tempFilePaths;
 
                 //启动上传等待中...  
-                wx.showToast({
-                    title: '正在上传...',
-                    icon: 'loading',
-                    mask: true,
-                    duration: 10000
+                this.setData({
+                    photoProgress: true
                 })
 
                 console.log(app.globalData)
@@ -458,11 +461,17 @@ Page({
 
                             //如果是最后一张,则隐藏等待中  
                             if (uploadImgCount == tempFilePaths.length) {
-                                wx.hideToast();
+                                this.setData({
+                                    photoProgress: false
+                                })
                             }
                         },
                         fail: function(res) {
-                            wx.hideToast();
+
+                            this.setData({
+                                photoProgress: false
+                            })
+
                             wx.showModal({
                                 title: '错误提示',
                                 content: '上传图片失败',
@@ -615,8 +624,8 @@ Page({
                 sell_address: this.data.sell_address,
                 delivery_method: this.data.delivery_method,
                 collection_methods: this.data.collection_methods,
-                sell_start_time: this.data.sell_start_time,
-                sell_end_time: this.data.sell_end_time,
+                start_time: this.data.start_time,
+                end_time: this.data.end_time,
                 content_imgs: this.data.content_imgs,
                 cat_id: 8
             },
@@ -633,7 +642,7 @@ Page({
         let cardLocalData = {
             headImg: app.globalData.userInfo.head_pic,
             userName: app.globalData.userInfo.nickname,
-            date: this.data.sell_end_time,
+            date: this.data.end_time,
             content: _content,
             cover: this.data.photoUrls[0].img_url
         }
@@ -683,7 +692,7 @@ Page({
     start_time: function(e) {
         let t = e.detail //"2018", "10", "20", "16", "00"
         this.setData({
-            sell_start_time: t[0] + '-' + t[1] + '-' + t[2] + ' ' + t[3] + ':' + t[4]
+            start_time: t[0] + '-' + t[1] + '-' + t[2] + ' ' + t[3] + ':' + t[4]
         })
 
     },
@@ -691,7 +700,7 @@ Page({
         let t = e.detail //"2018", "10", "20", "16", "00"
 
         this.setData({
-            sell_end_time: t[0] + '-' + t[1] + '-' + t[2] + ' ' + t[3] + ':' + t[4]
+            end_time: t[0] + '-' + t[1] + '-' + t[2] + ' ' + t[3] + ':' + t[4]
         })
 
     },
@@ -755,8 +764,8 @@ Page({
             let d = res.data
             let gs = res.data.data.goods
 
-            let starFormatTime = isCopy ? default_start_time : util.formatTime(new Date(gs.sell_start_time * 1000))
-            let endFormatTime = isCopy ? default_end_time : util.formatTime(new Date(gs.sell_end_time * 1000))
+            let starFormatTime = isCopy ? default_start_time : util.formatTime(new Date(gs.start_time * 1000))
+            let endFormatTime = isCopy ? default_end_time : util.formatTime(new Date(gs.end_time * 1000))
 
 
 
@@ -770,8 +779,8 @@ Page({
                     delivery_method: gs.delivery_method,
                     collection_methods: gs.collection_methods,
                     content_imgs: gs.content_imgs || [],
-                    sell_start_time: starFormatTime,
-                    sell_end_time: endFormatTime,
+                    start_time: starFormatTime,
+                    end_time: endFormatTime,
                     picker: {
                         start_date: starFormatTime.split(' ')[0],
                         start_time: starFormatTime.split(' ')[1],

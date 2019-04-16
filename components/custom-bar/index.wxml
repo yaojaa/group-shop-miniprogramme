@@ -1,10 +1,10 @@
-<view class="topBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight+6}}px;background-color:{{backColor}};background-image: url('{{backImage}}');">
-    <view class="icon" wx:if="{{showIcon}}" bindtap="goback">
+<view bindtap="goback" class="topBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight+6}}px;background-color:{{backColor}};background-image: url('{{backImage}}');">
+    <view class="icon" wx:if="{{showIcon}}" >
         <i-icon size="{{backIconSize}}" color="{{backIconColor}}" type="return" />
     </view>
     <view class="tit" wx:if="{{title}}">{{title}}</view>
     <slot></slot>
 </view>
 
-<view class="back topBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight+6}}px;background-color:#47a000;opacity:{{opacity}}">
+<view class="backBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight+6}}px;background-color:#47a000;opacity:{{opacity}}">
 </view>

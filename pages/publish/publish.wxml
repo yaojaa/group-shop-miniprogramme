@@ -1,7 +1,7 @@
-<i-custom-bar backColor="#fff" showIcon="{{true}}" title="新发布"> </i-custom-bar>
+<i-custom-bar fixed backColor="#fff" showIcon="{{true}}" title="新发布"> </i-custom-bar>
 <view class="page-body">
     <view class="progress" wx:if="{{photoProgress}}">
-        <i-spin size="large"></i-spin>
+       <i-spin size="large"></i-spin>
     </view>
     <form bindsubmit="submitForm">
         <view class="weui-uploader weui-cells_form weui-cell">
@@ -23,7 +23,7 @@
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <view class='row' id="textareawrap" catchtap="onFocus">
+                    <view class='row' id="textareawrap" >
                         <text>{{currentInput}}</text>
                         <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" class="weui-textarea" placeholder="商品描述、介绍、特色等" rows="6"></textarea>
                     </view>
@@ -31,11 +31,12 @@
             </view>
             <view class="new_add_btn" data-type="video" bindtap="addVideo">
                 <i-badge dot="{{goods_video.length}}">
-                    <i-icon type="add" size="16" color="#69b90b" />视频短片（选填）
+                    <i-icon type="add" size="16" color="#69b90b" /> 视频短片（选填）
                 </i-badge>
+                <i-spin i-class="i-loading" wx:if="{{video_progress}}" size="small"></i-spin>
             </view>
             <view class="new_add_btn" data-type="photo" bindtap="add">
-                <i-badge count="{{content_imgs.length}}">
+                <i-badge dot="{{content_imgs.length}}">
                     <view class="demo-badge">
                         <i-icon type="add" size="16" color="#69b90b" />图文介绍（选填)
                     </view>
@@ -63,8 +64,10 @@
             </wux-popup>
             <!--上传图片弹框-->
             <wux-popup catchtouchmove="ture" position="bottom" visible="{{ visible_pictures }}" bind:close="onClose2">
-                <view class="poptit">上传详情介绍图片</view>
+                <view class="poptit">上传详情介绍图片 </view>
+                <view class="pic_loading"><i-spin wx:if="{{uploadProgress}}"/></view>
                 <view class="con">
+
                     <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
                         <view class="img-list">
                             <image mode="widthFix" src="{{item}}" />
@@ -92,7 +95,7 @@
                 </view>
             </wux-popup>
             <!--上传视频弹框-->
-            <wux-popup catchtouchmove="ture" position="bottom" visible="{{ visible_video }}" bind:close="onClose2">
+            <wux-popup catchtouchmove="ture" position="bottom" visible="{{visible_video}}" bind:close="onClose2">
                 <view class="poptit">上传视频(不大于25M)</view>
                 <view class="con_video">
                     <video id="myVideo" src="{{goods_video}}" poster="{{goods_video_cover}}" controls></video>
@@ -201,7 +204,7 @@
                                 <i-icon type="enter" size="28" />
                             </view>
                             <view class="timePicker" wx:if="{{isShowTimePicker}}">
-                                <i-datepicker label="起：" title="开始日期" date="{{picker.start_date}}" time="{{picker.start_time}}" bind:datachange="end_time"></i-datepicker>
+                                <i-datepicker label="起：" title="开始日期" date="{{picker.start_date}}" time="{{picker.start_time}}" bind:datachange="start_time"></i-datepicker>
                                 <i-datepicker label="至：" title="结束日期" date="{{picker.end_date}}" time="{{picker.end_time}}" bind:datachange="end_time"></i-datepicker>
                             </view>
                         </view>

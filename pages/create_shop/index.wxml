@@ -1,11 +1,13 @@
 <!--pages/create_shop.wxml-->
+<i-custom-bar showIcon backImage="http://img.atomstone.com/top_bar_bg.jpg" title="申请个人主页"> </i-custom-bar>
+
 <view class="container">
 	<i-notice-bar icon="systemprompt" >
     专属独立个人小店 限时免费申请中..
 </i-notice-bar>
 <wux-toptips id="wux-toptips" />
 
-<i-panel  i-class="shadow-panel">
+<i-panel  i-class="shadow-panel" hideBorder>
     <wux-cell-group >
             <wux-cell hover-class="none">
                <wux-input controlled="{{true}}" value="{{ store_name }}" bind:change="inputDuplex" data-key="store_name" />
@@ -26,7 +28,7 @@
 <wux-cascader visible="{{ visible1 }}" default-value="{{ value1 }}" title="所在地区" options="{{ options1 }}" bind:close="onClose1" bind:change="onChange1" />
 <wux-cascader visible="{{ visible2 }}" controlled value="{{ value2 }}" title="所在地区" options="{{ options2 }}" bind:close="onClose2" bind:change="onChange2" bind:load="onLoadOptions" />
 
-<i-panel  i-class="shadow-panel" >
+<i-panel  i-class="shadow-panel" hideBorder >
     <view class="page__bd">
         <wux-cell-group title="">
             <wux-cell title="选择所在地" extra="{{ title1 }}" bind:click="onOpen1">
@@ -34,7 +36,7 @@
         </wux-cell-group>
     </view>
 
-    <wux-cell-group >
+    <wux-cell-group wx:if="{{district_id}}">
             <wux-cell hover-class="none">
                <wux-input bind:change="inputDuplex" data-key="address"  placeholder="社区街道地址" />
             </wux-cell>
@@ -48,17 +50,16 @@
 
 
 
-<i-panel i-class="shadow-panel" title="店铺轮播图（最多可传5张）">
+<!-- <i-panel i-class="shadow-panel" title="店铺轮播图（最多可传5张）">
 
        <wux-upload listType="picture-card" fileList="{{ fileList }}"  url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
             <text><wux-icon type="md-add" /></text>
         </wux-upload>
 
-</i-panel>
+</i-panel> -->
 
-<view class="footer-btn">
-	<button bindtap="createSubmit" class="btn linenear_bg">立即创建</button>
 </view>
 
-
+<view class="footer-btn padding20">
+    <button bindtap="createSubmit" class="linenear_bg">立即创建</button>
 </view>

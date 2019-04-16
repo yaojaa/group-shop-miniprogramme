@@ -12,7 +12,9 @@
         "wux-textarea": "../../wux/textarea/index",
         "wux-input": "../../wux/input/index",
         "wux-icon": "../../wux/icon/index",
-        "wux-toptips": "../../wux/toptips/index"
+        "wux-toptips": "../../wux/toptips/index",
+        "i-custom-bar": "../../components/custom-bar/index"
+
 
   }
 }

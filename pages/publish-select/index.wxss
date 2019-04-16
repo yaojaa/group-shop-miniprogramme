@@ -1,3 +1,5 @@
+@import "../../utils/weui.wxss";
+
 page{
 
 background: url('http://img.kaixinmatuan.cn/pub_bg2.jpg');

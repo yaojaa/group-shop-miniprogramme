@@ -537,7 +537,9 @@ flex:5;
 .mtop100{
   margin-top: 100px
 }
-
+.mtop30{
+  margin-top: 30px
+}
 
 
 /*新加*/
@@ -1633,4 +1635,14 @@ flex:5;
 }
 .order-fixed-footer+.order-wrap{
     padding-bottom: 100rpx;
+}
+
+.btn_no_style{
+  border:none;
+  background: transparent;
+  color: #666
+}
+.btn_no_style:before,.btn_no_style:after{
+  border:none;
+  box-shadow: none;
 }

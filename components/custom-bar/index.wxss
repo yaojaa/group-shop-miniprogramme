@@ -3,13 +3,21 @@
   height: 38px;
   line-height: 38px;
   width: 100%;
-  z-index: 100;
+  z-index: 1988;
   background-size: 100% auto;
   background-position: center top;
   background-repeat: no-repeat;
 }
-.back{
-	z-index:99
+.backBar{
+	z-index:1900;
+	position: fixed;
+	 height: 38px;
+  line-height: 38px;
+	z-index: 10;
+	top: 0;
+	left:0;
+	right:0;
+	background-color: #c00
 }
 
 .tit{

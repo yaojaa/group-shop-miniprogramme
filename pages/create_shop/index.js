@@ -11,13 +11,14 @@ Page({
    * 页面的初始数据
    */
    data: {
-        store_name:'红叶舞22秋山的小店',
+        store_name:'',
         store_intro:'',
         address:'',
         options1: data,
         title1:'点击选择',
         value2: [],
-        store_slide:[]
+        store_slide:[],
+        district_id:''
     },
    bindRegionChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -257,6 +258,11 @@ Page({
         this.data.province_id = e.detail.value[0],
         this.data.city_id  = e.detail.value[1],
         this.data.district_id = e.detail.value[2]
+
+        //是否显示街道
+        this.setData({
+          district_id:e.detail.value[2]
+        })
 
         console.log(this.data.province_id,this.data.city_id,this.data.district_id)
 
