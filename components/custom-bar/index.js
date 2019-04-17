@@ -15,7 +15,7 @@ Component({
             value: ''
 
         },
-        showIcon: {
+        showBackIcon: {
             type: Boolean,
             value: false
         },

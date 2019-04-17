@@ -11,7 +11,16 @@
             <block wx:else>
                 已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
             </block>
-            <view class="right-text"><view class="share-box">
+            <view class="right-text">
+
+                <view class="test-container">
+<share-button
+  product="{{product}}"
+  bind:error="on_error"
+/>
+</view>
+
+                <view class="share-box">
             <button bindtap='openShareFriends'>
                 <i-icon type="share" size="28" color="#666" /> <text class="text-muted f12">分享</text>
             </button>

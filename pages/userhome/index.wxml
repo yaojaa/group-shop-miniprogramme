@@ -1,9 +1,9 @@
-<i-custom-bar showIcon="{{showIcon}}">
-    <view class="tit-icon">
-        <i-icon type="setup" size="30" color="#666" />
-        <i-icon type="share" size="30" color="#666" />
+<i-custom-bar showIcon="{{showIcon}}" fixed title="个人主页">
+    <view class="tit-icon" slot="icon">
+        <i-icon bindtap="toSetting" type="setup" size="30" color="#666" />
     </view>
 </i-custom-bar>
+
 <view class="container cf">
     <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
         <block wx:for="{{imgUrls}}">
@@ -18,15 +18,16 @@
         </view>
         <view class="name">红叶舞秋山</view>
         <view class="des">开心麻团创始人，专注推广地理标志性农产品，让原生态放心食材走进千家万户</view>
-        <view class="info f12">累计<text class="text-default">1313</text>访问 成交1113笔
+        <view class="info f12">
+            访问<text class="text-default">1313人</text> 成交<text class="text-default">1313</text> 笔
         </view>
     </view>
     <view class="goods-box">
-        <view class="goods-item flex-box" wx:for="{{5}}" wx:key="index">
-            <image class="cover" src="http://www.51pptmoban.com/d/file/2018/05/17/ba0172ce98cc25c03fb2986e55205655.jpg"></image>
+        <view data-id="{{item.goods_id}}" class="goods-item flex-box" wx:for="{{goodsList}}" wx:key="index">
+            <image class="cover" src="{{item.goods_cover}}"></image>
             <view class="content">
-                <view class="title text-hide">好吃的石门蜜橘，错过这次在等一年，吃过的都说好</view>
-                <view class="des text-hide two">最先尝的就是果冻橙，很软，很你懂的。超级好吃，口感真的像果冻，还超级甜，我的两个宝贝特别爱</view>
+                <view class="title text-hide">{{item.goods_name}}</view>
+                <view class="des text-hide two">{{item.goods_content}}</view>
                 <view class="flex-box align-center">
                     <view class="avatar-group">
                         <image class="avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" wx:for="{{4}}" wx:key="index"></image>
@@ -35,9 +36,24 @@
                 </view>
                 <view class="bottom text-justify">
                     <view class="price bold text-red"><text class="f12">￥</text>29.9</view>
-                    <view> <button class="btn buy linenear_bg">立即查看</button></view>
+                    <view> <button data-id="{{item.goods_id}}"  class="btn buy linenear_bg">立即查看</button></view>
                 </view>
             </view>
         </view>
     </view>
+
+    <i-load-more wx:if="{{loading}}" tip="加载中..." loading="{{ true }}" />
+
+       <view class="weui-footer">
+
+            <view class="weui-footer__links">
+
+            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>    
+
+            </view>
+
+            <view class="weui-footer__text">Copyright © 20018-2025 kaixinmatuan.cn</view>
+
+        </view>
+
 </view>

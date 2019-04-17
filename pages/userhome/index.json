@@ -3,6 +3,7 @@
     "usingComponents":
     {
     "i-icon": "../../iView/icon/index",
-    "i-custom-bar": "../../components/custom-bar/index"
+    "i-custom-bar": "../../components/custom-bar/index",
+    "i-load-more": "../../iView/load-more/index"
     }
 }

@@ -1,3 +1,5 @@
+const util = require('../../utils/util.js')
+
 Page({
 
     /**
@@ -13,14 +15,25 @@ Page({
         autoplay: false,
         interval: 5000,
         duration: 1000,
-        showIcon: false
+        showIcon: false,
+        goodsList:[],
+        loading:false,
+        store_id:''
 
+    },
+    toSetting(){
+        console.log('toSetting..')
+        wx.navigateTo({
+            url:'../create_shop/index?store_id='+this.data.store_id
+        })
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        this.data.store_id = options.id || ''
 
         let pages = getCurrentPages(); //当前页面栈
 
@@ -34,8 +47,42 @@ Page({
             console.log(false)
 
         }
+
+        this.cpage = 1
+        this.getDataList()
     },
 
+  getDataList(){
+
+    this.setData({
+        loading:true
+    })
+
+    util.wx.get('/api/goods/get_store_goods_list',{
+        store_id:2,
+        cpage:this.cpage,
+        pagesize:3
+    })
+    .then(res=>{
+        if(res.data.code == 200){
+
+
+         this.data.goodsList = this.data.goodsList.concat(res.data.data.goodslist)
+
+            this.setData({
+                goodsList: this.data.goodsList,
+                loading: false
+                
+            })
+
+
+            this.totalpage = res.data.data.page.totalpage
+        }
+    })
+
+
+
+  },
 
 /**
  * 生命周期函数--监听页面初次渲染完成
@@ -71,13 +118,19 @@ onUnload: function() {
 onPullDownRefresh: function() {
 
 },
-
 /**
  * 页面上拉触底事件的处理函数
  */
-onReachBottom: function() {
+  onReachBottom(){
 
-},
+     ++ this.cpage
+
+     if(this.cpage <= this.totalpage){
+      this.getDataList();//重新调用请求获取下一页数据 
+     }
+
+     
+  },
 
 /**
  * 用户点击右上角分享

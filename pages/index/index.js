@@ -3,7 +3,6 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
-    name: '甘露园南里二区',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userloaction:{
@@ -29,7 +28,10 @@ Page({
        
   },
   onLoad: function () {
+
+    this.pageNum = 1;
     this.getProList()
+
     console.log(app.globalData.userInfo);
 
     util.getUserloaction().then(res=>{
@@ -40,6 +42,12 @@ Page({
     })
       },
   getProList(){
+
+    console.log({
+      pageNum:this.pageNum
+    })
+
+
     this.setData({
       proList:[
 
@@ -121,5 +129,16 @@ Page({
     wx.navigateTo({
       url: '../publish/publish'
     })
-  }
+  },
+  // onReachBottom(){
+
+  //    ++ this.pageNum
+
+  //    if(this.pageNum <= this.maxPage){
+  //     this.getProList();//重新调用请求获取下一页数据 
+  //    }
+
+     
+  // }
+
 })
