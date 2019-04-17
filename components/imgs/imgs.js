@@ -28,6 +28,15 @@ Component({
         return;
       }
 
+      if (this.properties.imgs.src.length == 1) {
+        this.data.imgsPath.push({ src: this.properties.imgs.src[0].img_url, type: 9, index: 0 });
+        this.setData({
+          imgsPath: this.data.imgsPath,
+          img: this.data.imgsPath[0]
+        })
+        return;
+      }
+
       this.properties.imgs.src.forEach(e => {
         imageInfo.push(this.getImageInfo(e.img_url))
       });
@@ -75,7 +84,6 @@ Component({
     animationFun(random){
       let i = this.data.index;
       let img = this.data.imgsPath[i];
-      console.log(img)
       //初始数据
       this.animationReset(random);
 

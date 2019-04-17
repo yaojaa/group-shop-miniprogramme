@@ -1,6 +1,6 @@
 <view class="img-box" style="height: {{ imgs.height + 'rpx' }}" bindtap="checkBigImg">
 	<block wx:if="{{img.index%2 > 0}}">
-		<!-- 正方形 -->
+	<!-- 正方形 -->
 	<view wx:if="{{img.type == 0}}" class="flex-cc">
 		<view style="transform: scale({{ img.scale}}, {{ img.scale}});{{ img.transition }}; width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}">
 			<image mode="aspectFill" src="{{ img.src }}"></image>
@@ -13,12 +13,12 @@
 	</view>
 
 	<!-- 竖图 -->
-	<view wx:else="{{img.type == 2}}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateY({{ img.y + 'px'}});{{ img.transition }};">
+	<view wx:elif="{{img.type == 2}}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateY({{ img.y + 'px'}});{{ img.transition }};">
 		<image mode="aspectFill" src="{{ img.src }}"></image>
 	</view>
 	</block>
 	<block wx:else>
-		<!-- 正方形 -->
+	<!-- 正方形 -->
 	<view wx:if="{{img.type == 0}}" class="flex-cc">
 		<view style="transform: scale({{ img.scale}}, {{ img.scale}});{{ img.transition }}; width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}">
 			<image mode="aspectFill" src="{{ img.src }}"></image>
@@ -31,9 +31,12 @@
 	</view>
 
 	<!-- 竖图 -->
-	<view wx:else="{{img.type == 2}}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateY({{ img.y + 'px'}});{{ img.transition }};">
+	<view wx:elif="{{img.type == 2}}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateY({{ img.y + 'px'}});{{ img.transition }};">
 		<image mode="aspectFill" src="{{ img.src }}"></image>
 	</view>
+
+	<!-- 单图 -->
+	<image wx:else="{{img.type == 9}}" mode="aspectFill" src="{{ img.src }}"></image>
 	</block>
 </view>
 
