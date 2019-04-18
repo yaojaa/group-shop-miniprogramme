@@ -24,7 +24,7 @@ Component({
     init() {
       let imageInfo = [];
 
-      if (this.isEmpty(this.properties.imgs)) {
+      if (this.isEmpty(this.properties.imgs.src)) {
         return;
       }
 
@@ -113,7 +113,7 @@ Component({
 
             this.animationFun(this.getRandom());
 
-          }, img.duration*1000+300);
+          }, img.duration*1000+500);
         });
 
       });
