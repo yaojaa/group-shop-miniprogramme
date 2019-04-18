@@ -15,7 +15,7 @@ Page({
     order_id:"",
     link_url:"",
     num: 1,
-    delivery_method:2,//送货方式
+    delivery_method:1,//送货方式
     consignee:'',
     goods_id:'',
     hasgoods:false,
@@ -215,40 +215,7 @@ Page({
   //获取用户默认地址
   getDefaultAddress(cb){
 
-    let addressObj = {}
-
-
-
-
-        //1邮递    2自提 两种情况默认地址不同
-    if(this.data.delivery_method ==1){
-      //邮递时 先获取上次存储的位置 为空则默认获取定位位置
-      
-            this.getaddressList().then((data)=>{
-                cb(data)
-            },()=>{
-
-          this.getUserloaction().then((map)=>{
-
-          addressObj.province_name = map.province
-          addressObj.district_name = map.district
-          addressObj.city_name = map.city
-          addressObj.address = map.province+map.city+'+完整地址'
-          return cb(addressObj)
-
-        })
-
-        })
-
-
-     //自提时候为卖家商品地址
-    }else if(this.data.delivery_method ==2){
-
-      let goods_address = wx.getStorageSync('goods').sell_address[0]
-       return cb(goods_address)
-
-    }
-
+   
 
   },
 
@@ -331,22 +298,11 @@ Page({
     }
 
 
-    if(this.data.delivery_method ==1 && this.data.address.length<8){
-      wx.showToast({
-        title:'请填写完整收货地址',
-        icon:'none'
-      })
-      return
-    }
+ 
 
 
-    // if(this.data.delivery_method ==1 && this.data.door_number.length<4 ){
-    //   $Message({
-    //     content:'请填写门牌号'
-    //   })
-    // }
+   
 
-         //清除购物车里为0的。
 
     this.data.cart.forEach((value,index)=>{
 
