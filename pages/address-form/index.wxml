@@ -1,21 +1,21 @@
-<i-custom-bar title="添加收货地址" showIcon="{{true}}"> </i-custom-bar>
-<view class="container cf" style="margin-top:80rpx;">
+<view class="container gray-wrap  cf">
     <van-cell-group custom-class="mv-sm">
-        <van-field value="" label="收货人" input-align="right" placeholder="请输入" />
-        <van-field value="" label="联系电话" input-align="right" placeholder="请填写手机号" type="number" />
-        <van-field value="{{areaValue}}" label="所在地区" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleAreaModal" />
-        <van-field value="" label="详细地址" type="textarea" placeholder="请填写详细地址，不少于5个字" autosize />
+        <van-field bindchange="inputDuplex" data-key="consignee"  value="{{consignee}}" label="收货人" input-align="right" placeholder="请输入姓名" />
+        <van-field bindchange="inputDuplex" data-key="mobile" value="{{mobile}}" label="联系电话" input-align="right" placeholder="请填写手机号" type="number" />
+        <van-field label="所在地区" value="{{city}}" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleAreaModal" />
+
+        <van-field bindchange="inputDuplex" data-key="address"  value="{{address}}" label="详细地址" type="textarea" placeholder="请填写详细地址，不少于5个字" autosize />
     </van-cell-group>
-    <view class="ph-df">
-        <van-checkbox value="{{ default }}" bind:change="addressDefault" checked-color="#E3AFA0">设为默认地址</van-checkbox>
+    <view class="ph-df mt-xs">
+        <van-checkbox value="{{ is_address_default }}" bind:change="addressDefault" checked-color="#8E50E0">设为默认地址</van-checkbox>
     </view>
-    <view class="fixed-btn">
-        <button class="btn xxl primary block " bindtap="submit">
-            保存
+    <view class="m-df mt-xl">
+        <button class="btn xxl primary block" bindtap="submit">
+            提交
         </button>
     </view>
     <van-notify id="custom-selector" />
     <van-popup show="{{ areaModal }}" position="bottom" bind:close="handleAreaModal">
-        <van-area area-list="{{ areaList }}" bind:change="" bind:cancel="handleAreaModal" bind:confirm="handleArea"  value="{{activeArea}}" id="area"/>
+        <van-area area-list="{{ areaList }}"  bind:change="" bind:cancel="handleAreaModal" bind:confirm="handleArea" value="{{path[2]}}" id="area" />
     </van-popup>
 </view>

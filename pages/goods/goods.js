@@ -206,12 +206,25 @@ Page({
 
           console.log('done',res.data.data.goods.goods_images)
 
+          //把数量设为0
+          const goods_spec = d.goods.goods_spec
+
+          goods_spec.forEach(item=>{
+            console.log(item)
+            item.item_num = 0
+
+
+          })
+
+          console.log(goods_spec)
+
+
           this.setData({
             goods:d.goods,
             'imgs.src': d.goods.goods_images,
             // sell_address: res.data.data.sell_address,
             // seller_user: res.data.data.seller_user,
-            goods_spec: d.goods.goods_spec,
+            goods_spec: goods_spec,
             // delivery_method: res.data.data.goods.delivery_method,
             // collection_methods: res.data.data.goods.collection_methods,
             // endTime: res.data.data.goods.sell_end_time,
@@ -389,17 +402,24 @@ Page({
         })
     },
     handleCountChange(e) {
+      console.log(e.detail.value)
         let id = e.target.id
 
-        let key = "spec_goods_price[" + id + "].item_num"
+        let key = "goods_spec[" + id + "].item_num"
 
-        this.data.spec_goods_price[id].item_num = parseInt(e.detail.value)
+        this.data.goods_spec[id].item_num = parseInt(e.detail.value)
 
 
 
         let amountMoney = 0;
 
-        this.data.spec_goods_price.forEach(value => amountMoney += parseInt(value.price * 100) * parseInt(value.item_num))
+
+        this.data.goods_spec.forEach(value => {
+
+          console.log('value.spec_price',value.item_num)
+          amountMoney += parseInt(value.spec_price * 100) * parseInt(value.item_num)
+                })
+
 
 
 
@@ -417,10 +437,10 @@ Page({
     cartPanelShow() {
 
 
-        if(this.data.spec_goods_price.length==1){
-            let value = this.data.spec_goods_price[0]
+        if(this.data.goods_spec.length==1){
+            let value = this.data.goods_spec[0]
             this.setData({
-                'spec_goods_price[0].item_num':1,
+                'goods_spec[0].item_num':1,
                 amountMoney:parseInt(value.price * 100)/100
             })
         }
@@ -579,20 +599,20 @@ Page({
         }
 
 
-        let shopcar = this.data.spec_goods_price.filter(value => value.item_num > 0)
+        let shopcar = this.data.goods_spec.filter(value => value.item_num > 0)
         
         wx.setStorageSync('cart', shopcar)
-        wx.setStorageSync('goods', {
-            goods_name: this.data.goods.goods_name,
-            sell_address: this.data.sell_address,
-            cover_pic: this.data.imgUrls[0],
-            delivery_method: this.data.goods.delivery_method,
-            sell_end_time: this.data.goods.sell_end_time,
-            goods_content: this.data.goods.goods_content
-        })
+        // wx.setStorageSync('goods', {
+        //     goods_name: this.data.goods.goods_name,
+        //     sell_address: this.data.sell_address,
+        //     cover_pic: this.data.imgUrls[0],
+        //     delivery_method: this.data.goods.delivery_method,
+        //     sell_end_time: this.data.goods.sell_end_time,
+        //     goods_content: this.data.goods.goods_content
+        // })
 
         wx.navigateTo({
-            url: '../order/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method + '&collection_methods=' + this.data.goods.collection_methods
+            url: '../order/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
         })
     },
     formSubmit: function(e) {
@@ -605,7 +625,7 @@ Page({
       },
      copyDetail() {
         var price='规格：\n'
-        this.data.spec_goods_price.forEach((item,index)=>{
+        this.data.goods_spec.forEach((item,index)=>{
              price+= item.key_name +' \b 💰'+item.price +"元\n"
         })
         var userList=[]

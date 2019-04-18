@@ -1,20 +1,30 @@
 import areaData from '../../utils/area'
 import Notify from '../../vant/notify/notify'
+const util = require('../../utils/util')
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        source: '',
         default: false,
-        areaModal:false,
-        areaList:areaData,
-        activeArea:'110101',
-        areaValue:''
+        areaModal: false,
+        areaList: [],
+        areaValue: '',
+        consignee: '',
+        mobile: '',
+        path: '',
+        address: '',
+        is_address_default: '',
+        city: '',
+
     },
     addressDefault(event) {
+
         this.setData({
-            default: event.detail
+            is_address_default: event.detail ? 1 : 0
         });
 
     },
@@ -25,27 +35,97 @@ Page({
 
     },
     handleArea(event) {
-      let area = event.detail.detail
-      this.setData({
-            activeArea: area.code,
-            areaValue:area.province+'/'+area.city+'/'+area.county,
-            areaModal: !this.data.areaModal
+        let area = event.detail.values.map(function(index, elem) {
+            return index.code;
+        })
+        console.log(area)
+        this.setData({
+            path: area,
+            city: event.detail.values[0].name + '/' + event.detail.values[1].name + '/' + event.detail.values[2].name,
+            areaModal: !this.data.areaModal,
+
         });
     },
     submit() {
-        Notify({
-            text: '保存成功',
-            duration: 1000,
-            selector: '#custom-selector',
-            backgroundColor: '#39b54a'
-        })
+        // /api/front/address/create 
+        const apiURL = this.isEdit ? '/user/address_add_or_edit' : '/user/address_add_or_edit'
+        const msg = this.isEdit ? '编辑成功' : '添加成功'
+
+        var data = {
+            consignee: this.data.consignee,
+            mobile: this.data.mobile,
+            province_id: this.data.path[0],
+            city_id: this.data.path[1],
+            district_id: this.data.path[2],
+            address: this.data.address,
+            is_address_default: this.data.is_address_default,
+            //city: this.data.city
+        }
+
+        if (this.isEdit) {
+            Object.assign(data, { id: this.id })
+        }
+        util.wx.post(apiURL, data)
+            .then(res => {
+                if (res.data.code == 0) {
+                    Notify({
+                        text: msg,
+                        duration: 1000,
+                        selector: '#custom-selector',
+                        backgroundColor: '#39b54a'
+                    })
+                    wx.navigateBack({
+                        delta: 1
+                    })
+                } else {
+                    Notify({
+                        text: res.data.msg,
+                        duration: 1000,
+                        selector: '#custom-selector',
+                        backgroundColor: '#f00'
+                    })
+
+                }
+            })
+
+
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
 
+        this.setData({
+            areaList: areaData,
+            source: options.source || false
+        })
+
+        if (options.id) {
+            this.id = options.id
+            this.isEdit = true
+            this.getDetail(options.id)
+            wx.setNavigationBarTitle({
+                title: '编辑地址'
+            })
+        }
     },
+
+    getDetail(id) {
+        util.wx.get('/api/front/address/info', { id })
+            .then(res => {
+                if (res.data.code == 0) {
+                    this.setData({
+                        consignee: res.data.data.user_address_consignee,
+                        mobile: res.data.data.user_address_mobile,
+                        path: res.data.data.user_address_path,
+                        area: res.data.data.user_address_area,
+                        city: res.data.data.user_address_prefix,
+                        is_address_default: res.data.data.user_address_is_address_default
+                    })
+                }
+            })
+    },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -89,10 +169,5 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    }
+    inputDuplex: util.inputDuplex
 })

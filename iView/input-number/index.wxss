@@ -13,8 +13,10 @@
     font-weight: bold;
 }
 
-.i-input-number-minus {
+.i-input-number .i-input-number-minus {
     border-right: none;
+    background-color: #ddd;
+    color: #fff
 }
 
 .i-input-number-plus {
