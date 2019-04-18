@@ -13,12 +13,7 @@
             </block>
             <view class="right-text">
 
-                <view class="test-container">
-<share-button
-  product="{{product}}"
-  bind:error="on_error"
-/>
-</view>
+
 
                 <view class="share-box">
             <button bindtap='openShareFriends'>
@@ -49,7 +44,7 @@
             <view class="goods-price" >
 
                 <view class="goods-price-item flex-box" wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
-                    <view class="pics flex-item">
+                    <view class="pics flex-item" wx:if="{{item.spec_pic}}">
  <image  src="{{item.spec_pic[0]}}" /> 
  </view>
 
@@ -58,16 +53,15 @@
                     <view class="f14 text-default">{{item.spec_name}} <text class="price"> ¥{{item.spec_price}}</text></view> 
                     <view class="f12px text-info">{{item.spec_desc}}</view> 
                 </view>
-                 <i-input-number i-class="input-number" id="1" value="0" min="0" max="100"  bindchange="handleCountChange" slot="footer" />
+                 <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{item.spec_stock}}"  bindchange="handleCountChange" slot="footer" />
                 </view>
             </view>
               
         </view>
-        <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
-            <i-cell title="发货方式" label="快递邮寄 送货上门" i-class="address-item">
-                <i-icon type="coordinates_fill" slot="icon" />
+      <!--   <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
+            <i-cell  label="快递邮寄 送货上门" i-class="address-item">
             </i-cell>
-        </view>
+        </view> -->
         <view wx:if="{{goods.delivery_method == 2}}" style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}">
             <i-cell title="{{'取货地点 '+item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
@@ -83,6 +77,13 @@
                     <text class="text-muted">{{seller_user.nickname}}   红叶舞秋山 </text>
 
                     
+                </view>
+                <view class="flex-item">
+                    <share-button
+  product="{{product}}"
+  bind:error="on_error"
+  type="1"
+/>
                 </view>
            </view>
             <view class='goods-content'>
@@ -120,6 +121,11 @@
                 </view>
             </i-cell>
         </i-cell-group>
+
+         <view wx:if="{{goods.goods_video}}">
+            <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
+        </view>
+
         <view wx:if="{{goods.content_imgs.length}}">
             <view class='sub-title scale-b-1px'>
                 <i-icon type="suspend" color="#4dc332" />图文介绍
@@ -127,39 +133,32 @@
         </view>
     </view>
 
-    <view class='sub-title scale-b-1px'>
-    <i-icon type="suspend" color="#4dc332" />朋友评价
-    </view>
-
-    <comment></comment>
-
     <view class="piclist-container">
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
             <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
         </block>
     </view>
+
+
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
-            <i-icon type="homepage" size="26" color="#333" />
+            <i-icon type="mine" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
-        <view class='icon' bindtap='homepage'>
-            <i-icon type="homepage" size="26" color="#333" />
-            <text class="label">结算</text>
-        </view>
-        <form style="flex:2" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
-            <button class="buy linenear_bg" formType="submit">立即参团</button>
+        <form style="flex:3" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
+            <button class="buy linenear_bg" formType="submit">立即参与</button>
         </form>
     </view>
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
+            <view class="title">确定数量</view>
             <scroll-view scroll-y style="max-height:500px;">
                 <i-panel>
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">
-                        <i-cell wx:for="{{spec_goods_price}}" wx:key="{{index}}">
+                        <i-cell wx:for="{{goods_spec}}" wx:key="{{index}}">
                             <view class="type-box text-justify">
-                                <view><text class="text-red f16"> ¥{{item.price}}</text> / {{item.key_name}}</view>
-                                <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
+                                <view>{{item.spec_name}} / <text class="text-red f16"> ¥{{item.spec_price}}</text> </view>
+                                <i-input-number disabled id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
                             </view>
                         </i-cell>
                     </i-cell-group>
