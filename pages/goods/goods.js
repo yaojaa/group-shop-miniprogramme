@@ -9,7 +9,7 @@ Page({
     data: {
         imgs:{ // 动画相册配置
             src:[],
-            height: 500
+            height: 800  //动态图片高度
         },
         hasScope: false, //是否授权
         goods: {},
