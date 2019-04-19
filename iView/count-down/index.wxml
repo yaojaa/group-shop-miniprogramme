@@ -1,4 +1,4 @@
 <view>
-   距离活动结束还剩：{{time}}
+   距离结束：<text style="color:#f00">{{time}}</text>
 </view>
 
