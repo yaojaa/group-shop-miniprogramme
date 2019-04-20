@@ -9,7 +9,7 @@ Page({
     data: {
         imgs:{ // 动画相册配置
             src:[],
-            height: 500
+            height: 800  //动态图片高度
         },
         hasScope: false, //是否授权
         goods: {},
@@ -22,7 +22,7 @@ Page({
         amountMoney: 0,
         countdownTime: 0,
         clearTimer: false,
-        myFormat: ['天', '时', '分', '秒'],
+        myFormat: ['天', '小时', '分', '秒'],
         orderUsers: [],
         imagePath: "",
         collection_methods:'',
@@ -54,60 +54,7 @@ Page({
           src: '',
           size: 300 //二维码显示尺寸默认300
         },
-        product: {
-  "item_code":"00003563372839_00000010154601",
-  "title":"product_name",
-  "desc":"product_description",
-  "category_list":[
-    "服装",
-    "上衣",
-    "短袖衬衫"
-  ],
-  "image_list":[
-    "https://res.wx.qq.com/mpres/htmledition/images/xxxx.jpeg"
-  ],
-  "src_mini_program_path":"/detail?item_code=00003563372839_00000010154601",
-  "sku_list":[
-    {
-      "sku_id":"SKU_ID",
-      "price":12345,
-      "original_price":67890,
-      "status":1,
-      "poi_list":[
-        {
-          "longitude":116.32676,
-          "latitude":40.003305,
-          "radius":5,
-          "business_name":"XXX",
-          "branch_name":"珠江新城店",
-          "address":"新港中路123号"
-        },
-        {
-          "longitude":117.32676,
-          "latitude":41.003305,
-          "radius":5,
-          "business_name":"CCC",
-          "branch_name":"客村店",
-          "address":"新港中路123号"
-        }
-      ],
-      "sku_attr_list":[
-        {
-          "name":"颜色",
-          "value":"白色"
-        },
-        {
-          "name":"尺码",
-          "value":"XXL"
-        }
-      ]
-    }
-  ],
-  "brand_info":{
-    "name":"品牌名、小程序名",
-    "logo":"http://xxxxx"
-  }
-}
+        hw_data:{}
 
       },
     },
@@ -225,10 +172,11 @@ Page({
             // sell_address: res.data.data.sell_address,
             // seller_user: res.data.data.seller_user,
             goods_spec: goods_spec,
+            hw_data:d.hw_data,
             // delivery_method: res.data.data.goods.delivery_method,
             // collection_methods: res.data.data.goods.collection_methods,
             // endTime: res.data.data.goods.sell_end_time,
-            // countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
+            countdownTime: new Date(d.goods.end_time * 1000).getTime()
           })
 
           // wx.setNavigationBarTitle({

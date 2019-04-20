@@ -70,7 +70,7 @@ Component({
                 if (data.changeFormat) {
                     result = `${day}${format[0]} ${time}`;
                 } else {
-                    result = `${day}d ${time}`;
+                    result = `${day}d${time}`;
                 }
             } else {
                 result = time;

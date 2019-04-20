@@ -48,7 +48,7 @@ Page({
     },
     submit() {
         // /api/front/address/create 
-        const apiURL = this.isEdit ? '/user/address_add_or_edit' : '/user/address_add_or_edit'
+        const apiURL = this.isEdit ? '/api/user/address_add_or_edit' : '/api/user/address_add_or_edit'
         const msg = this.isEdit ? '编辑成功' : '添加成功'
 
         var data = {

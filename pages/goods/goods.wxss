@@ -10,10 +10,10 @@
 }
 
 .goods-title {
-    font-size: 36rpx;
+    font-size: 40rpx;
     color: #333;
     line-height: 1.4;
-    padding: 10px 30px
+    padding: 10px 30px 5px
 }
 
 .goods-desc {
@@ -264,8 +264,7 @@
     font-size: 14px;
     background-color: #f8f8f8;
     color: #999;
-    margin:0 -15px;
-    text-align: center;
+    text-align: left;
     overflow: hidden;
     padding: 10px;
     position: relative;
