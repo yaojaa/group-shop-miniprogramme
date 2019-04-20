@@ -1,26 +1,27 @@
 
 
 
-  <i-custom-bar title="开团有礼品啦" showIcon="{{true}}"> </i-custom-bar>
+  <i-custom-bar title="开团有礼品啦" showBackIcon="{{true}}"> </i-custom-bar>
 
 <view class="container mtop30">
 
-     <wux-notice-bar mode="link"   loop leading="3000" action="" content="开心麻团2.0内测阶段，发布满3个团购且总人数满100人，赠送生态鲜腐竹4盒" bind:click="onClick">
+  <wux-notice-bar mode="link"   loop leading="3000" action="" content="欢迎使用，不知道如果发商品？看这里" bind:click="onClick">
             <text slot="footer" style="color: #a1a1a1; margin-left: 10px;">去领取</text>
   </wux-notice-bar>
 
 
 <view class="circle_warpper" >
+      <navigator url="../publish/publish">
 
      <view class="circle">
 
-      <navigator url="../publish/publish">
 
        <i-icon size="42" color="#ffffff"  type="add" />
        <view class="new">发布新商品</view>
-     </navigator>
        
      </view>
+          </navigator>
+
 </view>
 
 
@@ -32,7 +33,7 @@
   <view class="button-area flex_box">
   <view class="flex-item">
 
-    <image class="tmp-cover" mode="cover" src="/img/tmp_icon1.jpg"></image>
+    <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon1.jpg"></image>
 
 <!--   <i-icon type="success"  size="34" color="#c6c6c6" />
  -->  </view>
@@ -60,7 +61,7 @@
 <view class="center">
   <view class="button-area flex_box">
   <view class="flex-item">
-    <image class="tmp-cover" mode="cover" src="/img/tmp_icon3.jpg"></image>
+    <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon3.jpg"></image>
   </view>
   <view class="flex-item-5 left">
     <view class="f16 text-default"> <view>快递包邮送货上门模板</view>

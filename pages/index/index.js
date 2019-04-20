@@ -9,7 +9,7 @@ Page({
 
     }
   },
-   handleChange ({ detail }) {
+  handleTabBarChange ({ detail }) {
         this.setData({
             current: detail.key
         })

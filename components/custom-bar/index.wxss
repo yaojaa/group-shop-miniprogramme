@@ -36,7 +36,8 @@
 
 .icon{
 	position: absolute;
-	left: 10px
+	left: 10px;
+	z-index: 2019
 }
 
 .icon:active{

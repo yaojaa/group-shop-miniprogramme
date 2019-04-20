@@ -498,6 +498,21 @@ Page({
             'photoUrls': this.data.photoUrls
         })
     },
+
+     //删除一张照片
+    removePicture: function(e) {
+        let index = e.currentTarget.dataset.index
+
+
+        this.data.content_imgs.splice(index, 1)
+        this.setData({
+            'content_imgs': this.data.content_imgs
+        })
+        wx.showToast({
+            title:'删除成功',
+            icon:'none'
+        })
+    },
     handleAnimalChange: function(event) {
 
         const detail = event.detail;

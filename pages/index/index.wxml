@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
 
-<i-custom-bar fixed  backImage="http://img.atomstone.com/top_bar_bg.jpg"> <view class="tit-slogan">身边好物 跟着买就对了 <text class="small">{{userloaction.city}} {{userloaction.district}}</text></view>   </i-custom-bar>
+<i-custom-bar fixed backColor="#ffffff" backImage="http://img.atomstone.com/top_bar_bg.jpg"> <view class="tit-slogan">身边好物 跟着买就对了 <text class="small">{{userloaction.city}} {{userloaction.district}}</text></view>   </i-custom-bar>
   <!--   <view class="location flex-box align-center">
         <i-icon type="coordinates_fill" size="16" />
         <text>{{userloaction.city}} {{userloaction.district}} {{userloaction.street_number}}</text>
@@ -98,8 +98,8 @@
   <text>+发布</text>
   </view> -->
     <view class="footer_bar">
-        <i-tab-bar current="nearby" color="#188f00" bindchange="handleChange">
-            <i-tab-bar-item key="nearby" icon="homepage" current-icon="homepage_fill" title="发现"></i-tab-bar-item>
+        <i-tab-bar current="nearby" color="#188f00" bindchange="handleTabBarChange">
+            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="发现"></i-tab-bar-item>
             <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
         </i-tab-bar>

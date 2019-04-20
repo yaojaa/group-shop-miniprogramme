@@ -80,7 +80,7 @@
                                 <i-icon data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
                             </view>
                             <view class="icon-list">
-                                <i-icon data-index="{{index}}" bindtap="removePictrue" color="#999" size="28" type="close" />
+                                <i-icon data-index="{{index}}" bindtap="removePicture" color="#999" size="28" type="close" />
                             </view>
                         </view>
                     </view>
