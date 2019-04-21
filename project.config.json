@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 36,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -74,7 +74,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=45",
+					"query": "goods_id=47",
 					"scene": 1001
 				},
 				{

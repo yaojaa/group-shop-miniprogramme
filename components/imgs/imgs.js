@@ -10,7 +10,7 @@ Component({
   },
   data: {
     imgsPath:[], // 图片信息集合
-    index: 0, // 动画下标
+    index: 1, // 动画下标
     animationDuration: 20, // 动画持续时间基数
     imgBoxSize: {}, // 容器实际尺寸
     img: {}, //页面当前图片
@@ -23,45 +23,60 @@ Component({
   methods: {
     init() {
       let imageInfo = [];
+      let imgOne = {};
+
+      console.log("imgs", this.properties.imgs)
 
       if (this.isEmpty(this.properties.imgs.src)) {
         return;
       }
 
-      if (this.properties.imgs.src.length == 1) {
-        this.data.imgsPath.push({ src: this.properties.imgs.src[0].img_url, type: 9, index: 0 });
-        this.setData({
-          imgsPath: this.data.imgsPath,
-          img: this.data.imgsPath[0]
-        })
-        return;
-      }
+      wx.getImageInfo({
+        src: this.properties.imgs.src.shift().img_url,
+        success: (info) => {
+          if(info.errMsg == "getImageInfo:ok"){
+            imgOne = info;
+            this.data.imgsPath.push({ src: imgOne.path, type: 9, flag: false });
+            this.setData({
+              imgsPath: this.data.imgsPath,
+              img: this.data.imgsPath[0]
+            })
+          }
 
-      this.properties.imgs.src.forEach(e => {
-        imageInfo.push(this.getImageInfo(e.img_url))
-      });
-      
-      Promise.all(imageInfo).then(arr => {
-        this.createSelectorQuery().selectAll('.img-box').boundingClientRect().exec(rects => {
+          if(this.properties.imgs.src.length == 0){
+            return;
+          }
 
-          this.data.imgBoxSize.w = rects[0][0].width;
-          this.data.imgBoxSize.h = rects[0][0].height;
-          this.data.imgsPath = [];
+          this.properties.imgs.src.forEach(e => {
+            imageInfo.push(this.getImageInfo(e.img_url)) 
+          });
+          
+          Promise.all(imageInfo).then(arr => {
+            this.createSelectorQuery().selectAll('.img-box').boundingClientRect().exec(rects => {
 
-          arr.forEach(e => {
-            // let b = e.width/e.height;
-            // let size = this.widthHeight(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e.width, e.height);
-            if(e.errMsg == "getImageInfo:ok"){
-              this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e));
-            }
-          })
+              this.data.imgBoxSize.w = rects[0][0].width;
+              this.data.imgBoxSize.h = rects[0][0].height;
+              this.data.imgsPath = [];
+              arr.push(imgOne);
 
-          this.setData({
-            imgsPath: this.data.imgsPath
-          })
+              arr.forEach(e => {
+                if(e.errMsg == "getImageInfo:ok"){
+                  this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e));
+                }
+              })
 
-          this.animationFun(true);
-        })
+              this.setData({
+                imgsPath: this.data.imgsPath
+              })
+
+              this.animationFun(true);
+            })
+          });
+
+        },
+        fail: (error) => {
+          console.log('err',error)
+        },
       });
       
     },
@@ -84,12 +99,13 @@ Component({
     animationFun(random){
       let i = this.data.index;
       let img = this.data.imgsPath[i];
+      let _img = i == 0 ? this.data.imgsPath[this.data.imgsPath.length-1] : this.data.imgsPath[i-1];
       //初始数据
       this.animationReset(random);
 
       img.transition = this.getAnimationParam(img.duration);
 
-      img.index = i;
+      img.flag = !_img.flag;
 
       // 初始渲染
       this.setData({
