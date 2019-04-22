@@ -49,13 +49,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/home/index",
-					"pathName": "pages/order-list/index",
-					"query": "",
+					"name": "当前面开发页面",
+					"pathName": "pages/address/index",
+					"query": "id=14",
 					"scene": null
 				},
 				{

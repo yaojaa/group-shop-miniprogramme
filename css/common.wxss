@@ -623,20 +623,20 @@ button {
 }
 
 .primary.btn.hollow {
-    color: #49b34d
+    color: #8E50E0
 }
 
 .primary.btn.hollow::after {
-    border: 2px solid #49b34d;
+    border: 2px solid #8E50E0;
     display: block;
 }
 
 .secondary.btn.hollow {
-    color: #49b34d
+    color: #8E50E0
 }
 
 .secondary.btn.hollow::after {
-    border: 2px solid #49b34d;
+    border: 2px solid #8E50E0;
     display: block;
 }
 
@@ -744,11 +744,11 @@ button {
 }
 
 .primary-text {
-    color: #49b34d;
+    color: #8E50E0;
 }
 
 .secondary-text {
-    color: #49b34d
+    color: #8E50E0
 }
 
 .pink-text {
@@ -1037,12 +1037,12 @@ button {
 }
 
 .primary {
-    background: #49b34d;
+    background: #8E50E0;
     color: #fff
 }
 
 .secondary {
-    background: #49b34d;
+    background: #8E50E0;
     color: #fff
 }
 
@@ -1093,12 +1093,12 @@ button {
 
 .primary.inverse {
     background: #fff;
-    color: #49b34d
+    color: #8E50E0
 }
 
 .secondary.inverse {
     background: #fff;
-    color: #49b34d
+    color: #8E50E0
 }
 
 .success.inverse {
@@ -1143,7 +1143,7 @@ button {
 
 .tag-default {
     background-color: #F9F5FD;
-    color: #49b34d;
+    color: #8E50E0;
     border-radius: 2rpx;
     font-weight: normal;
 }
@@ -1167,5 +1167,5 @@ button {
     width: 30rpx;
     height: 1px;
     transform: scaleX(0.5);
-    background: #49b34d;
+    background: #8E50E0;
 }
