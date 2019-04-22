@@ -18,8 +18,8 @@
     "share-painter": "/iView/share-painter/share-painter",
     "imgs": "../../components/imgs/imgs",
     "comment": "../../components/comment/index",
-    "i-panel": "../../iView/panel/index",
-    "share-button": "plugin://goodsSharePlugin/share-button"
+    "share-button": "plugin://goodsSharePlugin/share-button",
+    "van-popup": "../../vant/popup/index"
 
 
   }

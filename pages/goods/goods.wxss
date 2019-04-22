@@ -1,5 +1,28 @@
 @import "../../utils/weui.wxss";
 
+.authPopBox{
+
+  border-radius:8px;
+  padding: 14px;
+  width: 500rpx
+}
+
+.authPopBox .info{
+    font-size: 14px;
+  color: #666;
+  padding: 10px 0;
+  text-align: center;
+}
+.authPopBox .logo image{
+
+  width: 200rpx;
+  height: 200rpx;
+  display: block;
+  margin: 0 auto
+
+}
+
+
 .swiper-primary {
     width: 100%;
     height: 550rpx;
@@ -101,7 +124,13 @@
     flex: 3;
     line-height: 48px;
     color: #fff;
-    border-radius: 0
+    border-radius: 0;
+    border: none;
+}
+
+.footer-cart .buy:after,.footer-cart .buy:before {
+
+    border: none;
 }
 
 .goods-content image {
@@ -530,4 +559,105 @@
   right: 30px;
   top: 0px
 }
+.default-badge {
+border-radius:1000px;
+font-size:16rpx;
+color:#fff;
+background:#FA7268;
+position:absolute;
+top:-10rpx;
+left:-10rpx;
+padding:8rpx;
+min-width:24rpx;
+z-index: 999
+
+}
+
+.roll_box{
+  
+  width: 20px;
+  height: 20px;
+  background: #a3df00;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 999999;
+}
+
+.cake{
+  animation:move 1s 0s;
+  -webkit-animation:move 1s 0s ;
+  transform-origin:bottom;
+  -webkit-transform-origin:bottom;}
+
+@keyframes move
+{
+    0%, { 
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+    5% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    10% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+     15% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    20% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+     30% {  
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+  
+
+ 
+    100% {  
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+}
+
+@-webkit-keyframes move
+{
+    0%, 65%{ 
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+    70% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    75% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    80% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    85% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    90% {  
+      -webkit-transform:rotate(6deg);
+      transform:rotate(6deg);
+    }
+    95% {  
+      -webkit-transform:rotate(-6deg);
+      transform:rotate(-6deg);
+    }
+    100% {  
+      -webkit-transform:rotate(0deg);
+      transform:rotate(0deg);
+    }
+}
+
 

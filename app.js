@@ -226,12 +226,21 @@ App({
     console.log('hasToken',this.hasToken())
     console.log('option',option)
 
-    // wx.getSystemInfo({
-    //   success(res){
-    //     console.log(res)
-    //   }
-    // }
-    // )
+      // 获取设备状态栏高度
+        wx.getSystemInfo({
+            success: e => {
+                this.globalData.StatusBar = e.statusBarHeight;
+                this.globalData.CustomBar = e.platform == 'android' ? e.statusBarHeight + 50 : e.statusBarHeight + 45;
+            }
+        })
+        //检测设备尺寸
+        try {
+            var SystemInfo = wx.getSystemInfoSync()
+            this.globalData.winHeight = SystemInfo.windowHeight
+            this.globalData.winWidth = SystemInfo.windowWidth
+        } catch (e) {
+            this.globalData.winHeight = 500
+        }
 
 
     if(this.hasToken()){

@@ -49,13 +49,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 30,
 			"list": [
 				{
 					"id": 0,
-					"name": "当前面开发页面",
-					"pathName": "pages/address/index",
-					"query": "id=14",
+					"name": "pages/home/index",
+					"pathName": "pages/order-list/index",
+					"query": "",
 					"scene": null
 				},
 				{
@@ -251,10 +251,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 30,
 					"name": "详情页",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=14",
+					"query": "goods_id=47",
 					"scene": null
 				},
 				{
