@@ -172,7 +172,7 @@ Component({
     animationReset(r){
       this.data.imgsPath.forEach(e => {
         if(e.type == 0){
-          e.scale = this.data.minScaleVal / e.size.s;
+          e.scale = this.data.minScaleVal / e.size._s;
         }else if(e.type == 1){
           e.x = r ? 0 : this.data.imgBoxSize.w - e.size.w;
         }else{
@@ -214,7 +214,7 @@ Component({
           src: e.path,
           size: size,
           type: '0', //0正方形  1横图  2竖图
-          scale: this.data.minScaleVal / size.s,
+          scale: this.data.minScaleVal / size._s,
           duration: this.getDuration(size.s-this.data.minScaleVal/2)
         };
       }else if(b > _b){ //横图
