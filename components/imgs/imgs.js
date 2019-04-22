@@ -10,11 +10,13 @@ Component({
   },
   data: {
     imgsPath:[], // 图片信息集合
-    index: 0, // 动画下标
+    index: 1, // 动画下标
     animationDuration: 20, // 动画持续时间基数
     imgBoxSize: {}, // 容器实际尺寸
     img: {}, //页面当前图片
     bigImgsHidden: true, //查看大图
+    minScaleVal: 100, //最小缩放值
+    minXYVale: 100,//xy轴最小运动值
   },
   ready(){
     // this.init();
@@ -23,45 +25,69 @@ Component({
   methods: {
     init() {
       let imageInfo = [];
+      let imgOne = {};
 
+      console.log("imgs", this.properties.imgs)
       if (this.isEmpty(this.properties.imgs.src)) {
         return;
       }
 
-      if (this.properties.imgs.src.length == 1) {
-        this.data.imgsPath.push({ src: this.properties.imgs.src[0].img_url, type: 9, index: 0 });
-        this.setData({
-          imgsPath: this.data.imgsPath,
-          img: this.data.imgsPath[0]
-        })
-        return;
-      }
+      // this.properties.imgs.src=[
+      //   {img_url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1402689538,1138486299&fm=26&gp=0.jpg"},
+      //   {img_url: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1349823395,1860218221&fm=26&gp=0.jpg"},
+      //   {img_url: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3279718710,204380919&fm=26&gp=0.jpg"},
+      //   {img_url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3177052742,4178134656&fm=26&gp=0.jpg"},
+      //   {img_url: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2769144416,3324413978&fm=26&gp=0.jpg"},
+      //   {img_url: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=585768271,3076094714&fm=26&gp=0.jpg"},
+      // ]
 
-      this.properties.imgs.src.forEach(e => {
-        imageInfo.push(this.getImageInfo(e.img_url))
-      });
-      
-      Promise.all(imageInfo).then(arr => {
-        this.createSelectorQuery().selectAll('.img-box').boundingClientRect().exec(rects => {
 
-          this.data.imgBoxSize.w = rects[0][0].width;
-          this.data.imgBoxSize.h = rects[0][0].height;
-          this.data.imgsPath = [];
+      wx.getImageInfo({
+        src: this.properties.imgs.src.shift().img_url,
+        success: (info) => {
+          if(info.errMsg == "getImageInfo:ok"){
+            imgOne = info;
+            this.data.imgsPath.push({ src: imgOne.path, type: 9, flag: false });
+            this.setData({
+              imgsPath: this.data.imgsPath,
+              img: this.data.imgsPath[0]
+            })
+          }
 
-          arr.forEach(e => {
-            // let b = e.width/e.height;
-            // let size = this.widthHeight(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e.width, e.height);
-            if(e.errMsg == "getImageInfo:ok"){
-              this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e));
-            }
-          })
+          if(this.properties.imgs.src.length == 0){
+            return;
+          }
 
-          this.setData({
-            imgsPath: this.data.imgsPath
-          })
+          this.properties.imgs.src.forEach(e => {
+            imageInfo.push(this.getImageInfo(e.img_url)) 
+          });
+          
+          Promise.all(imageInfo).then(arr => {
+            this.createSelectorQuery().selectAll('.img-box').boundingClientRect().exec(rects => {
 
-          this.animationFun(true);
-        })
+              this.data.imgBoxSize.w = rects[0][0].width;
+              this.data.imgBoxSize.h = rects[0][0].height;
+              this.data.imgsPath = [];
+              arr.unshift(imgOne);
+
+              arr.forEach(e => {
+                if(e.errMsg == "getImageInfo:ok"){
+                  this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e));
+                }
+              })
+
+              this.setData({
+                imgsPath: this.data.imgsPath
+              })
+
+              this.animationFun(true);
+            })
+          });
+
+        },
+        fail: (error) => {
+          console.log('err',error)
+        },
       });
       
     },
@@ -84,12 +110,13 @@ Component({
     animationFun(random){
       let i = this.data.index;
       let img = this.data.imgsPath[i];
+      let _img = i == 0 ? this.data.imgsPath[this.data.imgsPath.length-1] : this.data.imgsPath[i-1];
       //初始数据
       this.animationReset(random);
 
       img.transition = this.getAnimationParam(img.duration);
 
-      img.index = i;
+      img.flag = !_img.flag;
 
       // 初始渲染
       this.setData({
@@ -113,7 +140,7 @@ Component({
 
             this.animationFun(this.getRandom());
 
-          }, img.duration*1000+500);
+          }, img.duration*1000+1000);
         });
 
       });
@@ -134,7 +161,7 @@ Component({
 
     animationType(img, r){
       if(img.type == 0){
-        img.scale = img.size.s/img.size.w;
+        img.scale = img.size.s/img.size._s;
       }else if(img.type == 1){
         img.x = r ? this.data.imgBoxSize.w - img.size.w : 0;
       }else{
@@ -145,7 +172,7 @@ Component({
     animationReset(r){
       this.data.imgsPath.forEach(e => {
         if(e.type == 0){
-          e.scale = 0;
+          e.scale = this.data.minScaleVal / e.size.s;
         }else if(e.type == 1){
           e.x = r ? 0 : this.data.imgBoxSize.w - e.size.w;
         }else{
@@ -182,23 +209,47 @@ Component({
         size.w = Math.min(w, h);
         size.h = size.w;
         size.s = Math.max(w, h); //缩放限值
+        size._s = size.w; //缩放相对值
         opt = {
           src: e.path,
           size: size,
           type: '0', //0正方形  1横图  2竖图
-          scale: 0,
-          duration: this.getDuration(size.s/2)
+          scale: this.data.minScaleVal / size.s,
+          duration: this.getDuration(size.s-this.data.minScaleVal/2)
         };
       }else if(b > _b){ //横图
         size.h = h;
         size.w = e.width/e.height*h;
-        opt = {
-          src: e.path,
-          size: size,
-          type: '1', //0正方形  1横图  2竖图
-          x: 0,
-          duration: this.getDuration(Math.abs(size.w - w))
-        };
+
+        // if(size.w - w <= this.data.minXYVale){ //小于最小运动值
+        //   size.s = h; //缩放限值
+        //   size._s = 
+        //   opt = {
+        //     src: e.path,
+        //     size: size,
+        //     type: '0', //0正方形  1横图  2竖图
+        //     scale: this.data.minScaleVal / size.s,
+        //     duration: this.getDuration(size.s-this.data.minScaleVal/2)
+        //   };
+        // }else{
+        //   opt = {
+        //     src: e.path,
+        //     size: size,
+        //     type: '1', //0正方形  1横图  2竖图
+        //     x: 0,
+        //     duration: this.getDuration(Math.abs(size.w - w))
+        //   };
+        // }
+
+
+          opt = {
+            src: e.path,
+            size: size,
+            type: '1', //0正方形  1横图  2竖图
+            x: 0,
+            duration: this.getDuration(Math.abs(size.w - w))
+          };
+
       }else{  //竖图
         size.w = w;
         size.h = e.height/e.width*w;
@@ -210,6 +261,7 @@ Component({
           duration: this.getDuration(Math.abs(size.h - h))
         };
       };
+      console.log(opt)
       return opt;
     },
 
