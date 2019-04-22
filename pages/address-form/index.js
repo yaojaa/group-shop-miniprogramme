@@ -46,28 +46,21 @@ Page({
 
         });
     },
-    submit() {
-        // /api/front/address/create 
+    submit(e) {
         const apiURL = this.isEdit ? '/api/user/address_add_or_edit' : '/api/user/address_add_or_edit'
-        const msg = this.isEdit ? '编辑成功' : '添加成功'
+        const msg = this.isEdit ? '编辑成功' : '添加成功';
+        let sendData = e.detail.value
 
-        var data = {
-            consignee: this.data.consignee,
-            mobile: this.data.mobile,
-            province_id: this.data.path[0],
-            city_id: this.data.path[1],
-            district_id: this.data.path[2],
-            address: this.data.address,
-            is_address_default: this.data.is_address_default,
-            //city: this.data.city
-        }
-
+        sendData.province_id = this.data.path[0]
+        sendData.city_id = this.data.path[1]
+        sendData.district_id = this.data.path[2]
         if (this.isEdit) {
             Object.assign(data, { id: this.id })
-        }
-        util.wx.post(apiURL, data)
+        };
+        console.log(sendData)
+        util.wx.post(apiURL, sendData)
             .then(res => {
-                if (res.data.code == 0) {
+                if (res.data.code == 200) {
                     Notify({
                         text: msg,
                         duration: 1000,
@@ -111,15 +104,16 @@ Page({
     },
 
     getDetail(id) {
-        util.wx.get('/api/front/address/info', { id })
+        util.wx.get('/api/user/address_add_or_edit', { id })
             .then(res => {
-                if (res.data.code == 0) {
+                if (res.data.code == 200) {
                     this.setData({
-                        consignee: res.data.data.user_address_consignee,
-                        mobile: res.data.data.user_address_mobile,
-                        path: res.data.data.user_address_path,
-                        area: res.data.data.user_address_area,
-                        city: res.data.data.user_address_prefix,
+                        consignee: res.data.data.consignee,
+                        mobile: res.data.data.mobile,
+                        province_id: res.data.data.province_id,
+                        city_id: res.data.data.city_id,
+                        district_id: res.data.data.district_id,
+                        address:res.data.data.address,
                         is_address_default: res.data.data.user_address_is_address_default
                     })
                 }
@@ -167,7 +161,5 @@ Page({
      */
     onReachBottom: function() {
 
-    },
-
-    inputDuplex: util.inputDuplex
+    }
 })
