@@ -11,6 +11,7 @@ Page({
             src:[],
             height: 800  //动态图片高度
         },
+        scrollTop:0,
         hasScope: false, //是否授权
         goods: {},
         visibleU:false,
@@ -54,7 +55,10 @@ Page({
           src: '',
           size: 300 //二维码显示尺寸默认300
         },
-        hw_data:{}
+        hw_data:null,
+        showAuth:false,
+        showRoll: 0
+
 
       },
     },
@@ -196,6 +200,8 @@ Page({
         })
 
         this.getGoodsInfo(option.goods_id)
+
+        this.checkUserIslogin()
 
 
         // wx.showLoading({
@@ -350,8 +356,13 @@ Page({
         })
     },
     handleCountChange(e) {
-      console.log(e.detail.value)
+      console.log(e)
         let id = e.target.id
+
+     
+
+
+
 
         let key = "goods_spec[" + id + "].item_num"
 
@@ -375,6 +386,18 @@ Page({
             [key]: e.detail.value,
             amountMoney: amountMoney / 100
         })
+
+
+
+    },
+    addAnimate(e){
+
+        this.starPos = {}
+        this.starPos['x'] = e.detail.x -20
+        this.starPos['y'] = e.detail.y - this.data.scrollTop
+        console.log('starPos', this.starPos)
+     this.startAnimation()
+
 
     },
     cartPanelHide() {
@@ -423,13 +446,53 @@ Page({
              app.login_third(e.detail).then((res) => {
                 console.group('登陆成功:', res)
                 wx.hideLoading()
-                this.buy()
+                this.setData({
+                  showAuth:false
+                })
             })
             .catch(e => console.log(e))
 
 
         })
 
+
+    },
+    //购物车抛物线
+    startAnimation() {
+
+        this.setData({
+            showRoll: 1
+        })
+
+        this.busPos = {};
+        this.busPos['x'] = 80; //购物车的位置
+        this.busPos['y'] = app.globalData.winHeight;
+
+
+        this.linePos = util.bezier([this.busPos, { x: 82, y: 100 }, this.starPos], 20).bezier_points
+
+        console.log('this.linePos',this.linePos)
+        var len = this.linePos.length
+        this.timer && clearInterval(this.timer)
+
+        this.timer = setInterval(() => {
+            len --
+            this.setData({
+                bus_x: this.linePos[len].x,
+                bus_y: this.linePos[len].y
+            })
+
+
+
+            if (len == 0) {
+                console.log(len)
+                this.setData({
+                    showRoll: 0
+                })
+                clearInterval(this.timer)
+            }
+
+        }, 25)
 
     },
     getOrderUserList(goods_id) {
@@ -524,6 +587,20 @@ Page({
 
 
     },
+    checkUserIslogin(){
+      wx.getStorage({//获取本地缓存
+      key:"token",
+      success:function(res){
+        console.log('checkUserIslogin',res)
+      },
+      fail:(res)=>{
+        console.log('checkUserIslogin',res)
+        this.setData({
+          showAuth:true
+        })
+      }
+    })
+    },
     //预览图片
     imgPreview: function(event) {
         var src = event.currentTarget.dataset.src; //获取data-src
@@ -602,5 +679,11 @@ Page({
                 })
             }
         });
-    }
+    },
+    onPageScroll:function(e){
+    console.log(e);//{scrollTop:99}
+    this.setData({
+      scrollTop:e.scrollTop
+    })
+  }
 })

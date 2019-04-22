@@ -3,20 +3,21 @@
 }
 
 .i-input-number view {
-    display: inline-block;
-    line-height: 21px;
-    height: 24px;
-    text-align: center;
-    width: 24px;
-    font-size: 18px;
-    color: #fff;
-    font-weight: bold;
+  display:inline-block;
+line-height:20px;
+height:26px;
+text-align:center;
+width:26px;
+font-size:20px;
+color:#fff;
+font-weight:bold;
+
 }
 
 .i-input-number .i-input-number-minus {
-    border-right: none;
-    background-color: #ddd;
-    color: #fff
+    border:1px solid #a3df00;
+    background-color: #fff;
+    color: #a3df00
 }
 
 .i-input-number-plus {
@@ -32,7 +33,7 @@
     height: 30px;
     width: 40px;
     min-height: auto;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 30px
 }
 

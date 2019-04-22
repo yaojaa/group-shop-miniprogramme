@@ -1,4 +1,8 @@
 <view class="container">
+   <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll}}">
+    </view>
+
+
     <imgs imgs="{{imgs}}"></imgs>
 
             <view class="countdownTime">
@@ -48,12 +52,16 @@
  <image  src="{{item.spec_pic[0]}}" /> 
  </view>
 
-                     <view class="flex-item-5">
+                     <view class="flex-item-2">
 
                     <view class="f14 text-default">{{item.spec_name}} <text class="price"> ¥{{item.spec_price}}</text></view> 
                     <view class="f12px text-info">{{item.spec_desc}}</view> 
                 </view>
-                 <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}"  bindchange="handleCountChange" slot="footer" />
+
+                 <view class="flex-item-2" bindtap="addAnimate">
+                 <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}"  bindchange="handleCountChange"  />
+                 </view>
+
                 </view>
             </view>
               
@@ -78,7 +86,7 @@
 
                     
                 </view>
-                <view class="flex-item">
+                <view class="flex-item" wx:if="{{hw_data}}">
                     <share-button
   product="{{hw_data}}"
   bind:error="on_error"
@@ -145,7 +153,8 @@
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
-        <form style="flex:3" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
+        <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
+            <text class="default-badge {{showRoll==0?'cake':''}}">2</text>
             <button class="buy linenear_bg" formType="submit">立即参与</button>
         </form>
     </view>
@@ -215,4 +224,20 @@
         <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
     </view>
     <i-message id="message" />
+
+    <van-popup custom-class="authPopBox"  
+ show="{{ showAuth }}" bind:close="onClose">
+        <view class="logo">
+            <image src="https://static.kaixinmatuan.cn/staitc-img/logo.png"/>
+        </view>
+       <view class="info">
+         获取您的公开信息
+         微信头像和昵称
+       </view>
+
+     <button size="default" type="primary"  plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
+           
+      
+        </van-popup>
+
 </view>
