@@ -49,12 +49,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
 					"name": "pages/home/index",
-					"pathName": "pages/address/index",
+					"pathName": "pages/order-list/index",
 					"query": "",
 					"scene": null
 				},

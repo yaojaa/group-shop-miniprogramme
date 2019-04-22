@@ -24,6 +24,24 @@ Page({
         scrollTop:0
 
     },
+    handleTabBarChange ({ detail }) {
+        this.setData({
+            current: detail.key
+        })
+
+        if(detail.key =='publish'){
+           wx.navigateTo({
+              url:'../publish-select/index'
+            })
+        }
+
+        if(detail.key =='nearby'){
+           wx.navigateTo({
+              url:'../index/index'
+            })
+        }
+       
+  },
     /**
      * 生命周期函数--监听页面加载
      */
