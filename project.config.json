@@ -49,12 +49,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/home/index",
-					"pathName": "pages/order-list/index",
+					"name": "确认订单",
+					"pathName": "pages/order-confirm/index",
 					"query": "",
 					"scene": null
 				},

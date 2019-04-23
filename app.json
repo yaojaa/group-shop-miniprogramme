@@ -29,7 +29,8 @@
         "pages/order-detail/index",
         "pages/ems-detail/index",
         "pages/evaluate/index",
-        "pages/wxgroup_add/index"
+        "pages/wxgroup_add/index",
+        "pages/order-confirm/index"
     ],
     "permission":
     {
