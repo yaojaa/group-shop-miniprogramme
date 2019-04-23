@@ -57,9 +57,8 @@ Page({
         },
         hw_data:null,
         showAuth:false,
-        showRoll: 0
-
-
+        showRoll: 0,
+        totalNum:0 //已选择的总数
       },
     },
     onShow: function() {
@@ -356,8 +355,10 @@ Page({
         })
     },
     handleCountChange(e) {
-      console.log(e)
+      console.log('handleCountChange',e)
         let id = e.target.id
+
+        this.type = e.detail.type
 
      
 
@@ -368,15 +369,16 @@ Page({
 
         this.data.goods_spec[id].item_num = parseInt(e.detail.value)
 
-
-
         let amountMoney = 0;
+
+        let totalNum = 0
 
 
         this.data.goods_spec.forEach(value => {
 
-          console.log('value.spec_price',value.item_num)
+          console.log('value.item_num:',value.item_num)
           amountMoney += parseInt(value.spec_price * 100) * parseInt(value.item_num)
+             totalNum += value.item_num
                 })
 
 
@@ -384,19 +386,30 @@ Page({
 
         this.setData({
             [key]: e.detail.value,
-            amountMoney: amountMoney / 100
+            amountMoney: amountMoney / 100,
+            totalNum:totalNum
         })
+
+        console.log('totalNum',this.data.totalNum)
 
 
 
     },
     addAnimate(e){
 
+      console.log('this.type',this.type)
+
+      if(this.type === 'plus'){
+      
         this.starPos = {}
         this.starPos['x'] = e.detail.x -20
         this.starPos['y'] = e.detail.y - this.data.scrollTop
         console.log('starPos', this.starPos)
-     this.startAnimation()
+       this.startAnimation()
+
+      }
+
+
 
 
     },
@@ -459,11 +472,10 @@ Page({
     },
     //购物车抛物线
     startAnimation() {
-
+      console.log('开始动画')
         this.setData({
             showRoll: 1
         })
-
         this.busPos = {};
         this.busPos['x'] = 80; //购物车的位置
         this.busPos['y'] = app.globalData.winHeight;

@@ -1,5 +1,5 @@
 <view class="container">
-   <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll}}">
+   <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
 
 
@@ -58,7 +58,7 @@
                     <view class="f12px text-info">{{item.spec_desc}}</view> 
                 </view>
 
-                 <view class="flex-item-2" bindtap="addAnimate">
+                 <view class="flex-item-2" catchtap="addAnimate">
                  <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}"  bindchange="handleCountChange"  />
                  </view>
 
@@ -130,9 +130,7 @@
             </i-cell>
         </i-cell-group>
 
-         <view wx:if="{{goods.goods_video}}">
-            <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
-        </view>
+        
 
         <view wx:if="{{goods.content_imgs.length}}">
             <view class='sub-title scale-b-1px'>
@@ -142,6 +140,10 @@
     </view>
 
     <view class="piclist-container">
+         <view wx:if="{{goods.goods_video}}">
+            <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
+        </view>
+
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
             <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
         </block>
@@ -154,7 +156,7 @@
             <text class="label">我的</text>
         </view>
         <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
-            <text class="default-badge {{showRoll==0?'cake':''}}">2</text>
+            <text wx:if="{{totalNum>0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
             <button class="buy linenear_bg" formType="submit">立即参与</button>
         </form>
     </view>

@@ -210,17 +210,21 @@ Page({
                     video_progress: true
                 })
 
-                var videoFile = res.tempFilePath
-                var videothumb = res.thumbTempFilePath
+                var videoFile = res.tempFilePath || ''
+                var videothumb = res.thumbTempFilePath || ''
+
+                console.log('videoFile',res)
+
 
                 let p1 = util.uploadFile({ filePath: videoFile })
-                let p2 = util.uploadFile({ filePath: videothumb })
+                
+               
 
-                Promise.all([p1, p2]).then((result) => {
+               p1.then((result) => {
 
                     this.setData({
-                        goods_video: result[0].data.file_url,
-                        goods_video_cover: result[1].data.file_url,
+                        goods_video: result.data.file_url,
+                        goods_video_cover:result.data.file_url+'?vframe/jpg/offset/2',
                         video_progress: false
                     })
 
@@ -229,6 +233,13 @@ Page({
                             visible_video: true
                         })
 
+
+                },(err)=>{
+
+                    wx.showToast({
+                        title:'上传失败'+err,
+                        icon:'none'
+                    })
 
                 })
 
@@ -642,6 +653,9 @@ Page({
                 start_time: this.data.start_time,
                 end_time: this.data.end_time,
                 content_imgs: this.data.content_imgs,
+                goods_video:this.data.goods_video,
+                goods_video_cover:this.data.goods_video_cover,
+
                 cat_id: 8
             },
 
@@ -794,6 +808,8 @@ Page({
                     delivery_method: gs.delivery_method,
                     collection_methods: gs.collection_methods,
                     content_imgs: gs.content_imgs || [],
+                    goods_video:gs.goods_video,
+                    goods_video_cover:gs.goods_video_cover,
                     start_time: starFormatTime,
                     end_time: endFormatTime,
                     picker: {

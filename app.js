@@ -29,7 +29,7 @@ App({
                         this.session_key =response.data.data.session_key;
                         //  缓存 session_key
                         // 
-                       wx.setStorageSync('session_key',response.data.data.session_key)
+                       wx.setStorage({key:'session_key',data:response.data.data.session_key})
 
                         this.globalData.openid = this.openId;
                         resolve(response.data.data.openid)
@@ -141,9 +141,17 @@ App({
                   if (res.data.code === 200) {
                     this.globalData.token = res.data.data.token
                     this.globalData.userInfo = res.data.data.user
-                    // wx.setStorageSync('session_key',res.data.data.token)
-                    wx.setStorageSync('token',res.data.data.token)
-                    wx.setStorageSync('userInfo',res.data.data.user)
+
+                    wx.setStorage({//存储到本地
+                      key:"token",
+                      data:res.data.data.token
+                    })
+
+                    wx.setStorage({//存储到本地
+                      key:"userInfo",
+                      data:res.data.data.user
+                    })
+
                     resolve(res)
 
                   } else {

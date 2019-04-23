@@ -660,4 +660,8 @@ z-index: 999
     }
 }
 
+#myVideo{
+  width: 750rpx;
+  height: 450rpx
+}
 

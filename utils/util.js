@@ -72,6 +72,8 @@ const inputDuplex = function(e) {
 
 const uploadFile = function(opt) {
 
+    console.log('上传方法 app.globalData.token',app.globalData.token)
+
     return new Promise((reslove, reject) => {
         wx.uploadFile({
             url: config.apiUrl + '/api/seller/upload',
