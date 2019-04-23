@@ -42,6 +42,9 @@ Page({
         }
        
   },
+  removeHandle(e,index){
+    console.log(e,'删除成功事件',index)
+  },
     /**
      * 生命周期函数--监听页面加载
      */

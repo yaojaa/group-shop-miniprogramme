@@ -39,6 +39,10 @@ Component({
             type: Number,
             value: 200, 
         },
+        tit_txt_color: {
+            type: String,
+            value: '#000000'
+        },
         scrollTop: {
             type: Number,
             value: 0, 

@@ -5,7 +5,7 @@
 
     </view>
     <slot name="icon"> </slot>
-    <view class="tit" wx:if="{{title}}">{{title}}</view>
+    <view class="tit" wx:if="{{title}}" style="color:{{tit_txt_color}}">{{title}}</view>
     <slot></slot>
 </view>
 
