@@ -668,11 +668,11 @@ button {
 }
 
 .coral.btn.hollow {
-    color: #FA7268;
+    color: #FF5757;
 }
 
 .coral.btn.hollow::after {
-    border: 2px solid #FA7268;
+    border: 2px solid #FF5757;
     display: block;
 }
 
@@ -768,7 +768,7 @@ button {
 }
 
 .coral-text {
-    color: #FA7268;
+    color: #FF5757;
 }
 
 .solids {
@@ -1082,7 +1082,7 @@ button {
 }
 
 .coral {
-    background: #FA7268;
+    background: #FF5757;
     color: #fff
 }
 
@@ -1138,7 +1138,7 @@ button {
 
 .coral.inverse {
     background: #fff;
-    color: #FA7268
+    color: #FF5757
 }
 
 .tag-default {
@@ -1149,7 +1149,7 @@ button {
 }
 .tag-pink{
     background-color: #FEF7F5 ;
-    color: #FA7268;
+    color: #FF5757;
     border-radius: 2rpx;
     font-weight: normal;
 }

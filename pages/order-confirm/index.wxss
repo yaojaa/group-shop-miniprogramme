@@ -1,0 +1,8 @@
+@import "../../css/common.wxss";
+.label-primary{
+	border-radius: 4rpx;
+	font-size: 20rpx;
+	background: #49b34d;
+	color:#fff;
+	padding: 2rpx 10rpx;
+}
