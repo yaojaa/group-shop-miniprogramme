@@ -31,20 +31,7 @@ Page({
         this.setData({
             selected: id
         })
-        this.data.address.forEach(item => {
-            if (item.address_id == id) {
-                wx.setStorage({
-                    key: 'userAddress',
-                    data: item,
-                    success: () => {
-                        wx.navigateBack({
-                            delta: 1
-                        })
-                    }
-                })
 
-            }
-        })
     },
 
     remove(e) {

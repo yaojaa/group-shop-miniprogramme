@@ -53,7 +53,7 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/home/index",
+					"name": "确认订单",
 					"pathName": "pages/order-confirm/index",
 					"query": "",
 					"scene": null

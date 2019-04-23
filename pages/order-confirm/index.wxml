@@ -25,21 +25,21 @@
                     <text class="">北京朝阳区三间房歪脖子巷甲三号</text></view>
             </view>
         </view>
-        <view class="white-bg flex align-center justify-center p-df mt-sm" style='min-height: 150rpx'>
-            <view class="flex align-center text-gray"><van-icon name="plus" size="40rpx"/> <text class="ml-sm">添加收货地址</text></view>
-            
-        </view>
-        <view class="white-bg flex align-center p-df mt-sm">
+        <navigator url="../address/index?source=cart&id={{address.address_id}}" hover-class="none" class="white-bg flex align-center p-df mt-sm"  wx:if="{{addressList}}">
             <van-icon name="location-o" />
             <view class="flex-sub mh-sm">
                 <view class="flex align-center">
-                    <text class="bold text-lg mr-xs">一夜宝宝</text>
-                    <text class="text-muted">18000000000</text></view>
+                    <text class="bold text-lg mr-xs">{{address.consignee}}</text>
+                    <text class="text-muted">{{address.mobile}}</text></view>
                 <view class="text-sm mt-xs"><text class="text-gray">配送地址：</text>
-                    <text class="">北京朝阳区三间房歪脖子巷甲三号</text></view>
+                    <text class="">{{address.citynames[4]}}{{address.address}}</text></view>
             </view>
             <van-icon name="arrow" color="#999" />
-        </view>
+        </navigator>
+         <navigator url="../address-form/index?source=cart" hover-class="none" class="white-bg flex align-center justify-center p-df mt-sm" style='min-height: 150rpx' wx:else>
+            <view class="flex align-center text-gray">
+                <van-icon name="plus" size="40rpx" /> <text class="ml-sm">添加收货地址</text></view>
+        </navigator>
         <view class="address-line"></view>
         <view class="goods-panel ph-df white-bg mv-sm cf">
             <view class="goods-panel-hd pv-sm flex align-center">
