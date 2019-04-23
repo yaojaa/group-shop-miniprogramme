@@ -1,4 +1,4 @@
-<view class="container gray-wrap cf">
+<view class="container gray-wrap cf" style="padding-top: 100rpx;">
     <block wx:if="{{address.length>0}}">
         <view class="fixed-btn">
             <navigator url="../address-form/index" class="btn xxl primary block">
@@ -17,8 +17,8 @@
                                 <view class="text-lg bold"><text class="mr-sm">{{item.consignee}}</text><text class="mr-sm">{{item.mobile}}</text>
                                     <text wx:if="{{item.is_address_default==1}}" class="btn lt primary">默认</text>
                                 </view>
-                                <view class="text-gray mt-xs">
-                                    {{item.address}}
+                                <view class="text-gray mt-xs" >
+                                   {{item.citynames[4]}}{{item.address}}
                                 </view>
                             </view>
                             <navigator url="../address-form/index?id={{item.address_id}}" hover-class="none" class="fd solid-left">

@@ -2,8 +2,8 @@
 	<block wx:if="{{img.flag}}">
 	<!-- 正方形 -->
 	<view wx:if="{{img.type == 0}}" class="flex-cc">
-		<view style="transform: scale({{ img.scale}}, {{ img.scale}});{{ img.transition }}; width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}">
-			<image mode="aspectFill" src="{{ img.src }}"></image>
+		<view style="transform: scale({{ img.scale}}, {{ img.scale}});{{ img.transition }};">
+			<image mode="aspectFill" src="{{ img.src }}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}"></image>
 		</view>
 	</view>
 
@@ -20,8 +20,8 @@
 	<block wx:else>
 	<!-- 正方形 -->
 	<view wx:if="{{img.type == 0}}" class="flex-cc">
-		<view style="transform: scale({{ img.scale}}, {{ img.scale}});{{ img.transition }}; width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}">
-			<image mode="aspectFill" src="{{ img.src }}"></image>
+		<view style="transform: scale({{ img.scale}}, {{ img.scale}});{{ img.transition }};">
+			<image mode="aspectFill" src="{{ img.src }}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}"></image>
 		</view>
 	</view>
 

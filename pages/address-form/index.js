@@ -12,17 +12,18 @@ Page({
         default: false,
         areaModal: false,
         areaList: [],
-        areaValue: '',
+        id: '',
         consignee: '',
         mobile: '',
-        path: '',
+        province_id: '',
+        city_id: '',
+        district_id: '',
         address: '',
         is_address_default: '',
-        city: '',
+        citynames: ''
 
     },
     addressDefault(event) {
-
         this.setData({
             is_address_default: event.detail ? 1 : 0
         });
@@ -32,37 +33,30 @@ Page({
         this.setData({
             areaModal: !this.data.areaModal
         });
-
     },
     handleArea(event) {
-        let area = event.detail.values.map(function(index, elem) {
-            return index.code;
-        })
-        console.log(area)
         this.setData({
-            path: area,
-            city: event.detail.values[0].name + '/' + event.detail.values[1].name + '/' + event.detail.values[2].name,
+            province_id: event.detail.values[0].code,
+            city_id: event.detail.values[1].code,
+            district_id: event.detail.values[2].code,
+            citynames: event.detail.values[0].name + '/' + event.detail.values[1].name + '/' + event.detail.values[2].name,
             areaModal: !this.data.areaModal,
-
         });
     },
     submit(e) {
-        const apiURL = this.isEdit ? '/api/user/address_add_or_edit' : '/api/user/address_add_or_edit'
-        const msg = this.isEdit ? '编辑成功' : '添加成功';
+
         let sendData = e.detail.value
 
-        sendData.province_id = this.data.path[0]
-        sendData.city_id = this.data.path[1]
-        sendData.district_id = this.data.path[2]
-        if (this.isEdit) {
-            Object.assign(data, { id: this.id })
-        };
-        console.log(sendData)
-        util.wx.post(apiURL, sendData)
+        sendData.province_id = this.data.province_id
+        sendData.city_id = this.data.city_id
+        sendData.district_id = this.data.district_id
+        sendData.address_id = this.data.id
+
+        util.wx.post('/api/user/address_add_or_edit', sendData)
             .then(res => {
                 if (res.data.code == 200) {
                     Notify({
-                        text: msg,
+                        text: res.data.msg,
                         duration: 1000,
                         selector: '#custom-selector',
                         backgroundColor: '#39b54a'
@@ -77,7 +71,6 @@ Page({
                         selector: '#custom-selector',
                         backgroundColor: '#f00'
                     })
-
                 }
             })
 
@@ -90,13 +83,13 @@ Page({
 
         this.setData({
             areaList: areaData,
-            source: options.source || false
+            source: options.source || false,
+            id: options.id || ''
         })
 
         if (options.id) {
-            this.id = options.id
             this.isEdit = true
-            this.getDetail(options.id)
+            this.getDetail()
             wx.setNavigationBarTitle({
                 title: '编辑地址'
             })
@@ -104,17 +97,19 @@ Page({
     },
 
     getDetail(id) {
-        util.wx.get('/api/user/address_add_or_edit', { id })
+        util.wx.get('/api/user/address_detail', { address_id: this.data.id })
             .then(res => {
                 if (res.data.code == 200) {
+                    let data = res.data.data
                     this.setData({
-                        consignee: res.data.data.consignee,
-                        mobile: res.data.data.mobile,
-                        province_id: res.data.data.province_id,
-                        city_id: res.data.data.city_id,
-                        district_id: res.data.data.district_id,
-                        address:res.data.data.address,
-                        is_address_default: res.data.data.user_address_is_address_default
+                        consignee: data.consignee,
+                        mobile: data.mobile,
+                        province_id: data.province_id,
+                        city_id: data.city_id,
+                        district_id: data.district_id,
+                        citynames: data.user_address_prefix,
+                        address: data.address,
+                        is_address_default: data.user_address_is_address_default
                     })
                 }
             })

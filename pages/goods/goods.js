@@ -9,7 +9,10 @@ Page({
     data: {
         imgs:{ // 动画相册配置
             src:[],
-            height: 800  //动态图片高度
+            height: 800,  //动态图片高度
+            animationDuration: 15, // 动画持续时间基数
+            minScaleVal: 50, //最小缩放值
+            minXYVale: 100,//xy轴最小运动值
         },
         scrollTop:0,
         hasScope: false, //是否授权
