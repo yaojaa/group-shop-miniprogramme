@@ -15,9 +15,28 @@ Page({
         util.wx.get('/api/user/address_list')
             .then(res => {
                 if (res.data.code == 200) {
-                    this.setData({
-                        address: res.data.data.address_list[0]
-                    })
+                    let data = res.data.data.address_list
+                    if (data.length > 0) {
+                        data.forEach((item) => {
+                            console.log(item, 'item')
+                            if (item.is_address_default == 1) {
+                                this.setData({
+                                    address: item,
+                                    address_id: item.address_id
+                                })
+                            } else {
+                                this.setData({
+                                    address: data[0],
+                                    address_id: data[0].address_id
+                                })
+                            }
+                        })
+                    } else {
+                        this.setData({
+                            address: null,
+                            address_id: ''
+                        })
+                    }
                 }
             })
     },

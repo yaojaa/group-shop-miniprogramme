@@ -31,7 +31,9 @@ Page({
         this.setData({
             selected: id
         })
-
+        util.setParentData({
+            address_id: id
+        })
     },
 
     remove(e) {
