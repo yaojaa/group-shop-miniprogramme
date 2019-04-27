@@ -4,6 +4,7 @@ const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index');
 
 const app = getApp()
+app.that = null
 
 Page({
     data: {
@@ -18,7 +19,7 @@ Page({
         hasScope: false, //是否授权
         goods: {},
         visibleU: false,
-        seller_user: {},
+        seller: {},
         sell_address: [],
         goods_spec: [],
         code: false,
@@ -142,11 +143,24 @@ Page({
 
     },
 
+
+
     getGoodsInfo(id) {
+        //提交访问记录
+       util.wx.get('/api/index/add_access', {
+          type:'goods_detail', 
+          obj_id: id,
+          user_scene:app.globalData.userScene,
+          user_phone:app.globalData.userPhone
+        }).then(res=>{
+          this.access_id = res.data.data.access_id
+        })
+
+
+
+
         util.wx.get('/api/goods/get_goods_detail', { 
-          goods_id: id,
-          userScene:app.globalData.userScene,
-          userPhone:app.globalData.userPhone
+          goods_id: id
         })
             .then(res => {
                 console.log(res)
@@ -164,33 +178,31 @@ Page({
                     console.log('done', res.data.data.goods.goods_images)
 
                     //把数量设为0
-                    const goods_spec = d.goods.goods_spec
 
-                    goods_spec.forEach(item => {
+                   d.goods.goods_spec.forEach(item => {
                         console.log(item)
                         item.item_num = 0
-
+                        console.log(item)
 
                     })
 
-                    console.log(goods_spec)
+                    console.log('goods_spec bingen',d.goods.goods_spec)
 
 
                     this.setData({
                         goods: d.goods,
                         'imgs.src': d.goods.goods_images,
                         // sell_address: res.data.data.sell_address,
-                        // seller_user: res.data.data.seller_user,
-                        goods_spec: goods_spec,
+                        // seller: res.data.data.seller,
+                        goods_spec: d.goods.goods_spec,
+                        seller:d.user,
                         hw_data: d.hw_data,
-                        // delivery_method: res.data.data.goods.delivery_method,
-                        // collection_methods: res.data.data.goods.collection_methods,
                         // endTime: res.data.data.goods.sell_end_time,
                         countdownTime: new Date(d.goods.end_time * 1000).getTime()
                     })
 
                     // wx.setNavigationBarTitle({
-                    //   title: '【' + res.data.data.seller_user.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
+                    //   title: '【' + res.data.data.seller.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
                     // })
 
 
@@ -207,19 +219,17 @@ Page({
       wx.showToast({
         title:'用户离开了'
       })
-      util.wx.get('/api/goods/get_goods_detail', { 
-          goods_id: 50,
-          userScene:app.globalData.userScene,
-          userPhone:app.globalData.userPhone
+        //提交访问记录
+       util.wx.get('/api/index/set_user_staytime', {
+          access_id:this.access_id, 
+          user_staytime: userStayTime,
         })
-            .then(res => {
-      console.log('用户离开 并提交接口成功！')
-
-
-            })
     },
     onLoad: function(option) {
       console.log('用户进入了')
+
+      app.that = this
+
 
       this.enterDate = new Date()
 
@@ -292,7 +302,7 @@ Page({
         //       goods: res.data.data.goods,
         //       imgUrls: res.data.data.images,
         //       sell_address: res.data.data.sell_address,
-        //       seller_user: res.data.data.seller_user,
+        //       seller: res.data.data.seller,
         //       spec_goods_price: spec_goods_price,
         //       delivery_method: res.data.data.goods.delivery_method,
         //       collection_methods: res.data.data.goods.collection_methods,
@@ -301,7 +311,7 @@ Page({
         //     })
 
         //     wx.setNavigationBarTitle({
-        //       title: '【' + res.data.data.seller_user.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
+        //       title: '【' + res.data.data.seller.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
         //     })
 
         //     //计算位置
@@ -339,7 +349,7 @@ Page({
         //                 goods: res.data.data.goods,
         //                 imgUrls: res.data.data.images,
         //                 sell_address: res.data.data.sell_address,
-        //                 seller_user: res.data.data.seller_user,
+        //                 seller: res.data.data.seller,
         //                 spec_goods_price: spec_goods_price,
         //                 delivery_method:res.data.data.goods.delivery_method,
         //                 collection_methods:res.data.data.goods. collection_methods,
@@ -348,7 +358,7 @@ Page({
         //             })
 
         //             wx.setNavigationBarTitle({
-        //               title: '【'+res.data.data.seller_user.nickname +'】 '+ res.data.data.goods.goods_name//页面标题为路由参数
+        //               title: '【'+res.data.data.seller.nickname +'】 '+ res.data.data.goods.goods_name//页面标题为路由参数
         //             })
 
         //              //计算位置
@@ -391,23 +401,18 @@ Page({
 
         this.type = e.detail.type
 
-
-
-
-
-
         let key = "goods_spec[" + id + "].item_num"
 
         this.data.goods_spec[id].item_num = parseInt(e.detail.value)
 
-        let amountMoney = 0;
+        let amountMoney = 100;
 
         let totalNum = 0
 
 
         this.data.goods_spec.forEach(value => {
 
-            console.log('value.item_num:', value.item_num)
+            console.log('parseInt(value.spec_price * 100)', parseInt(value.spec_price * 100))
             amountMoney += parseInt(value.spec_price * 100) * parseInt(value.item_num)
             totalNum += value.item_num
         })
@@ -451,19 +456,47 @@ Page({
     },
     cartPanelShow() {
 
+         var hasAdd =false
 
-        if (this.data.goods_spec.length == 1) {
+         console.log('this.data.goods_spec[0].item_num',this.data.goods_spec[0].item_num)
+         //如果只有一个商品规格 
+        if (this.data.goods_spec.length <= 1) {
             let value = this.data.goods_spec[0]
+            let currentNum = value.item_num ==0 ?'1':value.item_num
             this.setData({
-                'goods_spec[0].item_num': 1,
-                amountMoney: parseInt(value.price * 100) / 100
+                'goods_spec[0].item_num':currentNum,
+                amountMoney: parseInt(value.spec_price * 100 * currentNum ) / 100,
+                totalNum:1
             })
+
+            this.setData({
+            cartPanel: true
+            })
+
+        }else{
+          this.data.goods_spec.forEach(item=>{
+            if(item.item_num>0){
+              hasAdd = true
+               this.setData({
+                cartPanel: true
+                })
+
+            }
+          })
+
+          if(!hasAdd){
+
+            wx.pageScrollTo({
+            scrollTop: 450
+          })
+
+        }
         }
 
+        
 
-        this.setData({
-            cartPanel: true
-        })
+
+        
 
     },
     openMap(e) {
@@ -604,14 +637,14 @@ Page({
 
 
 
-                    //大于3公里
-                    if (dis > 3 && this.data.delivery_method == 2) {
-                        setTimeout(() => {
-                            this.setData({
-                                msgvisible: true
-                            })
-                        }, 3000)
-                    }
+                    // //大于3公里
+                    // if (dis > 3 && this.data.delivery_method == 2) {
+                    //     setTimeout(() => {
+                    //         this.setData({
+                    //             msgvisible: true
+                    //         })
+                    //     }, 3000)
+                    // }
 
 
                 })
@@ -656,9 +689,12 @@ Page({
     },
     buy() {
 
+
+
         //默认选一份
 
         if (this.data.amountMoney == 0) {
+
             return $Message({
                 content: '请选择数量',
                 type: 'warning',
@@ -670,17 +706,14 @@ Page({
         let shopcar = this.data.goods_spec.filter(value => value.item_num > 0)
 
         wx.setStorageSync('cart', shopcar)
-        // wx.setStorageSync('goods', {
-        //     goods_name: this.data.goods.goods_name,
-        //     sell_address: this.data.sell_address,
-        //     cover_pic: this.data.imgUrls[0],
-        //     delivery_method: this.data.goods.delivery_method,
-        //     sell_end_time: this.data.goods.sell_end_time,
-        //     goods_content: this.data.goods.goods_content
-        // })
+        wx.setStorageSync('goods', {
+            goods_name: this.data.goods.goods_name,
+            sell_address: this.data.sell_address,
+            seller:this.data.goods.user
+        })
 
         wx.navigateTo({
-            url: '../order/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
+            url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
         })
     },
     formSubmit: function(e) {
@@ -707,7 +740,7 @@ Page({
         })
         var content = this.data.goods.goods_name + "\n" + this.data.goods.goods_content + "\n" +
             price +
-            '----' + this.data.seller_user.nickname + "\n" +
+            '----' + this.data.seller.nickname + "\n" +
             "⏰ 截团时间:" + util.formatTime(new Date(this.data.endTime * 1000)) +
             "\n" + '为节约时间，请大家继续在小程序里接龙哦:\n' +
             userList.join('\n')
@@ -723,10 +756,13 @@ Page({
             }
         });
     },
-    onPageScroll: function(e) {
-        console.log(e); //{scrollTop:99}
-        this.setData({
-            scrollTop: e.scrollTop
+    onPageScroll: util.throttle((e)=>{
+                   console.log(this); //{scrollTop:99}
+
+           console.log(e[0]); //{scrollTop:99}
+        app.that.setData({
+            scrollTop: e[0].scrollTop
         })
-    }
+    },200)
+
 })

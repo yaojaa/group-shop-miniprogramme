@@ -42,8 +42,27 @@ Page({
         }
        
   },
-  removeHandle(e,index){
+  removeHandle(e,id){
     console.log(e,'删除成功事件',index)
+
+    var c
+
+    this.data.goodslist.forEach((item,index)=>{
+        if(item.goods_id == id){
+            c = index
+        }
+    })
+
+
+    if(c){
+    this.data.goodslist.splice(c,1)
+
+    this.setData({
+        'goodslist':this.data.goodslist.splice(index,1)
+    })
+        
+    }
+
   },
     /**
      * 生命周期函数--监听页面加载

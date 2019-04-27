@@ -156,7 +156,7 @@
             <view class="goods-box">
                 <block  wx:key="{{goods_id}}" wx:for="{{goodslist}}">
 
-                    <i-goods-item bindremove="removeHandle" item="{{item}}" />
+                    <i-goods-item bindremove="removeHandle" item="{{item}}" index="{{index}}" />
                     
                     
                 </block>

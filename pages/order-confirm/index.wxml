@@ -1,20 +1,27 @@
-<view class="container gray-wrap cf" style="margin-top:80rpx;">
+<i-custom-bar showBackIcon="{{true}}" fixed  backImage="http://img.atomstone.com/top_bar_bg.jpg" title="确认订单">   </i-custom-bar>
+
+<view class="container cf mtop100">
     <view class="fixed-btn text-justify">
         <view class="flex align-center">
             <view class="mh-df text-muted text-sm">
-                共计 <text class="">2</text>件
+                共计 {{totalNumer}} 件
             </view>
             <view class="pb-xs">
                 <text class="text-muted text-sm">应付金额：</text>
-                <text class="text-lg bold coral-text">¥100</text>
+                <text class="text-lg bold coral-text">¥{{amountMoney}}</text>
+                <text class="text-muted text-sm"> 元</text>
             </view>
         </view>
         <form bindsubmit="formSubmit" report-submit="true" data-fn="createOrder">
             <button class="btn primary w-min-lg lg" formType="submit">去付款</button>
         </form>
     </view>
+
+
+
     <view class="content-wrap">
-        <view class="white-bg flex align-center p-df">
+      <view class="ziti" wx:if="{{delivery_method==2}}">
+        <view class="white-bg flex align-center p-df" >
             <van-icon name="location-o" />
             <view class="flex-sub ml-sm">
                 <view class="flex align-center">
@@ -24,8 +31,26 @@
                 <view class="text-sm mt-xs"><text class="text-gray">取货地址：</text>
                     <text class="">北京朝阳区三间房歪脖子巷甲三号</text></view>
             </view>
+
+     
+
+
         </view>
-        <navigator url="../address/index?source=cart&id={{address.address_id}}" hover-class="none" class="white-bg flex align-center p-df mt-sm"  wx:if="{{addressList}}">
+
+
+    <view class="white-bg">
+     <i-panel title="取货人信息">
+        
+        <i-input value="{{ consignee }}" id="consignee" bind:change="inputTodata"   placeholder="微信昵称" />
+        <i-input value="{{ mobile }}" id="mobile" bind:change="inputTodata" type="number"  placeholder="手机号" />
+        <!-- <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button> -->
+    </i-panel>
+    </view>
+
+</view>
+
+        <view class="address" wx:if="{{delivery_method==1}}">
+        <navigator url="../address/index?source=cart&id={{address.address_id}}" hover-class="none" class="white-bg flex align-center p-df"  wx:if="{{addressList}}">
             <van-icon name="location-o" />
             <view class="flex-sub mh-sm">
                 <view class="flex align-center">
@@ -41,42 +66,45 @@
                 <van-icon name="plus" size="40rpx" /> <text class="ml-sm">添加收货地址</text></view>
         </navigator>
         <view class="address-line"></view>
-        <view class="goods-panel ph-df white-bg mv-sm cf">
+        </view>
+
+
+        <view class="goods-panel ph-df white-bg mv-sm cf" wx:if="{{delivery_method==1}}">
             <view class="goods-panel-hd pv-sm flex align-center">
                 <view class="flex-sub mr-df">
                     <view class="flex align-center">
-                        <image src="http://image.countinsight.com/front/img/shop_lt.png" class="shop-tb mr-xs">
+                        <image src="{{seller.head_pic}}" class="shop-tb mr-xs">
                         </image>
-                        <view class="flex-sub text-hide">一夜宝宝</view>
+                        <view class="flex-sub text-hide">{{seller.nickname}}</view>
                     </view>
                 </view>
                 <view class="text-muted"></view>
             </view>
             <view class="solid-bottom"></view>
             <view class="goods-panel-bd pb-df">
-                <navigator url="../order-detail/index" hover-class="none" class="flex mt-df goods-panel-item">
-                    <image src="http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg" class="cover mr-sm"></image>
+                <view  wx:for="{{cart}}" wx:key="{{index}}"  hover-class="none" class="flex mt-df goods-panel-item">
+                    <image class="goods-cover-image" src="{{item.spec_pic[0]}}"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line  bold title">
-                            生态腐竹，包你吃一次忘不掉
+                            {{item.spec_name}} <text class="text-muted mt-xs text-sm">{{item.spec_desc}}</text>
                         </view>
-                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">500g</text></view>
+                      
                         <view class="text-justify bt-bar">
-                            <view class="price bold">￥5.8</view>
+                            <view class="price text-muted">￥{{item.spec_price}}</view>
                             <view class="text-muted"><text>x </text>
-                                <text>2</text></view>
+                                <text>{{item.item_num}}</text></view>
                         </view>
                     </view>
-                </navigator>
+                </view>
             </view>
         </view>
         <van-cell-group custom-class="mb-sm">
             <!--   <van-cell title="购买数量">
                 <van-stepper value="{{ 2 }}" min="1" integer bind:change="handleNumber" />
             </van-cell> -->
-            <van-cell title="配送方式" value="自提" value-class="text-gray" />
-            <van-cell title="订单总价" value="￥100" value-class="" />
-            <van-field input-align="right" bindchange="" value="{{area}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
+           <!--  <van-cell title="配送方式" value="自提" value-class="text-gray" />
+            <van-cell title="订单总价" value="￥100" value-class="" /> -->
+            <van-field input-align="left" bindchange="" value="{{area}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
     </view>
 </view>

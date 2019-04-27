@@ -39,7 +39,8 @@ Page({
     cart:[],
     total:0,
     loading:false,
-    create_remark:''
+    create_remark:'',
+    scrollTop:0
   },
 
   getaddressList(){
@@ -241,7 +242,7 @@ Page({
           goods_id:options.goods_id,
           cart:cart|| [],
           amountMoney:amountMoney/100,
-          cover_pic:goods.cover_pic,
+          // cover_pic:goods.cover_pic,
           goods_name:goods.goods_name,
           delivery_method:options.delivery_method,
           collection_methods:options.collection_methods || 1
@@ -473,6 +474,12 @@ Page({
    */
   onPullDownRefresh: function () {
     
+  },
+   onPageScroll:function(e){
+    console.log(e);//{scrollTop:99}
+    this.setData({
+      scrollTop:e.scrollTop
+    })
   },
 
   /**

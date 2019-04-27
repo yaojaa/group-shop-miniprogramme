@@ -388,7 +388,8 @@
   top: 28rpx
 }
 .pics{
-  width: 100rpx
+  width: 100rpx;
+  position: relative;
 }
 .pics image{
   width: 90rpx;
@@ -424,7 +425,10 @@
 }
 
 .piclist-container image{
-    width: 100%
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0
 }
 .pageloading{
     position: absolute;
@@ -663,5 +667,14 @@ z-index: 999
 #myVideo{
   width: 750rpx;
   height: 450rpx
+}
+.smallnum{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #000;
+  color: #fff;
+  opacity: 0.9;
+  font-size: 12px
 }
 

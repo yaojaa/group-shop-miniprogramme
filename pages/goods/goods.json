@@ -19,7 +19,8 @@
     "imgs": "../../components/imgs/imgs",
     "comment": "../../components/comment/index",
     "share-button": "plugin://goodsSharePlugin/share-button",
-    "van-popup": "../../vant/popup/index"
+    "van-popup": "../../vant/popup/index",
+    "i-custom-bar": "../../components/custom-bar/index"
 
 
   }

@@ -25,6 +25,8 @@
 		"hidedInDevtools": []
 	},
 	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -49,13 +51,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
 					"name": "确认订单",
 					"pathName": "pages/order-confirm/index",
-					"query": "",
+					"query": "goods_id=55&delivery_method=2",
 					"scene": null
 				},
 				{
@@ -74,15 +76,15 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=48",
+					"query": "goods_id=58",
 					"scene": 1001
 				},
 				{
 					"id": 4,
 					"name": "订单详情启动",
 					"pathName": "pages/orderDefault/orderDefault",
-					"query": "goods_id=36",
-					"scene": "1001"
+					"query": "goods_id=58",
+					"scene": 1001
 				},
 				{
 					"id": 5,
@@ -297,6 +299,13 @@
 					"name": "地址管理",
 					"pathName": "pages/address/index",
 					"query": "goods_id=45",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "粉丝",
+					"pathName": "pages/fans/index",
+					"query": "",
 					"scene": null
 				}
 			]

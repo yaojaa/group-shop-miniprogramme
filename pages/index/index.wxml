@@ -79,9 +79,9 @@
                     <view class="buyer-list text-justify">
                         <view class="flex-box align-center">
                             <view class="avatar-group">
-                                <image class="avatar" src="../../img/wx.jpg" wx:for="{{4}}" wx:key="index"></image>
+                                <image class="avatar" src="{{1}}" wx:for="{{4}}" wx:key="index"></image>
                             </view>
-                            <view class="user text-muted f12 ml-xs"><text class="text-red">32</text>人参与，其中有<text class="text-red">8</text>位好友 </view>
+                            <view class="user text-muted f12 ml-xs"><text class="text-red">32</text>人参与 </view>
                         </view>
                     </view>
                 </view>

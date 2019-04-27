@@ -31,7 +31,6 @@ Component({
     delGoods(e){
         //api/seller/goods_del
         const id = e.currentTarget.dataset.id 
-        const index = e.currentTarget.dataset.index 
 
         wx.showModal({
             title:'确定要删除该商品吗？',
@@ -47,7 +46,7 @@ Component({
                                 icon:'none' 
                             })
 
-                            this.triggerEvent('remove',index)
+                            this.triggerEvent('remove',id)
 
 
                         }else{

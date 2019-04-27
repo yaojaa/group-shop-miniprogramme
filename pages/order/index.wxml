@@ -1,77 +1,85 @@
-<i-custom-bar fixed scrollTop="{{scrollTop}}" showIcon="{{true}}" title="确认订单" backColor="'transparent'" height="100" > </i-custom-bar>
+<i-custom-bar fixed backColor="#cc0000" scrollTop="{{scrollTop}}" showIcon="{{true}}" title="确认订单" changeStartHeight="600" changeEndHeight="600" bottomLayerBackColor="#eff890"  > 
 
-<view class="container mtop100">
+<view class="aa" slot="top">这里是顶层</view>
 
-    <i-message id="message" />
+<view class="aa" slot="bottom">这里是底层</view>
+</i-custom-bar>
 
-    {{delivery_method}}
-    <!--自提-->
-    <i-panel  class="address" wx:if="{{delivery_method==2}}">
-        团长：开心的小麻团
-        取货地址：北京市朝阳区金宇东102
-        <i-input value="{{ consignee }}" id="consignee" bind:change="inputTodata"   placeholder="微信昵称" />
-        <i-input value="{{ mobile }}" id="mobile" bind:change="inputTodata" type="number"  placeholder="手机号" />
-        <!-- <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber">使用微信绑定的手机号</button> -->
-    </i-panel>
-    <!--送货上门-->
-    <view class="address" wx:if="{{delivery_method==1}}">
-     
-      选择收货地址
+<view class="container">
 
-    </view>
-    <view class='mt-sm'>
-        <!-- <view class="seller-info">
-           <image src="{{cover_pic}}" class="cover" />
-           <view class="name">
-              {{nickName}}
-            </view>
-        </view> -->
-        <div class="order-panel" wx:if="{{cover_pic}}">
-          <image with="50" height="50" src="{{cover_pic}}?imageView2/1/w/100/h/100/q/75" class="goods-cover" />
-          <view class="name">
-            {{goods_name}}
-          </view>
-        </div>
-        
-        <i-panel>
-            <i-cell-group>
-                <i-cell title="{{item.key_name}}" wx:for="{{cart}}" wx:key="{{index}}">
-                    <i-input-number id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleChange1" slot="footer" /> <text class="text-red">¥{{item.price}}</text>
-                </i-cell>
-                <!--   <i-cell title="优惠金额" is-link>
-                    <view class='text-red' slot="footer">-￥0</view>
-                </i-cell> -->
-            </i-cell-group>
-        </i-panel>
+    <view class="mtop100">100</view>
+    <view class="mtop100">200</view>
+    <view class="mtop100">300</view>
+    <view class="mtop100">400</view>
+    <view class="mtop100">500</view>
+    <view class="mtop100">600</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
+    <view class="mtop100">100</view>
 
-    <i-panel>
-        <i-input value="{{create_remark}}" title="留言" id="create_remark" bind:change="inputTodata"   placeholder="稍句话..." />
-    </i-panel>
-    </view>
-    <!--    <view class='mt-sm'>
-        <i-panel>
-            <i-radio-group current="{{current}}" bindchange="handleFruitChange">
-                <i-radio wx:for="{{pay}}" position="{{position}}" wx:key="{{item.id}}" value="{{item.name}}">
-                </i-radio>
-            </i-radio-group>
-        </i-panel>
-    </view> -->
-    <view class='footer-pay'>
-        <view class='total'>金额：
-            <text class='f20 text-red'>￥{{amountMoney}}</text>
-        </view>
-
-         <form style="flex:2"  disabled="{{hasgoods}}" bindsubmit="formSubmit" report-submit="true" data-fn="order2pay"> 
-                 <button disabled="{{loading}}" class="buy-btn"  shape="circle" formType="submit">
-                    <block wx:if="{{collection_methods==1}}">
-                        立即支付
-                    </block>
-                   <block wx:if="{{collection_methods==2}}">
-                        立即参与
-                    </block>
-
-                </button>
-         </form>
-
-    </view>
+   
 </view>
