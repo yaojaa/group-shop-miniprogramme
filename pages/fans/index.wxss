@@ -1,9 +1,21 @@
+
+page{
+	background: #f8f8f8
+}
+
+.guest-box{
+		margin-bottom: 30px
+
+}
+
 .guest-item{
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
 	display: -o-flex;
 	display: flex;
+	background:#ffffff;
+	padding: 10px 0
 }
 .guest-item .hd{
 	width: 80rpx;
@@ -20,6 +32,7 @@
 .guest-item .avatar{
 	 width: 80rpx;
 	 height: 80rpx;
+	 border-radius: 8rpx
 }
 .guest-item .name{
 	font-size: 28rpx;

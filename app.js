@@ -234,9 +234,17 @@ App({
     console.log('hasToken',this.hasToken())
     console.log('option',option)
 
+    /**记录用户打开的场景**/
+    if(option.scene){
+    this.globalData.userScene = option.scene ||''
+
+    }
+
       // 获取设备状态栏高度
         wx.getSystemInfo({
             success: e => {
+              console.log(e)
+                this.globalData.userPhone = e.model ||''
                 this.globalData.StatusBar = e.statusBarHeight;
                 this.globalData.CustomBar = e.platform == 'android' ? e.statusBarHeight + 50 : e.statusBarHeight + 45;
             }

@@ -4,21 +4,22 @@ const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index');
 
 const app = getApp()
+app.that = null
 
 Page({
     data: {
-        imgs:{ // 动画相册配置
-            src:[],
-            height: 800,  //动态图片高度
+        imgs: { // 动画相册配置
+            src: [],
+            height: 800, //动态图片高度
             animationDuration: 15, // 动画持续时间基数
             minScaleVal: 50, //最小缩放值
-            minXYVale: 100,//xy轴最小运动值
+            minXYVale: 100, //xy轴最小运动值
         },
-        scrollTop:0,
+        scrollTop: 0,
         hasScope: false, //是否授权
         goods: {},
-        visibleU:false,
-        seller_user: {},
+        visibleU: false,
+        seller: {},
         sell_address: [],
         goods_spec: [],
         code: false,
@@ -29,40 +30,40 @@ Page({
         myFormat: ['天', '小时', '分', '秒'],
         orderUsers: [],
         imagePath: "",
-        collection_methods:'',
-        copy:false,
-        msgvisible:false,
+        collection_methods: '',
+        copy: false,
+        msgvisible: false,
         showShareFriendsCard: false,
-        shareFriendsImg:'',
-      template: {},
-      shareCardConfig: {
-        width: 750,
-        goodsImg: {
-          height: 380 //默认400
+        shareFriendsImg: '',
+        template: {},
+        shareCardConfig: {
+            width: 750,
+            goodsImg: {
+                height: 380 //默认400
+            },
+            headImg: {
+                size: 140, //默认140
+            },
+            userName: '开心麻团儿',
+            content: {
+                des: [], //一个元素一个段落
+                margin: 30, //左右边界默认30
+                lineHeight: 52,
+                fontSize: 30,
+                title: {
+                    fontSize: 32,
+                    lineHeight: 52,
+                },
+            },
+            qrcode: {
+                src: '',
+                size: 300 //二维码显示尺寸默认300
+            },
+            hw_data: null,
+            showAuth: false,
+            showRoll: 0,
+            totalNum: 0 //已选择的总数
         },
-        headImg: {
-          size: 140, //默认140
-        },
-        userName: '开心麻团儿',
-        content: {
-          des: [],  //一个元素一个段落
-          margin: 30, //左右边界默认30
-          lineHeight: 52,
-          fontSize: 30,
-          title:{
-            fontSize: 32,
-            lineHeight: 52,
-          },
-        },
-        qrcode: {
-          src: '',
-          size: 300 //二维码显示尺寸默认300
-        },
-        hw_data:null,
-        showAuth:false,
-        showRoll: 0,
-        totalNum:0 //已选择的总数
-      },
     },
     onShow: function() {
 
@@ -72,7 +73,7 @@ Page({
             cartPanel: false
         })
 
-        if(this.data.goods_id){
+        if (this.data.goods_id) {
             this.getOrderUserList(this.data.goods_id)
         }
 
@@ -80,21 +81,21 @@ Page({
     onReady: function() {
 
 
-     wx.getSetting({
-       success: res => {
+        wx.getSetting({
+            success: res => {
 
-         if (res.authSetting['scope.userInfo']) {
-           app.globalData.hasScope = true
+                if (res.authSetting['scope.userInfo']) {
+                    app.globalData.hasScope = true
 
-         } else {
-            app.globalData.hasScope = false
-         }
+                } else {
+                    app.globalData.hasScope = false
+                }
 
-         this.setData({
-                hasScope: app.globalData.hasScope
-            })
-       }
-     })
+                this.setData({
+                    hasScope: app.globalData.hasScope
+                })
+            }
+        })
     },
     onShareAppMessage: function(res) {
         // if (res.from === 'button') {
@@ -107,98 +108,135 @@ Page({
             imageUrl: this.data.imagePath,
             path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id
         }
-  },
-  openShareFriends() {
-    this.setData({
-      showShareFriendsCard: true
-    })
-  },
-  closeShareFriends() {
-    this.setData({
-      showShareFriendsCard: false
-    })
-  },
-  savaSelfImages(){
-    if (this.data.shareFriendsImg) {
-      wx.saveImageToPhotosAlbum({
-        filePath: this.data.shareFriendsImg,
-      });
-      this.closeShareFriends();
-    }
-  },
+    },
+    openShareFriends() {
+        this.setData({
+            showShareFriendsCard: true
+        })
+    },
+    closeShareFriends() {
+        this.setData({
+            showShareFriendsCard: false
+        })
+    },
+    savaSelfImages() {
+        if (this.data.shareFriendsImg) {
+            wx.saveImageToPhotosAlbum({
+                filePath: this.data.shareFriendsImg,
+            });
+            this.closeShareFriends();
+        }
+    },
     onFriendsImgOK(e) {
-      this.setData({
-        shareFriendsImg: e.detail.path
+        this.setData({
+            shareFriendsImg: e.detail.path
+        })
+        console.log('imgOk', e);
+    },
+    copy: function() {
+
+        wx.redirectTo({
+            url: '../publish/publish?goods_id=' + this.data.goods_id
+        })
+
+
+
+    },
+
+
+
+    getGoodsInfo(id) {
+        //提交访问记录
+       util.wx.get('/api/index/add_access', {
+          type:'goods_detail', 
+          obj_id: id,
+          user_scene:app.globalData.userScene,
+          user_phone:app.globalData.userPhone
+        }).then(res=>{
+          this.access_id = res.data.data.access_id
+        })
+
+
+
+
+        util.wx.get('/api/goods/get_goods_detail', { 
+          goods_id: id
+        })
+            .then(res => {
+                console.log(res)
+
+                if (res.data.code == 200) {
+
+
+                    // let goods_spec = res.data.data.goods_spec
+
+                    // goods_spec.map(value => {
+                    //   value.item_num = 0
+                    // })
+                    const d = res.data.data
+
+                    console.log('done', res.data.data.goods.goods_images)
+
+                    //把数量设为0
+
+                   d.goods.goods_spec.forEach(item => {
+                        console.log(item)
+                        item.item_num = 0
+                        console.log(item)
+
+                    })
+
+                    console.log('goods_spec bingen',d.goods.goods_spec)
+
+
+                    this.setData({
+                        goods: d.goods,
+                        'imgs.src': d.goods.goods_images,
+                        // sell_address: res.data.data.sell_address,
+                        // seller: res.data.data.seller,
+                        goods_spec: d.goods.goods_spec,
+                        seller:d.user,
+                        hw_data: d.hw_data,
+                        // endTime: res.data.data.goods.sell_end_time,
+                        countdownTime: new Date(d.goods.end_time * 1000).getTime()
+                    })
+
+                    // wx.setNavigationBarTitle({
+                    //   title: '【' + res.data.data.seller.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
+                    // })
+
+
+                }
+            })
+    },
+    onHide:function(){
+      console.log('用户离开了')
+      this.leaveDate = new Date()
+
+      //用户停留时间毫秒
+      const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
+
+      wx.showToast({
+        title:'用户离开了'
       })
-      console.log('imgOk', e);
-    },
-    copy:function(){
-
-         wx.redirectTo({
-                url:'../publish/publish?goods_id='+this.data.goods_id
-         })
-
-
-        
-    },
-
-    getGoodsInfo(id){
-      util.wx.get('/api/goods/get_goods_detail',{goods_id:id})
-      .then(res=>{
-        console.log(res)
-
-        if (res.data.code == 200) {
-
-
-          // let goods_spec = res.data.data.goods_spec
-
-          // goods_spec.map(value => {
-          //   value.item_num = 0
-          // })
-          const d = res.data.data
-
-          console.log('done',res.data.data.goods.goods_images)
-
-          //把数量设为0
-          const goods_spec = d.goods.goods_spec
-
-          goods_spec.forEach(item=>{
-            console.log(item)
-            item.item_num = 0
-
-
-          })
-
-          console.log(goods_spec)
-
-
-          this.setData({
-            goods:d.goods,
-            'imgs.src': d.goods.goods_images,
-            // sell_address: res.data.data.sell_address,
-            // seller_user: res.data.data.seller_user,
-            goods_spec: goods_spec,
-            hw_data:d.hw_data,
-            // delivery_method: res.data.data.goods.delivery_method,
-            // collection_methods: res.data.data.goods.collection_methods,
-            // endTime: res.data.data.goods.sell_end_time,
-            countdownTime: new Date(d.goods.end_time * 1000).getTime()
-          })
-
-          // wx.setNavigationBarTitle({
-          //   title: '【' + res.data.data.seller_user.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
-          // })
-
-
-      }
-    })
+        //提交访问记录
+       util.wx.get('/api/index/set_user_staytime', {
+          access_id:this.access_id, 
+          user_staytime: userStayTime,
+        })
     },
     onLoad: function(option) {
+      console.log('用户进入了')
+
+      app.that = this
+
+
+      this.enterDate = new Date()
 
         console.log(option)
 
         this.setData({
-            copy:option.copy || false
+            copy: option.copy || false
         })
 
         this.getGoodsInfo(option.goods_id)
@@ -225,69 +263,69 @@ Page({
 
         util.getShareImg(option.goods_id, this);
 
-      // Promise.all([
-      //   util.getQrcode({
-      //     page: 'pages/goods/goods',
-      //     scene: this.data.goods_id
-      //   }),
-      //   new Promise(resolve => {
-      //     wx.request({
-      //       url: 'https://www.daohangwa.com/api/goods/get_goods_info',
-      //       data: {
-      //         // token: app.globalData.token,
-      //         goods_id: this.data.goods_id
-      //       },
-      //       success: (res) => {
-      //         resolve(res);
-      //       }
+        // Promise.all([
+        //   util.getQrcode({
+        //     page: 'pages/goods/goods',
+        //     scene: this.data.goods_id
+        //   }),
+        //   new Promise(resolve => {
+        //     wx.request({
+        //       url: 'https://www.daohangwa.com/api/goods/get_goods_info',
+        //       data: {
+        //         // token: app.globalData.token,
+        //         goods_id: this.data.goods_id
+        //       },
+        //       success: (res) => {
+        //         resolve(res);
+        //       }
 
-      //     })
-      //   })
-      // ])
-      // .then(arr=>{
-      //   console.log('arr',arr);
-      //   let res = arr[1];
-      //   //绘制朋友圈图片
-      //   util.drawShareFriends(this,[arr[0], res.data]);
-      //   wx.hideLoading()
-      //   if (res.data.code == 0) {
+        //     })
+        //   })
+        // ])
+        // .then(arr=>{
+        //   console.log('arr',arr);
+        //   let res = arr[1];
+        //   //绘制朋友圈图片
+        //   util.drawShareFriends(this,[arr[0], res.data]);
+        //   wx.hideLoading()
+        //   if (res.data.code == 0) {
 
-      //     console.log(res.data.data.goods)
+        //     console.log(res.data.data.goods)
 
-      //     let spec_goods_price = res.data.data.spec_goods_price
+        //     let spec_goods_price = res.data.data.spec_goods_price
 
-      //     spec_goods_price.map(value => {
-      //       value.item_num = 0
-      //     })
+        //     spec_goods_price.map(value => {
+        //       value.item_num = 0
+        //     })
 
-      //     this.setData({
-      //       goods: res.data.data.goods,
-      //       imgUrls: res.data.data.images,
-      //       sell_address: res.data.data.sell_address,
-      //       seller_user: res.data.data.seller_user,
-      //       spec_goods_price: spec_goods_price,
-      //       delivery_method: res.data.data.goods.delivery_method,
-      //       collection_methods: res.data.data.goods.collection_methods,
-      //       endTime: res.data.data.goods.sell_end_time,
-      //       countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
-      //     })
+        //     this.setData({
+        //       goods: res.data.data.goods,
+        //       imgUrls: res.data.data.images,
+        //       sell_address: res.data.data.sell_address,
+        //       seller: res.data.data.seller,
+        //       spec_goods_price: spec_goods_price,
+        //       delivery_method: res.data.data.goods.delivery_method,
+        //       collection_methods: res.data.data.goods.collection_methods,
+        //       endTime: res.data.data.goods.sell_end_time,
+        //       countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
+        //     })
 
-      //     wx.setNavigationBarTitle({
-      //       title: '【' + res.data.data.seller_user.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
-      //     })
+        //     wx.setNavigationBarTitle({
+        //       title: '【' + res.data.data.seller.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
+        //     })
 
-      //     //计算位置
-      //     if (res.data.data.goods.delivery_method == 2) {
-      //       this.computeDistance()
-      //     }
+        //     //计算位置
+        //     if (res.data.data.goods.delivery_method == 2) {
+        //       this.computeDistance()
+        //     }
 
-      //   }
-
-
+        //   }
 
 
-      // })
-      // .catch(e=>{console.log(e)})
+
+
+        // })
+        // .catch(e=>{console.log(e)})
 
         // wx.request({
         //     url: 'https://www.daohangwa.com/api/goods/get_goods_info',
@@ -311,7 +349,7 @@ Page({
         //                 goods: res.data.data.goods,
         //                 imgUrls: res.data.data.images,
         //                 sell_address: res.data.data.sell_address,
-        //                 seller_user: res.data.data.seller_user,
+        //                 seller: res.data.data.seller,
         //                 spec_goods_price: spec_goods_price,
         //                 delivery_method:res.data.data.goods.delivery_method,
         //                 collection_methods:res.data.data.goods. collection_methods,
@@ -320,7 +358,7 @@ Page({
         //             })
 
         //             wx.setNavigationBarTitle({
-        //               title: '【'+res.data.data.seller_user.nickname +'】 '+ res.data.data.goods.goods_name//页面标题为路由参数
+        //               title: '【'+res.data.data.seller.nickname +'】 '+ res.data.data.goods.goods_name//页面标题为路由参数
         //             })
 
         //              //计算位置
@@ -331,7 +369,7 @@ Page({
         //         }
 
 
-                
+
 
         //        // this.getOrderUserList(option.goods_id)
 
@@ -347,7 +385,7 @@ Page({
             code: false
         })
     },
-    ok_i_know(){
+    ok_i_know() {
         this.setData({
             msgvisible: false
         })
@@ -358,31 +396,26 @@ Page({
         })
     },
     handleCountChange(e) {
-      console.log('handleCountChange',e)
+        console.log('handleCountChange', e)
         let id = e.target.id
 
         this.type = e.detail.type
-
-     
-
-
-
 
         let key = "goods_spec[" + id + "].item_num"
 
         this.data.goods_spec[id].item_num = parseInt(e.detail.value)
 
-        let amountMoney = 0;
+        let amountMoney = 100;
 
         let totalNum = 0
 
 
         this.data.goods_spec.forEach(value => {
 
-          console.log('value.item_num:',value.item_num)
-          amountMoney += parseInt(value.spec_price * 100) * parseInt(value.item_num)
-             totalNum += value.item_num
-                })
+            console.log('parseInt(value.spec_price * 100)', parseInt(value.spec_price * 100))
+            amountMoney += parseInt(value.spec_price * 100) * parseInt(value.item_num)
+            totalNum += value.item_num
+        })
 
 
 
@@ -390,27 +423,27 @@ Page({
         this.setData({
             [key]: e.detail.value,
             amountMoney: amountMoney / 100,
-            totalNum:totalNum
+            totalNum: totalNum
         })
 
-        console.log('totalNum',this.data.totalNum)
+        console.log('totalNum', this.data.totalNum)
 
 
 
     },
-    addAnimate(e){
+    addAnimate(e) {
 
-      console.log('this.type',this.type)
+        console.log('this.type', this.type)
 
-      if(this.type === 'plus'){
-      
-        this.starPos = {}
-        this.starPos['x'] = e.detail.x -20
-        this.starPos['y'] = e.detail.y - this.data.scrollTop
-        console.log('starPos', this.starPos)
-       this.startAnimation()
+        if (this.type === 'plus') {
 
-      }
+            this.starPos = {}
+            this.starPos['x'] = e.detail.x - 20
+            this.starPos['y'] = e.detail.y - this.data.scrollTop
+            console.log('starPos', this.starPos)
+            this.startAnimation()
+
+        }
 
 
 
@@ -423,19 +456,47 @@ Page({
     },
     cartPanelShow() {
 
+         var hasAdd =false
 
-        if(this.data.goods_spec.length==1){
+         console.log('this.data.goods_spec[0].item_num',this.data.goods_spec[0].item_num)
+         //如果只有一个商品规格 
+        if (this.data.goods_spec.length <= 1) {
             let value = this.data.goods_spec[0]
+            let currentNum = value.item_num ==0 ?'1':value.item_num
             this.setData({
-                'goods_spec[0].item_num':1,
-                amountMoney:parseInt(value.price * 100)/100
+                'goods_spec[0].item_num':currentNum,
+                amountMoney: parseInt(value.spec_price * 100 * currentNum ) / 100,
+                totalNum:1
             })
+
+            this.setData({
+            cartPanel: true
+            })
+
+        }else{
+          this.data.goods_spec.forEach(item=>{
+            if(item.item_num>0){
+              hasAdd = true
+               this.setData({
+                cartPanel: true
+                })
+
+            }
+          })
+
+          if(!hasAdd){
+
+            wx.pageScrollTo({
+            scrollTop: 450
+          })
+
+        }
         }
 
+        
 
-        this.setData({
-            cartPanel: true
-        })
+
+        
 
     },
     openMap(e) {
@@ -451,22 +512,22 @@ Page({
     },
     getUserInfoEvt: function(e) {
         console.log(e)
-        if(e.detail.errMsg!=="getUserInfo:ok"){
-            return wx.showToast({'title':'允许一下又不会怀孕',icon:'none'})
+        if (e.detail.errMsg !== "getUserInfo:ok") {
+            return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
         }
         app.globalData.userInfo = e.detail.userInfo
         wx.showLoading()
-        app.getOpenId().then((openid)=>{
+        app.getOpenId().then((openid) => {
             console.log(openid)
-             app.globalData.openid = openid
-             app.login_third(e.detail).then((res) => {
-                console.group('登陆成功:', res)
-                wx.hideLoading()
-                this.setData({
-                  showAuth:false
+            app.globalData.openid = openid
+            app.login_third(e.detail).then((res) => {
+                    console.group('登陆成功:', res)
+                    wx.hideLoading()
+                    this.setData({
+                        showAuth: false
+                    })
                 })
-            })
-            .catch(e => console.log(e))
+                .catch(e => console.log(e))
 
 
         })
@@ -475,7 +536,7 @@ Page({
     },
     //购物车抛物线
     startAnimation() {
-      console.log('开始动画')
+        console.log('开始动画')
         this.setData({
             showRoll: 1
         })
@@ -486,12 +547,12 @@ Page({
 
         this.linePos = util.bezier([this.busPos, { x: 82, y: 100 }, this.starPos], 20).bezier_points
 
-        console.log('this.linePos',this.linePos)
+        console.log('this.linePos', this.linePos)
         var len = this.linePos.length
         this.timer && clearInterval(this.timer)
 
         this.timer = setInterval(() => {
-            len --
+            len--
             this.setData({
                 bus_x: this.linePos[len].x,
                 bus_y: this.linePos[len].y
@@ -521,20 +582,20 @@ Page({
             },
             success: (res) => {
 
-             
+
 
                 if (res.data.code == 0) {
 
-                       //***后两位
-               res.data.data.lists.map(value=>{
-                    value.specs.map(val=> {
-                    val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g,'*')
+                    //***后两位
+                    res.data.data.lists.map(value => {
+                        value.specs.map(val => {
+                            val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g, '*')
+                        })
                     })
-                })
 
                     this.setData({
                         orderUsers: res.data.data.lists
-                  })
+                    })
 
                 }
 
@@ -576,14 +637,14 @@ Page({
 
 
 
-                    //大于3公里
-                    if (dis > 3 && this.data.delivery_method == 2) {
-                        setTimeout(()=>{
-                            this.setData({
-                                msgvisible:true
-                            })
-                        },3000)
-                    }
+                    // //大于3公里
+                    // if (dis > 3 && this.data.delivery_method == 2) {
+                    //     setTimeout(() => {
+                    //         this.setData({
+                    //             msgvisible: true
+                    //         })
+                    //     }, 3000)
+                    // }
 
 
                 })
@@ -602,19 +663,19 @@ Page({
 
 
     },
-    checkUserIslogin(){
-      wx.getStorage({//获取本地缓存
-      key:"token",
-      success:function(res){
-        console.log('checkUserIslogin',res)
-      },
-      fail:(res)=>{
-        console.log('checkUserIslogin',res)
-        this.setData({
-          showAuth:true
+    checkUserIslogin() {
+        wx.getStorage({ //获取本地缓存
+            key: "token",
+            success: function(res) {
+                console.log('checkUserIslogin', res)
+            },
+            fail: (res) => {
+                console.log('checkUserIslogin', res)
+                this.setData({
+                    showAuth: true
+                })
+            }
         })
-      }
-    })
     },
     //预览图片
     imgPreview: function(event) {
@@ -628,9 +689,12 @@ Page({
     },
     buy() {
 
+
+
         //默认选一份
 
         if (this.data.amountMoney == 0) {
+
             return $Message({
                 content: '请选择数量',
                 type: 'warning',
@@ -640,65 +704,65 @@ Page({
 
 
         let shopcar = this.data.goods_spec.filter(value => value.item_num > 0)
-        
+
         wx.setStorageSync('cart', shopcar)
-        // wx.setStorageSync('goods', {
-        //     goods_name: this.data.goods.goods_name,
-        //     sell_address: this.data.sell_address,
-        //     cover_pic: this.data.imgUrls[0],
-        //     delivery_method: this.data.goods.delivery_method,
-        //     sell_end_time: this.data.goods.sell_end_time,
-        //     goods_content: this.data.goods.goods_content
-        // })
+        wx.setStorageSync('goods', {
+            goods_name: this.data.goods.goods_name,
+            sell_address: this.data.sell_address,
+            seller:this.data.goods.user
+        })
 
         wx.navigateTo({
-            url: '../order/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
+            url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
         })
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
     },
-    calluser(e){
+    calluser(e) {
         wx.makePhoneCall({
-          phoneNumber: e.target.dataset.mobile
+            phoneNumber: e.target.dataset.mobile
         })
-      },
-     copyDetail() {
-        var price='规格：\n'
-        this.data.goods_spec.forEach((item,index)=>{
-             price+= item.key_name +' \b 💰'+item.price +"元\n"
+    },
+    copyDetail() {
+        var price = '规格：\n'
+        this.data.goods_spec.forEach((item, index) => {
+            price += item.key_name + ' \b 💰' + item.price + "元\n"
         })
-        var userList=[]
+        var userList = []
         var len = this.data.orderUsers.length
-        this.data.orderUsers.forEach((item,index)=>{
-             let spec=''
-            item.specs.forEach((k,v)=>{
-               spec+=k.spec_key_name+' × '+k.goods_num+'\b ' 
+        this.data.orderUsers.forEach((item, index) => {
+            let spec = ''
+            item.specs.forEach((k, v) => {
+                spec += k.spec_key_name + ' × ' + k.goods_num + '\b '
             })
-           userList.unshift((len-index)+'.'+item.user.nickname+" \b "+spec + (item.pay_status==1?"(已付)":"未付") )
+            userList.unshift((len - index) + '.' + item.user.nickname + " \b " + spec + (item.pay_status == 1 ? "(已付)" : "未付"))
         })
-        var content =this.data.goods.goods_name+ "\n"+ this.data.goods.goods_content+ "\n"
-        +price
-        +'----'+this.data.seller_user.nickname+ "\n"
-        +"⏰ 截团时间:" +util.formatTime(new Date(this.data.endTime*1000))
-        +"\n"+'为节约时间，请大家继续在小程序里接龙哦:\n'
-        +userList.join('\n')
+        var content = this.data.goods.goods_name + "\n" + this.data.goods.goods_content + "\n" +
+            price +
+            '----' + this.data.seller.nickname + "\n" +
+            "⏰ 截团时间:" + util.formatTime(new Date(this.data.endTime * 1000)) +
+            "\n" + '为节约时间，请大家继续在小程序里接龙哦:\n' +
+            userList.join('\n')
 
         wx.setClipboardData({
-            data:content,
+            data: content,
             success: function(res) {
                 wx.showToast({
-                  title: '已复制去粘贴吧',
-                  icon: 'success',
-                  duration: 2000
+                    title: '已复制去粘贴吧',
+                    icon: 'success',
+                    duration: 2000
                 })
             }
         });
     },
-    onPageScroll:function(e){
-    console.log(e);//{scrollTop:99}
-    this.setData({
-      scrollTop:e.scrollTop
-    })
-  }
+    onPageScroll: util.throttle((e)=>{
+                   console.log(this); //{scrollTop:99}
+
+           console.log(e[0]); //{scrollTop:99}
+        app.that.setData({
+            scrollTop: e[0].scrollTop
+        })
+    },200)
+
 })

@@ -1,4 +1,4 @@
-<view class="img-box" style="height: {{ imgs.height + 'rpx' }}" bindtap="checkBigImg">
+<view class="img-box" style="height: {{ imgs.height + 'rpx' }};{{imgsPath.length > 1 && 'background:none'}}" bindtap="checkBigImg">
 	<block wx:if="{{img.flag}}">
 	<!-- 正方形 -->
 	<view wx:if="{{img.type == 0}}" class="flex-cc">

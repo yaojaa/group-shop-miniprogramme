@@ -3,6 +3,8 @@ import Card from '../palette/card';
 import shareCard from '../palette/shareCard';
 const app = getApp();
 
+
+
 const config = {
     apiUrl: 'https://www.kaixinmatuan.cn'
 }
@@ -57,6 +59,22 @@ const countTime = (nowDate, endDate) => {
 
 }
 
+//防止多次重复点击  （函数节流）
+const throttle = function (fn, gapTime) {
+  if (gapTime == null || gapTime == undefined) {
+    gapTime = 1500
+  }
+
+  let _lastTime = null
+  return function () {
+    let _nowTime = + new Date()
+    if (_nowTime - _lastTime > gapTime || !_lastTime) {
+      fn.call(this,arguments)
+      _lastTime = _nowTime
+    }
+  }
+}
+
 
 //input双向绑定 注意context
 
@@ -72,7 +90,7 @@ const inputDuplex = function(e) {
 
 const uploadFile = function(opt) {
 
-    console.log('上传方法 app.globalData.token',app.globalData.token)
+    console.log('上传方法 app.globalData.token', app.globalData.token)
 
     return new Promise((reslove, reject) => {
         wx.uploadFile({
@@ -88,8 +106,12 @@ const uploadFile = function(opt) {
                 if (typeof res.data == 'string') {
                     res = JSON.parse(res.data)
                 }
-                console.log('res.data.data',res)
-                reslove(res)
+                console.log('res.data.data', res)
+                if(res.code == 200){
+                  reslove(res)
+              }else{
+                reject(res.msg)
+              }
 
             },
             fail: function(e) {
@@ -128,8 +150,8 @@ const uploadPicture = function(option) {
             uploadFile({
                     filePath: filePath
                 }).then(res => {
-                    console.log('一张图片成功',res)
-                    console.log('res.data.file_url',res.data.file_url)
+                    console.log('一张图片成功', res)
+                    console.log('res.data.file_url', res.data.file_url)
 
                     if (res.code == 200) {
                         imgCount++
@@ -166,9 +188,9 @@ const uploadPicture = function(option) {
 
 
 
-   wx.chooseImage(Object.assign(option,{
-    success:successHandle
-   }))
+    wx.chooseImage(Object.assign(option, {
+        success: successHandle
+    }))
 
 
 
@@ -529,19 +551,19 @@ function drawShareFriends(_this, res) {
 }
 
 //播放背景音乐
-const playSound = function(url){
-console.log(url)
-const innerAudioContext = wx.createInnerAudioContext()
-innerAudioContext.autoplay = true
-innerAudioContext.src = 'http://static.kaixinmatuan.cn/error.mp3'
-console.log(innerAudioContext)
-innerAudioContext.onPlay(() => {
-  console.log('开始播放')
-})
-innerAudioContext.onError((res) => {
-  console.log(res.errMsg)
-  console.log(res.errCode)
-})
+const playSound = function(url) {
+    console.log(url)
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = 'http://static.kaixinmatuan.cn/error.mp3'
+    console.log(innerAudioContext)
+    innerAudioContext.onPlay(() => {
+        console.log('开始播放')
+    })
+    innerAudioContext.onError((res) => {
+        console.log(res.errMsg)
+        console.log(res.errCode)
+    })
 
 }
 
@@ -577,5 +599,6 @@ module.exports = {
     playSound,
     uploadFile,
     bezier,
-    setParentData
+    setParentData,
+    throttle
 }

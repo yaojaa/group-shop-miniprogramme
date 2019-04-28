@@ -7,16 +7,10 @@
             <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
                 <view class="tit">{{item.goods_name}}</view>
             </navigator>
-              <view class="link">
-                                <form bindsubmit="formSubmit" data-url="{{item.goods_id}}" data-fn="editPage" report-submit="true">
-                                    <button formType="submit" size="mini"> 修改编辑 </button>
-                                </form>
-                              
-                                <form bindsubmit="formSubmit" data-id="{{item.goods_id}}" report-submit="true">
-                                    <button formType="submit" size="mini">
-                                        <i-icon type="unfold" /> </button>
-                                </form>
-                            </view>
+            <view class="link">
+                <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button> 
+                <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
+            </view>
         </view>
         <view class="fd">
             <!--                                 _expires //是否过期 1正常 2未开始 3已过期
@@ -25,15 +19,15 @@
     </view>
     <view class="goods-count">
         <view class="count-item">
-            <text class="num">{{item.pageview_count}}</text>
-            <i-icon type="browse" /><text class="label">浏览次数</text>
+            <text class="num">{{item.pageview_count}}111</text>
+            <i-icon type="browse" /><text class="label">浏览人数</text>
         </view>
         <view class="count-item">
             <text class="num">{{item.pageview}}</text>
             <i-icon type="browse" /><text class="label">收款总额</text>
         </view>
         <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
-            <text class="num text-primary">{{item._order_count}}</text>
+            <text class="num text-primary">{{item._order_count}}111</text>
             <i-icon type="browse" />
             <text class="label ">订单管理</text>
         </view>

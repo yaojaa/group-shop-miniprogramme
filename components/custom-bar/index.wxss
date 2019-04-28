@@ -1,45 +1,44 @@
-.topBar{
-  color: #000;
-  height: 38px;
-  line-height: 38px;
-  width: 100%;
-  z-index: 1988;
-  background-size: 100% auto;
-  background-position: center top;
-  background-repeat: no-repeat;
-}
-.backBar{
-	z-index:1900;
-	position: fixed;
-	 height: 38px;
-  line-height: 38px;
-	z-index: 10;
-	top: 0;
-	left:0;
-	right:0;
-	background-color: #c00
+.topBar {
+    color: #000;
+    height: 42px;
+    width: 100%;
+    z-index: 1988;
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 
-.tit{
-	font-size: 20px;
-	text-align: center;
-	width: 100%;
-	display: inline-block;
+.backBar {
+    z-index: 2012;
+    position: fixed;
+    height: 42px;
+    top: 0;
+    left: 0;
+    right: 0
 }
 
-.fixed{
-	position: fixed;
-	top: 0;
-	left:0;
-	right:0;
+.tit {
+    font-size: 36rpx;
+    text-align: center;
+    height: 42px;
+    line-height: 42px;
+    width: 100%;
+    display: inline-block;
 }
 
-.icon{
-	position: absolute;
-	left: 10px;
-	z-index: 2019
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
-.icon:active{
-	color: #666
+.icon {
+    position: absolute;
+    left: 10px;
+    z-index: 2019
+}
+
+.icon:active {
+    color: #666
 }

@@ -1,3 +1,7 @@
+<i-custom-bar fixed backColor="'transport'" scrollTop="{{scrollTop}}" showIcon="{{true}}"  changeStartHeight="200" backTitle="{{goods.goods_name}}" changeEndHeight="300" bottomLayerBackColor="#ffffff"  > 
+
+</i-custom-bar>
+
 <view class="container">
    <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
@@ -6,6 +10,17 @@
     <imgs imgs="{{imgs}}"></imgs>
 
             <view class="countdownTime">
+
+                            <view class="left-text">
+
+                                <view class="goods-title f20">
+      {{goods.goods_name}}
+   </view>
+
+                            </view>
+
+
+
             <block wx:if="{{countdownTime && goods._expires ==1 }}">
                 <view class="time-block-box">
                     <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="time-block" show-day="{{true}}">
@@ -37,19 +52,17 @@
     </view>
 <!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
  -->    
-   <view class="goods-title">
-                <text>{{goods.goods_name}}</text>
-
-   </view>
+  
   <view class="page-wrap">
 
         <view class='goods-info'>
          
-            <view class="goods-price" >
+            <view class="goods-price flash" >
 
                 <view class="goods-price-item flex-box" wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
                     <view class="pics flex-item" wx:if="{{item.spec_pic}}">
- <image  src="{{item.spec_pic[0]}}" /> 
+ <image  src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85" /> 
+ <view class="smallnum">{{item.spec_pic.length}}张</view>
  </view>
 
                      <view class="flex-item-2">
@@ -77,33 +90,36 @@
         </view>
  
         <view class='goods-content-wraper'>
-            <view class="googs-title flex-box">
-
-                <view class="flex-item" style="width: 200rpx">
-                    <image class="userinfo-avatar" src="https://www.daohangwa.com/public/upload/local_cover/tmp_8789e959d03e6124356439808cc0354c81fd598848c33517.jpg" />   
-
-                    <text class="text-muted">{{seller_user.nickname}}   红叶舞秋山 </text>
-
-                    
-                </view>
-                <view class="flex-item" wx:if="{{hw_data}}">
-                    <share-button
-  product="{{hw_data}}"
-  bind:error="on_error"
-  type="1"
-/>
-                </view>
-           </view>
             <view class='goods-content'>
                 <text>{{goods.goods_content}}</text>
             </view>
         </view>
 
-          <view style="padding: 20rpx 0"><button bindtap='copyDetail' size="mini">生成文字接龙</button></view>
+          <view style="padding: 20rpx 0">
+
+
+<view class="flex-box">
+    <view class="flex-item"><button bindtap='copyDetail' size="mini">生成文字接龙</button>
+</view>
+    <view class="flex-item" wx:if="{{hw_data}}">
+        <share-button
+  product="{{hw_data}}"
+  bind:error="on_error"
+  type="1"
+/>
+</view>
+
+</view>
+            
+                    
+
+
+
+        </view>
 
 
         <view class='sub-title scale-b-1px'>
-            <i-icon type="suspend" color="#4dc332" />最近参与
+            最近参与
         </view>
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
             <i-cell i-class="buyer-item-box">
@@ -134,7 +150,7 @@
 
         <view wx:if="{{goods.content_imgs.length}}">
             <view class='sub-title scale-b-1px'>
-                <i-icon type="suspend" color="#4dc332" />图文介绍
+                图文介绍
             </view>
         </view>
     </view>
@@ -145,7 +161,7 @@
         </view>
 
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
-            <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}" mode="widthFix" />
+            <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
     </view>
 
@@ -162,11 +178,12 @@
     </view>
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
-            <view class="title">确定数量</view>
+            <view class="title f20">确定数量</view>
             <scroll-view scroll-y style="max-height:500px;">
                 <i-panel>
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">
-                        <i-cell wx:for="{{goods_spec}}" wx:key="{{index}}">
+
+                        <i-cell wx:if="{{item.item_num>0}}" wx:for="{{goods_spec}}" wx:key="{{index}}">
                             <view class="type-box text-justify">
                                 <view>{{item.spec_name}} / <text class="text-red f16"> ¥{{item.spec_price}}</text> </view>
                                 <i-input-number disabled id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
@@ -212,11 +229,11 @@
         </view>
         <view class='share-bottom-btn'>
             <button open-type="share" class="share-f-btn" type="success" bindtap='closeShareFriends'>
-                <image class='icon-img' src='../../img/wx.png' mode='aspectFit'></image>
+                <image class='icon-img' src='' mode='aspectFit'></image>
                 <text>分享给好友</text>
             </button>
             <button class="share-f-btn btn-download" bindtap='savaSelfImages'>
-                <image class='icon-img' src='../../img/xz.png' mode='aspectFit'></image>
+                <image class='icon-img' src='' mode='aspectFit'></image>
                 <text>保存到相册</text>
             </button>
         </view>

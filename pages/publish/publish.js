@@ -241,6 +241,10 @@ Page({
                         icon:'none'
                     })
 
+                    this.setData({
+                        video_progress: false
+                    })
+
                 })
 
 
