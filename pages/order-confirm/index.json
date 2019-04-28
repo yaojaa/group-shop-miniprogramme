@@ -9,6 +9,8 @@
         "van-icon": "../../vant/icon/index",
         "i-panel": "../../iView/panel/index",
         "i-input": "../../iView/input/index",
-        "i-custom-bar": "../../components/custom-bar/index"
+        "i-custom-bar": "../../components/custom-bar/index",
+        "i-message": "../../iView/message/index"
+
     }
 }

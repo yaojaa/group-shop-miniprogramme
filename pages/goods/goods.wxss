@@ -80,8 +80,9 @@
 
 .sub-title {
     margin-top: 20rpx;
-    font-size: 32rpx;
+    font-size: 38rpx;
     padding: 5px 0;
+    font-weight: bold;
 }
 
 .goods-content {

@@ -13,7 +13,9 @@
 
                             <view class="left-text">
 
-                                83837人访问
+                                <view class="goods-title f20">
+      {{goods.goods_name}}
+   </view>
 
                             </view>
 
@@ -50,9 +52,7 @@
     </view>
 <!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
  -->    
-   <view class="goods-title f20">
-      {{goods.goods_name}}
-   </view>
+  
   <view class="page-wrap">
 
         <view class='goods-info'>
@@ -90,26 +90,6 @@
         </view>
  
         <view class='goods-content-wraper'>
-            <view class="flex-box">
-
-                <view class="flex-item">
-                    <image class="userinfo-avatar" src="https://www.daohangwa.com/public/upload/local_cover/tmp_8789e959d03e6124356439808cc0354c81fd598848c33517.jpg" />  
-                </view> 
-
-                 <view class="flex-item-3">
-                 <text class="text-muted">{{seller_user.nickname}}   红叶舞秋山  </text>
-
-                 <i-icon size="28" color="#666666" type="mobilephone" />
-                <i-icon size="28" color="#666666" type="interactive" />
-
-                </view>
-
-
-
-
-                    
-
-           </view>
             <view class='goods-content'>
                 <text>{{goods.goods_content}}</text>
             </view>
@@ -139,7 +119,7 @@
 
 
         <view class='sub-title scale-b-1px'>
-            <i-icon type="suspend" color="#4dc332" />最近参与
+            最近参与
         </view>
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
             <i-cell i-class="buyer-item-box">
@@ -170,7 +150,7 @@
 
         <view wx:if="{{goods.content_imgs.length}}">
             <view class='sub-title scale-b-1px'>
-                <i-icon type="suspend" color="#4dc332" />图文介绍
+                图文介绍
             </view>
         </view>
     </view>

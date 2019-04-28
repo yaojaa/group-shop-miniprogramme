@@ -107,4 +107,5 @@
             <van-field input-align="left" bindchange="" value="{{area}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
     </view>
+    <i-message id="message" />
 </view>
