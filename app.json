@@ -55,5 +55,6 @@
             "version": "2.1.3",
             "provider": "wx56c8f077de74b07c"
         }
-    }
+    },
+    "sitemapLocation": "sitemap.json"
 }
