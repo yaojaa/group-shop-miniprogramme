@@ -109,6 +109,14 @@ page{
 
 }
 
+.cover1{
+  width: 100%
+}
+.cover{
+  width: 100%;
+    overflow: hidden;
+  border-radius: 3px
+}
 
 .item-img-box-tow {
   display: inline-block;
@@ -117,9 +125,10 @@ page{
   overflow: hidden;
   padding: 3px;
   box-sizing: border-box;
-    border-radius: 3px
+  border-radius: 3px
 
 }
+
 
 .item-img-box-three {
   display: inline-block;
@@ -135,6 +144,8 @@ page{
 .item-img-box-one image .item-img-box-tow image, .item-img-box-three image{
 
   width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
 
 }
 .item-name{

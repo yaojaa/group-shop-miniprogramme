@@ -40,6 +40,10 @@ Component({
             type: Boolean,
             value: false
         },
+        showBackBar: {
+            type: Boolean,
+            value: false
+        },
         backIconSize: {
             type: String,
             value: '26'

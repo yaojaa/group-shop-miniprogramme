@@ -405,7 +405,7 @@ Page({
 
         this.data.goods_spec[id].item_num = parseInt(e.detail.value)
 
-        let amountMoney = 100;
+        let amountMoney = 0;
 
         let totalNum = 0
 
@@ -756,13 +756,10 @@ Page({
             }
         });
     },
-    onPageScroll: util.throttle((e)=>{
-                   console.log(this); //{scrollTop:99}
-
-           console.log(e[0]); //{scrollTop:99}
-        app.that.setData({
-            scrollTop: e[0].scrollTop
+    onPageScroll: function(e){
+        this.setData({
+            scrollTop: e.scrollTop
         })
-    },200)
+    }
 
 })

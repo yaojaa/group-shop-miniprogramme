@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
 
-<i-custom-bar fixed backColor="#ffffff" backImage="http://img.atomstone.com/top_bar_bg.jpg"> <view class="tit-slogan">身边好物 跟着买就对了 <text class="small">{{userloaction.city}} {{userloaction.district}}</text></view>   </i-custom-bar>
+<i-custom-bar fixed backColor="#ffffff" backImage="http://img.atomstone.com/top_bar_bg.jpg"> <view slot="top"  class="tit-slogan">身边好物 跟着买就对了 <text class="small">{{userloaction.city}} {{userloaction.district}}</text></view>   </i-custom-bar>
   <!--   <view class="location flex-box align-center">
         <i-icon type="coordinates_fill" size="16" />
         <text>{{userloaction.city}} {{userloaction.district}} {{userloaction.street_number}}</text>
