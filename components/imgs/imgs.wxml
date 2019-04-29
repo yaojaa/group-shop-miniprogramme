@@ -38,11 +38,12 @@
 	<!-- 单图 -->
 	<image wx:else="{{img.type == 9}}" mode="aspectFill" src="{{ img.src }}"></image>
 	</block>
+	<slot></slot>
 </view>
 
 <view class="swiper" hidden="{{bigImgsHidden}}" bindtap="closeBigImg">
 	<swiper indicator-dots class="slide-image">
-    <swiper-item wx:for="{{imgsPath}}">
+    <swiper-item wx:for="{{imgsPath}}" wx:key="{{index}}">
       <image src="{{item.src}}" mode="aspectFit" class="slide-image"/>
     </swiper-item>
 	</swiper>

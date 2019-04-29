@@ -1,47 +1,32 @@
-<i-custom-bar fixed backColor="'transport'" scrollTop="{{scrollTop}}" showIcon="{{true}}"  changeStartHeight="200" backTitle="{{goods.goods_name}}" changeEndHeight="300" bottomLayerBackColor="#ffffff"  > 
-
+<i-custom-bar fixed backColor="'transport'" scrollTop="{{scrollTop}}" showIcon="{{true}}" changeStartHeight="200" backTitle="{{goods.goods_name}}" changeEndHeight="300" bottomLayerBackColor="#ffffff">
 </i-custom-bar>
-
 <view class="container">
-   <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
+    <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
-
-
-    <imgs imgs="{{imgs}}"></imgs>
-
+    <imgs imgs="{{imgs}}">
+        <view class="count-box">
             <view class="countdownTime">
-
-                            <view class="left-text">
-
-                                <view class="goods-title f20">
-      {{goods.goods_name}}
-   </view>
-
-                            </view>
-
-
-
-            <block wx:if="{{countdownTime && goods._expires ==1 }}">
-                <view class="time-block-box">
-                    <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="time-block" show-day="{{true}}">
-                    </i-count-down>
-                </view>
-            </block>
-            <block wx:else>
-                已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
-            </block>
-            <view class="right-text">
-
-<!-- _expires  //是否过期 1正常,2未开始,3已过期
- -->
-                <view class="share-box">
-            <button bindtap='openShareFriends'>
-                <i-icon type="share" size="28" color="#666" /> <text class="text-muted f12">分享</text>
-            </button>
-        </view></view>
+                <block wx:if="{{countdownTime && goods._expires ==1 }}">
+                    <view class="time-block-box">
+                        <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="" show-day="{{true}}">
+                        </i-count-down>
+                    </view>
+                </block>
+                <block wx:else>
+                    已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
+                </block>
+            </view>
         </view>
-
-
+    </imgs>
+    <view class="goods-info">
+        <view class="goods-name">{{goods.goods_name}}</view>
+        <view class="goods-share">
+            <button bindtap='openShareFriends' class="btn-reset">
+                <i-icon type="send" size="24" color="#666" />
+                <view class="text-muted f12">分享</view>
+            </button>
+        </view>
+    </view>
     <!-- <view class="pageloading">
     加载中...
 </view> -->
@@ -50,36 +35,25 @@
     <view class='painter'>
         <image src="{{imagePath}}"></image>
     </view>
-<!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
- -->    
-  
-  <view class="page-wrap">
-
-        <view class='goods-info'>
-         
-            <view class="goods-price flash" >
-
-                <view class="goods-price-item flex-box" wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
-                    <view class="pics flex-item" wx:if="{{item.spec_pic}}">
- <image  src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85" /> 
- <view class="smallnum">{{item.spec_pic.length}}张</view>
- </view>
-
-                     <view class="flex-item-2">
-
-                    <view class="f14 text-default">{{item.spec_name}} <text class="price"> ¥{{item.spec_price}}</text></view> 
-                    <view class="f12px text-info">{{item.spec_desc}}</view> 
+    <!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
+ -->
+    <view class="page-wrap">
+        <view class="goods-price flash">
+            <view class="goods-price-item flex-box" wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
+                <view class="pics" wx:if="{{item.spec_pic}}">
+                    <image src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85" />
+                    <view class="smallnum">{{item.spec_pic.length}}张</view>
                 </view>
-
-                 <view class="flex-item-2" catchtap="addAnimate">
-                 <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}"  bindchange="handleCountChange"  />
-                 </view>
-
+                <view class="info">
+                    <view class="f14 text-default">{{item.spec_name}} <text class="price"> ¥{{item.spec_price}}</text></view>
+                    <view class="f12px text-info">{{item.spec_desc}}</view>
+                </view>
+                <view class="buy" catchtap="addAnimate">
+                    <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange" />
                 </view>
             </view>
-              
         </view>
-      <!--   <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
+        <!--   <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
             <i-cell  label="快递邮寄 送货上门" i-class="address-item">
             </i-cell>
         </view> -->
@@ -88,36 +62,17 @@
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
         </view>
- 
         <view class='goods-content-wraper'>
             <view class='goods-content'>
                 <text>{{goods.goods_content}}</text>
             </view>
         </view>
-
-          <view style="padding: 20rpx 0">
-
-
-<view class="flex-box">
-    <view class="flex-item"><button bindtap='copyDetail' size="mini">生成文字接龙</button>
-</view>
-    <view class="flex-item" wx:if="{{hw_data}}">
-        <share-button
-  product="{{hw_data}}"
-  bind:error="on_error"
-  type="1"
-/>
-</view>
-
-</view>
-            
-                    
-
-
-
+        <view style="padding: 20rpx 0">
+            <view class="text-justify">
+                <view><button bindtap='copyDetail' size="mini">生成文字接龙</button></view>
+                <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" />
+            </view>
         </view>
-
-
         <view class='sub-title scale-b-1px'>
             最近参与
         </view>
@@ -134,10 +89,10 @@
                     <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
                     <view class="buyer-info">
                         <view class="name"> {{item.user.nickname}} <text class="number">{{item.create_number}} </text>
-</view>
+                        </view>
                         <view class="type">
                             <view wx:for="{{item.specs}}" wx:key="index" wx:for-item="gds">
-                                 跟 {{gds.spec_key_name}} × {{gds.goods_num}}
+                                跟 {{gds.spec_key_name}} × {{gds.goods_num}}
                             </view>
                         </view>
                     </view>
@@ -145,27 +100,20 @@
                 </view>
             </i-cell>
         </i-cell-group>
-
-        
-
         <view wx:if="{{goods.content_imgs.length}}">
             <view class='sub-title scale-b-1px'>
                 图文介绍
             </view>
         </view>
     </view>
-
     <view class="piclist-container">
-         <view wx:if="{{goods.goods_video}}">
+        <view wx:if="{{goods.goods_video}}">
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view>
-
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
             <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
     </view>
-
-
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
@@ -182,7 +130,6 @@
             <scroll-view scroll-y style="max-height:500px;">
                 <i-panel>
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">
-
                         <i-cell wx:if="{{item.item_num>0}}" wx:for="{{goods_spec}}" wx:key="{{index}}">
                             <view class="type-box text-justify">
                                 <view>{{item.spec_name}} / <text class="text-red f16"> ¥{{item.spec_price}}</text> </view>
@@ -243,20 +190,14 @@
         <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
     </view>
     <i-message id="message" />
-
-    <van-popup custom-class="authPopBox"  
- show="{{ showAuth }}" bind:close="onClose">
+    <van-popup custom-class="authPopBox" show="{{ showAuth }}" bind:close="onClose">
         <view class="logo">
-            <image src="https://static.kaixinmatuan.cn/staitc-img/logo.png"/>
+            <image src="https://static.kaixinmatuan.cn/staitc-img/logo.png" />
         </view>
-       <view class="info">
-         获取您的公开信息
-         微信头像和昵称
-       </view>
-
-     <button size="default" type="primary"  plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
-           
-      
-        </van-popup>
-
+        <view class="info">
+            获取您的公开信息
+            微信头像和昵称
+        </view>
+        <button size="default" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
+    </van-popup>
 </view>
