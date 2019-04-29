@@ -331,9 +331,10 @@
     color: #666;
     text-align: left;
     overflow: hidden;
-    padding:5px 15px;
+    padding:8px 15px;
     position: relative;
     margin-bottom: 30rpx;
+    margin-top: 20rpx;
 }
 
 .time-block {}
