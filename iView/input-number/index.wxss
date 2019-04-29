@@ -3,15 +3,17 @@
 }
 
 .i-input-number view {
-  display:inline-block;
-line-height:20px;
 height:26px;
 text-align:center;
 width:26px;
 font-size:20px;
 color:#fff;
 font-weight:bold;
-
+display: flex;
+align-items: center;
+justify-content: center;
+line-height: 1;
+padding-bottom: 2px;
 }
 
 .i-input-number .i-input-number-minus {
