@@ -4,10 +4,25 @@
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
     <imgs imgs="{{imgs}}">
-        
+        <view class="user-info">
+            <view class="user-info-hd">
+                 <image src="http://image.countinsight.com/front/img/shop_lt.png" class="avatar">
+                </image>
+            </view>
+            <view class="user-info-bd">
+                <text class="name">秋山红吓</text>
+                <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon"/>
+                <wux-icon type="ios-chatbubbles" color="#fff" size="18" wux-class="icon"/>
+            </view>
+        </view>
     </imgs>
     <view class="goods-info">
-        <view class="goods-name">{{goods.goods_name}}</view>
+        <view class="goods-info-bd">
+            <view class="goods-name">
+                {{goods.goods_name}}
+            </view>
+            <view class="f12 text-info">已售2000份</view>
+        </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
                 <i-icon type="send" size="24" color="#666" />
@@ -27,16 +42,16 @@
  -->
     <view class="page-wrap">
         <view class="countdownTime">
-                <block wx:if="{{countdownTime && goods._expires ==1 }}">
-                    <view class="time-block-box">
-                        <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="" show-day="{{true}}">
-                        </i-count-down>
-                    </view>
-                </block>
-                <block wx:else>
-                    已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
-                </block>
-            </view>
+            <block wx:if="{{countdownTime && goods._expires ==1 }}">
+                <view class="time-block-box">
+                    <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="" show-day="{{true}}">
+                    </i-count-down>
+                </view>
+            </block>
+            <block wx:else>
+                已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
+            </block>
+        </view>
         <view class="goods-price flash">
             <view class="goods-price-item flex-box" wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
                 <view class="pics" wx:if="{{item.spec_pic}}">

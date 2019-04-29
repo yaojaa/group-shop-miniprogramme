@@ -1,4 +1,4 @@
-@import "../../utils/weui.wxss";
+@import "../../css/common.wxss";
 
 .authPopBox {
 
@@ -38,13 +38,16 @@
   padding: 10px 15px;
 }
 .goods-name{
-  flex: 1;
-  padding-right: 15px;
+  
   font-size: 16px;
   font-weight: bold;
 }
 .goods-info{
   display: flex;
+}
+.goods-info-bd{
+  flex: 1;
+  padding-right: 15px;
 }
 .goods-share{
   padding-left: 15px;
@@ -193,7 +196,7 @@
     height: 300rpx;
 }
 
-.user-info {
+/*.user-info {
     -webkit-flex: 1;
     -moz-flex: 1;
     -ms-flex: 1;
@@ -219,7 +222,7 @@
     overflow-y: hidden;
     display: inline-block;
     vertical-align: top;
-}
+}*/
 
 
 
@@ -328,9 +331,10 @@
     color: #666;
     text-align: left;
     overflow: hidden;
-    padding:5px 15px;
+    padding:8px 15px;
     position: relative;
     margin-bottom: 30rpx;
+    margin-top: 20rpx;
 }
 
 .time-block {}
@@ -760,4 +764,34 @@
     opacity: 0.9;
     font-size: 20rpx;
     padding: 0 2px;
+}
+.user-info{
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  color:#fff;
+  border-radius: 100px;
+  position: absolute;
+  left:15px;
+  top:60rpx;
+}
+.user-info .avatar{
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 100%;
+  overflow: hidden;
+  font-size: 0;
+  vertical-align: middle;
+}
+.user-info-bd{
+  flex: 1;
+  padding:0  20rpx;
+}
+.user-info .name{
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.user-info .icon{
+  margin-left: 20rpx;
+  vertical-align: top;
 }
