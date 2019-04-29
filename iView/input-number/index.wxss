@@ -1,5 +1,7 @@
 .i-input-number {
-    color: #495060
+    color: #495060;
+    display: flex;
+    align-items: center;
 }
 
 .i-input-number view {
