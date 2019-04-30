@@ -4,12 +4,12 @@
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
     <imgs imgs="{{imgs}}">
-        <view class="user-info" style="margin-top: {{customBar}}rpx">
+        <view class="user-info">
             <view class="user-info-hd">
                  <image src="{{goods.user.headimg}}" class="avatar">
                 </image>
             </view>
-            <view class="user-info-bd">
+            <view class="user-info-bd" style="margin-top: {{StatusBar}}px">
                 <text class="name">{{goods.user.nickname}}</text>
                 <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon"/>
                 <wux-icon type="ios-chatbubbles" color="#fff" size="18" wux-class="icon"/>

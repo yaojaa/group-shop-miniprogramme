@@ -64,7 +64,7 @@ Page({
             showRoll: 0,
             totalNum: 0 ,//已选择的总数
             notice:'' ,//价格提示框class
-            customBar:''
+            StatusBar:''
         },
     },
     onShow: function() {
@@ -261,7 +261,7 @@ Page({
 
 
         this.setData({
-            customBar:app.globalData.CustomBar
+            StatusBar:app.globalData.StatusBar
         })
 
         // wx.showLoading({

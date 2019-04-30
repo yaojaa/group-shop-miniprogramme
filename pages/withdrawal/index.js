@@ -10,7 +10,7 @@ Page({
     data: {
 
         store_money: 0,
-        inputMoney: 0,
+        inputMoney: 10,
         withdrawalslist: [],
         totalpage: 1
     },
@@ -49,6 +49,7 @@ Page({
                     })
 
                     this.get_store_info()
+                    this.finance_withdrawal_list()
 
                 } else {
 
