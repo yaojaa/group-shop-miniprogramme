@@ -4,13 +4,13 @@
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
     <imgs imgs="{{imgs}}">
-        <view class="user-info">
+        <view class="user-info" style="margin-top: {{customBar}}rpx">
             <view class="user-info-hd">
-                 <image src="http://image.countinsight.com/front/img/shop_lt.png" class="avatar">
+                 <image src="{{goods.user.headimg}}" class="avatar">
                 </image>
             </view>
             <view class="user-info-bd">
-                <text class="name">秋山红吓</text>
+                <text class="name">{{goods.user.nickname}}</text>
                 <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon"/>
                 <wux-icon type="ios-chatbubbles" color="#fff" size="18" wux-class="icon"/>
             </view>
@@ -21,7 +21,7 @@
             <view class="goods-name">
                 {{goods.goods_name}}
             </view>
-            <view class="f12 text-info">已售2000份</view>
+            <view class="f12px text-info">访问人数200 已售23  </view>
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
@@ -52,7 +52,7 @@
                 已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
             </block>
         </view>
-        <view class="goods-price flash">
+        <view id="spec_box" class="goods-price flash {{notice?'notice':''}}">
             <view class="goods-price-item flex-box" wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
                 <view class="pics" wx:if="{{item.spec_pic}}">
                     <image src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85" />
@@ -138,7 +138,7 @@
             <button class="buy linenear_bg" formType="submit">立即参与</button>
         </form>
     </view>
-    <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
+    <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="title f14 pt-sm pl-df" style="margin-bottom: -5px">确定数量</view>
             <scroll-view scroll-y style="max-height:500px;">
@@ -160,10 +160,10 @@
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
                 <view wx:if="{{!hasScope}}" style="flex:2">
-                    <button class="settlement" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">下一步</button>
+                    <button class="settlement linenear_bg" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">下一步</button>
                 </view>
                 <form style="flex:2" wx:else bindsubmit="formSubmit" data-fn="buy" report-submit="true">
-                    <button class="settlement" shape="circle" formType="submit">下一步</button>
+                    <button class="settlement linenear_bg" shape="circle" formType="submit">下一步</button>
                 </form>
             </view>
         </view>

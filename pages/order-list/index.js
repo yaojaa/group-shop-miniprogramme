@@ -89,15 +89,17 @@ Page({
         this.setData({
             loading: true
         })
-        // util.wx.get('/api/front/order/index', { "page": 1, "page_size": 100, status: this.data.status })
-        //     .then(res => {
-        //         if (res.data.code == 0) {
-        //             this.setData({
-        //                 loading: false,
-        //                 order_list: res.data.data
-        //             })
-        //         }
-        //     })
+
+    util.wx.get('/api/user/get_order_list')
+    .then(res=>{
+       if(res.data.code == 200){
+        this.setData({
+                        loading: false,
+                        order_list: res.data.data
+                                })
+       }
+    })
+       
     },
     getRefundList() {
         this.setData({

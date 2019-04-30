@@ -1,22 +1,25 @@
+
+<i-custom-bar showBackIcon="{{true}}" fixed   title="提现">   </i-custom-bar>
 <view class="container">
-	<view class="text-justify f14">
-		<view>余额（元）</view>
+	<view class="text-justify mtop100 f14">
+		<view>账户余额（元）</view>
 <!-- 		<view>余额明细</view>
  -->	</view>
 	<view class="money-box"><view class="money-yuan">¥</view><view class="money-num">{{store_money}}</view></view>
 	<view class="withdraw-box">
 	<i-input value="{{inputMoney}}" type="number" bindchange="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
 	</view>
-	<button type="primary"  bindtap="getMoney"> 提现 </button>
+	<button type="primary" class="linear_bg" bindtap="getMoney"> 提现 </button>
 
 
 	<view class="list" wx:if="{{withdrawalslist.length}}">
 
-		<view class="item" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
+		<view class="item" key="{{index}}" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
 			
-			申请记录
-			 金额：{{item.money}}
-			状态：{{["审核中","审核通过","提现成功"][item.status]}}
+{{item.apply_time_txt}}
+ 申请金额：{{item.apply_money}}
+			{{item.withdraw_status_txt}}
+
 		</view>
 
 	
@@ -25,8 +28,7 @@
     	<view class="erweima">
 
 			<text style="font-size: 12px;">提现微信收取手续费0.6%，平台不收任何费用。
-			24小时内到账，有疑问可联系客服。
-			发布商品的时候，选择线下收款可避免手续费。
+			实时内到账，有疑问可联系客服。
 		</text>
 
 		
@@ -35,7 +37,7 @@
 		</view>
 
 		<view class="center">
-			<button size="mini"  open-type="contact" bindcontact="handleContact">快速提现联系客服</button> 
+			<button  open-type="contact" bindcontact="handleContact">联系客服</button> 
 	    <i-message id="message" />
 		</view>
 

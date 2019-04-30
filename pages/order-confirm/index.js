@@ -269,6 +269,14 @@ Page({
                     signType: data['signType'],
                     paySign: data['paySign'],
                     success: (res) => {
+
+
+                        util.wx.post('/api/pay/orderpay',{
+                            order_sn:order_sn
+                        })
+
+
+
                         wx.redirectTo({
                             url:'../paySuccess/index'
                         })

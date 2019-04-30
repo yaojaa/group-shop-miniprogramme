@@ -4,7 +4,7 @@
             <view class="flex align-center">
                 <image src="http://image.countinsight.com/front/img/shop_lt.png" class="shop-tb mr-xs">
                 </image>
-                <view class="flex-sub text-hide">秋山红吓</view>
+                <view class="flex-sub text-hide">卖家名字</view>
             </view>
         </view>
         <view class="text-muted">已完成</view>
@@ -15,7 +15,7 @@
             <image src="http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg" class="cover mr-sm"></image>
             <view class="flex-sub por">
                 <view class="text-hide two-line  bold title">
-                  生态腐竹，包你吃一次忘不掉
+                  商品名称
                 </view>
                 <view class="text-muted mt-xs text-sm des"><text class="pr-sm">500g</text></view>
                 <view class="text-justify bt-bar">

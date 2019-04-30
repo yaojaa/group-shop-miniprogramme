@@ -28,6 +28,16 @@ Page({
     value: 0,
     current: 'tab1'
   },
+  getData(){
+    util.wx.get('/api/user/get_order_list')
+    .then(res=>{
+       if(res.data.code == 200){
+        this.setData({
+          orders:res.data.data
+        })
+       }
+    })
+  },
   fncall(ev){
 
     let phoneNumber = ev.target.dataset.phone;
@@ -54,5 +64,6 @@ Page({
     })
   },
   onLoad: function (option) {
+    this.getData()
   }
 })

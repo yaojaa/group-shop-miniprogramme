@@ -10,7 +10,7 @@
     </van-tabs>
     <view class="order-coentent" wx:if="{{status !== 5}}">
         <view class="order-box">
-            <block wx:for="{{4}}" wx:key="{{index}}">
+            <block wx:for="{{order_list}}" wx:key="{{index}}">
                 <order-list item="{{item}}">
                     <!--                     <text class="right-text">等待付款中</text>-->
                     <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-order="{{item.order_code}}" bindtap="handleCancelOrder">取消订单</button>

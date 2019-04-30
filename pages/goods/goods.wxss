@@ -39,8 +39,9 @@
 }
 .goods-name{
   
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
+  margin-bottom: 2px
 }
 .goods-info{
   display: flex;
@@ -82,6 +83,28 @@
     color: #333;
     padding: 5rpx 0 0;
 }
+
+.goods-price.notice{
+  animation-name: flash;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+
+}
+
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+      box-shadow:  0 0 8px #f00;
+  }
+
+  25%,
+  75% {
+     box-shadow:  0 0 1px #f00;
+  }
+}
+
 
 .goods-price .price {
     font-size: 32rpx;
@@ -272,7 +295,6 @@
     -ms-flex: 1;
     -o-flex: 1;
     flex: 1;
-    background: #49b34d;
     border-radius: 0;
     color: #fff;
     height: 100%
@@ -760,10 +782,10 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    background: #000;
+    background: #333;
     color: #fff;
     opacity: 0.9;
-    font-size: 20rpx;
+    font-size: 18rpx;
     padding: 0 2px;
 }
 .user-info{

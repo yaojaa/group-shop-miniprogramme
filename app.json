@@ -28,7 +28,8 @@
     "pages/evaluate/index",
     "pages/wxgroup_add/index",
     "pages/order-confirm/index",
-    "pages/fans/index"
+    "pages/fans/index",
+    "pages/withdrawal/index"
   ],
   "permission": {
     "scope.userLocation": {

@@ -62,7 +62,9 @@ Page({
             hw_data: null,
             showAuth: false,
             showRoll: 0,
-            totalNum: 0 //已选择的总数
+            totalNum: 0 ,//已选择的总数
+            notice:'' ,//价格提示框class
+            customBar:''
         },
     },
     onShow: function() {
@@ -243,6 +245,24 @@ Page({
 
         this.checkUserIslogin()
 
+
+        //获取价格区域的高度，滚动到此位置
+        
+        const query = wx.createSelectorQuery()
+                query.select('#spec_box').boundingClientRect()
+                query.selectViewport().scrollOffset()
+                query.exec( (res)=> {
+
+                    this.data.spec_box_top = res[0].top
+                  // res[0].top // #the-id节点的上边界坐标
+                  // res[1].scrollTop // 显示区域的竖直滚动位置
+                  console.log(res)
+                })
+
+
+        this.setData({
+            customBar:app.globalData.CustomBar
+        })
 
         // wx.showLoading({
         //       title: '玩命加载中...',
@@ -486,9 +506,21 @@ Page({
 
           if(!hasAdd){
 
+            console.log('this.data.spec_box_top',this.data.spec_box_top)
+
             wx.pageScrollTo({
-            scrollTop: 450
+            scrollTop: this.data.spec_box_top -100
           })
+
+            this.setData({
+                notice:'notice'
+            })
+
+            setTimeout(()=>{
+                this.setData({
+                notice:''
+            })
+            },2000)
 
         }
         }
