@@ -140,7 +140,7 @@
     </view>
     <i-action-sheet visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
-            <view class="title f20">确定数量</view>
+            <view class="title f14 pt-sm pl-df" style="margin-bottom: -5px">确定数量</view>
             <scroll-view scroll-y style="max-height:500px;">
                 <i-panel>
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">

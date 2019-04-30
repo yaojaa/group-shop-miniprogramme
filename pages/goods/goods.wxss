@@ -644,8 +644,9 @@
     top: -10rpx;
     left: -10rpx;
     padding: 8rpx;
-    min-width: 24rpx;
-    z-index: 999
+    min-width: 34rpx;
+    z-index: 999;
+    line-height: 1.2;
 }
 
 .roll_box {
@@ -768,7 +769,7 @@
 .user-info{
   display: flex;
   align-items: center;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.4);
   color:#fff;
   border-radius: 100px;
   position: absolute;
