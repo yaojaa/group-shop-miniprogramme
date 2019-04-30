@@ -35,6 +35,10 @@ Component({
       this.data.minScaleVal = this.properties.imgs.minScaleVal || this.data.minScaleVal;
       this.data.minXYVale = this.properties.imgs.minXYVale || this.data.minXYVale;
 
+      this.properties.imgs.src.forEach(e => {
+        e.img_url = e.img_url + '?imageMogr2/thumbnail/750x'+ this.properties.imgs.height +'/size-limit/60k!/imageslim'
+      })
+
       // this.properties.imgs.src=[
       //   {img_url: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1402689538,1138486299&fm=26&gp=0.jpg"},
       //   {img_url: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1349823395,1860218221&fm=26&gp=0.jpg"},
