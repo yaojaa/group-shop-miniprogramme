@@ -65,7 +65,8 @@ Page({
             totalNum: 0 ,//已选择的总数
             notice:'' ,//价格提示框class
             StatusBar:'',
-            toShowPic:false
+            toShowPic:false,
+            poster:false,
         },
     },
     onShow: function() {
@@ -122,12 +123,19 @@ Page({
             showShareFriendsCard: false
         })
     },
+    handlePoster(){
+        this.setData({
+            showShareFriendsCard: false,
+            poster: !this.data.poster
+        })
+    },
     savaSelfImages() {
+        console.log('savaSelfImages')
         if (this.data.shareFriendsImg) {
             wx.saveImageToPhotosAlbum({
                 filePath: this.data.shareFriendsImg,
             });
-            this.closeShareFriends();
+            this.handlePoster();
         }
     },
     onFriendsImgOK(e) {
