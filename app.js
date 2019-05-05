@@ -297,7 +297,7 @@ App({
                       console.log('无授权停止',option.path =='pages/goods/goods' || option.path=='pages/login/login')
                     
                   }else{
-                    //this.redirectToLogin()
+                   this.redirectToLogin()
                   }
                 }
     })

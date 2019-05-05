@@ -120,9 +120,9 @@ Page({
     // })
   },
   toDetail(e){
-    let postId = e.currentTarget.dataset.postId || 28
+    let postId = e.currentTarget.dataset.postId || 58
     wx.navigateTo({
-      url: '../goods/goods?id='+postId,
+      url: '../goods/goods?goods_id='+postId,
     })
   },
   addGoods() {

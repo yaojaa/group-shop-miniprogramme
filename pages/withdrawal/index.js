@@ -9,8 +9,8 @@ Page({
      */
     data: {
 
-        store_money: 0,
-        inputMoney: 10,
+        pending_money: 0,
+        inputMoney: 0,
         withdrawalslist: [],
         totalpage: 1
     },
@@ -68,7 +68,7 @@ Page({
             .then(res => {
                 if (res.data.code == 200) {
                     this.setData({
-                        store_money: res.data.data.store_money
+                        pending_money: res.data.data.pending_money
                     })
                 }
 

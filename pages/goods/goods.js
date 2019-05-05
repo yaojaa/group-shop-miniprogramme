@@ -64,7 +64,8 @@ Page({
             showRoll: 0,
             totalNum: 0 ,//已选择的总数
             notice:'' ,//价格提示框class
-            StatusBar:''
+            StatusBar:'',
+            toShowPic:false
         },
     },
     onShow: function() {
@@ -789,8 +790,15 @@ Page({
         });
     },
     onPageScroll: function(e){
+
+        if(e.scrollTop > app.globalData.winHeight/2){
+            this.setData({
+              toShowPic:true
+            })
+        }
+
         this.setData({
-            scrollTop: e.scrollTop
+            scrollTop: e.scrollTop,
         })
     }
 

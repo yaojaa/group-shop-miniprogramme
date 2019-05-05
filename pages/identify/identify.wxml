@@ -1,6 +1,6 @@
 <i-custom-bar showIcon="{{true}}" backColor="#fff" title="个人信息"> </i-custom-bar>
 <view class="container ">
-    <view class="info-box mtop100">
+    <view class="info-box ">
         <i-panel title="完善联系方式">
             <wux-cell-group>
                 <wux-cell hover-class="none">
@@ -37,7 +37,7 @@
 
           </view>
        </i-panel> -->
-        <i-panel title="微信赞赏码：">
+ <!--        <i-panel title="微信赞赏码：">
             <view>
                 <view class="f14 text-red" style="padding: 10rpx 30rpx">将在线下收款时启用，注意不是收款码，否则无法长按识别付款。微信--钱包--收付款--赞赏码
                 </view>
@@ -50,10 +50,10 @@
                 <view data-type="wx_collection_code" wx:if="{{!wx_collection_code}}" class="weui-uploader__input-box" bindtap="chooseImage">
                 </view>
             </view>
-        </i-panel>
+        </i-panel> -->
     </view>
     <view class='btn-wrap'>
-        <button type="primary" bindtap="postInfo">保存</button>
+        <button type="primary" class="linear_bg" bindtap="postInfo">保存</button>
     </view>
     <i-message id="message" />
 </view>

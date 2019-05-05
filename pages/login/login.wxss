@@ -5,7 +5,7 @@
   bottom:0;
   left:0;
   right:0;
-  background: url('http://img.atomstone.com/start.jpg');
+  background: url('https://static.kaixinmatuan.cn/staitc-img/start.jpg');
   background-size: 100% auto;
   background-position: center bottom
 }

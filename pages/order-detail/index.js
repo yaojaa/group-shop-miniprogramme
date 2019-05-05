@@ -1,4 +1,5 @@
 import Dialog from '../../vant/dialog/dialog';
+const util = require('../../utils/util')
 
 Page({
 
@@ -6,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+
+    info:{}
 
   },
   handleConfirmReceipt() {
@@ -23,6 +26,9 @@ Page({
    */
   onLoad: function (options) {
 
+    const id = options.id
+    this.getInfo(id)
+
   },
 
   /**
@@ -30,6 +36,18 @@ Page({
    */
   onReady: function () {
 
+  },
+  getInfo(id){
+    util.wx.get('/api/user/get_order_detail',{
+      order_id:id
+    })
+    .then(res=>{
+      if(res.data.code == 200){
+        this.setData({
+          info:res.data.data
+        })
+      }
+    })
   },
 
   /**

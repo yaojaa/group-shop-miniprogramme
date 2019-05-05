@@ -4,7 +4,7 @@
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
     <imgs imgs="{{imgs}}">
-        <view class="user-info"  style="margin-top: {{StatusBar}}px">
+        <view class="user-info" >
             <view class="user-info-hd">
                  <image src="{{goods.user.headimg}}" class="avatar">
                 </image>
@@ -49,7 +49,7 @@
                 </view>
             </block>
             <block wx:else>
-                已截团,下次请早点来哦 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
+                {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
             </block>
         </view>
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}}">
@@ -120,7 +120,7 @@
             </view>
         </view>
     </view>
-    <view class="piclist-container">
+    <view class="piclist-container" wx:if="{{toShowPic}}">
         <view wx:if="{{goods.goods_video}}">
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view>

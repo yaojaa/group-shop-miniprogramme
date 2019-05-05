@@ -70,7 +70,7 @@ Page({
 
 
      this.setData({
-      goods_id :optiton.goods_id,
+      goods_id :optiton.id,
       goods_name :optiton.goods_name
 
      })
@@ -248,18 +248,16 @@ Page({
 
     return new Promise((resolve, reject)=>{
       wx.showLoading()
-      wx.request({
-      url: 'https://www.daohangwa.com/api/seller/get_order_list',
-      data: { 
+
+      util.wx.get('/api/seller/get_order_list',{
       goods_id:this.data.goods_id,
-      token:app.globalData.token,
       cpage:this.data.cpage,
       shipping_status:this.data.shipping_status,
       order_status:this.data.order_status,
       pagesize:80
       // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
-      },
-      success:(res) => {
+      }
+      ).then((res) => {
 
         var resdata
 
@@ -282,12 +280,12 @@ Page({
         wx.hideLoading()
 
         resolve(res.data.data)
-      },
-      fail:(err)=>{
+      },(err)=>{
         wx.hideLoading()
         reject(err)
-      }
-    })
+      })
+
+
 
     })
 

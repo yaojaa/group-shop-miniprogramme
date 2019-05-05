@@ -23,13 +23,13 @@ Page({
     },
     handleCancelOrder(event) {
         let { order } = event.target.dataset
-       
+
         Dialog.confirm({
             message: '是否取消当前订单？',
             cancelButtonText: '考虑一下',
             confirmButtonText: '立即取消'
         }).then(() => {
-            
+
             util.wx.get('/api/front/order/cancel', { "order_code": order })
                 .then(res => {
                     if (res.data.code == 0) {
@@ -56,7 +56,7 @@ Page({
     },
     handleConfirmReceipt(event) {
         let { order } = event.target.dataset
-       
+
         Dialog.confirm({
             message: '请确认商品是否收到？',
             confirmButtonText: '确认收货'
@@ -90,16 +90,19 @@ Page({
             loading: true
         })
 
-    util.wx.get('/api/user/get_order_list')
-    .then(res=>{
-       if(res.data.code == 200){
-        this.setData({
+        util.wx.get('/api/user/get_order_list',{
+            search_status:this.data.search_status
+        })
+            .then(res => {
+                console.log('order res.data',res.data)
+                if (res.data.code == 200) {
+                    this.setData({
                         loading: false,
-                        order_list: res.data.data
-                                })
-       }
-    })
-       
+                        order_list: res.data.data.order_list
+                    })
+                }
+            })
+
     },
     getRefundList() {
         this.setData({
@@ -118,19 +121,22 @@ Page({
     filterOrder(event) {
         let order = event.detail.index
         this.setData({
-            status: order
+            search_status: order
         })
-        if (order == 5) {
-            this.getRefundList()
-        } else {
-            this.getOrderList()
-        }
+     
+        this.getOrderList()
     },
-   
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        this.data.search_status = options.search_status || 0
+
+        this.setData({
+            active:options.search_status || 0
+        })
 
     },
 

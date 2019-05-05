@@ -8,6 +8,8 @@
     </view>
     <slot name="icon"> </slot>
     <view class="tit" wx:if="{{title}}" style="color:{{tit_txt_color}}">{{title}}</view>
+        <slot> </slot>
+
 </view>
 
 <view wx:if="{{showBackBar}}" class="backBar {{fixed?'fixed':''}}" style="padding-top: {{statusBarHeight}}px;opacity:{{opacity}};background-color:{{bottomLayerBackColor}}">

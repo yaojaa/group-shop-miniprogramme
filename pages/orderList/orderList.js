@@ -8,21 +8,7 @@ Page({
   data: {
     paytypes,
     status,
-    orders: [
-      {
-        shop: "某某店铺",
-        goodname: '新鲜草莓阿萨德六块腹肌阿里山的叫法',
-        goodimg: '/img/banner.jpg',
-        price: 133.22,
-        num: 1,
-        discount: 5,
-        payment: 128.22,
-        id: "0101010",
-        state: 0,
-        paytype: 1,
-        phone: '18311111020'
-      }
-    ],
+    orders: [],
     visible1: false,
     cont: '',
     value: 0,
@@ -33,7 +19,7 @@ Page({
     .then(res=>{
        if(res.data.code == 200){
         this.setData({
-          orders:res.data.data
+          orders:res.data.data.order_list
         })
        }
     })

@@ -1,10 +1,12 @@
 <view class="goods-item">
     <view class="goods-body">
-        <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+        <navigator     open-type="redirect"
+ url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
             <image src='{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
         </navigator>
         <view class="bd">
-            <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+            <navigator     open-type="redirect"
+ url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
                 <view class="tit">{{item.goods_name}}</view>
             </navigator>
             <view class="link">
@@ -26,7 +28,7 @@
             <text class="num">{{item.pageview}}</text>
             <i-icon type="browse" /><text class="label">收款总额</text>
         </view>
-        <view class="count-item" bindtap="detailPage" data-url="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
+        <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
             <text class="num text-primary">{{item._order_count}}111</text>
             <i-icon type="browse" />
             <text class="label ">订单管理</text>

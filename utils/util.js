@@ -110,7 +110,7 @@ const uploadFile = function(opt) {
                 if(res.code == 200){
                   reslove(res)
               }else{
-                reject(res.msg)
+                reject(res)
               }
 
             },
@@ -145,6 +145,8 @@ const uploadPicture = function(option) {
         var imgCount = 0
         options.progressState(true)
 
+        console.log('图片选择好了',true)
+
         files.forEach((filePath, i) => {
 
             uploadFile({
@@ -170,6 +172,10 @@ const uploadPicture = function(option) {
                         options.progressState(false)
                     }
 
+                },(res)=>{
+                    if(res.code == -100 || res.code == -99){
+                        console.log('没有登录')
+                    }
                 })
                 .catch((err) => {
                     wx.showToast({
@@ -413,10 +419,10 @@ const request = (url, data, method) => {
             success: function(res) { //服务器返回数据
                 if (res.statusCode == 200) {
                     resolve(res)
-                } else if (res.statusCode == 403) {
+                } else if (res.data.code == -100) {
 
                     reject('未登录')
-                    // redirectToLogin()
+                    app.redirectToLogin()
 
                 } else { //返回错误提示信息
                     reject(res.data)

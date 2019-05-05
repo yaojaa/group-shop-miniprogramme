@@ -16,7 +16,9 @@ page{
 }
 
 .tit-slogan{
-  margin-left: 10px
+  margin-left: 10px;
+  font-size: 32rpx;
+  margin-top: 20rpx
 }
 
 .small{

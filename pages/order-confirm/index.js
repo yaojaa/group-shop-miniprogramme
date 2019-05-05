@@ -278,7 +278,7 @@ Page({
 
 
                         wx.redirectTo({
-                            url:'../paySuccess/index'
+                            url:'../paySuccess/index?order_id='+order_sn
                         })
                     },
                     fail:(res)=>{

@@ -6,6 +6,10 @@ Component({
             type: String,
             value: ''
         },
+        link: {
+            type: String,
+            value: ''
+        },
         extra: {
             type: String,
             value: ''

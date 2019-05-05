@@ -13,25 +13,25 @@ Page({
         ordersInfo: '',
         order_goods: '',
         order_time: '',
-        wx_collection_code:'',
+        wx_collection_code: '',
         imagePath: "",
         goods_id: "",
         create_number: 54,
         painterData: {},
-        numers:'❶❶❷❸❹❺❻❼❽❾❿'.split(''),
+        numers: '❶❶❷❸❹❺❻❼❽❾❿'.split(''),
         wordArr: {
-            1:'',
-            2:'',
-            3:'',
-            4:'',
-            5:'',
-            6:'',
-            7:'',
-            8:'',
-            9:' ',
-            11:'',
-            12:'',
-            13:''
+            1: '',
+            2: '',
+            3: '',
+            4: '',
+            5: '',
+            6: '',
+            7: '',
+            8: '',
+            9: ' ',
+            11: '',
+            12: '',
+            13: ''
         }
     },
 
@@ -44,12 +44,12 @@ Page({
 
         this.setData({
             goods_id: options.goods_id,
-            collection_methods:options.collection_methods || 1
+            collection_methods: options.collection_methods || 1
         })
 
         //开始绘制
 
-        util.get_painter_data_and_draw.call(this,options.goods_id,true)
+        util.get_painter_data_and_draw.call(this, options.goods_id, true)
 
 
     },
@@ -70,24 +70,25 @@ Page({
         })
     },
     getOrderInfo() {
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/get_order_detail',
-            data: {
-                token: app.globalData.token,
-                order_id: this.data.order_id
-            },
-            success: (res) => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        orders_info: res.data.data.order,
-                        goods_name:res.data.data.goods.goods_name,
-                        order_goods: res.data.data.order_goods,
-                        create_number: res.data.data.order.create_number,
-                        wx_collection_code:res.data.data.store.wx_collection_code,
-                        order_time: this.timetrans(res.data.data.order.add_time)
-                    })
-                }
+
+        util.wx.get('/api/user/get_order_detail', {
+            order_id: this.data.order_id
+
+        }).then(res => {
+
+            if (res.data.code == 200) {
+                this.setData({
+                    orders_info: res.data.data.order,
+                    goods_name: res.data.data.goods.goods_name,
+                    order_goods: res.data.data.order_goods,
+                    create_number: res.data.data.order.create_number,
+                    wx_collection_code: res.data.data.store.wx_collection_code,
+                    order_time: this.timetrans(res.data.data.order.add_time)
+                })
             }
+
+
+
         })
 
     },
@@ -115,11 +116,11 @@ Page({
     onReachBottom: function() {
 
     },
-    goback(){
+    goback() {
 
-       wx.redirectTo({
-          url:'../home/index'
-       })
+        wx.redirectTo({
+            url: '../home/index'
+        })
 
     },
 
@@ -127,13 +128,13 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function(res) {
-        let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...'+this.data.goods_name
-        let numberIcon = this.data.create_number<=10? this.data.numers[this.data.create_number]:'「No.'+this.data.create_number+'」'
+        let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...' + this.data.goods_name
+        let numberIcon = this.data.create_number <= 10 ? this.data.numers[this.data.create_number] : '「No.' + this.data.create_number + '」'
         return {
-            title: numberIcon + app.globalData.userInfo.nickname + '成功参团👍'+shareTitle,
+            title: numberIcon + app.globalData.userInfo.nickname + '成功参团👍' + shareTitle,
             imageUrl: this.data.imagePath,
             path: '/pages/goods/goods?goods_id=' + this.data.goods_id,
-            complete(){
+            complete() {
                 console.log('ok')
                 wx.navigateTo({
                     url: '../pages/home/index'
@@ -141,7 +142,7 @@ Page({
             }
         }
     },
-     formSubmit:function(e){
-       util.formSubmitCollectFormId.call(this,e)
-     }
+    formSubmit: function(e) {
+        util.formSubmitCollectFormId.call(this, e)
+    }
 })

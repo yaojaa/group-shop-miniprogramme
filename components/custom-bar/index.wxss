@@ -1,6 +1,5 @@
 .topBar {
     color: #000;
-    height: 42px;
     width: 100%;
     z-index: 1988;
     background-size: 100% auto;
@@ -11,7 +10,6 @@
 .backBar {
     z-index: 2012;
     position: fixed;
-    height: 42px;
     top: 0;
     left: 0;
     right: 0

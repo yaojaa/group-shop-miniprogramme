@@ -1,61 +1,74 @@
-<i-custom-bar title="订单详情" showIcon="{{true}}"> </i-custom-bar>
-<view class="container gray-wrap cf" style="margin-top:80rpx;">
+<i-custom-bar fixed title="订单详情" tit_txt_color="#ffffff" backColor="#49b34d" showBackIcon="{{true}}"> </i-custom-bar>
+<view class="container cf" style="margin-top:76rpx;">
     <view class="order-fixed-footer flex justify-end ph-df pv-sm shadow-df">
         <!--  <navigator open-type="switchTab" url="../mei-ya/index" class="btn round primary hollow w-min-lg ml-sm">返回首页</navigator> -->
-        <button class="btn round primary w-min-lg ml-sm" bindtap="handleConfirmReceipt">取消订单</button>
+
+        <block wx:for="{{info.order_action}}" wx:key="{{index}}">
+          <button class="btn round primary w-min-lg ml-sm" bindtap="handleConfirmReceipt" data-status="{{item.action_status}}">{{item.action_status_txt}}</button>
+
+
+        </block>
         <!--         <navigator url="../ems-list/index" class="btn round primary w-min-lg ml-sm">查看物流</navigator> -->
     </view>
     <view class="order-wrap">
         <view class="primary ph-df pv-sm text-white mb-sm">
-            <view class="text-xl">待付款</view>
-            <view class="text-sm">59分钟订单关闭</view>
-        </view>
+            <view class="text-xl">{{info.order_status_txt}}</view>
+<!--             <view class="text-sm">59分钟订单关闭</view>
+ -->        </view>
         <view class="white-bg ph-df pv-sm mb-sm flex">
             <van-icon name="location" custom-style="margin-top:4rpx;" color="#999" />
             <view class="flex-sub ml-xs">
-                <view><text class="mr-df">李小姐</text>
-                    <text>18812456548</text></view>
-                <view class="pt-xs text-sm text-gray">东亿国际子钰生活·青年路·朝阳区·北京市</view>
+                <view><text class="mr-df">{{info.consignee}}</text>
+                    <text>{{info.mobile}}</text></view>
+                <view class="pt-xs text-sm text-gray">
+                {{info.city_id_txt}}                {{info.district_id_txt}}
+                {{info.address}}
+
+            </view>
             </view>
         </view>
         <view class="goods-panel ph-df white-bg cf">
             <view class="goods-panel-bd pb-df">
-                <view class="mt-df goods-panel-item" wx:for="{{1}}" wx:key="{{index}}">
+                <view class="mt-df goods-panel-item" wx:for="{{info.order_detail}}" wx:key="{{index}}">
+
+                     <view class="goods-panel-hd pv-sm flex align-center">
+        <view class="flex-sub mr-df">
+            <view class="flex align-center">
+                <image src="http://image.countinsight.com/front/img/shop_lt.png" class="shop-tb mr-xs">
+                </image>
+                <view class="flex-sub text-hide">{{info.seller.realname}}</view>
+            </view>
+        </view>
+    </view>
+
+
                     <navigator url="../goods-detail/index" hover-class="none" class="flex">
                         <image src="http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg" class="cover mr-sm"></image>
                         <view class="flex-sub por">
                             <view class="text-hide two-line text-black bold title">
-                                生态腐竹，包你吃一次忘不掉
+                                {{item.goods_name}}
                             </view>
-                            <view class="text-muted mt-xs text-sm des">500ml</view>
+                            <view class="text-muted mt-xs text-sm des">{{item.spec_name}}</view>
                             <view class="text-justify bt-bar">
-                                <view class="price bold">￥5.8</view>
+                                <view class="price bold">￥{{item.spec_price}}</view>
                                 <view class="text-muted"><text>x </text>
                                     <text>2</text></view>
                             </view>
                         </view>
                     </navigator>
-                    <view class="mt-sm text-right">
+                  <!--   <view class="mt-sm text-right">
                         <navigator url="../refundment/index" hover-class="none" class="btn round primary w-min-lg ml-sm">申请退款</navigator>
-                    </view>
+                    </view> -->
                 </view>
             </view>
         </view>
         <van-cell-group custom-class="mb-sm">
-            <van-cell title="订单总价" value="￥400" border="{{ false }}" />
-            <van-cell title="优惠金额" value="-￥200" border="{{ false }}" />
-            <van-cell title="应付金额" value="¥100" border="{{ false }}" title-class="bold" value-class="secondary-text" />
-        </van-cell-group>
-        <van-cell-group custom-class="mb-sm">
-            <van-cell title="订单编号" border="{{ false }}">
-                <view class="">
-                    <button class="btn gray hollow xs round ">复制</button>
-                    <text class="text-gray ml-sm">56789937387</text>
-                </view>
-            </van-cell>
-            <van-cell title="***交易号" value="56789937387" border="{{ false }}" value-class="text-gray" />
-            <van-cell title="创建时间" value="2018.09.07 23:33:43" border="{{ false }}" value-class="text-gray" />
-            <van-cell title="付款时间" value="2018.09.07 23:33:43" border="{{ false }}" value-class="text-gray" />
+            <van-cell title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
+      
+            <van-cell title="订单编号" border="{{ false }}" value="{{info.order_sn}}"
+             value-class="text-gray"/>
+            <van-cell title="创建时间" value="{{info.addtime}}" border="{{ false }}" value-class="text-gray" />
+            <van-cell title="付款时间" value="{{info.pay_time}}" border="{{ false }}" value-class="text-gray" />
             <van-cell title="发货时间" value="2018.09.07 23:33:43" border="{{ false }}" value-class="text-gray" />
         </van-cell-group>
     </view>

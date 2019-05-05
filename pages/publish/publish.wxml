@@ -7,10 +7,10 @@
         <view class="weui-uploader weui-cells_form weui-cell">
             <view class="weui-uploader__bd">
                 <view class="weui-uploader__files" id="uploaderFiles">
-                    <view wx:for="{{photoUrls}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item.img_url}}-small)">
+                    <view wx:for="{{goods_images}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item.img_url}}-small)">
                         <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#ccc" size="26" type="close" />
                     </view>
-                    <view wx:if="{{photoUrls.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage">
+                    <view wx:if="{{goods_images.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage">
                         <text class="upload_txt">
                             宝贝相册</text>
                     </view>
@@ -43,16 +43,20 @@
                 </i-badge>
             </view>
             <!--上传规格图弹框-->
-            <wux-popup catchtouchmove="true" position="bottom" visible="{{ visible_spec }}">
+            <wux-popup catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
                 <view class="poptit">上传商品规格图片</view>
                 <view class="con">
+                <view class="pic_loading">
+                    <i-spin wx:if="{{visible_spec && specProgress}}"/>
+                </view>
+
                     <view class="picture-item" wx:key="{{item}}" wx:for="{{current_spec_imgs}}">
                         <view class="img-list">
                             <image mode="widthFix" src="{{item}}" />
                             <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
                         </view>
                     </view>
-                    <view class="footer-btn">
+                    <view class="footer-btn" wx:if="{{!specProgress}}">
                         <button bindtap="addSpecPicContinue" class="btn btn-round linenear_bg_light">
                             + 继续添加
                         </button>
@@ -165,19 +169,7 @@
         </i-panel>
         <i-panel title="设置" i-class="no-margin">
             <view class="weui-cells_form">
-                <view class="weui-cell">
-                    <view class="weui-cell__hd">
-                        <view class="weui-label">订单与收款：</view>
-                    </view>
-                    <view class="weui-cell__bd">
-                    </view>
-                    <view class="weui-cell__ft">
-                        <view class="weui-icon-warn">
-                            <i-button type="ghost" bindtap="handleOpen1">{{actions1[collection_methods-1].name}}</i-button>
-                            <i-icon type="enter" size="28" />
-                        </view>
-                    </view>
-                </view>
+              
                 <!-- <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">配送方式：</view></view>
                     <view class="weui-cell__bd">

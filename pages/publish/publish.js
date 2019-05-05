@@ -24,7 +24,7 @@ Page({
         link_url: "",
         goods_id: "",
         isShowTimePicker: false,
-        photoUrls: [],
+        goods_images: [],
         content_imgs: [],
         delivery_method: 0, //配送方式配送方式 1:送货 2:自提',
         sell_address: [],
@@ -113,6 +113,8 @@ Page({
 
         this.addSpecPicCore(index)
 
+      
+
 
     },
 
@@ -131,15 +133,30 @@ Page({
                 console.log('newVal', newVal)
                 this.setData({
                     [key]: newVal,
-                    current_spec_imgs: newVal
+                    current_spec_imgs: newVal,
+                    specProgress:false
                 })
 
             },
             progressState: (s) => {
-                this.setData({
-                    uploadProgress: s,
-                    visible_spec: true
+                console.log('上传状态',s,this)
+                if(this.data.visible_spec){
+
+                 this.setData({
+                    specProgress: s
                 })
+
+                }else{
+
+                 this.setData({
+                    specProgress: s,
+                    visible_spec:true
+                })
+
+                }
+              
+
+                console.log('this.data.visible_spec',this.data.visible_spec)
 
             }
         })
@@ -161,6 +178,12 @@ Page({
             [key]: newData,
             current_spec_imgs: newData
         })
+
+        if(newData.length == 0){
+            this.setData({
+                visible_spec:false
+            })
+        }
 
     },
     // addPicture(e){
@@ -462,16 +485,30 @@ Page({
                             console.log('上传成功结果', JSON.parse(res.data))
                             var data = JSON.parse(res.data);
 
+                            if(data.code !==200){
+
+                                wx.showToast({
+                                    title:'请先登录',
+                                    icon:'none'
+                                })
+
+                                 this.setData({
+                                    photoProgress: false
+                                })
+
+                                return
+                            }
+
                             console.log(data.data.file_url)
-                            this.data.photoUrls.push({
+                            this.data.goods_images.push({
                                 img_url: data.data.file_url,
-                                is_cover: this.data.photoUrls.length > 0 ? 0 : 1
+                                is_cover: this.data.goods_images.length > 0 ? 0 : 1
                             })
 
-                            console.log(this.data.photoUrls)
+                            console.log(this.data.goods_images)
 
                             this.setData({
-                                photoUrls: this.data.photoUrls
+                                goods_images: this.data.goods_images
                             })
 
                             //如果是最后一张,则隐藏等待中  
@@ -508,9 +545,9 @@ Page({
         let index = e.currentTarget.dataset.index
 
 
-        this.data.photoUrls.splice(index, 1)
+        this.data.goods_images.splice(index, 1)
         this.setData({
-            'photoUrls': this.data.photoUrls
+            'goods_images': this.data.goods_images
         })
     },
 
@@ -593,7 +630,7 @@ Page({
     //提交表单
     submitForm(e) {
 
-        if (this.data.photoUrls.length <= 0) {
+        if (this.data.goods_images.length <= 0) {
             wx.showModal({ title: '请上传商品相册', showCancel: false })
             return util.playSound('../../img/error.mp3')
         }
@@ -636,21 +673,21 @@ Page({
             return false
         }
 
-        //默认重置库存为1000
-        // this.data.spec.forEach((value, index) => {
+        //默认重置价格为0
+        this.data.spec.forEach((value, index) => {
 
-        //     if (value.store_count == '') {
-        //         this.data.spec[index].store_count = 1000
-        //     }
+            if (value.spec_price == '') {
+                this.data.spec[index].spec_price = 0
+            }
 
-        // })
+        })
 
 
 
         let data = Object.assign({ token: app.globalData.token }, { goods_id: this.data.goods_id },
             e.detail.value, //表单的数据
             { spec: this.data.spec }, //商品数组数据
-            { goods_images: this.data.photoUrls }, {
+            { goods_images: this.data.goods_images }, {
                 sell_address: this.data.sell_address,
                 delivery_method: this.data.delivery_method,
                 collection_methods: this.data.collection_methods,
@@ -666,30 +703,7 @@ Page({
         )
         wx.showLoading()
 
-        /**** 生成分享卡片配置 ***/
-        const reg2 = /([\u00A9\u00AE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9-\u21AA\u231A-\u231B\u2328\u23CF\u23E9-\u23F3\u23F8-\u23FA\u24C2\u25AA-\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u2604\u260E\u2611\u2614-\u2615\u2618\u261D\u2620\u2622-\u2623\u2626\u262A\u262E-\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u2660\u2663\u2665-\u2666\u2668\u267B\u267F\u2692-\u2697\u2699\u269B-\u269C\u26A0-\u26A1\u26AA-\u26AB\u26B0-\u26B1\u26BD-\u26BE\u26C4-\u26C5\u26C8\u26CE-\u26CF\u26D1\u26D3-\u26D4\u26E9-\u26EA\u26F0-\u26F5\u26F7-\u26FA\u26FD\u2702\u2705\u2708-\u270D\u270F\u2712\u2714\u2716\u271D\u2721\u2728\u2733-\u2734\u2744\u2747\u274C\u274E\u2753-\u2755\u2757\u2763-\u2764\u2795-\u2797\u27A1\u27B0\u27BF\u2934-\u2935\u2B05-\u2B07\u2B1B-\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299]|\uD83C[\uDC04\uDCCF\uDD70-\uDD71\uDD7E-\uDD7F\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01-\uDE02\uDE1A\uDE2F\uDE32-\uDE3A\uDE50-\uDE51\uDF00-\uDF21\uDF24-\uDF93\uDF96-\uDF97\uDF99-\uDF9B\uDF9E-\uDFF0\uDFF3-\uDFF5\uDFF7-\uDFFF])|(\uD83D[\uDC00-\uDCFD\uDCFF-\uDD3D\uDD49-\uDD4E\uDD50-\uDD67\uDD6F-\uDD70\uDD73-\uDD7A\uDD87\uDD8A-\uDD8D\uDD90\uDD95-\uDD96\uDDA4-\uDDA5\uDDA8\uDDB1-\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA-\uDE4F\uDE80-\uDEC5\uDECB-\uDED2\uDEE0-\uDEE5\uDEE9\uDEEB-\uDEEC\uDEF0\uDEF3-\uDEF6])|(\uD83E[\uDD10-\uDD1E\uDD20-\uDD27\uDD30\uDD33-\uDD3A\uDD3C-\uDD3E\uDD40-\uDD45\uDD47-\uDD4B\uDD50-\uDD5E\uDD80-\uDD91\uDDC0])/g
-
-        let _content = e.detail.value.goods_content
-        _content = _content.replace(reg2, "").replace(/\n/g, " ")
-
-        let cardLocalData = {
-            headImg: app.globalData.userInfo.head_pic,
-            userName: app.globalData.userInfo.nickname,
-            date: this.data.end_time,
-            content: _content,
-            cover: this.data.photoUrls[0].img_url
-        }
-
-        wx.removeStorageSync('_card_data')
-
-        try {
-            wx.setStorageSync('_card_data', cardLocalData)
-        } catch (e) {
-
-            console.log(e)
-
-        }
-
+        
 
 
 
@@ -789,7 +803,7 @@ Page({
 
     getPublishedData(goods_id, isCopy) {
 
-        util.wx.post('/seller_tuangou/get_goods_detail', {
+        util.wx.post('/api/goods/get_goods_detail', {
             goods_id: goods_id
 
         }).then((res) => {
@@ -802,10 +816,10 @@ Page({
 
 
 
-            if (d.code == 0) {
+            if (d.code == 200) {
 
                 this.setData({
-                    photoUrls: d.data.images,
+                    goods_images: gs.goods_images,
                     goods_name: gs.goods_name,
                     goods_content: gs.goods_content,
                     sell_address: res.data.data.sell_address,
@@ -822,7 +836,7 @@ Page({
                         end_date: endFormatTime.split(' ')[0],
                         end_time: endFormatTime.split(' ')[1],
                     },
-                    spec: res.data.data.spec_goods_price,
+                    spec: gs.goods_spec,
                     isShowTimePicker: true
                 })
 

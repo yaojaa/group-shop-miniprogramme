@@ -52,7 +52,7 @@
     padding: 14rpx 0 0 5rpx
 }
 
-.goods-body .bd .link text {
+.goods-body .link text {
     font-size: 13px;
     color: #49b34d;
 }
@@ -78,10 +78,7 @@
     color: #333
 }
 .count-box {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
+
     display: flex;
     background: #fff;
 }

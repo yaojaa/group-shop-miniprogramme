@@ -1,32 +1,35 @@
-<i-custom-bar title="我的订单" showIcon="{{true}}"> </i-custom-bar>
-<view class="container gray-wrap cf" style="margin-top:80rpx;">
-    <van-tabs active="{{ 0 }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" swipe-threshold="{{4}}" color="#49b34d">
+<i-custom-bar fixed title="我的订单" backColor="#ffffff" showBackIcon="{{true}}"> </i-custom-bar>
+<view class="container gray-wrap cf" style="margin-top:100rpx;">
+    <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" swipe-threshold="{{4}}" color="#49b34d">
         <van-tab title="全部"></van-tab>
         <van-tab title="待付款"></van-tab>
-        <van-tab title="待使用"></van-tab>
-        <van-tab title="待收/发货"></van-tab>
-        <van-tab title="待评价"></van-tab>
-        <van-tab title="退款/售后"></van-tab>
+        <van-tab title="待收货"></van-tab>
+        <van-tab title="已完成"></van-tab>
     </van-tabs>
     <view class="order-coentent" wx:if="{{status !== 5}}">
         <view class="order-box">
             <block wx:for="{{order_list}}" wx:key="{{index}}">
+
                 <order-list item="{{item}}">
-                    <!--                     <text class="right-text">等待付款中</text>-->
-                    <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-order="{{item.order_code}}" bindtap="handleCancelOrder">取消订单</button>
+                
+                  <block  wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">
+                             <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-order="{{item.order_code}}" bindtap="handleCancelOrder">{{act.txt}}</button>
+                        
+                    </block>
+                <!--     <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-order="{{item.order_code}}" bindtap="handleCancelOrder">取消订单</button>
                     <navigator url="../order-detail/index" class="btn round primary w-min-big mv-sm ml-sm" wx:if="{{item.order_status_all == 1}}">
                         付款
                     </navigator>
-                    <!--                 <button class="btn round primary w-min-big mv-sm ml-sm" bindtap="handleConfirmReceipt" data-order="{{item.order_code}}">确认收货</button> -->
+                                    <button class="btn round primary w-min-big mv-sm ml-sm" bindtap="handleConfirmReceipt" data-order="{{item.order_code}}">确认收货</button>
                     <navigator url="../ems-detail/index" class="btn round primary w-min-big mv-sm ml-sm">
                         查看物流
                     </navigator>
-                    <!-- <navigator url="../complain/index" class="btn round primary w-min-big mv-sm ml-sm" >
+                     <navigator url="../complain/index" class="btn round primary w-min-big mv-sm ml-sm" >
                         投诉
                     </navigator> -->
-                    <navigator url="../evaluate/index" class="btn round primary w-min-big mv-sm ml-sm">
+                    <!-- <navigator url="../evaluate/index" class="btn round primary w-min-big mv-sm ml-sm">
                         评价
-                    </navigator>
+                    </navigator> -->
                 </order-list>
             </block>
         </view>

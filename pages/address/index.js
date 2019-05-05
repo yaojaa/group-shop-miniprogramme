@@ -67,9 +67,9 @@ Page({
                         address: data.data.address_list
                     })
                     if (this.data.source && !this.data.address.length>0) {
-                        wx.navigateBack({
-                            delta: 1
-                        })
+                        // wx.navigateBack({
+                        //     delta: 1
+                        // })
                     }
                     console.log(data.data.address_list)
                 }

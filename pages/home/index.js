@@ -162,25 +162,7 @@ Page({
 
     },
 
-    getBuyList: function(token) {
 
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/get_order_list',
-            data: {
-                token: app.globalData.token,
-                pagesize: 5
-            },
-            success: (res) => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        order_number: res.data.data.page.total,
-                        orders: res.data.data.order_list
-
-                    })
-                }
-            }
-        })
-    },
 
     //取消订单
 

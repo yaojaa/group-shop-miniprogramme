@@ -173,9 +173,9 @@ video{
 }
 
 .con{
-  height: 70vh;
   overflow-y: scroll;
-  padding-bottom: 60px
+  padding-bottom: 60px;
+  max-height:60vh;
 }
 .icons{
   position: absolute;

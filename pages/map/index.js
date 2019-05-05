@@ -10,10 +10,22 @@ Page({
         oldAddress: [],
         openLocation: true,
         delivery_method: 2,
-        userLocation: {}
+        userLocation: {},
+        hisList:[]
 
     },
+    getHistoryList(){
+        util.wx.get('/api/seller/self_address_list').then(res=>{
+            if(res.data.code == 200){
+                this.setData({
+                    hisList:res.data.data
+                })
+            }
+        })
+    },
     onLoad: function(e) {
+
+        this.getHistoryList()
 
         //获取用户已经填写的提货点
         var pages = getCurrentPages();
@@ -33,29 +45,29 @@ Page({
 
 
         //获取用户授权状态
-        wx.getSetting({
-            success: (res) => {
-                console.log('用户授权状态', res.authSetting["scope.userLocation"])
-                if (!res.authSetting["scope.userLocation"]) {
-                    wx.authorize({
-                        scope: 'scope.userLocation',
-                        success: (res) => {
-                          console.log('授权地理位置按钮结果',res)
-                          this.chooseLocation()
-                                  }
-                    })
+        // wx.getSetting({
+        //     success: (res) => {
+        //         console.log('用户授权状态', res.authSetting["scope.userLocation"])
+        //         if (!res.authSetting["scope.userLocation"]) {
+        //             wx.authorize({
+        //                 scope: 'scope.userLocation',
+        //                 success: (res) => {
+        //                   console.log('授权地理位置按钮结果',res)
+        //                   this.chooseLocation()
+        //                           }
+        //             })
 
                    
 
 
-                } else {
+        //         } else {
 
-                    this.chooseLocation()
+        //             this.chooseLocation()
 
-                }
+        //         }
 
-            }
-        })
+        //     }
+        // })
 
 
 

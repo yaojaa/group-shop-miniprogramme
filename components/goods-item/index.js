@@ -27,6 +27,14 @@ Component({
             url: '../publish/publish?goods_id=' + url,
         })
     },
+    managePage(e){
+        let id = e.currentTarget.dataset.id
+
+        wx.navigateTo({
+            url: '../ordermanage/list?id=' + id,
+        })
+
+    },
     //删除商品
     delGoods(e){
         //api/seller/goods_del

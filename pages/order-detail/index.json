@@ -5,6 +5,7 @@
         "van-cell": "../../vant/cell/index",
         "van-cell-group": "../../vant/cell-group/index",
         "van-icon": "../../vant/icon/index",
+        "i-custom-bar": "../../components/custom-bar/index",
         "van-dialog": "../../vant/dialog/index"
     }
 }
