@@ -77,9 +77,10 @@ Page({
                 userInfo: app.globalData.userInfo
             })
 
-            let token = app.globalData.userInfo.token
+             this.cpage = 1
 
-            this.getGoodsList(token)
+
+            this.getGoodsList()
 
             //this.getBuyList(token)
 
@@ -148,7 +149,10 @@ Page({
     },
     getGoodsList: function(token) {
 
-        util.wx.get('/api/seller/get_goods_list')
+        util.wx.get('/api/seller/get_goods_list',{
+        cpage:this.cpage,
+        pagesize:5
+        })
             .then(res => {
 
                 if (res.data.code == 200) {
@@ -157,6 +161,8 @@ Page({
                         goods_number: res.data.data.page.total,
                         is_loading: false
                     })
+                this.totalpage = res.data.data.page.totalpage
+
                 }
             })
 
@@ -429,9 +435,15 @@ Page({
      */
     onReachBottom: function() {
 
+     ++ this.cpage
+
+     if(this.cpage <= this.totalpage){
+      this.getGoodsList();//重新调用请求获取下一页数据 
+     }
+
+
     },
     onPageScroll:function(e){
-    console.log(e);//{scrollTop:99}
     this.setData({
       scrollTop:e.scrollTop
     })

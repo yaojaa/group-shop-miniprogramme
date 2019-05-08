@@ -17,3 +17,11 @@
 .code-popup .btn{
 	border-radius: 0 0 8rpx 8rpx;
 }
+.no-content{
+	padding: 30rpx 0
+}
+
+.spin{
+	display: inline-block;
+	margin: 0 auto
+}

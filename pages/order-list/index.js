@@ -7,13 +7,13 @@ Page({
      * 页面的初始数据
      */
     data: {
-        loading: false,
         code: false,
         status: 0,
         order_list: [],
         refund_list: [],
         order_code: '',
-        code_img: ''
+        code_img: '',
+        loading: false
     },
     handleCodePopup() {
         this.setData({ code: true });
@@ -22,17 +22,36 @@ Page({
         this.setData({ code: false });
     },
     handleCancelOrder(event) {
-        let { order } = event.target.dataset
 
-        Dialog.confirm({
-            message: '是否取消当前订单？',
-            cancelButtonText: '考虑一下',
-            confirmButtonText: '立即取消'
-        }).then(() => {
+        //      'toset_cancel'   => '取消订单',
+        // 'toset_pay'      => '去支付',
+        // 'toset_received' => '确认收货'
 
-            util.wx.get('/api/front/order/cancel', { "order_code": order })
+        let { order_id, opt } = event.target.dataset
+
+        switch (opt) {
+            case 'toset_cancel':
+                this.cancelOrder(order_id, opt)
+                break;
+            case 'toset_pay':
+                this.pay(order_id, opt)
+                break;
+            case 'toset_received':
+                this.toset_received(order_id, opt)
+
+
+        }
+
+
+    },
+    _set_order_status(){
+
+         util.wx.get('/api/seller/set_order_status', { 
+                "order_code": order_id ,
+                "opt":opt
+            })
                 .then(res => {
-                    if (res.data.code == 0) {
+                    if (res.data.code == 200) {
                         this.getOrderList()
                         Notify({
                             text: '操作成功',
@@ -50,51 +69,47 @@ Page({
                         })
                     }
                 })
-        }).catch(() => {
+        .catch(() => {
             // on cancel
         });
+
+
     },
-    handleConfirmReceipt(event) {
-        let { order } = event.target.dataset
+    //取消订单
+    cancelOrder(order_id, opt) {
+
+        Dialog.confirm({
+            message: '确定要消当前订单吗？',
+            cancelButtonText: '考虑一下',
+            confirmButtonText: '立即取消'
+        }).then(() => {
+
+            this._set_order_status(order_id,opt)
+        })
+           
+    },
+    toset_received(order_id, opt) {
 
         Dialog.confirm({
             message: '请确认商品是否收到？',
             confirmButtonText: '确认收货'
         }).then(() => {
-            util.wx.get('/api/front/order/confirm', { "order_code": order })
-                .then(res => {
-                    if (res.data.code == 0) {
-                        this.getOrderList()
-                        Notify({
-                            text: '操作成功',
-                            duration: 1000,
-                            selector: '#custom-selector',
-                            backgroundColor: '#66c23a'
-                        })
 
-                    } else {
-                        Notify({
-                            text: res.data.msg,
-                            duration: 1000,
-                            selector: '#custom-selector',
-                            backgroundColor: '#d0021b'
-                        })
-                    }
-                })
-        }).catch(() => {
-            // on cancel
-        });
+          this._set_order_status(order_id,opt)
+      })
+
+       
     },
     getOrderList() {
         this.setData({
             loading: true
         })
 
-        util.wx.get('/api/user/get_order_list',{
-            search_status:this.data.search_status
-        })
+        util.wx.get('/api/user/get_order_list', {
+                search_status: this.data.search_status
+            })
             .then(res => {
-                console.log('order res.data',res.data)
+                console.log('order res.data', res.data)
                 if (res.data.code == 200) {
                     this.setData({
                         loading: false,
@@ -123,7 +138,7 @@ Page({
         this.setData({
             search_status: order
         })
-     
+
         this.getOrderList()
     },
 
@@ -135,7 +150,7 @@ Page({
         this.data.search_status = options.search_status || 0
 
         this.setData({
-            active:options.search_status || 0
+            active: options.search_status || 0
         })
 
     },

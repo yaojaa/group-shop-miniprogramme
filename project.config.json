@@ -51,7 +51,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 38,
+			"current": 35,
 			"list": [
 				{
 					"id": 0,
@@ -236,7 +236,8 @@
 					"id": 27,
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
-					"query": ""
+					"query": "id=3",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -288,9 +289,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 35,
 					"name": "地图",
-					"pathName": "pages/publish/publish",
+					"pathName": "pages/map/index",
 					"query": "",
 					"scene": 1008
 				},

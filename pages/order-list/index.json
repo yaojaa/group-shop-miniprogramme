@@ -9,6 +9,6 @@
         "van-dialog": "../../vant/dialog/index",
         "order-list": "../../components/order-panel/index",
         "i-custom-bar": "../../components/custom-bar/index",
-        "v-loading": "../../components/loading/index"
+        "i-spin": "../../iView/spin/index"
     }
 }

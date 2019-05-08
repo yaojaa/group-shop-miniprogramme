@@ -18,7 +18,9 @@ Page({
         showIcon: false,
         goodsList:[],
         loading:false,
-        store_id:''
+        store_id:'',
+        info:{},
+        scrollTop:0
 
     },
     toSetting(){
@@ -50,7 +52,31 @@ Page({
 
         this.cpage = 1
         this.getDataList()
+
+        //主要信息
+        this.getStoreInfo()
     },
+
+  getStoreInfo(){
+
+    util.wx.get('/api/store/get_store_homepage',{
+      store_id: this.data.store_id
+    })
+    .then(res=>{
+        if(res.data.code == 200){
+
+            console.log(res)
+
+            this.setData({
+                info:res.data.data
+            })
+
+
+        }
+    })
+
+
+  },
 
   getDataList(){
 
@@ -59,9 +85,9 @@ Page({
     })
 
     util.wx.get('/api/goods/get_store_goods_list',{
-        store_id:2,
+      store_id: this.data.store_id,
         cpage:this.cpage,
-        pagesize:3
+        pagesize:5
     })
     .then(res=>{
         if(res.data.code == 200){
@@ -110,6 +136,12 @@ onHide: function() {
  */
 onUnload: function() {
 
+},
+
+onPageScroll:function(e){
+  this.setData({
+    scrollTop:e.scrollTop
+  })
 },
 
 /**

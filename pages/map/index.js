@@ -15,6 +15,7 @@ Page({
 
     },
     getHistoryList(){
+
         util.wx.get('/api/seller/self_address_list').then(res=>{
             if(res.data.code == 200){
                 this.setData({
@@ -71,7 +72,7 @@ Page({
 
 
 
-        console.log('prevPage.data.sell_address', prevPage.data.sell_address)
+        // console.log('prevPage.data.sell_address', prevPage.data.sell_address)
 
 
 
@@ -184,17 +185,48 @@ Page({
             return;
         }
 
-        var pages = getCurrentPages();
-        var currPage = pages[pages.length - 1]; //当前页面
-        var prevPage = pages[pages.length - 2]; //上一个页面
-
-        prevPage.data.sell_address = this.data.newAddress
+        this.add()
 
 
-        wx.navigateBack({
-            delta: 1
+
+
+
+
+      
+    },
+
+     // name: e.name,
+     //                        address: e.address,
+     //                        province_name: map.province,
+     //                        district_name: map.district,
+     //                        city_name: map.city,
+     //                        latitude: e.latitude,
+     //                        longitude: e.longitude,
+     //                        door_number: ''
+
+    add(){
+
+        const data = this.data.newAddress[0]
+        util.wx.post('/api/seller/self_address_add_or_edit',data)
+        .then((res)=>{
+            if(res.data.code == 200){
+
+                  var pages = getCurrentPages();
+                    var currPage = pages[pages.length - 1]; //当前页面
+                    var prevPage = pages[pages.length - 2]; //上一个页面
+
+                    prevPage.data.sell_address = this.data.newAddress.filter(item=>{
+                        return item.self_address_id
+                    })
+
+
+                    wx.navigateBack({
+                        delta: 1
+                    })
+
+
+            }
         })
-
     },
 
     chooseLocation() {

@@ -1,7 +1,12 @@
-<i-custom-bar showIcon="{{showIcon}}" fixed title="个人主页">
-    <view class="tit-icon" slot="icon">
-        <i-icon bindtap="toSetting" type="setup" size="30" color="#666" />
-    </view>
+<i-custom-bar showBackIcon="{{showIcon}}" backColor="transport" 
+bottomLayerBackColor="#ffffff" showBackBar="true" fixed 
+changeStartHeight="300"
+changeEndHeight="400"
+backTitle="{{info.store_name}}"
+scrollTop="{{scrollTop}}"
+back_tit_txt_color="#333333"
+>
+
 </i-custom-bar>
 
 <view class="container cf">
@@ -14,16 +19,16 @@
     </swiper>
     <view class="user-head">
         <view class="avatar">
-            <open-data type="userAvatarUrl"></open-data>
+            <image src="{{info._user.headimg}}" />
         </view>
-        <view class="name">红叶舞秋山</view>
-        <view class="des">开心麻团创始人，专注推广地理标志性农产品，让原生态放心食材走进千家万户</view>
+        <view class="name">{{info._user.nickname}}</view>
+        <view class="des">{{info.store_intro}}</view>
         <view class="info f12">
-            访问<text class="text-default">1313人</text> 成交<text class="text-default">1313</text> 笔
+            访问<text class="text-default">{{info._access_count}}人</text> 成交<text class="text-default">{{info._order_count}}</text> 笔
         </view>
     </view>
     <view class="goods-box">
-        <view data-id="{{item.goods_id}}" class="goods-item flex-box" wx:for="{{goodsList}}" wx:key="index">
+        <navigator url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item flex-box" wx:for="{{goodsList}}" wx:key="index" >
             <image class="cover" src="{{item.goods_cover}}"></image>
             <view class="content">
                 <view class="title text-hide">{{item.goods_name}}</view>
@@ -32,14 +37,14 @@
                     <view class="avatar-group">
                         <image class="avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" wx:for="{{4}}" wx:key="index"></image>
                     </view>
-                    <view class="user f12 ml-xs text-muted">已有<text class="text-red">32</text>人参与</view>
+                    <view class="user f12 ml-xs text-muted">已有<text class="text-red">{{item._buy_users_count}}</text>人参与</view>
                 </view>
                 <view class="bottom text-justify">
                     <view class="price bold text-red"><text class="f12">￥</text>29.9</view>
                     <view> <button data-id="{{item.goods_id}}"  class="btn buy linenear_bg">立即查看</button></view>
                 </view>
             </view>
-        </view>
+        </navigator>
     </view>
 
     <i-load-more wx:if="{{loading}}" tip="加载中..." loading="{{ true }}" />

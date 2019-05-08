@@ -8,12 +8,24 @@
     </van-tabs>
     <view class="order-coentent" wx:if="{{status !== 5}}">
         <view class="order-box">
+
+            <view class="no-content" wx:if="{{order_list.length ==0 && !loading}}">
+                暂无订单记录
+            </view>
+
+            <view class="loading" wx:if="{{loading}}">
+
+                <i-spin i-class="spin"/>
+                
+            </view>
+
+
             <block wx:for="{{order_list}}" wx:key="{{index}}">
 
                 <order-list item="{{item}}">
                 
                   <block  wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">
-                             <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-order="{{item.order_code}}" bindtap="handleCancelOrder">{{act.txt}}</button>
+                             <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order="{{item.order_id}}" bindtap="handleOrderAction">{{act.txt}}</button>
                         
                     </block>
                 <!--     <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-order="{{item.order_code}}" bindtap="handleCancelOrder">取消订单</button>

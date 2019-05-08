@@ -178,7 +178,8 @@ Page({
 
         util.wx.post('/api/order/create_order', Object.assign({
             specs: specs,
-            user_message: '2222'
+            user_message: this.data.user_message,
+            goods_id:this.data.goods_id
         }, postData)).then(res => {
 
             this.setData({
