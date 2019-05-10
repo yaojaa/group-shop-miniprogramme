@@ -61,7 +61,7 @@
     color: #999;
     font-size: 28rpx;
     position: absolute;
-    right: 0;
+    right: 25rpx;
     top: 0
 }
 

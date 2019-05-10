@@ -1,5 +1,8 @@
-<i-custom-bar fixed backColor="'transport'" scrollTop="{{scrollTop}}" showIcon="{{true}}" changeStartHeight="200" backTitle="{{goods.goods_name}}" changeEndHeight="300" bottomLayerBackColor="#ffffff">
-</i-custom-bar>
+<custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="{{winWidth-100}}" bottomLayerBackColor="#ffffff" changeEndHeight="{{winWidth}}" showBackBar="true">
+    <view slot="bottom" class="bar">
+   {{goods.goods_name}}
+    </view>
+</custom-bar>
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
@@ -210,7 +213,7 @@
     </van-action-sheet>
     <van-popup show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;">
         <view class='share-friends-img' bindtap='handlePoster'>
-            <view  wx:if="{{!shareFriendsImg}}">
+            <view wx:if="{{!shareFriendsImg}}">
                 <i-spin i-class='share-friends-loading' fix size="large"></i-spin>
                 <view class='share-friends-loading-txt'><text>努力生成中,请稍等...</text></view>
             </view>

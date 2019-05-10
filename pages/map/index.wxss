@@ -136,3 +136,9 @@ button.button{
   font-size: 32rpx;
   margin: 30rpx 0 40rpx 80rpx
 }
+
+.his{
+  padding: 20rpx;
+  color: #666;
+  text-align: center;
+}

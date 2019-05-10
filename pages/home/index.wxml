@@ -137,7 +137,7 @@
             </view>
         </view>
     </i-panel>
-    <i-panel title="我的商品" wx:if="{{goodslist.length > 0}}" extra="查看全部商品">
+    <i-panel  title="我的商品" wx:if="{{goodslist.length > 0}}" extra="查看全部商品">
         <view>
             <view class="goods-box">
                 <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
@@ -146,6 +146,8 @@
             </view>
         </view>
     </i-panel>
+
+    <view  style="margin-bottom:100rpx"></view>
     <!--  <view wx:if="{{goodslist.length >= 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />

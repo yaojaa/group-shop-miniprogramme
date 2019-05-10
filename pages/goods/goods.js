@@ -67,6 +67,7 @@ Page({
             StatusBar:'',
             toShowPic:false,
             poster:false,
+            winWidth:app.globalData.winWidth
         },
     },
     onShow: function() {

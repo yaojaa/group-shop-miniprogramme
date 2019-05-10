@@ -6,7 +6,7 @@ Page({
         limitVal: 1,
         hidden: false,
         step: 1,
-        newAddress: [],
+        newAddress: {},
         oldAddress: [],
         openLocation: true,
         delivery_method: 2,
@@ -19,7 +19,7 @@ Page({
         util.wx.get('/api/seller/self_address_list').then(res=>{
             if(res.data.code == 200){
                 this.setData({
-                    hisList:res.data.data
+                    hisList:res.data.data.self_address_list
                 })
             }
         })
@@ -97,7 +97,7 @@ Page({
     },
     inputAddressDes({ detail }) {
         let val = detail.value.replace(/^(\s*)|(\s*)$/g, "");
-        this.data.newAddress[0].door_number = val;
+        this.data.newAddress.door_number = val;
 
     },
     addAddress() {
@@ -121,9 +121,6 @@ Page({
                           }
                       })
 
-
-
-
                 }else{
                  this.chooseLocation()
                 }
@@ -133,40 +130,60 @@ Page({
 
 
     },
-    deleteAddress(e) {
-        let data = e.currentTarget.dataset;
+    useIt(e){
+      console.log('应用当前地址')
+      let index = e.currentTarget.dataset.index;
 
-        if (data.type == 'old') {
-            this.data.oldAddress.splice(this.getIndex(this.data.oldAddress, data.id), 1)
-            wx.setStorage({
-                key: 'historyAddress',
-                data: this.data.newAddress.concat(this.data.oldAddress),
-                success: (e) => {
-                    wx.showToast({ title: "删除成功" })
-                    this.setData({
-                        oldAddress: this.data.oldAddress
-                    })
-                }
-            })
-        } else {
-            this.data.newAddress.splice(this.getIndex(this.data.newAddress, data.id), 1)
-            wx.setStorage({
-                key: 'historyAddress',
-                data: this.data.newAddress.concat(this.data.oldAddress),
-                success: (e) => {
-                    wx.showToast({ title: "删除成功" })
-                    this.setData({
-                        newAddress: this.data.newAddress
-                    })
-                }
-            })
-        }
+      this.setData({
+        newAddress:this.data.hisList[index]
+      })
+
+      console.log(this.data.newAddress)
+
+      wx.showToast({
+        title:'已应用此提货点',
+        icon:'none'
+      })
+
+
+
+    },
+
+    deleteCurrentAddress(){
+        this.setData({
+            newAddress:{}
+        })
+    },
+
+    deleteAddress(e) {
+        let id = e.currentTarget.dataset.id;
+
+        console.log(id)
+
+        util.wx.post('/api/seller/self_address_del',{
+            self_address_id:id
+        }).then(res=>{
+            if(res.data.code == 200){
+                wx.showToast({
+                    title:'删除成功',
+                    icon:'none'
+                })
+                this.getHistoryList()
+            }else{
+                wx.showToast({
+                    title:res.data.msg,
+                    icon:'none'
+                })
+            }
+        })
+
+        
     },
 
     selectAddress(e) {
         let data = e.currentTarget.dataset;
         let address = this.data.newAddress.splice(this.getIndex(this.data.newAddress, data.id), 1)[0];
-        // console.log(this.data.newAddress)
+
         this.data.newAddress.unshift(address);
         wx.showToast({ title: "添加成功" })
         this.setData({
@@ -176,11 +193,11 @@ Page({
     },
     //完成保存
     done() {
-        if (!this.data.newAddress[0]) {
+        if (!this.data.newAddress.name) {
             wx.showToast({ title: "请先添加地址", icon: "none" })
             return;
         }
-        if (!this.data.newAddress[0].door_number) {
+        if (!this.data.newAddress.door_number) {
             wx.showToast({ title: "请填写门牌号", icon: "none" })
             return;
         }
@@ -206,18 +223,36 @@ Page({
 
     add(){
 
-        const data = this.data.newAddress[0]
+        const data = this.data.newAddress
+        //如果是旧地址
+        if(data.self_address_id){
+
+            util.setParentData({
+                sell_address:data
+            })
+
+
+        }
+
+
         util.wx.post('/api/seller/self_address_add_or_edit',data)
         .then((res)=>{
             if(res.data.code == 200){
+
+                 wx.showToast({
+                        title:'添加成功',
+                        icon:'none'
+                    })
 
                   var pages = getCurrentPages();
                     var currPage = pages[pages.length - 1]; //当前页面
                     var prevPage = pages[pages.length - 2]; //上一个页面
 
-                    prevPage.data.sell_address = this.data.newAddress.filter(item=>{
-                        return item.self_address_id
-                    })
+                    prevPage.data.sell_address = this.data.newAddress
+
+                   
+
+
 
 
                     wx.navigateBack({
@@ -225,6 +260,12 @@ Page({
                     })
 
 
+            }else{
+
+                 wx.showToast({
+                        title:res.data.msg,
+                        icon:'none'
+                    })
             }
         })
     },
@@ -245,9 +286,8 @@ Page({
                         wx.hideLoading()
 
                         let map = res.data.result.address_component
-                        this.data.oldAddress = this.data.newAddress.concat(this.data.oldAddress);
 
-                        this.data.newAddress.push({
+                        this.data.newAddress={
                             name: e.name,
                             address: e.address,
                             province_name: map.province,
@@ -256,7 +296,7 @@ Page({
                             latitude: e.latitude,
                             longitude: e.longitude,
                             door_number: ''
-                        });
+                        };
 
                         this.setData({
                             newAddress: this.data.newAddress

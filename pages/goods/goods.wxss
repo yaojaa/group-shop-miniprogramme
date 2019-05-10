@@ -818,3 +818,15 @@
   margin-left: 20rpx;
   vertical-align: top;
 }
+
+.bar{
+  background: #fff;
+  text-align: center;
+  height: 42px;
+  line-height: 42px;
+  width: 50%;
+  text-align: center;
+  margin:0 auto;
+  overflow: hidden;
+}
+

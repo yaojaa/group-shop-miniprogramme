@@ -157,7 +157,7 @@ Page({
 
                 if (res.data.code == 200) {
                     this.setData({
-                        goodslist: res.data.data.goodslist,
+                        goodslist: this.data.goodslist.concat(res.data.data.goodslist),
                         goods_number: res.data.data.page.total,
                         is_loading: false
                     })
