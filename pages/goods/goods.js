@@ -103,14 +103,11 @@ Page({
         })
     },
     onShareAppMessage: function(res) {
-        // if (res.from === 'button') {
-        //     // 来自页面内转发按钮
-        //     console.log(res.target, this.data.goods.goods_id)
-        // }
+    
 
         return {
             title: this.data.goods.goods_name || '我开了一个团推荐大家看看',
-            imageUrl: this.data.imagePath,
+            imageUrl: this.data.shareImg,
             path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id
         }
     },
@@ -153,6 +150,22 @@ Page({
 
 
 
+    },
+
+    getShareImg(id){
+        
+
+    util.wx.get('/api/index/goods_card?goods_id='+id, { 
+          goods_id: id
+    }).then(res => {
+
+        console.log(res)
+
+        if(res.data.code == 200){
+            this.data.shareImg = 'https//static.kaixinmatuan.cn'+res.data.data.path
+        }
+
+    })
     },
 
 
@@ -291,7 +304,8 @@ Page({
 
         this.data.goods_id = option.goods_id || option.scene
 
-        util.getShareImg(option.goods_id, this);
+        this.getShareImg(this.data.goods_id)
+
 
         // Promise.all([
         //   util.getQrcode({

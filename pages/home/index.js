@@ -82,9 +82,11 @@ Page({
 
             this.getGoodsList()
 
+            this.getMyInfo()
+
             //this.getBuyList(token)
 
-            //this.get_store_info(token)
+            this.get_store_info()
 
 
         } else {
@@ -128,14 +130,12 @@ Page({
     },
 
 
-    get_store_info(token) {
+    get_store_info() {
 
         wx.request({
-            url: 'https://www.daohangwa.com/api/seller/get_store_info',
-            data: {
-                token: token
-            },
+            url: '/api/user/get_mystore',
             success: (res) => {
+                console.log('getMyInfo',res)
                 if (res.data.code == 0) {
                     this.setData({
                         store_money: res.data.data.store_money
@@ -146,6 +146,18 @@ Page({
 
 
 
+    },
+    getMyInfo(){
+        util.wx.get('/api/user/user_info')
+        .then(res=>{
+            console.log('userinfo is',res)
+            if(res.data.code == 200){
+                this.setData({
+                    userInfo:res.data.data
+                })
+            }
+
+        })
     },
     getGoodsList: function(token) {
 
@@ -163,6 +175,10 @@ Page({
                     })
                 this.totalpage = res.data.data.page.totalpage
 
+                }else{
+                    this.setData({
+                        is_loading:false
+                    })
                 }
             })
 
@@ -170,54 +186,9 @@ Page({
 
 
 
-    //取消订单
-
-    cancel_order({ target }) {
-
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/cancel_order',
-            method: 'POST',
-            data: {
-                token: app.globalData.token,
-                order_id: target.dataset.id
-            },
-            success: (res) => {
-                if (res.data.code == 0) {
-                    $Message({
-                        content: '订单取消成功',
-                        type: 'success'
-                    })
-                    this.getBuyList()
-
-                }
-            }
-        })
-    },
-
-    //确认收货
-    confirm_order({ target }) {
-
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/confirm_order',
-            method: 'POST',
-            data: {
-                token: app.globalData.token,
-                order_id: target.dataset.id
-            },
-            success: (res) => {
-                if (res.data.code == 0) {
-                    $Message({
-                        content: '确认完成',
-                        type: 'success'
-                    })
-                    this.getBuyList()
-                }
-            }
-        })
 
 
-
-    },
+  
     new_btn: function() {
         wx.navigateTo({
             url: '../publish-select/index'

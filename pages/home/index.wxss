@@ -8,7 +8,7 @@
 
 .head-box{
   position: relative;
-  background: url('http://img.atomstone.com/u_center_bg.jpg') center top no-repeat #fff;
+  background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center top no-repeat #fff;
   background-size: 100% auto;
   height: 300rpx;
   position: relative;

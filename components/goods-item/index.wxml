@@ -12,6 +12,7 @@
             <view class="link">
                 <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button> 
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
+                <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 下架 </button>
             </view>
         </view>
         <view class="fd">
