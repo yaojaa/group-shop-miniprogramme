@@ -44,7 +44,7 @@
             </view>
             <!--上传规格图弹框-->
             <wux-popup catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
-                <view class="poptit">上传商品规格图片</view>
+                <view class="poptit">商品规格图片</view>
                 <view class="con">
                 <view class="pic_loading">
                     <i-spin wx:if="{{visible_spec && specProgress}}"/>
@@ -74,7 +74,7 @@
 
                     <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
                         <view class="img-list">
-                            <image mode="widthFix" src="{{item}}" />
+                            <image mode="widthFix" src="{{item}}-small" />
                         </view>
                         <view class="icons">
                             <view class="icon-list">
@@ -88,7 +88,7 @@
                             </view>
                         </view>
                     </view>
-                    <view class="footer-btn">
+                    <view class="footer-btn" wx:if="{{!uploadProgress}}">
                         <button bindtap="addPicture" class="btn btn-round linenear_bg_light">
                             + 继续添加
                         </button>
