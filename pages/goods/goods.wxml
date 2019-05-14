@@ -1,8 +1,11 @@
-<custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="{{winWidth-100}}" bottomLayerBackColor="#ffffff" changeEndHeight="{{winWidth}}" showBackBar="true">
-    <view slot="bottom" class="bar">
-   {{goods.goods_name}}
+<custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="300" bottomLayerBackColor="#ffffff" changeEndHeight="400" showBackIcon="true" showBackBar="true">
+
+       <view slot="bottom" class="bar tab-box">
+          用户头像 昵称 {{goods.user.nickname}}
     </view>
+
 </custom-bar>
+
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>

@@ -102,12 +102,14 @@ Page({
             }
         })
     },
-    onShareAppMessage: function(res) {
+    onShareAppMessage: function() {
+
+        console.log('onShareAppMessage',this,this.shareImg)
     
 
         return {
             title: this.data.goods.goods_name || '我开了一个团推荐大家看看',
-            imageUrl: this.data.shareImg,
+            imageUrl: this.shareImg,
             path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id
         }
     },
@@ -159,10 +161,14 @@ Page({
           goods_id: id
     }).then(res => {
 
-        console.log(res)
+        console.log(res,res.data.code)
+
 
         if(res.data.code == 200){
-            this.data.shareImg = 'https//static.kaixinmatuan.cn'+res.data.data.path
+
+            this.shareImg = res.data.data.path 
+
+            console.log("this.shareImg.",this.shareImg)
         }
 
     })

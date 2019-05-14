@@ -5,6 +5,7 @@
     background-size: 100% auto;
     background-position: center top;
     background-repeat: no-repeat;
+
 }
 
 .backBar {
@@ -12,7 +13,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    right: 0
 }
 
 .tit {

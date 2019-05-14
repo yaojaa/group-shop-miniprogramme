@@ -803,10 +803,15 @@ Page({
 
     getPublishedData(goods_id, isCopy) {
 
+        wx.showLoading()
+
         util.wx.post('/api/goods/get_goods_detail', {
             goods_id: goods_id
 
         }).then((res) => {
+
+            wx.hideLoading()
+
 
             let d = res.data
             let gs = res.data.data.goods

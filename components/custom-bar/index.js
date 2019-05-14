@@ -11,7 +11,7 @@ Component({
     properties: {
         backColor: {
             type: String,
-            value: '#ffffff'
+            value: 'transport'
         },
 
         bottomLayerBackColor: {
@@ -36,6 +36,10 @@ Component({
             value: ''
 
         },
+        backUrl: {
+            type: String,
+            value: ''
+        },
         showBackIcon: {
             type: Boolean,
             value: false
@@ -46,11 +50,11 @@ Component({
         },
         backIconSize: {
             type: String,
-            value: '26'
+            value: '28'
         },
         backIconColor: {
             type: String,
-            value: '#000'
+            value: '#ffffff'
         },
         title: {
             type: String,
@@ -136,13 +140,25 @@ Component({
     methods: {
         goback() {
 
-            console.log('navigateBack')
+            this.triggerEvent('onBack')
+
+            console.log('goback',this.data.backUrl)
+
+            if(this.data.backUrl){
+
+                wx.switchTab({
+                    url:this.data.backUrl
+                })
+
+            }else{
 
             wx.navigateBack({
                 delta: 1
             })
+            }
 
-            this.triggerEvent('onBack')
+           
+
 
 
         }
