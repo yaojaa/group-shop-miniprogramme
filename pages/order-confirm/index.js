@@ -12,7 +12,9 @@ Page({
         self_address: [],
         goods_name: '',
         seller: {},
-        delivery_method: 0
+        delivery_method: 0,
+        consignee:app.globalData.userInfo.nickname,
+        mobile:app.globalData.userInfo.mobile|| 13718134511
             },
     getAddressList() {
         util.wx.get('/api/goods/get_goods_detail',{
@@ -32,7 +34,7 @@ Page({
     },
 
     onAddressChange(e) {
-        console.log(e)
+        console.log(e.detail)
         this.setData({
             address_id: e.detail
         });
@@ -126,7 +128,6 @@ Page({
             'province_name': this.data.province_name,
             'city_name': this.data.city_name,
             'district_name': this.data.district_name,
-            'address': this.data.address,
             'mobile': this.data.mobile
         }
 
@@ -148,7 +149,9 @@ Page({
         if (this.data.delivery_method == 2) {
             postData = {
                 consignee: this.data.consignee,
-                mobile: this.data.mobile
+                mobile: this.data.mobile,
+                self_address_id: this.data.address_id,
+
             }
         } else {
             postData = {
@@ -285,8 +288,52 @@ Page({
  */
 onReady: function() {
 
-    },
+            this.getWxCode()
 
+    setInterval(()=>{
+            this.getWxCode()
+        },1000*60*4)
+
+
+    },
+    getWxCode(){
+            wx.login({
+                success: res => {
+                    // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                    if (res.code) {
+                        this.data.code = res.code
+                    }
+                }
+            })
+    },
+       //通过绑定手机号登录
+    getPhoneNumber: function(e) {
+  
+      
+                util.wx.post('/api/user/get_wx_mobile', {
+                    'encryptedData': encodeURIComponent(e.detail.encryptedData),
+                    'iv': encodeURIComponent(e.detail.iv),
+                    'session_key': this.data.code
+                }).then((res) => {
+
+                    if (res.data.code == 0 || res.data.code == 400611) {
+                        this.setData({
+                            mobile:res.data.data
+                        })
+                        // wx.redirectTo({
+                        //     url: '/' + this.data.url + '?id=' + this.data.id
+                        // })
+                    } else {
+                        wx.showToast({
+                            title: res.data.msg,
+                            icon: 'none'
+                        })
+
+                    }
+                })
+
+       
+    },
 
     /**
      * 生命周期函数--监听页面隐藏
