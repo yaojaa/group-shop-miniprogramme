@@ -9,58 +9,42 @@ Page({
     data: {
         address_id: '',
         address: '',
-        addressList: [],
+        self_address: [],
         goods_name: '',
-        sell_address: {},
         seller: {},
         delivery_method: 0
-    },
+            },
     getAddressList() {
-        util.wx.get('/api/user/address_list')
-            .then(res => {
+        util.wx.get('/api/goods/get_goods_detail',{
+            goods_id:this.data.goods_id
+        })
+        .then(res => {
                 if (res.data.code == 200) {
-                    let data = res.data.data.address_list
-                    if (data.length > 0) {
-                        data.forEach((item) => {
-                            console.log(item, 'item')
-                            if (item.is_address_default == 1) {
-                                this.setData({
-                                    address: item,
-                                    address_id: item.address_id
-                                })
-                            } else {
-                                this.setData({
-                                    address: data[0],
-                                    address_id: data[0].address_id
-                                })
-                            }
-                        })
-                    } else {
-                        this.setData({
-                            address: null,
-                            address_id: ''
-                        })
-                    }
-                }
-            })
-    },
-    getAddress() {
-        util.wx.get('/api/user/address_detail', { address_id: this.data.address_id })
-            .then(res => {
-                if (res.data.code == 200) {
+                    let data = res.data.data.goods.self_address
+
                     this.setData({
-                        address: res.data.data
+                        self_address:data,
+                        address_id:data[0].self_address_id
                     })
+                    
                 }
             })
     },
+
+    onAddressChange(e) {
+        console.log(e)
+        this.setData({
+            address_id: e.detail
+        });
+    },
+
     /**
      * 生命周期函数--监听页面加载 /order/create_order
 
      */
     onLoad: function(options) {
 
-
+        this.data.goods_id = options.goods_id 
 
         let amountMoney = 0;
         let totalNumer = 0
@@ -94,7 +78,7 @@ Page({
         })
 
         //快递发货获取用户快递地址
-        if (options.delivery_method == 1) {
+        if (options.delivery_method == 2) {
             this.getAddressList()
         }
 
@@ -107,7 +91,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        this.getAddress();
+        //this.getAddress();
     },
     //确认订单
     createOrder: function() {

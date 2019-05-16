@@ -29,8 +29,8 @@
                         <view class="right-info">
                             <i-icon type="coordinates" color="#999" /><text class="f12 text-muted">0.33KM</text></view>
                     </view>
-                    <view class='item-title' bindtap="toDetail"><text>{{item.title}}</text> <text class="small f12 text-red">￥</text><text class='text-red'>{{item.price}}</text></view>
-                    <view class='item-des'><text>{{item.info}}</text></view>
+                    <view class='item-title' bindtap="toDetail"><text>{{item.goods_name}}</text> <text class="small f12 text-red">￥</text><text class='text-red'>{{item.price}}</text></view>
+                    <view class='item-des'><text>{{item.goods_content}}</text></view>
                     <view class="item-cover-box" bindtap="toDetail">
                         <block wx:if="{{item.img_list.length == 1}}">
                          <view class="item-img-box-one">

@@ -7,18 +7,17 @@
 
   
 
-<block wx:if="{{newAddress.name}}">
+<block wx:for="{{newAddress}}" wx:key="{{item.self_address_id}}">
   <view class='address button-area'>
   <!-- <view class='address' wx:if="{{index == 0}}"> -->
     <view class='icon-img'>
       <i-icon type="coordinates" size="48" color="#ddd" />
     </view>
     <view class='content'>
-      <view class='name'>{{newAddress.name}}</view>
-      <view class='des'>{{newAddress.address}}</view>
+      <view class='name'>{{item.name}}</view>
+      <view class='des'>{{item.address}}</view>
       <view class='des door_number'>
-        <text class="text-danger">详细地址：</text>
-<input value="{{newAddress.door_number}}" bindinput='inputAddressDes' focus='ture' placeholder="如：8号楼8-818、东门、西门、物业" type="text" name=""/>
+<input value="{{item.door_number}}" bindblur="inputChange" data-id="{{item.self_address_id}}" data-index="{{index}}" bindinput='inputAddressDes' focus='ture' placeholder="补充地址 如8号楼888、东门、西门、物业" type="text" name=""/>
       </view>
 
 <!--       <view class='limit'>
@@ -36,7 +35,7 @@
   </view>
  -->
     </view>
-    <view class='delete' bindtap='deleteCurrentAddress' data-type="new" data-id="{{item.self_address_id}}"><icon type="clear" size="28"/>{{item.self_address_id}}</view>
+    <view class='delete' data-index="{{index}}" bindtap='deleteCurrentAddress' data-type="new" data-id="{{item.self_address_id}}"><icon type="clear" size="28"/></view>
 
     
 
@@ -54,7 +53,7 @@
 
 
 
-<view class="center" style="margin-top:60rpx" wx:if="{{!newAddress.name}}">
+<view class="center" style="margin-top:60rpx" wx:if="{{newAddress.length==0}}">
 
 <view  wx:if="{{openLocation}}" bindtap='addAddress'>
    <button  class="btn btn-round linenear_bg" >
@@ -70,10 +69,10 @@
 </view>
 
 
- <view class="footer-btn" wx:if="{{newAddress.name}}">
-   <!--    <button bindtap="addAddress" class="btn btn-round linenear_bg_light" >
+ <view class="footer-btn" wx:if="{{newAddress.length>0}}">
+      <button bindtap="addAddress" class="btn btn-round linenear_bg_light" >
         + 增加提货点
-      </button> -->
+      </button>
 
       <button bindtap="done" class="btn btn-round linenear_bg" >
         完成

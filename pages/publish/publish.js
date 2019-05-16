@@ -38,7 +38,6 @@ Page({
         end_time: default_end_time,
         goods_video: '',
         goods_video_cover: '',
-
         picker: {
             start_date: default_start_time.split(' ')[0],
             end_date: default_end_time.split(' ')[0],
@@ -688,7 +687,9 @@ Page({
             e.detail.value, //表单的数据
             { spec: this.data.spec }, //商品数组数据
             { goods_images: this.data.goods_images }, {
-                sell_address: this.data.sell_address,
+                self_address_id: this.data.sell_address.map(item=>{
+                    return item.self_address_id
+                }),
                 delivery_method: this.data.delivery_method,
                 collection_methods: this.data.collection_methods,
                 start_time: this.data.start_time,
@@ -696,7 +697,6 @@ Page({
                 content_imgs: this.data.content_imgs,
                 goods_video:this.data.goods_video,
                 goods_video_cover:this.data.goods_video_cover,
-
                 cat_id: 8
             },
 
@@ -805,7 +805,7 @@ Page({
 
         wx.showLoading()
 
-        util.wx.post('/api/goods/get_goods_detail', {
+        util.wx.post('/api/seller/get_goods_detail', {
             goods_id: goods_id
 
         }).then((res) => {

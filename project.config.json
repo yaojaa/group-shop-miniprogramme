@@ -51,13 +51,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "确认订单",
 					"pathName": "pages/order-confirm/index",
-					"query": "goods_id=55&delivery_method=2",
+					"query": "goods_id=71&delivery_method=2",
 					"scene": null
 				},
 				{
@@ -76,7 +76,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=58",
+					"query": "goods_id=70",
 					"scene": 1001
 				},
 				{
@@ -89,8 +89,8 @@
 				{
 					"id": 5,
 					"name": "订单确认",
-					"pathName": "pages/order/index",
-					"query": "goods_id=68&delivery_method=1",
+					"pathName": "pages/order-confirm/index",
+					"query": "goods_id=9&delivery_method=1",
 					"scene": null
 				},
 				{

@@ -6,7 +6,7 @@ Page({
         limitVal: 1,
         hidden: false,
         step: 1,
-        newAddress: {},
+        newAddress: [],
         oldAddress: [],
         openLocation: true,
         delivery_method: 2,
@@ -84,6 +84,25 @@ Page({
             hidden: e.detail.value
         })
     },
+    inputChange(e){
+
+      const id = e.target.dataset.id
+
+
+        util.wx.post('/api/seller/self_address_add_or_edit',{
+            self_address_id:id,
+            door_number:e.detail.value
+        })
+        .then((res)=>{
+
+            console.log('编辑成功',res)
+
+
+        })
+
+
+
+    },
 
     handleChange({ detail }) {
         if (detail.value == 1) {
@@ -95,9 +114,21 @@ Page({
         })
 
     },
-    inputAddressDes({ detail }) {
-        let val = detail.value.replace(/^(\s*)|(\s*)$/g, "");
-        this.data.newAddress.door_number = val;
+    inputAddressDes(e) {
+
+        console.log(e)
+
+        const index = e.target.dataset.index
+
+        console.log(index)
+
+
+        let val = e.detail.value.replace(/^(\s*)|(\s*)$/g, "");
+        let key = 'newAddress['+index+'].door_number'
+
+        this.setData({
+            [key]:val
+        })
 
     },
     addAddress() {
@@ -107,7 +138,6 @@ Page({
             success: (res) => {
                 console.log('用户授权状态', res.authSetting["scope.userLocation"])
                 if (!res.authSetting["scope.userLocation"]) {
-
                           wx.openSetting({
                           success: (res) => {
                               if (res.authSetting["scope.userLocation"]) {
@@ -134,24 +164,32 @@ Page({
       console.log('应用当前地址')
       let index = e.currentTarget.dataset.index;
 
+      this.data.newAddress.push(this.data.hisList[index])
+
       this.setData({
-        newAddress:this.data.hisList[index]
+        newAddress:this.data.newAddress
       })
 
-      console.log(this.data.newAddress)
 
-      wx.showToast({
-        title:'已应用此提货点',
-        icon:'none'
-      })
+      // wx.showToast({
+      //   title:'已应用此提货点',
+      //   icon:'none'
+      // })
 
 
 
     },
 
-    deleteCurrentAddress(){
+    deleteCurrentAddress(e){
+
+
+        let index = e.currentTarget.dataset.index;
+        console.log(index)
+
+       this.data.newAddress.splice(index,1)
+
         this.setData({
-            newAddress:{}
+            newAddress:this.data.newAddress
         })
     },
 
@@ -193,20 +231,11 @@ Page({
     },
     //完成保存
     done() {
-        if (!this.data.newAddress.name) {
-            wx.showToast({ title: "请先添加地址", icon: "none" })
-            return;
-        }
-        if (!this.data.newAddress.door_number) {
-            wx.showToast({ title: "请填写门牌号", icon: "none" })
-            return;
-        }
 
-        this.add()
-
-
-
-
+       util.setParentData({
+        sell_address:this.data.newAddress
+       })
+       
 
 
       
@@ -221,19 +250,8 @@ Page({
      //                        longitude: e.longitude,
      //                        door_number: ''
 
-    add(){
-
-        const data = this.data.newAddress
-        //如果是旧地址
-        if(data.self_address_id){
-
-            util.setParentData({
-                sell_address:data
-            })
-
-
-        }
-
+    add(data){
+       
 
         util.wx.post('/api/seller/self_address_add_or_edit',data)
         .then((res)=>{
@@ -244,21 +262,15 @@ Page({
                         icon:'none'
                     })
 
-                  var pages = getCurrentPages();
-                    var currPage = pages[pages.length - 1]; //当前页面
-                    var prevPage = pages[pages.length - 2]; //上一个页面
+                 this.data.newAddress.push(res.data.data.address)
 
-                    prevPage.data.sell_address = this.data.newAddress
-
-                   
+                 this.setData({
+                    newAddress:this.data.newAddress
+                 })
 
 
 
-
-                    wx.navigateBack({
-                        delta: 1
-                    })
-
+                 
 
             }else{
 
@@ -287,7 +299,8 @@ Page({
 
                         let map = res.data.result.address_component
 
-                        this.data.newAddress={
+
+                        this.add({
                             name: e.name,
                             address: e.address,
                             province_name: map.province,
@@ -296,15 +309,10 @@ Page({
                             latitude: e.latitude,
                             longitude: e.longitude,
                             door_number: ''
-                        };
-
-                        this.setData({
-                            newAddress: this.data.newAddress
                         })
 
-                        app.globalData.sell_address = this.data.newAddress
+                      
 
-                        console.log('this.data.newAddress', this.data.newAddress)
 
 
 

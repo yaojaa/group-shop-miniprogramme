@@ -84,10 +84,10 @@ button.linenear_bg_light {
     color: #69b90b
 }
 
-button.linenear_bg_light:active {
+/*button.linenear_bg_light:active {
     color: green
 }
-
+*/
 .btn-reset {
     padding: 0;
     line-height: 1.4;
@@ -424,11 +424,11 @@ fieldset[disabled] .btn-link {
 
 }
 
-.button-area:active {
+/*.button-area:active {
     box-shadow: 0px 0px 20rpx #67f300;
 
 }
-
+*/
 .button-area.active {
 
     background: #f3ffd3;

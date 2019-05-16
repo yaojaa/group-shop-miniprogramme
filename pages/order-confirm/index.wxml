@@ -21,22 +21,38 @@
 
     <view class="content-wrap">
       <view class="ziti" wx:if="{{delivery_method==2}}">
-        <view class="white-bg flex align-center p-df" >
+       
+<i-panel title="选择提货点">
+
+<van-radio-group value="{{ address_id }}"  disabled="{{self_address.length == 0}}" bind:change="onAddressChange" >
+  <van-radio  wx:for="{{self_address}}" wx:key="{{item.self_address_id}}" name="{{item.self_address_id}}">
+      {{item.address}}
+  </van-radio>
+</van-radio-group>
+
+
+    <!-- <i-radio-group current="{{self_address[0].address}}" bindchange="handleFruitChange">
+        <i-radio wx:for="{{self_address}}" position="left" wx:key="{{item.self_address_id}}" value="{{item.address}}">
+        </i-radio>
+    </i-radio-group> -->
+</i-panel>
+ <!--        <view class="white-bg flex align-center p-df"  wx:for="{{self_address}}" wx:key="{{index}}" data-id="{{item.self_address_id}}">
             <van-icon name="location-o" />
             <view class="flex-sub ml-sm">
                 <view class="flex align-center">
-                    <text class="label label-primary mr-xs">团长</text>
-                    <text class="bold text-lg mr-xs">一夜宝宝</text>
-                    <text class="text-muted">18000000000</text></view>
-                <view class="text-sm mt-xs"><text class="text-gray">取货地址：</text>
-                    <text class="">北京朝阳区三间房歪脖子巷甲三号</text></view>
+                    <text class="label label-primary mr-xs">取货点{{index+1}}</text>
+                    <text class="bold text-lg mr-xs">{{item.address}} {{item.door_number}}</text>
+                   <text class="text-muted">18000000000</text></view>
+                <view class="text-sm mt-xs"><text class="text-gray"></text>
+                    <text class="">{{item.address}} {{item.door_number}}</text>
+                 </view>
             </view>
 
      
 
 
         </view>
-
+ -->
 
     <view class="white-bg">
      <i-panel title="取货人信息">
