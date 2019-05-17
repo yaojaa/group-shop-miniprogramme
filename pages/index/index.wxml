@@ -11,53 +11,56 @@
     style="height:calc(100% - 100px);"> -->
     <view class='product-item-container'>
         <block wx:for="{{proList}}" wx:key="{{index}}">
-            <view class='product-item'  data-post-id="{{item.id}}">
+            <view class='product-item'  >
                 <view class='item-body'>
                     <view class="clearfix">
                         <view class="item-avatar">
                             <navigator url="../userhome/index">
-                            <image class="avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+                            <image class="avatar" src="{{item.user.headimg}}" />
                         </navigator>
                         </view>
 
                         <view class="item-name">
-                             <text class="f14">{{item.user_name}}</text>
-                            <view class="time f12px text-muted">剩余时间：3天</view>
+                             <text class="f14">{{item.user.nickname}}</text>
+                            <view class="time f12px text-muted">剩余时间：{{item._expires.countdown.day}}天
+                            {{item._expires.countdown.hour}}小时
+                        {{item._expires.countdown.min}}分
+                  </view>
                         </view>
 
 
                         <view class="right-info">
                             <i-icon type="coordinates" color="#999" /><text class="f12 text-muted">0.33KM</text></view>
                     </view>
-                    <view class='item-title' bindtap="toDetail"><text>{{item.goods_name}}</text> <text class="small f12 text-red">￥</text><text class='text-red'>{{item.price}}</text></view>
+                    <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail"><text>{{item.goods_name}}</text> <text class="small f12 text-red">￥</text><text class='text-red'>{{item.price}}</text></view>
                     <view class='item-des'><text>{{item.goods_content}}</text></view>
-                    <view class="item-cover-box" bindtap="toDetail">
-                        <block wx:if="{{item.img_list.length == 1}}">
+                    <view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
+                        <block wx:if="{{item.goods_images.length == 1}}">
                          <view class="item-img-box-one">
 
-                           <image mode="widthFix" class="cover1" src="{{item.img_list[0]}}"></image>
+                           <image mode="widthFix" class="cover1" src="{{item.goods_images[0].img_url}}"></image>
                        </view>
                         </block>
 
-                         <block wx:if="{{item.img_list.length == 2}}">
+                         <block wx:if="{{item.goods_images.length == 2}}">
 
-                             <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
-                                <image  mode="widthFix" class="cover" src="{{im}}"></image>
+                             <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
+                                <image  mode="widthFix" class="cover" src="{{im.img_url}}"></image>
                             </view>
 
 
                             
                         </block>
 
-                        <block wx:if="{{item.img_list.length == 3}}">
+                        <block wx:if="{{item.goods_images.length == 3}}">
 
-                             <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
-                                <image  mode="widthFix" class="cover" src="{{im}}"></image>
+                             <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
+                                <image  mode="widthFix" class="cover" src="{{im.img_url}}"></image>
                             </view>
                             
                         </block>
 
-                        <block wx:if="{{item.img_list.length == 4}}">
+                        <block wx:if="{{item.goods_images.length == 4}}">
                             
                         </block>
 
@@ -79,9 +82,9 @@
                     <view class="buyer-list text-justify">
                         <view class="flex-box align-center">
                             <view class="avatar-group">
-                                <image class="avatar" src="{{1}}" wx:for="{{4}}" wx:key="index"></image>
+                                <image class="avatar" wx:for-item="it" src="{{it.headimg}}" wx:for="{{item._buy_users}}" wx:key="index"></image>
                             </view>
-                            <view class="user text-muted f12 ml-xs"><text class="text-red">32</text>人参与 </view>
+                            <view class="user text-muted f12 ml-xs"><text class="text-red">{{item._buy_users_count}}</text>人参与 </view>
                         </view>
                     </view>
                 </view>

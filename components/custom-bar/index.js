@@ -18,14 +18,14 @@ Component({
             type: String,
             value: ''
         },
-        
+
 
         backTitle: {
             type: String,
             value: ''
         },
 
-        back_tit_txt_color:{
+        back_tit_txt_color: {
             type: String,
             value: ''
         },
@@ -86,7 +86,7 @@ Component({
                 console.log(newVal, oldVal, this.data.changeEndHeight)
 
                 //向上滚动
-                if(newVal<oldVal && newVal<this.data.changeStartHeight){
+                if (newVal < oldVal && newVal < this.data.changeStartHeight) {
 
                     this.setData({
                         opacity: 0
@@ -98,9 +98,9 @@ Component({
 
                     var opacity = (newVal / this.data.changeEndHeight).toFixed(2)
 
-                    opacity = opacity>1?1:opacity
+                    opacity = opacity > 1 ? 1 : opacity
 
-                    console.log('opacity',opacity)
+                    console.log('opacity', opacity)
 
 
 
@@ -109,7 +109,7 @@ Component({
                         opacity: newVal / this.data.changeEndHeight
                     })
 
-                }else{
+                } else {
 
                     this.setData({
                         opacity: 0
@@ -142,22 +142,24 @@ Component({
 
             this.triggerEvent('onBack')
 
-            console.log('goback',this.data.backUrl)
+            var pages = getCurrentPages();
+            var currPage = pages[pages.length - 1]; //当前页面
+            var prevPage = pages[pages.length - 2]; //上一个页面
 
-            if(this.data.backUrl){
+            if (pages.length >= 2) {
 
-                wx.switchTab({
-                    url:this.data.backUrl
+                wx.navigateBack({
+                    delta: 1
                 })
 
-            }else{
-
-            wx.navigateBack({
-                delta: 1
-            })
+            } else if (this.data.backUrl) {
+                wx.navigateTo({
+                    url: this.data.backUrl
+                })
             }
 
-           
+
+
 
 
 

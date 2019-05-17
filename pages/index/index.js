@@ -56,8 +56,12 @@ Page({
     })
    
   },
+  getProListBylocation(){
+    
+  },
   toDetail(e){
-    let postId = e.currentTarget.dataset.postId || 58
+    console.log(e)
+    let postId = e.currentTarget.dataset.id || e.target.dataset.id
     wx.navigateTo({
       url: '../goods/goods?goods_id='+postId})
     },
