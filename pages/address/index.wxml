@@ -44,5 +44,5 @@
             <view class="no-content-des"><text>暂无收货地址</text></view>
         </view>
     </view>
-    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
 </view>

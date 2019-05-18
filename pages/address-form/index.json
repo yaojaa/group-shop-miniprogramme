@@ -5,7 +5,7 @@
         "van-cell": "../../vant/cell/index",
         "van-field": "../../vant/field/index",
         "van-cell-group": "../../vant/cell-group/index",
-        "van-notify": "../../vant/notify/index",
+        "van-toast": "../../vant/toast/index",
         "van-checkbox": "../../vant/checkbox/index",
         "van-checkbox-group": "../../vant/checkbox-group/index",
         "van-area": "../../vant/area/index",

@@ -15,7 +15,7 @@
             </button>
         </view>
     </form>
-    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
     <van-popup show="{{ areaModal }}" position="bottom" bind:close="handleAreaModal">
         <van-area area-list="{{ areaList }}" bind:change="" bind:cancel="handleAreaModal" bind:confirm="handleArea" value="{{district_id}}" id="area" />
     </van-popup>

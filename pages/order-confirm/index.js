@@ -1,6 +1,9 @@
 const app = getApp()
 
 const util = require('../../utils/util.js')
+
+import Toast from '../../vant/toast/toast';
+
 Page({
 
     /**
@@ -44,6 +47,41 @@ Page({
                     }
                 }
             })
+    },
+    addAddress(data) {
+        let that = this
+        util.wx.post('/api/user/address_add_or_edit', data)
+            .then(res => {
+                console.log(res)
+                if (res.data.code == 200) {
+                    Toast.success(res.data.msg);
+                    that.getAddress
+                } else {
+                    Toast.fail(res.data.msg);
+                }
+            })
+    },
+    openAddress() {
+        let that = this
+        wx.chooseAddress({
+            success(res) {
+                let sendData = {
+                    "consignee": res.userName,
+                    "mobile": res.telNumber,
+                    "province": res.provinceName,
+                    "city": res.cityName,
+                    "district": res.countyName,
+                    "address": res.detailInfo
+                }
+                that.addAddress(sendData)
+            },
+            fail() {
+                wx.showToast({
+                    title: '获取失败',
+                    icon: 'none'
+                })
+            }
+        })
     },
     getAddressList() {
         util.wx.get('/api/goods/get_goods_detail', {

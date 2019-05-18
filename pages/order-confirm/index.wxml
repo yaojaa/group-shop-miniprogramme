@@ -65,7 +65,7 @@
                 <van-cell title="手动添加收货地址" is-link url="../address-form/index?source=cart">
                     <van-icon name="add-square" color="#FF5757" size="40rpx" slot="icon" custom-class="mr-xs" />
                 </van-cell>
-                <van-cell title="一键获取微信地址" is-link>
+                <van-cell title="一键获取微信地址" is-link bindtap="openAddress">
                     <van-icon name="chat" color="#49b34d" size="40rpx" slot="icon" custom-class="mr-xs" />
                 </van-cell>
             </van-cell-group>
@@ -113,4 +113,5 @@
         </van-cell-group>
     </view>
     <i-message id="message" />
+    <van-toast id="van-toast" />
 </view>

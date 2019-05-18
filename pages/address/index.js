@@ -1,5 +1,5 @@
 const util = require('../../utils/util')
-import Notify from '../../vant/notify/notify'
+import Toast from '../../vant/toast/toast';
 Page({
 
     /**
@@ -41,10 +41,7 @@ Page({
         let { id, add } = e.currentTarget.dataset;
         util.wx.post('/api/user/address_del', { "address_id": id }).then(res => {
             if (res.data.code == 200) {
-                wx.showToast({
-                    title: '删除成功',
-                    icon: 'none'
-                })
+                Toast.success('删除成功');
                 if (add.address_id == address.address_id) {
                     wx.removeStorageSync('userAddress')
                 }
@@ -80,20 +77,10 @@ Page({
         util.wx.post('/api/user/address_add_or_edit', data)
             .then(res => {
                 if (res.data.code == 200) {
-                    Notify({
-                        text: res.data.msg,
-                        duration: 1000,
-                        selector: '#custom-selector',
-                        backgroundColor: '#39b54a'
-                    })
-                    that.getAddress
+                    Toast.success(res.data.msg);
+                    that.getAddress()
                 } else {
-                    Notify({
-                        text: res.data.msg,
-                        duration: 1000,
-                        selector: '#custom-selector',
-                        backgroundColor: '#f00'
-                    })
+                    Toast.fail(res.data.msg);
                 }
             })
     },
