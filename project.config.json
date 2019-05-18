@@ -51,7 +51,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 39,
 			"list": [
 				{
 					"id": 0,
@@ -314,6 +314,13 @@
 					"name": "添加地址",
 					"pathName": "pages/address-form/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人信息",
+					"pathName": "pages/identify/identify",
+					"query": "goods_id=70",
 					"scene": null
 				}
 			]

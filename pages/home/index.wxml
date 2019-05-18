@@ -104,6 +104,8 @@
     </view> -->
     <!--     <official-account></official-account>
  -->
+ <official-account></official-account>
+
     <i-panel title="我的订单" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
