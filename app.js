@@ -133,7 +133,7 @@ App({
                 data: {openid: this.openId,
                   session_key:this.session_key,
                   nickname: res.userInfo.nickName,
-                  head_pic: res.userInfo.avatarUrl,
+                  headimg: res.userInfo.avatarUrl,
                   encryptedData: res.encryptedData
                 },
                 success: (res) => {

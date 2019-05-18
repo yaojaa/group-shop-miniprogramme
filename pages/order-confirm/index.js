@@ -14,7 +14,7 @@ Page({
         seller: {},
         delivery_method: 0,
         consignee:app.globalData.userInfo.nickname,
-        mobile:app.globalData.userInfo.mobile|| 13718134511
+        mobile:app.globalData.userInfo.mobile
             },
     getAddressList() {
         util.wx.get('/api/goods/get_goods_detail',{
