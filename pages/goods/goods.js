@@ -67,12 +67,15 @@ Page({
             StatusBar:'',
             toShowPic:false,
             poster:false,
-            winWidth:app.globalData.winWidth
+            winWidth:app.globalData.winWidth,
+            imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
         },
     },
     onShow: function() {
 
         console.log('onshow....')
+        // 关闭查看图片预览标识
+        this.data.imgPreviewFlag = false;
 
         this.setData({
             cartPanel: false
@@ -241,17 +244,20 @@ Page({
             })
     },
     onHide:function(){
-      console.log('用户离开了')
-      this.leaveDate = new Date()
+        // 用户查看图片不触发
+        if(this.data.imgPreviewFlag){ return; }
 
-      //用户停留时间毫秒
-      const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
+        console.log('用户离开了')
+        this.leaveDate = new Date()
 
-      wx.showToast({
-        title:'用户离开了'
-      })
+        //用户停留时间毫秒
+        const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
+
+        wx.showToast({
+            title:'用户离开了'
+        })
         //提交访问记录
-       util.wx.get('/api/index/set_user_staytime', {
+        util.wx.get('/api/index/set_user_staytime', {
           access_id:this.access_id, 
           user_staytime: userStayTime,
         })
@@ -320,7 +326,7 @@ Page({
         //   }),
         //   new Promise(resolve => {
         //     wx.request({
-        //       url: 'https://www.daohangwa.com/api/goods/get_goods_info',
+        //       url: 'https://www.kaixinmatuan.cn/api/goods/get_goods_info',
         //       data: {
         //         // token: app.globalData.token,
         //         goods_id: this.data.goods_id
@@ -378,7 +384,7 @@ Page({
         // .catch(e=>{console.log(e)})
 
         // wx.request({
-        //     url: 'https://www.daohangwa.com/api/goods/get_goods_info',
+        //     url: 'https://www.kaixinmatuan.cn/api/goods/get_goods_info',
         //     data: {
         //         // token :app.globalData.token,
         //         goods_id: this.data.goods_id
@@ -636,8 +642,8 @@ Page({
     getOrderUserList(goods_id) {
 
         wx.request({
-            method: 'post',
-            url: 'https://www.daohangwa.com/api/goods/get_buyusers_by_goodsid',
+            method: 'get',
+            url: 'https://www.kaixinmatuan.cn/api/goods/get_minorders_by_goods_id',
             data: {
                 token: app.globalData.token,
                 goods_id: goods_id
@@ -646,17 +652,17 @@ Page({
 
 
 
-                if (res.data.code == 0) {
+                if (res.data.code == 200) {
 
                     //***后两位
-                    res.data.data.lists.map(value => {
-                        value.specs.map(val => {
-                            val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g, '*')
-                        })
-                    })
+                    // res.data.data.map(value => {
+                    //     value.specs.map(val => {
+                    //         val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g, '*')
+                    //     })
+                    // })
 
                     this.setData({
-                        orderUsers: res.data.data.lists
+                        orderUsers: res.data.data
                     })
 
                 }
@@ -743,10 +749,18 @@ Page({
     imgPreview: function(event) {
         var src = event.currentTarget.dataset.src; //获取data-src
         var imgList = event.currentTarget.dataset.list; //获取data-list
+        var _this = this;
+        // 打开查看图片预览标识
+        this.data.imgPreviewFlag = true;
+
         //图片预览
         wx.previewImage({
             current: src, // 当前显示图片的http链接
-            urls: imgList // 需要预览的图片http链接列表
+            urls: imgList, // 需要预览的图片http链接列表
+            complete(res) {
+                // 关闭查看图片预览标识
+                _this.data.imgPreviewFlag = false
+            }
         })
     },
     buy() {

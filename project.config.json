@@ -51,7 +51,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -76,7 +76,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=76",
+					"query": "goods_id=81",
 					"scene": 1001
 				},
 				{
