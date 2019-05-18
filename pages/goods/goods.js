@@ -222,13 +222,20 @@ Page({
 
                     console.log('goods_spec bingen',d.goods.goods_spec)
 
+                    d.goods.goods_spec.forEach(e => {
+                        if(e.spec_pic.length == 0){
+                            e.spec_pic.push(d.goods.goods_images[0].img_url)
+                        }
+                    })
+                    console.log('goods_spec bingen',d.goods.goods_spec)
+
 
                     this.setData({
                         goods: d.goods,
                         'imgs.src': d.goods.goods_images,
                         // sell_address: res.data.data.sell_address,
                         // seller: res.data.data.seller,
-                        goods_spec: d.goods.goods_spec,
+                        goods_spec: d.goods.goods_spec.length == 0 ? d.goods.goods_images : d.goods.goods_spec,
                         seller:d.user,
                         hw_data: d.hw_data,
                         // endTime: res.data.data.goods.sell_end_time,
