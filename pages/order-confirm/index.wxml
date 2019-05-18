@@ -50,14 +50,14 @@
             </view>
         </view>
         <view class="address" wx:if="{{delivery_method==1}}">
-            <navigator url="../address/index?source=cart&id={{address.address_id}}" hover-class="none" class="white-bg flex align-center p-df" wx:if="{{addressList}}">
+            <navigator url="../address/index?source=cart&id={{address.address_id}}" hover-class="none" class="white-bg flex align-center p-df" wx:if="{{address}}">
                 <van-icon name="location-o" />
                 <view class="flex-sub mh-sm">
                     <view class="flex align-center">
                         <text class="bold text-lg mr-xs">{{address.consignee}}</text>
                         <text class="text-muted">{{address.mobile}}</text></view>
                     <view class="text-sm mt-xs"><text class="text-gray">配送地址：</text>
-                        <text class="">{{address.citynames[4]}}{{address.address}}</text></view>
+                        <text class="">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</text></view>
                 </view>
                 <van-icon name="arrow" color="#999" />
             </navigator>

@@ -16,6 +16,35 @@ Page({
         consignee: app.globalData.userInfo.nickname,
         mobile: app.globalData.userInfo.mobile || 13718134511
     },
+    getUserAddress() {
+        util.wx.get('/api/user/address_list')
+            .then(res => {
+                var data = res.data.data.address_list
+                if (res.data.code == 200) {
+                    if (data.length > 0) {
+                        data.forEach((item) => {
+                            console.log(item, 'item')
+                            if (item.is_address_default == 1) {
+                                this.setData({
+                                    address: item,
+                                    address_id: item.address_id
+                                })
+                            } else {
+                                this.setData({
+                                    address: data[0],
+                                    address_id: data[0].address_id
+                                })
+                            }
+                        })
+                    } else {
+                        this.setData({
+                            address: null,
+                            address_id: ''
+                        })
+                    }
+                }
+            })
+    },
     getAddressList() {
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.goods_id
@@ -81,12 +110,9 @@ Page({
         //快递发货获取用户快递地址
         if (options.delivery_method == 2) {
             this.getAddressList()
+        } else if (options.delivery_method == 1) {
+            this.getUserAddress()
         }
-
-
-
-
-
     },
     /**
      * 生命周期函数--监听页面显示

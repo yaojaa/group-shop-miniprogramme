@@ -21,12 +21,12 @@
                         <view class="mr-df ttm-checkbox align-self-center {{item.address_id==selected?'checked':''}}" wx:if="{{source}}" data-id="{{item.address_id}}" bindtap="setSelected">
                             <van-icon name="success" custom-class="iconsuccess" />
                         </view>
-                        <view class="bd" data-id="{{item.address_id}}" bindtap="setSelected">
+                        <view class="bd" data-id="{{item.address_id}}" data-item="{{item}}" bindtap="setSelected">
                             <view class="text-lg bold"><text class="mr-sm">{{item.consignee}}</text><text class="mr-sm">{{item.mobile}}</text>
                                 <text wx:if="{{item.is_address_default==1}}" class="btn lt primary">默认</text>
                             </view>
                             <view class="text-gray mt-xs">
-                                {{item.citynames[4]}}{{item.address}}
+                                {{item.province}}{{item.city}}{{item.district}}{{item.address}}
                             </view>
                         </view>
                         <navigator url="../address-form/index?id={{item.address_id}}" hover-class="none" class="fd solid-left">

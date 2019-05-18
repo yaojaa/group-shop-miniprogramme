@@ -26,12 +26,13 @@ Page({
         if (!this.data.source) {
             return
         }
-        const id = e.currentTarget.dataset.id
+        const {id,item} = e.currentTarget.dataset
         this.setData({
             selected: id
         })
         util.setParentData({
-            address_id: id
+            address_id: id,
+            address:item
         })
     },
 
