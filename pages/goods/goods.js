@@ -220,15 +220,14 @@ Page({
 
                     })
 
-                    console.log('goods_spec bingen',d.goods.goods_spec)
+                    // console.log('goods_spec bingen',d.goods.goods_spec)
 
+                    // 没有规格图片使用第一张头图
                     d.goods.goods_spec.forEach(e => {
                         if(e.spec_pic.length == 0){
                             e.spec_pic.push(d.goods.goods_images[0].img_url)
                         }
                     })
-                    console.log('goods_spec bingen',d.goods.goods_spec)
-
 
                     this.setData({
                         goods: d.goods,
