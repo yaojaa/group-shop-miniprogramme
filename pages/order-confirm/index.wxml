@@ -61,10 +61,18 @@
                 </view>
                 <van-icon name="arrow" color="#999" />
             </navigator>
-            <navigator url="../address-form/index?source=cart" hover-class="none" class="white-bg flex align-center justify-center p-df mt-sm" style='min-height: 150rpx' wx:else>
+            <van-cell-group wx:else>
+                <van-cell title="手动添加收货地址" is-link url="../address-form/index?source=cart">
+                    <van-icon name="add-square" color="#FF5757" size="40rpx" slot="icon" custom-class="mr-xs" />
+                </van-cell>
+                <van-cell title="一键获取微信地址" is-link>
+                    <van-icon name="chat" color="#49b34d" size="40rpx" slot="icon" custom-class="mr-xs" />
+                </van-cell>
+            </van-cell-group>
+            <!-- <navigator url="../address-form/index?source=cart" hover-class="none" class="white-bg flex align-center justify-center p-df mt-sm" style='min-height: 150rpx' wx:else>
                 <view class="flex align-center text-gray">
                     <van-icon name="plus" size="40rpx" /> <text class="ml-sm">添加收货地址</text></view>
-            </navigator>
+            </navigator> -->
             <view class="address-line"></view>
         </view>
         <view class="goods-panel ph-df white-bg mv-sm cf" wx:if="{{delivery_method==1}}">
