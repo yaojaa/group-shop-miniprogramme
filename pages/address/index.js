@@ -1,5 +1,5 @@
 const util = require('../../utils/util')
-
+import Notify from '../../vant/notify/notify'
 Page({
 
     /**
@@ -19,7 +19,6 @@ Page({
         this.setData({
             source: options.source || false,
             selected: options.id || '',
-
         })
     },
 
@@ -39,7 +38,7 @@ Page({
     remove(e) {
         const address = wx.getStorageSync('userAddress') || {}
         let { id, add } = e.currentTarget.dataset;
-        util.wx.post('/api/user/address_del', { "address_id":id }).then(res => {
+        util.wx.post('/api/user/address_del', { "address_id": id }).then(res => {
             if (res.data.code == 200) {
                 wx.showToast({
                     title: '删除成功',
@@ -66,7 +65,7 @@ Page({
                     this.setData({
                         address: data.data.address_list
                     })
-                    if (this.data.source && !this.data.address.length>0) {
+                    if (this.data.source && !this.data.address.length > 0) {
                         // wx.navigateBack({
                         //     delta: 1
                         // })
@@ -75,7 +74,50 @@ Page({
                 }
             })
     },
-
+    addAddress(data) {
+        let that = this
+        util.wx.post('/api/user/address_add_or_edit', data)
+            .then(res => {
+                if (res.data.code == 200) {
+                    Notify({
+                        text: res.data.msg,
+                        duration: 1000,
+                        selector: '#custom-selector',
+                        backgroundColor: '#39b54a'
+                    })
+                    that.getAddress
+                } else {
+                    Notify({
+                        text: res.data.msg,
+                        duration: 1000,
+                        selector: '#custom-selector',
+                        backgroundColor: '#f00'
+                    })
+                }
+            })
+    },
+    openAddress() {
+        let that = this
+        wx.chooseAddress({
+            success(res) {
+                let sendData = {
+                    "consignee": res.userName,
+                    "mobile": res.telNumber,
+                    "province": res.provinceName,
+                    "city": res.cityName,
+                    "district": res.countyName,
+                    "address": res.detailInfo
+                }
+                that.addAddress(sendData)
+            },
+            fail() {
+                wx.showToast({
+                    title: '获取失败',
+                    icon: 'none'
+                })
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -87,7 +129,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        this.getAddress()
+        this.getAddress();
     },
 
     /**

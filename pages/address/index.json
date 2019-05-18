@@ -5,6 +5,7 @@
         "van-swipe-cell": "../../vant/swipe-cell/index",
         "van-cell": "../../vant/cell/index",
         "van-icon": "../../vant/icon/index",
-        "van-cell-group": "../../vant/cell-group/index"
+        "van-cell-group": "../../vant/cell-group/index",
+        "van-notify": "../../vant/notify/index"
     }
 }
