@@ -1,4 +1,6 @@
-<view class="container">
+<i-custom-bar fixed backColor="#ffffff" backImage="https://static.kaixinmatuan.cn/staitc-img/top_bar_bg.jpg" title="订单管理">  </i-custom-bar>
+
+<view class="container mtop100">
     <view class="order-title text-primary">
         <navigator url="/pages/goods/goods?goods_id={{goods_id}}">
             <text class="goods_title">{{goods_name}}</text>

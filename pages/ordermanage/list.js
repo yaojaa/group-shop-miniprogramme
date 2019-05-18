@@ -83,7 +83,7 @@ Page({
 
      this.getOrderList()
 
-     this.getStatistics()
+     //this.getStatistics()
 
 
 
@@ -252,8 +252,8 @@ Page({
       util.wx.get('/api/seller/get_order_list',{
       goods_id:this.data.goods_id,
       cpage:this.data.cpage,
-      shipping_status:this.data.shipping_status,
-      order_status:this.data.order_status,
+      // shipping_status:this.data.shipping_status,
+      search_order_status:this.data.order_status, //3 
       pagesize:80
       // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
       }

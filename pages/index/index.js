@@ -7,7 +7,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userloaction:{
 
-    }
+    },
+    proList:[]
   },
   handleTabBarChange ({ detail }) {
         this.setData({
@@ -29,34 +30,55 @@ Page({
   },
   onLoad: function () {
 
-    this.pageNum = 1;
     this.getProList()
-
-    console.log(app.globalData.userInfo);
-
     util.getUserloaction().then(res=>{
-      console.log(res)
       this.setData({
-        userloaction:res
+        userloaction:res,
+        latitude:res.latitude,
+        longitude:res.longitude
       })
+
+      this.getProListBylocation()
+
+
     })
       },
+
   getProList(){
 
 
-    util.wx.get('/api/user/discover').then(res=>{
+    util.wx.get('/api/user/get_browsed_goods').then(res=>{
 
 
       if(res.data.code == 200){
         console.log('getProList')
         this.setData({
-          proList:res.data.data.browse_goods
+          proList:res.data.data.goods
         })
       }
     })
    
   },
   getProListBylocation(){
+
+        util.wx.get('/api/user/discover',{
+          latitude:this.data.latitude,
+          longitude:this.data.longitude
+        }).then(res=>{
+
+      if(res.data.code == 200){
+
+
+        var alldata = this.data.proList.concat(res.data.data.nearby_goods)
+                console.log(alldata)
+
+        this.setData({
+          proList:alldata
+        })
+      }
+    })
+
+
     
   },
   toDetail(e){

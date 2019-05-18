@@ -9,7 +9,7 @@ Page({
      */
     data: {
         mobile: '',
-        wxnumber: ''
+        wechatnumber: ''
     },
 
     getInfo(){
@@ -20,7 +20,7 @@ Page({
             if (res.data.code == 200) {
                   this.setData({
                     mobile:'',
-                    wxnumber:''
+                    wechatnumber:''
                   })
                 }else{
                  $Message({
@@ -40,7 +40,7 @@ Page({
         util.wx.post('/api/user/user_set_info',{
 
                 mobile: this.data.mobile,
-                wxnumber: this.data.wxnumber
+                wechatnumber: this.data.wechatnumber
         }).then(res=>{
             console.log(res)
 
@@ -70,7 +70,7 @@ Page({
     changeWX(e){
 
           this.setData({
-            wxnumber:e.detail.value
+            wechatnumber:e.detail.value
         })
     },
     getPhoneNumber(e) {
@@ -96,7 +96,7 @@ Page({
 
 wx.clearStorageSync() 
 
-wx.redrectTo({
+wx.redirectTo({
     url:'../login/login'
 })
 

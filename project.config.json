@@ -51,7 +51,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 39,
+			"current": 40,
 			"list": [
 				{
 					"id": 0,
@@ -321,6 +321,13 @@
 					"name": "个人信息",
 					"pathName": "pages/identify/identify",
 					"query": "goods_id=70",
+					"scene": null
+				},
+				{
+					"id": 40,
+					"name": "订单管理",
+					"pathName": "pages/ordermanage/list",
+					"query": "id=77",
 					"scene": null
 				}
 			]
