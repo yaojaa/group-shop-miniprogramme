@@ -55,7 +55,10 @@ Page({
                 console.log(res)
                 if (res.data.code == 200) {
                     Toast.success(res.data.msg);
-                    that.getAddress
+                    that.setData({
+                        address: res.data.data.address,
+                        address_id: res.data.data.address.address_id
+                    })
                 } else {
                     Toast.fail(res.data.msg);
                 }
