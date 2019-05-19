@@ -108,7 +108,7 @@
                 <view class="buyer-item">
                     <image class="buyer-avatar" src="{{item.headimg}}"></image>
                     <view class="buyer-info">
-                        <view class="name"> {{item.nickname}} <text class="number">{{item.num}} </text>
+                        <view class="name"> {{item.nickname}} <text class="number">{{item.create_number}} </text>
                         </view>
                         <view class="type">
                             <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
