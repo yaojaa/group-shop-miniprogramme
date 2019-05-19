@@ -25,8 +25,6 @@ Component({
 
   methods: {
     init() {
-      let imageInfo = [];
-      let imgOne = {};
 
       if (this.isEmpty(this.properties.imgs.src)) {
         return;
@@ -61,31 +59,77 @@ Component({
         return;
       }
 
-      this.properties.imgs.src.forEach(e => {
+      this.animationInit([this.properties.imgs.src.shift(),this.properties.imgs.src.shift()], true);
+      
+    },
+
+    animationInit(IMG, first){
+      let imageInfo = [];
+
+      IMG.forEach(e => {
         imageInfo.push(this.getImageInfo(e.img_url)) 
       });
-      
-      Promise.all(imageInfo).then(arr => {
-        this.createSelectorQuery().selectAll('.img-box').boundingClientRect().exec(rects => {
 
-          this.data.imgBoxSize.w = rects[0][0].width;
-          this.data.imgBoxSize.h = rects[0][0].height;
-          this.data.imgsPath = [];
+      if(first){
+        Promise.all(imageInfo).then(arr => {
+          this.createSelectorQuery().selectAll('.img-box').boundingClientRect().exec(rects => {
 
-          arr.forEach((e, i) => {
-            if(e.errMsg == "getImageInfo:ok"){
-              this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e, this.properties.imgs.src[i]));
-            }
+            this.data.imgBoxSize.w = rects[0][0].width;
+            this.data.imgBoxSize.h = rects[0][0].height;
+            this.data.imgsPath = [];
+
+            arr.forEach((e, i) => {
+              if(e.errMsg == "getImageInfo:ok"){
+                this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e, IMG[i]));
+              }
+            })
+
+            this.setData({
+              imgsPath: this.data.imgsPath
+            })
+
+            this.animationFun(true);
+
+            //二次加载图片
+            this.animationInit(this.properties.imgs.src);
           })
+        });
+      }else{
+        Promise.all(imageInfo).then(arr => {
 
-          this.setData({
-            imgsPath: this.data.imgsPath
-          })
+            arr.forEach((e, i) => {
+              if(e.errMsg == "getImageInfo:ok"){
+                this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e, IMG[i]));
+              }
+            })
 
-          this.animationFun(true);
-        })
-      });
+            this.setData({
+              imgsPath: this.data.imgsPath
+            })
+        });
+      }
       
+      // Promise.all(imageInfo).then(arr => {
+      //   this.createSelectorQuery().selectAll('.img-box').boundingClientRect().exec(rects => {
+
+      //     this.data.imgBoxSize.w = rects[0][0].width;
+      //     this.data.imgBoxSize.h = rects[0][0].height;
+      //     this.data.imgsPath = [];
+
+      //     arr.forEach((e, i) => {
+      //       if(e.errMsg == "getImageInfo:ok"){
+      //         this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e, IMG[i]));
+      //       }
+      //     })
+
+      //     this.setData({
+      //       imgsPath: this.data.imgsPath
+      //     })
+
+      //     this.animationFun(true);
+      //   })
+      // });
+
     },
 
     getImageInfo(filePath) {
@@ -136,7 +180,7 @@ Component({
 
             this.animationFun(this.getRandom());
 
-          }, img.duration*1000+1000);
+          }, img.duration*1000+500);
         });
 
       });
