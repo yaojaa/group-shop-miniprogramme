@@ -12,66 +12,70 @@ Page({
         wechatnumber: ''
     },
 
-    getInfo(){
+    getInfo() {
 
-        util.wx.get('/api/user/user_info').then(res=>{
+        util.wx.get('/api/user/user_info').then(res => {
             console.log(res)
 
             if (res.data.code == 200) {
-                  this.setData({
-                    mobile:'',
-                    wechatnumber:''
-                  })
-                }else{
-                 $Message({
-                        content: res.data.msg,
-                        type: 'error'
-                    });
-                }
-                
-                
-                
+                this.setData({
+                    mobile: '',
+                    wechatnumber: ''
+                })
+            } else {
+                $Message({
+                    content: res.data.msg,
+                    type: 'error'
+                });
+            }
+
+
+
         })
 
 
 
     },
     postInfo() {
-        util.wx.post('/api/user/user_set_info',{
+        util.wx.post('/api/user/user_set_info', {
 
-                mobile: this.data.mobile,
-                wechatnumber: this.data.wechatnumber
-        }).then(res=>{
+            mobile: this.data.mobile,
+            wechatnumber: this.data.wechatnumber
+        }).then(res => {
             console.log(res)
 
             if (res.data.code == 200) {
-                    $Message({
-                        content: '保存成功',
-                        type: 'success'
-                    });
-                }else{
-                 $Message({
-                        content: res.data.msg,
-                        type: 'error'
-                    });
-                }
-                
-                
-                
+                $Message({
+                    content: '保存成功',
+                    type: 'success'
+                });
+            } else {
+                $Message({
+                    content: res.data.msg,
+                    type: 'error'
+                });
+            }
+
+
+
         })
-        
+
     },
-    changeMobile(e){
+    changeMobile(e) {
         console.log(e)
         this.setData({
-            mobile:e.detail.value
+            mobile: e.detail.value
         })
-    },
-    changeWX(e){
 
-          this.setData({
-            wechatnumber:e.detail.value
+        this.postInfo()
+    },
+    changeWX(e) {
+
+        this.setData({
+            wechatnumber: e.detail.value
         })
+        this.postInfo()
+
     },
     getPhoneNumber(e) {
         wx.request({
@@ -81,7 +85,7 @@ Page({
                 token: app.globalData.token,
                 iv: e.detail.iv,
                 encryptedData: e.detail.encryptedData,
-                session_key:wx.getStorageSync('session_key')
+                session_key: wx.getStorageSync('session_key')
 
             },
             success: (res) => {
@@ -92,62 +96,25 @@ Page({
             }
         })
     },
-    clearStorage(){
+    clearStorage() {
 
-wx.clearStorageSync() 
+        wx.clearStorageSync()
 
-wx.redirectTo({
-    url:'../login/login'
-})
-
-     //上传相册
-    },
-  chooseImage:function(e){
-
-    console.log(e.currentTarget.dataset.type)
-
-    const key = e.currentTarget.dataset.type
-
-      util.uploadPicture({
-        successData:(result)=>{
-
-          this.setData({
-            [key]:result 
-          })
-
-        },
-        progressState:(s)=>{
-          this.setData({
-          photoProgress:s
+        wx.redirectTo({
+            url: '../login/login'
         })
 
-        }
-      })
-  },
-
-    //预览图片
-  imgPreview: function(event) {
-        console.log(event.currentTarget.dataset)
-        var src = event.currentTarget.dataset.src; //获取data-src
-        //图片预览
-        wx.previewImage({
-            current: src, // 当前显示图片的http链接
-            urls: [src] // 需要预览的图片http链接列表
-        })
+        //上传相册
     },
-    removePhoto(){
 
-        this.setData({
-            wx_collection_code:''
-        })
-    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
 
         this.getInfo()
-  
+
     },
 
     /**

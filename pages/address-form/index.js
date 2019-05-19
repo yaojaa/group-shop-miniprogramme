@@ -11,23 +11,20 @@ Page({
         source: '',
         default: false,
         areaModal: false,
-        areaList: [],
+        areaList: areaData,
         id: '',
         consignee: '',
         mobile: '',
-        province_id: '',
-        city_id: '',
-        district_id: '',
+        province: '',
+        city: '',
+        district: '',
         address: '',
         is_address_default: '',
-        citynames: ''
-
     },
     addressDefault(event) {
         this.setData({
             is_address_default: event.detail ? 1 : 0
         });
-
     },
     handleAreaModal() {
         this.setData({
@@ -35,11 +32,11 @@ Page({
         });
     },
     handleArea(event) {
+        let value = event.detail.values
         this.setData({
-            province_id: event.detail.values[0].code,
-            city_id: event.detail.values[1].code,
-            district_id: event.detail.values[2].code,
-            citynames: event.detail.values[0].name + '/' + event.detail.values[1].name + '/' + event.detail.values[2].name,
+            province: value[0].name,
+            city: value[1].name,
+            district: value[2].name,
             areaModal: !this.data.areaModal,
         });
     },
@@ -47,9 +44,9 @@ Page({
 
         let sendData = e.detail.value
 
-        sendData.province_id = this.data.province_id
-        sendData.city_id = this.data.city_id
-        sendData.district_id = this.data.district_id
+        sendData.province = this.data.province
+        sendData.city = this.data.city
+        sendData.district = this.data.district
         sendData.address_id = this.data.id
 
         util.wx.post('/api/user/address_add_or_edit', sendData)
@@ -82,13 +79,11 @@ Page({
     onLoad: function(options) {
 
         this.setData({
-            areaList: areaData,
             source: options.source || false,
             id: options.id || ''
         })
 
         if (options.id) {
-            this.isEdit = true
             this.getDetail()
             wx.setNavigationBarTitle({
                 title: '编辑地址'
@@ -96,7 +91,7 @@ Page({
         }
     },
 
-    getDetail(id) {
+    getDetail() {
         util.wx.get('/api/user/address_detail', { address_id: this.data.id })
             .then(res => {
                 if (res.data.code == 200) {
@@ -104,12 +99,11 @@ Page({
                     this.setData({
                         consignee: data.consignee,
                         mobile: data.mobile,
-                        province_id: data.province_id,
-                        city_id: data.city_id,
-                        district_id: data.district_id,
-                        citynames: data.user_address_prefix,
+                        province: data.province,
+                        city: data.city,
+                        district: data.district,
                         address: data.address,
-                        is_address_default: data.user_address_is_address_default
+                        is_address_default: data.is_address_default
                     })
                 }
             })
@@ -127,11 +121,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        wx.getClipboardData({
-            success(res) {
-                console.log(res.data)
-            }
-        })
+        // wx.getClipboardData({
+        //     success(res) {
+        //         console.log(res.data)
+        //     }
+        // })
     },
 
     /**

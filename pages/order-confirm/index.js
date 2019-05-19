@@ -15,20 +15,20 @@ Page({
         delivery_method: 0,
         consignee:'',
         mobile:''
-            },
+
+    },
     getAddressList() {
-        util.wx.get('/api/goods/get_goods_detail',{
-            goods_id:this.data.goods_id
-        })
-        .then(res => {
+        util.wx.get('/api/goods/get_goods_detail', {
+                goods_id: this.data.goods_id
+            })
+            .then(res => {
                 if (res.data.code == 200) {
                     let data = res.data.data.goods.self_address
-
                     this.setData({
-                        self_address:data,
-                        address_id:data[0].self_address_id
+                        self_address: data,
+                        address_id: data[0].self_address_id
                     })
-                    
+
                 }
             })
     },
@@ -46,7 +46,7 @@ Page({
      */
     onLoad: function(options) {
 
-        this.data.goods_id = options.goods_id 
+        this.data.goods_id = options.goods_id
 
         let amountMoney = 0;
         let totalNumer = 0
@@ -167,7 +167,7 @@ Page({
         util.wx.post('/api/order/create_order', Object.assign({
             specs: specs,
             user_message: this.data.user_message,
-            goods_id:this.data.goods_id
+            goods_id: this.data.goods_id
         }, postData)).then(res => {
 
             this.setData({
@@ -182,8 +182,8 @@ Page({
             } else {
 
                 wx.showToast({
-                    title:res.data.msg,
-                    icon:'none'
+                    title: res.data.msg,
+                    icon: 'none'
                 })
             }
 
@@ -243,97 +243,95 @@ Page({
 
 
 
-        util.wx.post('/api/pay/pay',
-             {
-                order_sn: order_sn
-            }
-            ).then(res=>{
+        util.wx.post('/api/pay/pay', {
+            order_sn: order_sn
+        }).then(res => {
 
-                var data = res.data.data;
+            var data = res.data.data;
 
-                wx.requestPayment({
-                    timeStamp: data['timeStamp'],
-                    nonceStr: data['nonceStr'],
-                    package: data['package'],
-                    signType: data['signType'],
-                    paySign: data['paySign'],
-                    success: (res) => {
+            wx.requestPayment({
+                timeStamp: data['timeStamp'],
+                nonceStr: data['nonceStr'],
+                package: data['package'],
+                signType: data['signType'],
+                paySign: data['paySign'],
+                success: (res) => {
 
 
-                        util.wx.post('/api/pay/orderpay',{
-                            order_sn:order_sn
-                        })
+                    util.wx.post('/api/pay/orderpay', {
+                        order_sn: order_sn
+                    })
 
 
 
-                        wx.redirectTo({
-                            url:'../paySuccess/index?order_id='+order_sn
-                        })
-                    },
-                    fail:(res)=>{
-                        wx.redirectTo({
-                            url:'../order-list/index'
-                        })
-                    }
-                })
-
-            })
-
-},
-
-
-
-
-/**
- * 生命周期函数--监听页面初次渲染完成
- */
-onReady: function() {
-
-            this.getWxCode()
-
-    setInterval(()=>{
-            this.getWxCode()
-        },1000*60*4)
-
-
-    },
-    getWxCode(){
-            wx.login({
-                success: res => {
-                    // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                    if (res.code) {
-                        this.data.code = res.code
-                    }
+                    wx.redirectTo({
+                        url: '../paySuccess/index?order_id=' + order_sn
+                    })
+                },
+                fail: (res) => {
+                    wx.redirectTo({
+                        url: '../order-list/index'
+                    })
                 }
             })
+
+        })
+
     },
-       //通过绑定手机号登录
+
+
+
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function() {
+
+        this.getWxCode()
+
+        setInterval(() => {
+            this.getWxCode()
+        }, 1000 * 60 * 4)
+
+
+    },
+    getWxCode() {
+        wx.login({
+            success: res => {
+                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                if (res.code) {
+                    this.data.code = res.code
+                }
+            }
+        })
+    },
+    //通过绑定手机号登录
     getPhoneNumber: function(e) {
-  
-      
-                util.wx.post('/api/user/get_wx_mobile', {
-                    'encryptedData': encodeURIComponent(e.detail.encryptedData),
-                    'iv': encodeURIComponent(e.detail.iv),
-                    'session_key': this.data.code
-                }).then((res) => {
 
-                    if (res.data.code == 0 || res.data.code == 400611) {
-                        this.setData({
-                            mobile:res.data.data
-                        })
-                        // wx.redirectTo({
-                        //     url: '/' + this.data.url + '?id=' + this.data.id
-                        // })
-                    } else {
-                        wx.showToast({
-                            title: res.data.msg,
-                            icon: 'none'
-                        })
 
-                    }
+        util.wx.post('/api/user/get_wx_mobile', {
+            'encryptedData': encodeURIComponent(e.detail.encryptedData),
+            'iv': encodeURIComponent(e.detail.iv),
+            'session_key': this.data.code
+        }).then((res) => {
+
+            if (res.data.code == 0 || res.data.code == 400611) {
+                this.setData({
+                    mobile: res.data.data
+                })
+                // wx.redirectTo({
+                //     url: '/' + this.data.url + '?id=' + this.data.id
+                // })
+            } else {
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
                 })
 
-       
+            }
+        })
+
+
     },
 
     /**
