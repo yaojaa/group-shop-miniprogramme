@@ -1,5 +1,5 @@
 import areaData from '../../utils/area'
-import Notify from '../../vant/notify/notify'
+import Toast from '../../vant/toast/toast';
 const util = require('../../utils/util')
 
 Page({
@@ -52,22 +52,12 @@ Page({
         util.wx.post('/api/user/address_add_or_edit', sendData)
             .then(res => {
                 if (res.data.code == 200) {
-                    Notify({
-                        text: res.data.msg,
-                        duration: 1000,
-                        selector: '#custom-selector',
-                        backgroundColor: '#39b54a'
-                    })
+                    Toast.success(res.data.msg);
                     wx.navigateBack({
                         delta: 1
                     })
                 } else {
-                    Notify({
-                        text: res.data.msg,
-                        duration: 1000,
-                        selector: '#custom-selector',
-                        backgroundColor: '#f00'
-                    })
+                    Toast.fail(res.data.msg);
                 }
             })
 

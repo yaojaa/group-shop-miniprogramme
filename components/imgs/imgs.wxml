@@ -42,9 +42,9 @@
 </view>
 
 <view class="swiper" hidden="{{bigImgsHidden}}" bindtap="closeBigImg">
-	<swiper indicator-dots class="slide-image">
+	<swiper duration='{{checkImgDuration}}' indicator-dots current="{{index}}" class="slide-image">
     <swiper-item wx:for="{{imgsPath}}" wx:key="{{index}}">
-      <image src="{{item.src}}" mode="aspectFit" class="slide-image"/>
+      <image src="{{item._src}}" mode="aspectFit" class="slide-image"/>
     </swiper-item>
 	</swiper>
 </view>

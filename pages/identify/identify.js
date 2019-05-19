@@ -15,12 +15,12 @@ Page({
     getInfo() {
 
         util.wx.get('/api/user/user_info').then(res => {
-            console.log(res)
+            console.log(res.data.data.wechatnumber)
 
             if (res.data.code == 200) {
                 this.setData({
-                    mobile: '',
-                    wechatnumber: ''
+                    mobile: res.data.data.mobile,
+                    wechatnumber: res.data.data.wechatnumber
                 })
             } else {
                 $Message({
@@ -67,14 +67,12 @@ Page({
             mobile: e.detail.value
         })
 
-        this.postInfo()
     },
     changeWX(e) {
 
         this.setData({
             wechatnumber: e.detail.value
         })
-        this.postInfo()
 
     },
     getPhoneNumber(e) {

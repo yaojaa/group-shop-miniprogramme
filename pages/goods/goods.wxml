@@ -61,7 +61,7 @@
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}}">
             <view class="goods-price-item flex-box" wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
                 <view class="pics" wx:if="{{item.spec_pic}}">
-                    <image src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85" />
+                    <image bindtap="imgPreview" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85" />
                     <view class="smallnum">{{item.spec_pic.length}}张</view>
                 </view>
                 <view class="info">
@@ -106,17 +106,17 @@
         <i-cell-group>
             <i-cell wx:for="{{ orderUsers }}" wx:key="{{index}}" i-class="buyer-item-box">
                 <view class="buyer-item">
-                    <image class="buyer-avatar" src="{{item.user.head_pic}}"></image>
+                    <image class="buyer-avatar" src="{{item.headimg}}"></image>
                     <view class="buyer-info">
-                        <view class="name"> {{item.user.nickname}} <text class="number">{{item.create_number}} </text>
+                        <view class="name"> {{item.nickname}} <text class="number">{{item.num}} </text>
                         </view>
                         <view class="type">
-                            <view wx:for="{{item.specs}}" wx:key="index" wx:for-item="gds">
-                                跟 {{gds.spec_key_name}} × {{gds.goods_num}}
+                            <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
+                                跟 {{gds.spec_name}} × {{gds.qty}}
                             </view>
                         </view>
                     </view>
-                    <view class="buyer-date">{{item.add_time}}</view>
+                    <view class="buyer-date">{{item.timeago}}</view>
                 </view>
             </i-cell>
         </i-cell-group>
@@ -131,7 +131,7 @@
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view>
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
-            <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
+            <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
     </view>
     <view class='footer-cart'>

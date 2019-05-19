@@ -17,6 +17,7 @@ Component({
     bigImgsHidden: true, //查看大图
     minScaleVal: 50, //最小缩放值
     minXYVale: 100,//xy轴最小运动值
+    checkImgDuration: 0, // 查看大图轮播持续时间
   },
   ready(){
     // this.init();
@@ -36,6 +37,7 @@ Component({
       this.data.minXYVale = this.properties.imgs.minXYVale || this.data.minXYVale;
 
       this.properties.imgs.src.forEach(e => {
+        e.src = e.img_url;
         e.img_url = e.img_url + '?imageMogr2/thumbnail/750x'+ this.properties.imgs.height +'/size-limit/60k!/imageslim'
       })
 
@@ -70,9 +72,9 @@ Component({
           this.data.imgBoxSize.h = rects[0][0].height;
           this.data.imgsPath = [];
 
-          arr.forEach(e => {
+          arr.forEach((e, i) => {
             if(e.errMsg == "getImageInfo:ok"){
-              this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e));
+              this.data.imgsPath.push(this.getImgsOpt(this.data.imgBoxSize.w, this.data.imgBoxSize.h, e, this.properties.imgs.src[i]));
             }
           })
 
@@ -143,12 +145,18 @@ Component({
 
     checkBigImg(){
       this.setData({
+        index: this.data.index,
         bigImgsHidden: false
+      },()=>{
+        this.setData({
+          checkImgDuration: 500
+        })
       })
     },
 
     closeBigImg(){
       this.setData({
+        checkImgDuration: 0,
         bigImgsHidden: true
       })
     },
@@ -175,7 +183,7 @@ Component({
       })
     },
 
-    getImgsOpt(w, h, e){
+    getImgsOpt(w, h, e, imgs){
       let opt = null;
       let size = {};
       let b = e.width / e.height;
@@ -241,6 +249,7 @@ Component({
           };
         }
       };
+      opt._src = imgs.src;
       return opt;
     },
 

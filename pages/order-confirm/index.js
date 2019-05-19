@@ -1,6 +1,9 @@
 const app = getApp()
 
 const util = require('../../utils/util.js')
+
+import Toast from '../../vant/toast/toast';
+
 Page({
 
     /**
@@ -16,6 +19,73 @@ Page({
         consignee:'',
         mobile:''
 
+    },
+    getUserAddress() {
+        util.wx.get('/api/user/address_list')
+            .then(res => {
+                var data = res.data.data.address_list
+                if (res.data.code == 200) {
+                    if (data.length > 0) {
+                        data.forEach((item) => {
+                            console.log(item, 'item')
+                            if (item.is_address_default == 1) {
+                                this.setData({
+                                    address: item,
+                                    address_id: item.address_id
+                                })
+                            } else {
+                                this.setData({
+                                    address: data[0],
+                                    address_id: data[0].address_id
+                                })
+                            }
+                        })
+                    } else {
+                        this.setData({
+                            address: null,
+                            address_id: ''
+                        })
+                    }
+                }
+            })
+    },
+    addAddress(data) {
+        let that = this
+        util.wx.post('/api/user/address_add_or_edit', data)
+            .then(res => {
+                console.log(res)
+                if (res.data.code == 200) {
+                    Toast.success(res.data.msg);
+                    that.setData({
+                        address: res.data.data.address,
+                        address_id: res.data.data.address.address_id
+                    })
+                } else {
+                    Toast.fail(res.data.msg);
+                }
+            })
+    },
+    openAddress() {
+        let that = this
+        wx.chooseAddress({
+            success(res) {
+                let sendData = {
+                    "consignee": res.userName,
+                    "mobile": res.telNumber,
+                    "province": res.provinceName,
+                    "city": res.cityName,
+                    "district": res.countyName,
+                    "address": res.detailInfo
+                }
+                that.addAddress(sendData)
+            },
+            fail() {
+                wx.showToast({
+                    title: '获取失败',
+                    icon: 'none'
+                })
+            }
+        })
     },
     getAddressList() {
         util.wx.get('/api/goods/get_goods_detail', {
@@ -83,12 +153,9 @@ Page({
         //快递发货获取用户快递地址
         if (options.delivery_method == 2) {
             this.getAddressList()
+        } else if (options.delivery_method == 1) {
+            this.getUserAddress()
         }
-
-
-
-
-
     },
     /**
      * 生命周期函数--监听页面显示
