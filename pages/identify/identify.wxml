@@ -1,59 +1,25 @@
-<i-custom-bar showIcon="{{true}}" backColor="#fff" title="个人信息"> </i-custom-bar>
+<i-custom-bar showBackIcon="{{true}}" backIconColor="#333333" backColor="#fff" title="个人信息"> </i-custom-bar>
 <view class="container ">
     <view class="info-box ">
         <i-panel title="完善联系方式">
             <wux-cell-group>
                 <wux-cell hover-class="none">
-                    <wux-input clear label="手机号" bind:change="changeMobile"  placeholder="输入您的手机号" />
+                    <wux-input bind:blur="postInfo"   controlled clear label="手机号" bind:change="changeMobile"  placeholder="输入您的手机号" value="{{mobile}}" />
+                       <button  open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">微信绑定的手机号</button>
+
                 </wux-cell>
                 <wux-cell hover-class="none">
-                    <wux-input clear label="微信" bind:change="changeWX" placeholder="输入您的微信号" />
+                    <wux-input bind:blur="postInfo" controlled clear value="{{wechatnumber}}" label="微信" bind:change="changeWX" placeholder="输入您的微信号" />
                 </wux-cell>
                 <wux-cell hover-class="none" title="收货地址" is-link url="../address/index" ></wux-cell>
             </wux-cell-group>
-            <!--    <button open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">微信绑定的手机号</button>
-            <i-input bind:change="changeMobile" value="{{mobile}}" type="number" title="手机号" placeholder="请输入手机号" />
-
-              <i-input bind:change="changeWX" value="{{wxnumber}}" type="text" title="微信号" placeholder="微信号" />
- -->
+            
+           
         </i-panel>
-        <!--         <i-panel title="微信个人或群二维码：">
-          <view >
-
-   <view  id="uploaderFiles">
-             
-      <view class="uploader__file" wx:if="{{wxnumber}}">
-         <image src="{{wxnumber}}" data-src="{{wxnumber}}"  bindtap="imgPreview" />
-       
-          <view class="close"> <i-icon  bindtap="removePhoto" color="#80848f" size="32" type="close" />
-          </view>
-       </view>
-
-                            <view  wx:if="{{!wxnumber}}" class="weui-uploader__input-box" bindtap="chooseImage"  >
-                            </view>
-                         </view>
-
-
-
-          </view>
-       </i-panel> -->
- <!--        <i-panel title="微信赞赏码：">
-            <view>
-                <view class="f14 text-red" style="padding: 10rpx 30rpx">将在线下收款时启用，注意不是收款码，否则无法长按识别付款。微信--钱包--收付款--赞赏码
-                </view>
-                <view class="uploader__file" wx:if="{{wx_collection_code}}">
-                    <image mode="widthFix" src="{{wx_collection_code}}" data-src="{{wx_collection_code}}" bindtap="imgPreview" />
-                    <view class="close">
-                        <i-icon bindtap="removePhoto" color="#80848f" size="32" type="close" />
-                    </view>
-                </view>
-                <view data-type="wx_collection_code" wx:if="{{!wx_collection_code}}" class="weui-uploader__input-box" bindtap="chooseImage">
-                </view>
-            </view>
-        </i-panel> -->
     </view>
-    <view class='btn-wrap'>
-        <button type="primary" class="linear_bg" bindtap="postInfo">保存</button>
+   
+       <view class='btn-wrap'>
+        <button type="danger" class="linear_bg" bindtap="clearStorage">清除缓存 重新登录</button>
     </view>
     <i-message id="message" />
 </view>

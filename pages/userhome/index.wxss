@@ -35,6 +35,12 @@
 	overflow: hidden;
 	display: inline-block;
 }
+.user-head .avatar image {
+	width: 100%;
+	height: 100%
+
+
+}
 .user-head .name{
 	padding-top: 60rpx;
 	font-size: 20px;

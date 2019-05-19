@@ -22,15 +22,15 @@
                     </view>
                 </navigator>
             </i-col>
-            <i-col span="14" i-class="col-class">
+            <i-col span="13" i-class="col-class">
                 <view class="user-name f16">{{userInfo.nickname}}</view>
                 <navigator url="../withdrawal/index">
-                    <view class="user-account f12">我的账户 (¥124.00)</view>
+                    <view class="user-account f12">我的账户 (¥{{store_money}})</view>
                 </navigator>
             </i-col>
-            <i-col span="5" i-class="col-class">
-                <view bindtap="goSite">
-                    <i-icon size="30" color="#fff" type="homepage" />
+            <i-col span="6" i-class="col-class">
+                <view class="siteBtn" bindtap="goSite">
+                  我的主页
                 </view>
             </i-col>
         </i-row>
@@ -104,6 +104,8 @@
     </view> -->
     <!--     <official-account></official-account>
  -->
+ <official-account></official-account>
+
     <i-panel title="我的订单" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">

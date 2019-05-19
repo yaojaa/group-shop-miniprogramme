@@ -1,3 +1,5 @@
+
+<i-custom-bar fixed showBackIcon="{{true}}" backIconColor="#333333" backColor="#fff" title="收货地址管理"> </i-custom-bar>
 <view class="container gray-wrap cf" style="padding-top: 100rpx;">
     <view class="fixed-btn flex">
         <view class="flex-sub">
@@ -7,9 +9,9 @@
             </navigator>
         </view>
         <view class="flex-sub">
-            <button url="../address-form/index" class="btn xxl primary block" bindtap="openAddress">
+            <button url="../address-form/index" class="btn linear_bg xxl primary block" bindtap="openAddress">
                 <van-icon name="chat" color="#fff" size="30rpx" />
-                <text class="ml-xs">微信添加</text>
+                <text class="ml-xs">使用微信地址</text>
             </button>
         </view>
     </view>

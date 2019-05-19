@@ -16,8 +16,9 @@ Page({
         goods_name: '',
         seller: {},
         delivery_method: 0,
-        consignee: app.globalData.userInfo.nickname,
-        mobile: app.globalData.userInfo.mobile || 13718134511
+        consignee:'',
+        mobile:''
+
     },
     getUserAddress() {
         util.wx.get('/api/user/address_list')
@@ -137,7 +138,8 @@ Page({
 
 
         this.setData({
-            // consignee: app.globalData.userInfo.nickname || wx.getStorageSync('userInfo').nickname,
+             consignee: app.globalData.userInfo.nickname,
+             mobile: app.globalData.userInfo.mobile,
             goods_id: options.goods_id,
             cart: cart || [],
             amountMoney: amountMoney / 100,

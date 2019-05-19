@@ -16,7 +16,7 @@
         </form>
     </view>
     <view class="content-wrap">
-        <view class="ziti" wx:if="{{delivery_method==2}}">
+        <view class="ziti white-bg" wx:if="{{delivery_method==2}}">
             <i-panel title="选择提货点">
                 <van-radio-group value="{{ address_id }}" disabled="{{self_address.length == 0}}" bind:change="onAddressChange">
                     <van-radio checked-color="#07c160" wx:for="{{self_address}}" wx:key="{{item.self_address_id}}" name="{{item.self_address_id}}">

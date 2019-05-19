@@ -21,7 +21,8 @@ Page({
         order_id: "",
         link_url: "",
         is_loading: true,
-        scrollTop:0
+        scrollTop:0,
+        store_money:0
 
     },
     handleTabBarChange ({ detail }) {
@@ -82,8 +83,6 @@ Page({
 
             this.getGoodsList()
 
-            this.getMyInfo()
-
             //this.getBuyList(token)
 
             this.get_store_info()
@@ -129,36 +128,21 @@ Page({
 
     },
 
-
     get_store_info() {
+                console.log('get_store_info')
 
-        wx.request({
-            url: '/api/user/get_mystore',
-            success: (res) => {
-                console.log('getMyInfo',res)
-                if (res.data.code == 0) {
+        util.wx.get('/api/seller/get_store_money').then(res=>{
+                console.log(res)
+                if (res.data.code == 200) {
+                    console.log('store_money: res.data.data.store_money',res.data.data.store_money)
                     this.setData({
                         store_money: res.data.data.store_money
                     })
                 }
-            }
-        })
-
-
-
-    },
-    getMyInfo(){
-        util.wx.get('/api/user/user_info')
-        .then(res=>{
-            console.log('userinfo is',res)
-            if(res.data.code == 200){
-                this.setData({
-                    userInfo:res.data.data
-                })
-            }
-
         })
     },
+
+
     getGoodsList: function(token) {
 
         util.wx.get('/api/seller/get_goods_list',{
@@ -200,8 +184,9 @@ Page({
         })
     },
     goSite() {
+        console.log(this.data.userInfo.store_id)
         wx.navigateTo({
-            url: '../userhome/index'
+            url: '../userhome/index?id='+this.data.userInfo.store_id
         })
     },
     editPage(e) {

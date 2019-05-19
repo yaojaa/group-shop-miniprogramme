@@ -6,6 +6,7 @@
         "van-cell": "../../vant/cell/index",
         "van-icon": "../../vant/icon/index",
         "van-cell-group": "../../vant/cell-group/index",
-        "van-toast": "../../vant/toast/index"
+        "van-toast": "../../vant/toast/index",
+        "i-custom-bar": "../../components/custom-bar/index"
     }
 }

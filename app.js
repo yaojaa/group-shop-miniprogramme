@@ -133,7 +133,7 @@ App({
                 data: {openid: this.openId,
                   session_key:this.session_key,
                   nickname: res.userInfo.nickName,
-                  head_pic: res.userInfo.avatarUrl,
+                  headimg: res.userInfo.avatarUrl,
                   encryptedData: res.encryptedData
                 },
                 success: (res) => {
@@ -141,6 +141,7 @@ App({
                   if (res.data.code === 200) {
                     this.globalData.token = res.data.data.token
                     this.globalData.userInfo = res.data.data.user
+                    this.globalData.userInfo.store_id = res.data.data.store.store_id
 
                     wx.setStorage({//存储到本地
                       key:"token",
@@ -149,7 +150,7 @@ App({
 
                     wx.setStorage({//存储到本地
                       key:"userInfo",
-                      data:res.data.data.user
+                      data:this.globalData.userInfo
                     })
 
                     resolve(res)
