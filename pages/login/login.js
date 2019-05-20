@@ -45,7 +45,7 @@ Page({
   /***点击授权按钮***/
   getUserInfoEvt: function (e) {
 
-    console.log(e,e.detail.errMsg.indexOf('fail'))
+    console.log(e)
 
     wx.showLoading()
 
@@ -62,12 +62,22 @@ Page({
        return
      }
 
-    app.login_third(e.detail).then((res)=>{ 
+    app.getOpenId().then(openid=>{
+
+          app.openid = openid;
+
+          app.login_third(e.detail).then((res)=>{ 
           console.group('登陆成功:',res)
           wx.hideLoading()
                       app.redirect2Home() 
                     })
     .catch( e => console.log(e) )
+
+
+
+    })
+
+
 
   }
 })

@@ -130,7 +130,8 @@ App({
               wx.request({
                 url: 'https://www.kaixinmatuan.cn/api/index/login_by_openid',
                 method: 'POST',
-                data: {openid: this.openId,
+                data: {
+                  openid: this.openId,
                   session_key:this.session_key,
                   nickname: res.userInfo.nickName,
                   headimg: res.userInfo.avatarUrl,

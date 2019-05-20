@@ -1,7 +1,8 @@
-<custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="300" bottomLayerBackColor="#ffffff" changeEndHeight="400" showBackIcon="true" showBackBar="true">
+<custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="300" bottomLayerBackColor="#ffffff"  changeEndHeight="400"  showBackBar="true">
 
        <view slot="bottom" class="bar tab-box">
-          用户头像 昵称 {{goods.user.nickname}}
+           <image src="{{goods.user.headimg}}" class="avatar">
+                </image> 昵称 {{goods.user.nickname}}
     </view>
 
 </custom-bar>
@@ -16,9 +17,10 @@
                 </image>
             </view>
             <view class="user-info-bd">
-                <text class="name">{{goods.user.nickname}}</text>
-                <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon" />
-                <wux-icon type="ios-chatbubbles" color="#fff" size="18" wux-class="icon" />
+                <view class="name">{{goods.user.nickname}}</view>
+                <view class="info">粉丝2002人 </view>
+              <!--   <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon" />
+                <wux-icon type="ios-chatbubbles" color="#fff" size="18" wux-class="icon" /> -->
             </view>
         </view>
     </imgs>

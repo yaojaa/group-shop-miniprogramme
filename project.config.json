@@ -15,18 +15,18 @@
 		"minified": true,
 		"newFeature": true,
 		"nodeModules": false,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.5",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
+	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -51,12 +51,7 @@
 			"list": []
 		},
 		"miniprogram": {
-<<<<<<< HEAD
-			"current": 40,
-
-=======
 			"current": 3,
->>>>>>> 090dacbd26a73a812d9f7cb7d4cec84593dc0e22
 			"list": [
 				{
 					"id": 0,
@@ -81,7 +76,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=81",
+					"query": "goods_id=85",
 					"scene": 1001
 				},
 				{
@@ -153,8 +148,8 @@
 					"id": 14,
 					"name": "订单管理",
 					"pathName": "pages/ordermanage/list",
-					"query": "goods_id=30&goods_name=橘子香水&delivery_method=2",
-					"scene": "1001"
+					"query": "id=83&goods_name=橘子香水&delivery_method=2",
+					"scene": 1001
 				},
 				{
 					"id": -1,

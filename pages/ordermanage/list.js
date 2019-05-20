@@ -71,12 +71,11 @@ Page({
 
      this.setData({
       goods_id :optiton.id,
-      goods_name :optiton.goods_name
 
      })
 
      wx.setNavigationBarTitle({
-    title: '管理订单: '+optiton.goods_name
+    title: '管理订单: '
     })
 
 
@@ -259,22 +258,24 @@ Page({
       }
       ).then((res) => {
 
+        console.log('res',res.data.data.order_list)
+
         var resdata
 
         if(this.data.cpage<=1){
 
-           resdata = res.data.data.orderlist
+           resdata = res.data.data.order_list
 
         }else{
 
-           resdata = this.data.dataList.concat(res.data.data.orderlist)
+           resdata = this.data.dataList.concat(res.data.data.order_list)
         }
 
         this.setData({
           dataList:resdata,
           loading:false,
-          totalpage:res.data.data.page.totalpage,
-          delivery_method:res.data.data.goods.delivery_method
+          totalpage:res.data.data.page.totalpage
+          // delivery_method:res.data.data.goods.delivery_method
 
         })
         wx.hideLoading()

@@ -794,13 +794,14 @@
   background: rgba(0,0,0,0.4);
   color:#fff;
   border-radius: 100px;
-  position: absolute;
+  padding: 10rpx;
+  position: fixed;
   left:15px;
-  top:60rpx;
+  top:70rpx;
 }
 .user-info .avatar{
-  width: 56rpx;
-  height: 56rpx;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
   overflow: hidden;
   font-size: 0;
@@ -812,8 +813,15 @@
 }
 .user-info .name{
   font-weight: bold;
-  font-size: 28rpx;
+  font-size: 14px;
 }
+
+.user-info .info {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 100
+}
+
 .user-info .icon{
   margin-left: 20rpx;
   vertical-align: top;

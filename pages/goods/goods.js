@@ -836,10 +836,11 @@ Page({
     },
     onPageScroll: function(e){
 
-        if(e.scrollTop > app.globalData.winHeight/2){
+        if(e.scrollTop > 300){
             this.setData({
               toShowPic:true
             })
+            console.log('toShowPictoShowPictoShowPictoShowPic')
         }
 
         this.setData({
