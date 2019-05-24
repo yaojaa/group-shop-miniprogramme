@@ -28,7 +28,7 @@
 }
 
 .goods-body .bd {
-    margin: 0 20rpx;
+    margin-left:20rpx;
     -webkit-flex: 1;
     -moz-flex: 1;
     -ms-flex: 1;
@@ -120,13 +120,15 @@
     display: flex;
 }
 .hollow{
-
     color:#49b34d;
     background:0 0 !important;
     border-radius: 50rpx;
     border:1px solid #49b34d;
     margin-right: 10px;
-    width: 120rpx
-
-
+}
+.statusBar{
+    position: absolute;
+    right: 20rpx;
+    top: 10rpx;
+    font-size: 12px
 }

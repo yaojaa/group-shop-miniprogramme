@@ -20,6 +20,11 @@ Component({
         ]
     },
     methods: {
+       upDownGoods(){
+
+        
+
+        },
       //调转到编辑页
       editPage(e) {
         let url = e.currentTarget.dataset.url

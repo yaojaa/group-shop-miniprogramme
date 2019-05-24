@@ -12,10 +12,12 @@
             <view class="link">
                 <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button> 
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
-                <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 下架 </button>
+                <button class="hollow" data-id="{{item.goods_id}}" data-status="{{item.is_on_sale}}" bindtap="upDownGoods" size="mini"> 
+                 {{['','下架','上架'][item.is_on_sale]}}  
+            </button>
             </view>
         </view>
-        <view class="fd">
+        <view class="statusBar">
             <!--                                 _expires //是否过期 1正常 2未开始 3已过期
  -->
 
@@ -31,7 +33,7 @@
             <i-icon type="browse" /><text class="label">浏览人数</text>
         </view>
         <view class="count-item">
-            <text class="num">{{item._order_total}}</text>
+            <text class="num">¥{{item._order_total}}</text>
             <i-icon type="browse" /><text class="label">收款总额</text>
         </view>
         <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">

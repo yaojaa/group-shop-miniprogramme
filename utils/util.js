@@ -344,15 +344,17 @@ const getShareImg = (goods_id, _this) => {
 //收集formID
 const formSubmitCollectFormId = function(e) {
     console.log('全局收集formid', this)
-
-    wx.request({
-        method: "post",
-        url: 'https://www.daohangwa.com/api/common/gather_formid',
-        data: {
-            form_id: e.detail.formId,
-            token: app.globalData.token
-        },
-        success: (res) => {}
+    // wx.request({
+    //     method: "post",
+    //     url: 'https://www.daohangwa.com/api/common/gather_formid',
+    //     data: {
+    //         form_id: e.detail.formId,
+    //         token: app.globalData.token
+    //     },
+    //     success: (res) => {}
+    // })
+    wx.post('/api/common/gather_formid',{
+        form_id: e.detail.formId
     })
 
     if (e.currentTarget.dataset.fn) {
