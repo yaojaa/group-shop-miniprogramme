@@ -133,7 +133,7 @@ Page({
         })
     },
     savaSelfImages() {
-        console.log('savaSelfImages')
+        console.log('savaSelfImages', this.data.shareFriendsImg)
         if (this.data.shareFriendsImg) {
             wx.saveImageToPhotosAlbum({
                 filePath: this.data.shareFriendsImg,
@@ -209,7 +209,10 @@ Page({
                     // })
                     const d = res.data.data
 
-                    console.log('done', res.data.data.goods.goods_images)
+                    console.log('done', d)
+
+                    //绘制朋友圈图片
+                    util.drawShareFriends(this, d);
 
                     //把数量设为0
 
