@@ -1,20 +1,20 @@
 <view class="container">
-<painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgOK="onImgOk"/>
+<!-- <painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgOK="onImgOk"/> -->
   <view class='background'>
     <image mode="aspectFill" src="/img/b.png"></image>
   </view>
   <view  class='content'>
     <view class='header'>
-      <view class='title'>{{['支付','参与'][collection_methods-1]}}成功</view>
+      <view class='title'>支付成功</view>
     </view>
     <view class='order'>
 <!--       <view class='title'>{{order_goods[0].goods_name}}</view>
  -->      <!-- <view class='line'></view> -->
       <view class="goodsList">
-        <view class='goods' wx:for="{{order_goods}}"  wx:key="@index">
+        <view class='goods' wx:for="{{order.order_detail}}"  wx:key="@index">
           <view class='cell'>
-            <view class='left'>{{item.spec_key_name}} x {{item.goods_num}}</view>
-            <view class='right'><text>￥</text>{{item.goods_price*item.goods_num}}</view>
+            <view class='left'>{{item.spec_name}} x {{item.qty}}</view>
+            <view class='right'><text>￥</text>{{item.spec_price*item.qty}}</view>
           </view>
         </view>
       </view>
@@ -27,7 +27,7 @@
       <view class='paycell'>
         <view class='pay'>
           <view class='left'>总金额</view>
-          <view class='right'><text>￥</text>{{orders_info.order_amount}}</view>
+          <view class='right'><text>￥</text>{{order.total_price}}</view>
         </view>
         <view class='icon'>
           <view></view>
@@ -49,9 +49,9 @@
 	  <button type='primary' open-type="share">分享查看结果</button>
   </view>
 
-    <view class='share' wx:if="{{collection_methods==2 && wx_collection_code}}">
-    <button type='primary' bindtap="imgPreview" data-url="{{wx_collection_code}}">收款码支付 ¥{{orders_info.order_amount}}</button>
-  </view>
+  <!-- <view class='share' wx:if="{{collection_methods==2 && wx_collection_code}}">
+    <button type='primary' bindtap="imgPreview" data-url="{{wx_collection_code}}">收款码支付 ¥{{order.total_price}}</button>
+  </view> -->
 
       <official-account></official-account>
 

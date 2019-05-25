@@ -67,11 +67,11 @@ export default class LastMayday {
       //规格
       {
         type: 'text',
-        text: '¥ ' + config.goodsSpec[0].spec_price,
+        text: '¥ ' + config.spec_price,
         css: {
           top: `${imgHeight + headImgSize / 2 + qrcodeSize / 2 + 60 + config.height}rpx`,
-          left: `${width / 4}rpx`,
-          align: 'center',
+          left: `${desLeft}rpx`,
+          align: 'left',
           color: '#f00',
           fontSize: "60rpx",
           lineHeight: '60rpx'

@@ -48,9 +48,10 @@ Component({
       //   {img_url: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=585768271,3076094714&fm=26&gp=0.jpg"},
       // ]
 
-      this.data.imgsPath.push({ src: this.properties.imgs.src[0].img_url, type: 9, flag: false });
+      this.data.imgsPath.push({ src: this.properties.imgs.src[0].img_url, _src: this.properties.imgs.src[0].src, type: 9, flag: false });
       this.setData({
         imgsPath: this.data.imgsPath,
+        index: 0,
         img: this.data.imgsPath[0]
       })
 
@@ -58,6 +59,8 @@ Component({
       if(this.properties.imgs.src.length == 1){
         return;
       }
+
+      this.data.index = 1;
 
       this.animationInit([this.properties.imgs.src.shift(),this.properties.imgs.src.shift()], true);
       

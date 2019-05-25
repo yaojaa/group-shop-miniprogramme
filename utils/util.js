@@ -353,7 +353,7 @@ const formSubmitCollectFormId = function(e) {
     //     },
     //     success: (res) => {}
     // })
-    wx.post('/api/common/gather_formid',{
+    WX.post('/api/common/gather_formid',{
         form_id: e.detail.formId
     })
 
@@ -521,6 +521,13 @@ function drawShareFriends(_this, res) {
     [goods.goods_name].concat(goods_content).forEach((e, i) => {
         config.content.des.push({ txt: e });
     })
+    // 规格最小值
+    config.spec_price = parseFloat(goods.goods_spec[0].spec_price);
+    goods.goods_spec.forEach((e,i)=>{
+        if(parseFloat(e.spec_price) < config.spec_price){
+            config.spec_price = parseFloat(e.spec_price)
+        }
+    })
 
     //内容赋值获取高度
     _this.setData({
@@ -534,7 +541,6 @@ function drawShareFriends(_this, res) {
         config.userName = goods.user.nickname;
         // config.goodsImg.src = res[1].data.images[0];
         config.goodsImg.src = goods.goods_cover;
-        config.goodsSpec = goods.goods_spec;
 
         //获取文本高度 绘制图片
         wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
