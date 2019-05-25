@@ -133,11 +133,31 @@ Page({
         })
     },
     savaSelfImages() {
+        var _this = this;
         console.log('savaSelfImages', this.data.shareFriendsImg)
         if (this.data.shareFriendsImg) {
-            wx.saveImageToPhotosAlbum({
-                filePath: this.data.shareFriendsImg,
-            });
+            // 用户授权
+            wx.getSetting({
+              success(res) {
+                if (!res.authSetting['scope.writePhotosAlbum']) {
+                  wx.authorize({
+                    scope: 'scope.writePhotosAlbum',
+                    success() {
+                        console.log(1)
+                        wx.saveImageToPhotosAlbum({
+                            filePath: _this.data.shareFriendsImg,
+                        });
+                    }
+                  })
+                }else{
+                    console.log(2)
+                    wx.saveImageToPhotosAlbum({
+                        filePath: _this.data.shareFriendsImg,
+                    });
+                }
+              }
+            })
+            
             this.handlePoster();
         }
     },

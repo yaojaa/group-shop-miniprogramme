@@ -83,7 +83,7 @@ export default class LastMayday {
         text: '长按识别二维码',
         css: {
           top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
-          left: `${(width + qrcodeSize) / 2 - 26}rpx`,
+          left: `${(width + qrcodeSize) / 2 - 16}rpx`,
           align: 'center',
           color: '#999',
           fontSize: "24rpx",
@@ -95,7 +95,7 @@ export default class LastMayday {
         text: '参与',
         css: {
           top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
-          left: `${(width + qrcodeSize) / 2 + 64}rpx`,
+          left: `${(width + qrcodeSize) / 2 + 74}rpx`,
           color: "#a6e4f7",
           fontSize: "24rpx",
           lineHeight: '30rpx'
