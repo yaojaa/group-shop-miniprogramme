@@ -78,7 +78,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=85",
+					"query": "goods_id=95",
 					"scene": 1001
 				},
 				{
@@ -330,6 +330,20 @@
 					"name": "订单管理",
 					"pathName": "pages/ordermanage/list",
 					"query": "id=77",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布成功页启动",
+					"pathName": "pages/publish-success/publish-success",
+					"query": "goods_id=88",
+					"scene": null
+				},
+				{
+					"id": 42,
+					"name": "支付成功页启动",
+					"pathName": "pages/paySuccess/index",
+					"query": "order_id=52&goods_id=95",
 					"scene": null
 				}
 			]

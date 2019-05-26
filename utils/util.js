@@ -353,7 +353,7 @@ const formSubmitCollectFormId = function(e) {
     //     },
     //     success: (res) => {}
     // })
-    wx.post('/api/common/gather_formid',{
+    WX.post('/api/common/gather_formid',{
         form_id: e.detail.formId
     })
 
@@ -514,12 +514,19 @@ const bezier = function(pots, amount) {
 function drawShareFriends(_this, res) {
     var config = _this.data.shareCardConfig;
     var height = 0;
-    // res[1] = res[1].data;
+    var goods = res.goods;
 
-    let goods_content = res[1].data.goods.goods_content.split(/[\r\n↵]/g);
+    let goods_content = goods.goods_content.split(/[\r\n↵]/g);
     //分段
-    [res[1].data.goods.goods_name].concat(goods_content).forEach((e, i) => {
+    [goods.goods_name].concat(goods_content).forEach((e, i) => {
         config.content.des.push({ txt: e });
+    })
+    // 规格最小值
+    config.spec_price = parseFloat(goods.goods_spec[0].spec_price);
+    goods.goods_spec.forEach((e,i)=>{
+        if(parseFloat(e.spec_price) < config.spec_price){
+            config.spec_price = parseFloat(e.spec_price)
+        }
     })
 
     //内容赋值获取高度
@@ -527,13 +534,13 @@ function drawShareFriends(_this, res) {
         shareCardConfig: _this.data.shareCardConfig
     }, () => {
 
-        config.qrcode.src = res[0];
+        config.qrcode.src = goods.xcx_qrcode;
         config.content.lineHeight = config.content.lineHeight || 56;
         config.content.fontSize = config.content.fontSize || 34;
-        config.headImg.src = res[1].data.seller_user.head_pic;
-        config.userName = res[1].data.seller_user.nickname;
+        config.headImg.src = goods.user.headimg;
+        config.userName = goods.user.nickname;
         // config.goodsImg.src = res[1].data.images[0];
-        config.goodsImg.src = res[1].data.goods.local_cover;
+        config.goodsImg.src = goods.goods_cover;
 
         //获取文本高度 绘制图片
         wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {

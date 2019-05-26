@@ -575,9 +575,21 @@
     padding-bottom: 2px;
     vertical-align: middle;
 }
+.share-friends-box{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+.share-img-box{
+    height: 100%;
+}
 
 .share-friends-img {
     height: 100%;
+    padding-bottom: 126rpx;
 }
 
 .share-friends-img image {
@@ -588,6 +600,9 @@
 .share-friends-loading {
     background-color: rgba(0, 0, 0, 0) !important;
     height: 80% !important;
+}
+.share-friends-img .share-img-box .btn{
+    bottom: -23rpx;
 }
 
 .share-friends-loading-txt {

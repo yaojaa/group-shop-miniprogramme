@@ -57,11 +57,24 @@ export default class LastMayday {
         url: config.qrcode.src,
         css: {
           top: `${imgHeight + headImgSize / 2 + 90 + config.height}rpx`,
-          left: `${width / 2}rpx`,
+          left: `${width / 2 + 10}rpx`,
           width: `${qrcodeSize}rpx`,
           height: `${qrcodeSize}rpx`,
-          align: 'center',
+          align: 'left',
           mode: 'scaleToFill'
+        },
+      },
+      //规格
+      {
+        type: 'text',
+        text: '¥ ' + config.spec_price,
+        css: {
+          top: `${imgHeight + headImgSize / 2 + qrcodeSize / 2 + 60 + config.height}rpx`,
+          left: `${desLeft}rpx`,
+          align: 'left',
+          color: '#f00',
+          fontSize: "60rpx",
+          lineHeight: '60rpx'
         },
       },
       //长按识别二维码
@@ -70,7 +83,7 @@ export default class LastMayday {
         text: '长按识别二维码',
         css: {
           top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
-          left: `${width / 2 - 26}rpx`,
+          left: `${(width + qrcodeSize) / 2 - 16}rpx`,
           align: 'center',
           color: '#999',
           fontSize: "24rpx",
@@ -82,7 +95,7 @@ export default class LastMayday {
         text: '参与',
         css: {
           top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
-          left: `${width / 2 + 64}rpx`,
+          left: `${(width + qrcodeSize) / 2 + 74}rpx`,
           color: "#a6e4f7",
           fontSize: "24rpx",
           lineHeight: '30rpx'

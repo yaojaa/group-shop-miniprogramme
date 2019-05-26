@@ -242,8 +242,9 @@ Page({
             })
 
             if (res.data.code == 200) {
+                this.data.order_id = res.data.data.order_id;
 
-                this.pay(res.data.data.order_sn)
+                this.pay(res.data.data)
 
 
             } else {
@@ -302,12 +303,12 @@ Page({
 
     jumpToSuccess() {
         wx.redirectTo({
-            url: '../paySuccess/index?order_id=' + this.data.order_id + '&goods_id=' + this.data.goods_id + '&collection_methods=' + this.data.collection_methods
+            url: '../paySuccess/index?order_id=' + this.data.order_id + '&goods_id=' + this.data.goods_id
         })
     },
 
-    pay: function(order_sn) {
-
+    pay: function(order) {
+        var order_sn = order.order_sn;
 
 
         util.wx.post('/api/pay/pay', {
@@ -331,9 +332,7 @@ Page({
 
 
 
-                    wx.redirectTo({
-                        url: '../paySuccess/index?order_id=' + order_sn
-                    })
+                    this.jumpToSuccess();
                 },
                 fail: (res) => {
                     wx.redirectTo({

@@ -216,16 +216,17 @@
             </view>
         </view>
     </van-action-sheet>
-    <van-popup show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;">
+    <!-- <view show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;"> -->
+    <view hidden="{{ !poster }}" class="share-friends-box">
         <view class='share-friends-img' bindtap='handlePoster'>
-            <view wx:if="{{!shareFriendsImg}}">
+            <view class="share-img-box" wx:if="{{!shareFriendsImg}}">
                 <i-spin i-class='share-friends-loading' fix size="large"></i-spin>
                 <view class='share-friends-loading-txt'><text>努力生成中,请稍等...</text></view>
             </view>
-            <view class="text-center" wx:else>
+            <view class="text-center share-img-box" wx:else>
                 <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
-                <button class="btn primary round lg mt-xl" bindtap="savaSelfImages">立即分享朋友圈</button>
+                <button class="btn primary round lg" catchtap="savaSelfImages">立即分享朋友圈</button>
             </view>
         </view>
-    </van-popup>
+    </view>
 </view>
