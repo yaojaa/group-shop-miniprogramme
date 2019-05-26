@@ -563,7 +563,7 @@ const playSound = function(url) {
     console.log(url)
     const innerAudioContext = wx.createInnerAudioContext()
     innerAudioContext.autoplay = true
-    innerAudioContext.src = 'http://static.kaixinmatuan.cn/error.mp3'
+    innerAudioContext.src = url
     console.log(innerAudioContext)
     innerAudioContext.onPlay(() => {
         console.log('开始播放')

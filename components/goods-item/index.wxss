@@ -91,6 +91,7 @@
     flex: 1;
     text-align: center;
     margin: 30rpx 0;
+    position: relative;
 }
 
 
@@ -132,3 +133,25 @@
     top: 10rpx;
     font-size: 12px
 }
+.badge{
+
+    position: absolute;
+    top: 12rpx;
+    right: 14rpx;
+    height: 16px;
+    border-radius: 9px;
+    min-width: 16px;
+    background: #ff0000;
+    border: 1px solid transparent;
+    color: #fff;
+    line-height: 14px;
+    text-align: center;
+    padding: 0 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    z-index: 10;
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility
+
+}
+

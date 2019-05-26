@@ -106,7 +106,7 @@
  -->
  <official-account></official-account>
 
-    <i-panel title="我的订单" extra="查看全部订单" link="../order-list/index">
+    <i-panel i-class="marginTop" title="我的订单" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
                 <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">
@@ -164,4 +164,5 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
         </i-tab-bar>
     </view>
+    <van-dialog id="van-dialog" />
 </view>

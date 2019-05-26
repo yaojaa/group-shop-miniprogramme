@@ -38,9 +38,15 @@
         </view>
         <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
             <text class="num text-primary">{{item._order_count}}</text>
+            
+            <view class="badge" >+{{item._order_status1_count}}</view>
+    
             <i-icon type="browse" />
             <text class="label ">订单管理</text>
         </view>
     </view>
     <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->
+<van-dialog id="van-dialog" />
+
+    
 </view>

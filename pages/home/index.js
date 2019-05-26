@@ -43,23 +43,29 @@ Page({
         }
        
   },
-  removeHandle(e,id){
-    console.log(e,'删除成功事件',index)
+  removeHandle(e){
+    console.log(e,'删除成功事件')
+
+    var id = e.detail
 
     var c
 
     this.data.goodslist.forEach((item,index)=>{
+        console.log(item.goods_id , id)
+
         if(item.goods_id == id){
             c = index
         }
     })
 
-
+    console.log(c)
     if(c){
-    this.data.goodslist.splice(c,1)
+    var _data = this.data.goodslist.splice(c,1)
+
+    console.log(_data)
 
     this.setData({
-        'goodslist':this.data.goodslist.splice(index,1)
+        'goodslist':this.data.goodslist
     })
         
     }
@@ -71,6 +77,8 @@ Page({
     onLoad: function(options) {
 
         console.log('app.globalData.userInfo', app.globalData.userInfo)
+
+
 
         if (app.globalData.userInfo) {
 
@@ -106,6 +114,9 @@ Page({
         if (typeof app.globalData.token == 'undefined' || app.globalData.token == null) {
             app.redirectToLogin()
         }
+
+
+        // util.playSound('https://static.kaixinmatuan.cn/staitc-img/new_order.mp3')
 
 
 
@@ -214,42 +225,7 @@ Page({
 
     },
 
-    rmGoods(e) {
-        const goods_id = e.currentTarget.dataset.id
-
-        wx.showModal({
-            title: '确定要删除吗？',
-            success: (res) => {
-                if (res.confirm) {
-                    wx.request({
-                        url: 'https://www.daohangwa.com/api/seller/goods_del',
-                        data: {
-                            token: app.globalData.token,
-                            goods_id: goods_id
-                        },
-                        success: (res) => {
-
-                            if (res.data.code == 0) {
-                                wx.showToast({
-                                    title: '删除成功'
-                                })
-
-                                this.getGoodsList()
-                            }
-                        }
-                    })
-                } else if (res.cancel) {
-                    console.log('用户点击取消')
-                }
-            }
-        })
-
-
-
-
-
-
-    },
+ 
 
     pay({ target }) {
 

@@ -10,7 +10,7 @@
   position: relative;
   background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center top no-repeat #fff;
   background-size: 100% auto;
-  height: 300rpx;
+  height: 400rpx;
   position: relative;
   width: 100%;
   padding-top: 150rpx
@@ -702,4 +702,7 @@ button::after {
     margin-right: 20px;
     padding: 5px 10px;
     margin-top: 20px
+}
+.marginTop{
+    margin-top: -100rpx!important
 }
