@@ -65,7 +65,7 @@ Page({
     console.log(_data)
 
     this.setData({
-        'goodslist':this.data.goodslist
+        'goodslist':_data
     })
         
     }
