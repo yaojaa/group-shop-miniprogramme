@@ -83,7 +83,7 @@ const inputDuplex = function(e) {
     let context = this
     let name = e.currentTarget.dataset.key;
     let nameMap = {}
-    nameMap[name] = e.detail.value
+    nameMap[name] = e.detail.value || e.detail
     context.setData(nameMap)
 }
 

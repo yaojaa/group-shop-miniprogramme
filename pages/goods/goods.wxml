@@ -18,7 +18,7 @@
             </view>
             <view class="user-info-bd">
                 <view class="name">{{goods.user.nickname}}</view>
-                <view class="info">粉丝2002人 </view>
+                <view class="info">粉丝{{goods.buyuser_count}}人 </view>
               <!--   <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon" />
                 <wux-icon type="ios-chatbubbles" color="#fff" size="18" wux-class="icon" /> -->
             </view>
@@ -29,7 +29,8 @@
             <view class="goods-name">
                 {{goods.goods_name}}
             </view>
-            <view class="f12px text-info">访问人数200 已售23 </view>
+            <view class="f12px text-info">访问人数{{goods.pageview_count
+}} 已售{{item.total_qty}} </view>
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">

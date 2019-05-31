@@ -152,6 +152,16 @@ Page({
         const opt = e.currentTarget.dataset.opt
         const order_id = e.currentTarget.dataset.id
         const txt = e.currentTarget.dataset.txt
+        const avatar = e.currentTarget.dataset.avatar
+        const user_name = e.currentTarget.dataset.user_name
+
+        if(opt == 'toset_send' && delivery_method == 1){
+            wx.navigateTo({
+                url:'../to-send/index?get_user_avatar='+avatar+'&get_user_name='+user_name+'&order_id='+order_id
+            })
+
+            return
+        }
 
         wx.showModal({
             title: '确定要' + txt + '吗？',
@@ -164,6 +174,11 @@ Page({
                     }).then(res => {
                         if (res.data.code == 200) {
                             wx.showToast({ title: '订单操作成功' })
+
+                            this.getOrderList() 
+                            this.getStatistics()
+
+
                         } else {
                             wx.showToast({ title: '订单操作失败' })
 
@@ -176,6 +191,8 @@ Page({
 
 
     },
+    //发货操作
+    sendGoods(){},
 
 
     /**删除订单***/
@@ -260,23 +277,21 @@ Page({
     exportExcel() {
         wx.showToast({ title: '开始为你生成...', icon: 'none' })
 
-        wx.request({
-            url: 'https://www.daohangwa.com/api/seller/order_export_by_goods_id',
-            data: {
-                goods_id: this.data.goods_id,
-                token: app.globalData.token
-            },
-            success: (res) => {
+        util.wx.get('/api/seller/order_export_by_goods_id',{
+             goods_id: this.data.goods_id
+        }).then(res=>{
 
-                wx.setClipboardData({
+          if(res.data.code == 200){
+
+             wx.setClipboardData({
                     data: res.data.data.filepath,
                     success: function(res) {
                         wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
                     }
                 })
+          }
 
 
-            }
         })
 
     },

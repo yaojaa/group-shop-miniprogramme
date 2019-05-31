@@ -1,0 +1,30 @@
+<i-custom-bar title="给{{get_user_name}}发货" showBackIcon="{{true}}"> </i-custom-bar>
+
+<view class="container mtop30">
+     <van-picker columns="{{ columns }}" bind:change="onChange" />
+
+<van-cell-group>
+  <van-field
+    value="{{ express_code }}"
+    clearable
+    size="large"
+    input-class="input-class"
+    placeholder="输入快递单号（可选）"
+    bind:change="inputDuplex" 
+    data-key="express_code"
+    bind:click-icon="onClickIcon"
+  />
+
+ <van-field
+    value="{{action_remark}}"
+    clearable
+    size="large"
+    bind:change="inputDuplex" 
+    data-key="action_remark"
+    input-class="input-class"
+    placeholder="留言"
+  />
+</van-cell-group>
+
+  <button style="margin: 15px" bindtap="send" class="weui-btn weui-btn_primary linenear_bg">确 定 发 货</button>
+</view>

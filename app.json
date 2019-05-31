@@ -31,7 +31,9 @@
         "pages/wxgroup_add/index",
         "pages/order-confirm/index",
         "pages/fans/index",
-        "pages/ordermanage/list"
+        "pages/ordermanage/list",
+        "pages/to-send/index"
+
     ],
     "permission":
     {

@@ -1,8 +1,7 @@
 @import "../../utils/weui.wxss";
 
 .container {
-    background: #f8f8f8;
-    min-height: 100vh;
+    background: #ffffff;
 }
 
 
@@ -248,6 +247,9 @@ margin: 10px 0;
     display: inline-block;
     text-overflow: ellipsis;
       white-space: nowrap;
+}
+.address{
+    font-size:12px
 }
 
 .copy-address{
