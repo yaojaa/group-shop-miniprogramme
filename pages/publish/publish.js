@@ -681,6 +681,8 @@ Page({
 
         })
 
+        console.log(this.data.sell_address)
+
 
 
         let data = Object.assign({ token: app.globalData.token }, { goods_id: this.data.goods_id },
@@ -691,7 +693,7 @@ Page({
                     return item.self_address_id
                 }),
                 delivery_method: this.data.delivery_method,
-                collection_methods: this.data.collection_methods,
+                // collection_methods: this.data.collection_methods,
                 start_time: this.data.start_time,
                 end_time: this.data.end_time,
                 content_imgs: this.data.content_imgs,
@@ -701,6 +703,8 @@ Page({
             },
 
         )
+
+
         wx.showLoading()
 
         
@@ -801,11 +805,53 @@ Page({
     },
     /**回显数据**/
 
-    getPublishedData(goods_id, isCopy) {
+    getPublishedData(goods_id, isCopy, temp) {
+        let tempConfig = {
+            delivery_method : 2,
+            self_address: [
+                {
+                    address: "北京市东城区东长安街",
+                    addtime: 1559403854,
+                    city_name: "北京市",
+                    district_name: "东城区",
+                    door_number: "",
+                    goods_id: 103,
+                    goods_selfaddress_id: 19,
+                    id: 0,
+                    is_address_default: 0,
+                    is_del: 1,
+                    latitude: "39.9088230",
+                    longitude: "116.3974700",
+                    name: "天安门",
+                    province_name: "北京市",
+                    self_address_id: 31,
+                    store_id: 4,
+                    updatetime: 1559403890
+                }
+            ]
+        };
+        // 是否是模板   1包邮模板   2自提模板
+        if(temp == 1){
+            this.setData({
+                delivery_method: 1
+            })
+            return;
+        }else if(temp == 2){
+            this.setData({
+                sell_address: tempConfig.self_address,
+                delivery_method: 2
+            })
+
+            app.globalData.sell_address = this.data.sell_address;
+            return;
+        }
+
+
+
 
         wx.showLoading()
 
-        util.wx.post('/api/seller/get_goods_detail', {
+        util.wx.get('/api/seller/get_goods_detail', {
             goods_id: goods_id
 
         }).then((res) => {
@@ -827,9 +873,9 @@ Page({
                     goods_images: gs.goods_images,
                     goods_name: gs.goods_name,
                     goods_content: gs.goods_content,
-                    sell_address: res.data.data.sell_address,
+                    sell_address: gs.self_address,
                     delivery_method: gs.delivery_method,
-                    collection_methods: gs.collection_methods,
+                    // collection_methods: gs.collection_methods,
                     content_imgs: gs.content_imgs || [],
                     goods_video:gs.goods_video,
                     goods_video_cover:gs.goods_video_cover,
@@ -897,6 +943,8 @@ Page({
 
             this.getPublishedData(option.goods_id, option.copy ? true : false)
 
+        }else if(option.temp){ // 是否是模板
+            this.getPublishedData('', '', option.temp);
         }
 
 

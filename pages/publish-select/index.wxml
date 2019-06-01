@@ -30,7 +30,8 @@
   选择模板快速创建：
 </view>
 <view class="center" >
-  <view class="button-area flex_box">
+  <navigator url="../publish/publish?temp=2" class="button-area flex_box">
+  <!-- <view> -->
   <view class="flex-item">
 
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon1.jpg"></image>
@@ -41,7 +42,8 @@
     <view class="f16 text-default"> <view>团购在线收款模板</view>
      <text class="f14 text-muted">小程序代收款，可随时提现</text> </view>
    </view>
-  </view>
+  <!-- </view> -->
+  </navigator>
 </view>
 
 
@@ -59,7 +61,8 @@
 </view> -->
 
 <view class="center">
-  <view class="button-area flex_box">
+  <navigator url="../publish/publish?temp=1" class="button-area flex_box">
+  <!-- <view> -->
   <view class="flex-item">
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon3.jpg"></image>
   </view>
@@ -67,7 +70,8 @@
     <view class="f16 text-default"> <view>快递包邮送货上门模板</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
-  </view>
+  <!-- </view> -->
+  </navigator>
 </view>
 
 <!-- <view class="smallTit">
