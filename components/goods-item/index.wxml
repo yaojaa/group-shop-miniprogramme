@@ -1,12 +1,12 @@
 <view class="goods-item">
     <view class="goods-body">
         <navigator     open-type="redirect"
- url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+ url="../goods/goods?goods_id={{item.goods_id}}&goods_name={{item.goods_name}}&delivery_method={{item.delivery_method}}" hover-class="none">
             <image src='{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
         </navigator>
         <view class="bd">
             <navigator     open-type="redirect"
- url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+ url="../goods/goods?goods_id={{item.goods_id}}&goods_name={{item.goods_name}}&delivery_method={{item.delivery_method}}" hover-class="none">
                 <view class="tit">{{item.goods_name}}</view>
             </navigator>
             <view class="link">
@@ -39,7 +39,7 @@
         <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
             <text class="num text-primary">{{item._order_count}}</text>
             
-            <view class="badge" >+{{item._order_status1_count}}</view>
+            <view class="badge" wx:if="{{item._order_status1_count>0}}" >+{{item._order_status1_count}}</view>
     
             <i-icon type="browse" />
             <text class="label ">订单管理</text>

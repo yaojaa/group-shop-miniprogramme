@@ -419,15 +419,21 @@ const request = (url, data, method) => {
                 'Authorization': wx.getStorageSync('token')
             },
             success: function(res) { //服务器返回数据
-                if (res.statusCode == 200) {
-                    resolve(res)
-                } else if (res.data.code == -100) {
+                console.log(res.data.code)
 
-                    reject('未登录')
-                    app.redirectToLogin()
+                if (res.data.code == 200) {
+                    resolve(res)
+                } else if (res.data.code == '-100' || res.data.code == '-99') {
+
+                    console.log('应该调到等路')
+
+                     wx.clearStorageSync() 
+
+                     app.redirectToLogin()
+
 
                 } else { //返回错误提示信息
-                    reject(res.data)
+                    resolve(res)
                 }
             },
             error: function(e) {

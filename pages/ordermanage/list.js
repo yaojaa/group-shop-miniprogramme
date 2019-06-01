@@ -6,7 +6,7 @@ const util = require('../../utils/util.js')
 
 Page({
     data: {
-        tab: 3,
+        tab: 0,
         current: "tab1",
         visible: false,
         goods_name: "",
@@ -48,7 +48,9 @@ Page({
                 color: '#ed3f14',
                 loading: false
             }
-        ]
+        ],
+        shipped_order:0,
+        back_order:0
 
     },
     onLoad: function(optiton) {
@@ -69,6 +71,8 @@ Page({
 
         this.setData({
             goods_id: optiton.id,
+            delivery_method:optiton.delivery_method,
+            goods_name:optiton.goods_name
 
         })
 
@@ -86,41 +90,13 @@ Page({
 
     },
     handleTab({ detail }) {
-
+        console.log(detail)
         this.setData({
             tab: detail.key,
             cpage: 1,
-            shipping_status: detail.key == 3 ? '' : detail.key
+            search_order_status: detail.key
         })
-        //点击未发货  订单状态.0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
-        if (detail.key == 0) {
-
-            this.setData({
-                order_status: '0,1'
-            })
-
-        } else {
-            this.setData({
-                order_status: ''
-            })
-
-        }
-        // //点击已发货 
-
-        // if(detail.key == 1){
-        //  this.setData({
-        //    order_status:'1,2,4'
-        //  })
-        // }
-
-
-        //全部订单
-        // if(detail.key==3){
-        //   this.setData({
-        //     order_status:''
-        //   })
-        // }
-
+   
         this.getOrderList()
     },
 
@@ -155,7 +131,7 @@ Page({
         const avatar = e.currentTarget.dataset.avatar
         const user_name = e.currentTarget.dataset.user_name
 
-        if(opt == 'toset_send' && delivery_method == 1){
+        if(opt == 'toset_send' && this.data.delivery_method == 1){
             wx.navigateTo({
                 url:'../to-send/index?get_user_avatar='+avatar+'&get_user_name='+user_name+'&order_id='+order_id
             })
@@ -164,7 +140,7 @@ Page({
         }
 
         wx.showModal({
-            title: '确定要' + txt + '吗？',
+            title: '您好，要' + txt + '吗？',
             success: (res) => {
 
                 if (res.confirm) {
@@ -183,6 +159,9 @@ Page({
                             wx.showToast({ title: '订单操作失败' })
 
                         }
+                    })
+                    .catch(e=>{
+
                     })
                 }
 
@@ -232,15 +211,15 @@ Page({
         util.wx.get('/api/seller/get_order_statistics_by_goods_id', {
             goods_id: this.data.goods_id
         }).then(res => {
+
             if (res.data.code == 200) {
                 this.setData({
 
                     valid_order: res.data.data.valid_order,
-                    shipping_0: res.data.data.shipped_order.count,
-                    shipping_1: res.data.data.back_order.count,
-
-
+                    shipped_order: res.data.data.shipped_order,
+                    back_order: res.data.data.back_order,
                 })
+
             }
         })
 
@@ -312,7 +291,7 @@ Page({
                 goods_id: this.data.goods_id,
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
-                search_order_status: this.data.order_status, //3 
+                search_order_status: this.data.search_order_status, 
                 pagesize: 80
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
             }).then((res) => {

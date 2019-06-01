@@ -6,39 +6,46 @@
         </navigator>
         <view class="actionsButtons">
             <view>
-                <button size="mini" bindtap="exportExcel">下载名单</button>
-                <button size="mini" bindtap="exportExcel">群发通知</button>
-                <!--   <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
+                <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">导出名单</button>
+                <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button>
+
+
+       <!--            <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
             <view slot="open">展开</view>
             <view slot="close">收起</view>
         </i-switch> -->
             </view>
         </view>
     </view>
+
     <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-        <i-tab key="" title="订单{{valid_order.count}}"></i-tab>
-        <i-tab key="3" title="未发货{{shipping_0.count}}"></i-tab>
-        <i-tab key="4" title="已发货{{shipping_1.count}}"></i-tab>
+        <i-tab key="0" title="有效订单（{{valid_order.count}}）"></i-tab>
+        <i-tab key="3" title="未发货（{{back_order.count}}）"></i-tab>
+        <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
     </i-tabs>
+
+<!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
+ -->
     <view class="totalCount">
-        <block wx:if="{{tab == 3 }}">
+        <view class="tips_title">统计单</view>
+        <block wx:if="{{tab == 0 }}">
             <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{valid_order.spec}}">
-                <view>{{item.spec_key_name}}
-                    <text class="text-danger">× {{item.num}}</text>
+                <view>{{item.spec_name}}
+                    <text class="text-danger">× {{item.qty}}</text>
                 </view>
             </view>
         </block>
-        <block wx:if="{{tab == 0}}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_0.spec}}">
-                <view>{{item.spec_key_name}}
-                    <text class="text-danger">× {{item.num}}</text>
+        <block wx:if="{{tab == 3}}">
+            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipped_order.spec}}">
+                <view>{{item.spec_name}}
+                    <text class="text-danger">× {{item.qty}}</text>
                 </view>
             </view>
         </block>
-        <block wx:if="{{tab == 1}}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_1.spec}}">
-                <view>{{item.spec_key_name}}
-                    <text class="text-danger">× {{item.num}}</text></view>
+        <block wx:if="{{tab == 4}}">
+            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{back_order.spec}}">
+                <view>{{item.spec_name}}
+                    <text class="text-danger">× {{item.qty}}</text></view>
             </view>
         </block>
     </view>
@@ -72,10 +79,10 @@
                 </text>
             </view>
             <view class="total text-justify scale-b-1px">
-                <view>总金额： <text class="warning f18">¥{{item.pay_price}} </text>
-                    <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
-                    <text class="error" wx:if="{{item.pay_status==0}}">待支付</text>
-                    <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text>
+                <view>总金额： <text class="warning-text f18">¥{{item.pay_price}} </text>
+                    <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
+                    <text class="error-text" wx:if="{{item.pay_status==0}}">待支付</text>
+                    <text class="error-text" wx:if="{{item.pay_status==2}}">支付失败</text>
                 </view>
                 <view class="text-right"> <text class="order-date">{{item._format_add_time}}</text>
                 </view>

@@ -18,6 +18,11 @@ back_tit_txt_color="#333333"
         </block>
     </swiper>
     <view class="user-head">
+           <view class="right-icon">
+            <i-icon type="setup" size="28" />  <i-icon size="28" type="share" />
+        </view>
+
+
         <view class="avatar">
             <image src="{{info._user.headimg}}" />
         </view>
@@ -26,6 +31,7 @@ back_tit_txt_color="#333333"
         <view class="info f12">
             访问<text class="text-default">{{info._access_count}}人</text> 成交<text class="text-default">{{info._order_count}}</text> 笔
         </view>
+     
     </view>
     <view class="goods-box">
         <navigator url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item flex-box" wx:for="{{goodsList}}" wx:key="index" >
