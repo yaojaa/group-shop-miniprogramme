@@ -80,10 +80,12 @@ Component({
     
 
     managePage(e){
-        let id = e.currentTarget.dataset.id
+  let id = e.currentTarget.dataset.id
+  let delivery_method = e.currentTarget.dataset.delivery_method
+  let goods_name = e.currentTarget.dataset.name
 
         wx.navigateTo({
-            url: '../ordermanage/list?id=' + id,
+            url: '../ordermanage/list?id=' + id+'&goods_name='+goods_name+'&delivery_method='+delivery_method,
         })
 
     },
