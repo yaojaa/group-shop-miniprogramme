@@ -53,6 +53,22 @@ Page({
 
 
   },
+  checkExpress(){
+
+        util.wx.get('/api/order/get_express_info',{
+           express_company:this.data.express_company,
+              express_code:this.data.express_code,
+              order_id:12345
+        }).then(res=>{
+      if(res.data.code == 200){
+        this.setData({
+          express_info:res.data.data
+        })
+      }
+    })
+
+
+  },
   getData(){
   	util.wx.get('/api/index/get_express_code').then(res=>{
   		if(res.data.code == 200){

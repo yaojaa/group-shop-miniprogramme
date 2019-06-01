@@ -14,7 +14,7 @@
                         总计：¥<text class="text-black">{{item.total_price}}</text>
                     </view>
                     <view class="flex justify-end align-center" slot="footer">
-                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" bindtap="orderActions" wx:for="{{item.seller_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
+                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
                     </view>
                 </order-list>
             </block>
