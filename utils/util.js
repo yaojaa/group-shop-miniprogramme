@@ -83,7 +83,7 @@ const inputDuplex = function(e) {
     let context = this
     let name = e.currentTarget.dataset.key;
     let nameMap = {}
-    nameMap[name] = e.detail.value || e.detail
+    nameMap[name] = e.detail.value || ''
     context.setData(nameMap)
 }
 
@@ -371,7 +371,7 @@ const formSubmitCollectFormId = function(e) {
  * 获取用户的地理位置 并解析出省市区 ，注意接口调用次数
  */
 
-const getUserloaction = function() {
+const getUserloaction = function(callback) {
     //onload 获取地理位置
     return new Promise((reslove, reject) => {
 
@@ -380,6 +380,9 @@ const getUserloaction = function() {
             success: function(res) {
                 var latitude = res.latitude
                 var longitude = res.longitude
+                if(callback){
+                    callback(res)
+                }
                 // var speed = res.speed
                 // var accuracy = res.accuracy
                 wx.request({

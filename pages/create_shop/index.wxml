@@ -1,10 +1,8 @@
 <!--pages/create_shop.wxml-->
-<i-custom-bar showIcon backImage="http://img.atomstone.com/top_bar_bg.jpg" title="申请个人主页"> </i-custom-bar>
+<i-custom-bar showBackIcon backImage="" title="个人主页设置"> </i-custom-bar>
 
 <view class="container">
-	<i-notice-bar icon="systemprompt" >
-    专属独立个人小店 限时免费申请中..
-</i-notice-bar>
+
 <wux-toptips id="wux-toptips" />
 
 <i-panel  i-class="shadow-panel" hideBorder>
@@ -16,7 +14,7 @@
 
   <wux-cell-group >
             <wux-cell hover-class="none">
-                <wux-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro"   placeholder="输入小店名字"  hasCount rows="3" cursorSpacing="80" placeholder="输入介绍" />
+                <wux-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro"   placeholder="输入小店名字"  hasCount rows="3" cursorSpacing="80" placeholder="输入一段真诚的介绍，更容易打动客户哦" />
             </wux-cell>
         </wux-cell-group>
 
@@ -25,7 +23,7 @@
 
 <!--ssss-->
 
-<wux-cascader visible="{{ visible1 }}" default-value="{{ value1 }}" title="所在地区" options="{{ options1 }}" bind:close="onClose1" bind:change="onChange1" />
+<!-- <wux-cascader visible="{{ visible1 }}" default-value="{{ value1 }}" title="所在地区" options="{{ options1 }}" bind:close="onClose1" bind:change="onChange1" />
 <wux-cascader visible="{{ visible2 }}" controlled value="{{ value2 }}" title="所在地区" options="{{ options2 }}" bind:close="onClose2" bind:change="onChange2" bind:load="onLoadOptions" />
 
 <i-panel  i-class="shadow-panel" hideBorder >
@@ -42,7 +40,7 @@
             </wux-cell>
         </wux-cell-group>
 
-</i-panel>
+</i-panel> -->
 
 
 <!--sssss-->
@@ -50,16 +48,19 @@
 
 
 
-<!-- <i-panel i-class="shadow-panel" title="店铺轮播图（最多可传5张）">
+<i-panel i-class="shadow-panel" title="店铺轮播图（最多可传3张）">
+
+    <view class="up-area">
 
        <wux-upload listType="picture-card" fileList="{{ fileList }}"  url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
             <text><wux-icon type="md-add" /></text>
         </wux-upload>
+    </view>
 
-</i-panel> -->
+</i-panel>
 
 </view>
 
 <view class="footer-btn padding20">
-    <button bindtap="createSubmit" class="linenear_bg">立即创建</button>
+    <button bindtap="createSubmit" class="linenear_bg">保存</button>
 </view>

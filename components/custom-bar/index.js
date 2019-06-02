@@ -54,7 +54,7 @@ Component({
         },
         backIconColor: {
             type: String,
-            value: '#ffffff'
+            value: '#333333'
         },
         title: {
             type: String,

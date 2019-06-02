@@ -19,7 +19,11 @@ back_tit_txt_color="#333333"
     </swiper>
     <view class="user-head">
            <view class="right-icon">
-            <i-icon type="setup" size="28" />  <i-icon size="28" type="share" />
+            <navigator url="../create_shop/index">
+            <i-icon type="setup" size="28" />  
+            </navigator>
+
+            <i-icon size="28" type="share" />
         </view>
 
 
@@ -41,12 +45,12 @@ back_tit_txt_color="#333333"
                 <view class="des text-hide two">{{item.goods_content}}</view>
                 <view class="flex-box align-center">
                     <view class="avatar-group">
-                        <image class="avatar" src="https://i.loli.net/2017/08/21/599a521472424.jpg" wx:for="{{4}}" wx:key="index"></image>
+                        <image class="avatar" src="{{user.headimg}}" wx:for-item="user" wx:for="{{item._buy_users}}" wx:key="index"></image>
                     </view>
                     <view class="user f12 ml-xs text-muted">已有<text class="text-red">{{item._buy_users_count}}</text>人参与</view>
                 </view>
                 <view class="bottom text-justify">
-                    <view class="price bold text-red"><text class="f12">￥</text>29.9</view>
+                    <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}}</view>
                     <view> <button data-id="{{item.goods_id}}"  class="btn buy linenear_bg">立即查看</button></view>
                 </view>
             </view>

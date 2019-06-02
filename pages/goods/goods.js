@@ -117,6 +117,9 @@ Page({
         }
     },
     openShareFriends() {
+
+        this.getShareImg(this.data.goods_id)
+
         this.setData({
             showShareFriendsCard: true
         })
@@ -180,24 +183,17 @@ Page({
     getShareImg(id){
         
 
-    util.wx.get('/api/index/goods_card?goods_id='+id, { 
+    util.wx.get('/api/index/goods_card', { 
           goods_id: id
     }).then(res => {
-
-        console.log(res,res.data.code)
-
 
         if(res.data.code == 200){
 
             this.shareImg = res.data.data.path 
-
-            console.log("this.shareImg.",this.shareImg)
         }
 
     })
     },
-
-
 
     getGoodsInfo(id) {
         //提交访问记录
@@ -345,7 +341,6 @@ Page({
 
         this.data.goods_id = option.goods_id || option.scene
 
-        this.getShareImg(this.data.goods_id)
 
 
         // Promise.all([

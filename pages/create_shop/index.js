@@ -125,7 +125,7 @@ Page({
      
 
 
-      util.WX.post('/api/user/store_apply',{
+      util.wx.post('/api/seller/store_set',{
 
         store_name:this.data.store_name,
         store_intro:this.data.store_intro,
@@ -152,6 +152,24 @@ Page({
    */
   onLoad: function (options) {
 
+    this.getInfo()
+
+  },
+  getInfo:function(){
+    util.wx.get('/api/seller/get_store_info').then(res=>{
+
+      if(res.data.code == 200){
+
+        this.setData({
+          info:res.data.data,
+          store_name:res.data.data.store_name,
+          store_intro:res.data.data.store_intro
+        })
+      }
+
+
+
+    })
   },
        //上传相册
   chooseImage:function(e){

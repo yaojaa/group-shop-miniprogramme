@@ -16,3 +16,6 @@
 	margin: 30rpx 0;
 	border-radius: 20rpx
 }
+.up-area{
+	padding: 15px 5px
+}

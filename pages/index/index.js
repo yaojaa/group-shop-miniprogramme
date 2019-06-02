@@ -31,7 +31,12 @@ Page({
   onLoad: function () {
 
     this.getProList()
-    util.getUserloaction().then(res=>{
+    util.getUserloaction((res)=>{
+      console.log('经纬度：',res)
+        this.data.latitude = res.latitude,
+        this.data.longitude = res.longitude
+              this.getProListBylocation()
+    }).then(res=>{
       this.setData({
         userloaction:res,
         latitude:res.latitude,
