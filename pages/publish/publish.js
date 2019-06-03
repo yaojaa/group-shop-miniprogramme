@@ -93,12 +93,16 @@ Page({
     //上传规格图
     addSpecPic(e) {
         console.log(e)
-        var index = e.currentTarget.dataset.index || ''
-        if (index !== '') {
+        var index = e.currentTarget.dataset.index;
+        if (index >= 0) {
             this.data.current_spec_index = index
         } else {
             index = this.data.current_spec_index
         }
+
+        console.log(index)
+
+        console.log(this.data.spec[index].spec_pic)
 
         if (this.data.spec[index].spec_pic.length) {
             this.setData({
