@@ -53,9 +53,16 @@ Page({
             .then(res => {
                 if (res.data.code == 200) {
                     Toast.success(res.data.msg);
-                    wx.navigateBack({
-                        delta: 1
-                    })
+                    if (this.data.source == 'cart') {
+                        util.setParentData({
+                            address_id: res.data.data.address.address_id,
+                            address: res.data.data.address
+                        })
+                    } else {
+                        wx.navigateBack({
+                            delta: 1
+                        })
+                    }
                 } else {
                     Toast.fail(res.data.msg);
                 }

@@ -6,6 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        disabled: false,
         checked: false,
         source: '',
         address: [],
@@ -20,19 +21,24 @@ Page({
             source: options.source || false,
             selected: options.id || '',
         })
+        if (this.data.source == 'cart') {
+            this.setData({
+                disabled: true,
+            })
+        }
     },
 
     setSelected(e) {
         if (!this.data.source) {
             return
         }
-        const {id,item} = e.currentTarget.dataset
+        const { id, item } = e.currentTarget.dataset
         this.setData({
             selected: id
         })
         util.setParentData({
             address_id: id,
-            address:item
+            address: item
         })
     },
 

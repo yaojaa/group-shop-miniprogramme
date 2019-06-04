@@ -67,7 +67,7 @@ export default class LastMayday {
       //规格
       {
         type: 'text',
-        text: '¥ ' + config.spec_price,
+        text: '¥ ' + config.spec_price.toFixed(2),
         css: {
           top: `${imgHeight + headImgSize / 2 + qrcodeSize / 2 + 60 + config.height}rpx`,
           left: `${desLeft}rpx`,
