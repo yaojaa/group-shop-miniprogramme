@@ -6,8 +6,13 @@
         </navigator>
         <view class="actionsButtons">
             <view>
-                <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">导出名单</button>
-                <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button>
+             <!--    <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">一键复制收货人地址</button>
+                <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">导出名单</button> -->
+
+                  <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">辅助功能</button>
+
+
+              <!--   <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
 
 
        <!--            <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">

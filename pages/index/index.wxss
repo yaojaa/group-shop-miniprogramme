@@ -171,6 +171,13 @@ page{
   line-height: 80rpx;
   border-radius: 80rpx
 }
+
+.avatar-sm{
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-radius: 40rpx
+}
 .no-content{
   display: block;
   text-align: center;
@@ -192,5 +199,9 @@ page{
   text-align: center;
   font-size: 38rpx;
   color: #666
+}
+.frind-list{
+  font-size: 12px;
+  padding: 30px
 }
 

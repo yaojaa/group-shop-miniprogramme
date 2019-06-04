@@ -100,6 +100,29 @@
                 </view>
             </view>
         </block>
+
+        <block>
+            <view class="frind-list">
+                <view class="tit">朋友都在团</view>
+                <view class="item" wx:for="{{friendList}}" wx:key="{{index}}">
+                     <image class="avatar-sm" src="{{item.headimg}}" />
+
+                    <view class="tit">
+                       
+                         
+                    {{item.nickname}} 购买了
+                    {{item.goods_name}} 
+                    {{item.spec_name}}   +{{item.qty}}
+                   
+                    {{item.addtime}}
+
+
+
+
+                </view>
+                </view>
+            </view>
+        </block>
     
    <!--     <navigator url="../wxgroup/index"> <i-divider content="没有更多了,试试查找附近的团购群"></i-divider> </navigator> -->
 

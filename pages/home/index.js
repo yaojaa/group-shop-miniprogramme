@@ -22,7 +22,8 @@ Page({
         link_url: "",
         is_loading: true,
         scrollTop:0,
-        store_money:0
+        store_money:0,
+        pending_money:0
 
     },
     handleTabBarChange ({ detail }) {
@@ -147,7 +148,8 @@ Page({
                 if (res.data.code == 200) {
                     console.log('store_money: res.data.data.store_money',res.data.data.store_money)
                     this.setData({
-                        store_money: res.data.data.store_money
+                        store_money: res.data.data.store_money,
+                        pending_money:res.data.data.pending_money
                     })
                 }
         })
