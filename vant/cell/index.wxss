@@ -125,3 +125,16 @@
 .van-cell--large .van-cell__label {
     font-size: 28rpx
 }
+
+.van-cell--small {
+    padding-top: 18rpx;
+    padding-bottom: 18rpx
+}
+
+.van-cell--small .van-cell__title {
+    font-size: 28rpx
+}
+
+.van-cell--small .van-cell__label {
+    font-size: 28rpx
+}

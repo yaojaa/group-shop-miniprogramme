@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 40,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -79,7 +79,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=95",
+					"query": "goods_id=10",
 					"scene": 1001
 				},
 				{
@@ -93,7 +93,7 @@
 					"id": 5,
 					"name": "订单确认",
 					"pathName": "pages/order-confirm/index",
-					"query": "goods_id=76&delivery_method=1",
+					"query": "goods_id=10&delivery_method=2",
 					"scene": null
 				},
 				{

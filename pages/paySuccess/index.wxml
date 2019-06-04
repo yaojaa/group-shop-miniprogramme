@@ -1,58 +1,57 @@
 <view class="container">
-<!-- <painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgOK="onImgOk"/> -->
-  <view class='background'>
-    <image mode="aspectFill" src="/img/b.png"></image>
-  </view>
-  <view  class='content'>
-    <view class='header'>
-      <view class='title'>支付成功</view>
+    <!-- <painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgOK="onImgOk"/> -->
+    <view class='background'>
+        <image mode="aspectFill" src="/img/b.png"></image>
     </view>
-    <view class='order'>
-<!--       <view class='title'>{{order_goods[0].goods_name}}</view>
- -->      <!-- <view class='line'></view> -->
-      <view class="goodsList">
-        <view class='goods' wx:for="{{order.order_detail}}"  wx:key="@index">
-          <view class='cell'>
-            <view class='left'>{{item.spec_name}} x {{item.qty}}</view>
-            <view class='right'><text>￥</text>{{item.spec_price*item.qty}}</view>
-          </view>
+    <view class='content'>
+        <view class='header'>
+            <view class='title'>支付成功</view>
         </view>
-      </view>
-      <view class="user">
-        <view class='img'><open-data type="userAvatarUrl"></open-data></view>
-        <view class='name'><open-data type="userNickName"></open-data></view>
-        <view class='date'>{{order_time}}</view>
-      </view>
-      <view class='line'></view>
-      <view class='paycell'>
-        <view class='pay'>
-          <view class='left'>总金额</view>
-          <view class='right'><text>￥</text>{{order.total_price}}</view>
+        <view class='order'>
+            <!--       <view class='title'>{{order_goods[0].goods_name}}</view>
+ -->
+            <!-- <view class='line'></view> -->
+            <view class="goodsList">
+                <view class='goods' wx:for="{{order.order_detail}}" wx:key="@index">
+                    <view class='cell'>
+                        <view class='left'>{{item.spec_name}} x {{item.qty}}</view>
+                        <view class='right'><text>￥</text>{{item.spec_price*item.qty}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="user">
+                <view class='img'>
+                    <open-data type="userAvatarUrl"></open-data>
+                </view>
+                <view class='name'>
+                    <open-data type="userNickName"></open-data>
+                </view>
+                <view class='date'>{{order_time}}</view>
+            </view>
+            <view class='line'></view>
+            <view class='paycell'>
+                <view class='pay'>
+                    <view class='left'>总金额</view>
+                    <view class='right'><text>￥</text>{{order.total_price}}</view>
+                </view>
+                <view class='icon'>
+                    <view></view>
+                    <view></view>
+                    <view></view>
+                    <view></view>
+                    <view></view>
+                </view>
+            </view>
         </view>
-        <view class='icon'>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-          <view></view>
-        </view>
-      </view>
     </view>
-
-  </view>
-
-<!--   <view class='share'>
+    <!--   <view class='share'>
     <button type='primary' open-type="share">复制文字结果</button>
   </view> -->
-
-  <view class='share'>
-	  <button class="linear_bg" type='primary' open-type="share">分享查看结果</button>
-  </view>
-
-  <!-- <view class='share' wx:if="{{collection_methods==2 && wx_collection_code}}">
+    <view class='share'>
+        <button class="linear_bg" type='primary' open-type="share">分享查看结果</button>
+    </view>
+    <!-- <view class='share' wx:if="{{collection_methods==2 && wx_collection_code}}">
     <button type='primary' bindtap="imgPreview" data-url="{{wx_collection_code}}">收款码支付 ¥{{order.total_price}}</button>
   </view> -->
-
-      <official-account></official-account>
-
+    <official-account></official-account>
 </view>

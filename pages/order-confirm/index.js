@@ -17,8 +17,8 @@ Page({
         seller: {},
         delivery_method: 0,
         consignee:'',
-        mobile:''
-
+        mobile:'',
+        btn_load:false
     },
     getUserAddress() {
         util.wx.get('/api/user/address_list')
