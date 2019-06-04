@@ -31,3 +31,32 @@ page{
 	margin: 0;
 	border-radius: 0
 }
+.ti-label{
+	font-size: 18rpx;
+	line-height: 1;
+	padding:2rpx;
+	color:#FF5757;
+	border: 1px solid #FF5757;
+	border-radius: 1px;
+}
+.qu-label{
+	font-size: 18rpx;
+	line-height: 1;
+	padding:2rpx;
+	color:#49b34d;
+	border: 1px solid #49b34d;
+	border-radius: 1px;
+}
+.self-ad-label{
+	width: 90px;
+	display: inline-block;
+}
+.self-ad-content{
+	
+	display: inline-block;
+}
+.self-ad-radio{
+	width: 40px;
+	text-align: right;
+	flex: none !important;
+}

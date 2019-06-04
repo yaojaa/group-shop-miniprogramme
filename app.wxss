@@ -1687,6 +1687,7 @@ fieldset[disabled] .btn-link {
 .goods-panel-hd .shop-tb {
     width: 48rpx;
     height: 48rpx;
+    border-radius: 50%;
 }
 
 .order-fixed-footer {

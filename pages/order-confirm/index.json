@@ -13,6 +13,7 @@
         "i-message": "../../iView/message/index",
         "van-radio": "../../vant/radio/index",
         "van-radio-group": "../../vant/radio-group/index",
-        "van-toast": "../../vant/toast/index"
+        "van-toast": "../../vant/toast/index",
+        "van-button": "../../vant/button/index"
     }
 }

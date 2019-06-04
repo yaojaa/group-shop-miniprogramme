@@ -16,9 +16,10 @@ Page({
         goods_name: '',
         seller: {},
         delivery_method: 0,
-        consignee:'',
-        mobile:''
-
+        consignee: '',
+        mobile: '',
+        btn_load: false,
+        loading:false
     },
     getUserAddress() {
         util.wx.get('/api/user/address_list')
@@ -104,9 +105,9 @@ Page({
     },
 
     onAddressChange(e) {
-        console.log(e.detail)
+  
         this.setData({
-            address_id: e.detail
+            address_id: e.currentTarget.dataset.name
         });
     },
 
@@ -138,8 +139,8 @@ Page({
 
 
         this.setData({
-             consignee: app.globalData.userInfo.nickname,
-             mobile: app.globalData.userInfo.mobile,
+            consignee: app.globalData.userInfo.nickname,
+            mobile: app.globalData.userInfo.mobile,
             goods_id: options.goods_id,
             cart: cart || [],
             amountMoney: amountMoney / 100,
@@ -156,6 +157,16 @@ Page({
         } else if (options.delivery_method == 1) {
             this.getUserAddress()
         }
+    },
+    inputConsignee(e){
+        this.setData({
+            consignee:e.detail
+        })
+    },
+    inputMobile(e){
+        this.setData({
+            mobile:e.detail
+        })
     },
     /**
      * 生命周期函数--监听页面显示
