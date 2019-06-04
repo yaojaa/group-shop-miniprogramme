@@ -47,6 +47,8 @@ Page({
 
 
     })
+
+    this.getFriendList()
       },
 
   getProList(){
@@ -63,6 +65,17 @@ Page({
       }
     })
    
+  },
+  getFriendList(){
+
+      util.wx.get('/api/user/friend_bought').then(res=>{
+      if(res.data.code == 200){
+        this.setData({
+          friendList:res.data.data
+        })
+      }
+    })
+
   },
   getProListBylocation(){
 
