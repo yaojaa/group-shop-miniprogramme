@@ -17,7 +17,7 @@
     </view>
     <view class="content-wrap" wx:if="{{address.length>0}}">
         <view class="white-bg mv-sm">
-            <van-swipe-cell right-width="{{ 60 }}" wx:for="{{address}}" wx:key="{{index}}" disable>
+            <van-swipe-cell right-width="{{ 60 }}" wx:for="{{address}}" wx:key="{{index}}" disabled="{{disabled}}">
                 <view class="address-item">
                     <view class="flex align-center">
                         <view class="mr-df ttm-checkbox align-self-center {{item.address_id==selected?'checked':''}}" wx:if="{{source}}" data-id="{{item.address_id}}" bindtap="setSelected">
