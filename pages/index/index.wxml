@@ -72,7 +72,7 @@
 
                         <block wx:if="{{item.goods_images.length >= 4}}">
 
-                            <view class='item-img-box-two' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
+                            <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=3}}">
                                 <image  mode="widthFix" class="cover" src="{{im.img_url}}"></image>
                             </view>
                             
