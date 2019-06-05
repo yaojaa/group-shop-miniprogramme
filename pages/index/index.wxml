@@ -39,10 +39,10 @@
                         <view class="right-info" wx:if="{{item.distance}}">
                             <i-icon type="coordinates" color="#999" /><text class="f12 text-muted">{{item.distance}}</text></view>
                     </view>
-                    <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail"><text>{{item.goods_name}}</text> <text class="small f12 text-red">￥</text><text class='text-red'>{{item.price_range.min}}
+                    <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail"><text>{{item.goods_name}}</text> <text class="small f12 text-red">￥</text>
 
-                 <block wx:if="{{item.price_range.min!=item.price_range.max}}">~{{item.price_range.max}}</block>
-                    </text></view>
+<text class='text-red'>{{item.price_range.min}}~{{item.price_range.max}}</text>
+                </view>
                     <view class='item-des'><text>{{item.goods_content}}</text></view>
                     <view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
                         <block wx:if="{{item.goods_images.length == 1}}">
@@ -70,7 +70,11 @@
                             
                         </block>
 
-                        <block wx:if="{{item.goods_images.length == 4}}">
+                        <block wx:if="{{item.goods_images.length >= 4}}">
+
+                            <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=3}}">
+                                <image  mode="widthFix" class="cover" src="{{im.img_url}}"></image>
+                            </view>
                             
                         </block>
 
