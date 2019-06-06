@@ -6,6 +6,8 @@ export default class LastMayday {
     const desLeft = config.content.margin || 30; //文章两侧边距
     const qrcodeSize = config.qrcode.size || 300; //二维码尺
     const dpr = config.content.des[0].width ? (width - desLeft * 2) / config.content.des[0].width : 1;
+    const headSize = 66;
+    const hB = 20; // 头像下边界
 
     // console.log(config.goodsImg.src)
     
@@ -57,7 +59,7 @@ export default class LastMayday {
         url: config.qrcode.src,
         css: {
           top: `${imgHeight + headImgSize / 2 + 90 + config.height}rpx`,
-          left: `${width / 2 + 10}rpx`,
+          left: `${width / 2 + 20}rpx`,
           width: `${qrcodeSize}rpx`,
           height: `${qrcodeSize}rpx`,
           align: 'left',
@@ -65,48 +67,52 @@ export default class LastMayday {
         },
       },
       //规格
-      {
-        type: 'text',
-        text: '¥ ' + config.spec_price.toFixed(2),
-        css: {
-          top: `${imgHeight + headImgSize / 2 + qrcodeSize / 2 + 60 + config.height}rpx`,
-          left: `${desLeft}rpx`,
-          align: 'left',
-          color: '#f00',
-          fontSize: "60rpx",
-          lineHeight: '60rpx'
-        },
-      },
+      // {
+      //   type: 'text',
+      //   text: '¥ ' + config.spec[0].spec_price,
+      //   css: {
+      //     top: `${imgHeight + headImgSize / 2 + qrcodeSize / 2 + 60 + config.height}rpx`,
+      //     left: `${desLeft}rpx`,
+      //     align: 'left',
+      //     color: '#f00',
+      //     fontSize: "60rpx",
+      //     lineHeight: '60rpx'
+      //   },
+      // },
       //长按识别二维码
-      {
-        type: 'text',
-        text: '长按识别二维码',
-        css: {
-          top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
-          left: `${(width + qrcodeSize) / 2 - 16}rpx`,
-          align: 'center',
-          color: '#999',
-          fontSize: "24rpx",
-          lineHeight: '30rpx'
-        }
-      },
-      {
-        type: 'text',
-        text: '参与',
-        css: {
-          top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
-          left: `${(width + qrcodeSize) / 2 + 74}rpx`,
-          color: "#a6e4f7",
-          fontSize: "24rpx",
-          lineHeight: '30rpx'
-        }
-      },
+      // {
+      //   type: 'text',
+      //   text: '长按识别二维码',
+      //   css: {
+      //     top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
+      //     left: `${(width + qrcodeSize) / 2 - 16}rpx`,
+      //     align: 'center',
+      //     color: '#999',
+      //     fontSize: "24rpx",
+      //     lineHeight: '30rpx'
+      //   }
+      // },
+      // {
+      //   type: 'text',
+      //   text: '参与',
+      //   css: {
+      //     top: `${imgHeight + headImgSize / 2 + qrcodeSize + 100 + config.height}rpx`,
+      //     left: `${(width + qrcodeSize) / 2 + 74}rpx`,
+      //     color: "#a6e4f7",
+      //     fontSize: "24rpx",
+      //     lineHeight: '30rpx'
+      //   }
+      // },
     ];
+    // 规格
+    let spec = goodsSpec(config, imgHeight, headImgSize, desLeft, width);
+    // 头像
+    let buyuser = headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, width, hB);
     return ({
       width: `${width}rpx`,
-      height: `${imgHeight + headImgSize + config.height + qrcodeSize + 80}rpx`,
+      height: `${imgHeight + headImgSize + config.height + qrcodeSize + buyuser[1] + desLeft + 20}rpx`,
       background: '#fff',
-      views: topArr.concat(__content(config.content, imgHeight, headImgSize, width, desLeft, dpr), bottomArr)
+      views: topArr.concat(__content(config.content, imgHeight, headImgSize, width, desLeft, dpr), bottomArr, spec, buyuser[0])
     });
   }
 }
@@ -148,4 +154,58 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
 
 }
 
+// 购买头像
 
+function headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, width, hB) {
+  let heads = [];
+  let m = 11; // 头像右边界
+  let _w = width - 2*desLeft + m;
+  let _wm = headSize + m; // 头像所占宽度
+  config.buyuser.forEach((e, index) => {
+      let _h = parseInt(_wm*(index+1)/_w); // 几行头像
+
+      heads.push({
+        type: 'image',
+        url: e.headimg,
+        css: {
+          top: `${imgHeight + headImgSize / 2 + qrcodeSize + 110 + config.height + _h*(headSize+hB)}rpx`,
+          // left: `${desLeft + index * _wm}rpx`,
+          left:`${ desLeft + index%parseInt(_w/_wm) * _wm }rpx`,
+          width: `${ headSize }rpx`,
+          height: `${ headSize }rpx`,
+          borderRadius:`${ headSize/4}rpx`
+        },
+      })
+   
+  })
+
+  return [heads, Math.ceil(_wm*config.buyuser.length/_w)*(headSize+hB)];
+}
+
+
+// 规格
+function goodsSpec(config, imgHeight, headImgSize, desLeft, width){
+  let spec = [];
+  config.spec.forEach((e,i) => {
+    let lineHeight = 50;
+    if(i < 5){
+      spec.push({
+        type: 'text',
+        text: e.spec_name + '  ¥ ' + e.spec_price,
+        css: {
+          top: `${imgHeight + headImgSize / 2 + 112 + i*lineHeight + config.height}rpx`,
+          left: `${desLeft}rpx`,
+          align: 'left',
+          color: '#222',
+          width: `${width/2 - desLeft}rpx`,
+          maxLines: 1,
+          fontSize: "30rpx",
+          lineHeight: lineHeight + 'rpx'
+        },
+      })
+    }
+  })
+
+  return spec;
+
+}

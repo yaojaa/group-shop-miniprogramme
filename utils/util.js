@@ -523,7 +523,7 @@ const bezier = function(pots, amount) {
 }
 
 //绘制分享朋友圈图片
-function drawShareFriends(_this, res) {
+function drawShareFriends(_this, res, buyuser) {
     var config = _this.data.shareCardConfig;
     var height = 0;
     var goods = res.goods;
@@ -534,12 +534,17 @@ function drawShareFriends(_this, res) {
         config.content.des.push({ txt: e });
     })
     // 规格最小值
-    config.spec_price = parseFloat(goods.goods_spec[0].spec_price);
-    goods.goods_spec.forEach((e,i)=>{
-        if(parseFloat(e.spec_price) < config.spec_price){
-            config.spec_price = parseFloat(e.spec_price)
-        }
-    })
+    // config.spec_price = parseFloat(goods.goods_spec[0].spec_price);
+    // goods.goods_spec.forEach((e,i)=>{
+    //     if(parseFloat(e.spec_price) < config.spec_price){
+    //         config.spec_price = parseFloat(e.spec_price)
+    //     }
+    // })
+    // 规格
+    config.spec = goods.goods_spec;
+
+    // 购买头像
+    config.buyuser = buyuser;
 
     //内容赋值获取高度
     _this.setData({
