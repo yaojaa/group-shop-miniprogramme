@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 46,
+			"current": 47,
 			"list": [
 				{
 					"id": 0,
@@ -373,6 +373,12 @@
 					"name": "确认订单",
 					"pathName": "pages/order-confirm/index",
 					"query": "goods_id=2&delivery_method=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人资料",
+					"pathName": "pages/identify/identify",
 					"scene": null
 				}
 			]

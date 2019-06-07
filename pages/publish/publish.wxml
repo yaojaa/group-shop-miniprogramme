@@ -45,6 +45,9 @@
             <!--上传规格图弹框-->
             <wux-popup catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
                 <view class="poptit">商品规格图片</view>
+
+
+                <scroll-view class="maxheight">
                 <view class="con">
                 <view class="pic_loading">
                     <i-spin wx:if="{{visible_spec && specProgress}}"/>
@@ -65,11 +68,18 @@
                         </button>
                     </view>
                 </view>
+            </scroll-view>
+
+
+
             </wux-popup>
             <!--上传图片弹框-->
             <wux-popup catchtouchmove="ture" position="bottom" visible="{{ visible_pictures }}" bind:close="onClose2">
                 <view class="poptit">上传详情介绍图片 </view>
                 <view class="pic_loading"><i-spin wx:if="{{uploadProgress}}"/></view>
+
+           <scroll-view class="maxheight">
+
                 <view class="con">
 
                     <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
@@ -97,6 +107,8 @@
                         </button>
                     </view>
                 </view>
+            </scroll-view>
+
             </wux-popup>
             <!--上传视频弹框-->
             <wux-popup catchtouchmove="ture" position="bottom" visible="{{visible_video}}" bind:close="onClose2">
@@ -213,7 +225,7 @@
                             <!--   <navigator url="/pages/map/index?delivery_method={{delivery_method}}"> -->
                             <text wx:if="{{delivery_method==0}}">选择配送方式</text>
                             <text wx:if="{{delivery_method==1}}">快递邮寄</text>
-                            <text wx:if="{{delivery_method==2}}">用户自提</text>
+                            <text wx:if="{{delivery_method==2}}">自提：{{sell_address[0].name}}...</text>
                             <i-icon type="enter" size="28" />
                             <!-- </navigator>
  -->

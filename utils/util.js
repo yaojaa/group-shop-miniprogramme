@@ -383,6 +383,7 @@ const getUserloaction = function(callback) {
             success: function(res) {
                 var latitude = res.latitude
                 var longitude = res.longitude
+                console.log('wx.getLocation',latitude)
                 if(callback){
                     callback(res)
                 }
@@ -395,15 +396,23 @@ const getUserloaction = function(callback) {
                     },
                     method: 'get',
                     success: (res) => {
+                console.log('apis.map.qq.com',res)
+
+
+
                         reslove(Object.assign({}, res.data.result.address_component, { latitude, longitude }))
                     },
                     fail: (err) => {
-                        reject(err)
+                      console.log('apis.map.qq.com fail',err)
+
                     }
 
                 })
             },
             fail: (err) => {
+
+                console.log('wx.getLocation',err)
+
                 reject(err)
             }
         })

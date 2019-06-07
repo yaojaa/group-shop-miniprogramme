@@ -10,13 +10,27 @@
 <!-- <scroll-view scroll-y
     style="height:calc(100% - 100px);"> -->
     <view class='product-item-container'>
-    <view class="no-content" wx:if="{{!loading&&proList.length==0}}">
+    <view class="no-content" wx:if="{{!isloading&&proList.length==0}}">
         <view class="img">
                    <image mode="widthFix" src="https://img.zcool.cn/community/01d35d5a937512a8012045b360ae12.jpg@1280w_1l_2o_100sh.jpg" /> 
         </view>
 
         <view class="no-txt">什么也没有发现</view>
+        <button bindtap="openSetting" wx:if="{{showOpenBtn}}">开启定位</button>
     </view>
+
+    <view class="loading" wx:if="{{isloading}}">
+        <view class="figure">
+    <view class="dot white"></view>
+    <view class="dot"></view>
+    <view class="dot"></view>
+    <view class="dot"></view>
+    <view class="dot"></view>
+</view>
+    </view>
+
+
+
         <block wx:for="{{proList}}" wx:key="{{index}}">
             <view class='product-item'  >
                 <view class='item-body'>
@@ -107,24 +121,28 @@
 
         <block>
             <view class="frind-list">
-                <view class="tit">朋友都在团</view>
-                <view class="item" wx:for="{{friendList}}" wx:key="{{index}}">
-                     <image class="avatar-sm" src="{{item.headimg}}" />
+        <view class="tit bold f14">朋友都在团</view>
 
-                    <view class="tit">
-                       
-                         
-                    {{item.nickname}} 购买了
-                    {{item.goods_name}} 
+        <view class="case-hd"  wx:for="{{friendList}}" wx:key="{{index}}">
+        <image src="{{item.headimg}}" class="avatar"></image>
+        <view class="shop-info">
+            <view class="title">
+                <view class="name">{{item.nickname}}
+                  </view>
+                <view class="right">
+                    <view class="date">{{item.addtime}}</view>
+                    <view class="iconfont icon-right text-sm text-muted"></view>
+                </view>
+            </view>
+            <view class="address">
+              参团了 <text class="bold"> {{item.goods_name}}  </text>
                     {{item.spec_name}}   +{{item.qty}}
-                   
-                    {{item.addtime}}
+            </view>
+        </view>
+    </view>
 
 
 
-
-                </view>
-                </view>
             </view>
         </block>
     

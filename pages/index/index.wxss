@@ -204,4 +204,55 @@ page{
   font-size: 12px;
   padding: 30px
 }
+.frind-list .tit{
+  margin-bottom: 10px
+}
 
+
+.case-hd {
+    display: flex;
+    padding: 8px 0;
+    border-top:1px solid #f8f8f8 
+}
+
+.case-hd .avatar {
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 100%;
+    margin-right: 20rpx;
+}
+
+.shop-info {
+    flex: 1;
+}
+
+.shop-info .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shop-info .title .name .bold {
+    font-weight: bold;
+}
+
+.shop-info .title .name .tag {
+    font-size: 20rpx;
+    color: #8E50E0;
+}
+
+.shop-info .title .date {
+    font-size: 20rpx;
+    color: #999;
+}
+.shop-info .title .right{
+    display: flex;
+    align-items: center
+}
+.shop-info .title .right .iconfont{
+    margin-left: 10rpx;
+}
+.shop-info .address {
+    font-size: 20rpx;
+    color: #666;
+}
