@@ -187,13 +187,13 @@ function headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, 
 function goodsSpec(config, imgHeight, headImgSize, desLeft, width){
   let spec = [];
   config.spec.forEach((e,i) => {
-    let lineHeight = 50;
+    let lineHeight = 52;
     if(i < 5){
       spec.push({
         type: 'text',
         text: e.spec_name + '  ¥ ' + e.spec_price,
         css: {
-          top: `${imgHeight + headImgSize / 2 + 112 + i*lineHeight + config.height}rpx`,
+          top: `${imgHeight + headImgSize / 2 + 110 + i*lineHeight + config.height}rpx`,
           left: `${desLeft}rpx`,
           align: 'left',
           color: '#222',
