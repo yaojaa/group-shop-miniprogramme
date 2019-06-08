@@ -34,7 +34,28 @@ Page({
         this.getProList()
 
         this.getFriendList()
+
         this.getloactionData()
+
+
+        // wx.getSetting({
+        //   success :(res)=> {
+        //     console.log(res.authSetting)
+        //     // res.authSetting = {
+        //     //   "scope.userInfo": true,
+        //     //   "scope.userLocation": true
+        //     // }
+        //     if(res.authSetting['scope.userLocation']){
+        //        this.getloactionData()
+        //     }else{
+        //         this.setData({
+        //             showOpenBtn:true
+        //         })
+        //     }
+        //   }
+        // })
+
+
     },
     //获取定为并获取商品
     getloactionData() {

@@ -24,7 +24,7 @@ page{
 }
 
 .small{
-  font-size: 14px;
+  font-size: 12px;
   color: #666
 }
 .location{
@@ -48,7 +48,7 @@ page{
   margin-left: 20rpx;
 }
 .item-title{
-  font-size: 36rpx;
+  font-size: 32rpx;
   padding: 20rpx 0 10rpx;
   color: #333
 }

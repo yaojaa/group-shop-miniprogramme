@@ -29,4 +29,30 @@
 <button style="margin: 15px" wx:if="{{express_code}}]" bindtap="checkExpress" class="weui-btn weui-btn_primary ">查询一下</button>
 
   <button style="margin: 15px" bindtap="send" class="weui-btn weui-btn_primary linenear_bg">确 定 发 货</button>
+
+
+<!--物流信息弹窗-->
+<van-popup
+  show="{{ showTraces }}"
+  position="top"
+  bind:close="onClose"
+>
+<view class="traceBox">
+  
+  <wux-timeline pending>
+  <view class="trace" wx:for="{{traces}}" wx:key="{{index}}">
+<wux-timeline-item content="{{item.time}}">
+  <view>{{item.content}}</view>
+</wux-timeline-item>
+
+  </view>
+ </wux-timeline>
+
+
+  </view>
+</van-popup>
+
+<!--物流信息弹窗-->
+
+
 </view>

@@ -377,6 +377,7 @@ Page({
             success: res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 if (res.code) {
+                    console.log(res)
                     this.data.code = res.code
 
                     util.wx.get('/api/index/get_openid',{

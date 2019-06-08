@@ -75,7 +75,7 @@
                     <view class="flex align-center">
                         <image src="{{seller.headimg}}" class="shop-tb mr-xs img-lg">
                         </image>
-                        <view class="flex-sub text-hide">{{seller.nickname}}</view>
+                        <view class="flex-sub text-hide">{{goods_name}}</view>
                     </view>
                 </view>
                 <view class="text-muted"></view>

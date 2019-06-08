@@ -4,7 +4,9 @@ const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index');
 
 const app = getApp()
-app.that = null
+app.that = null;
+let drawGoods = null;
+let drawBuyuser = null;
 
 Page({
     data: {
@@ -87,6 +89,7 @@ Page({
 
     },
     onReady: function() {
+        this.getShareImg(this.data.goods_id)
 
 
         wx.getSetting({
@@ -118,7 +121,6 @@ Page({
     },
     openShareFriends() {
 
-        this.getShareImg(this.data.goods_id)
 
         this.setData({
             showShareFriendsCard: true
@@ -228,7 +230,10 @@ Page({
                     console.log('done', d)
 
                     //绘制朋友圈图片
-                    util.drawShareFriends(this, d);
+                    drawGoods = d;
+                    if(drawBuyuser){
+                        util.drawShareFriends(this, d, drawBuyuser);
+                    }
 
                     //把数量设为0
 
@@ -254,7 +259,7 @@ Page({
                         // sell_address: res.data.data.sell_address,
                         // seller: res.data.data.seller,
                         goods_spec: d.goods.goods_spec.length == 0 ? d.goods.goods_images : d.goods.goods_spec,
-                        seller:d.user,
+                        seller:d.goods.user,
                         hw_data: d.hw_data,
                         // endTime: res.data.data.goods.sell_end_time,
                         countdownTime: new Date(d.goods.end_time * 1000).getTime()
@@ -673,9 +678,6 @@ Page({
                 goods_id: goods_id
             },
             success: (res) => {
-
-
-
                 if (res.data.code == 200) {
 
                     //***后两位
@@ -684,6 +686,12 @@ Page({
                     //         val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g, '*')
                     //     })
                     // })
+
+                    //绘制朋友圈图片
+                    drawBuyuser = res.data.data;
+                    if(drawGoods){
+                        util.drawShareFriends(this, drawGoods, res.data.data);
+                    }
 
                     this.setData({
                         orderUsers: res.data.data

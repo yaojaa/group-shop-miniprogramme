@@ -8,7 +8,7 @@ Page({
   },
   onLoad: function () {
     console.log('登录页onload')
-          if(app.hasToken()){
+          if(app.globalData.userInfo){
                this.setData({
                   hasScope:true
                 })

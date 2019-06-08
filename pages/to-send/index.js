@@ -7,11 +7,14 @@ Page({
 	      { text: '请选择快递公司', disabled: true }
 	    ],
   	comps:[],
-    express_company:'请选择快递公司',
-    express_code:'',
+    express_company:'中通快递',
+    express_code:'75153068571982',
     action_remark:'',
     get_user_name:'',
-    get_user_avatar:''
+    get_user_avatar:'',
+    traces:[],
+        showTraces: false
+
 
   },
   onLoad:function (opt) {
@@ -55,6 +58,8 @@ Page({
   },
   checkExpress(){
 
+    wx.showLoading()
+
         util.wx.get('/api/order/get_express_info',{
            express_company:this.data.express_company,
               express_code:this.data.express_code,
@@ -62,9 +67,12 @@ Page({
         }).then(res=>{
       if(res.data.code == 200){
         this.setData({
-          express_info:res.data.data
+          showTraces:true,
+          traces:res.data.data.traces
         })
       }
+          wx.hideLoading()
+
     })
 
 
