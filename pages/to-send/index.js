@@ -13,7 +13,8 @@ Page({
     get_user_name:'',
     get_user_avatar:'',
     traces:[],
-        showTraces: false
+        showTraces: false,
+        checked:false
 
 
   },
@@ -28,11 +29,22 @@ Page({
    this.getData()
 
   },
+  onSwitch(e){
+    console.log(e)
+        this.setData({ checked: e.detail });
+
+    
+  },
   onChange(event){
      const {value} = event.detail;
 
      this.data.express_company = value
     
+  },
+  close(){
+    this.setData({
+      showTraces:false
+    })
   },
   send(){
 
@@ -68,7 +80,7 @@ Page({
       if(res.data.code == 200){
         this.setData({
           showTraces:true,
-          traces:res.data.data.traces
+          traces:res.data.data.traces.reverse()
         })
       }
           wx.hideLoading()

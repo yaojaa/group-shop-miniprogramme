@@ -53,6 +53,13 @@ Page({
         back_order:0
 
     },
+    onShow:function(){
+
+        this.getOrderList()
+
+        this.getStatistics()
+
+    },
     onLoad: function(optiton) {
 
         if (!app.globalData.token) {
@@ -75,19 +82,6 @@ Page({
             goods_name:optiton.goods_name
 
         })
-
-        wx.setNavigationBarTitle({
-            title: '管理订单: '
-        })
-
-
-
-        this.getOrderList()
-
-        this.getStatistics()
-
-
-
     },
     handleTab({ detail }) {
         console.log(detail)
@@ -132,6 +126,8 @@ Page({
         const user_name = e.currentTarget.dataset.user_name
 
         if(opt == 'toset_send' && this.data.delivery_method == 1){
+
+
             wx.navigateTo({
                 url:'../to-send/index?get_user_avatar='+avatar+'&get_user_name='+user_name+'&order_id='+order_id
             })
@@ -140,7 +136,7 @@ Page({
         }
 
         wx.showModal({
-            title: '您好，要' + txt + '吗？',
+            title: '您要' + txt + '吗？',
             success: (res) => {
 
                 if (res.confirm) {

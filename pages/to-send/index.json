@@ -7,6 +7,10 @@
         "i-custom-bar": "../../components/custom-bar/index",
              "wux-icon": "../../wux/icon/index",
         "wux-timeline": "../../wux/timeline/index",
-        "wux-timeline-item": "../../wux/timeline-item/index"
+        "wux-timeline-item": "../../wux/timeline-item/index",
+            "i-icon": "../../iView/icon/index",
+              "van-switch": "../../vant/switch/index"
+
+
     }
 }
