@@ -89,6 +89,7 @@ Page({
 
     },
     onReady: function() {
+        this.getShareImg(this.data.goods_id)
 
 
         wx.getSetting({
@@ -120,7 +121,6 @@ Page({
     },
     openShareFriends() {
 
-        this.getShareImg(this.data.goods_id)
 
         this.setData({
             showShareFriendsCard: true

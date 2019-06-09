@@ -37,6 +37,16 @@ Page({
 
     },
     postInfo() {
+
+     if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.data.mobile))){ 
+             $Message({
+                        content: '手机号码有误，请重填',
+                        type: 'error'
+                    });
+            return false; 
+        }
+
+
         util.wx.post('/api/user/user_set_info', {
 
             mobile: this.data.mobile,

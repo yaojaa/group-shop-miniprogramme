@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/login/login",
         "pages/index/index",
+        "pages/login/login",
         "pages/home/index",
         "pages/withdrawal/index",
         "pages/goods/goods",
@@ -32,14 +32,15 @@
         "pages/order-confirm/index",
         "pages/fans/index",
         "pages/ordermanage/list",
-        "pages/to-send/index"
+        "pages/to-send/index",
+        "pages/identify/identify"
 
     ],
     "permission":
     {
         "scope.userLocation":
         {
-            "desc": "你的位置信息将用于获取附近的团购活动"
+            "desc": "你的位置信息用于获取附近的团购活动"
         }
     },
     "window":

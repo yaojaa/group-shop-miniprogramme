@@ -375,14 +375,18 @@ const formSubmitCollectFormId = function(e) {
  */
 
 const getUserloaction = function(callback) {
+
+    console.log('getUserloaction',getUserloaction)
     //onload 获取地理位置
     return new Promise((reslove, reject) => {
+    console.log('wx.getLocation')
 
         wx.getLocation({
             type: 'wgs84',
             success: function(res) {
                 var latitude = res.latitude
                 var longitude = res.longitude
+                console.log('wx.getLocation',latitude)
                 if(callback){
                     callback(res)
                 }
@@ -395,15 +399,26 @@ const getUserloaction = function(callback) {
                     },
                     method: 'get',
                     success: (res) => {
+                console.log('apis.map.qq.com',res)
+
+
+
                         reslove(Object.assign({}, res.data.result.address_component, { latitude, longitude }))
                     },
                     fail: (err) => {
-                        reject(err)
+                      console.log('apis.map.qq.com fail',err)
+
                     }
 
                 })
             },
+            complete:(e)=>{
+                console.log('complete',e)
+            },
             fail: (err) => {
+
+                console.log('wx.getLocation',err)
+
                 reject(err)
             }
         })

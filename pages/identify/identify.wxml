@@ -4,12 +4,12 @@
         <i-panel title="完善联系方式">
             <wux-cell-group>
                 <wux-cell hover-class="none">
-                    <wux-input bind:blur="postInfo"   controlled clear label="手机号" bind:change="changeMobile"  placeholder="输入您的手机号" value="{{mobile}}" />
-                       <button  open-type="getPhoneNumber" size="mini" bindgetphonenumber="getPhoneNumber" class="getMobile">微信绑定的手机号</button>
+                    <wux-input    controlled clear label="手机号" bind:change="changeMobile"  placeholder="输入您的手机号" value="{{mobile}}" />
+                    
 
                 </wux-cell>
                 <wux-cell hover-class="none">
-                    <wux-input bind:blur="postInfo" controlled clear value="{{wechatnumber}}" label="微信" bind:change="changeWX" placeholder="输入您的微信号" />
+                    <wux-input  controlled clear value="{{wechatnumber}}" label="微信" bind:change="changeWX" placeholder="输入您的微信号" />
                 </wux-cell>
                 <wux-cell hover-class="none" title="收货地址" is-link url="../address/index" ></wux-cell>
             </wux-cell-group>
@@ -19,6 +19,13 @@
     </view>
    
        <view class='btn-wrap'>
+
+
+           <button type="danger" class="linear_bg" bindtap="postInfo">保存</button>
+
+
+
+
         <button type="danger" class="linear_bg" bindtap="clearStorage">清除缓存 重新登录</button>
     </view>
     <i-message id="message" />

@@ -1,3 +1,29 @@
 .input-class{
   font-size: 40rpx
 }
+
+.trace{
+	color: #666
+}
+.traceBox{
+	padding-top: 120rpx;
+	padding-left: 15px;
+	padding-right: 15px;
+
+}
+.close_btn{
+	background: #333;
+	opacity: 0.8;
+	color: #fff;
+	border-radius: 50%;
+	display:inline-block;
+	margin: 10px auto;
+	text-align: center;
+	width: 34px;
+	height: 34px;
+
+	
+}
+.closearea{
+	text-align: center;
+}

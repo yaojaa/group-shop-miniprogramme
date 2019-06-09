@@ -1,9 +1,6 @@
 //app.js
 App({
-  //是否本地有token
-  hasToken:function(){
-    return !!wx.getStorageSync('token')
-  },
+ 
   //请求维系获取openId
   getOpenId:function(){
 
@@ -27,13 +24,11 @@ App({
 
                         this.openId = response.data.data.openid;
                         this.session_key =response.data.data.session_key;
-                        //  缓存 session_key
-                        // 
-                       wx.setStorage({key:'session_key',data:response.data.data.session_key})
-
+                     
                         this.globalData.openid = this.openId;
                         resolve(response.data.data.openid)
                         }else{
+                          reject()
                            wx.showToast({
                             title: '用户登录态失败！',
                             duration: 3000
@@ -46,6 +41,7 @@ App({
                         title: '用户登录态失败！',
                          duration: 3000
                       })
+                         reject()
                       }
                     })
                   } else {
@@ -54,6 +50,7 @@ App({
                       icon: 'danger',
                       duration: 2000
                       })
+                      reject()
                     console.log('获取用户登录态失败！' + res.errMsg)
                   }
 
@@ -233,7 +230,6 @@ App({
   onLaunch: function (option) {
 
     console.group('启动检测---')
-    console.log('hasToken',this.hasToken())
     console.log('option',option)
 
     /**记录用户打开的场景**/
@@ -260,11 +256,11 @@ App({
             this.globalData.winHeight = 500
         }
 
+const userInfo = wx.getStorageSync('userInfo')
+    if(userInfo){
 
-    if(this.hasToken()){
-
-      this.globalData.token = wx.getStorageSync('token')
-      this.globalData.userInfo = wx.getStorageSync('userInfo')
+      this.globalData.token = userInfo.token
+      this.globalData.userInfo = userInfo
 
       console.log('已经登录.退出')
       if(this.userLoginReadyCallback){
