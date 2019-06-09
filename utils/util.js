@@ -529,6 +529,7 @@ function drawShareFriends(_this, res, buyuser) {
     var goods = res.goods;
 
     let goods_content = goods.goods_content.split(/[\r\n↵]/g);
+    config.content.des = [];
     //分段
     [goods.goods_name].concat(goods_content).forEach((e, i) => {
         config.content.des.push({ txt: e });
