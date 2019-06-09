@@ -7,7 +7,7 @@
             <button size="mini" type="primary">群发短信</button>
         </view>
     </view> -->
-    <i-panel class="cell-panel-demo" title="共计{{user_count}}人">
+    <i-panel class="cell-panel-demo" title="共计{{user_count}}人 {{total}}次访问">
         <i-cell-group>
             <i-cell wx:for="{{list}}" class="guest-box">
                 <view class="guest-item">
@@ -27,7 +27,7 @@
                             </view>
                         </view>
                         <view class="date">
-                           {{item.time_ago}} {{item.user_phone}}，{{item.user_scene}}打开，停留{{item.user_staytime}}秒 
+                           {{item.time_ago}} {{item.user_phone}}，{{secen[item.user_scene]}}打开，停留{{item.user_staytime}}秒 
                         </view>
                     </view>
                 </view>

@@ -77,7 +77,16 @@ Component({
     },
 
 
-    
+    gofans(e){
+
+          let id = e.currentTarget.dataset.id
+
+        wx.navigateTo({
+            url: '../fans/index?id=' + id
+        })
+
+
+    },
 
     managePage(e){
   let id = e.currentTarget.dataset.id

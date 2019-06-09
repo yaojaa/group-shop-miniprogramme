@@ -287,7 +287,10 @@ Page({
         wx.chooseLocation({
             success: (e) => {
                 console.log(e)
-                if (!e.name || !e.address) return;
+                if (!e.name || !e.address) 
+                        wx.hideLoading()
+
+                    return ;
                 wx.request({
                     url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=FKRBZ-RK4WU-5XMV4-B44DB-D4LOH-G3F73&get_poi=1',
                     data: {

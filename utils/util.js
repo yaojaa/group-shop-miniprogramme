@@ -444,7 +444,7 @@ const request = (url, data, method) => {
 
                 if (res.data.code == 200) {
                     resolve(res)
-                } else if (res.data.code == '-100' || res.data.code == '-99') {
+                } else if (res.data.code == '-99') {
 
                     console.log('应该调到等路')
 

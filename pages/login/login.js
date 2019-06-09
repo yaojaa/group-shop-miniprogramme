@@ -7,37 +7,7 @@ Page({
     hasScope:false
   },
   onLoad: function () {
-    console.log('登录页onload')
-          if(app.globalData.userInfo){
-               this.setData({
-                  hasScope:true
-                })
-
-            app.redirect2Home()
-
-          }else{
-
-            app.userScopeReadyCallback=(result)=>{
-                  console.log('userScopeReadyCallback',result)
-              this.setData({
-                hasScope:result
-              })
-
-              console.log('卸载call否则会多次执行')
-
-              app.userScopeReadyCallback == null
-
-              if(result){
-                 app.redirect2Home()
-              }
-
-            }
-
-
-
-          }
-
-
+          
 
  
 

@@ -57,37 +57,31 @@
 
 <text class='text-red'>{{item.price_range.min}}~{{item.price_range.max}}</text>
                 </view>
-                    <view class='item-des'><text>{{item.goods_content}}</text></view>
+                    
                     <view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
                         <block wx:if="{{item.goods_images.length == 1}}">
                          <view class="item-img-box-one">
 
-                           <image mode="widthFix" class="cover1" src="{{item.goods_images[0].img_url}}"></image>
+                           <image mode="widthFix" class="cover1" src="{{item.goods_images[0].img_url}}?imageView2/1/w/200/h/200/interlace/1"></image>
                        </view>
                         </block>
 
                          <block wx:if="{{item.goods_images.length == 2}}">
 
                              <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
-                                <image  mode="widthFix" class="cover" src="{{im.img_url}}"></image>
+                                <image class="cover1"  mode="widthFix"  src="{{im.img_url}}?imageView2/1/w/200/h/200/interlace/1"></image>
                             </view>
 
 
                             
                         </block>
 
-                        <block wx:if="{{item.goods_images.length == 3}}">
+                    
 
-                             <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
-                                <image  mode="widthFix" class="cover" src="{{im.img_url}}"></image>
-                            </view>
-                            
-                        </block>
+                        <block wx:if="{{item.goods_images.length >= 3}}">
 
-                        <block wx:if="{{item.goods_images.length >= 4}}">
-
-                            <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=3}}">
-                                <image  mode="widthFix" class="cover" src="{{im.img_url}}"></image>
+                            <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=2}}">
+                                <image  mode="widthFix"  src="{{im.img_url}}?imageView2/1/w/200/h/200/interlace/1"></image>
                             </view>
                             
                         </block>
@@ -100,13 +94,14 @@
 
                        <!--  <scroll-view class="item-cover-scroll" scroll-x>
                             <view class='item-cover' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
-                                <image class="cover" src="{{im}}"></image>
+                                <image  src="{{im}}"></image>
                             </view>
                         </scroll-view> -->
 
 
 
                     </view>
+                    <view class='item-des'><text>{{item.goods_content}}</text></view>
                     <view class="buyer-list text-justify">
                         <view class="flex-box align-center">
                             <view class="avatar-group">
@@ -120,7 +115,7 @@
         </block>
 
         <block>
-            <view class="frind-list">
+            <view class="frind-list" wx:if="{{friendList.length}}">
         <view class="tit bold f14">朋友都在团</view>
 
         <view class="case-hd"  wx:for="{{friendList}}" wx:key="{{index}}">
@@ -147,6 +142,7 @@
         </block>
     
    <!--     <navigator url="../wxgroup/index"> <i-divider content="没有更多了,试试查找附近的团购群"></i-divider> </navigator> -->
+        <button class="btn" bindtap="openSetting" wx:if="{{showOpenBtn}}">开启定位为你推荐附近的团购</button>
 
 
     </view>

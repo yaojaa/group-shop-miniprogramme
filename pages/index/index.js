@@ -31,12 +31,32 @@ Page({
     },
     onLoad: function() {
 
-        this.getProList()
+        console.log('首页onload执行')
+
+
+        if(app.globalData.userInfo){
+
+              this.getProList()
 
         this.getFriendList()
 
         this.getloactionData()
 
+        }else{
+        console.log('首页onload redirectToLogin')
+
+           app.redirectToLogin()
+
+          }
+
+
+
+
+
+
+
+
+      
 
         // wx.getSetting({
         //   success :(res)=> {

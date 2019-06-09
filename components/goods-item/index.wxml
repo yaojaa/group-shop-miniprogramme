@@ -28,7 +28,8 @@
   </view>
     </view>
     <view class="goods-count">
-        <view class="count-item">
+        <view class="count-item" data-id="{{item.goods_id}}"  bindtap="gofans">
+
             <text class="num">{{item.pageview_count}}</text>
             <i-icon type="browse" /><text class="label">浏览人数</text>
         </view>

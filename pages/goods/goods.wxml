@@ -1,7 +1,7 @@
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff"  changeEndHeight="600"  showBackBar="true">
 
        <view slot="bottom" class="bar tab-box">
-           <image src="{{goods.user.headimg}}" class="avatar">
+           <image class="avatar" src="{{goods.user.headimg}}" class="avatar">
                 </image> 昵称 {{goods.user.nickname}}
     </view>
 
@@ -30,7 +30,7 @@
                 {{goods.goods_name}}
             </view>
             <view class="f12px text-info">访问人数{{goods.pageview_count
-}} 已售{{item.total_qty}} </view>
+}} 已售{{goods.total_qty}} </view>
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">

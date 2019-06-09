@@ -13,7 +13,7 @@ App({
                   if (res.code) {
                     //发起网络请求index/get_openid
                     wx.request({
-                      url: 'https://www.kaixinmatuan.cn/api/index/get_openid?appid=wx6ac9955f87c289f0&secret=250316f2d8d7bc841239fd11b538913c&js_code='+res.code+'&grant_type=authorization_code',
+                      url: 'https://www.kaixinmatuan.cn/api/index/get_openid?js_code='+res.code,
                       data: {
                         code: res.code
                       },
@@ -177,6 +177,15 @@ App({
      wx.redirectTo({
         url:'/pages/login/login'
       })
+
+
+    //  setTimeout(()=>{
+    //   wx.redirectTo({
+    //     url:'/pages/login/login'
+    //   })
+    // },2000)
+
+
   },
 
   /****checkssion*****/
@@ -229,7 +238,7 @@ App({
 
   onLaunch: function (option) {
 
-    console.group('启动检测---')
+    console.group('启动检测onLaunch---')
     console.log('option',option)
 
     /**记录用户打开的场景**/
@@ -257,6 +266,7 @@ App({
         }
 
 const userInfo = wx.getStorageSync('userInfo')
+console.log('userInfo',userInfo)
     if(userInfo){
 
       this.globalData.token = userInfo.token
@@ -272,38 +282,12 @@ const userInfo = wx.getStorageSync('userInfo')
      //                this.redirect2Home()
      //   }
 
-
     /**未登录或者缓存失效用户*/
-    }else{
-
-     Promise.all([this.getOpenId(),this.getUserInfoScopeSetting()]).then((result)=>{
-      console.log('result',result)
-       if(result[1]){
-                  this.getUserInfo().then((ures)=>{
-                    this.login_third(ures).then((res)=>{ 
-                       if(this.userLoginReadyCallback){
-                          this.userLoginReadyCallback(res.data.data)
-                        }
+    }else if(option.path  !=='pages/goods/goods'){
+      console.log('该跳转到登录')
                     
-                    })
-                    .catch( e => console.log(e) )
-
-                  })
-                }else{
-                  if(option.path =='pages/goods/goods' || option.path=='pages/login/login'){
-                    
-                      console.log('无授权停止',option.path =='pages/goods/goods' || option.path=='pages/login/login')
-                    
-                  }else{
-                   this.redirectToLogin()
-                  }
-                }
-    })
-
-
-
-
-
+      this.redirectToLogin()
+                
 
     }
 

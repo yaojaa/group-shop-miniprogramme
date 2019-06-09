@@ -1,4 +1,5 @@
 const util = require('../../utils/util')
+import secen from '../../utils/secen'
 
 const app = getApp()
 Page({
@@ -12,7 +13,8 @@ Page({
           loading:false,
           pagesize:10,
           cpage:1,
-          total:1
+          total:1,
+          secen:secen
         }
 
     },
@@ -21,6 +23,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        console.log(this.data.secen)
         this.id = options.id || 56
         this.getDataList()
     },
@@ -33,7 +36,7 @@ Page({
           if(res.data.code == 200){
             this.setData({
                 'list' : res.data.data.access_list,
-                'pullDownOpt.total' : res.data.data.page.totalpage,
+                'total' : res.data.data.page.total,
                 'user_count':res.data.data.user_count
             })
           }

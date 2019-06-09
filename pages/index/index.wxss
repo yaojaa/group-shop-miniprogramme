@@ -1,6 +1,6 @@
 /**index.wxss**/
 page{
-  height: 100vh;
+  background: #f8f8f8
 }
 
 .flex{
@@ -35,7 +35,7 @@ page{
 .product-item {
   margin: 20rpx;
   padding: 25rpx;
-  background: #f9f9f9;
+  background: #fff;
   position: relative;
   box-sizing: border-box;
   margin-bottom: 30rpx;
@@ -50,7 +50,8 @@ page{
 .item-title{
   font-size: 32rpx;
   padding: 20rpx 0 10rpx;
-  color: #333
+  color: #333;
+  font-weight: bold;
 }
 .item-des{
   font-size: 28rpx;
@@ -114,7 +115,9 @@ page{
 }
 
 .cover1{
-  width: 100%
+  width: 100%;
+    overflow: hidden;
+  border-radius: 3px
 }
 .cover{
   width: 100%;
@@ -125,11 +128,9 @@ page{
 .item-img-box-tow {
   display: inline-block;
   width: 50%;
-  height: 300rpx;
   overflow: hidden;
   padding: 3px;
   box-sizing: border-box;
-  border-radius: 3px
 
 }
 
