@@ -32,7 +32,7 @@
                         </van-cell>
                     </van-cell-group>
                 </van-radio-group>
-                <van-field disabled label="提货点" value="{{item.address}}" size="small" wx:else/>
+                <van-field readonly label="提货点" value="{{self_address[0].address}}" size="small" wx:else/>
                 
             </van-cell-group>
             <view class="flex align-center ph-df pt-df pb-xs">
