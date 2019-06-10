@@ -5,8 +5,8 @@ Page({
     data: {
         columns: [],
         comps: [],
-        express_company: '',
-        express_code: '',
+        express_company: '中通快递',
+        express_code: '75153068571982',
         action_remark: '',
         get_user_name: '',
         get_user_avatar: '',

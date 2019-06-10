@@ -10,13 +10,16 @@
     <view class="express-area" wx:if="{{checked}}">
         <van-cell-group custom-class="mv-sm">
             <van-field value="{{express_company}}" label="快递名称" placeholder="请选择快递名称" readonly="{{true}}" name="express_company" bindtap="handleEmsPopup" />
-            <van-field value="{{express_code}}" label="填写单号" placeholder="请输入运单号" type="number" name="express_code" bind:change="inputDuplex" data-key="express_code" />
-            <van-field value="{{action_remark}}" label="留言" placeholder="请输入留言信息" type="number" name="action_remark" bind:change="inputDuplex" data-key="action_remark"/>
+            <van-field value="{{express_code}}" label="填写单号" placeholder="请输入运单号" type="number" name="express_code" bind:change="inputDuplex" data-key="express_code" use-button-slot>
+              <navigator url="../ems-detail/index?name={{express_company}}&code={{express_code}}&id={{order_id}}" class="btn  primary sm hollow" slot="button" wx:if="{{express_code}}">
+                查询一下
+              </navigator>
+            </van-field>
+            <van-field value="{{action_remark}}" label="留言" placeholder="请输入留言信息" type="number" name="action_remark" bind:change="inputDuplex" data-key="action_remark" />
             <view class="hide">
                 <input value="{{id}}" name="order_refund_id" />
             </view>
         </van-cell-group>
-        <navigator url="../ems-detail/index?name={{express_company}}&code={{express_code}}&id={{order_id}}" style="margin: 15px" wx:if="{{express_code}}]" style="margin: 15px" wx:if="{{express_code}}"><button class="weui-btn weui-btn_primary ">查询一下</button></navigator>
     </view>
     <button style="margin: 15px" bindtap="send" class="weui-btn weui-btn_primary linenear_bg">确 定 发 货</button>
     <!--物流信息弹窗-->
