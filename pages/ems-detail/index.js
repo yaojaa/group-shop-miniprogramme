@@ -1,29 +1,53 @@
+const util = require('../../utils/util.js')
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        steps: [{
-                text: '快件已发货',
-                desc: '2019-07-10 09:30'
-            },
-            {
-                text: '物流状态',
-                desc: '2019-07-11 10:00'
-            },
-            {
-                text: '物流状态',
-                desc: '2019-07-12 12:40'
-            }
-        ]
+        express_company:'',
+        express_code:''
     },
-
+    checkExpress() {
+        wx.showLoading()
+        util.wx.get('/api/order/get_express_info', {
+            express_company: this.data.express_company,
+            express_code: this.data.express_code,
+            order_id: 12345
+        }).then(res => {
+            if (res.data.code == 200) {
+                this.setData({
+                    showTraces: true,
+                    traces: res.data.data.traces.reverse()
+                })
+            }
+            wx.hideLoading()
+        })
+    },
+    copyOrder(event) {
+        wx.setClipboardData({
+            data: event.currentTarget.dataset.text,
+            success: function(res) {
+                wx.getClipboardData({
+                    success: function(res) {
+                        wx.showToast({
+                            title: '复制成功'
+                        })
+                    }
+                })
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        this.setData({
+            express_company:options.name || '',
+            express_code:options.code || '',
+            order_id:options.id || ''
+        })
+        this.checkExpress()
     },
 
     /**
@@ -37,7 +61,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
+        
     },
 
     /**
