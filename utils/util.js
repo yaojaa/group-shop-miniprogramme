@@ -10,6 +10,7 @@ const config = {
 }
 
 const formatTime = date => {
+    var date = new Date(date);
     const year = date.getFullYear()
     const month = date.getMonth() + 1
     const day = date.getDate()
@@ -18,6 +19,14 @@ const formatTime = date => {
     const second = date.getSeconds()
 
     return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+const fmtDate  = obj => {
+    var date = new Date(obj);
+    var y = 1900 + date.getYear();
+    var m = "0" + (date.getMonth() + 1);
+    var d = "0" + date.getDate();
+    return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length);
 }
 
 const formatNumber = n => {
@@ -633,6 +642,7 @@ const setParentData = function(data) {
 
 module.exports = {
     formatTime,
+    fmtDate,
     inputDuplex,
     uploadPicture,
     distance,

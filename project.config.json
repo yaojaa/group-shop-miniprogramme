@@ -86,7 +86,7 @@
 					"id": 4,
 					"name": "订单详情启动",
 					"pathName": "pages/order-detail/index",
-					"query": "id=34",
+					"query": "id=38",
 					"scene": 1001
 				},
 				{
