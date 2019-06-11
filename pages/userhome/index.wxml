@@ -1,14 +1,5 @@
-<i-custom-bar showBackIcon="{{showIcon}}" backColor="transport" 
-bottomLayerBackColor="#ffffff" showBackBar="true" fixed 
-changeStartHeight="300"
-changeEndHeight="400"
-backTitle="{{info.store_name}}"
-scrollTop="{{scrollTop}}"
-back_tit_txt_color="#333333"
->
-
+<i-custom-bar showBackIcon="{{showIcon}}" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info.store_name}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
 </i-custom-bar>
-
 <view class="container cf">
     <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
         <block wx:for="{{imgUrls}}">
@@ -18,27 +9,27 @@ back_tit_txt_color="#333333"
         </block>
     </swiper>
     <view class="user-head">
-           <view class="right-icon">
-            <navigator url="../create_shop/index">
-            <i-icon type="setup" size="28" />  
-            </navigator>
-
-            <i-icon size="28" type="share" />
+        <view class="right-icon">
+           
+            
         </view>
-
-
         <view class="avatar">
             <image src="{{info._user.headimg}}" />
         </view>
-        <view class="name">{{info._user.nickname}}</view>
+        <view class="flex justify-between ph-sm" style="padding-top: 80rpx;">
+             <navigator url="../create_shop/index">
+                <i-icon type="setup" size="28" color="#999" />
+            </navigator>
+            <view class="name">{{info._user.nickname}}</view>
+            <button open-type="share" class="btn-reset"><i-icon size="28" type="share" color="#999"  /></button>
+        </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12">
             访问<text class="text-default">{{info._access_count}}人</text> 成交<text class="text-default">{{info._order_count}}</text> 笔
         </view>
-     
     </view>
     <view class="goods-box">
-        <navigator url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item flex-box" wx:for="{{goodsList}}" wx:key="index" >
+        <navigator url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item flex-box" wx:for="{{goodsList}}" wx:key="index">
             <image class="cover" src="{{item.goods_cover}}"></image>
             <view class="content">
                 <view class="title text-hide">{{item.goods_name}}</view>
@@ -51,24 +42,16 @@ back_tit_txt_color="#333333"
                 </view>
                 <view class="bottom text-justify">
                     <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}}</view>
-                    <view> <button data-id="{{item.goods_id}}"  class="btn buy linenear_bg">立即查看</button></view>
+                    <view> <button data-id="{{item.goods_id}}" class="btn buy linenear_bg">立即查看</button></view>
                 </view>
             </view>
         </navigator>
     </view>
-
     <i-load-more wx:if="{{loading}}" tip="加载中..." loading="{{ true }}" />
-
-       <view class="weui-footer">
-
-            <view class="weui-footer__links">
-
-            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>    
-
-            </view>
-
-            <view class="weui-footer__text">Copyright © 20018-2025 kaixinmatuan.cn</view>
-
+    <view class="weui-footer">
+        <view class="weui-footer__links">
+            <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>
         </view>
-
+        <view class="weui-footer__text">Copyright © 20018-2025 kaixinmatuan.cn</view>
+    </view>
 </view>

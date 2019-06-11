@@ -1,5 +1,5 @@
 @import "../../utils/weui.wxss";
-
+@import "../../css/common.wxss";
 .container{
   background-color: #f8f8f8;
   min-height: 100vh;
@@ -42,7 +42,7 @@
 
 }
 .user-head .name{
-	padding-top: 60rpx;
+
 	font-size: 20px;
 	color: #333
 }
