@@ -1,5 +1,4 @@
-<i-custom-bar fixed title="我的订单" backColor="#ffffff" showBackIcon="{{true}}"> </i-custom-bar>
-<view class="container gray-wrap cf" style="margin-top:120rpx;">
+<view class="container gray-wrap cf" >
     <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" swipe-threshold="{{4}}" color="#49b34d">
         <van-tab title="全部"></van-tab>
         <van-tab title="待付款"></van-tab>
@@ -14,12 +13,13 @@
                         总计：¥<text class="text-black">{{item.total_price}}</text>
                     </view>
                     <view class="flex justify-end align-center" slot="footer">
+                        <navigator url="../ems-detail/index?name={{item.express_company}}&code={{item.express_code}}&id={{item.order_id}}" class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.express_code}}">查看物流</navigator>
                         <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
                     </view>
                 </order-list>
             </block>
         </view>
-        <view class="no-content white-bg" style="height:calc(100vh - 200rpx)" wx:if="{{order_list.length ==0 && !loading}}">
+        <view class="no-content white-bg" style="height:calc(100vh - 88rpx)" wx:if="{{order_list.length ==0 && !loading}}">
             <view class="no-content-bd">
                 <image src="http://image.countinsight.com/front/img/test_none.png" class="no-content-icon"></image>
                 <view class="no-content-des"><text>您还没有相关订单</text></view>

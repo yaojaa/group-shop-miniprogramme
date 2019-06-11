@@ -61,14 +61,13 @@ Page({
             title: '确定要' + txt + '吗？',
             success: (res) => {
                 if (res.confirm) {
-                    util.wx.post('/api/seller/set_order_status', {
+                    util.wx.post('/api/user/set_order_status', {
                         opt,
                         order_id
                     }).then(res => {
                         if (res.data.code == 200) {
                             wx.showToast({ title: '订单操作成功' })
-                            this.getOrderList()
-                            this.getStatistics()
+                            this.getInfo()
                         } else {
                             wx.showToast({ title: '订单操作失败' })
                         }

@@ -449,6 +449,18 @@ button {
     margin-left: initial
 }
 
+.btn-reset {
+    padding: 0;
+    line-height: 1.4;
+    background: none !important;
+}
+
+.btn-reset::after,
+.btn-reset::before {
+    display: none !important;
+}
+
+
 .btn {
     position: relative;
     display: inline-flex;

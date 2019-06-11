@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "退款详情",
+    "navigationBarTitleText": "确认订单",
     "usingComponents":
     {
         "van-stepper": "../../vant/stepper/index",

@@ -13,7 +13,7 @@ Page({
         util.wx.get('/api/order/get_express_info', {
             express_company: this.data.express_company,
             express_code: this.data.express_code,
-            order_id: 12345
+            order_id: this.data.order_id
         }).then(res => {
             if (res.data.code == 200) {
                 this.setData({

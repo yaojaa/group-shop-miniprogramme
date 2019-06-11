@@ -49,11 +49,10 @@ Page({
                 loading: false
             }
         ],
-        shipped_order:0,
-        back_order:0,
-        showPop:false,
-        pop_name_arr: [
-             {
+        shipped_order: 0,
+        back_order: 0,
+        showPop: false,
+        pop_name_arr: [{
                 name: '导出名单'
             },
             {
@@ -61,19 +60,19 @@ Page({
             }
         ]
     },
-    showPopMenu(){
+    showPopMenu() {
 
-         this.setData({
-            showPop:true
-        })
-
-    },
-    handleCancel1(){
         this.setData({
-            showPop:false
+            showPop: true
+        })
+
+    },
+    handleCancel1() {
+        this.setData({
+            showPop: false
         })
     },
-    onShow:function(){
+    onShow: function() {
 
         this.getOrderList()
 
@@ -98,8 +97,8 @@ Page({
 
         this.setData({
             goods_id: optiton.id,
-            delivery_method:optiton.delivery_method,
-            goods_name:optiton.goods_name
+            delivery_method: optiton.delivery_method,
+            goods_name: optiton.goods_name
 
         })
     },
@@ -110,7 +109,7 @@ Page({
             cpage: 1,
             search_order_status: detail.key
         })
-   
+
         this.getOrderList()
     },
 
@@ -145,11 +144,11 @@ Page({
         const avatar = e.currentTarget.dataset.avatar
         const user_name = e.currentTarget.dataset.user_name
 
-        if(opt == 'toset_send' && this.data.delivery_method == 1){
+        if (opt == 'toset_send' && this.data.delivery_method == 1) {
 
 
             wx.navigateTo({
-                url:'../to-send/index?get_user_avatar='+avatar+'&get_user_name='+user_name+'&order_id='+order_id
+                url: '../to-send/index?get_user_avatar=' + avatar + '&get_user_name=' + user_name + '&order_id=' + order_id
             })
 
             return
@@ -161,24 +160,24 @@ Page({
 
                 if (res.confirm) {
                     util.wx.post('/api/seller/set_order_status', {
-                        opt,
-                        order_id
-                    }).then(res => {
-                        if (res.data.code == 200) {
-                            wx.showToast({ title: '订单操作成功' })
+                            opt,
+                            order_id
+                        }).then(res => {
+                            if (res.data.code == 200) {
+                                wx.showToast({ title: '订单操作成功' })
 
-                            this.getOrderList() 
-                            this.getStatistics()
+                                this.getOrderList()
+                                this.getStatistics()
 
 
-                        } else {
-                            wx.showToast({ title: '订单操作失败' })
+                            } else {
+                                wx.showToast({ title: '订单操作失败' })
 
-                        }
-                    })
-                    .catch(e=>{
+                            }
+                        })
+                        .catch(e => {
 
-                    })
+                        })
                 }
 
             }
@@ -187,7 +186,7 @@ Page({
 
     },
     //发货操作
-    sendGoods(){},
+    sendGoods() {},
 
 
     /**删除订单***/
@@ -272,19 +271,19 @@ Page({
     exportExcel() {
         wx.showToast({ title: '开始为你生成...', icon: 'none' })
 
-        util.wx.get('/api/seller/order_export_by_goods_id',{
-             goods_id: this.data.goods_id
-        }).then(res=>{
+        util.wx.get('/api/seller/order_export_by_goods_id', {
+            goods_id: this.data.goods_id
+        }).then(res => {
 
-          if(res.data.code == 200){
+            if (res.data.code == 200) {
 
-             wx.setClipboardData({
+                wx.setClipboardData({
                     data: res.data.data.filepath,
                     success: function(res) {
                         wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
                     }
                 })
-          }
+            }
 
 
         })
@@ -307,7 +306,7 @@ Page({
                 goods_id: this.data.goods_id,
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
-                search_order_status: this.data.search_order_status, 
+                search_order_status: this.data.search_order_status,
                 pagesize: 80
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
             }).then((res) => {

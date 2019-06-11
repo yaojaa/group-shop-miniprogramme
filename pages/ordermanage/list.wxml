@@ -1,43 +1,36 @@
-<i-custom-bar fixed showBackIcon="true" backIconColor="#333333" backColor="#ffffff" title="订单管理"> </i-custom-bar>
-<view class="container mtop100">
+<view class="container">
     <view class="order-title text-primary">
-        <navigator url="/pages/goods/goods?goods_id={{goods_id}}">
+        <navigator url="/pages/goods/goods?goods_id={{goods_id}}" hover-class="none">
             <text class="goods_title">{{goods_name}}</text>
         </navigator>
         <view class="actionsButtons">
             <view>
-             <!--    <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">一键复制收货人地址</button>
+                <!--    <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">一键复制收货人地址</button>
                 <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">导出名单</button> -->
-
-                  <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu"><i-icon size="20" type="other" /></i-button>
-
-                               <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}"  bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx"  bind:click="handleClickItem1" />
-
-
-              <!--   <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
-
-
-       <!--            <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
+                <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
+                    <i-icon size="20" type="other" />
+                </i-button>
+                <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}" bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx" bind:click="handleClickItem1" />
+                <!--   <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
+                <!--            <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
             <view slot="open">展开</view>
             <view slot="close">收起</view>
         </i-switch> -->
             </view>
         </view>
     </view>
-<view class="tabsArea">
-    <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-        <i-tab key="0" title="订单（{{valid_order.count}}）"></i-tab>
-        <i-tab key="3" title="未发货（{{back_order.count}}）"></i-tab>
-        <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
-    </i-tabs>
-</view>
-
-<!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
+    <view class="tabsArea">
+        <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
+            <i-tab key="0" title="订单（{{valid_order.count}}）"></i-tab>
+            <i-tab key="3" title="未发货（{{back_order.count}}）"></i-tab>
+            <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
+        </i-tabs>
+    </view>
+    <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
  -->
     <view class="totalCount">
         <block wx:if="{{tab == 0 && valid_order.spec }}">
             <view class="tips_title">备货统计</view>
-
             <view class="spec text-justify " wx:key="index" wx:for="{{valid_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text>
@@ -45,8 +38,7 @@
             </view>
         </block>
         <block wx:if="{{tab == 3 && back_order.spec.length}}">
-                    <view class="tips_title">未发货统计</view>
-
+            <view class="tips_title">未发货统计</view>
             <view class="spec text-justify" wx:key="index" wx:for="{{back_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text>
@@ -55,7 +47,6 @@
         </block>
         <block wx:if="{{tab == 4 && shipped_order.spec.length}}">
             <view class="tips_title">已发货统计</view>
-
             <view class="spec text-justify" wx:key="index" wx:for="{{shipped_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text></view>
@@ -71,11 +62,9 @@
             <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
                 <text class="tel" bindlongpress="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile}}">{{item.user.mobile}}</text></view>
             <view class="order-status">
-
-                  <text class="color_{{item.order_status}}"> {{item.order_status_txt}}
-                  </text>
-                
-                        </view>
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}
+                </text>
+            </view>
         </view>
         <view class="order-bd">
             <view class="type text-justify  scale-b-1px" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="g">
@@ -86,7 +75,7 @@
                 <text class="address" data-text="{{item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].qty}}" bindtap="copy">
                     收件人：{{item.consignee}} 复制
                     电话：{{item.mobile}}
-                    地址：{{item.address}} 
+                    地址：{{item.address}}
                 </text>
             </view>
             <view class="remark scale-b-1px" wx:if="{{item.create_remark}}">
@@ -111,16 +100,11 @@
                 {{g.spec_key_name}} ×{{g.goods_num}}
             </text>
             </view> -->
-
             <block wx:for="{{item.seller_next_handle}}" wx:key="{{index}}" wx:for-item="btn">
-
-            <form  bindsubmit="formSubmit" report-submit="true">
-                <button data-avatar="{{item.user.headimg}}"  data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" data-opt="{{btn.opt}}" data-txt="{{btn.txt}}" bindtap="orderActions">{{btn.txt}}</button>
-            </form>
+                <form bindsubmit="formSubmit" report-submit="true">
+                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" data-opt="{{btn.opt}}" data-txt="{{btn.txt}}" bindtap="orderActions">{{btn.txt}}</button>
+                </form>
             </block>
-
-
-            
         </view>
         <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
         <view class="note-box">
