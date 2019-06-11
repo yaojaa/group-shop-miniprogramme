@@ -261,7 +261,7 @@ Page({
                         goods_spec: d.goods.goods_spec.length == 0 ? d.goods.goods_images : d.goods.goods_spec,
                         seller:d.goods.user,
                         hw_data: d.hw_data,
-                        // endTime: res.data.data.goods.sell_end_time,
+                        endTime: d.goods.end_time,
                         countdownTime: new Date(d.goods.end_time * 1000).getTime()
                     })
 
@@ -830,17 +830,19 @@ Page({
     },
     copyDetail() {
         var price = '规格：\n'
+        console.log(this.data.goods_spec)
         this.data.goods_spec.forEach((item, index) => {
-            price += item.key_name + ' \b 💰' + item.price + "元\n"
+            price += item.spec_name + ' \b 💰' + item.spec_price + "元\n"
         })
         var userList = []
         var len = this.data.orderUsers.length
         this.data.orderUsers.forEach((item, index) => {
             let spec = ''
-            item.specs.forEach((k, v) => {
-                spec += k.spec_key_name + ' × ' + k.goods_num + '\b '
+            console.log(item)
+            item.spec.forEach((k, v) => {
+                spec += k.spec_name + ' × ' + k.qty + '\b '
             })
-            userList.unshift((len - index) + '.' + item.user.nickname + " \b " + spec + (item.pay_status == 1 ? "(已付)" : "未付"))
+            userList.unshift(item.create_number + '.' + item.nickname + " \b " + spec + (item.pay_status == 1 ? "(已付)" : "未付"))
         })
         var content = this.data.goods.goods_name + "\n" + this.data.goods.goods_content + "\n" +
             price +
