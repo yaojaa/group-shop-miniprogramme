@@ -50,7 +50,7 @@ Page({
     },
     send() {
         util.wx.post('/api/seller/set_order_status', {
-            order_id: this.order_id,
+            order_id: this.data.order_id,
             opt: 'toset_send',
             action_remark: this.data.action_remark,
             express_company: this.data.express_company,

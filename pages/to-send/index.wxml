@@ -1,4 +1,3 @@
-<i-custom-bar title="给{{get_user_name}}发货" showBackIcon="{{true}}"> </i-custom-bar>
 <view class="container gray-wrap cf">
     <van-cell-group custom-class="mv-sm">
         <van-cell title="是否发送快递单号">

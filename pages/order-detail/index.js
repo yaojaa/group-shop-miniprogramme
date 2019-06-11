@@ -67,8 +67,7 @@ Page({
                     }).then(res => {
                         if (res.data.code == 200) {
                             wx.showToast({ title: '订单操作成功' })
-                            this.getOrderList()
-                            this.getStatistics()
+                            this.getInfo()
                         } else {
                             wx.showToast({ title: '订单操作失败' })
                         }

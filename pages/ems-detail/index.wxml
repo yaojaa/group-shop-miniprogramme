@@ -1,4 +1,3 @@
-<i-custom-bar title="物流详情" showBackIcon="{{true}}"> </i-custom-bar>
 <view class="container gray-wrap cf">
     <view class="p-df white-bg flex mv-sm align-center">
         <view class="wuliu-box">

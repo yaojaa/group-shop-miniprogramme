@@ -1,13 +1,13 @@
-<i-custom-bar title="订单详情" tit_txt_color="#ffffff" backColor="#49b34d" showBackIcon="{{true}}"> </i-custom-bar>
 <view class="container gray-wrap cf">
     <view class="order-fixed-footer flex justify-end ph-df pv-sm shadow-df">
         <!--         <block wx:for="{{info.order_action}}" wx:key="{{index}}">
             <button class="btn round primary w-min-lg ml-sm" bindtap="handleConfirmReceipt" data-status="{{item.action_status}}">{{item.action_status_txt}}</button>
         </block> -->
-        <button class="btn round primary hollow w-min-big ml-sm" data-opt="{{item.action_status}}" data-order_id="{{id}}" data-txt="{{item.action_status_txt}}" bindtap="orderActions" wx:for="{{info.order_action}}" wx:key="{{index}}">{{item.action_status_txt}}</button>
+        <navigator url="../ems-detail/index?name={{info.express_company}}&code={{info.express_code}}&id={{info.order_id}}" class="btn round primary hollow w-min-big ml-sm" wx:if="{{info.express_code}}">查看物流</navigator>
+        <button class="btn round primary hollow w-min-big ml-sm" data-opt="{{item.opt}}" data-order_id="{{id}}" data-txt="{{item.txt}}" bindtap="orderActions" wx:for="{{info.user_next_handle}}" wx:key="{{index}}">{{item.txt}}</button>
     </view>
     <view class="order-wrap">
-        <view class="primary ph-df pv-sm text-white mb-sm">
+        <view class="primary ph-df pv-sm text-white mb-sm  flex align-center" style="min-height: 120rpx">
             <view class="text-xl">{{info.order_status_txt}}</view>
             <!--             <view class="text-sm">59分钟订单关闭</view>
  -->
@@ -49,8 +49,8 @@
                 </view>
             </view>
             <view class="goods-panel-bd ">
-                <view class="goods-panel-item pv-df solid-top" wx:for="{{info.order_detail}}" wx:key="{{index}}">
-                    <navigator url="../goods-detail/index?id={{item.goods_id}}" hover-class="none" class="flex">
+                <view class="goods-panel-item " wx:for="{{info.order_detail}}" wx:key="{{index}}">
+                    <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none" class="flex pv-df">
                         <image src="{{item.goods_cover}}" class="cover mr-sm"></image>
                         <view class="flex-sub por">
                             <view class="text-hide two-line text-black bold title">
@@ -64,6 +64,7 @@
                             </view>
                         </view>
                     </navigator>
+                    <view class="solid-top"></view>
                 </view>
             </view>
         </view>

@@ -1,4 +1,5 @@
 {
+    "navigationBarTitleText": "确认发货",
     "usingComponents":
     {
         "van-cell": "../../vant/cell/index",
