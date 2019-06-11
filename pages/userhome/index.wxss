@@ -42,7 +42,6 @@
 
 }
 .user-head .name{
-
 	font-size: 20px;
 	color: #333
 }
