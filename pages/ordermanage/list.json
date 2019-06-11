@@ -18,7 +18,8 @@
         "i-input": "../../iView/input/index",
         "i-cell": "../../iView/input/index",
         "i-custom-bar": "../../components/custom-bar/index",
-        "i-switch": "../../iView/switch/index"
+        "i-switch": "../../iView/switch/index",
+        "i-pop-menu": "../../iView/pop-menu/index"
 
     }
 

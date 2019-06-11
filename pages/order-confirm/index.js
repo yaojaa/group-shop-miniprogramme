@@ -214,6 +214,7 @@ Page({
         this.setData({
             loading: true
         })
+        wx.showLoading()
 
         const specs = this.data.cart.map(item => {
             return {
@@ -251,6 +252,9 @@ Page({
             this.setData({
                 loading: false
             })
+
+            wx.hideLoading()
+
 
             if (res.data.code == 200) {
                 this.data.order_id = res.data.data.order_id;

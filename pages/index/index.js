@@ -100,13 +100,17 @@ Page({
                         })
                     })
                     .catch(e=>{
-                        console.log(e)
-                            wx.showToast({
-                                title: '获取定位失败，是不是信号弱或者打开GPS'
-                            })
+                        console.log(e.errMsg)
+                        if(e.errMsg.indexOf('auth')){
+
                             this.setData({
-                                isloading: false,
                                 showOpenBtn:true
+                            })
+
+                        }
+                          
+                            this.setData({
+                                isloading: false
                             })
                     })
     },

@@ -852,4 +852,10 @@
   margin:0 auto;
   overflow: hidden
 }
+.avatar{
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%
+}
 

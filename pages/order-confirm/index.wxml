@@ -1,5 +1,5 @@
-<i-custom-bar showBackIcon="{{true}}" fixed backImage="http://img.atomstone.com/top_bar_bg.jpg" title="确认订单"> </i-custom-bar>
-<view class="container cf mtop100">
+
+<view class="container cf ">
     <view class="fixed-btn text-justify">
         <view class="flex align-center">
             <view class="mh-df text-muted text-sm">
@@ -12,7 +12,7 @@
             </view>
         </view>
         <form bindsubmit="formSubmit" report-submit="true" data-fn="createOrder">
-            <button class="btn primary w-min-lg lg" formType="submit" loading="{{loading}}" disabled="{{loading}}">去付款</button>
+            <button class="btn primary w-min-lg lg" formType="submit" loading="{{loading}}" disabled="{{loading}}">立即支付</button>
         </form>
     </view>
     <view class="content-wrap">
@@ -27,7 +27,7 @@
                 <van-radio-group value="{{ address_id }}" bind:change=""  wx:if="{{self_address.length>1}}">
                     <van-cell-group>
                         <van-cell clickable data-name="{{item.self_address_id}}" bind:click="onClick" size="small" wx:for="{{self_address}}" wx:key="{{index}}" value-class="self-ad-radio" bind:click="onAddressChange">
-                            <view slot="title" class="flex"><text class="self-ad-label">提货点{{index+1}}</text><text class="self-ad-content flex-sub">{{item.address}}</text></view>
+                            <view slot="title" class="flex"><text class="self-ad-label">提货点{{index+1}}</text><text class="self-ad-content flex-sub">{{item.name}} {{item.address}}</text></view>
                             <van-radio name="{{item.self_address_id}}" checked-color="#49b34d"/>
                         </van-cell>
                     </van-cell-group>

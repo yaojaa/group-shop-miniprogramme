@@ -286,11 +286,18 @@ Page({
 
         wx.chooseLocation({
             success: (e) => {
-                console.log(e)
-                if (!e.name || !e.address) 
-                        wx.hideLoading()
+                console.log('chooseLocation',e)
+                if (!e.name || !e.address) {
+                    wx.hideLoading()
+                    wx.showToast({
+                        title:'请选择地点',
+                        icon:'none'
+                    })
 
                     return ;
+
+                }
+
                 wx.request({
                     url: 'https://apis.map.qq.com/ws/geocoder/v1/?key=FKRBZ-RK4WU-5XMV4-B44DB-D4LOH-G3F73&get_poi=1',
                     data: {

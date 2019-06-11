@@ -142,7 +142,8 @@
         </block>
     
    <!--     <navigator url="../wxgroup/index"> <i-divider content="没有更多了,试试查找附近的团购群"></i-divider> </navigator> -->
-        <button class="btn" bindtap="openSetting" wx:if="{{showOpenBtn}}">开启定位为你推荐附近的团购</button>
+
+<i-button  bindtap="openSetting" wx:if="{{showOpenBtn}}" bind:click="handleClick" type="success" shape="circle" size="small"><i-icon size="22" type="coordinates" />开启定位为你推荐附近的好物</i-button>
 
 
     </view>

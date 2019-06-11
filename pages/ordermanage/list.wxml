@@ -9,7 +9,9 @@
              <!--    <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">一键复制收货人地址</button>
                 <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">导出名单</button> -->
 
-                  <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">辅助功能</button>
+                  <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu"><i-icon size="20" type="other" /></i-button>
+
+                               <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}"  bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx"  bind:click="handleClickItem1" />
 
 
               <!--   <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
@@ -22,45 +24,52 @@
             </view>
         </view>
     </view>
-
+<view class="tabsArea">
     <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
         <i-tab key="0" title="订单（{{valid_order.count}}）"></i-tab>
         <i-tab key="3" title="未发货（{{back_order.count}}）"></i-tab>
         <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
     </i-tabs>
+</view>
 
 <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
  -->
     <view class="totalCount">
-        <view class="tips_title">有效的统计单</view>
-        <block wx:if="{{tab == 0 }}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{valid_order.spec}}">
+        <block wx:if="{{tab == 0 && valid_order.spec }}">
+            <view class="tips_title">备货统计</view>
+
+            <view class="spec text-justify " wx:key="index" wx:for="{{valid_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text>
                 </view>
             </view>
         </block>
-        <block wx:if="{{tab == 3}}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{back_order.spec}}">
+        <block wx:if="{{tab == 3 && back_order.spec.length}}">
+                    <view class="tips_title">未发货统计</view>
+
+            <view class="spec text-justify" wx:key="index" wx:for="{{back_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text>
                 </view>
             </view>
         </block>
-        <block wx:if="{{tab == 4}}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipped_order.spec}}">
+        <block wx:if="{{tab == 4 && shipped_order.spec.length}}">
+            <view class="tips_title">已发货统计</view>
+
+            <view class="spec text-justify" wx:key="index" wx:for="{{shipped_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text></view>
             </view>
         </block>
     </view>
-    <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="index" wx:for-index="bindex">
+    <view class="order-item" wx:for="{{dataList}}" wx:key="index" wx:for-index="bindex">
         <view class="order-hd">
             <view class="number">
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
+                <text class="create_number">{{item.create_number}}</text>
             </view>
-            <view class="user-info"><text class="name">{{item.create_number}}. {{item.consignee}}</text>
-                <text class="tel" bindlongpress="calluser" data-text="{{item.mobile}}" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
+            <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
+                <text class="tel" bindlongpress="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile}}">{{item.user.mobile}}</text></view>
             <view class="order-status">
 
                   <text class="color_{{item.order_status}}"> {{item.order_status_txt}}
@@ -74,17 +83,19 @@
                 <view class="text-info">¥ {{g.total_price}} </view>
             </view>
             <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}">
-                <text class="address" data-text="{{item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].qty}}" bindlongpress="copy">
-                    {{item.address}} （长按复制）
+                <text class="address" data-text="{{item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].qty}}" bindtap="copy">
+                    收件人：{{item.consignee}} 复制
+                    电话：{{item.mobile}}
+                    地址：{{item.address}} 
                 </text>
             </view>
             <view class="remark scale-b-1px" wx:if="{{item.create_remark}}">
-                <text class="text-danger" selectable="true" data-text="{{item.create_remark}}" bindlongpress="copy" data-text="{{item.create_remark}} ">
+                <text class="text-danger" selectable="true" data-text="{{item.create_remark}}" bindtap="copy" data-text="{{item.create_remark}} ">
                     留言：{{item.create_remark}}
                 </text>
             </view>
             <view class="total text-justify scale-b-1px">
-                <view>总金额： <text class="warning-text f18">¥{{item.pay_price}} </text>
+                <view><text class="warning-text f18">¥{{item.pay_price}} </text>
                     <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="error-text" wx:if="{{item.pay_status==0}}">待支付（30分钟不支付将自动关闭）</text>
                     <text class="error-text" wx:if="{{item.pay_status==2}}">支付失败</text>

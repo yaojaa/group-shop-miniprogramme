@@ -2,9 +2,7 @@
 page{
 	background: #f8f8f8
 }
-.container{
-	margin-top: 140rpx
-}
+
 .label-primary{
 	border-radius: 4rpx;
 	font-size: 20rpx;

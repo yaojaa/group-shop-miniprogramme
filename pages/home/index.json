@@ -4,6 +4,8 @@
     "navigationBarTitleText": "开心麻团儿 让开团更简单",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true,
+    "navigationStyle": "custom",
+
     "window":
     {
         "backgroundTextStyle": "dark"

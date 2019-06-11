@@ -50,8 +50,28 @@ Page({
             }
         ],
         shipped_order:0,
-        back_order:0
+        back_order:0,
+        showPop:false,
+        pop_name_arr: [
+             {
+                name: '导出名单'
+            },
+            {
+                name: '群发通知'
+            }
+        ]
+    },
+    showPopMenu(){
 
+         this.setData({
+            showPop:true
+        })
+
+    },
+    handleCancel1(){
+        this.setData({
+            showPop:false
+        })
     },
     onShow:function(){
 

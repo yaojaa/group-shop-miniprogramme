@@ -1,4 +1,4 @@
-{
+{   "navigationStyle": "custom",
     "usingComponents":
     {
         "i-input-number": "../../iView/input-number/index",
