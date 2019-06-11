@@ -830,25 +830,23 @@ Page({
     },
     copyDetail() {
         var price = '规格：\n'
-        console.log(this.data.goods_spec)
         this.data.goods_spec.forEach((item, index) => {
             price += item.spec_name + ' \b 💰' + item.spec_price + "元\n"
         })
         var userList = []
         var len = this.data.orderUsers.length
         var order_status = [ // -3:已删除,-2:已关闭, -1:已取消,0:待付款,1:已付款2:待发货3:待收货4:已完成
-                '已删除',
-                '已关闭',
-                '已取消',
-                '待付款',
-                '已付款',
-                '待发货',
-                '待收货',
-                '已完成',
+                '', // -3
+                '', // -2
+                '', // -1
+                '', // 0
+                '💰',// 1
+                '',  // 2
+                '',  // 3
+                '',  // 4
             ]
         this.data.orderUsers.forEach((item, index) => {
             let spec = ''
-            console.log(item)
             item.spec.forEach((k, v) => {
                 spec += k.spec_name + ' × ' + k.qty + '\b '
             })
