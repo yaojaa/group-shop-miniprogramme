@@ -36,7 +36,7 @@ Page({
     },
     _set_order_status() {
 
-        util.wx.get('/api/seller/set_order_status', {
+        util.wx.get('/api/user/set_order_status', {
                 "order_code": order_id,
                 "opt": opt
             })
@@ -116,7 +116,7 @@ Page({
             title: '确定要' + txt + '吗？',
             success: (res) => {
                 if (res.confirm) {
-                    util.wx.post('/api/seller/set_order_status', {
+                    util.wx.post('/api/user/set_order_status', {
                         opt,
                         order_id
                     }).then(res => {
