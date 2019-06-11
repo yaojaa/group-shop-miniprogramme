@@ -836,13 +836,23 @@ Page({
         })
         var userList = []
         var len = this.data.orderUsers.length
+        var order_status = [ // -3:已删除,-2:已关闭, -1:已取消,0:待付款,1:已付款2:待发货3:待收货4:已完成
+                '已删除',
+                '已关闭',
+                '已取消',
+                '待付款',
+                '已付款',
+                '待发货',
+                '待收货',
+                '已完成',
+            ]
         this.data.orderUsers.forEach((item, index) => {
             let spec = ''
             console.log(item)
             item.spec.forEach((k, v) => {
                 spec += k.spec_name + ' × ' + k.qty + '\b '
             })
-            userList.unshift(item.create_number + '.' + item.nickname + " \b " + spec + (item.pay_status == 1 ? "(已付)" : "未付"))
+            userList.unshift(item.create_number + '.' + item.nickname + " \b " + spec + order_status[item.order_status + 3])
         })
         var content = this.data.goods.goods_name + "\n" + this.data.goods.goods_content + "\n" +
             price +
