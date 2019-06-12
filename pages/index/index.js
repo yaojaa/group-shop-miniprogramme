@@ -34,29 +34,29 @@ Page({
         console.log('首页onload执行')
 
 
-        if(app.globalData.userInfo){
+        if (app.globalData.userInfo) {
 
-              this.getProList()
+            this.getProList()
 
-        this.getFriendList()
+            this.getFriendList()
 
-        this.getloactionData()
+            this.getloactionData()
 
-        }else{
-        console.log('首页onload redirectToLogin')
+        } else {
+            console.log('首页onload redirectToLogin')
 
-           app.redirectToLogin()
+            app.redirectToLogin()
 
-          }
-
-
+        }
 
 
 
 
 
 
-      
+
+
+
 
         // wx.getSetting({
         //   success :(res)=> {
@@ -81,38 +81,38 @@ Page({
     getloactionData() {
 
 
-         util.getUserloaction(res => {
-                        console.log('经纬度：', res)
-                        this.data.latitude = res.latitude,
-                        this.data.longitude = res.longitude
-                        app.globalData.lat = res.latitude
-                        app.globalData.lng = res.longitude
+        util.getUserloaction(res => {
+                console.log('经纬度：', res)
+                this.data.latitude = res.latitude,
+                    this.data.longitude = res.longitude
+                app.globalData.lat = res.latitude
+                app.globalData.lng = res.longitude
 
-                        this.getProListBylocation()
+                this.getProListBylocation()
+            })
+
+
+            .then(res => {
+                this.setData({
+                    userloaction: res,
+                    latitude: res.latitude,
+                    longitude: res.longitude
+                })
+            })
+            .catch(e => {
+                console.log(e.errMsg)
+                if (e.errMsg.indexOf('auth')) {
+
+                    this.setData({
+                        showOpenBtn: true
                     })
-                    
 
-                    .then(res => {
-                        this.setData({
-                            userloaction: res,
-                            latitude: res.latitude,
-                            longitude: res.longitude
-                        })
-                    })
-                    .catch(e=>{
-                        console.log(e.errMsg)
-                        if(e.errMsg.indexOf('auth')){
+                }
 
-                            this.setData({
-                                showOpenBtn:true
-                            })
-
-                        }
-                          
-                            this.setData({
-                                isloading: false
-                            })
-                    })
+                this.setData({
+                    isloading: false
+                })
+            })
     },
 
     openSetting() {
@@ -130,7 +130,7 @@ Page({
                         title: '获取定位授权' + res.authSetting['scope.userLocation']
                     })
                     this.setData({
-                        showOpenBtn:false
+                        showOpenBtn: false
                     })
                     this.getloactionData()
 
