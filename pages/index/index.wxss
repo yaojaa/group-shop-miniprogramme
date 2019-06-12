@@ -1,7 +1,4 @@
-/**index.wxss**/
-page{
-  background: #f8f8f8
-}
+@import "../../css/common.wxss";
 
 .flex{
   display: flex;
@@ -203,7 +200,7 @@ page{
 }
 .frind-list{
   font-size: 12px;
-  padding: 30px
+  padding: 30rpx
 }
 .frind-list .tit{
   margin-bottom: 10px
@@ -212,7 +209,7 @@ page{
 
 .case-hd {
     display: flex;
-    padding: 8px 0;
+    padding: 30rpx 0;
     border-top:1px solid #f8f8f8 
 }
 
@@ -256,4 +253,5 @@ page{
 .shop-info .address {
     font-size: 20rpx;
     color: #666;
+    padding-top: 6rpx;
 }
