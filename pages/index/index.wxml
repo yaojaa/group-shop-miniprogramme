@@ -29,9 +29,9 @@
         <block wx:for="{{proList}}" wx:key="{{index}}">
             <view class='product-item'>
                 <view class='item-body'>
-                    <view class="clearfix">
+                    <view class="flex align-center mb-xs">
                         <view class="item-avatar">
-                            <navigator url="../userhome/index">
+                            <navigator url="../userhome/index" hover-class="none">
                                 <image class="avatar" src="{{item.user.headimg}}" />
                             </navigator>
                         </view>
@@ -70,7 +70,7 @@
                             </view>
                         </scroll-view> -->
                     </view>
-                    <view class='item-des'><text>{{item.goods_content}}</text></view>
+                    <view class='item-des mt-xs'><text>{{item.goods_content}}</text></view>
                     <view class="buyer-list text-justify">
                         <view class="flex-box align-center">
                             <view class="avatar-group">
@@ -84,19 +84,19 @@
         </block>
         <block>
             <view class="frind-list mt-df" wx:if="{{friendList.length}}">
-                <view class="tit bold f14">朋友都在团</view>
+                <view class="tit bolds f16">朋友都在团</view>
                 <view class="case-hd" wx:for="{{friendList}}" wx:key="{{index}}">
                     <image src="{{item.headimg}}" class="avatar"></image>
                     <view class="shop-info">
                         <view class="title">
-                            <view class="name">{{item.nickname}}
+                            <view class="name f14">{{item.nickname}}
                             </view>
                             <view class="right">
                                 <view class="date">{{item.addtime}}</view>
                                 <view class="iconfont icon-right text-sm text-muted"></view>
                             </view>
                         </view>
-                        <view class="address">
+                        <view class="address f12">
                             参团了 <text class="bold"> {{item.goods_name}} </text>
                             {{item.spec_name}} +{{item.qty}}
                         </view>
