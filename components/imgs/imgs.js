@@ -18,9 +18,29 @@ Component({
     minScaleVal: 50, //最小缩放值
     minXYVale: 100,//xy轴最小运动值
     checkImgDuration: 0, // 查看大图轮播持续时间
+    timer: null
   },
   ready(){
     // this.init();
+  },
+
+  pageLifetimes: {
+    show: function() {
+      // 页面被展示
+      if(this.data.imgsPath.length > 1) {
+        if(this.data.index == this.data.imgsPath.length - 1){
+          this.data.index = 0;
+        }else{
+          this.data.index ++;
+        }
+
+        this.animationFun(this.getRandom());
+      }
+    },
+    hide: function() {
+      // 页面被隐藏
+      this.data.timer && clearTimeout(this.data.timer);
+    }
   },
 
   methods: {
@@ -173,7 +193,7 @@ Component({
         this.setData({
           img: img
         }, () => {
-          setTimeout(() => {
+          this.data.timer = setTimeout(() => {
 
             if(this.data.index == this.data.imgsPath.length - 1){
               this.data.index = 0;

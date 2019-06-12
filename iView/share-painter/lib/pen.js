@@ -32,11 +32,11 @@ export default class Painter {
     this._doClip(this.data.borderRadius, width, height);
     if (!bg) {
       // 如果未设置背景，则默认使用白色
-      this.ctx.setFillStyle('#fff');
+      this.ctx.fillStyle = '#fff';
       this.ctx.fillRect(-(width / 2), -(height / 2), width, height);
     } else if (bg.startsWith('#') || bg.startsWith('rgba') || bg.toLowerCase() === 'transparent') {
       // 背景填充颜色
-      this.ctx.setFillStyle(bg);
+      this.ctx.fillStyle = bg;
       this.ctx.fillRect(-(width / 2), -(height / 2), width, height);
     } else {
       // 背景填充图片
@@ -77,8 +77,8 @@ export default class Painter {
       const r = Math.min(borderRadius.toPx(), width / 2, height / 2);
       // 防止在某些机型上周边有黑框现象，此处如果直接设置 setFillStyle 为透明，在 Android 机型上会导致被裁减的图片也变为透明， iOS 和 IDE 上不会
       // setGlobalAlpha 在 1.9.90 起支持，低版本下无效，但把 setFillStyle 设为了 white，相对默认的 black 要好点
-      this.ctx.setGlobalAlpha(0);
-      this.ctx.setFillStyle('white');
+      this.ctx.globalAlpha = 0;
+      this.ctx.fillStyle = 'white';
       this.ctx.beginPath();
       this.ctx.arc(-width / 2 + r, -height / 2 + r, r, 1 * Math.PI, 1.5 * Math.PI);
       this.ctx.lineTo(width / 2 - r, -height / 2);
@@ -95,7 +95,7 @@ export default class Painter {
           getApp().systemInfo.platform === 'ios')) {
         this.ctx.clip();
       }
-      this.ctx.setGlobalAlpha(1);
+      this.ctx.globalAlpha = 1;
     }
   }
 
@@ -123,8 +123,8 @@ export default class Painter {
       r = 0;
     }
     const lineWidth = borderWidth.toPx();
-    this.ctx.setLineWidth(lineWidth);
-    this.ctx.setStrokeStyle(borderColor || 'black');
+    this.ctx.lineWidth = lineWidth;
+    this.ctx.strokeStyle = borderColor || 'black';
     this.ctx.beginPath();
     this.ctx.arc(-width / 2 + r, -height / 2 + r, r + lineWidth / 2, 1 * Math.PI, 1.5 * Math.PI);
     this.ctx.lineTo(width / 2 - r, -height / 2 - lineWidth / 2);
@@ -283,7 +283,7 @@ export default class Painter {
       height,
       extra,
     } = this._preProcess(view);
-    this.ctx.setFillStyle(view.css.color || 'black');
+    this.ctx.fillStyle = view.css.color || 'black';
     const { lines, lineHeight } = extra;
     const preLineLength = Math.round(view.text.length / lines);
     let start = 0;
@@ -354,7 +354,7 @@ export default class Painter {
           this.ctx.lineTo(x + measuredWith, y - fontSize / 3);
         }
         this.ctx.closePath();
-        this.ctx.setStrokeStyle(view.css.color);
+        this.ctx.strokeStyle = view.css.color;
         this.ctx.stroke();
       }
     }
@@ -369,7 +369,7 @@ export default class Painter {
       width,
       height,
     } = this._preProcess(view);
-    this.ctx.setFillStyle(view.css.color);
+    this.ctx.fillStyle = view.css.color;
     this.ctx.fillRect(-(width / 2), -(height / 2), width, height);
     this.ctx.restore();
     this._doBorder(view, width, height);
