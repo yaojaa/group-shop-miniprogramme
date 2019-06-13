@@ -74,7 +74,7 @@
                 </view>
             </view>
         </view>
-        <!--   <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
+        <!-- <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
             <i-cell  label="快递邮寄 送货上门" i-class="address-item">
             </i-cell>
         </view> -->
