@@ -1,5 +1,5 @@
 const util = require('../../utils/util.js')
-
+const app = getApp()
 Page({
 
     /**
@@ -20,7 +20,8 @@ Page({
         loading: false,
         store_id: '',
         info: {},
-        scrollTop: 0
+        scrollTop: 0,
+        showSetting:false
 
     },
     toSetting() {
@@ -68,7 +69,8 @@ Page({
                     console.log(res)
 
                     this.setData({
-                        info: res.data.data
+                        info: res.data.data,
+                        showSetting: res.data.data.user_id == app.globalData.userInfo.user_id? true:false
                     })
 
 

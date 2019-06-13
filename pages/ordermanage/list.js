@@ -165,7 +165,6 @@ Page({
                         }).then(res => {
                             if (res.data.code == 200) {
                                 wx.showToast({ title: '订单操作成功' })
-
                                 this.getOrderList()
                                 this.getStatistics()
 
@@ -307,7 +306,7 @@ Page({
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
                 search_order_status: this.data.search_order_status,
-                pagesize: 80
+                pagesize: 5
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
             }).then((res) => {
 

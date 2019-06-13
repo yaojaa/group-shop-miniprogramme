@@ -1,6 +1,5 @@
 {
-   "navigationBarTitleText": "申请个人小店铺",
-
+   "navigationBarTitleText": "个人主页设置",
   "usingComponents": {
   	     "i-panel": "../../iView/panel/index",
         "i-input": "../../iView/input/index",

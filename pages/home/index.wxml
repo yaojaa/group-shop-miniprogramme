@@ -14,8 +14,7 @@
             <i-col offset="1" span="4" i-class="col-class">
                 <navigator url="../identify/identify">
                     <view class="user-avatar">
-                        <open-data class="user-avatar" bindtap="goHome" type="userAvatarUrl">
-                        </open-data>
+                        <image   class="user-avatar" src="{{userInfo.headimg}}" bindtap="goHome" />
                         <view class="set-icon">
                             <i-icon type="setup_fill" color="#ffa70f" size="16" />
                         </view>

@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 44,
+			"current": 48,
 			"list": [
 				{
 					"id": 0,
@@ -380,6 +380,12 @@
 					"name": "个人资料",
 					"pathName": "pages/identify/identify",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "设置个人主页",
+					"pathName": "pages/create_shop/index",
 					"scene": null
 				}
 			]
