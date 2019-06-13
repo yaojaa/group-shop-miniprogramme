@@ -42,13 +42,11 @@
     <!-- <view class="pageloading">
     加载中...
 </view> -->
-    <!--     <official-account></official-account>
- -->
+    <!-- <official-account></official-account> -->
     <view class='painter'>
         <image src="{{imagePath}}"></image>
     </view>
-    <!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button>
- -->
+    <!-- <button wx:if="{{copy}}" bindtap="copy">复制商品</button> -->
     <view class="page-wrap">
         <view class="countdownTime">
             <block wx:if="{{countdownTime && goods._expires ==1 }}">
