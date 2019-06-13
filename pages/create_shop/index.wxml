@@ -1,6 +1,4 @@
 <!--pages/create_shop.wxml-->
-<i-custom-bar showBackIcon backImage="" title="个人主页设置"> </i-custom-bar>
-
 <view class="container">
 
 <wux-toptips id="wux-toptips" />
@@ -14,7 +12,7 @@
 
   <wux-cell-group >
             <wux-cell hover-class="none">
-                <wux-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro"   placeholder="输入小店名字"  hasCount rows="3" cursorSpacing="80" placeholder="输入一段真诚的介绍，更容易打动客户哦" />
+                <wux-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro"  controlled="{{true}}" placeholder="输入小店名字"  hasCount rows="3" cursorSpacing="80" value="{{store_intro}}" placeholder="输入一段真诚的介绍，更容易打动客户哦" />
             </wux-cell>
         </wux-cell-group>
 
@@ -48,7 +46,7 @@
 
 
 
-<i-panel i-class="shadow-panel" title="店铺轮播图（最多可传3张）">
+<i-panel i-class="shadow-panel" title="主页背景头图">
 
     <view class="up-area">
 

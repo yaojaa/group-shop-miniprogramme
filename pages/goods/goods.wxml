@@ -134,7 +134,7 @@
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view>
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
-            <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
+            <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/500x/size-limit/50k!" mode="widthFix" />
         </block>
     </view>
     <view class='footer-cart'>
@@ -190,10 +190,6 @@
             </form>
         </view>
     </i-modal>
-    <view class='share-painter'>
-        <view wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
-        <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
-    </view>
     <i-message id="message" />
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" bind:close="onClose">
         <view class="logo">

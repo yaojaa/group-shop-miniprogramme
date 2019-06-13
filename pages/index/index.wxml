@@ -16,7 +16,6 @@
         </view>
 
         <view class="no-txt">什么也没有发现</view>
-        <button bindtap="openSetting" wx:if="{{showOpenBtn}}">开启定位</button>
     </view>
 
     <view class="loading" wx:if="{{isloading}}">

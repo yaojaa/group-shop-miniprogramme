@@ -9,6 +9,7 @@ Page({
 
         },
         isloading: true,
+        showOpenBtn:false,
         proList: []
     },
     handleTabBarChange({ detail }) {
@@ -83,16 +84,15 @@ Page({
 
          util.getUserloaction(res => {
                         console.log('经纬度：', res)
-                        this.data.latitude = res.latitude,
-                        this.data.longitude = res.longitude
                         app.globalData.lat = res.latitude
                         app.globalData.lng = res.longitude
 
-                        this.getProListBylocation()
+                        this.getProListBylocation(app.globalData.lat,app.globalData.lng)
                     })
                     
 
                     .then(res => {
+                        console.log(res)
                         this.setData({
                             userloaction: res,
                             latitude: res.latitude,
@@ -100,13 +100,20 @@ Page({
                         })
                     })
                     .catch(e=>{
-                        console.log(e.errMsg)
-                        if(e.errMsg.indexOf('auth')){
+                      console.log(e.errMsg, e.errMsg.indexOf('auth'))
+                        if(e.errMsg.indexOf('auth')>0){
 
                             this.setData({
                                 showOpenBtn:true
                             })
 
+                        }
+
+                        if(e.errCode && e.errCode == 2){
+                            wx.showToast({
+                                title:'建议打开GPS获取定位',
+                                icon:'none'
+                            })
                         }
                           
                             this.setData({
@@ -168,11 +175,11 @@ Page({
         })
 
     },
-    getProListBylocation() {
+    getProListBylocation(lat,lag) {
 
         util.wx.get('/api/user/discover', {
-            latitude: this.data.latitude,
-            longitude: this.data.longitude
+            latitude: lat,
+            longitude: lng
         }).then(res => {
 
             if (res.data.code == 200) {

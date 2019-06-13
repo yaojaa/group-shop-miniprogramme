@@ -13,7 +13,7 @@
             <image src="{{info._user.headimg}}" />
         </view>
         <view class="flex justify-between ph-sm" style="padding-top: 80rpx;">
-            <navigator url="../create_shop/index">
+            <navigator wx:if="{{showSetting}}" url="../create_shop/index">
                 <i-icon type="setup" size="28" color="#999" />
             </navigator>
             <view class="name">{{info._user.nickname}}</view>

@@ -85,62 +85,42 @@ Page({
 
 
 
-      if(this.data.store_name == ''){
+      // if(this.data.store_name == ''){
 
-         $wuxToptips().error({
-            hidden: false,
-            text: '请填写店铺名称',
-            duration: 3000,
-            success() {},
-        })
-        return
+      //    $wuxToptips().error({
+      //       hidden: false,
+      //       text: '请填写店铺名称',
+      //       duration: 3000,
+      //       success() {},
+      //   })
+      //   return
 
 
-      }
-
-      if(this.data.store_intro == ''){
-
-         $wuxToptips().error({
-            hidden: false,
-            text: '请填写店铺介绍',
-            duration: 3000,
-            success() {},
-        })
-        return
-
-      }
-
-           if(this.data.address == ''){
-
-         $wuxToptips().error({
-            hidden: false,
-            text: '请填写详细地址',
-            duration: 3000,
-            success() {},
-        })
-        return
-
-      }
-
-     
+      // }
+      wx.showLoading()
 
 
       util.wx.post('/api/seller/store_set',{
 
         store_name:this.data.store_name,
         store_intro:this.data.store_intro,
-        province_id :this.data.province_id,
-        city_id:this.data.city_id,
-        district_id:this.data.district_id,
-        store_slide:this.data.store_slide,
-        address:this.data.address
+        // province_id :this.data.province_id,
+        // city_id:this.data.city_id,
+        // district_id:this.data.district_id,
+        store_slide:this.data.store_slide
+        // address:this.data.address
 
       }).then(res=>{
-        console.log(res,res.data)
-        if(res.data.code == 0){
-          wx.redirectTo({
-            url:'../create_shop_success/index'
-          })
+
+        wx.hideLoading()
+
+        if(res.data.code == 200){
+           wx.showToast({
+          title:'保存成功'
+        })
+          // wx.redirectTo({
+          //   url:'../create_shop_success/index'
+          // })
         }
 
       })
@@ -156,6 +136,7 @@ Page({
 
   },
   getInfo:function(){
+
     util.wx.get('/api/seller/get_store_info').then(res=>{
 
       if(res.data.code == 200){
@@ -165,6 +146,8 @@ Page({
           store_name:res.data.data.store_name,
           store_intro:res.data.data.store_intro
         })
+
+        wx.hideLoading()
       }
 
 
@@ -216,6 +199,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
+    wx.showLoading()
 
   },
 
