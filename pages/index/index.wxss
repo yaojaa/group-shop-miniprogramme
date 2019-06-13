@@ -1,7 +1,4 @@
-/**index.wxss**/
-page{
-  background: #f8f8f8
-}
+@import "../../css/common.wxss";
 
 .flex{
   display: flex;
@@ -170,7 +167,8 @@ page{
   width: 80rpx;
   height: 80rpx;
   line-height: 80rpx;
-  border-radius: 80rpx
+  border-radius: 80rpx;
+  vertical-align: middle;
 }
 
 .avatar-sm{
@@ -203,7 +201,7 @@ page{
 }
 .frind-list{
   font-size: 12px;
-  padding: 30px
+  padding: 30rpx
 }
 .frind-list .tit{
   margin-bottom: 10px
@@ -212,7 +210,8 @@ page{
 
 .case-hd {
     display: flex;
-    padding: 8px 0;
+    align-items: center;
+    padding: 30rpx 0;
     border-top:1px solid #f8f8f8 
 }
 
@@ -256,4 +255,11 @@ page{
 .shop-info .address {
     font-size: 20rpx;
     color: #666;
+    padding-top: 6rpx;
+}
+.hide{
+  display: none;
+}
+.show{
+  display: block;
 }

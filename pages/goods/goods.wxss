@@ -847,8 +847,7 @@
   text-align: center;
   height: 42px;
   line-height: 42px;
-  width: 50%;
-  text-align: center;
+  text-align: left;
   margin:0 auto;
   overflow: hidden
 }

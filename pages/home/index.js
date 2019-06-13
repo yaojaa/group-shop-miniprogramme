@@ -16,7 +16,6 @@ Page({
         goods_number: 0,
         store_money: 0,
         goodslist: [],
-        painterData: {},
         goods_id: "",
         order_id: "",
         link_url: "",
@@ -124,6 +123,21 @@ Page({
 
 
     },
+    getOrderCount(){
+
+          util.wx.get('/api/user/get_order_count_groupby_static').then(res=>{
+                console.log(res)
+                if (res.data.code == 200) {
+                    console.log('store_money: res.data.data.store_money',res.data.data.store_money)
+                    this.setData({
+                        store_money: res.data.data.store_money,
+                        pending_money:res.data.data.pending_money
+                    })
+                }
+        })
+
+    },
+    
 
     goCreate() {
         wx.redirectTo({

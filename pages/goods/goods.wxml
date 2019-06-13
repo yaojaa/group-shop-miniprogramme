@@ -2,7 +2,7 @@
 
        <view slot="bottom" class="bar tab-box">
            <image class="avatar" src="{{goods.user.headimg}}" class="avatar">
-                </image> 昵称 {{goods.user.nickname}}
+           </image> {{goods.goods_name}}
     </view>
 
 </custom-bar>

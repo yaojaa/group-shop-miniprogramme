@@ -24,7 +24,7 @@ Page({
         }
 
         if (detail.key == 'home') {
-            wx.navigateTo({
+            wx.redirectTo({
                 url: '../home/index'
             })
         }
@@ -35,29 +35,29 @@ Page({
         console.log('首页onload执行')
 
 
-        if(app.globalData.userInfo){
+        if (app.globalData.userInfo) {
 
-              this.getProList()
+            this.getProList()
 
-        this.getFriendList()
+            this.getFriendList()
 
-        this.getloactionData()
+            this.getloactionData()
 
-        }else{
-        console.log('首页onload redirectToLogin')
+        } else {
+            console.log('首页onload redirectToLogin')
 
-           app.redirectToLogin()
+            app.redirectToLogin()
 
-          }
-
-
+        }
 
 
 
 
 
 
-      
+
+
+
 
         // wx.getSetting({
         //   success :(res)=> {
@@ -119,11 +119,13 @@ Page({
                             this.setData({
                                 isloading: false
                             })
+
                     })
+
+          
     },
 
     openSetting() {
-
         wx.openSetting({
             success: (res) => {
                 console.log(res.authSetting)
@@ -137,7 +139,7 @@ Page({
                         title: '获取定位授权' + res.authSetting['scope.userLocation']
                     })
                     this.setData({
-                        showOpenBtn:false
+                        showOpenBtn: false
                     })
                     this.getloactionData()
 
