@@ -624,6 +624,22 @@ const playSound = function(url) {
 
 }
 
+const url2json = function(string, overwrite) {
+    var obj = {},
+        pairs = string.split('&'),
+        d = decodeURIComponent,
+        name, value;
+
+    pairs.forEach((item, i) => {
+        var pair = item.split('=');
+        name = d(pair[0]);
+        value = d(pair[1]);
+        obj[name] = value;
+
+    })
+    return obj;
+}
+
 //上一页赋值
 const setParentData = function(data) {
 
@@ -658,5 +674,6 @@ module.exports = {
     uploadFile,
     bezier,
     setParentData,
-    throttle
+    throttle,
+    url2json
 }

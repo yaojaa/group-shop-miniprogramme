@@ -1,4 +1,4 @@
-<i-custom-bar showBackIcon="{{showIcon}}" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info.store_name}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
+<i-custom-bar showBackIcon="{{showIcon}}" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
 </i-custom-bar>
 <view class="container cf">
     <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -16,7 +16,7 @@
             <navigator wx:if="{{showSetting}}" url="../create_shop/index">
                 <i-icon type="setup" size="28" color="#999" />
             </navigator>
-            <view class="name">{{info._user.nickname}}</view>
+            <view class="name">{{info.store_name}}</view>
             <button open-type="share" class="btn-reset">
                 <i-icon size="28" type="share" color="#999" /></button>
         </view>

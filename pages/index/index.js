@@ -177,7 +177,7 @@ Page({
         })
 
     },
-    getProListBylocation(lat,lag) {
+    getProListBylocation(lat,lng) {
 
         util.wx.get('/api/user/discover', {
             latitude: lat,
