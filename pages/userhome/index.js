@@ -59,6 +59,8 @@ Page({
     },
 
     getStoreInfo() {
+        //增加访问记录
+        util.wx.get('/index/add_access')
 
         util.wx.get('/api/store/get_store_homepage', {
                 store_id: this.data.store_id

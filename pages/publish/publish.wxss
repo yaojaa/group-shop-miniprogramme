@@ -47,6 +47,19 @@ picker{
   line-height: 1.2;
   position: relative;
 }
+.add_btn_pic{
+
+  padding: 10px 20rpx;
+  color: #555;
+  margin:15rpx;
+  border-radius: 15rpx;
+  background: #f8f8f8;
+  display:block;
+  font-size: 18px;
+  line-height: 1.2;
+  position: relative;
+
+}
 
 .item{
   position:relative;

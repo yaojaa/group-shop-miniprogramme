@@ -119,19 +119,22 @@ Page({
         // util.playSound('https://static.kaixinmatuan.cn/staitc-img/new_order.mp3')
 
 
-
+        this.getOrderCount()
 
 
     },
     getOrderCount(){
 
+        
+
+
           util.wx.get('/api/user/get_order_count_groupby_static').then(res=>{
                 console.log(res)
                 if (res.data.code == 200) {
-                    console.log('store_money: res.data.data.store_money',res.data.data.store_money)
                     this.setData({
-                        store_money: res.data.data.store_money,
-                        pending_money:res.data.data.pending_money
+                        waitpay: res.data.data.waitpay,
+                        waitreceived:res.data.data.waitreceived,
+                        complete:res.data.data.complete
                     })
                 }
         })

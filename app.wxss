@@ -74,8 +74,8 @@ button.linenear_bg {
     color: #fff
 }
 
-button.linenear_bg:active {
-    color: green
+button.linenear_bg_hover {
+    box-shadow: 0 0 3px #a3df00
 }
 
 button.linenear_bg_light {
