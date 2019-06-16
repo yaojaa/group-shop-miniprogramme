@@ -1,6 +1,5 @@
 {
     "navigationBarTitleText": "发布您的宝贝",
-
     "usingComponents":
     {
         "i-switch": "../../iView/switch/index",

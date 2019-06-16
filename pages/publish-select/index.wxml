@@ -1,9 +1,9 @@
 
 
 
-  <i-custom-bar title="开团" showBackIcon="{{true}}"> </i-custom-bar>
+<!--   <i-custom-bar title="开团" showBackIcon="{{true}}"> </i-custom-bar> -->
 
-<view class="container mtop30">
+<view class="container ">
 <!-- 
   <wux-notice-bar mode="link"   loop leading="3000" action="" content="欢迎使用，不知道如果发商品？看这里" bind:click="onClick">
             <text slot="footer" style="color: #a1a1a1; margin-left: 10px;">去领取</text>
