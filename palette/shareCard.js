@@ -66,6 +66,20 @@ export default class LastMayday {
           mode: 'scaleToFill'
         },
       },
+      //头像覆盖二维码图标
+      {
+        type: 'image',
+        url: config.headImg.src,
+        css: {
+          top: `${imgHeight + headImgSize / 2 + qrcodeSize/2 - qrcodeSize*4/9/2 + 90 + config.height}rpx`,
+          left: `${width / 2 + 20 + qrcodeSize/2}rpx`,
+          width: `${qrcodeSize*4/9}rpx`,
+          height: `${qrcodeSize*4/9}rpx`,
+          align: 'center',
+          borderRadius:`${ qrcodeSize*4/9 }rpx`,
+          mode: 'scaleToFill'
+        },
+      },
       //规格
       // {
       //   type: 'text',
@@ -124,6 +138,7 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
   content.des.forEach((e,i) => {
     let h = 0;
     let titleStyle = {};
+    let t = 0;
     for( let j = 1; j<= i; j++){
       h += content.des[j-1].height;
     };
@@ -132,12 +147,13 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
       titleStyle.fontSize = content.title.fontSize;
       titleStyle.lineHeight = content.title.lineHeight;
       titleStyle.fontWeight = "bold";
+      t = -10;
     }
     arr.push({
       type: 'text',
         text: e.txt,
         css: {
-        top: `${imgHeight + headImgSize / 2 + 80 + h}rpx`,
+        top: `${imgHeight + headImgSize / 2 + 80 + h + t}rpx`,
         left: `${desLeft}rpx`,
         color: titleStyle.color || '#000',
         fontSize: `${titleStyle.fontSize || content.fontSize}rpx`,
@@ -173,7 +189,7 @@ function headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, 
           left:`${ desLeft + index%parseInt(_w/_wm) * _wm }rpx`,
           width: `${ headSize }rpx`,
           height: `${ headSize }rpx`,
-          borderRadius:`${ headSize/4}rpx`
+          borderRadius:`${ headSize/2}rpx`
         },
       })
    

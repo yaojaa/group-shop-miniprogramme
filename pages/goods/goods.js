@@ -53,8 +53,8 @@ Page({
                 lineHeight: 52,
                 fontSize: 30,
                 title: {
-                    fontSize: 32,
-                    lineHeight: 52,
+                    fontSize: 38,
+                    lineHeight: 50
                 },
             },
             qrcode: {
