@@ -1,5 +1,5 @@
 const util = require('../../utils/util.js')
-
+const app = getApp()
 Page({
 
     /**
@@ -20,7 +20,8 @@ Page({
         loading: false,
         store_id: '',
         info: {},
-        scrollTop: 0
+        scrollTop: 0,
+        showSetting:false
 
     },
     toSetting() {
@@ -58,6 +59,8 @@ Page({
     },
 
     getStoreInfo() {
+        //增加访问记录
+        util.wx.get('/index/add_access')
 
         util.wx.get('/api/store/get_store_homepage', {
                 store_id: this.data.store_id
@@ -68,7 +71,8 @@ Page({
                     console.log(res)
 
                     this.setData({
-                        info: res.data.data
+                        info: res.data.data,
+                        showSetting: res.data.data.user_id == app.globalData.userInfo.user_id? true:false
                     })
 
 

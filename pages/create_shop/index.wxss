@@ -2,6 +2,8 @@
 .container{
 	padding: 20px;
 	box-sizing: border-box;
+	background: #f8f8f8;
+	height: 100vh
 }
 
 .padding20{

@@ -14,8 +14,7 @@
             <i-col offset="1" span="4" i-class="col-class">
                 <navigator url="../identify/identify">
                     <view class="user-avatar">
-                        <open-data class="user-avatar" bindtap="goHome" type="userAvatarUrl">
-                        </open-data>
+                        <image   class="user-avatar" src="{{userInfo.headimg}}" bindtap="goHome" />
                         <view class="set-icon">
                             <i-icon type="setup_fill" color="#ffa70f" size="16" />
                         </view>
@@ -79,31 +78,7 @@
             </view>
         </view> -->
     </view>
-    <!--     <view class="count-box">
-        <view class="count-item active">
-            <navigator url="../myPartake/index" hover-class="none">
-                <text class="num text-primary">{{order_number}}</text>
-                                <text class="label">我参与的</text>
 
-            </navigator>
-        </view>
-        <view class="count-item">
-            <navigator url="../myPublish/index" hover-class="none">
-                <text class="num text-primary">{{goods_number}}</text>
-                                <text class="label">我发布的</text>
-
-            </navigator>
-        </view>
-
-         <view class="count-item">
-            <navigator url="../myPublish/index" hover-class="none">
-                <text >开个团</text>
-            </navigator>
-        </view>
-
-    </view> -->
-    <!--     <official-account></official-account>
- -->
  <official-account></official-account>
 
     <i-panel i-class="marginTop" title="我的订单" extra="查看全部订单" link="../order-list/index">
@@ -113,7 +88,9 @@
                     <view class="icon">
                         <i-icon type="redpacket" size="28" color="#4fac05" />
                     </view>
-                    待付款
+                    待付款 
+
+                       <view class="badge" >{{waitpay}}</view>
                 </navigator>
                 <!--    <view class="flex-item"> <view class="icon">
                     <i-icon type="commodity" size="28" color="#4fac05" />
@@ -123,7 +100,7 @@
                     <view class="icon">
                         <i-icon type="service" size="28" color="#4fac05" />
                     </view>
-                    待收货
+                    待收货<view class="badge" wx:if="{{waitpay>0}}" >{{waitreceived}}</view>
                 </navigator>
                 <navigator url="../order-list/index?search_status=3" hover-class="none" class="flex-item">
                     <view class="icon">

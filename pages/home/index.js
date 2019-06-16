@@ -16,7 +16,6 @@ Page({
         goods_number: 0,
         store_money: 0,
         goodslist: [],
-        painterData: {},
         goods_id: "",
         order_id: "",
         link_url: "",
@@ -120,10 +119,28 @@ Page({
         // util.playSound('https://static.kaixinmatuan.cn/staitc-img/new_order.mp3')
 
 
-
+        this.getOrderCount()
 
 
     },
+    getOrderCount(){
+
+        
+
+
+          util.wx.get('/api/user/get_order_count_groupby_static').then(res=>{
+                console.log(res)
+                if (res.data.code == 200) {
+                    this.setData({
+                        waitpay: res.data.data.waitpay,
+                        waitreceived:res.data.data.waitreceived,
+                        complete:res.data.data.complete
+                    })
+                }
+        })
+
+    },
+    
 
     goCreate() {
         wx.redirectTo({

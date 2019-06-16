@@ -74,8 +74,8 @@ button.linenear_bg {
     color: #fff
 }
 
-button.linenear_bg:active {
-    color: green
+button.linenear_bg_hover {
+    box-shadow: 0 0 3px #a3df00
 }
 
 button.linenear_bg_light {
@@ -848,31 +848,6 @@ fieldset[disabled] .btn-link {
     z-index: 7;
 }
 
-.textarea-sm {
-    width: 100%;
-    padding: 20rpx;
-    height: 160rpx;
-}
-
-.textarea-df {
-    width: 100%;
-    padding: 20rpx;
-    height: 200rpx;
-}
-
-.textarea-box {
-    padding: 25rpx 30rpx;
-    border-radius: 8rpx;
-}
-
-.textarea-view {
-    line-height: 1.47058824;
-    /* margin-bottom: 20rpx;*/
-}
-
-.textarea-placeholder {
-    color: #888;
-}
 
 .gray-bg-df {
     background-color: #f8f8f8;
@@ -1172,19 +1147,7 @@ fieldset[disabled] .btn-link {
     height: 270rpx;
 }
 
-.no-content-title {}
 
-.no-content-des {
-    margin-top: 34rpx;
-}
-
-.no-content-btn {
-    margin-top: 60rpx;
-}
-
-.no-content-btn .btn {
-    min-height: 80rpx;
-}
 
 /*自定义 headbar*/
 .cu-hd-bar {
@@ -1259,70 +1222,6 @@ fieldset[disabled] .btn-link {
 
 .input-hd .msg {
     color: #dd514c;
-}
-
-.upload-bd {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.upload-bd .upload-item {
-    position: relative;
-    flex-basis: 48%;
-    background: #f8f8f8;
-    text-align: center;
-    height: 210rpx;
-    margin-top: 30rpx;
-}
-
-.upload-item image {
-    width: 100%;
-    height: 210rpx;
-}
-
-.upload-bd {
-    margin-top: -15rpx;
-}
-
-.upload-bd .upload-item .add-box {
-    position: absolute;
-    top: 24%;
-    left: 0;
-    right: 0;
-    font-size: 24rpx;
-    color: #999;
-}
-
-.upload-bd .upload-item .add-box .iconfont {
-    font-size: 50rpx;
-}
-
-.upload-item .colse {
-    background: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5rpx 10rpx;
-    color: #fff;
-}
-
-.upload-bd .upload-item.upload-round {
-    flex-basis: 200rpx;
-    height: 200rpx;
-    border-radius: 50%;
-    overflow: hidden;
-    background: none;
-    border: 1px dashed #999;
-}
-
-.upload-bd .upload-item.upload-round image {
-    width: 200rpx;
-    height: 200rpx;
 }
 
 

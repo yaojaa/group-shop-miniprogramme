@@ -592,38 +592,6 @@ button {
     background: 0 0 !important
 }
 
-/*.gray.btn {
-    box-shadow: 2px 2px 3px rgba(200, 200, 200, .2)
-}
-
-.primary.btn {
-    box-shadow: 2px 2px 3px rgba(14, 144, 210, .2)
-}
-
-.secondary.btn {
-    box-shadow: 2px 2px 3px rgba(59, 180, 242, .2)
-}
-
-.success.btn {
-    box-shadow: 2px 2px 3px rgba(94, 185, 94, .2)
-}
-
-.warning.btn {
-    box-shadow: 2px 2px 3px rgba(243, 123, 29, .2)
-}
-
-.danger.btn {
-    box-shadow: 2px 2px 3px rgba(215, 52, 46, .2)
-}*/
-
-.white.btn.hollow {
-    color: #fff;
-}
-
-.white.btn.hollow::after {
-    border: 2px solid #fff;
-    display: block;
-}
 
 .gray.btn.hollow {
     color: #666;

@@ -1,7 +1,7 @@
-<!-- <i-custom-bar fixed backColor="#fff" showBackIcon="{{true}}" title="新发布"> </i-custom-bar>
- --><view class="page-body">
+ <i-custom-bar fixed backColor="#fff" backcfm  showBackIcon="{{true}}" title="新发布"> </i-custom-bar>
+<view class="page-body">
     <view class="progress" wx:if="{{photoProgress}}">
-        <i-spin size="large"></i-spin>
+       <i-spin size="large"></i-spin>
     </view>
     <form bindsubmit="submitForm">
         <view class="weui-uploader weui-cells_form weui-cell">
@@ -23,84 +23,95 @@
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <view class='row' id="textareawrap">
+                    <view class='row' id="textareawrap" >
                         <text>{{currentInput}}</text>
                         <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" class="weui-textarea" placeholder="商品描述、介绍、特色等" rows="6"></textarea>
                     </view>
                 </view>
             </view>
-            <view class="new_add_btn" data-type="video" bindtap="addVideo">
+
+             <view class="add_btn_pic" data-type="photo" bindtap="add">
+                <i-badge dot="{{content_imgs.length}}">
+                    <view class="demo-badge">
+                        <i-icon type="add" size="16" color="#69b90b" />介绍图片（选填)
+                    </view>
+                </i-badge>
+            </view>
+
+         <!--    <view class="new_add_btn" data-type="video" bindtap="addVideo">
                 <i-badge dot="{{goods_video.length}}">
                     <i-icon type="add" size="16" color="#69b90b" /> 视频短片（选填）
                 </i-badge>
                 <i-spin i-class="i-loading" wx:if="{{video_progress}}" size="small"></i-spin>
-            </view>
-            <view class="new_add_btn" data-type="photo" bindtap="add">
-                <i-badge dot="{{content_imgs.length}}">
-                    <view class="demo-badge">
-                        <i-icon type="add" size="16" color="#69b90b" />图文介绍（选填)
-                    </view>
-                </i-badge>
-            </view>
+            </view> -->
+           
             <!--上传规格图弹框-->
             <wux-popup catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
                 <view class="poptit">商品规格图片</view>
-                <scroll-view class="maxheight">
-                    <view class="con">
-                        <view class="pic_loading">
-                            <i-spin wx:if="{{visible_spec && specProgress}}" />
-                        </view>
-                        <view class="picture-item" wx:key="{{item}}" wx:for="{{current_spec_imgs}}">
-                            <view class="img-list">
-                                <image mode="widthFix" src="{{item}}" />
-                                <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
-                            </view>
-                        </view>
-                        <view class="footer-btn" wx:if="{{!specProgress}}">
-                            <button bindtap="addSpecPicContinue" class="btn btn-round linenear_bg_light">
-                                + 继续添加
-                            </button>
-                            <button bindtap="addspecPictureDone" class="btn btn-round linenear_bg">
-                                完成
-                            </button>
+
+
+                <scroll-view scroll-y class="maxheight">
+                <view class="con">
+                <view class="pic_loading">
+                    <i-spin wx:if="{{visible_spec && specProgress}}"/>
+                </view>
+
+                    <view class="picture-item" wx:key="{{item}}" wx:for="{{current_spec_imgs}}">
+                        <view class="img-list">
+                            <image mode="widthFix" src="{{item}}" />
+                            <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
                         </view>
                     </view>
-                </scroll-view>
+                    <view class="footer-btn" wx:if="{{!specProgress}}">
+                        <button bindtap="addSpecPicContinue" class="btn btn-round linenear_bg_light">
+                            + 继续添加
+                        </button>
+                        <button bindtap="addspecPictureDone" class="btn btn-round linenear_bg">
+                            完成
+                        </button>
+                    </view>
+                </view>
+            </scroll-view>
+
+
+
             </wux-popup>
             <!--上传图片弹框-->
             <wux-popup catchtouchmove="ture" position="bottom" visible="{{ visible_pictures }}" bind:close="onClose2">
-                <view class="poptit">上传详情介绍图片 </view>
-                <view class="pic_loading">
-                    <i-spin wx:if="{{uploadProgress}}" />
-                </view>
-                <scroll-view class="maxheight">
-                    <view class="con">
-                        <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
-                            <view class="img-list">
-                                <image mode="widthFix" src="{{item}}-small" />
-                            </view>
-                            <view class="icons">
-                                <view class="icon-list">
-                                    <i-icon data-index="{{index}}" bindtap="toUp" color="#999" size="28" type="packup" />
-                                </view>
-                                <view class="icon-list">
-                                    <i-icon data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
-                                </view>
-                                <view class="icon-list">
-                                    <i-icon data-index="{{index}}" bindtap="removePicture" color="#999" size="28" type="close" />
-                                </view>
-                            </view>
+                <view class="poptit">上传介绍图片 </view>
+                <view class="pic_loading"><i-spin wx:if="{{uploadProgress}}"/></view>
+
+           <scroll-view scroll-y class="maxheight" style="height: 750rpx">
+
+                <view class="con">
+
+                    <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
+                        <view class="img-list">
+                            <image mode="widthFix" src="{{item}}-small" />
                         </view>
-                        <view class="footer-btn" wx:if="{{!uploadProgress}}">
-                            <button bindtap="addPicture" class="btn btn-round linenear_bg_light">
-                                + 继续添加
-                            </button>
-                            <button bindtap="addPictureDone" class="btn btn-round linenear_bg">
-                                完成
-                            </button>
+                        <view class="icons">
+                            <view class="icon-list">
+                                <i-icon data-index="{{index}}" bindtap="toUp" color="#999" size="28" type="packup" />
+                            </view>
+                            <view class="icon-list">
+                                <i-icon data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
+                            </view>
+                            <view class="icon-list">
+                                <i-icon data-index="{{index}}" bindtap="removePicture" color="#999" size="28" type="close" />
+                            </view>
                         </view>
                     </view>
-                </scroll-view>
+                    <view class="footer-btn" wx:if="{{!uploadProgress}}">
+                        <button bindtap="addPicture" class="btn btn-round linenear_bg_light">
+                            + 继续添加
+                        </button>
+                        <button bindtap="addPictureDone" class="btn btn-round linenear_bg">
+                            完成
+                        </button>
+                    </view>
+                </view>
+            </scroll-view>
+
             </wux-popup>
             <!--上传视频弹框-->
             <wux-popup catchtouchmove="ture" position="bottom" visible="{{visible_video}}" bind:close="onClose2">
@@ -173,6 +184,7 @@
         </i-panel>
         <i-panel title="设置" i-class="no-margin">
             <view class="weui-cells_form">
+              
                 <!-- <view class="weui-cell">
                     <view class="weui-cell__hd"><view class="weui-label">配送方式：</view></view>
                     <view class="weui-cell__bd">
@@ -223,6 +235,8 @@
                         </view>
                     </view>
                 </view>
+
+
             </view>
         </i-panel>
         <button style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">确定发布</button>

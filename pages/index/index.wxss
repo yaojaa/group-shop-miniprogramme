@@ -257,3 +257,9 @@
     color: #666;
     padding-top: 6rpx;
 }
+.hide{
+  display: none;
+}
+.show{
+  display: block;
+}
