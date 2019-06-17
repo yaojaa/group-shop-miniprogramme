@@ -11,29 +11,17 @@
     style="height:calc(100% - 100px);"> -->
     <view class='product-item-container'>
 
-        <view class="loading" wx:if="{{isloading}}">
-            <view class="figure">
-                <view class="dot white"></view>
-                <view class="dot"></view>
-                <view class="dot"></view>
-                <view class="dot"></view>
-                <view class="dot"></view>
-            </view>
-        </view>
+        <wux-spin wx:if="{{isloading}}">
+            
+        </wux-spin>
+
+
         <view class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}" >暂无可见内容 
             <view class="f14">
                 这里只会显示您附近和朋友的商品
             </view></view>
     </view>
-    <view class="loading" wx:if="{{isloading}}">
-        <view class="figure">
-            <view class="dot white"></view>
-            <view class="dot"></view>
-            <view class="dot"></view>
-            <view class="dot"></view>
-            <view class="dot"></view>
-        </view>
-    </view>
+
     <block wx:for="{{proList}}" wx:key="{{index}}">
         <view class='product-item'>
             <view class='item-body'>

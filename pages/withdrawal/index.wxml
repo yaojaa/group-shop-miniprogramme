@@ -8,7 +8,7 @@
 	<view class="withdraw-box">
 	<i-input value="{{inputMoney}}" type="number" bindchange="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
 	</view>
-	<button type="primary" class="linear_bg" bindtap="getMoney"> 提现 </button>
+	<button type="primary" class="linear_bg" bindtap="getMoney"> 立即提现 </button>
 
 
 	<view class="list" wx:if="{{withdrawalslist.length}}">

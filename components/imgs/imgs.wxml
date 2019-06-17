@@ -1,4 +1,6 @@
+<wux-spin nested spinning="{{loading}}">
 <view class="img-box" style="height: {{ imgs.height + 'rpx' }};{{imgsPath.length > 1 && 'background:none'}}" bindtap="checkBigImg">
+
 	<block wx:if="{{img.flag}}">
 	<!-- 正方形 -->
 	<view wx:if="{{img.type == 0}}" class="flex-cc">
@@ -48,3 +50,4 @@
     </swiper-item>
 	</swiper>
 </view>
+</wux-spin>

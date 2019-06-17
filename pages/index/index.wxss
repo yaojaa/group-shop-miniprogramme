@@ -4,12 +4,14 @@
   display: flex;
 }
 .container{
-  background-size: 100% auto;
-  background-repeat: no-repeat;
+
+  margin-bottom: 100rpx
+ 
 }
 .product-item-container{
   margin-top:180rpx;
-  margin-bottom: 150rpx
+  margin-bottom: 150rpx;
+  text-align: center;
 }
 
 

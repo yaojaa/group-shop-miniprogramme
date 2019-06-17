@@ -18,7 +18,8 @@ Component({
     minScaleVal: 50, //最小缩放值
     minXYVale: 100,//xy轴最小运动值
     checkImgDuration: 0, // 查看大图轮播持续时间
-    timer: null
+    timer: null,
+    loading:true
   },
   ready(){
     // this.init();
@@ -108,7 +109,9 @@ Component({
             })
 
             this.setData({
-              imgsPath: this.data.imgsPath
+              imgsPath: this.data.imgsPath,
+              loading:false
+
             })
 
             this.animationFun(true);

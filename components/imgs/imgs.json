@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+  	            "wux-spin": "../../../wux/spin/index"
+  }
 }
