@@ -51,38 +51,27 @@ Page({
         }
 
 
-
-
-
-
-
-
-
-
-        // wx.getSetting({
-        //   success :(res)=> {
-        //     console.log(res.authSetting)
-        //     // res.authSetting = {
-        //     //   "scope.userInfo": true,
-        //     //   "scope.userLocation": true
-        //     // }
-        //     if(res.authSetting['scope.userLocation']){
-        //        this.getloactionData()
-        //     }else{
-        //         this.setData({
-        //             showOpenBtn:true
-        //         })
-        //     }
-        //   }
-        // })
-
-
     },
     //获取定为并获取商品
     getloactionData() {
 
+        //
+        if(app.globalData.lat){
 
-         util.getUserloaction(res => {
+          this.getProListBylocation(app.globalData.lat,app.globalData.lng)
+        
+         this.setData({
+
+          city:app.globalData.city,
+          district:app.globalData.district
+         })
+
+         return
+
+        }
+
+
+   util.getUserloaction(res => {
                         console.log('经纬度：', res)
                         app.globalData.lat = res.latitude
                         app.globalData.lng = res.longitude
@@ -93,8 +82,17 @@ Page({
 
                     .then(res => {
                         console.log(res)
+
+                        const{city,district} = res
+
+                        app.globalData.city = city
+                        app.globalData.district = district
+
                         this.setData({
-                            userloaction: res,
+                            userloaction: {
+                                city,
+                                district
+                            },
                             latitude: res.latitude,
                             longitude: res.longitude
                         })

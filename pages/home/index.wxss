@@ -137,13 +137,7 @@ vertical-align:middle;
 
 
 
-.msg-tips {
-    position: absolute;
-    top: 14px;
-    right: 15px;
-    font-size: 20rpx;
-    color: #ffcc33
-}
+
 
 .userinfo {
     color: #fff;
@@ -715,7 +709,7 @@ margin-top:10px;
     height: 16px;
     border-radius: 9px;
     min-width: 16px;
-    background: #ff0000;
+    background: #9c0;
     border: 1px solid transparent;
     color: #fff;
     line-height: 14px;

@@ -5,16 +5,19 @@
             <image src='{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75' class='hd'></image>
         </navigator>
         <view class="bd">
-            <navigator     open-type="redirect"
+            <navigator open-type="redirect"
  url="../goods/goods?goods_id={{item.goods_id}}&goods_name={{item.goods_name}}&delivery_method={{item.delivery_method}}" hover-class="none">
                 <view class="tit">{{item.goods_name}}</view>
             </navigator>
             <view class="link">
                 <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button> 
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
-            <!--     <button class="hollow" data-id="{{item.goods_id}}" data-status="{{item.is_on_sale}}" bindtap="upDownGoods" size="mini"> 
-                 {{['','下架','上架'][item.is_on_sale]}}  
-            </button> -->
+                <button class="hollow" data-id="{{item.goods_id}}"  bindtap="moreAction" size="mini"> 
+                <i-icon size="28" color="#49b34d" type="other" />
+
+            </button>
+
+
             </view>
         </view>
         <view class="statusBar">
@@ -23,26 +26,24 @@
 
  <text wx:if="{{item._expires==2}}"  style="color:#2d8cf0" >未开始</text>
  <text wx:if="{{item._expires==1}}" style="color:#19be6b" >开团中</text>
- <text wx:if="{{item._expires==3}}" style="color:#ed3f14" >已结束</text>
+ <text wx:if="{{item._expires==3}}" style="color:#666" >已结束</text>
 
   </view>
     </view>
     <view class="goods-count">
         <view class="count-item" data-id="{{item.goods_id}}"  bindtap="gofans">
-
             <text class="num">{{item.pageview_count}}</text>
-            <i-icon type="browse" /><text class="label">浏览人数</text>
+            <text class="label">浏览人数</text>
         </view>
         <view class="count-item">
-            <text class="num">¥{{item._order_total}}</text>
-            <i-icon type="browse" /><text class="label">收款总额</text>
+            <text class="num">{{item.pageview_count}}</text>
+            <text class="label">收款总额</text>
         </view>
         <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
             <text class="num text-primary">{{item._order_count}}</text>
             
             <view class="badge" wx:if="{{item._order_status1_count>0}}" >+{{item._order_status1_count}}</view>
     
-            <i-icon type="browse" />
             <text class="label ">订单管理</text>
         </view>
     </view>

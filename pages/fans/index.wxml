@@ -1,5 +1,4 @@
-<i-custom-bar fixed backColor="#ffffff"  tit_txt_color="#cc0000" showIcon="{{true}}" title="访客记录" backColor="'transparent'" height="100" > </i-custom-bar>
-<view class="container mtop100">
+<view class="container">
   <!--   <view class="fans-box text-justify">
         <view class="f14"><button size="mini">全部粉丝：234</button></view>
         <view class="btn-group">
@@ -16,7 +15,7 @@
                     </view>
                     <view class="bd">
                         <view class="text-justify">
-                            <view class="name">{{item.realname}}</view>
+                            <view class="name">{{item.nickname}}</view>
                             <view class="info">
                                 <view class="num">
                                     
