@@ -14,7 +14,7 @@
             <i-col offset="1" span="4" i-class="col-class">
                 <navigator url="../identify/identify">
                     <view class="user-avatar">
-                        <image   class="user-avatar" src="{{userInfo.headimg}}" bindtap="goHome" />
+                        <image   class="user-avatar" src="{{userInfo.headimg}}"  />
                         <view class="set-icon">
                             <i-icon type="setup_fill" color="#ffa70f" size="16" />
                         </view>
@@ -100,7 +100,7 @@
                     <view class="icon">
                         <i-icon type="service" size="28" color="#4fac05" />
                     </view>
-                    待收货<view class="badge" wx:if="{{waitpay>0}}" >{{waitreceived}}</view>
+                    待收货<view class="badge">{{waitreceived}}</view>
                 </navigator>
                 <navigator url="../order-list/index?search_status=3" hover-class="none" class="flex-item">
                     <view class="icon">

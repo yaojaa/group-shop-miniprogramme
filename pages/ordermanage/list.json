@@ -1,6 +1,6 @@
 {
     "enablePullDownRefresh": true,
-    "navigationBarTitleText": "管理团购订单",
+    "navigationBarTitleText": "管理订单",
     "window":
     {
         "backgroundTextStyle": "dark"

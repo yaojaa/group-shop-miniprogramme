@@ -27,7 +27,7 @@ Page({
     toSetting() {
         console.log('toSetting..')
         wx.navigateTo({
-            url: '../create_shop/index?store_id=' + this.data.store_id
+            url: '../create_shop/index?store_id=' + this.store_id
         })
     },
 
@@ -36,7 +36,7 @@ Page({
      */
     onLoad: function(options) {
 
-        this.data.store_id = options.id || ''
+        this.store_id = options.id || options.store_id
 
         let pages = getCurrentPages(); //当前页面栈
 
@@ -60,10 +60,17 @@ Page({
 
     getStoreInfo() {
         //增加访问记录
-        util.wx.get('/index/add_access')
+        util.wx.post('/api/index/add_access',{
+                type:'store_homepage', 
+          obj_id: this.store_id,
+          user_scene:app.globalData.userScene,
+          user_phone:app.globalData.userPhone
+        })
+
+
 
         util.wx.get('/api/store/get_store_homepage', {
-                store_id: this.data.store_id
+                store_id: this.store_id
             })
             .then(res => {
                 if (res.data.code == 200) {
@@ -89,7 +96,7 @@ Page({
         })
 
         util.wx.get('/api/goods/get_store_goods_list', {
-                store_id: this.data.store_id,
+                store_id: this.store_id,
                 cpage: this.cpage,
                 pagesize: 5
             })

@@ -7,8 +7,6 @@
     "i-input": "../../iView/input/index",
     "i-toast": "../../iView/toast/index",
     "i-button": "../../iView/button/index",
-    "i-message": "../../iView/message/index",
-    "i-custom-bar": "../../components/custom-bar/index"
-
+    "i-message": "../../iView/message/index"
   }
 }

@@ -20,7 +20,10 @@
                 <view class="dot"></view>
             </view>
         </view>
-        <view class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}" >什么也没有发现</view>
+        <view class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}" >暂无可见内容 
+            <view class="f14">
+                这里只会显示您附近和朋友的商品
+            </view></view>
     </view>
     <view class="loading" wx:if="{{isloading}}">
         <view class="figure">
@@ -36,7 +39,7 @@
             <view class='item-body'>
                 <view class="flex align-center mb-xs">
                     <view class="item-avatar">
-                        <navigator url="../userhome/index" hover-class="none">
+                        <navigator url="../userhome/index?store_id={{item.store.store_id}}" hover-class="none">
                             <image class="avatar" src="{{item.user.headimg}}" />
                         </navigator>
                     </view>

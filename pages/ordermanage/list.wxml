@@ -100,6 +100,11 @@
                 {{g.spec_key_name}} ×{{g.goods_num}}
             </text>
             </view> -->
+
+            <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" data-opt="{{btn.opt}}" data-txt="{{btn.txt}}" bindtap="setTips">发送通知</button>
+
+
+
             <block wx:for="{{item.seller_next_handle}}" wx:key="{{index}}" wx:for-item="btn">
                 <form bindsubmit="formSubmit" report-submit="true">
                     <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" data-opt="{{btn.opt}}" data-txt="{{btn.txt}}" bindtap="orderActions">{{btn.txt}}</button>
@@ -139,7 +144,7 @@
             请确认Ta已经线下支付过了哦
         </view>
     </i-modal>
-    <i-modal title="发送微信通知" visible="{{ visible5_tips }}" bind:ok="setTips" bind:cancel="closeTips">
+    <i-modal title="发送微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
         <view class="input_box">
             <input bindinput="noteInput" value="{{note}}" placeholder="输入提醒内容:如请来101取货" />
             是否群发所有人：
