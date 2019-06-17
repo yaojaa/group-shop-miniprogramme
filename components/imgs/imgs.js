@@ -109,8 +109,7 @@ Component({
             })
 
             this.setData({
-              imgsPath: this.data.imgsPath,
-              loading:false
+              imgsPath: this.data.imgsPath
 
             })
 
