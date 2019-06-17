@@ -1,6 +1,6 @@
 {
+	  "navigationStyle": "custom",
     "navigationBarTitleText": "",
-     "navigationStyle": "custom",
     "usingComponents":
     {
     "i-icon": "../../iView/icon/index",
