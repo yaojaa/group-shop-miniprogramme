@@ -52,14 +52,15 @@ button.button-hover {
 
 .create_number{
   position:absolute;
-left:-12px;
-top:-13px;
-color:#999;
+left:-15px;
+top:-15px;
+color:#fff;
 font-size:11px;
 padding:0 3px;
 height:15px;
 line-height:15px;
 font-weight:bold;
+background:#c90;
 
 }
 

@@ -160,6 +160,7 @@ Page({
 
     orderActions(e) {
         const opt = e.currentTarget.dataset.opt
+        const index  = e.currentTarget.dataset.index
         const order_id = e.currentTarget.dataset.id
         const txt = e.currentTarget.dataset.txt
         const avatar = e.currentTarget.dataset.avatar
@@ -185,9 +186,19 @@ Page({
                             order_id
                         }).then(res => {
                             if (res.data.code == 200) {
-                                wx.showToast({ title: '订单操作成功' })
-                                this.getOrderList()
+                                wx.showToast({ title: '订单修改成功' })
                                 this.getStatistics()
+                                //操作完成之后的回调
+                                
+                                if(opt == 'toset_del'){
+
+                                    this.data.order_list.splice(index,1)
+
+                                    this.setData({
+                                        order_list:this.data.order_list
+                                    })
+
+                                }
 
 
                             } else {
@@ -319,8 +330,11 @@ Page({
     },
     getOrderList() {
 
+        this.setData({
+             loading:true
+        })
+
         return new Promise((resolve, reject) => {
-            wx.showLoading()
 
             util.wx.get('/api/seller/get_order_list', {
                 goods_id: this.data.goods_id,
@@ -351,11 +365,9 @@ Page({
                     // delivery_method:res.data.data.goods.delivery_method
 
                 })
-                wx.hideLoading()
 
                 resolve(res.data.data)
             }, (err) => {
-                wx.hideLoading()
                 reject(err)
             })
 
@@ -462,7 +474,7 @@ Page({
     setPay() {
 
         wx.request({
-            url: 'https://www.daohangwa.com/api/seller/set_order_action',
+            url: '/api/seller/set_order_action',
             method: 'post',
             data: {
                 token: app.globalData.token,
@@ -634,122 +646,9 @@ Page({
             order_id: target.dataset.id
         })
     },
-    //取消订单
-    toCancel({ detail }) {
 
 
 
-        if (detail.index === 0) {
-            this.setData({
-                visible3: false
-            });
-        } else {
-            const action = [...this.data.actionsCancel];
-            action[1].loading = true;
-
-            this.setData({
-                actionsCancel: action
-            })
-
-            wx.request({
-                url: 'https://www.daohangwa.com/api/seller/set_order_action',
-                method: 'post',
-                data: {
-                    token: app.globalData.token,
-                    order_id: this.data.order_id,
-                    action: 'cancel',
-
-
-                },
-                success: (res) => {
-
-                    action[1].loading = false;
-                    this.setData({
-                        visible3: false,
-                        actionsCancel: action
-                    })
-
-                    if (res.data.code == 0) {
-                        this.resetPageNumber()
-                        this.getOrderList()
-
-
-                        wx.showToast({ title: "订单已取消" })
-
-                    } else {
-
-                        $Message({
-                            content: res.data.msg,
-                            type: 'error'
-                        });
-                    }
-                }
-            })
-
-        }
-
-
-    },
-
-    toConfirm({ detail }) {
-
-        console.log(detail)
-
-        if (detail.index === 0) {
-            this.setData({
-                visible1: false
-            });
-        } else {
-            const action = [...this.data.actionsConfirm];
-            action[1].loading = true;
-
-            this.setData({
-                actionsConfirm: action
-            })
-
-            wx.request({
-                url: 'https://www.daohangwa.com/api/seller/set_order_action',
-                method: 'post',
-                data: {
-                    token: app.globalData.token,
-                    order_id: this.data.order_id,
-                    action: 'confirm',
-
-                },
-                success: (res) => {
-
-
-                    action[1].loading = false;
-
-                    if (res.data.code == 0) {
-                        this.resetPageNumber()
-                        this.getOrderList()
-
-                        this.setData({
-                            visible1: false,
-                            actionsConfirm: action
-                        });
-
-                        $Message({
-                            content: '订单确认成功',
-                            type: 'success'
-                        });
-
-                    } else {
-                        console.log(res.data.msg)
-                        $Message({
-                            content: res.data.data.msg,
-                            type: 'error'
-                        });
-                    }
-                }
-            })
-
-        }
-
-
-
-    },
 
     handleChange({ detail }) {
         this.setData({

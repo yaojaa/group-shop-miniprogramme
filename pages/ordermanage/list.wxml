@@ -53,14 +53,19 @@
             </view>
         </block>
     </view>
+
+    <view class="text-center" wx:if="{{dataList.length==0}}">
+        暂无订单
+    </view>
     <view class="order-item" wx:for="{{dataList}}" wx:key="index" wx:for-index="bindex">
         <view class="order-hd">
             <view class="number">
+                                <text class="create_number">{{item.create_number}}</text>
+
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
-                <text class="create_number">{{item.create_number}}</text>
             </view>
             <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
-                <text class="tel" bindlongpress="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile}}">{{item.user.mobile}}</text></view>
+                <text class="tel" bindlongpress="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text></view>
             <view class="order-status">
                 <text class="color_{{item.order_status}}"> {{item.order_status_txt}}
                 </text>
@@ -79,15 +84,15 @@
                 </text>
             </view>
             <view class="remark scale-b-1px" wx:if="{{item.create_remark}}">
-                <text class="text-danger" selectable="true" data-text="{{item.create_remark}}" bindtap="copy" data-text="{{item.create_remark}} ">
-                    留言：{{item.create_remark}}
+                <text class="text-danger" selectable="true" data-text="{{item.user_message}}" bindtap="copy" data-text="{{item.user_message}} ">
+                    用户备注：{{item.user_message}}
                 </text>
             </view>
             <view class="total text-justify scale-b-1px">
                 <view><text class="warning-text f18">¥{{item.pay_price}} </text>
                     <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
-                    <text class="error-text" wx:if="{{item.pay_status==0}}">待支付（30分钟不支付将自动关闭）</text>
-                    <text class="error-text" wx:if="{{item.pay_status==2}}">支付失败</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付（客户30分钟不支付将自动关闭）</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
                 </view>
                 <view class="text-right"> <text class="order-date">{{item._format_add_time}}</text>
                 </view>
@@ -107,7 +112,10 @@
 
             <block wx:for="{{item.seller_next_handle}}" wx:key="{{index}}" wx:for-item="btn">
                 <form bindsubmit="formSubmit" report-submit="true">
-                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" data-opt="{{btn.opt}}" data-txt="{{btn.txt}}" bindtap="orderActions">{{btn.txt}}</button>
+                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" 
+                    data-opt="{{btn.opt}}"
+                    data-index="{{index}}"
+                    data-txt="{{btn.txt}}" bindtap="orderActions">{{btn.txt}}</button>
                 </form>
             </block>
         </view>
@@ -124,8 +132,15 @@
         </view>
         <!-- </form> -->
     </view>
-    <!--      <i-load-more  tip="没有更多了" loading="{{loading}}" />
- -->
+
+       <view class="text-center">
+        <wux-spin wx:if="{{loading}}"></wux-spin>
+  </view>
+
+
+
+
+
     <i-modal title="订单确认" visible="{{ visible1 }}" actions="{{ actionsConfirm }}" bind:click="toConfirm">
         <view>确认订单信息无误，可以接单</view>
     </i-modal>

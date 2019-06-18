@@ -23,16 +23,54 @@ Component({
         ]
     },
     methods: {
-     moreAction(){
+     moreAction(e){
+
+      this.goods_id = e.currentTarget.dataset.id
+
         wx.showActionSheet({
-          itemList: ['个人主页显示', '个人主页隐藏','复制一个'],
-          success (res) {
-            console.log(res.tapIndex)
+          itemList: ['在个人主页隐藏', '在个人主页显示'],
+          success :(res)=>{
+
+            if(res.tapIndex == 0){
+
+              this.switchInSite(0)
+
+            }else if(res.tapIndex ==1){
+              this.switchInSite(1)
+            }
+
           },
           fail (res) {
             console.log(res.errMsg)
           }
         })
+    },
+    //切换个人主页显示
+    switchInSite(status){
+        util.wx.post("/api/seller/goods_change_recommend",{
+            goods_id:this.goods_id,
+            is_recommend:status  
+        }).then(res=>{
+
+          if(res.data.code == 200){
+
+
+             const tips = status==0?'个人主页已隐藏':'个人主页已显示'
+                
+                wx.showToast({
+                    title:tips,
+                    icon:'none'
+                })
+
+          }else{
+              wx.showToast({
+                    title:'设置失败请稍后重试',
+                    icon:'none'
+                })
+
+          }
+
+           })
     },
        upDownGoods(e){
 

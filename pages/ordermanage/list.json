@@ -19,7 +19,9 @@
         "i-cell": "../../iView/input/index",
         "i-custom-bar": "../../components/custom-bar/index",
         "i-switch": "../../iView/switch/index",
-        "i-pop-menu": "../../iView/pop-menu/index"
+        "i-pop-menu": "../../iView/pop-menu/index",
+        "wux-spin": "../../wux/spin/index"
+
 
     }
 
