@@ -2,7 +2,7 @@
 
        <view slot="bottom" class="bar tab-box">
            <image class="avatar" src="{{goods.user.headimg}}" class="avatar">
-                </image> 昵称 {{goods.user.nickname}}
+                </image>{{goods.user.nickname}}
     </view>
 
 </custom-bar>
@@ -66,18 +66,18 @@
                     <view class="smallnum">{{item.spec_pic.length}}张</view>
                 </view>
                 <view class="info">
-                    <view class="f14 text-default">{{item.spec_name}} <text class="price"> ¥{{item.spec_price}}</text></view>
-                    <view class="f12px text-info" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
+                    <view class="f14 text-default">{{item.spec_name}} <text class="price f12px"> ¥{{item.spec_price}}</text></view>
+                    <view class="f14px text-danger" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
                 </view>
                 <view class="buy" catchtap="addAnimate">
                     <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange" />
                 </view>
             </view>
         </view>
-        <!--   <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
+          <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
             <i-cell  label="快递邮寄 送货上门" i-class="address-item">
             </i-cell>
-        </view> -->
+        </view>
         <view wx:if="{{goods.delivery_method == 2}}" style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}">
             <i-cell title="{{'取货地点 '+item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
@@ -142,7 +142,11 @@
         </view>
         <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
             <text wx:if="{{totalNum>0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
-            <button class="buy linenear_bg" formType="submit">立即参与</button>
+
+            <button wx:if="{{goods._expires==1}}" class="buy linenear_bg" formType="submit">立即参与</button>
+           <button wx:else class="buy linenear_bg" formType="submit">不能参与了哦</button>
+
+            
         </form>
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
@@ -211,7 +215,7 @@
             </button>
             <view bindtap='handlePoster' class="flex-sub share-pyq">
                 <image src="http://leileiimg.countinsight.com/front/img/quan_icon.png" class="img-lg"></image>
-                <view class="text-weak mt-sm">发朋友圈</view>
+                <view class="text-weak mt-sm">生成海报</view>
             </view>
         </view>
     </van-action-sheet>
@@ -224,7 +228,7 @@
             </view>
             <view class="text-center share-img-box" wx:else>
                 <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
-                <button class="btn primary round lg" catchtap="savaSelfImages">立即分享朋友圈</button>
+                <button class="btn primary round lg" catchtap="savaSelfImages">保存海报</button>
             </view>
         </view>
     </view>

@@ -14,7 +14,7 @@
             <i-col offset="1" span="4" i-class="col-class">
                 <navigator url="../identify/identify">
                     <view class="user-avatar">
-                        <image   class="user-avatar" src="{{userInfo.headimg}}" bindtap="goHome" />
+                        <image   class="user-avatar" src="{{userInfo.headimg}}"  />
                         <view class="set-icon">
                             <i-icon type="setup_fill" color="#ffa70f" size="16" />
                         </view>
@@ -27,17 +27,13 @@
                     <view class="user-account f12">我的账户 (¥{{pending_money}})</view>
                 </navigator>
             </i-col>
-            <i-col span="6" i-class="col-class">
+            <i-col span="6" i-class="col-class" wx:if="{{goodslist.length > 0}}">
                 <view class="siteBtn" bindtap="goSite">
                   我的主页
                 </view>
             </i-col>
         </i-row>
-        <!--       <view class="msg-tips">
-            <i-badge count="3">
-               您有新的订单 <i-icon type="remind" size="20" color="#fff" />
-            </i-badge>
-        </view> -->
+      
         <!--    <view class="creat_btn"  bindtap="goCreate">
             <button>创建专属小店</button>
         </view> -->
@@ -100,7 +96,7 @@
                     <view class="icon">
                         <i-icon type="service" size="28" color="#4fac05" />
                     </view>
-                    待收货<view class="badge" wx:if="{{waitpay>0}}" >{{waitreceived}}</view>
+                    待收货<view class="badge">{{waitreceived}}</view>
                 </navigator>
                 <navigator url="../order-list/index?search_status=3" hover-class="none" class="flex-item">
                     <view class="icon">
@@ -116,15 +112,17 @@
             </view>
         </view>
     </i-panel>
-<!--     extra="查看全部商品"
- -->    <i-panel  title="我的商品" wx:if="{{goodslist.length > 0}}" >
-        <view>
+ <i-panel hide-border>
+  <wux-notice-bar loop leading="3000" action="" content="您有新的订单，请及时处理！">
+  </wux-notice-bar>
+</i-panel>
+
+    <i-panel  title="我的商品" wx:if="{{goodslist.length > 0}}" >
             <view class="goods-box">
                 <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                     <i-goods-item bindremove="removeHandle" item="{{item}}" index="{{index}}" />
                 </block>
             </view>
-        </view>
     </i-panel>
 
     <view  style="margin-bottom:100rpx"></view>

@@ -1,17 +1,16 @@
 {
+
     "navigationBarTitleText": "发现身边的好货",
     "navigationStyle": "custom",
-    "usingComponents":
-    {
+    "usingComponents": {
         "i-icon": "../../iView/icon/index",
-        "i-avatar": "../../iView/avatar/index",
-        "i-tab-bar": "../../iView/tab-bar/index",
-        "i-tab-bar-item": "../../iView/tab-bar-item/index",
-        "i-custom-bar": "../../components/custom-bar/index",
+            "i-avatar": "../../iView/avatar/index",
+            "i-tab-bar": "../../iView/tab-bar/index",
+            "i-tab-bar-item": "../../iView/tab-bar-item/index",
+            "i-custom-bar": "../../components/custom-bar/index",
             "i-divider": "../../iView/divider/index",
-                "i-button": "../../iView/button/index"
-
-
+            "i-button": "../../iView/button/index",
+            "wux-spin": "../../wux/spin/index"
 
     }
 }

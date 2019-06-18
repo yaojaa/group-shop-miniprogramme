@@ -156,12 +156,8 @@ border-radius:8rpx;
     color:#666;
 }
 .order-fd{
-    text-align: left;
-/*    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;*/
+    text-align: right;
+
 }
 .order-fd form{
 /*    -webkit-flex: 1;
@@ -176,7 +172,8 @@ border-radius:8rpx;
 }
 .order-fd .btn{
 /*    display: block;*/
-margin: 10px 0;
+margin-left: 10px;
+padding: 15rpx 50rpx
 }
 .order-date{
     font-size: 12px;
@@ -268,7 +265,7 @@ margin: 10px 0;
 .actionsButtons{
     position: absolute;
     right: 10rpx;
-    top: -18rpx
+    top: -5rpx
 }
 .goods_title{
     max-width: 300rpx;

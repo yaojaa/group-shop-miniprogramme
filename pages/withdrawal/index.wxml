@@ -1,5 +1,4 @@
 
-<i-custom-bar showBackIcon="{{true}}" fixed   title="提现">   </i-custom-bar>
 <view class="container">
 	<view class="text-justify mtop100 f14">
 		<view>账户余额（元）</view>
@@ -9,7 +8,7 @@
 	<view class="withdraw-box">
 	<i-input value="{{inputMoney}}" type="number" bindchange="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
 	</view>
-	<button type="primary" class="linear_bg" bindtap="getMoney"> 提现 </button>
+	<button type="primary" class="linear_bg" bindtap="getMoney"> 立即提现 </button>
 
 
 	<view class="list" wx:if="{{withdrawalslist.length}}">
@@ -18,7 +17,7 @@
 			
 {{item.apply_time_txt}}
  申请金额：{{item.apply_money}}
-			{{item.withdraw_status_txt}}
+ {{item.withdraw_status_txt}}
 
 		</view>
 
@@ -28,7 +27,7 @@
     	<view class="erweima">
 
 			<text style="font-size: 12px;">提现微信收取手续费0.6%，平台不收任何费用。
-			实时内到账，有疑问可联系客服。
+			24小时内到账，有疑问可联系客服。
 		</text>
 
 		

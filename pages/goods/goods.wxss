@@ -159,6 +159,7 @@
     font-size: 32rpx;
     display: flex;
     border-top: 1rpx solid #f1f1f1;
+    z-index:9999
 }
 
 .footer-cart .icon {

@@ -23,6 +23,17 @@ Component({
         ]
     },
     methods: {
+     moreAction(){
+        wx.showActionSheet({
+          itemList: ['个人主页显示', '个人主页隐藏','复制一个'],
+          success (res) {
+            console.log(res.tapIndex)
+          },
+          fail (res) {
+            console.log(res.errMsg)
+          }
+        })
+    },
        upDownGoods(e){
 
         const status = e.currentTarget.dataset.status

@@ -18,7 +18,7 @@ Page({
         visible2: false,
         visible3: false, //取消订单
         visible4_pay: false, //设为支付
-        visible5_tips: false, //提醒取货
+        showMsgTips: false, //提醒取货
         note: '', //备注
         loading: false,
         cpage: 1,
@@ -60,11 +60,32 @@ Page({
             }
         ]
     },
+
+    //打开发送通知
+    openMsgTips(){
+
+        this.setData({
+            showMsgTips: true
+        })
+    },
     showPopMenu() {
 
         this.setData({
             showPop: true
         })
+
+    },
+    // 右上角菜单点击
+    handleClickItem1(e){
+
+     const index = e.detail.index
+
+     if(index==0){
+        this.exportExcel()
+     }else if(index == 1){
+        this.openMsgTips()
+
+     }
 
     },
     handleCancel1() {
@@ -414,16 +435,16 @@ Page({
 
 
 
-    openTips({ target }) {
+    openTips() {
         this.setData({
             visible5_tips: true,
-            order_id: target.dataset.id
+            order_id: target.dataset.id || ''
         })
     },
 
     closeTips({ target }) {
         this.setData({
-            visible5_tips: false
+            showMsgTips: false
         })
     },
 
@@ -505,17 +526,13 @@ Page({
         }
 
 
-        wx.request({
-            url: 'https://www.daohangwa.com/api/seller/send_tmp_msg',
-            method: 'post',
-            data: {
-                token: app.globalData.token,
-                order_id: order_id,
+        util.wx.post('/api/seller/send_tmp_msg',{
+               order_id: order_id,
                 note: this.data.note,
                 type: 10
-            },
-            success: (res) => {
-                this.setData({
+            }).then(res=>{
+
+                 this.setData({
                     visible2: false
                 })
                 if (res.data.code == 0) {
@@ -531,9 +548,8 @@ Page({
                         type: 'error'
                     });
                 }
-            }
-        })
 
+            })
     },
 
     /**群发提醒**/

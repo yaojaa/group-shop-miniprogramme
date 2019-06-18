@@ -4,6 +4,7 @@
     display: flex;
 }
 
+
 .container {
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -13,6 +14,7 @@
 .product-item-container {
     margin-top: 180rpx;
     margin-bottom: 150rpx
+
 }
 
 

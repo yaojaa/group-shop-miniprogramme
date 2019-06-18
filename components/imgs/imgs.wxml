@@ -1,4 +1,7 @@
-<view class="img-box" style="height: {{ imgs.height + 'rpx' }};{{imgsPath.length > 1 && 'background:none'}}" bindtap="checkBigImg">
+<view class="img-box" style="height: {{ imgs.height + 'rpx' }};{{imgsPath.length > 0 && 'background:none'}}" bindtap="checkBigImg">
+	<wux-spin nested spinning="{{imgsPath.length < 1}}" wx:if='{{imgsPath.length < 1}}'>
+		<view style="height: {{ imgs.height + 'rpx' }}"></view>
+	</wux-spin>
 	<block wx:if="{{img.flag}}">
 	<!-- 正方形 -->
 	<view wx:if="{{img.type == 0}}" class="flex-cc">

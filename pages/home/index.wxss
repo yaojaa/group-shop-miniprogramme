@@ -137,13 +137,7 @@ vertical-align:middle;
 
 
 
-.msg-tips {
-    position: absolute;
-    top: 14px;
-    right: 15px;
-    font-size: 20rpx;
-    color: #ffcc33
-}
+
 
 .userinfo {
     color: #fff;
@@ -353,6 +347,7 @@ vertical-align:middle;
 }
 .myorder .flex-item{
     text-align: center;
+    position: relative;
 }
 .myorder .flex-item .icon{
     margin-bottom: 10px
@@ -693,15 +688,15 @@ button::after {
   font-size: 48rpx;
 }
 .siteBtn{
-    text-align: center;
-    background: #ff9000;
-    border-radius:30px;
-    color: #fff;
-    width:90px;
-    font-size: 14px;
-    margin-right: 20px;
-    padding: 5px 10px;
-    margin-top: 20px
+  text-align:center;
+background:#ff9000;
+border-radius:30px;
+color:#fff;
+width:90px;
+font-size:14px;
+margin-right:20px;
+padding:8px 10px;
+margin-top:10px;
 }
 .marginTop{
     margin-top: -100rpx!important
@@ -709,12 +704,12 @@ button::after {
 
 .badge{
     position: absolute;
-    top: 12rpx;
-    right: 14rpx;
+    top: 0;
+    right: 58rpx;
     height: 16px;
     border-radius: 9px;
     min-width: 16px;
-    background: #ff0000;
+    background: #9c0;
     border: 1px solid transparent;
     color: #fff;
     line-height: 14px;

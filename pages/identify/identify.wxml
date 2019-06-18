@@ -1,4 +1,3 @@
-<i-custom-bar showBackIcon="{{true}}" backIconColor="#333333" backColor="#fff" title="个人信息"> </i-custom-bar>
 <view class="container ">
     <view class="info-box ">
         <i-panel title="完善联系方式">
@@ -21,12 +20,13 @@
        <view class='btn-wrap'>
 
 
-           <button type="danger" class="linear_bg" bindtap="postInfo">保存</button>
+         
+           <button bindtap="postInfo" formType="submit" class="weui-btn weui-btn_primary linenear_bg">保存</button>
 
 
 
 
-        <button type="danger" class="linear_bg" bindtap="clearStorage">清除缓存 重新登录</button>
+        <button style="margin-top:200px" type="danger" class="linear_bg" bindtap="clearStorage">清除缓存 重新登录</button>
     </view>
     <i-message id="message" />
 </view>

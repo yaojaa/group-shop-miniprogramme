@@ -89,7 +89,6 @@ Page({
 
     },
     onReady: function() {
-        this.getShareImg(this.data.goods_id)
 
 
         wx.getSetting({
@@ -121,10 +120,16 @@ Page({
     },
     openShareFriends() {
 
+     // this.getShareImg(this.data.goods_id).then({
 
-        this.setData({
-            showShareFriendsCard: true
-        })
+     //    this.setData({
+     //        showShareFriendsCard: true
+     //    })
+
+     // })
+
+
+
     },
     closeShareFriends() {
         this.setData({
@@ -208,9 +213,6 @@ Page({
           this.access_id = res.data.data.access_id
         })
 
-
-
-
         util.wx.get('/api/goods/get_goods_detail', { 
           goods_id: id
         })
@@ -219,15 +221,7 @@ Page({
 
                 if (res.data.code == 200) {
 
-
-                    // let goods_spec = res.data.data.goods_spec
-
-                    // goods_spec.map(value => {
-                    //   value.item_num = 0
-                    // })
                     const d = res.data.data
-
-                    console.log('done', d)
 
                     //绘制朋友圈图片
                     drawGoods = d;
@@ -295,6 +289,11 @@ Page({
     onLoad: function(option) {
       console.log('用户进入了')
 
+          if (option.scene) {
+            option = decodeURIComponent(options.scene)
+            option = util.url2json(options)
+        }
+
       app.that = this
 
 
@@ -319,9 +318,6 @@ Page({
                 query.exec( (res)=> {
 
                     this.data.spec_box_top = res[0].top
-                  // res[0].top // #the-id节点的上边界坐标
-                  // res[1].scrollTop // 显示区域的竖直滚动位置
-                  console.log(res)
                 })
 
 
@@ -329,139 +325,7 @@ Page({
             StatusBar:app.globalData.StatusBar
         })
 
-        // wx.showLoading({
-        //       title: '玩命加载中...',
-        // })
-        //没有传ID的情况跳转
-        //
-        // if(!option.goods_id && !option.scene){
-
-        //      wx.redirectTo({
-        //         url:'../login/login'
-        //       })
-
-        //      return
-
-        // }
-
-        this.data.goods_id = option.goods_id || option.scene
-
-
-
-        // Promise.all([
-        //   util.getQrcode({
-        //     page: 'pages/goods/goods',
-        //     scene: this.data.goods_id
-        //   }),
-        //   new Promise(resolve => {
-        //     wx.request({
-        //       url: 'https://www.kaixinmatuan.cn/api/goods/get_goods_info',
-        //       data: {
-        //         // token: app.globalData.token,
-        //         goods_id: this.data.goods_id
-        //       },
-        //       success: (res) => {
-        //         resolve(res);
-        //       }
-
-        //     })
-        //   })
-        // ])
-        // .then(arr=>{
-        //   console.log('arr',arr);
-        //   let res = arr[1];
-        //   //绘制朋友圈图片
-        //   util.drawShareFriends(this,[arr[0], res.data]);
-        //   wx.hideLoading()
-        //   if (res.data.code == 0) {
-
-        //     console.log(res.data.data.goods)
-
-        //     let spec_goods_price = res.data.data.spec_goods_price
-
-        //     spec_goods_price.map(value => {
-        //       value.item_num = 0
-        //     })
-
-        //     this.setData({
-        //       goods: res.data.data.goods,
-        //       imgUrls: res.data.data.images,
-        //       sell_address: res.data.data.sell_address,
-        //       seller: res.data.data.seller,
-        //       spec_goods_price: spec_goods_price,
-        //       delivery_method: res.data.data.goods.delivery_method,
-        //       collection_methods: res.data.data.goods.collection_methods,
-        //       endTime: res.data.data.goods.sell_end_time,
-        //       countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
-        //     })
-
-        //     wx.setNavigationBarTitle({
-        //       title: '【' + res.data.data.seller.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
-        //     })
-
-        //     //计算位置
-        //     if (res.data.data.goods.delivery_method == 2) {
-        //       this.computeDistance()
-        //     }
-
-        //   }
-
-
-
-
-        // })
-        // .catch(e=>{console.log(e)})
-
-        // wx.request({
-        //     url: 'https://www.kaixinmatuan.cn/api/goods/get_goods_info',
-        //     data: {
-        //         // token :app.globalData.token,
-        //         goods_id: this.data.goods_id
-        //     },
-        //     success: (res) => {
-        //         wx.hideLoading()
-        //         if (res.data.code == 0) {
-
-        //             console.log(res.data.data.goods)
-
-        //             let spec_goods_price = res.data.data.spec_goods_price
-
-        //             spec_goods_price.map(value => {
-        //                 value.item_num = 0
-        //             })
-
-        //             this.setData({
-        //                 goods: res.data.data.goods,
-        //                 imgUrls: res.data.data.images,
-        //                 sell_address: res.data.data.sell_address,
-        //                 seller: res.data.data.seller,
-        //                 spec_goods_price: spec_goods_price,
-        //                 delivery_method:res.data.data.goods.delivery_method,
-        //                 collection_methods:res.data.data.goods. collection_methods,
-        //                 endTime: res.data.data.goods.sell_end_time,
-        //                 countdownTime: new Date(res.data.data.goods.sell_end_time * 1000).getTime()
-        //             })
-
-        //             wx.setNavigationBarTitle({
-        //               title: '【'+res.data.data.seller.nickname +'】 '+ res.data.data.goods.goods_name//页面标题为路由参数
-        //             })
-
-        //              //计算位置
-        //         if(res.data.data.goods.delivery_method ==2){
-        //             this.computeDistance()
-        //         }
-
-        //         }
-
-
-
-
-        //        // this.getOrderUserList(option.goods_id)
-
-        //     }
-        // })
-
-
+        this.data.goods_id = option.goods_id
 
 
     },
@@ -517,9 +381,7 @@ Page({
 
     },
     addAnimate(e) {
-
         console.log('this.type', this.type)
-
         if (this.type === 'plus') {
 
             this.starPos = {}
@@ -529,10 +391,6 @@ Page({
             this.startAnimation()
 
         }
-
-
-
-
     },
     cartPanelHide() {
         this.setData({

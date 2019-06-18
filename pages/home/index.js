@@ -140,8 +140,6 @@ Page({
         })
 
     },
-    
-
     goCreate() {
         wx.redirectTo({
             url: '../create_shop/index'
