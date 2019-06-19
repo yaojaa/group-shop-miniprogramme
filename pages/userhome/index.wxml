@@ -44,7 +44,12 @@
             </view>
         </navigator>
     </view>
-    <i-load-more wx:if="{{loading}}" tip="加载更多中..." loading="{{ true }}" />
+ 
+
+   <view class="text-center mb-sm">
+        <wux-spin wx:if="{{loading}}"></wux-spin>
+  </view>
+
     <view class="weui-footer">
         <view class="weui-footer__links">
             <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>

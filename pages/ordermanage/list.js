@@ -341,32 +341,23 @@ Page({
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
                 search_order_status: this.data.search_order_status,
-                pagesize: 5
+                pagesize: 15
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
             }).then((res) => {
 
-                console.log('res', res.data.data.order_list)
+                var resdata = res.data.data.order_list
 
-                var resdata
-
-                if (this.data.cpage <= 1) {
-
-                    resdata = res.data.data.order_list
-
-                } else {
-
-                    resdata = this.data.dataList.concat(res.data.data.order_list)
-                }
+                var key = 'dataList['+(this.data.cpage-1)+']'
+                console.log(key)
 
                 this.setData({
-                    dataList: resdata,
+                    [key]: resdata,
                     loading: false,
                     totalpage: res.data.data.page.totalpage
-                    // delivery_method:res.data.data.goods.delivery_method
 
                 })
 
-                resolve(res.data.data)
+                resolve()
             }, (err) => {
                 reject(err)
             })

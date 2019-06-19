@@ -272,6 +272,18 @@ Page({
 
 
 
+        },(e)=>{
+
+            wx.showToast({
+                title:'服务器出小差儿了'+e,
+                icon:'none'
+            })
+
+        }).catch(e=>{
+            wx.showToast({
+                title:'服务器出小差儿了'+e,
+                icon:'none'
+            })
         })
 
 

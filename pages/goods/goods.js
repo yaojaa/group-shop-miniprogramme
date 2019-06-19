@@ -651,8 +651,7 @@ Page({
     },
     buy() {
 
-
-
+        console.log('buy')
         //默认选一份
 
         if (this.data.amountMoney == 0) {

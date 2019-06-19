@@ -57,10 +57,13 @@
     <view class="text-center" wx:if="{{dataList.length==0}}">
         暂无订单
     </view>
-    <view class="order-item" wx:for="{{dataList}}" wx:key="index" wx:for-index="bindex">
+    
+<block wx:for="{{dataList}}" wx:for-item="listItem" wx:key="{{listItem}}">
+
+    <view class="order-item" wx:for="{{listItem}}" wx:key="{{item.order_id}}" wx:for-index="bindex">
         <view class="order-hd">
             <view class="number">
-                                <text class="create_number">{{item.create_number}}</text>
+                  <text class="create_number">{{item.create_number}}</text>
 
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
             </view>
@@ -133,7 +136,9 @@
         <!-- </form> -->
     </view>
 
-       <view class="text-center">
+</block>
+
+   <view class="text-center mb-sm">
         <wux-spin wx:if="{{loading}}"></wux-spin>
   </view>
 
