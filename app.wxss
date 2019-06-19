@@ -1,5 +1,5 @@
 /**app.wxss**/
-
+@import "/vant/common/index.wxss";
 .container {
     color: #333;
     width: 100%;
