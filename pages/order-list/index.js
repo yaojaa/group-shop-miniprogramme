@@ -47,7 +47,7 @@ Page({
                         text: '操作成功',
                         duration: 1000,
                         selector: '#custom-selector',
-                        backgroundColor: '#66c23a'
+                        backgroundColor: '#49b34d'
                     })
 
                 } else {
@@ -110,8 +110,12 @@ Page({
 
     },
     orderActions(e) {
-        const { opt, order_id, txt } = e.currentTarget.dataset
+        const { opt, order_id, txt,sn } = e.currentTarget.dataset
         console.log(opt, order_id, txt)
+        if( opt == 'toset_pay'){
+            this.pay(sn)
+            return
+        }
         wx.showModal({
             title: '确定要' + txt + '吗？',
             success: (res) => {
@@ -139,6 +143,43 @@ Page({
         })
         this.getOrderList()
     },
+    pay(id) {
+        util.wx.post('/api/pay/pay', {
+            order_sn: id
+        }).then(res => {
+            var data = res.data.data;
+            wx.requestPayment({
+                timeStamp: data['timeStamp'],
+                nonceStr: data['nonceStr'],
+                package: data['package'],
+                signType: data['signType'],
+                paySign: data['paySign'],
+                success: (res) => {
+                    util.wx.post('/api/pay/orderpay', {
+                        order_sn: id
+                    })
+                    Notify({
+                        text: '支付成功',
+                        duration: 1000,
+                        selector: '#custom-selector',
+                        backgroundColor: '#49b34d'
+                    })
+                    this.getOrderList();
+                },
+                fail: (res) => {
+                    Notify({
+                        text: '支付失败，请重新支付',
+                        duration: 1000,
+                        selector: '#custom-selector',
+                        backgroundColor: '#d0021b'
+                    })
+                }
+            })
+
+        })
+
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
