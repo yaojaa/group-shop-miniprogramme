@@ -1,49 +1,29 @@
-<view class="page-body">
-<painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgErr="onImgErr"
- bind:imgOK="onImgOk"/>
-
-<view class="weui-msg">
-      
-        <view class="weui-msg__text-area"  wx:if="{{!imagePath}}">
-        	<i-icon type="emoji_fill" size="98" color="green" />
+<view >
+    <painter goods_id="{{goods_id}}" palette="{{painterData}}" bind:imgErr="onImgErr" bind:imgOK="onImgOk" />
+    <view class="weui-msg">
+        <view class="weui-msg__text-area" wx:if="{{!imagePath}}">
+            <i-icon type="emoji_fill" size="98" color="green" />
             <view class="weui-msg__title">发布成功</view>
             <view class="weui-msg__desc">正在为你生成一张漂亮的分享卡片...
-<!--   <navigator url="/authentication/authentication">还可完善下联系方式，方便咨询
+                <!--   <navigator url="/authentication/authentication">还可完善下联系方式，方便咨询
   </navigator> -->
             </view>
         </view>
-        <text wx:if="{{imagePath}}" class="weui-msg__desc">分享卡片效果</text>
-
-        <view class="weui-msg__opr-area" >
-
+        <view wx:if="{{imagePath}}" class="text-center mt-xl primary-text">分享卡片效果</view>
+        <view class="share-box" >
             <view class="weui-msg__desc">
-               <text wx:if="{{!imagePath}}"> 努力生成中...大概需要10秒</text>
-
+                <text wx:if="{{!imagePath}}"> 努力生成中...大概需要10秒</text>
             </view>
-
-            <image mode="aspectFit" src="{{imagePath}}" />
-
+            <image mode="widthFix" src="{{imagePath}}" class="w-full" />
         </view>
-
-  
         <view class="weui-msg__extra-area">
-         <view class="weui-btn-area" wx:if="{{imagePath}}">
-       
-         <button type="primary" size="default"  
-         bindtap="viewGoods"> 查看详情 </button>
-          <button type="default" open-type="share" size="default"  
-           > 立即分享 </button>
-
-
-
-         </view>
-           <!--  <view class="weui-footer">
+            <view class="weui-btn-area" wx:if="{{imagePath}}">
+                <button type="primary" size="default" bindtap="viewGoods"> 查看详情 </button>
+                <button type="default" open-type="share" size="default"> 立即分享 </button>
+            </view>
+            <!--  <view class="weui-footer">
                 <view class="weui-footer__text">后期将增加更多分享图效果</view>
             </view> -->
         </view>
     </view>
-
-  
-
-
 </view>

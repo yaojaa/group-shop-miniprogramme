@@ -11,7 +11,7 @@
 
 
 <view class="circle_warpper" >
-      <navigator url="../publish/publish">
+      <navigator url="../publish/publish" hover-class="none">
 
      <view class="circle">
 
