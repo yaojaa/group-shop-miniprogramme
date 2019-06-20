@@ -1,5 +1,5 @@
 @import "../../utils/weui.wxss";
-
+@import "../../css/common.wxss";
 
 .page-body{
   position: relative;
@@ -36,7 +36,7 @@ picker{
 }
 
 .new_add_btn{
-  padding: 10px 20rpx;
+  padding: 14rpx 20rpx;
   color: #555;
   margin:15rpx;
   border-radius: 15rpx;
@@ -48,9 +48,8 @@ picker{
 }
 .add_btn_pic{
 
-  padding: 10px 20rpx;
   color: #555;
-  margin:15rpx;
+  margin:20rpx;
   border-radius: 15rpx;
   background: #f8f8f8;
   display:block;
