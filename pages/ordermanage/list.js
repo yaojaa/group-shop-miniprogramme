@@ -184,11 +184,14 @@ Page({
             success: (res) => {
 
                 if (res.confirm) {
+                            wx.showLoading()
+
                     util.wx.post('/api/seller/set_order_status', {
                             opt,
                             order_id
                         }).then(res => {
                             if (res.data.code == 200) {
+                                wx.hideLoading()
                                 this.getStatistics()
                                 //操作完成之后的回调
                                 

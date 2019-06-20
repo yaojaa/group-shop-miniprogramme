@@ -174,7 +174,7 @@ border-radius:8rpx;
 .order-fd .btn{
 /*    display: block;*/
 margin-left: 10px;
-padding: 15rpx 50rpx
+padding: 15rpx 30rpx
 }
 .order-date{
     font-size: 12px;
@@ -298,7 +298,8 @@ padding: 15rpx 50rpx
 .color_3{
     color: #5db85d
 }
-.color_1{
+
+.color_1,.color_2{
     color: #ff6633
 }
 .removeClass{

@@ -54,7 +54,7 @@
         </block>
     </view>
 
-    <view class="text-center" wx:if="{{dataList.length==0}}">
+    <view class="text-center" wx:if="{{!loading && dataList.length==0}}">
         暂无订单
     </view>
     
