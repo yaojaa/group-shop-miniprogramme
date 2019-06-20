@@ -62,7 +62,7 @@ Page({
     },
 
     //打开发送通知
-    openMsgTips(){
+    openMsgTips() {
 
         this.setData({
             showMsgTips: true
@@ -76,16 +76,16 @@ Page({
 
     },
     // 右上角菜单点击
-    handleClickItem1(e){
+    handleClickItem1(e) {
 
-     const index = e.detail.index
+        const index = e.detail.index
 
-     if(index==0){
-        this.exportExcel()
-     }else if(index == 1){
-        this.openMsgTips()
+        if (index == 0) {
+            this.exportExcel()
+        } else if (index == 1) {
+            this.openMsgTips()
 
-     }
+        }
 
     },
     handleCancel1() {
@@ -159,12 +159,15 @@ Page({
     /**处理按钮事件***/
 
     orderActions(e) {
-        const opt = e.currentTarget.dataset.opt
-        const index  = e.currentTarget.dataset.index
-        const order_id = e.currentTarget.dataset.id
-        const txt = e.currentTarget.dataset.txt
-        const avatar = e.currentTarget.dataset.avatar
-        const user_name = e.currentTarget.dataset.user_name
+        const opt = e.detail.target.dataset.opt
+        const cindex = e.detail.target.dataset.cindex
+        const pindex = e.detail.target.dataset.pindex
+
+        const order_id = e.detail.target.dataset.id
+        const txt = e.detail.target.dataset.txt
+        const avatar = e.detail.target.dataset.avatar
+        const user_name = e.detail.target.dataset.user_name
+
 
         if (opt == 'toset_send' && this.data.delivery_method == 1) {
 
@@ -177,7 +180,7 @@ Page({
         }
 
         wx.showModal({
-            title: '您要' + txt + '吗？',
+            title: '确定要' + txt + '吗？',
             success: (res) => {
 
                 if (res.confirm) {
@@ -186,17 +189,33 @@ Page({
                             order_id
                         }).then(res => {
                             if (res.data.code == 200) {
-                                wx.showToast({ title: '订单修改成功' })
                                 this.getStatistics()
                                 //操作完成之后的回调
                                 
-                                if(opt == 'toset_del'){
+                                //当前操作的item
+                                const key = 'dataList['+pindex+']['+cindex+']'
+                                const currentItem = this.data.dataList[pindex][cindex]
+                                      currentItem.removed = true
+                                
+                                //删除逻辑
+                                if (opt == 'toset_del') {
 
-                                    this.data.order_list.splice(index,1)
 
                                     this.setData({
-                                        order_list:this.data.order_list
+                                        [key]: currentItem
                                     })
+
+                                    wx.showToast({ title: '删除成功' })
+
+
+                                } else {
+
+                                         this.setData({
+                                        [key]: res.data.data
+                                    })
+                                    wx.showToast({ title: '操作成功' })
+
+
 
                                 }
 
@@ -220,35 +239,7 @@ Page({
     sendGoods() {},
 
 
-    /**删除订单***/
 
-    removeOrder(e) {
-
-        const order_id = e.target.dataset.order_id
-
-        wx.showModal({
-            title: '确定要删除吗？',
-            success: (res) => {
-
-                if (res.confirm) {
-                    util.WX.post('/api/seller/delete_order', {
-                        token: app.globalData.token,
-                        order_id: order_id
-                    }).then(res => {
-                        if (res.data.code == 0) {
-                            wx.showToast({ title: '订单删除成功' })
-                        } else {
-                            wx.showToast({ title: '订单删除失败' })
-
-                        }
-                    })
-                }
-
-            }
-        })
-
-
-    },
 
     getStatistics() {
 
@@ -331,7 +322,7 @@ Page({
     getOrderList() {
 
         this.setData({
-             loading:true
+            loading: true
         })
 
         return new Promise((resolve, reject) => {
@@ -347,8 +338,7 @@ Page({
 
                 var resdata = res.data.data.order_list
 
-                var key = 'dataList['+(this.data.cpage-1)+']'
-                console.log(key)
+                var key = 'dataList[' + (this.data.cpage - 1) + ']'
 
                 this.setData({
                     [key]: resdata,
@@ -529,30 +519,30 @@ Page({
         }
 
 
-        util.wx.post('/api/seller/send_tmp_msg',{
-               order_id: order_id,
-                note: this.data.note,
-                type: 10
-            }).then(res=>{
+        util.wx.post('/api/seller/send_tmp_msg', {
+            order_id: order_id,
+            note: this.data.note,
+            type: 10
+        }).then(res => {
 
-                 this.setData({
-                    visible2: false
-                })
-                if (res.data.code == 0) {
-                    wx.showToast({ title: "发送成功，请不要重复提醒哦" })
-                    this.setData({
-                        visible5_tips: false
-                    });
-
-                } else {
-
-                    $Message({
-                        content: res.data.msg,
-                        type: 'error'
-                    });
-                }
-
+            this.setData({
+                visible2: false
             })
+            if (res.data.code == 0) {
+                wx.showToast({ title: "发送成功，请不要重复提醒哦" })
+                this.setData({
+                    visible5_tips: false
+                });
+
+            } else {
+
+                $Message({
+                    content: res.data.msg,
+                    type: 'error'
+                });
+            }
+
+        })
     },
 
     /**群发提醒**/

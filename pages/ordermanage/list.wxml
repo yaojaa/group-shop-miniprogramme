@@ -58,9 +58,9 @@
         暂无订单
     </view>
     
-<block wx:for="{{dataList}}" wx:for-item="listItem" wx:key="{{listItem}}">
+<block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
 
-    <view class="order-item" wx:for="{{listItem}}" wx:key="{{item.order_id}}" wx:for-index="bindex">
+    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="{{item.order_id}}" wx:if="{{!item.removed}}">
         <view class="order-hd">
             <view class="number">
                   <text class="create_number">{{item.create_number}}</text>
@@ -109,16 +109,18 @@
             </text>
             </view> -->
 
-            <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" data-opt="{{btn.opt}}" data-txt="{{btn.txt}}" bindtap="setTips">发送通知</button>
+            <button  class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="setTips">发送通知</button>
 
-
-
-            <block wx:for="{{item.seller_next_handle}}" wx:key="{{index}}" wx:for-item="btn">
+            <block wx:for="{{item.seller_next_handle}}" wx:for-item="btn">
                 <form bindsubmit="formSubmit" report-submit="true">
-                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" 
-                    data-opt="{{btn.opt}}"
-                    data-index="{{index}}"
-                    data-txt="{{btn.txt}}" bindtap="orderActions">{{btn.txt}}</button>
+                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType = "submit" 
+                    data-id="{{item.order_id}}" 
+                    data-opt = "{{btn.opt}}"
+                    data-cindex = "{{cindex}}"
+                    data-pindex = "{{pindex}}"
+                    data-txt = "{{btn.txt}}" 
+                    data-fn = "orderActions"
+                    >{{btn.txt}}</button>
                 </form>
             </block>
         </view>

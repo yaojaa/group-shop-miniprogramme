@@ -4,7 +4,10 @@
     display: flex;
 }
 
+page{
+  background: #f8f8f8
 
+}
 .container {
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -141,7 +144,7 @@
 
 
 .item-img-box-three {
-    width: 196rpx;
+    width: 200rpx;
     border-radius: 8px
 }
 

@@ -298,5 +298,11 @@ padding: 15rpx 50rpx
 .color_3{
     color: #5db85d
 }
+.color_1{
+    color: #ff6633
+}
+.removeClass{
+    text-decoration:line-through
+}
 
 

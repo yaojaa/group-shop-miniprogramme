@@ -22,7 +22,7 @@
                 <view class="text-muted text-sm">提货点信息</view>
             </view>
             <van-cell-group>
-                <van-field readonly label="团长" value="{{seller.nickname}}" wx:if="{{seller.nickname}}" size="small"  />
+                <van-field readonly label="联系人" value="{{seller.nickname}}" wx:if="{{seller.nickname}}" size="small"  />
                 <van-field readonly label="手机号" value="{{seller.mobile}}" wx:if="{{seller.mobile}}" size="small" />
                 <van-radio-group value="{{ address_id }}" bind:change=""  wx:if="{{self_address.length>1}}">
                     <van-cell-group>

@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 49,
+			"current": 50,
 			"list": [
 				{
 					"id": 0,
@@ -394,6 +394,13 @@
 					"name": "订单管理",
 					"pathName": "pages/withdrawal/index",
 					"query": "id=257&goods_name=血桃发货&delivery_method=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人主页设置",
+					"pathName": "pages/create_shop/index",
+					"query": "",
 					"scene": null
 				}
 			]
