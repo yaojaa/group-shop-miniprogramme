@@ -36,7 +36,7 @@
             <text class="label">浏览人数</text>
         </view>
         <view class="count-item">
-            <text class="num">{{item.pageview_count}}</text>
+            <text class="num">￥{{item._order_total}}</text>
             <text class="label">收款总额</text>
         </view>
         <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">

@@ -1,6 +1,8 @@
 .wux-spin {
     position: relative;
-    display: inline-block
+    display: inline-block;
+        margin:0 auto
+
 }
 
 .wux-spin__spinning {
@@ -11,7 +13,8 @@
     text-align: center;
     font-size: 28rpx;
     line-height: 1.5;
-    color: #108ee9
+    color: #108ee9;
+    margin:0 auto
 }
 
 .wux-spin__spinning--nested {

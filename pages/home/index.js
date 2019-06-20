@@ -12,9 +12,6 @@ Page({
      */
     data: {
         userInfo: {},
-        order_number: 0,
-        goods_number: 0,
-        store_money: 0,
         goodslist: [],
         goods_id: "",
         order_id: "",
@@ -58,14 +55,12 @@ Page({
         }
     })
 
-    console.log(c)
     if(c){
-    var _data = this.data.goodslist.splice(c,1)
-
-    console.log(_data)
+        
+   this.data.goodslist.splice(c,1)
 
     this.setData({
-        'goodslist':_data
+        'goodslist':this.data.goodslist
     })
         
     }
@@ -163,7 +158,6 @@ Page({
                 if (res.data.code == 200) {
                     console.log('store_money: res.data.data.store_money',res.data.data.store_money)
                     this.setData({
-                        store_money: res.data.data.store_money,
                         pending_money:res.data.data.pending_money
                     })
                 }
@@ -177,14 +171,27 @@ Page({
         cpage:this.cpage,
         pagesize:5
         })
-            .then(res => {
+        .then(res => {
 
                 if (res.data.code == 200) {
                     this.setData({
                         goodslist: this.data.goodslist.concat(res.data.data.goodslist),
-                        goods_number: res.data.data.page.total,
                         is_loading: false
                     })
+
+                    this.data.goodslist.forEach(item=>{
+
+                        if(item._order_status1_count>0){
+                            this.setData({
+                                hasNewOrder:true
+                            })
+                        }
+
+
+
+                    })
+
+
                 this.totalpage = res.data.data.page.totalpage
 
                 }else{

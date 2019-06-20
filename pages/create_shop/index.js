@@ -44,7 +44,12 @@ Page({
     onSuccess(e,l) {
         console.log('onSuccess图片上传成功',e,l)
 
-        this.data.store_slide.push(e.detail.url)
+        const data = JSON.parse(e.detail)
+
+
+        console.log('地址是',data.data.file_url)
+
+        this.data.store_slide.push(data.data.file_url)
 
 
     },
@@ -146,7 +151,6 @@ Page({
           store_name:res.data.data.store_name,
           store_intro:res.data.data.store_intro
         })
-
         wx.hideLoading()
       }
 

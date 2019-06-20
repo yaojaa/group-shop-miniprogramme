@@ -146,7 +146,6 @@
             <button wx:if="{{goods._expires==1}}" class="buy linenear_bg" formType="submit">立即参与</button>
            <button wx:else class="buy linenear_bg" formType="submit">不能参与了哦</button>
 
-            
         </form>
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">

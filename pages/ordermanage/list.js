@@ -62,7 +62,7 @@ Page({
     },
 
     //打开发送通知
-    openMsgTips(){
+    openMsgTips() {
 
         this.setData({
             showMsgTips: true
@@ -76,16 +76,16 @@ Page({
 
     },
     // 右上角菜单点击
-    handleClickItem1(e){
+    handleClickItem1(e) {
 
-     const index = e.detail.index
+        const index = e.detail.index
 
-     if(index==0){
-        this.exportExcel()
-     }else if(index == 1){
-        this.openMsgTips()
+        if (index == 0) {
+            this.exportExcel()
+        } else if (index == 1) {
+            this.openMsgTips()
 
-     }
+        }
 
     },
     handleCancel1() {
@@ -159,11 +159,15 @@ Page({
     /**处理按钮事件***/
 
     orderActions(e) {
-        const opt = e.currentTarget.dataset.opt
-        const order_id = e.currentTarget.dataset.id
-        const txt = e.currentTarget.dataset.txt
-        const avatar = e.currentTarget.dataset.avatar
-        const user_name = e.currentTarget.dataset.user_name
+        const opt = e.detail.target.dataset.opt
+        const cindex = e.detail.target.dataset.cindex
+        const pindex = e.detail.target.dataset.pindex
+
+        const order_id = e.detail.target.dataset.id
+        const txt = e.detail.target.dataset.txt
+        const avatar = e.detail.target.dataset.avatar
+        const user_name = e.detail.target.dataset.user_name
+
 
         if (opt == 'toset_send' && this.data.delivery_method == 1) {
 
@@ -176,7 +180,7 @@ Page({
         }
 
         wx.showModal({
-            title: '您要' + txt + '吗？',
+            title: '确定要' + txt + '吗？',
             success: (res) => {
 
                 if (res.confirm) {
@@ -185,9 +189,35 @@ Page({
                             order_id
                         }).then(res => {
                             if (res.data.code == 200) {
-                                wx.showToast({ title: '订单操作成功' })
-                                this.getOrderList()
                                 this.getStatistics()
+                                //操作完成之后的回调
+                                
+                                //当前操作的item
+                                const key = 'dataList['+pindex+']['+cindex+']'
+                                const currentItem = this.data.dataList[pindex][cindex]
+                                      currentItem.removed = true
+                                
+                                //删除逻辑
+                                if (opt == 'toset_del') {
+
+
+                                    this.setData({
+                                        [key]: currentItem
+                                    })
+
+                                    wx.showToast({ title: '删除成功' })
+
+
+                                } else {
+
+                                         this.setData({
+                                        [key]: res.data.data
+                                    })
+                                    wx.showToast({ title: '操作成功' })
+
+
+
+                                }
 
 
                             } else {
@@ -209,35 +239,7 @@ Page({
     sendGoods() {},
 
 
-    /**删除订单***/
 
-    removeOrder(e) {
-
-        const order_id = e.target.dataset.order_id
-
-        wx.showModal({
-            title: '确定要删除吗？',
-            success: (res) => {
-
-                if (res.confirm) {
-                    util.WX.post('/api/seller/delete_order', {
-                        token: app.globalData.token,
-                        order_id: order_id
-                    }).then(res => {
-                        if (res.data.code == 0) {
-                            wx.showToast({ title: '订单删除成功' })
-                        } else {
-                            wx.showToast({ title: '订单删除失败' })
-
-                        }
-                    })
-                }
-
-            }
-        })
-
-
-    },
 
     getStatistics() {
 
@@ -319,43 +321,34 @@ Page({
     },
     getOrderList() {
 
+        this.setData({
+            loading: true
+        })
+
         return new Promise((resolve, reject) => {
-            wx.showLoading()
 
             util.wx.get('/api/seller/get_order_list', {
                 goods_id: this.data.goods_id,
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
                 search_order_status: this.data.search_order_status,
-                pagesize: 5
+                pagesize: 15
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
             }).then((res) => {
 
-                console.log('res', res.data.data.order_list)
+                var resdata = res.data.data.order_list
 
-                var resdata
-
-                if (this.data.cpage <= 1) {
-
-                    resdata = res.data.data.order_list
-
-                } else {
-
-                    resdata = this.data.dataList.concat(res.data.data.order_list)
-                }
+                var key = 'dataList[' + (this.data.cpage - 1) + ']'
 
                 this.setData({
-                    dataList: resdata,
+                    [key]: resdata,
                     loading: false,
                     totalpage: res.data.data.page.totalpage
-                    // delivery_method:res.data.data.goods.delivery_method
 
                 })
-                wx.hideLoading()
 
-                resolve(res.data.data)
+                resolve()
             }, (err) => {
-                wx.hideLoading()
                 reject(err)
             })
 
@@ -462,7 +455,7 @@ Page({
     setPay() {
 
         wx.request({
-            url: 'https://www.daohangwa.com/api/seller/set_order_action',
+            url: '/api/seller/set_order_action',
             method: 'post',
             data: {
                 token: app.globalData.token,
@@ -526,30 +519,30 @@ Page({
         }
 
 
-        util.wx.post('/api/seller/send_tmp_msg',{
-               order_id: order_id,
-                note: this.data.note,
-                type: 10
-            }).then(res=>{
+        util.wx.post('/api/seller/send_tmp_msg', {
+            order_id: order_id,
+            note: this.data.note,
+            type: 10
+        }).then(res => {
 
-                 this.setData({
-                    visible2: false
-                })
-                if (res.data.code == 0) {
-                    wx.showToast({ title: "发送成功，请不要重复提醒哦" })
-                    this.setData({
-                        visible5_tips: false
-                    });
-
-                } else {
-
-                    $Message({
-                        content: res.data.msg,
-                        type: 'error'
-                    });
-                }
-
+            this.setData({
+                visible2: false
             })
+            if (res.data.code == 0) {
+                wx.showToast({ title: "发送成功，请不要重复提醒哦" })
+                this.setData({
+                    visible5_tips: false
+                });
+
+            } else {
+
+                $Message({
+                    content: res.data.msg,
+                    type: 'error'
+                });
+            }
+
+        })
     },
 
     /**群发提醒**/
@@ -634,122 +627,9 @@ Page({
             order_id: target.dataset.id
         })
     },
-    //取消订单
-    toCancel({ detail }) {
 
 
 
-        if (detail.index === 0) {
-            this.setData({
-                visible3: false
-            });
-        } else {
-            const action = [...this.data.actionsCancel];
-            action[1].loading = true;
-
-            this.setData({
-                actionsCancel: action
-            })
-
-            wx.request({
-                url: 'https://www.daohangwa.com/api/seller/set_order_action',
-                method: 'post',
-                data: {
-                    token: app.globalData.token,
-                    order_id: this.data.order_id,
-                    action: 'cancel',
-
-
-                },
-                success: (res) => {
-
-                    action[1].loading = false;
-                    this.setData({
-                        visible3: false,
-                        actionsCancel: action
-                    })
-
-                    if (res.data.code == 0) {
-                        this.resetPageNumber()
-                        this.getOrderList()
-
-
-                        wx.showToast({ title: "订单已取消" })
-
-                    } else {
-
-                        $Message({
-                            content: res.data.msg,
-                            type: 'error'
-                        });
-                    }
-                }
-            })
-
-        }
-
-
-    },
-
-    toConfirm({ detail }) {
-
-        console.log(detail)
-
-        if (detail.index === 0) {
-            this.setData({
-                visible1: false
-            });
-        } else {
-            const action = [...this.data.actionsConfirm];
-            action[1].loading = true;
-
-            this.setData({
-                actionsConfirm: action
-            })
-
-            wx.request({
-                url: 'https://www.daohangwa.com/api/seller/set_order_action',
-                method: 'post',
-                data: {
-                    token: app.globalData.token,
-                    order_id: this.data.order_id,
-                    action: 'confirm',
-
-                },
-                success: (res) => {
-
-
-                    action[1].loading = false;
-
-                    if (res.data.code == 0) {
-                        this.resetPageNumber()
-                        this.getOrderList()
-
-                        this.setData({
-                            visible1: false,
-                            actionsConfirm: action
-                        });
-
-                        $Message({
-                            content: '订单确认成功',
-                            type: 'success'
-                        });
-
-                    } else {
-                        console.log(res.data.msg)
-                        $Message({
-                            content: res.data.data.msg,
-                            type: 'error'
-                        });
-                    }
-                }
-            })
-
-        }
-
-
-
-    },
 
     handleChange({ detail }) {
         this.setData({

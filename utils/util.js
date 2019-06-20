@@ -367,13 +367,15 @@ const formSubmitCollectFormId = function(e) {
         form_id: e.detail.formId
     }).then(res=>{
         console.log(res)
+    }).catch(e=>{
+        console.log(e)
     })
 
-    if (e.currentTarget.dataset.fn) {
-
-        console.log(this, e.currentTarget.dataset.fn)
+    const fn = e.currentTarget.dataset.fn || e.detail.target.dataset.fn
+    console.log('fn',fn)
+    if ( this[fn]) {
         //执行原跳转事件
-        this[e.currentTarget.dataset.fn](e);
+        this[fn](e);
     }
 
 }
@@ -462,8 +464,8 @@ const request = (url, data, method) => {
                      app.redirectToLogin()
 
 
-                } else { //返回错误提示信息
-                    resolve(res)
+                } else{ //返回错误提示信息
+                    reject(res.data.code)
                 }
             },
             error: function(e) {

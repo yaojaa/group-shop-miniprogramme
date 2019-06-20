@@ -34,7 +34,7 @@
         "i-col": "../../iView/col/index",
         "i-custom-bar": "../../components/custom-bar/index",
         "i-goods-item": "../../components/goods-item/index",
-        "wux-notice-bar": "../../wux/notice-bar/index"
+        "wux-spin": "../../wux/spin/index"
 
     }
 }
