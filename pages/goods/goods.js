@@ -91,6 +91,9 @@ Page({
             this.getOrderUserList(this.data.goods_id)
         }
 
+        
+     this.getShareImg(this.data.goods_id)
+
     },
     onReady: function() {
 
@@ -124,13 +127,10 @@ Page({
     },
     openShareFriends() {
 
-     // this.getShareImg(this.data.goods_id).then({
 
-     //    this.setData({
-     //        showShareFriendsCard: true
-     //    })
-
-     // })
+        this.setData({
+            showShareFriendsCard: true
+        })
 
 
 
@@ -573,7 +573,8 @@ Page({
                     this.data._orderUsers_.push(this.data._orderUsers.shift())
 
                     this.setData({
-                        _orderUsers_: this.data._orderUsers_
+                        _orderUsers_: this.data._orderUsers_,
+                        orderUsers: this.data.orderUsers
                     })
 
                 }
