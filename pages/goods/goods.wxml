@@ -94,7 +94,7 @@
                 <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" />
             </view>
         </view>
-        <view class='sub-title scale-b-1px'>
+        <view class='sub-title scale-b-1px contentBox'>
             最近参与
         </view>
         <i-cell-group wx:if="{{orderUsers.length ==0}}">
@@ -105,7 +105,8 @@
             </i-cell>
         </i-cell-group>
         <i-cell-group>
-            <i-cell wx:for="{{ orderUsers }}" wx:key="{{index}}" i-class="buyer-item-box">
+            <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{listItem}}">
+            <i-cell wx:for="{{listItem}}" wx:key="{{item}}" i-class="buyer-item-box">
                 <view class="buyer-item">
                     <image class="buyer-avatar" src="{{item.headimg}}"></image>
                     <view class="buyer-info">
@@ -120,6 +121,7 @@
                     <view class="buyer-date">{{item.timeago}}</view>
                 </view>
             </i-cell>
+            </block>
         </i-cell-group>
         <view wx:if="{{goods.content_imgs.length}}">
             <view class='sub-title scale-b-1px'>

@@ -7,6 +7,8 @@ const app = getApp()
 app.that = null;
 let drawGoods = null;
 let drawBuyuser = null;
+let timer = null;  // 滚动监听节流
+let orderUsersLen = 30; // 购买用户每次加载数量
 
 Page({
     data: {
@@ -31,6 +33,8 @@ Page({
         clearTimer: false,
         myFormat: ['天', '小时', '分', '秒'],
         orderUsers: [],
+        _orderUsers: [], // 存储
+        _orderUsers_: [], // 执行
         imagePath: "",
         collection_methods: '',
         copy: false,
@@ -551,8 +555,25 @@ Page({
                         util.drawShareFriends(this, drawGoods, res.data.data);
                     }
 
+                    this.data.orderUsers = res.data.data;
+
+                    this.data._orderUsers[0] = [];
+
+                    res.data.data.forEach((e, i) => {
+                        let _i = parseInt(i/orderUsersLen);
+                        console.log('=============='+_i)
+                        if(i%orderUsersLen == 0 && i >= orderUsersLen-1){
+                            this.data._orderUsers[_i] = [];
+                        }
+                        this.data._orderUsers[_i].push(e)
+                    })
+
+                    console.log(this.data._orderUsers)
+
+                    this.data._orderUsers_.push(this.data._orderUsers.shift())
+
                     this.setData({
-                        orderUsers: res.data.data
+                        _orderUsers_: this.data._orderUsers_
                     })
 
                 }
@@ -721,16 +742,33 @@ Page({
     },
     onPageScroll: function(e){
 
-        if(e.scrollTop > 300){
+        if(e.scrollTop > 300 && !this.data.toShowPic){
             this.setData({
               toShowPic:true
             })
             console.log('toShowPictoShowPictoShowPictoShowPic')
         }
 
-        this.setData({
-            scrollTop: e.scrollTop,
-        })
+        if(this.data._orderUsers.length > 0 && e.scrollTop > 60*orderUsersLen){
+            let index = this.data._orderUsers_.length;
+            this.data._orderUsers_.push(this.data._orderUsers.shift())
+
+            this.setData({
+                ['_orderUsers_[' +  index + ']']: this.data._orderUsers_[index]
+            })
+
+            console.log(this.data._orderUsers_)
+        }
+
+        if(!timer){
+            timer = setTimeout(() => {
+                this.setData({
+                    scrollTop: e.scrollTop,
+                })
+                console.log('=====timer=====')
+                timer = null;
+            },200) 
+        }       
     }
 
 })
