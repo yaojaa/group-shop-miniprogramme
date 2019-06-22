@@ -185,30 +185,6 @@ Page({
     createOrder: function() {
 
 
-        // let address = wx.getStorageSync('goods').sell_address[0].address
-
-
-        //   if(this.data.nickName ==''){
-        //   $Message({
-        //     content:'请填写收货人'
-        //   })
-        //   return
-        // }
-
-
-
-
-        // if(this.data.mobile ==''){
-        //   $Message({
-        //     content:'请填写手机号码'
-        //   })
-        //   return
-        // }
-
-
-
-
-
         let addressData = {
             'consignee': this.data.consignee,
             'province_name': this.data.province_name,
@@ -256,13 +232,7 @@ Page({
             goods_id: this.data.goods_id
         }, postData)).then(res => {
 
-            this.setData({
-                loading: false
-            })
-
-            wx.hideLoading()
-
-
+           
             if (res.data.code == 200) {
                 this.data.order_id = res.data.data.order_id;
 

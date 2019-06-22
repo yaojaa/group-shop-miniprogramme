@@ -9,8 +9,8 @@ Page({
      */
     data: {
 
-        pending_money: '**',
-        inputMoney: 2,
+        pending_money: ' ...',
+        inputMoney: '',
         withdrawalslist: [],
         totalpage: 1
     },

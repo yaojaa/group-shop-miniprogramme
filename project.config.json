@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -79,7 +79,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=257",
+					"query": "goods_id=7&goods_name=zitimoban-24颗 新鲜水果&delivery_method=2",
 					"scene": 1001
 				},
 				{
@@ -127,7 +127,8 @@
 					"id": 10,
 					"name": "支付成功！",
 					"pathName": "pages/paySuccess/index",
-					"query": "order_id=567&goods_id=85&collection_methods=2"
+					"query": "order_id=1991&goods_id=257",
+					"scene": null
 				},
 				{
 					"id": -1,
