@@ -64,8 +64,10 @@ Page({
                         })
                     }
                 } else {
-                    Toast.fail(res.data.msg);
+                    Toast(res.data.msg);
                 }
+            },res =>{
+                Toast(res.data.msg);
             })
 
 

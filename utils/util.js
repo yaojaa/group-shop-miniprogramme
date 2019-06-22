@@ -465,7 +465,7 @@ const request = (url, data, method) => {
 
 
                 } else{ //返回错误提示信息
-                    reject(res.data.code)
+                    reject(res)
                 }
             },
             error: function(e) {
