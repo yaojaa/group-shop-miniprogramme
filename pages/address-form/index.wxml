@@ -1,4 +1,4 @@
-<view class="container gray-wrap  cf" style="padding-top: 100rpx;">
+<view class="container gray-wrap  cf">
     <form bindsubmit="submit">
         <van-cell-group custom-class="mv-sm">
             <van-field name="consignee" value="{{consignee}}" label="收货人" input-align="right" placeholder="请输入姓名" />

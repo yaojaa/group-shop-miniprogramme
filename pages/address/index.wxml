@@ -1,6 +1,6 @@
 
-<i-custom-bar fixed showBackIcon="{{true}}" backIconColor="#333333" backColor="#fff" title="收货地址管理"> </i-custom-bar>
-<view class="container gray-wrap cf" style="padding-top: 100rpx;">
+
+<view class="container gray-wrap cf" >
     <view class="fixed-btn flex">
         <view class="flex-sub">
             <navigator url="../address-form/index" class="btn xxl coral block">
