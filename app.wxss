@@ -502,6 +502,7 @@ fieldset[disabled] .btn-link {
 
 .align-center {
     align-items: center;
+    text-aglin:center
 }
 
 .gray-all {

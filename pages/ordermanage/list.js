@@ -62,7 +62,29 @@ Page({
     },
 
     //打开发送通知
-    openMsgTips() {
+    openMsgTips(e) {
+
+        console.log(e)
+
+        if(e=='all'){
+
+         this.setData({
+                    sendAll: true,
+                    dis:true
+                })
+
+
+
+        }else{
+           this.data.order_id = e.currentTarget.dataset.id
+
+              this.setData({
+                    sendAll: false,
+                    dis:false
+                })
+        }
+
+
 
         this.setData({
             showMsgTips: true
@@ -83,9 +105,13 @@ Page({
         if (index == 0) {
             this.exportExcel()
         } else if (index == 1) {
-            this.openMsgTips()
+            this.openMsgTips('all')
 
         }
+
+        this.setData({
+            showPop:false
+        })
 
     },
     handleCancel1() {
@@ -508,25 +534,28 @@ Page({
 
         }
 
-        var order_id = ''
+        var params ={
+
+        }
+
+        params.note = this.data.note
+
 
         if (this.data.sendAll) {
 
-            order_id = this.data.dataList.map((item, index) => {
-                return item.order_id
-            })
+            params.goods_id = this.data.goods_id
 
 
         } else {
-            order_id = this.data.order_id
+            delete params.goods_id
+            params.order_ids = [this.data.order_id]
         }
+            wx.showLoading()
 
 
-        util.wx.post('/api/seller/send_tmp_msg', {
-            order_id: order_id,
-            note: this.data.note,
-            type: 10
-        }).then(res => {
+        util.wx.post('/api/seller/send_tmp_msg', params).then(res => {
+
+            wx.hideLoading()
 
             this.setData({
                 visible2: false
@@ -539,13 +568,27 @@ Page({
 
             } else {
 
-                $Message({
-                    content: res.data.msg,
-                    type: 'error'
-                });
+                wx.showToast({
+                    title:res.data.msg,
+                    icon:"none"
+                })
+
+                
             }
 
-        })
+        },res=>{
+            console.log(res)
+             wx.showToast({
+                    title:'出小差儿啦，错误代码：'+res,
+                    icon:"none"
+                })
+         }).catch(e=>{
+            console.log(e)
+              wx.showToast({
+                    title:e,
+                    icon:"none"
+                })
+         })
     },
 
     /**群发提醒**/

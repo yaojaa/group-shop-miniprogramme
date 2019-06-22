@@ -165,7 +165,11 @@ Page({
     },
 
 
-    getGoodsList: function(token) {
+    getGoodsList: function() {
+
+         this.setData({
+                        is_loading:true
+                    })
 
         util.wx.get('/api/seller/get_goods_list',{
         cpage:this.cpage,

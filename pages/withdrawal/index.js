@@ -10,7 +10,7 @@ Page({
     data: {
 
         pending_money: '**',
-        inputMoney: '',
+        inputMoney: 2,
         withdrawalslist: [],
         totalpage: 1
     },
