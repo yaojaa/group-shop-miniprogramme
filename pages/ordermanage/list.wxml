@@ -109,7 +109,7 @@
             </text>
             </view> -->
 
-            <button  class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="setTips">微信通知</button>
+            <button  class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips">微信通知</button>
 
             <block wx:for="{{item.seller_next_handle}}" wx:for-item="btn">
                 <form bindsubmit="formSubmit" report-submit="true">
@@ -168,9 +168,10 @@
     </i-modal>
     <i-modal title="发送微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
         <view class="input_box">
-            <input bindinput="noteInput" value="{{note}}" placeholder="输入提醒内容:如请来101取货" />
-            是否群发所有人：
-            <switch bindchange="switchSendAll" />
+            <textarea class="textarea" maxlength="30" bindinput="noteInput" value="{{note}}" placeholder="输入提醒内容:如请来101取货,注意查收快递等。直接推送到用户微信通知，建议每人只发一次！" />
+
+
+            <switch checked="{{sendAll}}" disabled="{{dis}}" type="checkbox"  bindchange="switchSendAll" /> 群发所有人
         </view>
     </i-modal>
     <i-message id="message" />

@@ -1,8 +1,10 @@
 @import "../../css/common.wxss";
 .container {
+background: #f8f8f8
+}
 
-    background: #f8f8f8
-
+.goods-box{
+    margin-bottom:60px
 }
 
 

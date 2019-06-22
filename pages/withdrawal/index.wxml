@@ -1,6 +1,6 @@
 
 <view class="container">
-	<view class="text-justify mtop100 f14">
+	<view class="text-justify f14">
 		<view>账户余额（元）</view>
 <!-- 		<view>余额明细</view>
  -->	</view>
