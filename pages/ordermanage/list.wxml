@@ -94,7 +94,7 @@
             <view class="total text-justify scale-b-1px">
                 <view><text class="warning-text f18">¥{{item.pay_price}} </text>
                     <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
-                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付（客户30分钟不支付将自动关闭）</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付（客户30分钟不支付自动关闭）</text>
                     <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
                 </view>
                 <view class="text-right"> <text class="order-date">{{item._format_add_time}}</text>

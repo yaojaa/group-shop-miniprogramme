@@ -1,15 +1,13 @@
 <view class="container">
-    <!-- <painter goods_id="{{goods_id}}"  palette="{{painterData}}" bind:imgOK="onImgOk"/> -->
-    <view class='background'>
-        <image mode="aspectFill" src="/img/b.png"></image>
-    </view>
+
+
     <view class='content'>
         <view class='header'>
-            <view class='title'>支付成功</view>
+            <view class='title'>支付成功 +1</view>
         </view>
         <view class='order'>
-            <!--       <view class='title'>{{order_goods[0].goods_name}}</view>
- -->
+                  <view class='title'>{{goods_name}}</view>
+
             <!-- <view class='line'></view> -->
             <view class="goodsList">
                 <view class='goods' wx:for="{{order.order_detail}}" wx:key="@index">
@@ -48,10 +46,12 @@
     <button type='primary' open-type="share">复制文字结果</button>
   </view> -->
     <view class='share'>
-        <button class="linear_bg" type='primary' open-type="share">分享查看结果</button>
+        <button class="linenear_bg" hove-class="linenear_bg_hover" type='primary' open-type="share">分享告知</button>
     </view>
-    <!-- <view class='share' wx:if="{{collection_methods==2 && wx_collection_code}}">
-    <button type='primary' bindtap="imgPreview" data-url="{{wx_collection_code}}">收款码支付 ¥{{order.total_price}}</button>
-  </view> -->
+    <view class='share'>
+
+        强烈建议支付后告知一下，以免遗漏～
+    
+  </view>
     <official-account></official-account>
 </view>

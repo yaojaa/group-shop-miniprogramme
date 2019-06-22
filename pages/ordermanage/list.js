@@ -563,7 +563,7 @@ Page({
             if (res.data.code == 0) {
                 wx.showToast({ title: "发送成功，请不要重复提醒哦" })
                 this.setData({
-                    visible5_tips: false
+                    showMsgTips: false
                 });
 
             } else {

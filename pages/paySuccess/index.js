@@ -71,10 +71,15 @@ Page({
     // },
     getOrderInfo() {
 
+        wx.showLoading()
+
         util.wx.get('/api/user/get_order_detail', {
             order_id: this.data.order_id
 
         }).then(res => {
+
+                    wx.hideLoading()
+
 
             if (res.data.code == 200) {
                 // var order = res.data.data;
@@ -90,7 +95,7 @@ Page({
                     order: res.data.data,
                     create_number: res.data.data.create_number,
                     goods_name: res.data.data.order_detail[0].goods_name,
-                    order_time: this.timetrans(res.data.data.addtime)
+                    order_time: res.data.data.addtime
                 })
             }
         })
