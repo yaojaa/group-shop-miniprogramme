@@ -6,6 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        loading: false,
         disabled: false,
         checked: false,
         source: '',
@@ -62,12 +63,16 @@ Page({
     },
 
     getAddress() {
+        this.setData({
+            loading: true
+        })
         util.wx.get('/api/user/address_list')
             .then(res => {
                 var data = res.data
                 if (data.code == 200) {
                     this.setData({
-                        address: data.data.address_list
+                        address: data.data.address_list,
+                        loading: false
                     })
                     if (this.data.source && !this.data.address.length > 0) {
                         // wx.navigateBack({
@@ -76,6 +81,10 @@ Page({
                     }
                     console.log(data.data.address_list)
                 }
+            }, res => {
+                this.setData({
+                    loading: false
+                })
             })
     },
     addAddress(data) {

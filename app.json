@@ -36,6 +36,10 @@
         "pages/identify/identify"
 
     ],
+    "usingComponents":
+    {
+        "wux-spin": "../../wux/spin/index"
+    },
     "permission":
     {
         "scope.userLocation":

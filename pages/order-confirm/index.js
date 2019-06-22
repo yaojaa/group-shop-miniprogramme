@@ -19,11 +19,18 @@ Page({
         consignee: '',
         mobile: '',
         btn_load: false,
-        loading:false
+        loading: false,
+        address_load: false
     },
     getUserAddress() {
+        this.setData({
+            address_load: true
+        })
         util.wx.get('/api/user/address_list')
             .then(res => {
+                this.setData({
+                    address_load: false
+                })
                 var data = res.data.data.address_list
                 if (res.data.code == 200) {
                     if (data.length > 0) {
@@ -105,7 +112,7 @@ Page({
     },
 
     onAddressChange(e) {
-  
+
         this.setData({
             address_id: e.currentTarget.dataset.name
         });
@@ -158,14 +165,14 @@ Page({
             this.getUserAddress()
         }
     },
-    inputConsignee(e){
+    inputConsignee(e) {
         this.setData({
-            consignee:e.detail
+            consignee: e.detail
         })
     },
-    inputMobile(e){
+    inputMobile(e) {
         this.setData({
-            mobile:e.detail
+            mobile: e.detail
         })
     },
     /**
@@ -272,17 +279,17 @@ Page({
 
 
 
-        },(e)=>{
+        }, (e) => {
 
             wx.showToast({
-                title:'服务器出小差儿了'+e,
-                icon:'none'
+                title: '服务器出小差儿了' + e,
+                icon: 'none'
             })
 
-        }).catch(e=>{
+        }).catch(e => {
             wx.showToast({
-                title:'服务器出小差儿了'+e,
-                icon:'none'
+                title: '服务器出小差儿了' + e,
+                icon: 'none'
             })
         })
 
@@ -396,11 +403,11 @@ Page({
                     console.log(res)
                     this.data.code = res.code
 
-                    util.wx.get('/api/index/get_openid',{
-                        js_code:res.code
-                    }).then(res=>{
-                        if(res.data.code == 200){
-                            this.data.session_key=res.data.data.session_key
+                    util.wx.get('/api/index/get_openid', {
+                        js_code: res.code
+                    }).then(res => {
+                        if (res.data.code == 200) {
+                            this.data.session_key = res.data.data.session_key
                         }
                     })
                 }

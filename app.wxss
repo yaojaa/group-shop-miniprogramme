@@ -1529,6 +1529,14 @@ fieldset[disabled] .btn-link {
     transform: translate(-50%, -50%);
 }
 
+.load-area {
+    position: absolute;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .search-default {
     padding: 4rpx 12rpx !important;
     background: #f8f8f8 !important;

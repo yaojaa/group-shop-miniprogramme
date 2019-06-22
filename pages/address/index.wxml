@@ -47,4 +47,7 @@
         </view>
     </view>
     <van-toast id="van-toast" />
+    <view class="load-box" wx:if="{{loading}}">
+        <wux-spin wux-class="spin" />
+    </view>
 </view>
