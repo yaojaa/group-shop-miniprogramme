@@ -7,7 +7,6 @@ const app = getApp()
 app.that = null;
 let drawGoods = null;
 let drawBuyuser = null;
-let timer = null;  // 滚动监听节流
 let orderUsersLen = 30; // 购买用户每次加载数量
 
 Page({
@@ -281,9 +280,6 @@ Page({
         //用户停留时间毫秒
         const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
 
-        wx.showToast({
-            title:'用户离开了'
-        })
         //提交访问记录
         util.wx.get('/api/index/set_user_staytime', {
           access_id:this.access_id, 
@@ -761,14 +757,16 @@ Page({
             console.log(this.data._orderUsers_)
         }
 
-        if(!timer){
-            timer = setTimeout(() => {
+        this.data.scrollTop = e.scrollTop
+
+        if(!this.timer){
+            this.timer = setTimeout(() => {
                 this.setData({
-                    scrollTop: e.scrollTop,
+                    scrollTop: this.data.scrollTop,
                 })
-                console.log('=====timer=====')
-                timer = null;
-            },200) 
+                clearTimeout(this.timer)
+                this.timer = null;
+            },300) 
         }       
     }
 

@@ -21,11 +21,9 @@
         </view>
         <view class="no-content white-bg" style="height:calc(100vh - 88rpx)" wx:if="{{order_list.length ==0 && !loading}}">
             <view class="no-content-bd">
-                <image src="http://image.countinsight.com/front/img/test_none.png" class="no-content-icon"></image>
+                <image src="https://static.kaixinmatuan.cn/no_data.png" class="no-content-icon"></image>
                 <view class="no-content-des"><text>您还没有相关订单</text></view>
-                <view class="no-content-btn">
-                    <navigator open-type="switchTab" url="../mei-ya/index" class="btn primary lg round w-min-xl">去逛逛</navigator>
-                </view>
+              
             </view>
         </view>
     </view>
