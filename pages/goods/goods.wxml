@@ -1,12 +1,9 @@
-<custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff"  changeEndHeight="600"  showBackBar="true">
-
-       <view slot="bottom" class="bar tab-box">
-           <image class="avatar" src="{{goods.user.headimg}}" class="avatar">
-                </image>{{goods.user.nickname}}
+<custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
+    <view slot="bottom" class="bar tab-box">
+        <image class="avatar" src="{{goods.user.headimg}}" class="avatar">
+        </image>{{goods.user.nickname}}
     </view>
-
 </custom-bar>
-
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
@@ -19,24 +16,27 @@
             <view class="user-info-bd">
                 <view class="name">{{goods.user.nickname}}</view>
                 <view class="info">粉丝{{goods.buyuser_count}}人 </view>
-              <!--   <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon" />
+                <!--   <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon" />
                 <wux-icon type="ios-chatbubbles" color="#fff" size="18" wux-class="icon" /> -->
             </view>
         </view>
     </imgs>
-    <view class="goods-info">
+    <view class="goods-info por">
         <view class="goods-info-bd">
             <view class="goods-name">
                 {{goods.goods_name}}
             </view>
             <view class="f12px text-info">访问人数{{goods.pageview_count
-}} 已售{{goods.total_qty}} </view>
+                }} 已售{{goods.total_qty}} </view>
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
                 <i-icon type="send" size="24" color="#666" />
                 <view class="text-muted f12">分享</view>
             </button>
+        </view>
+        <view class="load-area" wx:if="{{!goods}}">
+            <wux-spin wux-class="spin" />
         </view>
     </view>
     <!-- <view class="pageloading">
@@ -74,8 +74,8 @@
                 </view>
             </view>
         </view>
-          <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
-            <i-cell  label="快递邮寄 送货上门" i-class="address-item">
+        <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
+            <i-cell label="快递邮寄 送货上门" i-class="address-item">
             </i-cell>
         </view>
         <view wx:if="{{goods.delivery_method == 2}}" style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}">
@@ -83,9 +83,12 @@
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
         </view>
-        <view class='goods-content-wraper'>
+        <view class='goods-content-wraper por'>
             <view class='goods-content'>
                 <text>{{goods.goods_content}}</text>
+            </view>
+            <view class="load-area" wx:if="{{!goods}}">
+                <wux-spin wux-class="spin" />
             </view>
         </view>
         <view style="padding: 20rpx 0">
@@ -106,21 +109,21 @@
         </i-cell-group>
         <i-cell-group>
             <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{listItem}}">
-            <i-cell wx:for="{{listItem}}" wx:key="{{item}}" i-class="buyer-item-box">
-                <view class="buyer-item">
-                    <image class="buyer-avatar" src="{{item.headimg}}"></image>
-                    <view class="buyer-info">
-                        <view class="name"> {{item.nickname}} <text class="number">{{item.create_number}} </text>
-                        </view>
-                        <view class="type">
-                            <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
-                                跟 {{gds.spec_name}} × {{gds.qty}}
+                <i-cell wx:for="{{listItem}}" wx:key="{{item}}" i-class="buyer-item-box">
+                    <view class="buyer-item">
+                        <image class="buyer-avatar" src="{{item.headimg}}"></image>
+                        <view class="buyer-info">
+                            <view class="name"> {{item.nickname}} <text class="number">{{item.create_number}} </text>
+                            </view>
+                            <view class="type">
+                                <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
+                                    跟 {{gds.spec_name}} × {{gds.qty}}
+                                </view>
                             </view>
                         </view>
+                        <view class="buyer-date">{{item.timeago}}</view>
                     </view>
-                    <view class="buyer-date">{{item.timeago}}</view>
-                </view>
-            </i-cell>
+                </i-cell>
             </block>
         </i-cell-group>
         <view wx:if="{{goods.content_imgs.length}}">
@@ -144,10 +147,8 @@
         </view>
         <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
             <text wx:if="{{totalNum>0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
-
             <button wx:if="{{goods._expires==1}}" class="buy linenear_bg" formType="submit">立即参与</button>
-           <button wx:else class="buy linenear_bg" formType="submit">不能参与了哦</button>
-
+            <button wx:else class="buy linenear_bg" formType="submit">不能参与了哦</button>
         </form>
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">

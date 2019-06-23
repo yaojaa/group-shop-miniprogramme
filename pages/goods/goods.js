@@ -20,7 +20,7 @@ Page({
         },
         scrollTop: 0,
         hasScope: false, //是否授权
-        goods: {},
+        goods: '',
         visibleU: false,
         seller: {},
         sell_address: [],
