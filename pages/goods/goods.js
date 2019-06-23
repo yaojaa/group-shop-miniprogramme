@@ -23,7 +23,7 @@ Page({
         },
         scrollTop: 0,
         hasScope: false, //是否授权
-        goods: {},
+        goods: '',
         visibleU: false,
         seller: {},
         sell_address: [],
@@ -819,7 +819,7 @@ Page({
                 })
                 clearTimeout(this.timer)
                 this.timer = null;
-            },300) 
+            },200) 
         }       
     }
 
