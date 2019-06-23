@@ -498,8 +498,18 @@
     text-align: center;
 }
 
+.header-title{
+    box-shadow: 0 0 5px #999;
+    padding: 5px 0 0 10px;
+    font-size: 30rpx;
+    font-weight: bold;
+    line-height: 1.8
+}
+
 .piclist-container {
     width: 100%;
+    position: relative;
+
 
 }
 
@@ -636,7 +646,7 @@
     box-shadow: 0 0px 33px #eee;
     background: #fff;
     border: 1px solid #f9f9f9;
-    padding: 25rpx;
+    padding:0 25rpx;
     margin-top: 60rpx
 }
 

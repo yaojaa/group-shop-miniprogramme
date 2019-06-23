@@ -2,6 +2,9 @@
 //获取应用实例
 const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index');
+import { $wuxGallery } from '../../wux/index'
+
+console.log('$wuxGallery',$wuxGallery)
 
 const app = getApp()
 app.that = null;
@@ -186,8 +189,62 @@ Page({
             url: '../publish/publish?goods_id=' + this.data.goods_id
         })
 
+    },
 
+    showGallery(e) {
+        const { current } = e.currentTarget.dataset
+        const  urls  = this.data.goods.content_imgs
 
+        this.$wuxGallery = $wuxGallery()
+
+        this.$wuxGallery.show({
+            current,
+            showDelete:false,
+            indicatorDots: true,
+            indicatorColor: '#fff',
+            indicatorActiveColor: '#04BE02',
+            urls,
+            cancel() {
+            },
+            onTap(current, urls) {
+                console.log(current, urls)
+                return true
+            },
+            onChange(e) {
+                console.log(e)
+            },
+        })
+    },
+
+    showGallerySpec(e) {
+        const { current } = e.currentTarget.dataset
+        const  { urls }  = e.currentTarget.dataset
+
+        this.$wuxGallery = $wuxGallery()
+
+        this.$wuxGallery.show({
+            current,
+            showDelete:false,
+            indicatorDots: true,
+            indicatorColor: '#fff',
+            indicatorActiveColor: '#04BE02',
+            urls,
+            cancel() {
+            },
+            onTap(current, urls) {
+                console.log(current, urls)
+                return true
+            },
+            onChange(e) {
+                console.log(e)
+            },
+        })
+    },
+
+    goHomePage(){
+        wx.navigateTo({
+            url: '../userhome/index?id='+this.data.store_id
+        })
     },
 
     getShareImg(id){
@@ -253,18 +310,14 @@ Page({
                     this.setData({
                         goods: d.goods,
                         'imgs.src': d.goods.goods_images,
-                        // sell_address: res.data.data.sell_address,
-                        // seller: res.data.data.seller,
                         goods_spec: d.goods.goods_spec.length == 0 ? d.goods.goods_images : d.goods.goods_spec,
-                        seller:d.goods.user,
-                        hw_data: d.hw_data,
-                        endTime: d.goods.end_time,
+                        // hw_data: d.hw_data,
                         countdownTime: new Date(d.goods.end_time * 1000).getTime()
                     })
 
-                    // wx.setNavigationBarTitle({
-                    //   title: '【' + res.data.data.seller.nickname + '】 ' + res.data.data.goods.goods_name//页面标题为路由参数
-                    // })
+                    this.data.seller = d.goods.user,
+                    this.data.store_id = d.goods.store.store_id
+
 
 
                 }
@@ -731,7 +784,7 @@ Page({
             success: function(res) {
                 wx.showToast({
                     title: '已复制去粘贴吧',
-                    icon: 'success',
+                    icon: 'none',
                     duration: 2000
                 })
             }

@@ -94,10 +94,10 @@
             <view class="total text-justify scale-b-1px">
                 <view><text class="warning-text f18">¥{{item.pay_price}} </text>
                     <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
-                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付（客户30分钟不支付自动关闭）</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
                     <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
                 </view>
-                <view class="text-right"> <text class="order-date">{{item._format_add_time}}</text>
+                <view class="text-right"> <text class="order-date">{{item.addtime}}</text>
                 </view>
             </view>
         </view>
@@ -169,7 +169,6 @@
     <i-modal title="发送微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
         <view class="input_box">
             <textarea class="textarea" maxlength="30" bindinput="noteInput" value="{{note}}" placeholder="输入提醒内容:如请来101取货,注意查收快递等。直接推送到用户微信通知，建议每人只发一次！" />
-
 
             <switch checked="{{sendAll}}" disabled="{{dis}}" type="checkbox"  bindchange="switchSendAll" /> 群发所有人
         </view>

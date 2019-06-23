@@ -1,8 +1,12 @@
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff"  changeEndHeight="600"  showBackBar="true">
 
        <view slot="bottom" class="bar tab-box">
-           <image class="avatar" src="{{goods.user.headimg}}" class="avatar">
-                </image>{{goods.user.nickname}}
+
+        <view class="header-title">
+            <image class="avatar" src="{{goods.user.headimg}}" class="avatar" />
+            {{goods.goods_name}}
+        </view>
+           
     </view>
 
 </custom-bar>
@@ -16,7 +20,7 @@
                 <image src="{{goods.user.headimg}}" class="avatar">
                 </image>
             </view>
-            <view class="user-info-bd">
+            <view class="user-info-bd" bindtap="goHomePage">
                 <view class="name">{{goods.user.nickname}}</view>
                 <view class="info">粉丝{{goods.buyuser_count}}人 </view>
               <!--   <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon" />
@@ -27,10 +31,10 @@
     <view class="goods-info">
         <view class="goods-info-bd">
             <view class="goods-name">
-                {{goods.goods_name}}
+                {{goods.goods_name}}  {{goods.delivery_method}}
             </view>
-            <view class="f12px text-info">访问人数{{goods.pageview_count
-}} 已售{{goods.total_qty}} </view>
+            <view class="f12px text-info">访问人数 {{goods.pageview_count
+}} 已售 {{goods.total_qty}}  <text wx:if="{{goods.delivery_method == 2}}">（快递邮寄）</text></view>
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
@@ -58,27 +62,28 @@
             <block wx:else>
                 {{['','开团中','尚未开始请稍后...','已截团,下次请早点来哦'][goods._expires]}}
             </block>
+
         </view>
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}}">
             <view class="goods-price-item flex-box" wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
                 <view class="pics" wx:if="{{item.spec_pic}}">
-                    <image bindtap="imgPreview" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85" />
-                    <view class="smallnum">{{item.spec_pic.length}}张</view>
+                    <image bindtap="showGallerySpec" 
+                     data-urls="{{item.spec_pic}}" 
+                     data-current="{{ index }}" 
+                     data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85" />
+                    <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">{{item.spec_pic.length}}张</view>
                 </view>
                 <view class="info">
                     <view class="f14 text-default">{{item.spec_name}} <text class="price f12px"> ¥{{item.spec_price}}</text></view>
-                    <view class="f14px text-danger" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
+                    <view wx:if="{{item.spec_desc}}" class="f14px text-danger" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
                 </view>
                 <view class="buy" catchtap="addAnimate">
                     <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange" />
                 </view>
             </view>
         </view>
-          <view style="padding:0 10px;" wx:if="{{goods.delivery_method == 1}}">
-            <i-cell  label="快递邮寄 送货上门" i-class="address-item">
-            </i-cell>
-        </view>
-        <view wx:if="{{goods.delivery_method == 2}}" style="padding:0 10px;" bindtap="openMap" wx:for="{{sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}">
+         
+        <view wx:if="{{goods.delivery_method == 2}}" style="padding:0 10px;" bindtap="openMap" wx:for="{{goods.sell_address}}" wx:key="{{index}}" data-good-id="{{goods.goods_id}}">
             <i-cell title="{{'取货地点 '+item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item" is-link>
                 <i-icon type="coordinates_fill" slot="icon" />
             </i-cell>
@@ -91,19 +96,17 @@
         <view style="padding: 20rpx 0">
             <view class="text-justify">
                 <view><button bindtap='copyDetail' size="mini">生成文字接龙</button></view>
-                <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" />
+              <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
             </view>
         </view>
         <view class='sub-title scale-b-1px contentBox'>
             最近参与
         </view>
-        <i-cell-group wx:if="{{orderUsers.length ==0}}">
-            <i-cell i-class="buyer-item-box">
-                <button size="mini" open-type="share">
-                    一大波人正在赶来...去喊人
+        <view wx:if="{{orderUsers.length ==0}}" class="mt-sm">
+                <button size="mini"  open-type="share">
+                    暂时还没有人参与哦 点击这里分享转发
                 </button>
-            </i-cell>
-        </i-cell-group>
+        </view>
         <i-cell-group>
             <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{listItem}}">
             <i-cell wx:for="{{listItem}}" wx:key="{{item}}" i-class="buyer-item-box">
@@ -134,7 +137,7 @@
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view>
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
-            <image bindtap="imgPreview" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
+            <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
     </view>
     <view class='footer-cart'>
@@ -233,4 +236,9 @@
             </view>
         </view>
     </view>
+
+    <wux-gallery id="wux-gallery" />
+
+
+
 </view>
