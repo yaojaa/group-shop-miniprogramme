@@ -766,7 +766,7 @@ Page({
                 })
                 clearTimeout(this.timer)
                 this.timer = null;
-            },300) 
+            },200) 
         }       
     }
 
