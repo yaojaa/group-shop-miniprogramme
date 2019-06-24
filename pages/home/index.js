@@ -83,8 +83,13 @@ Page({
 
 
 
-        if (typeof app.globalData.token == 'undefined' || app.globalData.token == null) {
+        if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
+        }else{
+
+            this.setData({
+                userInfo:app.globalData.userInfo
+            })
         }
 
 
@@ -227,24 +232,11 @@ Page({
     },
 
  
-    /**
-     * 获取用户基本信息
-     */
-    getUserInfo: function() {
-        util.wx.get('/user/get_user_info').then(res => {
-
-            this.setData({
-                userInfo: res.data.data
-            })
-
-        })
-
-    },
-
-
+ 
 
 
     onShow(){
+      this.data.goodslist =[]
       this.getGoodsList()
     },
 
