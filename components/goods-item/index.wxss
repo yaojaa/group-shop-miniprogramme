@@ -158,4 +158,15 @@ background:#f9fff5;
     text-rendering: optimizeLegibility
 
 }
-
+.flex{
+    display: flex;
+}
+.align-center{
+    align-items: center;
+}
+.flex-sub{
+    flex: 1;
+}
+.ml-xs{
+    margin-left: 10rpx;
+}

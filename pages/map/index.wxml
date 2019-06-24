@@ -1,26 +1,18 @@
-<i-custom-bar backColor="#fff" showBackIcon="{{true}}" title="添加提货地点"> </i-custom-bar>
-
-
-<view class="container mtop100">
-
-<view class="bgimg">
-
-  
-
-<block wx:for="{{newAddress}}" wx:key="{{item.self_address_id}}">
-  <view class='address button-area'>
-  <!-- <view class='address' wx:if="{{index == 0}}"> -->
-    <view class='icon-img'>
-      <i-icon type="coordinates" size="48" color="#ddd" />
-    </view>
-    <view class='content'>
-      <view class='name'>{{item.name}}</view>
-      <view class='des'>{{item.address}}</view>
-      <view class='des door_number'>
-<input value="{{item.door_number}}" bindblur="inputChange" data-id="{{item.self_address_id}}" data-index="{{index}}" bindinput='inputAddressDes' focus='ture' placeholder="补充地址 如8号楼888、东门、西门、物业" type="text" name=""/>
-      </view>
-
-<!--       <view class='limit'>
+<view class="container">
+    <view class="bgimg">
+        <block wx:for="{{newAddress}}" wx:key="{{item.self_address_id}}">
+            <view class='address button-area'>
+                <!-- <view class='address' wx:if="{{index == 0}}"> -->
+                <view class='icon-img'>
+                    <i-icon type="coordinates" size="48" color="#ddd" />
+                </view>
+                <view class='content'>
+                    <view class='name'>{{item.name}}</view>
+                    <view class='des'>{{item.address}}</view>
+                    <view class='des door_number'>
+                        <input value="{{item.door_number}}" bindblur="inputChange" data-id="{{item.self_address_id}}" data-index="{{index}}" bindinput='inputAddressDes' focus='ture' placeholder="补充地址 如8号楼888、东门、西门、物业" type="text" name="" />
+                    </view>
+                    <!--       <view class='limit'>
     <view class='header'>
       <text>限制参与</text>
       <switch bindchange="limitChange"/>
@@ -34,84 +26,48 @@
 
   </view>
  -->
+                </view>
+                <view class='delete' data-index="{{index}}" bindtap='deleteCurrentAddress' data-type="new" data-id="{{item.self_address_id}}">
+                    <icon type="clear" size="28" />
+                </view>
+            </view>
+        </block>
+        <view class="center" style="margin-top:60rpx" wx:if="{{newAddress.length==0}}">
+            <view wx:if="{{openLocation}}" bindtap='addAddress'>
+                <button class="btn btn-round linenear_bg">
+                    <i-icon type="add" size="20" color="#fff" />地图标注地点
+                </button>
+            </view>
+            <view class='get-location' wx:else>
+                <button open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
+            </view>
+        </view>
+        <view class="footer-btn" wx:if="{{newAddress.length>0}}">
+            <button bindtap="addAddress" class="btn btn-round linenear_bg_light">
+                + 增加提货点
+            </button>
+            <button bindtap="done" class="btn btn-round linenear_bg">
+                完成
+            </button>
+        </view>
     </view>
-    <view class='delete' data-index="{{index}}" bindtap='deleteCurrentAddress' data-type="new" data-id="{{item.self_address_id}}"><icon type="clear" size="28"/></view>
-
-    
-
-
-  </view>
-
-
-
-
-
-
-
-</block>
-
-
-
-
-<view class="center" style="margin-top:60rpx" wx:if="{{newAddress.length==0}}">
-
-<view  wx:if="{{openLocation}}" bindtap='addAddress'>
-   <button  class="btn btn-round linenear_bg" >
-      <i-icon type="add" size="20" color="#fff" />地图标注地点 
-      </button>
-
-</view>
-
-  <view class='get-location' wx:else>
-    <button  open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
-  </view>
-
-</view>
-
-
- <view class="footer-btn" wx:if="{{newAddress.length>0}}">
-      <button bindtap="addAddress" class="btn btn-round linenear_bg_light" >
-        + 增加提货点
-      </button>
-
-      <button bindtap="done" class="btn btn-round linenear_bg" >
-        完成
-      </button>
-
- </view>
-
-
-
-</view>
-
-
-
-<block wx:if="{{hisList.length}}">
-<view class="his">历史记录（{{hisList.length}}），点击下面记录添加活动地点</view>
-<view wx:for="{{hisList}}" wx:key="{{item.self_address_id}}">
-  <view class='address button-area' data-index="{{index}}" bindtap="useIt">
-  <!-- <view class='address' wx:if="{{index == 0}}"> -->
-    <view class='icon-img'>
-      <i-icon type="coordinates" size="26" color="#ddd" />
-    </view>
-    <view class='content'>
-      <view class='name'>{{item.name}}</view>
-      <view class='des'>{{item.address}} {{item.door_number}}</view>
-
-    </view>
-
-    <view class='delete' catchtap='deleteAddress' data-type="new" data-id="{{item.self_address_id}}"> <i-icon type="trash" color="#ddd" size="22" /></view>
-  </view>
-</view>
-</block>
-
-
-<!-- <i-button  i-class='button linenear_bg' bind:click="submit" type="success" long="true">选好了</i-button> -->
-
-
-
-
-
-
-
+    <block wx:if="{{hisList.length}}">
+        <view class="his">历史记录（{{hisList.length}}），点击下面记录添加活动地点</view>
+        <view wx:for="{{hisList}}" wx:key="{{item.self_address_id}}">
+            <view class='address button-area' data-index="{{index}}" bindtap="useIt">
+                <!-- <view class='address' wx:if="{{index == 0}}"> -->
+                <view class='icon-img'>
+                    <i-icon type="coordinates" size="26" color="#ddd" />
+                </view>
+                <view class='content'>
+                    <view class='name'>{{item.name}}</view>
+                    <view class='des'>{{item.address}} {{item.door_number}}</view>
+                </view>
+                <view class='delete' catchtap='deleteAddress' data-type="new" data-id="{{item.self_address_id}}">
+                    <i-icon type="trash" color="#ddd" size="22" />
+                </view>
+            </view>
+        </view>
+    </block>
+    <!-- <i-button  i-class='button linenear_bg' bind:click="submit" type="success" long="true">选好了</i-button> -->
 </view>

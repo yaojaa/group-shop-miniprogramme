@@ -5,7 +5,7 @@
             <i-col offset="1" span="4" i-class="col-class">
                 <navigator url="../identify/identify">
                     <view class="user-avatar">
-                        <image   class="user-avatar" src="{{userInfo.headimg}}"  />
+                        <image class="user-avatar" src="{{userInfo.headimg}}" />
                         <view class="set-icon">
                             <i-icon type="setup_fill" color="#ffa70f" size="16" />
                         </view>
@@ -20,14 +20,12 @@
             </i-col>
             <i-col span="6" i-class="col-class" wx:if="{{goodslist.length > 0}}">
                 <view class="siteBtn" bindtap="goSite">
-                  我的主页
+                    我的主页
                 </view>
             </i-col>
         </i-row>
     </view>
-
- <official-account></official-account>
-
+    <official-account></official-account>
     <i-panel i-class="marginTop" title="我的订单" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
@@ -35,9 +33,8 @@
                     <view class="icon">
                         <i-icon type="redpacket" size="28" color="#4fac05" />
                     </view>
-                    待付款 
-
-                       <view class="badge" >{{waitpay}}</view>
+                    待付款
+                    <view class="badge">{{waitpay}}</view>
                 </navigator>
                 <!--    <view class="flex-item"> <view class="icon">
                     <i-icon type="commodity" size="28" color="#4fac05" />
@@ -63,27 +60,25 @@
             </view>
         </view>
     </i-panel>
- <i-panel hide-border wx:if="{{hasNewOrder}}">
-  <view class="notice"><i-icon size="24" type="systemprompt" /> 您有新的订单，请及时确认！
-  </view>
-</i-panel>
-
-  <view class="text-center">
-        <wux-spin wx:if="{{is_loading}}"></wux-spin>
-  </view>
-
-    <i-panel  title="我的商品" wx:if="{{goodslist.length > 0}}" >
-            <view class="goods-box">
-                <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
-                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
-                </block>
-                <view class="text-center">
-                    <wux-spin wx:if="{{is_loading}}"></wux-spin>
-              </view>
-            </view>
+    <i-panel hide-border wx:if="{{hasNewOrder}}">
+        <view class="notice">
+            <i-icon size="24" type="systemprompt" /> 您有新的订单，请及时确认！
+        </view>
     </i-panel>
-
-    <view  style="margin-bottom:100rpx"></view>
+    <view class="text-center">
+        <wux-spin wx:if="{{is_loading}}"></wux-spin>
+    </view>
+    <i-panel title="我的商品" wx:if="{{goodslist.length > 0}}">
+        <view class="goods-box">
+            <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
+                <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
+            </block>
+            <view class="text-center">
+                <wux-spin wx:if="{{is_loading}}"></wux-spin>
+            </view>
+        </view>
+    </i-panel>
+    <view style="margin-bottom:100rpx"></view>
     <!--  <view wx:if="{{goodslist.length >= 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />

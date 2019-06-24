@@ -7,12 +7,12 @@
                 <view class="flex-sub text-hide">{{item.seller.nickname}}</view>
             </view>
         </view>
-        <view class="text-muted">{{item.order_status_txt}}</view>
+        <view class="text-muted {{'color_'+item.order_status}}">{{item.order_status_txt}}</view>
     </view>
     <view class="solid-bottom"></view>
     <view class="goods-panel-bd pb-df">
         <navigator wx:for="{{item.order_detail}}" wx:for-item="goods" url="../order-detail/index?id={{item.order_id}}" hover-class="none" class="flex mt-df goods-panel-item">
-            <image src="{{goods.goods_cover}}" class="cover mr-sm"></image>
+            <image src="{{goods.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
             <view class="flex-sub por">
                 <view class="text-hide two-line  bold title">
                     {{goods.goods_name}}
