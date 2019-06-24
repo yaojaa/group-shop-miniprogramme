@@ -62,6 +62,8 @@ Component({
                     icon:'none'
                 })
 
+                this.triggerEvent('recommend')
+
           }else{
               wx.showToast({
                     title:'设置失败请稍后重试',

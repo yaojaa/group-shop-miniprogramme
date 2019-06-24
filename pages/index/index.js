@@ -39,12 +39,13 @@ Page({
 
             this.getProList()
 
-            this.getFriendList()
-
             this.getloactionData()
 
+
+            this.getFriendList()
+
+
         } else {
-            console.log('首页onload redirectToLogin')
 
             app.redirectToLogin()
 
@@ -184,8 +185,22 @@ Page({
 
             if (res.data.code == 200) {
 
+                //过滤重复数据
+                var filterData = []
+                this.data.proList.forEach((item)=>{
 
-                var alldata = this.data.proList.concat(res.data.data.nearby_goods)
+                    res.data.data.nearby_goods.forEach(it=>{
+                        if(item.goods_id !== it.goods_id){
+
+                            filterData.push(it)
+
+                        }
+                    })
+
+
+                })
+
+                var alldata = this.data.proList.concat(filterData)
 
                 this.setData({
                     proList: alldata,

@@ -40,6 +40,14 @@ Page({
         }
        
   },
+  //切换显示隐藏状态事件
+  recommendHandle(){
+
+    this.data.goodslist=[]
+
+    this.getGoodsList()
+
+  },
   removeHandle(e){
     console.log(e,'删除成功事件')
 
@@ -71,39 +79,8 @@ Page({
      */
     onLoad: function(options) {
 
-        console.log('app.globalData.userInfo', app.globalData.userInfo)
+        
 
-
-
-        if (app.globalData.userInfo) {
-
-            this.setData({
-                userInfo: app.globalData.userInfo
-            })
-
-             this.cpage = 1
-
-
-            this.getGoodsList()
-
-            //this.getBuyList(token)
-
-            this.get_store_info()
-
-
-        } else {
-
-            app.userLoginReadyCallback = (userInfo) => {
-                this.setData({
-                    userInfo: userInfo
-                })
-                this.getGoodsList(userInfo.token)
-                this.getBuyList(app.globalData.userInfo.token)
-
-            }
-
-
-        }
 
 
         if (typeof app.globalData.token == 'undefined' || app.globalData.token == null) {
@@ -112,16 +89,12 @@ Page({
 
 
         // util.playSound('https://static.kaixinmatuan.cn/staitc-img/new_order.mp3')
-
-
-        this.getOrderCount()
+       this.get_store_info()
+       this.getOrderCount()
 
 
     },
     getOrderCount(){
-
-        
-
 
           util.wx.get('/api/user/get_order_count_groupby_static').then(res=>{
                 console.log(res)
@@ -173,7 +146,7 @@ Page({
 
         util.wx.get('/api/seller/get_goods_list',{
         cpage:this.cpage,
-        pagesize:5
+        pagesize:10
         })
         .then(res => {
 
@@ -254,94 +227,6 @@ Page({
     },
 
  
-
-    pay({ target }) {
-
-
-        let order_id = target.dataset.id;
-        let goods_id = target.dataset.goods_id;
-        let wx_collection_code = target.dataset.wx_collection_code;
-
-
-
-        let collection_methods = target.dataset.collection_methods
-
-        let index = target.dataset.idx;
-        let _this = this;
-
-
-        if (collection_methods == 2) {
-
-            var src = wx_collection_code; //获取data-src
-            //图片预览
-            wx.previewImage({
-                current: src, // 当前显示图片的http链接
-                urls: [src] // 需要预览的图片http链接列表
-            })
-            return
-        }
-
-        //绘制配置
-        wx.login({
-            success: res => {
-                var code = res.code;
-                wx.request({
-                    url: 'https://www.daohangwa.com/api/pay/pay',
-                    method: "POST",
-                    data: {
-                        order_id: order_id,
-                        code: code,
-                        token: app.globalData.token,
-
-                    },
-                    success: function(res) { //后端返回的数据 
-                        var data = res.data.data;
-                        console.log(data);
-                        console.log(data["timeStamp"]);
-                        wx.requestPayment({
-                            timeStamp: data['timeStamp'],
-                            nonceStr: data['nonceStr'],
-                            package: data['package'],
-                            signType: data['signType'],
-                            paySign: data['paySign'],
-                            success: function(res) {
-                                console.log(res)
-
-                                wx.request({
-                                    url: 'https://www.daohangwa.com/api/pay/orderpay',
-                                    data: {
-                                        token: app.globalData.token,
-                                        order_id: order_id
-                                    }
-
-                                })
-
-                                wx.showLoading()
-
-
-
-                                wx.redirectTo({
-                                    url: '../paySuccess/index?order_id=' + order_id + '&goods_id=' + goods_id
-                                })
-
-                            },
-                            fail: function(res) {
-                                console.log("fail", res)
-                            }
-
-                        });
-                    }
-                })
-            }
-        })
-
-    },
-    sortChange(e) { // solt 组件示例
-        this.setData({
-            example: e.detail
-        })
-        console.log('sort', e.detail);
-    },
     /**
      * 获取用户基本信息
      */
@@ -359,7 +244,9 @@ Page({
 
 
 
-
+    onShow(){
+      this.getGoodsList()
+    },
 
 
     /**
@@ -409,16 +296,6 @@ Page({
     })
   },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-        return {
-            title: '一个开团小助理，可以方便的收款接单、管理发货，都说好用',
-            imageUrl: 'http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.qr6svasJ7BWN1b8c4ad3d976fdedcbce1c383b653238.jpg',
-            path: '/pages/login/login'
-        }
-    },
     // 下拉刷新
     onPullDownRefresh: function() {
         // 显示顶部刷新图标
