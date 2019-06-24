@@ -774,10 +774,11 @@ Page({
             })
             userList.unshift(item.create_number + '.' + item.nickname + " \b " + spec + (item.pay_status == 1 ? "(已付)" : "未付"))
         })
+
         var content = this.data.goods.goods_name + "\n" + this.data.goods.goods_content + "\n" +
             price +
             '----' + this.data.seller.nickname + "\n" +
-            "⏰ 截团时间:" + util.formatTime(new Date(this.data.endTime * 1000)) +
+            "⏰ 截团时间:" + util.formatTime(new Date(this.data.goods.end_time * 1000)) +
             "\n" + '为节约时间，请大家继续在小程序里接龙哦:\n' +
             userList.join('\n')
 
