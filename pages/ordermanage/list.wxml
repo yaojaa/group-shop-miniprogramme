@@ -168,7 +168,7 @@
     </i-modal>
     <i-modal title="发送微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
         <view class="input_box">
-            <textarea class="textarea" maxlength="30" bindinput="noteInput" value="{{note}}" placeholder="输入提醒内容:如请来101取货,注意查收快递等。直接推送到用户微信通知，建议每人只发一次！" />
+            <textarea class="textarea" maxlength="30" bindinput="noteInput" hidden="{{ !showMsgTips }}" value="{{note}}" placeholder="输入提醒内容:如请来101取货,注意查收快递等。直接推送到用户微信通知，建议每人只发一次！" />
 
             <switch checked="{{sendAll}}" disabled="{{dis}}" type="checkbox"  bindchange="switchSendAll" /> 群发所有人
         </view>

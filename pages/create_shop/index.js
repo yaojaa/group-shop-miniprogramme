@@ -151,9 +151,9 @@ Page({
           store_name:res.data.data.store_name,
           store_intro:res.data.data.store_intro
         })
-        wx.hideLoading()
       }
 
+        wx.hideLoading()
 
 
     })
