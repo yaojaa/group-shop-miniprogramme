@@ -606,11 +606,13 @@ Page({
 
                     this.data.orderUsers = res.data.data;
 
+                    this.data._orderUsers = [];
+                    this.data._orderUsers_ = [];
+
                     this.data._orderUsers[0] = [];
 
                     res.data.data.forEach((e, i) => {
                         let _i = parseInt(i/orderUsersLen);
-                        console.log('=============='+_i)
                         if(i%orderUsersLen == 0 && i >= orderUsersLen-1){
                             this.data._orderUsers[_i] = [];
                         }
