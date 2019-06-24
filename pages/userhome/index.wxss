@@ -138,3 +138,60 @@
 	top: 0;
 	z-index: 99
 }
+
+.share-friends-box{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 198888888
+}
+.share-img-box{
+    height: 100%;
+}
+
+.share-friends-img {
+    height: 100%;
+    padding-bottom: 126rpx;
+}
+
+.share-friends-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.share-friends-loading {
+    background-color: rgba(0, 0, 0, 0) !important;
+    height: 80% !important;
+}
+.share-friends-img .share-img-box .btn{
+    bottom: -23rpx;
+}
+
+.share-friends-loading-txt {
+    color: #fff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-friends-loading-txt text {
+    padding-top: 100rpx;
+}
+
+/* 绘制分享朋友圈图片内容样式 */
+.share-painter .des-content {
+    position: fixed;
+    left: -200%;
+    top: 0;
+    width: 690rpx;
+    background-color: #fff;
+    font-size: 34rpx;
+    line-height: 56rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+

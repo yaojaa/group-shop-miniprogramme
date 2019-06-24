@@ -16,7 +16,9 @@ Page({
         store_id: '',
         info: {},
         scrollTop: 0,
-        showSetting:false
+        showSetting:false,
+        sharebar:false,
+        poster:false
 
     },
     toSetting() {
@@ -26,6 +28,64 @@ Page({
         })
     },
 
+    showShare(){
+        this.setData({
+            sharebar:true
+        })
+    },
+    closeShareFriends() {
+        this.setData({
+            sharebar: false
+        })
+    },
+    handlePoster(){
+        this.setData({
+            showShareFriendsCard: false,
+            poster: !this.data.poster
+        })
+
+        if(this.data.poster){
+            util.wx.get('/api/store/get_store_poster',{
+                store_id:this.store_id
+            }).then(res=>{
+                console.log(res)
+                if(res.data.code == 200){
+                    this.setData({
+                        shareFriendsImg:res.data.data
+                    })
+                }
+            })
+        }
+    },
+    savaSelfImages() {
+        var _this = this;
+        console.log('savaSelfImages', this.data.shareFriendsImg)
+        if (this.data.shareFriendsImg) {
+            // 用户授权
+            wx.getSetting({
+              success(res) {
+                if (!res.authSetting['scope.writePhotosAlbum']) {
+                  wx.authorize({
+                    scope: 'scope.writePhotosAlbum',
+                    success() {
+                        console.log(1)
+                        wx.saveImageToPhotosAlbum({
+                            filePath: _this.data.shareFriendsImg,
+                        });
+                    }
+                  })
+                }else{
+                    console.log(2)
+                    wx.saveImageToPhotosAlbum({
+                        filePath: _this.data.shareFriendsImg,
+                    });
+                }
+              }
+            })
+            
+            this.handlePoster();
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
