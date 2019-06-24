@@ -13,12 +13,12 @@
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
     <imgs imgs="{{imgs}}">
-        <view class="user-info">
+        <view class="user-info" catchtap="goHomePage">
             <view class="user-info-hd">
                 <image src="{{goods.user.headimg}}" class="avatar">
                 </image>
             </view>
-            <view class="user-info-bd" bindtap="goHomePage">
+            <view class="user-info-bd" >
                 <view class="name">{{goods.user.nickname}}</view>
                 <view class="info">粉丝{{goods.buyuser_count}}人 </view>
                 <!--   <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon" />
