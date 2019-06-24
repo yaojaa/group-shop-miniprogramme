@@ -1,10 +1,11 @@
 {
-	  "navigationStyle": "custom",
+	"navigationStyle": "custom",
     "navigationBarTitleText": "",
     "usingComponents":
     {
     "i-icon": "../../iView/icon/index",
     "i-custom-bar": "../../components/custom-bar/index",
-    "i-load-more": "../../iView/load-more/index"
+     "van-action-sheet": "../../vant/action-sheet/index"
+
     }
 }

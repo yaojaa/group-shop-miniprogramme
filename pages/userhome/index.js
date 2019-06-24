@@ -6,11 +6,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-        imgUrls: [
-            'http://www.51pptmoban.com/d/file/2018/05/17/ba0172ce98cc25c03fb2986e55205655.jpg',
-            'http://www.wendangwang.com/pic/60ce9ebec47d22cc9b6ab14c/6-810-jpg_6-1080-0-0-1080.jpg',
-            'http://www.pptbz.com/d/file/p/201708/5f02717ee482f36516721d482cbbe86b.jpg'
-        ],
         indicatorDots: false,
         autoplay: false,
         interval: 5000,
@@ -21,7 +16,9 @@ Page({
         store_id: '',
         info: {},
         scrollTop: 0,
-        showSetting:false
+        showSetting:false,
+        sharebar:false,
+        poster:false
 
     },
     toSetting() {
@@ -31,6 +28,64 @@ Page({
         })
     },
 
+    showShare(){
+        this.setData({
+            sharebar:true
+        })
+    },
+    closeShareFriends() {
+        this.setData({
+            sharebar: false
+        })
+    },
+    handlePoster(){
+        this.setData({
+            showShareFriendsCard: false,
+            poster: !this.data.poster
+        })
+
+        if(this.data.poster){
+            util.wx.get('/api/store/get_store_poster',{
+                store_id:this.store_id
+            }).then(res=>{
+                console.log(res)
+                if(res.data.code == 200){
+                    this.setData({
+                        shareFriendsImg:res.data.data
+                    })
+                }
+            })
+        }
+    },
+    savaSelfImages() {
+        var _this = this;
+        console.log('savaSelfImages', this.data.shareFriendsImg)
+        if (this.data.shareFriendsImg) {
+            // 用户授权
+            wx.getSetting({
+              success(res) {
+                if (!res.authSetting['scope.writePhotosAlbum']) {
+                  wx.authorize({
+                    scope: 'scope.writePhotosAlbum',
+                    success() {
+                        console.log(1)
+                        wx.saveImageToPhotosAlbum({
+                            filePath: _this.data.shareFriendsImg,
+                        });
+                    }
+                  })
+                }else{
+                    console.log(2)
+                    wx.saveImageToPhotosAlbum({
+                        filePath: _this.data.shareFriendsImg,
+                    });
+                }
+              }
+            })
+            
+            this.handlePoster();
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */

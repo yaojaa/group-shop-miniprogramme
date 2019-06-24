@@ -12,7 +12,7 @@
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}">
     </view>
     <imgs imgs="{{imgs}}">
-        <view class="user-info" style="padding-top:{{StatusBar}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+        <view class="user-info" style="padding-top:{{StatusBar}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}"  wx:if="{{scrollTop < 340}}>
             <view class="user-body">
                 <view class="user-info-hd">
                     <image src="{{goods.user.headimg}}" class="avatar">
@@ -232,7 +232,7 @@
             </view>
             <view class="text-center share-img-box" wx:else>
                 <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
-                <button class="btn primary round lg" catchtap="savaSelfImages">保存海报</button>
+                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages">保存海报</button>
             </view>
         </view>
     </view>

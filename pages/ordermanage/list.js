@@ -560,11 +560,9 @@ Page({
             this.setData({
                 visible2: false
             })
-            if (res.data.code == 0) {
-                wx.showToast({ title: "发送成功，请不要重复提醒哦" })
-                this.setData({
-                    showMsgTips: false
-                });
+            if (res.data.code == 200) {
+                wx.showToast({ title: "发送成功！" })
+                
 
             } else {
 
@@ -576,18 +574,27 @@ Page({
                 
             }
 
+            this.setData({
+                    showMsgTips: false
+                });
+
         },res=>{
             console.log(res)
              wx.showToast({
                     title:'出小差儿啦，错误代码：'+res,
                     icon:"none"
                 })
+             this.setData({
+                    showMsgTips: false
+                });
          }).catch(e=>{
-            console.log(e)
               wx.showToast({
                     title:e,
                     icon:"none"
                 })
+              this.setData({
+                    showMsgTips: false
+                });
          })
     },
 

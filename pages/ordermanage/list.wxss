@@ -303,9 +303,6 @@ padding: 15rpx 30rpx
 .color_1,.color_2{
     color: #ff6633
 }
-.removeClass{
-    text-decoration:line-through
-}
 
 .textarea{
     background: #f8f8f8;
