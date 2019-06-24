@@ -8,7 +8,8 @@
     </view> -->
     <i-panel class="cell-panel-demo" title="共计{{user_count}}人 {{total}}次访问">
         <i-cell-group>
-            <i-cell wx:for="{{list}}" class="guest-box">
+            <block wx:for="{{list}}" wx:for-item="listItem">
+            <i-cell wx:for="{{listItem}}" class="guest-box">
                 <view class="guest-item">
                     <view class="hd">
                         <image class="avatar" src="{{item.headimg}}" mode="cover"></image>
@@ -26,11 +27,12 @@
                             </view>
                         </view>
                         <view class="date">
-                           {{item.time_ago}} {{item.user_phone}}，{{secen[item.user_scene]}}打开，停留{{item.user_staytime}}秒 
+                           {{item.time_ago}} {{item.user_phone}}，{{secen[item.user_scene]}}打开，停留{{item.user_staytime}} 
                         </view>
                     </view>
                 </view>
             </i-cell>
+            </block>
         </i-cell-group>
     </i-panel>
 </view>

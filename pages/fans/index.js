@@ -11,7 +11,7 @@ Page({
         list: [],
         pullDownOpt:{
           loading:false,
-          pagesize:10,
+          pagesize:15,
           cpage:1,
           total:1,
           secen:secen
@@ -29,18 +29,55 @@ Page({
     },
 
     getDataList(){
-        util.wx.get('/api/index/get_access_record', {
-          obj_id: this.id,
-          type:'goods_detail'
-        }).then(res=>{
+        let  data = {
+            obj_id: this.id,
+            type:'goods_detail',
+            cpage:this.data.pullDownOpt.cpage,
+            pagesize: this.data.pullDownOpt.pagesize
+        }
+        util.wx.get('/api/index/get_access_record', data).then(res=>{
           if(res.data.code == 200){
-            this.setData({
-                'list' : res.data.data.access_list,
-                'total' : res.data.data.page.total,
-                'user_count':res.data.data.user_count
+            res.data.data.access_list.forEach(e => {
+                e.user_staytime = this.fTime(e.user_staytime);
             })
+
+            if(this.data.list[0]){
+                let i = this.data.list.length;
+                this.data.list.push(res.data.data.access_list)
+
+                this.setData({
+                    ['list[' +  i + ']']: this.data.list[i]
+                })
+
+            }else{
+                this.data.list[0] = res.data.data.access_list;
+
+                this.setData({
+                    'list' : this.data.list,
+                    'total' : res.data.data.page.total,
+                    'user_count':res.data.data.user_count
+                }) 
+            }
           }
         })
+    },
+
+    fTime(t){
+        let h=0,m=0,mm=0;
+        if(t && t>0){
+            t = Math.ceil(t / 1000);
+            h = parseInt(t / 60 / 60);
+            m = parseInt(t % 3600 / 60);
+            mm = parseInt(t % 60);
+        }
+        if(h > 0){
+            return h + "小时" + m + "分" + mm + "秒"
+        }else if(m > 0){
+            return m + "分" + mm + "秒"
+        }else{
+            return mm > 0 ? mm + "秒" : "1秒"
+        }
+
     },
 
 
@@ -90,7 +127,7 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-
+        this.getDataList(++this.data.pullDownOpt.cpage);
     },
 
     /**
