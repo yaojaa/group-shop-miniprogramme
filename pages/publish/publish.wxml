@@ -33,6 +33,7 @@
                 <i-badge dot="{{content_imgs.length}}">
                     <view class="demo-badge flex align-center">
                         <text class="primary-text mr-xs text-lg" style="vertical-align: middle;">+</text><text class="text-df">介绍图片（选填)</text>
+                        <image class="img-small" wx:for="{{content_imgs}}" src="{{item}}-small" />
                     </view>
                 </i-badge>
             </view>

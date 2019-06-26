@@ -134,28 +134,43 @@ Page({
     addAddress() {
         wx.showLoading()
 
-        wx.getSetting({
+         wx.getLocation({
+            type: 'wgs84',
             success: (res) => {
-                console.log('用户授权状态', res.authSetting["scope.userLocation"])
-                if (!res.authSetting["scope.userLocation"]) {
-                          wx.openSetting({
-                          success: (res) => {
-                              if (res.authSetting["scope.userLocation"]) {
-                                  this.chooseLocation()
-                              } else {
-                                  wx.showToast({
-                                      title: '请允许使用地理位置',
-                                      icon: 'none'
-                                  })
-                              }
-                          }
-                      })
+                var latitude = res.latitude
+                var longitude = res.longitude
+                this.chooseLocation()
+            },
+            fail:(res)=>{
+                console.log(res)
+                wx.hideLoading()
 
-                }else{
-                 this.chooseLocation()
-                }
-              }
-      })
+            }
+        })
+
+      //   wx.getSetting({
+      //       success: (res) => {
+      //           console.log('用户授权状态', res)
+      //           if (!res.authSetting["scope.userLocation"]) {
+      //                     wx.openSetting({
+      //                     success: (res) => {
+      //                       console.log('openSetting',res)
+      //                         if (res.authSetting["scope.userLocation"]) {
+      //                             this.chooseLocation()
+      //                         } else {
+      //                             wx.showToast({
+      //                                 title: '请允许使用地理位置',
+      //                                 icon: 'none'
+      //                             })
+      //                         }
+      //                     }
+      //                 })
+
+      //           }else{
+      //            this.chooseLocation()
+      //           }
+      //         }
+      // })
 
 
 
