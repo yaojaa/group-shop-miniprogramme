@@ -46,6 +46,11 @@ picker{
   line-height: 1.2;
   position: relative;
 }
+
+.address-txt{
+  white-space: nowrap;
+  word-break: keep-all;
+}
 .add_btn_pic{
 
   color: #555;

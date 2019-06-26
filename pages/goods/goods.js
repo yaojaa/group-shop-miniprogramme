@@ -100,6 +100,13 @@ Page({
     onReady: function() {
 
         if(app.globalData.userInfo){
+
+                this.setData({
+                    hasScope: true
+                })
+
+            this.add_access()
+
             return
         }
 
@@ -272,6 +279,8 @@ Page({
             user_phone: app.globalData.userPhone
         }).then(res => {
             this.access_id = res.data.data.access_id
+        }).catch(e=>{
+            console.log(e)
         })
     },
 
@@ -366,9 +375,7 @@ Page({
 
         this.getShareImg()
 
-        this.checkUserIslogin()
-
-        this.add_access(option.goods_id || option.id)
+        this.add_access()
 
 
 
@@ -704,20 +711,20 @@ Page({
 
 
     },
-    checkUserIslogin() {
-        wx.getStorage({ //获取本地缓存
-            key: "token",
-            success: function(res) {
-                console.log('checkUserIslogin', res)
-            },
-            fail: (res) => {
-                console.log('checkUserIslogin', res)
-                this.setData({
-                    showAuth: true
-                })
-            }
-        })
-    },
+    // checkUserIslogin() {
+    //     wx.getStorage({ //获取本地缓存
+    //         key: "token",
+    //         success: function(res) {
+    //             console.log('checkUserIslogin', res)
+    //         },
+    //         fail: (res) => {
+    //             console.log('checkUserIslogin', res)
+    //             this.setData({
+    //                 showAuth: true
+    //             })
+    //         }
+    //     })
+    // },
     //预览图片
     imgPreview: function(event) {
         var src = event.currentTarget.dataset.src; //获取data-src

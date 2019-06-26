@@ -33,7 +33,7 @@
                 <i-badge dot="{{content_imgs.length}}">
                     <view class="demo-badge flex align-center">
                         <text class="primary-text mr-xs text-lg" style="vertical-align: middle;">+</text><text class="text-df">介绍图片（选填)</text>
-                        <image class="img-small" wx:for="{{content_imgs}}" src="{{item}}-small" />
+                        <image wx:key="{{item}}" class="img-small" wx:for="{{content_imgs}}" src="{{item}}-small" />
                     </view>
                 </i-badge>
             </view>
@@ -217,7 +217,7 @@
                             <!--   <navigator url="/pages/map/index?delivery_method={{delivery_method}}"> -->
                             <text wx:if="{{delivery_method==0}}">选择配送方式</text>
                             <text wx:if="{{delivery_method==1}}">快递邮寄</text>
-                            <text wx:if="{{delivery_method==2}}">自提：{{sell_address[0].name}}...</text>
+                            <text class="address-txt" wx:if="{{delivery_method==2}}">自提：{{sell_address[0].name}}...</text>
                             <i-icon type="enter" size="28" />
                             <!-- </navigator>
  -->
