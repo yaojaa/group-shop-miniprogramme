@@ -95,8 +95,7 @@ Page({
             this.getOrderUserList(this.data.goods_id)
         }
 
-
-        this.getShareImg(this.data.goods_id)
+        this.add_access()
 
     },
     onReady: function() {
@@ -262,8 +261,8 @@ Page({
         })
     },
 
-    getGoodsInfo(id) {
-        //提交访问记录
+    add_access(){
+          //提交访问记录
         util.wx.get('/api/index/add_access', {
             type: 'goods_detail',
             obj_id: id,
@@ -272,6 +271,10 @@ Page({
         }).then(res => {
             this.access_id = res.data.data.access_id
         })
+    },
+
+    getGoodsInfo(id) {
+      
 
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: id
@@ -340,11 +343,16 @@ Page({
         })
     },
     onLoad: function(option) {
-        console.log('用户进入了')
+        console.log('用户进入了',option)
 
         if (option.scene) {
-            option = decodeURIComponent(options.scene)
-            option = util.url2json(options)
+            option = decodeURIComponent(option.scene)
+
+            option = option.split('?')[1] || option
+
+            console.log(' decodeURIComponent(option.scene)', option)
+
+            option = util.url2json(option)
         }
 
         app.that = this
@@ -357,8 +365,9 @@ Page({
         this.setData({
             copy: option.copy || false
         })
+        this.getGoodsInfo(option.goods_id || option.id)
 
-        this.getGoodsInfo(option.goods_id)
+        this.getShareImg(option.goods_id || option.id)
 
         this.checkUserIslogin()
 
@@ -534,6 +543,8 @@ Page({
                     this.setData({
                         showAuth: false
                     })
+
+                    this.add_access()
                 })
                 .catch(e => console.log(e))
 

@@ -18,6 +18,7 @@ Page({
         delivery_method: 0,
         consignee: '',
         mobile: '',
+        user_message:'',
         btn_load: false,
         loading: false,
         address_load: false
@@ -175,6 +176,11 @@ Page({
             mobile: e.detail
         })
     },
+    inputUser_message(e){
+        this.setData({
+            user_message:e.detail
+        })
+    },
     /**
      * 生命周期函数--监听页面显示
      */
@@ -187,13 +193,8 @@ Page({
 
         let addressData = {
             'consignee': this.data.consignee,
-            'province_name': this.data.province_name,
-            'city_name': this.data.city_name,
-            'district_name': this.data.district_name,
             'mobile': this.data.mobile
         }
-
-
         this.setData({
             loading: true
         })

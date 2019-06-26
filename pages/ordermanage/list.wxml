@@ -80,10 +80,10 @@
                 <view class="text-info">¥ {{g.total_price}} </view>
             </view>
             <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}">
-                <text class="address" data-text="{{item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].qty}}" bindtap="copy">
-                    收件人：{{item.consignee}} 复制
+                <text class="address" data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" bindtap="copy">
+                    收件人：{{item.consignee}} | <text class="color_1">(复制地址)</text>
                     电话：{{item.mobile}}
-                    地址：{{item.address}}
+                    地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}}
                 </text>
             </view>
             <view class="remark scale-b-1px" wx:if="{{item.create_remark}}">
@@ -126,9 +126,9 @@
         </view>
         <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
         <view class="note-box">
-            <i-icon type="brush" size="14" class="note-icon" />
+            <i-icon type="brush" size="22" color="#999" class="note-icon" />
             <view class="note-input">
-                <i-input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder="备注" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
+                <i-input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder="怕忘记备注一下哦" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
             </view>
             <!-- <view class="note-submit">
                     <input type="hidden" hidden="true" name="order_id" value="{{item.order_id}}" />

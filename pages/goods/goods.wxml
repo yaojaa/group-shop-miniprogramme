@@ -203,11 +203,10 @@
     <i-message id="message" />
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" bind:close="onClose">
         <view class="logo">
-            <image src="https://static.kaixinmatuan.cn/staitc-img/logo.png" />
+            <image class="avatar" src="{{goods.user.headimg}}" />
         </view>
         <view class="info">
-            获取您的公开信息
-            微信头像和昵称
+            您好，请允许获取公开信息
         </view>
         <button size="default" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
     </van-popup>

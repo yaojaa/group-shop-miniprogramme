@@ -106,7 +106,7 @@
             </van-cell> -->
             <!--  <van-cell title="配送方式" value="自提" value-class="text-gray" />
             <van-cell title="订单总价" value="￥100" value-class="" /> -->
-            <van-field input-align="left" bindchange="" value="{{area}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
+            <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
     </view>
     <i-message id="message" />
