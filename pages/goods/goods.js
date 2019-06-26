@@ -95,10 +95,13 @@ Page({
             this.getOrderUserList(this.data.goods_id)
         }
 
-        this.add_access()
 
     },
     onReady: function() {
+
+        if(app.globalData.userInfo){
+            return
+        }
 
 
         wx.getSetting({
@@ -250,11 +253,10 @@ Page({
 
 
         util.wx.get('/api/index/goods_card', {
-            goods_id: id
+            goods_id: this.data.goods_id
         }).then(res => {
 
             if (res.data.code == 200) {
-
                 this.shareImg = res.data.data.path
             }
 
@@ -265,7 +267,7 @@ Page({
           //提交访问记录
         util.wx.get('/api/index/add_access', {
             type: 'goods_detail',
-            obj_id: id,
+            obj_id: this.data.goods_id,
             user_scene: app.globalData.userScene,
             user_phone: app.globalData.userPhone
         }).then(res => {
@@ -273,15 +275,12 @@ Page({
         })
     },
 
-    getGoodsInfo(id) {
+    getGoodsInfo() {
       
-
         util.wx.get('/api/goods/get_goods_detail', {
-                goods_id: id
+                goods_id: this.data.goods_id
             })
             .then(res => {
-                console.log(res)
-
                 if (res.data.code == 200) {
 
                     const d = res.data.data
@@ -360,16 +359,17 @@ Page({
 
         this.enterDate = new Date()
 
-        console.log(option)
+        this.data.goods_id = option.goods_id || option.id
 
-        this.setData({
-            copy: option.copy || false
-        })
-        this.getGoodsInfo(option.goods_id || option.id)
+      
+        this.getGoodsInfo()
 
-        this.getShareImg(option.goods_id || option.id)
+        this.getShareImg()
 
         this.checkUserIslogin()
+
+        this.add_access(option.goods_id || option.id)
+
 
 
         //获取价格区域的高度，滚动到此位置
@@ -387,7 +387,6 @@ Page({
             StatusBar: app.globalData.StatusBar
         })
 
-        this.data.goods_id = option.goods_id
 
 
     },

@@ -39,10 +39,10 @@ Page({
 
             this.getProList()
 
-            this.getloactionData()
+           // this.getloactionData()
 
 
-            this.getFriendList()
+          //  this.getFriendList()
 
 
         } else {
@@ -53,76 +53,76 @@ Page({
 
 
     },
-    //获取定为并获取商品
-    getloactionData() {
+   //  //获取定为并获取商品
+   //  getloactionData() {
 
-        //
-        if(app.globalData.lat){
+   //      //
+   //      if(app.globalData.lat){
 
-          this.getProListBylocation(app.globalData.lat,app.globalData.lng)
+   //        this.getProListBylocation(app.globalData.lat,app.globalData.lng)
         
-         this.setData({
+   //       this.setData({
 
-          city:app.globalData.city,
-          district:app.globalData.district
-         })
+   //        city:app.globalData.city,
+   //        district:app.globalData.district
+   //       })
 
-         return
+   //       return
 
-        }
+   //      }
 
 
-   util.getUserloaction(res => {
-                        console.log('经纬度：', res)
-                        app.globalData.lat = res.latitude
-                        app.globalData.lng = res.longitude
+   // util.getUserloaction(res => {
+   //                      console.log('经纬度：', res)
+   //                      app.globalData.lat = res.latitude
+   //                      app.globalData.lng = res.longitude
 
-                        this.getProListBylocation(app.globalData.lat,app.globalData.lng)
-                    })
+   //                      this.getProListBylocation(app.globalData.lat,app.globalData.lng)
+   //                  })
                     
 
-                    .then(res => {
-                        console.log(res)
+   //                  .then(res => {
+   //                      console.log(res)
 
-                        const{city,district} = res
+   //                      const{city,district} = res
 
-                        app.globalData.city = city
-                        app.globalData.district = district
+   //                      app.globalData.city = city
+   //                      app.globalData.district = district
 
-                        this.setData({
-                            userloaction: {
-                                city,
-                                district
-                            },
-                            latitude: res.latitude,
-                            longitude: res.longitude
-                        })
-                    })
-                    .catch(e=>{
-                      console.log(e.errMsg, e.errMsg.indexOf('auth'))
-                        if(e.errMsg.indexOf('auth')>0){
+   //                      this.setData({
+   //                          userloaction: {
+   //                              city,
+   //                              district
+   //                          },
+   //                          latitude: res.latitude,
+   //                          longitude: res.longitude
+   //                      })
+   //                  })
+   //                  .catch(e=>{
+   //                    console.log(e.errMsg, e.errMsg.indexOf('auth'))
+   //                      if(e.errMsg.indexOf('auth')>0){
 
-                            this.setData({
-                                showOpenBtn:true
-                            })
+   //                          this.setData({
+   //                              showOpenBtn:true
+   //                          })
 
-                        }
+   //                      }
 
-                        if(e.errCode && e.errCode == 2){
-                            wx.showToast({
-                                title:'建议打开GPS获取定位',
-                                icon:'none'
-                            })
-                        }
+   //                      if(e.errCode && e.errCode == 2){
+   //                          wx.showToast({
+   //                              title:'建议打开GPS获取定位',
+   //                              icon:'none'
+   //                          })
+   //                      }
                           
-                            this.setData({
-                                isloading: false
-                            })
+   //                          this.setData({
+   //                              isloading: false
+   //                          })
 
-                    })
+   //                  })
 
           
-    },
+   //  },
 
     openSetting() {
         wx.openSetting({
@@ -152,66 +152,65 @@ Page({
 
     getProList() {
 
-
         util.wx.get('/api/user/get_browsed_goods').then(res => {
-
-
             if (res.data.code == 200) {
-                console.log('getProList')
                 this.setData({
                     proList: res.data.data.goods
                 })
             }
+            this.setData({
+                isloading:false
+            })
         })
-
     },
-    getFriendList() {
+    // getFriendList() {
 
-        util.wx.get('/api/user/friend_bought').then(res => {
-            if (res.data.code == 200) {
-                this.setData({
-                    friendList: res.data.data
-                })
-            }
-        })
+    //     util.wx.get('/api/user/friend_bought').then(res => {
+    //         if (res.data.code == 200) {
+    //             this.setData({
+    //                 friendList: res.data.data
+    //             })
+    //         }
+    //     })
 
-    },
-    getProListBylocation(lat,lng) {
+    // },
+    
+    // getProListBylocation(lat,lng) {
 
-        util.wx.get('/api/user/discover', {
-            latitude: lat,
-            longitude: lng
-        }).then(res => {
+    //     util.wx.get('/api/user/discover', {
+    //         latitude: lat,
+    //         longitude: lng
+    //     }).then(res => {
 
-            if (res.data.code == 200) {
+    //         if (res.data.code == 200) {
 
-                //过滤重复数据
-                var filterData = []
-                this.data.proList.forEach((item)=>{
+    //             //过滤重复数据
+    //             var filterData = []
+    //             this.data.proList.forEach((item)=>{
 
-                    res.data.data.nearby_goods.forEach(it=>{
-                        if(item.goods_id !== it.goods_id){
+    //                 res.data.data.nearby_goods.forEach(it=>{
+    //                     if(item.goods_id !== it.goods_id){
 
-                            filterData.push(it)
+    //                         filterData.push(it)
 
-                        }
-                    })
-
-
-                })
-
-                var alldata = this.data.proList.concat(filterData)
-
-                this.setData({
-                    proList: alldata,
-                    isloading: false
-                })
-            }
-        })
+    //                     }
+    //                 })
 
 
+    //             })
 
-    },
+    //             var alldata = this.data.proList.concat(filterData)
+
+    //             this.setData({
+    //                 proList: alldata,
+    //                 isloading: false
+    //             })
+    //         }
+    //     })
+
+
+
+    // },
     toDetail(e) {
         console.log(e)
         let postId = e.currentTarget.dataset.id || e.target.dataset.id

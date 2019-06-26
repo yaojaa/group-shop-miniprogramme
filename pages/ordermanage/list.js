@@ -723,15 +723,13 @@ Page({
         util.formSubmitCollectFormId.call(this, e)
 
     },
-
     /**
      * 长按复制
      */
     copy: function(e) {
-        var that = this;
-        console.log(e);
+        console.log(e)
         wx.setClipboardData({
-            data: e.currentTarget.dataset.text,
+            data: e.target.dataset.text || e.currentTarget.dataset.text,
             success: function(res) {
                 wx.showToast({
                     title: '复制成功',

@@ -249,6 +249,12 @@ padding: 15rpx 30rpx
     overflow: hidden;
 }
 
+.copybtn{
+    position: absolute;
+    right: 10px;
+    top: 40rpx
+}
+
 .note-input .input-bd{
     padding: 0px 20px 0px 20px;
 }

@@ -79,9 +79,10 @@
                 <view>{{g.spec_name}} ×{{g.qty}}</view>
                 <view class="text-info">¥ {{g.total_price}} </view>
             </view>
-            <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}">
-                <text class="address" data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" bindtap="copy">
-                    收件人：{{item.consignee}} | <text class="color_1">(复制地址)</text>
+            <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}"  >
+                <button bindtap="copy" data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="copybtn btn gray hollow xs round button-hover"> 复制地址</button>
+                <text class="address" bindtap="copy">
+                    收件人：{{item.consignee}} 
                     电话：{{item.mobile}}
                     地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}}
                 </text>

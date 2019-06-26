@@ -126,6 +126,14 @@ Page({
                     }).then(res => {
                         if (res.data.code == 200) {
                             wx.showToast({ title: '订单操作成功' })
+
+                             this.data.search_status = 0
+                             
+                             this.setData({
+                                    active:0
+                                })
+
+
                             this.getOrderList()
                         } else {
                             wx.showToast({ title: '订单操作失败' })
