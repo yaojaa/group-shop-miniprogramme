@@ -19,7 +19,6 @@
     "share-painter": "/iView/share-painter/share-painter",
     "imgs": "../../components/imgs/imgs",
     "comment": "../../components/comment/index",
-    "share-button": "plugin://goodsSharePlugin/share-button",
     "van-popup": "../../vant/popup/index",
     "van-action-sheet": "../../vant/action-sheet/index",
     "custom-bar": "../../components/custom-bar/index",
