@@ -10,7 +10,7 @@
                     <view class='name'>{{item.name}}</view>
                     <view class='des'>{{item.address}}</view>
                     <view class='des door_number'>
-                        <input value="{{item.door_number}}" bindblur="inputChange" data-id="{{item.self_address_id}}" data-index="{{index}}" bindinput='inputAddressDes' focus='ture' placeholder="补充地址 如8号楼888、东门、西门、物业" type="text" name="" />
+                        <input value="{{item.door_number}}" data-id="{{item.self_address_id}}" data-index="{{index}}" bindchange='inputChange' focus='ture' placeholder="完善地址 如8号楼888、东门、西门、物业" type="text" name="" />
                     </view>
                     <!--       <view class='limit'>
     <view class='header'>

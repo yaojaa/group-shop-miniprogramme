@@ -88,16 +88,14 @@ Page({
 
       const id = e.target.dataset.id
 
-
         util.wx.post('/api/seller/self_address_add_or_edit',{
             self_address_id:id,
             door_number:e.detail.value
         })
         .then((res)=>{
-
             console.log('编辑成功',res)
-
-
+        },(res)=>{
+          console.log('编辑失败',res)
         })
 
 
@@ -150,20 +148,26 @@ Page({
                 console.log('用户授权状态', res)
                 if (!res.authSetting["scope.userLocation"]) {
 
-                    console.log('wx.openSetting')
-                          wx.openSetting({
-                          success: (res) => {
-                            console.log('openSetting',res)
-                              if (res.authSetting["scope.userLocation"]) {
-                                  this.chooseLocation()
-                              } else {
-                                  wx.showToast({
-                                      title: '请允许使用地理位置',
-                                      icon: 'none'
-                                  })
-                              }
-                          }
-                      })
+                console.log('用户没有授权过')
+
+                    this.setData({
+                        openLocation:false
+                    })
+
+                    // console.log('wx.openSetting')
+                    //       wx.openSetting({
+                    //       success: (res) => {
+                    //         console.log('openSetting',res)
+                    //           if (res.authSetting["scope.userLocation"]) {
+                    //               this.chooseLocation()
+                    //           } else {
+                    //               wx.showToast({
+                    //                   title: '请允许使用地理位置',
+                    //                   icon: 'none'
+                    //               })
+                    //           }
+                    //       }
+                    //   })
 
                 }else{
                  this.chooseLocation()
@@ -204,8 +208,6 @@ Page({
 
 
         let index = e.currentTarget.dataset.index;
-        console.log(index)
-
        this.data.newAddress.splice(index,1)
 
         this.setData({
@@ -271,34 +273,23 @@ Page({
      //                        door_number: ''
 
     add(data){
-       
 
+        console.log('add',data)
+       
         util.wx.post('/api/seller/self_address_add_or_edit',data)
         .then((res)=>{
-            if(res.data.code == 200){
-
-                 wx.showToast({
-                        title:'添加成功',
-                        icon:'none'
-                    })
-
                  this.data.newAddress.push(res.data.data.address)
-
                  this.setData({
                     newAddress:this.data.newAddress
                  })
-
-
-
-                 
-
-            }else{
-
-                 wx.showToast({
+        },(res)=>{
+             wx.showToast({
                         title:res.data.msg,
                         icon:'none'
                     })
-            }
+
+        }).catch(e=>{
+            console.log(e)
         })
     },
 
@@ -358,28 +349,11 @@ Page({
 
     },
 
-    openLocation() {
-
-        wx.openSetting({
-            success: (res) => {
-                if (res.authSetting["scope.userLocation"]) {
-
-                    this.openLocation()
-                } else {
-                    wx.showToast({
-                        title: '请允许使用地理位置',
-                        icon: 'none'
-                    })
-                }
-            }
-        })
-
-    },
 
     openSet(e) {
         console.log(e)
         if (e.detail.authSetting['scope.userLocation']) {
-            this.openLocation(this);
+            this.chooseLocation();
             this.setData({
                 openLocation: true
             })
@@ -400,13 +374,5 @@ Page({
         })
         return index;
     }
-
-
-
-
-
-
-
-
 
 })

@@ -456,13 +456,9 @@ const request = (url, data, method) => {
                 if (res.data.code == 200) {
                     resolve(res)
                 } else if (res.data.code == '-99' || res.data.code == '-100') {
-
                     console.log('应该调到等路')
-
                      wx.clearStorageSync() 
-
                      app.redirectToLogin()
-
 
                 } else{ //返回错误提示信息
                     reject(res)

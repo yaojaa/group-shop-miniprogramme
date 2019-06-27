@@ -97,7 +97,7 @@
         </view>
         <view style="padding: 20rpx 0">
             <view class="text-justify">
-                <view><button bindtap='copyDetail' size="mini">生成文字接龙</button></view>
+                <view><button  class="btn-round" bindtap='copyDetail' size="mini">生成文字接龙</button></view>
                 <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
             </view>
         </view>
@@ -105,21 +105,24 @@
             最近参与
         </view>
         <view wx:if="{{orderUsers.length ==0}}" class="mt-sm">
-            <button size="mini" open-type="share">
+            <button size="mini" class="btn-round" open-type="share">
                 暂时还没有人参与哦 点击这里分享转发
             </button>
         </view>
+
+        <scroll-view scroll-y style="height: 750rpx">
         <i-cell-group>
             <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{listItem}}">
                 <i-cell wx:for="{{listItem}}" wx:key="{{item}}" i-class="buyer-item-box">
                     <view class="buyer-item">
+                        <text class="number">{{item.create_number}} </text>
                         <image class="buyer-avatar" src="{{item.headimg}}"></image>
                         <view class="buyer-info">
-                            <view class="name"> {{item.nickname}} <text class="number">{{item.create_number}} </text>
+                            <view class="name"> {{item.nickname}} 
                             </view>
                             <view class="type">
                                 <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
-                                    跟 {{gds.spec_name}} × {{gds.qty}}
+                                    跟 {{gds.spec_name}} + {{gds.qty}}
                                 </view>
                             </view>
                         </view>
@@ -128,6 +131,7 @@
                 </i-cell>
             </block>
         </i-cell-group>
+        </scroll-view>
         <view wx:if="{{goods.content_imgs.length}}">
             <view class='sub-title scale-b-1px'>
                 图文介绍
@@ -231,7 +235,7 @@
             </view>
             <view class="text-center share-img-box" wx:else>
                 <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
-                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages">保存海报</button>
+                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages"> 保存海报 </button>
             </view>
         </view>
     </view>
