@@ -11,6 +11,7 @@ app.that = null;
 let drawGoods = null;
 let drawBuyuser = null;
 let orderUsersLen = 30; // 购买用户每次加载数量
+let orderUsersFlag = false; // 购买用户是否正在加载
 
 Page({
     data: {
@@ -810,6 +811,23 @@ Page({
             }
         });
     },
+    buyUserScroll: function(e){
+        if (this.data._orderUsers.length > 0 && !orderUsersFlag) {
+            let index = this.data._orderUsers_.length;
+
+            orderUsersFlag = true;
+
+            this.data._orderUsers_.push(this.data._orderUsers.shift())
+
+            this.setData({
+                ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
+            },function(){
+                orderUsersFlag = false;
+            })
+
+            console.log(this.data._orderUsers_)
+        }   
+    },
     onPageScroll: function(e) {
 
         if (e.scrollTop > 300 && !this.data.toShowPic) {
@@ -819,16 +837,16 @@ Page({
             console.log('toShowPictoShowPictoShowPictoShowPic')
         }
 
-        if (this.data._orderUsers.length > 0 && e.scrollTop > 60 * orderUsersLen) {
-            let index = this.data._orderUsers_.length;
-            this.data._orderUsers_.push(this.data._orderUsers.shift())
+        // if (this.data._orderUsers.length > 0 && e.scrollTop > 60 * orderUsersLen) {
+        //     let index = this.data._orderUsers_.length;
+        //     this.data._orderUsers_.push(this.data._orderUsers.shift())
 
-            this.setData({
-                ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
-            })
+        //     this.setData({
+        //         ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
+        //     })
 
-            console.log(this.data._orderUsers_)
-        }
+        //     console.log(this.data._orderUsers_)
+        // }
 
         this.data.scrollTop = e.scrollTop
 
