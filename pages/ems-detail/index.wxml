@@ -18,6 +18,7 @@
         </view>
     </view>
     <view class="white-bg p-df">
+        <block wx:if="{{traces.length > 0}}">
         <wux-timeline >
             <view class="trace" wx:for="{{traces}}" wx:key="{{index}}">
                 <wux-timeline-item content="{{item.time}}" dotStyle="border-color: #49b34d; color: #49b34d">
@@ -25,6 +26,8 @@
                 </wux-timeline-item>
             </view>
         </wux-timeline>
+        </block>
+        <view class="trace" wx:else>{{errorMsg}}</view>
     </view>
 
         <button style="margin: 15px" bindtap="send" class="weui-btn weui-btn_primary linenear_bg">确 认 发 货</button>
