@@ -599,25 +599,12 @@ Page({
     },
     getOrderUserList(goods_id) {
 
-        wx.request({
-            method: 'get',
-            url: 'https://www.kaixinmatuan.cn/api/goods/get_minorders_by_goods_id',
-            data: {
-                token: app.globalData.token,
-                goods_id: goods_id
-            },
-            success: (res) => {
-                if (res.data.code == 200) {
+        util.wx.get('/api/goods/get_minorders_by_goods_id',{
+            goods_id:goods_id,
+            pagesize:30
+        }).then(res=>{
 
-                    //***后两位
-                    // res.data.data.map(value => {
-                    //     value.specs.map(val => {
-                    //         val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g, '*')
-                    //     })
-                    // })
-
-                    //绘制朋友圈图片
-                    drawBuyuser = res.data.data;
+               drawBuyuser = res.data.data;
                     if (drawGoods) {
                         util.drawShareFriends(this, drawGoods, res.data.data);
                     }
@@ -646,13 +633,65 @@ Page({
                         orderUsers: this.data.orderUsers
                     })
 
-                }
 
 
 
-
-            }
         })
+
+        // wx.request({
+        //     method: 'get',
+        //     url: 'https://www.kaixinmatuan.cn/api/goods/get_minorders_by_goods_id',
+        //     data: {
+        //         token: app.globalData.token,
+        //         goods_id: goods_id
+        //     },
+        //     success: (res) => {
+        //         if (res.data.code == 200) {
+
+        //             //***后两位
+        //             // res.data.data.map(value => {
+        //             //     value.specs.map(val => {
+        //             //         val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g, '*')
+        //             //     })
+        //             // })
+
+        //             //绘制朋友圈图片
+        //             drawBuyuser = res.data.data;
+        //             if (drawGoods) {
+        //                 util.drawShareFriends(this, drawGoods, res.data.data);
+        //             }
+
+        //             this.data.orderUsers = res.data.data;
+
+        //             this.data._orderUsers = [];
+        //             this.data._orderUsers_ = [];
+
+        //             this.data._orderUsers[0] = [];
+
+        //             res.data.data.forEach((e, i) => {
+        //                 let _i = parseInt(i / orderUsersLen);
+        //                 if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
+        //                     this.data._orderUsers[_i] = [];
+        //                 }
+        //                 this.data._orderUsers[_i].push(e)
+        //             })
+
+        //             console.log(this.data._orderUsers)
+
+        //             this.data._orderUsers_.push(this.data._orderUsers.shift())
+
+        //             this.setData({
+        //                 _orderUsers_: this.data._orderUsers_,
+        //                 orderUsers: this.data.orderUsers
+        //             })
+
+        //         }
+
+
+
+
+        //     }
+        // })
 
 
     },

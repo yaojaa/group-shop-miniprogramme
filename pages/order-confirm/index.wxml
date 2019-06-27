@@ -27,12 +27,12 @@
                     <van-radio-group value="{{ address_id }}" bind:change="" wx:if="{{self_address.length>1}}">
                         <van-cell-group>
                             <van-cell clickable data-name="{{item.self_address_id}}" bind:click="onClick" size="small" wx:for="{{self_address}}" wx:key="{{index}}" value-class="self-ad-radio" bind:click="onAddressChange">
-                                <view slot="title" class="flex"><text class="self-ad-label">提货点{{index+1}}</text><text class="self-ad-content flex-sub">{{item.name}} {{item.address}}</text></view>
+                                <view slot="title" class="flex"><text class="self-ad-label">提货点{{index+1}}</text><text class="self-ad-content flex-sub">{{item.name}} {{item.door_number}}</text></view>
                                 <van-radio name="{{item.self_address_id}}" checked-color="#49b34d" />
                             </van-cell>
                         </van-cell-group>
                     </van-radio-group>
-                    <van-field readonly label="提货点" value="{{self_address[0].address}}" size="small" wx:else />
+                    <van-field readonly label="提货点" value="{{self_address[0].name+self_address[0].door_number}}" size="small" wx:else />
                 </van-cell-group>
                 <view class="flex align-center ph-df pt-df pb-xs">
                     <view class="qu-label mr-xs">取</view>

@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <view class="container">
     <i-custom-bar fixed backColor="#ffffff" backImage="https://static.kaixinmatuan.cn/staitc-img/top_bar_bg.jpg">
-        <view class="tit-slogan">您关注的人有新品啦
-            <text class="small">好物不错过</text> 
+        <view class="tit-slogan">您关注过的
+            <text class="small">好物不错过 </text> 
          <!--    <text class="small">{{userloaction.city}} {{userloaction.district}}</text> -->
         </view>
     </i-custom-bar>
@@ -22,7 +22,7 @@
     </view>
 
 
-    <view style="margin-top: 200px" class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}">你好像没有参与过什么</view>
+    <view style="margin-top: 200px" class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}">你好像没有关注过谁</view>
     </view>
     <block wx:for="{{proList}}" wx:key="{{index}}">
         <view class='product-item'>

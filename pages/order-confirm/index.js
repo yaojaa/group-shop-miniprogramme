@@ -103,6 +103,7 @@ Page({
             .then(res => {
                 if (res.data.code == 200) {
                     let data = res.data.data.goods.self_address
+                    console.log(data)
                     this.setData({
                         self_address: data,
                         address_id: data[0].self_address_id
@@ -126,6 +127,10 @@ Page({
     onLoad: function(options) {
 
         this.data.goods_id = options.goods_id
+        this.setData({
+            mobile:app.globalData.userInfo.mobile,
+            consignee:app.globalData.userInfo.nickname
+        })
 
         let amountMoney = 0;
         let totalNumer = 0
