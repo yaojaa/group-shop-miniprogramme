@@ -49,19 +49,27 @@ Page({
         })
     },
     send() {
-        util.wx.post('/api/seller/set_order_status', {
-            order_id: this.data.order_id,
-            opt: 'toset_send',
-            action_remark: this.data.action_remark,
-            express_company: this.data.express_company,
-            express_code: this.data.express_code
-        }).then(res => {
-            if (res.data.code == 200) {
-                wx.showToast({
-                    title: '发货成功'
+        let _this = this;
+        wx.showModal({
+          content: '是否确认发货？',
+          success (res) {
+            if (res.confirm) {
+                util.wx.post('/api/seller/set_order_status', {
+                    order_id: _this.data.order_id,
+                    opt: 'toset_send',
+                    action_remark: _this.data.action_remark,
+                    express_company: _this.data.express_company,
+                    express_code: _this.data.express_code
+                }).then(res => {
+                    if (res.data.code == 200) {
+                        wx.showToast({
+                            title: '发货成功'
+                        })
+                        wx.navigateBack()
+                    }
                 })
-                wx.navigateBack()
             }
+          }
         })
     },
     // checkExpress() {

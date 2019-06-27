@@ -6,7 +6,8 @@ Page({
      */
     data: {
         express_company:'',
-        express_code:''
+        express_code:'',
+        errorMsg:'',
     },
     checkExpress() {
         wx.showLoading()
@@ -15,13 +16,24 @@ Page({
             express_code: this.data.express_code,
             order_id: this.data.order_id
         }).then(res => {
-            if (res.data.code == 200) {
+            if (res.data.status) { // 物流单号正确
                 this.setData({
-                    showTraces: true,
-                    traces: res.data.data.traces.reverse()
+                    // showTraces: true,
+                    traces: res.data.data.traces.reverse(),
+                    errorMsg: '暂时没有物流信息，请等待物流更新'
                 })
+            }else{ // 物流单号错误
+                this.data.express_code = "";
+                this.setData({
+                    // showTraces: true,
+                    traces: [],
+                    errorMsg: '单号有误，请检查单号重新输入'
+                })
+
             }
             wx.hideLoading()
+        }, err => {
+            console.log('===err===',err)
         })
     },
     copyOrder(event) {
@@ -36,6 +48,30 @@ Page({
                     }
                 })
             }
+        })
+    },
+    send() {
+        let _this = this;
+        wx.showModal({
+          content: '是否确认发货？',
+          success (res) {
+            if (res.confirm) {
+                util.wx.post('/api/seller/set_order_status', {
+                    order_id: _this.data.order_id,
+                    opt: 'toset_send',
+                    action_remark: _this.data.action_remark,
+                    express_company: _this.data.express_company,
+                    express_code: _this.data.express_code
+                }).then(res => {
+                    if (res.data.code == 200) {
+                        wx.showToast({
+                            title: '发货成功'
+                        })
+                        wx.navigateBack({delta: 2})
+                    }
+                })
+            }
+          }
         })
     },
     /**
