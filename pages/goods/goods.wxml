@@ -110,7 +110,7 @@
             </button>
         </view>
 
-        <scroll-view scroll-y style="height: 750rpx" bindscrolltolower="buyUserScroll">
+        <scroll-view scroll-y style="height: 750rpx" lower-threshold="300" bindscrolltolower="buyUserScroll">
         <i-cell-group>
             <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{listItem}}">
                 <i-cell wx:for="{{listItem}}" wx:key="{{item}}" i-class="buyer-item-box">
