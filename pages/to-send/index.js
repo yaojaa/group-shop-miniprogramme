@@ -5,8 +5,8 @@ Page({
     data: {
         columns: [],
         comps: [],
-        express_company: '选择快递',
-        express_code: '输入单号',
+        express_company: '',
+        express_code: '',
         action_remark: '',
         get_user_name: '',
         get_user_avatar: '',

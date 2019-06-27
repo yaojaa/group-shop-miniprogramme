@@ -24,6 +24,7 @@ Page({
                 })
             }else{ // 物流单号错误
                 this.data.express_code = "";
+                this.data.express_company = "";
                 this.setData({
                     // showTraces: true,
                     traces: [],
