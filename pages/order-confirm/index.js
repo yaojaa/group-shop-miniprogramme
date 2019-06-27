@@ -262,7 +262,7 @@ Page({
                 loading: false
             })
             wx.showToast({
-                title: '服务器出小差儿了' + e,
+                title: e.data.msg,
                 icon: 'none'
             })
 
