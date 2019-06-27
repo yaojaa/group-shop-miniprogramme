@@ -180,22 +180,26 @@ function headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, 
   config.buyuser.forEach((e, index) => {
       let _h = parseInt(_wm*(index+1)/_w); // 几行头像
 
-      heads.push({
-        type: 'image',
-        url: e.headimg,
-        css: {
-          top: `${imgHeight + headImgSize / 2 + qrcodeSize + 110 + config.height + _h*(headSize+hB)}rpx`,
-          // left: `${desLeft + index * _wm}rpx`,
-          left:`${ desLeft + index%parseInt(_w/_wm) * _wm }rpx`,
-          width: `${ headSize }rpx`,
-          height: `${ headSize }rpx`,
-          borderRadius:`${ headSize/2}rpx`
-        },
-      })
+      if(_h　< 3){
+        heads.push({
+          type: 'image',
+          url: e.headimg,
+          css: {
+            top: `${imgHeight + headImgSize / 2 + qrcodeSize + 110 + config.height + _h*(headSize+hB)}rpx`,
+            // left: `${desLeft + index * _wm}rpx`,
+            left:`${ desLeft + index%parseInt(_w/_wm) * _wm }rpx`,
+            width: `${ headSize }rpx`,
+            height: `${ headSize }rpx`,
+            borderRadius:`${ headSize/2}rpx`
+          },
+        })
+      }   
    
   })
 
-  return [heads, Math.ceil(_wm*config.buyuser.length/_w)*(headSize+hB)];
+  let H = Math.ceil(_wm*config.buyuser.length/_w) >= 3 ? 3 : Math.ceil(_wm*config.buyuser.length/_w);
+
+  return [heads, H*(headSize+hB)];
 }
 
 
