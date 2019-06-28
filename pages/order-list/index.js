@@ -9,7 +9,9 @@ Page({
     data: {
         status: 0,
         order_list: [],
-        loading: false
+        loading: false,
+        cpage: 1,
+        totalpage: 1
     },
     handleCancelOrder(event) {
 
@@ -94,25 +96,27 @@ Page({
         this.setData({
             loading: true
         })
-
-        util.wx.get('/api/user/get_order_list', {
-                search_status: this.data.search_status
-            })
-            .then(res => {
-                console.log('order res.data', res.data)
-                if (res.data.code == 200) {
-                    this.setData({
+        return new Promise((resolve, reject) => {
+            util.wx.get('/api/user/get_order_list', {
+                search_status: this.data.search_status,
+                cpage: this.data.cpage,
+                pagesize: 5
+            }).then((res) => {
+                this.setData({
                         loading: false,
-                        order_list: res.data.data.order_list
+                        order_list:this.data.order_list.concat(res.data.data.order_list),
+                        totalpage: res.data.data.page.totalpage
                     })
-                }
+                resolve()
+            }, (err) => {
+                reject(err)
             })
-
+        })
     },
     orderActions(e) {
-        const { opt, order_id, txt,sn } = e.currentTarget.dataset
+        const { opt, order_id, txt, sn } = e.currentTarget.dataset
         console.log(opt, order_id, txt)
-        if( opt == 'toset_pay'){
+        if (opt == 'toset_pay') {
             this.pay(sn)
             return
         }
@@ -127,11 +131,11 @@ Page({
                         if (res.data.code == 200) {
                             wx.showToast({ title: '订单操作成功' })
 
-                             this.data.search_status = 0
-                             
-                             this.setData({
-                                    active:0
-                                })
+                            this.data.search_status = 0
+
+                            this.setData({
+                                active: 0
+                            })
 
 
                             this.getOrderList()
@@ -147,7 +151,9 @@ Page({
         let order = event.detail.index
         this.setData({
             search_status: order,
-            active:order
+            active: order,
+            cpage:1,
+            order_list:[]
         })
         this.getOrderList()
     },
@@ -229,16 +235,35 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
+    // 下拉刷新
     onPullDownRefresh: function() {
-
+        // 显示顶部刷新图标
+        wx.showNavigationBarLoading();
+        this.getOrderList().then(() => {
+            // 隐藏导航栏加载框
+            wx.hideNavigationBarLoading();
+            // 停止下拉动作
+            wx.stopPullDownRefresh();
+        })
     },
-
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-
-    },
-
+        if (this.data.cpage && !this.data.loading) {
+            this.setData({
+                cpage: this.data.cpage + 1, //每次触发上拉事件，把requestPageNum+1
+            })
+            if (this.data.cpage > this.data.totalpage) {
+                return
+            }
+            this.getOrderList().then(() => {
+                // 隐藏导航栏加载框
+                wx.hideNavigationBarLoading();
+                // 停止下拉动作
+                wx.stopPullDownRefresh();
+            })
+        }
+    }
 
 })

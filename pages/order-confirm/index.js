@@ -18,7 +18,7 @@ Page({
         delivery_method: 0,
         consignee: '',
         mobile: '',
-        user_message:'',
+        user_message: '',
         btn_load: false,
         loading: false,
         address_load: false
@@ -181,9 +181,9 @@ Page({
             mobile: e.detail
         })
     },
-    inputUser_message(e){
+    inputUser_message(e) {
         this.setData({
-            user_message:e.detail
+            user_message: e.detail
         })
     },
     /**
@@ -238,7 +238,7 @@ Page({
             goods_id: this.data.goods_id
         }, postData)).then(res => {
 
-           
+
             if (res.data.code == 200) {
                 this.data.order_id = res.data.data.order_id;
 
@@ -246,7 +246,9 @@ Page({
 
 
             } else {
-
+                this.setData({
+                    loading: false
+                })
                 wx.showToast({
                     title: res.data.msg,
                     icon: 'none'
@@ -256,9 +258,11 @@ Page({
 
 
         }, (e) => {
-
+            this.setData({
+                loading: false
+            })
             wx.showToast({
-                title: '服务器出小差儿了' + e,
+                title: e.data.msg,
                 icon: 'none'
             })
 

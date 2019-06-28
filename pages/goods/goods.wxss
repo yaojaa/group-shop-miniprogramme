@@ -838,6 +838,7 @@
     position: fixed;
     left: 30rpx;
     top: 0rpx;
+    z-index: 2013
 }
 
 .user-info .user-body {
