@@ -95,7 +95,6 @@ Page({
 
         // util.playSound('https://static.kaixinmatuan.cn/staitc-img/new_order.mp3')
        this.get_store_info()
-       this.getOrderCount()
 
 
     },
@@ -107,7 +106,8 @@ Page({
                     this.setData({
                         waitpay: res.data.data.waitpay,
                         waitreceived:res.data.data.waitreceived,
-                        complete:res.data.data.complete
+                        complete:res.data.data.complete,
+                        waitconfirm:res.data.data.waitconfirm
                     })
                 }
         })
@@ -238,6 +238,8 @@ Page({
     onShow(){
       this.data.goodslist =[]
       this.getGoodsList()
+      this.getOrderCount()
+
     },
 
 

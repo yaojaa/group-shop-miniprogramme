@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <view class="container">
     <i-custom-bar fixed backColor="#ffffff" backImage="https://static.kaixinmatuan.cn/staitc-img/top_bar_bg.jpg">
-        <view class="tit-slogan">您关注过的
-            <text class="small">好物不错过 </text> 
+        <view class="tit-slogan">您关注的
+            <text class="small">没事刷一刷 好物不错过 </text> 
          <!--    <text class="small">{{userloaction.city}} {{userloaction.district}}</text> -->
         </view>
     </i-custom-bar>

@@ -29,6 +29,8 @@
     <i-panel i-class="marginTop" title="我的订单" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
+                 
+
                 <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">
                     <view class="icon">
                         <i-icon type="redpacket" size="28" color="#4fac05" />
@@ -36,10 +38,13 @@
                     待付款
                     <view class="badge">{{waitpay}}</view>
                 </navigator>
-                <!--    <view class="flex-item"> <view class="icon">
-                    <i-icon type="commodity" size="28" color="#4fac05" />
-                </view>
-            待发货</view> -->
+                 <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">
+                    <view class="icon">
+                        <i-icon type="redpacket" size="28" color="#4fac05" />
+                    </view>
+                    已付款
+                    <view class="badge">{{waitconfirm}}</view>
+                </navigator>
                 <navigator url="../order-list/index?search_status=2" hover-class="none" class="flex-item">
                     <view class="icon">
                         <i-icon type="service" size="28" color="#4fac05" />

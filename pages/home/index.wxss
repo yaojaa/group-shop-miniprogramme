@@ -642,7 +642,7 @@ margin-top:10px;
 .badge{
     position: absolute;
     top: 0;
-    right: 58rpx;
+    right: 8rpx;
     height: 16px;
     border-radius: 9px;
     min-width: 16px;
