@@ -97,7 +97,9 @@
         </view>
         <view style="padding: 20rpx 0">
             <view class="text-justify">
+                 <view><button  class="btn-round" bindtap='copyGoods' size="mini">复制</button></view>
                 <view><button  class="btn-round" bindtap='copyDetail' size="mini">生成文字接龙</button></view>
+
                 <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
             </view>
         </view>

@@ -815,6 +815,13 @@ Page({
             phoneNumber: e.target.dataset.mobile
         })
     },
+    copyGoods(){
+
+        wx.navigateTo({
+            url: '../publish/publish?goods_id=' + this.data.goods.goods_id
+        })
+
+    },
     copyDetail() {
         var price = '规格：\n'
         console.log(this.data.goods_spec)

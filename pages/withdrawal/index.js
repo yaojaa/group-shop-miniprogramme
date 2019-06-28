@@ -59,6 +59,13 @@ Page({
                     })
                 }
             })
+        }else{
+
+          wx.showToast({
+                        title: '请输入提现金额',
+                        icon:'none'
+                    })
+
         }
 
     },
