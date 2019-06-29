@@ -100,13 +100,13 @@ Page({
             util.wx.get('/api/user/get_order_list', {
                 search_status: this.data.search_status,
                 cpage: this.data.cpage,
-                pagesize: 5
+                pagesize: 10
             }).then((res) => {
                 this.setData({
-                        loading: false,
-                        order_list:this.data.order_list.concat(res.data.data.order_list),
-                        totalpage: res.data.data.page.totalpage
-                    })
+                    loading: false,
+                    order_list: this.data.order_list.concat(res.data.data.order_list),
+                    totalpage: res.data.data.page.totalpage
+                })
                 resolve()
             }, (err) => {
                 reject(err)
@@ -134,9 +134,10 @@ Page({
                             this.data.search_status = 0
 
                             this.setData({
-                                active: 0
+                                active: 0,
+                                cpage: 1,
+                                order_list: []
                             })
-
 
                             this.getOrderList()
                         } else {
@@ -152,8 +153,8 @@ Page({
         this.setData({
             search_status: order,
             active: order,
-            cpage:1,
-            order_list:[]
+            cpage: 1,
+            order_list: []
         })
         this.getOrderList()
     },
@@ -177,6 +178,11 @@ Page({
                         duration: 1000,
                         selector: '#custom-selector',
                         backgroundColor: '#49b34d'
+                    })
+                    this.setData({
+                        active: 0,
+                        cpage: 1,
+                        order_list: []
                     })
                     this.getOrderList();
                 },
