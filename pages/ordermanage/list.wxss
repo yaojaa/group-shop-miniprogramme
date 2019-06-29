@@ -254,6 +254,12 @@ padding: 15rpx 30rpx
     right: 10px;
     top: 40rpx
 }
+.btn-toset_del{
+    background: #f00
+}
+.btn-toset_confirm{
+    background: #ff9000
+}
 
 .note-input .input-bd{
     padding: 0px 20px 0px 20px;

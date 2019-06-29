@@ -34,7 +34,6 @@ Page({
         //     this.setData({
         //         progress: 0,
         //     })
-        //     wx.showLoading()
         // } else if (file.status === 'done') {
         //     this.setData({
         //         imageUrl: file.url,
@@ -42,15 +41,12 @@ Page({
         // }
     },
     onSuccess(e,l) {
-        console.log('onSuccess图片上传成功',e,l)
-
         const data = JSON.parse(e.detail)
-
-
-        console.log('地址是',data.data.file_url)
-
         this.data.store_slide.push(data.data.file_url)
 
+        this.setData({
+          store_slide:this.data.store_slide
+        })
 
     },
     onFail(e) {
@@ -60,7 +56,6 @@ Page({
         wx.hideLoading()
     },
     onProgress(e) {
-        console.log('onProgress', e)
         this.setData({
             progress: e.detail.file.progress,
         })
@@ -102,7 +97,6 @@ Page({
 
 
       // }
-      wx.showLoading()
 
 
       util.wx.post('/api/seller/store_set',{
@@ -117,7 +111,6 @@ Page({
 
       }).then(res=>{
 
-        wx.hideLoading()
 
         if(res.data.code == 200){
            wx.showToast({
@@ -142,8 +135,9 @@ Page({
   },
   getInfo:function(){
 
-    util.wx.get('/api/seller/get_store_info').then(res=>{
 
+    util.wx.get('/api/seller/get_store_info').then(res=>{
+        console.log('wx.hideLoading()',wx.hideLoading)
       if(res.data.code == 200){
 
         this.setData({
@@ -153,7 +147,6 @@ Page({
         })
       }
 
-        wx.hideLoading()
 
 
     })
@@ -204,7 +197,6 @@ Page({
    */
   onReady: function () {
 
-    wx.showLoading()
 
   },
 
@@ -291,7 +283,6 @@ Page({
         const { value } = e.detail
         const options2 = [...this.data.options2]
 
-        wx.showLoading({ mask: true })
 
         setTimeout(() => {
             if (value[value.length - 1] === 'beijing') {

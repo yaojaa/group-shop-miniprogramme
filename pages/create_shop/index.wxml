@@ -46,12 +46,12 @@
 
 
 
-<i-panel i-class="shadow-panel" title="主页背景头图">
+<i-panel i-class="shadow-panel" title="主页背景头图(建议宽高比6:4)">
 
     <view class="up-area">
-
-       <wux-upload listType="picture-card" fileList="{{ fileList }}"  url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
-            <text><wux-icon type="md-add" /></text>
+       <wux-upload  listType="picture-card" fileList="{{ fileList }}"  url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
+        {{store_slide.length}}
+          <wux-icon  type="md-add" />
         </wux-upload>
     </view>
 

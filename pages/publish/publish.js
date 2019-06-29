@@ -100,10 +100,6 @@ Page({
             index = this.data.current_spec_index
         }
 
-        console.log(index)
-
-        console.log(this.data.spec[index].spec_pic)
-
         if (this.data.spec[index].spec_pic.length) {
             this.setData({
                 visible_spec: true,
@@ -623,7 +619,7 @@ Page({
     },
     jump() {
         wx.redirectTo({
-            url: '../publish-success/publish-success?goods_id=' + this.data.goods_id + '&goods_name=' + this.data.goods_name
+            url: '../goods/goods?goods_id=' + this.data.goods_id 
         })
     },
     //提交表单

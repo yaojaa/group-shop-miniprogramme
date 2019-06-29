@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 40,
 			"list": [
 				{
 					"id": 0,
@@ -331,7 +331,7 @@
 					"id": 40,
 					"name": "订单管理",
 					"pathName": "pages/ordermanage/list",
-					"query": "id=2&goods_name=k就好&delivery_method=1",
+					"query": "id=314&goods_name=山东烟台福山大樱桃&delivery_method=2",
 					"scene": null
 				},
 				{
@@ -416,6 +416,13 @@
 					"name": "特多的商品",
 					"pathName": "pages/goods/goods",
 					"query": "goods_id=173&goods_name=锦融尚御房本维权赞助收款与名单公布&delivery_method=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "当前",
+					"pathName": "pages/create_shop/index",
+					"query": "goods_id=301",
 					"scene": null
 				}
 			]

@@ -109,8 +109,6 @@ Page({
         this.cpage = 1
         this.getDataList()
 
-        //主要信息
-        this.getStoreInfo()
     },
 
     getStoreInfo() {
@@ -187,6 +185,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
+
+        
+        //主要信息
+        this.getStoreInfo()
 
     },
 

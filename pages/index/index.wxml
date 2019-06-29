@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <view class="container">
     <i-custom-bar fixed backColor="#ffffff" backImage="https://static.kaixinmatuan.cn/staitc-img/top_bar_bg.jpg">
-        <view class="tit-slogan">您关注的
-            <text class="small">没事刷一刷 好物不错过 </text> 
+        <view class="tit-slogan">我买过的店
+            <text class="small">及时关注上新，好物不错过 </text> 
          <!--    <text class="small">{{userloaction.city}} {{userloaction.district}}</text> -->
         </view>
     </i-custom-bar>
@@ -22,7 +22,7 @@
     </view>
 
 
-    <view style="margin-top: 200px" class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}">你好像没有关注过谁</view>
+    <view style="margin-top: 200px" class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}">你好像没有参与过啥</view>
     </view>
     <block wx:for="{{proList}}" wx:key="{{index}}">
         <view class='product-item'>
@@ -43,8 +43,18 @@
                         </view>
                     </view>
                 </navigator>
-                <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail"><text>{{item.goods_name}}</text> <text class="small f12 text-red">￥</text>
-                    <text class='text-red'>{{item.price_range.min}}~{{item.price_range.max}}</text>
+                <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail">
+
+                    <text style="display: inline-block;">{{item.goods_name}}</text>
+
+
+                    <text class='text-red' wx:if="{{item.price_range.min == item.price_range.max}}">￥{{item.price_range.min}}</text>
+
+                    <text class="text-red" wx:else>
+                      ￥{{item.price_range.min}}~{{item.price_range.max}}
+                    </text>
+
+                    
                 </view>
                 <view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
                     <block wx:if="{{item.goods_images.length == 1}}">

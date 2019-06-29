@@ -69,6 +69,9 @@
             </view>
             <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
                 <text class="tel" bindlongpress="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text></view>
+
+
+
             <view class="order-status">
                 <text class="color_{{item.order_status}}"> {{item.order_status_txt}}
                 </text>
@@ -87,7 +90,7 @@
                     地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}}
                 </text>
             </view>
-            <view class="remark scale-b-1px" wx:if="{{item.create_remark}}">
+            <view class="remark scale-b-1px" wx:if="{{item.user_message}}">
                 <text class="text-danger" selectable="true" data-text="{{item.user_message}}" bindtap="copy" data-text="{{item.user_message}} ">
                     用户备注：{{item.user_message}}
                 </text>
@@ -110,7 +113,9 @@
             </text>
             </view> -->
 
-            <button  class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips">微信通知</button>
+            <button   class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips">微信通知</button>
+
+            
 
             <block wx:for="{{item.seller_next_handle}}" wx:for-item="btn">
                 <form bindsubmit="formSubmit" report-submit="true">

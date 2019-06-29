@@ -7,7 +7,7 @@
         <view class="weui-uploader weui-cells_form weui-cell">
             <view class="weui-uploader__bd">
                 <view class="weui-uploader__files" id="uploaderFiles">
-                    <view wx:for="{{goods_images}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item.img_url}}-small)">
+                    <view wx:for="{{goods_images}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item.img_url}}?imageMogr2/thumbnail/100x)">
                         <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#ccc" size="26" type="close" />
                     </view>
                     <view wx:if="{{goods_images.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage">
@@ -33,7 +33,7 @@
                 <i-badge dot="{{content_imgs.length}}">
                     <view class="demo-badge flex align-center">
                         <text class="primary-text mr-xs text-lg" style="vertical-align: middle;">+</text><text class="text-df">介绍图片（选填)</text>
-                        <image wx:key="{{item}}" class="img-small" wx:for="{{content_imgs}}" src="{{item}}-small" />
+                        <image wx:key="{{item}}" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
                     </view>
                 </i-badge>
             </view>

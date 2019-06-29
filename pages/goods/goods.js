@@ -604,9 +604,9 @@ Page({
             pagesize:30
         }).then(res=>{
 
-               drawBuyuser = res.data.data;
+               drawBuyuser = res.data.data.order_list;
                     if (drawGoods) {
-                        util.drawShareFriends(this, drawGoods, res.data.data);
+                        util.drawShareFriends(this, drawGoods, drawBuyuser);
                     }
 
                     this.data.orderUsers = res.data.data;
@@ -616,7 +616,7 @@ Page({
 
                     this.data._orderUsers[0] = [];
 
-                    res.data.data.forEach((e, i) => {
+                    res.data.data.order_list.forEach((e, i) => {
                         let _i = parseInt(i / orderUsersLen);
                         if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
                             this.data._orderUsers[_i] = [];

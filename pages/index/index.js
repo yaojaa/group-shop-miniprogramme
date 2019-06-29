@@ -152,7 +152,9 @@ Page({
 
     getProList() {
 
-        util.wx.get('/api/user/get_browsed_goods').then(res => {
+        ///user/get_bought_store_goods
+        ///api/user/get_browsed_goods
+        util.wx.get('/api/user/get_bought_store_goods').then(res => {
             if (res.data.code == 200) {
                 this.setData({
                     proList: res.data.data.goods
