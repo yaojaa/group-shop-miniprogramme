@@ -42,9 +42,9 @@
             <view class="goods-panel-hd pv-sm flex align-center">
                 <view class="flex-sub mr-df">
                     <navigator url="../userhome/index?id={{info.store.store_id}}" hover-class="none" class="flex align-center">
-                        <image src="{{info.user.headimg}}" class="shop-tb mr-xs">
+                        <image src="{{info.seller.headimg}}" class="shop-tb mr-xs">
                         </image>
-                        <view class="flex-sub text-hide">{{info.store.store_name}}</view>
+                        <view class="flex-sub text-hide">{{info.seller.nickname}}</view>
                     </navigator>
                 </view>
             </view>
