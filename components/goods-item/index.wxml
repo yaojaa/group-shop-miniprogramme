@@ -31,7 +31,7 @@
         </view>
     </view>
     <view class="goods-count">
-        <view class="count-item" data-id="{{item.goods_id}}" bindtap="gofans">
+        <view class="count-item" data-name="{{item.goods_name}}" data-id="{{item.goods_id}}" bindtap="gofans">
             <text class="num">{{item.pageview_count}}</text>
             <text class="label">浏览人数</text>
         </view>

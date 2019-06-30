@@ -39,7 +39,7 @@
 }
 
 .goods-name {
-    font-size: 32rpx;
+    font-size: 34rpx;
     font-weight: bold;
 
 }
@@ -112,9 +112,12 @@
 
 
 .goods-price .price {
-    font-size: 32rpx;
-    color: #FF5757;
-    padding-right: 10rpx;
+font-size:28rpx!important;
+color:#333;
+padding-left:21px;
+font-weight:bold;
+color:#666;
+
 }
 
 .goods-addres {
@@ -138,6 +141,8 @@
     margin-top: 20rpx;
     padding: 20rpx 30rpx 15rpx;
     color:#666;
+    font-size:38rpx;
+
 }
 
 .goods-content {
@@ -911,7 +916,7 @@
     font-size: 20rpx;
     color: #fff;
     padding: 2rpx 4rpx;
-    background-color: #f39e29;
+    background-color: #ff9000;
 }
 
 .count-down .space {
@@ -927,13 +932,14 @@
 
 .sale-panel-bd {
     padding: 14rpx 30rpx 20rpx;
-    background: #fe605f;
+    background:linear-gradient(left top, #fffdf9, #fff9e8);
+        background: -webkit-linear-gradient(left top, #fffdf9, #fff9e8);
     flex: 1;
 }
 
 .sale-panel-fd {
     padding: 20rpx;
-    background: #ffc830;
+    background: #ffe6a0;
     text-align: center;
     position: relative;
     display: flex;
@@ -951,7 +957,7 @@
     margin-top: -10rpx;
     width: 20rpx;
     height: 20rpx;
-    background: #ffc830;
+    background: #ffe6a0;
     transform: rotate(45deg);
     font-size: 0;
     line-height: 0;
@@ -963,11 +969,10 @@
 }
 
 .price-group text {
-    color: #fff;
-
+    color: #ff9000;
     font-weight: bold;
 }
 
 .price-group {
-    font-size: 44rpx;
+    font-size: 34rpx;
 }
