@@ -120,6 +120,42 @@ Page({
         });
     },
 
+    getGoodsInfo(){
+        util.wx.get('/api/goods/get_goods_detail', {
+                goods_id: this.data.goods_id
+            })
+            .then(res => {
+
+                const goods = res.data.data.goods
+
+                /***处理快递自提****/
+                if(goods.delivery_method ==1){
+
+                     this.getUserAddress()
+
+                }else{
+
+                    this.setData({
+                        self_address: goods.self_address,
+                        address_id: goods.self_address[0].self_address_id,
+                          consignee: app.globalData.userInfo.nickname,
+                          mobile: app.globalData.userInfo.mobile,
+                    })
+                }
+
+                 this.setData({
+            seller: goods.user,
+            goods_name: goods.goods_name,
+            delivery_method: goods.delivery_method
+                    })
+
+              
+
+
+
+            })
+    },
+
     /**
      * 生命周期函数--监听页面加载 /order/create_order
 
@@ -127,10 +163,8 @@ Page({
     onLoad: function(options) {
 
         this.data.goods_id = options.goods_id
-        this.setData({
-            mobile:app.globalData.userInfo.mobile,
-            consignee:app.globalData.userInfo.nickname
-        })
+        this.getGoodsInfo()
+       
 
         let amountMoney = 0;
         let totalNumer = 0
@@ -152,24 +186,14 @@ Page({
 
 
         this.setData({
-            consignee: app.globalData.userInfo.nickname,
-            mobile: app.globalData.userInfo.mobile,
+          
             goods_id: options.goods_id,
             cart: cart || [],
             amountMoney: amountMoney / 100,
-            totalNumer: totalNumer,
-            seller: goods.seller,
-            goods_name: goods.goods_name,
-            delivery_method: options.delivery_method
-            // collection_methods:options.collection_methods || 1
-        })
+            totalNumer: totalNumer       
+             })
 
-        //快递发货获取用户快递地址
-        if (options.delivery_method == 2) {
-            this.getAddressList()
-        } else if (options.delivery_method == 1) {
-            this.getUserAddress()
-        }
+   
     },
     inputConsignee(e) {
         this.setData({
@@ -237,25 +261,8 @@ Page({
             user_message: this.data.user_message,
             goods_id: this.data.goods_id
         }, postData)).then(res => {
-
-
-            if (res.data.code == 200) {
                 this.data.order_id = res.data.data.order_id;
-
                 this.pay(res.data.data)
-
-
-            } else {
-                this.setData({
-                    loading: false
-                })
-                wx.showToast({
-                    title: res.data.msg,
-                    icon: 'none'
-                })
-            }
-
-
 
         }, (e) => {
             this.setData({
@@ -355,6 +362,14 @@ Page({
                 }
             })
 
+        },(res)=>{
+            this.setData({
+                    loading: false
+                })
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
+                })
         })
 
     },

@@ -656,8 +656,6 @@ Page({
                 this.data._orderUsers[_i].push(e)
             })
 
-            console.log(this.data._orderUsers)
-
             this.data._orderUsers_.push(this.data._orderUsers.shift())
 
             this.setData({
@@ -851,12 +849,7 @@ Page({
         let shopcar = this.data.goods_spec.filter(value => value.item_num > 0)
 
         wx.setStorageSync('cart', shopcar)
-        wx.setStorageSync('goods', {
-            goods_name: this.data.goods.goods_name,
-            sell_address: this.data.sell_address,
-            seller: this.data.goods.user
-        })
-
+    
         wx.navigateTo({
             url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
         })
