@@ -6,7 +6,7 @@
  -->	</view>
 	<view class="money-box"><view class="money-yuan">¥ </view><view class="money-num"> {{pending_money}}</view></view>
 	<view class="withdraw-box">
-	<i-input value="{{inputMoney}}" type="number" bindchange="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
+	<input value="{{inputMoney}}" type="number" bindchange="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
 	</view>
 	<button type="primary" class="linenear_bg" bindtap="getMoney"> 立即提现 </button>
 

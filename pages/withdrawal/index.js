@@ -25,15 +25,21 @@ Page({
 
     },
     inputMoneyChange(e) {
-        console.log(e.detail.detail.value)
-        if (e.detail.detail.value) {
+        if (e.detail.value) {
             this.setData({
-                inputMoney: e.detail.detail.value
+                inputMoney: e.detail.value
             })
         }
 
     },
     getMoney() {
+
+      if(this.data.inputMoney>5000){
+        return wx.showToast({
+          title:'每日限额5000',
+          icon:'none'
+        })
+      }
 
         if (this.data.inputMoney) {
 
@@ -41,23 +47,25 @@ Page({
             util.wx.post('/api/seller/apply_withdraw', {
                 apply_money: this.data.inputMoney
             }).then((res) => {
-                if (res.data.code == 200) {
-
                    wx.showToast({
                         title: '申请提现成功，请耐心等待审核',
                         icon: 'success'
                     })
 
+                   this.setData({
+                    inputMoney:''
+                   })
+
                     this.get_store_info()
                     this.finance_withdrawal_list()
 
-                } else {
-
-                    wx.showToast({
+                
+            },(res)=>{
+              wx.showToast({
                         title: res.data.msg,
-                        icon:'none'
+                        icon:'none',
+                        duration:5000
                     })
-                }
             })
         }else{
 

@@ -30,12 +30,12 @@
     <view class="sale-panel">
         <view class="sale-panel-bd">
             <view class="price-group">
+                {{goods.goods_name}}
                 <text class="symbol">￥</text>
-                <text class="price">{{goods.price_min}}</text>
+                <text class="price"> {{goods.price_min}}</text>
                 <text class="text-sm n-bold"> /起</text>
             </view>
-            <view class="text-sm">访问人数 {{goods.pageview_count
-                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
+          
         </view>
         <view class="sale-panel-fd {{goods._expires !==1?'off':''}}">
             <view class="marker"></view>
@@ -55,9 +55,12 @@
     </view>
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
-            <view class="goods-name">
-                {{goods.goods_name}} {{goods.delivery_method}}
-            </view>
+       <!--      <view class="goods-name">
+                {{goods.goods_name}}
+            </view> -->
+
+              <view class="text-sm">访问人数 {{goods.pageview_count
+                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
             <!--             <view class="f12px text-info">访问人数 {{goods.pageview_count
                 }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view> -->
         </view>
@@ -111,7 +114,7 @@
             <view class="solid-top"></view>
             <view style="padding: 20rpx 0">
                 <view class="flex text-center ">
-                    <view class="flex-sub"><button class="btn  white " bindtap='copyGoods'><text class="primary-text">复制商品信息</text></button></view>
+                    <view class="flex-sub"><button class="btn  white " bindtap='copyGoods'><text class="primary-text">复制</text></button></view>
                     <div class="solid-right"></div>
                     <view class="flex-sub"><button class="btn  white " bindtap='copyDetail'><text class="primary-text">生成文字接龙</text></button></view>
                     <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->

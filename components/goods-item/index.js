@@ -131,9 +131,10 @@ Component({
     gofans(e){
 
           let id = e.currentTarget.dataset.id
+          let name = e.currentTarget.dataset.name
 
         wx.navigateTo({
-            url: '../fans/index?id=' + id
+            url: '../fans/index?id=' + id+'&name='+name
         })
 
 

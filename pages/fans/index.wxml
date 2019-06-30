@@ -22,12 +22,12 @@
                                     
                                 </view>
                                 <view class="num">
-                                    已参团
                                 </view>
                             </view>
                         </view>
                         <view class="date">
-                           {{item.time_ago}} {{item.user_phone}}，{{secen[item.user_scene]}}打开，停留{{item.user_staytime}} 
+                           {{item.time_ago}} {{item.user_phone}}停留{{item.user_staytime}} 
+                         <!-- {{secen[item.user_scene]}}打开， -->
                         </view>
                     </view>
                 </view>
