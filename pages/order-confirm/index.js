@@ -137,9 +137,9 @@ Page({
         let cartSource = wx.getStorageSync('cart')
         let cart = typeof cartSource === 'string' ? JSON.parse(cartSource) : cartSource;
 
-        let goodsSource = wx.getStorageSync('goods');
+        // let goodsSource = wx.getStorageSync('goods');
 
-        let goods = typeof goodsSource === 'string' ? JSON.parse(goodsSource) : goodsSource;
+        // let goods = typeof goodsSource === 'string' ? JSON.parse(goodsSource) : goodsSource;
 
 
         cart.map(value => {
