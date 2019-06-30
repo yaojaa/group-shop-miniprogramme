@@ -3,7 +3,7 @@
 const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index');
 import { $wuxGallery } from '../../wux/index'
-
+import { $wuxCountDown } from '../../wux/index'
 console.log('$wuxGallery', $wuxGallery)
 
 const app = getApp()
@@ -14,6 +14,23 @@ let orderUsersLen = 30; // 购买用户每次加载数量
 let orderUsersFlag = false; // 购买用户是否正在加载
 let timer2 = null
 let timer3 = null
+
+
+function formatDateTime(inputTime) {
+    var date = new Date(inputTime * 1000);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    return y + '/' + m + '/' + d + ' ' + h + ':' + minute + ':' + second;
+};
 
 Page({
     data: {
@@ -82,7 +99,32 @@ Page({
             poster: false,
             winWidth: app.globalData.winWidth,
             imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
+            years: '',
+            days: '',
+            hours: '',
+            min: '',
+            sec: ''
         },
+    },
+    wuxCountDown(date) {
+        console.log(date, '时间')
+        this.c1 = new $wuxCountDown({
+            date: date,
+            render(date) {
+                const years = this.leadingZeros(date.years, 4)
+                const days = this.leadingZeros(date.days, 2)
+                const hours = this.leadingZeros(date.hours, 2)
+                const min = this.leadingZeros(date.min, 2)
+                const sec = this.leadingZeros(date.sec, 2)
+                this.setData({
+                    years: years,
+                    days: days,
+                    hours: hours,
+                    min: min,
+                    sec: sec
+                })
+            }
+        })
     },
     onShow: function() {
 
@@ -102,11 +144,11 @@ Page({
     },
     onReady: function() {
 
-        if(app.globalData.userInfo){
+        if (app.globalData.userInfo) {
 
-                this.setData({
-                    hasScope: true
-                })
+            this.setData({
+                hasScope: true
+            })
 
             this.add_access()
 
@@ -260,8 +302,6 @@ Page({
     },
 
     getShareImg(id) {
-
-
         util.wx.get('/api/index/goods_card', {
             goods_id: this.data.goods_id
         }).then(res => {
@@ -269,12 +309,11 @@ Page({
             if (res.data.code == 200) {
                 this.shareImg = res.data.data.path
             }
-
         })
     },
 
-    add_access(){
-          //提交访问记录
+    add_access() {
+        //提交访问记录
         util.wx.get('/api/index/add_access', {
             type: 'goods_detail',
             obj_id: this.data.goods_id,
@@ -282,13 +321,13 @@ Page({
             user_phone: app.globalData.userPhone
         }).then(res => {
             this.access_id = res.data.data.access_id
-        }).catch(e=>{
+        }).catch(e => {
             console.log(e)
         })
     },
 
     getGoodsInfo() {
-      
+
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.goods_id
             })
@@ -301,16 +340,16 @@ Page({
                     drawGoods = d;
 
                     //延迟5秒再绘制 提高首次加载性能速度
-                    timer2 = setTimeout(()=>{
+                    timer2 = setTimeout(() => {
 
                         if (drawBuyuser) {
-                        util.drawShareFriends(this, d, drawBuyuser);
-                    }
+                            util.drawShareFriends(this, d, drawBuyuser);
+                        }
 
-                    },5e3)
+                    }, 5e3)
 
 
-                    
+
 
                     //把数量设为0
 
@@ -337,12 +376,9 @@ Page({
                         // hw_data: d.hw_data,
                         countdownTime: new Date(d.goods.end_time * 1000).getTime()
                     })
-
-                    this.data.seller = d.goods.user,
-                        this.data.store_id = d.goods.store.store_id
-
-
-
+                    this.wuxCountDown(formatDateTime(d.goods.end_time))
+                    this.data.seller = d.goods.user
+                    this.data.store_id = d.goods.store.store_id
                 }
             })
     },
@@ -350,15 +386,15 @@ Page({
         // 用户查看图片不触发
         if (this.data.imgPreviewFlag) { return; }
 
-        if(timer2){
+        if (timer2) {
 
             clearTimeout(timer2)
-            console.log('this.timer2',timer2)
+            console.log('this.timer2', timer2)
             timer2 == null
         }
 
 
-        if(timer3){
+        if (timer3) {
             clearTimeout(timer3)
             timer3 == null
         }
@@ -378,7 +414,7 @@ Page({
         })
     },
     onLoad: function(option) {
-        console.log('用户进入了',option)
+        console.log('用户进入了', option)
 
         if (option.scene) {
             option = decodeURIComponent(option.scene)
@@ -397,7 +433,7 @@ Page({
 
         this.data.goods_id = option.goods_id || option.id
 
-      
+
         this.getGoodsInfo()
 
         this.getShareImg()
@@ -625,45 +661,45 @@ Page({
     },
     getOrderUserList(goods_id) {
 
-        util.wx.get('/api/goods/get_minorders_by_goods_id',{
-            goods_id:goods_id,
-            pagesize:30
-        }).then(res=>{
+        util.wx.get('/api/goods/get_minorders_by_goods_id', {
+            goods_id: goods_id,
+            pagesize: 30
+        }).then(res => {
 
-               drawBuyuser = res.data.data.order_list;
+            drawBuyuser = res.data.data.order_list;
 
-                 timer3 = setTimeout(()=>{
+            timer3 = setTimeout(() => {
 
-                        if (drawBuyuser) {
-                        util.drawShareFriends(this, drawGoods, drawBuyuser);
-                    }
+                if (drawBuyuser) {
+                    util.drawShareFriends(this, drawGoods, drawBuyuser);
+                }
 
-                    },5e3)
+            }, 5e3)
 
 
-                    this.data.orderUsers = res.data.data.order_list;
+            this.data.orderUsers = res.data.data.order_list;
 
-                    this.data._orderUsers = [];
-                    this.data._orderUsers_ = [];
+            this.data._orderUsers = [];
+            this.data._orderUsers_ = [];
 
-                    this.data._orderUsers[0] = [];
+            this.data._orderUsers[0] = [];
 
-                    res.data.data.order_list.forEach((e, i) => {
-                        let _i = parseInt(i / orderUsersLen);
-                        if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
-                            this.data._orderUsers[_i] = [];
-                        }
-                        this.data._orderUsers[_i].push(e)
-                    })
+            res.data.data.order_list.forEach((e, i) => {
+                let _i = parseInt(i / orderUsersLen);
+                if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
+                    this.data._orderUsers[_i] = [];
+                }
+                this.data._orderUsers[_i].push(e)
+            })
 
-                    console.log(this.data._orderUsers)
+            console.log(this.data._orderUsers)
 
-                    this.data._orderUsers_.push(this.data._orderUsers.shift())
+            this.data._orderUsers_.push(this.data._orderUsers.shift())
 
-                    this.setData({
-                        _orderUsers_: this.data._orderUsers_,
-                        orderUsers: this.data.orderUsers
-                    })
+            this.setData({
+                _orderUsers_: this.data._orderUsers_,
+                orderUsers: this.data.orderUsers
+            })
 
 
 
@@ -783,19 +819,19 @@ Page({
 
 
     },
-     /**
+    /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
 
-        if(timer2){
+        if (timer2) {
             clearTimeout(timer2)
-            console.log('timer2',timer2)
+            console.log('timer2', timer2)
             timer2 == null
         }
 
 
-        if(timer3){
+        if (timer3) {
             clearTimeout(timer3)
             timer3 == null
         }
@@ -869,7 +905,7 @@ Page({
             phoneNumber: e.target.dataset.mobile
         })
     },
-    copyGoods(){
+    copyGoods() {
 
         wx.navigateTo({
             url: '../publish/publish?goods_id=' + this.data.goods.goods_id
@@ -911,7 +947,7 @@ Page({
             }
         });
     },
-    buyUserScroll: function(e){
+    buyUserScroll: function(e) {
         if (this.data._orderUsers.length > 0 && !orderUsersFlag) {
             let index = this.data._orderUsers_.length;
 
@@ -921,12 +957,12 @@ Page({
 
             this.setData({
                 ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
-            },function(){
+            }, function() {
                 orderUsersFlag = false;
             })
 
             console.log(this.data._orderUsers_)
-        }   
+        }
     },
     onPageScroll: function(e) {
 
