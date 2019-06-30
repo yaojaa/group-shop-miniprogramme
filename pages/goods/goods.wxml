@@ -86,7 +86,7 @@
                     </view>
                     <view class="info">
                         <view class="f14 text-default">{{item.spec_name}} <text class="price f12px"> ¥{{item.spec_price}}</text></view>
-                        <view wx:if="{{item.spec_desc}}" class="f14px text-danger" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
+                        <view wx:if="{{item.spec_desc}}" class="f14px text-muted" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
                     </view>
                     <view class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
