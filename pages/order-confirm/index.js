@@ -369,7 +369,7 @@ Page({
 
         this.getWxCode()
 
-        setInterval(() => {
+        this.timer = setInterval(() => {
             this.getWxCode()
         }, 1000 * 60 * 4)
 
@@ -425,10 +425,19 @@ Page({
 
     },
 
+    clearTimer(){
+        if(this.timer){
+            clearInterval(this.timer)
+            this.timer == null
+        }
+    },
+
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide: function() {
+
+       this.clearTimer()
 
     },
 
@@ -436,6 +445,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
+       this.clearTimer()
 
     },
 

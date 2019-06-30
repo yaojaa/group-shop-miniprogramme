@@ -102,11 +102,11 @@ Page({
     },
     onReady: function() {
 
-        if(app.globalData.userInfo){
+        if (app.globalData.userInfo) {
 
-                this.setData({
-                    hasScope: true
-                })
+            this.setData({
+                hasScope: true
+            })
 
             this.add_access()
 
@@ -273,8 +273,8 @@ Page({
         })
     },
 
-    add_access(){
-          //提交访问记录
+    add_access() {
+        //提交访问记录
         util.wx.get('/api/index/add_access', {
             type: 'goods_detail',
             obj_id: this.data.goods_id,
@@ -282,13 +282,13 @@ Page({
             user_phone: app.globalData.userPhone
         }).then(res => {
             this.access_id = res.data.data.access_id
-        }).catch(e=>{
+        }).catch(e => {
             console.log(e)
         })
     },
 
     getGoodsInfo() {
-      
+
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.goods_id
             })
@@ -301,16 +301,16 @@ Page({
                     drawGoods = d;
 
                     //延迟5秒再绘制 提高首次加载性能速度
-                    timer2 = setTimeout(()=>{
+                    timer2 = setTimeout(() => {
 
                         if (drawBuyuser) {
-                        util.drawShareFriends(this, d, drawBuyuser);
-                    }
+                            util.drawShareFriends(this, d, drawBuyuser);
+                        }
 
-                    },5e3)
+                    }, 5e3)
 
 
-                    
+
 
                     //把数量设为0
 
@@ -350,15 +350,15 @@ Page({
         // 用户查看图片不触发
         if (this.data.imgPreviewFlag) { return; }
 
-        if(timer2){
+        if (timer2) {
 
             clearTimeout(timer2)
-            console.log('this.timer2',timer2)
+            console.log('this.timer2', timer2)
             timer2 == null
         }
 
 
-        if(timer3){
+        if (timer3) {
             clearTimeout(timer3)
             timer3 == null
         }
@@ -378,7 +378,7 @@ Page({
         })
     },
     onLoad: function(option) {
-        console.log('用户进入了',option)
+        console.log('用户进入了', option)
 
         if (option.scene) {
             option = decodeURIComponent(option.scene)
@@ -397,7 +397,7 @@ Page({
 
         this.data.goods_id = option.goods_id || option.id
 
-      
+
         this.getGoodsInfo()
 
         this.getShareImg()
@@ -625,45 +625,45 @@ Page({
     },
     getOrderUserList(goods_id) {
 
-        util.wx.get('/api/goods/get_minorders_by_goods_id',{
-            goods_id:goods_id,
-            pagesize:30
-        }).then(res=>{
+        util.wx.get('/api/goods/get_minorders_by_goods_id', {
+            goods_id: goods_id,
+            pagesize: 30
+        }).then(res => {
 
-               drawBuyuser = res.data.data.order_list;
+            drawBuyuser = res.data.data.order_list;
 
-                 timer3 = setTimeout(()=>{
+            timer3 = setTimeout(() => {
 
-                        if (drawBuyuser) {
-                        util.drawShareFriends(this, drawGoods, drawBuyuser);
-                    }
+                if (drawBuyuser) {
+                    util.drawShareFriends(this, drawGoods, drawBuyuser);
+                }
 
-                    },5e3)
+            }, 5e3)
 
 
-                    this.data.orderUsers = res.data.data.order_list;
+            this.data.orderUsers = res.data.data.order_list;
 
-                    this.data._orderUsers = [];
-                    this.data._orderUsers_ = [];
+            this.data._orderUsers = [];
+            this.data._orderUsers_ = [];
 
-                    this.data._orderUsers[0] = [];
+            this.data._orderUsers[0] = [];
 
-                    res.data.data.order_list.forEach((e, i) => {
-                        let _i = parseInt(i / orderUsersLen);
-                        if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
-                            this.data._orderUsers[_i] = [];
-                        }
-                        this.data._orderUsers[_i].push(e)
-                    })
+            res.data.data.order_list.forEach((e, i) => {
+                let _i = parseInt(i / orderUsersLen);
+                if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
+                    this.data._orderUsers[_i] = [];
+                }
+                this.data._orderUsers[_i].push(e)
+            })
 
-                    console.log(this.data._orderUsers)
+            console.log(this.data._orderUsers)
 
-                    this.data._orderUsers_.push(this.data._orderUsers.shift())
+            this.data._orderUsers_.push(this.data._orderUsers.shift())
 
-                    this.setData({
-                        _orderUsers_: this.data._orderUsers_,
-                        orderUsers: this.data.orderUsers
-                    })
+            this.setData({
+                _orderUsers_: this.data._orderUsers_,
+                orderUsers: this.data.orderUsers
+            })
 
 
 
@@ -783,19 +783,19 @@ Page({
 
 
     },
-     /**
+    /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
 
-        if(timer2){
+        if (timer2) {
             clearTimeout(timer2)
-            console.log('timer2',timer2)
+            console.log('timer2', timer2)
             timer2 == null
         }
 
 
-        if(timer3){
+        if (timer3) {
             clearTimeout(timer3)
             timer3 == null
         }
@@ -851,11 +851,11 @@ Page({
         let shopcar = this.data.goods_spec.filter(value => value.item_num > 0)
 
         wx.setStorageSync('cart', shopcar)
-        // wx.setStorageSync('goods', {
-        //     goods_name: this.data.goods.goods_name,
-        //     sell_address: this.data.sell_address,
-        //     seller: this.data.goods.user
-        // })
+        wx.setStorageSync('goods', {
+            goods_name: this.data.goods.goods_name,
+            sell_address: this.data.sell_address,
+            seller: this.data.goods.user
+        })
 
         wx.navigateTo({
             url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
@@ -869,7 +869,7 @@ Page({
             phoneNumber: e.target.dataset.mobile
         })
     },
-    copyGoods(){
+    copyGoods() {
 
         wx.navigateTo({
             url: '../publish/publish?goods_id=' + this.data.goods.goods_id
@@ -911,8 +911,12 @@ Page({
             }
         });
     },
-    buyUserScroll: function(e){
-        if (this.data._orderUsers.length > 0 && !orderUsersFlag) {
+    buyUserScroll: function(e) {
+        if (this.data._orderUsers.length > 0) {
+            if (orderUsersFlag) {
+                return;
+            }
+
             let index = this.data._orderUsers_.length;
 
             orderUsersFlag = true;
@@ -921,11 +925,16 @@ Page({
 
             this.setData({
                 ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
-            },function(){
+            }, function() {
                 orderUsersFlag = false;
             })
 
-        }   
+            console.log(this.data._orderUsers_)
+        } else {
+            this.setData({
+                orderUsersLoading: false
+            })
+        }
     },
     onPageScroll: function(e) {
 
