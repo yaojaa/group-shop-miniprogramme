@@ -48,12 +48,14 @@ Page({
             util.wx.get('/api/store/get_store_poster',{
                 store_id:this.store_id
             }).then(res=>{
-                console.log(res)
-                if(res.data.code == 200){
                     this.setData({
                         shareFriendsImg:res.data.data
                     })
-                }
+            },res=>{
+                wx.showToast({
+                    title:res.data.msg,
+                    icon:none
+                })
             })
         }
     },

@@ -24,7 +24,14 @@ Page({
      */
     onLoad: function(options) {
         console.log(this.data.secen)
-        this.id = options.id || 56
+        this.id = options.id 
+        const name = options.name
+
+    wx.setNavigationBarTitle({
+      title: '访问记录'+name 
+    })
+
+
         this.getDataList()
     },
 
