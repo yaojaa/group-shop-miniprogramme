@@ -12,6 +12,7 @@ let drawGoods = null;
 let drawBuyuser = null;
 let orderUsersLen = 30; // 购买用户每次加载数量
 let orderUsersFlag = false; // 购买用户是否正在加载
+let orderUsersPage = 2; // 购买用户是否正在加载
 let timer2 = null
 let timer3 = null
 
@@ -42,6 +43,7 @@ Page({
         orderUsers: [],
         _orderUsers: [], // 存储
         _orderUsers_: [], // 执行
+        orderUsersLoading: true,
         imagePath: "",
         collection_methods: '',
         copy: false,
@@ -905,29 +907,60 @@ Page({
         });
     },
     buyUserScroll: function(e) {
-        if (this.data._orderUsers.length > 0) {
-            if (orderUsersFlag) {
-                return;
+        if(orderUsersFlag){
+            return;
+        }
+
+        orderUsersFlag = true;
+
+        util.wx.get('/api/goods/get_minorders_by_goods_id', {
+            goods_id: this.data.goods_id,
+            pagesize: 30,
+            cpage: orderUsersPage
+        }).then(res => {
+
+                console.log(res)
+
+            if(res.data.data.order_list && res.data.data.order_list.length > 0){
+                orderUsersPage ++;
+
+                orderUsersFlag = false;
+
+                this.setData({
+                    ['_orderUsers_[' + this.data._orderUsers_.length + ']']: res.data.data.order_list
+                })
+            }else{
+                this.setData({
+                    orderUsersLoading: false
+                })
             }
 
-            let index = this.data._orderUsers_.length;
+        })
 
-            orderUsersFlag = true;
 
-            this.data._orderUsers_.push(this.data._orderUsers.shift())
+        // if (this.data._orderUsers.length > 0) {
+        //     if (orderUsersFlag) {
+        //         return;
+        //     }
 
-            this.setData({
-                ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
-            }, function() {
-                orderUsersFlag = false;
-            })
+        //     let index = this.data._orderUsers_.length;
 
-            console.log(this.data._orderUsers_)
-        } else {
-            this.setData({
-                orderUsersLoading: false
-            })
-        }
+        //     orderUsersFlag = true;
+
+        //     this.data._orderUsers_.push(this.data._orderUsers.shift())
+
+        //     this.setData({
+        //         ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
+        //     }, function() {
+        //         orderUsersFlag = false;
+        //     })
+
+        //     console.log(this.data._orderUsers_)
+        // } else {
+        //     this.setData({
+        //         orderUsersLoading: false
+        //     })
+        // }
     },
     onPageScroll: function(e) {
 
