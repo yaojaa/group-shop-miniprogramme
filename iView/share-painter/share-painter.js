@@ -167,7 +167,7 @@ Component({
             that.getImageInfo(res.tempFilePath);
           },
           fail: function (error) {
-            console.error(`canvasToTempFilePath failed, ${JSON.stringify(error)}`);
+            // console.error(`canvasToTempFilePath failed, ${JSON.stringify(error)}`);
             that.triggerEvent('imgErr', { error: error });
           },
         }, this);

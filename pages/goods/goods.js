@@ -59,6 +59,7 @@ Page({
         orderUsers: [],
         _orderUsers: [], // 存储
         _orderUsers_: [], // 执行
+        orderUsersLoading: true,
         imagePath: "",
         collection_methods: '',
         copy: false,
@@ -701,6 +702,11 @@ Page({
                 orderUsers: this.data.orderUsers
             })
 
+            if(this.data._orderUsers.length == 0){
+                this.setData({
+                    orderUsersLoading: false
+                })
+            }
 
 
 
@@ -948,7 +954,11 @@ Page({
         });
     },
     buyUserScroll: function(e) {
-        if (this.data._orderUsers.length > 0 && !orderUsersFlag) {
+        if (this.data._orderUsers.length > 0) {
+            if(orderUsersFlag){
+                return;
+            }
+
             let index = this.data._orderUsers_.length;
 
             orderUsersFlag = true;
@@ -962,6 +972,10 @@ Page({
             })
 
             console.log(this.data._orderUsers_)
+        }else{
+            this.setData({
+                orderUsersLoading: false
+            })
         }
     },
     onPageScroll: function(e) {

@@ -148,6 +148,7 @@
                         </i-cell>
                     </block>
                 </i-cell-group>
+                <view class="text-center" hidden="{{!orderUsersLoading}}"><wux-spin></wux-spin></view>
             </scroll-view>
         </view>
         <view wx:if="{{goods.content_imgs.length}}">
