@@ -3,6 +3,7 @@
 const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index');
 import { $wuxGallery } from '../../wux/index'
+import { $wuxCountDown } from '../../wux/index'
 
 console.log('$wuxGallery', $wuxGallery)
 
@@ -15,6 +16,22 @@ let orderUsersFlag = false; // 购买用户是否正在加载
 let orderUsersPage = 2; // 购买用户是否正在加载
 let timer2 = null
 let timer3 = null
+
+function formatDateTime(inputTime) {
+    var date = new Date(inputTime * 1000);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    return y + '/' + m + '/' + d + ' ' + h + ':' + minute + ':' + second;
+}
 
 Page({
     data: {
@@ -85,6 +102,26 @@ Page({
             winWidth: app.globalData.winWidth,
             imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
         },
+    },
+    wuxCountDown(date) {
+        console.log(date, '时间')
+        this.c1 = new $wuxCountDown({
+            date: date,
+            render(date) {
+                const years = this.leadingZeros(date.years, 4)
+                const days = this.leadingZeros(date.days, 2)
+                const hours = this.leadingZeros(date.hours, 2)
+                const min = this.leadingZeros(date.min, 2)
+                const sec = this.leadingZeros(date.sec, 2)
+                this.setData({
+                    years: years,
+                    days: days,
+                    hours: hours,
+                    min: min,
+                    sec: sec
+                })
+            }
+        })
     },
     onShow: function() {
 
@@ -339,6 +376,9 @@ Page({
                         // hw_data: d.hw_data,
                         countdownTime: new Date(d.goods.end_time * 1000).getTime()
                     })
+
+                   this.wuxCountDown(formatDateTime(d.goods.end_time))
+
 
                     this.data.seller = d.goods.user,
                         this.data.store_id = d.goods.store.store_id
