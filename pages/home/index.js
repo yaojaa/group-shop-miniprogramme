@@ -79,6 +79,8 @@ Page({
      */
     onLoad: function(options) {
 
+        this.data.cpage = 1
+
         
 
 
@@ -106,9 +108,7 @@ Page({
                     this.setData({
                         waitpay: res.data.data.waitpay,
                         waitreceived:res.data.data.waitreceived,
-                        complete:res.data.data.complete,
-                        waitconfirm:res.data.data.waitconfirm
-                    })
+                        complete:res.data.data.complete                    })
                 }
         })
 
@@ -150,7 +150,7 @@ Page({
                     })
 
         util.wx.get('/api/seller/get_goods_list',{
-        cpage:this.cpage,
+        cpage:this.data.cpage,
         pagesize:10
         })
         .then(res => {
@@ -175,6 +175,7 @@ Page({
 
 
                 this.totalpage = res.data.data.page.totalpage
+
 
                 }else{
                     this.setData({
@@ -236,9 +237,12 @@ Page({
 
 
     onShow(){
+      this.data.cpage = 1
+
       this.data.goodslist =[]
       this.getGoodsList()
       this.getOrderCount()
+
 
     },
 
@@ -276,10 +280,12 @@ Page({
      */
     onReachBottom: function() {
 
-     ++ this.cpage
+     ++ this.data.cpage
 
-     if(this.cpage <= this.totalpage){
+     if(this.data.cpage <= this.totalpage){
       this.getGoodsList();//重新调用请求获取下一页数据 
+     }else{
+        this.data.cpage = this.totalpage
      }
 
 

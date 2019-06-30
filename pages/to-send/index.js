@@ -67,6 +67,19 @@ Page({
                         })
                         wx.navigateBack()
                     }
+                },res=>{
+
+                    wx.showToast({
+                            title: res.data.msg
+                        })
+
+                })
+                .catch(e=>{
+
+                    wx.showToast({
+                            title: res.data.msg
+                        })
+
                 })
             }
           }

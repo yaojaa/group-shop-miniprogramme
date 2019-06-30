@@ -130,7 +130,17 @@ Page({
 
                     console.log(res)
 
+                    var store_slide
+
+
+                    if(res.data.data.store_slide.length == 0){
+                        store_slide = ['https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b201906271717046776.jpg']
+                    }else{
+                        store_slide = res.data.data.store_slide
+                    }
+
                     this.setData({
+                        store_slide:store_slide,
                         info: res.data.data,
                         showSetting: res.data.data.user_id == app.globalData.userInfo.user_id? true:false
                     })
@@ -186,7 +196,7 @@ Page({
      */
     onShow: function() {
 
-        
+
         //主要信息
         this.getStoreInfo()
 

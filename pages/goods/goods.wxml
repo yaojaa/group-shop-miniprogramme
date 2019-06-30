@@ -206,8 +206,8 @@
         <view wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
         <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
     </view>
-    <i-message id="message" />
-    <van-popup custom-class="authPopBox" show="{{ showAuth }}" bind:close="onClose">
+<!--     <i-message id="message" />
+ -->    <van-popup custom-class="authPopBox" show="{{ showAuth }}" bind:close="onClose">
         <view class="logo">
             <image class="avatar" src="{{goods.user.headimg}}" />
         </view>

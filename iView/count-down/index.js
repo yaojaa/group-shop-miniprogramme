@@ -16,6 +16,18 @@ Component({
         this.getFormat();
 
     },
+    pageLifetimes: {
+    show: function() {
+      // 页面被展示
+    },
+    hide: function() {
+        console.log('hide页面被隐藏')
+        console.log(this.timer)
+        clearTimeout(this.timer)
+        this.timer = null
+      // 页面被隐藏
+    }
+  },
     methods: {
         getFormat() {
             const data = this.data;
@@ -38,7 +50,7 @@ Component({
         },
         init() {
             const self = this;
-            setTimeout(function () {
+            this.timer = setTimeout(function () {
                 self.getLastTime.call(self);
             }, 1000);
         },

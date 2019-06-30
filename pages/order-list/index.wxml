@@ -2,7 +2,6 @@
     <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" swipe-threshold="{{4}}" color="#49b34d">
         <van-tab title="全部"></van-tab>
         <van-tab title="待付款"></van-tab>
-        <van-tab title="已付款"></van-tab>
         <van-tab title="待收货"></van-tab>
         <van-tab title="已完成"></van-tab>
     </van-tabs>

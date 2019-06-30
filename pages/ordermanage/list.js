@@ -52,6 +52,7 @@ Page({
         shipped_order: 0,
         back_order: 0,
         showPop: false,
+        search_order_status:'',
         pop_name_arr: [{
                 name: '导出名单'
             },

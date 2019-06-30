@@ -17,7 +17,7 @@ Page({
         options1: data,
         title1:'点击选择',
         value2: [],
-        store_slide:[],
+        store_slide:'',
         district_id:''
     },
    bindRegionChange(e) {
@@ -42,12 +42,9 @@ Page({
     },
     onSuccess(e,l) {
         const data = JSON.parse(e.detail)
-        this.data.store_slide.push(data.data.file_url)
-
         this.setData({
-          store_slide:this.data.store_slide
+          store_slide:data.data.file_url
         })
-
     },
     onFail(e) {
         console.log('onFail', e)
@@ -106,7 +103,7 @@ Page({
         // province_id :this.data.province_id,
         // city_id:this.data.city_id,
         // district_id:this.data.district_id,
-        store_slide:this.data.store_slide
+        store_slide:[this.data.store_slide]
         // address:this.data.address
 
       }).then(res=>{
@@ -114,12 +111,19 @@ Page({
 
         if(res.data.code == 200){
            wx.showToast({
-          title:'保存成功'
+          title:'保存成功',
+          icon:'none'
         })
-          // wx.redirectTo({
-          //   url:'../create_shop_success/index'
-          // })
+           wx.navigateBack()
+          
         }
+
+      }).catch(res=>{
+
+          wx.showToast({
+          title:res.data.msg,
+          icon:'none'
+        })
 
       })
 
@@ -143,7 +147,8 @@ Page({
         this.setData({
           info:res.data.data,
           store_name:res.data.data.store_name,
-          store_intro:res.data.data.store_intro
+          store_intro:res.data.data.store_intro,
+          store_slide:res.data.data.store_slide
         })
       }
 

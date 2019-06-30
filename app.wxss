@@ -277,8 +277,8 @@ button.warning {
     border: 0;
 }
 
-.btn:active,
-.btn.active {
+.btn-active,
+.btn-active {
     outline: 0;
     background-image: none;
     -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);

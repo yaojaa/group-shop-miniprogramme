@@ -12,6 +12,8 @@ let drawGoods = null;
 let drawBuyuser = null;
 let orderUsersLen = 30; // 购买用户每次加载数量
 let orderUsersFlag = false; // 购买用户是否正在加载
+let timer2 = null
+let timer3 = null
 
 Page({
     data: {
@@ -297,9 +299,18 @@ Page({
 
                     //绘制朋友圈图片
                     drawGoods = d;
-                    if (drawBuyuser) {
+
+                    //延迟5秒再绘制 提高首次加载性能速度
+                    timer2 = setTimeout(()=>{
+
+                        if (drawBuyuser) {
                         util.drawShareFriends(this, d, drawBuyuser);
                     }
+
+                    },5e3)
+
+
+                    
 
                     //把数量设为0
 
@@ -338,6 +349,21 @@ Page({
     onHide: function() {
         // 用户查看图片不触发
         if (this.data.imgPreviewFlag) { return; }
+
+        if(timer2){
+
+            clearTimeout(timer2)
+            console.log('this.timer2',timer2)
+            timer2 == null
+        }
+
+
+        if(timer3){
+            clearTimeout(timer3)
+            timer3 == null
+        }
+
+
 
         console.log('用户离开了')
         this.leaveDate = new Date()
@@ -605,11 +631,17 @@ Page({
         }).then(res=>{
 
                drawBuyuser = res.data.data.order_list;
-                    if (drawGoods) {
+
+                 timer3 = setTimeout(()=>{
+
+                        if (drawBuyuser) {
                         util.drawShareFriends(this, drawGoods, drawBuyuser);
                     }
 
-                    this.data.orderUsers = res.data.data;
+                    },5e3)
+
+
+                    this.data.orderUsers = res.data.data.order_list;
 
                     this.data._orderUsers = [];
                     this.data._orderUsers_ = [];
@@ -751,6 +783,28 @@ Page({
 
 
     },
+     /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function() {
+
+        if(timer2){
+            clearTimeout(timer2)
+            console.log('timer2',timer2)
+            timer2 == null
+        }
+
+
+        if(timer3){
+            clearTimeout(timer3)
+            timer3 == null
+        }
+
+        console.log('用户离开了')
+
+
+    },
+
     // checkUserIslogin() {
     //     wx.getStorage({ //获取本地缓存
     //         key: "token",

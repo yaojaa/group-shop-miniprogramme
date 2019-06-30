@@ -37,7 +37,6 @@
                     <view></view>
                     <view></view>
                     <view></view>
-                    <view></view>
                 </view>
             </view>
         </view>
@@ -49,9 +48,8 @@
         <button class="linenear_bg" hove-class="linenear_bg_hover" type='primary' open-type="share">分享告知</button>
     </view>
     <view class='share'>
-
-        强烈建议支付后告知一下，以免遗漏～
-    
-  </view>
+        建议支付后告知一下，以免遗漏～
+  </view><view></view>
+  
     <official-account></official-account>
 </view>
