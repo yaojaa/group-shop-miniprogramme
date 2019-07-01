@@ -60,7 +60,7 @@ Page({
         orderUsers: [],
         _orderUsers: [], // 存储
         _orderUsers_: [], // 执行
-        orderUsersLoading: true,
+        orderUsersLoading: false,
         imagePath: "",
         collection_methods: '',
         copy: false,
@@ -898,6 +898,10 @@ Page({
 
         orderUsersFlag = true;
 
+        this.setData({
+            orderUsersLoading: true
+        })
+
         util.wx.get('/api/goods/get_minorders_by_goods_id', {
             goods_id: this.data.goods_id,
             pagesize: 30,
@@ -912,6 +916,7 @@ Page({
                 orderUsersFlag = false;
 
                 this.setData({
+                    orderUsersLoading: false,
                     ['_orderUsers_[' + this.data._orderUsers_.length + ']']: res.data.data.order_list
                 })
             }else{

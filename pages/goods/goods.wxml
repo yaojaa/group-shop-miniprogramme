@@ -130,7 +130,7 @@
                     暂时还没有人参与哦 点击这里分享转发
                 </button>
             </view>
-            <scroll-view scroll-y style="max-height: 750rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
+            <scroll-view wx:else scroll-y style="max-height: 750rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
 
                 <view>
                     <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{index}}">
