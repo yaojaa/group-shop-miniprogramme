@@ -181,6 +181,7 @@ Page({
         }
     },
     openShareFriends() {
+        util.drawShareFriends(this, drawGoods, drawBuyuser);
 
 
         this.setData({
