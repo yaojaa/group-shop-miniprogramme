@@ -13,7 +13,7 @@ let drawGoods = null;
 let drawBuyuser = null;
 let orderUsersLen = 30; // 购买用户每次加载数量
 let orderUsersFlag = false; // 购买用户是否正在加载
-let orderUsersPage = 1; // 购买用户是否正在加载
+let orderUsersPage = 1; // 购买用户是否正在加载页
 let timer2 = null
 let timer3 = null
 
@@ -691,13 +691,17 @@ Page({
 
     },
     getOrderUserList(goods_id) {
+        orderUsersPage = 1;
 
         util.wx.get('/api/goods/get_minorders_by_goods_id', {
             goods_id: goods_id,
-            pagesize: orderUsersLen
+            pagesize: orderUsersLen,
+            cpage: orderUsersPage,
         }).then(res => {
 
             drawBuyuser = res.data.data.order_list;
+
+            orderUsersPage ++;
 
             // timer3 = setTimeout(() => {
 
@@ -710,20 +714,22 @@ Page({
 
             this.data.orderUsers = res.data.data.order_list;
 
-            this.data._orderUsers = [];
+            // this.data._orderUsers = [];
             this.data._orderUsers_ = [];
 
-            this.data._orderUsers[0] = [];
+            // this.data._orderUsers[0] = [];
 
-            res.data.data.order_list.forEach((e, i) => {
-                let _i = parseInt(i / orderUsersLen);
-                if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
-                    this.data._orderUsers[_i] = [];
-                }
-                this.data._orderUsers[_i].push(e)
-            })
+            // res.data.data.order_list.forEach((e, i) => {
+            //     let _i = parseInt(i / orderUsersLen);
+            //     if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
+            //         this.data._orderUsers[_i] = [];
+            //     }
+            //     this.data._orderUsers[_i].push(e)
+            // })
 
-            this.data._orderUsers_.push(this.data._orderUsers.shift())
+            // this.data._orderUsers_.push(this.data._orderUsers.shift())
+
+            this.data._orderUsers_.push(res.data.data.order_list)
 
             this.setData({
                 _orderUsers_: this.data._orderUsers_,
@@ -929,7 +935,7 @@ Page({
 
         util.wx.get('/api/goods/get_minorders_by_goods_id', {
             goods_id: this.data.goods_id,
-            pagesize: 30,
+            pagesize: orderUsersLen,
             cpage: orderUsersPage
         }).then(res => {
 
