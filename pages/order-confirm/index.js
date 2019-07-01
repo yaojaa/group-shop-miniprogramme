@@ -106,7 +106,7 @@ Page({
                     console.log(data)
                     this.setData({
                         self_address: data,
-                        address_id: data[0].self_address_id
+                        address_id: data[0].self_address_id || ''
                     })
 
                 }

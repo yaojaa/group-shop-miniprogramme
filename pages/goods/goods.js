@@ -603,6 +603,12 @@ Page({
     },
     homepage() {
 
+           wx.redirectTo({
+            url: '../home/index'
+        })
+
+           return
+
           var pages = getCurrentPages();
 
             console.log('pages',pages)
