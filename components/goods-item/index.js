@@ -28,7 +28,7 @@ Component({
       this.goods_id = e.currentTarget.dataset.id
 
         wx.showActionSheet({
-          itemList: ['在个人主页隐藏', '在个人主页显示'],
+          itemList: ['在主页隐藏', '在主页显示'],
           success :(res)=>{
 
             if(res.tapIndex == 0){
@@ -55,7 +55,7 @@ Component({
           if(res.data.code == 200){
 
 
-             const tips = status==0?'个人主页已隐藏':'个人主页已显示'
+             const tips = status==0?'主页已隐藏':'主页已显示'
                 
                 wx.showToast({
                     title:tips,
