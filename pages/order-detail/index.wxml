@@ -36,6 +36,9 @@
                 <view class="pt-xs text-sm text-gray">
                     自提点： {{info.self_address}}
                 </view>
+                <view class="pt-xs text-sm text-gray">
+                    提货码： <text class="text-danger">{{info.create_number}}</text>
+                </view>
             </view>
         </view>
         <view class="goods-panel ph-df white-bg cf">

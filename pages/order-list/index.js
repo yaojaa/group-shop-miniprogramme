@@ -159,6 +159,7 @@ Page({
         this.getOrderList()
     },
     pay(id) {
+        wx.showLoading()
         util.wx.post('/api/pay/pay', {
             order_sn: id
         }).then(res => {
@@ -170,6 +171,7 @@ Page({
                 signType: data['signType'],
                 paySign: data['paySign'],
                 success: (res) => {
+                    wx.hideLoading()
                     util.wx.post('/api/pay/orderpay', {
                         order_sn: id
                     })
@@ -187,6 +189,7 @@ Page({
                     this.getOrderList();
                 },
                 fail: (res) => {
+                    wx.hideLoading()
                     Notify({
                         text: '支付失败，请重新支付',
                         duration: 1000,
