@@ -131,9 +131,8 @@
                 </button>
             </view>
             <scroll-view scroll-y style="max-height: 750rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
-                <i-cell-group>
                     <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{index}}">
-                        <i-cell wx:for="{{listItem}}" wx:key="{{item.create_number}}" i-class="buyer-item-box">
+                        <view wx:for="{{listItem}}" wx:key="{{item.create_number}}" i-class="buyer-item-box">
                             <view class="buyer-item">
                                 <text class="number">{{item.create_number}} </text>
                                 <image class="buyer-avatar" src="{{item.headimg}}"></image>
@@ -148,9 +147,8 @@
                                 </view>
                                 <view class="buyer-date">{{item.timeago}}</view>
                             </view>
-                        </i-cell>
+                        </view>
                     </block>
-                </i-cell-group>
                 <view class="text-center" hidden="{{!orderUsersLoading}}">
                     <wux-spin></wux-spin>
                 </view>

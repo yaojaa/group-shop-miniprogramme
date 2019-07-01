@@ -209,7 +209,8 @@ Component({
     lifetimes: {
         attached() {
 
-
+            console.group('CustomBar')
+            console.log('app.globalData.statusBarHeight',app.globalData.statusBarHeight)
             if (app.globalData.statusBarHeight) {
 
                 this.setData({
@@ -217,6 +218,7 @@ Component({
                 })
 
             } else {
+            console.log('wx.getSystemInfo')
 
                 wx.getSystemInfo({
                     success: (res) => {
@@ -224,11 +226,14 @@ Component({
                         this.setData({
                             statusBarHeight: res.statusBarHeight
                         })
+                    console.log('wx.getSystemInfo成功res.statusBarHeight',res.statusBarHeight)
+
                     }
                 })
 
             }
             console.log('this.scrollTop', this.scrollTop)
+            console.groupEnd()
             // 在组件实例进入页面节点树时执行
         },
 

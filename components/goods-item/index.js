@@ -2,7 +2,6 @@ import { $wuxGallery } from '../../wux/index'
 const util = require('../../utils/util.js')
 import Dialog from '../../vant/dialog/dialog';
 
-console.log('dialog',Dialog)
 
 Component({
     externalClasses: ['custom-class'],
@@ -80,7 +79,6 @@ Component({
         const goods_id = e.currentTarget.dataset.id
 
 
-          console.log('e.currentTarget.dataset.status',e.currentTarget.dataset.status)
 
         const status_txt = status==1?'下架' :'上架'
 
@@ -187,6 +185,5 @@ Component({
     }
     },
     ready() {
-        console.log(this.data.item)
     }
 })

@@ -1,6 +1,6 @@
 <view class="container">
     <view class="order-title text-primary">
-        <navigator url="/pages/goods/goods?goods_id={{goods_id}}" hover-class="none">
+        <navigator open-type="redirect"  url="/pages/goods/goods?goods_id={{goods_id}}" hover-class="none">
             <text class="goods_title">{{goods_name}}</text>
         </navigator>
         <view class="actionsButtons">
@@ -117,7 +117,7 @@
 
             
 
-            <block wx:for="{{item.seller_next_handle}}" wx:for-item="btn">
+            <block wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
                 <form bindsubmit="formSubmit" report-submit="true">
                     <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType = "submit" 
                     data-id="{{item.order_id}}" 

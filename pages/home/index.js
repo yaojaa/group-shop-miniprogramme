@@ -1,9 +1,5 @@
 const app = getApp()
-
-
 const util = require('../../utils/util.js')
-const { $Message } = require('../../iView/base/index');
-
 
 Page({
 
@@ -17,63 +13,63 @@ Page({
         order_id: "",
         link_url: "",
         is_loading: true,
-        scrollTop:0,
-        store_money:0,
-        pending_money:0
+        scrollTop: 0,
+        store_money: 0,
+        pending_money: 0
 
     },
-    handleTabBarChange ({ detail }) {
+    handleTabBarChange({ detail }) {
         this.setData({
             current: detail.key
         })
 
-        if(detail.key =='publish'){
-           wx.navigateTo({
-              url:'../publish-select/index'
+        if (detail.key == 'publish') {
+            wx.navigateTo({
+                url: '../publish-select/index'
             })
         }
 
-        if(detail.key =='nearby'){
-           wx.navigateTo({
-              url:'../index/index'
+        if (detail.key == 'nearby') {
+            wx.redirectTo({
+                url: '../index/index'
             })
         }
-       
-  },
-  //切换显示隐藏状态事件
-  recommendHandle(){
 
-    this.data.goodslist=[]
+    },
+    //切换显示隐藏状态事件
+    recommendHandle() {
 
-    this.getGoodsList()
+        this.data.goodslist = []
 
-  },
-  removeHandle(e){
-    console.log(e,'删除成功事件')
+        this.getGoodsList()
 
-    var id = e.detail
+    },
+    removeHandle(e) {
+        console.log(e, '删除成功事件')
 
-    var c
+        var id = e.detail
 
-    this.data.goodslist.forEach((item,index)=>{
-        console.log(item.goods_id , id)
+        var c
 
-        if(item.goods_id == id){
-            c = index
+        this.data.goodslist.forEach((item, index) => {
+            console.log(item.goods_id, id)
+
+            if (item.goods_id == id) {
+                c = index
+            }
+        })
+
+        if (c) {
+
+            this.data.goodslist.splice(c, 1)
+
+            this.setData({
+                'goodslist': this.data.goodslist
+            })
+
         }
-    })
 
-    if(c){
-        
-   this.data.goodslist.splice(c,1)
-
-    this.setData({
-        'goodslist':this.data.goodslist
-    })
-        
-    }
-
-  },
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -81,35 +77,37 @@ Page({
 
         this.data.cpage = 1
 
-        
+
 
 
 
         if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
-        }else{
+        } else {
 
             this.setData({
-                userInfo:app.globalData.userInfo
+                userInfo: app.globalData.userInfo
             })
         }
 
 
-        // util.playSound('https://static.kaixinmatuan.cn/staitc-img/new_order.mp3')
-       this.get_store_info()
-
+        this.data.cpage = 1
+        this.data.goodslist = []
+        this.getGoodsList()
+        //this.getOrderCount()
 
     },
-    getOrderCount(){
+    getOrderCount() {
 
-          util.wx.get('/api/user/get_order_count_groupby_static').then(res=>{
-                console.log(res)
-                if (res.data.code == 200) {
-                    this.setData({
-                        waitpay: res.data.data.waitpay,
-                        waitreceived:res.data.data.waitreceived,
-                        complete:res.data.data.complete                    })
-                }
+        util.wx.get('/api/user/get_order_count_groupby_static').then(res => {
+            console.log(res)
+            if (res.data.code == 200) {
+                this.setData({
+                    waitpay: res.data.data.waitpay,
+                    waitreceived: res.data.data.waitreceived,
+                    complete: res.data.data.complete
+                })
+            }
         })
 
     },
@@ -129,31 +127,31 @@ Page({
     },
 
     get_store_info() {
-                console.log('get_store_info')
+        console.log('get_store_info')
 
-        util.wx.get('/api/seller/get_store_money').then(res=>{
-                console.log(res)
-                if (res.data.code == 200) {
-                    console.log('store_money: res.data.data.store_money',res.data.data.store_money)
-                    this.setData({
-                        pending_money:res.data.data.pending_money
-                    })
-                }
+        util.wx.get('/api/seller/get_store_money').then(res => {
+            console.log(res)
+            if (res.data.code == 200) {
+                console.log('store_money: res.data.data.store_money', res.data.data.store_money)
+                this.setData({
+                    pending_money: res.data.data.pending_money
+                })
+            }
         })
     },
 
 
     getGoodsList: function() {
 
-         this.setData({
-                        is_loading:true
-                    })
-
-        util.wx.get('/api/seller/get_goods_list',{
-        cpage:this.data.cpage,
-        pagesize:10
+        this.setData({
+            is_loading: true
         })
-        .then(res => {
+
+        util.wx.get('/api/seller/get_goods_list', {
+                cpage: this.data.cpage,
+                pagesize: 10
+            })
+            .then(res => {
 
                 if (res.data.code == 200) {
                     this.setData({
@@ -161,11 +159,11 @@ Page({
                         is_loading: false
                     })
 
-                    this.data.goodslist.forEach(item=>{
+                    this.data.goodslist.forEach(item => {
 
-                        if(item._order_status1_count>0){
+                        if (item._order_status1_count > 0) {
                             this.setData({
-                                hasNewOrder:true
+                                hasNewOrder: true
                             })
                         }
 
@@ -174,12 +172,12 @@ Page({
                     })
 
 
-                this.totalpage = res.data.data.page.totalpage
+                    this.totalpage = res.data.data.page.totalpage
 
 
-                }else{
+                } else {
                     this.setData({
-                        is_loading:false
+                        is_loading: false
                     })
                 }
             })
@@ -190,7 +188,7 @@ Page({
 
 
 
-  
+
     new_btn: function() {
         wx.navigateTo({
             url: '../publish-select/index'
@@ -204,7 +202,7 @@ Page({
     goSite() {
         console.log(this.data.userInfo.store_id)
         wx.navigateTo({
-            url: '../userhome/index?id='+this.data.userInfo.store_id
+            url: '../userhome/index?id=' + this.data.userInfo.store_id
         })
     },
     editPage(e) {
@@ -232,16 +230,16 @@ Page({
 
     },
 
- 
- 
 
 
-    onShow(){
-      this.data.cpage = 1
 
-      this.data.goodslist =[]
-      this.getGoodsList()
-      this.getOrderCount()
+
+    onShow() {
+        this.data.cpage = 1
+
+        this.data.goodslist = []
+        this.getGoodsList()
+       // this.getOrderCount()
 
 
     },
@@ -280,31 +278,20 @@ Page({
      */
     onReachBottom: function() {
 
-     ++ this.data.cpage
+        ++this.data.cpage
 
-     if(this.data.cpage <= this.totalpage){
-      this.getGoodsList();//重新调用请求获取下一页数据 
-     }else{
-        this.data.cpage = this.totalpage
-     }
+        if (this.data.cpage <= this.totalpage) {
+            this.getGoodsList(); //重新调用请求获取下一页数据 
+        } else {
+            this.data.cpage = this.totalpage
+        }
 
 
     },
-    onPageScroll:function(e){
-    this.setData({
-      scrollTop:e.scrollTop
-    })
-  },
-
-    // 下拉刷新
-    onPullDownRefresh: function() {
-        // 显示顶部刷新图标
-        wx.showNavigationBarLoading();
-        this.getBuyList()
-        // 隐藏导航栏加载框
-        wx.hideNavigationBarLoading();
-        // 停止下拉动作
-        wx.stopPullDownRefresh();
+    onPageScroll: function(e) {
+        this.setData({
+            scrollTop: e.scrollTop
+        })
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)

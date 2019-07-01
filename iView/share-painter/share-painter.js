@@ -68,8 +68,10 @@ Component({
         return;
       }
 
-      if (!(getApp().systemInfo && getApp().systemInfo.screenWidth)) {
+      if (!(getApp().gloabalData.systemInfo && getApp().systemInfo.screenWidth)) {
         try {
+                    console.log('wx.getSystemInfoSync')
+
           getApp().systemInfo = wx.getSystemInfoSync();
         } catch (e) {
           const error = `Painter get system info failed, ${JSON.stringify(e)}`;

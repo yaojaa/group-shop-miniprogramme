@@ -80,6 +80,8 @@ Component({
       if (!(getApp().systemInfo && getApp().systemInfo.screenWidth)) {
         try {
           getApp().systemInfo = wx.getSystemInfoSync();
+                    console.log('wx.getSystemInfoSync')
+
         } catch (e) {
           const error = `Painter get system info failed, ${JSON.stringify(e)}`;
           that.triggerEvent('imgErr', { error: error });

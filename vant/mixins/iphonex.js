@@ -5,8 +5,14 @@ function getIsIPhoneX() {
             resolve(isIPhoneX);
         }
         else {
+
+            const {model,screenHeight} = getApp().globalData.systemInfo
+
+                    console.log('getApp().globalData.systemInfo',model,screenHeight)
+
             wx.getSystemInfo({
                 success: ({ model, screenHeight }) => {
+                    console.log('wx.getSystemInfo')
                     const iphoneX = /iphone x/i.test(model);
                     const iphoneNew = /iPhone11/i.test(model) && screenHeight === 812;
                     isIPhoneX = iphoneX || iphoneNew;

@@ -293,9 +293,13 @@ Page({
     },
 
     goHomePage() {
-        wx.navigateTo({
-            url: '../userhome/index?id=' + this.data.store_id
-        })
+            var pages = getCurrentPages();
+
+            console.log('pages',pages)
+
+        // wx.navigateTo({
+        //     url: '../userhome/index?id=' + this.data.store_id
+        // })
     },
 
     getShareImg(id) {
@@ -598,9 +602,24 @@ Page({
         })
     },
     homepage() {
-        wx.redirectTo({
+
+          var pages = getCurrentPages();
+
+            console.log('pages',pages)
+
+       var prevPage = pages[pages.length - 2]; //上一个页面
+       console.log(prevPage.route == 'pages/home/index')
+       if(prevPage.route == 'pages/home/index'){
+        wx.navigateBack()
+       }else{
+       wx.redirectTo({
             url: '../home/index'
         })
+
+       }
+
+
+       
     },
     getUserInfoEvt: function(e) {
         console.log(e)

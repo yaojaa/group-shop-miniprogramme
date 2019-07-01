@@ -1,13 +1,17 @@
 /**
  * 获取系统信息
  */
+const app =  getApp()
 
-let systemInfo = null
+console.log(app)
+
+let systemInfo =app.globalData.systemInfo
 
 const getSystemInfo = (isForce) => {
 	if (!systemInfo || isForce) {
 		try {
 			systemInfo = wx.getSystemInfoSync()
+			console.log('wx.getSystemInfoSync()')
 		} catch(e) { /* Ignore */ }
 	}
 

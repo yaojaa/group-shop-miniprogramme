@@ -2,7 +2,7 @@
 </i-custom-bar>
 <view class="container cf">
     <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{info.store_slide}}">
+        <block wx:for="{{store_slide}}">
             <swiper-item>
                 <image src="{{item}}?imageView2/1/w/600/h/400/interlace/1" height="400" class="slide-image" />
             </swiper-item>

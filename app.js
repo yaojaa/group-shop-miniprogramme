@@ -140,16 +140,12 @@ App({
                     this.globalData.token = res.data.data.token
                     this.globalData.userInfo = res.data.data.user
                     this.globalData.userInfo.store_id = res.data.data.store.store_id
-
-                    wx.setStorage({//存储到本地
-                      key:"token",
-                      data:res.data.data.token
-                    })
-
+                    console.group('储存登录userInfo')
                     wx.setStorage({//存储到本地
                       key:"userInfo",
                       data:this.globalData.userInfo
                     })
+                    console.groupEnd()
 
                     resolve(res)
 
@@ -257,13 +253,28 @@ App({
             }
         })
         //检测设备尺寸
-        try {
-            var SystemInfo = wx.getSystemInfoSync()
-            this.globalData.winHeight = SystemInfo.windowHeight
-            this.globalData.winWidth = SystemInfo.windowWidth
-        } catch (e) {
-            this.globalData.winHeight = 500
-        }
+        //
+        wx.getSystemInfo({
+          success:(res)=> {
+          console.log('屏幕尺寸',res)
+          this.globalData.winHeight = res.windowHeight
+          this.globalData.winWidth = res.windowWidth
+          this.globalData.statusBarHeight = res.statusBarHeight
+          this.globalData.systemInfo = res
+          }
+        })
+
+
+        // try {
+        //     var SystemInfo = wx.getSystemInfoSync()
+        //     this.globalData.winHeight = SystemInfo.windowHeight
+        //     this.globalData.winWidth = SystemInfo.windowWidth
+        // } catch (e) {
+        //     this.globalData.winHeight = 500
+        // }
+
+
+
 
 const userInfo = wx.getStorageSync('userInfo')
 console.log('userInfo',userInfo)
@@ -287,9 +298,11 @@ console.log('userInfo',userInfo)
       console.log('该跳转到登录')
                     
       this.redirectToLogin()
-                
-
+              
     }
+
+
+    console.groupEnd()
 
 
 

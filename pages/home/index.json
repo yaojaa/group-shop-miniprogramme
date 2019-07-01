@@ -1,36 +1,20 @@
 {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#49b34d",
-    "navigationBarTitleText": "开心麻团儿 让开团更简单",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true,
     "navigationStyle": "custom",
     "usingComponents":
     {
         "i-panel": "../../iView/panel/index",
         "i-cell-group": "../../iView/cell-group/index",
         "i-cell": "../../iView/cell/index",
-        "i-radio-group": "../../iView/radio-group/index",
-        "i-radio": "../../iView/radio/index",
-        "i-input-number": "../../iView/input-number/index",
-        "i-input": "../../iView/input/index",
+        "i-row":"../../iView/row/index",
+        "i-col":"../../iView/col/index",
         "i-badge": "../../iView/badge/index",
         "i-icon": "../../iView/icon/index",
         "i-button": "../../iView/button/index",
-        "i-message": "../../iView/message/index",
         "i-tab-bar": "../../iView/tab-bar/index",
         "i-tab-bar-item": "../../iView/tab-bar-item/index",
-        "sort": "../../components/sort/sort",
         "i-icon": "../../iView/icon/index",
-        "i-card": "../../iView/card/index",
-        "i-grid-item": "../../iView/grid-item/index",
-        "i-grid-label": "../../iView/grid-label/index",
-        "i-row": "../../iView/row/index",
-        "i-col": "../../iView/col/index",
-        "i-custom-bar": "../../components/custom-bar/index",
         "i-goods-item": "../../components/goods-item/index",
-        "wux-spin": "../../wux/spin/index",
-        "i-load-more": "../../iView/load-more/index"
+        "wux-spin": "../../wux/spin/index"
 
 
     }
