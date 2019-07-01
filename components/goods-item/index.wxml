@@ -1,10 +1,10 @@
 <view class="goods-item">
     <view class="goods-body">
-        <navigator open-type="redirect" url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
-            <image src='{{item.goods_cover}}?imageView2/2/w/100/h/100/format/jpg/q/75' class='hd'></image>
+        <navigator  url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+            <image src='{{item.goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75' class='hd'></image>
         </navigator>
         <view class="bd">
-            <navigator open-type="redirect" url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+            <navigator  url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
                 <view class="flex align-center">
                     <i-icon type="lock" color="#ffa200" size="18" wx:if="{{item.is_recommend==0}}" />
                     <view class="flex-sub ml-xs">

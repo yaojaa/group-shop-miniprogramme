@@ -661,7 +661,7 @@ module.exports = {
     inputDuplex,
     uploadPicture,
     distance,
-    get_painter_data_and_draw,
+    // get_painter_data_and_draw,
     getShareImg,
     formSubmitCollectFormId,
     getUserloaction,

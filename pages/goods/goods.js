@@ -13,7 +13,7 @@ let drawGoods = null;
 let drawBuyuser = null;
 let orderUsersLen = 30; // 购买用户每次加载数量
 let orderUsersFlag = false; // 购买用户是否正在加载
-let orderUsersPage = 2; // 购买用户是否正在加载
+let orderUsersPage = 1; // 购买用户是否正在加载
 let timer2 = null
 let timer3 = null
 
@@ -60,7 +60,7 @@ Page({
         orderUsers: [],
         _orderUsers: [], // 存储
         _orderUsers_: [], // 执行
-        orderUsersLoading: true,
+        orderUsersLoading: false,
         imagePath: "",
         collection_methods: '',
         copy: false,
@@ -339,14 +339,14 @@ Page({
                     //绘制朋友圈图片
                     drawGoods = d;
 
-                    //延迟5秒再绘制 提高首次加载性能速度
-                    timer2 = setTimeout(() => {
+                    // //延迟5秒再绘制 提高首次加载性能速度
+                    // timer2 = setTimeout(() => {
 
-                        if (drawBuyuser) {
-                            util.drawShareFriends(this, d, drawBuyuser);
-                        }
+                    //     if (drawBuyuser) {
+                    //         util.drawShareFriends(this, d, drawBuyuser);
+                    //     }
 
-                    }, 5e3)
+                    // }, 5e3)
 
 
 
@@ -598,7 +598,7 @@ Page({
         })
     },
     homepage() {
-        wx.navigateTo({
+        wx.redirectTo({
             url: '../home/index'
         })
     },
@@ -669,18 +669,18 @@ Page({
 
         util.wx.get('/api/goods/get_minorders_by_goods_id', {
             goods_id: goods_id,
-            pagesize: 30
+            pagesize: orderUsersLen
         }).then(res => {
 
             drawBuyuser = res.data.data.order_list;
 
-            timer3 = setTimeout(() => {
+            // timer3 = setTimeout(() => {
 
-                if (drawBuyuser) {
-                    util.drawShareFriends(this, drawGoods, drawBuyuser);
-                }
+            //     if (drawBuyuser) {
+            //         util.drawShareFriends(this, drawGoods, drawBuyuser);
+            //     }
 
-            }, 5e3)
+            // }, 5e3)
 
 
             this.data.orderUsers = res.data.data.order_list;
@@ -710,60 +710,7 @@ Page({
 
         })
 
-        // wx.request({
-        //     method: 'get',
-        //     url: 'https://www.kaixinmatuan.cn/api/goods/get_minorders_by_goods_id',
-        //     data: {
-        //         token: app.globalData.token,
-        //         goods_id: goods_id
-        //     },
-        //     success: (res) => {
-        //         if (res.data.code == 200) {
-
-        //             //***后两位
-        //             // res.data.data.map(value => {
-        //             //     value.specs.map(val => {
-        //             //         val.spec_key_name = val.spec_key_name.replace(/[a-zA-Z]/g, '*')
-        //             //     })
-        //             // })
-
-        //             //绘制朋友圈图片
-        //             drawBuyuser = res.data.data;
-        //             if (drawGoods) {
-        //                 util.drawShareFriends(this, drawGoods, res.data.data);
-        //             }
-
-        //             this.data.orderUsers = res.data.data;
-
-        //             this.data._orderUsers = [];
-        //             this.data._orderUsers_ = [];
-
-        //             this.data._orderUsers[0] = [];
-
-        //             res.data.data.forEach((e, i) => {
-        //                 let _i = parseInt(i / orderUsersLen);
-        //                 if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
-        //                     this.data._orderUsers[_i] = [];
-        //                 }
-        //                 this.data._orderUsers[_i].push(e)
-        //             })
-
-        //             console.log(this.data._orderUsers)
-
-        //             this.data._orderUsers_.push(this.data._orderUsers.shift())
-
-        //             this.setData({
-        //                 _orderUsers_: this.data._orderUsers_,
-        //                 orderUsers: this.data.orderUsers
-        //             })
-
-        //         }
-
-
-
-
-        //     }
-        // })
+       
 
 
     },
@@ -845,20 +792,6 @@ Page({
 
     },
 
-    // checkUserIslogin() {
-    //     wx.getStorage({ //获取本地缓存
-    //         key: "token",
-    //         success: function(res) {
-    //             console.log('checkUserIslogin', res)
-    //         },
-    //         fail: (res) => {
-    //             console.log('checkUserIslogin', res)
-    //             this.setData({
-    //                 showAuth: true
-    //             })
-    //         }
-    //     })
-    // },
     //预览图片
     imgPreview: function(event) {
         var src = event.currentTarget.dataset.src; //获取data-src
@@ -890,11 +823,23 @@ Page({
 
         let shopcar = this.data.goods_spec.filter(value => value.item_num > 0)
 
-        wx.setStorageSync('cart', shopcar)
-    
-        wx.navigateTo({
-            url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
-        })
+
+        try {
+
+                wx.setStorageSync('cart', shopcar)
+            
+                wx.navigateTo({
+                    url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
+                })
+
+        } catch (e) { 
+
+            console.log('写人storerage失败')
+
+        }
+
+
+
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
@@ -977,30 +922,6 @@ Page({
 
         })
 
-
-        // if (this.data._orderUsers.length > 0) {
-        //     if (orderUsersFlag) {
-        //         return;
-        //     }
-
-        //     let index = this.data._orderUsers_.length;
-
-        //     orderUsersFlag = true;
-
-        //     this.data._orderUsers_.push(this.data._orderUsers.shift())
-
-        //     this.setData({
-        //         ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
-        //     }, function() {
-        //         orderUsersFlag = false;
-        //     })
-
-        //     console.log(this.data._orderUsers_)
-        // } else {
-        //     this.setData({
-        //         orderUsersLoading: false
-        //     })
-        // }
     },
     onPageScroll: function(e) {
 
@@ -1010,17 +931,6 @@ Page({
             })
             console.log('toShowPictoShowPictoShowPictoShowPic')
         }
-
-        // if (this.data._orderUsers.length > 0 && e.scrollTop > 60 * orderUsersLen) {
-        //     let index = this.data._orderUsers_.length;
-        //     this.data._orderUsers_.push(this.data._orderUsers.shift())
-
-        //     this.setData({
-        //         ['_orderUsers_[' + index + ']']: this.data._orderUsers_[index]
-        //     })
-
-        //     console.log(this.data._orderUsers_)
-        // }
 
         this.data.scrollTop = e.scrollTop
 
