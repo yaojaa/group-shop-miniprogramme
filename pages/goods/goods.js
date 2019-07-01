@@ -181,14 +181,13 @@ Page({
         }
     },
     openShareFriends() {
-        util.drawShareFriends(this, drawGoods, drawBuyuser);
-
+        if(!this.data.shareFriendsImg){
+            util.drawShareFriends(this, drawGoods, drawBuyuser);
+        }
 
         this.setData({
             showShareFriendsCard: true
         })
-
-
 
     },
     closeShareFriends() {
