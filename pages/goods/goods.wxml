@@ -131,7 +131,28 @@
                 </button>
             </view>
             <scroll-view scroll-y style="max-height: 750rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
-                <i-cell-group>
+
+                <view>
+                    <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{index}}">
+                        <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
+                            <text class="number">{{item.create_number}} </text>
+                            <image class="buyer-avatar" src="{{item.headimg}}"></image>
+                            <view class="buyer-info">
+                                <view class="name"> {{item.nickname}}
+                                </view>
+                                <view class="type">
+                                    <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
+                                        跟 {{gds.spec_name}} + {{gds.qty}}
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="buyer-date">{{item.timeago}}</view>
+                            <view class="bottom-line"></view>
+                        </view>
+                    </block>
+                </view>
+
+                <!-- <i-cell-group>
                     <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{index}}">
                         <i-cell wx:for="{{listItem}}" wx:key="{{item.create_number}}" i-class="buyer-item-box">
                             <view class="buyer-item">
@@ -150,7 +171,7 @@
                             </view>
                         </i-cell>
                     </block>
-                </i-cell-group>
+                </i-cell-group> -->
                 <view class="text-center" hidden="{{!orderUsersLoading}}">
                     <wux-spin></wux-spin>
                 </view>

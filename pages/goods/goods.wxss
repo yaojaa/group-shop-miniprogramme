@@ -410,6 +410,26 @@ color:#666;
     display: flex;
     align-items: center;
 }
+
+.buyer-item-cell{
+    padding: 24rpx 0;
+    position: relative;
+}
+
+.buyer-item-cell .bottom-line{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 96%;
+    height: 0;
+    overflow: hidden;
+    border-bottom: 1px solid #f7f7f7;
+}
+
+.buyer-item-cell:last-child .bottom-line{
+    border: none;
+}
+
 .buyer-item .number{
     font-size: 28rpx;
     min-width: 60rpx;

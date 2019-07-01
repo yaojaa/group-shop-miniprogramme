@@ -60,7 +60,7 @@ Page({
         orderUsers: [],
         _orderUsers: [], // 存储
         _orderUsers_: [], // 执行
-        orderUsersLoading: false,
+        orderUsersLoading: true,
         imagePath: "",
         collection_methods: '',
         copy: false,
