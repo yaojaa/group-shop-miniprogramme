@@ -5,11 +5,6 @@
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true,
     "navigationStyle": "custom",
-
-    "window":
-    {
-        "backgroundTextStyle": "dark"
-    },
     "usingComponents":
     {
         "i-panel": "../../iView/panel/index",

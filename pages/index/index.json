@@ -1,6 +1,5 @@
 {
 
-    "navigationBarTitleText": "发现身边的好货",
     "navigationStyle": "custom",
     "usingComponents": {
         "i-icon": "../../iView/icon/index",
