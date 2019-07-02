@@ -22,7 +22,7 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-            访问<text class="text-default">{{info._access_count}}人</text> 成交<text class="text-default">{{info._order_count}}</text> 笔
+            主页累计访问<text class="text-default">{{info._access_count}}人</text> 成交<text class="text-default">{{info._order_count}}</text> 笔
         </view>
     </view>
     <view class="goods-box">
@@ -43,7 +43,18 @@
                 </view>
             </view>
         </navigator>
+
+    <view wx:if="{{goodsList.length ==0 && !loading}}" class="text-center white-bg" style="padding: 100px 0">
+
+        暂无内容
+
     </view>
+
+
+    </view>
+
+
+  
  
 
    <view class="text-center mb-sm">
@@ -54,11 +65,11 @@
      <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{false}}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
-                <image src="http://leileiimg.countinsight.com/front/img/wx_icon.png" class="img-lg"></image>
+                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm text-df">微信好友</view>
             </button>
             <view bindtap='handlePoster' class="flex-sub share-pyq">
-                <image src="http://leileiimg.countinsight.com/front/img/quan_icon.png" class="img-lg"></image>
+                <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm">生成海报</view>
             </view>
         </view>

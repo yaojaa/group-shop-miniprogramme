@@ -239,7 +239,7 @@ Page({
 
         this.data.goodslist = []
         this.getGoodsList()
-       // this.getOrderCount()
+        this.getOrderCount()
 
 
     },

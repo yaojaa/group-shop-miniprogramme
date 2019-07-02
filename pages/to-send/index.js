@@ -86,7 +86,7 @@ Page({
                         })
 
                 })
-                .catch(e=>{
+                .catch(res=>{
 
                     wx.showToast({
                             title: res.data.msg

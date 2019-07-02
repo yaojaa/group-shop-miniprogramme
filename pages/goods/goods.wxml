@@ -67,7 +67,7 @@
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
-                <i-icon type="send" size="24" color="#666" />
+                <i-icon type="send" size="24" color="#f90" />
                 <view class="text-muted text-xs">分享</view>
             </button>
         </view>
@@ -247,11 +247,11 @@
     <van-action-sheet show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
-                <image src="http://leileiimg.countinsight.com/front/img/wx_icon.png" class="img-lg"></image>
+                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm text-df">微信好友</view>
             </button>
             <view bindtap='handlePoster' class="flex-sub share-pyq">
-                <image src="http://leileiimg.countinsight.com/front/img/quan_icon.png" class="img-lg"></image>
+                <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm">生成海报</view>
             </view>
         </view>
@@ -261,7 +261,7 @@
         <view class='share-friends-img' bindtap='handlePoster'>
             <view class="share-img-box" wx:if="{{!shareFriendsImg}}">
                 <i-spin i-class='share-friends-loading' fix size="large"></i-spin>
-                <view class='share-friends-loading-txt'><text>努力生成中,请稍等...</text></view>
+                <view class='share-friends-loading-txt'><text>努力生成中,请稍等10秒...</text></view>
             </view>
             <view class="text-center share-img-box" wx:else>
                 <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
