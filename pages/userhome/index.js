@@ -168,6 +168,11 @@ Page({
             .then(res => {
                 if (res.data.code == 200) {
 
+                    res.data.data.goodslist.forEach(item=>{
+
+                        item._buy_users = item._buy_users.slice(0,10)
+                    })
+
 
                     this.data.goodsList = this.data.goodsList.concat(res.data.data.goodslist)
 

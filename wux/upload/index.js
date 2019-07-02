@@ -36,7 +36,7 @@ baseComponent({
         header: {
             type: Object,
             value: {
-                'Authorization': getApp().globalData.userInfo.token || wx.getStorageSync('userInfo').token,
+                'Authorization': getApp().globalData.userInfo?getApp().globalData.userInfo.token : wx.getStorageSync('userInfo').token,
                 'content-type' : 'multipart/form-data'
             },
         },

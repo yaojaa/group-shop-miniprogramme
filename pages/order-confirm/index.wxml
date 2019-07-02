@@ -11,7 +11,7 @@
             </view>
         </view>
         <form bindsubmit="formSubmit" report-submit="true" data-fn="createOrder">
-            <button class="btn primary w-min-lg lg" formType="submit" loading="{{loading}}" disabled="{{loading}}">立即支付</button>
+            <button class="btn primary w-min-lg lg linenear_bg" formType="submit" loading="{{loading}}" disabled="{{loading}}">立即支付</button>
         </form>
     </view>
     <view class="content-wrap">

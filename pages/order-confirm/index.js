@@ -27,7 +27,9 @@ Page({
         this.setData({
             address_load: true
         })
-        util.wx.get('/api/user/address_list')
+        util.wx.get('/api/user/address_list',{
+            pagesize:5
+        })
             .then(res => {
                 this.setData({
                     address_load: false
@@ -353,6 +355,8 @@ Page({
                 signType: data['signType'],
                 paySign: data['paySign'],
                 success: (res) => {
+
+                    console.log(res)
 
 
                     util.wx.post('/api/pay/orderpay', {

@@ -1,9 +1,7 @@
 {
-    "window":
-    {
-        "navigationBarTitleText": "完善信息方便联系"
-    },
-    "usingComponents":
+  
+        "navigationBarTitleText": "完善信息",
+        "usingComponents":
     {
         "i-panel": "../../iView/panel/index",
         "i-input": "../../iView/input/index",

@@ -15,7 +15,7 @@ Page({
         is_loading: true,
         scrollTop: 0,
         store_money: 0,
-        pending_money: 0
+        pending_money: '***'
 
     },
     handleTabBarChange({ detail }) {
@@ -79,10 +79,12 @@ Page({
 
 
 
-
+        console.log(typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null)
 
         if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
+
+            return
         } else {
 
             this.setData({
@@ -95,6 +97,8 @@ Page({
         this.data.goodslist = []
         // this.getGoodsList()
         //this.getOrderCount()
+        this.get_store_info()
+        
 
     },
     getOrderCount() {
@@ -130,14 +134,11 @@ Page({
         console.log('get_store_info')
 
         util.wx.get('/api/seller/get_store_money').then(res => {
-            console.log(res)
-            if (res.data.code == 200) {
                 console.log('store_money: res.data.data.store_money', res.data.data.store_money)
                 this.setData({
                     pending_money: res.data.data.pending_money
                 })
-            }
-        })
+                    })
     },
 
 
@@ -238,8 +239,14 @@ Page({
         this.data.cpage = 1
 
         this.data.goodslist = []
-        this.getGoodsList()
+
+        if(app.globalData.userInfo){
+
+              this.getGoodsList()
         this.getOrderCount()
+
+        }
+      
 
 
     },
@@ -287,11 +294,6 @@ Page({
         }
 
 
-    },
-    onPageScroll: function(e) {
-        this.setData({
-            scrollTop: e.scrollTop
-        })
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)

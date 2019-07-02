@@ -632,8 +632,8 @@ color:#fff;
 width:90px;
 font-size:14px;
 margin-right:20px;
-padding:8px 10px;
-margin-top:10px;
+padding:8px 12px;
+margin-top:15px;
 }
 .marginTop{
     margin-top: -100rpx!important

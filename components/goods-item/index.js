@@ -46,10 +46,14 @@ Component({
     },
     //切换个人主页显示
     switchInSite(status){
+      wx.showLoading()
         util.wx.post("/api/seller/goods_change_recommend",{
             goods_id:this.goods_id,
             is_recommend:status  
         }).then(res=>{
+
+         wx.hideLoading()
+
 
           if(res.data.code == 200){
 
@@ -64,13 +68,17 @@ Component({
                 this.triggerEvent('recommend')
 
           }else{
-              wx.showToast({
-                    title:'设置失败请稍后重试',
-                    icon:'none'
-                })
+              
 
           }
 
+           },res=>{
+            wx.hideLoading()
+
+            wx.showToast({
+                    title:'设置失败请稍后重试',
+                    icon:'none'
+                })
            })
     },
        upDownGoods(e){

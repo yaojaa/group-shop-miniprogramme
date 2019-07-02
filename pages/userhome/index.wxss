@@ -73,6 +73,7 @@
 	margin-left: 20rpx;
 	flex:1;
 	position: relative;
+	padding-right:10px
 }
 .goods-item .content .title{
 	font-weight: bold;

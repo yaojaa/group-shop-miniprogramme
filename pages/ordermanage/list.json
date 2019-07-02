@@ -1,10 +1,6 @@
 {
     "enablePullDownRefresh": true,
     "navigationBarTitleText": "管理订单",
-    "window":
-    {
-        "backgroundTextStyle": "dark"
-    },
     "usingComponents":
     {
         "i-modal": "../../iView/modal/index",

@@ -316,6 +316,10 @@ Page({
     },
 
     add_access() {
+
+        if(!app.globalData.userInfo){
+            return
+        }
         //提交访问记录
         util.wx.get('/api/index/add_access', {
             type: 'goods_detail',
@@ -410,8 +414,32 @@ Page({
 
 
 
-        console.log('用户离开了')
+        console.log('用户离开了 onHide')
+
+        this.setStayTime()
+
+       
+ 
         
+    },
+    setStayTime(){
+                //提交访问记录
+        if(this.access_id){
+
+             this.leaveDate = new Date()
+
+        //用户停留时间毫秒
+        const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
+
+
+          util.wx.get('/api/index/set_user_staytime', {
+            access_id: this.access_id,
+            user_staytime: userStayTime,
+        })
+
+
+        }
+ 
     },
     onLoad: function(option) {
         console.log('用户进入了', option)
@@ -783,30 +811,12 @@ Page({
      */
     onUnload: function() {
 
-        if (timer2) {
-            clearTimeout(timer2)
-            console.log('timer2', timer2)
-            timer2 == null
-        }
+       
+
+        console.log('用户离开了onUnload')
+        this.setStayTime()
 
 
-        if (timer3) {
-            clearTimeout(timer3)
-            timer3 == null
-        }
-
-        console.log('用户离开了un')
-
-        this.leaveDate = new Date()
-
-        //用户停留时间毫秒
-        const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
-
-        //提交访问记录
-        util.wx.get('/api/index/set_user_staytime', {
-            access_id: this.access_id,
-            user_staytime: userStayTime,
-        })
 
 
     },
