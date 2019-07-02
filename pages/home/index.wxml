@@ -3,7 +3,7 @@
     <view class="head-box">
         <i-row>
             <i-col offset="1" span="4" i-class="col-class">
-                <navigator open-type="redirect"  url="../identify/identify">
+                <navigator   url="../identify/identify">
                     <view class="user-avatar">
                         <image class="user-avatar" src="{{userInfo.headimg}}" />
                         <view class="set-icon">

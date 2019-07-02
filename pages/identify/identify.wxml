@@ -28,5 +28,4 @@
 
         <button style="margin-top:200px" type="danger" class="linear_bg" bindtap="clearStorage">清除缓存 重新登录</button>
     </view>
-    <i-message id="message" />
 </view>

@@ -40,7 +40,7 @@
             </van-swipe-cell>
         </view>
     </view>
-    <view class="no-content white-bg" style="height:calc(100vh - 100rpx)" wx:else>
+    <view class="no-content white-bg" style="height:calc(100vh - 100rpx)" wx:if="{{ address.length ==0 && !loading }}">
         <view class="no-content-bd" style="margin-top: -200rpx">
             <van-icon name="location-o" color="#49b34d" size="100rpx" />
             <view class="no-content-des"><text>暂无收货地址</text></view>

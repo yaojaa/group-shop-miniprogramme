@@ -33,6 +33,11 @@ Page({
             get_user_name: opt.get_user_name,
             get_user_avatar: opt.get_user_avatar
         })
+
+        this.data.pindex = opt.pindex
+        this.data.cindex = opt.cindex
+
+
         this.getData()
     },
     onSwitch(e) {
@@ -62,10 +67,17 @@ Page({
                     express_code: _this.data.express_code
                 }).then(res => {
                     if (res.data.code == 200) {
+
                         wx.showToast({
                             title: '发货成功'
                         })
-                        wx.navigateBack()
+
+                        const key = 'dataList['+this.data.pindex+']['+this.data.cindex+']'
+
+
+                        util.setParentData({
+                             [key]: res.data.data
+                        })
                     }
                 },res=>{
 

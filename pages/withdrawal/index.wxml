@@ -6,14 +6,14 @@
  -->	</view>
 	<view class="money-box"><view class="money-yuan">¥ </view><view class="money-num"> {{pending_money}}</view></view>
 	<view class="withdraw-box">
-	<input value="{{inputMoney}}" type="number" bindchange="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
+	<input value="{{inputMoney}}" type="number" bindinput="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
 	</view>
 	<button type="primary" class="linenear_bg" bindtap="getMoney"> 立即提现 </button>
 
 
 	<scroll-view scroll-y  style="height: 120px" class="list" wx:if="{{withdrawalslist.length}}">
 
-		<view class="item" key="{{index}}" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
+		<view class="item" wx:key="{{index}}" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
 			
 {{item.apply_time_txt}}
  申请金额：{{item.apply_money}}

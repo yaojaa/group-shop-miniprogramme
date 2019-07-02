@@ -85,25 +85,7 @@ Page({
         })
 
     },
-    getPhoneNumber(e) {
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/get_wx_mobile',
-            method: 'post',
-            data: {
-                token: app.globalData.token,
-                iv: e.detail.iv,
-                encryptedData: e.detail.encryptedData,
-                session_key: wx.getStorageSync('session_key')
 
-            },
-            success: (res) => {
-                this.setData({
-                    mobile: res.data.data.phoneNumber
-                })
-
-            }
-        })
-    },
     clearStorage() {
 
         wx.clearStorageSync()

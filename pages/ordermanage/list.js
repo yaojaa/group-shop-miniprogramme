@@ -200,9 +200,10 @@ Page({
 
 
             wx.navigateTo({
-                url: '../to-send/index?get_user_avatar=' + avatar + '&get_user_name=' + user_name + '&order_id=' + order_id
+                url: '../to-send/index?get_user_avatar=' + avatar + '&get_user_name=' + user_name + '&order_id=' + order_id+ '&cindex=' + cindex+ '&pindex=' + pindex
             })
-
+            
+            
             return
         }
 
@@ -266,7 +267,6 @@ Page({
 
     },
     //发货操作
-    sendGoods() {},
 
 
 
@@ -482,50 +482,7 @@ Page({
             visible4_pay: false
         })
     },
-    setPay() {
 
-        wx.request({
-            url: '/api/seller/set_order_action',
-            method: 'post',
-            data: {
-                token: app.globalData.token,
-                order_id: this.data.order_id,
-                note: this.data.note,
-
-                action: 'pay'
-            },
-            success: (res) => {
-                this.setData({
-                    visible4_pay: false
-                })
-                if (res.data.code == 0) {
-                    this.resetPageNumber()
-                    this.getOrderList()
-
-                    wx.showToast({ title: '设为支付成功' })
-
-                    this.data.note = ''
-                    this.toConfirm({ detail: { index: -1 } })
-
-                } else {
-
-                    $Message({
-                        content: res.data.msg,
-                        type: 'error'
-                    });
-                }
-            }
-        })
-
-    },
-
-    // 设为支付
-    //   if(pay_status == 0 && order_status == 0){
-    //     确认订单接口：/seller/set_order_action
-    //     参数：order_id=123 action='pay' note='备注信息'
-    //     方式：POST
-    // }
-    // 
     //提醒取货
     setTips(e) {
 
@@ -610,63 +567,6 @@ Page({
     },
 
 
-    //发货
-    toShipping(e) {
-
-
-        // 3 发货
-        //   if(order_status == 1 && shipping_status == 0){
-        //       发货接口：/seller/delivery_handle
-        //       参数：
-        //         order_id       订单id
-        //         shipping_name  快递名称
-        //         invoice_no     快递单号
-        //         note           备注
-        //       方式：POST
-        //   }
-
-        wx.request({
-            url: 'https://www.daohangwa.com/api/seller/delivery_handle',
-            method: 'post',
-            data: {
-                token: app.globalData.token,
-                order_id: this.data.order_id,
-                note: this.data.note,
-                shipping_name: '',
-                invoice_no: '',
-
-
-            },
-            success: (res) => {
-                this.setData({
-                    visible2: false
-                })
-                if (res.data.code == 0) {
-                    // this.resetPageNumber()
-                    // this.getOrderList()
-                    wx.showToast({ title: "发货成功" })
-                    // this.data.dataList
-                    var key = 'dataList[' + this.data.currentIndex + '].shipping_status';
-
-                    console.log(key)
-                    this.setData({
-                        [key]: 1
-                    })
-
-
-                    // this.data.note = '',
-                    this.getStatistics()
-                } else {
-                    $Message({
-                        content: res.data.msg,
-                        type: 'error'
-                    });
-                }
-            }
-        })
-
-
-    },
     openConfirm({ target }) {
         console.log(target)
         this.setData({
