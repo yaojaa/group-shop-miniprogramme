@@ -90,9 +90,9 @@ export default class Painter {
       this.ctx.closePath();
       this.ctx.fill();
       // 在 ios 的 6.6.6 版本上 clip 有 bug，禁掉此类型上的 clip，也就意味着，在此版本微信的 ios 设备下无法使用 border 属性
-      if (!(getApp().systemInfo &&
-          getApp().systemInfo.version <= '6.6.6' &&
-          getApp().systemInfo.platform === 'ios')) {
+      if (!(getApp().globalData.systemInfo &&
+          getApp().globalData.systemInfo.version <= '6.6.6' &&
+          getApp().globalData.systemInfo.platform === 'ios')) {
         this.ctx.clip();
       }
       this.ctx.globalAlpha = 1;
@@ -160,7 +160,7 @@ export default class Painter {
       }
       case 'image': {
         // image 如果未设置长宽，则使用图片本身的长宽
-        const ratio = getApp().systemInfo.pixelRatio ? getApp().systemInfo.pixelRatio : 2;
+        const ratio = getApp().globalData.systemInfo.pixelRatio ? getApp().globalData.systemInfo.pixelRatio : 2;
         width = view.css && view.css.width ? view.css.width.toPx() : Math.round(view.sWidth / ratio);
         height = view.css && view.css.height ? view.css.height.toPx() : Math.round(view.sHeight / ratio);
         break;

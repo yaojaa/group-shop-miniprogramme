@@ -68,11 +68,13 @@ Component({
         return;
       }
 
-      if (!(getApp().gloabalData.systemInfo && getApp().systemInfo.screenWidth)) {
+      console.log(getApp().globalData.systemInfo)
+
+      if (!(getApp().globalData.systemInfo && getApp().globalData.systemInfo.screenWidth)) {
         try {
                     console.log('wx.getSystemInfoSync')
 
-          getApp().systemInfo = wx.getSystemInfoSync();
+          getApp().globalData.systemInfo = wx.getSystemInfoSync();
         } catch (e) {
           const error = `Painter get system info failed, ${JSON.stringify(e)}`;
           that.triggerEvent('imgErr', { error: error });
@@ -80,7 +82,7 @@ Component({
           return;
         }
       }
-      screenK = getApp().systemInfo.screenWidth / 750;
+      screenK = getApp().globalData.systemInfo.screenWidth / 750;
 
       this.downloadImages().then((palette) => {
         const { width, height } = palette;
