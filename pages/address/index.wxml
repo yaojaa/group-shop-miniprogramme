@@ -20,7 +20,7 @@
             <van-swipe-cell right-width="{{ 60 }}" wx:for="{{address}}" wx:key="{{index}}" disabled="{{disabled}}">
                 <view class="address-item">
                     <view class="flex align-center">
-                        <view class="mr-df ttm-checkbox align-self-center {{item.address_id==selected?'checked':''}}" wx:if="{{source}}" data-id="{{item.address_id}}" bindtap="setSelected">
+                        <view class="mr-df ttm-checkbox align-self-center {{item.address_id==selected?'checked':''}}" wx:if="{{source}}" data-id="{{item.address_id}}" data-item="{{item}}" bindtap="setSelected">
                             <van-icon name="success" custom-class="iconsuccess" />
                         </view>
                         <view class="bd" data-id="{{item.address_id}}" data-item="{{item}}" bindtap="setSelected">

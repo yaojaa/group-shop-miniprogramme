@@ -30,11 +30,12 @@
     <view class="sale-panel">
         <view class="sale-panel-bd">
             <view class="price-group">
-                {{goods.goods_name}}
                 <text class="symbol">￥</text>
-                <text class="price"> {{goods.price_min}}</text>
+                <text class="price">{{goods.price_min}}</text>
                 <text class="text-sm n-bold"> /起</text>
             </view>
+            <view class="text-sm text-muted">访问人数 {{goods.pageview_count
+                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
           
         </view>
         <view class="sale-panel-fd {{goods._expires !==1?'off':''}}">
@@ -55,12 +56,12 @@
     </view>
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
-       <!--      <view class="goods-name">
+            <view class="goods-name pv-xs">
                 {{goods.goods_name}}
-            </view> -->
+            </view>
 
-              <view class="text-sm">访问人数 {{goods.pageview_count
-                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
+ <!--              <view class="text-sm">访问人数 {{goods.pageview_count
+                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view> -->
             <!--             <view class="f12px text-info">访问人数 {{goods.pageview_count
                 }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view> -->
         </view>
