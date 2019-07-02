@@ -93,7 +93,7 @@ Page({
 
         this.data.cpage = 1
         this.data.goodslist = []
-        this.getGoodsList()
+        // this.getGoodsList()
         //this.getOrderCount()
 
     },

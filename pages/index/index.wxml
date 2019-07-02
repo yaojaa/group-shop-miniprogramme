@@ -69,7 +69,7 @@
                     </block>
                     <block wx:if="{{item.goods_images.length >= 3}}">
                         <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=2}}">
-                            <image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/200/h/200/interlace/1"></image>
+                            <image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/200/h/180/interlace/1"></image>
                         </view>
                     </block>
                     <!--  <scroll-view class="item-cover-scroll" scroll-x>

@@ -23,9 +23,9 @@ Page({
                     wechatnumber: res.data.data.wechatnumber
                 })
             } else {
-                $Message({
-                    content: res.data.msg,
-                    type: 'error'
+               wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
                 });
             }
 

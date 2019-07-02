@@ -135,6 +135,14 @@ Page({
 
                 }else{
 
+                    if(goods.self_address.length == 0){
+                        wx.showToast({
+                            title:'该商品没有录入取货点',
+                            icon:'none'
+                        })
+                      return
+                    }
+
                     this.setData({
                         self_address: goods.self_address,
                         address_id: goods.self_address[0].self_address_id,

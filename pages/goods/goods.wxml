@@ -111,16 +111,12 @@
             <view class="load-area" wx:if="{{!goods}}">
                 <wux-spin wux-class="spin" />
             </view>
-            <view class="solid-top"></view>
-            <view style="padding: 20rpx 0">
-                <view class="flex text-center ">
-                    <view class="flex-sub"><button class="btn  white " bindtap='copyGoods'><text class="primary-text">复制</text></button></view>
-                    <div class="solid-right"></div>
-                    <view class="flex-sub"><button class="btn  white " bindtap='copyDetail'><text class="primary-text">生成文字接龙</text></button></view>
-                    <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
-                </view>
-            </view>
+         
         </view>
+
+         
+
+
         <view class='sub-title scale-b-1px contentBox'>
             最近参与
         </view>
@@ -131,9 +127,8 @@
                 </button>
             </view>
 
-            <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
+       <!--      <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll"> -->
 
-                <view>
                     <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{index}}">
                         <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
                             <text class="number">{{item.create_number}} </text>
@@ -151,12 +146,11 @@
                             <view class="bottom-line"></view>
                         </view>
                     </block>
-                </view>
 
-                <view class="text-center" hidden="{{!orderUsersLoading}}">
+           <!--      <view class="text-center" hidden="{{!orderUsersLoading}}">
                     <wux-spin></wux-spin>
                 </view>
-            </scroll-view>
+            </scroll-view> -->
         </view>
         <view wx:if="{{goods.content_imgs.length}}">
             <view class='sub-title scale-b-1px'>
@@ -172,6 +166,14 @@
             <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
     </view>
+                <view class="flex text-center" style="padding: 10px 0">
+                    <view class="flex-sub"><button class="btn   " bindtap='copyGoods'>
+<i-icon type="emoji" color="#999" />                        </button></view>
+                    <div class="solid-right"></div>
+                    <view class="flex-sub"><button class="btn   " bindtap='copyDetail'><text class="text-muted">生成文字接龙</text></button></view>
+                    <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
+                </view>
+
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />

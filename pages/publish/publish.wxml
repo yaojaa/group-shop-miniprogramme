@@ -7,7 +7,7 @@
         <view class="weui-uploader weui-cells_form weui-cell">
             <view class="weui-uploader__bd">
                 <view class="weui-uploader__files" id="uploaderFiles">
-                    <view wx:for="{{goods_images}}" wx:key="*this" class="weui-uploader__file" style="background-image:url({{item.img_url}}?imageMogr2/thumbnail/100x)">
+                    <view wx:for="{{goods_images}}" wx:key="{{item.img_url}}" class="weui-uploader__file" style="background-image:url({{item.img_url}}?imageMogr2/thumbnail/100x)">
                         <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#ccc" size="26" type="close" />
                     </view>
                     <view wx:if="{{goods_images.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage">

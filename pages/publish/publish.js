@@ -460,7 +460,7 @@ Page({
                     photoProgress: true
                 })
 
-                console.log(app.globalData)
+                console.log('选择图片数量',tempFilePaths.length)
 
                 var uploadImgCount = 0;
                 for (var i = 0, h = tempFilePaths.length; i < h; i++) {
@@ -476,11 +476,9 @@ Page({
                             "Authorization": app.globalData.token
                         },
                         success: (res) => {
-                            uploadImgCount++;
-                            console.log('上传成功结果', JSON.parse(res.data))
                             var data = JSON.parse(res.data);
 
-                            if(data.code !==200){
+                             if(data.code !==200){
 
                                 wx.showToast({
                                     title:'请先登录',
@@ -494,6 +492,12 @@ Page({
                                 return
                             }
 
+
+                            uploadImgCount++;
+                            console.log('上传成功', uploadImgCount, JSON.parse(res.data))
+
+                           
+
                             console.log(data.data.file_url)
                             this.data.goods_images.push({
                                 img_url: data.data.file_url,
@@ -502,6 +506,7 @@ Page({
 
                             console.log(this.data.goods_images)
 
+                            
                             this.setData({
                                 goods_images: this.data.goods_images
                             })
@@ -513,7 +518,7 @@ Page({
                                 })
                             }
                         },
-                        fail: function(res) {
+                        fail: (res) =>{
 
                             this.setData({
                                 photoProgress: false

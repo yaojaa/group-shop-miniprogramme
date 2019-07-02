@@ -147,7 +147,6 @@ Page({
                 hasScope: true
             })
 
-            this.add_access()
 
             return
         }
@@ -297,9 +296,9 @@ Page({
 
             console.log('pages',pages)
 
-        // wx.navigateTo({
-        //     url: '../userhome/index?id=' + this.data.store_id
-        // })
+        wx.navigateTo({
+            url: '../userhome/index?id=' + this.data.store_id
+        })
     },
 
     getShareImg(id) {
@@ -412,16 +411,7 @@ Page({
 
 
         console.log('用户离开了')
-        this.leaveDate = new Date()
-
-        //用户停留时间毫秒
-        const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
-
-        //提交访问记录
-        util.wx.get('/api/index/set_user_staytime', {
-            access_id: this.access_id,
-            user_staytime: userStayTime,
-        })
+        
     },
     onLoad: function(option) {
         console.log('用户进入了', option)
@@ -603,19 +593,9 @@ Page({
     },
     homepage() {
 
-           wx.redirectTo({
-            url: '../home/index'
-        })
-
-           return
-
-          var pages = getCurrentPages();
-
-            console.log('pages',pages)
-
+       var pages = getCurrentPages();
        var prevPage = pages[pages.length - 2]; //上一个页面
-       console.log(prevPage.route == 'pages/home/index')
-       if(prevPage.route == 'pages/home/index'){
+       if(prevPage && prevPage.route == 'pages/home/index'){
         wx.navigateBack()
        }else{
        wx.redirectTo({
@@ -623,9 +603,6 @@ Page({
         })
 
        }
-
-
-       
     },
     getUserInfoEvt: function(e) {
         console.log(e)
@@ -812,7 +789,18 @@ Page({
             timer3 == null
         }
 
-        console.log('用户离开了')
+        console.log('用户离开了un')
+
+        this.leaveDate = new Date()
+
+        //用户停留时间毫秒
+        const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
+
+        //提交访问记录
+        util.wx.get('/api/index/set_user_staytime', {
+            access_id: this.access_id,
+            user_staytime: userStayTime,
+        })
 
 
     },
@@ -916,43 +904,43 @@ Page({
             }
         });
     },
-    buyUserScroll: function(e) {
-        if(orderUsersFlag){
-            return;
-        }
+    // buyUserScroll: function(e) {
+    //     if(orderUsersFlag){
+    //         return;
+    //     }
 
-        orderUsersFlag = true;
+    //     orderUsersFlag = true;
 
-        this.setData({
-            orderUsersLoading: true
-        })
+    //     this.setData({
+    //         orderUsersLoading: true
+    //     })
 
-        util.wx.get('/api/goods/get_minorders_by_goods_id', {
-            goods_id: this.data.goods_id,
-            pagesize: 30,
-            cpage: orderUsersPage
-        }).then(res => {
+    //     util.wx.get('/api/goods/get_minorders_by_goods_id', {
+    //         goods_id: this.data.goods_id,
+    //         pagesize: 30,
+    //         cpage: orderUsersPage
+    //     }).then(res => {
 
-                console.log(res)
+    //             console.log(res)
 
-            if(res.data.data.order_list && res.data.data.order_list.length > 0){
-                orderUsersPage ++;
+    //         if(res.data.data.order_list && res.data.data.order_list.length > 0){
+    //             orderUsersPage ++;
 
-                orderUsersFlag = false;
+    //             orderUsersFlag = false;
 
-                this.setData({
-                    orderUsersLoading: false,
-                    ['_orderUsers_[' + this.data._orderUsers_.length + ']']: res.data.data.order_list
-                })
-            }else{
-                this.setData({
-                    orderUsersLoading: false
-                })
-            }
+    //             this.setData({
+    //                 orderUsersLoading: false,
+    //                 ['_orderUsers_[' + this.data._orderUsers_.length + ']']: res.data.data.order_list
+    //             })
+    //         }else{
+    //             this.setData({
+    //                 orderUsersLoading: false
+    //             })
+    //         }
 
-        })
+    //     })
 
-    },
+    // },
     onPageScroll: function(e) {
 
         if (e.scrollTop > 300 && !this.data.toShowPic) {

@@ -4,7 +4,7 @@ page{
 }
 
 .guest-box{
-		margin-bottom: 30px
+		margin-bottom: 10px
 
 }
 
@@ -15,7 +15,7 @@ page{
 	display: -o-flex;
 	display: flex;
 	background:#ffffff;
-	padding: 10px 0
+	padding: 10px
 }
 .guest-item .hd{
 	width: 80rpx;

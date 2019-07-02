@@ -146,7 +146,7 @@ page{
 .item-img-box-three {
     width: 200rpx;
     border-radius: 8px;
-    height: 200rpx;
+    height: 180rpx;
     overflow: hidden;
 }
 
