@@ -137,6 +137,12 @@ Page({
             this.getOrderUserList(this.data.goods_id)
         }
 
+        if(!app.globalData.userInfo){
+            this.setData({
+                showAuth:true
+            })
+        }
+
 
     },
     onReady: function() {
