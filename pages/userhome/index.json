@@ -5,7 +5,8 @@
     {
     "i-icon": "../../iView/icon/index",
     "i-custom-bar": "../../components/custom-bar/index",
-     "van-action-sheet": "../../vant/action-sheet/index"
+     "van-action-sheet": "../../vant/action-sheet/index",
+    "van-popup": "../../vant/popup/index"
 
     }
 }

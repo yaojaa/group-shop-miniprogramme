@@ -235,7 +235,7 @@
     </view>
     <!--     <i-message id="message" />
  -->
-    <van-popup custom-class="authPopBox" show="{{ showAuth }}" bind:close="onClose">
+    <van-popup custom-class="authPopBox" show="{{ showAuth }}" >
         <view class="logo">
             <image class="avatar" src="{{goods.user.headimg}}" />
         </view>

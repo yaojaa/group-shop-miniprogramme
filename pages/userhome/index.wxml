@@ -71,6 +71,17 @@
   </view>
 
 
+     <van-popup custom-class="authPopBox" show="{{ showAuth }}" >
+        <view class="logo">
+            <image class="avatar" src="{{info._user.headimg}}" />
+        </view>
+        <view class="info">
+            您好，请允许获取公开信息
+        </view>
+        <button size="default" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
+    </van-popup>
+
+
      <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{false}}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
@@ -97,6 +108,7 @@
         </view>
     </view>
 
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">33333</button>
 
 
     <view class="weui-footer">

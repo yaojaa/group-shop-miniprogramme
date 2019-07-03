@@ -643,6 +643,7 @@ Page({
         if (e.detail.errMsg !== "getUserInfo:ok") {
             return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
         }
+        
         app.globalData.userInfo = e.detail.userInfo
         wx.showLoading()
         app.getOpenId().then((openid) => {
