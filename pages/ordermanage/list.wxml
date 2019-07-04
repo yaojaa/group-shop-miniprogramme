@@ -1,7 +1,7 @@
 <view class="container">
     <view class="order-title text-primary">
-        <navigator open-type="redirect"  url="/pages/goods/goods?goods_id={{goods_id}}" hover-class="none">
-            <text class="goods_title">{{goods_name}}</text>
+        <navigator open-type="redirect"  url="/pages/home/index" hover-class="none">
+            <text class="goods_title">返回</text>
         </navigator>
         <view class="actionsButtons">
             <view>
@@ -84,7 +84,7 @@
             </view>
             <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}"  >
                 <button bindtap="copy" data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="copybtn btn gray hollow xs round button-hover"> 复制地址</button>
-                <text class="address" bindtap="copy">
+                <text class="address">
                     收件人：{{item.consignee}} 
                     电话：{{item.mobile}}
                     地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}}

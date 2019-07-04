@@ -95,6 +95,16 @@ Page({
      */
     onLoad: function(options) {
 
+              if (options.scene) {
+            options = decodeURIComponent(options.scene)
+
+            options = options.split('?')[1] || options
+
+            options = util.url2json(options)
+        }
+
+
+
         this.store_id = options.id || options.store_id
 
         let pages = getCurrentPages(); //当前页面栈
@@ -112,9 +122,25 @@ Page({
 
         this.cpage = 1
         this.getDataList()
-       this.getStoreInfo()
+        this.getStoreInfo()
 
     },
+     getPhoneNumber (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+
+
+         if(e.detail.errMsg.indexOf('fail')>0){
+            return wx.showToast({
+                title:'请允许授权',
+                icon:'none'
+            })
+
+        }
+      
+
+     },
 
     add_access(){
         //增加访问记录
@@ -261,9 +287,32 @@ Page({
     },
 
     onPageScroll: function(e) {
-        this.setData({
-            scrollTop: e.scrollTop
+
+        this.scrollTop = e.scrollTop
+
+        if(this.timer){
+            return
+        }else{
+
+         this.timer = setTimeout(()=>{
+
+         this.setData({
+            scrollTop: this.scrollTop
         })
+
+         clearTimeout(this.timer)
+         this.timer = null
+
+        },300)
+
+
+
+        }
+        
+
+
+
+        
     },
 
     /**
@@ -291,7 +340,7 @@ Page({
      */
     onShareAppMessage: function(res) {
         return {
-            title: '来逛逛'+this.data.info.store_name +'的好货'
+            title: '来逛逛'+this.data.info.store_name +'的好东西'
         }
     }
 })

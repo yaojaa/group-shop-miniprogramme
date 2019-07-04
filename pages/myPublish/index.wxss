@@ -181,7 +181,7 @@ padding:14rpx 0 0 5rpx
 }
 
 .new-goods{
-    background: url('http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.L93aAkSP1WBu55d11a6a3dd783840a0c548161476571.jpg');
+    background: url('https://static.kaixinmatuan.cn/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.L93aAkSP1WBu55d11a6a3dd783840a0c548161476571.jpg');
     background-color: #ffffff;
     background-size: 50%;
     background-position: center 40%;

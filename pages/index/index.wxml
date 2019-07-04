@@ -117,7 +117,7 @@
         <i-icon size="22" type="coordinates" />开启定位为你推荐附近的好物</i-button>
     <view class="footer_bar">
         <i-tab-bar current="nearby" color="#188f00" bindchange="handleTabBarChange">
-            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="发现"></i-tab-bar-item>
+            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="关注"></i-tab-bar-item>
             <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
         </i-tab-bar>

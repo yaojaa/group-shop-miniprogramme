@@ -11,13 +11,13 @@
 
 
 <view class="circle_warpper" >
-      <navigator url="../publish/publish" hover-class="none">
+      <navigator open-type="redirect" url="../publish/publish" hover-class="none">
 
      <view class="circle">
 
 
        <i-icon size="42" color="#ffffff"  type="add" />
-       <view class="new">发布新商品</view>
+       <view class="new">发布新宝贝</view>
        
      </view>
           </navigator>
@@ -39,7 +39,7 @@
 <!--   <i-icon type="success"  size="34" color="#c6c6c6" />
  -->  </view>
   <view class="flex-item-5 left">
-    <view class="f16 text-default"> <view>特好吃的草莓到货啦</view>
+    <view class="f16 text-default"> <view>演示模板：特好吃的草莓</view>
      <text class="f14 text-muted">填写提货点，用户自提</text> </view>
    </view>
   <!-- </view> -->
@@ -67,7 +67,7 @@
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon3.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f16 text-default"> <view>产地特好吃的大樱桃包邮</view>
+    <view class="f16 text-default"> <view>演示模板：特好吃的樱桃</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
   <!-- </view> -->

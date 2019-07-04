@@ -21,8 +21,7 @@
                 <view class="user-info-bd">
                     <text class="name">{{goods.user.nickname}}</text>
                   <!--   <text class="info ml-xs">粉丝{{goods.buyuser_count}}人 </text> -->
-                    <!--   <wux-icon type="ios-call" color="#fff" size="18" wux-class="icon" />
-                <wux-icon type="ios-chatbubbles" color="#fff" size="18" wux-class="icon" /> -->
+                    
                 </view>
             </view>
         </view>
@@ -59,11 +58,6 @@
             <view class="goods-name pv-xs">
                 {{goods.goods_name}}
             </view>
-
- <!--              <view class="text-sm">访问人数 {{goods.pageview_count
-                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view> -->
-            <!--             <view class="f12px text-info">访问人数 {{goods.pageview_count
-                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view> -->
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
@@ -85,12 +79,12 @@
                 <view class="solid-top"></view>
                 <view class="goods-price-item flex-box">
                     <view class="pics" wx:if="{{item.spec_pic}}">
-                        <image bindtap="showGallerySpec" data-urls="{{item.spec_pic}}" data-current="{{ index }}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85"></image>
+                        <image bindtap="showGallerySpec" data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85"></image>
                         <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">{{item.spec_pic.length}}张</view>
                     </view>
                     <view class="info">
                         <view class="f14 text-default">{{item.spec_name}} <text class="price f12px"> ¥{{item.spec_price}}</text></view>
-                        <view wx:if="{{item.spec_desc}}" class="f14px text-muted" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
+                        <view wx:if="{{item.spec_desc}}" class="f14px text-warning" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
                     </view>
                     <view class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>

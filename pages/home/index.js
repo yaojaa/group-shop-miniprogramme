@@ -49,7 +49,8 @@ Page({
 
         var id = e.detail
 
-        var c
+        var c = null
+
 
         this.data.goodslist.forEach((item, index) => {
             console.log(item.goods_id, id)
@@ -59,7 +60,9 @@ Page({
             }
         })
 
-        if (c) {
+        console.log(c,'c')
+
+        if (c !==null) {
 
             this.data.goodslist.splice(c, 1)
 
@@ -75,11 +78,6 @@ Page({
      */
     onLoad: function(options) {
 
-        this.data.cpage = 1
-
-
-
-        console.log(typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null)
 
         if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
@@ -95,8 +93,8 @@ Page({
 
         this.data.cpage = 1
         this.data.goodslist = []
-        // this.getGoodsList()
-        //this.getOrderCount()
+        this.getGoodsList()
+        this.getOrderCount()
         this.get_store_info()
         
 
@@ -184,12 +182,6 @@ Page({
             })
 
     },
-
-
-
-
-
-
     new_btn: function() {
         wx.navigateTo({
             url: '../publish-select/index'
@@ -235,21 +227,7 @@ Page({
 
 
 
-    onShow() {
-        this.data.cpage = 1
 
-        this.data.goodslist = []
-
-        if(app.globalData.userInfo){
-
-              this.getGoodsList()
-        this.getOrderCount()
-
-        }
-      
-
-
-    },
 
 
     /**
@@ -278,6 +256,14 @@ Page({
      */
     onPullDownRefresh: function() {
 
+         this.data.cpage = 1
+
+        this.data.goodslist = []
+
+         this.getGoodsList()
+        this.getOrderCount()
+
+        
     },
 
     /**

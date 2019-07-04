@@ -1,7 +1,7 @@
 <view class="container gray-wrap cf">
     <view class="p-df white-bg flex mv-sm align-center">
         <view class="wuliu-box">
-            <wux-icon type="md-airplane" color="#fff" size="48rpx"></wux-icon>
+            <i-icon type="time" color="#fff" size="48" />
         </view>
         <view class="flex-sub ml-df">
             <view class="item-list">

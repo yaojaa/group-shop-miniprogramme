@@ -275,7 +275,13 @@ Page({
 
     showGallerySpec(e) {
         const { current } = e.currentTarget.dataset
-        const { urls } = e.currentTarget.dataset
+        var { urls } = e.currentTarget.dataset
+
+        urls = urls.map(item=>{
+            return item+'?imageMogr2/thumbnail/700x/size-limit/35k!'
+        })
+
+        console.log(urls)
 
         this.$wuxGallery = $wuxGallery()
 
@@ -293,7 +299,7 @@ Page({
             },
             onChange(e) {
                 console.log(e)
-            },
+            }
         })
     },
 
@@ -307,7 +313,7 @@ Page({
         })
     },
 
-    getShareImg(id) {
+    getShareImg() {
 
 
         util.wx.get('/api/index/goods_card', {
@@ -318,7 +324,9 @@ Page({
                 this.shareImg = res.data.data.path
             }
 
-        })
+        }).catch(e=>{
+                return
+            })
     },
 
     add_access() {
@@ -399,26 +407,31 @@ Page({
 
 
                 }
+            },res=>{
+                wx.showToast({
+                    title:'商品不存在啦',
+                    icon:'none'
+                })
+
+                setTimeout(()=>{
+
+                 wx.redirectTo({
+                    url:'../home/index'
+                })
+
+                },3000)
+
+                
+
+            }).catch(e=>{
+                return
             })
     },
     onHide: function() {
         // 用户查看图片不触发
         if (this.data.imgPreviewFlag) { return; }
 
-        if (timer2) {
-
-            clearTimeout(timer2)
-            console.log('this.timer2', timer2)
-            timer2 == null
-        }
-
-
-        if (timer3) {
-            clearTimeout(timer3)
-            timer3 == null
-        }
-
-
+        
 
         console.log('用户离开了 onHide')
 
@@ -454,8 +467,6 @@ Page({
             option = decodeURIComponent(option.scene)
 
             option = option.split('?')[1] || option
-
-            console.log(' decodeURIComponent(option.scene)', option)
 
             option = util.url2json(option)
         }
@@ -643,7 +654,7 @@ Page({
         if (e.detail.errMsg !== "getUserInfo:ok") {
             return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
         }
-        
+
         app.globalData.userInfo = e.detail.userInfo
         wx.showLoading()
         app.getOpenId().then((openid) => {

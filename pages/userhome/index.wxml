@@ -1,13 +1,11 @@
 <i-custom-bar showBackIcon="{{showIcon}}" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
 </i-custom-bar>
 <view class="container cf">
-    <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <view class="swiper">
         <block wx:for="{{store_slide}}">
-            <swiper-item>
                 <image src="{{item}}?imageView2/1/w/600/h/400/interlace/1" height="400" class="slide-image" />
-            </swiper-item>
         </block>
-    </swiper>
+    </view>
     <view class="user-head pb-sm">
         <view class="avatar">
             <image src="{{info._user.headimg}}" />
@@ -22,7 +20,7 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-            主页累计访问<text class="text-default">{{info._access_count}}人</text> 成交<text class="text-default">{{info._order_count}}</text> 笔
+            主页累计<text class="text-default">{{info._access_count}}人访问 </text> 成交<text class="text-default">{{info._order_count}}</text> 笔
         </view>
     </view>
     <view class="goods-box">
@@ -107,8 +105,6 @@
             </view>
         </view>
     </view>
-
-<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">33333</button>
 
 
     <view class="weui-footer">

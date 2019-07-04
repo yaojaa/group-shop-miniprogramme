@@ -166,7 +166,6 @@ baseComponent({
             }
         },
         updateIsLastElement(isLast) {
-            console.log('isLast??',isLast)
             this.setData({ isLast })
         },
     },
