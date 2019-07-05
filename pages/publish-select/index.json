@@ -1,11 +1,9 @@
 {
-    "navigationBarTitleText": "开团",
+    "navigationBarTitleText": "",
     "usingComponents":
     {
-        "i-input-number": "../../iView/input-number/index",
         "i-button": "../../iView/button/index",
         "i-icon": "../../iView/icon/index",
-        "i-custom-bar": "../../components/custom-bar/index",
-        "wux-notice-bar": "../../wux/notice-bar/index"
+        "i-custom-bar": "../../components/custom-bar/index"
     }
 }

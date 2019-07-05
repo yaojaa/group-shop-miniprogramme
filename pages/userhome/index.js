@@ -18,7 +18,8 @@ Page({
         scrollTop: 0,
         showSetting:false,
         sharebar:false,
-        poster:false
+        poster:false,
+        showAuth:false
 
     },
     toSetting() {
@@ -52,9 +53,10 @@ Page({
                         shareFriendsImg:res.data.data
                     })
             },res=>{
+
                 wx.showToast({
                     title:res.data.msg,
-                    icon:none
+                    icon:'none'
                 })
             })
         }
@@ -93,6 +95,16 @@ Page({
      */
     onLoad: function(options) {
 
+              if (options.scene) {
+            options = decodeURIComponent(options.scene)
+
+            options = options.split('?')[1] || options
+
+            options = util.url2json(options)
+        }
+
+
+
         this.store_id = options.id || options.store_id
 
         let pages = getCurrentPages(); //当前页面栈
@@ -110,10 +122,27 @@ Page({
 
         this.cpage = 1
         this.getDataList()
+        this.getStoreInfo()
 
     },
+     getPhoneNumber (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
 
-    getStoreInfo() {
+
+         if(e.detail.errMsg.indexOf('fail')>0){
+            return wx.showToast({
+                title:'请允许授权',
+                icon:'none'
+            })
+
+        }
+      
+
+     },
+
+    add_access(){
         //增加访问记录
         util.wx.post('/api/index/add_access',{
                 type:'store_homepage', 
@@ -121,6 +150,10 @@ Page({
           user_scene:app.globalData.userScene,
           user_phone:app.globalData.userPhone
         })
+    },
+
+    getStoreInfo() {
+        
 
 
 
@@ -128,10 +161,7 @@ Page({
                 store_id: this.store_id
             })
             .then(res => {
-                if (res.data.code == 200) {
-
-                    console.log(res)
-
+              
                     var store_slide
 
 
@@ -146,9 +176,8 @@ Page({
                         info: res.data.data,
                         showSetting: res.data.data.user_id == app.globalData.userInfo.user_id? true:false
                     })
+            },res=>{
 
-
-                }
             })
 
 
@@ -170,7 +199,7 @@ Page({
 
                     res.data.data.goodslist.forEach(item=>{
 
-                        item._buy_users = item._buy_users.slice(0,10)
+                        item._buy_users = item._buy_users.slice(0,16)
                     })
 
 
@@ -190,6 +219,33 @@ Page({
 
 
     },
+        getUserInfoEvt: function(e) {
+        console.log(e)
+        if (e.detail.errMsg !== "getUserInfo:ok") {
+            return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
+        }
+        
+        app.globalData.userInfo = e.detail.userInfo
+        wx.showLoading()
+        app.getOpenId().then((openid) => {
+            console.log(openid)
+            app.globalData.openid = openid
+            app.login_third(e.detail).then((res) => {
+                    console.group('登陆成功:', res)
+                    wx.hideLoading()
+                    this.setData({
+                        showAuth: false
+                    })
+
+                    this.add_access()
+                })
+                .catch(e => console.log(e))
+
+
+        })
+
+
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -203,9 +259,16 @@ Page({
      */
     onShow: function() {
 
+        if(!app.globalData.userInfo){
+            this.setData({
+                showAuth:true
+            })
+        }else{
+            this.add_access()
+        }
 
-        //主要信息
-        this.getStoreInfo()
+
+   
 
     },
 
@@ -224,9 +287,32 @@ Page({
     },
 
     onPageScroll: function(e) {
-        this.setData({
-            scrollTop: e.scrollTop
+
+        this.scrollTop = e.scrollTop
+
+        if(this.timer){
+            return
+        }else{
+
+         this.timer = setTimeout(()=>{
+
+         this.setData({
+            scrollTop: this.scrollTop
         })
+
+         clearTimeout(this.timer)
+         this.timer = null
+
+        },300)
+
+
+
+        }
+        
+
+
+
+        
     },
 
     /**
@@ -254,7 +340,7 @@ Page({
      */
     onShareAppMessage: function(res) {
         return {
-            title: this.data.info.store_name
+            title: '来逛逛'+this.data.info.store_name +'的好东西'
         }
     }
 })

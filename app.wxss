@@ -125,6 +125,11 @@ button.linenear_bg_light {
     -webkit-line-clamp: 2;
 }
 
+.text-hide.three {
+    -webkit-line-clamp: 3;
+}
+
+
 .text-white {
     color: #fff;
 }
@@ -185,7 +190,7 @@ button.warning {
 }
 
 .text-warning {
-    color: #f2a654 !important;
+    color: #ff4e00 !important;
 }
 
 .text-danger {

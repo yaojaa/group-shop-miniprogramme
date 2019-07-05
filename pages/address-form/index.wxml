@@ -10,7 +10,7 @@
             <van-checkbox name="is_address_default" value="{{ is_address_default }}" bind:change="addressDefault" checked-color="#49b34d">设为默认地址</van-checkbox>
         </view>
         <view class="m-df mt-xl">
-            <button class="btn xxl primary block" form-type="submit">
+            <button class="btn xl primary block linenear_bg" form-type="submit">
                 提交
             </button>
         </view>

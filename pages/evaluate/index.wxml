@@ -14,7 +14,7 @@
             <view class="solid-bottom"></view>
             <view class="goods-panel-bd pb-df">
                 <navigator url="../goods-detail/index" hover-class="none" class="flex mt-df goods-panel-item">
-                    <image src="http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg" class="cover mr-sm"></image>
+                    <image src="https://static.kaixinmatuan.cn/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg" class="cover mr-sm"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line text-black bold title">
                             FACIAL DRINK 修丽可强效补水

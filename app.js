@@ -288,13 +288,8 @@ console.log('userInfo',userInfo)
       this.userLoginReadyCallback(this.globalData.userInfo)
       }
 
-      //从其它页面进入返回到首页
-     // if( option.path !=='pages/goods/goods' && option.path!=='pages/ordermanage/list'){
-     //                this.redirect2Home()
-     //   }
-
     /**未登录或者缓存失效用户*/
-    }else if(option.path  !=='pages/goods/goods'){
+    }else if(option.path  !=='pages/goods/goods' && option.path  !=='pages/userhome/index' && option.path!=='pages/ordermanage/list'){
       console.log('该跳转到登录')
                     
       this.redirectToLogin()

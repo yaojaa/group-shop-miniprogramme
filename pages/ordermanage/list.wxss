@@ -67,7 +67,7 @@ background:#c90;
 /*新样式*/
 .order-title{
     font-size: 28rpx;
-    padding: 15rpx 15px;
+    padding: 15rpx 15px 20rpx;
     color:#333;
     position: relative;
 }

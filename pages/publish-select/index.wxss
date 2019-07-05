@@ -63,7 +63,7 @@ button.button{
 .circle_warpper{
 
   display: block;
-  margin: 40px auto;
+  margin: 80px auto 40px;
   width: 200rpx;
   height: 200rpx;
 

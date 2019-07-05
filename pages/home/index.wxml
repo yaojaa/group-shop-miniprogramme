@@ -25,7 +25,7 @@
             </i-col>
         </i-row>
     </view>
-    <i-panel i-class="marginTop" title="我的订单" extra="查看全部订单" link="../order-list/index">
+    <i-panel i-class="marginTop" title="我参与的" extra="查看全部" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
                  
@@ -66,7 +66,7 @@
     <view class="text-center">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
-    <i-panel title="我的商品" wx:if="{{goodslist.length > 0}}">
+    <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}">
         <view class="goods-box">
             <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                 <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
@@ -74,7 +74,11 @@
             <view class="text-center">
                 <wux-spin wx:if="{{is_loading}}"></wux-spin>
             </view>
-
+        </view>
+    </i-panel>
+    <i-panel wx:if="{{goodslist.length== 0 && !is_loading }}">
+        <view class='new-goods' bindtap="new_btn">
+            <text>发布一个 </text>
         </view>
     </i-panel>
     <view style="margin-bottom:100rpx"></view>
@@ -86,7 +90,7 @@
     </view> -->
     <view class="footer_bar">
         <i-tab-bar current="home" color="#188f00" bindchange="handleTabBarChange">
-            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="发现"></i-tab-bar-item>
+            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="关注"></i-tab-bar-item>
             <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
         </i-tab-bar>

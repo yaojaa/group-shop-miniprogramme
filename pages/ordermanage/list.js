@@ -145,10 +145,12 @@ Page({
 
         this.setData({
             goods_id: optiton.id,
-            delivery_method: optiton.delivery_method,
-            goods_name: optiton.goods_name
-
+            delivery_method: optiton.delivery_method
         })
+
+          wx.setNavigationBarTitle({
+              title: '管理订单：'+optiton.goods_name 
+            })
     },
     handleTab({ detail }) {
         console.log(detail)

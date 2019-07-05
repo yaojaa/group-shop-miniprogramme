@@ -19,7 +19,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.5",
+	"libVersion": "2.5.2",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
 	"cloudfunctionTemplateRoot": "",
@@ -79,7 +79,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=173",
+					"query": "goods_id=317",
 					"scene": 1001
 				},
 				{
@@ -423,6 +423,13 @@
 					"name": "当前",
 					"pathName": "pages/create_shop/index",
 					"query": "goods_id=301",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "主页启动",
+					"pathName": "pages/userhome/index",
+					"query": "id=1",
 					"scene": null
 				}
 			]

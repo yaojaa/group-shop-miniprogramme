@@ -2,9 +2,9 @@
     "navigationBarTitleText": "物流信息",
     "usingComponents":
     {
-    	  "i-custom-bar": "../../components/custom-bar/index",
+    	"i-custom-bar": "../../components/custom-bar/index",
         "van-icon": "../../vant/icon/index",
-        "wux-icon": "../../wux/icon/index",
+        "i-icon": "../../iView/icon/index",
         "wux-timeline": "../../wux/timeline/index",
         "wux-timeline-item": "../../wux/timeline-item/index"
     }

@@ -20,7 +20,7 @@ Page({
                 this.setData({
                     // showTraces: true,
                     traces: res.data.data.traces.reverse(),
-                    errorMsg: '暂时没有物流信息，请等待物流更新'
+                    errorMsg: '快递单号不正确或者暂时没有物流信息'
                 })
             }else{ // 物流单号错误
                 this.data.express_code = "";

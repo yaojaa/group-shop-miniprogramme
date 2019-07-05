@@ -57,7 +57,7 @@ Page({
         let _this = this;
         wx.showModal({
           content: '是否确认发货？',
-          success (res) {
+          success: (res)=> {
             if (res.confirm) {
                 util.wx.post('/api/seller/set_order_status', {
                     order_id: _this.data.order_id,
@@ -88,9 +88,7 @@ Page({
                 })
                 .catch(res=>{
 
-                    wx.showToast({
-                            title: res.data.msg
-                        })
+                 console.log(res)
 
                 })
             }

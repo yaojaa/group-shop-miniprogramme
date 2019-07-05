@@ -123,6 +123,7 @@ Page({
     },
 
     getGoodsInfo(){
+        wx.showLoading()
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.goods_id
             })
@@ -137,7 +138,7 @@ Page({
 
                 }else{
 
-                    if(goods.self_address.length == 0){
+                    if(goods.self_address.length == 0 || goods.self_address == ''){
                         wx.showToast({
                             title:'该商品没有录入取货点',
                             icon:'none'
@@ -161,6 +162,7 @@ Page({
 
               
 
+            wx.hideLoading()
 
 
             })
