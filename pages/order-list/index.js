@@ -36,62 +36,7 @@ Page({
 
 
     },
-    _set_order_status() {
 
-        util.wx.get('/api/user/set_order_status', {
-                "order_code": order_id,
-                "opt": opt
-            })
-            .then(res => {
-                if (res.data.code == 200) {
-                    this.getOrderList()
-                    Notify({
-                        text: '操作成功',
-                        duration: 1000,
-                        selector: '#custom-selector',
-                        backgroundColor: '#49b34d'
-                    })
-
-                } else {
-                    Notify({
-                        text: res.data.msg,
-                        duration: 1000,
-                        selector: '#custom-selector',
-                        backgroundColor: '#d0021b'
-                    })
-                }
-            })
-            .catch(() => {
-                // on cancel
-            });
-
-
-    },
-    //取消订单
-    cancelOrder(order_id, opt) {
-
-        Dialog.confirm({
-            message: '确定要消当前订单吗？',
-            cancelButtonText: '考虑一下',
-            confirmButtonText: '立即取消'
-        }).then(() => {
-
-            this._set_order_status(order_id, opt)
-        })
-
-    },
-    toset_received(order_id, opt) {
-
-        Dialog.confirm({
-            message: '请确认商品是否收到？',
-            confirmButtonText: '确认收货'
-        }).then(() => {
-
-            this._set_order_status(order_id, opt)
-        })
-
-
-    },
     getOrderList() {
         this.setData({
             loading: true
@@ -225,6 +170,7 @@ Page({
      */
     onShow: function() {
         this.data.order_list = []
+        this.data.cpage = 1
         this.getOrderList()
     },
 
