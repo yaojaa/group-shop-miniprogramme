@@ -2,8 +2,8 @@
 <view class="container">
     <i-custom-bar fixed backColor="#ffffff" backImage="https://static.kaixinmatuan.cn/staitc-img/top_bar_bg.jpg">
         <view class="tit-slogan">我买过的
-            <text class="small">关注更新，好物不错过 </text> 
-         <!--    <text class="small">{{userloaction.city}} {{userloaction.district}}</text> -->
+            <text class="small">关注更新，好物不错过 </text>
+            <!--    <text class="small">{{userloaction.city}} {{userloaction.district}}</text> -->
         </view>
     </i-custom-bar>
     <!--   <view class="location flex-box align-center">
@@ -12,17 +12,12 @@
     </view> -->
     <!-- <scroll-view scroll-y
     style="height:calc(100% - 100px);"> -->
-
-   
-
     <view class='product-item-container'>
- <view class="text-center" wx:if="{{isloading}}" style="margin-top: 200px">
-         <wux-spin wx:if="{{isloading}}">
-        </wux-spin>
-    </view>
-
-
-    <view style="margin-top: 200px" class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}">你好像没有参与过啥</view>
+        <view class="text-center" wx:if="{{isloading}}" style="margin-top: 200px">
+            <wux-spin wx:if="{{isloading}}">
+            </wux-spin>
+        </view>
+        <view style="margin-top: 200px" class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}">你好像没有参与过啥</view>
     </view>
     <block wx:for="{{proList}}" wx:key="{{index}}">
         <view class='product-item'>
@@ -44,17 +39,7 @@
                     </view>
                 </navigator>
                 <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail">
-
-                    <text style="display: inline-block;">{{item.goods_name}}</text>
-
-
-                    <text class='text-red' wx:if="{{item.price_range.min == item.price_range.max}}">￥{{item.price_range.min}}</text>
-
-                    <text class="text-red" wx:else>
-                      ￥{{item.price_range.min}}~{{item.price_range.max}}
-                    </text>
-
-                    
+                    <text>{{item.goods_name}}</text><text class='text-red' wx:if="{{item.price_range.min == item.price_range.max}}">￥{{item.price_range.min}}</text><text class="text-red" wx:else>￥{{item.price_range.min}}~{{item.price_range.max}}</text>
                 </view>
                 <view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
                     <block wx:if="{{item.goods_images.length == 1}}">
