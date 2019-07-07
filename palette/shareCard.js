@@ -174,7 +174,7 @@ function __content(content, imgHeight, headImgSize, width, desLeft, dpr){
 
 function headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, width, hB) {
   let heads = [];
-  let m = 11; // 头像右边界
+  let m = -15; // 头像右边界
   let _w = width - 2*desLeft + m;
   let _wm = headSize + m; // 头像所占宽度
   config.buyuser.forEach((e, index) => {
@@ -190,7 +190,9 @@ function headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, 
             left:`${ desLeft + index%parseInt(_w/_wm) * _wm }rpx`,
             width: `${ headSize }rpx`,
             height: `${ headSize }rpx`,
-            borderRadius:`${ headSize/2}rpx`
+            borderRadius:`${ headSize/2}rpx`,
+            borderWidth: '2rpx',
+            borderColor: '#fff',
           },
         })
       }   
