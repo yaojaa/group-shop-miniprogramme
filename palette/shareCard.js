@@ -177,6 +177,7 @@ function headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, 
   let m = -15; // 头像右边界
   let _w = width - 2*desLeft + m;
   let _wm = headSize + m; // 头像所占宽度
+  config.buyuser = config.buyuser.slice(0, 26)
   config.buyuser.forEach((e, index) => {
       let _h = parseInt(_wm*(index+1)/_w); // 几行头像
 
