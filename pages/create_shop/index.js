@@ -28,17 +28,8 @@ Page({
   },
 
   onChange(e) {
-        console.log('onChange', e)
-        const { file } = e.detail
-        // if (file.status === 'uploading') {
-        //     this.setData({
-        //         progress: 0,
-        //     })
-        // } else if (file.status === 'done') {
-        //     this.setData({
-        //         imageUrl: file.url,
-        //     })
-        // }
+      wx.showLoading()
+
     },
     onSuccess(e,l) {
         const data = JSON.parse(e.detail)
@@ -95,7 +86,7 @@ Page({
 
       // }
 
-
+      wx.showLoading()
       util.wx.post('/api/seller/store_set',{
 
         store_name:this.data.store_name,
@@ -108,13 +99,14 @@ Page({
 
       }).then(res=>{
 
+      wx.hideLoading()
 
         if(res.data.code == 200){
            wx.showToast({
           title:'保存成功',
           icon:'none'
         })
-           wx.navigateBack()
+         wx.navigateBack()
           
         }
 

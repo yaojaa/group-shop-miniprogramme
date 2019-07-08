@@ -476,7 +476,7 @@ Page({
 
         this.enterDate = new Date()
 
-        this.data.goods_id = option.goods_id || option.id
+        this.data.goods_id = option.goods_id || option.id || option
 
 
         this.getGoodsInfo()
@@ -978,11 +978,10 @@ Page({
     // },
     onPageScroll: function(e) {
 
-        if (e.scrollTop > 300 && !this.data.toShowPic) {
+        if (e.scrollTop > 200 && !this.data.toShowPic) {
             this.setData({
                 toShowPic: true
             })
-            console.log('toShowPictoShowPictoShowPictoShowPic')
         }
 
         this.data.scrollTop = e.scrollTop

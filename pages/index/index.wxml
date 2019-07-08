@@ -2,7 +2,7 @@
 <view class="container">
     <i-custom-bar fixed backColor="#ffffff" backImage="https://static.kaixinmatuan.cn/staitc-img/top_bar_bg.jpg">
         <view class="tit-slogan">我买过的
-            <text class="small">关注更新，好物不错过 </text>
+            <text class="small">关注朋友上新，好物不错过 </text>
             <!--    <text class="small">{{userloaction.city}} {{userloaction.district}}</text> -->
         </view>
     </i-custom-bar>
@@ -17,7 +17,7 @@
             <wux-spin wx:if="{{isloading}}">
             </wux-spin>
         </view>
-        <view style="margin-top: 200px" class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}">你好像没有参与过啥</view>
+        <view style="margin-top: 200px" class="no-txt hide {{!isloading && proList.length == 0?'show':'hide'}}">暂无内容</view>
     </view>
     <block wx:for="{{proList}}" wx:key="{{index}}">
         <view class='product-item'>

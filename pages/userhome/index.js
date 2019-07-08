@@ -41,7 +41,7 @@ Page({
     },
     handlePoster(){
         this.setData({
-            showShareFriendsCard: false,
+            sharebar: false,
             poster: !this.data.poster
         })
 
@@ -64,8 +64,15 @@ Page({
     savaSelfImages() {
         var _this = this;
         console.log('savaSelfImages', this.data.shareFriendsImg)
-        if (this.data.shareFriendsImg) {
-            // 用户授权
+
+
+wx.downloadFile({
+      url: this.data.shareFriendsImg,
+      success: (res)=> {
+
+        const imgUrl = res.tempFilePath
+
+          // 用户授权
             wx.getSetting({
               success(res) {
                 if (!res.authSetting['scope.writePhotosAlbum']) {
@@ -74,18 +81,47 @@ Page({
                     success() {
                         console.log(1)
                         wx.saveImageToPhotosAlbum({
-                            filePath: _this.data.shareFriendsImg,
+                            filePath: imgUrl,
+                            success: function (data) {
+                                wx.showToast({
+                                  title: '保存成功',
+                                  icon: 'success',
+                                  duration: 2000
+                                })
+                              }
                         });
                     }
                   })
                 }else{
                     console.log(2)
                     wx.saveImageToPhotosAlbum({
-                        filePath: _this.data.shareFriendsImg,
+                        filePath: imgUrl,
+                        success: function (data) {
+                            wx.showToast({
+                              title: '保存成功',
+                              icon: 'success',
+                              duration: 2000
+                            })
+                          }
                     });
                 }
               }
             })
+
+
+
+
+
+
+
+      }
+  })
+
+
+
+
+        if (this.data.shareFriendsImg) {
+          
             
             this.handlePoster();
         }
@@ -174,7 +210,7 @@ Page({
                     this.setData({
                         store_slide:store_slide,
                         info: res.data.data,
-                        showSetting: res.data.data.user_id == app.globalData.userInfo.user_id? true:false
+                        showSetting:app.globalData.userInfo? true:false
                     })
             },res=>{
 

@@ -59,6 +59,6 @@
 
 </view>
 
-<view class="footer-btn padding20">
+<view class="footer-btn padding20" wx:if="{{store_name}}">
     <button bindtap="createSubmit" class="linenear_bg">保存</button>
 </view>

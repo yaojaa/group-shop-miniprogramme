@@ -213,7 +213,7 @@ page{
     background:url('https://static.kaixinmatuan.cn/no_data.png');
     background-repeat: no-repeat;
     background-position: center top;
-    background-size: 25%
+    background-size: 20%
 
 }
 

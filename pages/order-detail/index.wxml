@@ -54,7 +54,7 @@
             <view class="goods-panel-bd ">
                 <view class="goods-panel-item " wx:for="{{info.order_detail}}" wx:key="{{index}}">
                     <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none" class="flex pv-df">
-                        <image src="{{item.goods_cover}}" class="cover mr-sm"></image>
+                        <image src="{{item.spec_pic[0] || item.goods_cover}}-small" class="cover mr-sm"></image>
                         <view class="flex-sub por">
                             <view class="text-hide text-black bold title">
                                 {{item.goods_name}}

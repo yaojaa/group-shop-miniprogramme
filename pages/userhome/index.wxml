@@ -20,7 +20,7 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-            主页累计<text class="text-default">{{info._access_count}}人访问 </text> 成交<text class="text-default">{{info._order_count}}</text> 笔
+            主页累计<text class="text-default">{{info._access_count}}次访问 </text> 成交<text class="text-default">{{info._order_count}}</text> 笔
         </view>
     </view>
     <view class="goods-box">
@@ -31,11 +31,18 @@
             </view>
             <view class="content">
                 <view class="title text-hide">{{item.goods_name}}</view>
-                <view class="des text-hide two">{{item.goods_content}}</view>
+                <view class="des text-hide three">{{item.goods_content}}</view>
                
                 <view class="bottom text-justify">
                     <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}}</view>
-                    <view> <button data-id="{{item.goods_id}}" class="btn buy linenear_bg">立即查看</button></view>
+                    <view> 
+
+                        <button wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">立即查看</button>
+
+                           <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">已结束</button>
+                       </view>
+
+                        
                 </view>
             </view>
             </view>
@@ -80,7 +87,7 @@
     </van-popup>
 
 
-     <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{false}}" title="分享到" bind:close="closeShareFriends">
+     <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{true}}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
@@ -101,7 +108,7 @@
             </view>
             <view class="text-center share-img-box" wx:else>
                 <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
-                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages">保存海报</button>
+                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages"> 保存海报 </button>
             </view>
         </view>
     </view>

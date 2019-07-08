@@ -99,6 +99,8 @@ Page({
             index = this.data.current_spec_index
         }
 
+
+
         if (this.data.spec[index].spec_pic.length) {
 
             console.log(index,this.data.spec[index].spec_pic)
@@ -156,21 +158,18 @@ Page({
 
             },
             progressState: (s) => {
-                console.log('上传状态',s,this)
-                if(this.data.visible_spec){
-
+               
                  this.setData({
-                    specProgress: s
-                })
-
-                }else{
-
-                 this.setData({
-                    specProgress: s,
                     visible_spec:true
+                },()=>{
+
+                    this.setData({
+                      specProgress: s
+                    })
+
                 })
 
-                }
+                
               
 
                 console.log('this.data.visible_spec',this.data.visible_spec)
@@ -818,7 +817,7 @@ Page({
 
         wx.showLoading()
 
-        util.wx.get('/api/seller/get_goods_detail', {
+        util.wx.get('/api/goods/get_goods_detail', {
             goods_id: goods_id
 
         }).then((res) => {

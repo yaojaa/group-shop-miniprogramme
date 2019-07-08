@@ -41,8 +41,16 @@ Page({
         })
       }
 
+      if(this.data.inputMoney<10){
+        return wx.showToast({
+          title:'至少提现10元',
+          icon:'none'
+        })
+      }
+
         if (this.data.inputMoney) {
 
+          wx.showLoading()
 
             util.wx.post('/api/seller/apply_withdraw', {
                 apply_money: this.data.inputMoney
@@ -56,11 +64,16 @@ Page({
                     inputMoney:''
                    })
 
+                   wx.hideLoading()
+
                     this.get_store_info()
                     this.finance_withdrawal_list()
 
                 
             },(res)=>{
+
+              wx.hideLoading()
+
               wx.showToast({
                         title: res.data.msg,
                         icon:'none',

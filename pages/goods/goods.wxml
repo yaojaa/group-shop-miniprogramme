@@ -20,8 +20,6 @@
                 </view>
                 <view class="user-info-bd">
                     <text class="name">{{goods.user.nickname}}</text>
-                  <!--   <text class="info ml-xs">粉丝{{goods.buyuser_count}}人 </text> -->
-                    
                 </view>
             </view>
         </view>
@@ -33,7 +31,7 @@
                 <text class="price">{{goods.price_min}}</text>
                 <text class="text-sm n-bold"> /起</text>
             </view>
-            <view class="text-sm text-muted">访问人数 {{goods.pageview_count
+            <view class="text-sm text-muted">访问人数 {{goods.pageview_count+1
                 }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
           
         </view>
@@ -49,7 +47,7 @@
                 </view>
             </view>
             <view wx:else>
-                {{['','开团中','尚未开始','已截团'][goods._expires]}}
+                {{['','开团中','尚未开始','已结束'][goods._expires]}}
             </view>
         </view>
     </view>
@@ -79,7 +77,7 @@
                 <view class="solid-top"></view>
                 <view class="goods-price-item flex-box">
                     <view class="pics" wx:if="{{item.spec_pic}}">
-                        <image bindtap="showGallerySpec" data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/180/h/180/format/jpg/q/85"></image>
+                        <image bindtap="showGallerySpec" data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/100/h/100/format/jpg/q/85"></image>
                         <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">{{item.spec_pic.length}}张</view>
                     </view>
                     <view class="info">
@@ -175,9 +173,10 @@
             <text class="label">我的</text>
         </view>
         <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
-            <text wx:if="{{totalNum>0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
-            <button wx:if="{{goods._expires==1}}" class="buy linenear_bg" formType="submit">立即参与</button>
-            <button wx:else class="buy linenear_bg" formType="submit">不能参与了哦</button>
+            <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
+            <button wx:if="{{goods && goods._expires==1 }}" class="buy linenear_bg" formType="submit">立即参与</button>
+            <button wx:if="{{goods && goods._expires == 2 }}" class="buy linenear_bg" formType="submit">未开始</button>
+            <button wx:if="{{goods && goods._expires == 3 }}" class="buy linenear_bg" formType="submit">已结束</button>
         </form>
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
@@ -201,10 +200,8 @@
                     <text class=" text-red f20">¥{{amountMoney}}</text>
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
-                <view wx:if="{{!hasScope}}" style="flex:2">
-                    <button class="settlement linenear_bg" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">下一步</button>
-                </view>
-                <form style="flex:2" wx:else bindsubmit="formSubmit" data-fn="buy" report-submit="true">
+               
+                <form style="flex:2"  bindsubmit="formSubmit" data-fn="buy" report-submit="true">
                     <button class="settlement linenear_bg" shape="circle" formType="submit">下一步</button>
                 </form>
             </view>

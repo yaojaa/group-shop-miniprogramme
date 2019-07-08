@@ -49,11 +49,11 @@
                 <scroll-view scroll-y class="maxheight">
                     <view class="con">
                         <view class="pic_loading">
-                            <i-spin wx:if="{{visible_spec && specProgress}}" />
+                            <i-spin wx:if="{{specProgress}}" />
                         </view>
                         <view class="picture-item" wx:key="{{item}}" wx:for="{{current_spec_imgs}}">
                             <view class="img-list">
-                                <image mode="widthFix" src="{{item}}" />
+                                <image mode="widthFix" src="{{item}}-small" />
                                 <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
                             </view>
                         </view>

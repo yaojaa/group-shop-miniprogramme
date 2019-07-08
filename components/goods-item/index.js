@@ -151,7 +151,7 @@ Component({
   let delivery_method = e.currentTarget.dataset.delivery_method
   let goods_name = e.currentTarget.dataset.name
 
-        wx.redirectTo({
+        wx.navigateTo({
             url: '../ordermanage/list?id=' + id+'&goods_name='+goods_name+'&delivery_method='+delivery_method,
         })
 

@@ -229,13 +229,8 @@ Page({
                     icon:'none'
                 })
                 this.getHistoryList()
-            }else{
-                wx.showToast({
-                    title:res.data.msg,
-                    icon:'none'
-                })
             }
-        })
+        },res=>{}).catch(e=>{console.log(e)})
 
         
     },
