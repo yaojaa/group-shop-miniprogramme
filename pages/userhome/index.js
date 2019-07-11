@@ -93,7 +93,6 @@ wx.downloadFile({
                     }
                   })
                 }else{
-                    console.log(2)
                     wx.saveImageToPhotosAlbum({
                         filePath: imgUrl,
                         success: function (data) {
@@ -131,11 +130,9 @@ wx.downloadFile({
      */
     onLoad: function(options) {
 
-              if (options.scene) {
+        if (options.scene) {
             options = decodeURIComponent(options.scene)
-
             options = options.split('?')[1] || options
-
             options = util.url2json(options)
         }
 
@@ -162,10 +159,6 @@ wx.downloadFile({
 
     },
      getPhoneNumber (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-
 
          if(e.detail.errMsg.indexOf('fail')>0){
             return wx.showToast({
@@ -174,7 +167,6 @@ wx.downloadFile({
             })
 
         }
-      
 
      },
 
@@ -190,11 +182,8 @@ wx.downloadFile({
 
     getStoreInfo() {
         
-
-
-
         util.wx.get('/api/store/get_store_homepage', {
-                store_id: this.store_id
+                store_id: this.store_id || app.globalData.userInfo.store_id
             })
             .then(res => {
               
@@ -300,6 +289,7 @@ wx.downloadFile({
                 showAuth:true
             })
         }else{
+            this.getStoreInfo()
             this.add_access()
         }
 

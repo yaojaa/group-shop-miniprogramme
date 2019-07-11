@@ -72,7 +72,6 @@ Page({
                 
             },(res)=>{
 
-              wx.hideLoading()
 
               wx.showToast({
                         title: res.data.msg,

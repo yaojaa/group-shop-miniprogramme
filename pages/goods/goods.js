@@ -899,7 +899,7 @@ Page({
     copyGoods() {
 
         wx.navigateTo({
-            url: '../publish/publish?goods_id=' + this.data.goods.goods_id
+            url: '../publish/publish?goods_id=' + this.data.goods.goods_id+'&iscopy='+true
         })
 
     },

@@ -129,10 +129,7 @@ Page({
     },
 
     get_store_info() {
-        console.log('get_store_info')
-
         util.wx.get('/api/seller/get_store_money').then(res => {
-                console.log('store_money: res.data.data.store_money', res.data.data.store_money)
                 this.setData({
                     pending_money: res.data.data.pending_money
                 })
@@ -257,11 +254,10 @@ Page({
     onPullDownRefresh: function() {
 
          this.data.cpage = 1
-
         this.data.goodslist = []
-
-         this.getGoodsList()
+        this.getGoodsList()
         this.getOrderCount()
+        this.get_store_info()
 
         
     },
