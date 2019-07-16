@@ -139,7 +139,7 @@ App({
                   if (res.data.code === 200) {
                     this.globalData.token = res.data.data.token
                     this.globalData.userInfo = res.data.data.user
-                    this.globalData.userInfo.store_id = res.data.data.store.store_id
+                    this.globalData.userInfo.store_id = res.data.data.store && res.data.data.store.store_id || ''
                     console.group('储存登录userInfo')
                     wx.setStorage({//存储到本地
                       key:"userInfo",
@@ -279,25 +279,13 @@ App({
 const userInfo = wx.getStorageSync('userInfo')
 console.log('userInfo',userInfo)
     if(userInfo){
-
       this.globalData.token = userInfo.token
       this.globalData.userInfo = userInfo
-
       console.log('已经登录.退出')
       if(this.userLoginReadyCallback){
       this.userLoginReadyCallback(this.globalData.userInfo)
       }
-
-    /**未登录或者缓存失效用户*/
-    }else if(option.path  !=='pages/goods/goods' && option.path  !=='pages/userhome/index' && option.path!=='pages/ordermanage/list'){
-      console.log('该跳转到登录')
-                    
-      this.redirectToLogin()
-              
     }
-
-
-    console.groupEnd()
 
 
 

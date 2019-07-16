@@ -158,21 +158,6 @@ Page({
         }
 
 
-        wx.getSetting({
-            success: res => {
-
-                if (res.authSetting['scope.userInfo']) {
-                    app.globalData.hasScope = true
-
-                } else {
-                    app.globalData.hasScope = false
-                }
-
-                this.setData({
-                    hasScope: app.globalData.hasScope
-                })
-            }
-        })
     },
     onShareAppMessage: function() {
 
@@ -514,7 +499,7 @@ Page({
         })
     },
     handleCountChange(e) {
-        console.log('handleCountChange', e)
+
         let id = e.target.id
 
         this.type = e.detail.type

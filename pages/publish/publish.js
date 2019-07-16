@@ -665,9 +665,10 @@ Page({
 
         })
 
+        var goods_id = this.copy? {}: { goods_id: this.data.goods_id }
 
         let data = Object.assign(
-            { goods_id: this.data.goods_id },
+            goods_id,
             e.detail.value, //表单的数据
             { spec: this.data.spec }, //商品数组数据
             { goods_images: this.data.goods_images }, {
@@ -698,6 +699,7 @@ Page({
         util.wx.post('/api/seller/goods_add_or_edit', data).then(
             res => {
                 wx.hideLoading()
+                this.data.goods_id = res.data.data.goods_id
               
                 this.jump()
              
