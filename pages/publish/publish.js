@@ -20,7 +20,6 @@ const default_end_time = util.formatTime(date)
 Page({
     data: {
         height: '300', //文本框的高度
-        painterData: {},
         link_url: "",
         goods_id: "",
         isShowTimePicker: false,
@@ -120,11 +119,7 @@ Page({
 
             })
 
-            
-
-
             // current_spec_imgs:this.data.spec[index].spec_pic
-
 
        }else{
 
@@ -154,7 +149,6 @@ Page({
                     current_spec_imgs: this.data.spec[index].spec_pic,
                     specProgress:false
                 })
-                console.log(this.data.current_spec_imgs)
 
             },
             progressState: (s) => {
@@ -266,8 +260,6 @@ Page({
                         goods_video_cover:result.data.file_url+'?vframe/jpg/offset/2',
                         video_progress: false
                     })
-
-                    console.log('视频上传成功',this)
                     this.setData({
                             visible_video: true
                         })
@@ -673,11 +665,9 @@ Page({
 
         })
 
-        console.log(this.data.sell_address)
 
-
-
-        let data = Object.assign({ token: app.globalData.token }, { goods_id: this.data.goods_id },
+        let data = Object.assign(
+            { goods_id: this.data.goods_id },
             e.detail.value, //表单的数据
             { spec: this.data.spec }, //商品数组数据
             { goods_images: this.data.goods_images }, {
@@ -708,20 +698,16 @@ Page({
         util.wx.post('/api/seller/goods_add_or_edit', data).then(
             res => {
                 wx.hideLoading()
-                if (res.data.code == 200) {
-                    this.setData({
-                        goods_id: res.data.data.goods_id,
-                        goods_name: e.detail.value.goods_name
+              
+                this.jump()
+             
+            },(res)=>{
+                wx.hideLoading()
 
-                    })
-                    this.jump()
-
-                } else {
-                    wx.showModal({
+                wx.showModal({
                         title: res.data.msg,
                         showCancel: false
-                    })
-                }
+                })
             })
 
 
@@ -796,7 +782,6 @@ Page({
         }
     },
     /**回显数据**/
-
     getPublishedData(goods_id, isCopy, temp) {
         // 是否是模板   1包邮模板   2自提模板
         if(temp == 1){
@@ -821,18 +806,13 @@ Page({
             goods_id: goods_id
 
         }).then((res) => {
-
             wx.hideLoading()
-
-
             let d = res.data
             let gs = d.data.goods
 
             if (d.code == 200) {
                 // 初始数据
                 this.initData(gs, isCopy);
-
-                console.log(this.data)
 
             } else {
                 wx.showModal({
@@ -896,10 +876,12 @@ Page({
 
     onLoad: function(option) {
 
+        if(option.copy){
+            this.copy = true
+        }
+
 
         getApp().setWatcher(this.data, this.watch, this); // 设置监听器
-
-
 
 
         //编辑的时候
@@ -909,7 +891,7 @@ Page({
                 goods_id: option.goods_id
             })
 
-            this.getPublishedData(option.goods_id, option.copy ? true : false)
+            this.getPublishedData(option.goods_id)
 
         }else if(option.temp){ // 是否是模板
             this.getPublishedData('', '', option.temp);

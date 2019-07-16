@@ -66,7 +66,6 @@ Page({
 
                    wx.hideLoading()
 
-                    this.get_store_info()
                     this.finance_withdrawal_list()
 
                 
@@ -95,7 +94,8 @@ Page({
             .then(res => {
                 if (res.data.code == 200) {
                     this.setData({
-                        pending_money: res.data.data.pending_money
+                        pending_money: res.data.data.pending_money,
+                        inputMoney:res.data.data.pending_money
                     })
                 }
 

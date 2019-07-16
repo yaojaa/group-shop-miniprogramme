@@ -119,7 +119,7 @@ Page({
         // util.wx.get('/api/index/get_express_code').then(res => {
         //     if (res.data.code == 200) {
                 this.setData({
-                    columns: this.data.express_code.map(item => {
+                    columns: this.data.express_data.map(item => {
                         return item.name
                     })
                 })

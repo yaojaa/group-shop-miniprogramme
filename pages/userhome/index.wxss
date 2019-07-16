@@ -43,7 +43,9 @@
 }
 .user-head .name{
 	font-size: 20px;
-	color: #333
+	color: #333;
+	display: inline-block;
+	margin: 0 auto
 }
 .user-head .des{
 	line-height: 1.6;

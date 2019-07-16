@@ -5,7 +5,7 @@
         <view class="flex-sub">
             <navigator url="../address-form/index" class="btn xxl coral block">
                 <van-icon name="add-square" color="#fff" size="30rpx" />
-                <text class="ml-xs">手动添加</text>
+                <text class="ml-xs">添加新地址</text>
             </navigator>
         </view>
         <view class="flex-sub">

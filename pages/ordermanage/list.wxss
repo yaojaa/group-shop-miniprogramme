@@ -302,8 +302,8 @@ padding: 15rpx 30rpx
     margin: 3rpx 0 25rpx
 }
 .userinfo-avatar{
-    width: 100%;
-    height: 100%;
+    width: 80rpx;
+    height: 80rpx;
     border-radius: 50%
 
 }

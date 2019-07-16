@@ -69,7 +69,10 @@
             </view>
             <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
                 <text class="tel" bindlongpress="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text></view>
-
+                <view class="msg_btn">
+                <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
+微信通知                </button>
+                </view>
 
 
             <view class="order-status">
@@ -113,7 +116,7 @@
             </text>
             </view> -->
 
-            <button   class="btn round primary hollow w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips">微信通知</button>
+            
 
             
 

@@ -199,7 +199,7 @@ wx.downloadFile({
                     this.setData({
                         store_slide:store_slide,
                         info: res.data.data,
-                        showSetting:app.globalData.userInfo? true:false
+                        showSetting:app.globalData.userInfo && app.globalData.userInfo.store_id == this.store_id? true:false
                     })
             },res=>{
 

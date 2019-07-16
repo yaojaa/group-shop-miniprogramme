@@ -241,13 +241,6 @@ Page({
         })
         console.log('imgOk', e);
     },
-    copy: function() {
-
-        wx.redirectTo({
-            url: '../publish/publish?goods_id=' + this.data.goods_id
-        })
-
-    },
 
     showGallery(e) {
         const { current } = e.currentTarget.dataset
@@ -896,10 +889,14 @@ Page({
             phoneNumber: e.target.dataset.mobile
         })
     },
+
+      // wx.redirectTo({
+      //       url: '../publish/publish?copy_id=' + this.data.goods.goods_id
+      //   })
     copyGoods() {
 
-        wx.navigateTo({
-            url: '../publish/publish?goods_id=' + this.data.goods.goods_id+'&iscopy='+true
+        wx.redirectTo({
+            url: '../publish/publish?goods_id=' + this.data.goods.goods_id+'&copy=true'
         })
 
     },
