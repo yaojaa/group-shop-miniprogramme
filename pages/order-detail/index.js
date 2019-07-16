@@ -87,8 +87,8 @@ Page({
                 if (res.data.code == 200) {
                     this.setData({
                         info: res.data.data,
-                        addtime: util.formatTime(res.data.data.addtime),
-                        pay_time: util.formatTime(res.data.data.pay_time) 
+                        addtime: res.data.data.addtime,
+                        pay_time: res.data.data.pay_time 
                     })
                 }
                 wx.hideLoading()
