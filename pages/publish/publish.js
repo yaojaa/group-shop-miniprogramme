@@ -521,6 +521,7 @@ Page({
 
 
         this.data.goods_images.splice(index, 1)
+        this.data.goods_images[0].is_cover = 1
         this.setData({
             'goods_images': this.data.goods_images
         })

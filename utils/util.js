@@ -362,7 +362,8 @@ const distance = (la1, lo1, la2, lo2) => {
 //收集formID
 const formSubmitCollectFormId = function(e) {
     console.log('全局收集formid', e)
-  
+
+    if(!!app.globalData.userInfo){
     WX.post('/api/common/gather_formid',{
         form_id: e.detail.formId
     }).then(res=>{
@@ -370,6 +371,8 @@ const formSubmitCollectFormId = function(e) {
     }).catch(e=>{
         console.log(e)
     })
+
+}
 
     const fn = e.currentTarget.dataset.fn || e.detail.target.dataset.fn
     console.log('fn',fn)

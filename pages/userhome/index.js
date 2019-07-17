@@ -157,18 +157,11 @@ wx.downloadFile({
         this.getDataList()
         this.getStoreInfo()
 
-    },
-     getPhoneNumber (e) {
-
-         if(e.detail.errMsg.indexOf('fail')>0){
-            return wx.showToast({
-                title:'请允许授权',
-                icon:'none'
-            })
-
+        if(app.globalData.userInfo){
+            this.add_access()
         }
 
-     },
+    },
 
     add_access(){
         //增加访问记录
@@ -244,33 +237,7 @@ wx.downloadFile({
 
 
     },
-        getUserInfoEvt: function(e) {
-        console.log(e)
-        if (e.detail.errMsg !== "getUserInfo:ok") {
-            return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
-        }
-        
-        app.globalData.userInfo = e.detail.userInfo
-        wx.showLoading()
-        app.getOpenId().then((openid) => {
-            console.log(openid)
-            app.globalData.openid = openid
-            app.login_third(e.detail).then((res) => {
-                    console.group('登陆成功:', res)
-                    wx.hideLoading()
-                    this.setData({
-                        showAuth: false
-                    })
 
-                    this.add_access()
-                })
-                .catch(e => console.log(e))
-
-
-        })
-
-
-    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -279,24 +246,6 @@ wx.downloadFile({
 
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-        if(!app.globalData.userInfo){
-            this.setData({
-                showAuth:true
-            })
-        }else{
-            this.getStoreInfo()
-            this.add_access()
-        }
-
-
-   
-
-    },
 
     /**
      * 生命周期函数--监听页面隐藏
