@@ -1,0 +1,15 @@
+<view class="swiper" hidden="{{bigImgsHidden}}" bindtap="closeBigImg">
+	<swiper 
+	duration='{{checkImgDuration}}' 
+	indicator-dots 
+	indicator-color="#333" 
+	indicator-active-color="#999"
+	current="{{index}}" 
+	class="slide-image">
+	    <swiper-item wx:for="{{imgsPath}}" wx:key="{{index}}">
+	      <image bindlongpress="longpress" data-src="{{item}}" src="{{item}}" mode="aspectFit" show-menu-by-longpress class="slide-image"/>
+	    </swiper-item>
+	</swiper>
+</view>
+<view class='mask' hidden="{{saveHidden}}" bindtap="removeSave"></view>
+<view class='save-img' hidden="{{saveHidden}}" bindtap="toSaveImg">保存图片</view>

@@ -37,6 +37,11 @@ Page({
     data: {
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
+        previewImgs:{
+            current:"",
+            urls:[],
+        },
+        previewImgHidden: true,
         imgs: { // 动画相册配置
             src: [],
             height: 800, //动态图片高度
@@ -216,6 +221,16 @@ Page({
     showGallery(e) {
         const { current } = e.currentTarget.dataset
         const urls = this.data.goods.content_imgs
+
+        this.setData({
+            previewImgs: {
+                    current: current,
+                    urls: urls
+                },
+            previewImgHidden: false
+        })
+
+        return;
 
         this.$wuxGallery = $wuxGallery()
 
