@@ -1,6 +1,11 @@
 <view class="container gray-wrap  cf">
     <form bindsubmit="submit">
         <van-cell-group custom-class="mv-sm">
+
+       <!--      <van-field name="address" value="{{address}}"  type="textarea" placeholder="粘贴收件人电话，姓名，地址" autosize /> -->
+
+              <textarea class="address_textarea" bindblur="bindTextAreaBlur" value="{{address_str}}" placeholder="粘贴收件人电话，姓名，地址可自动识别" />
+
             <van-field name="consignee" value="{{consignee}}" label="收货人" input-align="right" placeholder="请输入姓名" />
             <van-field name="mobile" value="{{mobile}}" label="联系电话" input-align="right" placeholder="请填写手机号" type="number" />
             <van-field label="所在地区" value="{{province?province+'/'+city+'/'+district:''}}" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleAreaModal" />
@@ -11,7 +16,7 @@
         </view>
         <view class="m-df mt-xl">
             <button class="btn xl primary block linenear_bg" form-type="submit">
-                提交
+                确定添加
             </button>
         </view>
     </form>

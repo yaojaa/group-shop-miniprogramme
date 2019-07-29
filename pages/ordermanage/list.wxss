@@ -236,7 +236,7 @@ padding: 15rpx 30rpx
 }
 .note-icon{
     position: absolute;
-    left:0px;
+    left:-3px;
     top:3px;
     z-index: 11;
 }
@@ -247,6 +247,14 @@ padding: 15rpx 30rpx
     box-sizing: border-box;
     margin-bottom: -1px;
     overflow: hidden;
+    padding-left: 10px
+
+}
+
+.modifybtn{
+    position: absolute;
+    right: 90px;
+    top: 40rpx
 }
 
 .copybtn{

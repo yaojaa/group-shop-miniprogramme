@@ -31,7 +31,9 @@
         "pages/fans/index",
         "pages/ordermanage/list",
         "pages/to-send/index",
-        "pages/identify/identify"
+        "pages/identify/identify",
+        "pages/modify-address/index"
+
 
     ],
     "usingComponents":

@@ -152,7 +152,7 @@
 					"id": 14,
 					"name": "订单管理",
 					"pathName": "pages/ordermanage/list",
-					"query": "id=173&goods_name=花花甜糯玉米&delivery_method=1",
+					"query": "id=406&goods_name=福建沙地六鳌蜜薯，甜到心里头，10.9包邮彩盒装震撼发布，包甜包鲜包现挖&delivery_method=1",
 					"scene": 1001
 				},
 				{
@@ -240,7 +240,7 @@
 					"id": 27,
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
-					"query": "id=1",
+					"query": "id=750",
 					"scene": null
 				},
 				{
@@ -443,6 +443,20 @@
 					"id": -1,
 					"name": "地址管理",
 					"pathName": "pages/address/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加地址",
+					"pathName": "pages/address-form/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "地址",
+					"pathName": "pages/address-form/index",
 					"query": "",
 					"scene": null
 				}

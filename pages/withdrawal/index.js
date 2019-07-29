@@ -12,7 +12,8 @@ Page({
         pending_money: ' ...',
         inputMoney: '',
         withdrawalslist: [],
-        totalpage: 1
+        totalpage: 1,
+        store_money:'*'
     },
 
     /**
@@ -95,7 +96,8 @@ Page({
                 if (res.data.code == 200) {
                     this.setData({
                         pending_money: res.data.data.pending_money,
-                        inputMoney:res.data.data.pending_money
+                        inputMoney:res.data.data.pending_money,
+                        store_money:res.data.data.store_money
                     })
                 }
 

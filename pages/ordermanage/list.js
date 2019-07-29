@@ -177,6 +177,12 @@ Page({
 
 
     },
+    modifyAddress(e){
+        const order_id = e.currentTarget.dataset.order_id
+        wx.navigateTo({
+            url:'../modify-address/index?order_id='+order_id
+        })
+    },
     onChangeOrderSwitch(event) {
         const detail = event.detail;
         this.setData({
@@ -364,7 +370,7 @@ Page({
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
                 search_order_status: this.data.search_order_status,
-                pagesize: 15
+                pagesize: 30
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
             }).then((res) => {
 
@@ -399,7 +405,7 @@ Page({
     /***写订单备注**/
     order_remarkSubmit(e) {
 
-        var marke_value = e.detail.detail.value
+        var marke_value = e.detail.value
         var order_id = e.target.dataset.id
         if (marke_value == '' || order_id == '') { return }
 

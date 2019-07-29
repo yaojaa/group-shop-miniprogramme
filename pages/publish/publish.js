@@ -518,8 +518,6 @@ Page({
     //删除一张照片
     removePhoto: function(e) {
         let index = e.currentTarget.dataset.index
-
-
         this.data.goods_images.splice(index, 1)
         this.data.goods_images[0].is_cover = 1
         this.setData({
