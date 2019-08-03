@@ -6,7 +6,22 @@
             </view>
         </van-cell>
     </van-cell-group>
-    <view class="express-area" wx:if="{{checked}}">
+    <block wx:if="{{checked}}">
+    <view class="express-area" wx:for="{{express}}" wx:key="{{item.express_code}}">
+        <van-cell-group custom-class="mv-sm">
+            <van-field input-class ="f20"  value="{{item.express_company}}" label="快递名称" placeholder="请选择快递名称" readonly="{{true}}" data-index="{{index}}" bindtap="handleEmsPopup" />
+
+
+            <van-field input-class ="f20"  value="{{item.express_code}}" label="填写单号" placeholder="请输入运单号" type="number" data-index="{{index}}" bind:change="inputDuplex"use-button-slot>
+
+
+              <button class="btn primary sm hollow" slot="button" bindtap="checkexpress" data-index="{{index}}" wx:if="{{item.express_code}}">
+                查询
+              </button>
+            </van-field >
+        </van-cell-group>
+    </view>
+  <!--   <view class="express-area">
         <van-cell-group custom-class="mv-sm">
             <van-field input-class ="f20"  value="{{express_company}}" label="快递名称" placeholder="请选择快递名称" readonly="{{true}}" name="express_company" bindtap="handleEmsPopup" />
             <van-field input-class ="f20"  value="{{express_code}}" label="填写单号" placeholder="请输入运单号" type="number" name="express_code" bind:change="inputDuplex" data-key="express_code" use-button-slot>
@@ -14,10 +29,16 @@
                 查询
               </navigator>
             </van-field >
-           
-           
         </van-cell-group>
-    </view>
+    </view> -->
+
+    <view class="add-number" bindtap="addExpress">+继续添加单号</view>
+
+
+
+
+
+    </block>
 
   <!--    <van-field input-class ="f20"  value="{{action_remark}}" label="留言" placeholder="请输入留言信息" type="number" name="action_remark" bind:change="inputDuplex" data-key="action_remark" /> -->
 

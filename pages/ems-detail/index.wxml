@@ -1,20 +1,22 @@
 <view class="container gray-wrap cf">
-    <view class="p-df white-bg flex mv-sm align-center">
+    <view wx:for="{{express}}" wx:key="{{item.express_code}}" class="p-df white-bg flex mv-sm align-center">
         <view class="wuliu-box">
             <i-icon type="time" color="#fff" size="48" />
         </view>
         <view class="flex-sub ml-df">
-            <view class="item-list">
+            <view class="item-list" bindtap="toCheckExpress" data-index="{{index}}">
                 <view class="item">
                     <text class="text-gray">物流公司：</text>
-                    <text>{{express_company}}</text>
+                    <text>{{item.express_company}}</text>
                 </view>
                 <view class="item text-justify">
                     <view> <text class="text-gray">物流单号：</text>
-                        <text>{{express_code}}</text></view>
-                    <button class="btn gray hollow xs round " bindtap="copyOrder" data-text="{{express_code}}">复制</button>
+                        <text>{{item.express_code}}</text></view>
                 </view>
             </view>
+        </view>
+        <view>
+            <button hidden="{{index != currentIndex}}" class="btn primary sm hollow button-hover" bindtap="copyOrder">复制</button>
         </view>
     </view>
     <view class="white-bg p-df">

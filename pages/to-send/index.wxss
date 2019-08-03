@@ -28,3 +28,11 @@
 .closearea{
 	text-align: center;
 }
+
+.add-number{
+	font-size: 14px;
+	text-align: center;
+	padding: 20px 0 20px;
+	margin-bottom: 20px;
+	color: #2192e4;
+}

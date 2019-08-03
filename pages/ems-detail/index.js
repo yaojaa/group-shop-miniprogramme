@@ -5,20 +5,24 @@ Page({
      * 页面的初始数据
      */
     data: {
-        express_company:'',
-        express_code:'',
-        errorMsg:'',
+        express_company: '',
+        express_code: '',
+        express: [],
+        currentIndex: '',
+        order_id: '',
+        errorMsg: '',
+        traces: '',
     },
-    checkExpress() {
+    checkExpress(options) {
         wx.showLoading()
         util.wx.get('/api/order/get_express_info', {
-            express_company: this.data.express_company,
-            express_code: this.data.express_code,
-            order_id: this.data.order_id
+            express_company: options.express_company,
+            express_code: options.express_code,
+            order_id: options.order_id
         }).then(res => {
             if (res.data.status) { // 物流单号正确
                 this.setData({
-                    // showTraces: true,
+                    currentIndex: options.index,
                     traces: res.data.data.traces.reverse(),
                     errorMsg: '快递单号不正确或者暂时没有物流信息'
                 })
@@ -26,7 +30,7 @@ Page({
                 this.data.express_code = "";
                 this.data.express_company = "";
                 this.setData({
-                    // showTraces: true,
+                    currentIndex: options.index,
                     traces: [],
                     errorMsg: '单号有误，请检查单号重新输入'
                 })
@@ -37,9 +41,15 @@ Page({
             console.log('===err===',err)
         })
     },
-    copyOrder(event) {
+    copyOrder(e) {
+        let currentExpress = this.data.express[this.data.currentIndex]
+        let msg = '物流公司：' + currentExpress.express_company + '\n物流单号:' + currentExpress.express_code + '\n'
+        this.data.traces.forEach(e => {
+            msg += e.time + '\n' + e.content + '\n'
+        })
+
         wx.setClipboardData({
-            data: event.currentTarget.dataset.text,
+            data: msg,
             success: function(res) {
                 wx.getClipboardData({
                     success: function(res) {
@@ -79,60 +89,43 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        // this.setData({
+        //     express_company:options.name || '',
+        //     express_code:options.code || '',
+        //     order_id:options.id || ''
+        // })
+        console.log(options)
+
+        for(let i in options){
+            if(i.indexOf('express_code') > -1){
+                this.data.express.push({
+                    express_code: options[i],
+                    express_company: options['express_company'+ i.replace('express_code','')]
+                })
+            }
+        }
+
         this.setData({
-            express_company:options.name || '',
-            express_code:options.code || '',
-            order_id:options.id || ''
+            express: this.data.express,
+            order_id: options.order_id
         })
-        this.checkExpress()
+
+        this.checkExpress({
+            order_id: options.order_id,
+            express_code: options['express_code' + options.index],
+            express_company: options['express_company' + options.index],
+            index: options.index
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-        
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
+    toCheckExpress(e) {
+        let i = e.currentTarget.dataset.index;
+        if(this.data.currentIndex != i){
+            this.checkExpress({
+                order_id: this.data.order_id,
+                express_company: this.data.express[i].express_company,
+                express_code: this.data.express[i].express_code,
+                index: i
+            })
+        }
     }
 })
