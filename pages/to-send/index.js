@@ -179,7 +179,7 @@ Page({
             if (e.express_code) {
                 data += 'express_code'+ _i +'='+ e.express_code + '&express_company'+ _i +'='+ e.express_company + '&'
                 _i++;
-            }else{
+            }else if(i < index){
                 _index ++;
             }
         })
