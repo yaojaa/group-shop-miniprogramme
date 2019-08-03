@@ -8,7 +8,7 @@ Page({
         express_company: '',
         express_code: '',
         express: [],
-        currentIndex: '',
+        currentIndex: null,
         order_id: '',
         errorMsg: '',
         traces: '',
