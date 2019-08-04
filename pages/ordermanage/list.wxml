@@ -74,10 +74,14 @@
 微信通知                </button>
                 </view>
 
+            <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
 
-            <view class="order-status">
-                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}
-                </text>
+                <view><image style="width: 42px; height: 16px;" mode="aspectFit" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD0AAAAgCAYAAAChKnCsAAAESklEQVRYR+2YMW/bVhDH/2eLXisPXbpE2QtUBkyNNTN3qA2UAgoU8PMnqLJ0rdsvkPQT+GXJQAawPXayOgWQDEQGunWotXaxshSoKOuKo0TimaIk0nx2huRNAvSOvB/v7v/uHuEjXPQRMuMT9ENGvXmqGk5ET8q/g9/323pQ3m65xaNFuhWqMwDf3sf5nq+t+mn1YauA3EB1ibA3BZ6VAZ/UcD040NdlbNbtfXRo21FbB5j3/yfo+3y1PBs3UE0QLgioZ/+/T6TleUR4l/eucQ3bgwM9KuO79Ug3T1XdiXBBhCaAXwxnFIAnq6AThSdiD4wmE+oMnE9q0LUJ1EbmI06B0aWvX5YBlr3Wod1AnRBBMeOo39Y6cSgRsjzo1pujQzD7IHwDji2GzBgR4QsAn49reGpTzKxC74aqswG8YOBV39cS2XTlQcdlAMhHajLzn0T05QT4ehP4lQCPGVdE+EoU/9LX3bIRXbbfGnRad4yrsQMvW2dZ6LTuGUMGFBH2mfknEP1HjOGU0BGnN4ALE9oNjvayMJHDV2Xq2gq01PFWhHcMbEcOmnmpaEIb+4f9tvYEYjc8fL0B+t7Mkt1QeQKdlIQbKulSDhciyLjqtbVkTaFlBdoNlSi1tyoNTejWG7UPxmmivG6gJNInWR1oheqYGZ1+W8enwDyb9hfICIPed1o6vkKrMrQ4BuBnUeqer+V37jKhJWJgNCTKSTSZ8TsR3oqARQ5eSbrObUY9Xy+CFsLL31QJOnEYwPk6x+5AByoWpcnm5qFze/sXCI7pnkQ8cnC2NcFNNvoVWFPTStBGlAv5wgyZmOpuoORs3WPCP8R4BkInquG1KUZJakcOGmVEqogjVqBFfAhYPxTMay+paaa4UTjI1qPRgd0pmWVCxow/EkF8NOj7nKNuoG4J9O+U8MOlf3IuzsaqPsGPAEQbFkpmXk6x2t9ZjylkSXqXhTbUOm4+sgzM+K3f1vE5/RDLSnqXhg7VBRgkKTnrt+ERoTEFupMaBrZreDExKnzKCpEWIdO2r4GKojxIpGeTFsVpGzk8LDMsZGxLtZcfDFrqFYQXmVn6uOdrc8zM9a8VKmly0gaHgREYz81prSjYqn1WI50eRYz3kr5EGEkbSYTPpsDzVbOvceYPxZYZdaJYyeVcWzjWqsBbhXYDJbcbT82hYy5UAxC47+vtZc66obqR6cqc0IwWddBv650qoKatFeiMMwvn69LpKGOYlw2tUEnTk96XS8pHs0uFUldE1qDnkehIKsZZSJBZdwFa7ryZIU1F7qV9XP+z83phaGkF6m8ZWVNbwnX2gqJsBlSKdPZlSVSYsZMcR0lLmXebktjP79WuCbgZO9hJopg0Mev04INCz69/ulK/xIgnKSZ42VrNczLt0maKfQZCQ2Z0lLwgKPIBrEZaXijCtTWBNB9NMEYMdCMHx0Vq0CgXLx5gCGfjGl4WsS0Cm+z5H0+QYT8pHy/1AAAAAElFTkSuQmCC"></image></view>
+
+            </view>
+            <view wx:else class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
             </view>
         </view>
         <view class="order-bd">

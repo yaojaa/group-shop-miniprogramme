@@ -1,5 +1,6 @@
 <view class="container gray-wrap cf">
-    <view wx:for="{{express}}" wx:key="{{item.express_code}}" class="p-df white-bg flex mv-sm align-center">
+    <block wx:for="{{express}}" wx:key="{{item.express_code}}">
+    <view class="p-df white-bg flex mv-sm align-center">
         <view class="wuliu-box">
             <i-icon type="time" color="#fff" size="48" />
         </view>
@@ -16,21 +17,21 @@
             </view>
         </view>
         <view>
-            <button hidden="{{index != currentIndex}}" class="btn primary sm hollow button-hover" bindtap="copyOrder">复制</button>
+            <!-- <button hidden="{{index != currentIndex}}" class="btn primary sm hollow button-hover" bindtap="copyOrder">复制</button> -->
+            <button class="btn primary sm hollow button-hover" data-index="{{index}}" bindtap="copyOrder">复制</button>
         </view>
     </view>
-    <view class="white-bg p-df">
-        <block wx:if="{{traces.length > 0}}">
-        <wux-timeline >
-            <view class="trace" wx:for="{{traces}}" wx:key="{{index}}">
-                <wux-timeline-item content="{{item.time}}" dotStyle="border-color: #49b34d; color: #49b34d">
-                    <view>{{item.content}}</view>
+    <view class="white-bg p-df" wx:if="{{item.checktraces}}">
+        <wux-timeline wx:if="{{item.traces && item.traces.length}}">
+            <view class="trace" wx:for="{{item.traces}}" wx:key="{{index}}" wx:for-item="item2">
+                <wux-timeline-item content="{{item2.time}}" dotStyle="border-color: #49b34d; color: #49b34d">
+                    <view>{{item2.content}}</view>
                 </wux-timeline-item>
             </view>
         </wux-timeline>
-        </block>
-        <view class="trace" wx:else>{{errorMsg}}</view>
+        <view class="trace" wx:else>{{item.errorMsg}}</view>
     </view>
+    </block>
 
 
 </view>

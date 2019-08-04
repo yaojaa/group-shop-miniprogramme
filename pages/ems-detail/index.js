@@ -14,6 +14,14 @@ Page({
         traces: '',
     },
     checkExpress(options) {
+        if(this.data.express[options.index].errorMsg){
+            this.setData({
+                ['express[' + options.index + '].checktraces']: !this.data.express[options.index].checktraces
+            })
+
+            return;
+        }
+
         wx.showLoading()
         util.wx.get('/api/order/get_express_info', {
             express_company: options.express_company,
@@ -23,16 +31,18 @@ Page({
             if (res.data.status) { // 物流单号正确
                 this.setData({
                     currentIndex: options.index,
-                    traces: res.data.data.traces.reverse(),
-                    errorMsg: '快递单号不正确或者暂时没有物流信息'
+                    ['express[' + options.index + '].traces']: res.data.data.traces.reverse(),
+                    ['express[' + options.index + '].errorMsg']: '快递单号不正确或者暂时没有物流信息',
+                    ['express[' + options.index + '].checktraces']: true
                 })
             }else{ // 物流单号错误
                 this.data.express_code = "";
                 this.data.express_company = "";
                 this.setData({
                     currentIndex: options.index,
-                    traces: [],
-                    errorMsg: '单号有误，请检查单号重新输入'
+                    ['express[' + options.index + '].traces']: [],
+                    ['express[' + options.index + '].errorMsg']: '单号有误，请检查单号重新输入',
+                    ['express[' + options.index + '].checktraces']: true
                 })
 
             }
@@ -42,9 +52,10 @@ Page({
         })
     },
     copyOrder(e) {
-        let currentExpress = this.data.express[this.data.currentIndex]
+        let i = e.currentTarget.dataset.index;
+        let currentExpress = this.data.express[i]
         let msg = '物流公司：' + currentExpress.express_company + '\n物流单号:' + currentExpress.express_code + '\n'
-        this.data.traces.forEach(e => {
+        currentExpress.traces&&currentExpress.traces.forEach(e => {
             msg += e.time + '\n' + e.content + '\n'
         })
 
@@ -94,13 +105,12 @@ Page({
         //     express_code:options.code || '',
         //     order_id:options.id || ''
         // })
-        console.log(options)
 
         for(let i in options){
-            if(i.indexOf('express_code') > -1){
+            if(i.indexOf('code') > -1){
                 this.data.express.push({
                     express_code: options[i],
-                    express_company: options['express_company'+ i.replace('express_code','')]
+                    express_company: options['com'+ i.replace('code','')]
                 })
             }
         }
@@ -112,20 +122,20 @@ Page({
 
         this.checkExpress({
             order_id: options.order_id,
-            express_code: options['express_code' + options.index],
-            express_company: options['express_company' + options.index],
+            express_code: options['code' + options.index],
+            express_company: options['com' + options.index],
             index: options.index
         })
     },
     toCheckExpress(e) {
         let i = e.currentTarget.dataset.index;
-        if(this.data.currentIndex != i){
+        // if(this.data.currentIndex != i){
             this.checkExpress({
                 order_id: this.data.order_id,
                 express_company: this.data.express[i].express_company,
                 express_code: this.data.express[i].express_code,
                 index: i
             })
-        }
+        // }
     }
 })
