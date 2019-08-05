@@ -65,8 +65,6 @@ Page({
     //打开发送通知
     openMsgTips(e) {
 
-        console.log(e)
-
         if(e=='all'){
 
          this.setData({
