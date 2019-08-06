@@ -663,10 +663,33 @@ Page({
     checkexpress(e) {
         let pi = e.currentTarget.dataset.pi;
         let ci = e.currentTarget.dataset.ci;
+        let current = this.data.dataList[pi][ci];
+        let data = '';
+
+        current.express.forEach((e,i) => {
+            data += 'code'+ i +'='+ e.express_code
+                + '&com'+ i +'='+ e.express_company
+                + '&'
+        })
+
+        data += 'index=0&order_id='+ e.currentTarget.dataset.id
+            + '&user=' + current.consignee
+            + '&goods=' + current.order_detail[0].goods_name
+
+        wx.navigateTo({
+          url: '/pages/ems-detail/index?' + data
+        })
+
+
+    },
+    checkexpressorder(e) {
+        let pi = e.currentTarget.dataset.pi;
+        let ci = e.currentTarget.dataset.ci;
+        let current = this.data.dataList[pi][ci];
         let data = '';
 
 
-        this.data.dataList[pi][ci].express.forEach((e,i) => {
+        current.express.forEach((e,i) => {
             data += 'code'+ i +'='+ e.express_code
                 + '&com'+ i +'='+ e.express_company
                 + '&id'+ i +'='+ e.express_id
@@ -674,6 +697,8 @@ Page({
         })
 
         data += 'pi='+ pi +'&ci='+ ci +'&order_id='+ e.currentTarget.dataset.id
+            + '&user=' + current.consignee
+            + '&goods=' + current.order_detail[0].goods_name
 
         wx.navigateTo({
           url: '/pages/express/index?' + data

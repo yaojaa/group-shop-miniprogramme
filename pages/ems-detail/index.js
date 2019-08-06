@@ -12,15 +12,19 @@ Page({
         order_id: '',
         errorMsg: '',
         traces: '',
-    },
-    //失败的时候点击重新查一次
-    reTry(){
-
+        user: '',
+        goods: ''
     },
     checkExpress(options) {
-        if(this.data.express[options.index].errorMsg){
+        let currentExpress = this.data.express[options.index];
+        if(currentExpress && currentExpress.traces && currentExpress.traces.length > 0){
             this.setData({
-                ['express[' + options.index + '].checktraces']: !this.data.express[options.index].checktraces
+                ['express[' + options.index + '].traces']: currentExpress.traces
+            })
+
+            this.setData({
+                currentIndex: options.index,
+                ['express[' + options.index + '].traces']: currentExpress.traces
             })
 
             return;
@@ -36,8 +40,7 @@ Page({
                 this.setData({
                     currentIndex: options.index,
                     ['express[' + options.index + '].traces']: res.data.data.traces.reverse(),
-                    ['express[' + options.index + '].errorMsg']: '快递单号不正确或者暂时没有物流信息',
-                    ['express[' + options.index + '].checktraces']: true
+                    ['express[' + options.index + '].errorMsg']: '快递单号不正确或者暂时没有物流信息'
                 })
             }else{ // 物流单号错误
                 this.data.express_code = "";
@@ -45,8 +48,7 @@ Page({
                 this.setData({
                     currentIndex: options.index,
                     ['express[' + options.index + '].traces']: [],
-                    ['express[' + options.index + '].errorMsg']: '单号有误，请检查单号重新输入',
-                    ['express[' + options.index + '].checktraces']: true
+                    ['express[' + options.index + '].errorMsg']: '单号有误，请检查单号重新输入'
                 })
 
             }
@@ -110,6 +112,10 @@ Page({
         //     order_id:options.id || ''
         // })
 
+        console.log(options)
+        this.data.user = options.user
+        this.data.goods = options.goods
+
         for(let i in options){
             if(i.indexOf('code') > -1){
                 this.data.express.push({
@@ -141,5 +147,10 @@ Page({
                 index: i
             })
         // }
+    },
+    onShareAppMessage: function (res) {
+    return {
+      title: this.data.goods + ' ' + this.data.user
     }
+  }
 })

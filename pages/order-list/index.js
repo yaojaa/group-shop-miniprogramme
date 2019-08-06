@@ -224,12 +224,15 @@ Page({
     checkexpress(e) {
         let data = '';
         let index = e.currentTarget.dataset.index;
+        let current = this.data.order_list[index];
 
-        this.data.order_list[index].express.forEach((e,i) => {
+        current.express.forEach((e,i) => {
             data += 'code'+ i +'='+ e.express_code + '&com'+ i +'='+ e.express_company + '&'
         })
 
         data += 'index=0&order_id='+ e.currentTarget.dataset.id
+            + '&user=' + current.consignee
+            + '&goods=' + current.order_detail[0].goods_name
 
         wx.navigateTo({
           url: '/pages/ems-detail/index?' + data

@@ -6,6 +6,8 @@ let oldExpress=[]
 Page({
     data: {
         express:[],
+        user: '',
+        goods: '',
         columns: [],
         comps: [],
         express_company: '',
@@ -62,10 +64,12 @@ Page({
             }
         }
 
-        this.data.express.push({
-            express_company: '',
-            express_code:''
-        })
+        if(this.data.express.length == 0){
+            this.data.express.push({
+                express_company: '',
+                express_code:''
+            })
+        }
 
         this.setData({
             order_id: opt.order_id,
@@ -74,7 +78,8 @@ Page({
 
         this.data.pindex = opt.pi
         this.data.cindex = opt.ci
-
+        this.data.user = opt.user
+        this.data.goods = opt.goods
 
         this.getData()
     },
@@ -269,6 +274,8 @@ Page({
         })
 
         data += 'index='+ (index - _index) +'&order_id='+ this.data.order_id
+            +'&user='+ this.data.user
+            +'&goods='+ this.data.goods
 
         wx.navigateTo({
           url: '/pages/ems-detail/index?' + data
