@@ -202,16 +202,16 @@ Page({
         const user_name = e.detail.target.dataset.user_name
 
 
-        if (opt == 'toset_send' && this.data.delivery_method == 1) {
+        // if (opt == 'toset_send' && this.data.delivery_method == 1) {
 
 
-            wx.navigateTo({
-                url: '../to-send/index?get_user_avatar=' + avatar + '&get_user_name=' + user_name + '&order_id=' + order_id+ '&cindex=' + cindex+ '&pindex=' + pindex
-            })
+        //     wx.navigateTo({
+        //         url: '../to-send/index?get_user_avatar=' + avatar + '&get_user_name=' + user_name + '&order_id=' + order_id+ '&cindex=' + cindex+ '&pindex=' + pindex
+        //     })
             
             
-            return
-        }
+        //     return
+        // }
 
         wx.showModal({
             title: '确定要' + txt + '吗？',
@@ -659,6 +659,26 @@ Page({
             // 停止下拉动作
             wx.stopPullDownRefresh();
         })
+    },
+    checkexpress(e) {
+        let pi = e.currentTarget.dataset.pi;
+        let ci = e.currentTarget.dataset.ci;
+        let data = '';
+
+
+        this.data.dataList[pi][ci].express.forEach((e,i) => {
+            data += 'code'+ i +'='+ e.express_code
+                + '&com'+ i +'='+ e.express_company
+                + '&id'+ i +'='+ e.express_id
+                + '&'
+        })
+
+        data += 'pi='+ pi +'&ci='+ ci +'&order_id='+ e.currentTarget.dataset.id
+
+        wx.navigateTo({
+          url: '/pages/express/index?' + data
+        })
+
     },
     /**
      * 页面上拉触底事件的处理函数

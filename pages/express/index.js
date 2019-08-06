@@ -1,15 +1,11 @@
 const app = getApp()
 const util = require('../../utils/util.js')
 let index = 0
+let oldExpress=[]
 
 Page({
     data: {
-        express:[
-            {
-                express_company:"",
-                express_code:""            
-            }
-        ],
+        express:[],
         columns: [],
         comps: [],
         express_company: '',
@@ -19,8 +15,9 @@ Page({
         get_user_avatar: '',
         traces: [],
         showTraces: false,
-        checked: false,
+        checked: true,
         emsPopup: false,
+        btnText:'返 回',
         express_data:[{"name":"\u987a\u4e30\u901f\u8fd0","kdniao_code":"SF","wyc_code":"SF"},{"name":"\u767e\u4e16\u5feb\u9012","kdniao_code":"HTKY","wyc_code":"HTKY"},{"name":"\u4e2d\u901a\u5feb\u9012","kdniao_code":"ZTO","wyc_code":"ZTO"},{"name":"\u7533\u901a\u5feb\u9012","kdniao_code":"STO","wyc_code":"STO"},{"name":"\u5706\u901a\u901f\u9012","kdniao_code":"YTO","wyc_code":"YTO"},{"name":"\u97f5\u8fbe\u901f\u9012","kdniao_code":"YD","wyc_code":"YD"},{"name":"\u90ae\u653f\u5feb\u9012\u5305\u88f9","kdniao_code":"YZPY","wyc_code":"YZPY"},{"name":"EMS","kdniao_code":"EMS","wyc_code":"EMS"},{"name":"\u5929\u5929\u5feb\u9012","kdniao_code":"HHTT","wyc_code":"HHTT"},{"name":"\u4eac\u4e1c\u5feb\u9012","kdniao_code":"JD","wyc_code":"JD"},{"name":"\u4f18\u901f\u5feb\u9012","kdniao_code":"UC","wyc_code":"UC"},{"name":"\u5fb7\u90a6\u5feb\u9012","kdniao_code":"DBL","wyc_code":"DBL"},{"name":"\u5b85\u6025\u9001","kdniao_code":"ZJS","wyc_code":"ZJS"},{"name":"TNT\u5feb\u9012","kdniao_code":"TNT","wyc_code":"TNT"},{"name":"UPS","kdniao_code":"UPS","wyc_code":"UPS"},{"name":"DHL","kdniao_code":"DHL","wyc_code":"DHL"},{"name":"FEDEX\u8054\u90a6","kdniao_code":"FEDEX","wyc_code":"FEDEX"},{"name":"\u5176\u5b83","kdniao_code":"other","wyc_code":"other"}]
     },
     handleEmsPopup(e) {
@@ -29,6 +26,19 @@ Page({
         })
 
         index = e.currentTarget.dataset.index;
+        this.saveOldExpress();
+    },
+    saveOldExpress() {
+        oldExpress = [];
+
+        this.data.express.forEach(e=>{
+            let data = {
+                express_company: e.express_company,
+                express_code: e.express_code
+            }
+            if(e.express_id) data.express_id = e.express_id;
+            oldExpress.push(data)
+        })
     },
     changeEms(e){
        const { value } = e.detail;
@@ -37,16 +47,33 @@ Page({
             ['express[' + index + '].express_company']: value,
             emsPopup: !this.data.emsPopup
         })
+        this.setBtnStatus();
+        this.editExpress(index);
     },
     onLoad: function(opt) {
-        this.setData({
-            order_id: opt.order_id,
-            get_user_name: opt.get_user_name,
-            get_user_avatar: opt.get_user_avatar
+
+        for(let i in opt){
+            if(i.indexOf('code') > -1){
+                this.data.express.push({
+                    express_code: opt[i],
+                    express_company: opt['com'+ i.replace('code','')],
+                    express_id: opt['id'+ i.replace('code','')]
+                })
+            }
+        }
+
+        this.data.express.push({
+            express_company: '',
+            express_code:''
         })
 
-        this.data.pindex = opt.pindex
-        this.data.cindex = opt.cindex
+        this.setData({
+            order_id: opt.order_id,
+            express: this.data.express
+        })
+
+        this.data.pindex = opt.pi
+        this.data.cindex = opt.ci
 
 
         this.getData()
@@ -63,30 +90,87 @@ Page({
             showTraces: false
         })
     },
-    
-    send() {
-        let _this = this;
+    // 删除
+    delexpress(e) {
+        let i = e.currentTarget.dataset.index;
+        let currentExpress = this.data.express[i];
+
         wx.showModal({
-          content: '是否确认发货？',
+          content: '是否确认删除？',
+          success: (res)=> {
+            if (res.confirm) {
+
+                if(currentExpress.express_id){
+
+                    wx.showLoading()
+
+                    util.wx.post('/api/seller/del_order_express', {
+                        express_id: currentExpress.express_id
+                    }).then(res => {
+
+                            wx.showToast({
+                                title: '删除成功'
+                            })
+                            
+                            this.data.express.splice(i,1);
+                            this.setData({
+                                express: this.data.express
+                            })
+                        },res=>{
+
+                            wx.showToast({
+                                title: res.data.msg
+                            })
+
+                    })
+                    .catch(res=>{
+
+                     console.log(res)
+
+                    })
+
+
+                }else{
+                    this.data.express.splice(i,1)
+                    this.setData({
+                        express: this.data.express
+                    })
+                }
+
+
+                this.setBtnStatus();
+
+                
+            }
+          }
+        })
+
+    },
+    send() {
+        const key = 'dataList['+this.data.pindex+']['+this.data.cindex+']'
+        let express = this.data.express.filter(e => {
+            return e.express_company && e.express_code && !e.express_id
+        })
+
+        if(express.length == 0){
+            wx.navigateBack()
+            return;
+        }
+
+        wx.showModal({
+          content: '是否确认添加？',
           success: (res)=> {
             if (res.confirm) {
                 wx.showLoading()
 
-                util.wx.post('/api/seller/set_order_status', {
-                    order_id: _this.data.order_id,
-                    opt: 'toset_send',
-                    action_remark: _this.data.action_remark,
-                    express_company: _this.data.checked ? _this.data.express[0].express_company : "",
-                    express_code: _this.data.checked ?  _this.data.express[0].express_code : ""
+                util.wx.post('/api/seller/add_order_express', {
+                    order_id: this.data.order_id,
+                    express: express
                 }).then(res => {
 
                         wx.showToast({
-                            title: '发货成功'
+                            title: '添加成功'
                         })
-
-                        const key = 'dataList['+this.data.pindex+']['+this.data.cindex+']'
-                        
-                        wx.showLoading()
 
 
                         util.setParentData({
@@ -94,14 +178,14 @@ Page({
                         })
                     },res=>{
 
-                    wx.showToast({
+                        wx.showToast({
                             title: res.data.msg
                         })
 
                 })
                 .catch(res=>{
 
-                 console.log(res)
+                    console.log(res)
 
                 })
             }
@@ -109,23 +193,16 @@ Page({
         })
     },
 
-    // checkExpress() {
-    //     wx.showLoading()
-    //     util.wx.get('/api/order/get_express_info', {
-    //         express_company: this.data.express_company,
-    //         express_code: this.data.express_code,
-    //         order_id: 12345
-    //     }).then(res => {
-    //         if (res.data.code == 200) {
-    //             this.setData({
-    //                 showTraces: true,
-    //                 traces: res.data.data.traces.reverse()
-    //             })
-    //         }
-    //         wx.hideLoading()
+    setBtnStatus(){
+        let express = this.data.express.filter(e => {
+            return e.express_company && e.express_code && !e.express_id
+        })
+        this.setData({
+            btnText: express.length == 0 ? '返 回' : '确 认 添 加'
+        })
 
-    //     })
-    // },
+    },
+
     getData() {
         // util.wx.get('/api/index/get_express_code').then(res => {
         //     if (res.data.code == 200) {
@@ -168,6 +245,13 @@ Page({
             ['express[' + index + '].express_code']: e.detail
         })
 
+        this.setBtnStatus()
+
+    },
+    blurInput(e){
+        let i = e.currentTarget.dataset.index;
+        this.editExpress(i);
+
     },
     checkexpress(e) {
         let data = '';
@@ -190,5 +274,45 @@ Page({
           url: '/pages/ems-detail/index?' + data
         })
 
+    },
+    editExpress(i) {
+        let currentExpress = this.data.express[i];
+        let old = oldExpress[i];
+
+        if(currentExpress.express_id && (old.express_company != currentExpress.express_company || old.express_code != currentExpress.express_code)){
+
+            wx.showLoading()
+
+            util.wx.post('/api/seller/edit_order_express', {
+                express_id: currentExpress.express_id,
+                express_code: currentExpress.express_code,
+                express_company: currentExpress.express_company
+            }).then(res => {
+
+                    wx.showToast({
+                        title: '编辑成功'
+                    })
+
+                    this.saveOldExpress();
+                    
+                },res=>{
+
+                    wx.showToast({
+                        title: res.data.msg
+                    })
+
+            })
+            .catch(res=>{
+
+             console.log(res)
+
+            })
+
+
+        }
+
+
+
     }
+
 })

@@ -36,3 +36,13 @@
 	margin-bottom: 20px;
 	color: #2192e4;
 }
+
+.express{
+	display: flex;
+	align-items: center;
+	padding-right: 30rpx;
+	background: #fff;
+}
+.flex0{
+	flex-shrink: 0;
+}

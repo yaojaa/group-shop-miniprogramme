@@ -32,9 +32,8 @@
         "pages/ordermanage/list",
         "pages/to-send/index",
         "pages/identify/identify",
-        "pages/modify-address/index"
-
-
+        "pages/modify-address/index",
+        "pages/express/index"
     ],
     "usingComponents":
     {

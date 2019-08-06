@@ -13,7 +13,7 @@
                         总计：¥<text class="text-black">{{item.total_price}}</text>
                     </view>
                     <view class="flex justify-end align-center" slot="footer">
-                        <navigator url="../ems-detail/index?name={{item.express_company}}&code={{item.express_code}}&id={{item.order_id}}" class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.express_code}}">查看物流</navigator>
+                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.express.length > 0}}" data-id="{{item.order_id}}" data-index="{{index}}" bindtap="checkexpress">查看物流</button>
 
                         <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}"  wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
                     </view>
