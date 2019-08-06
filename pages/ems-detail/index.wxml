@@ -29,7 +29,7 @@
             </view>
         </wux-timeline>
         <view class="trace" wx:else>
-          <text bindtap="toCheckExpress" data-index="{{currentIndex}}">{{express[currentIndex].errorMsg}} (点击重试)</text>     
+          <text bindtap="toCheckExpress" data-index="{{currentIndex}}">{{express[currentIndex].errorMsg}}</text>     
         </view>
     </view>
 

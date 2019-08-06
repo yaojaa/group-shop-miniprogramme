@@ -17,10 +17,7 @@ Page({
     },
     checkExpress(options) {
         let currentExpress = this.data.express[options.index];
-        if(currentExpress && currentExpress.traces && currentExpress.traces.length > 0){
-            this.setData({
-                ['express[' + options.index + '].traces']: currentExpress.traces
-            })
+        if(currentExpress.status){
 
             this.setData({
                 currentIndex: options.index,
@@ -40,7 +37,8 @@ Page({
                 this.setData({
                     currentIndex: options.index,
                     ['express[' + options.index + '].traces']: res.data.data.traces.reverse(),
-                    ['express[' + options.index + '].errorMsg']: '快递单号不正确或者暂时没有物流信息'
+                    ['express[' + options.index + '].errorMsg']: '抱歉，暂时没有物流信息',
+                    ['express[' + options.index + '].status']: true
                 })
             }else{ // 物流单号错误
                 this.data.express_code = "";
@@ -48,7 +46,8 @@ Page({
                 this.setData({
                     currentIndex: options.index,
                     ['express[' + options.index + '].traces']: [],
-                    ['express[' + options.index + '].errorMsg']: '单号有误，请检查单号重新输入'
+                    ['express[' + options.index + '].errorMsg']: '快递单号不正确或者暂时没有物流信息 (点击重试)',
+                    ['express[' + options.index + '].status']: false
                 })
 
             }
