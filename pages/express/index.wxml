@@ -13,7 +13,7 @@
                 <van-field input-class ="f20"  value="{{item.express_company}}" label="快递名称" placeholder="请选择快递名称" readonly="{{true}}" data-index="{{index}}" bindtap="handleEmsPopup" use-button-slot>
                 </van-field>
 
-                <button wx:if="{{item.express_company==''}}" class="btn primary sm hollow flex0" slot="button" bindtap="delexpress" data-index="{{index}}">删除</button>
+                <button wx:if="{{item.express_company=='' && express.length > 0}}" class="btn primary sm hollow flex0" slot="button" bindtap="delexpress" data-index="{{index}}">删除</button>
             </view>
 
 
@@ -35,7 +35,7 @@
         </van-cell-group>
     </view> -->
 
-    <view class="add-number" bindtap="addExpress">+继续添加单号</view>
+    <view class="add-number" bindtap="addExpress">+添加单号</view>
 
 
 

@@ -138,11 +138,11 @@
                 </form>
             </block>
 
-            <view class="express" wx:if="{{item.order_status == 3}}">
+            <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">
                 <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-pi="{{pindex}}"></view>
                 <button data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpressorder">
-                    <block wx:if="{{item.express.length > 0}}">编辑单号</block>
-                    <block wx:else>点击录入</block>
+                    <block wx:if="{{item.express.length > 0}}">快递单号</block>
+                    <block wx:else>录入单号</block>
                 </button>
             </view>
         </view>
