@@ -1,18 +1,146 @@
+@import "../../css/common.wxss";
 .container {
-    background: #f8f8f8;
+background: #f8f8f8;
+height:100%
 }
 
-.head-box {
-    background: #49b34d;
-    position: relative;
-    padding: 30px 15px;
+.goods-box{
+    margin-bottom:60px
 }
 
-.msg-tips {
+
+.head-box{
+  position: relative;
+  background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center top no-repeat #fff;
+  background-size: 100% auto;
+  height: 400rpx;
+  position: relative;
+  width: 100%;
+  padding-top: 150rpx
+}
+.set-icon{
     position: absolute;
-    top: 4px;
-    right: 15px;
+    right: 0;
+    bottom: 0
 }
+.user-avatar{
+
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.user-name{
+    font-size: 28rpx;
+    color: #fff;
+    padding-top: 10px
+}
+.user-account{
+    font-size: 22rpx;
+    color: #fff;
+    margin-top: 5px
+}
+
+.home-avatar {
+width:68rpx;
+height:68rpx;
+border-radius: 50%;
+vertical-align:middle;
+
+}
+
+.head-box .number{
+  text-align: center;
+  width: 300rpx;
+  margin: 0 auto;
+  padding-top: 60rpx;
+  font-size: 48rpx;
+  color: #333
+}
+
+.head-box .number .text{
+  font-size: 28rpx;
+  opacity: 0.8
+
+}
+
+.head-box .creat_btn{
+    color: #fff;
+    border-radius: 9px 0 0 9px;
+    position: absolute;
+    padding: 5rpx ;
+    text-align: center;
+    right:  0;
+    width: 190rpx;
+    top: 180rpx
+}
+
+.head-box .creat_btn button{
+    background: transparent;
+    border: none;
+    padding:0;
+    margin: 0;
+    font-size: 24rpx;
+    color: #fff
+}
+.head-box .creat_btn button:after{
+    border: none;
+    box-shadow: none;
+}
+
+.main_nav_box{
+  height:212rpx;
+  overflow:hidden;
+  border-radius:8rpx;
+  background-color:rgba(255, 255, 255, 1);
+  box-shadow:0px 7px 6px 0px #eee;
+  position:absolute;
+  left:30rpx;
+  right:30rpx;
+  top:350rpx;
+  z-index:19;
+  display: flex;
+
+}
+
+.main_nav_box .item{
+  flex: 1;
+  text-align: center;
+  padding-top: 30rpx;
+  border-right: 1px solid #eee;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx
+
+}
+
+.new_add{
+
+    margin-top: -10rpx
+}
+
+.main_nav_box .item:last-child{
+  border: none;
+}
+
+.main_nav_box .item .num{
+  color: #FA7268;
+  font-size: 36rpx;
+  padding-bottom: 10rpx;
+  font-weight: 400;
+}
+.main_nav_box .item .tit{
+  color: #333;
+  font-size: 24rpx
+}
+
+
+
+
+
+
 
 .userinfo {
     color: #fff;
@@ -82,7 +210,11 @@
     font-size: 32rpx;
     color: #333;
     display: block;
-    padding-top: 5rpx;
+    padding: 15rpx 0;
+}
+
+.count-item.active{
+    border-bottom: 2px solid #6dbf0c
 }
 
 .goods-count {
@@ -94,13 +226,7 @@
 }
 
 .goods-item {
-    padding: 30rpx 0;
-    border: 1rpx solid #f2f2f2;
-    margin: 15px 10px;
-    border-radius: 10px;
-    background: #fffffe;
-    box-shadow: 1px 1px 3px #eee;
-    position: relative
+    margin: 15px 10px 10px 0;
 }
 
 .goods-item .rm_btn{
@@ -116,7 +242,8 @@
     display: -ms-flex;
     display: -o-flex;
     display: flex;
-    padding: 0 30rpx;
+    padding: 0 20rpx;
+    position: relative;
 }
 
 .goods-body .hd {
@@ -156,7 +283,10 @@
 
 .goods-body .fd {
     color: #999;
-    font-size: 28rpx
+    font-size: 28rpx;
+    position: absolute;
+    right: 0;
+    top: 0
 }
 
 .goods-count .count-item {
@@ -192,7 +322,7 @@
 }
 
 .new-goods {
-    background: url('http://img.daohangwa.com/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.L93aAkSP1WBu55d11a6a3dd783840a0c548161476571.jpg');
+    background: url('https://static.kaixinmatuan.cn/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.L93aAkSP1WBu55d11a6a3dd783840a0c548161476571.jpg');
     background-color: #ffffff;
     background-size: 50%;
     background-position: center 40%;
@@ -212,6 +342,19 @@
 }
 
 /**订单*/
+.myorder{
+    font-size: 12px;
+    color: #666;
+    padding: 15px 0
+
+}
+.myorder .flex-item{
+    text-align: center;
+    position: relative;
+}
+.myorder .flex-item .icon{
+    margin-bottom: 10px
+}
 
 .order {
     margin: 32rpx 0;
@@ -454,72 +597,7 @@ button::after {
     line-height: 1.6;
 }
 
-.loader {
-    width: 15em;
-    height: 15em;
-    font-size: 10px;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    left: 50%;
-    top: 26%;
-    z-index: 999;
-    transform: translate(-50%,-50%)
-}
 
-.loader .face {
-    position: absolute;
-    border-radius: 50%;
-    border-style: solid;
-    animation: animate 1.5s linear infinite;
-}
-
-.loader .face:nth-child(1) {
-    width: 100%;
-    height: 100%;
-    color: gold;
-    border-color: currentColor transparent transparent currentColor;
-    border-width: 0.5em 0.5em 0em 0em;
-    --deg: -45deg;
-    animation-direction: normal;
-}
-
-.loader .face:nth-child(2) {
-    width: 70%;
-    height: 70%;
-    color: #0bd013;
-    border-color: currentColor currentColor transparent transparent;
-    border-width: 0.5em 0em 0em 0.5em;
-    --deg: -135deg;
-    animation-direction: reverse;
-}
-
-.loader .face .circle {
-    position: absolute;
-    width: 50%;
-    height: 0.1em;
-    top: 50%;
-    left: 50%;
-    background-color: transparent;
-    transform: rotate(var(--deg));
-    transform-origin: left;
-}
-
-.loader .face .circle::before {
-    position: absolute;
-    top: -0.5em;
-    right: -0.5em;
-    content: '';
-    width: 1.5em;
-    height: 1.5em;
-    background-color: currentColor;
-    border-radius: 50%;
-    box-shadow: 0 0 2em,
-                0 0 4em,
-                0 0 6em,
-                0 0 0 0.5em rgba(255, 255, 0, 0.1);
-}
 
 @keyframes animate {
     to {
@@ -527,6 +605,15 @@ button::after {
     }
 }
 
+<<<<<<< HEAD
+=======
+.footer_bar{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999
+}
+>>>>>>> shop
 /* sort example */
 .sort{
   padding: 0 40rpx;
@@ -540,4 +627,47 @@ button::after {
 .sort-color{
   color: #f00;
   font-size: 48rpx;
+<<<<<<< HEAD
 }
+=======
+}
+.siteBtn{
+  text-align:center;
+background:#ff9000;
+border-radius:30px;
+color:#fff;
+width:90px;
+font-size:14px;
+margin-right:20px;
+padding:8px 12px;
+margin-top:15px;
+}
+.marginTop{
+    margin-top: -100rpx!important
+}
+
+.badge{
+    position: absolute;
+    top: 0;
+    right: 8rpx;
+    height: 16px;
+    border-radius: 9px;
+    min-width: 16px;
+    background: #9c0;
+    border: 1px solid transparent;
+    color: #fff;
+    line-height: 14px;
+    text-align: center;
+    padding: 0 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    z-index: 10;
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility
+
+}
+.notice{
+    color:#f76a24;
+    padding:20px
+}
+>>>>>>> shop

@@ -1,0 +1,53 @@
+<view class="img-box" style="height: {{ imgs.height + 'rpx' }};{{imgsPath.length > 0 && 'background:none'}}" bindtap="checkBigImg">
+	<wux-spin nested spinning="{{imgsPath.length < 1}}" wx:if='{{imgsPath.length < 1}}'>
+		<view style="height: {{ imgs.height + 'rpx' }}"></view>
+	</wux-spin>
+	<block wx:if="{{img.flag}}">
+	<!-- 正方形 -->
+	<view wx:if="{{img.type == 0}}" class="flex-cc">
+		<view style="transform: scale({{ img.scale}}, {{ img.scale}});{{ img.transition }};">
+			<image mode="aspectFill" src="{{ img.src }}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}"></image>
+		</view>
+	</view>
+
+	<!-- 横图 -->
+	<view wx:elif="{{img.type == 1}}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateX({{ img.x + 'px'}});{{ img.transition }};">
+		<image mode="aspectFill" src="{{ img.src }}"></image>
+	</view>
+
+	<!-- 竖图 -->
+	<view wx:elif="{{img.type == 2}}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateY({{ img.y + 'px'}});{{ img.transition }};">
+		<image mode="aspectFill" src="{{ img.src }}"></image>
+	</view>
+	</block>
+	<block wx:else>
+	<!-- 正方形 -->
+	<view wx:if="{{img.type == 0}}" class="flex-cc">
+		<view style="transform: scale({{ img.scale}}, {{ img.scale}});{{ img.transition }};">
+			<image mode="aspectFill" src="{{ img.src }}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}"></image>
+		</view>
+	</view>
+
+	<!-- 横图 -->
+	<view wx:elif="{{img.type == 1}}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateX({{ img.x + 'px'}});{{ img.transition }};">
+		<image mode="aspectFill" src="{{ img.src }}"></image>
+	</view>
+
+	<!-- 竖图 -->
+	<view wx:elif="{{img.type == 2}}" style="width: {{ img.size.w + 'px' }}; height: {{ img.size.h + 'px' }}; transform: translateY({{ img.y + 'px'}});{{ img.transition }};">
+		<image mode="aspectFill" src="{{ img.src }}"></image>
+	</view>
+
+	<!-- 单图 -->
+	<image wx:else="{{img.type == 9}}" mode="aspectFill" src="{{ img.src }}"></image>
+	</block>
+	<slot></slot>
+</view>
+
+<view class="swiper" hidden="{{bigImgsHidden}}" bindtap="closeBigImg">
+	<swiper duration='{{checkImgDuration}}' indicator-dots current="{{index}}" class="slide-image">
+    <swiper-item wx:for="{{imgsPath}}" wx:key="{{index}}">
+      <image src="{{item._src}}" mode="aspectFit" class="slide-image"/>
+    </swiper-item>
+	</swiper>
+</view>

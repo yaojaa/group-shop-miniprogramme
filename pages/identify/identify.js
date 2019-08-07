@@ -9,129 +9,102 @@ Page({
      */
     data: {
         mobile: '',
-        wxnumber: '',
-        photoUrl:'',
-        wx_collection_code:''
+        wechatnumber: ''
+    },
+
+    getInfo() {
+
+        util.wx.get('/api/user/user_info').then(res => {
+            console.log(res.data.data.wechatnumber)
+
+            if (res.data.code == 200) {
+                this.setData({
+                    mobile: res.data.data.mobile,
+                    wechatnumber: res.data.data.wechatnumber
+                })
+            } else {
+               wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
+                });
+            }
+
+
+
+        })
+
+
+
     },
     postInfo() {
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/set_user_info',
-            method: 'post',
-            data: {
-                token: app.globalData.token,
-                mobile: this.data.mobile,
-                wxnumber: this.data.wxnumber,
-                wx_collection_code:this.data.wx_collection_code,
-                session_key:wx.getStorageSync('session_key')
 
-            },
-            success: (res) => {
-                if (res.data.code == 0) {
-                    $Message({
-                        content: '保存成功',
-                        type: 'success'
-                    });
-                }else{
-                	$Message({
-                        content: res.data.msg,
+     if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.data.mobile))){ 
+             $Message({
+                        content: '手机号码有误，请重填',
                         type: 'error'
                     });
-                }
-            }
-        })
-    },
-    changeMobile(e){
-        console.log(e.detail.detail.value)
-        this.setData({
-            mobile:e.detail.detail.value
-        })
-    },
-    changeWX(e){
-
-        console.log(e.detail.detail.value)
-          this.setData({
-            wxnumber:e.detail.detail.value
-        })
-    },
-    getPhoneNumber(e) {
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/get_wx_mobile',
-            method: 'post',
-            data: {
-                token: app.globalData.token,
-                iv: e.detail.iv,
-                encryptedData: e.detail.encryptedData,
-                session_key:wx.getStorageSync('session_key')
-
-            },
-            success: (res) => {
-                this.setData({
-                    mobile: res.data.data.phoneNumber
-                })
-
-            }
-        })
-    },
-     //上传相册
-  chooseImage:function(e){
-
-    console.log(e.currentTarget.dataset.type)
-
-    const key = e.currentTarget.dataset.type
-
-      util.uploadPicture({
-        successData:(result)=>{
-
-          this.setData({
-            [key]:result 
-          })
-
-        },
-        progressState:(s)=>{
-          this.setData({
-          photoProgress:s
-        })
-
+            return false; 
         }
-      })
-  },
 
-    //预览图片
-  imgPreview: function(event) {
-        console.log(event.currentTarget.dataset)
-        var src = event.currentTarget.dataset.src; //获取data-src
-        //图片预览
-        wx.previewImage({
-            current: src, // 当前显示图片的http链接
-            urls: [src] // 需要预览的图片http链接列表
+
+        util.wx.post('/api/user/user_set_info', {
+
+            mobile: this.data.mobile,
+            wechatnumber: this.data.wechatnumber
+        }).then(res => {
+            console.log(res)
+
+            if (res.data.code == 200) {
+                $Message({
+                    content: '保存成功',
+                    type: 'success'
+                });
+            } else {
+                $Message({
+                    content: res.data.msg,
+                    type: 'error'
+                });
+            }
+
+
+
         })
+
     },
-    removePhoto(){
+    changeMobile(e) {
+        console.log(e)
+        this.setData({
+            mobile: e.detail.value
+        })
+
+    },
+    changeWX(e) {
 
         this.setData({
-            wx_collection_code:''
+            wechatnumber: e.detail.value
         })
+
     },
+
+    clearStorage() {
+
+        wx.clearStorageSync()
+
+        wx.redirectTo({
+            url: '../login/login'
+        })
+
+        //上传相册
+    },
+
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        wx.request({
-            url: 'https://www.daohangwa.com/api/user/get_user_info',
-            data: {
-                token: app.globalData.token
-            },
-            success: (res) => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        mobile: res.data.data.userinfo.mobile ,
-                        wxnumber:res.data.data.userinfo.wxnumber,
-                        wx_collection_code:res.data.data.store.wx_collection_code
-                    })
 
-                }
-            }
-        })
+        this.getInfo()
+
     },
 
     /**

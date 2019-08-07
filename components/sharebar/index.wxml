@@ -1,0 +1,14 @@
+<view class="p-df text-gray text-lg text-center">
+            分享到
+        </view>
+        <view class="solid-top"></view>
+        <view class="flex text-center pv-xl">
+            <view class="flex-sub">
+                <image src="http://img.countinsight.com/user/img/wx_icon.png" class="img-lg"></image>
+                <view class="text-weak mt-sm">微信</view>
+            </view>
+            <view bindtap="goQuan" class="flex-sub">
+                <image src="http://img.countinsight.com/user/img/quan_icon.png" class="img-lg"></image>
+                <view class="text-weak mt-sm">朋友圈</view>
+            </view>
+</view>

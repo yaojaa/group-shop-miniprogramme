@@ -1,0 +1,19 @@
+{
+    "navigationBarTitleText": "确认订单",
+    "usingComponents":
+    {
+        "van-stepper": "../../vant/stepper/index",
+        "van-cell": "../../vant/cell/index",
+        "van-cell-group": "../../vant/cell-group/index",
+        "van-field": "../../vant/field/index",
+        "van-icon": "../../vant/icon/index",
+        "i-panel": "../../iView/panel/index",
+        "i-input": "../../iView/input/index",
+        "i-custom-bar": "../../components/custom-bar/index",
+        "i-message": "../../iView/message/index",
+        "van-radio": "../../vant/radio/index",
+        "van-radio-group": "../../vant/radio-group/index",
+        "van-toast": "../../vant/toast/index",
+        "van-button": "../../vant/button/index"
+    }
+}

@@ -1,90 +1,115 @@
-<view class="container">
-<view class="bgimg">
-  <view class='title'>  快速发布团购
+
+
+
+<!--   <i-custom-bar title="开团" showBackIcon="{{true}}"> </i-custom-bar> -->
+
+<view class="container ">
+<!-- 
+  <wux-notice-bar mode="link"   loop leading="3000" action="" content="欢迎使用，不知道如果发商品？看这里" bind:click="onClick">
+            <text slot="footer" style="color: #a1a1a1; margin-left: 10px;">去领取</text>
+  </wux-notice-bar> -->
+
+
+<view class="circle_warpper" >
+      <navigator open-type="redirect" url="../publish/publish" hover-class="none">
+
+     <view class="circle">
+
+
+       <i-icon size="42" color="#ffffff"  type="add" />
+       <view class="new">发布新宝贝</view>
+       
+     </view>
+          </navigator>
+
 </view>
 
-<view class="center">
+
+
+<view class="smallTit">
+  选择模板快速创建：
+</view>
+<view class="center" >
+  <navigator url="../publish/publish?temp=2" class="button-area flex_box">
+  <!-- <view> -->
+  <view class="flex-item">
+
+    <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon1.jpg"></image>
+
+<!--   <i-icon type="success"  size="34" color="#c6c6c6" />
+ -->  </view>
+  <view class="flex-item-5 left">
+    <view class="f16 text-default"> <view>演示模板：特好吃的草莓</view>
+     <text class="f14 text-muted">填写提货点，用户自提</text> </view>
+   </view>
+  <!-- </view> -->
+  </navigator>
+</view>
+
+
+
+<!-- <view class="center">
   <view class="button-area flex_box">
   <view class="flex-item">
-  <i-icon type="success"  size="34" color="#c6c6c6" />
+    <image class="tmp-cover" mode="cover" src="/img/tmp_icon2.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>邮寄或上门送货</view>
-     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+    <view class="f16 text-default"> <view>社区团购线下收款模板</view>
+     <text class="f14 text-muted">微信红包或者收款码收款</text> </view>
    </view>
   </view>
-</view>
+</view> -->
 
 <view class="center">
+  <navigator url="../publish/publish?temp=1" class="button-area flex_box">
+  <!-- <view> -->
+  <view class="flex-item">
+    <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon3.jpg"></image>
+  </view>
+  <view class="flex-item-5 left">
+    <view class="f16 text-default"> <view>演示模板：特好吃的樱桃</view>
+     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+   </view>
+  <!-- </view> -->
+  </navigator>
+</view>
+
+<!-- <view class="smallTit">
+  从已有商品复制：
+</view> -->
+
+<!-- <view class="center">
   <view class="button-area flex_box">
   <view class="flex-item">
-  <i-icon type="success"  size="34" color="#c6c6c6" />
+       <i-icon size="24" color="#999"  type="task" />
   </view>
   <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>邮寄或上门送货</view>
-     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
+    <view class="f16 text-default"> <view>选择已有商品</view>
+      </view>
    </view>
   </view>
-</view>
-
-<view class="center">
-  <view class="button-area flex_box">
-  <view class="flex-item">
-  <i-icon type="success"  size="34" color="#c6c6c6" />
-  </view>
-  <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>邮寄或上门送货</view>
-     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
-   </view>
-  </view>
-</view>
-
-<view class="center">
-  <view class="button-area">
-  <view class="flex-item">
-  <i-icon type="success"  size="34" color="#c6c6c6" />
-  </view>
-  <view class="flex-item-5 left">
-    <view class="f18 text-default"> <view>邮寄或上门送货</view>
-     <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
-   </view>
-  </view>
-</view>
+</view> -->
 
 
-
-</view>
+<!-- <view class="smallTit">
+  从供应商库选择：
+</view> -->
 
 
 
 
 
+        <view class="weui-footer weui-footer_fixed-bottom">
 
-<!-- <block wx:if="{{oldAddress.length > 0}}">
-<view class='history'>历史记录（{{oldAddress.length}}），点击下面记录添加活动地点</view>
-<view class='session'>
-<block wx:for="{{oldAddress}}" wx:key="id">
-  <view class='address'>
-    <view class='icon-img'>
-      <i-icon type="coordinates" />
-    </view>
-    <view class='content' data-id="{{item.id}}" bindtap='moveAddress'>
-      <view class='name'>{{item.name}}</view>
-      <view class='des'>{{item.address}}</view>
-      <view class='des' wx:if="{{item.door_number}}">提货点：{{item.door_number}}</view>
-    </view>
-    <view class='delete' bindtap='deleteAddress' data-type="old" data-id="{{item.id}}"><icon type="clear" size="18"/></view>
-  </view>
-  <view class='line'></view>
-</block>
-</view>
-</block> -->
+            <view class="weui-footer__links">
 
+            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">开心麻团儿 北京原子动力科技</button>    
 
+            </view>
 
+            <view class="weui-footer__text">Copyright © 20018-2025 kaixinmatuan.cn</view>
 
-<i-button wx:if="{{newAddress.length}}"  i-class='button' bind:click="submit" type="success" long="true">确 定</i-button>
-
+        </view>
 
 
 

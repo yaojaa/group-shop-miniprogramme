@@ -1,0 +1,24 @@
+@import "../../css/common.wxss";
+.address-item{
+
+	padding: 30rpx 30rpx;
+}
+.address-item .bd{
+	margin-right: 30rpx;
+	flex:1;
+}
+.address-item .iconfont{
+	font-size: 40rpx;
+}
+.address-item .fd{
+	padding: 20rpx 20rpx 20rpx 40rpx;
+}
+.address-del{
+	color:#fff;
+	height: 100%;
+	width: 60px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

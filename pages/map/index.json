@@ -1,7 +1,10 @@
 {
-  "usingComponents": {
-    "i-input-number": "../../iView/input-number/index",
-    "i-button": "../../iView/button/index",
-    "i-icon": "../../iView/icon/index"
-  }
+    "navigationBarTitleText": "添加提货地点",
+    "usingComponents":
+    {
+        "i-input-number": "../../iView/input-number/index",
+        "i-button": "../../iView/button/index",
+        "i-icon": "../../iView/icon/index",
+        "i-custom-bar": "../../components/custom-bar/index"
+    }
 }

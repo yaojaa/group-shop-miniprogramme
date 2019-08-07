@@ -1,0 +1,221 @@
+@import "../../utils/weui.wxss";
+@import "../../css/common.wxss";
+.container{
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-head{
+	text-align: center;
+	position: relative;
+	background: #fff
+}
+.user-bg{
+	border-radius: 120%;
+	position: absolute;
+	width: 1920rpx;
+	height: 1200rpx;
+	left:50%;
+	top:-900rpx;
+	margin-left: -960rpx;
+	z-index: 1;
+}
+
+.user-head .avatar{
+	position: absolute;
+	z-index: 2;
+	top:-60rpx;
+	left:50%;
+	margin-left: -60rpx;
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 50%;
+	overflow: hidden;
+	display: inline-block;
+}
+.user-head .avatar image {
+	width: 100%;
+	height: 100%
+
+
+}
+.user-head .name{
+	font-size: 20px;
+	color: #333;
+	display: inline-block;
+	margin: 0 auto
+}
+.user-head .des{
+	line-height: 1.6;
+	color:#333;
+	font-size: 28rpx;
+	text-align: left;
+	padding: 30rpx
+}
+.user-head .info{
+	color:#888;
+	padding: 10rpx;
+}
+.goods-box{
+	margin-top: 20rpx;
+}
+.goods-item{
+	margin-bottom: 40rpx;
+	background-color: #fff;
+	padding:  20rpx;
+}
+.goods-item .cover{
+	width: 240rpx;
+	height: 240rpx;
+	border-radius: 4px
+}
+.goods-item .content{
+	margin-left: 20rpx;
+	flex:1;
+	position: relative;
+	padding-right:10px
+}
+.goods-item .content .title{
+	font-weight: bold;
+	font-size: 28rpx;
+	margin-bottom: 3px
+}
+.goods-item .content .des{
+	font-size: 24rpx;
+	color:#999;
+	margin-bottom: 14rpx;
+}
+.goods-item .content .price{
+	font-size: 32rpx;
+}
+.goods-item .content .bottom{
+	position: absolute;
+	left:0;
+	right:0;
+	bottom:0;
+}
+.goods-item .buy{
+	font-size: 24rpx;
+	color:#fff;
+	padding: 12rpx 40rpx;
+	border-radius: 30rpx;
+
+
+}
+
+.avatar-group{
+  display: flex;
+  padding-left: 10rpx;
+}
+.avatar-group .avatar{
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  margin-left: -10rpx;
+  border:4rpx solid #fff;
+}
+.ml-xs{
+  margin-left: 6rpx;
+}
+
+.white-bg image{
+	width: 100%
+}
+.swiper {
+ height: 450rpx;
+ width: 100%;
+}
+ 
+.swiper image {
+ height: 100%;
+ width: 100%;
+}
+.tit-icon{
+	padding-left: 68rpx
+}
+.right-icon{
+	position: absolute;
+	right: 10px;
+	top: 0;
+	z-index: 99
+}
+
+.share-friends-box{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 198888888
+}
+.share-img-box{
+    height: 100%;
+}
+
+.share-friends-img {
+    height: 100%;
+    padding-bottom: 126rpx;
+}
+
+.share-friends-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.share-friends-loading {
+    background-color: rgba(0, 0, 0, 0) !important;
+    height: 80% !important;
+}
+.share-friends-img .share-img-box .btn{
+    bottom: -23rpx;
+}
+
+.share-friends-loading-txt {
+    color: #fff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-friends-loading-txt text {
+    padding-top: 100rpx;
+}
+
+/* 绘制分享朋友圈图片内容样式 */
+.share-painter .des-content {
+    position: fixed;
+    left: -200%;
+    top: 0;
+    width: 690rpx;
+    background-color: #fff;
+    font-size: 34rpx;
+    line-height: 56rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.authPopBox {
+
+    border-radius: 8px;
+    padding: 14px;
+    width: 500rpx
+}
+
+.authPopBox .info {
+    font-size: 14px;
+    color: #666;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.authPopBox .logo image {
+
+    width: 120rpx;
+    height: 120rpx;
+    display: block;
+    margin: 0 auto
+}

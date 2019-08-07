@@ -1,0 +1,6 @@
+@import "../../css/common.wxss";
+
+.goods-panel-bd .cover {
+width:140rpx;
+height:140rpx
+}

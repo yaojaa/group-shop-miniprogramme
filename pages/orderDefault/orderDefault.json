@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "i-steps": "/iView/steps/index",
-    "i-step": "/iView/step/index"
-  }
-}

@@ -1,0 +1,46 @@
+/* pages/upload_pics.wxss */
+@import "../../utils/weui.wxss";
+.picture-item{
+	padding: 10px 10%;
+}
+.picture-item image{
+
+   border-radius: 5px;
+
+}
+
+
+
+video{
+	margin: 0 auto;
+	width: 100%
+}
+
+.footer-btn{
+	position: fixed;
+	bottom: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.footer-btn .btn{
+	color:#fff;
+	margin: 0 auto;
+	display: block;
+	width: 300rpx
+}
+.icons{
+	position: absolute;
+	right: 10px;
+	top: 10px
+}
+.icon-list{
+	margin-bottom: 10px
+}
+.loading{
+	text-align: center;
+}
+.inline{
+	display: inline-block;
+}
+

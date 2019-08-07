@@ -1,5 +1,5 @@
 .i-avatar{display:inline-block;text-align:center;background:#ccc;color:#fff;white-space:nowrap;position:relative;overflow:hidden;vertical-align:middle;width:32px;height:32px;line-height:32px;border-radius:16px;font-size:18px}.i-avatar .ivu-avatar-string{line-height:32px}
-.i-avatar-large{width:40px;height:40px;line-height:40px;border-radius:20px;font-size:24px}.i-avatar-large .ivu-avatar-string{line-height:40px}
+.i-avatar-large{width:60px;height:60px;line-height:60px;border-radius:60px;font-size:24px}.i-avatar-large .ivu-avatar-string{line-height:40px}
 
 .i-avatar-xlarge{width:60px;height:60px;line-height:60px;border-radius:60px;font-size:24px}.i-avatar-xlarge .ivu-avatar-string{line-height:60px}
 

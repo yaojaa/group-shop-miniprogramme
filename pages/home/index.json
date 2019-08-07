@@ -1,9 +1,7 @@
 {
-  "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#49b34d",
-  "navigationBarTitleText": "开心麻团儿 让开团更简单",
-  "navigationBarTextStyle": "white",
+    "navigationStyle": "custom",
     "enablePullDownRefresh": true,
+<<<<<<< HEAD
   "window":{
     "backgroundTextStyle":"dark"
   },
@@ -23,4 +21,24 @@
     "sort": "../../iView/sort/sort"
 
   }
+=======
+    "usingComponents":
+    {
+        "i-panel": "../../iView/panel/index",
+        "i-cell-group": "../../iView/cell-group/index",
+        "i-cell": "../../iView/cell/index",
+        "i-row":"../../iView/row/index",
+        "i-col":"../../iView/col/index",
+        "i-badge": "../../iView/badge/index",
+        "i-icon": "../../iView/icon/index",
+        "i-button": "../../iView/button/index",
+        "i-tab-bar": "../../iView/tab-bar/index",
+        "i-tab-bar-item": "../../iView/tab-bar-item/index",
+        "i-icon": "../../iView/icon/index",
+        "i-goods-item": "../../components/goods-item/index",
+        "wux-spin": "../../wux/spin/index"
+
+
+    }
+>>>>>>> shop
 }

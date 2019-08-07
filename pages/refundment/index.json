@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "申请退款",
+    "usingComponents":
+    {
+        "wux-upload": "../../wux/upload/index",
+        "van-cell": "../../vant/cell/index",
+        "van-cell-group": "../../vant/cell-group/index",
+        "van-field": "../../vant/field/index",
+        "van-popup": "../../vant/popup/index",
+        "van-radio": "../../vant/radio/index",
+        "van-radio-group": "../../vant/radio-group/index",
+        "van-notify": "../../vant/notify/index",
+        "van-dialog": "../../vant/dialog/index",
+        "van-stepper": "../../vant/stepper/index"
+    }
+}

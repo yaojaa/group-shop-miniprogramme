@@ -1,10 +1,6 @@
 {
     "enablePullDownRefresh": true,
-    "navigationBarTitleText": "管理团购订单",
-    "window":
-    {
-        "backgroundTextStyle": "dark"
-    },
+    "navigationBarTitleText": "管理订单",
     "usingComponents":
     {
         "i-modal": "../../iView/modal/index",
@@ -17,7 +13,11 @@
         "i-load-more": "../../iView/load-more/index",
         "i-input": "../../iView/input/index",
         "i-cell": "../../iView/input/index",
-        "i-switch": "../../iView/switch/index"
+        "i-custom-bar": "../../components/custom-bar/index",
+        "i-switch": "../../iView/switch/index",
+        "i-pop-menu": "../../iView/pop-menu/index",
+        "wux-spin": "../../wux/spin/index"
+
 
     }
 

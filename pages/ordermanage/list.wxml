@@ -1,137 +1,175 @@
 <view class="container">
     <view class="order-title text-primary">
-        <navigator url="/pages/goods/goods?goods_id={{goods_id}}">
-            <text class="goods_title">{{goods_name}}</text>
+        <navigator open-type="redirect"  url="/pages/home/index" hover-class="none">
+            <text class="goods_title">返回</text>
         </navigator>
-
-
         <view class="actionsButtons">
-
-           <view>
-            <button size="mini" bindtap="exportExcel">导出名单</button>
-      <!--   <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
+            <view>
+                <!--    <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">一键复制收货人地址</button>
+                <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">导出名单</button> -->
+                <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
+                    <i-icon size="20" type="other" />
+                </i-button>
+                <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}" bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx" bind:click="handleClickItem1" />
+                <!--   <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
+                <!--            <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
             <view slot="open">展开</view>
             <view slot="close">收起</view>
         </i-switch> -->
-         </view>
-       </view>
+            </view>
+        </view>
     </view>
-    <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-        <i-tab key="3" title="订单{{valid_order.count}}"></i-tab>
-        <i-tab key="0" title="未发货{{shipping_0.count}}人"></i-tab>
-        <i-tab key="1" title="已发货{{shipping_1.count}}人"></i-tab>
-    </i-tabs>
-
-
-
-
+    <view class="tabsArea">
+        <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
+            <i-tab key="0" title="订单（{{valid_order.count}}）"></i-tab>
+            <i-tab key="3" title="未发货（{{back_order.count}}）"></i-tab>
+            <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
+        </i-tabs>
+    </view>
+    <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
+ -->
     <view class="totalCount">
-        <block wx:if="{{tab == 3 }}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{valid_order.spec}}">
-              <view>{{item.spec_key_name}}
-                <text class="text-danger">× {{item.num}}</text>
+        <block wx:if="{{tab == 0 && valid_order.spec }}">
+            <view class="tips_title">备货统计</view>
+            <view class="spec text-justify " wx:key="index" wx:for="{{valid_order.spec}}">
+                <view>{{item.spec_name}}
+                    <text class="text-danger">× {{item.qty}}</text>
+                </view>
             </view>
-        </view>
         </block>
-        <block  wx:if="{{tab == 0}}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_0.spec}}">
-             <view>{{item.spec_key_name}}
-              <text class="text-danger">× {{item.num}}</text>
+        <block wx:if="{{tab == 3 && back_order.spec.length}}">
+            <view class="tips_title">未发货统计</view>
+            <view class="spec text-justify" wx:key="index" wx:for="{{back_order.spec}}">
+                <view>{{item.spec_name}}
+                    <text class="text-danger">× {{item.qty}}</text>
+                </view>
             </view>
-        </view>
         </block>
-        <block  wx:if="{{tab == 1}}">
-            <view class="spec text-justify scale-b-1px" wx:key="index" wx:for="{{shipping_1.spec}}"> <view>{{item.spec_key_name}}
-              <text class="text-danger">× {{item.num}}</text></view></view>
+        <block wx:if="{{tab == 4 && shipped_order.spec.length}}">
+            <view class="tips_title">已发货统计</view>
+            <view class="spec text-justify" wx:key="index" wx:for="{{shipped_order.spec}}">
+                <view>{{item.spec_name}}
+                    <text class="text-danger">× {{item.qty}}</text></view>
+            </view>
         </block>
     </view>
-    <view class="order-item {{item.order_status==3?'gray-all':''}}" wx:for="{{dataList}}" wx:key="index" wx:for-index="bindex">
+
+    <view class="text-center" wx:if="{{!loading && dataList.length==0}}">
+        暂无订单
+    </view>
+    
+<block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
+
+    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="{{item.order_id}}" wx:if="{{!item.removed}}">
         <view class="order-hd">
-            <view class="number"><image  class="userinfo-avatar" mode="cover" src="{{item.user.head_pic}}"/></view>
-            <view class="user-info"><text class="name">{{item.create_number}}. {{item.consignee}}</text>
-                <text  class="tel"  bindlongpress="calluser" data-text="{{item.mobile}}" data-mobile="{{item.mobile}}">{{item.mobile}}</text></view>
-            <view class="order-status">
-                <text class="state text-warning" wx:if="{{item.order_status==0}}">新订单待处理</text>
-                <!--   <text class="state success" wx:if="{{item.order_status==1}}">订单已确认</text> -->
-                <text bindtap="removeOrder" data-order_id="{{item.order_id}}" class="state text-info" wx:if="{{item.order_status==3}}">订单已取消
-                 删除
-                </text>
-                <text class="state text-success" wx:if="{{item.order_status==2}}">已完成</text>
-                <block wx:if="{{item.order_status==1}}">
-                    <text class="state text-primary">{{item.shipping_status==0?'未发货':'已发货' }}</text>
-                </block>
+            <view class="number">
+                  <text class="create_number">{{item.create_number}}</text>
+
+                <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
+            </view>
+            <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
+                <text class="tel" bindlongpress="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text></view>
+                <view class="msg_btn">
+                <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
+微信通知                </button>
+                </view>
+
+            <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
+
+               
+
+            </view>
+            <view wx:else class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
             </view>
         </view>
-        <view class="order-bd" >
-            <view class="type text-justify  scale-b-1px" wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
-                <view>{{g.spec_key_name}} ×{{g.goods_num}}</view>
-                <view class="text-info">¥ {{g.goods_num*g.goods_price}} </view>
+        <view class="order-bd">
+            <view class="type text-justify  scale-b-1px" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="g">
+                <view>{{g.spec_name}} ×{{g.qty}}</view>
+                <view class="text-info">¥ {{g.total_price}} </view>
             </view>
-
-              <view   class="copy-address f14 scale-b-1px"  wx:if="{{delivery_method==1}}">
-              <text data-text="{{item.address+','+item.consignee+','+item.mobile+','+item.goods[0].goods_num}}" bindlongpress="copy" > 
-                  {{item.address}} （长按）
-               </text>
-           </view>
+            <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}"  >
+               <button bindtap="modifyAddress" 
+               data-order_id = "{{item.order_id}}" 
+               class="modifybtn btn gray hollow xs round button-hover"> 修改地址</button>
 
 
-            <view   class="remark scale-b-1px"  wx:if="{{item.create_remark}}">
-
-               <text  class="text-danger" selectable="true" data-text="{{item.create_remark}}" bindlongpress="copy"  data-text="{{item.create_remark}} "> 
-                   留言：{{item.create_remark}} 
-               </text>
-
+                <button bindtap="copy" data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="copybtn btn gray hollow xs round button-hover"> 复制地址</button>
+                <text class="address">
+                    姓名：{{item.consignee}}
+                    电话：{{item.mobile}}
+                    地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}}
+                </text>
+            </view>
+            <view class="remark scale-b-1px" wx:if="{{item.user_message}}">
+                <text class="text-danger" selectable="true" data-text="{{item.user_message}}" bindtap="copy" data-text="{{item.user_message}} ">
+                    用户备注：{{item.user_message}}
+                </text>
             </view>
             <view class="total text-justify scale-b-1px">
-                <view>总金额： <text class="warning f18">¥{{item.total_amount}} </text>
-                    <text class="success" wx:if="{{item.pay_status==1}}">已支付</text>
-                    <text class="error" wx:if="{{item.pay_status==0}}">待支付</text>
-                    <text class="error" wx:if="{{item.pay_status==2}}">支付失败</text>
+                <view><text class="warning-text f18">¥{{item.pay_price}} </text>
+                    <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
                 </view>
-                <view class="text-right"> <text class="order-date">{{item._format_add_time}}</text>
+                <view class="text-right"> <text class="order-date">{{item.addtime}}</text>
                 </view>
             </view>
         </view>
         <view class="order-fd scale-b-1px">
-
-           <!--  <view class="spec_item">
+            <!--  <view class="spec_item">
                 
             <text  wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
                 {{g.spec_key_name}} ×{{g.goods_num}}
             </text>
             </view> -->
 
-            <form wx:if="{{item.order_status == 0 && item.pay_status == 1}}" bindsubmit="formSubmit" report-submit="true">
-                <button class="btn btn-success" formType="submit" data-id="{{item.order_id}}" bindtap="openConfirm">确认订单</button>
-            </form>
-            <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
-                <button class="btn btn-danger" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openCancel">取消订单</button>
-            </form>
-            <form wx:if="{{item.order_status == 0 && item.pay_status!==1 }}" bindsubmit="formSubmit" report-submit="true">
-                <button class="btn btn-primary" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openPay">已线下支付</button>
-            </form>
-            <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" report-submit="true">
-                <button class="btn btn-warning" shape="circle" formType="submit" data-id="{{item.order_id}}" bindtap="openTips">提醒取货</button>
-            </form>
-            <form wx:if="{{item.order_status == 1 && item.shipping_status == 0}}" bindsubmit="formSubmit" data-id="{{item.order_id}}" data-bindex="{{bindex}}"  data-fn="openShipping"  report-submit="true">
-                <button  class="btn btn-success" shape="circle" formType="submit"   >确认发货</button>
-            </form>
+            <block wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
+                <form bindsubmit="formSubmit" report-submit="true">
+                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType = "submit" 
+                    data-id="{{item.order_id}}" 
+                    data-opt = "{{btn.opt}}"
+                    data-cindex = "{{cindex}}"
+                    data-pindex = "{{pindex}}"
+                    data-txt = "{{btn.txt}}" 
+                    data-fn = "orderActions"
+                    >{{btn.txt}}</button>
+                </form>
+            </block>
+
+            <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">
+                <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-pi="{{pindex}}"></view>
+                <button data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpressorder">
+                    <block wx:if="{{item.express.length > 0}}">快递单号</block>
+                    <block wx:else>录入单号</block>
+                </button>
+            </view>
         </view>
-       <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
-            <view class="note-box">
-                <i-icon type="brush" size="14" class="note-icon" />
-                <view class="note-input">
-                    <i-input type="text" name="order_remark" value="{{item.order_remark}}" placeholder="备注" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
-                </view>
-                <!-- <view class="note-submit">
+        <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
+        <view class="note-box">
+            <i-icon type="brush" size="14" color="#999" class="note-icon" />
+            <view class="note-input">
+                <input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder=" 怕忘记备注一下哦" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
+            </view>
+            <!-- <view class="note-submit">
                     <input type="hidden" hidden="true" name="order_id" value="{{item.order_id}}" />
                     <button shape="circle" size="mini" formType="submit" data-id="{{item.order_id}}">保存</button>
                 </view> -->
-            </view>
+        </view>
         <!-- </form> -->
     </view>
-    <!--      <i-load-more  tip="没有更多了" loading="{{loading}}" />
- -->
+
+</block>
+
+   <view class="text-center mb-sm">
+        <wux-spin wx:if="{{loading}}"></wux-spin>
+  </view>
+
+
+
+
+
     <i-modal title="订单确认" visible="{{ visible1 }}" actions="{{ actionsConfirm }}" bind:click="toConfirm">
         <view>确认订单信息无误，可以接单</view>
     </i-modal>
@@ -150,13 +188,11 @@
             请确认Ta已经线下支付过了哦
         </view>
     </i-modal>
-    <i-modal title="发送微信通知" visible="{{ visible5_tips }}" bind:ok="setTips" bind:cancel="closeTips">
+    <i-modal title="发送微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
         <view class="input_box">
-            <input bindinput="noteInput" value="{{note}}" placeholder="输入提醒内容:如请来101取货" />
+            <textarea class="textarea" maxlength="30" bindinput="noteInput" hidden="{{ !showMsgTips }}" value="{{note}}" placeholder="输入提醒内容:如请来101取货,注意查收快递等。直接推送到用户微信通知，建议每人只发一次！" />
 
-        是否群发所有人：<switch  bindchange="switchSendAll"/> 
-
-
+            <switch checked="{{sendAll}}" disabled="{{dis}}" type="checkbox"  bindchange="switchSendAll" /> 群发所有人
         </view>
     </i-modal>
     <i-message id="message" />

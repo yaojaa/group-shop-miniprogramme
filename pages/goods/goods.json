@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "⏰正在打开...",
+  "navigationStyle": "custom",
   "usingComponents": {
     "i-icon": "../../iView/icon/index",
     "i-spin": "../../iView/spin/index",
@@ -16,6 +16,17 @@
     "i-count-down": "../../iView/count-down/index",
     "i-badge": "../../iView/badge/index",
     "share-painter": "/iView/share-painter/share-painter",
+<<<<<<< HEAD
     "i-imgs": "../../iView/imgs/imgs"
+=======
+    "imgs": "../../components/imgs/imgs",
+    "preview-view": "../../components/preview-img/view",
+    "comment": "../../components/comment/index",
+    "van-popup": "../../vant/popup/index",
+    "van-action-sheet": "../../vant/action-sheet/index",
+    "custom-bar": "../../components/custom-bar/index",
+    "wux-gallery": "../../wux/gallery/index"
+
+>>>>>>> shop
   }
 }

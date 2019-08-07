@@ -1,67 +1,289 @@
-/**index.wxss**/
-.flex{
-  display: flex;
-}
-.container{
-  padding-bottom: 100rpx;
-  background-color: #f6f6f6;
-  min-height: 100vh;
-}
-.location{
-  padding:30rpx;
-  font-size: 24rpx;
-  background-color: #fff;
-}
-.product-item {
-  padding: 30rpx;
-  background: #fff;
-  position: relative;
-  box-sizing: border-box;
-  border-bottom: 1rpx solid #f5f5f5;
-  margin-bottom: 20rpx;
-}
-.user_name{
-  margin-left: 20rpx;
-}
-.item-title{
-  font-size: 36rpx;
-  font-weight: bold;
-  padding: 20rpx 0 10rpx;
-}
-.item-des{
-  font-size: 28rpx;
-  line-height:1.5;
-  color:#666;
-}
-.item-cover-box{
-  margin-right: -15rpx;
-  margin-top: 20rpx;
-}
-.item-cover-scroll{
-  white-space:nowrap;
-}
-.item-cover{
-  display: inline-block;
-  width: 220rpx;
-  height: 220rpx;
-  margin-right: 15rpx;
-}
-.item-cover .cover{
-  width: 220rpx;
-  height: 220rpx;
-  vertical-align: middle;
-}
-.buyer-list{
-  margin-top: 20rpx;
-}
-.buyer-list button{
-  background: #49b34d;
-  box-shadow: 0 3px 12px rgba(59,202,70,0.43);
-  color:#FFF;
+@import "../../css/common.wxss";
+
+.flex {
+    display: flex;
 }
 
-.footer_bar{
-  position: fixed;
-  bottom: 0;
-  width: 100%
+page{
+  background: #f8f8f8
+
+}
+.container {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    padding-bottom: 100rpx;
+}
+
+.product-item-container {
+    margin-top: 180rpx;
+    margin-bottom: 150rpx
+
+}
+
+
+.tit-slogan {
+    margin-left: 10px;
+    font-size: 32rpx;
+    margin-top: 20rpx;
+    height: 32px;
+}
+
+.small {
+    font-size: 12px;
+    color: #666
+}
+
+.location {
+    padding: 30rpx;
+    font-size: 24rpx;
+    background-color: #fff;
+}
+
+.product-item {
+    margin: 30rpx;
+    padding: 20rpx 30rpx;
+    background: #fff;
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 30rpx;
+    border: 1px solid #f3f3f3;
+    border-radius: 5px;
+    box-shadow: 0 3px 8px #f3f3f3;
+
+}
+
+.user_name {
+    margin-left: 20rpx;
+}
+
+.item-title {
+    font-size: 32rpx;
+    padding: 20rpx 0 10rpx;
+    color: #333;
+    font-weight: bold;
+}
+
+.item-des {
+    font-size: 26rpx;
+    line-height: 1.6;
+    color: #666;
+}
+
+.item-cover-box {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-cover-box .cover {
+    width: 100%;
+    border-radius: 8rpx;
+}
+
+.item-cover-scroll {
+    white-space: nowrap;
+}
+
+.item-cover {
+    display: inline-block;
+    width: 220rpx;
+    height: 220rpx;
+    margin-right: 15rpx;
+}
+
+.item-cover .cover {
+    width: 220rpx;
+    height: 220rpx;
+    vertical-align: middle;
+    border-radius: 8rpx
+}
+
+.buyer-list {
+    margin-top: 20rpx;
+}
+
+.buyer-list button {
+    background: #49b34d;
+    /*  box-shadow: 0 3px 12px rgba(59,202,70,0.43);*/
+    color: #FFF;
+}
+
+.footer_bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999
+}
+
+.avatar-group {
+    display: flex;
+    padding-left: 10rpx;
+}
+
+.avatar-group .avatar {
+    width: 54rpx;
+    height: 54rpx;
+    border-radius: 50%;
+    margin-left: -10rpx;
+    border: 4rpx solid #fff;
+}
+
+.ml-xs {
+    margin-left: 6rpx;
+}
+
+
+
+.item-img-box-one {
+    width: 626rpx
+}
+
+.item-img-box-tow {
+    width: 303rpx;
+}
+
+
+.item-img-box-three {
+    width: 200rpx;
+    border-radius: 8px;
+    height: 180rpx;
+    overflow: hidden;
+}
+
+.item-img-box-one image .item-img-box-tow image,
+.item-img-box-three image {
+
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+
+}
+
+.item-name {
+    text-align: left;
+    line-height: 1.4
+}
+
+.item-avatar {
+    float: left;
+    margin-right: 10px
+}
+
+.right-info {
+    float: right;
+}
+
+.avatar {
+    width: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    border-radius: 60rpx;
+    vertical-align: middle;
+}
+
+.avatar-sm {
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    border-radius: 40rpx
+}
+
+.no-content {
+    display: block;
+    text-align: center;
+}
+
+.img {
+    width: 70%;
+    text-align: center;
+    margin: 0 auto
+}
+
+.img image {
+    width: 100%;
+    display: block;
+    margin: 0 auto
+}
+
+.no-txt {
+    text-align: center;
+    font-size: 38rpx;
+    color: #666;
+    padding-top:240rpx;
+    background:url('https://static.kaixinmatuan.cn/no_data.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 20%
+
+}
+
+.frind-list {
+    font-size: 12px;
+    padding: 30rpx
+}
+
+.frind-list .tit {
+    margin-bottom: 10px
+}
+
+
+.case-hd {
+    display: flex;
+    align-items: center;
+    padding: 30rpx 0;
+    border-top: 1px solid #f8f8f8
+}
+
+.case-hd .avatar {
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 100%;
+    margin-right: 20rpx;
+}
+
+.shop-info {
+    flex: 1;
+}
+
+.shop-info .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shop-info .title .name .bold {
+    font-weight: bold;
+}
+
+.shop-info .title .name .tag {
+    font-size: 20rpx;
+    color: #8E50E0;
+}
+
+.shop-info .title .date {
+    font-size: 20rpx;
+    color: #999;
+}
+
+.shop-info .title .right {
+    display: flex;
+    align-items: center
+}
+
+.shop-info .title .right .iconfont {
+    margin-left: 10rpx;
+}
+
+.shop-info .address {
+    font-size: 20rpx;
+    color: #666;
+    padding-top: 6rpx;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
 }

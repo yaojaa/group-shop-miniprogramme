@@ -5,29 +5,26 @@
   bottom:0;
   left:0;
   right:0;
-  background:url('http://pf9b8sd73.bkt.clouddn.com/start.jpg') no-repeat;
-  background-size: 100% 100%;
+  background: url('https://static.kaixinmatuan.cn/staitc-img/start.jpg');
+  background-size: 100% auto;
+  background-position: center bottom
 }
 .start-btn{
   position: absolute;
-  bottom:200rpx;
+  bottom:100rpx;
   left:0;
   width:100%;
   box-sizing: border-box;
   padding:0 20%;
+  font-size: 38rpx
+}
+.start-btn button{
+  border:none;
+  color: #fff;
+  font-size: 36rpx
 }
 
 
-.zan-box{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  background-color: #efefef;
-}
-.picker-time{
-  color: #1aaff9;
-}
 
 .button-hover{
   color: #999

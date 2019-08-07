@@ -68,9 +68,13 @@ Component({
         return;
       }
 
-      if (!(getApp().systemInfo && getApp().systemInfo.screenWidth)) {
+      console.log(getApp().globalData.systemInfo)
+
+      if (!(getApp().globalData.systemInfo && getApp().globalData.systemInfo.screenWidth)) {
         try {
-          getApp().systemInfo = wx.getSystemInfoSync();
+                    console.log('wx.getSystemInfoSync')
+
+          getApp().globalData.systemInfo = wx.getSystemInfoSync();
         } catch (e) {
           const error = `Painter get system info failed, ${JSON.stringify(e)}`;
           that.triggerEvent('imgErr', { error: error });
@@ -78,7 +82,7 @@ Component({
           return;
         }
       }
-      screenK = getApp().systemInfo.screenWidth / 750;
+      screenK = getApp().globalData.systemInfo.screenWidth / 750;
 
       this.downloadImages().then((palette) => {
         const { width, height } = palette;
@@ -167,7 +171,7 @@ Component({
             that.getImageInfo(res.tempFilePath);
           },
           fail: function (error) {
-            console.error(`canvasToTempFilePath failed, ${JSON.stringify(error)}`);
+            // console.error(`canvasToTempFilePath failed, ${JSON.stringify(error)}`);
             that.triggerEvent('imgErr', { error: error });
           },
         }, this);

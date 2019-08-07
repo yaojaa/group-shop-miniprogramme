@@ -1,0 +1,6 @@
+@import "../../css/common.wxss";
+.textarea{
+	width: 100%;
+	padding: 20rpx;
+	height: 160rpx;
+}

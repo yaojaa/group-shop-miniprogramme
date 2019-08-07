@@ -1,36 +1,34 @@
 <view class="container">
-    <view class="fans-box text-justify">
+  <!--   <view class="fans-box text-justify">
         <view class="f14"><button size="mini">全部粉丝：234</button></view>
         <view class="btn-group">
             <button type="primary" size="mini">微信通知</button>
             <button size="mini" type="primary">群发短信</button>
         </view>
-    </view>
-    <i-panel class="cell-panel-demo">
-        <i-cell-group>
-            <i-cell wx:for="{{10}}" class="guest-box">
-                <view class="guest-item">
+    </view> -->
+    <i-panel class="cell-panel-demo" title="有{{user_count}}人 {{total}}次访问">
+            <block wx:for="{{list}}" wx:for-item="listItem">
+            <view wx:for="{{listItem}}" class="guest-box guest-item">
                     <view class="hd">
-                        <image class="avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+                        <image class="avatar" src="{{item.headimg}}" mode="cover"></image>
                     </view>
                     <view class="bd">
                         <view class="text-justify">
-                            <view class="name">{{userInfo.nickName}}</view>
+                            <view class="name">{{item.nickname}}</view>
                             <view class="info">
                                 <view class="num">
-                                    <i-icon type="browse_fill" size="20" color="#999" />
-                                    <text>110</text>
+                                    
                                 </view>
                                 <view class="num">
-                                    <i-icon type="financial_fill" size="20" color="#999" />
-                                    <text>120</text>
                                 </view>
                             </view>
                         </view>
-                        <view class="date">{{index+1}}天前</view>
+                        <view class="date">
+                           {{item.time_ago}}   使用{{item.user_phone}}手机 浏览了{{item.user_staytime}} 
+                         <!-- {{secen[item.user_scene]}}打开， -->
+                        </view>
                     </view>
-                </view>
-            </i-cell>
-        </i-cell-group>
+            </view>
+            </block>
     </i-panel>
 </view>

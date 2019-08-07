@@ -10,9 +10,25 @@ Page({
   },
   onLoad:function(options){
 
-     util.get_painter_data_and_draw.call(this,options.goods_id)
+     // util.get_painter_data_and_draw.call(this,options.goods_id)
      this.data.goods_id =options.goods_id
      this.data.goods_name =options.goods_name
+
+     console.log('options', options)
+
+
+
+      util.wx.get('/api/index/goods_card', { 
+        goods_id: options.goods_id
+      }).then(res => {
+        console.log(res)
+        res = res.data;
+        if(res.code == 200){
+          this.setData({
+            imagePath: res.data.path
+          })
+        }
+      })
 
    
   },

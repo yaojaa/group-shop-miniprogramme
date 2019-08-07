@@ -1,0 +1,43 @@
+<!--pages/create_shop.wxml-->
+<view class="container">
+
+
+<i-panel  i-class="shadow-panel" hideBorder>
+    <wux-cell-group >
+            <wux-cell hover-class="none">
+               <wux-input controlled="{{true}}" value="{{ consignee }}" bind:change="inputDuplex" data-key="consignee" />
+            </wux-cell>
+              <wux-cell hover-class="none">
+               <wux-input controlled="{{true}}" value="{{ mobile }}" bind:change="inputDuplex" data-key="mobile" />
+            </wux-cell>
+
+              <wux-cell hover-class="none">
+               <wux-input controlled="{{true}}" value="{{ province }}" bind:change="inputDuplex" data-key="province" />
+            </wux-cell>
+
+              <wux-cell hover-class="none">
+               <wux-input controlled="{{true}}" value="{{ city }}" bind:change="inputDuplex" data-key="city" />
+            </wux-cell>
+
+              <wux-cell hover-class="none">
+               <wux-input controlled="{{true}}" value="{{ district }}" bind:change="inputDuplex" data-key="district" />
+            </wux-cell>
+              <wux-cell hover-class="none">
+               <wux-input controlled="{{true}}" value="{{ address }}" bind:change="inputDuplex" data-key="address" />
+            </wux-cell>
+    </wux-cell-group>
+</i-panel>
+
+
+
+
+
+
+</view>
+
+
+
+<view class="footer-btn padding20">
+    <button bindtap="createSubmit" class="linenear_bg">保存</button>
+</view>
+

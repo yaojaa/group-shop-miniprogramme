@@ -2,126 +2,244 @@
 const util = require('../../utils/util.js')
 const app = getApp()
 Page({
-  data: {
-    name: '甘露园南里二区',
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    userloaction:{
+    data: {
+        hasUserInfo: false,
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        userloaction: {
 
-    }
-  },
-   handleChange ({ detail }) {
+        },
+        isloading: true,
+        showOpenBtn:false,
+        proList: []
+    },
+    handleTabBarChange({ detail }) {
         this.setData({
             current: detail.key
         })
 
-        if(detail.key =='publish'){
-           wx.navigateTo({
-              url:'../publish-select/index'
+        if (detail.key == 'publish') {
+            wx.navigateTo({
+                url: '../publish-select/index'
             })
         }
 
-        if(detail.key =='home'){
-           wx.navigateTo({
-              url:'../home/index'
+        if (detail.key == 'home') {
+            wx.redirectTo({
+                url: '../home/index'
             })
         }
-       
-  },
-  onLoad: function () {
-    this.getProList()
-    console.log(app.globalData.userInfo);
 
-    util.getUserloaction().then(res=>{
-      console.log(res)
-      this.setData({
-        userloaction:res
-      })
-    })
-      },
-  getProList(){
-    this.setData({
-      proList:[
+    },
+    onLoad: function() {
 
-        {
-          img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4102099873,109096683&fm=27&gp=0.jpg',
-          title:'新鲜草莓现摘现发',
-          info:'雾霾严重的如今每天给我的肺部洗洗澡每天吃一个这个建议大家一定要吃',
-          km:'0.33KM',
-          price:'22',
-          user_name:'红叶舞秋山',
-          user_avatar:'https://file.iviewui.com/weapp/dist/e5da9fdc97a0b3fb16c115d379820583.jpg',
-          img_list:["http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg",
-"http://img.daohangwa.com/tmp_10b9e0720386fbc79bee1ad9720bb366bda93d9e31d7b715.jpg",
-"http://img.daohangwa.com/tmp_10b9e0720386fbc79bee1ad9720bb366bda93d9e31d7b715.jpg",
+        console.log('首页onload执行')
 
-]
 
-        },
-               {
-          img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4102099873,109096683&fm=27&gp=0.jpg',
-          title:'新鲜草莓现摘现发',
-          info:'雾霾严重的如今每天给我的肺部洗洗澡每天吃一个这个建议大家一定要吃',
-          km:'0.33KM',
-          price:'22',
-          user_name:'红叶舞秋山',
-          user_avatar:'https://file.iviewui.com/weapp/dist/e5da9fdc97a0b3fb16c115d379820583.jpg',
-          img_list:["http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg",
-"http://img.daohangwa.com/tmp_10b9e0720386fbc79bee1ad9720bb366bda93d9e31d7b715.jpg"
-]
+        if (app.globalData.userInfo) {
 
-        },
-               {
-          img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4102099873,109096683&fm=27&gp=0.jpg',
-          title:'新鲜草莓现摘现发',
-          info:'雾霾严重的如今每天给我的肺部洗洗澡每天吃一个这个建议大家一定要吃',
-          km:'0.33KM',
-          price:'22',
-          user_name:'红叶舞秋山',
-          user_avatar:'https://file.iviewui.com/weapp/dist/e5da9fdc97a0b3fb16c115d379820583.jpg',
-          img_list:["http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg",
-"http://img.daohangwa.com/tmp_10b9e0720386fbc79bee1ad9720bb366bda93d9e31d7b715.jpg"
-]
+            this.getProList()
 
-        },
-               {
-          img:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4102099873,109096683&fm=27&gp=0.jpg',
-          title:'新鲜草莓现摘现发',
-          info:'雾霾严重的如今每天给我的肺部洗洗澡每天吃一个这个建议大家一定要吃',
-          km:'0.33KM',
-          price:'22',
-          user_name:'红叶舞秋山',
-          user_avatar:'https://file.iviewui.com/weapp/dist/e5da9fdc97a0b3fb16c115d379820583.jpg',
-          img_list:["http://img.daohangwa.com/tmp_08358de6ea6509151b4e2d94ce70d9b43ffecd03b8147578.jpg",
-"http://img.daohangwa.com/tmp_10b9e0720386fbc79bee1ad9720bb366bda93d9e31d7b715.jpg"
-]
+           // this.getloactionData()
+
+
+          //  this.getFriendList()
+
+
+        } else {
+
+            app.redirectToLogin()
 
         }
 
-      ]
-    })
-    // wx.request({
-    //   url: 'https://www.easy-mock.com/mock/5b344e59f512b5707142bfaa/groupShop/list',
-    //   method:'GET',
-    //   success:res => {
-    //     this.setData({
-    //       proList:res.data.data
+
+    },
+   //  //获取定为并获取商品
+   //  getloactionData() {
+
+   //      //
+   //      if(app.globalData.lat){
+
+   //        this.getProListBylocation(app.globalData.lat,app.globalData.lng)
+        
+   //       this.setData({
+
+   //        city:app.globalData.city,
+   //        district:app.globalData.district
+   //       })
+
+   //       return
+
+   //      }
+
+
+   // util.getUserloaction(res => {
+   //                      console.log('经纬度：', res)
+   //                      app.globalData.lat = res.latitude
+   //                      app.globalData.lng = res.longitude
+
+   //                      this.getProListBylocation(app.globalData.lat,app.globalData.lng)
+   //                  })
+                    
+
+   //                  .then(res => {
+   //                      console.log(res)
+
+   //                      const{city,district} = res
+
+   //                      app.globalData.city = city
+   //                      app.globalData.district = district
+
+   //                      this.setData({
+   //                          userloaction: {
+   //                              city,
+   //                              district
+   //                          },
+   //                          latitude: res.latitude,
+   //                          longitude: res.longitude
+   //                      })
+   //                  })
+   //                  .catch(e=>{
+   //                    console.log(e.errMsg, e.errMsg.indexOf('auth'))
+   //                      if(e.errMsg.indexOf('auth')>0){
+
+   //                          this.setData({
+   //                              showOpenBtn:true
+   //                          })
+
+   //                      }
+
+   //                      if(e.errCode && e.errCode == 2){
+   //                          wx.showToast({
+   //                              title:'建议打开GPS获取定位',
+   //                              icon:'none'
+   //                          })
+   //                      }
+                          
+   //                          this.setData({
+   //                              isloading: false
+   //                          })
+
+   //                  })
+
+          
+   //  },
+
+    openSetting() {
+        wx.openSetting({
+            success: (res) => {
+                console.log(res.authSetting)
+                // res.authSetting = {
+                //   "scope.userInfo": true,
+                //   "scope.userLocation": true
+                // }
+                if (res.authSetting['scope.userLocation']) {
+
+                    wx.showToast({
+                        title: '获取定位授权' + res.authSetting['scope.userLocation']
+                    })
+                    this.setData({
+                        showOpenBtn: false
+                    })
+                    this.getloactionData()
+
+                }
+            }
+        })
+
+
+
+    },
+
+    getProList() {
+
+        ///user/get_bought_store_goods
+        ///api/user/get_browsed_goods
+        util.wx.get('/api/user/get_bought_store_goods').then(res => {
+            if (res.data.code == 200) {
+                this.setData({
+                    proList: res.data.data.goods
+                })
+            }
+            this.setData({
+                isloading:false
+            })
+        })
+    },
+    // getFriendList() {
+
+    //     util.wx.get('/api/user/friend_bought').then(res => {
+    //         if (res.data.code == 200) {
+    //             this.setData({
+    //                 friendList: res.data.data
+    //             })
+    //         }
     //     })
-    //   },
-    //   fail:err => {
-    //     console.log(err)
-    //   }
-    // })
-  },
-  toDetail(e){
-    let postId = e.currentTarget.dataset.postId
-    wx.navigateTo({
-      url: '../goods/goods?id='+postId,
-    })
-  },
-  addGoods() {
-    wx.navigateTo({
-      url: '../publish/publish'
-    })
-  }
+
+    // },
+    
+    // getProListBylocation(lat,lng) {
+
+    //     util.wx.get('/api/user/discover', {
+    //         latitude: lat,
+    //         longitude: lng
+    //     }).then(res => {
+
+    //         if (res.data.code == 200) {
+
+    //             //过滤重复数据
+    //             var filterData = []
+    //             this.data.proList.forEach((item)=>{
+
+    //                 res.data.data.nearby_goods.forEach(it=>{
+    //                     if(item.goods_id !== it.goods_id){
+
+    //                         filterData.push(it)
+
+    //                     }
+    //                 })
+
+
+    //             })
+
+    //             var alldata = this.data.proList.concat(filterData)
+
+    //             this.setData({
+    //                 proList: alldata,
+    //                 isloading: false
+    //             })
+    //         }
+    //     })
+
+
+
+    // },
+    toDetail(e) {
+        console.log(e)
+        let postId = e.currentTarget.dataset.id || e.target.dataset.id
+        wx.navigateTo({
+            url: '../goods/goods?goods_id=' + postId
+        })
+    },
+    addGoods() {
+        wx.navigateTo({
+            url: '../publish/publish'
+        })
+    },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {
+  
+    },
+    // onReachBottom(){
+
+    //    ++ this.pageNum
+
+    //    if(this.pageNum <= this.maxPage){
+    //     this.getProList();//重新调用请求获取下一页数据 
+    //    }
+
+
+    // }
+
 })

@@ -1,0 +1,5 @@
+@import "../../css/common.wxss";
+.label-block{
+	width:330rpx ;
+	margin: 0;
+}

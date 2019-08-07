@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "发布成功",
-
 	"usingComponents": {
 	 
         "i-icon": "../../iView/icon/index",

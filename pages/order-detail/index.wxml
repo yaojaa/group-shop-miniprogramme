@@ -1,0 +1,83 @@
+<view class="container gray-wrap cf">
+    <view class="order-fixed-footer flex justify-end ph-df  shadow-df">
+        <!--         <block wx:for="{{info.order_action}}" wx:key="{{index}}">
+            <button class="btn round primary w-min-lg ml-sm" bindtap="handleConfirmReceipt" data-status="{{item.action_status}}">{{item.action_status_txt}}</button>
+        </block> -->
+        <navigator url="../ems-detail/index?name={{info.express_company}}&code={{info.express_code}}&id={{info.order_id}}" class="btn round primary hollow w-min-big ml-sm mv-sm" wx:if="{{info.express_code}}">查看物流</navigator>
+        <button class="btn round primary hollow w-min-big ml-sm mv-sm" data-opt="{{item.opt}}" data-order_id="{{id}}" data-txt="{{item.txt}}" data-sn="{{info.order_sn}}" bindtap="orderActions" wx:for="{{info.user_next_handle}}" wx:key="{{index}}">{{item.txt}}</button>
+    </view>
+    <view class="order-wrap">
+        <view class="primary ph-df pv-sm text-white mb-sm  flex align-center" style="min-height: 120rpx">
+            <view class="text-xl">{{info.order_status_txt}}</view>
+            <!--             <view class="text-sm">59分钟订单关闭</view>
+ -->
+        </view>
+        <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 1}}">
+            <van-icon name="location" color="#999" />
+            <view class="flex-sub ml-xs">
+                <view class="text-justify">
+                    <view><text class="mr-df">{{info.consignee}}</text>
+                        <text>{{info.mobile}}</text></view>
+                    <view class="text-sm warning-text">快递</view>
+                </view>
+                <view class="pt-xs text-sm text-gray">
+                    收货地址： {{info.province}}{{info.city}}{{info.district}}{{info.address}}
+                </view>
+            </view>
+        </view>
+        <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 2}}">
+            <van-icon name="location" color="#999" />
+            <view class="flex-sub ml-xs">
+                <view class="text-justify">
+                    <view><text class="mr-df">{{info.seller.nickname}}</text>
+                        <text>{{info.seller.mobile}}</text></view>
+                    <view class="text-sm warning-text">自提</view>
+                </view>
+                <view class="pt-xs text-sm text-gray">
+                    自提点： {{info.self_address}}
+                </view>
+                <view class="pt-xs text-sm text-gray">
+                    提货码： <text class="text-danger">{{info.create_number}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="goods-panel ph-df white-bg cf">
+            <view class="goods-panel-hd pv-sm flex align-center">
+                <view class="flex-sub mr-df">
+                    <navigator url="../userhome/index?id={{info.store.store_id}}" hover-class="none" class="flex align-center">
+                        <image src="{{info.seller.headimg}}" class="shop-tb mr-xs">
+                        </image>
+                        <view class="flex-sub text-hide">{{info.seller.nickname}}</view>
+                    </navigator>
+                </view>
+            </view>
+            <view class="goods-panel-bd ">
+                <view class="goods-panel-item " wx:for="{{info.order_detail}}" wx:key="{{index}}">
+                    <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none" class="flex pv-df">
+                        <image src="{{item.spec_pic[0] || item.goods_cover}}-small" class="cover mr-sm"></image>
+                        <view class="flex-sub por">
+                            <view class="text-hide text-black bold title">
+                                {{item.goods_name}}
+                            </view>
+                            <view class="text-muted text-sm des">{{item.spec_name}}</view>
+                            <view class="text-justify bt-bar">
+                                <view class="price bold">￥{{item.spec_price}}</view>
+                                <view class="text-muted"><text>x </text>
+                                    <text>{{item.qty}}</text></view>
+                            </view>
+                        </view>
+                    </navigator>
+                    <view class="solid-top"></view>
+                </view>
+            </view>
+        </view>
+        <van-cell-group custom-class="mv-sm">
+            <van-cell title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
+            <van-cell title="订单编号" title-width="200rpx" border="{{ false }}" value="{{info.order_sn}}" value-class="text-gray" />
+            <van-cell title="创建时间" value="{{addtime}}" border="{{ false }}" value-class="text-gray" />
+            <van-cell title="付款时间" wx:if="{{info.pay_time}}" value="{{pay_time}}" border="{{ false }}" value-class="text-gray" />
+        </van-cell-group>
+    </view>
+    <van-notify id="custom-selector" />
+    <van-dialog id="van-dialog" />
+</view>

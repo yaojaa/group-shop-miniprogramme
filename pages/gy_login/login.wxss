@@ -1,0 +1,55 @@
+/**index.wxss**/
+
+.container{
+	position: relative;
+	background: url('http://img.countinsight.com/business/img/login_bg.png');
+	background-size: cover;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+.title{
+	padding:260rpx 0 0 120rpx;
+	font-size: 48rpx;
+	color: #fff;
+	font-weight: 400;
+	display: block;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-box{
+	margin: 100rpx;
+	background: none
+}
+.login_btn{
+
+margin-top:90rpx;
+width: 590rpx;
+height: 88rpx;
+opacity: 0.8;
+border-radius: 8rpx;
+background-color: rgba(204, 204, 204, 1);
+color: #fff
+
+}
+.form-input {
+	color: #fff
+}
+
+.getcode{
+	width:176rpx;
+height:39rpx;
+line-height:26rpx;
+opacity:0.8;
+color:#fff;
+font-size:32rpx;
+padding-top:10rpx;
+padding-left:10rpx;
+text-align:right;
+border-left:1px solid #fff;
+
+}

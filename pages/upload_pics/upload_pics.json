@@ -1,0 +1,11 @@
+{
+    "usingComponents":
+    {
+        "i-custom-bar": "../../components/custom-bar/index",
+        "sort": "../../components/sort/sort",
+        "i-icon": "../../iView/icon/index",
+        "i-button": "../../iView/button/index",
+        "i-spin": "../../iView/spin/index"
+
+    }
+}

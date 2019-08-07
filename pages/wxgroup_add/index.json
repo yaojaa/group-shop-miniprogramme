@@ -1,0 +1,18 @@
+{
+   "navigationBarTitleText": "申请个人小店铺",
+
+  "usingComponents": {
+  	     "i-panel": "../../iView/panel/index",
+        "i-button": "../../iView/button/index",
+        "i-icon": "../../iView/icon/index",
+        "wux-cell-group": "../../wux/cell-group/index",
+        "wux-cell": "../../wux/cell/index",
+        "wux-cascader": "../../wux/cascader/index",
+        "wux-upload": "../../wux/upload/index",
+        "wux-textarea": "../../wux/textarea/index",
+        "wux-input": "../../wux/input/index",
+    "i-custom-bar": "../../components/custom-bar/index"
+
+
+  }
+}

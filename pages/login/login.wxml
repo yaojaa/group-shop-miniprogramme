@@ -1,27 +1,9 @@
 <!--pages/login/login.wxml-->
 <view class="container">
-    <!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}"> 获取头像昵称 </button>
-    <block wx:else>
-      <image  class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view> -->
-    <!-- <view class="zan-box">
-      <i-xin selected="1" bind:cancel="cancel"></i-xin>
-    </view> -->
-
-    <!-- <view class="zan-box">
-      <i-datepicker bind:change="bindchange" time-class="picker-time" date="2020-10-25" time="00:30"></i-datepicker>
-    </view> -->
-<!-- 
-    <view class="zan-box">
-      <navigator url="/pages/map/index">添加新地址</navigator>
-    </view> -->
-    <view class='start-btn text-center' wx:if="{{!hasScope}}">
-        <button type="primary" plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">进入开心麻团儿</button>
+    <view class='start-btn  text-center' wx:if="{{!hasScope}}">
+        <button type="primary"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">进入开心麻团儿</button>
     </view>
-    <view class='start-btn text-center' wx:else>
+    <view class='text-center' wx:else>
       加载中...请稍后
     </view>  
 

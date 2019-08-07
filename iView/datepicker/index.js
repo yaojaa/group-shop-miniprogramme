@@ -6,22 +6,22 @@ const hours = [];
 const minutes = [];
 
 for (let i = 2018; i <= d.getFullYear() + 10; i++) {
-  years.push(i.toString())
+  years.push(i)
 }
 
 for (let i = 1; i <= 12; i++) {
   if (i < 10) i = "0" + i;
-  months.push(i.toString())
+  months.push(i)
 }
 
 for (let i = 0; i < 24; i++) {
-  if (i < 10) i = "0" + i;
-  hours.push(i.toString())
+ if (i < 10) i = "0" + i;
+  hours.push(i)
 }
 
 for (let i = 0; i < 60; i+=5) {
   if (i < 10) i = "0" + i;
-  minutes.push(i.toString())
+  minutes.push(i)
   i = parseInt(i)
 }
 

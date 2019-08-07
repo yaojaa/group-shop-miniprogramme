@@ -1,17 +1,36 @@
 {
-	"description": "项目配置文件。",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": [
+			{
+				"value": "img",
+				"type": "folder"
+			}
+		]
+	},
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
+	"libVersion": "2.7.1",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
+<<<<<<< HEAD
 	"isGameTourist": false,
+=======
+	"cloudfunctionTemplateRoot": "",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+>>>>>>> shop
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -24,7 +43,7 @@
 			"list": []
 		},
 		"plugin": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -35,23 +54,28 @@
 			]
 		},
 		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
+<<<<<<< HEAD
 			"current": 26,
+=======
+			"current": 57,
+>>>>>>> shop
 			"list": [
 				{
 					"id": 0,
-					"name": "用户中心启动",
-					"pathName": "pages/ucenter/ucenter",
-					"query": ""
+					"name": "确认订单",
+					"pathName": "pages/order-confirm/index",
+					"query": "goods_id=71&delivery_method=2",
+					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "订单列表启动",
-					"pathName": "pages/orderList/orderList",
-					"query": ""
+					"pathName": "pages/order-list/index",
+					"query": "id=34",
+					"scene": null
 				},
 				{
 					"id": 2,
@@ -63,21 +87,27 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
+<<<<<<< HEAD
 					"query": "goods_id=85",
 					"scene": "1001"
+=======
+					"query": "goods_id=348",
+					"scene": 1008
+>>>>>>> shop
 				},
 				{
 					"id": 4,
 					"name": "订单详情启动",
-					"pathName": "pages/orderDefault/orderDefault",
-					"query": "goods_id=36",
-					"scene": "1001"
+					"pathName": "pages/order-detail/index",
+					"query": "goods_name=花花甜糯玉米&delivery_method=1",
+					"scene": 1001
 				},
 				{
 					"id": 5,
 					"name": "订单确认",
-					"pathName": "pages/order/index",
-					"query": "goods_id=68&delivery_method=1&collection_methods=2"
+					"pathName": "pages/order-confirm/index",
+					"query": "goods_id=10&delivery_method=2",
+					"scene": null
 				},
 				{
 					"id": 6,
@@ -87,16 +117,18 @@
 					"scene": "1011"
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "发布页",
-					"pathName": "pages/publish/publish",
-					"query": ""
+					"pathName": "pages/publish-select/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "个人中心",
-					"pathName": "pages/ucenter/ucenter",
-					"query": ""
+					"pathName": "pages/home/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 9,
@@ -108,7 +140,8 @@
 					"id": 10,
 					"name": "支付成功！",
 					"pathName": "pages/paySuccess/index",
-					"query": "order_id=567&goods_id=85&collection_methods=2"
+					"query": "order_id=1991&goods_id=257",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -132,8 +165,8 @@
 					"id": 14,
 					"name": "订单管理",
 					"pathName": "pages/ordermanage/list",
-					"query": "goods_id=30&goods_name=橘子香水&delivery_method=2",
-					"scene": "1001"
+					"query": "id=406&goods_name=福建沙地六鳌蜜薯，甜到心里头，10.9包邮彩盒装震撼发布，包甜包鲜包现挖&delivery_method=1",
+					"scene": 1001
 				},
 				{
 					"id": -1,
@@ -148,16 +181,18 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "地图",
-					"pathName": "pages/userLocation/index",
-					"query": ""
+					"pathName": "pages/map/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 18,
 					"name": "订单管理页",
-					"pathName": "pages/ordermanage/list",
-					"query": "goods_id=1&goods_name=备受各位好评的石门柑橘再次开团了"
+					"pathName": "pages/create_shop/create_shop",
+					"query": "",
+					"scene": "1001"
 				},
 				{
 					"id": 19,
@@ -210,9 +245,222 @@
 				{
 					"id": 26,
 					"name": "创建店铺",
-					"pathName": "pages/create_shop/create_shop",
+					"pathName": "pages/create_shop/index",
 					"query": "",
 					"scene": "1001"
+<<<<<<< HEAD
+=======
+				},
+				{
+					"id": 27,
+					"name": "个人主页",
+					"pathName": "pages/userhome/index",
+					"query": "id=750",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "创建成功",
+					"pathName": "pages/create_shop_success/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "加盟商登录",
+					"pathName": "pages/b-login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 30,
+					"name": "详情页",
+					"pathName": "pages/goods/goods",
+					"query": "goods_id=307  ",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布页",
+					"pathName": "pages/publish/publish",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "上传图片",
+					"pathName": "pages/upload_pics/upload_pics",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择",
+					"pathName": "pages/map/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登记群",
+					"pathName": "pages/wxgroup_add/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 35,
+					"name": "地图",
+					"pathName": "pages/map/index",
+					"query": "",
+					"scene": 1008
+				},
+				{
+					"id": -1,
+					"name": "地址管理",
+					"pathName": "pages/address/index",
+					"query": "goods_id=45",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "粉丝",
+					"pathName": "pages/fans/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 38,
+					"name": "添加地址",
+					"pathName": "pages/address-form/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人信息",
+					"pathName": "pages/identify/identify",
+					"query": "goods_id=70",
+					"scene": null
+				},
+				{
+					"id": 40,
+					"name": "订单管理",
+					"pathName": "pages/ordermanage/list",
+					"query": "id=173&goods_name=锦融尚御房本维权赞助收款与名单公布&delivery_method=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布成功页启动",
+					"pathName": "pages/publish-success/publish-success",
+					"query": "goods_id=88",
+					"scene": null
+				},
+				{
+					"id": 42,
+					"name": "支付成功页启动",
+					"pathName": "pages/paySuccess/index",
+					"query": "order_id=52&goods_id=95",
+					"scene": null
+				},
+				{
+					"id": 43,
+					"name": "详情页启动",
+					"pathName": "pages/ordermanage/list",
+					"query": "goods_id=7&goods_name=zitimoban-24颗 新鲜水果&delivery_method=2",
+					"scene": null
+				},
+				{
+					"id": 44,
+					"name": "发货页",
+					"pathName": "pages/to-send/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人主页",
+					"pathName": "pages/create_shop/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "确认订单",
+					"pathName": "pages/order-confirm/index",
+					"query": "goods_id=2&delivery_method=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人资料",
+					"pathName": "pages/identify/identify",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "设置个人主页",
+					"pathName": "pages/create_shop/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单管理",
+					"pathName": "pages/withdrawal/index",
+					"query": "id=257&goods_name=血桃发货&delivery_method=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人主页设置",
+					"pathName": "pages/create_shop/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "当前开发页",
+					"pathName": "pages/create_shop/index",
+					"query": "goods_id=2&goods_name=花花甜糯玉米&delivery_method=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "特多的商品",
+					"pathName": "pages/goods/goods",
+					"query": "goods_id=173&goods_name=锦融尚御房本维权赞助收款与名单公布&delivery_method=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "当前",
+					"pathName": "pages/create_shop/index",
+					"query": "goods_id=301",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "主页启动",
+					"pathName": "pages/userhome/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "详情页启动",
+					"pathName": "pages/userhome/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "地址管理",
+					"pathName": "pages/address/index",
+					"query": "",
+					"scene": null
+>>>>>>> shop
 				}
 			]
 		}

@@ -1,4 +1,9 @@
 @import "../../utils/weui.wxss";
+@import "../../css/common.wxss";
+
+.page-body{
+  position: relative;
+}
 .upload_btn{
   border: 1px solid #c00
 }
@@ -10,8 +15,6 @@
   top: 0
 }
 .item{
-  border: 1px solid #ddd;
-  box-shadow: 0 0 2px #eee;
   margin: 20rpx 20rpx
 }
 
@@ -33,29 +36,57 @@ picker{
 }
 
 .new_add_btn{
-  padding: 20rpx;
-  color: blue;
-  margin-bottom: 4rpx;
-  display: block
+  padding: 14rpx 20rpx;
+  color: #555;
+  margin:15rpx;
+  border-radius: 15rpx;
+  background: #f8f8f8;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.2;
+  position: relative;
+}
+
+.address-txt{
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.add_btn_pic{
+
+  color: #555;
+  margin:20rpx;
+  border-radius: 15rpx;
+  background: #f8f8f8;
+  display:block;
+  font-size: 18px;
+  line-height: 1.2;
+  position: relative;
+  overflow: hidden;
+
 }
 
 .item{
-  position: relative
+  position:relative;
+background:#f8f8f8;
+border-radius:10rpx;
+
+}
+.width70{
+  width: 70%;
 }
 
 .close{
   position: absolute;
-  right:1rpx;
-  top:1rpx;
-  background: #fff;
+  right:15rpx;
+  bottom:15rpx;
   border-radius: 100%;
-  border:1rpx solid #ccc;
   line-height: 1;
   width: 26px;
   height: 26px;
   overflow: hidden;
 
 }
+
 
 .weui-uploader__file {
 
@@ -71,7 +102,8 @@ background-size: cover;
 .weui-uploader__file .close{
   right:-10rpx;
   top:-20rpx;
-  z-index: 99
+  z-index: 99;
+  background:#333
 }
 .weui-uploader__input-box {
 
@@ -80,12 +112,7 @@ height:133rpx;
 border:1px solid #d9d9d9;
 
 }
-.new_add_btn{
-  font-size:14px;
-  line-height: 2.0;
-  color: #37a;
-  position: relative;
-}
+
 .loading{
   display: inline-block;
   position: absolute;
@@ -93,10 +120,6 @@ border:1px solid #d9d9d9;
   top: 5rpx
 }
 
-.picture-item image{
-
-   width: 100%
-}
 
 .i-icon-close{
   background: #fff
@@ -107,5 +130,108 @@ border:1px solid #d9d9d9;
 }
 .weui-cell {
 font-size:32rpx
+}
+
+#textareawrap{
+
+  width: 100%;
+  position: relative;
+ 
+}
+
+#textareawrap text{
+   display:block;
+   visibility:hidden;
+   word-break:break-all;
+   word-wrap:break-word;
+       min-height: 300rpx
+
+}
+
+#textareawrap .weui-textarea {
+    height:100%;
+    position: absolute;
+    overflow-y:hidden;
+    word-break:break-all;
+    word-wrap:break-word;
+    left: 0;
+    top: 0;
+    min-height: 300rpx
+}
+.page-body .no-margin{
+  margin:15px 0;
+  border-radius: 0
+}
+
+.picture-item{
+  padding: 10px 10%;
+  position: relative;
+}
+.picture-item image{
+
+   border-radius: 5px;
+   width: 78%;
+   box-shadow: 0px 0px 3px #ccc
+
+}
+
+
+
+video{
+  margin: 5px auto 120rpx;
+  width: 100%
+}
+
+.spec_pic_small{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px #fff
+}
+
+.con{
+  padding-bottom: 60px;
+}
+.maxheight{
+    max-height:60vh;
+}
+.icons{
+  position: absolute;
+  right: 10px;
+  top: 10px
+}
+.icon-list{
+  margin-bottom: 10px
+}
+.loading{
+  text-align: center;
+}
+.inline{
+  display: inline-block;
+}
+.poptit{
+  font-size: 20px;
+  font-weight: bold;
+  color: #666;
+  line-height: 2.2
+}
+.img-list{
+  position: relative;
+}
+.i-loading{
+  position: absolute;
+  right: 5px;
+  top: 5px
+}
+.pic_loading{
+  text-align: center;
+  width: 20px;
+  display: block;
+  margin: 0 auto
+}
+.img-small{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 10rpx
 }
 

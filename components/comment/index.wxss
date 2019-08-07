@@ -1,0 +1,130 @@
+.comment-item {
+    padding: 30rpx;
+    background: #fff;
+}
+
+.comment-item .avatar {
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 100%;
+}
+
+.comment-item-hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22rpx;
+}
+
+.user-box {
+    display: flex;
+    align-items: center;
+}
+.user-box .avatar{
+    margin-right: 20rpx;
+}
+.user-box .info{
+    flex: 1;
+}
+.user-box .info .title{
+
+}
+.user-box .info .date{
+    font-size: 20rpx;
+    color:#999;
+}
+.comment-item-bd .content{
+    line-height:1.6;
+}
+.comment-item-bd .photo{
+    margin-top: 10rpx;
+    display: flex;
+    flex-wrap:wrap;
+    margin-right: -15rpx;
+    overflow: hidden;
+}
+.comment-item-bd .photo image{
+    border-radius: 8rpx;
+    width: 220rpx;
+    height: 220rpx;
+}
+.comment-item-bd .photo .photo-item{
+    width: 220rpx;
+    height: 220rpx;
+    margin-right: 15rpx;
+    margin-top: 15rpx;
+}
+.reply-box{
+    background: #f8f8f8;
+    border-radius: 8rpx;
+    padding: 24rpx;
+    margin-top: 24rpx;
+    position: relative;
+}
+.reply-box:after{
+    content: '';
+    width: 16rpx;
+    height: 16rpx;
+    position: absolute;
+    top:-8rpx;
+    left:100rpx;
+    background: #f8f8f8;
+    transform: rotate(-45deg);
+}
+.reply-box .title{
+    color:#999;
+}
+.reply-content{
+    display: flex;
+    margin-top: 22rpx;
+}
+.reply-hd{
+    margin-right: 20rpx;
+}
+.reply-bd{
+    flex: 1;
+}
+.reply-bd .head .info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.reply-bd .head .info .date{
+    font-size: 20rpx;
+    color:#999;
+}
+.reply-bd .head .info .name{
+    font-weight: bold;
+}
+.reply-bd .head .address{
+    font-size: 20rpx;
+    color:#666;
+}
+.reply-bd .content{
+    margin-top: 16rpx;
+    line-height:1.6;
+}
+.comment-item-fd {
+    text-align: right;
+    padding-top: 30rpx;
+    display: flex;
+    justify-content: flex-end;
+}
+.diary-btn{
+    width: 180rpx;
+    height: 60rpx;
+    border-radius: 100px;
+    background: #F9F5FD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
+}
+.diary-btn .icon{
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 6rpx;
+}
+.comment-item-bd .content{
+    margin-top: 28rpx;
+}

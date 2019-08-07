@@ -1,0 +1,12 @@
+
+.goods-panel-fd{
+	min-height: 0;
+}
+.color_3,.color_4{
+    color: #5db85d;
+    font-weight: bold;
+}
+
+.color_1,.color_2{
+    color: #ff6633
+}

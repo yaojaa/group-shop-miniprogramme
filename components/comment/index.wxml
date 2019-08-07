@@ -1,0 +1,22 @@
+<view class="comment-item cf custom-class">
+    <view class="comment-item-hd" wx:if="{{user}}">
+        <view class="user-box">
+            <image src="{{item.user_info_user_img}}" class="avatar"></image>
+            <view class="info">
+                <view class="name">{{item.user_info_user_name}}</view>
+                <view class="date">{{item.create_time}}</view>
+            </view>
+        </view>
+        <van-rate value="{{ item.good_type==1? item.shop_score : item.goods_score }}" size="15" color="#F7C546" void-color="#ccc" readonly custom-class="df-rate"></van-rate>
+    </view>
+    <view class="comment-item-bd cf">
+        <view class="content">
+            {{item.comment_content}}
+        </view>
+        <view class="photo" wx:if="{{item.comment_img.length>0}}">
+            <view class="photo-item" wx:for="{{item.comment_img}}" wx:for-item="pic" wx:key="{{index}}" bindtap="previewImage" data-current="{{ pic }}" data-url="{{item.comment_img}}">
+                <image src="{{pic}}"></image>
+            </view>
+        </view>
+    </view>
+</view>

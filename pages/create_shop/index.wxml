@@ -1,0 +1,64 @@
+<!--pages/create_shop.wxml-->
+<view class="container">
+
+<wux-toptips id="wux-toptips" />
+
+<i-panel  i-class="shadow-panel" hideBorder>
+    <wux-cell-group >
+            <wux-cell hover-class="none">
+               <wux-input controlled="{{true}}" value="{{ store_name }}" bind:change="inputDuplex" data-key="store_name" />
+            </wux-cell>
+        </wux-cell-group>
+
+  <wux-cell-group >
+            <wux-cell hover-class="none">
+                <wux-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro"  controlled="{{true}}" placeholder="输入小店名字"  hasCount rows="3" cursorSpacing="80" value="{{store_intro}}" placeholder="输入一段真诚的介绍，更容易打动客户哦" />
+            </wux-cell>
+        </wux-cell-group>
+
+</i-panel>
+
+
+<!--ssss-->
+
+<!-- <wux-cascader visible="{{ visible1 }}" default-value="{{ value1 }}" title="所在地区" options="{{ options1 }}" bind:close="onClose1" bind:change="onChange1" />
+<wux-cascader visible="{{ visible2 }}" controlled value="{{ value2 }}" title="所在地区" options="{{ options2 }}" bind:close="onClose2" bind:change="onChange2" bind:load="onLoadOptions" />
+
+<i-panel  i-class="shadow-panel" hideBorder >
+    <view class="page__bd">
+        <wux-cell-group title="">
+            <wux-cell title="选择所在地" extra="{{ title1 }}" bind:click="onOpen1">
+            </wux-cell>
+        </wux-cell-group>
+    </view>
+
+    <wux-cell-group wx:if="{{district_id}}">
+            <wux-cell hover-class="none">
+               <wux-input bind:change="inputDuplex" data-key="address"  placeholder="社区街道地址" />
+            </wux-cell>
+        </wux-cell-group>
+
+</i-panel> -->
+
+
+<!--sssss-->
+
+
+
+
+<i-panel i-class="shadow-panel" title="主页背景头图(建议宽高比6:4)">
+
+    <view class="up-area">
+      <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
+            <image src="{{ store_slide }}" wx:if="{{ store_slide }}" />
+            <text wx:else>+上传</text>
+        </wux-upload>
+    </view>
+
+</i-panel>
+
+</view>
+
+<view class="footer-btn padding20" wx:if="{{store_name}}">
+    <button bindtap="createSubmit" class="linenear_bg">保存</button>
+</view>

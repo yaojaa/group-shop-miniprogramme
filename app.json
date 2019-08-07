@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "pages": [
     "pages/login/login",
     "pages/index/index",
@@ -30,4 +31,62 @@
     "backgroundColor": "#eeeeee"
   },
   "sitemapLocation": "sitemap.json"
+=======
+    "pages": [
+        "pages/home/index",
+        "pages/index/index",
+        "pages/login/login",
+        "pages/withdrawal/index",
+        "pages/goods/goods",
+        "pages/publish/publish",
+        "pages/publish-select/index",
+        "pages/publish-success/publish-success",
+        "pages/orderList/orderList",
+        "pages/map/index",
+        "pages/paySuccess/index",
+        "pages/userLocation/index",
+        "pages/myPublish/index",
+        "pages/example/example",
+        "pages/paymethod/index",
+        "pages/userhome/index",
+        "pages/create_shop/index",
+        "pages/b-login/login",
+        "pages/upload_pics/upload_pics",
+        "pages/wxgroup/index",
+        "pages/address/index",
+        "pages/address-form/index",
+        "pages/order-list/index",
+        "pages/order-detail/index",
+        "pages/ems-detail/index",
+        "pages/evaluate/index",
+        "pages/wxgroup_add/index",
+        "pages/order-confirm/index",
+        "pages/fans/index",
+        "pages/ordermanage/list",
+        "pages/to-send/index",
+        "pages/identify/identify",
+        "pages/modify-address/index",
+        "pages/express/index"
+    ],
+    "usingComponents":
+    {
+        "wux-spin": "../../wux/spin/index"
+    },
+    "permission":
+    {
+        "scope.userLocation":
+        {
+            "desc": "你的位置信息用于获取附近的团购活动"
+        }
+    },
+    "window":
+    {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "white",
+        "navigationBarTitleText": "开心麻团儿",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#eeeeee"
+    },
+    "sitemapLocation": "sitemap.json"
+>>>>>>> shop
 }

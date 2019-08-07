@@ -1,41 +1,41 @@
+
 <view class="container">
 	<view class="text-justify f14">
-		<view>余额（元）</view>
+		<view>账户余额（元）</view>
 <!-- 		<view>余额明细</view>
  -->	</view>
-	<view class="money-box"><view class="money-yuan">¥</view><view class="money-num">{{store_money}}</view></view>
+	<view class="money-box"><view class="money-yuan">¥ </view><view class="money-num"> {{pending_money}}</view></view>
 	<view class="withdraw-box">
-	<i-input value="{{inputMoney}}" type="number" bindchange="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
+	<input value="{{inputMoney}}" type="number" bindinput="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
 	</view>
-	<button type="primary"  bindtap="getMoney"> 提现 </button>
+	<button type="primary" class="linenear_bg" bindtap="getMoney"> 立即提现 </button>
 
 
-	<view class="list" wx:if="{{withdrawalslist.length}}">
+	<scroll-view scroll-y  style="height: 120px" class="list" wx:if="{{withdrawalslist.length}}">
 
-		<view class="item" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
+		<view class="item" wx:key="{{index}}" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
 			
-			申请记录
-			 金额：{{item.money}}
-			状态：{{["审核中","审核通过","提现成功"][item.status]}}
+{{item.apply_time_txt}}
+ 申请金额：{{item.apply_money}}
+ {{item.withdraw_status_txt}}
+
 		</view>
 
 	
-    </view>
+    </scroll-view>
 
-    	<view class="erweima">
+    <!-- <view>累计收款：{{store_money}}元</view>
+     <view>约为您节省{{store_money/40*4}}小时</view> -->
 
-			<text style="font-size: 12px;">提现微信收取手续费0.6%，平台不收任何费用。
-			24小时内到账，有疑问可联系客服。
-			发布商品的时候，选择线下收款可避免手续费。
-		</text>
+    	<view class="erweima" style="font-size: 14px;line-height: 1.5; text-align: left;color: #cc0000">
 
-		
-
+			提现微信收取手续费0.6%，平台不收任何费用。微信限制每天最高提现5000元，超过次日到账。
+			默认1天内到账，有疑问可联系客服。
 
 		</view>
 
 		<view class="center">
-			<button size="mini"  open-type="contact" bindcontact="handleContact">快速提现联系客服</button> 
+			<button  open-type="contact" bindcontact="handleContact">联系客服</button> 
 	    <i-message id="message" />
 		</view>
 

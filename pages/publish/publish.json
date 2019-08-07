@@ -1,16 +1,20 @@
 {
-  "navigationBarTitleText": "发布您的宝贝",
-
-	"usingComponents": {
-	    "i-switch": "../../iView/switch/index",
-	    "i-cell": "../../iView/cell/index",
+    "navigationBarTitleText": "发布您的宝贝",
+    "usingComponents":
+    {
+        "i-switch": "../../iView/switch/index",
+        "i-cell": "../../iView/cell/index",
         "i-icon": "../../iView/icon/index",
         "i-panel": "../../iView/panel/index",
         "i-input": "../../iView/input/index",
-        "i-icon": "../../iView/icon/index",
-        "i-datepicker":"../../iView/datepicker/index",
-         "i-spin": "../../iView/spin/index",
+        "i-datepicker": "../../iView/datepicker/index",
+        "i-spin": "../../iView/spin/index",
+        "i-badge": "../../iView/badge/index",
         "i-action-sheet": "../../iView/action-sheet/index",
-        "painter": "/iView/painter/painter"
-	}
+        "painter": "/iView/painter/painter",
+        "i-custom-bar": "../../components/custom-bar/index",
+        "wux-popup": "../../wux/popup/index"
+
+
+    }
 }

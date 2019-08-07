@@ -1,0 +1,11 @@
+@import "../../css/common.wxss";
+.wuliu-box{
+	width: 76rpx;
+	height: 76rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #EFA194;
+	color:#fff;
+	border-radius: 50%;
+}

@@ -1,0 +1,14 @@
+@import "../../css/common.wxss";
+
+.address_textarea{
+
+	margin: 30rpx auto;
+	background: #ffffff;
+	font-size: 28rpx;
+	width: 90%;
+	height: 120rpx;
+	padding: 10px;
+	box-sizing: border-box;
+
+	
+}

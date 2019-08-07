@@ -1,0 +1,71 @@
+<view class="container gray-wrap cf">
+    <!-- <van-cell-group custom-class="mv-sm">
+        <van-cell title="订单快递单号">
+            <view>
+                <van-switch active-color="#49b34d" inactive-color="#ccc" size="40rpx" checked="{{ checked }}" bind:change="onSwitch" />
+            </view>
+        </van-cell>
+    </van-cell-group> -->
+    <!-- <block wx:if="{{checked}}"> -->
+    <view class="express-area" wx:for="{{express}}" wx:key="{{item}}">
+        <van-cell-group custom-class="mv-sm">
+            <view class="express">
+                <van-field input-class ="f20"  value="{{item.express_company}}" label="快递名称" placeholder="请选择快递名称" readonly="{{true}}" data-index="{{index}}" bindtap="handleEmsPopup" use-button-slot>
+                </van-field>
+
+                <button wx:if="{{item.express_company=='' && express.length > 0}}" class="btn primary sm hollow flex0" slot="button" bindtap="delexpress" data-index="{{index}}">删除</button>
+            </view>
+
+
+            <van-field input-class ="f20"  value="{{item.express_code}}" label="填写单号" placeholder="请输入运单号" type="number" data-index="{{index}}" bind:blur="blurInput" bind:focus="saveOldExpress" bind:change="inputDuplex" use-button-slot>
+              <button class="btn primary sm hollow" slot="button" bindtap="checkexpress" data-index="{{index}}" wx:if="{{item.express_code}}">
+                查询
+              </button>
+            </van-field >
+        </van-cell-group>
+    </view>
+  <!--   <view class="express-area">
+        <van-cell-group custom-class="mv-sm">
+            <van-field input-class ="f20"  value="{{express_company}}" label="快递名称" placeholder="请选择快递名称" readonly="{{true}}" name="express_company" bindtap="handleEmsPopup" />
+            <van-field input-class ="f20"  value="{{express_code}}" label="填写单号" placeholder="请输入运单号" type="number" name="express_code" bind:change="inputDuplex" data-key="express_code" use-button-slot>
+              <navigator url="../ems-detail/index?name={{express_company}}&code={{express_code}}&id={{order_id}}" class="btn  primary sm hollow" slot="button" wx:if="{{express_code}}">
+                查询
+              </navigator>
+            </van-field >
+        </van-cell-group>
+    </view> -->
+
+    <view class="add-number" bindtap="addExpress">+添加单号</view>
+
+
+
+
+
+    <!-- </block> -->
+
+  <!--    <van-field input-class ="f20"  value="{{action_remark}}" label="留言" placeholder="请输入留言信息" type="number" name="action_remark" bind:change="inputDuplex" data-key="action_remark" /> -->
+
+
+    <button style="margin: 15px" bindtap="send" class="weui-btn weui-btn_primary linenear_bg">{{btnText}}</button>
+    <!--物流信息弹窗-->
+    <van-popup show="{{ showTraces }}" position="right" safe-area-inset-top="true" bind:close="onClose">
+        <view class="traceBox">
+            <wux-timeline pending>
+                <view class="trace" wx:for="{{traces}}" wx:key="{{index}}">
+                    <wux-timeline-item content="{{item.time}}">
+                        <view>{{item.content}}</view>
+                    </wux-timeline-item>
+                </view>
+            </wux-timeline>
+            <view class="closearea">
+                <view class="close_btn" bindtap="close">
+                    <i-icon type="close" size="20" />
+                </view>
+            </view>
+        </view>
+    </van-popup>
+    <van-popup show="{{ emsPopup }}" position="bottom" bind:close="handleEmsPopup">
+        <van-picker show-toolbar title="请选择快递公司" columns="{{ columns }}" bind:cancel="handleEmsPopup" bind:confirm="changeEms" />
+    </van-popup>
+    <!--物流信息弹窗-->
+</view>
