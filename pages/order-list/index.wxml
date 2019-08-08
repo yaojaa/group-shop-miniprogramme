@@ -1,4 +1,4 @@
-<view class="container gray-wrap cf" >
+<view class="container gray-wrap cf">
     <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" swipe-threshold="{{4}}" color="#49b34d">
         <van-tab title="全部"></van-tab>
         <van-tab title="待付款"></van-tab>
@@ -13,9 +13,9 @@
                         总计：¥<text class="text-black">{{item.total_price}}</text>
                     </view>
                     <view class="flex justify-end align-center" slot="footer">
+                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}" wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">联系商家</button>
                         <button class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.express.length > 0}}" data-id="{{item.order_id}}" data-index="{{index}}" bindtap="checkexpress">查看物流</button>
-
-                        <button class="btn round primary  w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}"  wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
+                        <button class="btn round primary  w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
                     </view>
                 </order-list>
             </block>
@@ -24,12 +24,17 @@
             <view class="no-content-bd">
                 <image src="https://static.kaixinmatuan.cn/no_data.png" class="no-content-icon"></image>
                 <view class="no-content-des"><text>您还没有相关订单</text></view>
-              
             </view>
         </view>
     </view>
     <van-notify id="custom-selector" />
     <van-dialog id="van-dialog" />
+    <van-dialog id="contact" use-slot>
+        <van-cell-group border="{{false}}" custom-class="mv-df">
+            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+        </van-cell-group>
+    </van-dialog>
     <view class="load-box" wx:if="{{loading}}">
         <wux-spin wux-class="spin" size="large" />
     </view>

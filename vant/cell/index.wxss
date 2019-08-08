@@ -56,7 +56,7 @@
 }
 
 .van-cell__value {
-   /* color: #999;*/
+    color: #999;
     overflow: hidden;
     text-align: right;
     vertical-align: middle

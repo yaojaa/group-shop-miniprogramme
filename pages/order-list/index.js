@@ -11,7 +11,9 @@ Page({
         order_list: [],
         loading: false,
         cpage: 1,
-        totalpage: 1
+        totalpage: 1,
+        phone: '',
+        weChat: ''
     },
     handleCancelOrder(event) {
 
@@ -147,7 +149,35 @@ Page({
         })
 
     },
-
+    goContact(e) {
+        const { phone, wx } = e.currentTarget.dataset
+        this.setData({
+            phone: phone,
+            weChat: wx
+        })
+        Dialog.alert({
+            selector: '#contact'
+        })
+    },
+    copyWx(event) {
+        wx.setClipboardData({
+            data: this.data.weChat,
+            success: function(res) {
+                wx.getClipboardData({
+                    success: function(res) {
+                        wx.showToast({
+                            title: '复制成功'
+                        })
+                    }
+                })
+            }
+        })
+    },
+    phoneCall() {
+        wx.makePhoneCall({
+            phoneNumber: this.data.phone
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -226,16 +256,16 @@ Page({
         let index = e.currentTarget.dataset.index;
         let current = this.data.order_list[index];
 
-        current.express.forEach((e,i) => {
-            data += 'code'+ i +'='+ e.express_code + '&com'+ i +'='+ e.express_company + '&'
+        current.express.forEach((e, i) => {
+            data += 'code' + i + '=' + e.express_code + '&com' + i + '=' + e.express_company + '&'
         })
 
-        data += 'index=0&order_id='+ e.currentTarget.dataset.id
-            + '&user=' + current.consignee
-            + '&goods=' + current.order_detail[0].goods_name
+        data += 'index=0&order_id=' + e.currentTarget.dataset.id +
+            '&user=' + current.consignee +
+            '&goods=' + current.order_detail[0].goods_name
 
         wx.navigateTo({
-          url: '/pages/ems-detail/index?' + data
+            url: '/pages/ems-detail/index?' + data
         })
 
     }
