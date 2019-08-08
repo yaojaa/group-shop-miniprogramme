@@ -13,9 +13,9 @@
                         总计：¥<text class="text-black">{{item.total_price}}</text>
                     </view>
                     <view class="flex justify-end align-center" slot="footer">
-                        <button class="btn round gray hollow mv-sm ml-sm" bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}" wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">联系</button>
-                        <button class="btn round gray hollow mv-sm ml-sm" wx:if="{{item.express.length > 0}}" data-id="{{item.order_id}}" data-index="{{index}}" bindtap="checkexpress">查看物流</button>
-                        <button class="btn round hollow mv-sm ml-sm {{act.opt == 'toset_pay' || act.opt =='toset_received'?'primary':'gray'}}" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
+                        <button class="btn round gray hollow mv-sm ml-sm w-min-df" bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}" wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">联系</button>
+                        <button class="btn round gray hollow mv-sm ml-sm w-min-df" wx:if="{{item.express.length > 0}}" data-id="{{item.order_id}}" data-index="{{index}}" bindtap="checkexpress">查看物流</button>
+                        <button class="btn round hollow mv-sm ml-sm w-min-df {{act.opt == 'toset_pay' || act.opt =='toset_received'?'primary':'gray'}}" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
                     </view>
                 </order-list>
             </block>
