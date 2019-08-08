@@ -4,10 +4,9 @@
             <view class="flex align-center">
                 <image src="{{item.seller.headimg}}" class="shop-tb mr-xs">
                 </image>
-                <view class="flex-sub text-hide">
+                <view class="flex-sub text-hide" >
                     {{item.seller.nickname}}
-                    <!-- <i-icon type="mobilephone" />{{item.seller.mobile}} -->
-                </view>
+               </view>
             </view>
         </view>
         <view class="text-muted {{'color_'+item.order_status}}">{{item.order_status_txt}}</view>
