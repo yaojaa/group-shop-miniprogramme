@@ -10,7 +10,7 @@
                 <wux-cell hover-class="none">
                     <wux-input  controlled clear value="{{wechatnumber}}" label="微信" bind:change="changeWX" placeholder="输入您的微信号" />
                 </wux-cell>
-                <wux-cell hover-class="none" title="收货地址" is-link url="../address/index" ></wux-cell>
+                <wux-cell hover-class="none" title="收货地址管理" is-link url="../address/index" ></wux-cell>
             </wux-cell-group>
             
            
@@ -19,13 +19,11 @@
    
        <view class='btn-wrap'>
 
-
-         
-           <button bindtap="postInfo" formType="submit" class="weui-btn weui-btn_primary linenear_bg">保存</button>
-
-
-
+         <button bindtap="postInfo" formType="submit" class="weui-btn weui-btn_primary linenear_bg">保存</button>
 
         <button style="margin-top:200px" type="danger" class="linear_bg" bindtap="clearStorage">清除缓存 重新登录</button>
     </view>
+
+    <view id="Message"></view>
+
 </view>

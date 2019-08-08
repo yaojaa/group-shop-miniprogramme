@@ -159,6 +159,7 @@
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
             <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
+
     </view>
                 <view class="flex text-center" style="padding: 10px 0">
                     <view class="flex-sub"><button class="btn   " bindtap='copyGoods'>
@@ -167,6 +168,13 @@
                     <view class="flex-sub"><button class="btn   " bindtap='copyDetail'><text class="text-muted">生成文字接龙</text></button></view>
                     <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
                 </view>
+
+                    <view class="weui-footer">
+        <view class="weui-footer__links">
+            <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>
+        </view>
+    </view>
+    
 
     <view class='footer-cart'>
         <view class='icon' bindtap='homepage'>

@@ -1,7 +1,5 @@
 const app = getApp()
-const { $Message } = require('../../iView/base/index')
 const util = require('../../utils/util.js')
-
 Page({
 
     /**
@@ -55,19 +53,16 @@ Page({
             console.log(res)
 
             if (res.data.code == 200) {
-                $Message({
-                    content: '保存成功',
-                    type: 'success'
-                });
+                wx.showToast({
+                    title:'保存成功',
+                    icon:'none'
+                })
             } else {
-                $Message({
-                    content: res.data.msg,
-                    type: 'error'
-                });
+                wx.showToast({
+                    title:res.data.msg,
+                    icon:'none'
+                })
             }
-
-
-
         })
 
     },

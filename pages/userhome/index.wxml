@@ -118,6 +118,6 @@
         <view class="weui-footer__links">
             <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>
         </view>
-        <view class="weui-footer__text">Copyright © 20018-2025 kaixinmatuan.cn</view>
+        <view class="weui-footer__text">Copyright © 20018-2025</view>
     </view>
 </view>

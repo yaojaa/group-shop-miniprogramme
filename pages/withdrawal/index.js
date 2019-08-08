@@ -23,7 +23,30 @@ Page({
 
         this.get_store_info()
         this.finance_withdrawal_list()
+        this.checkUinfo()
 
+    },
+    checkUinfo(){
+        util.wx.get('/api/user/user_info').then((res)=>{
+      if(res.data.mobile=='' || res.data.wechatnumber=='' ){
+
+        wx.showModal({
+         title: '请先完善联系方式',
+         content: '完善联系方式,方便粉丝联系你哦',
+         showCancel: false,//是否显示取消按钮
+         confirmText:"去设置",//默认是“确定”
+         success: function (res) {
+            wx.navigateTo({
+              url:'../identify/identify'
+            })
+         },
+         fail: function (res) { },//接口调用失败的回调函数
+         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+      })
+
+       
+      }
+    })
     },
     inputMoneyChange(e) {
         if (e.detail.value) {
