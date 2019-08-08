@@ -7,9 +7,8 @@
                 <view class="flex-sub text-hide">
                 {{item.seller.nickname}}
 
-                （电话：{{item.seller.mobile}}
-                微信：{{item.seller.wechatnumber}}）
-
+            <i-icon type="mobilephone" />{{item.seller.mobile}}
+            
             </view>
             </view>
         </view>
