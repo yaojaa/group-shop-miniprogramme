@@ -1,5 +1,5 @@
+@import "../../utils/weui.wxss";
 @import "../../css/common.wxss";
-
 .authPopBox {
 
     border-radius: 8px;
