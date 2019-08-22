@@ -13,7 +13,6 @@
         "pages/paySuccess/index",
         "pages/userLocation/index",
         "pages/myPublish/index",
-        "pages/example/example",
         "pages/paymethod/index",
         "pages/userhome/index",
         "pages/create_shop/index",
@@ -33,7 +32,8 @@
         "pages/to-send/index",
         "pages/identify/identify",
         "pages/modify-address/index",
-        "pages/express/index"
+        "pages/express/index",
+        "pages/send-list/index"
     ],
     "usingComponents":
     {

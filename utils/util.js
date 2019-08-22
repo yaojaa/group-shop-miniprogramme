@@ -454,7 +454,7 @@ const request = (url, data, method) => {
                 'Authorization': app.globalData.token
             },
             success: function(res) { //服务器返回数据
-                console.log(res.data.code)
+                console.log(res)
 
                 if (res.data.code == 200) {
                     resolve(res)

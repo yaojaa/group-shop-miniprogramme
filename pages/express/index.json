@@ -11,6 +11,7 @@
         "i-custom-bar": "../../components/custom-bar/index",
         "wux-timeline": "../../wux/timeline/index",
         "wux-timeline-item": "../../wux/timeline-item/index",
-        "van-switch": "../../vant/switch/index"
+        "van-switch": "../../vant/switch/index",
+        "i-icon": "../../iView/icon/index"
     }
 }

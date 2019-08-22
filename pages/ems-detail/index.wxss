@@ -5,7 +5,17 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #49b34d;
+	background-color: #eee;
 	color:#fff;
 	border-radius: 50%;
+}
+.pa{
+	padding: 10px 20px 
+}
+.pcenter{
+	padding: 30rpx 30rpx 0 0;
+	text-align: right;
+}
+.item-list{
+	text-align: left;
 }

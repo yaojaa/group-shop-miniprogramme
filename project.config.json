@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 57,
+			"current": 58,
 			"list": [
 				{
 					"id": 0,
@@ -444,6 +444,20 @@
 					"name": "地址管理",
 					"pathName": "pages/address/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "物流",
+					"pathName": "pages/ems-detail/index",
+					"query": "code0=3232323&com0=中通快递&code1=9999999&com1=顺丰速运&code2=9900099&com2=顺丰速运&index=0&order_id=4915&user=范先生&goods=湖南高山炎陵黄桃 CCTV国家品牌计划 桃醉天下的名桃  脆甜浓郁个头大",
+					"scene": null
+				},
+				{
+					"id": 58,
+					"name": "发货单",
+					"pathName": "pages/send-list/index",
+					"query": "goods_id=449",
 					"scene": null
 				}
 			]

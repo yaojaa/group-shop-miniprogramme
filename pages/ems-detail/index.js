@@ -32,12 +32,14 @@ Page({
             express_company: options.express_company,
             express_code: options.express_code,
             order_id: options.order_id
-        }).then(res => {
+            }).then(res => {
             if (res.data.status) { // 物流单号正确
+
+
                 this.setData({
                     currentIndex: options.index,
                     ['express[' + options.index + '].traces']: res.data.data.traces.reverse(),
-                    ['express[' + options.index + '].errorMsg']: '抱歉，暂时没有物流信息',
+                    ['express[' + options.index + '].errorMsg']: '暂时没有物流信息，复制单号到快递官网试试',
                     ['express[' + options.index + '].status']: true
                 })
             }else{ // 物流单号错误
@@ -135,6 +137,10 @@ Page({
             express_company: options['com' + options.index],
             index: options.index
         })
+
+         wx.setNavigationBarTitle({
+      title: this.data.user+'的物流信息' 
+    })
     },
     toCheckExpress(e) {
         let i = e.currentTarget.dataset.index;
@@ -149,7 +155,7 @@ Page({
     },
     onShareAppMessage: function (res) {
     return {
-      title: this.data.goods + ' ' + this.data.user
+      title: this.data.user+ '的快递单号【'+this.data.goods+'】'
     }
   }
 })

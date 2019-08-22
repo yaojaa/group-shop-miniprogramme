@@ -1,0 +1,44 @@
+<view class="container">
+
+
+    <view class='content'>
+        <view class='header'>
+            <button class="btn"> 复制全部地址 </button> 
+
+            <button class="btn"> 复制待发货的地址 </button> 
+
+            <button class="btn"> 复制已选的 </button>
+
+        </view>
+        <view class='order'>
+            <view class="goodsList">
+
+<van-checkbox-group value="{{ result }}" bind:change="onChange">
+  <van-checkbox
+    wx:for="{{ orders }}"
+    wx:key="index"
+    name="{{ index }}"
+  >
+
+  <view class="a">
+
+     {{index}}、
+                    {{item.consignee}}, {{item.mobile}},
+
+                    {{item.province}}{{item.city}}{{item.district}}{{item.address}}, {{item.spec_name}} , {{item.qty}}件
+  </view>
+ 
+  </van-checkbox>
+</van-checkbox-group>
+</view>
+  </view>
+
+   <view class='header'>
+     <button class="btn"> 复制全部地址 </button> 
+
+            <button class="btn"> 复制待发货的地址 </button> 
+
+            <button class="btn"> 复制已选的 </button>
+        </view>
+</view>
+</view>
