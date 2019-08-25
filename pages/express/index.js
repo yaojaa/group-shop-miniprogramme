@@ -81,6 +81,10 @@ Page({
         this.data.user = opt.user
         this.data.goods = opt.goods
 
+    wx.setNavigationBarTitle({
+      title: this.data.user+'的快递单号' 
+    })
+
         this.getData()
     },
     onSwitch(e) {
@@ -153,6 +157,9 @@ Page({
     },
     send() {
         const key = 'dataList['+this.data.pindex+']['+this.data.cindex+']'
+
+        // const keyExpress = 'dataList['+this.data.pindex+']['+this.data.cindex+']["express"]'
+
         let express = this.data.express.filter(e => {
             return e.express_company && e.express_code && !e.express_id
         })
@@ -162,13 +169,7 @@ Page({
             return;
         }
 
-        wx.showModal({
-          content: '是否确认添加？',
-          success: (res)=> {
-            if (res.confirm) {
-                wx.showLoading()
-
-                util.wx.post('/api/seller/add_order_express', {
+               util.wx.post('/api/seller/add_order_express', {
                     order_id: this.data.order_id,
                     express: express
                 }).then(res => {
@@ -177,10 +178,13 @@ Page({
                             title: '添加成功'
                         })
 
+                        wx.navigateBack()
 
-                        util.setParentData({
-                             [key]: res.data.data
-                        })
+
+
+                        // util.setParentData({
+                        //      [keyExpress]: [res.data.data]
+                        // })
                     },res=>{
 
                         wx.showToast({
@@ -193,9 +197,8 @@ Page({
                     console.log(res)
 
                 })
-            }
-          }
-        })
+
+   
     },
 
     setBtnStatus(){

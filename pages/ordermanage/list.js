@@ -54,11 +54,14 @@ Page({
         showPop: false,
         search_order_status:'',
         pop_name_arr: [{
-                name: '导出名单'
+                name: '导出Excel'
             },
             {
                 name: '群发通知'
             }
+            //  {
+            //     name: '发货名单'
+            // }
         ]
     },
 
@@ -107,6 +110,12 @@ Page({
             this.openMsgTips('all')
 
         }
+        else if (index == 2) {
+           wx.navigateTo({
+            url:'../send-list/index?goods_id='+this.data.goods_id
+           })
+
+        }
 
         this.setData({
             showPop:false
@@ -119,6 +128,8 @@ Page({
         })
     },
     onShow: function() {
+
+        this.data.cpage = 1
 
         this.getOrderList()
 
@@ -360,6 +371,15 @@ Page({
         this.setData({
             loading: true
         })
+
+
+        
+
+       
+
+
+
+
 
         return new Promise((resolve, reject) => {
 
@@ -699,6 +719,8 @@ Page({
         data += 'pi='+ pi +'&ci='+ ci +'&order_id='+ e.currentTarget.dataset.id
             + '&user=' + current.consignee
             + '&goods=' + current.order_detail[0].goods_name
+
+        console.log(data)
 
         wx.navigateTo({
           url: '/pages/express/index?' + data
