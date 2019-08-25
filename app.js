@@ -249,7 +249,9 @@ App({
               console.log(e)
                 this.globalData.userPhone = e.model ||''
                 this.globalData.StatusBar = e.statusBarHeight;
-                this.globalData.CustomBar = e.platform == 'android' ? e.statusBarHeight + 50 : e.statusBarHeight + 45;
+                let custom = wx.getMenuButtonBoundingClientRect();
+                this.globalData.Custom = custom;
+                this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
             }
         })
         //检测设备尺寸

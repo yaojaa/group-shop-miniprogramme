@@ -13,10 +13,8 @@
         "i-button": "../../iView/button/index",
         "i-tab-bar": "../../iView/tab-bar/index",
         "i-tab-bar-item": "../../iView/tab-bar-item/index",
-        "i-icon": "../../iView/icon/index",
         "i-goods-item": "../../components/goods-item/index",
-        "wux-spin": "../../wux/spin/index"
-
-
+        "wux-spin": "../../wux/spin/index",
+        "van-icon": "../../vant/icon/index"
     }
 }

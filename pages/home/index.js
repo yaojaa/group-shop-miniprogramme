@@ -15,8 +15,20 @@ Page({
         is_loading: true,
         scrollTop: 0,
         store_money: 0,
-        pending_money: '***'
-
+        pending_money: '***',
+        StatusBar: app.globalData.StatusBar,
+        CustomBar: app.globalData.CustomBar,
+        Custom: app.globalData.Custom,
+        show_tips: false
+    },
+    closleTips() {
+        this.setData({
+            show_tips: false
+        })
+        wx.setStorage({
+            key: 'show_tips',
+            data: 'x'
+        })
     },
     handleTabBarChange({ detail }) {
         this.setData({
@@ -87,6 +99,14 @@ Page({
 
             this.setData({
                 userInfo: app.globalData.userInfo
+            })
+            wx.getStorage({
+                key: 'show_tips',
+                fail: (res) => {
+                    this.setData({
+                        show_tips: true
+                    })
+                }
             })
         }
 

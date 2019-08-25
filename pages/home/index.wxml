@@ -1,5 +1,5 @@
 <view class="container">
-   <!--  <i-custom-bar fixed scrollTop="{{scrollTop}}" tit_txt_color="#ffffff" showIcon="{{true}}" showBackBar="{{true}}" bottomLayerBackColor="#83c72a" back_tit_txt_color="#ffffff" title="我的" backTitle="我的" backColor="'transparent'" changeStartHeight="100"> </i-custom-bar> -->
+    <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;" wx:if="{{show_tips}}"><view class="collect-box">"点击右边 <van-icon name="weapp-nav" size="28rpx;" /> 添加到我的小程序" <van-icon name="close" size="28rpx;" /></view></view>
     <view class="head-box">
         <i-row>
             <i-col offset="1" span="4" i-class="col-class">
