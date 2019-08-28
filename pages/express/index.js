@@ -58,7 +58,7 @@ Page({
             if(i.indexOf('code') > -1){
                 this.data.express.push({
                     express_code: opt[i],
-                    express_company: opt['com'+ i.replace('code','')],
+                    express_company: decodeURIComponent(opt['com'+ i.replace('code','')]),
                     express_id: opt['id'+ i.replace('code','')]
                 })
             }
@@ -78,8 +78,8 @@ Page({
 
         this.data.pindex = opt.pi
         this.data.cindex = opt.ci
-        this.data.user = opt.user
-        this.data.goods = opt.goods
+        this.data.user = decodeURIComponent(opt.user)
+        this.data.goods = decodeURIComponent(opt.goods)
 
     wx.setNavigationBarTitle({
       title: this.data.user+'的快递单号' 
