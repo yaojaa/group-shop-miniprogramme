@@ -114,17 +114,20 @@ Page({
         // })
 
         console.log(options)
-        this.data.user = options.user
-        this.data.goods = options.goods
+
+        this.data.user = decodeURIComponent(options.user)
+        this.data.goods = decodeURIComponent(options.goods)
 
         for(let i in options){
             if(i.indexOf('code') > -1){
                 this.data.express.push({
                     express_code: options[i],
-                    express_company: options['com'+ i.replace('code','')]
+                    express_company: decodeURIComponent(options['com'+ i.replace('code','')])
                 })
             }
         }
+
+        console.log(this.data.express)
 
         this.setData({
             express: this.data.express,
