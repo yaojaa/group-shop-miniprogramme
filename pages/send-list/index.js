@@ -57,7 +57,7 @@ Page({
 
     opt.forEach( (item, i) => {
 
-      msg += `${i+1}、 ${item.province}${item.city}${item.district}${item.address}, ${item.consignee}, ${item.mobile}, ${item.spec_name}, ${item.qty}件\n`
+      msg += `${i+1}、 ${item.province}${item.city}${item.district}${item.address}, ${item.consignee}, ${item.mobile}, ${item.spec_name}, ${item.qty}件\n\n`
 
     })
 
