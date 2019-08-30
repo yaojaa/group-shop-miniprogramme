@@ -457,7 +457,7 @@
 					"id": 58,
 					"name": "发货单",
 					"pathName": "pages/send-list/index",
-					"query": "goods_id=449",
+					"query": "goods_id=470",
 					"scene": null
 				}
 			]
