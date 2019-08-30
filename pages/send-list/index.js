@@ -19,6 +19,9 @@ Page({
     util.wx.get('/api/seller/get_order_export_by_goods_id', {
       goods_id: this.data.goods_id
     }).then(res=>{
+      res.data.data.orders.forEach( e=>{
+        e.qty = 1;
+      })
       this.setData({
         orders:res.data.data.orders
       })

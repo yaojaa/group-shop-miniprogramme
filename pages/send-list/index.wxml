@@ -15,7 +15,7 @@
             checked-color="#2b9939"
             custom-class="custom-class"
             icon-class="icon-class"
-            label-class="label-class"
+            label-class="label-class {{item.send_status == '未发货'?'':'sended'}}"
           >
             {{index + 1}}、
             {{item.consignee}},
