@@ -14,10 +14,9 @@ Page({
         order_goods: '',
         order_time: '',
         wx_collection_code: '',
-        imagePath: "",
         goods_id: "",
         create_number: 54,
-        painterData: {},
+        clickShare:false,
         numers: '❶❶❷❸❹❺❻❼❽❾❿'.split(''),
         wordArr: {
             1: '',
@@ -124,18 +123,18 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function(res) {
+
+        this.setData({
+            clickShare:true
+        })
+
+
+
         let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...' + this.data.goods_name
-        let numberIcon = this.data.create_number <= 10 ? this.data.numers[this.data.create_number] : '「No.' + this.data.create_number + '」'
+        let numberIcon = '「No.' + this.data.create_number + '」'
         return {
-            title: numberIcon + app.globalData.userInfo.nickname + '成功参团👍' + shareTitle,
-            imageUrl: this.data.imagePath,
-            path: '/pages/goods/goods?goods_id=' + this.data.goods_id,
-            complete() {
-                console.log('ok')
-                wx.navigateTo({
-                    url: '../pages/home/index'
-                })
-            }
+            title: numberIcon,
+            path: '/pages/goods/goods?goods_id=' + this.data.goods_id
         }
     },
     formSubmit: function(e) {

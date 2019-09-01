@@ -37,9 +37,9 @@ Page({
     postInfo() {
 
      if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.data.mobile))){ 
-             $Message({
-                        content: '手机号码有误，请重填',
-                        type: 'error'
+             wx.showToast({
+                        title: '手机号码有误',
+                        icon: 'none'
                     });
             return false; 
         }
@@ -63,6 +63,11 @@ Page({
                     icon:'none'
                 })
             }
+        },res=>{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
         })
 
     },

@@ -1,7 +1,7 @@
 <view class="container">
 
-
     <view class='content'>
+        <image src="{{order.order_detail[0].goods_cover}}"></image>
         <view class='header'>
             <view class='title'>支付成功 +1</view>
         </view>
