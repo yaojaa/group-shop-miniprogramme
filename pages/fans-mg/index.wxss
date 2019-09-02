@@ -1,0 +1,10 @@
+@import "../../css/common.wxss";
+page{
+	background: #f8f8f8
+}
+
+.fans-list .avatar{
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 8rpx;
+}

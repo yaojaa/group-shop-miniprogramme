@@ -1,0 +1,15 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "粉丝管理",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee",
+    "usingComponents":
+    {
+        "i-button": "../../iView/button/index",
+        "i-panel": "../../iView/panel/index",
+        "i-icon": "../../iView/icon/index",
+        "i-custom-bar": "../../components/custom-bar/index",
+        "van-icon": "../../vant/icon/index"
+    }
+}

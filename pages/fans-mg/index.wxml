@@ -1,0 +1,28 @@
+<view class="container">
+    <!-- <view class="fans-box text-justify">
+        <view class="f14"><button size="mini">全部粉丝：234</button></view>
+        <view class="btn-group">
+            <button type="primary" size="mini">微信通知</button>
+            <button size="mini" type="primary">群发短信</button>
+        </view>
+    </view> -->
+    <view class="mt-sm white-bg">
+        <view class="solid-bottom p-df flex fans-list" wx:for="{{list}}" wx:key="{{index}}">
+             <image class="avatar mr-sm" src="{{item.headimg}}"></image>
+            <view class="flex-sub">
+               <view class="text-justify">
+                   <view class="name">{{item.nickname}}</view>
+                   <view class="info flex align-center">
+                     <van-icon name="wechat" size="32rpx" color="#999" />
+                     <text class="ml-xs mr-df text-sm">{{item.order_count}}</text>
+                     <van-icon name="gold-coin" size="32rpx" color="#999" />
+                     <text class="ml-xs text-sm">{{item.order_total}}</text>
+                   </view>
+               </view>
+               <view class="date text-sm text-muted mt-sm">
+                   {{item.updatetime}}
+               </view>
+            </view>
+        </view>
+    </view>
+</view>

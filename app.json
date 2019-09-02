@@ -28,6 +28,7 @@
         "pages/wxgroup_add/index",
         "pages/order-confirm/index",
         "pages/fans/index",
+        "pages/fans-mg/index",
         "pages/ordermanage/list",
         "pages/to-send/index",
         "pages/identify/identify",
