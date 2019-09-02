@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 59,
+			"current": 61,
 			"list": [
 				{
 					"id": 0,
@@ -470,6 +470,20 @@
 					"name": "支付成功",
 					"pathName": "pages/paySuccess/index",
 					"query": "order_id=5368&goods_id=611",
+					"scene": null
+				},
+				{
+					"id": 60,
+					"name": "订单管理",
+					"pathName": "pages/ordermanage/list",
+					"query": "id=543&goods_name=陕西大荔冬枣，暂时下架几天，等待阳光&delivery_method=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单管理",
+					"pathName": "pages/send-list/index",
+					"query": "goods_id=543",
 					"scene": null
 				}
 			]
