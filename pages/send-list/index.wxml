@@ -17,7 +17,7 @@
             icon-class="icon-class"
             label-class="label-class {{item.send_status == '未发货'?'':'sended'}}"
           >
-            {{index + 1}}、
+            {{item.create_number}}、
             {{item.consignee}},
             {{item.mobile}},
             {{item.province}}{{item.city}}{{item.district}}{{item.address}},

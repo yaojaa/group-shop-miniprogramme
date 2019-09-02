@@ -296,7 +296,13 @@ padding: 15rpx 30rpx
       white-space: nowrap;
 }
 .address{
-    font-size:12px
+    font-size:12px;
+    padding:24rpx 5px;
+line-height:1.6;
+
+}
+.blue_text{
+    color:#105f96
 }
 
 .copy-address{
