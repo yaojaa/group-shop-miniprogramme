@@ -10,6 +10,7 @@
         "i-panel": "../../iView/panel/index",
         "i-icon": "../../iView/icon/index",
         "i-custom-bar": "../../components/custom-bar/index",
-        "van-icon": "../../vant/icon/index"
+        "van-icon": "../../vant/icon/index",
+        "wux-filterbar": "../../wux/filterbar/index"
     }
 }

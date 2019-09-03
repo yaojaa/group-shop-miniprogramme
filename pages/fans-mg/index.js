@@ -9,8 +9,45 @@ Page({
      */
     data: {
         list: [],
+        loading: false,
+        items: [{
+            type: 'sort',
+            label: '订单数',
+            value: 'order_count',
+            groups: ['001'],
+        }, {
+            type: 'sort',
+            label: '支付金额',
+            value: 'order_total',
+            groups: ['002'],
+        }]
     },
+    onOpen(e) {
+        this.setData({ opened: true })
+    },
+    onClose(e) {
+        this.setData({ opened: false })
+    },
+    onChange(e) {
+        const { checkedItems, items } = e.detail
+        const params = {}
 
+        //console.log(checkedItems, items)
+
+        checkedItems.forEach((n) => {
+            if (n.checked) {
+                if (n.value === 'order_count') {
+                    //params.sort = n.value
+                    params.order_count = n.sort === 1 ? 'asc' : 'desc'
+                } else if (n.value === 'order_total') {
+                    //params.sort = n.value
+                    params.order_total = n.sort === 1 ? 'asc' : 'desc'
+                }
+            }
+        })
+        console.log(params)
+        this.getDataList(params)
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -18,11 +55,15 @@ Page({
         this.getDataList()
     },
 
-    getDataList() {
-
-        util.wx.get('/api/seller/get_fans_list').then(res => {
+    getDataList(params) {
+        this.setData({
+            loading: true
+        })
+        util.wx.get('/api/seller/get_fans_list', params).then(res => {
+            this.setData({
+                loading: false
+            })
             if (res.data.code == 200) {
-                console.log(res.data.data)
                 if (res.data.data.page.total > 0) {
                     res.data.data.lists.forEach(e => {
                         e.updatetime = this.fTime(e.updatetime);
