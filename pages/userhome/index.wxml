@@ -87,7 +87,7 @@
     </van-popup>
 
 
-     <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{true}}" title="分享到" bind:close="closeShareFriends">
+     <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{overlay}}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
