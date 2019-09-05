@@ -60,9 +60,11 @@ Page({
 
     opt.forEach( (item, i) => {
 
-      msg += `${item.create_number}、 ${item.province}${item.city}${item.district}${item.address}, ${item.consignee}, ${item.mobile}, ${item.spec_name}, ${item.qty}件\n\n`
+      msg += `${item.province}${item.city}${item.district}${item.address}, ${item.consignee}, ${item.mobile}, ${item.spec_name}, ${item.qty}件\n\n`
 
     })
+
+    msg +='【以上共'+opt.length+'件】'
 
     wx.setClipboardData({
         data: msg,
