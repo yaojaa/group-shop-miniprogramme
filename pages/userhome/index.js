@@ -21,7 +21,8 @@ Page({
         poster:false,
         showAuth:false,
         onLoadOpt: null,
-        overlay: true
+        overlay: true,
+        shareIng: false
 
     },
     toSetting() {
@@ -136,7 +137,11 @@ wx.downloadFile({
     },
     onShow(){
         this.data.goodsList = [];
-        
+
+        this.setData({
+          shareIng: false
+        })
+
         this.data.onLoadOpt && this.loadPage(this.data.onLoadOpt);
     },
     loadPage(options) {
@@ -336,10 +341,18 @@ wx.downloadFile({
           // 来自页面内转发按钮
           this.setData({
             overlay: false,
-            sharebar: false
+            sharebar: false,
+            shareIng: true
+          })
+
+        }else{
+
+          this.setData({
+            shareIng: true
           })
 
         }
+
         return {
             title: '来逛逛'+this.data.info.store_name +'的好东西'
         }

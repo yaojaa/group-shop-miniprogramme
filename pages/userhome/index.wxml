@@ -11,11 +11,11 @@
             <image src="{{info._user.headimg}}" />
         </view>
         <view class="flex justify-between ph-sm" style="padding-top: 80rpx;">
-            <navigator wx:if="{{showSetting}}" url="../create_shop/index">
+            <navigator hidden="{{shareIng}}" wx:if="{{showSetting}}" url="../create_shop/index">
                 <i-icon type="setup" size="28" color="#999" />
             </navigator>
             <view class="name">{{info.store_name}}</view>
-            <button bindtap="showShare" class="btn-reset">
+            <button hidden="{{shareIng}}" bindtap="showShare" class="btn-reset">
                 <i-icon size="28" type="share" color="#999" /></button>
         </view>
         <view class="des">{{info.store_intro}}</view>
