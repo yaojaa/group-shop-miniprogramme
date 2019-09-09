@@ -1,0 +1,6 @@
+<view class="container cf">
+
+    <view class="load-box" wx:if="{{true}}">
+        <wux-spin wux-class="spin" size="large" />
+    </view>
+</view>

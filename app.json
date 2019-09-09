@@ -36,6 +36,13 @@
         "pages/express/index",
         "pages/send-list/index"
     ],
+    "subpackages": [
+    {
+        "root": "business",
+        "pages": [
+            "pages/index/index"
+        ]
+    }],
     "usingComponents":
     {
         "wux-spin": "../../wux/spin/index"
