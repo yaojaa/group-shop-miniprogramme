@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 61,
+			"current": 62,
 			"list": [
 				{
 					"id": 0,
@@ -484,6 +484,13 @@
 					"name": "订单管理",
 					"pathName": "pages/send-list/index",
 					"query": "goods_id=543",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/send-list/index",
+					"pathName": "pages/send-list/index",
+					"query": "goods_id=621",
 					"scene": null
 				}
 			]

@@ -11,11 +11,11 @@
             <image src="{{info._user.headimg}}" />
         </view>
         <view class="flex justify-between ph-sm" style="padding-top: 80rpx;">
-            <navigator wx:if="{{showSetting}}" url="../create_shop/index">
+            <navigator hidden="{{shareIng}}" wx:if="{{showSetting}}" url="../create_shop/index">
                 <i-icon type="setup" size="28" color="#999" />
             </navigator>
             <view class="name">{{info.store_name}}</view>
-            <button bindtap="showShare" class="btn-reset">
+            <button hidden="{{shareIng}}" bindtap="showShare" class="btn-reset">
                 <i-icon size="28" type="share" color="#999" /></button>
         </view>
         <view class="des">{{info.store_intro}}</view>
@@ -87,7 +87,7 @@
     </van-popup>
 
 
-     <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{true}}" title="分享到" bind:close="closeShareFriends">
+     <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{overlay}}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>

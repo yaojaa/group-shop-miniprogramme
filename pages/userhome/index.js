@@ -19,7 +19,10 @@ Page({
         showSetting:false,
         sharebar:false,
         poster:false,
-        showAuth:false
+        showAuth:false,
+        onLoadOpt: null,
+        overlay: true,
+        shareIng: false
 
     },
     toSetting() {
@@ -31,6 +34,7 @@ Page({
 
     showShare(){
         this.setData({
+            overlay: true,
             sharebar:true
         })
     },
@@ -129,6 +133,18 @@ wx.downloadFile({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        this.loadPage(options);
+    },
+    onShow(){
+        this.data.goodsList = [];
+
+        this.setData({
+          shareIng: false
+        })
+
+        this.data.onLoadOpt && this.loadPage(this.data.onLoadOpt);
+    },
+    loadPage(options) {
 
         if (options.scene) {
             options = decodeURIComponent(options.scene)
@@ -153,14 +169,14 @@ wx.downloadFile({
 
         }
 
-        this.cpage = 1
-        this.getDataList()
-        this.getStoreInfo()
 
-        if(app.globalData.userInfo){
+        if(app.globalData.userInfo && !this.data.onLoadOpt){
             this.add_access()
         }
 
+        this.cpage = 1
+        this.getDataList(options)
+        this.getStoreInfo(options)
     },
 
     add_access(){
@@ -173,7 +189,7 @@ wx.downloadFile({
         })
     },
 
-    getStoreInfo() {
+    getStoreInfo(options) {
         
         util.wx.get('/api/store/get_store_homepage', {
                 store_id: this.store_id || app.globalData.userInfo.store_id
@@ -181,6 +197,9 @@ wx.downloadFile({
             .then(res => {
               
                     var store_slide
+
+                    // 存储赋值
+                    this.data.onLoadOpt = options;
 
 
                     if(res.data.data.store_slide.length == 0){
@@ -201,7 +220,7 @@ wx.downloadFile({
 
     },
 
-    getDataList() {
+    getDataList(options) {
 
         this.setData({
             loading: true
@@ -213,6 +232,9 @@ wx.downloadFile({
                 pagesize: 5
             })
             .then(res => {
+                // 存储赋值
+                this.data.onLoadOpt = options;
+
                 if (res.data.code == 200) {
 
                     res.data.data.goodslist.forEach(item=>{
@@ -314,6 +336,23 @@ wx.downloadFile({
      * 用户点击右上角分享
      */
     onShareAppMessage: function(res) {
+
+        if (res.from === 'button') {
+          // 来自页面内转发按钮
+          this.setData({
+            overlay: false,
+            sharebar: false,
+            shareIng: true
+          })
+
+        }else{
+
+          this.setData({
+            shareIng: true
+          })
+
+        }
+
         return {
             title: '来逛逛'+this.data.info.store_name +'的好东西'
         }
