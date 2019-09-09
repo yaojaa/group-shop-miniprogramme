@@ -37,29 +37,29 @@ Page({
         checkedItems.forEach((n) => {
             if (n.checked) {
                 if (n.value === 'order_count') {
-                    //params.sort = n.value
-                    params.order_count = n.sort === 1 ? 'asc' : 'desc'
+                    params.sort = n.value
+                    params.order = n.sort === 1 ? 'desc' : 'asc'
                 } else if (n.value === 'order_total') {
-                    //params.sort = n.value
-                    params.order_total = n.sort === 1 ? 'asc' : 'desc'
+                    params.sort = n.value
+                    params.order = n.sort === 1 ? 'desc' : 'asc'
                 }
             }
         })
-        console.log(params)
-        this.getDataList(params)
+        console.log(Object.values(params).toString())
+        this.getDataList(Object.values(params).toString())
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        this.getDataList()
+        this.getDataList('order_total,desc|order_count,desc')
     },
 
     getDataList(params) {
         this.setData({
             loading: true
         })
-        util.wx.get('/api/seller/get_fans_list', params).then(res => {
+        util.wx.get('/api/seller/get_fans_list', {"sortstr":params}).then(res => {
             this.setData({
                 loading: false
             })
