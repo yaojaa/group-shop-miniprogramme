@@ -1,0 +1,11 @@
+@import "../../../css/common.wxss";
+.reg-logo{
+	width: 180rpx;
+	height: 180rpx;
+	margin: 60rpx auto 20rpx;
+	border-radius: 50%;
+}
+.reg-head{
+	text-align: center;
+	padding-bottom: 80rpx;
+}
