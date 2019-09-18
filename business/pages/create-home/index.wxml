@@ -1,0 +1,19 @@
+<view class="container cf">
+    <view class="reg-head cf white-bg">
+        <image src="http://leileiimg.toutoumei.com/beautiful/24_03.jpg?100" class="reg-logo"></image>
+    </view>
+    <form bindsubmit="submitForm">
+        <van-cell-group>
+            <van-field value="{{addressee}}" name="addressee" label="店铺名称"  placeholder="请输入店铺名称" />
+            <van-field value="{{phone}}" name="phone" label="联系电话"  placeholder="请填写手机号" type="number" />
+            <van-field type="textarea" value="{{area}}" name="area" label="简介"  placeholder="请输入店铺介绍" autosize />
+        </van-cell-group>
+        <view class="m-df mt-xl">
+            <button class="btn xl primary block" form-type="submit" disabled="{{disabled}}">
+                立即创建
+            </button>
+        </view>
+    </form>
+    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
+</view>

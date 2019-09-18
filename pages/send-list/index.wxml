@@ -1,10 +1,8 @@
 <view class="container">
   <view class='content'>
-    <!-- <view class='header'>
-        <button class="btn"> 复制全部地址 </button>
-        <button class="btn"> 复制待发货的地址 </button>
-        <button class="btn"> 复制已选的 </button>
-    </view> -->
+    <view class="tips">
+        收货地址已经为您整理好，直接复制吧。同一地址多件自动被拆分为多条。
+    </view> 
     <view class='order'>
       <view class="goodsList">
         <van-checkbox-group value="{{ result }}" bind:change="onChange">

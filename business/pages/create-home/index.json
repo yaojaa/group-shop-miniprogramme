@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "马云的主页",
+    "usingComponents":
+    {
+        "van-popup": "../../../vant/popup/index",
+        "van-field": "../../../vant/field/index",
+        "van-cell-group": "../../../vant/cell-group/index",
+        "van-notify": "../../../vant/notify/index"
+    }
+}
