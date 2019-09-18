@@ -488,8 +488,8 @@
 				},
 				{
 					"id": 62,
-					"name": "business/pages/index/index",
-					"pathName": "business/pages/index/index",
+					"name": "business/pages/create-home/index",
+					"pathName": "business/pages/create-home/index",
 					"query": "goods_id=621",
 					"scene": null
 				}

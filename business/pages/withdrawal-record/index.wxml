@@ -1,0 +1,39 @@
+<view class="container">
+    <text class="iconfont icon-calendar text-xxl text-gray top-filter"></text>
+    <view class="record-box">
+        <view class="record-hd ph-df pt-df pb-sm text-justify gray-bg-df">
+            <view class="">{{dateText}}</view>
+            <view class="iconfont icon-riqi" bindtap="handleDateModal"></view>
+        </view>
+        <view class="record-bd ph-df" wx:if="{{info.length}}">
+            <view class="record-item flex" wx:for="{{info}}" wx:key="{{index}}">
+                <view class="flex-sub">
+                    <view class="text-justify">
+                        <text>提现到微信</text>
+                        <text class="">¥ {{item.user_withdraw_amount/100}}</text>
+                    </view>
+                    <view class="text-justify f13 mt-lt">
+                        <text class="text-muted">{{item.user_withdraw_ctime}}</text>
+                        <text class="text-sm {{item.user_withdraw_status == 0?'danger-text':''}} {{item.user_withdraw_status == 1?'warning-text':''}} {{item.user_withdraw_status == 2?'success-text':''}}">{{status[item.user_withdraw_status]}}</text>
+                    </view>
+                    <view class="solid-bottom mt-df"></view>
+                </view>
+            </view>
+        </view>
+        <view class="no-content" style="height:80vh" wx:else>
+            <view class="no-content-bd">
+                <image src="http://leileiimg.toutoumei.com/front/img/test_none.png" class="no-content-icon"></image>
+                <view class="no-content-des"><text>您还没有提现记录</text></view>
+                <view class="no-content-btn">
+                    <navigator open-type="reLaunch" url="../mei-ya/index" class="btn primary lg round w-min-xl">去逛逛</navigator>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="load-box" wx:if="{{loading}}">
+        <wux-spin wux-class="spin" size="large" />
+    </view>
+    <van-popup show="{{ dateModal }}" position="bottom" bind:close="handleDateModal">
+        <van-datetime-picker type="year-month" value="{{ currentDate }}" bind:change="" bind:cancel="handleDateModal" bind:confirm="handleDate" min-date="{{minDate}}" max-date="{{maxDate}}"></van-datetime-picker>
+    </van-popup>
+</view>

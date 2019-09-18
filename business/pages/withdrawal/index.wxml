@@ -1,0 +1,39 @@
+<view class="container">
+    <view class="gradual-bg mb-sm text-white text-center pt-df">
+        <view class="text-sm">可提现金额（元）</view>
+        <view class="money">{{money}}</view>
+        <navigator url="../withdrawalRecord/index" hover-class="none" class="record-btn">
+            提现记录
+        </navigator>
+    </view>
+    <form bindsubmit="takeMoney">
+        <view class="white-bg">
+            <view class="pv-df ph-lg">
+                <view class="bold text-lg">提现金额（元）</view>
+                <view class="flex align-center mt-df">
+                    <view class="flex-sub"><input placeholder="100" value="" name="amount" type="digit" class="money-input" /></view>
+                    <!--  <view class="t-all">全部</view> -->
+                </view>
+            </view>
+            <view class="solid-bottom"></view>
+            <view class="pv-df ph-lg f13 text-muted ">提示:仅可以100的整数倍提取到微信零钱</view>
+        </view>
+        <view class="p-lg pt-xl">
+            <button class="btn primary xl block round" disabled="{{money>1?false:true || disabled }}" form-type="submit"> 确定 </button>
+        </view>
+    </form>
+    <van-dialog id="dialog-success" use-slot>
+        <view class="dialog-head">
+            <image src="http://leileiimg.toutoumei.com/front/img/dialog-head.png?103" mode="widthFix" class="w-full" />
+            <view class="title">
+                <view>已提交</view>
+                <view class="text-sm n-bold mt-lt">待审核</view>
+            </view>
+        </view>
+        <view class="text-center ph-df pv-xl text-gray text-df">
+            <view>为保障提现金额顺利到账</view>
+            <view>请关注<text class="bolds primary-text">【蕾蕾美颜】</text>微信公众号</view>
+        </view>
+    </van-dialog>
+    <van-toast id="van-toast" />
+</view>

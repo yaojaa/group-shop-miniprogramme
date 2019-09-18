@@ -10,7 +10,7 @@
         </van-cell-group>
         <view class="m-df mt-xl">
             <button class="btn xl primary block" form-type="submit" disabled="{{disabled}}">
-                提交
+                立即创建
             </button>
         </view>
     </form>
