@@ -1,3 +1,4 @@
+@import "../../../css/common.wxss";
 .gradual-bg {
     background-image: -webkit-linear-gradient(#8E50E0, #8B3DF1);
 }

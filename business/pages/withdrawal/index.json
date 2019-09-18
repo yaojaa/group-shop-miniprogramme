@@ -5,6 +5,6 @@
   "navigationBarTitleText": "提现",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-  	
+  	 "van-dialog": "../../../vant/dialog/index"
   }
 }

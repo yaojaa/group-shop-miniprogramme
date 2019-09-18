@@ -2,7 +2,7 @@
     <view class="gradual-bg mb-sm text-white text-center pt-df">
         <view class="text-sm">可提现金额（元）</view>
         <view class="money">{{money}}</view>
-        <navigator url="../withdrawalRecord/index" hover-class="none" class="record-btn">
+        <navigator url="../withdrawal-record/index" hover-class="none" class="record-btn">
             提现记录
         </navigator>
     </view>
@@ -11,12 +11,12 @@
             <view class="pv-df ph-lg">
                 <view class="bold text-lg">提现金额（元）</view>
                 <view class="flex align-center mt-df">
-                    <view class="flex-sub"><input placeholder="100" value="" name="amount" type="digit" class="money-input" /></view>
+                    <view class="flex-sub"><input placeholder="0" value="" name="amount" type="digit" class="money-input" /></view>
                     <!--  <view class="t-all">全部</view> -->
                 </view>
             </view>
             <view class="solid-bottom"></view>
-            <view class="pv-df ph-lg f13 text-muted ">提示:仅可以100的整数倍提取到微信零钱</view>
+            <view class="pv-df ph-lg f13 text-muted ">提示:1-3个工作日到账</view>
         </view>
         <view class="p-lg pt-xl">
             <button class="btn primary xl block round" disabled="{{money>1?false:true || disabled }}" form-type="submit"> 确定 </button>

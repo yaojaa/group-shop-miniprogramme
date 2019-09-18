@@ -1,4 +1,4 @@
-
+@import "../../../css/common.wxss";
 .record-item{
   padding-top: 30rpx;
 }

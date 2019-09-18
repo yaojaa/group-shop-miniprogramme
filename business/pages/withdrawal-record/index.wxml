@@ -24,9 +24,6 @@
             <view class="no-content-bd">
                 <image src="http://leileiimg.toutoumei.com/front/img/test_none.png" class="no-content-icon"></image>
                 <view class="no-content-des"><text>您还没有提现记录</text></view>
-                <view class="no-content-btn">
-                    <navigator open-type="reLaunch" url="../mei-ya/index" class="btn primary lg round w-min-xl">去逛逛</navigator>
-                </view>
             </view>
         </view>
     </view>
