@@ -14,7 +14,5 @@
         "painter": "/iView/painter/painter",
         "i-custom-bar": "../../components/custom-bar/index",
         "wux-popup": "../../wux/popup/index"
-
-
     }
 }

@@ -2,8 +2,8 @@
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
     <view slot="bottom">
         <view class="flex align-center pl-df cus-head" style="padding-right: 220rpx">
-            <image class="avatar mr-sm" src="{{goods.user.headimg}}" />
-            <view class="flex-sub">
+<!--             <image class="avatar mr-sm" src="{{goods.user.headimg}}" />
+ -->            <view class="flex-sub">
                 <view class="text-hide">{{goods.goods_name}}</view>
             </view>
         </view>
@@ -25,6 +25,25 @@
             </view>
         </view>
     </imgs>
+
+    <view class="menu flex-box">
+        <view class="text">快捷管理面板</view>
+<view class="flex-item">
+<view class="num">888</view>
+浏览记录</view>
+<view class="flex-item">
+<view class="num">888</view>
+
+编辑修改</view>
+<view class="flex-item">
+<view class="num">888</view>
+收入金额</view>
+<view class="flex-item">
+<view class="num">21</view>
+管理订单</view>
+
+</view>
+
     <view class="sale-panel">
         <view class="sale-panel-bd">
             <view class="price-group">
@@ -52,6 +71,8 @@
             </view>
         </view>
     </view>
+
+
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
             <view class="goods-name pv-xs">
@@ -98,6 +119,8 @@
                 </i-cell>
             </i-cell-group>
         </view>
+
+
         <view class='goods-content-wraper por'>
             <view class='goods-content'>
                 <text>{{goods.goods_content}}</text>
@@ -109,7 +132,22 @@
         </view>
 
          
+    <view class="menu flex-box">
+          <view class="flex-item">
+            <view class="num">888</view>
+          浏览记录</view>
+          <view class="flex-item">
+                        <view class="num">888</view>
 
+          编辑修改</view>
+          <view class="flex-item">
+                      <view class="num">888</view>
+收入金额</view>
+          <view class="flex-item">
+                      <view class="num">21</view>
+管理订单</view>
+
+    </view>
 
         <view class='sub-title scale-b-1px contentBox'>
             最近参与
@@ -173,12 +211,33 @@
         <view class="weui-footer__links">
             <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>
         </view>
-    </view>
-    
 
-    <view class='footer-cart'>
-        <view class='icon' bindtap='homepage'>
-            <i-icon type="mine" size="26" color="#333" />
+
+    </view>
+        <view class="menu flex-box">
+          <view class="flex-item">
+            <view class="num">888</view>
+          浏览记录</view>
+          <view class="flex-item">
+                        <view class="num">888</view>
+
+          编辑修改</view>
+          <view class="flex-item">
+                      <view class="num">888</view>
+收入金额</view>
+          <view class="flex-item">
+                      <view class="num">21</view>
+管理订单</view>
+
+    </view>
+
+<view class='footer-cart'>
+        <view class='icon' bindtap='goHomePage'>
+            <image class="avatar-mini mr-sm" src="{{goods.user.headimg}}" />
+    <text class="label">主页</text>
+        </view>
+          <view class='icon' bindtap='homepage'>
+            <i-icon type="createtask" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
         <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
