@@ -165,7 +165,7 @@ App({
   redirect2Home:function(){
     
       wx.redirectTo({
-        url:'/pages/index/index'
+        url:'/pages/home/index'
       })
   },
   redirectToLogin:function(){

@@ -1,12 +1,12 @@
 {
     "pages": [
         "pages/home/index",
-        "pages/index/index",
         "pages/login/login",
+        "pages/publish-select/index",
+        "pages/index/index",
         "pages/withdrawal/index",
         "pages/goods/goods",
         "pages/publish/publish",
-        "pages/publish-select/index",
         "pages/publish-success/publish-success",
         "pages/orderList/orderList",
         "pages/map/index",

@@ -1,10 +1,26 @@
 <!--pages/login/login.wxml-->
 <view class="container">
+	<view class="header">
+		<image src="https://static.kaixinmatuan.cn/home_bg.jpg"/>
+
+
+                <image src="https://static.kaixinmatuan.cn/logo.png" class="userAvatar"></image>
+
+
+	 </view>
+
+	<view class="intro">
+			<view >  活动报名 团购统计 </view>
+					<view >管理订单 物流跟踪 </view>
+       			<view > 简单高效 省时省力  </view>
+       			<view >繁琐的事情交给我  </view>
+
+	</view>
     <view class='start-btn  text-center' wx:if="{{!hasScope}}">
-        <button type="primary"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">进入开心麻团儿</button>
+        <button type="primary"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">+ 立即体验</button>
     </view>
-    <view class='text-center' wx:else>
-      加载中...请稍后
-    </view>  
+
+   
+
 
 </view>

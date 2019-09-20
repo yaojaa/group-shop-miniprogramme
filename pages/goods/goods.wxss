@@ -14,6 +14,26 @@
     text-align: center;
 }
 
+.menu{
+    text-align: center;
+    background:#ffffff;
+    padding: 25px 0 15px;
+    color: #999;
+    margin: 10px;
+    position: relative;
+}
+
+.text{
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    font-size: 14px;
+    transform: translateX(-50%);
+    color: #333;
+    background: #fffdf9;
+    padding:6px;
+}
+
 .authPopBox .logo image {
 
     width: 120rpx;
@@ -874,6 +894,15 @@ color:#666;
 .user-info .avatar {
     width: 50rpx;
     height: 50rpx;
+    border-radius: 100%;
+    overflow: hidden;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+.avatar-mini {
+    width: 34rpx;
+    height: 34rpx;
     border-radius: 100%;
     overflow: hidden;
     font-size: 0;

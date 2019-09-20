@@ -23,6 +23,7 @@
             主页累计<text class="text-default">{{info._access_count}}次访问 </text> 成交<text class="text-default">{{info._order_count}}</text> 笔
         </view>
     </view>
+
     <view class="goods-box">
         <navigator url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
             <view class="flex-box">
