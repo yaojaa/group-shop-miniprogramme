@@ -40,6 +40,7 @@
     {
         "root": "business",
         "pages": [
+            "pages/home/index",
             "pages/create-home/index",
             "pages/withdrawal/index",
             "pages/withdrawal-record/index"

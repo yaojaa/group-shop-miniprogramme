@@ -1,0 +1,64 @@
+<view class="container gray-wrap cf">
+    <view class="head-box gradual-bg">
+        <view class="shop-box">
+            <view class="flex align-center">
+                <block>
+                <image src="https://leileiimg.countinsight.com/business/img/avatar.png" class="round align-self-center home-avatar"></image>
+                </block>
+ 
+                <view class="flex-sub mh-sm"><text class="shop-name">马云的主页</text></view>
+            </view>
+        </view>
+        <view class="main-nav-box flex align-center">
+            <view class="icon-nav-box">
+                <view class="icon-nav-bd">
+                    <view class="icon-nav-item" data-status="{{info.business_auth_status}}" data-url="../goods-manage/index" data-goods="true" bindtap="handleAuth">
+                        <view class="icon">
+                            <image src="/img/b_nav1.png"></image>
+                        </view>
+                        <view class="label">商品管理</view>
+                    </view>
+                    <view class="icon-nav-item" data-status="{{info.business_auth_status}}" data-url="../upload-goods/index" data-goods="true" bindtap="handleAuth">
+                        <view class="icon">
+                            <image src="/img/b_nav2.png"></image>
+                        </view>
+                        <view class="label">订单管理</view>
+                    </view>
+                    <navigator class="icon-nav-item" hover-class="hover-main-nav" url="../code-identity/index">
+                        <view class="icon">
+                            <image src="/img/b_nav3.png"></image>
+                        </view>
+                        <view class="label">账户</view>
+                    </navigator>
+                    <navigator class="icon-nav-item" hover-class="hover-main-nav" url="../code-staff/index">
+                        <view class="icon">
+                            <image src="/img/b_nav4.png"></image>
+                        </view>
+                        <view class="label">店铺设置</view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+        <div class="waveAnimation">
+            <div class="waveWrapperInner bgTop">
+                <div class="wave waveTop" style="background-image: url('https://leileiimg.countinsight.com/business/img/wave-top1.png?108');"></div>
+            </div>
+            <div class="waveWrapperInner bgMiddle">
+                <div class="wave waveMiddle" style="background-image: url('https://leileiimg.countinsight.com/business/img/wave-mid1.png?108');"></div>
+            </div>
+            <div class="waveWrapperInner bgBottom">
+                <div class="wave waveBottom" style="background-image: url('https://leileiimg.countinsight.com/business/img/wave-bot1.png?108');"></div>
+            </div>
+        </div>
+    </view>
+
+    <view class="icon-nav-box mt-sm round-df">
+        <view class="icon-nav-hd">常用功能</view>
+   
+    </view>
+
+    <van-dialog id="van-dialog" />
+    <van-toast id="van-toast" />
+    <auth />
+
+</view>
