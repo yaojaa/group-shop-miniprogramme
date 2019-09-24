@@ -492,6 +492,13 @@
 					"pathName": "business/pages/home/index",
 					"query": "goods_id=621",
 					"scene": null
+				},
+				{
+					"id": 63,
+					"name": "运费模板",
+					"pathName": "business/pages/postageSetting/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

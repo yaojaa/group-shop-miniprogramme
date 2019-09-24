@@ -43,7 +43,8 @@
             "pages/home/index",
             "pages/create-home/index",
             "pages/withdrawal/index",
-            "pages/withdrawal-record/index"
+            "pages/withdrawal-record/index",
+            "pages/postageSetting/index"
         ]
     }],
     "usingComponents":

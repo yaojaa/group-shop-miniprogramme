@@ -1,0 +1,52 @@
+<view class="container cf">
+    <view class="defult-rules white-bg">
+        <view class="default-rule-title rule-title">
+            <van-row>
+                <van-col span="17">
+                    <view style="line-height: 30px;">[系统]全国包邮</view>
+                </van-col>
+                <van-col span="7">
+                    <van-button class="add-rule-btn" type="primary" size="small" round>
+                        添加新规则
+                    </van-button>
+                </van-col>
+            </van-row>
+        </view>
+
+        <view class="default-rule-list table">
+            <view class="default-rule-item tr">
+                <view class="th">地区</view>
+                <view class="th">运费</view>
+            </view>
+            <view class="default-rule-item tr">
+                <view class="td">全国</view>
+                <view class="td">0元</view>
+            </view>
+        </view>
+
+        <view class="custom-rule-title rule-title">
+            <van-row>
+                <van-col span="16">
+                    <view>自定义规则</view>
+                </van-col>
+                <van-col span="8">
+                    <view class="custom-option custom-edit-option">修改</view>
+                    <view class="custom-option custom-delete-option">删除</view>
+                </van-col>
+            </van-row>
+        </view>
+        <view class="table">
+            <view class="custom-rule-item tr">
+                <view class="th">地区</view>
+                <view class="th">运费</view>
+            </view>
+            <view class="custom-rule-item tr" wx:for="{{5}}">
+                <view class="th">北京</view>
+                <view class="th">5元</view>
+            </view>
+        </view>
+
+    </view>
+    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
+</view>
