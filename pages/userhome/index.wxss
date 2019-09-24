@@ -219,3 +219,25 @@
     display: block;
     margin: 0 auto
 }
+.menu{
+    text-align: center;
+    background:#ffffff;
+    padding: 5px 0 20px;
+    color: #999;
+    position: relative;
+}
+
+.menu .num{
+    margin-bottom:10px
+}
+
+.text{
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    font-size: 14px;
+    transform: translateX(-50%);
+    color: #333;
+    background: #fffdf9;
+    padding:6px;
+}

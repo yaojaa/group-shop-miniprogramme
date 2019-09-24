@@ -26,23 +26,38 @@
         </view>
     </imgs>
 
+         
     <view class="menu flex-box">
-        <view class="text">快捷管理面板</view>
-<view class="flex-item">
-<view class="num">888</view>
-浏览记录</view>
-<view class="flex-item">
-<view class="num">888</view>
+        <view class="flex-item" bindtap="goVisitor">
+          <view class="num">
+                <van-icon name="closed-eye"  size="20px"/>
+            </view>
+        访问记录</view>
+        <view class="flex-item" bindtap="goModify">
+         <view class="num"><van-icon name="edit"  size="20px" /></view>
 
-编辑修改</view>
-<view class="flex-item">
-<view class="num">888</view>
-收入金额</view>
-<view class="flex-item">
-<view class="num">21</view>
-管理订单</view>
+        编辑修改</view>
+ 
 
-</view>
+
+<view class="flex-item" bindtap="goSendMsg">
+    <view class="num"><van-icon name="envelop-o"  size="20px" />
+    </view>
+发送通知</view>
+
+<view class="flex-item" bindtap="goOrders">
+        <view class="num"><van-icon name="friends-o"  size="20px" /></view>
+  管理订单</view>
+
+  </view>
+
+  <i-modal title="给参与人群发微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
+        <view class="input_area">
+
+                <textarea placeholder="请输入群发内容" maxlength="40"  />
+            </view>
+ </i-modal>
+
 
     <view class="sale-panel">
         <view class="sale-panel-bd">
@@ -131,23 +146,6 @@
          
         </view>
 
-         
-    <view class="menu flex-box">
-          <view class="flex-item">
-            <view class="num">888</view>
-          浏览记录</view>
-          <view class="flex-item">
-                        <view class="num">888</view>
-
-          编辑修改</view>
-          <view class="flex-item">
-                      <view class="num">888</view>
-收入金额</view>
-          <view class="flex-item">
-                      <view class="num">21</view>
-管理订单</view>
-
-    </view>
 
         <view class='sub-title scale-b-1px contentBox'>
             最近参与
@@ -233,11 +231,11 @@
 
 <view class='footer-cart'>
         <view class='icon' bindtap='goHomePage'>
-            <image class="avatar-mini mr-sm" src="{{goods.user.headimg}}" />
+            <i-icon type="shop_fill" size="26" color="#333" />
     <text class="label">主页</text>
         </view>
           <view class='icon' bindtap='homepage'>
-            <i-icon type="createtask" size="26" color="#333" />
+            <i-icon type="mine" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
         <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">

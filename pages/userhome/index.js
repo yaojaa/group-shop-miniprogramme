@@ -10,7 +10,7 @@ Page({
         autoplay: false,
         interval: 5000,
         duration: 1000,
-        showIcon: false,
+        showIcon: true,
         goodsList: [],
         loading: false,
         store_id: '',
@@ -156,18 +156,18 @@ wx.downloadFile({
 
         this.store_id = options.id || options.store_id
 
-        let pages = getCurrentPages(); //当前页面栈
+        // let pages = getCurrentPages(); //当前页面栈
 
-        if (pages.length > 1) {
-            this.setData({
-                showIcon: true
-            })
-            console.log(true)
-        } else {
-            showIcon: false
-            console.log(false)
+        // if (pages.length > 1) {
+        //     this.setData({
+        //         showIcon: true
+        //     })
+        //     console.log(true)
+        // } else {
+        //     showIcon: false
+        //     console.log(false)
 
-        }
+        // }
 
 
         if(app.globalData.userInfo && !this.data.onLoadOpt){

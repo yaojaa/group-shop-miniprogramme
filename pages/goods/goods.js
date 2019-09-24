@@ -37,6 +37,7 @@ Page({
     data: {
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
+        showMsgTips:false,
         previewImgs:{
             current:"",
             urls:[],
@@ -49,6 +50,7 @@ Page({
             minScaleVal: 50, //最小缩放值
             minXYVale: 50, //xy轴最小运动值
         },
+        note:'',
         scrollTop: 0,
         hasScope: false, //是否授权
         goods: '',
@@ -291,6 +293,45 @@ Page({
             url: '../userhome/index?id=' + this.data.store_id
         })
     },
+
+    goOrders(){
+
+
+        wx.navigateTo({
+            url: '../ordermanage/list?id=' + this.data.goods_id+'&goods_name='+this.data.goods.goods_name+'&delivery_method='+this.data.goods.delivery_method
+        })
+
+
+    },
+
+    goSendMsg(){
+
+        this.setData({
+            showMsgTips:true
+        })
+
+    },
+
+    goVisitor(){
+
+
+        wx.navigateTo({
+            url: '../fans/index?id=' + this.data.goods_id+'&name='+this.data.goods.goods_name
+        })
+
+
+    },
+
+    goModify(){
+
+
+        wx.navigateTo({
+            url: '../publish/publish?goods_id=' + this.data.goods_id
+        })
+
+    },
+
+
 
     getShareImg() {
 

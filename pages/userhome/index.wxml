@@ -1,4 +1,4 @@
-<i-custom-bar showBackIcon="{{showIcon}}" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
+<i-custom-bar showBackIcon="{{showIcon}}" hidden="{{shareIng}}" backUrl="/pages/home/index" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
 </i-custom-bar>
 <view class="container cf">
     <view class="swiper">
@@ -22,7 +22,35 @@
         <view class="info f12 ">
             主页累计<text class="text-default">{{info._access_count}}次访问 </text> 成交<text class="text-default">{{info._order_count}}</text> 笔
         </view>
+
     </view>
+
+    <!-- <view class="menu flex-box">
+        <view class="flex-item">
+              <view class="num">
+                    {{info._access_count}}
+                </view>
+            访问记录
+        </view>
+        
+        <view class="flex-item">
+                <navigator url="../fans-mg/index">
+                        <view class="num">9995</view>
+                        粉丝管理
+                </navigator>
+        </view>
+     
+            <view class="flex-item">
+          <view class="num"><i-icon type="setup" size="28" color="#999" /></view>
+    主页设置</view>
+    
+    <view class="flex-item">
+        <view class="num">889</view>
+    商品管理</view>
+    
+      </view> -->
+
+
 
     <view class="goods-box">
         <navigator url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
@@ -47,12 +75,12 @@
                 </view>
             </view>
             </view>
-             <view class="flex-box align-center" style="padding: 10px 0">
+             <!-- <view class="flex-box align-center" style="padding: 10px 0">
                     <view class="avatar-group">
                         <image class="avatar" src="{{user.headimg}}" wx:for-item="user" wx:for="{{item._buy_users}}" wx:key="index"></image>
                     </view>
                     <view class="user f12 ml-xs text-muted"><text class="text-red">{{item._buy_users_count}}</text>人参与</view>
-                </view>
+                </view> -->
 
 
         </navigator>

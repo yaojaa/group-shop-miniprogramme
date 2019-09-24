@@ -22,7 +22,9 @@
     "van-popup": "../../vant/popup/index",
     "van-action-sheet": "../../vant/action-sheet/index",
     "custom-bar": "../../components/custom-bar/index",
-    "wux-gallery": "../../wux/gallery/index"
+    "wux-gallery": "../../wux/gallery/index",
+    "van-icon": "../../vant/icon/index",
+    "i-modal": "../../iView/modal/index"
 
   }
 }
