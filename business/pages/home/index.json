@@ -1,0 +1,8 @@
+{ 
+  "navigationBarBackgroundColor": "#69b90b",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "",
+  "usingComponents": {
+  	"i-icon": "../../../iView/icon/index"
+  }
+}
