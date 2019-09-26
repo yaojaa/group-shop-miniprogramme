@@ -44,7 +44,9 @@
             "pages/withdrawal/index",
             "pages/withdrawal-record/index",
             "pages/postageSetting/index",
-            "pages/set-price/index"
+            "pages/set-price/index",
+            "pages/acting-admin/index",
+            "pages/acting-apply/index"
         ]
     }],
     "usingComponents": {
