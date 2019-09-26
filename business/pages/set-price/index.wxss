@@ -1,0 +1,85 @@
+@import "../../../css/common.wxss";
+.addnewrule__rule-name {
+    margin: 30rpx 40rpx;
+    border: 1px solid #999999;
+}
+
+.addnewrule__table {
+    border: 1px solid #999999;
+    border-right: 0;
+    border-bottom: 0;
+    width: 90%;
+    margin: 10rpx auto;
+}
+
+.addnewrule__tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addnewrule__th,
+.addnewrule__td {
+    padding: 10rpx;
+    border-right: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    width: 100%;
+    text-align: center;
+}
+
+.addnewrule__th {
+    font-weight: 400;
+}
+
+.addnewrule__th__button_add-area button {
+    border: 0;
+}
+
+.addnewrule__th-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.addnewrule__th_input-option {
+    flex: 1;
+    border: 1px solid #999999;
+}
+
+.addnewrule__th-option {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.addnewrule__th_input-option .van-cell--small {
+    padding: 4rpx 10rpx;
+}
+
+.addnewrule__footer {
+    position: absolute;
+    bottom: 88rpx;
+    width: 100%;
+    text-align: center;
+}
+
+.addnewrule__dialog_chooseItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    padding-top: 40rpx;
+}
+
+.addnewrule__dialog_chooseItem van-checkbox {
+    padding: 4rpx 10rpx;
+}
+
+.van-checkbox__icon {
+    width: 30rpx !important;
+    height: 30rpx !important;
+}
