@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 62,
+			"current": 65,
 			"list": [
 				{
 					"id": 0,
@@ -498,6 +498,20 @@
 					"name": "运费模板",
 					"pathName": "business/pages/postageSetting/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "代理管理",
+					"pathName": "business/pages/acting-admin/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "代理申请",
+					"pathName": "business/pages/acting-apply/index",
+					"query": "id=1",
 					"scene": null
 				}
 			]

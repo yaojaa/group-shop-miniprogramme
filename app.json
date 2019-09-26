@@ -44,7 +44,9 @@
             "pages/create-home/index",
             "pages/withdrawal/index",
             "pages/withdrawal-record/index",
-            "pages/postageSetting/index"
+            "pages/postageSetting/index",
+            "pages/acting-admin/index",
+            "pages/acting-apply/index"
         ]
     }],
     "usingComponents":
