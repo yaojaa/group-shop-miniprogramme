@@ -289,7 +289,7 @@ Page({
 
             console.log('pages',pages)
 
-        wx.navigateTo({
+        wx.redirectTo({
             url: '../userhome/index?id=' + this.data.store_id
         })
     },
@@ -422,7 +422,18 @@ Page({
 
 
                     this.data.seller = d.goods.user,
-                        this.data.store_id = d.goods.store.store_id
+                    this.data.store_id = d.goods.store.store_id
+
+                    //显示管理面板
+
+                    if(this.data.seller.user_id == app.globalData.userInfo.user_id){
+                        console.log('是管理')
+
+                        this.setData({
+                            showPanel:true
+                        })
+
+                    }
 
 
 
@@ -525,6 +536,73 @@ Page({
 
 
     },
+    /**群发通知**/
+    setTips(){
+
+          if (this.data.note == '') {
+
+            return wx.showToast({ title: '没有输入内容', icon: 'none' })
+
+        }
+
+         wx.showLoading()
+
+
+        util.wx.post('/api/seller/send_tmp_msg', {
+            goods_id:this.data.goods_id,
+            note:this.data.note
+        }).then(res => {
+
+            wx.hideLoading()
+
+        
+            if (res.data.code == 200) {
+                wx.showToast({ title: "群发通知成功！" })
+                
+
+            } else {
+
+                wx.showToast({
+                    title:res.data.msg,
+                    icon:"none"
+                })
+
+                
+            }
+
+            this.setData({
+                    showMsgTips: false
+                });
+        },(res)=>{
+
+            wx.hideLoading()
+
+             wx.showToast({
+                    title:res.data.msg,
+                    icon:"none"
+                })
+
+        })
+
+    },
+    inputNote(e){
+        this.setData({
+            note:e.detail.value
+        })
+    },
+    closeTips(){
+
+        this.setData({
+            showMsgTips: false
+        })
+
+    },
+    rejectAuth(){
+        this.setData({
+            showAuth: false
+        })
+    },
+
     codeHide() {
         this.setData({
             code: false

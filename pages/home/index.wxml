@@ -66,7 +66,7 @@
     <view class="text-center">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
-    <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}" extra="发布一个" link="../publish/publish">
+    <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}" extra="+ 发布新宝贝" link="../publish/publish">
         <view class="goods-box">
             <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                 <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
@@ -78,7 +78,7 @@
     </i-panel>
     <i-panel wx:if="{{goodslist.length== 0 && !is_loading }}">
         <view class='new-goods' bindtap="new_btn">
-            <text>发布一个 </text>
+            <text>+ 发布一个 </text>
         </view>
     </i-panel>
     <view style="margin-bottom:100rpx"></view>
