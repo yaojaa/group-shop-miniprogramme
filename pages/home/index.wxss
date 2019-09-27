@@ -25,6 +25,28 @@ height:100%
     margin-bottom:60px
 }
 
+.new-btn{
+position:absolute;
+right:10px;
+top:9rpx;
+z-index:9999;
+color:#fff;
+border-radius:50rpx;
+border:1px solid #ebffdb;
+margin-right:10px;
+font-size: 24rpx;
+background: #85c002
+}
+
+.goSite{
+    margin-top: 24rpx
+}
+
+
+
+.panelbox{
+    position: relative;
+}
 
 .head-box{
   position: relative;

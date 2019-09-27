@@ -133,7 +133,7 @@ Page({
         let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...' + this.data.goods_name
         let numberIcon = '「No.' + this.data.create_number + '」'
         return {
-            title: numberIcon,
+            title: '',
             path: '/pages/goods/goods?goods_id=' + this.data.goods_id
         }
     },

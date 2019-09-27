@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 62,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -145,7 +145,8 @@
 					"id": 12,
 					"name": "支付成功",
 					"pathName": "pages/paySuccess/index",
-					"query": "order_id=1&good_id=1"
+					"query": "order_id=6030&goods_id=771",
+					"scene": null
 				},
 				{
 					"id": -1,

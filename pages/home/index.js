@@ -85,6 +85,9 @@ Page({
         }
 
     },
+    onshow(){
+      this.getOrderCount()
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -114,7 +117,6 @@ Page({
         this.data.cpage = 1
         this.data.goodslist = []
         this.getGoodsList()
-        this.getOrderCount()
         this.get_store_info()
         
 
@@ -201,7 +203,7 @@ Page({
     },
     new_btn: function() {
         wx.navigateTo({
-            url: '../publish-select/index'
+            url: '../publish/publish'
         })
     },
     fansPage() {

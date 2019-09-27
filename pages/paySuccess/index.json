@@ -1,4 +1,5 @@
 {
+   "navigationBarTitleText": "支付成功",
   "usingComponents": {
     "i-panel": "/iView/panel/index",
     "i-cell": "/iView/cell/index",
