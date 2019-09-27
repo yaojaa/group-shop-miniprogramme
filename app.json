@@ -36,30 +36,28 @@
         "pages/express/index",
         "pages/send-list/index"
     ],
-    "subpackages": [
-    {
+    "subpackages": [{
         "root": "business",
         "pages": [
             "pages/home/index",
             "pages/create-home/index",
             "pages/withdrawal/index",
             "pages/withdrawal-record/index",
-            "pages/postageSetting/index"
+            "pages/postageSetting/index",
+            "pages/set-price/index",
+            "pages/acting-admin/index",
+            "pages/acting-apply/index"
         ]
     }],
-    "usingComponents":
-    {
+    "usingComponents": {
         "wux-spin": "../../wux/spin/index"
     },
-    "permission":
-    {
-        "scope.userLocation":
-        {
+    "permission": {
+        "scope.userLocation": {
             "desc": "你的位置信息用于获取附近的团购活动"
         }
     },
-    "window":
-    {
+    "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "white",
         "navigationBarTitleText": "开心麻团儿",

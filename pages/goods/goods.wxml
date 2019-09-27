@@ -30,23 +30,23 @@
     <view class="menu flex-box" wx:if="{{showPanel}}">
         <view class="flex-item" bindtap="goVisitor">
           <view class="num">
-                <van-icon name="closed-eye"  size="20px"/>
+                <van-icon name="closed-eye" color="#4fac05"  size="20px"/>
             </view>
         访问记录</view>
         <view class="flex-item" bindtap="goModify">
-         <view class="num"><van-icon name="edit"  size="20px" /></view>
+         <view class="num"><van-icon name="edit"  color="#4fac05" size="20px" /></view>
 
         编辑修改</view>
  
 
 
 <view class="flex-item" bindtap="goSendMsg" >
-    <view class="num"><van-icon name="envelop-o"  size="20px" />
+    <view class="num"><van-icon name="envelop-o"  color="#4fac05"  size="20px" />
     </view>
 发送通知</view>
 
 <view class="flex-item" bindtap="goOrders">
-        <view class="num"><van-icon name="friends-o"  size="20px" /></view>
+        <view class="num"><van-icon name="friends-o"  color="#4fac05"  size="20px" /></view>
   管理订单</view>
 
   </view>

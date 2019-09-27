@@ -57,7 +57,7 @@
                                 <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
                             </view>
                         </view>
-                        <view class="footer-btn" wx:if="{{!specProgress}}">
+                        <view class="footer-btn" >
                             <button bindtap="addSpecPicContinue" class="btn btn-round linenear_bg_light">
                                 + 继续添加
                             </button>
@@ -70,7 +70,15 @@
             </wux-popup>
             <!--上传图片弹框-->
             <wux-popup catchtouchmove="ture" position="bottom" visible="{{ visible_pictures }}" bind:close="onClose2">
-                <view class="p-sm solid-bottom mb-df text-default">上传介绍图片 </view>
+                <view class="p-sm solid-bottom mb-df text-default">上传介绍图片  
+
+
+                    <view class="closeX">
+                      <i-icon bindtap="addPictureDone" color="#999" size="24" type="close" />
+
+                    </view>
+
+                </view>
                 <view class="pic_loading">
                     <i-spin wx:if="{{uploadProgress}}" />
                 </view>

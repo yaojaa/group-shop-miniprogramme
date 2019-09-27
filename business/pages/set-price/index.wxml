@@ -1,0 +1,84 @@
+<view class="container_addnewrule">
+    <view class='addnewrule__rule-name'>
+        <van-cell-group>
+            <van-field
+                value="{{ value }}"
+                placeholder="请输入规则名称"
+                border="{{ true }}"
+                maxlength="{{ 50 }}"
+                bind:change="onChange"
+                size="small"
+            />
+        </van-cell-group>
+    </view>
+
+    <view class="addnewrule__table">
+        <view class="addnewrule__tr">
+            <view class="addnewrule__th">自定义配送区域</view>
+            <view class="addnewrule__th">运费</view>
+        </view>
+        <view class="addnewrule__tr" wx:for="{{resourceData}}">
+            <view class="addnewrule__th">{{item.name}}</view>
+            <view class="addnewrule__th addnewrule__th-cell">
+                <view class="addnewrule__th_input-option">
+                    <van-field value="{{item.price}}" size="small" border="{{ true }}" />
+                </view>
+                <view class="addnewrule__th-option">
+                    <view class="addnewrule__custom-option">修改</view>
+                    <view class="addnewrule__custom-option">删除</view>
+                </view>
+            </view>
+        </view>
+        <view class="addnewrule__tr">
+            <view class="addnewrule__th" bindtap="showDialog">
+                <van-button 
+                    type="info" 
+                    plain 
+                    hairline 
+                    size="small" 
+                    class="addnewrule__th__button_add-area"
+                    >
+                    +添加地区
+                </van-button>
+            </view>
+        </view>
+    </view>
+
+    <view class="addnewrule__footer">
+        <van-button type="info" size="small" 
+                    bind:click="addInfo">添加</van-button>
+    </view>
+
+   <van-dialog 
+        show="{{ DialogShowStatus }}"
+        use-slot
+        confirm-button-open-type="getUserInfo"
+        bind:getuserinfo="getUserInfo"
+        title="点击按钮勾选地区"
+        >
+        <van-checkbox-group value="{{ result }}" bind:change="changeArea">
+            <scroll-view 
+                scroll-y 
+                style="height: 200px;" 
+                bindscrolltoupper="upper" 
+                bindscrolltolower="lower" 
+                bindscroll="scroll" 
+                scroll-into-view="{{toView}}" 
+                scroll-top="{{scrollTop}}"
+                >
+                <view class="addnewrule__dialog_chooseItem">
+                    <van-checkbox 
+                        icon-size="10px" 
+                        wx:for="{{ list }}"
+                        wx:key="index"
+                        name="{{ item }}"
+                        data-index="{{ index }}"
+                        bind:click="toggle"
+                        >
+                        {{ item }} 
+                    </van-checkbox>
+                </view>
+            </scroll-view>
+        </van-checkbox-group>
+    </van-dialog>
+</view>
