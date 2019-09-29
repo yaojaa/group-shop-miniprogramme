@@ -26,23 +26,38 @@
         </view>
     </imgs>
 
-    <view class="menu flex-box">
-        <view class="text">快捷管理面板</view>
-<view class="flex-item">
-<view class="num">888</view>
-浏览记录</view>
-<view class="flex-item">
-<view class="num">888</view>
+         
+    <view class="menu flex-box" wx:if="{{showPanel}}">
+        <view class="flex-item" bindtap="goVisitor">
+          <view class="num">
+                <van-icon name="closed-eye" color="#4fac05"  size="20px"/>
+            </view>
+        访问记录</view>
+        <view class="flex-item" bindtap="goModify">
+         <view class="num"><van-icon name="edit"  color="#4fac05" size="20px" /></view>
 
-编辑修改</view>
-<view class="flex-item">
-<view class="num">888</view>
-收入金额</view>
-<view class="flex-item">
-<view class="num">21</view>
-管理订单</view>
+        编辑修改</view>
+ 
 
-</view>
+
+<view class="flex-item" bindtap="goSendMsg" >
+    <view class="num"><van-icon name="envelop-o"  color="#4fac05"  size="20px" />
+    </view>
+发送通知</view>
+
+<view class="flex-item" bindtap="goOrders">
+        <view class="num"><van-icon name="friends-o"  color="#4fac05"  size="20px" /></view>
+  管理订单</view>
+
+  </view>
+
+  <i-modal title="给参与人群发微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
+        <view class="input_area">
+
+                <textarea hidden="{{ !showMsgTips }}" bindinput="inputNote" placeholder="请输入群发内容" maxlength="40"  />
+            </view>
+ </i-modal>
+
 
     <view class="sale-panel">
         <view class="sale-panel-bd">
@@ -131,23 +146,6 @@
          
         </view>
 
-         
-    <view class="menu flex-box">
-          <view class="flex-item">
-            <view class="num">888</view>
-          浏览记录</view>
-          <view class="flex-item">
-                        <view class="num">888</view>
-
-          编辑修改</view>
-          <view class="flex-item">
-                      <view class="num">888</view>
-收入金额</view>
-          <view class="flex-item">
-                      <view class="num">21</view>
-管理订单</view>
-
-    </view>
 
         <view class='sub-title scale-b-1px contentBox'>
             最近参与
@@ -170,7 +168,7 @@
                                 </view>
                                 <view class="type">
                                     <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
-                                        跟 {{gds.spec_name}} + {{gds.qty}}
+                                        跟 {{gds.qty}} 件
                                     </view>
                                 </view>
                             </view>
@@ -214,30 +212,14 @@
 
 
     </view>
-        <view class="menu flex-box">
-          <view class="flex-item">
-            <view class="num">888</view>
-          浏览记录</view>
-          <view class="flex-item">
-                        <view class="num">888</view>
-
-          编辑修改</view>
-          <view class="flex-item">
-                      <view class="num">888</view>
-收入金额</view>
-          <view class="flex-item">
-                      <view class="num">21</view>
-管理订单</view>
-
-    </view>
 
 <view class='footer-cart'>
         <view class='icon' bindtap='goHomePage'>
-            <image class="avatar-mini mr-sm" src="{{goods.user.headimg}}" />
+            <i-icon type="shop_fill" size="26" color="#333" />
     <text class="label">主页</text>
         </view>
           <view class='icon' bindtap='homepage'>
-            <i-icon type="createtask" size="26" color="#333" />
+            <i-icon type="mine" size="26" color="#333" />
             <text class="label">我的</text>
         </view>
         <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
@@ -296,15 +278,27 @@
     </view>
     <!--     <i-message id="message" />
  -->
+
+
+
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" >
+
+        <view class="content-pop">
         <view class="logo">
-            <image class="avatar" src="{{goods.user.headimg}}" />
+            <image class="avatar-mini" src="{{goods.user.headimg}}" />
         </view>
         <view class="info">
-            您好，请允许获取公开信息
+          请允许微信授权
         </view>
-        <button size="default" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
+        <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
+
+        <button size="mini" type="warn" plain="false" bindtap="rejectAuth" >取 消</button>
+
+</view>
     </van-popup>
+
+
+
     <van-action-sheet show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">

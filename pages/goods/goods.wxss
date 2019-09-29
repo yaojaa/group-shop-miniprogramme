@@ -1,26 +1,32 @@
 @import "../../utils/weui.wxss";
 @import "../../css/common.wxss";
-.authPopBox {
 
-    border-radius: 8px;
-    padding: 14px;
-    width: 500rpx
-}
+.input_area {
+    width: 80%;
+    margin:0 10%;
+    text-align: left
+  }
 
-.authPopBox .info {
-    font-size: 14px;
-    color: #666;
-    padding: 10px 0;
-    text-align: center;
-}
+  .input_area textarea {
+    width: 100%;
+    padding:5px;
+    height: 70px;
+    color:#c00;
+    background:#f8f8f8;  }
+
+
+
 
 .menu{
     text-align: center;
     background:#ffffff;
-    padding: 25px 0 15px;
+    padding:15px 0 20px;
     color: #999;
-    margin: 10px;
-    position: relative;
+    position: relative
+}
+
+.menu .num{
+    margin-bottom:10px
 }
 
 .text{
@@ -39,7 +45,9 @@
     width: 120rpx;
     height: 120rpx;
     display: block;
-    margin: 0 auto
+    margin: 0 auto;
+    padding: 30rpx
+
 }
 
 
@@ -898,6 +906,16 @@ color:#666;
     overflow: hidden;
     font-size: 0;
     vertical-align: middle;
+}
+
+.content-pop{
+    padding: 30rpx;
+    width: 450rpx;
+    text-align: center;
+}
+
+.content-pop button{
+    margin: 15px 5px
 }
 
 .avatar-mini {

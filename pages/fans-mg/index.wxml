@@ -1,11 +1,10 @@
 <view class="container">
-    <!-- <view class="fans-box text-justify">
-        <view class="f14"><button size="mini">全部粉丝：234</button></view>
+    <view class="fans-box text-justify">
+        <view class="f14">粉丝(234) </view>
         <view class="btn-group">
             <button type="primary" size="mini">微信通知</button>
-            <button size="mini" type="primary">群发短信</button>
         </view>
-    </view> -->
+    </view>
    <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
     <view class="mt-sm white-bg">
         <view class="solid-bottom p-df flex fans-list" wx:for="{{list}}" wx:key="{{index}}">
@@ -21,7 +20,7 @@
                     </view>
                 </view>
                 <view class="date text-sm text-muted mt-sm">
-                    {{item.updatetime}}
+                    最后访问：2019-12-10 最进参与：青柠檬3斤
                 </view>
             </view>
         </view>

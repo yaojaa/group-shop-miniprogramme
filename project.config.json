@@ -57,7 +57,11 @@
 			"list": []
 		},
 		"miniprogram": {
+<<<<<<< HEAD
 			"current": 12,
+=======
+			"current": 27,
+>>>>>>> 887bbe95da32ef4f97e6fd05785b24db358e40a1
 			"list": [
 				{
 					"id": 0,
@@ -83,7 +87,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=348",
+					"query": "goods_id=756",
 					"scene": 1008
 				},
 				{
@@ -246,7 +250,7 @@
 					"id": 27,
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
-					"query": "id=750",
+					"query": "id=1",
 					"scene": null
 				},
 				{
@@ -493,8 +497,16 @@
 					"pathName": "business/pages/home/index",
 					"query": "goods_id=621",
 					"scene": null
+				},
+				{
+					"id": 63,
+					"name": "运费模板",
+					"pathName": "business/pages/postageSetting/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
 	}
+
 }

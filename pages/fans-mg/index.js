@@ -69,10 +69,8 @@ Page({
                         e.updatetime = this.fTime(e.updatetime);
                     })
                     this.setData({
-                        list: res.data.data.lists
-                    })
-                    wx.setNavigationBarTitle({
-                        title: '粉丝管理' + (res.data.data.page.total)
+                        list: res.data.data.lists,
+                        fansNum:res.data.data.page.total
                     })
                 }
             }

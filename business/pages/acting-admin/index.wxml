@@ -1,0 +1,27 @@
+<view class="act-admin">
+    <view class="act-list" wx:for="{{[1, 2, 3, 4]}}">
+        <!--cell start -->
+        <view class="act-cell flex">
+            <view class="act-img shrink0">
+                <image class="act-logo" mode="aspectFill" src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1909391119,2056314939&fm=58"></image>  
+            </view>
+            <view class="act-main grow1">
+                <view class="act-top flex">
+                    <view class="name grow1">沙发沙发的萨芬就圣诞节发生的方法大街上了</view>
+                    <view class="time shrink0">2019-09-08</view>
+                </view>
+                <view class="act-bottom flex">
+                    <view class="reason grow1">申请理由申请理由申请理由申请理</view>
+                    <view class="button shrink0">通过</view>
+                </view>
+            </view>
+        </view>
+        <!--./ cell end -->
+    </view>
+    <view class="act-more-list">加载更多</view>
+
+    <view class="act-submit">
+        <button bindtap="actShare">邀 请 代 理</button>
+    </view>
+
+</view>

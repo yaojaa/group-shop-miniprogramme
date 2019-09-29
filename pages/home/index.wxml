@@ -87,7 +87,7 @@
     </view>
     <i-panel wx:if="{{goodslist.length== 0 && !is_loading }}">
         <view class='new-goods' bindtap="new_btn">
-            <text>发布一个 </text>
+            <text>+ 发布一个 </text>
         </view>
     </i-panel>
     <view style="margin-bottom:100rpx"></view>
@@ -104,5 +104,6 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
+
     <van-dialog id="van-dialog" />
 </view>

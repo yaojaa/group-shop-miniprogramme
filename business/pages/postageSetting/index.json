@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#69b90b",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "van-row": "../../../vant/row/index",
+    "van-col": "../../../vant/col/index",
+    "van-button": "../../../vant/button/index"
+  }
+}

@@ -77,18 +77,25 @@
 	position: relative;
 	padding-right:10px
 }
-.goods-item .content .title{
+.goods-item  .title{
 	font-weight: bold;
-	font-size: 28rpx;
-	margin-bottom: 3px
+	font-size: 32rpx;
+	margin-bottom: 3px;
+    padding: 4px
+}
+.gray{
+    color: #999;
+    background: none;
+    font-size: 12px
 }
 .goods-item .content .des{
-	font-size: 24rpx;
-	color:#999;
+	font-size: 28rpx;
+	color:#888;
+    line-height: 1.7;
 	margin-bottom: 14rpx;
 }
 .goods-item .content .price{
-	font-size: 32rpx;
+	font-size: 28rpx;
 }
 .goods-item .content .bottom{
 	position: absolute;
@@ -218,4 +225,26 @@
     height: 120rpx;
     display: block;
     margin: 0 auto
+}
+.menu{
+    text-align: center;
+    background:#ffffff;
+    padding: 5px 0 20px;
+    color: #999;
+    position: relative;
+}
+
+.menu .num{
+    margin-bottom:10px
+}
+
+.text{
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    font-size: 14px;
+    transform: translateX(-50%);
+    color: #333;
+    background: #fffdf9;
+    padding:6px;
 }
