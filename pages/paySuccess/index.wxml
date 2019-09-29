@@ -1,14 +1,35 @@
 <view class="container">
+                
+                <view class="center">
+                     <view class='img2'>
+                    <open-data type="userAvatarUrl"></open-data>
+                     </view>
+
+
+                </view>
+
+               
+                      
+
 
     <view class='content'>
-        <image src="{{order.order_detail[0].goods_cover}}"></image>
         <view class='header'>
-            <view class='title'>支付成功 +1</view>
+            <view class='title'><open-data type="userNickName"></open-data>已参团 +1</view>
         </view>
-        <view class='order'>
-                  <view class='title'>{{goods_name}}</view>
 
-            <!-- <view class='line'></view> -->
+        <view class="imglist" wx:if="{{onshare}}">
+
+           <view class='left'><image class="photos"  src="{{order.order_detail[0].goods_cover}}"></image> </view>
+           <view class='right'>{{goods_name}}</view>
+
+            
+        </view> 
+
+
+        <view class='order' wx:if="{{!onshare}}">
+                  <view class='title'>
+                  {{goods_name}}</view>
+
             <view class="goodsList">
                 <view class='goods' wx:for="{{order.order_detail}}" wx:key="@index">
                     <view class='cell'>
@@ -17,10 +38,10 @@
                     </view>
                 </view>
             </view>
-            <view class="user">
-                <view class='img'>
-                    <open-data type="userAvatarUrl"></open-data>
-                </view>
+   <view class="user">
+          <!--       <view class='img'>
+                   <open-data type="userAvatarUrl"></open-data>
+             </view>  -->
                 <view class='name'>
                     <open-data type="userNickName"></open-data>
                 </view>
@@ -41,9 +62,7 @@
             </view>
         </view>
     </view>
-    <!--   <view class='share'>
-    <button type='primary' open-type="share">复制文字结果</button>
-  </view> -->
+
     <view class='share'>
         <button class="linenear_bg" hove-class="linenear_bg_hover" type='primary' open-type="share">分享告知</button>
     </view>
@@ -51,5 +70,4 @@
         建议支付后告知一下，以免遗漏～
   </view><view></view>
   
-    <official-account></official-account>
-</view>
+</view> 
