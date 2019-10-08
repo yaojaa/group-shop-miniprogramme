@@ -1,13 +1,8 @@
+
 page{
-   background-color: #fcfffa; 
+  background: #ffffff
 }
-.body{
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 60px;
-  right: 0;
-}
+
 .scroll-view{
   height: 100%;
 }
@@ -27,22 +22,20 @@ page{
 }
 .content{
   height: 100%;
-  padding: 0 15px 200rpx;
 }
 .header{
  align-items: center;
-  height: 100rpx;
   text-align: center;
   display: block;
-  line-height: 150rpx
+  margin-bottom:60rpx;
 }
 .header .title{
-  font-size: 24px;
+  font-size: 48rpx;
   color: green;
   font-weight:bold
 }
 .order{
-  margin: 25px 0;
+  margin: 25px 20px;
   background-color: #f7efe3;
   border-radius: 8px;
   overflow-x: hidden;
@@ -166,6 +159,12 @@ page{
 
 }
 
+.photos-mini{
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+
 .user{
   display: flex;
   justify-content: space-between;
@@ -180,6 +179,52 @@ page{
   width: 30px;
   border-radius: 50%;
   overflow: hidden;
+}
+
+.img2{
+
+  height: 160rpx;
+  width: 160rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  display: inline-block;
+  margin:0 auto 35rpx;
+
+}
+.imglist{
+  text-align: center;
+  background: #f7efe3;
+  padding:10px 2px 12px 4px;
+  border-radius:8px;
+  margin-bottom: 150rpx;
+  height:150rpx;
+  display: block;
+  margin-top: 100rpx;
+  margin-left: 5px;
+  margin-right: 5px
+
+}
+
+.imglist .left{
+  float: left;
+  margin-right: 8px;
+}
+.imglist .right{
+  font-size:38rpx;
+  text-align: left;
+  padding: 10px
+}
+.photos{
+
+    height: 160rpx;
+  width: 160rpx;
+  overflow: hidden;
+    border-radius:8px;
+
+  text-align: center;
+  display: inline-block;
+  margin: 0 5px
 }
 .user .name{
   width: 200rpx;
@@ -205,3 +250,11 @@ page{
 .back button{
   text-align: center;
 }
+
+.cover_img{
+  opacity: 0.6;
+  width: 100%
+}
+
+
+

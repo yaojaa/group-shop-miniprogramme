@@ -58,19 +58,36 @@
             </view>
         </view>
     </i-panel>
-    <i-panel hide-border wx:if="{{hasNewOrder}}">
-        <view class="notice">
-            <i-icon size="24" type="systemprompt" /> 您有新的订单，请及时确认！
+    <i-panel hide-border title="最新订单" extra="更多" link="../new-order-list/index">
+        <view class="control">
+            
+            <view class="newlist">
+                <view class="item" wx:for="{{orderList}}" 
+                data-id="{{item.order_detail[0].goods_id}}" 
+                data-delivery_method="{{item.delivery_method}}"
+                data-name="{{item.order_detail[0].goods_name}}"
+
+                bindtap="managePage">
+                    <text class="bold">{{item.user.nickname}}</text>                     {{item.time_ago}}
+ 参与了你的 
+                    <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                </view>
+                   <button class='pubbtn' bindtap="new_btn">
+          <i-icon type="add" size="20" />发布一个
+        </button>
+            </view> 
+     
         </view>
+
     </i-panel>
     <view class="text-center">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
 
     <view class="panelbox">
-        <button class='new-btn hollow' bindtap="new_btn">
+      <!--   <button class='new-btn hollow' bindtap="new_btn">
           <i-icon type="add" size="20" />新发布
-        </button>
+        </button> -->
     <i-panel title="我发布的"   wx:if="{{goodslist.length > 0}}">
 
         
@@ -97,11 +114,11 @@
             <text>发布一个团购 </text>
         </view>
     </view> -->
-  <!--   <view class="footer_bar">
-        <i-tab-bar current="home" color="#188f00" bindchange="handleTabBarChange">
-            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="关注"></i-tab-bar-item>
+ <!--    <view class="footer_bar">
+        <i-tab-bar current="nearby" color="#188f00" bindchange="handleTabBarChange">
+            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="我的"></i-tab-bar-item>
             <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
-            <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
+            <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
 

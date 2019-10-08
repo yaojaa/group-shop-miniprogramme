@@ -11,6 +11,10 @@ Component({
         total: {
             type: Boolean,
             value: true
+        },
+        user: {
+            type: Boolean,
+            value: true
         }
     },
     options: {

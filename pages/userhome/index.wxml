@@ -20,12 +20,12 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-            主页累计<text class="text-default">{{info._access_count}}次访问 </text> 成交<text class="text-default">{{info._order_count}}</text> 笔
+          访问  <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 粉丝 88387
         </view>
 
     </view>
 
-    <!-- <view class="menu flex-box">
+<!--     <view class="menu flex-box">
         <view class="flex-item">
               <view class="num">
                     {{info._access_count}}
@@ -40,9 +40,9 @@
                 </navigator>
         </view>
      
-            <view class="flex-item">
+       <view class="flex-item">
           <view class="num"><i-icon type="setup" size="28" color="#999" /></view>
-    主页设置</view>
+    主页设置</view> 
     
     <view class="flex-item">
         <view class="num">889</view>

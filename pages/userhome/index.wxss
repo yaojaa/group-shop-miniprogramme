@@ -81,7 +81,6 @@
 	font-weight: bold;
 	font-size: 32rpx;
 	margin-bottom: 3px;
-    padding: 4px
 }
 .gray{
     color: #999;
