@@ -6,7 +6,7 @@
                     <view style="line-height: 30px;">[系统]全国包邮</view>
                 </van-col>
                 <van-col span="7">
-                    <van-button class="add-rule-btn" type="primary" size="small" round>
+                    <van-button class="add-rule-btn" type="primary" size="small" round bind:click="addPostageTpl">
                         添加新规则
                     </van-button>
                 </van-col>
@@ -30,8 +30,8 @@
                     <view>自定义规则</view>
                 </van-col>
                 <van-col span="8">
-                    <view class="custom-option custom-edit-option">修改</view>
-                    <view class="custom-option custom-delete-option">删除</view>
+                    <view class="custom-option custom-edit-option" data-index="1" bindtap="editPostageTpl">修改</view>
+                    <view class="custom-option custom-delete-option" bindtap="deletePostageTpl">删除</view>
                 </van-col>
             </van-row>
         </view>
