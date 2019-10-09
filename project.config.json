@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 64,
 			"list": [
 				{
 					"id": 0,
@@ -499,6 +499,13 @@
 					"name": "运费模板",
 					"pathName": "business/pages/postageSetting/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加快递单号",
+					"pathName": "pages/express/index",
+					"query": "pi=0&ci=0&order_id=5389&user=书星&goods=红颜奶油草莓 约重500g/20-24颗 新鲜水果",
 					"scene": null
 				}
 			]

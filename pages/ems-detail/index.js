@@ -118,14 +118,32 @@ Page({
         this.data.user = decodeURIComponent(options.user)
         this.data.goods = decodeURIComponent(options.goods)
 
+        // for(let i in options){
+        //     if(i.indexOf('code') > -1){
+        //         this.data.express.push({
+        //             express_code: options[i],
+        //             express_company: decodeURIComponent(options['com'+ i.replace('code','')])
+        //         })
+        //     }
+        // }
+
+        let num = 0;
+
         for(let i in options){
             if(i.indexOf('code') > -1){
                 this.data.express.push({
-                    express_code: options[i],
-                    express_company: decodeURIComponent(options['com'+ i.replace('code','')])
+                    express_code: options['code' + num],
+                    express_company: decodeURIComponent(options['com' + num])
                 })
+                num ++;
             }
         }
+
+
+
+
+
+
 
         console.log(this.data.express)
 

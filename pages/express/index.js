@@ -237,7 +237,7 @@ Page({
             return;
         }
         this.data.express.push({
-            express_company:"",
+            express_company: this.data.express[this.data.express.length-1].express_company,
             express_code:""
         })
         this.setData({
@@ -259,6 +259,25 @@ Page({
     blurInput(e){
         let i = e.currentTarget.dataset.index;
         this.editExpress(i);
+
+    },
+    saomaInput(e) {
+        let index = e.currentTarget.dataset.index;
+        let _this = this;
+        wx.scanCode({
+          success (res) {
+            _this.setData({
+                ['express[' + index + '].express_code']: res.result
+            })
+          },
+          fail(res) {
+            wx.showModal({
+              title: '',
+              content: '添加失败，请手动输入',
+              showCancel:false
+            })
+          }
+        })
 
     },
     checkexpress(e) {

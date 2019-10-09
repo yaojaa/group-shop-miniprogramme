@@ -21,6 +21,7 @@
               <button class="btn primary sm hollow" slot="button" bindtap="checkexpress" data-index="{{index}}" wx:if="{{item.express_code}}">
                 查询
               </button>
+              <button class="btn primary sm hollow" slot="button" bindtap="saomaInput" data-index="{{index}}" wx:else>扫码添加</button>
             </van-field >
         </van-cell-group>
     </view>
