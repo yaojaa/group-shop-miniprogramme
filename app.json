@@ -60,7 +60,7 @@
     },
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "white",
+        "navigationBarBackgroundColor": "#ffffff",
         "navigationBarTitleText": "开心麻团儿",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#eeeeee"
