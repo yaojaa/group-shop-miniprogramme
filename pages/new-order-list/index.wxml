@@ -1,0 +1,33 @@
+<view class="container gray-wrap cf">
+    <view class="order-coentent">
+        <view class="order-box">
+            <block wx:for="{{order_list}}" wx:key="{{index}}">
+                <order-list item="{{item}}" user="{{false}}">
+                    <view class="flex justify-end align-center" slot="footer">
+                                       <view class="time"> {{item.time_ago}} </view>
+
+                       <!--  <button class="btn round primary hollow w-min-big mv-sm ml-sm" 
+                        bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}" wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">客服</button> -->
+                    </view>
+                </order-list>
+            </block>
+        </view>
+        <view class="no-content white-bg" style="height:calc(100vh - 88rpx)" wx:if="{{order_list.length ==0 && !loading}}">
+            <view class="no-content-bd">
+                <image src="https://static.kaixinmatuan.cn/no_data.png" class="no-content-icon"></image>
+                <view class="no-content-des"><text>您还没有相关订单</text></view>
+            </view>
+        </view>
+    </view>
+    <van-notify id="custom-selector" />
+    <van-dialog id="van-dialog" />
+    <van-dialog id="contact" use-slot>
+        <van-cell-group border="{{false}}" custom-class="mv-df">
+            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+        </van-cell-group>
+    </van-dialog>
+    <view class="load-box" wx:if="{{loading}}">
+        <wux-spin wux-class="spin" size="large" />
+    </view>
+</view>

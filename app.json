@@ -22,6 +22,7 @@
         "pages/address/index",
         "pages/address-form/index",
         "pages/order-list/index",
+        "pages/new-order-list/index",
         "pages/order-detail/index",
         "pages/ems-detail/index",
         "pages/evaluate/index",

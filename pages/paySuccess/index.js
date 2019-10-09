@@ -8,6 +8,7 @@ Page({
      */
     data: {
         share: false,
+        onshare:false,
         avatar: '',
         order_id: '',
         ordersInfo: '',
@@ -125,15 +126,16 @@ Page({
     onShareAppMessage: function(res) {
 
         this.setData({
-            clickShare:true
+            clickShare:true,
+            onshare:true
         })
 
 
 
         let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...' + this.data.goods_name
-        let numberIcon = '「No.' + this.data.create_number + '」'
+        let numberIcon = ''
         return {
-            title: numberIcon,
+            title: '',
             path: '/pages/goods/goods?goods_id=' + this.data.goods_id
         }
     },

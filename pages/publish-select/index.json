@@ -1,5 +1,4 @@
 {
-    "navigationBarTitleText": "开心麻团儿，有好东西一起分享",
     "usingComponents":
     {
         "i-button": "../../iView/button/index",

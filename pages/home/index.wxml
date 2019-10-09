@@ -12,15 +12,15 @@
                     </view>
                 </navigator>
             </i-col>
-            <i-col span="13" i-class="col-class">
+            <i-col span="16" i-class="col-class">
                 <view class="user-name f16">{{userInfo.nickname}}</view>
                 <navigator   url="../withdrawal/index">
                     <view class="user-account f14">我的账户 (¥{{pending_money}})</view>
                 </navigator>
             </i-col>
-            <i-col span="6" i-class="col-class" wx:if="{{goodslist.length > 0}}">
-                <view class="siteBtn" bindtap="goSite">
-                    我的主页
+            <i-col span="2" i-class="col-class" wx:if="{{goodslist.length > 0}}">
+                <view class="goSite" bindtap="goSite">
+                    <i-icon size="28" color="#ffffff" type="shop_fill" />
                 </view>
             </i-col>
         </i-row>
@@ -58,15 +58,40 @@
             </view>
         </view>
     </i-panel>
-    <i-panel hide-border wx:if="{{hasNewOrder}}">
-        <view class="notice">
-            <i-icon size="24" type="systemprompt" /> 您有新的订单，请及时确认！
+    <i-panel hide-border title="最新订单" extra="更多" link="../new-order-list/index">
+        <view class="control">
+            
+            <view class="newlist">
+                <view class="item" wx:for="{{orderList}}" 
+                data-id="{{item.order_detail[0].goods_id}}" 
+                data-delivery_method="{{item.delivery_method}}"
+                data-name="{{item.order_detail[0].goods_name}}"
+
+                bindtap="managePage">
+                    <text class="bold">{{item.user.nickname}}</text>                     {{item.time_ago}}
+ 参与了你的 
+                    <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                </view>
+                   <button class='pubbtn' bindtap="new_btn">
+          <i-icon type="add" size="20" />发布一个
+        </button>
+            </view> 
+     
         </view>
+
     </i-panel>
     <view class="text-center">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
-    <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}" extra="发布一个" link="../publish/publish">
+
+    <view class="panelbox">
+      <!--   <button class='new-btn hollow' bindtap="new_btn">
+          <i-icon type="add" size="20" />新发布
+        </button> -->
+    <i-panel title="我发布的"   wx:if="{{goodslist.length > 0}}">
+
+        
+
         <view class="goods-box">
             <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                 <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
@@ -76,9 +101,10 @@
             </view>
         </view>
     </i-panel>
+    </view>
     <i-panel wx:if="{{goodslist.length== 0 && !is_loading }}">
         <view class='new-goods' bindtap="new_btn">
-            <text>发布一个 </text>
+            <text>+ 发布一个 </text>
         </view>
     </i-panel>
     <view style="margin-bottom:100rpx"></view>
@@ -88,6 +114,13 @@
             <text>发布一个团购 </text>
         </view>
     </view> -->
-  
+ <!--    <view class="footer_bar">
+        <i-tab-bar current="nearby" color="#188f00" bindchange="handleTabBarChange">
+            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="我的"></i-tab-bar-item>
+            <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
+            <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
+        </i-tab-bar>
+    </view> -->
+
     <van-dialog id="van-dialog" />
 </view>

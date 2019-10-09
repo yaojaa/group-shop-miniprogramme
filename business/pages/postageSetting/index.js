@@ -12,47 +12,29 @@ Page({
         user_info: {},
         news: [],
         loading: true,
-        info: ''
+        tpl_list: []
     },
-    handleChange({ detail }) {
-        this.setData({
-            mainTab: detail.key
-        })
+    // 添加运费模板
+    addPostageTpl(e) {
+
     },
-    getDetail() {
-        util.wx.get('/api/business/business/myBusinessDetail')
+    // 修改运费模板
+    editPostageTpl(e) {
+        console.log(e);
+    },
+    // 删除运费模板
+    deletePostageTpl(e) {
+        console.log(e);
+    },
+    getList() {
+        util.wx.get('/api/supplier/get_freight_tpl')
             .then(res => {
                 if (res.data.code == 0) {
                     this.setData({
-                        info: res.data.data
+                        tpl_list: res.data.data
                     })
                 }
             })
-    },
-    getNews() {
-        util.wx.get('/api/business/news/index')
-            .then((res) => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        news: res.data.data,
-                        loading: false
-                    })
-                }
-
-            })
-    },
-    authDialog(msg) {
-        Dialog.confirm({
-            title: '标题',
-            message: msg,
-            confirmButtonText: '去认证'
-        }).then(() => {
-            wx.navigateTo({
-                url: '../authentication/index'
-            })
-        }).catch(() => {
-            // on cancel
-        });
     },
 
     /**
@@ -60,11 +42,8 @@ Page({
      */
     onLoad: function(options) {
         let userInfo = wx.getStorageSync('userInfo')
-        this.setData({
-            userInfo: userInfo
-        })
-        //this.getDetail()
-        //this.getNews()
+        wx.setStorageSync('postage', '');
+        this.getList();
     },
 
     /**
@@ -78,7 +57,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        
+
     },
 
     /**

@@ -19,7 +19,8 @@ Page({
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
         Custom: app.globalData.Custom,
-        show_tips: false
+        show_tips: false,
+        orderList:[]
     },
     closleTips() {
         this.setData({
@@ -85,6 +86,9 @@ Page({
         }
 
     },
+    onshow(){
+      this.getOrderCount()
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -114,7 +118,6 @@ Page({
         this.data.cpage = 1
         this.data.goodslist = []
         this.getGoodsList()
-        this.getOrderCount()
         this.get_store_info()
         
 
@@ -156,6 +159,41 @@ Page({
                     })
     },
 
+    ///////////
+    //获取最新订单 //
+    ///////////
+    ///
+    getOrderList(){
+
+          util.wx.get('/api/seller/get_order_list', {
+                // orderdate: 1,
+                order_status:1,
+                pagesize:3
+            })
+            .then(res => {
+
+                if (res.data.code == 200) {
+
+                   this.setData({
+                    orderList:res.data.data.order_list
+                   })
+                }
+            })
+
+
+    },
+
+  managePage(e){
+  let id = e.currentTarget.dataset.id
+  let delivery_method = e.currentTarget.dataset.delivery_method
+  let goods_name = e.currentTarget.dataset.name
+
+        wx.navigateTo({
+            url: '../ordermanage/list?id=' + id+'&goods_name='+goods_name+'&delivery_method='+delivery_method,
+        })
+
+    },
+
 
     getGoodsList: function() {
 
@@ -187,6 +225,11 @@ Page({
 
                     })
 
+                    if(res.data.data.goodslist.length>0){
+
+                        this.getOrderList()
+                    }
+
 
                     this.totalpage = res.data.data.page.totalpage
 
@@ -201,7 +244,7 @@ Page({
     },
     new_btn: function() {
         wx.navigateTo({
-            url: '../publish-select/index'
+            url: '../publish/publish'
         })
     },
     fansPage() {

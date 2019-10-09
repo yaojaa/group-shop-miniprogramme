@@ -20,12 +20,12 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-            主页累计<text class="text-default">{{info._access_count}}次访问 </text> 成交<text class="text-default">{{info._order_count}}</text> 笔
+          访问  <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 粉丝 88387
         </view>
 
     </view>
 
-    <!-- <view class="menu flex-box">
+<!--     <view class="menu flex-box">
         <view class="flex-item">
               <view class="num">
                     {{info._access_count}}
@@ -40,9 +40,9 @@
                 </navigator>
         </view>
      
-            <view class="flex-item">
+       <view class="flex-item">
           <view class="num"><i-icon type="setup" size="28" color="#999" /></view>
-    主页设置</view>
+    主页设置</view> 
     
     <view class="flex-item">
         <view class="num">889</view>
@@ -53,20 +53,24 @@
 
 
     <view class="goods-box">
-        <navigator url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
+        <navigator open-type="redirect" url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
+            
+           <view class="title text-hide">{{item.goods_name}}</view>
+
             <view class="flex-box">
+
             <view class="cover">
               <image class="cover" src="{{item.goods_cover}}-200"></image>
             </view>
             <view class="content">
-                <view class="title text-hide">{{item.goods_name}}</view>
                 <view class="des text-hide three">{{item.goods_content}}</view>
                
                 <view class="bottom text-justify">
-                    <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}}</view>
+                    <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} </view> 
+                    <text class="gray">{{item._buy_users_count}}人参与</text>
                     <view> 
 
-                        <button wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">立即查看</button>
+                        <button wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即查看</button>
 
                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">已结束</button>
                        </view>
@@ -75,7 +79,7 @@
                 </view>
             </view>
             </view>
-             <!-- <view class="flex-box align-center" style="padding: 10px 0">
+  <!--            <view class="flex-box align-center" style="padding: 10px 0">
                     <view class="avatar-group">
                         <image class="avatar" src="{{user.headimg}}" wx:for-item="user" wx:for="{{item._buy_users}}" wx:key="index"></image>
                     </view>

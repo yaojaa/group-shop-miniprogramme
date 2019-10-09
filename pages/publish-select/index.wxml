@@ -11,13 +11,13 @@
 
 
 <view class="circle_warpper" >
-      <navigator open-type="redirect" url="../publish/publish" hover-class="none">
+      <navigator  url="../publish/publish" hover-class="none">
 
      <view class="circle">
 
 
        <i-icon size="42" color="#ffffff"  type="add" />
-       <view class="new">发布新宝贝</view>
+       <view class="new"> 发 布 </view>
        
      </view>
           </navigator>
@@ -27,7 +27,7 @@
 
 
 <view class="smallTit">
-  选择模板快速创建：
+  示例模板：
 </view>
 <view class="center" >
   <navigator url="../publish/publish?temp=2" class="button-area flex_box">
@@ -103,7 +103,7 @@
 
             <view class="weui-footer__links">
 
-            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">开心麻团儿 北京原子动力科技</button>    
+            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">开心麻团儿</button>    
 
             </view>
 

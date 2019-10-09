@@ -25,6 +25,28 @@ height:100%
     margin-bottom:60px
 }
 
+.new-btn{
+position:absolute;
+right:10px;
+top:9rpx;
+z-index:9999;
+color:#fff;
+border-radius:50rpx;
+border:1px solid #ebffdb;
+margin-right:10px;
+font-size: 24rpx;
+background: #85c002
+}
+
+.goSite{
+    margin-top: 24rpx
+}
+
+
+
+.panelbox{
+    position: relative;
+}
 
 .head-box{
   position: relative;
@@ -46,8 +68,32 @@ height:100%
   height: 110rpx;
   border-radius: 50%;
   position: relative;
-  overflow: hidden;
 
+}
+.newlist{
+    padding: 5px 20px 10px
+}
+.newlist .item{
+  overflow: hidden;/*超出部分隐藏*/
+            white-space: nowrap;/*不换行*/
+            text-overflow:ellipsis;/*超出部分文字以...显示*/
+            line-height:2;
+            color: #666;
+            font-size: 12px
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.pubbtn{
+color:#49b34d;
+border-radius:50rpx;
+border:1px solid #85c002;
+background:#f9fff5;
+display:block;
+font-size: 14px;
+margin: 10px 50rpx 0;
 }
 
 .user-name{
@@ -560,8 +606,7 @@ vertical-align:middle;
     box-shadow: inset 1px 1px 3px #ddd
 }
 
-button.edit-btn,
-.button-hover {
+button.edit-btn{
     display: inline-block;
     background: none;
     border: none;

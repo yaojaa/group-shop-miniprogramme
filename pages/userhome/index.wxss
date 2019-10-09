@@ -77,18 +77,24 @@
 	position: relative;
 	padding-right:10px
 }
-.goods-item .content .title{
+.goods-item  .title{
 	font-weight: bold;
-	font-size: 28rpx;
-	margin-bottom: 3px
+	font-size: 32rpx;
+	margin-bottom: 3px;
+}
+.gray{
+    color: #999;
+    background: none;
+    font-size: 12px
 }
 .goods-item .content .des{
-	font-size: 24rpx;
-	color:#999;
+	font-size: 28rpx;
+	color:#888;
+    line-height: 1.7;
 	margin-bottom: 14rpx;
 }
 .goods-item .content .price{
-	font-size: 32rpx;
+	font-size: 28rpx;
 }
 .goods-item .content .bottom{
 	position: absolute;

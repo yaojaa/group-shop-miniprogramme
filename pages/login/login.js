@@ -12,8 +12,23 @@ Page({
  
 
   },
+
+
+
+  goView(){
+
+    wx.navigateTo({
+      url:'../publish-select/index'
+    })
+
+
+  },
+
+
+
   /***点击授权按钮***/
   getUserInfoEvt: function (e) {
+
 
     console.log(e)
 
