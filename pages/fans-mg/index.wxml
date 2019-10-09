@@ -1,12 +1,10 @@
 <view class="container">
-    <view class="fans-box text-justify">
+    <view class="text-justify ph-df pb-sm pt-df">
         <view class="f14">粉丝(234) </view>
-        <view class="btn-group">
-            <button type="primary" size="mini">微信通知</button>
-        </view>
+        <van-button icon="star-o" type="primary" plain size="mini" >微信通知</van-button>
     </view>
    <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
-    <view class="mt-sm white-bg">
+    <view class="white-bg">
         <view class="solid-bottom p-df flex fans-list" wx:for="{{list}}" wx:key="{{index}}">
             <image class="avatar mr-sm" src="{{item.headimg}}"></image>
             <view class="flex-sub">
