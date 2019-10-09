@@ -53,14 +53,17 @@ Page({
         this.editExpress(index);
     },
     onLoad: function(opt) {
+        let num = 0;
 
         for(let i in opt){
             if(i.indexOf('code') > -1){
                 this.data.express.push({
-                    express_code: opt[i],
-                    express_company: decodeURIComponent(opt['com'+ i.replace('code','')]),
-                    express_id: opt['id'+ i.replace('code','')]
+                    express_code: opt['code' + num],
+                    express_company: decodeURIComponent(opt['com'+ num]),
+                    express_id: opt['id'+ num]
                 })
+
+                num ++;
             }
         }
 
