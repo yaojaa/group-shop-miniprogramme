@@ -4,7 +4,7 @@ const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index');
 import { $wuxGallery } from '../../wux/index'
 import { $wuxCountDown } from '../../wux/index'
-
+import Dialog from '../../vant/dialog/dialog';
 console.log('$wuxGallery', $wuxGallery)
 
 const app = getApp()
@@ -37,10 +37,10 @@ Page({
     data: {
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
-        showMsgTips:false,
-        previewImgs:{
-            current:"",
-            urls:[],
+        showMsgTips: false,
+        previewImgs: {
+            current: "",
+            urls: [],
         },
         previewImgHidden: true,
         imgs: { // 动画相册配置
@@ -50,7 +50,7 @@ Page({
             minScaleVal: 50, //最小缩放值
             minXYVale: 50, //xy轴最小运动值
         },
-        note:'',
+        note: '',
         scrollTop: 0,
         hasScope: false, //是否授权
         goods: '',
@@ -108,6 +108,8 @@ Page({
             poster: false,
             winWidth: app.globalData.winWidth,
             imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
+            phone: '',
+            weChat: ''
         },
     },
     wuxCountDown(date) {
@@ -130,6 +132,35 @@ Page({
             }
         })
     },
+    goContact(e) {
+        const { phone, wx } = e.currentTarget.dataset
+        this.setData({
+            phone: phone,
+            weChat: wx
+        })
+        Dialog.alert({
+            selector: '#contact'
+        })
+    },
+    copyWx(event) {
+        wx.setClipboardData({
+            data: this.data.weChat,
+            success: function(res) {
+                wx.getClipboardData({
+                    success: function(res) {
+                        wx.showToast({
+                            title: '复制成功'
+                        })
+                    }
+                })
+            }
+        })
+    },
+    phoneCall() {
+        wx.makePhoneCall({
+            phoneNumber: this.data.phone
+        })
+    },
     onShow: function() {
 
         console.log('onshow....')
@@ -144,7 +175,7 @@ Page({
             this.getOrderUserList(this.data.goods_id)
         }
 
-       
+
 
 
     },
@@ -164,7 +195,7 @@ Page({
         }
     },
     openShareFriends() {
-        if(!this.data.shareFriendsImg){
+        if (!this.data.shareFriendsImg) {
             util.drawShareFriends(this, drawGoods, drawBuyuser);
         }
 
@@ -226,9 +257,9 @@ Page({
 
         this.setData({
             previewImgs: {
-                    current: current,
-                    urls: urls
-                },
+                current: current,
+                urls: urls
+            },
             previewImgHidden: false
         })
 
@@ -258,8 +289,8 @@ Page({
         const { current } = e.currentTarget.dataset
         var { urls } = e.currentTarget.dataset
 
-        urls = urls.map(item=>{
-            return item+'?imageMogr2/thumbnail/700x/size-limit/35k!'
+        urls = urls.map(item => {
+            return item + '?imageMogr2/thumbnail/700x/size-limit/35k!'
         })
 
         console.log(urls)
@@ -285,44 +316,44 @@ Page({
     },
 
     goHomePage() {
-            var pages = getCurrentPages();
+        var pages = getCurrentPages();
 
-            console.log('pages',pages)
+        console.log('pages', pages)
 
         wx.redirectTo({
             url: '../userhome/index?id=' + this.data.store_id
         })
     },
 
-    goOrders(){
+    goOrders() {
 
 
         wx.navigateTo({
-            url: '../ordermanage/list?id=' + this.data.goods_id+'&goods_name='+this.data.goods.goods_name+'&delivery_method='+this.data.goods.delivery_method
+            url: '../ordermanage/list?id=' + this.data.goods_id + '&goods_name=' + this.data.goods.goods_name + '&delivery_method=' + this.data.goods.delivery_method
         })
 
 
     },
 
-    goSendMsg(){
+    goSendMsg() {
 
         this.setData({
-            showMsgTips:true
+            showMsgTips: true
         })
 
     },
 
-    goVisitor(){
+    goVisitor() {
 
 
         wx.navigateTo({
-            url: '../fans/index?id=' + this.data.goods_id+'&name='+this.data.goods.goods_name
+            url: '../fans/index?id=' + this.data.goods_id + '&name=' + this.data.goods.goods_name
         })
 
 
     },
 
-    goModify(){
+    goModify() {
 
 
         wx.navigateTo({
@@ -344,14 +375,14 @@ Page({
                 this.shareImg = res.data.data.path
             }
 
-        }).catch(e=>{
-                return
-            })
+        }).catch(e => {
+            return
+        })
     },
 
     add_access() {
 
-        if(!app.globalData.userInfo){
+        if (!app.globalData.userInfo) {
             return
         }
         //提交访问记录
@@ -418,19 +449,19 @@ Page({
                         countdownTime: new Date(d.goods.end_time * 1000).getTime()
                     })
 
-                   this.wuxCountDown(formatDateTime(d.goods.end_time))
+                    this.wuxCountDown(formatDateTime(d.goods.end_time))
 
 
                     this.data.seller = d.goods.user,
-                    this.data.store_id = d.goods.store.store_id
+                        this.data.store_id = d.goods.store.store_id
 
                     //显示管理面板
 
-                    if(this.data.seller.user_id == app.globalData.userInfo.user_id){
+                    if (this.data.seller.user_id == app.globalData.userInfo.user_id) {
                         console.log('是管理')
 
                         this.setData({
-                            showPanel:true
+                            showPanel: true
                         })
 
                     }
@@ -438,23 +469,23 @@ Page({
 
 
                 }
-            },res=>{
+            }, res => {
                 wx.showToast({
-                    title:'商品不存在啦',
-                    icon:'none'
+                    title: '商品不存在啦',
+                    icon: 'none'
                 })
 
-                setTimeout(()=>{
+                setTimeout(() => {
 
-                 wx.redirectTo({
-                    url:'../home/index'
-                })
+                    wx.redirectTo({
+                        url: '../home/index'
+                    })
 
-                },3000)
+                }, 3000)
 
-                
 
-            }).catch(e=>{
+
+            }).catch(e => {
                 return
             })
     },
@@ -462,34 +493,34 @@ Page({
         // 用户查看图片不触发
         if (this.data.imgPreviewFlag) { return; }
 
-        
+
 
         console.log('用户离开了 onHide')
 
         this.setStayTime()
 
-       
- 
-        
+
+
+
     },
-    setStayTime(){
-                //提交访问记录
-        if(this.access_id){
+    setStayTime() {
+        //提交访问记录
+        if (this.access_id) {
 
-             this.leaveDate = new Date()
+            this.leaveDate = new Date()
 
-        //用户停留时间毫秒
-        const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
+            //用户停留时间毫秒
+            const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
 
 
-          util.wx.get('/api/index/set_user_staytime', {
-            access_id: this.access_id,
-            user_staytime: userStayTime,
-        })
+            util.wx.get('/api/index/set_user_staytime', {
+                access_id: this.access_id,
+                user_staytime: userStayTime,
+            })
 
 
         }
- 
+
     },
     onLoad: function(option) {
         console.log('用户进入了', option)
@@ -537,67 +568,67 @@ Page({
 
     },
     /**群发通知**/
-    setTips(){
+    setTips() {
 
-          if (this.data.note == '') {
+        if (this.data.note == '') {
 
             return wx.showToast({ title: '没有输入内容', icon: 'none' })
 
         }
 
-         wx.showLoading()
+        wx.showLoading()
 
 
         util.wx.post('/api/seller/send_tmp_msg', {
-            goods_id:this.data.goods_id,
-            note:this.data.note
+            goods_id: this.data.goods_id,
+            note: this.data.note
         }).then(res => {
 
             wx.hideLoading()
 
-        
+
             if (res.data.code == 200) {
                 wx.showToast({ title: "群发通知成功！" })
-                
+
 
             } else {
 
                 wx.showToast({
-                    title:res.data.msg,
-                    icon:"none"
+                    title: res.data.msg,
+                    icon: "none"
                 })
 
-                
+
             }
 
             this.setData({
-                    showMsgTips: false
-                });
-        },(res)=>{
+                showMsgTips: false
+            });
+        }, (res) => {
 
             wx.hideLoading()
 
-             wx.showToast({
-                    title:res.data.msg,
-                    icon:"none"
-                })
+            wx.showToast({
+                title: res.data.msg,
+                icon: "none"
+            })
 
         })
 
     },
-    inputNote(e){
+    inputNote(e) {
         this.setData({
-            note:e.detail.value
+            note: e.detail.value
         })
     },
-    closeTips(){
+    closeTips() {
 
         this.setData({
             showMsgTips: false
         })
 
     },
-    rejectAuth(){
+    rejectAuth() {
         this.setData({
             showAuth: false
         })
@@ -739,16 +770,16 @@ Page({
     },
     homepage() {
 
-       var pages = getCurrentPages();
-       var prevPage = pages[pages.length - 2]; //上一个页面
-       if(prevPage && prevPage.route == 'pages/home/index'){
-        wx.navigateBack()
-       }else{
-       wx.redirectTo({
-            url: '../home/index'
-        })
+        var pages = getCurrentPages();
+        var prevPage = pages[pages.length - 2]; //上一个页面
+        if (prevPage && prevPage.route == 'pages/home/index') {
+            wx.navigateBack()
+        } else {
+            wx.redirectTo({
+                url: '../home/index'
+            })
 
-       }
+        }
     },
     getUserInfoEvt: function(e) {
         console.log(e)
@@ -825,7 +856,7 @@ Page({
 
             drawBuyuser = res.data.data.order_list;
 
-            orderUsersPage ++;
+            orderUsersPage++;
 
             // timer3 = setTimeout(() => {
 
@@ -865,7 +896,7 @@ Page({
 
         })
 
-       
+
 
 
     },
@@ -930,7 +961,7 @@ Page({
      */
     onUnload: function() {
 
-       
+
 
         console.log('用户离开了onUnload')
         this.setStayTime()
@@ -956,9 +987,9 @@ Page({
     },
     buy() {
 
-         if(!app.globalData.userInfo){
+        if (!app.globalData.userInfo) {
             this.setData({
-                showAuth:true,
+                showAuth: true,
                 cartPanel: false
 
             })
@@ -982,19 +1013,19 @@ Page({
 
 
         wx.setStorage({
-                    key:'cart',
-                    data:shopcar,
-                    success:()=>{
+            key: 'cart',
+            data: shopcar,
+            success: () => {
 
                 wx.navigateTo({
                     url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
                 })
 
 
-                    }
-                })
-            
-  
+            }
+        })
+
+
 
 
 
@@ -1008,13 +1039,13 @@ Page({
         })
     },
 
-      // wx.redirectTo({
-      //       url: '../publish/publish?copy_id=' + this.data.goods.goods_id
-      //   })
+    // wx.redirectTo({
+    //       url: '../publish/publish?copy_id=' + this.data.goods.goods_id
+    //   })
     copyGoods() {
 
         wx.redirectTo({
-            url: '../publish/publish?goods_id=' + this.data.goods.goods_id+'&copy=true'
+            url: '../publish/publish?goods_id=' + this.data.goods.goods_id + '&copy=true'
         })
 
     },
@@ -1065,11 +1096,11 @@ Page({
     //     })
 
 
-        // util.wx.get('/api/goods/get_minorders_by_goods_id', {
-        //     goods_id: this.data.goods_id,
-        //     pagesize: orderUsersLen,
-        //     cpage: orderUsersPage
-        // }).then(res => {
+    // util.wx.get('/api/goods/get_minorders_by_goods_id', {
+    //     goods_id: this.data.goods_id,
+    //     pagesize: orderUsersLen,
+    //     cpage: orderUsersPage
+    // }).then(res => {
 
     //             console.log(res)
 

@@ -2,8 +2,9 @@
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
     <view slot="bottom">
         <view class="flex align-center pl-df cus-head" style="padding-right: 220rpx">
-<!--             <image class="avatar mr-sm" src="{{goods.user.headimg}}" />
- -->            <view class="flex-sub">
+            <!--             <image class="avatar mr-sm" src="{{goods.user.headimg}}" />
+ -->
+            <view class="flex-sub">
                 <view class="text-hide">{{goods.goods_name}}</view>
             </view>
         </view>
@@ -14,7 +15,7 @@
     </view>
     <imgs imgs="{{imgs}}">
         <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{StatusBar}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
-            <view class="user-body" catchtap="goHomePage">
+            <view class="user-body" catchtap="goContact" data-phone="{{goods.user.mobile}}" data-wx="{{goods.user.wechatnumber}}">
                 <view class="user-info-hd">
                     <image src="{{goods.user.headimg}}" class="avatar">
                     </image>
@@ -25,36 +26,35 @@
             </view>
         </view>
     </imgs>
-
-         
     <view class="menu flex-box" wx:if="{{showPanel}}">
         <view class="flex-item" bindtap="goVisitor">
-          <view class="num">
-                <van-icon name="closed-eye" color="#4fac05"  size="20px"/>
+            <view class="num">
+                <van-icon name="closed-eye" color="#4fac05" size="20px" />
             </view>
-        访问记录</view>
+            访问记录
+        </view>
         <view class="flex-item" bindtap="goModify">
-         <view class="num"><van-icon name="edit"  color="#4fac05" size="20px" /></view>
-
-        编辑修改</view>
- 
-
-
-<view class="flex-item" bindtap="goSendMsg" >
-    <view class="num"><van-icon name="envelop-o"  color="#4fac05"  size="20px" />
+            <view class="num">
+                <van-icon name="edit" color="#4fac05" size="20px" />
+            </view>
+            编辑修改
+        </view>
+        <view class="flex-item" bindtap="goSendMsg">
+            <view class="num">
+                <van-icon name="envelop-o" color="#4fac05" size="20px" />
+            </view>
+            发送通知
+        </view>
+        <view class="flex-item" bindtap="goOrders">
+            <view class="num">
+                <van-icon name="friends-o" color="#4fac05" size="20px" />
+            </view>
+            管理订单
+        </view>
     </view>
-发送通知</view>
-
-<view class="flex-item" bindtap="goOrders">
-        <view class="num"><van-icon name="friends-o"  color="#4fac05"  size="20px" /></view>
-  管理订单</view>
-
-  </view>
-
-  <i-modal title="给参与人群发微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
+    <i-modal title="给参与人群发微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
         <view class="input_area">
-
-                <textarea hidden="{{ !showMsgTips }}" bindinput="inputNote" placeholder="请输入群发内容" maxlength="40"  />
+            <textarea hidden="{{ !showMsgTips }}" bindinput="inputNote" placeholder="请输入群发内容" maxlength="40" />
             </view>
  </i-modal>
 
@@ -324,5 +324,11 @@
             </view>
         </view>
     </view>
+    <van-dialog id="contact" use-slot>
+        <van-cell-group border="{{false}}" custom-class="mv-df">
+            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+        </van-cell-group>
+    </van-dialog>
     <wux-gallery id="wux-gallery" />
 </view>
