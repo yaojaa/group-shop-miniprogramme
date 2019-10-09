@@ -3,11 +3,11 @@
 <view class="container cf">
     <view class="swiper">
         <block wx:for="{{store_slide}}">
-                <image src="{{item}}?imageView2/1/w/600/h/400/interlace/1" height="400" class="slide-image" />
+            <image src="{{item}}?imageView2/1/w/600/h/400/interlace/1" height="400" class="slide-image" />
         </block>
     </view>
     <view class="user-head pb-sm">
-        <view class="avatar">
+        <view class="avatar" bindtap="goContact" data-phone="{{info._user.mobile}}" data-wx="{{info._user.wechatnumber}}">
             <image src="{{info._user.headimg}}" />
         </view>
         <view class="flex justify-between ph-sm" style="padding-top: 80rpx;">
@@ -20,12 +20,10 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-          访问  <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 粉丝 88387
+            访问 <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 粉丝 88387
         </view>
-
     </view>
-
-<!--     <view class="menu flex-box">
+    <!--     <view class="menu flex-box">
         <view class="flex-item">
               <view class="num">
                     {{info._access_count}}
@@ -49,67 +47,40 @@
     商品管理</view>
     
       </view> -->
-
-
-
     <view class="goods-box">
         <navigator open-type="redirect" url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
-            
-           <view class="title text-hide">{{item.goods_name}}</view>
-
+            <view class="title text-hide">{{item.goods_name}}</view>
             <view class="flex-box">
-
-            <view class="cover">
-              <image class="cover" src="{{item.goods_cover}}-200"></image>
-            </view>
-            <view class="content">
-                <view class="des text-hide three">{{item.goods_content}}</view>
-               
-                <view class="bottom text-justify">
-                    <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} </view> 
-                    <text class="gray">{{item._buy_users_count}}人参与</text>
-                    <view> 
-
-                        <button wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即查看</button>
-
-                           <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">已结束</button>
-                       </view>
-
-                        
+                <view class="cover">
+                    <image class="cover" src="{{item.goods_cover}}-200"></image>
+                </view>
+                <view class="content">
+                    <view class="des text-hide three">{{item.goods_content}}</view>
+                    <view class="bottom text-justify">
+                        <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} </view>
+                        <text class="gray">{{item._buy_users_count}}人参与</text>
+                        <view>
+                            <button wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即查看</button>
+                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">已结束</button>
+                        </view>
+                    </view>
                 </view>
             </view>
-            </view>
-  <!--            <view class="flex-box align-center" style="padding: 10px 0">
+            <!--            <view class="flex-box align-center" style="padding: 10px 0">
                     <view class="avatar-group">
                         <image class="avatar" src="{{user.headimg}}" wx:for-item="user" wx:for="{{item._buy_users}}" wx:key="index"></image>
                     </view>
                     <view class="user f12 ml-xs text-muted"><text class="text-red">{{item._buy_users_count}}</text>人参与</view>
                 </view> -->
-
-
         </navigator>
-
-
-
-    <view wx:if="{{goodsList.length ==0 && !loading}}" class="text-center white-bg" style="padding: 100px 0">
-
-        暂无内容
-
+        <view wx:if="{{goodsList.length ==0 && !loading}}" class="text-center white-bg" style="padding: 100px 0">
+            暂无内容
+        </view>
     </view>
-
-
-    </view>
-
-
-  
- 
-
-   <view class="text-center mb-sm">
+    <view class="text-center mb-sm">
         <wux-spin wx:if="{{loading}}"></wux-spin>
-  </view>
-
-
-     <van-popup custom-class="authPopBox" show="{{ showAuth }}" >
+    </view>
+    <van-popup custom-class="authPopBox" show="{{ showAuth }}">
         <view class="logo">
             <image class="avatar" src="{{info._user.headimg}}" />
         </view>
@@ -118,9 +89,7 @@
         </view>
         <button size="default" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
     </van-popup>
-
-
-     <van-action-sheet show="{{ sharebar }}" close-on-click-overlay  overlay="{{overlay}}" title="分享到" bind:close="closeShareFriends">
+    <van-action-sheet show="{{ sharebar }}" close-on-click-overlay overlay="{{overlay}}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
@@ -132,8 +101,7 @@
             </view>
         </view>
     </van-action-sheet>
-
-      <view hidden="{{ !poster }}" class="share-friends-box">
+    <view hidden="{{ !poster }}" class="share-friends-box">
         <view class='share-friends-img' bindtap='handlePoster'>
             <view class="share-img-box" wx:if="{{!shareFriendsImg}}">
                 <i-spin i-class='share-friends-loading' fix size="large"></i-spin>
@@ -145,12 +113,16 @@
             </view>
         </view>
     </view>
-
-
     <view class="weui-footer">
         <view class="weui-footer__links">
             <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>
         </view>
         <view class="weui-footer__text">Copyright © 20018-2025</view>
     </view>
+    <van-dialog id="contact" use-slot>
+        <van-cell-group border="{{false}}" custom-class="mv-df">
+            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+        </van-cell-group>
+    </van-dialog>
 </view>

@@ -1,4 +1,5 @@
 const util = require('../../utils/util.js')
+import Dialog from '../../vant/dialog/dialog';
 const app = getApp()
 Page({
 
@@ -16,14 +17,44 @@ Page({
         store_id: '',
         info: {},
         scrollTop: 0,
-        showSetting:false,
-        sharebar:false,
-        poster:false,
-        showAuth:false,
+        showSetting: false,
+        sharebar: false,
+        poster: false,
+        showAuth: false,
         onLoadOpt: null,
         overlay: true,
-        shareIng: false
-
+        shareIng: false,
+        phone: '',
+        weChat: ''
+    },
+    goContact(e) {
+        const { phone, wx } = e.currentTarget.dataset
+        this.setData({
+            phone: phone,
+            weChat: wx
+        })
+        Dialog.alert({
+            selector: '#contact'
+        })
+    },
+    copyWx(event) {
+        wx.setClipboardData({
+            data: this.data.weChat,
+            success: function(res) {
+                wx.getClipboardData({
+                    success: function(res) {
+                        wx.showToast({
+                            title: '复制成功'
+                        })
+                    }
+                })
+            }
+        })
+    },
+    phoneCall() {
+        wx.makePhoneCall({
+            phoneNumber: this.data.phone
+        })
     },
     toSetting() {
         console.log('toSetting..')
@@ -32,10 +63,10 @@ Page({
         })
     },
 
-    showShare(){
+    showShare() {
         this.setData({
             overlay: true,
-            sharebar:true
+            sharebar: true
         })
     },
     closeShareFriends() {
@@ -43,24 +74,24 @@ Page({
             sharebar: false
         })
     },
-    handlePoster(){
+    handlePoster() {
         this.setData({
             sharebar: false,
             poster: !this.data.poster
         })
 
-        if(this.data.poster){
-            util.wx.get('/api/store/get_store_poster',{
-                store_id:this.store_id
-            }).then(res=>{
-                    this.setData({
-                        shareFriendsImg:res.data.data
-                    })
-            },res=>{
+        if (this.data.poster) {
+            util.wx.get('/api/store/get_store_poster', {
+                store_id: this.store_id
+            }).then(res => {
+                this.setData({
+                    shareFriendsImg: res.data.data
+                })
+            }, res => {
 
                 wx.showToast({
-                    title:res.data.msg,
-                    icon:'none'
+                    title: res.data.msg,
+                    icon: 'none'
                 })
             })
         }
@@ -70,46 +101,46 @@ Page({
         console.log('savaSelfImages', this.data.shareFriendsImg)
 
 
-wx.downloadFile({
-      url: this.data.shareFriendsImg,
-      success: (res)=> {
+        wx.downloadFile({
+            url: this.data.shareFriendsImg,
+            success: (res) => {
 
-        const imgUrl = res.tempFilePath
+                const imgUrl = res.tempFilePath
 
-          // 用户授权
-            wx.getSetting({
-              success(res) {
-                if (!res.authSetting['scope.writePhotosAlbum']) {
-                  wx.authorize({
-                    scope: 'scope.writePhotosAlbum',
-                    success() {
-                        console.log(1)
-                        wx.saveImageToPhotosAlbum({
-                            filePath: imgUrl,
-                            success: function (data) {
-                                wx.showToast({
-                                  title: '保存成功',
-                                  icon: 'success',
-                                  duration: 2000
-                                })
-                              }
-                        });
-                    }
-                  })
-                }else{
-                    wx.saveImageToPhotosAlbum({
-                        filePath: imgUrl,
-                        success: function (data) {
-                            wx.showToast({
-                              title: '保存成功',
-                              icon: 'success',
-                              duration: 2000
+                // 用户授权
+                wx.getSetting({
+                    success(res) {
+                        if (!res.authSetting['scope.writePhotosAlbum']) {
+                            wx.authorize({
+                                scope: 'scope.writePhotosAlbum',
+                                success() {
+                                    console.log(1)
+                                    wx.saveImageToPhotosAlbum({
+                                        filePath: imgUrl,
+                                        success: function(data) {
+                                            wx.showToast({
+                                                title: '保存成功',
+                                                icon: 'success',
+                                                duration: 2000
+                                            })
+                                        }
+                                    });
+                                }
                             })
-                          }
-                    });
-                }
-              }
-            })
+                        } else {
+                            wx.saveImageToPhotosAlbum({
+                                filePath: imgUrl,
+                                success: function(data) {
+                                    wx.showToast({
+                                        title: '保存成功',
+                                        icon: 'success',
+                                        duration: 2000
+                                    })
+                                }
+                            });
+                        }
+                    }
+                })
 
 
 
@@ -117,15 +148,15 @@ wx.downloadFile({
 
 
 
-      }
-  })
+            }
+        })
 
 
 
 
         if (this.data.shareFriendsImg) {
-          
-            
+
+
             this.handlePoster();
         }
     },
@@ -135,11 +166,11 @@ wx.downloadFile({
     onLoad: function(options) {
         this.loadPage(options);
     },
-    onShow(){
+    onShow() {
         this.data.goodsList = [];
 
         this.setData({
-          shareIng: false
+            shareIng: false
         })
 
         this.data.onLoadOpt && this.loadPage(this.data.onLoadOpt);
@@ -170,7 +201,7 @@ wx.downloadFile({
         // }
 
 
-        if(app.globalData.userInfo && !this.data.onLoadOpt){
+        if (app.globalData.userInfo && !this.data.onLoadOpt) {
             this.add_access()
         }
 
@@ -179,41 +210,41 @@ wx.downloadFile({
         this.getStoreInfo(options)
     },
 
-    add_access(){
+    add_access() {
         //增加访问记录
-        util.wx.post('/api/index/add_access',{
-                type:'store_homepage', 
-          obj_id: this.store_id,
-          user_scene:app.globalData.userScene,
-          user_phone:app.globalData.userPhone
+        util.wx.post('/api/index/add_access', {
+            type: 'store_homepage',
+            obj_id: this.store_id,
+            user_scene: app.globalData.userScene,
+            user_phone: app.globalData.userPhone
         })
     },
 
     getStoreInfo(options) {
-        
+
         util.wx.get('/api/store/get_store_homepage', {
                 store_id: this.store_id || app.globalData.userInfo.store_id
             })
             .then(res => {
-              
-                    var store_slide
 
-                    // 存储赋值
-                    this.data.onLoadOpt = options;
+                var store_slide
+
+                // 存储赋值
+                this.data.onLoadOpt = options;
 
 
-                    if(res.data.data.store_slide.length == 0){
-                        store_slide = ['https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b201906271717046776.jpg']
-                    }else{
-                        store_slide = res.data.data.store_slide
-                    }
+                if (res.data.data.store_slide.length == 0) {
+                    store_slide = ['https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b201906271717046776.jpg']
+                } else {
+                    store_slide = res.data.data.store_slide
+                }
 
-                    this.setData({
-                        store_slide:store_slide,
-                        info: res.data.data,
-                        showSetting:app.globalData.userInfo && app.globalData.userInfo.store_id == this.store_id? true:false
-                    })
-            },res=>{
+                this.setData({
+                    store_slide: store_slide,
+                    info: res.data.data,
+                    showSetting: app.globalData.userInfo && app.globalData.userInfo.store_id == this.store_id ? true : false
+                })
+            }, res => {
 
             })
 
@@ -237,9 +268,9 @@ wx.downloadFile({
 
                 if (res.data.code == 200) {
 
-                    res.data.data.goodslist.forEach(item=>{
+                    res.data.data.goodslist.forEach(item => {
 
-                        item._buy_users = item._buy_users.slice(0,16)
+                        item._buy_users = item._buy_users.slice(0, 16)
                     })
 
 
@@ -287,29 +318,29 @@ wx.downloadFile({
 
         this.scrollTop = e.scrollTop
 
-        if(this.timer){
+        if (this.timer) {
             return
-        }else{
+        } else {
 
-         this.timer = setTimeout(()=>{
+            this.timer = setTimeout(() => {
 
-         this.setData({
-            scrollTop: this.scrollTop
-        })
+                this.setData({
+                    scrollTop: this.scrollTop
+                })
 
-         clearTimeout(this.timer)
-         this.timer = null
+                clearTimeout(this.timer)
+                this.timer = null
 
-        },300)
+            }, 300)
 
 
 
         }
-        
 
 
 
-        
+
+
     },
 
     /**
@@ -338,23 +369,23 @@ wx.downloadFile({
     onShareAppMessage: function(res) {
 
         if (res.from === 'button') {
-          // 来自页面内转发按钮
-          this.setData({
-            overlay: false,
-            sharebar: false,
-            shareIng: true
-          })
+            // 来自页面内转发按钮
+            this.setData({
+                overlay: false,
+                sharebar: false,
+                shareIng: true
+            })
 
-        }else{
+        } else {
 
-          this.setData({
-            shareIng: true
-          })
+            this.setData({
+                shareIng: true
+            })
 
         }
 
         return {
-            title: '来逛逛'+this.data.info.store_name +'的好东西'
+            title: '来逛逛' + this.data.info.store_name + '的好东西'
         }
     }
 })
