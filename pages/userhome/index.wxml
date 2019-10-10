@@ -20,7 +20,7 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-            访问 <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 粉丝 88387
+            访问 <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 
         </view>
     </view>
     <!--     <view class="menu flex-box">

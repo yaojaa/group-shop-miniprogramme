@@ -39,6 +39,8 @@ Page({
                 express_code: e.express_code
             }
             if(e.express_id) data.express_id = e.express_id;
+
+            
             oldExpress.push(data)
         })
     },
@@ -49,6 +51,11 @@ Page({
             ['express[' + index + '].express_company']: value,
             emsPopup: !this.data.emsPopup
         })
+
+       app.globalData.last_express = value
+
+
+
         this.setBtnStatus();
         this.editExpress(index);
     },
@@ -67,9 +74,11 @@ Page({
             }
         }
 
+      console.log('app.globalData.last_express', app.globalData.last_express)
+
         if(this.data.express.length == 0){
             this.data.express.push({
-                express_company: '',
+              express_company: app.globalData.last_express || '',
                 express_code:''
             })
         }

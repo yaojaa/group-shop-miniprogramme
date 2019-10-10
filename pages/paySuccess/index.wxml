@@ -15,7 +15,7 @@
     <view class='content'>
 
         <view class='header'>
-            <view class='title'><open-data type="userNickName"></open-data>已参团 +1</view>
+            <view class='title'> {{create_number}}. <open-data type="userNickName"></open-data>已参团 +1</view>
         </view>
 
         <view class="imglist" wx:if="{{onshare}}">
