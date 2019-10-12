@@ -16,6 +16,7 @@ let orderUsersFlag = false; // 购买用户是否正在加载
 let orderUsersPage = 1; // 购买用户是否正在加载页
 let timer2 = null
 let timer3 = null
+let uid = ''
 
 function formatDateTime(inputTime) {
     var date = new Date(inputTime * 1000);
@@ -184,14 +185,13 @@ Page({
 
     },
     onShareAppMessage: function() {
-
-        console.log('onShareAppMessage', this, this.shareImg)
-
-
+        if (app.globalData.userInfo) {
+            uid = app.globalData.userInfo.user_id
+        }
         return {
             title: this.data.goods.goods_name || '我开了一个团推荐大家看看',
             imageUrl: this.shareImg,
-            path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id
+            path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id + '&from_id=' + uid
         }
     },
     openShareFriends() {
@@ -539,7 +539,7 @@ Page({
         this.enterDate = new Date()
 
         this.data.goods_id = option.goods_id || option.id || option
-
+        this.data.from_id = option.from_id || ''
 
         this.getGoodsInfo()
 
@@ -1018,7 +1018,7 @@ Page({
             success: () => {
 
                 wx.navigateTo({
-                    url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method
+                    url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method + '&from_id=' + this.data.from_id
                 })
 
 
