@@ -38,11 +38,6 @@ font-size: 24rpx;
 background: #85c002
 }
 
-.goSite{
-    margin-top: 24rpx
-}
-
-
 
 .panelbox{
     position: relative;
@@ -55,7 +50,8 @@ background: #85c002
   height: 420rpx;
   position: relative;
   width: 100%;
-  padding-top: 170rpx
+  padding-top: 170rpx;
+  overflow:hidden;
 }
 .set-icon{
     position: absolute;
@@ -64,8 +60,8 @@ background: #85c002
 }
 .user-avatar{
 
-  width: 110rpx;
-  height: 110rpx;
+  width: 95rpx;
+  height: 95rpx;
   border-radius: 50%;
   position: relative;
 
@@ -98,13 +94,24 @@ margin: 10px 50rpx 0;
 
 .user-name{
     font-size: 28rpx;
+    color: #fff
+}
+
+.take_money{
+    background: rgba(116,168,0,0.3);
+    border-radius: 5px;
+    padding: 4px;
+    text-align: center;}
+
+.pending_money{
+      font-size: 28rpx;
     color: #fff;
-    padding-top: 10px
+    text-align: center;
+
 }
 .user-account{
     font-size: 22rpx;
     color: #fff;
-    margin-top: 5px
 }
 
 .home-avatar {

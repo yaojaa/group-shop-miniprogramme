@@ -382,9 +382,9 @@ Page({
 
     add_access() {
 
-        if (!app.globalData.userInfo) {
-            return
-        }
+        // if (!app.globalData.userInfo) {
+        //     return
+        // }
         //提交访问记录
         util.wx.get('/api/index/add_access', {
             type: 'goods_detail',
