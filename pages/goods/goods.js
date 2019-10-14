@@ -320,7 +320,7 @@ Page({
 
         console.log('pages', pages)
 
-        wx.redirectTo({
+        wx.navigateTo({
             url: '../userhome/index?id=' + this.data.store_id
         })
     },
@@ -401,7 +401,8 @@ Page({
     getGoodsInfo() {
 
         util.wx.get('/api/goods/get_goods_detail', {
-                goods_id: this.data.goods_id
+                goods_id: this.data.goods_id,
+                from_id: this.data.from_id
             })
             .then(res => {
                 if (res.data.code == 200) {
