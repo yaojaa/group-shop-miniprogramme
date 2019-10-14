@@ -3,10 +3,10 @@
 <view class="container gray-wrap cf" >
     <view class="fixed-btn flex">
         <view class="flex-sub">
-            <navigator url="../address-form/index" class="btn xxl coral block">
+            <view class="btn xxl coral block" bindtap="newAddress">
                 <van-icon name="add-square" color="#fff" size="30rpx" />
                 <text class="ml-xs">添加新地址</text>
-            </navigator>
+            </view>
         </view>
         <view class="flex-sub">
             <button url="../address-form/index" class="btn linear_bg xxl primary block" bindtap="openAddress">
@@ -31,9 +31,9 @@
                                 {{item.province}}{{item.city}}{{item.district}}{{item.address}}
                             </view>
                         </view>
-                        <navigator url="../address-form/index?id={{item.address_id}}" hover-class="none" class="fd solid-left">
+                        <view class="fd solid-left" bindtap="editAddress" data-id="{{item.address_id}}">
                             <van-icon name="records" size="44rpx" />
-                        </navigator>
+                        </view>
                     </view>
                 </view>
                 <view slot="right" class="address-del coral" bindtap="remove" data-id="{{item.address_id}}" data-add="{{item}}">删除</view>

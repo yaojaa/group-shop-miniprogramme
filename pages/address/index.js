@@ -92,8 +92,14 @@ Page({
         util.wx.post('/api/user/address_add_or_edit', data)
             .then(res => {
                 if (res.data.code == 200) {
-                    Toast.success(res.data.msg);
-                    that.getAddress()
+                    if (that.data.source == 'cart') {
+                        util.setParentData({
+                            address_id: res.data.data.address.address_id,
+                            address: res.data.data.address
+                        })
+                    } else {
+                        that.getAddress()
+                    }
                 } else {
                     Toast.fail(res.data.msg);
                 }
@@ -120,6 +126,29 @@ Page({
                 })
             }
         })
+    },
+    newAddress() {
+        if (this.data.source == 'cart') {
+            wx.redirectTo({
+                url: '../address-form/index?source=cart'
+            })
+        } else {
+            wx.navigateTo({
+                url: '../address-form/index'
+            })
+        }
+    },
+    editAddress(e) {
+        let { id } = e.currentTarget.dataset
+        if (this.data.source == 'cart') {
+            wx.redirectTo({
+                url: '../address-form/index?source=cart&id=' + id
+            })
+        } else {
+            wx.navigateTo({
+                url: '../address-form/index?id=' + id
+            })
+        }
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

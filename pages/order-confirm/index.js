@@ -4,6 +4,7 @@ const util = require('../../utils/util.js')
 
 import Toast from '../../vant/toast/toast';
 
+
 Page({
 
     /**
@@ -175,6 +176,7 @@ Page({
     onLoad: function(options) {
 
         this.data.goods_id = options.goods_id
+        this.data.from_id = options.from_id || ''
         this.getGoodsInfo()
        
 
@@ -271,7 +273,8 @@ Page({
         util.wx.post('/api/order/create_order', Object.assign({
             specs: specs,
             user_message: this.data.user_message,
-            goods_id: this.data.goods_id
+            goods_id: this.data.goods_id,
+            from_user_id:this.data.from_id
         }, postData)).then(res => {
                 this.data.order_id = res.data.data.order_id;
                 this.pay(res.data.data)

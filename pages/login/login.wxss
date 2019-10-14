@@ -26,7 +26,7 @@
 
 .intro {
   margin-top: 100rpx;
-  font-size: 48rpx;
+  font-size: 42rpx;
   font-weight: bold;
   line-height: 1.9;
   text-align: center;
@@ -46,7 +46,7 @@
 }
 .start-btn{
   position: absolute;
-  bottom:100rpx;
+  bottom:60rpx;
   left:0;
   width:100%;
   box-sizing: border-box;
