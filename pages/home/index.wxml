@@ -12,17 +12,30 @@
                     </view>
                 </navigator>
             </i-col>
-            <i-col span="16" i-class="col-class">
-                <view class="user-name f16">{{userInfo.nickname}}</view>
-                <navigator   url="../withdrawal/index">
-                    <view class="user-account f14">我的账户 (¥{{pending_money}})</view>
+            <i-col span="10" i-class="col-class">
+                <view class="user-name f18" bindtap="goSite">{{userInfo.nickname}}                     <i-icon type="homepage_fill" size="22" color="#ffffff" />
+</view>
+                <navigator   url="../identify/identify">
+                    <view class="user-account f12">完善资料</view>
                 </navigator>
             </i-col>
-            <i-col span="2" i-class="col-class" wx:if="{{goodslist.length > 0}}">
-                <view class="goSite" bindtap="goSite">
-                    <i-icon size="28" color="#ffffff" type="shop_fill" />
-                </view>
+            <i-col offset="1"  span="7" i-class="col-class">
+                <navigator   url="../withdrawal/index">
+
+
+                <view class="take_money">
+                 <view class="pending_money f16"> ¥ {{pending_money}}</view>
+                    <view class="user-account f12">账户提现 
+                        <i-icon type="enter" size="12" color="#ffffff"  />
+                    </view>
+               </view>
+                </navigator>
+
             </i-col>
+
+       
+
+
         </i-row>
     </view>
     <i-panel i-class="marginTop" title="我参与的" extra="查看全部" link="../order-list/index">

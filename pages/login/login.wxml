@@ -17,7 +17,7 @@
 
 	</view>
     <view class='start-btn  text-center' wx:if="{{!hasScope}}">
-        <button type="primary"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权使用 </button>
+        <button type="primary"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权登录 </button>
         
         <button type="default"  plain="true" bindtap="goView">先逛逛</button>
 
