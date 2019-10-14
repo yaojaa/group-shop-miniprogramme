@@ -1,3 +1,4 @@
+
 const app = getApp()
 const util = require('../../../utils/util')
 let index = 0
@@ -5,12 +6,40 @@ let index = 0
 Page({
     data: {
         type: '', // 0 是添加 1是修改
-        freight_tpl_name: '模版名称',
+        freight_tpl_name: '',
         freight_tpl_id: '',
         freight_tpl_info: [],
         newAreaData: {},
         DialogShowStatus: false,
         list: ['北京', '天津', '吉林省', '黑龙江省', '上海', '江苏省', '浙江省', '安徽省', '福建省', '江西省', '山东省', '河南省', '湖北省', '湖南省', '广东省', '广西壮族自治区', '海南省', '重庆', '四川省', '贵州省', '云南省', '西藏自治区', '陕西省', '甘肃省', '青海省', '宁夏回族自治区', '新疆维吾尔自治区']
+    },
+
+    /** 初始化原始数据 */
+    onLoad(options) {
+        const that = this;
+        console.log(options)
+        if (+options.type === 1) {
+            wx.getStorage({
+                key: 'tpl_data',
+                success: function(res) {
+                    console.log(res.data);
+                    const {freight_tpl_name, freight_tpl_id, freight_tpl_info_list} = res.data;
+                    that.setData({
+                        type: options.type,
+                        freight_tpl_name,
+                        freight_tpl_id,
+                        freight_tpl_info: freight_tpl_info_list
+                    });
+                },
+                fail: function(res){
+                    console.log('获取本地数据失败，值为：', res);
+                }
+            });
+        } else {
+            that.setData({
+                type: options.type
+            });
+        }
     },
 
     /** 展示弹窗 */
@@ -37,14 +66,6 @@ Page({
                 freight_tpl_info: newArray
             })
         }
-    },
-
-    /** 初始化原始数据 */
-    onLoad(options) {
-        console.log(options)
-        this.setData({
-            type: options.type
-        })
     },
 
     /** 添加地址 */
@@ -86,21 +107,22 @@ Page({
             freight_tpl_info: this.data.freight_tpl_info // 地区运费详情
         }
 
-        util.wx.post('/api/supplier/set_freight_tpl', param).then(res => {
-            if (res.data.code == 200) {
-                Toast.success('添加修改运费模板成功');
-                if (add.address_id == address.address_id) {
-                    wx.removeStorageSync('userAddress')
-                }
-                this.getAddress()
-            } else {
+        util.wx.post('/api/supplier/set_freight_tpl', param)
+            .then(res => {
                 wx.showToast({
-                    title: res.data.msg,
+                    title: '设置运费模板成功',
                     icon: 'none'
-                })
-            }
-        })
-        wx.navigateBack();
+                });
+                if (res.data.code === 200) {
+                    wx.showToast({
+                        title: '设置运费模板成功',
+                        icon: 'none'
+                    })
+                    setTimeout(() => {
+                        wx.navigateBack();
+                    }, 1500)
+                }
+            })
     },
 
     /** 修改当前模版list */
