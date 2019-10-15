@@ -23,26 +23,27 @@
                 <view class="td">0元</view>
             </view>
         </view>
-
-        <view class="custom-rule-title rule-title">
-            <van-row>
-                <van-col span="16">
-                    <view>自定义规则</view>
-                </van-col>
-                <van-col span="8">
-                    <view class="custom-option custom-edit-option" data-index="1" bindtap="editPostageTpl">修改</view>
-                    <view class="custom-option custom-delete-option" bindtap="deletePostageTpl">删除</view>
-                </van-col>
-            </van-row>
-        </view>
-        <view class="table">
-            <view class="custom-rule-item tr">
-                <view class="th">地区</view>
-                <view class="th">运费</view>
+        <view class="custom-rule" wx:for="{{tpl_list}}" wx:for-index="index" wx:for-item="item">
+            <view class="custom-rule-title rule-title">
+                <van-row>
+                    <van-col span="16">
+                        <view>{{item.freight_tpl_name}}</view>
+                    </van-col>
+                    <van-col span="8">
+                        <view class="custom-option custom-edit-option" data-index="{{index}}" bindtap="editPostageTpl">修改</view>
+                        <view class="custom-option custom-delete-option" data-index="{{index}}" data-id="{{item.freight_tpl_id}}" bindtap="deletePostageTpl">删除</view>
+                    </van-col>
+                </van-row>
             </view>
-            <view class="custom-rule-item tr" wx:for="{{5}}">
-                <view class="th">北京</view>
-                <view class="th">5元</view>
+            <view class="table">
+                <view class="custom-rule-item tr">
+                    <view class="th">地区</view>
+                    <view class="th">运费</view>
+                </view>
+                <view class="custom-rule-item tr" wx:for="{{item.freight_tpl_info_list}}" wx:key="{{index}}" wx:for-item="freight_tpl_item">
+                    <view class="th">{{freight_tpl_item.name}}</view>
+                    <view class="th">{{freight_tpl_item.price}}元</view>
+                </view>
             </view>
         </view>
 

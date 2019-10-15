@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        mainTab: 'homepage',
+        mainTab: 'postageSetting',
         user_info: {},
         news: [],
         loading: true,
@@ -20,18 +20,47 @@ Page({
     },
     // 修改运费模板
     editPostageTpl(e) {
-        console.log(e);
+        const {dataset: {index}} = e.target;
+        const currentItem = this.data.tpl_list[+index];
+
+        wx.setStorage({
+            key: 'tpl_data',
+            data: currentItem,
+            success: function(res){
+                wx.navigateTo({
+                    url: '../set-price/index?type=1'
+                });
+            }
+        });
     },
     // 删除运费模板
     deletePostageTpl(e) {
         console.log(e);
+        const that = this;
+        const {dataset: {id}} = e.target;
+        util.wx.get('/api/supplier/del_freight_tpl', {freight_tpl_id: id})
+            .then(res => {
+                if (res.data.code === 200) {
+                    wx.showToast({
+                        title: '删除运费模板成功',
+                        icon: 'none'
+                    });
+                    setTimeout(() => {
+                        that.getList()
+                    }, 1500)
+                }
+            })
     },
     getList() {
         util.wx.get('/api/supplier/get_freight_tpl')
             .then(res => {
-                if (res.data.code == 0) {
+                if (res.data.code === 200) {
+                    const lists = res.data.data.lists;
+                    lists.forEach(item => {
+                        item.freight_tpl_info_list = JSON.parse(item.freight_tpl_info);
+                    });
                     this.setData({
-                        tpl_list: res.data.data
+                        tpl_list: lists
                     })
                 }
             })
@@ -42,7 +71,7 @@ Page({
      */
     onLoad: function(options) {
         let userInfo = wx.getStorageSync('userInfo')
-        wx.setStorageSync('postage', '');
+        wx.setStorageSync('tpl_data', '');
         this.getList();
     },
 
@@ -57,7 +86,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
+        wx.setStorageSync('tpl_data', '');
+        this.getList();
     },
 
     /**
@@ -86,5 +116,11 @@ Page({
      */
     onReachBottom: function() {
 
+    },
+
+    addPostageTpl: function() {
+        wx.navigateTo({
+            url: '../set-price/index?type=0'
+        });
     }
 })
