@@ -118,9 +118,22 @@
                         <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">{{item.spec_pic.length}}张</view>
                     </view>
                     <view class="info">
-                        <view class="f14 text-default">{{item.spec_name}} <text class="price f12px"> ¥{{item.spec_price}}</text></view>
-                        <view wx:if="{{item.spec_desc}}" class="f14px text-warning" style="margin-top: 10rpx;">{{item.spec_desc}}</view>
+                        <view class="f14 text-default">{{item.spec_name}} 
+                            <text class="price f12px">¥{{item.spec_price}}</text> 
+
                     </view>
+                        <view wx:if="{{item.spec_desc}}" class="f14px text-warning" style="margin-top: 10rpx;">
+                       <block  wx:if="{{item.spec_stock}}"> (剩余{{item.spec_stock}})</block>
+                       <block  wx:if="{{item.spec_stock==0}}"> (已售磬)</block>
+
+                        {{item.spec_desc}}</view>
+                    </view>
+
+                    <!--  <text class="f12px" wx:if="{{item.spec_stock}}"> 
+                        剩余({{item.spec_stock}})
+                    </text>
+ -->
+
                     <view class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                     </view>
@@ -197,7 +210,7 @@
         </block>
 
     </view>
-                <view class="flex text-center" style="padding: 10px 0">
+                <view class="flex text-center" style="padding: 10px 0 25px;">
                     <view class="flex-sub"><button class="btn   " bindtap='copyGoods'>
 <i-icon type="send" color="#999" />                        </button></view>
                     <div class="solid-right"></div>
@@ -205,10 +218,11 @@
                     <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
                 </view>
 
-                    <view class="weui-footer">
+        <view class="weui-footer">
         <view class="weui-footer__links">
-            <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>
+            <button size="mini" class="btn_no_style" bindtap="toPublish"> + 发布新活动 </button>
         </view>
+        <view></view>
 
 
     </view>
@@ -288,9 +302,9 @@
             <image class="avatar-mini" src="{{goods.user.headimg}}" />
         </view>
         <view class="info">
-          请允许微信授权
+       微信授权登录
         </view>
-        <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
+        <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">登 录</button>
 
         <button size="mini" type="warn" plain="false" bindtap="rejectAuth" >取 消</button>
 
@@ -307,7 +321,7 @@
             </button>
             <view bindtap='handlePoster' class="flex-sub share-pyq">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
-                <view class="text-weak mt-sm">生成海报</view>
+                <view class="text-weak mt-sm">专属海报</view>
             </view>
         </view>
     </van-action-sheet>

@@ -94,3 +94,21 @@ button.button{
   color: #666;
   margin-left: 30px
 }
+
+.content-pop{
+  padding: 20px;
+  text-align: center;
+  width: 310rpx
+}
+
+.authPopBox .logo image {
+
+    width: 120rpx;
+    height: 120rpx;
+    margin-bottom: 5px
+
+}
+
+.authPopBox button{
+  margin: 5px
+}

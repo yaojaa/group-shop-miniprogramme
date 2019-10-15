@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 65,
 			"list": [
 				{
 					"id": 0,
@@ -83,7 +83,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=808&from_id=7",
+					"query": "goods_id=804&from_id=7",
 					"scene": 1008
 				},
 				{
@@ -506,6 +506,13 @@
 					"name": "添加快递单号",
 					"pathName": "pages/express/index",
 					"query": "pi=0&ci=0&order_id=5389&user=书星&goods=红颜奶油草莓 约重500g/20-24颗 新鲜水果",
+					"scene": null
+				},
+				{
+					"id": 65,
+					"name": "个人主页",
+					"pathName": "pages/userhome/index",
+					"query": "id=1",
 					"scene": null
 				}
 			]

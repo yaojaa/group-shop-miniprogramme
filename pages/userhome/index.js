@@ -216,7 +216,8 @@ Page({
             type: 'store_homepage',
             obj_id: this.store_id,
             user_scene: app.globalData.userScene,
-            user_phone: app.globalData.userPhone
+            user_phone: app.globalData.userPhone,
+            user_id:app.globalData.userInfo.user_id || ''
         })
     },
 
@@ -385,7 +386,7 @@ Page({
         }
 
         return {
-            title: '来逛逛' + this.data.info.store_name + '的好东西'
+            title:  this.data.info.store_name + '邀请你来逛逛'
         }
     }
 })

@@ -24,7 +24,7 @@ Page({
         const name = options.name
 
     wx.setNavigationBarTitle({
-      title: '访问记录'+name 
+      title: '访问记录 '+name 
     })
 
 

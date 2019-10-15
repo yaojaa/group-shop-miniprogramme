@@ -548,6 +548,15 @@ Page({
 
         this.add_access()
 
+        //未登录 弹出授权弹窗
+        if (!app.globalData.userInfo) {
+                    setTimeout(()=>{
+                        this.setData({
+                            showAuth: true
+                        })
+                    },5000)
+           }
+
 
 
         //获取价格区域的高度，滚动到此位置
@@ -686,6 +695,13 @@ Page({
 
 
     },
+    toPublish(){
+
+        wx.navigateTo({
+            url: '../publish-select/index'
+        })
+
+    },
     addAnimate(e) {
         console.log('this.type', this.type)
         if (this.type === 'plus') {
@@ -794,8 +810,12 @@ Page({
             console.log(openid)
             app.globalData.openid = openid
             app.login_third(e.detail).then((res) => {
-                    console.group('登陆成功:', res)
                     wx.hideLoading()
+                     wx.showToast({
+                        title:'登录成功',
+                        icon:'none'
+                    })
+                     
                     this.setData({
                         showAuth: false
                     })

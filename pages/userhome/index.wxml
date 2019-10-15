@@ -60,8 +60,8 @@
                         <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} </view>
                         <text class="gray">{{item._buy_users_count}}人参与</text>
                         <view>
-                            <button wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即查看</button>
-                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">已结束</button>
+                            <button wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即参与</button>
+                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">已结束</button>
                         </view>
                     </view>
                 </view>
