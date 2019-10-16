@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 65,
+			"current": 67,
 			"list": [
 				{
 					"id": 0,
@@ -513,6 +513,20 @@
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
 					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": 66,
+					"name": "pages/address-form/index",
+					"pathName": "pages/address-form/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/fans/index",
+					"pathName": "pages/fans/index",
+					"query": "id=835&name=%E4%B8%93%E4%B8%9A%E7%BA%A7%E7%83%A4%E8%96%AF%E4%B8%93%E7%94%A8%E7%BA%A2%E8%96%AF%20%E7%AA%96%E8%97%8F%E4%B8%80%E4%B8%AA%E6%9C%88",
 					"scene": null
 				}
 			]

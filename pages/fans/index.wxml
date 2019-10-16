@@ -10,11 +10,11 @@
             <block wx:for="{{list}}" wx:for-item="listItem">
             <view wx:for="{{listItem}}" class="guest-box guest-item">
                     <view class="hd">
-                        <image class="avatar" src="{{item.headimg}}" mode="cover"></image>
+                        <image class="avatar" src="{{item.headimg}}" mode="cover"></image> 
                     </view>
                     <view class="bd">
                         <view class="text-justify">
-                            <view class="name">{{item.nickname}}</view>
+                            <view class="name">{{item.nickname}} <text style="font-size: 12px;color: #999"> ({{item.user_phone}}) </text> </view>
                             <view class="info">
                                 <view class="num">
                                     

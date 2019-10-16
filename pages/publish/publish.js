@@ -896,6 +896,8 @@ Page({
 
         }else if(option.temp){ // 是否是模板
             this.getPublishedData('', '', option.temp);
+        }else{
+            this.setDefaultTitle()
         }
 
 
@@ -903,7 +905,12 @@ Page({
 
 
     },
+    setDefaultTitle:function() {
 
+         this.setData({
+               goods_name:app.globalData.userInfo.nickname+'为您推荐'
+            })
 
+    },
     inputDuplex: util.inputDuplex
 })

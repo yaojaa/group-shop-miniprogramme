@@ -5,8 +5,8 @@
         </navigator>
         <view class="bd">
             <navigator  url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
-                <view class="flex align-center">
-                    <i-icon type="lock" color="#ffa200" size="18" wx:if="{{item.is_recommend==0}}" />
+                <view class="flex align-center"> 
+                    <i-icon type="lock" color="#ffa200" size="18" wx:if="{{is_recommend==0}}" />
                     <view class="flex-sub ml-xs">
                         <view class="tit ">
                             <view class="">{{item.goods_name}}</view>

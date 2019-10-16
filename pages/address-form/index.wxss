@@ -6,9 +6,11 @@
 	background: #ffffff;
 	font-size: 28rpx;
 	width: 90%;
-	height: 120rpx;
+	height: 140rpx;
 	padding: 10px;
-	box-sizing: border-box;
-
-	
+	box-sizing: border-box
+}
+.van-cell{
+	color: #666;
+	font-size: 38rpx
 }

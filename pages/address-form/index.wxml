@@ -3,8 +3,14 @@
         <van-cell-group custom-class="mv-sm">
 
        <!--      <van-field name="address" value="{{address}}"  type="textarea" placeholder="粘贴收件人电话，姓名，地址" autosize /> -->
+<form bindsubmit="bindTextAreaBlur">
+        <textarea class="address_textarea" name="address_str" value="{{address_str}}" bindchange="setValue" placeholder="粘贴收件人电话 姓名 地址可自动识别 " />
 
-              <textarea class="address_textarea" bindblur="bindTextAreaBlur" value="{{address_str}}" placeholder="粘贴收件人电话，姓名，地址可自动识别" />
+              <view class="center">
+                 <button size="mini"  formType="submit"  style="display: inline-block;margin: 0 auto 10px">智能识别</button>
+              </view>
+</form>
+
 
             <van-field name="consignee" value="{{consignee}}" label="收货人" input-align="right" placeholder="请输入姓名" />
             <van-field name="mobile" value="{{mobile}}" label="联系电话" input-align="right" placeholder="请填写手机号" type="number" />

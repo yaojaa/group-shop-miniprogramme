@@ -91,7 +91,7 @@ Page({
         }
     },
 
-    bindTextAreaBlur(e){
+    setValue(){
 
         const text= e.detail.value
 
@@ -99,11 +99,33 @@ Page({
             return
         }
 
+        this.data.address_str = text
+
+        console.log(text)
+
+
+    },
+
+    bindTextAreaBlur(e){
+
+        　　var text= e.detail.value.address_str
+
+              text = text.split('\n').join(' ');
+
+
+        if(text==''){
+            return
+        }
+        
+
 
         util.wx.post('/api/index/kuaibao_cloud_address_resolve',{
-            text:e.detail.value
+            text:text
         }).then(res=>{
-            console.log(res)
+            wx.showToast({
+                title:'已识别 请核对',
+                icon:'none'
+            })
             this.setData({
                 consignee:res.data.data[0].name,
                 mobile:res.data.data[0].mobile,
@@ -111,6 +133,11 @@ Page({
                 city: res.data.data[0].city_name,
                 district: res.data.data[0].county_name,
                 address:res.data.data[0].detail
+            })
+        }).catch(e=>{
+            wx.showToast({
+                title:e.data.msg,
+                icon:'none'
             })
         })
 

@@ -389,6 +389,7 @@ Page({
         util.wx.get('/api/index/add_access', {
             type: 'goods_detail',
             obj_id: this.data.goods_id,
+            user_id: app.globalData.userInfo ? app.globalData.userInfo.user_id : '',
             user_scene: app.globalData.userScene,
             user_phone: app.globalData.userPhone
         }).then(res => {
@@ -807,7 +808,6 @@ Page({
         app.globalData.userInfo = e.detail.userInfo
         wx.showLoading()
         app.getOpenId().then((openid) => {
-            console.log(openid)
             app.globalData.openid = openid
             app.login_third(e.detail).then((res) => {
                     wx.hideLoading()
@@ -1082,7 +1082,7 @@ Page({
             let spec = ''
             console.log(item)
             item.spec.forEach((k, v) => {
-                spec += k.spec_name + ' × ' + k.qty + '\b '
+                spec += k.spec_name + '' + k.qty + '\b '
             })
             userList.unshift(item.create_number + '.' + item.nickname + " \b " + spec + (item.pay_status == 1 ? "(已付)" : "未付"))
         })

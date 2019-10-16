@@ -50,11 +50,25 @@ Page({
 
     },
     //切换显示隐藏状态事件
-    recommendHandle() {
+    recommendHandle(e) {
 
-        this.data.goodslist = []
+       //  console.log(e.detail)
 
-        this.getGoodsList()
+       // this.data.goodslist.forEach((item,index)=>{
+
+       //      if(item.goods_id == e.detail){
+
+       //          const key = 'goodslist['+index+'].is_recommend'
+
+       //          this.setData({
+       //              [key]: e.detail.is_recommend
+       //          })
+       //      }
+
+       // })
+
+        // this.getGoodsList()
+
 
     },
     removeHandle(e) {
@@ -186,10 +200,10 @@ Page({
   managePage(e){
   let id = e.currentTarget.dataset.id
   let delivery_method = e.currentTarget.dataset.delivery_method
-  let goods_name = e.currentTarget.dataset.name
+  let goods_name = e.currentTarget.dataset.name.slice(0,10)
 
         wx.navigateTo({
-            url: '../ordermanage/list?id=' + id+'&goods_name='+goods_name+'&delivery_method='+delivery_method,
+            url: '../ordermanage/list?id=' +id+ '&delivery_method='+ delivery_method +'&goods_name='+ goods_name
         })
 
     },

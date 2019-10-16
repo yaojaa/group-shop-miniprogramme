@@ -17,12 +17,26 @@ Component({
 
     },
     data: {
+      is_recommend:'',
         urls: [
            
         ]
     },
+    lifetimes: {
+      attached: function() {
+        // 在组件实例进入页面节点树时执行
+        this.setData({
+          is_recommend:this.properties.item.is_recommend
+        })
+      },
+      detached: function() {
+        // 在组件实例被从页面节点树移除时执行
+      }
+   },
     methods: {
      moreAction(e){
+
+      console.log(this.data)
 
       this.goods_id = e.currentTarget.dataset.id
 
@@ -65,7 +79,12 @@ Component({
                     icon:'none'
                 })
 
-                this.triggerEvent('recommend')
+                this.setData({
+                  is_recommend:status
+                })
+
+                //父组件接收
+                // this.triggerEvent('recommend',{goods_id:this.goods_id,status})
 
           }else{
               
