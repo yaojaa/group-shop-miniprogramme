@@ -36,6 +36,7 @@ page{
 }
 .guest-item .name{
 	font-size: 28rpx;
+	overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
 }
 .guest-item .date{
 	margin-top: 12rpx;

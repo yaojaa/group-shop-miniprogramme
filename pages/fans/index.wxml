@@ -14,7 +14,7 @@
                     </view>
                     <view class="bd">
                         <view class="text-justify">
-                            <view class="name">{{item.nickname}} <text style="font-size: 12px;color: #999"> ({{item.user_phone}}) </text> </view>
+                            <view class="name">{{item.nickname}} <text style="font-size: 12px;color: #999; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"> ({{item.user_phone}}) </text> </view>
                             <view class="info">
                                 <view class="num">
                                     
@@ -24,8 +24,8 @@
                             </view>
                         </view>
                         <view class="date">
-                           {{item.time_ago}}   <!-- 使用{{item.user_phone}} 手机  -->浏览了{{item.user_staytime}} 
-                         <!-- {{secen[item.user_scene]}}打开， -->
+                           {{item.time_ago}}浏览了{{item.user_staytime}} 
+                         <block wx:if="{{item.user_scene_txt}}">{{item.user_scene_txt}}</block>
                         </view>
                     </view>
             </view>

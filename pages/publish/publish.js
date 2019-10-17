@@ -519,7 +519,10 @@ Page({
     removePhoto: function(e) {
         let index = e.currentTarget.dataset.index
         this.data.goods_images.splice(index, 1)
-        this.data.goods_images[0].is_cover = 1
+        if(this.data.goods_images.length){
+           this.data.goods_images[0].is_cover = 1
+        }
+
         this.setData({
             'goods_images': this.data.goods_images
         })
