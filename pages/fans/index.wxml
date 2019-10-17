@@ -7,7 +7,7 @@
             </view>
             <view class="bd">
                 <view class="text-hidden">
-                    <view class="name">{{item.nickname}} <text style="font-size: 12px;color: #999"> ({{item.user_phone}}) </text> </view>
+                    <view class="name">{{item.nickname}} <text class="text-sm text-muted"> ({{item.user_phone}}) </text> </view>
                 </view>
                 <view class="date">
                     {{item.time_ago}}
