@@ -42,16 +42,18 @@ Page({
             if (n.checked) {
                 if (n.value === 'order_count') {
                     params.sort = n.value
-                    params.order = n.sort === 1 ? 'desc' : 'asc'
+                    params.order = n.sort === 1 ? 'asc' : 'desc'
                 } else if (n.value === 'order_total') {
                     params.sort = n.value
-                    params.order = n.sort === 1 ? 'desc' : 'asc'
+                    params.order = n.sort === 1 ? 'asc' : 'desc'
                 }
             }
         })
         console.log(Object.values(params).toString())
         this.setData({
-            sortstr: Object.values(params).toString()
+            sortstr: Object.values(params).toString(),
+            cpage:1,
+            list:[]
         })
         this.getDataList(this.data.sortstr)
     },

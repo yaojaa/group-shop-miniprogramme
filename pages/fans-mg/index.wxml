@@ -3,7 +3,7 @@
         <view class="f14">粉丝({{fansNum}}) </view>
         <van-button icon="star-o" type="primary" plain size="mini" >微信通知</van-button>
     </view>
-<!--    <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" /> -->
+   <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
     <view class="white-bg">
         <view class="solid-bottom p-df flex fans-list" wx:for="{{list}}" wx:key="{{index}}">
             <image class="avatar mr-sm" src="{{item.headimg}}"></image>
