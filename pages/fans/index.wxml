@@ -1,34 +1,20 @@
 <view class="container">
-  <!--   <view class="fans-box text-justify">
-        <view class="f14"><button size="mini">全部粉丝：234</button></view>
-        <view class="btn-group">
-            <button type="primary" size="mini">微信通知</button>
-            <button size="mini" type="primary">群发短信</button>
-        </view>
-    </view> -->
-    <i-panel class="cell-panel-demo" title="有{{user_count}}人 {{total}}次访问">
-            <block wx:for="{{list}}" wx:for-item="listItem">
-            <view wx:for="{{listItem}}" class="guest-box guest-item">
-                    <view class="hd">
-                        <image class="avatar" src="{{item.headimg}}" mode="cover"></image> 
-                    </view>
-                    <view class="bd">
-                        <view class="text-justify">
-                            <view class="name">{{item.nickname}} <text style="font-size: 12px;color: #999; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"> ({{item.user_phone}}) </text> </view>
-                            <view class="info">
-                                <view class="num">
-                                    
-                                </view>
-                                <view class="num">
-                                </view>
-                            </view>
-                        </view>
-                        <view class="date">
-                           {{item.time_ago}}浏览了{{item.user_staytime}} 
-                         <block wx:if="{{item.user_scene_txt}}">{{item.user_scene_txt}}</block>
-                        </view>
-                    </view>
+    <view class="ph-df pt-lg pb-sm text-hidden bolds">{{name}}</view>
+    <view class="guest-box" wx:for="{{list}}" wx:for-item="listItem" wx:key="{{index}}">
+        <view wx:for="{{listItem}}" class="guest-item solid-top" wx:key="{{index}}">
+            <view class="hd">
+                <image class="avatar" src="{{item.headimg}}" mode="cover"></image>
             </view>
-            </block>
-    </i-panel>
+            <view class="bd">
+                <view class="text-hidden">
+                    <view class="name">{{item.nickname}} <text class="text-sm text-muted"> ({{item.user_phone}}) </text> </view>
+                </view>
+                <view class="date">
+                    {{item.time_ago}}
+                    <!-- 使用{{item.user_phone}} 手机  -->浏览了{{item.user_staytime}}
+                    <!-- {{secen[item.user_scene]}}打开， -->
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

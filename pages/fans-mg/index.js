@@ -20,7 +20,13 @@ Page({
             label: '支付金额',
             value: 'order_total',
             groups: ['002'],
-        }]
+        }],
+        pullDownOpt: {
+            loading: false,
+            pagesize: 15,
+            cpage: 1,
+            total: 1
+        }
     },
     onOpen(e) {
         this.setData({ opened: true })
