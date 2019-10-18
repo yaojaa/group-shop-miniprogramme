@@ -9,6 +9,7 @@ Page({
      */
     data: {
         list: [],
+        fansNum:0,
         loading: false,
         items: [{
             type: 'sort',
@@ -21,12 +22,9 @@ Page({
             value: 'order_total',
             groups: ['002'],
         }],
-        pullDownOpt: {
-            loading: false,
-            pagesize: 15,
-            cpage: 1,
-            total: 1
-        }
+        cpage: 1,
+        totalpage: 1,
+        sortstr: 'order_count,desc'
     },
     onOpen(e) {
         this.setData({ opened: true })
@@ -52,35 +50,41 @@ Page({
             }
         })
         console.log(Object.values(params).toString())
-        this.getDataList(Object.values(params).toString())
+        this.setData({
+            sortstr: Object.values(params).toString()
+        })
+        this.getDataList(this.data.sortstr)
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        this.getDataList('order_total,desc|order_count,desc')
+        this.getDataList(this.data.sortstr)
     },
 
     getDataList(params) {
         this.setData({
             loading: true
         })
-        util.wx.get('/api/seller/get_fans_list', {"sortstr":params}).then(res => {
-            this.setData({
-                loading: false
+        let data = {
+            sortstr: params,
+            cpage: this.data.cpage,
+            pagesize: 2
+        }
+        return new Promise((resolve, reject) => {
+            util.wx.get('/api/seller/get_fans_list', data).then((res) => {
+                this.setData({
+                    loading: false,
+                    list: this.data.list.concat(res.data.data.lists),
+                    totalpage: res.data.data.page.totalpage,
+                    fansNum: res.data.data.page.total
+                })
+                resolve()
+            }, (err) => {
+                reject(err)
             })
-            if (res.data.code == 200) {
-                if (res.data.data.page.total > 0) {
-                    res.data.data.lists.forEach(e => {
-                        e.updatetime = this.fTime(e.updatetime);
-                    })
-                    this.setData({
-                        list: res.data.data.lists,
-                        fansNum:res.data.data.page.total
-                    })
-                }
-            }
         })
+  
     },
 
     fTime(t) {
@@ -135,22 +139,34 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    // 下拉刷新
     onPullDownRefresh: function() {
         // 显示顶部刷新图标
         wx.showNavigationBarLoading();
-        this.getDataList()
-        // 隐藏导航栏加载框
-        wx.hideNavigationBarLoading();
-        // 停止下拉动作
-        wx.stopPullDownRefresh();
+        this.getDataList(this.data.sortstr).then(() => {
+            // 隐藏导航栏加载框
+            wx.hideNavigationBarLoading();
+            // 停止下拉动作
+            wx.stopPullDownRefresh();
+        })
     },
-
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-        this.getDataList(++this.data.pullDownOpt.cpage);
+        if (this.data.cpage && !this.data.loading) {
+            this.setData({
+                cpage: this.data.cpage + 1, //每次触发上拉事件，把requestPageNum+1
+            })
+            if (this.data.cpage > this.data.totalpage) {
+                return
+            }
+            this.getDataList(this.data.sortstr).then(() => {
+                // 隐藏导航栏加载框
+                wx.hideNavigationBarLoading();
+                // 停止下拉动作
+                wx.stopPullDownRefresh();
+            })
+        }
     },
 
     /**

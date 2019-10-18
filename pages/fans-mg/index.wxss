@@ -8,3 +8,6 @@ page{
     height: 90rpx;
     border-radius: 8rpx;
 }
+/*.fans-list{
+	height: 1500rpx;
+}*/
