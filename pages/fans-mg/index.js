@@ -69,7 +69,7 @@ Page({
         let data = {
             sortstr: params,
             cpage: this.data.cpage,
-            pagesize: 2
+            pagesize: 15
         }
         return new Promise((resolve, reject) => {
             util.wx.get('/api/seller/get_fans_list', data).then((res) => {
