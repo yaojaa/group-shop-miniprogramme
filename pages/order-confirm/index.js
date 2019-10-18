@@ -191,7 +191,7 @@ Page({
 
 
         cart.map(value => {
-            amountMoney += parseInt(value.spec_price * 100) * parseInt(value.item_num)
+            amountMoney += value.spec_price * 1000 * parseInt(value.item_num)
             totalNumer += parseInt(value.item_num)
 
 
@@ -203,7 +203,7 @@ Page({
           
             goods_id: options.goods_id,
             cart: cart || [],
-            amountMoney: amountMoney / 100,
+            amountMoney: amountMoney / 1000,
             totalNumer: totalNumer       
              })
 

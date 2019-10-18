@@ -163,8 +163,6 @@ Page({
         })
     },
     onShow: function() {
-
-        console.log('onshow....')
         // 关闭查看图片预览标识
         this.data.imgPreviewFlag = false;
 
@@ -175,9 +173,6 @@ Page({
         if (this.data.goods_id) {
             this.getOrderUserList(this.data.goods_id)
         }
-
-
-
 
     },
     onReady: function() {
@@ -677,8 +672,8 @@ Page({
 
         this.data.goods_spec.forEach(value => {
 
-            console.log('parseInt(value.spec_price * 100)', parseInt(value.spec_price * 100))
-            amountMoney += parseInt(value.spec_price * 100) * parseInt(value.item_num)
+            console.log('value.spec_price * 100 * parseInt(value.item_num)', value.spec_price * 100 * parseInt(value.item_num))
+            amountMoney += value.spec_price * 1000 * parseInt(value.item_num)
             totalNum += value.item_num
         })
 
@@ -687,7 +682,7 @@ Page({
 
         this.setData({
             [key]: e.detail.value,
-            amountMoney: amountMoney / 100,
+            amountMoney: amountMoney / 1000,
             totalNum: totalNum
         })
 
@@ -735,7 +730,7 @@ Page({
             let currentNum = value.item_num == 0 ? '1' : value.item_num
             this.setData({
                 'goods_spec[0].item_num': currentNum,
-                amountMoney: parseInt(value.spec_price * 100 * currentNum) / 100,
+                amountMoney: value.spec_price * 100 * currentNum / 100,
                 totalNum: 1
             })
 
