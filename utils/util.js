@@ -1,6 +1,6 @@
 const qiniuUploader = require("./qiniuUploader");
 import Card from '../palette/card';
-import shareCard from '../palette/shareCard';
+import shareCard from '../palette/shareCard2';
 const app = getApp();
 
 

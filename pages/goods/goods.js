@@ -79,11 +79,9 @@ Page({
         template: {},
         shareCardConfig: {
             width: 750,
-            goodsImg: {
-                height: 380 //默认400
-            },
+            goodsImg: {},
             headImg: {
-                size: 140, //默认140
+                size: 120, //默认140
             },
             userName: '开心麻团儿',
             content: {
@@ -98,7 +96,7 @@ Page({
             },
             qrcode: {
                 src: '',
-                size: 300 //二维码显示尺寸默认300
+                size: 200 //二维码显示尺寸默认300
             },
             hw_data: null,
             showAuth: false,
