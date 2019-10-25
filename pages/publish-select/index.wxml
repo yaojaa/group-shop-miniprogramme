@@ -29,27 +29,23 @@
 
 
 
-<view class="smallTit">
+<!-- <view class="smallTit">
   示例模板：
 </view>
 <view class="center" >
   <navigator url="../publish/publish?temp=2" class="button-area flex_box">
-  <!-- <view> -->
+ <view> 
   <view class="flex-item">
 
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon1.jpg"></image>
-
-<!--   <i-icon type="success"  size="34" color="#c6c6c6" />
- -->  </view>
+ </view>
   <view class="flex-item-5 left">
     <view class="f16 text-default"> <view>演示模板：草莓自取活动</view>
      <text class="f14 text-muted">填写提货点，用户自提</text> </view>
    </view>
-  <!-- </view> -->
   </navigator>
 </view>
-
-
+-->
 
 <!-- <view class="center">
   <view class="button-area flex_box">
@@ -63,9 +59,8 @@
   </view>
 </view> -->
 
-<view class="center">
+<!-- <view class="center">
   <navigator url="../publish/publish?temp=1" class="button-area flex_box">
-  <!-- <view> -->
   <view class="flex-item">
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon3.jpg"></image>
   </view>
@@ -73,9 +68,9 @@
     <view class="f16 text-default"> <view>演示模板：樱桃邮寄活动</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
-  <!-- </view> -->
   </navigator>
-</view>
+</view> 
+-->
 
 <!-- <view class="smallTit">
   从已有商品复制：

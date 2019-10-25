@@ -279,12 +279,6 @@ Page({
                 })
 
 
-
-
-
-
-
-
             }
         })
     },
@@ -832,6 +826,9 @@ Page({
     initData(gs, isCopy){
         let starFormatTime = isCopy ? default_start_time : util.formatTime(new Date(gs.start_time * 1000))
         let endFormatTime = isCopy ? default_end_time : util.formatTime(new Date(gs.end_time * 1000))
+        
+        console.log('endFormatTime',endFormatTime)
+
         this.setData({
             goods_images: gs.goods_images,
             goods_name: gs.goods_name,
@@ -853,6 +850,7 @@ Page({
             spec: gs.goods_spec,
             isShowTimePicker: true
         })
+        console.log('picker',this.data.picker)
 
     },
 
@@ -911,7 +909,7 @@ Page({
     setDefaultTitle:function() {
 
          this.setData({
-               goods_name:app.globalData.userInfo.nickname+'为您推荐'
+               goods_name:app.globalData.userInfo.nickname+'发布了一个活动'
             })
 
     },

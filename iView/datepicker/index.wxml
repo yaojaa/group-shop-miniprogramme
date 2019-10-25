@@ -1,4 +1,4 @@
-<view class="time-class" bindtap='openPicker'>{{label}}{{year}}-{{month}}-{{day}}  {{hour}}:{{minute}}</view>
+<view class="time-class" bindtap='openPicker'>{{label}}{{year}}-{{month}}-{{day}}  {{hour}}:{{minute}} </view>
 <view class='picker-mask' hidden='{{hidden}}' bindtap='closePicker'></view>
 <view class='picker pick-class' style='bottom:{{bottom}}'>
   <view class='picker-title'> 

@@ -25,7 +25,7 @@
                 <view class="weui-cell__bd">
                     <view class='row' id="textareawrap">
                         <text>{{currentInput}}</text>
-                        <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" class="weui-textarea" placeholder="商品描述、介绍、特色等" rows="6"></textarea>
+                        <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" class="weui-textarea" placeholder="简介描述" rows="6"></textarea>
                     </view>
                 </view>
             </view>
@@ -45,7 +45,7 @@
             </view> -->
             <!--上传规格图弹框-->
             <wux-popup catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
-                <view class="poptit">商品规格图片</view>
+                <view class="poptit">规格图片</view>
                 <scroll-view scroll-y class="maxheight">
                     <view class="con">
                         <view class="pic_loading">
@@ -127,7 +127,7 @@
                 </view>
             </wux-popup>
         </view>
-        <i-panel i-class="no-margin" title="商品规格名">
+        <i-panel i-class="no-margin" title="规格名称">
             <view class="weui-cells_form">
                 <view class="item" wx:for="{{spec}}" wx:key="$this">
                     <view class="weui-cell">
