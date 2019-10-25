@@ -38,6 +38,7 @@ Page({
     data: {
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
+        url: '',
         showMsgTips: false,
         previewImgs: {
             current: "",
@@ -78,11 +79,9 @@ Page({
         template: {},
         shareCardConfig: {
             width: 750,
-            goodsImg: {
-                height: 380 //默认400
-            },
+            goodsImg: {},
             headImg: {
-                size: 140, //默认140
+                size: 120, //默认140
             },
             userName: '开心麻团儿',
             content: {
@@ -97,7 +96,7 @@ Page({
             },
             qrcode: {
                 src: '',
-                size: 300 //二维码显示尺寸默认300
+                size: 200 //二维码显示尺寸默认300
             },
             hw_data: null,
             showAuth: false,
@@ -112,6 +111,27 @@ Page({
             phone: '',
             weChat: ''
         },
+    },
+    openUrl() {
+        // let that = this
+        // let reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+        // this.data.goods.goods_content.replace(reg, function(website) {
+        //     that.setData({
+        //         url: website
+        //     })
+        // });
+        wx.setClipboardData({
+            data: this.data.goods.goods_content,
+            success: function(res) {
+                wx.getClipboardData({
+                    success: function(res) {
+                        wx.showToast({
+                            title: '内容已复制'
+                        })
+                    }
+                })
+            }
+        })
     },
     wuxCountDown(date) {
         console.log(date, '时间')
@@ -546,12 +566,12 @@ Page({
 
         //未登录 弹出授权弹窗
         if (!app.globalData.userInfo) {
-                    setTimeout(()=>{
-                        this.setData({
-                            showAuth: true
-                        })
-                    },5000)
-           }
+            setTimeout(() => {
+                this.setData({
+                    showAuth: true
+                })
+            }, 5000)
+        }
 
 
 
@@ -691,7 +711,7 @@ Page({
 
 
     },
-    toPublish(){
+    toPublish() {
 
         wx.navigateTo({
             url: '../publish/publish'
@@ -806,11 +826,11 @@ Page({
             app.globalData.openid = openid
             app.login_third(e.detail).then((res) => {
                     wx.hideLoading()
-                     wx.showToast({
-                        title:'登录成功',
-                        icon:'none'
+                    wx.showToast({
+                        title: '登录成功',
+                        icon: 'none'
                     })
-                     
+
                     this.setData({
                         showAuth: false
                     })
