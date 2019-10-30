@@ -247,3 +247,15 @@
     background: #fffdf9;
     padding:6px;
 }
+
+.i-join{
+    border-radius: 10px;
+    padding:8rpx 5rpx;
+    background: #333;
+    color: #fff;
+    font-size: 20rpx;
+    opacity: 0.9!important;
+    width: 120rpx
+}
+
+

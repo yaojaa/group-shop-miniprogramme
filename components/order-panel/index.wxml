@@ -5,8 +5,12 @@
         
             <view class="flex align-center" wx:if="{{user}}">
 
-                <image src="{{item.seller.headimg}}" class="shop-tb mr-xs">
+
+        <navigator url="../userhome/index?id={{item.store.store_id}}"  open-type="redirect">
+                <image src="{{item.seller.headimg}}" class="shop-tb mr-xs" >
                 </image>
+       </navigator>
+
                 <view class="flex-sub text-hide" >
                     {{item.seller.nickname}}
                </view>

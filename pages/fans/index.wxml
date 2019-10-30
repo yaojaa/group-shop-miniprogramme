@@ -11,7 +11,7 @@
                 </view>
                 <view class="date">
                     {{item.time_ago}}
-                    <!-- 使用{{item.user_phone}} 手机  -->浏览了{{item.user_staytime}}
+                    <!-- 使用{{item.user_phone}} 手机  -->浏览了{{item.user_staytime}} 通过{{item.user_scene_txt}}
                     <!-- {{secen[item.user_scene]}}打开， -->
                 </view>
             </view>
