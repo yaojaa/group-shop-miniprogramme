@@ -714,7 +714,7 @@ Page({
     toPublish() {
 
         wx.navigateTo({
-            url: '../publish/publish'
+            url: '../publish-select/index'
         })
 
     },

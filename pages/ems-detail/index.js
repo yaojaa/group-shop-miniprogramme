@@ -16,16 +16,18 @@ Page({
         goods: ''
     },
     checkExpress(options) {
+
+        console.log('options',options)
         let currentExpress = this.data.express[options.index];
-        if(currentExpress.status){
+        // if(currentExpress.status){
 
-            this.setData({
-                currentIndex: options.index,
-                ['express[' + options.index + '].traces']: currentExpress.traces
-            })
+        //     this.setData({
+        //         currentIndex: options.index,
+        //         ['express[' + options.index + '].traces']: currentExpress.traces
+        //     })
 
-            return;
-        }
+        //     return;
+        // }
 
         wx.showLoading()
         util.wx.get('/api/order/get_express_info', {
@@ -164,6 +166,8 @@ Page({
     })
     },
     toCheckExpress(e) {
+
+        console.log('tockeck')
         let i = e.currentTarget.dataset.index;
         // if(this.data.currentIndex != i){
             this.checkExpress({

@@ -71,7 +71,7 @@
             </view>
         </view>
     </i-panel>
-    <i-panel hide-border title="最新订单" extra="更多" link="../new-order-list/index">
+    <i-panel wx:if="{{orderList.length}}" hide-border title="最新订单" extra="更多" link="../new-order-list/index">
         <view class="control">
             
             <view class="newlist">

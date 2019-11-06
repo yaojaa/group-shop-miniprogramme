@@ -244,6 +244,8 @@ Page({
                                 const key = 'dataList['+pindex+']['+cindex+']'
                                 const currentItem = this.data.dataList[pindex][cindex]
                                       currentItem.removed = true
+
+                                console.log('key',key)
                                 
                                 //删除逻辑
                                 if (opt == 'toset_del') {
@@ -258,7 +260,7 @@ Page({
 
                                 } else {
 
-                                         this.setData({
+                                   this.setData({
                                         [key]: res.data.data
                                     })
                                     wx.showToast({ title: '操作成功' })

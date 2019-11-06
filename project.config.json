@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 69,
 			"list": [
 				{
 					"id": 0,
@@ -527,6 +527,20 @@
 					"name": "pages/fans-mg/index",
 					"pathName": "pages/fans-mg/index",
 					"query": "id=835&name=%E4%B8%93%E4%B8%9A%E7%BA%A7%E7%83%A4%E8%96%AF%E4%B8%93%E7%94%A8%E7%BA%A2%E8%96%AF%20%E7%AA%96%E8%97%8F%E4%B8%80%E4%B8%AA%E6%9C%88",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发货单",
+					"pathName": "pages/ordermanage/list",
+					"query": "id=872&goods_name=沂蒙山紫罗兰紫薯 宝宝薯 秒杀 限量30单&delivery_method=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人主页",
+					"pathName": "pages/ems-detail/index",
+					"query": "code0=9896674977689&com0=邮政快递包裹&index=0&order_id=6710&user=孙克敏&goods=【臻·四季】石门蜜橘—来自中国柑橘之乡的甜蜜味道",
 					"scene": null
 				}
 			]

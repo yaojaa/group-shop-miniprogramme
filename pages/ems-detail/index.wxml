@@ -1,11 +1,4 @@
 <view class="container gray-wrap cf">
-
-
-    <view class="pcenter">
-        <button open-type="share" class="btn button-hover">分享物流信息</button>
-    </view>
-
-
     <view wx:for="{{express}}" wx:key="{{item.express_code}}" class="pa white-bg flex mv-sm align-center">
         <view class="wuliu-box">
             <i-icon wx:if="{{currentIndex == index}}" type="time" color="#49b34d" size="48" />
@@ -14,16 +7,18 @@
         <view class="flex-sub ml-df">
             <view class="item-list" bindtap="toCheckExpress" data-index="{{index}}">
                 <view class="item">
-                    <text class="text-gray">物流公司：</text>
+                    <text class="text-gray"></text>
                     <text>{{item.express_company}}</text>
                 </view>
                 <view class="item text-justify">
-                    <view> <text class="text-gray">物流单号：</text>
+                    <view> <text class="text-gray"></text>
                         <text>{{item.express_code}}</text></view>
                 </view>
             </view>
         </view>
         <view>
+
+            <button class="btn primary sm hollow button-hover" data-index="{{index}}" bindtap="toCheckExpress">重新查询</button>
             
             <button class="btn primary sm hollow button-hover" data-index="{{index}}" bindtap="copyOrder">复制单号</button>
         </view>

@@ -22,7 +22,14 @@
         <view class="info f12 ">
             访问 <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 
 
-            <view class="i-join">我的订单</view>
+            <view class="i-join">
+                                <navigator url="../order-list/index">
+
+
+
+                   <view class="mini-avatar"> <open-data type="userAvatarUrl"></open-data></view> 我的订单
+</navigator>
+               </view>
         </view>
     </view>
     <!--     <view class="menu flex-box">

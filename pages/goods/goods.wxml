@@ -21,7 +21,7 @@
                     </image>
                 </view>
                 <view class="user-info-bd">
-                    <text class="name">{{goods.user.nickname}}</text>
+                    <text class="name">{{goods.user.nickname}}为您推荐</text>
                 </view>
             </view>
         </view>
@@ -209,34 +209,40 @@
             <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
 
-    </view>
-                <view class="flex text-center" style="padding: 10px 0 25px;">
-                    <view class="flex-sub"><button class="btn   " bindtap='copyGoods'>
-<i-icon type="send" color="#999" />                        </button></view>
+                       <view class="flex text-center" style="padding: 15px 0">
+                    <view class="flex-sub"><button class="btn green_bg" bindtap='copyGoods'>
+<i-icon type="editor" color="#49b34d" />   复制转载                     </button></view>
                     <div class="solid-right"></div>
-                    <view class="flex-sub"><button class="btn   " bindtap='copyDetail'><text class="text-muted">生成文字接龙</text></button></view>
+                    <view class="flex-sub"><button class="btn green_bg" bindtap='copyDetail'>
+                    <i-icon type="barrage" color="#49b34d" /> 
+                    文字接龙</button></view>
                     <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
                 </view>
 
-        <view class="weui-footer">
-        <view class="weui-footer__links">
-            <button size="mini" class="btn_no_style" bindtap="toPublish"> + 发布新活动 </button>
+    </view>
+
+
+        <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
+        <view class="weui-footer__links" bindtap="toPublish">
+            <button size="mini" class="btn_no_style" > + 我也要发布 </button>
         </view>
-        <view></view>
-
-
     </view>
 
 <view class='footer-cart'>
         <view class='icon' bindtap='goHomePage'>
-            <i-icon type="shop_fill" size="26" color="#333" />
-    <text class="label">主页</text>
+
+             <image src="{{goods.user.headimg}}" class="avatar" 
+             style="width: 18px;height: 18px;margin-top: 3px">
+                    </image>
+
+
+    <text class="label">主 页</text>
         </view>
           <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
-            <text class="label">我的</text>
+            <text class="label">我 的</text>
         </view>
-        <form style="flex:3;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
+        <form style="flex:2;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
             <button wx:if="{{goods && goods._expires==1 }}" class="buy linenear_bg" formType="submit">立即参与</button>
             <button wx:if="{{goods && goods._expires == 2 }}" class="buy linenear_bg" formType="submit">未开始</button>
