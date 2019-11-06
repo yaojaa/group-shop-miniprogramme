@@ -96,7 +96,7 @@ Page({
             },
             qrcode: {
                 src: '',
-                size: 200 //二维码显示尺寸默认300
+                size: 300 //二维码显示尺寸默认300
             },
             hw_data: null,
             showAuth: false,
