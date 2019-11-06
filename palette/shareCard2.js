@@ -168,13 +168,13 @@ function goodsSpec(config, imgHeight, headImgSize, desLeft, width, hB, qrcodeSiz
     if(i < parseInt(qrcodeSize / lineHeight)){
       spec.push({
         type: 'text',
-        text: e.spec_name + '  ¥ ' + e.spec_price,
+        text: e.spec_name + '  ¥' + e.spec_price,
         css: {
           top: `${2*desLeft + headImgSize + imgHeight + 2*hB + config.content.des[0].height + i*lineHeight}rpx`,
           left: `${desLeft}rpx`,
           align: 'left',
           color: '#222',
-          width: `${width - 3*desLeft - qrcodeSize}rpx`,
+          width: `${width - 2*desLeft}rpx`,
           maxLines: 1,
           fontSize: "30rpx",
           lineHeight: lineHeight + 'rpx'
