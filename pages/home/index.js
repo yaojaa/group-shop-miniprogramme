@@ -31,6 +31,23 @@ Page({
             data: 'x'
         })
     },
+
+    getProList() {
+
+        ///user/get_bought_store_goods
+        ///api/user/get_browsed_goods
+        util.wx.get('/api/user/get_bought_store_goods').then(res => {
+            if (res.data.code == 200) {
+                this.setData({
+                    proList: res.data.data.goods
+                })
+            }
+            this.setData({
+                isloading:false
+            })
+        })
+    },
+
     handleTabBarChange({ detail }) {
         this.setData({
             current: detail.key
@@ -133,6 +150,8 @@ Page({
         this.data.goodslist = []
         this.getGoodsList()
         this.get_store_info()
+
+        this.getProList()
         
 
     },

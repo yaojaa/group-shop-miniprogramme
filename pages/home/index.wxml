@@ -38,7 +38,7 @@
 
         </i-row>
     </view>
-    <i-panel i-class="marginTop" title="我参与的" extra="查看全部" link="../order-list/index">
+    <i-panel i-class="marginTop" title="我参与的" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
                  
@@ -71,6 +71,63 @@
             </view>
         </view>
     </i-panel>
+
+    <i-panel>
+
+            <block wx:for="{{proList}}" wx:key="{{index}}">
+        <view class='product-item'>
+            <view class='item-body'>
+                <navigator class="flex align-center pb-sm van-hairline--bottom " url="../userhome/index?id={{item.store.store_id}}" hover-class="none">
+                    <view class="item-avatar">
+                        <image class="avatar" src="{{item.user.headimg}}" />
+                    </view>
+                    <view class="item-name flex-sub">
+                        <view class="text-justify">
+                            <text class="f14">{{item.user.nickname}}</text>
+                            <view class="right-info">
+                                <i-icon type="homepage_fill" color="#999" /><text class="f12 text-muted">去主页逛逛</text></view>
+                        </view>
+                        <view class="time text-xs text-muted">剩余时间：{{item._expires.countdown.day}}天
+                            {{item._expires.countdown.hour}}小时
+                            {{item._expires.countdown.min}}分
+                        </view>
+                    </view>
+                </navigator>
+                <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail">
+                    <text>{{item.goods_name}}</text>
+
+                <!--     <text class='text-red' wx:if="{{item.price_range.min == item.price_range.max}}">￥{{item.price_range.min}}</text><text class="text-red" wx:else>￥{{item.price_range.min}}~{{item.price_range.max}}</text> -->
+                    
+                </view>
+                <view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
+                    <block wx:if="{{item.goods_images.length == 1}}">
+                        <view class="item-img-box-one">
+                            <image mode="widthFix" class="cover" src="{{item.goods_images[0].img_url}}?imageView2/1/w/600/h/400/interlace/1"></image>
+                        </view>
+                    </block>
+                    <block wx:if="{{item.goods_images.length == 2}}">
+                        <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
+                            <image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/400/h/300/interlace/1"></image>
+                        </view>
+                    </block>
+                    <block wx:if="{{item.goods_images.length >= 3}}">
+                        <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=2}}">
+                            <image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/200/h/180/interlace/1"></image>
+                        </view>
+                    </block>
+                    <!--  <scroll-view class="item-cover-scroll" scroll-x>
+                            <view class='item-cover' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
+                                <image  src="{{im}}"></image>
+                            </view>
+                        </scroll-view> -->
+                </view>
+            </view>
+        </view>
+    </block>
+
+    </i-panel>
+
+
     <i-panel wx:if="{{orderList.length}}" hide-border title="最新订单" extra="更多" link="../new-order-list/index">
         <view class="control">
             
@@ -117,7 +174,7 @@
     </view>
     <i-panel wx:if="{{goodslist.length== 0 && !is_loading }}">
         <view class='new-goods' bindtap="new_btn">
-            <text>+ 发布一个 </text>
+            <text>+ 发布活动 </text>
         </view>
     </i-panel>
     <view style="margin-bottom:100rpx"></view>

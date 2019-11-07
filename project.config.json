@@ -542,6 +542,13 @@
 					"pathName": "pages/ems-detail/index",
 					"query": "code0=9896674977689&com0=邮政快递包裹&index=0&order_id=6710&user=孙克敏&goods=【臻·四季】石门蜜橘—来自中国柑橘之乡的甜蜜味道",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

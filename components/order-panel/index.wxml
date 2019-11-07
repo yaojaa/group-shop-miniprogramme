@@ -25,7 +25,6 @@
                </view>
             </view>
 
-
         </view>
         <view class="text-muted {{'color_'+item.order_status}}">{{item.order_status_txt}}</view>
     </view>
