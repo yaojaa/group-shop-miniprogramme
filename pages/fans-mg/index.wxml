@@ -18,7 +18,14 @@
                     </view>
                 </view>
                 <view class="date text-sm text-muted mt-sm">
-                    最后访问：2019-12-10 最进参与：青柠檬3斤
+                   <view class="a">
+                       最后访问：{{item.last_visit_time}} 
+                   </view> 
+                  <view class="a">
+                       最近参与：{{item.goods_name}}
+                   </view>
+
+                   
                 </view>
             </view>
         </view>

@@ -35,7 +35,9 @@
         "pages/identify/identify",
         "pages/modify-address/index",
         "pages/express/index",
-        "pages/send-list/index"
+        "pages/send-list/index",
+        "pages/ems/ems"
+
     ],
     "subpackages": [{
         "root": "business",

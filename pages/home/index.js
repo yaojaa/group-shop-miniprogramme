@@ -20,7 +20,8 @@ Page({
         CustomBar: app.globalData.CustomBar,
         Custom: app.globalData.Custom,
         show_tips: false,
-        orderList:[]
+        orderList:[],
+        isCustome:false
     },
     closleTips() {
         this.setData({
@@ -152,7 +153,7 @@ Page({
         this.get_store_info()
 
         this.getProList()
-        
+        this.getOrderList()
 
     },
     getOrderCount() {
@@ -201,14 +202,15 @@ Page({
           util.wx.get('/api/seller/get_order_list', {
                 // orderdate: 1,
                 order_status:1,
-                pagesize:3
+                pagesize:20
             })
             .then(res => {
 
                 if (res.data.code == 200) {
 
                    this.setData({
-                    orderList:res.data.data.order_list
+                    orderList:res.data.data.order_list,
+                    isCustome:res.data.data.order_list.length< 0?false:true
                    })
                 }
             })
@@ -258,10 +260,7 @@ Page({
 
                     })
 
-                    if(res.data.data.goodslist.length>0){
-
-                        this.getOrderList()
-                    }
+                
 
 
                     this.totalpage = res.data.data.page.totalpage

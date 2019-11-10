@@ -74,7 +74,7 @@
 
     <i-panel>
 
-            <block wx:for="{{proList}}" wx:key="{{index}}">
+            <block wx:for="{{proList}}" wx:if="{{isCustome}}" wx:key="{{index}}">
         <view class='product-item'>
             <view class='item-body'>
                 <navigator class="flex align-center pb-sm van-hairline--bottom " url="../userhome/index?id={{item.store.store_id}}" hover-class="none">
@@ -132,6 +132,7 @@
         <view class="control">
             
             <view class="newlist">
+                <scroll-view style="height: 100px" scroll-y > 
                 <view class="item" wx:for="{{orderList}}" 
                 data-id="{{item.order_detail[0].goods_id}}" 
                 data-delivery_method="{{item.delivery_method}}"
@@ -142,10 +143,14 @@
  参与了你的 
                     <text class="bold">{{item.order_detail[0].goods_name}}</text>
                 </view>
+
+            </scroll-view>
                    <button class='pubbtn' bindtap="new_btn">
           <i-icon type="add" size="20" />发布一个
         </button>
             </view> 
+
+
      
         </view>
 
@@ -172,7 +177,7 @@
         </view>
     </i-panel>
     </view>
-    <i-panel wx:if="{{goodslist.length== 0 && !is_loading }}">
+    <i-panel wx:if="{{isCustome && !is_loading }}">
         <view class='new-goods' bindtap="new_btn">
             <text>+ 发布活动 </text>
         </view>

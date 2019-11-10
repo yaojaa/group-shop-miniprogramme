@@ -1,11 +1,28 @@
 //app.js
+
 App({
+
+    url2json : function(string, overwrite) {
+    var obj = {},
+        pairs = string.split('&'),
+        d = decodeURIComponent,
+        name, value;
+
+    pairs.forEach((item, i) => {
+        var pair = item.split('=');
+        name = d(pair[0]);
+        value = d(pair[1]);
+        obj[name] = value;
+
+    })
+    console.log('url2json',obj)
+    return obj;
+},
 
     //请求维系获取openId
     getOpenId: function() {
 
         return new Promise((resolve, reject) => {
-
             // 登录
             wx.login({
                 success: res => {
@@ -243,7 +260,7 @@ App({
         //如果是扫二维码进来 带scene
         if (typeof option.query.scene !== 'undefined') {
             var scene = decodeURIComponent(option.query.scene)
-            scene = util.url2json(scene)
+            scene = this.url2json(scene)
             this.comeInfo.from_user_id = scene.from_id || ''
             this.comeInfo.online = 0
         } else {

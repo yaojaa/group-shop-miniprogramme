@@ -229,14 +229,15 @@ Page({
             success: (res) => {
 
                 if (res.confirm) {
-                            wx.showLoading()
+                    wx.showLoading()
 
                     util.wx.post('/api/seller/set_order_status', {
                             opt,
                             order_id
                         }).then(res => {
+                             wx.hideLoading()
                             if (res.data.code == 200) {
-                                wx.hideLoading()
+                               
                                 this.getStatistics()
                                 //操作完成之后的回调
                                 
@@ -274,8 +275,12 @@ Page({
                                 wx.showToast({ title: '订单操作失败' })
 
                             }
+                        },()=>{
+                             wx.hideLoading()
                         })
                         .catch(e => {
+
+                             wx.hideLoading()
 
                         })
                 }
@@ -395,6 +400,8 @@ Page({
             }).then((res) => {
 
                 var resdata = res.data.data.order_list
+
+
 
                 var key = 'dataList[' + (this.data.cpage - 1) + ']'
 

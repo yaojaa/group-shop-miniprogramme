@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 69,
+			"current": 37,
 			"list": [
 				{
 					"id": 0,
@@ -313,9 +313,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 37,
 					"name": "粉丝",
-					"pathName": "pages/fans/index",
+					"pathName": "pages/fans-mg/index",
 					"query": "",
 					"scene": null
 				},
@@ -547,6 +547,13 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人主页",
+					"pathName": "pages/ems/ems",
 					"query": "",
 					"scene": null
 				}
