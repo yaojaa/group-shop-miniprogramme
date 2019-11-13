@@ -688,6 +688,12 @@ display: inline-block;
     height: 80% !important;
 }
 
+.share-friends-img .share-img-box .images swiper-item,
+.share-friends-img .share-img-box .images{
+    height: 100%;
+    width: 100%;
+}
+
 .share-friends-img .share-img-box .btn {
     bottom: -23rpx;
 }

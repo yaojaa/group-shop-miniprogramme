@@ -295,6 +295,7 @@
     <view class='share-painter'>
         <view wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
         <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
+        <share-painter palette="{{template2}}" bind:imgOK="onFriendsImgOK2" />
     </view>
     <!--     <i-message id="message" />
  -->
@@ -339,7 +340,14 @@
                 <view class='share-friends-loading-txt'><text>努力生成中,请稍等10秒...</text></view>
             </view>
             <view class="text-center share-img-box" wx:else>
-                <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
+                <swiper class="images" indicator-dots bindchange="friendsImgChange">
+                    <swiper-item>
+                      <image class='icon-img' src='{{shareFriendsImg1}}' mode='aspectFit'></image>
+                    </swiper-item>
+                    <swiper-item>
+                      <image class='icon-img' src='{{shareFriendsImg2}}' mode='aspectFit'></image>
+                    </swiper-item>
+                </swiper>
                 <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages"> 保存海报 </button>
             </view>
         </view>
