@@ -97,7 +97,7 @@
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
                 <i-icon type="send" size="24" color="#f90" />
-                <view class="text-muted text-xs">分享</view>
+                <view class="text-muted text-xs">分享海报</view>
             </button>
         </view>
         <view class="load-area" wx:if="{{!goods}}">
@@ -313,7 +313,7 @@
         </view>
         <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">登 录</button>
 
-        <button size="mini" type="warn" plain="false" bindtap="rejectAuth" >取 消</button>
+        <button size="mini" type="default" plain="false" bindtap="rejectAuth" >取 消</button>
 
 </view>
     </van-popup>
@@ -348,7 +348,7 @@
                       <image class='icon-img' src='{{shareFriendsImg2}}' mode='aspectFit'></image>
                     </swiper-item>
                 </swiper>
-                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages"> 保存海报 </button>
+                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages"> 保存海报图 </button>
             </view>
         </view>
     </view>

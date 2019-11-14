@@ -33,6 +33,14 @@ Page({
         })
     },
 
+     toDetail(e) {
+        console.log(e)
+        let postId = e.currentTarget.dataset.id || e.target.dataset.id
+        wx.navigateTo({
+            url: '../goods/goods?goods_id=' + postId
+        })
+    },
+
     getProList() {
 
         ///user/get_bought_store_goods
@@ -210,7 +218,7 @@ Page({
 
                    this.setData({
                     orderList:res.data.data.order_list,
-                    isCustome:res.data.data.order_list.length< 0?false:true
+                    isCustome:res.data.data.order_list.length> 0?false:true
                    })
                 }
             })

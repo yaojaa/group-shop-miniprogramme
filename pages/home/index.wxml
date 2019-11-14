@@ -146,7 +146,7 @@
 
             </scroll-view>
                    <button class='pubbtn' bindtap="new_btn">
-          <i-icon type="add" size="20" />发布一个
+          <i-icon type="add" size="20" />发布新商品
         </button>
             </view> 
 
@@ -179,7 +179,7 @@
     </view>
     <i-panel wx:if="{{isCustome && !is_loading }}">
         <view class='new-goods' bindtap="new_btn">
-            <text>+ 发布活动 </text>
+            <text>+ 我也要发布商品 </text>
         </view>
     </i-panel>
     <view style="margin-bottom:100rpx"></view>

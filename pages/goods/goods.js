@@ -247,6 +247,12 @@ Page({
                                 console.log(1)
                                 wx.saveImageToPhotosAlbum({
                                     filePath: _this.data.shareFriendsImg,
+                                      success(result) {
+                                            wx.showToast({
+                                                title:"保存成功",
+                                                icon:"none"
+                                            })
+                                          }
                                 });
                             }
                         })
@@ -254,6 +260,12 @@ Page({
                         console.log(2)
                         wx.saveImageToPhotosAlbum({
                             filePath: _this.data.shareFriendsImg,
+                             success(result) {
+                                wx.showToast({
+                                    title:"保存成功",
+                                    icon:"none"
+                                })
+                              }
                         });
                     }
                 }
