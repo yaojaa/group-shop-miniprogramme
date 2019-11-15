@@ -573,6 +573,10 @@ function drawShareFriends(_this, res, buyuser) {
     // 购买头像
     config.buyuser = buyuser;
 
+    // 商品最大值和最小值
+    config.price_max = goods.price_max;
+    config.price_min = goods.price_min;
+
     //内容赋值获取高度
     _this.setData({
         shareCardConfig: _this.data.shareCardConfig

@@ -4,10 +4,12 @@ export default class LastMayday {
     const imgHeight = 600; //商品图片高度
     const headImgSize = 160; //二维码尺寸
     const desLeft = config.content.margin || 30; //文章两侧边距
-    const qrcodeSize = 200; //规格高度
+    const qrcodeSize = 60; //规格高度
     const dpr = config.content.des[0].width ? (width - desLeft * 2) / config.content.des[0].width : 1;
     const headSize = 66;
     const hB = 20; // 头像下边界
+
+    console.log(config)
 
     const qrcodeArr = [
       //二维码
@@ -162,26 +164,41 @@ function headArr(config, imgHeight, headImgSize, qrcodeSize, desLeft, headSize, 
 
 // 规格
 function goodsSpec(config, imgHeight, headImgSize, desLeft, width, hB, qrcodeSize){
-  let spec = [];
-  config.spec.forEach((e,i) => {
-    let lineHeight = 48;
-    if(i < parseInt(qrcodeSize / lineHeight)){
-      spec.push({
+  let spec = [{
         type: 'text',
-        text: e.spec_name + '  ¥' + e.spec_price,
+        text: '¥' + config.price_min + ' - ' + config.price_max,
         css: {
-          top: `${2*desLeft + headImgSize + imgHeight + 2*hB + config.content.des[0].height + i*lineHeight}rpx`,
+          top: `${2*desLeft + headImgSize + imgHeight + 2*hB + config.content.des[0].height}rpx`,
           left: `${desLeft}rpx`,
           align: 'left',
-          color: '#222',
+          color: '#f00',
           width: `${width - 2*desLeft}rpx`,
           maxLines: 1,
-          fontSize: "30rpx",
-          lineHeight: lineHeight + 'rpx'
+          fontSize: "36rpx",
+          lineHeight: qrcodeSize + 'rpx',
+          fontWeight: 'bold'
         },
-      })
-    }
-  })
+      }];
+
+  // config.spec.forEach((e,i) => {
+  //   let lineHeight = 48;
+  //   if(i < parseInt(qrcodeSize / lineHeight)){
+  //     spec.push({
+  //       type: 'text',
+  //       text: e.spec_name + '  ¥' + e.spec_price,
+  //       css: {
+  //         top: `${2*desLeft + headImgSize + imgHeight + 2*hB + config.content.des[0].height + i*lineHeight}rpx`,
+  //         left: `${desLeft}rpx`,
+  //         align: 'left',
+  //         color: '#222',
+  //         width: `${width - 2*desLeft}rpx`,
+  //         maxLines: 1,
+  //         fontSize: "30rpx",
+  //         lineHeight: lineHeight + 'rpx'
+  //       },
+  //     })
+  //   }
+  // })
 
   return spec;
 
