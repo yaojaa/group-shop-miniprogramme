@@ -76,8 +76,7 @@ Page({
         msgvisible: false,
         showShareFriendsCard: false,
         shareFriendsImg: '',
-        shareFriendsImg1: '',
-        shareFriendsImg2: '',
+        shareFriendsImgs: [],
         template: {},
         template2: {},
         shareCardConfig: {
@@ -274,22 +273,24 @@ Page({
             this.handlePoster();
         }
     },
-    onFriendsImgOK2(e) {
-        this.setData({
-            shareFriendsImg: e.detail.path,
-            shareFriendsImg1: e.detail.path
-        })
-        console.log('imgOk2', e);
-    },
     onFriendsImgOK(e) {
+        this.data.shareFriendsImgs.push(e.detail.path);
+        this.data.shareFriendsImg = this.data.shareFriendsImgs[0];
         this.setData({
-            shareFriendsImg2: e.detail.path
+            shareFriendsImgs: this.data.shareFriendsImgs,
+            shareFriendsImg: this.data.shareFriendsImg
         })
-        console.log('imgOk', e);
+        console.log('imgOk', this.data.shareFriendsImgs);
     },
+    // onFriendsImgOK(e) {
+    //     this.setData({
+    //         shareFriendsImg2: e.detail.path
+    //     })
+    //     console.log('imgOk', e);
+    // },
     friendsImgChange(e){
         console.log(e.detail.current)
-        this.data.shareFriendsImg = this.data['shareFriendsImg' + (e.detail.current + 1)]
+        this.data.shareFriendsImg = this.data.shareFriendsImgs[e.detail.current]
     },
     showGallery(e) {
         const { current } = e.currentTarget.dataset

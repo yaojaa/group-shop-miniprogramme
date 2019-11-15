@@ -6,7 +6,7 @@ const util = require('./lib/util');
 const downloader = new Downloader();
 
 // 最大尝试的绘制次数
-const MAX_PAINT_COUNT = 1;
+const MAX_PAINT_COUNT = 5;
 Component({
   canvasWidthInPx: 0,
   canvasHeightInPx: 0,
