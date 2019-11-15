@@ -20,18 +20,15 @@ Page({
         clickShare:false,
         numers: '❶❶❷❸❹❺❻❼❽❾❿'.split(''),
         wordArr: {
-            1: '',
-            2: '',
-            3: '',
-            4: '',
-            5: '',
-            6: '',
+            1: '值，躺着把钱省了',
+            2: '人生太多选择题 跟着买 就对了',
+            3: '错过又要等一年 该出手时就出手',
+            4: '该出手时就出手',
+            5: '不要睡 起来嗨',
+            6: '机不可失，失不再来',
             7: '',
             8: '',
-            9: ' ',
-            11: '',
-            12: '',
-            13: ''
+            9: ' '
         },
         order:{}
     },
@@ -135,7 +132,7 @@ Page({
         let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...' + this.data.goods_name
         let numberIcon = ''
         return {
-            title: '人生太多选择题 跟着买 就对了',
+            title: '',
             path: '/pages/goods/goods?goods_id=' + this.data.goods_id
         }
     },

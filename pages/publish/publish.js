@@ -878,6 +878,17 @@ Page({
 
     onLoad: function(option) {
 
+           //未登录 弹出授权弹窗
+        if (!app.globalData.userInfo) {
+            setTimeout(() => {
+                this.setData({
+                    showAuth: true
+                })
+            }, 2000)
+        }
+
+
+
         if(option.copy){
             this.copy = true
         }

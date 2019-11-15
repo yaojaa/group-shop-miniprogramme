@@ -1106,6 +1106,14 @@ Page({
     //   })
     copyGoods() {
 
+          //未登录 弹出授权弹窗
+        if (!app.globalData.userInfo) {
+                this.setData({
+                    showAuth: true
+                })
+            return
+        }
+
         wx.redirectTo({
             url: '../publish/publish?goods_id=' + this.data.goods.goods_id + '&copy=true'
         })
