@@ -1,6 +1,7 @@
 const qiniuUploader = require("./qiniuUploader");
 import Card from '../palette/card';
-import shareCard from '../palette/shareCard2';
+import shareCard from '../palette/shareCard';
+import shareCard2 from '../palette/shareCard2';
 const app = getApp();
 
 
@@ -601,6 +602,7 @@ function drawShareFriends(_this, res, buyuser) {
             console.log(config);
             _this.setData({
                 template: new shareCard().palette(config),
+                template2: new shareCard2().palette(config),
             });
 
         })

@@ -62,7 +62,7 @@ export default class LastMayday {
           top: `${desLeft + (headImgSize/2-34)/2}rpx`,
           left: `${desLeft + headImgSize + 20}rpx`,
           color: '#000',
-          fontSize: "34rpx",
+          fontSize: "38rpx",
           lineHeight: '60rpx',
           fontWeight: 'bold'
         }
@@ -70,12 +70,12 @@ export default class LastMayday {
       //发布了一个活动 快来识别二维码参与
       {
         type: 'text',
-        text: '发布了一个活动 快来识别二维码参与',
+        text: '为你推荐好东西 快来识别二维码参与',
         css: {
           top: `${desLeft + headImgSize/2 + (headImgSize/2-26)/2}rpx`,
           left: `${desLeft + headImgSize + 20}rpx`,
           color: '#666',
-          fontSize: "24rpx",
+          fontSize: "26rpx",
           lineHeight: '60rpx',
         }
       },

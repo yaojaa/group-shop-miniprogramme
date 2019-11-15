@@ -27,12 +27,13 @@ page{
  align-items: center;
   text-align: center;
   display: block;
-  margin-bottom:60rpx;
 }
 .header .title{
-  font-size: 48rpx;
-  color: green;
-  font-weight:bold
+  font-size: 54rpx;
+  color: #ff7200;
+  font-weight:bold;
+ margin-bottom:50rpx;
+
 }
 .order{
   margin: 25px 20px;
@@ -192,6 +193,11 @@ page{
   margin:0 auto 35rpx;
 
 }
+
+.emoji{
+  font-size: 60rpx;
+  text-align: center;
+}
 .imglist{
   text-align: center;
   background: #f7efe3;
@@ -200,7 +206,7 @@ page{
   margin-bottom: 150rpx;
   height:150rpx;
   display: block;
-  margin-top: 100rpx;
+  margin-top: 20rpx;
   margin-left: 5px;
   margin-right: 5px
 

@@ -16,7 +16,12 @@
 
         <view class='header'>
             <view class='title'> {{create_number}}. <open-data type="userNickName"></open-data>已参团 +1</view>
+             <view class="emoji" >
+            👇
+          </view>
         </view>
+
+       
 
         <view class="imglist" wx:if="{{onshare}}">
 
@@ -68,7 +73,7 @@
         <button class="linenear_bg" hove-class="linenear_bg_hover" type='primary' open-type="share">分享告知</button>
     </view>
     <view class='share'>
-        建议支付后告知一下，以免遗漏～
+        建议支付后分享一下，以免遗漏～同时活跃群气氛
   </view><view></view>
   
 </view> 

@@ -135,7 +135,7 @@ Page({
         let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...' + this.data.goods_name
         let numberIcon = ''
         return {
-            title: '',
+            title: '人生太多选择题 跟着买 就对了',
             path: '/pages/goods/goods?goods_id=' + this.data.goods_id
         }
     },

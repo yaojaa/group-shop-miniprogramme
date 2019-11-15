@@ -132,7 +132,7 @@
 					"id": 10,
 					"name": "支付成功！",
 					"pathName": "pages/paySuccess/index",
-					"query": "order_id=1991&goods_id=257",
+					"query": "order_id= 7493&goods_id=969",
 					"scene": null
 				},
 				{
