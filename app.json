@@ -5,6 +5,7 @@
         "pages/publish-select/index",
         "pages/index/index",
         "pages/withdrawal/index",
+        "pages/withdrawal-record/index",
         "pages/goods/goods",
         "pages/publish/publish",
         "pages/publish-success/publish-success",
