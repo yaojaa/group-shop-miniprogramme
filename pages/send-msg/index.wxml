@@ -1,0 +1,24 @@
+<view class="container p-df">
+    <view class="bold">
+        当前商品：我爱吃的大苹果
+    </view>
+    <view class="mv-df">
+        <view class="p-df" style="background: #f8f8f8">
+            <wux-textarea hasCount rows="3" cursorSpacing="80" placeholder="请输入群发内容" />
+        </view>
+    </view>
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+        <view class="mv-df">
+            <van-radio name="1" checked-color="#49b34d"><view class="text-df">取货发货通知</view></van-radio>
+        </view>
+        <view class="mv-df">
+          <van-radio name="2" checked-color="#49b34d"><view class="text-df">上新通知</view></van-radio>
+        </view>
+    </van-radio-group>
+    
+    <view class="text-center p-lg">
+        <button class="btn xl primary block linenear_bg" form-type="submit">
+            立即发送
+        </button>
+    </view>
+</view>

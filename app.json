@@ -37,8 +37,8 @@
         "pages/modify-address/index",
         "pages/express/index",
         "pages/send-list/index",
-        "pages/ems/ems"
-
+        "pages/ems/ems",
+        "pages/send-msg/index"
     ],
     "subpackages": [{
         "root": "business",

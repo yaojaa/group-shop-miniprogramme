@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "发送通知",
+    "usingComponents":
+    {
+        "van-radio": "../../vant/radio/index",
+        "van-radio-group": "../../vant/radio-group/index",
+        "wux-textarea": "../../wux/textarea/index"
+    }
+}
