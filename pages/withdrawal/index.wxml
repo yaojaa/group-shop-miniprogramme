@@ -21,8 +21,10 @@
     <!-- <view>累计收款：{{store_money}}元</view>
      <view>约为您节省{{store_money/40*4}}小时</view> -->
     <view class="erweima" style="font-size: 14px;line-height: 1.5; text-align: left;color: #cc0000">
-        提现微信收取手续费0.6%，平台不收任何费用。微信限制每天最高提现5000元，超过次日到账。
-        有疑问可联系客服。
+        <view>提现微信收取手续费0.6%，平台不收任何费用。</view>
+          <view>	微信限制每天最高提现5000元，超过次日到账。</view>
+          <view>单次提现金额小于2000元，秒到账！</view>
+         <view> 有疑问可联系客服。</view>
     </view>
     <view class="center">
         <button open-type="contact" bindcontact="handleContact">联系客服</button>

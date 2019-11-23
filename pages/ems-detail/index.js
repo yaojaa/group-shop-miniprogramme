@@ -29,7 +29,10 @@ Page({
         //     return;
         // }
 
-        wx.showLoading()
+
+        this.setData({
+            loading:true
+        })
         util.wx.get('/api/order/get_express_info', {
             express_company: options.express_company,
             express_code: options.express_code,
@@ -41,7 +44,7 @@ Page({
                 this.setData({
                     currentIndex: options.index,
                     ['express[' + options.index + '].traces']: res.data.data.traces.reverse(),
-                    ['express[' + options.index + '].errorMsg']: '暂时没有物流信息，复制单号到快递官网试试',
+                    ['express[' + options.index + '].errorMsg']: '没有查到物流信息，可以点击重试或者复制单号到快递官网试试',
                     ['express[' + options.index + '].status']: true
                 })
             }else{ // 物流单号错误
@@ -55,9 +58,15 @@ Page({
                 })
 
             }
-            wx.hideLoading()
-        }, err => {
-            console.log('===err===',err)
+        this.setData({
+            loading:false
+        })        
+    }, err => {
+
+         this.setData({
+            loading:true
+        })
+
         })
     },
     copyOrder(e) {

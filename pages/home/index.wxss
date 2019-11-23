@@ -93,7 +93,7 @@ margin: 10px 50rpx 0;
 }
 
 .user-name{
-    font-size: 28rpx;
+    font-size: 34rpx;
     color: #fff
 }
 

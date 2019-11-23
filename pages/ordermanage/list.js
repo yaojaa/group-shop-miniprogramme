@@ -254,17 +254,21 @@ Page({
 
                                     this.setData({
                                         [key]: currentItem
+                                    },()=>{
+                                     wx.showToast({ title: '删除成功',icon:none })
                                     })
 
-                                    wx.showToast({ title: '删除成功' })
 
 
                                 } else {
 
                                    this.setData({
                                         [key]: res.data.data
+                                    },()=>{
+
+                                     wx.showToast({ title: '操作成功',icon:"none" })
+
                                     })
-                                    wx.showToast({ title: '操作成功' })
 
 
 

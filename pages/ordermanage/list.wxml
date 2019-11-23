@@ -5,13 +5,21 @@
         </navigator>
         <view class="actionsButtons">
             <view>
-                <!--    <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">一键复制收货人地址</button>
-                <button class=" round   mv-sm ml-sm  button-hover" size="mini" bindtap="exportExcel">导出名单</button> -->
-                <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
+               <!--  <van-button icon="star-o" type="primary" plain size="mini" >微信通知</van-button> -->
+             
+
+                 <van-button class="ml-sm" type="primary" plain size="mini" bindtap="sendMsg">群发通知</van-button>
+
+
+                   <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">地址列表</van-button>
+                <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">导出名单</van-button>
+          <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
                     <i-icon size="20" type="other" />
-                </i-button>
-                <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}" bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx" bind:click="handleClickItem1" />
-                <!--   <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
+                </i-button> -->
+
+
+               <!--  <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}" bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx" bind:click="handleClickItem1" />
+                  <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
                 <!--            <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
             <view slot="open">展开</view>
             <view slot="close">收起</view>
@@ -21,9 +29,9 @@
     </view>
     <view class="tabsArea">
         <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-            <i-tab key="0" title="已确认订单（{{valid_order.count}}）"></i-tab>
-            <i-tab key="3" title="待发货订单（{{back_order.count}}）"></i-tab>
-            <i-tab key="4" title="已发货订单（{{shipped_order.count}}）"></i-tab>
+            <i-tab key="0" title="已确认（{{valid_order.count}}）"></i-tab>
+            <i-tab key="3" title="待发货（{{back_order.count}}）"></i-tab>
+            <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
         </i-tabs>
     </view>
     <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
@@ -99,7 +107,7 @@
                 <view class="address" bindtap="copy" data-text="{{item.mobile}}">
                    <view> 姓名：{{item.consignee}}</view>
                    <view>  电话：{{item.mobile}} <text class="blue_text">复制</text> </view>
-                   <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}}</view>
+                   <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}} {{item.user_message}}</view>
                 </view>
             </view>
             <view class="remark scale-b-1px" wx:if="{{item.user_message}}">

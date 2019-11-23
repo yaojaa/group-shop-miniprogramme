@@ -57,7 +57,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 37,
+			"current": 72,
 			"list": [
 				{
 					"id": 0,
@@ -554,6 +554,13 @@
 					"id": -1,
 					"name": "个人主页",
 					"pathName": "pages/ems/ems",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "粉丝",
+					"pathName": "pages/ems-detail/index",
 					"query": "",
 					"scene": null
 				}

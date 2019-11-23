@@ -13,7 +13,8 @@
                 </navigator>
             </i-col>
             <i-col span="10" i-class="col-class">
-                <view class="user-name f18" bindtap="goSite">{{userInfo.nickname}}                     <i-icon type="homepage_fill" size="22" color="#ffffff" />
+                <view class="user-name" bindtap="goSite">{{userInfo.nickname}}                    
+                 <i-icon wx:if="{{!isCustome}}" type="homepage_fill" size="22" color="#ffffff" />
 </view>
                 <navigator   url="../identify/identify">
                     <view class="user-account f12">完善资料</view>
@@ -23,7 +24,7 @@
                 <navigator   url="../withdrawal/index">
 
 
-                <view class="take_money">
+                <view class="take_money" wx:if="{{!isCustome}}">
                  <view class="pending_money f16"> ¥ {{pending_money}}</view>
                     <view class="user-account f12">账户提现 
                         <i-icon type="enter" size="12" color="#ffffff"  />

@@ -19,3 +19,6 @@
 .item-list{
 	text-align: left;
 }
+.sm{
+	margin-left: 5px
+}

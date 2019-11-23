@@ -382,6 +382,16 @@ Page({
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
-    }
+    },
+    onShareAppMessage: function() {
+        if (app.globalData.userInfo) {
+          var  _uid = app.globalData.userInfo.user_id
+        }
+        return {
+            title: app.globalData.userInfo.nickname+'推荐您一个收款好助手',
+            imageUrl: this.shareImg,
+            path: 'pages/login/login'+'?from_id=' + _uid
+        }
+    },
 
 })

@@ -80,21 +80,25 @@ Page({
                 apply_money: this.data.inputMoney
             }).then((res) => {
                    wx.showToast({
-                        title: '申请提现成功，请耐心等待审核',
-                        icon: 'success'
+                        title: '提现成功 请查收',
+                        icon: 'none'
                     })
 
                    this.setData({
-                    inputMoney:''
-                   })
+                    inputMoney:'' 
+                  })
 
                    wx.hideLoading()
 
                     this.finance_withdrawal_list()
+                    this.get_store_info()
 
                 
             },(res)=>{
+             wx.hideLoading()
 
+             this.finance_withdrawal_list()
+                    this.get_store_info()
 
               wx.showToast({
                         title: res.data.msg,

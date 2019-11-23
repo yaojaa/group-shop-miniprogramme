@@ -285,8 +285,8 @@ padding: 15rpx 30rpx
 }
 .actionsButtons{
     position: absolute;
-    right: 10rpx;
-    top: -5rpx
+    right: 25rpx;
+    top: 23rpx
 }
 .goods_title{
     max-width: 300rpx;
