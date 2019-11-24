@@ -25,9 +25,9 @@
         <view class="statusBar">
             <!--                                 _expires //是否过期 1正常 2未开始 3已过期
  -->
-            <text wx:if="{{item._expires==2}}" style="color:#2d8cf0">未开始</text>
-            <text wx:if="{{item._expires==1}}" style="color:#19be6b">开团中</text>
-            <text wx:if="{{item._expires==3}}" style="color:#666">已结束</text>
+            <text wx:if="{{expires==2}}" style="color:#2d8cf0">未开始</text>
+            <text wx:if="{{expires==1}}" style="color:#19be6b">开团中</text>
+            <text wx:if="{{expires==3}}" style="color:#666">已结束</text>
         </view>
     </view>
     <view class="goods-count">
