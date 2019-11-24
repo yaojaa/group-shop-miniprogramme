@@ -1,209 +1,230 @@
 @import "../../css/common.wxss";
+
 .container {
-background: #f8f8f8;
-height:100%
+    background: #f8f8f8;
+    height: 100%
 }
 
-.collect-tips{
+.collect-tips {
     position: absolute;
     width: 100%;
     padding-right: 220rpx;
-    top:0;
+    top: 0;
     z-index: 99;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: flex-end;
 }
-.collect-box{
+
+.collect-box {
     border-radius: 100rpx;
     padding: 8rpx 20rpx;
-    background: rgba(255,255,255,0.6);
-    color:#000;
+    background: rgba(255, 255, 255, 0.6);
+    color: #000;
     font-size: 28rpx;
 }
-.goods-box{
-    margin-bottom:60px
+
+.goods-box {
+    margin-bottom: 60px
 }
 
-.new-btn{
-position:absolute;
-right:10px;
-top:9rpx;
-z-index:9999;
-color:#fff;
-border-radius:50rpx;
-border:1px solid #ebffdb;
-margin-right:10px;
-font-size: 24rpx;
-background: #85c002
+.new-btn {
+    position: absolute;
+    right: 10px;
+    top: 9rpx;
+    z-index: 9999;
+    color: #fff;
+    border-radius: 50rpx;
+    border: 1px solid #ebffdb;
+    margin-right: 10px;
+    font-size: 24rpx;
+    background: #85c002
 }
 
 
-.panelbox{
+.panelbox {
     position: relative;
 }
 
-.head-box{
-  position: relative;
-  background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center top no-repeat #fff;
-  background-size: 100% auto;
-  height: 420rpx;
-  position: relative;
-  width: 100%;
-  padding-top: 170rpx;
-  overflow:hidden;
+.head-box {
+    position: relative;
+    background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center bottom no-repeat #fff;
+    background-size: 100% auto;
+    height: 460rpx;
+    position: relative;
+    width: 100%;
+    padding-top: 210rpx;
+    overflow: hidden;
 }
-.set-icon{
+
+.head-side {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color:#fff;
+    text-align: center;
+}
+
+.set-icon {
     position: absolute;
     right: 0;
     bottom: 0
 }
-.user-avatar{
 
-  width: 95rpx;
-  height: 95rpx;
-  border-radius: 50%;
-  position: relative;
+.user-avatar {
+
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    position: relative;
 
 }
-.newlist{
+
+.newlist {
     padding: 5px 20px 10px
 }
-.newlist .item{
-  overflow: hidden;/*超出部分隐藏*/
-            white-space: nowrap;/*不换行*/
-            text-overflow:ellipsis;/*超出部分文字以...显示*/
-            line-height:2;
-            color: #666;
-            font-size: 12px
+
+.newlist .item {
+    overflow: hidden;
+    /*超出部分隐藏*/
+    white-space: nowrap;
+    /*不换行*/
+    text-overflow: ellipsis;
+    /*超出部分文字以...显示*/
+    line-height: 2;
+    color: #666;
+    font-size: 12px
 }
 
-.bold{
+.bold {
     font-weight: bold;
 }
 
-.pubbtn{
-color:#49b34d;
-border-radius:50rpx;
-border:1px solid #85c002;
-background:#f9fff5;
-display:block;
-font-size: 14px;
-margin: 10px 50rpx 0;
+.pubbtn {
+    color: #49b34d;
+    border-radius: 50rpx;
+    border: 1px solid #85c002;
+    background: #f9fff5;
+    display: block;
+    font-size: 14px;
+    margin: 10px 50rpx 0;
 }
 
-.user-name{
+.user-name {
     font-size: 34rpx;
     color: #fff
 }
 
-.take_money{
-    background: rgba(116,168,0,0.3);
+.take_money {
+    background: rgba(116, 168, 0, 0.3);
     border-radius: 5px;
     padding: 4px;
-    text-align: center;}
+    text-align: center;
+}
 
-.pending_money{
-      font-size: 28rpx;
+.pending_money {
+    font-size: 28rpx;
     color: #fff;
     text-align: center;
 
 }
-.user-account{
+
+.user-account {
     font-size: 22rpx;
     color: #fff;
 }
 
 .home-avatar {
-width:68rpx;
-height:68rpx;
-border-radius: 50%;
-vertical-align:middle;
+    width: 68rpx;
+    height: 68rpx;
+    border-radius: 50%;
+    vertical-align: middle;
 
 }
 
-.head-box .number{
-  text-align: center;
-  width: 300rpx;
-  margin: 0 auto;
-  padding-top: 60rpx;
-  font-size: 48rpx;
-  color: #333
+.head-box .number {
+    text-align: center;
+    width: 300rpx;
+    margin: 0 auto;
+    padding-top: 60rpx;
+    font-size: 48rpx;
+    color: #333
 }
 
-.head-box .number .text{
-  font-size: 28rpx;
-  opacity: 0.8
-
+.head-box .number .text {
+    font-size: 28rpx;
+    opacity: 0.8
 }
 
-.head-box .creat_btn{
+.head-box .creat_btn {
     color: #fff;
     border-radius: 9px 0 0 9px;
     position: absolute;
-    padding: 5rpx ;
+    padding: 5rpx;
     text-align: center;
-    right:  0;
+    right: 0;
     width: 190rpx;
     top: 180rpx
 }
 
-.head-box .creat_btn button{
+.head-box .creat_btn button {
     background: transparent;
     border: none;
-    padding:0;
+    padding: 0;
     margin: 0;
     font-size: 24rpx;
     color: #fff
 }
-.head-box .creat_btn button:after{
+
+.head-box .creat_btn button:after {
     border: none;
     box-shadow: none;
 }
 
-.main_nav_box{
-  height:212rpx;
-  overflow:hidden;
-  border-radius:8rpx;
-  background-color:rgba(255, 255, 255, 1);
-  box-shadow:0px 7px 6px 0px #eee;
-  position:absolute;
-  left:30rpx;
-  right:30rpx;
-  top:350rpx;
-  z-index:19;
-  display: flex;
+.main_nav_box {
+    height: 212rpx;
+    overflow: hidden;
+    border-radius: 8rpx;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 7px 6px 0px #eee;
+    position: absolute;
+    left: 30rpx;
+    right: 30rpx;
+    top: 350rpx;
+    z-index: 19;
+    display: flex;
 
 }
 
-.main_nav_box .item{
-  flex: 1;
-  text-align: center;
-  padding-top: 30rpx;
-  border-right: 1px solid #eee;
-  margin-top: 40rpx;
-  margin-bottom: 40rpx
-
+.main_nav_box .item {
+    flex: 1;
+    text-align: center;
+    padding-top: 30rpx;
+    border-right: 1px solid #eee;
+    margin-top: 40rpx;
+    margin-bottom: 40rpx
 }
 
-.new_add{
+.new_add {
 
     margin-top: -10rpx
 }
 
-.main_nav_box .item:last-child{
-  border: none;
+.main_nav_box .item:last-child {
+    border: none;
 }
 
-.main_nav_box .item .num{
-  color: #FA7268;
-  font-size: 36rpx;
-  padding-bottom: 10rpx;
-  font-weight: 400;
+.main_nav_box .item .num {
+    color: #FA7268;
+    font-size: 36rpx;
+    padding-bottom: 10rpx;
+    font-weight: 400;
 }
-.main_nav_box .item .tit{
-  color: #333;
-  font-size: 24rpx
+
+.main_nav_box .item .tit {
+    color: #333;
+    font-size: 24rpx
 }
 
 
@@ -283,7 +304,7 @@ vertical-align:middle;
     padding: 15rpx 0;
 }
 
-.count-item.active{
+.count-item.active {
     border-bottom: 2px solid #6dbf0c
 }
 
@@ -299,11 +320,11 @@ vertical-align:middle;
     margin: 15px 10px 10px 0;
 }
 
-.goods-item .rm_btn{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  color: rgb(204, 203, 203)
+.goods-item .rm_btn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: rgb(204, 203, 203)
 }
 
 .goods-body {
@@ -404,7 +425,7 @@ vertical-align:middle;
     color: #888
 }
 
-.tip_txt{
+.tip_txt {
     text-align: center;
     padding: 10rpx;
     font-size: 28rpx;
@@ -412,17 +433,18 @@ vertical-align:middle;
 }
 
 /**订单*/
-.myorder{
+.myorder {
     font-size: 12px;
     color: #666;
     padding: 15px 0
-
 }
-.myorder .flex-item{
+
+.myorder .flex-item {
     text-align: center;
     position: relative;
 }
-.myorder .flex-item .icon{
+
+.myorder .flex-item .icon {
     margin-bottom: 10px
 }
 
@@ -613,7 +635,7 @@ vertical-align:middle;
     box-shadow: inset 1px 1px 3px #ddd
 }
 
-button.edit-btn{
+button.edit-btn {
     display: inline-block;
     background: none;
     border: none;
@@ -633,8 +655,7 @@ button::after {
     padding-left: 20rpx
 }
 
-.tmp-box {
-}
+.tmp-box {}
 
 .tmp-hd {
     font-size: 14px;
@@ -674,42 +695,47 @@ button::after {
     }
 }
 
-.footer_bar{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 999
-}
-/* sort example */
-.sort{
-  padding: 0 40rpx;
-}
-.sort-style{
-  height: 400rpx;
-  line-height: 400rpx;
-  text-align: center;
-  background-color: #efefef;
-}
-.sort-color{
-  color: #f00;
-  font-size: 48rpx;
-}
-.siteBtn{
-  text-align:center;
-background:#ff9000;
-border-radius:30px;
-color:#fff;
-width:90px;
-font-size:14px;
-margin-right:20px;
-padding:8px 12px;
-margin-top:15px;
-}
-.marginTop{
-    margin-top: -100rpx!important
+.footer_bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999
 }
 
-.badge{
+/* sort example */
+.sort {
+    padding: 0 40rpx;
+}
+
+.sort-style {
+    height: 400rpx;
+    line-height: 400rpx;
+    text-align: center;
+    background-color: #efefef;
+}
+
+.sort-color {
+    color: #f00;
+    font-size: 48rpx;
+}
+
+.siteBtn {
+    text-align: center;
+    background: #ff9000;
+    border-radius: 30px;
+    color: #fff;
+    width: 90px;
+    font-size: 14px;
+    margin-right: 20px;
+    padding: 8px 12px;
+    margin-top: 15px;
+}
+
+.marginTop {
+    margin-top: -100rpx !important
+}
+
+.badge {
     position: absolute;
     top: 0;
     right: 8rpx;
@@ -727,11 +753,11 @@ margin-top:15px;
     z-index: 10;
     box-sizing: border-box;
     text-rendering: optimizeLegibility
-
 }
-.notice{
-    color:#f76a24;
-    padding:20px
+
+.notice {
+    color: #f76a24;
+    padding: 20px
 }
 
 .product-item {
@@ -740,7 +766,7 @@ margin-top:15px;
     position: relative;
     box-sizing: border-box;
     margin-bottom: 30rpx;
- 
+
 }
 
 .user_name {
@@ -792,7 +818,6 @@ margin-top:15px;
 .product-item-container {
     margin-top: 180rpx;
     margin-bottom: 150rpx
-
 }
 
 
@@ -973,12 +998,11 @@ margin-top:15px;
     text-align: center;
     font-size: 38rpx;
     color: #666;
-    padding-top:240rpx;
-    background:url('https://static.kaixinmatuan.cn/no_data.png');
+    padding-top: 240rpx;
+    background: url('https://static.kaixinmatuan.cn/no_data.png');
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 20%
-
 }
 
 .frind-list {
@@ -1044,4 +1068,19 @@ margin-top:15px;
     padding-top: 6rpx;
 }
 
-
+.mini-tag {
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 20rpx;
+    height: 34rpx;
+    line-height: 34rpx;
+    padding: 0 14rpx;
+    border-radius: 20rpx;
+    color: #fff;
+    display: inline-block;
+}
+.home-side{
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 100rpx 0 0 100rpx;
+    padding: 8rpx 18rpx;
+    font-size: 26rpx;
+}

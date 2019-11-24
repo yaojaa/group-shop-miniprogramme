@@ -1,49 +1,44 @@
 <view class="container">
-    <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;" wx:if="{{show_tips}}"><view class="collect-box">"点击右边 <van-icon name="weapp-nav" size="28rpx;" /> 添加到我的小程序" <van-icon name="close" size="28rpx;" /></view></view>
-    <view class="head-box">
-        <i-row>
-            <i-col offset="1" span="4" i-class="col-class">
-                <navigator   url="../identify/identify">
-                    <view class="user-avatar">
-                        <image class="user-avatar" src="{{userInfo.headimg}}" />
-                        <view class="set-icon">
-                            <i-icon type="setup_fill" color="#ffa70f" size="16" />
-                        </view>
+    <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;" wx:if="{{show_tips}}">
+        <view class="collect-box">"点击右边
+            <van-icon name="weapp-nav" size="28rpx;" /> 添加到我的小程序"
+            <van-icon name="close" size="28rpx;" />
+        </view>
+    </view>
+    <view class="head-box flex">
+        <navigator url="../identify/identify" hover-class="none">
+            <view class="user-avatar mh-df">
+                <image class="user-avatar" src="{{userInfo.headimg}}" />
+                <view class="set-icon">
+                    <i-icon type="setup_fill" color="#ffa70f" size="16" />
+                </view>
+            </view>
+        </navigator>
+        <view class="flex-sub">
+            <view class="text-justify">
+                <view class="flex align-center">
+                    <view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}}
+                        <!--  <i-icon wx:if="{{!isCustome}}" type="homepage_fill" size="22" color="#ffffff" /> -->
                     </view>
+                    <navigator url="../identify/identify" class="mini-tag" hover-class="none">完善资料
+                    </navigator>
+                </view>
+                <navigator url="../userhome/index" class="home-side flex align-center" hover-class="none" wx:if="{{!isCustome}}">
+                    <i-icon type="homepage_fill" size="20" color="#ffffff" />
+                    <view class="text-white ml-xs">
+                        个人主页</view>
                 </navigator>
-            </i-col>
-            <i-col span="10" i-class="col-class">
-                <view class="user-name" bindtap="goSite">{{userInfo.nickname}}                    
-                 <i-icon wx:if="{{!isCustome}}" type="homepage_fill" size="22" color="#ffffff" />
-</view>
-                <navigator   url="../identify/identify">
-                    <view class="user-account f12">完善资料</view>
-                </navigator>
-            </i-col>
-            <i-col offset="1"  span="7" i-class="col-class">
-                <navigator   url="../withdrawal/index">
-
-
-                <view class="take_money" wx:if="{{!isCustome}}">
-                 <view class="pending_money f16"> ¥ {{pending_money}}</view>
-                    <view class="user-account f12">账户提现 
-                        <i-icon type="enter" size="12" color="#ffffff"  />
-                    </view>
-               </view>
-                </navigator>
-
-            </i-col>
-
-       
-
-
-        </i-row>
+            </view>
+            <view class="flex mt-xs text-white text-sm">
+                <navigator url="../fans-mg/index" hover-class="none">我的粉丝（{{fansNum}}）</navigator>
+                <text class="pr-sm">|</text>
+                <navigator url="../withdrawal/index" hover-class="none"> 账户余额 ¥ {{pending_money}}</navigator>
+            </view>
+        </view>
     </view>
     <i-panel i-class="marginTop" title="我参与的" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
-                 
-
                 <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">
                     <view class="icon">
                         <i-icon type="redpacket" size="28" color="#4fac05" />
@@ -51,7 +46,6 @@
                     待付款
                     <view class="badge" wx:if="{{waitpay>0}}">{{waitpay}}</view>
                 </navigator>
-             
                 <navigator url="../order-list/index?search_status=2" hover-class="none" class="flex-item">
                     <view class="icon">
                         <i-icon type="service" size="28" color="#4fac05" />
@@ -72,114 +66,90 @@
             </view>
         </view>
     </i-panel>
-
     <i-panel>
-
-            <block wx:for="{{proList}}" wx:if="{{isCustome}}" wx:key="{{index}}">
-        <view class='product-item'>
-            <view class='item-body'>
-                <navigator class="flex align-center pb-sm van-hairline--bottom " url="../userhome/index?id={{item.store.store_id}}" hover-class="none">
-                    <view class="item-avatar">
-                        <image class="avatar" src="{{item.user.headimg}}" />
+        <block wx:for="{{proList}}" wx:if="{{isCustome}}" wx:key="{{index}}">
+            <view class='product-item'>
+                <view class='item-body'>
+                    <navigator class="flex align-center pb-sm van-hairline--bottom " url="../userhome/index?id={{item.store.store_id}}" hover-class="none">
+                        <view class="item-avatar">
+                            <image class="avatar" src="{{item.user.headimg}}" />
+                        </view>
+                        <view class="item-name flex-sub">
+                            <view class="text-justify">
+                                <text class="f14">{{item.user.nickname}}</text>
+                                <view class="right-info">
+                                    <i-icon type="homepage_fill" color="#999" /><text class="f12 text-muted">去主页逛逛</text></view>
+                            </view>
+                            <view class="time text-xs text-muted">剩余时间：{{item._expires.countdown.day}}天
+                                {{item._expires.countdown.hour}}小时
+                                {{item._expires.countdown.min}}分
+                            </view>
+                        </view>
+                    </navigator>
+                    <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail">
+                        <text>{{item.goods_name}}</text>
+                        <!--     <text class='text-red' wx:if="{{item.price_range.min == item.price_range.max}}">￥{{item.price_range.min}}</text><text class="text-red" wx:else>￥{{item.price_range.min}}~{{item.price_range.max}}</text> -->
                     </view>
-                    <view class="item-name flex-sub">
-                        <view class="text-justify">
-                            <text class="f14">{{item.user.nickname}}</text>
-                            <view class="right-info">
-                                <i-icon type="homepage_fill" color="#999" /><text class="f12 text-muted">去主页逛逛</text></view>
-                        </view>
-                        <view class="time text-xs text-muted">剩余时间：{{item._expires.countdown.day}}天
-                            {{item._expires.countdown.hour}}小时
-                            {{item._expires.countdown.min}}分
-                        </view>
-                    </view>
-                </navigator>
-                <view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail">
-                    <text>{{item.goods_name}}</text>
-
-                <!--     <text class='text-red' wx:if="{{item.price_range.min == item.price_range.max}}">￥{{item.price_range.min}}</text><text class="text-red" wx:else>￥{{item.price_range.min}}~{{item.price_range.max}}</text> -->
-                    
-                </view>
-                <view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
-                    <block wx:if="{{item.goods_images.length == 1}}">
-                        <view class="item-img-box-one">
-                            <image mode="widthFix" class="cover" src="{{item.goods_images[0].img_url}}?imageView2/1/w/600/h/400/interlace/1"></image>
-                        </view>
-                    </block>
-                    <block wx:if="{{item.goods_images.length == 2}}">
-                        <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
-                            <image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/400/h/300/interlace/1"></image>
-                        </view>
-                    </block>
-                    <block wx:if="{{item.goods_images.length >= 3}}">
-                        <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=2}}">
-                            <image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/200/h/180/interlace/1"></image>
-                        </view>
-                    </block>
-                    <!--  <scroll-view class="item-cover-scroll" scroll-x>
+                    <view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
+                        <block wx:if="{{item.goods_images.length == 1}}">
+                            <view class="item-img-box-one">
+                                <image mode="widthFix" class="cover" src="{{item.goods_images[0].img_url}}?imageView2/1/w/600/h/400/interlace/1"></image>
+                            </view>
+                        </block>
+                        <block wx:if="{{item.goods_images.length == 2}}">
+                            <view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
+                                <image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/400/h/300/interlace/1"></image>
+                            </view>
+                        </block>
+                        <block wx:if="{{item.goods_images.length >= 3}}">
+                            <view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=2}}">
+                                <image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/200/h/180/interlace/1"></image>
+                            </view>
+                        </block>
+                        <!--  <scroll-view class="item-cover-scroll" scroll-x>
                             <view class='item-cover' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
                                 <image  src="{{im}}"></image>
                             </view>
                         </scroll-view> -->
+                    </view>
                 </view>
             </view>
-        </view>
-    </block>
-
+        </block>
     </i-panel>
-
-
     <i-panel wx:if="{{orderList.length}}" hide-border title="最新订单" extra="更多" link="../new-order-list/index">
         <view class="control">
-            
             <view class="newlist">
-                <scroll-view style="height: 100px" scroll-y > 
-                <view class="item" wx:for="{{orderList}}" 
-                data-id="{{item.order_detail[0].goods_id}}" 
-                data-delivery_method="{{item.delivery_method}}"
-                data-name="{{item.order_detail[0].goods_name}}"
-
-                bindtap="managePage">
-                    <text class="bold">{{item.user.nickname}}</text>                     {{item.time_ago}}
- 参与了你的 
-                    <text class="bold">{{item.order_detail[0].goods_name}}</text>
-                </view>
-
-            </scroll-view>
-                   <button class='pubbtn' bindtap="new_btn">
-
-          <i-icon type="add" size="20" />发布一个
-        </button>
-            </view> 
-
-
-     
+                <scroll-view style="height: 100px" scroll-y>
+                    <view class="item" wx:for="{{orderList}}" data-id="{{item.order_detail[0].goods_id}}" data-delivery_method="{{item.delivery_method}}" data-name="{{item.order_detail[0].goods_name}}" bindtap="managePage">
+                        <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
+                        参与了你的
+                        <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                    </view>
+                </scroll-view>
+                <button class='pubbtn' bindtap="new_btn">
+                    <i-icon type="add" size="20" />发布一个
+                </button>
+            </view>
         </view>
-
     </i-panel>
     <view class="text-center">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
-
     <view class="panelbox">
-      <!--   <button class='new-btn hollow' bindtap="new_btn">
+        <!--   <button class='new-btn hollow' bindtap="new_btn">
           <i-icon type="add" size="20" />新发布
         </button> -->
-    <i-panel title="我发布的"   wx:if="{{goodslist.length > 0}}">
-
-        
-
-        <view class="goods-box">
-            <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
-                <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
-            </block>
-            <view class="text-center">
-                <wux-spin wx:if="{{is_loading}}"></wux-spin>
+        <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}">
+            <view class="goods-box">
+                <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
+                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
+                </block>
+                <view class="text-center">
+                    <wux-spin wx:if="{{is_loading}}"></wux-spin>
+                </view>
             </view>
-        </view>
-    </i-panel>
+        </i-panel>
     </view>
-
     <i-panel wx:if="{{isCustome && !is_loading }}">
         <view class='new-goods' bindtap="new_btn">
             <text>+ 发布商品 </text>
@@ -192,13 +162,12 @@
             <text>发布一个团购 </text>
         </view>
     </view> -->
- <!--    <view class="footer_bar">
+    <!--    <view class="footer_bar">
         <i-tab-bar current="nearby" color="#188f00" bindchange="handleTabBarChange">
             <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="我的"></i-tab-bar-item>
             <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
-
     <van-dialog id="van-dialog" />
 </view>

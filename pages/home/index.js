@@ -20,8 +20,9 @@ Page({
         CustomBar: app.globalData.CustomBar,
         Custom: app.globalData.Custom,
         show_tips: false,
-        orderList:[],
-        isCustome:false
+        orderList: [],
+        isCustome: false,
+        fansNum: 0,
     },
     closleTips() {
         this.setData({
@@ -33,14 +34,24 @@ Page({
         })
     },
 
-     toDetail(e) {
+    toDetail(e) {
         console.log(e)
         let postId = e.currentTarget.dataset.id || e.target.dataset.id
         wx.navigateTo({
             url: '../goods/goods?goods_id=' + postId
         })
     },
+    getFans() {
+        util.wx.get('/api/seller/get_fans_list').then((res) => {
+            this.setData({
 
+                fansNum: res.data.data.page.total
+            })
+            resolve()
+        }, (err) => {
+            reject(err)
+        })
+    },
     getProList() {
 
         ///user/get_bought_store_goods
@@ -52,7 +63,7 @@ Page({
                 })
             }
             this.setData({
-                isloading:false
+                isloading: false
             })
         })
     },
@@ -78,20 +89,20 @@ Page({
     //切换显示隐藏状态事件
     recommendHandle(e) {
 
-       //  console.log(e.detail)
+        //  console.log(e.detail)
 
-       // this.data.goodslist.forEach((item,index)=>{
+        // this.data.goodslist.forEach((item,index)=>{
 
-       //      if(item.goods_id == e.detail){
+        //      if(item.goods_id == e.detail){
 
-       //          const key = 'goodslist['+index+'].is_recommend'
+        //          const key = 'goodslist['+index+'].is_recommend'
 
-       //          this.setData({
-       //              [key]: e.detail.is_recommend
-       //          })
-       //      }
+        //          this.setData({
+        //              [key]: e.detail.is_recommend
+        //          })
+        //      }
 
-       // })
+        // })
 
         // this.getGoodsList()
 
@@ -113,9 +124,9 @@ Page({
             }
         })
 
-        console.log(c,'c')
+        console.log(c, 'c')
 
-        if (c !==null) {
+        if (c !== null) {
 
             this.data.goodslist.splice(c, 1)
 
@@ -126,8 +137,8 @@ Page({
         }
 
     },
-    onshow(){
-      this.getOrderCount()
+    onshow() {
+        this.getOrderCount()
     },
     /**
      * 生命周期函数--监听页面加载
@@ -162,7 +173,7 @@ Page({
 
         this.getProList()
         this.getOrderList()
-
+        this.getFans()
     },
     getOrderCount() {
 
@@ -195,44 +206,44 @@ Page({
 
     get_store_info() {
         util.wx.get('/api/seller/get_store_money').then(res => {
-                this.setData({
-                    pending_money: res.data.data.pending_money
-                })
-                    })
+            this.setData({
+                pending_money: res.data.data.pending_money
+            })
+        })
     },
 
     ///////////
     //获取最新订单 //
     ///////////
     ///
-    getOrderList(){
+    getOrderList() {
 
-          util.wx.get('/api/seller/get_order_list', {
+        util.wx.get('/api/seller/get_order_list', {
                 // orderdate: 1,
-                order_status:1,
-                pagesize:20
+                order_status: 1,
+                pagesize: 20
             })
             .then(res => {
 
                 if (res.data.code == 200) {
 
-                   this.setData({
-                    orderList:res.data.data.order_list,
-                    isCustome:res.data.data.order_list.length> 0?false:true
-                   })
+                    this.setData({
+                        orderList: res.data.data.order_list,
+                        isCustome: res.data.data.order_list.length > 0 ? false : true
+                    })
                 }
             })
 
 
     },
 
-  managePage(e){
-  let id = e.currentTarget.dataset.id
-  let delivery_method = e.currentTarget.dataset.delivery_method
-  let goods_name = e.currentTarget.dataset.name.slice(0,10)
+    managePage(e) {
+        let id = e.currentTarget.dataset.id
+        let delivery_method = e.currentTarget.dataset.delivery_method
+        let goods_name = e.currentTarget.dataset.name.slice(0, 10)
 
         wx.navigateTo({
-            url: '../ordermanage/list?id=' +id+ '&delivery_method='+ delivery_method +'&goods_name='+ goods_name
+            url: '../ordermanage/list?id=' + id + '&delivery_method=' + delivery_method + '&goods_name=' + goods_name
         })
 
     },
@@ -268,7 +279,7 @@ Page({
 
                     })
 
-                
+
 
 
                     this.totalpage = res.data.data.page.totalpage
@@ -356,13 +367,13 @@ Page({
      */
     onPullDownRefresh: function() {
 
-         this.data.cpage = 1
+        this.data.cpage = 1
         this.data.goodslist = []
         this.getGoodsList()
         this.getOrderCount()
         this.get_store_info()
 
-        
+
     },
 
     /**
@@ -385,12 +396,12 @@ Page({
     },
     onShareAppMessage: function() {
         if (app.globalData.userInfo) {
-          var  _uid = app.globalData.userInfo.user_id
+            var _uid = app.globalData.userInfo.user_id
         }
         return {
-            title: app.globalData.userInfo.nickname+'推荐您一个收款好助手',
+            title: app.globalData.userInfo.nickname + '推荐您一个收款好助手',
             imageUrl: this.shareImg,
-            path: 'pages/login/login'+'?from_id=' + _uid
+            path: 'pages/login/login' + '?from_id=' + _uid
         }
     },
 
