@@ -23,7 +23,7 @@
                     <navigator url="../identify/identify" class="mini-tag" hover-class="none">完善资料
                     </navigator>
                 </view>
-                <navigator url="../userhome/index" class="home-side flex align-center" hover-class="none" wx:if="{{!isCustome}}">
+                <navigator url="../userhome/index?id={{userInfo.store_id}}" class="home-side flex align-center" hover-class="none" wx:if="{{!isCustome}}">
                     <i-icon type="homepage_fill" size="20" color="#ffffff" />
                     <view class="text-white ml-xs">
                         个人主页</view>
