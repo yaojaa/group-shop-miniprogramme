@@ -6,7 +6,7 @@
         </view>
     </view>
     <view class="head-box  ">
-        <view class="flex">
+        <view class="flex align-center">
             <navigator url="../identify/identify" hover-class="none">
                 <view class="user-avatar mh-df">
                     <image class="user-avatar" src="{{userInfo.headimg}}" />
@@ -16,11 +16,12 @@
                 </view>
             </navigator>
             <view class="flex-sub pr-lg">
-                <view class="flex align-center justify-between text-white">
+                <view class="flex justify-between text-white">
                     <view class="user-box">
                         <view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}}</view>
                         <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" wx:if="{{!isCustome}}">专属主页
                         </navigator>
+                        <navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none" wx:else>完善资料</navigator>
                     </view>
                     <navigator url="../fans-mg/index" hover-class="none" class="text-center">
                         <view class="text-lg bold">{{fansNum}}</view>
