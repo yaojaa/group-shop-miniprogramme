@@ -76,6 +76,7 @@ Page({
         msgvisible: false,
         showShareFriendsCard: false,
         shareFriendsImg: '',
+        shareFriendsImgStart: false,
         shareFriendsImgs: [],
         template: {},
         template2: {},
@@ -212,7 +213,8 @@ Page({
         }
     },
     openShareFriends() {
-        if (!this.data.shareFriendsImg) {
+        if (!this.data.shareFriendsImgStart) {
+            this.data.shareFriendsImgStart = true;
             util.drawShareFriends(this, drawGoods, drawBuyuser);
         }
 
