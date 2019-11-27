@@ -336,7 +336,7 @@
     <view hidden="{{ !poster }}" class="share-friends-box">
         <view class='share-friends-img' bindtap='handlePoster'>
             <view class="text-center share-img-box" wx:if="{{shareFriendsImgs.length > 0}}">
-                <swiper class="images" indicator-dots bindchange="friendsImgChange">
+                <swiper class="images" bindchange="friendsImgChange">
                     <swiper-item wx:for="{{shareFriendsImgs}}">
                       <image class='icon-img' src='{{item}}' mode='aspectFit'></image>
                     </swiper-item>
@@ -344,6 +344,12 @@
                       <image class='icon-img' src='{{shareFriendsImg2}}' mode='aspectFit'></image>
                     </swiper-item> -->
                 </swiper>
+                <view class="share-friends-indicator">
+                    <view class="dots-box">
+                        <view class="dots"></view>
+                        <view class="dots"></view>
+                    </view>
+                </view>
                 <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages"> 保存海报图 </button>
             </view>
 
