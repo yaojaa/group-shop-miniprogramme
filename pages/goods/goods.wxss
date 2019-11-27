@@ -675,7 +675,7 @@ display: inline-block;
 
 .share-friends-img {
     height: 100%;
-    padding-bottom: 126rpx;
+    padding-bottom: 166rpx;
 }
 
 .share-friends-img image {
@@ -694,8 +694,34 @@ display: inline-block;
     width: 100%;
 }
 
+.share-friends-indicator{
+    position: absolute;
+    width: 100rpx;
+    height: 28rpx;
+    border-radius: 24rpx;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    margin-right: -50rpx;
+    bottom: 124rpx; 
+}
+
+.share-friends-indicator .dots{
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.6);
+    margin: 0 10rpx;
+}
+
+.share-friends-indicator .dots.on{
+    background-color: #5bb305;
+}
+
 .share-friends-img .share-img-box .btn {
-    bottom: -23rpx;
+    bottom: -60rpx;
 }
 
 .share-friends-loading-txt {
