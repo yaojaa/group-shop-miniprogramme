@@ -47,9 +47,7 @@ Page({
 
                 fansNum: res.data.data.page.total
             })
-            resolve()
         }, (err) => {
-            reject(err)
         })
     },
     getProList() {
@@ -170,15 +168,12 @@ Page({
         this.data.goodslist = []
         this.getGoodsList()
         this.get_store_info()
-
         this.getProList()
         this.getOrderList()
         this.getFans()
     },
     getOrderCount() {
-
         util.wx.get('/api/user/get_order_count_groupby_static').then(res => {
-            console.log(res)
             if (res.data.code == 200) {
                 this.setData({
                     waitpay: res.data.data.waitpay,
