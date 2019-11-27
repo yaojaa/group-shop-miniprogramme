@@ -22,7 +22,7 @@ Page({
         show_tips: false,
         orderList: [],
         isCustome: false,
-        fansNum: 0,
+        fansNum: '...',
     },
     closleTips() {
         this.setData({

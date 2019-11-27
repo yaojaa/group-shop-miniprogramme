@@ -35,17 +35,15 @@ Page({
     onChange(e) {
         const { checkedItems, items } = e.detail
         const params = {}
-
         //console.log(checkedItems, items)
-
         checkedItems.forEach((n) => {
             if (n.checked) {
                 if (n.value === 'order_pay_count') {
                     params.sort = n.value
-                    params.order = n.sort === 1 ? 'asc' : 'desc'
+                    params.order = n.sort === 1 ? 'desc' : 'asc'
                 } else if (n.value === 'order_pay_total') {
                     params.sort = n.value
-                    params.order = n.sort === 1 ? 'asc' : 'desc'
+                    params.order = n.sort === 1 ? 'desc' : 'asc'
                 }
             }
         })

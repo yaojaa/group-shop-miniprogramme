@@ -65,6 +65,18 @@ Page({
         ]
     },
 
+    sendMsgAll(){
+
+     this.setData({
+                    sendAll: true,
+                    dis:true,
+                    showMsgTips: true
+
+                })
+
+
+    },
+
     //打开发送通知
     openMsgTips(e) {
 
@@ -98,6 +110,12 @@ Page({
             showPop: true
         })
 
+    },
+
+   toAddressList(){
+          wx.navigateTo({
+            url:'../send-list/index?goods_id='+this.data.goods_id
+           })
     },
     // 右上角菜单点击
     handleClickItem1(e) {
