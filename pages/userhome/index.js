@@ -11,7 +11,7 @@ Page({
         autoplay: false,
         interval: 5000,
         duration: 1000,
-        showIcon: true,
+        showIcon: false,
         goodsList: [],
         loading: false,
         store_id: '',
