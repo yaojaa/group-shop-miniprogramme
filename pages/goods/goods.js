@@ -75,6 +75,7 @@ Page({
         copy: false,
         msgvisible: false,
         showShareFriendsCard: false,
+        currentIndex: 0,
         shareFriendsImg: '',
         shareFriendsImgStart: false,
         shareFriendsImgs: [],
@@ -293,6 +294,9 @@ Page({
     friendsImgChange(e){
         console.log(e.detail.current)
         this.data.shareFriendsImg = this.data.shareFriendsImgs[e.detail.current]
+        this.setData({
+            currentIndex: e.detail.current
+        })
     },
     showGallery(e) {
         const { current } = e.currentTarget.dataset

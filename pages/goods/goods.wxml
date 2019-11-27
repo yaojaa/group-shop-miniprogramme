@@ -346,8 +346,9 @@
                 </swiper>
                 <view class="share-friends-indicator">
                     <view class="dots-box">
-                        <view class="dots"></view>
-                        <view class="dots"></view>
+                        <block wx:for="{{shareFriendsImgs}}">
+                            <view class="dots{{index == currentIndex ? ' on' : ''}}"></view>
+                        </block>
                     </view>
                 </view>
                 <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages"> 保存海报图 </button>
