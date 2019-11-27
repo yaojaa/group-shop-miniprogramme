@@ -394,7 +394,7 @@ Page({
             var _uid = app.globalData.userInfo.user_id
         }
         return {
-            title: app.globalData.userInfo.nickname + '推荐您一个收款好助手',
+            title: app.globalData.userInfo.nickname + '推荐您一个好助手',
             imageUrl: this.shareImg,
             path: 'pages/login/login' + '?from_id=' + _uid
         }
