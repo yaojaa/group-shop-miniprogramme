@@ -8,10 +8,10 @@
                <!--  <van-button icon="star-o" type="primary" plain size="mini" >微信通知</van-button> -->
              
 
-                 <van-button class="ml-sm" type="primary" plain size="mini" bindtap="sendMsg">群发通知</van-button>
+                 <van-button class="ml-sm" type="primary" plain size="mini" bindtap="sendMsgAll">群发通知</van-button>
 
 
-                   <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">地址列表</van-button>
+                   <van-button class="ml-sm" type="primary" plain size="mini" bindtap="toAddressList">地址列表</van-button>
                 <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">导出名单</van-button>
           <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
                     <i-icon size="20" type="other" />

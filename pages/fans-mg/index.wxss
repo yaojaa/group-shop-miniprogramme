@@ -8,6 +8,10 @@ page{
     height: 90rpx;
     border-radius: 8rpx;
 }
+.text-sm{
+	font-size: 11px;
+	color: #666
+}
 /*.fans-list{
 	height: 1500rpx;
 }*/

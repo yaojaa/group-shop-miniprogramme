@@ -908,20 +908,11 @@ Page({
 
         }else if(option.temp){ // 是否是模板
             this.getPublishedData('', '', option.temp);
-        }else{
-            this.setDefaultTitle()
         }
 
 
         this.initValidate()
 
-
-    },
-    setDefaultTitle:function() {
-
-         this.setData({
-               goods_name:app.globalData.userInfo.nickname+'发布了一个活动'
-            })
 
     },
     inputDuplex: util.inputDuplex

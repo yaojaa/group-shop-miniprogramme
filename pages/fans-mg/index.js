@@ -14,17 +14,17 @@ Page({
         items: [{
             type: 'sort',
             label: '订单数',
-            value: 'order_count',
+            value: 'order_pay_count',
             groups: ['001'],
         }, {
             type: 'sort',
             label: '支付金额',
-            value: 'order_total',
+            value: 'order_pay_total',
             groups: ['002'],
         }],
         cpage: 1,
         totalpage: 1,
-        sortstr: 'order_count,desc'
+        sortstr: 'order_pay_count,desc'
     },
     onOpen(e) {
         this.setData({ opened: true })
@@ -35,21 +35,18 @@ Page({
     onChange(e) {
         const { checkedItems, items } = e.detail
         const params = {}
-
         //console.log(checkedItems, items)
-
         checkedItems.forEach((n) => {
             if (n.checked) {
-                if (n.value === 'order_count') {
+                if (n.value === 'order_pay_count') {
                     params.sort = n.value
-                    params.order = n.sort === 1 ? 'asc' : 'desc'
-                } else if (n.value === 'order_total') {
+                    params.order = n.sort === 1 ? 'desc' : 'asc'
+                } else if (n.value === 'order_pay_total') {
                     params.sort = n.value
-                    params.order = n.sort === 1 ? 'asc' : 'desc'
+                    params.order = n.sort === 1 ? 'desc' : 'asc'
                 }
             }
         })
-        console.log(Object.values(params).toString())
         this.setData({
             sortstr: Object.values(params).toString(),
             cpage:1,
@@ -81,7 +78,7 @@ Page({
                     totalpage: res.data.data.page.totalpage,
                     fansNum: res.data.data.page.total
                 })
-                resolve()
+                resolve(res)
             }, (err) => {
                 reject(err)
             })

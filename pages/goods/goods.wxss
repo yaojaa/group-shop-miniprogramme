@@ -694,8 +694,38 @@ display: inline-block;
     width: 100%;
 }
 
+.share-friends-indicator{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    bottom: 140rpx; 
+}
+
+.share-friends-indicator .dots-box{
+    padding: 0 3px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+}
+
+.share-friends-indicator .dots{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,.8);
+    margin: 0 3px;
+}
+
+.share-friends-indicator .dots.on{
+    background-color: #5bb305;
+}
+
 .share-friends-img .share-img-box .btn {
-    bottom: -23rpx;
+    bottom: -22rpx;
 }
 
 .share-friends-loading-txt {

@@ -18,6 +18,7 @@ Component({
     },
     data: {
       is_recommend:'',
+      expires: '',
         urls: [
            
         ]
@@ -26,7 +27,8 @@ Component({
       attached: function() {
         // 在组件实例进入页面节点树时执行
         this.setData({
-          is_recommend:this.properties.item.is_recommend
+          is_recommend:this.properties.item.is_recommend,
+          expires: this.properties.item._expires
         })
       },
       detached: function() {
@@ -41,7 +43,7 @@ Component({
       this.goods_id = e.currentTarget.dataset.id
 
         wx.showActionSheet({
-          itemList: ['在主页隐藏', '在主页显示'],
+          itemList: ['在主页隐藏', '在主页显示', '立即结束'],
           success :(res)=>{
 
             if(res.tapIndex == 0){
@@ -49,7 +51,13 @@ Component({
               this.switchInSite(0)
 
             }else if(res.tapIndex ==1){
+
               this.switchInSite(1)
+
+            }else if(res.tapIndex == 2){
+              // 立即结束
+              this.goodsOver()
+
             }
 
           },
@@ -100,6 +108,62 @@ Component({
                 })
            })
     },
+
+      goodsOver(){
+
+        Dialog.confirm({
+          title: '确定要立即结束吗？',
+          asyncClose: true,
+          context:this
+        })
+        .then(() => {
+          console.log('结束')
+          this.goodsOverGet();
+          Dialog.close();
+        })
+        .catch(() => {
+          console.log('取消')
+          Dialog.close();
+        })
+
+
+
+      },
+
+
+      goodsOverGet(){
+        wx.showLoading()
+
+        util.wx.post("/api/seller/goods_change_endtime",{
+            goods_id: this.goods_id,
+            end_time: util.formatTime(new Date()), 
+        }).then(res=>{
+          console.log(res)
+
+          wx.hideLoading()
+
+          if(res.data.code == 200){
+
+            wx.showToast({
+                title:'修改成功',
+                icon:'none'
+            })
+
+            this.setData({
+              expires: 3
+            })
+
+          }else{
+            wx.showToast({
+                title:res.data.msg,
+                icon:'none'
+            })
+          }
+
+        })
+      },
+
+
        upDownGoods(e){
 
         const status = e.currentTarget.dataset.status

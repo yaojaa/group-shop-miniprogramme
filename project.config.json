@@ -83,7 +83,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=470",
+					"query": "goods_id=1501",
 					"scene": 1008
 				},
 				{
@@ -267,7 +267,7 @@
 					"id": 30,
 					"name": "详情页",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=307  ",
+					"query": "goods_id= 7907  ",
 					"scene": null
 				},
 				{

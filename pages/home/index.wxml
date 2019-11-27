@@ -5,34 +5,33 @@
             <van-icon name="close" size="28rpx;" />
         </view>
     </view>
-    <view class="head-box flex">
-        <navigator url="../identify/identify" hover-class="none">
-            <view class="user-avatar mh-df">
-                <image class="user-avatar" src="{{userInfo.headimg}}" />
-                <view class="set-icon">
-                    <i-icon type="setup_fill" color="#ffa70f" size="16" />
-                </view>
-            </view>
-        </navigator>
-        <view class="flex-sub">
-            <view class="text-justify">
-                <view class="flex align-center">
-                    <view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}}
-                        <!--  <i-icon wx:if="{{!isCustome}}" type="homepage_fill" size="22" color="#ffffff" /> -->
+    <view class="head-box  ">
+        <view class="flex align-center">
+            <navigator url="../identify/identify" hover-class="none">
+                <view class="user-avatar mh-df">
+                    <image class="user-avatar" src="{{userInfo.headimg}}" />
+                    <view class="set-icon">
+                        <i-icon type="setup_fill" color="#ffa70f" size="16" />
                     </view>
-                    <navigator url="../identify/identify" class="mini-tag" hover-class="none">完善资料
+                </view>
+            </navigator>
+            <view class="flex-sub pr-lg">
+                <view class="flex justify-between text-white">
+                    <view class="user-box">
+                        <view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}}</view>
+                        <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" wx:if="{{!isCustome}}">专属主页
+                        </navigator>
+                        <navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none" wx:else>完善资料</navigator>
+                    </view>
+                    <navigator url="../fans-mg/index" hover-class="none" class="text-center">
+                        <view class="text-lg bold">{{fansNum}}</view>
+                        <view class="text-sm mt-xs">我的粉丝</view>
+                    </navigator>
+                    <navigator url="../withdrawal/index" hover-class="none" class="text-center">
+                        <view class="text-lg bold">¥ {{pending_money}}</view>
+                        <view class="text-sm mt-xs">账户余额</view>
                     </navigator>
                 </view>
-                <navigator url="../userhome/index?id={{userInfo.store_id}}" class="home-side flex align-center" hover-class="none" wx:if="{{!isCustome}}">
-                    <i-icon type="homepage_fill" size="20" color="#ffffff" />
-                    <view class="text-white ml-xs">
-                        个人主页</view>
-                </navigator>
-            </view>
-            <view class="flex mt-xs text-white text-sm">
-                <navigator url="../fans-mg/index" hover-class="none">我的粉丝（{{fansNum}}）</navigator>
-                <text class="pr-sm">|</text>
-                <navigator url="../withdrawal/index" hover-class="none"> 账户余额 ¥ {{pending_money}}</navigator>
             </view>
         </view>
     </view>

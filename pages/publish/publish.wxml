@@ -176,7 +176,7 @@
                     <icon wx:if="{{spec.length >1 }}" data-index="{{index}}" bindtap="removeGoods" color="#ccc" class="close" type="clear" size="26" />
                 </view>
                 <view class="new_add_btn" bindtap="addGoods">
-                    <i-icon type="add" bindtap="addNew" size="20" color="#80848f" /> 新增规格
+                    <i-icon type="add" bindtap="addNew" size="20" color="#49b34d" /> 新增规格
                 </view>
             </view>
         </i-panel>

@@ -59,18 +59,18 @@
   </view>
 </view> -->
 
-<!-- <view class="center">
+ <view class="center">
   <navigator url="../publish/publish?temp=1" class="button-area flex_box">
   <view class="flex-item">
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon3.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f16 text-default"> <view>演示模板：樱桃邮寄活动</view>
+    <view class="f16 text-default"> <view>演示：想吃樱桃的请报名</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
   </navigator>
 </view> 
--->
+
 
 <!-- <view class="smallTit">
   从已有商品复制：

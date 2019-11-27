@@ -279,31 +279,32 @@ App({
                 console.log(e)
                 this.globalData.userPhone = e.model || ''
                 this.globalData.StatusBar = e.statusBarHeight;
-                let custom = wx.getMenuButtonBoundingClientRect();
+
+                this.globalData.winHeight = e.windowHeight
+                this.globalData.winWidth = e.windowWidth
+                this.globalData.statusBarHeight = e.statusBarHeight
+                this.globalData.systemInfo = e
+
+
+                  try {
+                   let custom = wx.getMenuButtonBoundingClientRect();
                 this.globalData.Custom = custom;
                 this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+                
+                } catch (e) {
+                    this.globalData.CustomBar = e.statusBarHeight+20
+                }
+
+
+                
+
             }
         })
         //检测设备尺寸
-        //
-        wx.getSystemInfo({
-            success: (res) => {
-                console.log('屏幕尺寸', res)
-                this.globalData.winHeight = res.windowHeight
-                this.globalData.winWidth = res.windowWidth
-                this.globalData.statusBarHeight = res.statusBarHeight
-                this.globalData.systemInfo = res
-            }
-        })
+  
 
 
-        // try {
-        //     var SystemInfo = wx.getSystemInfoSync()
-        //     this.globalData.winHeight = SystemInfo.windowHeight
-        //     this.globalData.winWidth = SystemInfo.windowWidth
-        // } catch (e) {
-        //     this.globalData.winHeight = 500
-        // }
+      
 
 
 
