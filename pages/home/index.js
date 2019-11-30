@@ -14,7 +14,7 @@ Page({
         link_url: "",
         is_loading: true,
         scrollTop: 0,
-        store_money: 0,
+        store_money: "",
         pending_money: '***',
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
@@ -41,15 +41,7 @@ Page({
             url: '../goods/goods?goods_id=' + postId
         })
     },
-    getFans() {
-        util.wx.get('/api/seller/get_fans_list').then((res) => {
-            this.setData({
 
-                fansNum: res.data.data.page.total
-            })
-        }, (err) => {
-        })
-    },
     getProList() {
 
         ///user/get_bought_store_goods
@@ -166,11 +158,11 @@ Page({
 
         this.data.cpage = 1
         this.data.goodslist = []
-        this.getGoodsList()
         this.get_store_info()
+
+        this.getGoodsList()
         this.getProList()
         this.getOrderList()
-        this.getFans()
     },
     getOrderCount() {
         util.wx.get('/api/user/get_order_count_groupby_static').then(res => {
@@ -201,8 +193,14 @@ Page({
 
     get_store_info() {
         util.wx.get('/api/seller/get_store_money').then(res => {
+
+            console.log(typeof(res.data.data.store_money))
+
+
             this.setData({
-                pending_money: res.data.data.pending_money
+                pending_money: res.data.data.pending_money,
+                fansNum :res.data.data.fans_count ,
+                isCustome:res.data.data.income
             })
         })
     },
@@ -223,8 +221,7 @@ Page({
                 if (res.data.code == 200) {
 
                     this.setData({
-                        orderList: res.data.data.order_list,
-                        isCustome: res.data.data.order_list.length > 0 ? false : true
+                        orderList: res.data.data.order_list
                     })
                 }
             })
