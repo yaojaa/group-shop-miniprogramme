@@ -9,8 +9,14 @@
 
 .user-head{
 	text-align: center;
-	position: relative;
-	background: #fff
+    top: 200rpx
+}
+.absolute{
+    position: absolute;
+}
+.bgStyle{
+    background: rgba(0,0,0,0.2);
+    color: #fff
 }
 .user-bg{
 	border-radius: 120%;
@@ -42,14 +48,14 @@
 
 }
 .user-head .name{
-	font-size: 20px;
-	color: #333;
+	font-size: 20rpx;
+	color: #fff;
 	display: inline-block;
 	margin: 0 auto
 }
 .user-head .des{
 	line-height: 1.6;
-	color:#333;
+	color:#fff;
 	font-size: 28rpx;
 	text-align: left;
 	padding: 30rpx
@@ -133,6 +139,7 @@
 .swiper {
  height: 450rpx;
  width: 100%;
+ position: relative;
 }
  
 .swiper image {

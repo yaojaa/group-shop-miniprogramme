@@ -24,7 +24,7 @@ Page({
         }],
         cpage: 1,
         totalpage: 1,
-        sortstr: 'order_pay_count,desc'
+        sortstr: ''
     },
     onOpen(e) {
         this.setData({ opened: true })

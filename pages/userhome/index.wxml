@@ -4,13 +4,16 @@
     <view class="swiper">
         <block wx:for="{{store_slide}}">
             <image src="{{item}}?imageView2/1/w/600/h/400/interlace/1" height="400" class="slide-image" />
+
         </block>
-    </view>
-    <view class="user-head pb-sm">
-        <view class="avatar" bindtap="goContact" data-phone="{{info._user.mobile}}" data-wx="{{info._user.wechatnumber}}">
+
+        <view class="user-head absolute">
+             <view class="avatar" bindtap="goContact" data-phone="{{info._user.mobile}}" data-wx="{{info._user.wechatnumber}}">
             <image src="{{info._user.headimg}}" />
         </view>
-        <view class="flex justify-between ph-sm" style="padding-top: 80rpx;">
+
+        <view class="bgStyle">
+        <view  class="flex justify-between ph-sm" >
             <navigator hidden="{{shareIng}}" wx:if="{{showSetting}}" url="../create_shop/index">
                 <i-icon type="setup" size="28" color="#999" />
             </navigator>
@@ -19,6 +22,12 @@
                 <i-icon size="28" type="share" color="#999" /></button>
         </view>
         <view class="des">{{info.store_intro}}</view>
+</view>
+
+        </view>
+    </view>
+    <view class=" pb-sm">
+       
         <view class="info f12 ">
             访问 <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 
 

@@ -43,9 +43,6 @@ Page({
     },
 
     getProList() {
-
-        ///user/get_bought_store_goods
-        ///api/user/get_browsed_goods
         util.wx.get('/api/user/get_bought_store_goods').then(res => {
             if (res.data.code == 200) {
                 this.setData({
@@ -114,8 +111,6 @@ Page({
             }
         })
 
-        console.log(c, 'c')
-
         if (c !== null) {
 
             this.data.goodslist.splice(c, 1)
@@ -161,8 +156,6 @@ Page({
         this.get_store_info()
 
         this.getGoodsList()
-        this.getProList()
-        this.getOrderList()
     },
     getOrderCount() {
         util.wx.get('/api/user/get_order_count_groupby_static').then(res => {
@@ -193,16 +186,26 @@ Page({
 
     get_store_info() {
         util.wx.get('/api/seller/get_store_money').then(res => {
-
-            console.log(typeof(res.data.data.store_money))
-
-
             this.setData({
                 pending_money: res.data.data.pending_money,
                 fansNum :res.data.data.fans_count ,
-                isCustome:res.data.data.income
+                isCustome:res.data.data.income > 0?false:true
             })
+
+            console.log(this.data.isCustome)
+
+            if(this.data.isCustome){
+               this.getProList()
+            }else{
+             this.getOrderList()
+            }
+
+
+        
         })
+
+
+
     },
 
     ///////////
@@ -249,7 +252,7 @@ Page({
 
         util.wx.get('/api/seller/get_goods_list', {
                 cpage: this.data.cpage,
-                pagesize: 10
+                pagesize: 15
             })
             .then(res => {
 
@@ -325,13 +328,6 @@ Page({
 
 
     },
-
-
-
-
-
-
-
 
     /**
      * 生命周期函数--监听页面初次渲染完成

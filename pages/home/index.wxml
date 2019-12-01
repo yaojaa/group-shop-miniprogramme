@@ -18,16 +18,16 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}}</view>
+                        <view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}} </view>
                         <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" wx:if="{{!isCustome}}">专属主页
                         </navigator>
                         <navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none" wx:else>完善资料</navigator>
                     </view>
-                    <navigator url="../fans-mg/index" hover-class="none" class="text-center">
+                    <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
                         <view class="text-sm mt-xs">我的粉丝</view>
                     </navigator>
-                    <navigator url="../withdrawal/index" hover-class="none" class="text-center">
+                    <navigator url="../withdrawal/index" hover-class="none" class="text-center"  wx:if="{{!isCustome}}">
                         <view class="text-lg bold">¥ {{pending_money}}</view>
                         <view class="text-sm mt-xs">账户余额</view>
                     </navigator>
@@ -65,8 +65,8 @@
             </view>
         </view>
     </i-panel>
-    <i-panel>
-        <block wx:for="{{proList}}" wx:if="{{isCustome}}" wx:key="{{index}}">
+    <i-panel  wx:if="{{isCustome}}">
+        <block wx:for="{{proList}}"  wx:key="{{index}}">
             <view class='product-item'>
                 <view class='item-body'>
                     <navigator class="flex align-center pb-sm van-hairline--bottom " url="../userhome/index?id={{item.store.store_id}}" hover-class="none">
