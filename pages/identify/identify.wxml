@@ -10,8 +10,8 @@
                 <wux-cell hover-class="none">
                     <wux-input  controlled clear value="{{wechatnumber}}" label="微信" bind:change="changeWX" placeholder="输入您的微信号" />
                 </wux-cell>
-<!--                 <wux-cell hover-class="none" title="收货地址管理" is-link url="../address/index" ></wux-cell>
- -->            </wux-cell-group>
+                <wux-cell hover-class="none" title="您的收货地址" is-link url="../address/index" ></wux-cell>
+            </wux-cell-group>
             
            
         </i-panel>

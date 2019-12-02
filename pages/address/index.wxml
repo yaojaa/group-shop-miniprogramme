@@ -2,17 +2,18 @@
 
 <view class="container gray-wrap cf" >
     <view class="fixed-btn flex">
+      
         <view class="flex-sub">
-            <view class="btn xxl coral block" bindtap="newAddress">
-                <van-icon name="add-square" color="#fff" size="30rpx" />
-                <text class="ml-xs">添加新地址</text>
-            </view>
-        </view>
-        <view class="flex-sub">
-            <button url="../address-form/index" class="btn linear_bg xxl primary block" bindtap="openAddress">
+            <button url="../address-form/index" class="btn  xxl primary block" bindtap="openAddress">
                 <van-icon name="chat" color="#fff" size="30rpx" />
                 <text class="ml-xs">使用微信地址</text>
             </button>
+        </view>
+          <view class="flex-sub">
+            <view class="btn  xxl primary block" bindtap="newAddress">
+                <van-icon name="add-square" color="#fff" size="30rpx" />
+                <text class="ml-xs">添加新地址</text>
+            </view>
         </view>
     </view>
     <view class="content-wrap" wx:if="{{address.length>0}}">

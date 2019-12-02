@@ -23,7 +23,7 @@
                         </navigator>
                         <navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none" wx:else>完善资料</navigator>
                     </view>
-                    <navigator url="../fans-mg/index" hover-class="none" class="text-center">
+                    <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
                         <view class="text-sm mt-xs">我的粉丝</view>
                     </navigator>
@@ -65,8 +65,9 @@
             </view>
         </view>
     </i-panel>
-    <i-panel>
-        <block wx:for="{{proList}}" wx:if="{{isCustome}}" wx:key="{{index}}">
+
+    <i-panel  wx:if="{{isCustome && proList.length}}" title="您关注过的人 ">
+        <block wx:for="{{proList}}" wx:key="{{index}}">
             <view class='product-item'>
                 <view class='item-body'>
                     <navigator class="flex align-center pb-sm van-hairline--bottom " url="../userhome/index?id={{item.store.store_id}}" hover-class="none">
@@ -138,7 +139,7 @@
         <!--   <button class='new-btn hollow' bindtap="new_btn">
           <i-icon type="add" size="20" />新发布
         </button> -->
-        <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}">
+        <i-panel title="我发布的" wx:if="{{goodslist.length > 0 }}">
             <view class="goods-box">
                 <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                     <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />

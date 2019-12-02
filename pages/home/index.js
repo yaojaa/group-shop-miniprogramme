@@ -21,7 +21,7 @@ Page({
         Custom: app.globalData.Custom,
         show_tips: false,
         orderList: [],
-        isCustome: false,
+        isCustome: true,
         fansNum: '...',
     },
     closleTips() {
@@ -35,25 +35,20 @@ Page({
     },
 
     toDetail(e) {
-        console.log(e)
         let postId = e.currentTarget.dataset.id || e.target.dataset.id
         wx.navigateTo({
             url: '../goods/goods?goods_id=' + postId
         })
     },
     getFans() {
-        util.wx.get('/api/seller/get_fans_list').then((res) => {
+        util.wx.get('/api/seller/get_fans_list',{pagesize:1,cpage:1}).then((res) => {
             this.setData({
-
                 fansNum: res.data.data.page.total
             })
         }, (err) => {
         })
     },
     getProList() {
-
-        ///user/get_bought_store_goods
-        ///api/user/get_browsed_goods
         util.wx.get('/api/user/get_bought_store_goods').then(res => {
             if (res.data.code == 200) {
                 this.setData({
@@ -224,12 +219,10 @@ Page({
 
                     this.setData({
                         orderList: res.data.data.order_list,
-                        isCustome: res.data.data.order_list.length > 0 ? false : true
+                        isCustome:res.data.data.order_list.length > 0 ? false : true
                     })
                 }
             })
-
-
     },
 
     managePage(e) {

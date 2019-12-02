@@ -363,11 +363,7 @@ Page({
     },
 
     goHomePage() {
-        var pages = getCurrentPages();
-
-        console.log('pages', pages)
-
-        wx.navigateTo({
+        wx.redirectTo({
             url: '../userhome/index?id=' + this.data.store_id
         })
     },
