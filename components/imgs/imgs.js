@@ -254,15 +254,18 @@ Component({
 
     getImgsOpt(w, h, e, imgs){
       let opt = null;
-      let size = {};
+      let size = {
+        s: 1.2,
+        _s: 1
+      };
       let b = e.width / e.height;
       let _b = w / h;
 
       if(b == 1){  //正方形
         size.w = Math.min(w, h);
         size.h = size.w;
-        size.s = Math.max(w, h) / size.w; //缩放限值
-        size._s = this.data.minScaleVal / size.w; //最小缩放
+        // size.s = Math.max(w, h) / size.w; //缩放限值
+        // size._s = this.data.minScaleVal / size.w; //最小缩放
         opt = {
           src: e.path,
           size: size,
@@ -275,8 +278,8 @@ Component({
         size.w = e.width/e.height*h;
 
         if(size.w - w <= this.data.minXYVale){ //小于最小运动值  运动效果改缩放
-          size.s = 1; //缩放限值
-          size._s = this.data.minScaleVal / size.w;
+          // size.s = 1; //缩放限值
+          // size._s = this.data.minScaleVal / size.w;
           opt = {
             src: e.path,
             size: size,
@@ -299,8 +302,8 @@ Component({
         size.h = e.height/e.width*w;
 
         if(size.h - h <= this.data.minXYVale){ //小于最小运动值  运动效果改缩放
-          size.s = 1; //缩放限值
-          size._s = this.data.minScaleVal / size.h;
+          // size.s = 1; //缩放限值
+          // size._s = this.data.minScaleVal / size.h;
           opt = {
             src: e.path,
             size: size,
