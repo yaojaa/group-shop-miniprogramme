@@ -14,7 +14,7 @@ Page({
         link_url: "",
         is_loading: true,
         scrollTop: 0,
-        store_money: 0,
+        store_money: "",
         pending_money: '***',
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
@@ -40,14 +40,7 @@ Page({
             url: '../goods/goods?goods_id=' + postId
         })
     },
-    getFans() {
-        util.wx.get('/api/seller/get_fans_list',{pagesize:1,cpage:1}).then((res) => {
-            this.setData({
-                fansNum: res.data.data.page.total
-            })
-        }, (err) => {
-        })
-    },
+
     getProList() {
         util.wx.get('/api/user/get_bought_store_goods').then(res => {
             if (res.data.code == 200) {
@@ -99,7 +92,6 @@ Page({
 
         // this.getGoodsList()
 
-
     },
     removeHandle(e) {
         console.log(e, '删除成功事件')
@@ -116,8 +108,6 @@ Page({
                 c = index
             }
         })
-
-        console.log(c, 'c')
 
         if (c !== null) {
 
@@ -161,11 +151,9 @@ Page({
 
         this.data.cpage = 1
         this.data.goodslist = []
-        this.getGoodsList()
         this.get_store_info()
-        this.getProList()
-        this.getOrderList()
-        this.getFans()
+
+        this.getGoodsList()
     },
     getOrderCount() {
         util.wx.get('/api/user/get_order_count_groupby_static').then(res => {
@@ -197,9 +185,25 @@ Page({
     get_store_info() {
         util.wx.get('/api/seller/get_store_money').then(res => {
             this.setData({
-                pending_money: res.data.data.pending_money
+                pending_money: res.data.data.pending_money,
+                fansNum :res.data.data.fans_count ,
+                isCustome:res.data.data.income > 0?false:true
             })
+
+            console.log(this.data.isCustome)
+
+            if(this.data.isCustome){
+               this.getProList()
+            }else{
+             this.getOrderList()
+            }
+
+
+        
         })
+
+
+
     },
 
     ///////////
@@ -218,8 +222,7 @@ Page({
                 if (res.data.code == 200) {
 
                     this.setData({
-                        orderList: res.data.data.order_list,
-                        isCustome:res.data.data.order_list.length > 0 ? false : true
+                        orderList: res.data.data.order_list
                     })
                 }
             })
@@ -245,7 +248,7 @@ Page({
 
         util.wx.get('/api/seller/get_goods_list', {
                 cpage: this.data.cpage,
-                pagesize: 10
+                pagesize: 15
             })
             .then(res => {
 
@@ -322,13 +325,6 @@ Page({
 
     },
 
-
-
-
-
-
-
-
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -376,7 +372,6 @@ Page({
         } else {
             this.data.cpage = this.totalpage
         }
-
 
     },
     formSubmit: function(e) {

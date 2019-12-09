@@ -237,7 +237,7 @@ Page({
                 if (res.data.data.store_slide.length == 0) {
                     store_slide = ['https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b201906271717046776.jpg']
                 } else {
-                    store_slide = res.data.data.store_slide
+                    store_slide =res.data.data.store_slide
                 }
 
                 this.setData({

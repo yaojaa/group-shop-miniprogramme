@@ -50,10 +50,10 @@
     position: relative;
     background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center bottom no-repeat #fff;
     background-size: 100% auto;
-    height: 460rpx;
+    height: 385rpx;
     position: relative;
     width: 100%;
-    padding-top: 210rpx;
+    padding-top: 150rpx;
     overflow: hidden;
 }
 
