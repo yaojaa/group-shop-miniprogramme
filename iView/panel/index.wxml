@@ -10,7 +10,7 @@
     </navigator>
     </block>
     <block wx:else>
-    	{{extra}} <i-icon type="enter" size="12" color="#999" />
+    	{{extra}} 
     </block>
 
 

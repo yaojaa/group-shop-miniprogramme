@@ -302,7 +302,7 @@ line-height:1.6;
 
 }
 .blue_text{
-    color:#105f96
+    color:#105f96!important
 }
 
 .copy-address{

@@ -8,20 +8,37 @@
 
                 </wux-cell>
                 <wux-cell hover-class="none">
-                    <wux-input  controlled clear value="{{wechatnumber}}" label="微信" bind:change="changeWX" placeholder="输入您的微信号" />
+                    <wux-input  controlled clear value="{{wechatnumber}}" label="微信号" bind:change="changeWX" placeholder="输入您的微信号" />
                 </wux-cell>
-<!--                 <wux-cell hover-class="none" title="收货地址管理" is-link url="../address/index" ></wux-cell>
+<!--                 <wux-cell hover-class="none" title="收货地址管理"  url="../address/index" ></wux-cell>
  -->            </wux-cell-group>
             
            
         </i-panel>
+
+
+        <i-panel title="微信二维码" extra="微信个人或微信群二维码 引导入群"  >
+           <view  wx:if="{{!pic}}"  class="weui-uploader__input-box" bindtap="chooseImage">
+                        <text class="upload_txt">
+                            </text>
+           </view>
+           <view  class="pic_box" wx:if="{{pic}}">
+
+           <image src="{{pic}}?imageMogr2/thumbnail/500x" bindtap="chooseImage"   />
+           <view class="blue_text" bindtap="removePic">清除</view>
+           </view>
+
+        </i-panel>
+
+
+
     </view>
    
        <view class='btn-wrap'>
 
          <button bindtap="postInfo" formType="submit" class="weui-btn weui-btn_primary linenear_bg">保存</button>
 
-        <button style="margin-top:200px" type="danger" class="linear_bg" bindtap="clearStorage">清除缓存 重新登录</button>
+        <button style="margin-top:100px" type="danger" class="linear_bg" bindtap="clearStorage">清除缓存 重新登录</button>
     </view>
 
     <view id="Message"></view>

@@ -563,6 +563,12 @@
 					"pathName": "pages/ems-detail/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "完善资料",
+					"pathName": "pages/identify/identify",
+					"scene": null
 				}
 			]
 		}

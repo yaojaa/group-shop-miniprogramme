@@ -360,9 +360,16 @@ Page({
 
     },
     calluser(e) {
-        wx.makePhoneCall({
-            phoneNumber: e.target.dataset.mobile
-        })
+       
+        wx.setClipboardData({
+            data: e.target.dataset.mobile,
+            success: function(res) {
+                wx.showToast({
+                    title: '已复制',
+                    icon: 'none'
+                });
+            }
+        });
     },
     /****/
 
@@ -686,8 +693,23 @@ Page({
      */
     copy: function(e) {
         console.log(e)
+
+        const address = e.target.dataset.address
+        const consignee = e.target.dataset.consignee
+        const mobile = e.target.dataset.mobile
+        const order_detail = e.target.dataset.order_detail
+
+        var order_string =''
+              order_detail.forEach(item=>{
+                order_string+= item.spec_name + ' +'+item.qty+'件\n'
+              })
+
+        const txt = consignee+'\n'+mobile+'\n'+address +'\n'+order_string
+
+
+
         wx.setClipboardData({
-            data: e.target.dataset.text || e.currentTarget.dataset.text,
+            data: txt,
             success: function(res) {
                 wx.showToast({
                     title: '复制成功',
