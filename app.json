@@ -38,6 +38,7 @@
         "pages/express/index",
         "pages/send-list/index",
         "pages/ems/ems",
+        "pages/updown_exc/index",
         "pages/send-msg/index"
     ],
     "subpackages": [{

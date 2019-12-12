@@ -563,6 +563,13 @@
 					"pathName": "pages/ems-detail/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 73,
+					"name": "导出exc",
+					"pathName": "pages/updown_exc/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

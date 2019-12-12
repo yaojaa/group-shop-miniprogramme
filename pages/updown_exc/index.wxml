@@ -1,0 +1,35 @@
+<view class="view-page">
+	<view class="page-title">下载订单表格</view>
+	<view class="exc-select-time">
+		<view class="left">账单时间</view>
+		<view class="right exc-btn-list">
+			<button class='btn-cell' size='mini' type="{{timeFlag == 0 ? 'primary' : 'default'}}" bindtap="todayOrder">今天</button>
+			<button class='btn-cell' size='mini' type="{{timeFlag == 1 ? 'primary' : 'default'}}" bindtap="yesterdayOrder">昨天</button>
+			<button class='btn-cell' size='mini' type="{{timeFlag == 2 ? 'primary' : 'default'}}" bindtap="allOrder">全部</button>
+			<button class='btn-cell' size='mini' type="{{timeFlag == 3 ? 'primary' : 'default'}}" bindtap="userOrders">自定义</button>
+		</view>
+	</view>
+	<view class="select-time-body">
+		<view class="exc-select-time">
+			<view class="left">起始时间</view>
+			<view class="right">
+				<i-datepicker label='' i-picker-title='i-picker-title' title="开始时间" date="{{startDate[0]}}" time="{{startDate[1]}}" bind:datachange="bindStartDateChange"></i-datepicker>
+			</view>
+		</view>
+		<view class="exc-select-time">
+			<view class="left">结束时间</view>
+			<view class="right">
+				<i-datepicker label='' i-picker-title='i-picker-title' title="结束时间" date="{{endDate[0]}}" time="{{endDate[1]}}" bind:datachange="bindEndDateChange"></i-datepicker>
+			</view>
+		</view>
+	</view>
+	
+
+	<view class="create-link">
+		<button class="btn" type="primary" bindtap="exportExcel">生成下载链接</button>
+	</view>
+	
+
+
+
+</view>

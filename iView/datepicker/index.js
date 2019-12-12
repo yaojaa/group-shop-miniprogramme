@@ -5,7 +5,7 @@ const days = []
 const hours = [];
 const minutes = [];
 
-for (let i = 2019; i <= d.getFullYear() + 2; i++) {
+for (let i = 2019; i <= d.getFullYear() + 3; i++) {
   years.push(i)
 }
 
@@ -26,12 +26,15 @@ for (let i = 0; i < 60; i+=5) {
 }
 
 Component({
-  externalClasses: ['time-class', 'pick-class', 'indicator-class'],
+  externalClasses: ['time-class', 'pick-class', 'indicator-class', "i-picker-title"],
 
   properties: {
     date: {   //格式 ＹＹ－ＭＭ－ＤＤ
       type: String,
-      value: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+      value: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(),
+      observer: function (newVal, oldVal) {
+        this.valTime();
+      }
     },
     time: {   //格式 HH：MM
       type: String,
@@ -70,44 +73,45 @@ Component({
   },
 
   ready() {
-
-    let date = this.data.date.split("-");
-    let time = this.data.time.split(":");
-
-
-    let y = date[0];
-    let m = date[1].toString().length < 2 ? "0" + date[1] : date[1];
-    let d = date[2].toString().length < 2 ? "0" + date[2] : date[2];
-    let h = time[0].toString().length < 2 ? "0" + time[0] : time[0];
-    let mm = time[1].toString().length < 2 ? "0" + time[1] : time[1];
-
-
-    this.getMonthDays(y, m);
-
-        // console.log('this.data.days.indexOf(mm)',mm,this.data.minutes.indexOf(+mm))
-        console.log('this.data.hours.indexOf(h)',this.data.hours.indexOf(+h))
-
-
-    this.setData({
-      value: {
-    
-
-        y: [this.data.years.indexOf(+y)],
-        m: [this.data.months.indexOf(+m)],
-        d: [this.data.days.indexOf(d)],
-        h: [this.data.hours.indexOf(+h)],
-         // mm: [this.data.minutes.indexOf(mm)]
-      },
-      year: y,
-      month: m,
-      day: d,
-      hour: h,
-      minute: mm
-    });
-    
+    this.valTime();
   },
 
   methods: {
+    valTime() {
+      let date = this.data.date.split("-");
+      let time = this.data.time.split(":");
+
+
+      let y = date[0];
+      let m = date[1].toString().length < 2 ? "0" + date[1] : date[1];
+      let d = date[2].toString().length < 2 ? "0" + date[2] : date[2];
+      let h = time[0].toString().length < 2 ? "0" + time[0] : time[0];
+      let mm = time[1].toString().length < 2 ? "0" + time[1] : time[1];
+
+
+      this.getMonthDays(y, m);
+
+          // console.log('this.data.days.indexOf(mm)',mm,this.data.minutes.indexOf(+mm))
+          console.log('this.data.hours.indexOf(h)',this.data.hours.indexOf(+h))
+
+
+      this.setData({
+        value: {
+      
+
+          y: [this.data.years.indexOf(+y)],
+          m: [this.data.months.indexOf(+m)],
+          d: [this.data.days.indexOf(d)],
+          h: [this.data.hours.indexOf(+h)],
+           // mm: [this.data.minutes.indexOf(mm)]
+        },
+        year: y,
+        month: m,
+        day: d,
+        hour: h,
+        minute: mm
+      });
+    },
     bindChange (e) {
       const val = e.detail.value;
 
