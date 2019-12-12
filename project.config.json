@@ -568,7 +568,7 @@
 					"id": 73,
 					"name": "导出exc",
 					"pathName": "pages/updown_exc/index",
-					"query": "",
+					"query": "goods_id=470",
 					"scene": null
 				}
 			]
