@@ -229,7 +229,7 @@
     </view>
 
 <view class='footer-cart'>
-        <view class='icon' bindtap='goHomePage'>
+     <!--    <view class='icon' bindtap='goHomePage'>
 
              <image src="{{goods.user.headimg}}" class="avatar" 
              style="width: 18px;height: 18px;margin-top: 3px">
@@ -237,7 +237,7 @@
 
 
     <text class="label">主 页</text>
-        </view>
+        </view> -->
           <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
@@ -361,7 +361,20 @@
         </view>
     </view>
     <van-dialog id="contact" use-slot>
+
+            <view class="center">
+                   <image src="{{goods.user.headimg}}" class="avatar" 
+             style="width: 66px;height: 66px;margin: 13px auto 0">
+            </image>
+
+            </view>
+         
+
         <van-cell-group border="{{false}}" custom-class="mv-df">
+
+            
+            <van-cell title="{{goods.user.nickname}}" value="主页" is-link icon="manager-o" title-width="400rpx" bindtap="goHomePage"  />
+
             <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
             <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
         </van-cell-group>

@@ -138,5 +138,11 @@ Page({
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
+    },
+    addListener:function () {
+          wx.requestSubscribeMessage({
+              tmplIds: ['17y_mLplxTn0resiR34oUsJMZu2E2W6i0x2YIRZgvZ4','Wu_vie78kgoRr8y90IAsxoEn87BJ3nDrEBLP0MK6208'],
+              success (res) { }
+            })
     }
 })

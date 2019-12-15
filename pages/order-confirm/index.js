@@ -361,12 +361,16 @@ Page({
                 paySign: data['paySign'],
                 success: (res) => {
 
-                    console.log(res)
-
+ 
 
                     util.wx.post('/api/pay/orderpay', {
                         order_sn: order_sn
                     })
+
+
+                  
+
+                    return
 
 
 

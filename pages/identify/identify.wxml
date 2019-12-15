@@ -10,21 +10,22 @@
                 <wux-cell hover-class="none">
                     <wux-input  controlled clear value="{{wechatnumber}}" label="微信号" bind:change="changeWX" placeholder="输入您的微信号" />
                 </wux-cell>
-<!--                 <wux-cell hover-class="none" title="收货地址管理"  url="../address/index" ></wux-cell>
- -->            </wux-cell-group>
+
+                <wux-cell hover-class="none" title="您的收货地址" is-link url="../address/index" ></wux-cell>
+            </wux-cell-group>
             
            
         </i-panel>
 
 
         <i-panel title="微信二维码" extra="微信个人或微信群二维码 引导入群"  >
-           <view  wx:if="{{!pic}}"  class="weui-uploader__input-box" bindtap="chooseImage">
+           <view  wx:if="{{!wx_paycode}}"  class="weui-uploader__input-box" bindtap="chooseImage">
                         <text class="upload_txt">
                             </text>
            </view>
-           <view  class="pic_box" wx:if="{{pic}}">
+           <view  class="pic_box" wx:if="{{wx_paycode}}">
 
-           <image src="{{pic}}?imageMogr2/thumbnail/500x" bindtap="chooseImage"   />
+           <image src="{{wx_paycode}}?imageMogr2/thumbnail/500x" bindtap="chooseImage"   />
            <view class="blue_text" bindtap="removePic">清除</view>
            </view>
 

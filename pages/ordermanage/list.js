@@ -452,6 +452,8 @@ Page({
 
     },
     noteInput(e) {
+
+        console.log(e)
         let noteContent = this.trim(e.detail.value);
         this.setData({
             note: noteContent

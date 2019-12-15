@@ -21,7 +21,7 @@ Page({
         Custom: app.globalData.Custom,
         show_tips: false,
         orderList: [],
-        isCustome: false,
+        isCustome: true,
         fansNum: '...',
     },
     closleTips() {
@@ -35,7 +35,6 @@ Page({
     },
 
     toDetail(e) {
-        console.log(e)
         let postId = e.currentTarget.dataset.id || e.target.dataset.id
         wx.navigateTo({
             url: '../goods/goods?goods_id=' + postId
@@ -92,7 +91,6 @@ Page({
         // })
 
         // this.getGoodsList()
-
 
     },
     removeHandle(e) {
@@ -208,6 +206,40 @@ Page({
 
     },
 
+    addListener:function () {
+          wx.requestSubscribeMessage({
+              tmplIds: ['MlhFii7cRSnXZf-HFT20eccXD77MPByPLY6LQvUkidI'],
+              success (res) {
+
+                console.log(res)
+                for (var key in res) {
+                  if (key !='errMsg') {
+                    if (res[key] =='reject') {
+                      wx.showModal({
+                        title:'订阅消息',
+                        content:'您已拒绝了订阅消息，如需重新订阅请前往设置打开。',
+                        confirmText:'去设置',
+                        //showCancel: false,
+                        success: res => {
+                          if (res.confirm) {
+                            wx.openSetting({})
+                          }
+                        }
+                      })
+                      return
+                    }else{
+                      wx.showToast({
+                        title:'订阅成功'
+                      })
+                    }
+                  }
+                }
+
+
+               }
+            })
+    },
+
     ///////////
     //获取最新订单 //
     ///////////
@@ -228,8 +260,6 @@ Page({
                     })
                 }
             })
-
-
     },
 
     managePage(e) {
@@ -376,7 +406,6 @@ Page({
         } else {
             this.data.cpage = this.totalpage
         }
-
 
     },
     formSubmit: function(e) {

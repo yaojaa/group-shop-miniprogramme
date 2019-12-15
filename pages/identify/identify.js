@@ -8,12 +8,12 @@ Page({
     data: {
         mobile: '',
         wechatnumber: '',
-        pic:''
+        wx_paycode:''
     },
 
     removePic(){
       this.setData({
-        pic:''
+        wx_paycode:''
       })
     },
 
@@ -26,7 +26,7 @@ Page({
                 this.setData({
                     mobile: res.data.data.mobile,
                     wechatnumber: res.data.data.wechatnumber,
-                    pic:'https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b201912081319556546.jpg'
+                    wx_paycode:res.data.data.wx_paycode
                 })
             } else {
                wx.showToast({
@@ -57,7 +57,7 @@ Page({
 
             mobile: this.data.mobile,
             wechatnumber: this.data.wechatnumber,
-            pic:this.data.pic
+            wx_paycode:this.data.wx_paycode
         }).then(res => {
             console.log(res)
 

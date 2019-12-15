@@ -35,6 +35,8 @@
             </view>
         </view>
     </view>
+
+
     <i-panel i-class="marginTop" title="我参与的" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
@@ -65,8 +67,10 @@
             </view>
         </view>
     </i-panel>
-    <i-panel  wx:if="{{isCustome}}">
-        <block wx:for="{{proList}}"  wx:key="{{index}}">
+
+    <i-panel  wx:if="{{isCustome && proList.length}}" title="您关注过的人 ">
+        <block wx:for="{{proList}}" wx:key="{{index}}">
+
             <view class='product-item'>
                 <view class='item-body'>
                     <navigator class="flex align-center pb-sm van-hairline--bottom " url="../userhome/index?id={{item.store.store_id}}" hover-class="none">
@@ -128,6 +132,8 @@
                 <button class='pubbtn' bindtap="new_btn">
                     <i-icon type="add" size="20" />发布一个
                 </button>
+
+
             </view>
         </view>
     </i-panel>
@@ -135,10 +141,12 @@
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
     <view class="panelbox">
+
+         <button bindtap="addListener" class="linenear_bg" hove-class="linenear_bg_hover" type='primary'>订阅发货提醒</button>
         <!--   <button class='new-btn hollow' bindtap="new_btn">
           <i-icon type="add" size="20" />新发布
         </button> -->
-        <i-panel title="我发布的" wx:if="{{goodslist.length > 0}}">
+        <i-panel title="我发布的" wx:if="{{goodslist.length > 0 }}">
             <view class="goods-box">
                 <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
                     <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />

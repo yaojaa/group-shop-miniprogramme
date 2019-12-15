@@ -32,9 +32,12 @@
 <!-- <view class="smallTit">
   示例模板：
 </view>
+
+-->
+<!-- 
 <view class="center" >
   <navigator url="../publish/publish?temp=2" class="button-area flex_box">
- <view> 
+  <view> 
   <view class="flex-item">
 
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon1.jpg"></image>
@@ -44,8 +47,7 @@
      <text class="f14 text-muted">填写提货点，用户自提</text> </view>
    </view>
   </navigator>
-</view>
--->
+</view> -->
 
 <!-- <view class="center">
   <view class="button-area flex_box">
@@ -59,7 +61,7 @@
   </view>
 </view> -->
 
- <view class="center">
+<!--  <view class="center">
   <navigator url="../publish/publish?temp=1" class="button-area flex_box">
   <view class="flex-item">
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon3.jpg"></image>
@@ -70,7 +72,7 @@
    </view>
   </navigator>
 </view> 
-
+ -->
 
 <!-- <view class="smallTit">
   从已有商品复制：
@@ -104,8 +106,6 @@
           请先授权登录
         </view>
         <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">登 录</button>
-
-        <button size="mini" type="warn" plain="false" bindtap="rejectAuth" >取 消</button>
          </view>
     </van-popup>
 
