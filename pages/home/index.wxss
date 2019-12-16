@@ -82,7 +82,8 @@
 }
 
 .newlist {
-    padding: 5px 20px 10px
+    padding: 5px 20px 10px;
+    text-align: left;
 }
 
 .newlist .item {
@@ -106,9 +107,21 @@
     border-radius: 50rpx;
     border: 1px solid #85c002;
     background: #f9fff5;
-    display: block;
+    display: inline-block;
+    width: 80%;
     font-size: 14px;
     margin: 10px 50rpx 0;
+}
+
+button.listen{
+    width: 100px;
+    background: #ff7200;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 50rpx;
+    border: 1px solid #ff7200;
+ 
 }
 
 .user-name {
@@ -1085,3 +1098,4 @@ button::after {
     padding: 10rpx 18rpx;
     font-size: 26rpx;
 }
+

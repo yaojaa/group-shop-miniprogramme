@@ -122,7 +122,7 @@ Page({
                 }).then((res)=>{
                   console.log('图片',res.data.file_url)
                   this.setData({
-                    pic:res.data.file_url
+                    wx_paycode:res.data.file_url
                   })
                   wx.hideLoading()
                 },res=>{

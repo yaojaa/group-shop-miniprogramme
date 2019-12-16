@@ -276,8 +276,8 @@ color:#666;
 }
 
 .user-avatar {
-    width: 60rpx;
-    height: 60rpx;
+    width: 80rpx;
+    height: 80rpx;
     border-radius: 50%;
     overflow-y: hidden;
     display: inline-block;
@@ -946,8 +946,8 @@ display: inline-block;
 }
 
 .user-info .avatar {
-    width: 50rpx;
-    height: 50rpx;
+    width: 70rpx;
+    height: 70rpx;
     border-radius: 100%;
     overflow: hidden;
     font-size: 0;
@@ -980,7 +980,7 @@ display: inline-block;
 
 .user-info .name {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .user-info .info {

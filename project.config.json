@@ -571,6 +571,12 @@
 					"pathName": "pages/ems-detail/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/identify/identify",
+					"pathName": "pages/identify/identify",
+					"scene": null
 				}
 			]
 		}

@@ -150,10 +150,11 @@ Page({
 
     },
     goContact(e) {
-        const { phone, wx } = e.currentTarget.dataset
+        const { phone, wx,wx_code } = e.currentTarget.dataset
         this.setData({
             phone: phone,
-            weChat: wx
+            weChat: wx,
+            wx_code:wx_code
         })
         Dialog.alert({
             selector: '#contact'
@@ -267,6 +268,14 @@ Page({
         wx.navigateTo({
             url: '/pages/ems-detail/index?' + data
         })
+
+    },
+    previewImage(e){
+        var current = e.target.dataset.src;  
+    wx.previewImage({  
+        current: current, // 当前显示图片的http链接 
+        urls: [current] // 需要预览的图片http链接列表 
+    })
 
     }
 

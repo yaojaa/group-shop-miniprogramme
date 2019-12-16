@@ -208,7 +208,7 @@ Page({
 
     addListener:function () {
           wx.requestSubscribeMessage({
-              tmplIds: ['MlhFii7cRSnXZf-HFT20eccXD77MPByPLY6LQvUkidI'],
+              tmplIds: ['MlhFii7cRSnXZf-HFT20eccXD77MPByPLY6LQvUkidI','LxxXR_fCI9WE8vxbvWvGLZILAFldQIwYXUOoEprf69s'],
               success (res) {
 
                 console.log(res)
@@ -217,13 +217,11 @@ Page({
                     if (res[key] =='reject') {
                       wx.showModal({
                         title:'订阅消息',
-                        content:'您已拒绝了订阅消息，如需重新订阅请前往设置打开。',
-                        confirmText:'去设置',
+                        content:'您已拒绝了订阅消息，将不会收到微信通知',
+                        confirmText:'知道了',
                         //showCancel: false,
                         success: res => {
-                          if (res.confirm) {
-                            wx.openSetting({})
-                          }
+                         
                         }
                       })
                       return
