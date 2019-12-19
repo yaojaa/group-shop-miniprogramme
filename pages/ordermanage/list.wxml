@@ -1,11 +1,10 @@
 <view class="container">
     <view class="order-title text-primary">
         <navigator open-type="redirect"  url="/pages/home/index" hover-class="none">
-            <text class="goods_title">返回</text>
+            <text class="goods_title">回到商品</text>
         </navigator>
         <view class="actionsButtons">
             <view>
-               <!--  <van-button icon="star-o" type="primary" plain size="mini" >微信通知</van-button> -->
              
 
                  <van-button class="ml-sm" type="primary" plain size="mini" bindtap="sendMsgAll">群发通知</van-button>

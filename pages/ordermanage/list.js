@@ -565,7 +565,8 @@ Page({
             delete params.goods_id
             params.order_ids = [this.data.order_id]
         }
-            wx.showLoading()
+        
+        wx.showLoading()
 
 
         util.wx.post('/api/seller/send_tmp_msg', params).then(res => {
