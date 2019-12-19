@@ -7,7 +7,14 @@ Page({
      */
     data: {
         mobile: '',
-        wechatnumber: ''
+        wechatnumber: '',
+        wx_paycode:''
+    },
+
+    removePic(){
+      this.setData({
+        wx_paycode:''
+      })
     },
 
     getInfo() {
@@ -18,7 +25,8 @@ Page({
             if (res.data.code == 200) {
                 this.setData({
                     mobile: res.data.data.mobile,
-                    wechatnumber: res.data.data.wechatnumber
+                    wechatnumber: res.data.data.wechatnumber,
+                    wx_paycode:res.data.data.wx_paycode
                 })
             } else {
                wx.showToast({
@@ -48,7 +56,8 @@ Page({
         util.wx.post('/api/user/user_set_info', {
 
             mobile: this.data.mobile,
-            wechatnumber: this.data.wechatnumber
+            wechatnumber: this.data.wechatnumber,
+            wx_paycode:this.data.wx_paycode
         }).then(res => {
             console.log(res)
 
@@ -96,6 +105,47 @@ Page({
 
         //上传相册
     },
+
+        //上传相册
+    chooseImage: function(e) {
+
+        wx.chooseImage({
+            count: 1, //最多可以选择的图片总数  
+            sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+            sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有  
+            success: (res) => {
+
+                var tempFilePaths = res.tempFilePaths[0];
+                wx.showLoading()
+                util.uploadFile({
+                  filePath:tempFilePaths
+                }).then((res)=>{
+                  console.log('图片',res.data.file_url)
+                  this.setData({
+                    wx_paycode:res.data.file_url
+                  })
+                  wx.hideLoading()
+                },res=>{
+                   wx.hideLoading()
+                   wx.showToast({
+                    title:'上传失败请重试',
+                    icon:'none'
+                   })
+
+                }).catch(e=>{
+                    wx.hideLoading()
+
+                    wx.showToast({
+                    title:'上传失败请重试',
+                    icon:'none'
+                   })
+                })
+              }
+            })
+      }
+    ,
+
+
 
 
     /**

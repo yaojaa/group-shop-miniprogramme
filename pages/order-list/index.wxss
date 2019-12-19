@@ -25,3 +25,10 @@
 	display: inline-block;
 	margin: 0 auto
 }
+.code{
+	text-align: center;
+}
+
+.code image{
+	width: 90%
+}

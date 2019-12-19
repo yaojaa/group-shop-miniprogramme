@@ -206,6 +206,38 @@ Page({
 
     },
 
+    addListener:function () {
+          wx.requestSubscribeMessage({
+              tmplIds: ['MlhFii7cRSnXZf-HFT20eccXD77MPByPLY6LQvUkidI','LxxXR_fCI9WE8vxbvWvGLZILAFldQIwYXUOoEprf69s'],
+              success (res) {
+
+                console.log(res)
+                for (var key in res) {
+                  if (key !='errMsg') {
+                    if (res[key] =='reject') {
+                      wx.showModal({
+                        title:'订阅消息',
+                        content:'您已拒绝了订阅消息，将不会收到微信通知',
+                        confirmText:'知道了',
+                        //showCancel: false,
+                        success: res => {
+                         
+                        }
+                      })
+                      return
+                    }else{
+                      wx.showToast({
+                        title:'订阅成功'
+                      })
+                    }
+                  }
+                }
+
+
+               }
+            })
+    },
+
     ///////////
     //获取最新订单 //
     ///////////

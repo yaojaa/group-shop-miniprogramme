@@ -71,6 +71,9 @@
 
     <view class='share'>
         <button class="linenear_bg" hove-class="linenear_bg_hover" type='primary' open-type="share">分享告知</button>
+
+    <button bindtap="addListener" class="linenear_bg" hove-class="linenear_bg_hover" type='primary'>订阅发货提醒</button>
+
     </view>
     <view class='share'>
       😘跪求分享，以免遗漏～同时活跃群气氛

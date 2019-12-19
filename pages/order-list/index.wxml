@@ -14,7 +14,11 @@
                     </view>
                     <view class="flex justify-end align-center" slot="footer">
                         <button class="btn round primary hollow w-min-big mv-sm ml-sm" 
-                        bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}" wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">客服</button>
+                        bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}"
+
+                        data-wx_code="{{item.seller.wx_paycode}}"
+
+                         wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">客服</button>
                     
                         <button class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.express.length > 0}}" data-id="{{item.order_id}}" data-index="{{index}}" bindtap="checkexpress">物流信息</button>
                         <button class="btn round primary  w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
@@ -35,7 +39,13 @@
     <van-dialog id="contact" use-slot>
         <van-cell-group border="{{false}}" custom-class="mv-df">
             <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+
             <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+
+            <view class="code">
+                <image src="{{wx_code}}" data-src="{{wx_code}}" bindtap="previewImage" />
+            </view>
+
         </van-cell-group>
     </van-dialog>
     <view class="load-box" wx:if="{{loading}}">
