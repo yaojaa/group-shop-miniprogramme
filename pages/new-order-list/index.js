@@ -1,5 +1,3 @@
-import Dialog from '../../vant/dialog/dialog';
-import Notify from '../../vant/notify/notify'
 const util = require('../../utils/util')
 Page({
 
@@ -13,30 +11,9 @@ Page({
         cpage: 1,
         totalpage: 1,
         phone: '',
-        weChat: ''
-    },
-    handleCancelOrder(event) {
-
-        //      'toset_cancel'   => '取消订单',
-        // 'toset_pay'      => '去支付',
-        // 'toset_received' => '确认收货'
-
-        let { order_id, opt } = event.target.dataset
-
-        switch (opt) {
-            case 'toset_cancel':
-                this.cancelOrder(order_id, opt)
-                break;
-            case 'toset_pay':
-                this.pay(order_id, opt)
-                break;
-            case 'toset_received':
-                this.toset_received(order_id, opt)
-
-
-        }
-
-
+        weChat: '',
+        active:0,
+        search_order_status:0
     },
 
     getOrderList() {
@@ -46,7 +23,9 @@ Page({
         return new Promise((resolve, reject) => {
             util.wx.get('/api/seller/get_order_list', {
                 cpage: this.data.cpage,
-                pagesize: 10
+                pagesize: 25,
+                search_order_status: this.data.search_order_status,
+
             }).then((res) => {
                 this.setData({
                     loading: false,
@@ -59,46 +38,24 @@ Page({
             })
         })
     },
-    orderActions(e) {
-        const { opt, order_id, txt, sn } = e.currentTarget.dataset
-        console.log(opt, order_id, txt)
-        if (opt == 'toset_pay') {
-            this.pay(sn)
-            return
-        }
-        wx.showModal({
-            title: '确定要' + txt + '吗？',
-            success: (res) => {
-                if (res.confirm) {
-                    util.wx.post('/api/user/set_order_status', {
-                        opt,
-                        order_id
-                    }).then(res => {
-                        if (res.data.code == 200) {
-                            wx.showToast({ title: '订单操作成功' })
 
-                            this.data.search_status = 0
-
-                            this.setData({
-                                active: 0,
-                                cpage: 1,
-                                order_list: []
-                            })
-
-                            this.getOrderList()
-                        } else {
-                            wx.showToast({ title: '订单操作失败' })
-                        }
-                    })
-                }
-            }
-        })
-    },
     filterOrder(event) {
         let order = event.detail.index
+
+        if(order == 0){
+            this.data.search_order_status = ''
+        }
+
+         if(order == 1){
+            this.data.search_order_status = 2
+        }
+
+         if(order == 2){
+            this.data.search_order_status = 3
+        }
+
+        console.log(event)
         this.setData({
-            search_status: order,
-            active: order,
             cpage: 1,
             order_list: []
         })
@@ -181,10 +138,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        this.data.search_status = options.search_status || 0
-        this.setData({
-            active: options.search_status || 0
-        })
+      
     },
 
     /**

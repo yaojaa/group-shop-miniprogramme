@@ -10,7 +10,7 @@
             <block wx:for="{{order_list}}" wx:key="{{index}}">
                 <order-list item="{{item}}">
                     <view class="text-right text-gray mt-df" slot="total">
-                        总计：¥<text class="text-black">{{item.total_price}}</text>
+                   <text class="text-left"> （No.{{item.create_number}}） {{item.pay_time}}</text>  总计：¥<text class="text-black">{{item.total_price}}</text>
                     </view>
                     <view class="flex justify-end align-center" slot="footer">
                         <button class="btn round primary hollow w-min-big mv-sm ml-sm" 
@@ -42,7 +42,7 @@
 
             <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
 
-            <view class="code">
+            <view class="code" wx:if="{{wx_code}}">
                 <image src="{{wx_code}}" data-src="{{wx_code}}" bindtap="previewImage" />
             </view>
 

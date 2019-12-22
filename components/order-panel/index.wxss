@@ -10,3 +10,9 @@
 .color_1,.color_2{
     color: #ff6633
 }
+
+ .text-hide {
+     display: -webkit-box;
+      -webkit-box-orient: vertical;
+
+ }

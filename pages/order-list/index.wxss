@@ -29,6 +29,11 @@
 	text-align: center;
 }
 
+.text-left{
+	float: left;
+	font-size: 12px
+}
+
 .code image{
 	width: 90%
 }

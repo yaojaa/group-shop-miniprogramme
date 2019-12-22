@@ -18,8 +18,7 @@
             <view class="user-body" catchtap="goContact" data-phone="{{goods.user.mobile}}" data-wx="{{goods.user.wechatnumber}}">
                 <view class="user-info-hd">
 
-                    <image src="{{goods.user.headimg}}" class="avatar">
-                    </image>
+                 <image src="{{goods.user.headimg}}" class="avatar"></image>
 
                 </view>
                 <view class="user-info-bd">
@@ -306,7 +305,7 @@
 
 
 
-    <van-popup custom-class="authPopBox" show="{{ showAuth }}" >
+    <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页" >
 
         <view class="content-pop">
         <view class="logo">

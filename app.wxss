@@ -1440,7 +1440,7 @@ fieldset[disabled] .btn-link {
     left: 0;
     right: 0;
     background-color: #fff;
-    z-index: 8;
+    z-index: 9;
 }
 
 .service-code .code {

@@ -9,7 +9,6 @@
         "pages/goods/goods",
         "pages/publish/publish",
         "pages/publish-success/publish-success",
-        "pages/orderList/orderList",
         "pages/map/index",
         "pages/paySuccess/index",
         "pages/userLocation/index",

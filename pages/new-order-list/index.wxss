@@ -32,3 +32,9 @@
 	color: #666;
 	float: left;
 }
+
+ .text-hide {
+    display: -webkit-box;
+     -webkit-box-orient: vertical;
+
+  }

@@ -1,12 +1,11 @@
 <view class="container">
     <view class="order-title text-primary">
-        <navigator open-type="redirect"  url="/pages/home/index" hover-class="none">
+        <view bindtap="toGoods">
             <text class="goods_title">回到商品</text>
-        </navigator>
+        </view>
         <view class="actionsButtons">
             <view>
-             
-
+            
                  <van-button class="ml-sm" type="primary" plain size="mini" bindtap="sendMsgAll">群发通知</van-button>
 
 
@@ -37,7 +36,7 @@
  -->
     <view class="totalCount">
         <block wx:if="{{tab == 0 && valid_order.spec }}">
-            <view class="tips_title">备货统计</view>
+            <view class="tips_title">数量统计</view>
             <view class="spec text-justify " wx:key="index" wx:for="{{valid_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text>
@@ -75,7 +74,7 @@
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
             </view>
             <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
-                <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}} （复制）</text></view>
+                <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}} </text></view>
                 <view class="msg_btn">
                 <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
 微信通知                </button>
@@ -114,7 +113,7 @@
                  class="copybtn btn blue_text xs round button-hover">复制地址</button>
                 <view class="address" data-text="{{item.mobile}}">
                    <view> 姓名：{{item.consignee}}</view>
-                   <view>  电话：{{item.mobile}}  </view>
+                   <view  bindtap="copyTxt" data-text="{{item.mobile}}">  电话：{{item.mobile}} （复制电话）  </view>
                    <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}}
                    </view>
                 </view>

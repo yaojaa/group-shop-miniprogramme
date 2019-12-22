@@ -163,8 +163,15 @@ Page({
             phone: phone,
             weChat: wx
         })
-        Dialog.alert({
+       Dialog.confirm   ({
+            confirmButtonText:'进入主页',
             selector: '#contact'
+        }).then(() => {
+
+          this.goHomePage()
+
+        }).catch(() => {
+          // on cancel
         })
     },
     copyWx(event) {

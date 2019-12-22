@@ -1,10 +1,18 @@
 <view class="container gray-wrap cf">
+
+  <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" color="#49b34d">
+        <van-tab title="最新订单"  ></van-tab>
+        <van-tab title="待确认" ></van-tab>
+        <van-tab title="待发货"></van-tab>
+    </van-tabs>
+
+
     <view class="order-coentent">
         <view class="order-box">
             <block wx:for="{{order_list}}" wx:key="{{index}}">
                 <order-list item="{{item}}" user="{{false}}">
                     <view class="flex justify-end align-center" slot="footer">
-                                       <view class="time"> {{item.time_ago}} </view>
+                      <view class="time"> {{item.time_ago}} </view>
 
                        <!--  <button class="btn round primary hollow w-min-big mv-sm ml-sm" 
                         bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}" wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">客服</button> -->

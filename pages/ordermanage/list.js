@@ -112,6 +112,12 @@ Page({
 
     },
 
+      toGoods(){
+          wx.navigateTo({
+            url:'../goods/goods?goods_id='+this.data.goods_id
+           })
+    },
+
    toAddressList(){
           wx.navigateTo({
             url:'../send-list/index?goods_id='+this.data.goods_id
@@ -694,6 +700,24 @@ Page({
     /**
      * 长按复制
      */
+    
+
+    copyTxt(e){
+
+      const txt = e.target.dataset.text
+
+        wx.setClipboardData({
+            data: txt,
+            success: function(res) {
+                wx.showToast({
+                    title: '已复制'+txt,
+                    icon: 'none'
+                });
+            }
+        });
+
+
+    },
     copy: function(e) {
         console.log(e)
 

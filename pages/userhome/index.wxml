@@ -15,8 +15,12 @@
                 <i-icon type="setup" size="28" color="#999" />
             </navigator>
             <view class="name">{{info.store_name}}</view>
-            <button hidden="{{shareIng}}" bindtap="showShare" class="btn-reset">
-                <i-icon size="28" type="share" color="#999" /></button>
+           <!--  <button hidden="{{shareIng}}" bindtap="showShare" class="btn-reset">
+                <i-icon size="28" type="share" color="#999" /></button> -->
+            
+            <button bindtap="addEventLister" size="mini">关注订阅</button>
+
+
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">

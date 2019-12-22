@@ -134,8 +134,8 @@
                 <button class='pubbtn' bindtap="new_btn">
                     <i-icon type="add" size="20" />新发布
                 </button>
-<!-- 
-                 <button class='listen' bindtap="addListener">
+
+            <!--      <button class='listen' bindtap="addListener">
                    订阅提醒
              </button> -->
 

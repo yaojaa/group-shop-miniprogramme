@@ -11,6 +11,7 @@
         "i-button": "../../iView/button/index",
         "i-custom-bar": "../../components/custom-bar/index",
         "van-action-sheet": "../../vant/action-sheet/index",
-        "van-popup": "../../vant/popup/index"
+        "van-popup": "../../vant/popup/index",
+        "van-button": "../../vant/button/index"
     }
 }

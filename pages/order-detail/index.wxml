@@ -1,24 +1,20 @@
 <view class="container gray-wrap cf">
-    <view class="order-fixed-footer flex justify-end ph-df  shadow-df">
-        <!--         <block wx:for="{{info.order_action}}" wx:key="{{index}}">
-            <button class="btn round gray  ml-sm w-min-df" bindtap="handleConfirmReceipt" data-status="{{item.action_status}}">{{item.action_status_txt}}</button>
-        </block> -->
-        <navigator url="../ems-detail/index?name={{info.express_company}}&code={{info.express_code}}&id={{info.order_id}}" class="btn round gray hollow  ml-sm mv-sm w-min-df" wx:if="{{info.express_code}}">查看物流</navigator>
-        <button class="btn round hollow  ml-sm mv-sm w-min-df {{item.opt == 'toset_pay' || item.opt =='toset_received'?'primary':'gray'}}" data-opt="{{item.opt}}" data-order_id="{{id}}" data-txt="{{item.txt}}" data-sn="{{info.order_sn}}" bindtap="orderActions" wx:for="{{info.user_next_handle}}" wx:key="{{index}}">{{item.txt}}</button>
-    </view>
+
     <view class="order-wrap">
         <view class="primary ph-df pv-sm text-white mb-sm  flex align-center" style="min-height: 120rpx">
-            <view class="text-xl">{{info.order_status_txt}}</view>
-            <!--             <view class="text-sm">59分钟订单关闭</view>
- -->
+            <text wx:if="{{info.order_status==2}}">等待收货</text>
+            <text wx:else>{{info.order_status_txt}}</text>
+
         </view>
+
+
         <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 1}}">
             <van-icon name="location" color="#999" />
             <view class="flex-sub ml-xs">
                 <view class="text-justify">
                     <view><text class="mr-df">{{info.consignee}}</text>
                         <text>{{info.mobile}}</text></view>
-                    <view class="text-sm warning-text">快递</view>
+                    <view class="text-sm warning-text">快递邮寄</view>
                 </view>
                 <view class="pt-xs text-sm text-gray">
                     收货地址： {{info.province}}{{info.city}}{{info.district}}{{info.address}}
@@ -78,6 +74,16 @@
             <van-cell title="付款时间" wx:if="{{info.pay_time}}" value="{{pay_time}}" border="{{ false }}" value-class="text-gray" />
         </van-cell-group>
     </view>
+
+        <view >
+        <!--         <block wx:for="{{info.order_action}}" wx:key="{{index}}">
+            <button class="btn round gray  ml-sm w-min-df" bindtap="handleConfirmReceipt" data-status="{{item.action_status}}">{{item.action_status_txt}}</button>
+        </block> -->
+    
+
+         <!--     <navigator url="../ems-detail/index?name={{info.express_company}}&code={{info.express_code}}&id={{info.order_id}}" class="btn round primary hollow  ml-sm mv-sm w-min-df" wx:if="{{info.express.length}}">查看物流</navigator> -->
+         </view>
+
     <van-notify id="custom-selector" />
     <van-dialog id="van-dialog" />
 </view>
