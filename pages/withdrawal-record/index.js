@@ -17,9 +17,10 @@ Page({
         loading: false,
         dateModal: false,
         dateText: fmtDate(new Date().getTime()),
-        minDate: new Date(2019, 5).getTime(),
+        minDate: new Date(2018, 1).getTime(),
         currentDate: new Date().getTime(),
-        maxDate: new Date().getTime()
+        maxDate: new Date().getTime(),
+        activeNames: [0]
     },
     handleDateModal() {
         this.setData({
@@ -47,10 +48,13 @@ Page({
                     this.setData({
                         info: res.data.data.datas
                     })
-                    console.log('info',this.data.info)
                 }
-               
             })
+    },
+    onChangeItem(event) {
+        this.setData({
+            activeNames: event.detail
+        });
     },
     /**
      * 生命周期函数--监听页面加载
