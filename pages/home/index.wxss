@@ -113,16 +113,7 @@
     margin: 10px 50rpx 0;
 }
 
-button.listen{
-    width: 100px;
-    background: #ff7200;
-    color: #fff;
-    display: inline-block;
-    font-size: 14px;
-    border-radius: 50rpx;
-    border: 1px solid #ff7200;
- 
-}
+
 
 .user-name {
     font-size: 32rpx;

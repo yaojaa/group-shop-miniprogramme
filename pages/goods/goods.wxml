@@ -55,13 +55,6 @@
             管理订单
         </view>
     </view>
-    <i-modal title="给参与人群发微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
-        <view class="input_area">
-            <textarea hidden="{{ !showMsgTips }}" bindinput="inputNote" placeholder="请输入群发内容" maxlength="40" />
-            </view>
- </i-modal>
-
-
     <view class="sale-panel">
         <view class="sale-panel-bd">
             <view class="price-group">
@@ -214,7 +207,7 @@
 
                 <view class="flex text-center" style="padding: 15px 0">
                     <view class="flex-sub"><button class="btn green_bg" bindtap='copyGoods'>
-<i-icon type="editor" color="#49b34d" />   复制转载                     </button></view>
+<i-icon type="editor" color="#49b34d" />   复制发布                   </button></view>
                     <div class="solid-right"></div>
                     <view class="flex-sub"><button class="btn green_bg" bindtap='copyDetail'>
                     <i-icon type="barrage" color="#49b34d" /> 

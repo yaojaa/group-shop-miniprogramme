@@ -67,12 +67,10 @@ Page({
 
     sendMsgAll(){
 
-     this.setData({
-                    sendAll: true,
-                    dis:true,
-                    showMsgTips: true
+       wx.navigateTo({
+            url: '../send-msg/index?id=' + this.data.goods_id + '&name=' + this.data.goods_name
+        })
 
-                })
 
 
     },
@@ -178,7 +176,8 @@ Page({
 
         this.setData({
             goods_id: optiton.id,
-            delivery_method: optiton.delivery_method
+            delivery_method: optiton.delivery_method,
+            goods_name:optiton.goods_name
         })
 
           wx.setNavigationBarTitle({

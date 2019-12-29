@@ -49,10 +49,10 @@
 }
 .user-head .des{
 	line-height: 1.6;
-	color:#333;
+	color:#666;
 	font-size: 28rpx;
 	text-align: left;
-	padding: 30rpx
+	padding: 10px 30rpx
 }
 .user-head .info{
 	color:#888;
@@ -267,6 +267,13 @@ width:162rpx;
 position:absolute;
 right:7px;
 top:0rpx;
+
+}
+
+.actbtn{
+
+    margin:0 10px;
+    height: 30px
 
 }
 

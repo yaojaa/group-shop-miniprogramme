@@ -12,6 +12,8 @@
         "i-custom-bar": "../../components/custom-bar/index",
         "van-action-sheet": "../../vant/action-sheet/index",
         "van-popup": "../../vant/popup/index",
-        "van-button": "../../vant/button/index"
+        "van-button": "../../vant/button/index",
+        "van-tabbar": "../../vant/tabbar/index",
+        "van-tabbar-item": "../../vant/tabbar-item/index"
     }
 }

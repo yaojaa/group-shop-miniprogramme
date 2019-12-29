@@ -664,13 +664,69 @@ const setParentData = function(data) {
     })
 }
 
+//订阅提醒
+//
+
+const addListener = function (who) {
+
+       if(who=='user'){
+        var tmplIds=['v_pkvU1y21HcA69K6Rsde4ivcsMExxptWHdcr2abADg',
+              'Wu_vie78kgoRr8y90IAsxnsQ05uQmw6wCDBw0vRpnu0',
+              'Wu_vie78kgoRr8y90IAsxmmQQvqy3l8f4NsYC_1xMqg']
+       }else{
+
+        var tmplIds= [
+        'MlhFii7cRSnXZf-HFT20eccXD77MPByPLY6LQvUkidI',//新订单
+        'LxxXR_fCI9WE8vxbvWvGLdlghHsJfxEcM_9QdofzfaI'] //经营报告
+
+       }
+
+       return function(){
+            wx.requestSubscribeMessage({
+              tmplIds:tmplIds ,
+              success (res) {
+                console.log(res)
+                for (var key in res) {
+                  if (key !='errMsg') {
+                    if (res[key] =='reject') {
+                      // wx.showModal({
+                      //   title:'订阅消息',
+                      //   content:'您已拒绝了订阅消息，将不会收到微信通知',
+                      //   confirmText:'知道了',
+                      //   //showCancel: false,
+                      //   success: res => {
+                         
+                      //   }
+                      // })
+                      return
+                    }else{
+                      // wx.showToast({
+                      //   title:'订阅成功'
+                      // })
+                    }
+                  }
+                }
+
+
+               }
+            })
+       }
+
+
+
+    }
+
+const userListner = addListener('user')
+const sellerListner = addListener('seller')
+
 module.exports = {
     formatTime,
     fmtDate,
     inputDuplex,
     uploadPicture,
     distance,
-    // get_painter_data_and_draw,
+    userListner,
+    sellerListner,
     // getShareImg,
     formSubmitCollectFormId,
     getUserloaction,

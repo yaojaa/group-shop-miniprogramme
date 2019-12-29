@@ -11,30 +11,56 @@
             <image src="{{info._user.headimg}}" />
         </view>
         <view class="flex justify-between ph-sm" style="padding-top: 80rpx;">
-            <navigator hidden="{{shareIng}}" wx:if="{{showSetting}}" url="../create_shop/index">
+         <!--    <navigator hidden="{{shareIng}}" wx:if="{{showSetting}}" url="../create_shop/index">
                 <i-icon type="setup" size="28" color="#999" />
-            </navigator>
+            </navigator> -->
             <view class="name">{{info.store_name}}</view>
            <!--  <button hidden="{{shareIng}}" bindtap="showShare" class="btn-reset">
                 <i-icon size="28" type="share" color="#999" /></button> -->
             
-            <button bindtap="addEventLister" size="mini">关注订阅</button>
-
+<!--             <button bindtap="addEventLister" size="mini">关注订阅</button>
+ -->
 
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-            访问 <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔 
+       <!--      访问 <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔  -->
 
-            <view class="i-join">
-                                <navigator url="../order-list/index">
+<!--   <view class="i-join">
+ -->          <!--                                 <navigator url="../order-list/index">
 
 
 
                    <view class="mini-avatar"> <open-data type="userAvatarUrl"></open-data></view> 我的订单
-</navigator>
-               </view>
+</navigator> -->
+            <!--    </view> -->
         </view>
+
+        <view class="btns">
+            <van-button bindtap="goContact" custom-class="actbtn"     size="small"  plain hairline  type="warning">
+                <van-icon size="18px"  name="friends-o" />
+ 加为好友</van-button>
+<van-button  custom-class="actbtn" bindtap="showShare"  size="small" plain hairline   type="warning">
+                <van-icon size="18px"  name="share" />
+
+            分享朋友</van-button>
+<van-button  custom-class="actbtn" size="small" plain hairline bindtap="addEventLister"   type="warning">
+                <van-icon size="18px"   name="star-o" />
+
+订阅关注</van-button>
+
+        </view>
+
+
+<van-tabbar  bind:change="onTabChange">
+  <van-tabbar-item icon="home-o">返回我的</van-tabbar-item>
+  <van-tabbar-item icon="search">转发分享</van-tabbar-item>
+  <van-tabbar-item icon="friends-o">主页设置</van-tabbar-item>
+</van-tabbar>
+
+
+
+
     </view>
     <!--     <view class="menu flex-box">
         <view class="flex-item">
@@ -133,9 +159,15 @@
         <view class="weui-footer__text">Copyright © 20018-2025</view>
     </view>
     <van-dialog id="contact" use-slot>
-        <van-cell-group border="{{false}}" custom-class="mv-df">
-            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
-            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+          <van-cell-group border="{{false}}" custom-class="mv-df">
+            <van-cell title="手机号：{{info._user.mobile}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{info._user.mobile}}" />
+
+            <van-cell border="{{false}}" title="微信号：{{info._user.wechatnumber}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{info._user.wechatnumber}}" />
+
+            <view class="code" wx:if="{{info._user.wx_paycode}}">
+                <image src="{{info._user.wx_paycode}}" data-src="{{info._user.wx_paycode}}" bindtap="previewImage" />
+            </view>
+
         </van-cell-group>
     </van-dialog>
 </view>

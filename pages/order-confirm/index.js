@@ -361,20 +361,17 @@ Page({
                 paySign: data['paySign'],
                 success: (res) => {
 
- 
+                    wx.hideLoading()
 
                     util.wx.post('/api/pay/orderpay', {
                         order_sn: order_sn
                     })
 
-
-                  
-
-                    return
+                    //
 
 
-
-                    this.jumpToSuccess();
+                  util.userListner()
+                  this.jumpToSuccess();
                 },
                 fail: (res) => {
                     wx.redirectTo({
@@ -484,6 +481,7 @@ Page({
        this.clearTimer()
 
     },
+
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作

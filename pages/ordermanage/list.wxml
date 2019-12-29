@@ -76,8 +76,8 @@
             <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
                 <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}} </text></view>
                 <view class="msg_btn">
-                <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
-微信通知                </button>
+               <!--  <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
+微信通知                </button> -->
                 </view>
 
             <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">
@@ -202,13 +202,6 @@
     <i-modal title="确认已支付" visible="{{ visible4_pay }}" bind:ok="setPay" bind:cancel="closePay">
         <view class="price-input">
             请确认Ta已经线下支付过了哦
-        </view>
-    </i-modal>
-    <i-modal title="发送微信通知" visible="{{ showMsgTips }}" bind:ok="setTips" bind:cancel="closeTips">
-        <view class="input_box">
-            <textarea class="textarea" maxlength="30" bindinput="noteInput" hidden="{{ !showMsgTips }}" value="{{note}}" placeholder="输入提醒内容:如请来101取货,注意查收快递等。直接推送到用户微信通知，建议每人只发一次！" />
-
-            <switch checked="{{sendAll}}" disabled="{{dis}}" type="checkbox"  bindchange="switchSendAll" /> 群发所有人
         </view>
     </i-modal>
     <i-message id="message" />
