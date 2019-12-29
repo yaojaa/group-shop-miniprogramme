@@ -126,8 +126,8 @@
 color:#49b34d;
 border-radius:50rpx;
 border:1px solid #ebffdb;
-margin-right:6px;
-padding:0 10px!important;
+margin-right:12px;
+padding:0 15px!important;
 background:#f9fff5;
 
 }

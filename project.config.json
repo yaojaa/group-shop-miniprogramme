@@ -254,7 +254,7 @@
 					"id": 27,
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
-					"query": "id=1",
+					"query": "id=2850",
 					"scene": null
 				},
 				{
@@ -605,20 +605,6 @@
 					"name": "pages/userhome/index",
 					"pathName": "pages/userhome/index",
 					"query": "store_id=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发送通知",
-					"pathName": "pages/send-msg/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/ordermanage/list",
-					"pathName": "pages/ordermanage/list",
-					"query": "id=1297&goods_name=%E6%B5%8B%E8%AF%952&delivery_method=1",
 					"scene": null
 				}
 			]

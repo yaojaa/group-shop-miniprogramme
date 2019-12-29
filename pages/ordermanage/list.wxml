@@ -37,7 +37,7 @@
  -->
     <view class="totalCount">
         <block wx:if="{{tab == 0 && valid_order.spec }}">
-            <view class="tips_title">备货统计</view>
+            <view class="tips_title">销量统计</view>
             <view class="spec text-justify " wx:key="index" wx:for="{{valid_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text>

@@ -1090,3 +1090,23 @@ button::after {
     font-size: 26rpx;
 }
 
+.new_order{
+    position: relative;
+}
+
+.listen_btn{
+    position: absolute;
+    left: 190rpx;
+    top: 31rpx;
+    z-index: 998;
+    font-size: 12px;
+    padding: 0 8px;
+    height: 22px;
+    line-height: 22px;
+    background: #fff;
+    border-radius: 5px;
+    border:0.5px solid #ff8900;
+    color: #ff8900
+}
+
+

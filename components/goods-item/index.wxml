@@ -17,7 +17,6 @@
             <view class="link">
                 <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button>
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
-                  <button class="hollow" data-id="{{item.goods_id}}" bindtap="addListen" size="mini"> 订阅提醒 </button>
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="moreAction" size="mini">
                     <i-icon size="28" color="#49b34d" type="other" />
                 </button>

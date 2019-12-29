@@ -119,7 +119,9 @@
             </view>
         </block>
     </i-panel>
-    <i-panel wx:if="{{orderList.length}}" hide-border title="最新订单" extra="更多" link="../new-order-list/index">
+
+    <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
+    <i-panel hide-border title="最新订单" extra="更多新订单" link="../new-order-list/index">
         <view class="control">
 
             <view class="newlist">
@@ -138,6 +140,7 @@
             </view>
         </view>
     </i-panel>
+    </view>
     <view class="text-center">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>

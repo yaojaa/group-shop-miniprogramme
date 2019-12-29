@@ -681,11 +681,18 @@ const addListener = function (who) {
 
        }
 
+       if(!wx.requestSubscribeMessage){
+        return  wx.showToast({
+                        title:'您的微信版本低，请升级微信',
+                        icon:'none'
+                      })
+       }
+
        return function(){
             wx.requestSubscribeMessage({
               tmplIds:tmplIds ,
               success (res) {
-                console.log(res)
+
                 for (var key in res) {
                   if (key !='errMsg') {
                     if (res[key] =='reject') {
@@ -700,9 +707,10 @@ const addListener = function (who) {
                       // })
                       return
                     }else{
-                      // wx.showToast({
-                      //   title:'订阅成功'
-                      // })
+                      wx.showToast({
+                        title:'订阅一次成功',
+                        icon:'none'
+                      })
                     }
                   }
                 }

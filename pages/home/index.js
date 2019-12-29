@@ -238,6 +238,7 @@ Page({
         })
 
     },
+    addListen:util.sellerListner,
 
 
     getGoodsList: function() {
