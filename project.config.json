@@ -606,6 +606,12 @@
 					"pathName": "pages/userhome/index",
 					"query": "store_id=1",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发送通知",
+					"pathName": "pages/send-msg/index",
+					"scene": null
 				}
 			]
 		}

@@ -387,9 +387,13 @@ Page({
 
     goSendMsg() {
 
-        this.setData({
-            showMsgTips: true
+
+        wx.navigateTo({
+            url: '../send-msg/index?id=' + this.data.goods_id + '&name=' + this.data.goods.goods_name
         })
+
+
+        
 
     },
 

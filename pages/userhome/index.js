@@ -1,5 +1,7 @@
 const util = require('../../utils/util.js')
 import Dialog from '../../vant/dialog/dialog';
+
+console.log(util.addEventLister)
 const app = getApp()
 Page({
 
@@ -292,6 +294,11 @@ Page({
 
     },
 
+    onTabChange(e){
+
+        console.log(e.detail)
+    },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -364,38 +371,7 @@ Page({
 
     },
 
-    addEventLister(){
-        wx.requestSubscribeMessage({
-              tmplIds: ['MlhFii7cRSnXZf-HFT20eccXD77MPByPLY6LQvUkidI','LxxXR_fCI9WE8vxbvWvGLZILAFldQIwYXUOoEprf69s'],
-              success (res) {
-
-                console.log(res)
-                for (var key in res) {
-                  if (key !='errMsg') {
-                    if (res[key] =='reject') {
-                      wx.showModal({
-                        title:'订阅消息',
-                        content:'您已拒绝了订阅消息，将不会收到微信通知',
-                        confirmText:'知道了',
-                        //showCancel: false,
-                        success: res => {
-                         
-                        }
-                      })
-                      return
-                    }else{
-                      wx.showToast({
-                        title:'订阅成功'
-                      })
-                    }
-                  }
-                }
-               }
-            })
-
-    },
-
-
+    addEventLister:util.userListner,
 
     /**
      * 用户点击右上角分享

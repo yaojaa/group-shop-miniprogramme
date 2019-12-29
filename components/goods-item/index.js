@@ -36,9 +36,11 @@ Component({
       }
    },
     methods: {
-     moreAction(e){
 
-      console.log(this.data)
+     addListen(e){
+      util.sellerListner()
+     }, 
+     moreAction(e){
 
       this.goods_id = e.currentTarget.dataset.id
 
