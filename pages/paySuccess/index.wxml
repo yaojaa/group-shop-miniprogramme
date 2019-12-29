@@ -15,7 +15,7 @@
     <view class='content'>
 
         <view class='header'>
-            <view class='title'> {{create_number}}. <open-data type="userNickName"></open-data>已参团 +1</view>
+            <view class='title'> {{create_number}}. <open-data type="userNickName"></open-data>已参团 +{{qty}}</view>
              <view class="emoji" >
             👇👇👇
           </view>
@@ -76,5 +76,7 @@
     <view class='share'>
       😘跪求分享，以免遗漏～同时活跃群气氛
   </view><view></view>
+
+  <button bindtap="addListener" size="mini"></button>
   
 </view> 

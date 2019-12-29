@@ -3,7 +3,7 @@ const util = require('../../utils/util')
 Page({
     data: {
 
-        radio: 'new_goods',
+        radio: 'pickup',
         note:'',
         goods_id:'',
         disabled:false,
@@ -46,7 +46,7 @@ Page({
 
             this.setData({
                 disabled:true,
-                text:'已发送'
+                text:'已发送 请返回'
             })
 
             wx.showToast({

@@ -367,10 +367,8 @@ Page({
                         order_sn: order_sn
                     })
 
-                    //
-
-
                   util.userListner()
+
                   this.jumpToSuccess();
                 },
                 fail: (res) => {

@@ -18,6 +18,7 @@ Page({
         goods_id: "",
         create_number: 54,
         clickShare:false,
+        qty:1,
         numers: '❶❶❷❸❹❺❻❼❽❾❿'.split(''),
         wordArr: {
             1: '值，躺着把钱省了',
@@ -79,22 +80,29 @@ Page({
 
 
             if (res.data.code == 200) {
-                // var order = res.data.data;
-                // this.setData({
-                //     orders_info: order.order,
-                //     goods_name: order.goods.goods_name,
-                //     order_goods: order.order_goods,
-                //     create_number: order.order.create_number,
-                //     wx_collection_code: order.store.wx_collection_code,
-                //     order_time: this.timetrans(order.order.add_time)
-                // })
+
+                //订购数量
+                var qty = 0;
+                 res.data.data.order_detail.forEach(item=>{
+                    qty+= item.qty
+                 })
+                
                 this.setData({
                     order: res.data.data,
                     create_number: res.data.data.create_number,
                     goods_name: res.data.data.order_detail[0].goods_name,
-                    order_time: res.data.data.addtime
+                    order_time: res.data.data.addtime,
+                    qty:qty
                 })
             }
+        }).catch(e=>{
+           wx.hideLoading()
+
+           wx.showToast({
+            title:e.data.msg,
+            icon:'none'
+           })
+
         })
 
     },
@@ -116,7 +124,7 @@ Page({
         })
 
     },
-
+    // addListener:util.userListner,
     /**
      * 用户点击右上角分享
      */

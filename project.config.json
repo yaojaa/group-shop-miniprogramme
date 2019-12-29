@@ -153,7 +153,7 @@
 					"id": 12,
 					"name": "支付成功",
 					"pathName": "pages/paySuccess/index",
-					"query": "order_id=6030&goods_id=771",
+					"query": "order_id= 8780&goods_id=771",
 					"scene": null
 				},
 				{
@@ -611,6 +611,14 @@
 					"id": -1,
 					"name": "发送通知",
 					"pathName": "pages/send-msg/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/ordermanage/list",
+					"pathName": "pages/ordermanage/list",
+					"query": "id=1297&goods_name=%E6%B5%8B%E8%AF%952&delivery_method=1",
 					"scene": null
 				}
 			]

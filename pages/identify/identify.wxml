@@ -18,7 +18,7 @@
         </i-panel>
 
 
-        <i-panel title="微信二维码" extra="微信个人或微信群二维码 引导入群"  >
+        <i-panel title="微信名片二维码" extra="微信个人或微信群二维码 引导入群"  >
            <view  wx:if="{{!wx_paycode}}"  class="weui-uploader__input-box" bindtap="chooseImage">
                         <text class="upload_txt">
                             </text>

@@ -670,9 +670,9 @@ const setParentData = function(data) {
 const addListener = function (who) {
 
        if(who=='user'){
-        var tmplIds=['v_pkvU1y21HcA69K6Rsde4ivcsMExxptWHdcr2abADg',
-              'Wu_vie78kgoRr8y90IAsxnsQ05uQmw6wCDBw0vRpnu0',
-              'Wu_vie78kgoRr8y90IAsxmmQQvqy3l8f4NsYC_1xMqg']
+        var tmplIds=['v_pkvU1y21HcA69K6Rsde4ivcsMExxptWHdcr2abADg', // 发货提醒
+              'KEpGvkFWzV8bGV_cKLp9BUdEGVY6RwSijolExu5M5dY', // 留言通知
+              'Wu_vie78kgoRr8y90IAsxmmQQvqy3l8f4NsYC_1xMqg'] //新品上架
        }else{
 
         var tmplIds= [

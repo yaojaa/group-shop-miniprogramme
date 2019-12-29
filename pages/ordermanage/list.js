@@ -71,8 +71,6 @@ Page({
             url: '../send-msg/index?id=' + this.data.goods_id + '&name=' + this.data.goods_name
         })
 
-
-
     },
 
     //打开发送通知
@@ -110,7 +108,7 @@ Page({
 
     },
 
-      toGoods(){
+    toGoods(){
           wx.navigateTo({
             url:'../goods/goods?goods_id='+this.data.goods_id
            })
@@ -698,13 +696,16 @@ Page({
 
     copyTxt(e){
 
+
+    console.log(e)
+
       const txt = e.target.dataset.text
 
         wx.setClipboardData({
             data: txt,
             success: function(res) {
                 wx.showToast({
-                    title: '已复制'+txt,
+                    title: '已复制',
                     icon: 'none'
                 });
             }
@@ -712,6 +713,26 @@ Page({
 
 
     },
+    copyMobile(e){
+
+       console.log(e)
+
+
+        const mobile = e.target.dataset.mobile
+
+         wx.setClipboardData({
+            data: mobile,
+            success: function(res) {
+                wx.showToast({
+                    title: '电话已复制',
+                    icon: 'none'
+                });
+            }
+        });
+
+    },
+
+
     copy: function(e) {
         console.log(e)
 

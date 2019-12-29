@@ -7,15 +7,19 @@
 
     <van-radio-group value="{{ radio }}" bind:change="onChange">
 
-        <view class="mv-df">
-          <van-radio name="new_goods" checked-color="#49b34d"><view class="text-df">上新通知 (微信通知所有粉丝顾客) </view></van-radio>
-        </view>
-
-
-        <view class="mv-df">
+         <view class="mv-df">
         
-        <van-radio name="pickup" checked-color="#49b34d"><view class="text-df">留言通知（微信通知本商品所有下单用户）</view></van-radio>
+        <van-radio name="pickup" checked-color="#49b34d"><view class="text-df">留言通知（发送一条留言给本商品所有下单顾客）</view></van-radio>
         </view>
+
+        
+
+        <view class="mv-df">
+          <van-radio name="new_goods" checked-color="#49b34d"><view class="text-df">上新通知（发送一条新品通知给所有粉丝顾客）</view></van-radio>
+        </view>
+
+
+       
 
     
     </van-radio-group>
@@ -30,7 +34,7 @@
 
 
     <view class="tips">
-        微信通知有次数限制，请谨慎使用，以免浪费额度。
+        只有用户订阅一次微信通知，才能收到一条通知，请谨慎使用，以免无法触达用户。
     </view>
  
     
