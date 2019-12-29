@@ -52,10 +52,11 @@
         </view>
 
 
-<van-tabbar  bind:change="onTabChange">
-  <van-tabbar-item icon="home-o">返回我的</van-tabbar-item>
-  <van-tabbar-item icon="search">转发分享</van-tabbar-item>
+<van-tabbar  bind:change="onTabChange" active-color="#49b34d">
+  <van-tabbar-item icon="home-o" >返回我的</van-tabbar-item>
   <van-tabbar-item icon="friends-o">主页设置</van-tabbar-item>
+  <van-tabbar-item icon="share">转发分享</van-tabbar-item>
+  
 </van-tabbar>
 
 

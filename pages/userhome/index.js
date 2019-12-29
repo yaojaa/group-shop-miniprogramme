@@ -42,9 +42,9 @@ Page({
     copyWx(event) {
         wx.setClipboardData({
             data: this.data.weChat,
-            success: function(res) {
+            success: function (res) {
                 wx.getClipboardData({
-                    success: function(res) {
+                    success: function (res) {
                         wx.showToast({
                             title: '复制成功'
                         })
@@ -119,7 +119,7 @@ Page({
                                     console.log(1)
                                     wx.saveImageToPhotosAlbum({
                                         filePath: imgUrl,
-                                        success: function(data) {
+                                        success: function (data) {
                                             wx.showToast({
                                                 title: '保存成功',
                                                 icon: 'success',
@@ -132,7 +132,7 @@ Page({
                         } else {
                             wx.saveImageToPhotosAlbum({
                                 filePath: imgUrl,
-                                success: function(data) {
+                                success: function (data) {
                                     wx.showToast({
                                         title: '保存成功',
                                         icon: 'success',
@@ -165,7 +165,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
         this.loadPage(options);
     },
     onShow() {
@@ -219,15 +219,15 @@ Page({
             obj_id: this.store_id,
             user_scene: app.globalData.userScene,
             user_phone: app.globalData.userPhone,
-            user_id:app.globalData.userInfo.user_id || ''
+            user_id: app.globalData.userInfo.user_id || ''
         })
     },
 
     getStoreInfo(options) {
 
         util.wx.get('/api/store/get_store_homepage', {
-                store_id: this.store_id || app.globalData.userInfo.store_id
-            })
+            store_id: this.store_id || app.globalData.userInfo.store_id
+        })
             .then(res => {
 
                 var store_slide
@@ -239,7 +239,7 @@ Page({
                 if (res.data.data.store_slide.length == 0) {
                     store_slide = ['https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b201906271717046776.jpg']
                 } else {
-                    store_slide =res.data.data.store_slide
+                    store_slide = res.data.data.store_slide
                 }
 
                 this.setData({
@@ -261,10 +261,10 @@ Page({
         })
 
         util.wx.get('/api/goods/get_store_goods_list', {
-                store_id: this.store_id,
-                cpage: this.cpage,
-                pagesize: 5
-            })
+            store_id: this.store_id,
+            cpage: this.cpage,
+            pagesize: 5
+        })
             .then(res => {
                 // 存储赋值
                 this.data.onLoadOpt = options;
@@ -294,16 +294,28 @@ Page({
 
     },
 
-    onTabChange(e){
-
-        console.log(e.detail)
+    onTabChange(e) {
+        switch (e.detail) {
+            case 0:
+                wx.navigateTo({
+                    url:'../home/index'
+                })
+                break;
+            case 1:
+                wx.navigateTo({
+                    url:'../identify/identify'
+                })
+                break;
+            case 2:
+                this.showShare()
+        }
     },
 
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
 
     },
 
@@ -311,18 +323,18 @@ Page({
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
-    onPageScroll: function(e) {
+    onPageScroll: function (e) {
 
         this.scrollTop = e.scrollTop
 
@@ -354,7 +366,7 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
     /**
@@ -371,12 +383,12 @@ Page({
 
     },
 
-    addEventLister:util.userListner,
+    addEventLister: util.userListner,
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function(res) {
+    onShareAppMessage: function (res) {
 
         if (res.from === 'button') {
             // 来自页面内转发按钮
@@ -395,7 +407,7 @@ Page({
         }
 
         return {
-            title:  this.data.info.store_name + '邀请你来逛逛'
+            title: this.data.info.store_name + '邀请你来逛逛'
         }
     }
 })
