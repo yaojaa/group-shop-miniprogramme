@@ -103,6 +103,8 @@
 
 
                 <button bindtap="copy" 
+                data-province="{{item.province}}"
+                data-city="{{item.city}}"
 
                 data-address="{{item.address}}"
                 data-consignee="{{item.consignee}}"

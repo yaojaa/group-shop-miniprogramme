@@ -1096,8 +1096,8 @@ button::after {
 
 .listen_btn{
     position: absolute;
-    left: 190rpx;
-    top: 31rpx;
+    left: 198rpx;
+    top: 32rpx;
     z-index: 998;
     font-size: 12px;
     padding: 0 8px;

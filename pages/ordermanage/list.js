@@ -735,6 +735,8 @@ Page({
 
     copy: function(e) {
         console.log(e)
+        const province = e.target.dataset.province
+        const city = e.target.dataset.city
 
         const address = e.target.dataset.address
         const consignee = e.target.dataset.consignee
@@ -748,7 +750,7 @@ Page({
                 order_string+= item.spec_name + ' +'+item.qty+'件\n'
               })
 
-        const txt = consignee+'\n'+mobile+'\n'+address +'\n'+order_string
+        const txt = consignee+'\n'+mobile+'\n'+province+city+address +'\n'+order_string
 
 
 
