@@ -173,9 +173,6 @@ Page({
         })
 
 
-
-
-
         this.setData({
             goods_id: optiton.id,
             delivery_method: optiton.delivery_method
@@ -236,9 +233,7 @@ Page({
         const avatar = e.detail.target.dataset.avatar
         const user_name = e.detail.target.dataset.user_name
 
-
         // if (opt == 'toset_send' && this.data.delivery_method == 1) {
-
 
         //     wx.navigateTo({
         //         url: '../to-send/index?get_user_avatar=' + avatar + '&get_user_name=' + user_name + '&order_id=' + order_id+ '&cindex=' + cindex+ '&pindex=' + pindex
@@ -725,6 +720,8 @@ Page({
         const consignee = e.target.dataset.consignee
         const mobile = e.target.dataset.mobile
         const order_detail = e.target.dataset.order_detail
+
+        console.log(order_detail)
 
         var order_string =''
               order_detail.forEach(item=>{

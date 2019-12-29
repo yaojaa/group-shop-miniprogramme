@@ -1,11 +1,12 @@
 <view class="container">
     <view class="order-title text-primary">
-        <view bindtap="toGoods">
+        <navigator open-type="redirect"  url="/pages/goods/index?goods_id=1236" hover-class="none">
             <text class="goods_title">回到商品</text>
-        </view>
+        </navigator>
         <view class="actionsButtons">
             <view>
-            
+             
+
                  <van-button class="ml-sm" type="primary" plain size="mini" bindtap="sendMsgAll">群发通知</van-button>
 
 
@@ -36,7 +37,7 @@
  -->
     <view class="totalCount">
         <block wx:if="{{tab == 0 && valid_order.spec }}">
-            <view class="tips_title">数量统计</view>
+            <view class="tips_title">备货统计</view>
             <view class="spec text-justify " wx:key="index" wx:for="{{valid_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}</text>
@@ -74,7 +75,7 @@
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
             </view>
             <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
-                <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}} </text></view>
+                <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text></view>
                 <view class="msg_btn">
                 <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
 微信通知                </button>
@@ -101,21 +102,11 @@
                class="modifybtn btn gray hollow xs round button-hover"> 修改地址</button>
 
 
-                <button bindtap="copy" data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}"
-
-                data-address="{{item.province+item.city+item.district+item.address}}"
-                data-consignee="{{item.consignee}}"
-                data-mobile="{{item.mobile}}"
-                data-order_detail="{{item.order_detail}}"
-                data-user_message="{{item.user_message}}"
-
-
-                 class="copybtn btn blue_text xs round button-hover">复制地址</button>
-                <view class="address" data-text="{{item.mobile}}">
+                <button bindtap="copy" data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="copybtn btn gray hollow xs round button-hover"> 复制地址</button>
+                <view class="address" bindtap="copy" data-text="{{item.mobile}}">
                    <view> 姓名：{{item.consignee}}</view>
-                   <view  bindtap="copyTxt" data-text="{{item.mobile}}">  电话：{{item.mobile}} （复制电话）  </view>
-                   <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}}
-                   </view>
+                   <view>  电话：{{item.mobile}} <text class="blue_text">复制</text> </view>
+                   <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}} {{item.user_message}}</view>
                 </view>
             </view>
             <view class="remark scale-b-1px" wx:if="{{item.user_message}}">
