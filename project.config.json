@@ -254,7 +254,7 @@
 					"id": 27,
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
-					"query": "id=1",
+					"query": "id=2850",
 					"scene": null
 				},
 				{
@@ -611,6 +611,7 @@
 					"id": -1,
 					"name": "发送通知",
 					"pathName": "pages/send-msg/index",
+					"query": "",
 					"scene": null
 				}
 			]

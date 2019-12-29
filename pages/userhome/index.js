@@ -174,8 +174,9 @@ Page({
         this.setData({
             shareIng: false
         })
-
+        
         this.data.onLoadOpt && this.loadPage(this.data.onLoadOpt);
+        this.getStoreInfo()
     },
     loadPage(options) {
 
@@ -209,7 +210,7 @@ Page({
 
         this.cpage = 1
         this.getDataList(options)
-        this.getStoreInfo(options)
+       
     },
 
     add_access() {
@@ -231,11 +232,6 @@ Page({
             .then(res => {
 
                 var store_slide
-
-                // 存储赋值
-                this.data.onLoadOpt = options;
-
-
                 if (res.data.data.store_slide.length == 0) {
                     store_slide = ['https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b201906271717046776.jpg']
                 } else {
@@ -303,7 +299,7 @@ Page({
                 break;
             case 1:
                 wx.navigateTo({
-                    url:'../identify/identify'
+                    url:'../create_shop/index'
                 })
                 break;
             case 2:

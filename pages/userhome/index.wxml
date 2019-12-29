@@ -165,8 +165,8 @@
 
             <van-cell border="{{false}}" title="微信号：{{info._user.wechatnumber}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{info._user.wechatnumber}}" />
 
-            <view class="code" wx:if="{{info._user.wx_paycode}}">
-                <image src="{{info._user.wx_paycode}}" data-src="{{info._user.wx_paycode}}" bindtap="previewImage" />
+            <view class="code text-center" wx:if="{{info._user.wx_paycode}}">
+                <image src="{{info._user.wx_paycode}}" mode="widthFix" style="width: 400rpx;hegith:400rpx; margin:0 auto " />
             </view>
 
         </van-cell-group>
