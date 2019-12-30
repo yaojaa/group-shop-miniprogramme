@@ -737,6 +737,7 @@ Page({
         console.log(e)
         const province = e.target.dataset.province
         const city = e.target.dataset.city
+        const district = e.target.dataset.district
 
         const address = e.target.dataset.address
         const consignee = e.target.dataset.consignee
@@ -750,7 +751,7 @@ Page({
                 order_string+= item.spec_name + ' +'+item.qty+'件\n'
               })
 
-        const txt = consignee+'\n'+mobile+'\n'+province+city+address +'\n'+order_string
+        const txt = consignee+'\n'+mobile+'\n'+province+city+district+address +'\n'+order_string
 
 
 
