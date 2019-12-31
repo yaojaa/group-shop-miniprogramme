@@ -87,6 +87,10 @@ border-radius:10rpx;
 
 }
 
+.weui-uploader__files{
+  height:142rpx;
+}
+
 
 .weui-uploader__file {
 
@@ -105,12 +109,19 @@ background-size: cover;
   z-index: 99;
   background:#333
 }
+.weui-uploader__bd{
+  width:100%;
+}
 .weui-uploader__input-box {
 
 width:133rpx;
 height:133rpx;
 border:1px solid #d9d9d9;
 
+}
+
+.drag-box{
+  display: flex;
 }
 
 .loading{

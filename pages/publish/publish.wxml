@@ -1,4 +1,5 @@
 <!--  <i-custom-bar fixed backColor="#fff" backcfm  showBackIcon="{{true}}" title="新发布"> </i-custom-bar> -->
+<preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view>
 <view class="page-body">
     <view class="progress" wx:if="{{photoProgress}}">
         <i-spin size="large"></i-spin>
@@ -7,10 +8,24 @@
         <view class="weui-uploader weui-cells_form weui-cell">
             <view class="weui-uploader__bd">
                 <view class="weui-uploader__files" id="uploaderFiles">
-                    <view wx:for="{{goods_images}}" wx:key="{{item.img_url}}" class="weui-uploader__file" style="background-image:url({{item.img_url}}?imageMogr2/thumbnail/100x)">
+                    <drag
+                        wx:if="{{goods_images.length > 0}}"
+                        id="drag"
+                        self-drag-class="weui-uploader__input-img"
+                        drag-box="drag-box"
+                        bind:click="itemClick" 
+                        bind:delete="deleteClick"
+                        bind:upload="chooseImage" 
+                        columns="{{size}}" 
+                        list-data="{{goods_images}}"
+                        bind:change="change">
+                    </drag>
+
+                    <!-- <view wx:for="{{goods_images}}" wx:key="{{item.img_url}}" class="weui-uploader__file" style="background-image:url({{item.img_url}}?imageMogr2/thumbnail/100x)">
                         <i-icon class="close" data-index="{{index}}" bindtap="removePhoto" color="#ccc" size="26" type="close" />
-                    </view>
-                    <view wx:if="{{goods_images.length < 5}}" class="weui-uploader__input-box" bindtap="chooseImage">
+                    </view> -->
+
+                    <view wx:else class="weui-uploader__input-box" bindtap="chooseImage">
                         <text class="upload_txt">
                             头图相册</text>
                     </view>

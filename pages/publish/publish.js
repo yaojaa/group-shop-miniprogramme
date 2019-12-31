@@ -20,6 +20,11 @@ const default_end_time = util.formatTime(date)
 Page({
     data: {
         height: '300', //文本框的高度
+        previewImgs: {
+            current: "",
+            urls: [],
+        },
+        previewImgHidden: true,
         link_url: "",
         goods_id: "",
         isShowTimePicker: false,
@@ -78,8 +83,61 @@ Page({
         current_spec_index: 0,
         current_spec_imgs:[],
         displayTextArea: 'block',
-        video_progress:false
+        video_progress:false,
+        // darg
+        size: 5,
     },
+    // darg start
+    // 改变监听
+    change(e) {
+        this.data.goods_images = e.detail.listData
+
+        this.data.goods_images.forEach( (e,i)=>{
+            e.img_sort = i;
+            e.is_cover = i == 0 ? 1 : 0;
+        })
+
+        // console.log(this.data.goods_images)
+    },
+    // 点击图片
+    itemClick(e) {
+        let urls = [];
+
+        this.data.goods_images.forEach(e=>{
+            urls.push(e.img_url)
+        })
+
+        // this.setData({
+        //     previewImgs: {
+        //         current: e.detail.newKey,
+        //         urls: urls
+        //     },
+        //     previewImgHidden: false
+        // })
+
+        wx.previewImage({
+          current: urls[e.detail.newKey], // 当前显示图片的http链接
+          urls: urls // 需要预览的图片http链接列表
+        })
+
+    },
+    // 删除图片
+    deleteClick(e) {
+        this.removePhoto(e)
+    },
+    //删除一张照片
+    removePhoto: function(e) {
+        let index = e.currentTarget.dataset.index || e.detail.newKey
+        this.data.goods_images.splice(index, 1)
+        if(this.data.goods_images.length){
+           this.data.goods_images[0].is_cover = 1
+        }
+
+        this.setData({
+            'goods_images': this.data.goods_images
+        })
+    },
+    // dart end
 
     showTimePicker: function() {
 
@@ -509,18 +567,7 @@ Page({
         })
 
     },
-    //删除一张照片
-    removePhoto: function(e) {
-        let index = e.currentTarget.dataset.index
-        this.data.goods_images.splice(index, 1)
-        if(this.data.goods_images.length){
-           this.data.goods_images[0].is_cover = 1
-        }
-
-        this.setData({
-            'goods_images': this.data.goods_images
-        })
-    },
+    
 
      //删除一张照片
     removePicture: function(e) {
@@ -828,6 +875,8 @@ Page({
         let endFormatTime = isCopy ? default_end_time : util.formatTime(new Date(gs.end_time * 1000))
         
         console.log('endFormatTime',endFormatTime)
+
+        console.log(gs.goods_images)
 
         this.setData({
             goods_images: gs.goods_images,

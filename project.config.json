@@ -85,7 +85,8 @@
 					"id": 2,
 					"name": "发布页",
 					"pathName": "pages/publish/publish",
-					"query": "id=21"
+					"query": "goods_id=470",
+					"scene": null
 				},
 				{
 					"id": 3,
@@ -119,7 +120,7 @@
 					"id": 7,
 					"name": "发布页",
 					"pathName": "pages/publish-select/index",
-					"query": "",
+					"query": "goods_id=470",
 					"scene": null
 				},
 				{
@@ -220,8 +221,8 @@
 					"id": 22,
 					"name": "编辑商品",
 					"pathName": "pages/publish/publish",
-					"query": "goods_id=13",
-					"scene": "1001"
+					"query": "goods_id=470",
+					"scene": 1001
 				},
 				{
 					"id": -1,
