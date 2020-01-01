@@ -1,5 +1,5 @@
 <!--  <i-custom-bar fixed backColor="#fff" backcfm  showBackIcon="{{true}}" title="新发布"> </i-custom-bar> -->
-<preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view>
+<!-- <preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view> -->
 <view class="page-body">
     <view class="progress" wx:if="{{photoProgress}}">
         <i-spin size="large"></i-spin>

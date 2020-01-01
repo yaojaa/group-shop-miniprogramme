@@ -20,11 +20,11 @@ const default_end_time = util.formatTime(date)
 Page({
     data: {
         height: '300', //文本框的高度
-        previewImgs: {
-            current: "",
-            urls: [],
-        },
-        previewImgHidden: true,
+        // previewImgs: {
+        //     current: "",
+        //     urls: [],
+        // },
+        // previewImgHidden: true,
         link_url: "",
         goods_id: "",
         isShowTimePicker: false,
