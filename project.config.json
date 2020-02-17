@@ -607,6 +607,13 @@
 					"pathName": "pages/userhome/index",
 					"query": "store_id=1",
 					"scene": null
+				},
+				{
+					"id": 78,
+					"name": "pages/coupon-send/index",
+					"pathName": "pages/coupon-send/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

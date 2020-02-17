@@ -38,7 +38,10 @@
         "pages/send-list/index",
         "pages/ems/ems",
         "pages/updown_exc/index",
-        "pages/send-msg/index"
+        "pages/send-msg/index",
+        "pages/coupon/index",
+        "pages/coupon-creat/index",
+        "pages/coupon-send/index"
     ],
     "subpackages": [{
         "root": "business",
