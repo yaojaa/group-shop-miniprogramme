@@ -1,0 +1,48 @@
+@import "../../../css/common.wxss";
+.input-class{
+  font-size: 40rpx
+}
+
+.trace{
+	color: #666
+}
+.traceBox{
+	padding-top: 120rpx;
+	padding-left: 15px;
+	padding-right: 15px;
+
+}
+.close_btn{
+	background: #333;
+	opacity: 0.8;
+	color: #fff;
+	border-radius: 50%;
+	display:inline-block;
+	margin: 10px auto;
+	text-align: center;
+	width: 34px;
+	height: 34px;
+
+	
+}
+.closearea{
+	text-align: center;
+}
+
+.add-number{
+	font-size: 14px;
+	text-align: center;
+	padding: 20px 0 20px;
+	margin-bottom: 20px;
+	color: #2192e4;
+}
+
+.express{
+	display: flex;
+	align-items: center;
+	padding-right: 30rpx;
+	background: #fff;
+}
+.flex0{
+	flex-shrink: 0;
+}

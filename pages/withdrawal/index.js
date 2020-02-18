@@ -27,12 +27,12 @@ Page({
 
     },
     checkUinfo(){
-        util.wx.get('/api/user/user_info').then((res)=>{
-      if(res.data.mobile=='' || res.data.wechatnumber=='' ){
+     util.wx.get('/api/user/user_info').then((res)=>{
+      if(res.data.data.mobile=='' || res.data.data.wechatnumber=='' ){
 
         wx.showModal({
          title: '请先完善联系方式',
-         content: '完善联系方式,方便粉丝联系你哦',
+         content: '完善后即可提现 方便粉丝联系',
          showCancel: false,//是否显示取消按钮
          confirmText:"去设置",//默认是“确定”
          success: function (res) {
@@ -79,8 +79,9 @@ Page({
             util.wx.post('/api/seller/apply_withdraw', {
                 apply_money: this.data.inputMoney
             }).then((res) => {
+
                    wx.showToast({
-                        title: '提现成功 请查收',
+                        title: '提现成功',
                         icon: 'none'
                     })
 

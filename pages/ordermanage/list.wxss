@@ -158,6 +158,7 @@ border-radius:8rpx;
 }
 .order-fd{
     text-align: right;
+    min-height: 100rpx
 
 }
 .order-fd form{

@@ -19,16 +19,11 @@ Page({
 
         console.log('options',options)
         let currentExpress = this.data.express[options.index];
-        // if(currentExpress.status){
+        
+        if(options.express_company=='自动识别快递公司'){
 
-        //     this.setData({
-        //         currentIndex: options.index,
-        //         ['express[' + options.index + '].traces']: currentExpress.traces
-        //     })
-
-        //     return;
-        // }
-
+            options.express_company ='auto'
+        }
 
         this.setData({
             loading:true
@@ -105,7 +100,7 @@ Page({
                 }).then(res => {
                     if (res.data.code == 200) {
                         wx.showToast({
-                            title: '发货成功'
+                            title: '发货成功，顾客将收到通知'
                         })
                         wx.navigateBack({delta: 2})
                     }
@@ -150,13 +145,6 @@ Page({
             }
         }
 
-
-
-
-
-
-
-        console.log(this.data.express)
 
         this.setData({
             express: this.data.express,

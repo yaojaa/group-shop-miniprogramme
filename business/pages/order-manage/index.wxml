@@ -1,0 +1,87 @@
+<view class="container gray-wrap cf">
+
+  <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" color="#49b34d">
+        <van-tab title="最新订单"  ></van-tab>
+        <van-tab title="待确认" ></van-tab>
+        <van-tab title="待发货"></van-tab>
+    </van-tabs>
+
+
+    <view class="order-coentent">
+        <view class="order-box">
+            <block wx:for="{{order_list}}" wx:key="index">
+
+                <view class="goods-panel ph-df white-bg mv-sm cf">
+    <view class="goods-panel-hd pv-sm flex align-center">
+        <view class="flex-sub mr-df">
+
+        
+     
+
+            <view class="flex align-center" >
+
+                <image src="{{item.user.headimg}}" class="shop-tb mr-xs">
+                </image>
+                <view class="flex-sub text-hide" >
+                    {{item.user.nickname}}
+               </view>
+            </view>
+
+        </view>
+        <view class="text-muted {{'color_'+item.order_status}}">
+
+            <text wx:if="{{item.order_status==2 && user}}">等待收货</text>
+            <text wx:else>{{item.order_status_txt}}</text>
+        </view>
+    </view>
+    <view class="solid-bottom"></view>
+    <view class="goods-panel-bd pb-df" >
+
+         <navigator  wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="goods" 
+         url="../ordermanage/list?id={{item.order_detail[0].goods_id}}&goods_name={{item.order_detail[0].goods_name}}&delivery_method={{item.delivery_method}}" 
+         hover-class="none" class="flex mt-df goods-panel-item">
+            <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/159/h/150/format/jpg/q/75" class="cover mr-sm"></image>
+            <view class="flex-sub por">
+                <view class="text-hide  title">
+                    {{goods.goods_name}}
+                </view>
+                <view class="text-muted mt-xs text-sm"><text class="pr-sm">{{goods.spec_name}}</text></view>
+                <view class="text-justify bt-bar">
+                    <view class="price bold">￥{{goods.spec_price}}</view>
+                    <view class="text-muted"><text>x </text>
+                        <text>{{goods.qty}}</text></view>
+                </view>
+            </view>
+        </navigator>
+
+        <slot name="total"></slot>
+    </view>
+
+
+    <view class="solid-bottom"></view>
+    <view class="goods-panel-fd">
+        <slot name="footer"></slot>
+    </view>
+</view>
+      
+            </block>
+        </view>
+        <view class="no-content white-bg" style="height:calc(100vh - 88rpx)" wx:if="{{order_list.length ==0 && !loading}}">
+            <view class="no-content-bd">
+                <image src="https://static.kaixinmatuan.cn/no_data.png" class="no-content-icon"></image>
+                <view class="no-content-des"><text>您还没有相关订单</text></view>
+            </view>
+        </view>
+    </view>
+    <van-notify id="custom-selector" />
+    <van-dialog id="van-dialog" />
+    <van-dialog id="contact" use-slot>
+        <van-cell-group border="{{false}}" custom-class="mv-df">
+            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+        </van-cell-group>
+    </van-dialog>
+    <view class="load-box" wx:if="{{loading}}">
+        <wux-spin wux-class="spin" size="large" />
+    </view>
+</view>

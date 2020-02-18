@@ -39,6 +39,25 @@ Page({
 
     },
 
+    toRefund(e){
+
+        const order_refund_id = e.currentTarget.dataset.order_refund_id || null
+        const order_id = e.currentTarget.dataset.order_id
+
+        if(order_refund_id){
+
+           wx.navigateTo({
+            url:'../refundment-detail/index?order_id='+order_id+'&id='+order_refund_id
+          })
+
+        }else{
+          wx.navigateTo({
+            url:'../refundment/index?order_id='+order_id
+          })
+        }
+
+    },
+
     getOrderList() {
         this.setData({
             loading: true

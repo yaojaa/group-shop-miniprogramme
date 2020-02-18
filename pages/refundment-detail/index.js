@@ -1,22 +1,99 @@
+const util = require('../../utils/util')
+import Dialog from '../../vant/dialog/dialog';
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        steps: [{
-            text: '退款成功',
-            desc: '退款金额将退回您的原账户，请注意查收，如预期未收到，联系客服'
-        }, {
-            text: '退款申请已提交',
-            desc: '您的退款申请已成功提交 2018.09.07 23:33:43'
-        }]
+        detail:{}
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+         wx.showLoading()
+
+        if(options.id){
+            this.id = options.id
+            this.getDetail()
+        }
+
+           if(options.order_id){
+            this.order_id = options.order_id
+            this.getOrderdetail()
+        }
+
+    },
+
+    getOrderdetail(){
+        util.wx.get('/api/user/get_order_detail?order_id='+this.order_id)
+        .then(res=>{
+            this.setData({
+                order_detail:res.data.data,
+                refund_fee:res.data.data.order_detail[0].total_price
+            })
+
+            wx.hideLoading()
+
+
+        })
+    },
+
+    getDetail(){
+
+
+        util.wx.get('/api/user/order_refund_detail?order_refund_id='+this.id)
+        .then(res=>{
+            this.setData({
+                detail:res.data.data
+            })
+        })
+
+                wx.hideLoading()
+
+    },
+
+    cancel(){
+
+        Dialog.confirm({
+          title: '撤销退款申请',
+          message: '注意：撤销后无法继续申请退款',
+          asyncClose: true
+        })
+          .then(() => {
+
+        util.wx.post('/api/user/order_refund_revoke',{
+            order_refund_id:this.id
+        }).then(res=>{
+            this.getDetail()
+             wx.showToast({
+                title:'撤销成功',
+                icon:'none'
+            })
+            Dialog.close();
+
+            wx.redirectTo({
+              url:'../order-list/index'
+            })
+
+        },res=>{
+            wx.showToast({
+                title:res.data.msg,
+                icon:'none'
+            })
+                          Dialog.close();
+
+        })
+
+          })
+          .catch(() => {
+            Dialog.close();
+          });
+
+
 
     },
 

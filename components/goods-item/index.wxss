@@ -1,3 +1,4 @@
+
 .goods-item {
     margin: 15px 0 10px 0;
     border-bottom:1px solid #eee;
@@ -76,7 +77,7 @@
 
 .goods-count .count-item .num {
     font-size: 28rpx;
-    color: #333
+    color: #34a
 }
 .count-box {
 

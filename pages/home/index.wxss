@@ -1109,4 +1109,13 @@ button::after {
     color: #ff8900
 }
 
+.top_user{
+    position: absolute;
+    left: 30rpx;
+    top: 50rpx;
+    background:rgba(255,255,255,0.6);
+    font-size: 12px;
+    color: #333
+}
+
 

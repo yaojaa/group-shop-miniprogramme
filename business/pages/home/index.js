@@ -12,7 +12,8 @@ Page({
         user_info: {},
         news: [],
         loading: true,
-        info: ''
+        info: '',
+        active:0
     },
     handleChange({ detail }) {
         this.setData({
@@ -66,6 +67,30 @@ Page({
         //this.getDetail()
         //this.getNews()
     },
+    goOrder(){
+          wx.navigateTo({
+                url:'/business/pages/order-manage/index'
+            })
+
+    },
+    goAdd(){
+
+         wx.navigateTo({
+                url:'/business/pages/publish/publish'
+            })
+
+    },
+
+    goActing(){
+          wx.navigateTo({
+                url:'/business/pages/acting-admin/index'
+            })
+    },
+    gowithdrawal(){
+          wx.navigateTo({
+                url:'/business/pages/withdrawal/index'
+            })
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -78,6 +103,17 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
+
+      this.data.active = 0
+
+      console.log(this.data.active)
+
+      this.setData({
+        active:0
+      })
+
+      wx.hideHomeButton()
+
         
     },
 

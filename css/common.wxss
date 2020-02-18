@@ -34,6 +34,10 @@ view {
     display: flex
 }
 
+.relative{
+    position: relative;
+}
+
 .basis-xs {
     flex-basis: 20%
 }
@@ -707,9 +711,6 @@ button {
     color: #888
 }
 
-.grays-text {
-    color: #aaa
-}
 
 .danger-text {
     color: #d0021b
@@ -736,7 +737,7 @@ button {
 }
 
 .blue-text {
-    color: #64a5f4
+    color: #37a
 }
 
 .green-text {

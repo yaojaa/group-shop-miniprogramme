@@ -139,11 +139,10 @@
 
 
 .goods-price .price {
-font-size:28rpx!important;
-color:#333;
-padding-left:21px;
+font-size:24rpx!important;
 font-weight:bold;
-color:#666;
+color:#ff9000;
+float:right
 
 }
 
@@ -518,7 +517,9 @@ color:#666;
 }
 
 .goods-price-item .buy {
-    align-self: center;
+    align-self: right;
+    text-align: right;
+    width:190rpx;
 }
 
 .pics {

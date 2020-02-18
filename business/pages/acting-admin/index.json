@@ -1,8 +1,12 @@
-{ 
+{  
+
+  "navigationBarTitleText": "代理商管理",
   "navigationBarBackgroundColor": "#69b90b",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "",
   "usingComponents": {
+
+  "van-tab": "../../../vant/tab/index",
+  "van-tabs": "../../../vant/tabs/index"
   	
   }
 }

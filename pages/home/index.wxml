@@ -5,7 +5,11 @@
             <van-icon name="close" size="28rpx;" />
         </view>
     </view>
-    <view class="head-box  ">
+
+    <view class="head-box">
+
+            <view class="top_user mini-tag mt-xs">供应商入驻</view>
+
         <view class="flex align-center">
             <navigator url="../identify/identify" hover-class="none">
                 <view class="user-avatar mh-df">
@@ -127,7 +131,7 @@
             <view class="newlist">
 
                 <scroll-view style="height: 100px" scroll-y>
-                    <view class="item" wx:for="{{orderList}}" data-id="{{item.order_detail[0].goods_id}}" data-delivery_method="{{item.delivery_method}}" data-name="{{item.order_detail[0].goods_name}}" bindtap="managePage">
+                    <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_detail[0].goods_id}}" data-delivery_method="{{item.delivery_method}}" data-name="{{item.order_detail[0].goods_name}}" bindtap="managePage">
                         <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
                         参与了你的
                         <text class="bold">{{item.order_detail[0].goods_name}}</text>
@@ -150,9 +154,10 @@
         <!--   <button class='new-btn hollow' bindtap="new_btn">
           <i-icon type="add" size="20" />新发布
         </button> -->
-        <i-panel title="我发布的" wx:if="{{goodslist.length > 0 }}">
+
+        <i-panel title="我发布的" wx:if="{{goodslist.length > 0 }}" extra="进入我的主页" link="../userhome/index?id={{userInfo.store_id}}">
             <view class="goods-box">
-                <block wx:key="{{goods_id}}" wx:for="{{goodslist}}">
+                <block wx:key="index" wx:for="{{goodslist}}">
                     <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
                 </block>
                 <view class="text-center">

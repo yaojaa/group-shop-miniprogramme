@@ -59,7 +59,7 @@
                 <i-spin i-class="i-loading" wx:if="{{video_progress}}" size="small"></i-spin>
             </view> -->
             <!--上传规格图弹框-->
-            <wux-popup catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
+            <wux-popup closable catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
                 <view class="poptit">规格图片</view>
                 <scroll-view scroll-y class="maxheight">
                     <view class="con">
@@ -68,7 +68,7 @@
                         </view>
                         <view class="picture-item" wx:key="{{item}}" wx:for="{{current_spec_imgs}}">
                             <view class="img-list">
-                                <image mode="widthFix" src="{{item}}-small" />
+                                <image mode="widthFix" src="{{item}}?imageView2/4/w/400/h/800" />
                                 <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
                             </view>
                         </view>
@@ -84,24 +84,17 @@
                 </scroll-view>
             </wux-popup>
             <!--上传图片弹框-->
-            <wux-popup catchtouchmove="ture" position="bottom" visible="{{ visible_pictures }}" bind:close="addPictureDone">
-                <view class="p-sm solid-bottom mb-df text-default">上传介绍图片  
-
-
-                    <view class="closeX">
-                      <i-icon bindtap="addPictureDone" color="#999" size="24" type="close" />
-
-                    </view>
-
+            <wux-popup closable catchtouchmove="ture" position="bottom" visible="{{ visible_pictures }}" bind:close="addPictureDone">
+                <view class="p-sm solid-bottom mb-df text-default">上传介绍图片
                 </view>
                 <view class="pic_loading">
                     <i-spin wx:if="{{uploadProgress}}" />
                 </view>
-                <scroll-view scroll-y class="maxheight" style="height: 750rpx">
+                <scroll-view scroll-y class="maxheight">
                     <view class="con">
                         <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
                             <view class="img-list">
-                                <image mode="widthFix" src="{{item}}-small" />
+                                <image mode="widthFix" src="{{item}}?imageView2/4/w/400/h/800" />
                             </view>
                             <view class="icons">
                                 <view class="icon-list">
@@ -219,11 +212,12 @@
                     <view class="weui-cell__ft">
                         <view class="weui-icon-warn">
                             <view class="timePicker" wx:if="{{!isShowTimePicker}}" bindtap="showTimePicker">
-                                默认七天
+                                默认30天
                                 <i-icon type="enter" size="28" />
                             </view>
                             <view class="timePicker" wx:if="{{isShowTimePicker}}">
                                 <i-datepicker label="起：" title="开始日期" date="{{picker.start_date}}" time="{{picker.start_time}}" bind:datachange="start_time"></i-datepicker>
+
                                 <i-datepicker label="至：" title="结束日期" date="{{picker.end_date}}" time="{{picker.end_time}}" bind:datachange="end_time"></i-datepicker>
                             </view>
                         </view>

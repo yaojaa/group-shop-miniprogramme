@@ -10,9 +10,23 @@
             <block wx:for="{{order_list}}" wx:key="{{index}}">
                 <order-list item="{{item}}">
                     <view class="text-right text-gray mt-df" slot="total">
-                   <text class="text-left"> （No.{{item.create_number}}） {{item.pay_time}}</text>  总计：¥<text class="text-black">{{item.total_price}}</text>
+                   <text class="text-left f12"> （No.{{item.create_number}}） {{item.pay_time}}</text>  总计：¥<text class="text-black f12">{{item.total_price}}</text>
                     </view>
-                    <view class="flex justify-end align-center" slot="footer">
+                    <view class="flex relative justify-end align-center" slot="footer">
+                    
+            <block wx:if="{{item.order_status==2 || item.order_status==1 }}">
+
+                <button wx:if="{{item.order_status>0}}" data-order_refund_id="{{item.order_refund_id}}" bindtap="toRefund" data-order_id="{{item.order_id}}"  class="btn round primary hollow w-min-big mv-sm ml-sm {{item.order_refund_id?'red':''}}"
+                    >
+                    <block wx:if="{{item.order_refund_id}}">
+                    退款信息
+                </block>
+                    <block wx:else>申请退款</block>
+                </button>
+            </block>
+
+
+
                         <button class="btn round primary hollow w-min-big mv-sm ml-sm" 
                         bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}"
 

@@ -13,6 +13,23 @@
         </van-cell-group>
     </view>
 
+    <view class="list" >
+ <van-row >
+  <van-col span="10" style="text-align: center;">配送区域</van-col>
+  <van-col span="10" style="text-align: center;">运费</van-col>
+
+ </van-row>
+        <van-row wx:for="{{list}}">
+  <van-col span="10" style="text-align: center;">{{item}}</van-col>
+  <van-col span="10">
+        <van-dropdown-menu>
+          <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+        </van-dropdown-menu>
+ </van-col>
+</van-row>
+        
+    </view>
+
     <view class="addnewrule__table">
         <view class="addnewrule__tr">
             <view class="addnewrule__th">自定义配送区域</view>
@@ -23,10 +40,12 @@
             <view class="addnewrule__td addnewrule__th-cell">
                 <view class="addnewrule__th_span-option" wx:if="{{!item.isNew}}">{{item.price}}</view>
                 <view class="addnewrule__th_input-option" wx:else>
-                    <van-field value="{{item.price}}" size="small" border="{{ true }}" bind:change="onChangePrice"  data-index="{{index}}" />
+                   <!--  <van-field value="{{item.price}}" size="small" border="{{ true }}" bind:change="onChangePrice"  data-index="{{index}}" /> -->
+
+                   <input type="number" name="" placeholder="请输入金额"/>
                 </view>
                 <view class="addnewrule__th-option">
-                    <view class="addnewrule__custom-option" bindtap="changeView" data-index="{{index}}">修改</view>
+               <!--      <view class="addnewrule__custom-option" bindtap="changeView" data-index="{{index}}">修改</view> -->
                     <view class="addnewrule__custom-option" bindtap="deleteItem" data-index="{{index}}">删除</view>
                 </view>
             </view>
@@ -60,7 +79,7 @@
         <van-checkbox-group value="{{ newAreaData.name }}" bind:change="changeArea">
             <scroll-view
                 scroll-y
-                style="height: 200px;"
+                style="height: 300px;"
                 bindscrolltoupper="upper"
                 bindscrolltolower="lower"
                 bindscroll="scroll"

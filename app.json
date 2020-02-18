@@ -38,7 +38,11 @@
         "pages/send-list/index",
         "pages/ems/ems",
         "pages/updown_exc/index",
-        "pages/send-msg/index"
+        "pages/send-msg/index",
+        "pages/refundment/index",
+        "pages/refundment-detail/index",
+        "pages/refundment-detail-seller/index"
+
     ],
     "subpackages": [{
         "root": "business",
@@ -50,7 +54,15 @@
             "pages/postageSetting/index",
             "pages/set-price/index",
             "pages/acting-admin/index",
-            "pages/acting-apply/index"
+            "pages/acting-apply/index",
+            "pages/publish/publish",
+            "pages/tpl-list/index",
+            "pages/goods/goods",
+            "pages/order-confirm/index",
+            "pages/express/index"
+
+
+
         ]
     }],
     "usingComponents": {

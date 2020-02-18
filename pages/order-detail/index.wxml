@@ -35,6 +35,12 @@
                 <view class="pt-xs text-sm text-gray">
                     提货码： <text class="text-danger">{{info.create_number}}</text>
                 </view>
+                 <view class="pt-xs text-sm text-gray">
+                    提货人姓名： <text class="text-danger">{{info.consignee}}</text>
+                </view>
+                 <view class="pt-xs text-sm text-gray">
+                    提货人电话： <text class="text-danger">{{info.mobile}}</text>
+                </view>
             </view>
         </view>
         <view class="goods-panel ph-df white-bg cf">
@@ -50,7 +56,7 @@
             <view class="goods-panel-bd ">
                 <view class="goods-panel-item " wx:for="{{info.order_detail}}" wx:key="{{index}}">
                     <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none" class="flex pv-df">
-                        <image src="{{item.spec_pic[0] || item.goods_cover}}-small" class="cover mr-sm"></image>
+                        <image src="{{item.spec_pic[0] || item.goods_cover}}?imageView2/2/w/150/h/150/format/jpg/q/75" class="cover mr-sm"></image>
                         <view class="flex-sub por">
                             <view class="text-hide text-black bold title">
                                 {{item.goods_name}}
@@ -68,6 +74,7 @@
             </view>
         </view>
         <van-cell-group custom-class="mv-sm">
+            <van-cell title="订单用户" value="{{info.user.nickname}}" border="{{ false }}" />
             <van-cell title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
             <van-cell title="订单编号" title-width="200rpx" border="{{ false }}" value="{{info.order_sn}}" value-class="text-gray" />
             <van-cell title="创建时间" value="{{addtime}}" border="{{ false }}" value-class="text-gray" />

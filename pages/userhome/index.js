@@ -28,7 +28,119 @@ Page({
         shareIng: false,
         phone: '',
         weChat: '',
+        show:false,
+        actions: [
+      { name: '隐藏', subname: '隐藏不在主页展示',key:'hide'},
+      { name: '结束',subname:'结束团购停止接单',key:'end'},
+      { name: '开启',subname:'快速开启继续接单' ,key:'start'},
+      { name: '置顶',subname:'在第一个位置显示' ,key:'top'},
+      { name: '编辑',subname:'重新编辑修改内容' ,key:'edit'}
+
+             ]
     },
+  showAction(e){
+
+    this.goods_id = e.currentTarget.dataset.goods_id
+    this.index = e.currentTarget.dataset.index
+
+    console.log(this.goods_id)
+
+    this.setData({
+        show:true
+    })
+  },  
+  onSelect(e){
+    const key = e.detail.key
+
+    switch(key){
+        case 'hide':
+        this.switchInSite()
+        break;
+
+        case 'end':
+        this.endIt()
+        break;
+
+        case 'edit':
+        wx.redirectTo({
+            url:'../publish/publish?goods_id='+this.goods_id
+        })
+        break
+    }
+
+
+    console.log(e)
+  },
+  onClose() {
+    this.setData({ show: false });
+  },
+  //结束
+  endIt(){
+
+    
+
+
+    util.wx.post("/api/seller/goods_change_endtime",{
+            end_time:util.formatTime(new Date()),
+            goods_id:this.goods_id
+        }).then(res=>{
+
+            this.getDataList()
+            this.onClose()
+
+        })
+
+
+
+  },
+  //隐藏
+  switchInSite(){
+      wx.showLoading()
+        util.wx.post("/api/seller/goods_change_recommend",{
+            goods_id:this.goods_id,
+            is_recommend:0 
+        }).then(res=>{
+
+         wx.hideLoading()
+
+
+          if(res.data.code == 200){
+
+                wx.showToast({
+                    title:'已隐藏',
+                    icon:'none'
+                })
+
+
+               this.data.goodsList.splice(this.index,1)
+
+                this.setData({
+                  goodsList:this.data.goodsList,
+                  show:false
+                })
+          }
+
+           },res=>{
+            wx.hideLoading()
+
+            wx.showToast({
+                    title:'设置失败请稍后重试',
+                    icon:'none'
+                })
+           })
+    },
+  goDetail(e){
+
+    const id = e.currentTarget.dataset.id
+
+    wx.navigateTo({
+        url:'../goods/goods?goods_id='+id
+    })
+
+
+  },
+
+ 
     goContact(e) {
         const { phone, wx } = e.currentTarget.dataset
         this.setData({
@@ -169,6 +281,13 @@ Page({
         this.loadPage(options);
     },
     onShow() {
+
+        if(this.is_previewImage){
+            this.is_previewImage = false
+            return
+        }
+
+
         this.data.goodsList = [];
 
         this.setData({
@@ -224,6 +343,18 @@ Page({
         })
     },
 
+      // 图片点击放大 
+          previewImg: function (e) {
+            this.is_previewImage =true //变量开关 不触发onshow
+            var src = e.currentTarget.dataset.src;//获取data-src  循环单个图片链接
+            var imgList = e.currentTarget.dataset.effect_pic;//获取data-effect_pic   图片列表
+            //图片预览
+            wx.previewImage({
+              current: src, // 当前显示图片的http链接
+              urls: imgList // 需要预览的图片http链接列表
+            })
+          },
+
     getStoreInfo(options) {
 
         util.wx.get('/api/store/get_store_homepage', {
@@ -259,7 +390,7 @@ Page({
         util.wx.get('/api/goods/get_store_goods_list', {
             store_id: this.store_id,
             cpage: this.cpage,
-            pagesize: 5
+            pagesize: 30
         })
             .then(res => {
                 // 存储赋值
@@ -290,21 +421,16 @@ Page({
 
     },
 
-    onTabChange(e) {
-        switch (e.detail) {
-            case 0:
-                wx.navigateTo({
+    backMy(){
+        wx.redirectTo({
                     url:'../home/index'
                 })
-                break;
-            case 1:
-                wx.navigateTo({
-                    url:'../create_shop/index'
-                })
-                break;
-            case 2:
-                this.showShare()
-        }
+    },
+    backSetting(){
+        wx.redirectTo({
+           url:'../create_shop/index'
+
+        })
     },
 
 

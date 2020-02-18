@@ -1,14 +1,34 @@
 <view class="container gray-wrap cf">
+     <van-tabbar   active-color="#999"
+ >
+  <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
+  <van-tabbar-item bindtap="goOrder" icon="orders-o">订单</van-tabbar-item>
+  <van-tabbar-item bindtap="goActing"  icon="friends-o">代理</van-tabbar-item>
+  <van-tabbar-item bindtap="gowithdrawal" name="setting" icon="setting-o">帐户</van-tabbar-item>
+</van-tabbar>
+
     <view class="head-box gradual-bg">
+
+    <van-icon name="exchange" size="18px" />
+
         <view class="shop-box">
             <view class="flex align-center">
                 <block>
                     <image src="https://leileiimg.countinsight.com/business/img/avatar.png" class="round align-self-center home-avatar"></image>
                 </block>
-                <view class="flex-sub mh-sm"><text class="shop-name">马云的主页</text></view>
+                <view class="flex-sub mh-sm">
+                    <text class="shop-name">供应商名称</text>
+
+                    <text class="f12">红叶舞秋山</text>
+
+                </view>
             </view>
         </view>
-        <view class="main-nav-box flex align-center">
+
+        <view class="ads">这里是公告或者简介这里是公告或者简介这里是公告或者简介这里是公告或者简介</view>
+
+
+    <!--     <view class="main-nav-box flex align-center">
             <view class="icon-nav-box">
                 <view class="icon-nav-bd">
                     <view class="icon-nav-item" data-status="{{info.business_auth_status}}" data-url="../goods-manage/index" data-goods="true" bindtap="handleAuth">
@@ -37,8 +57,8 @@
                     </navigator>
                 </view>
             </view>
-        </view>
-        <div class="waveAnimation">
+        </view> -->
+<!--         <div class="waveAnimation">
             <div class="waveWrapperInner bgTop">
                 <div class="wave waveTop" style="background-image: url('https://leileiimg.countinsight.com/business/img/wave-top1.png?108');"></div>
             </div>
@@ -48,23 +68,22 @@
             <div class="waveWrapperInner bgBottom">
                 <div class="wave waveBottom" style="background-image: url('https://leileiimg.countinsight.com/business/img/wave-bot1.png?108');"></div>
             </div>
-        </div>
+        </div> -->
     </view>
     <view class="icon-nav-box mt-sm round-df">
-        <view class="icon-nav-hd">热销产品</view>
+        <van-button bindtap="goAdd" color="linear-gradient(to right, #4bb0ff, #6149f6)" block>+ 添加新产品</van-button>
+
         <view class="goods-panel ph-df white-bg cf">
-            <view class="goods-panel-bd" wx:for="{{5}}" wx:key="{{index}}">
+            <view class="goods-panel-bd" wx:for="{{5}}" wx:key="index">
                 <view class="solid-bottom"></view>
-                <navigator hover-class="none" class="flex pv-df goods-panel-item">
+                <navigator url="/business/pages/goods/goods?id=1369" hover-class="none" class="flex pv-df goods-panel-item">
                     <image src="https://static.kaixinmatuan.cn/eccbc87e4b5ce2fe28308fd9f2a7baf320190603224615303.jpg?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line  bold title">
                             红颜奶油草莓
                         </view>
-                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">500g/20-24颗</text></view>
-                        <view class="text-justify bt-bar">
-                            <view class="price bold">￥0.01</view>
-                        </view>
+                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 939</text></view>
+                     
                     </view>
                 </navigator>
             </view>

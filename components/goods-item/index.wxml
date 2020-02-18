@@ -36,13 +36,13 @@
             <text class="label">浏览人数</text>
         </view>
         <view class="count-item">
-            <text class="num">￥{{item._order_total}}</text>
+            <text class="num" style="color:#666">￥{{item._order_total}}</text>
             <text class="label">收款总额</text>
         </view>
         <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
             <text class="num text-primary">{{item._order_count}}</text>
             <view class="badge" wx:if="{{item._order_status1_count>0}}">+{{item._order_status1_count}}</view>
-            <text class="label ">订单管理</text>
+            <text class="label">订单管理</text>
         </view>
     </view>
     <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->

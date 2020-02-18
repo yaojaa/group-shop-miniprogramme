@@ -28,7 +28,7 @@
     </view>
     <view class="tabsArea">
         <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-            <i-tab key="0" title="已确认（{{valid_order.count}}）"></i-tab>
+            <i-tab key="" title="所有订单（{{valid_order.count}}）"></i-tab>
             <i-tab key="3" title="待发货（{{back_order.count}}）"></i-tab>
             <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
         </i-tabs>
@@ -140,6 +140,18 @@
             </view>
         </view>
         <view class="order-fd scale-b-1px">
+
+
+
+
+            <button wx:if="{{item.order_refund_id && item.order_refundstatus!==2}}" 
+            data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}"
+            bindtap="to_refund" class="f12 {{item.order_refundstatus==1?'text-danger':'gray-text'}} " style="float: left;margin-top: 25rpx">
+        
+        <text wx:if="{{item.order_refundstatus==1}}">有退款申请</text>
+        <text wx:else>退款信息</text>
+
+    </button>
             <!--  <view class="spec_item">
                 
             <text  wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
@@ -147,17 +159,15 @@
             </text>
             </view> -->
 
-            <block wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
-                <form bindsubmit="formSubmit" report-submit="true">
-                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" formType = "submit" 
+            <block wx:if="{{item.order_refundstatus!==4}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
+                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" 
                     data-id="{{item.order_id}}" 
                     data-opt = "{{btn.opt}}"
                     data-cindex = "{{cindex}}"
                     data-pindex = "{{pindex}}"
                     data-txt = "{{btn.txt}}" 
-                    data-fn = "orderActions"
+                    bindtap = "orderActions"
                     >{{btn.txt}}</button>
-                </form>
             </block>
 
             <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">

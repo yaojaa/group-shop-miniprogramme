@@ -60,17 +60,20 @@
     position: relative;
 }
 .goods-box{
-	margin-top: 20rpx;
+	margin-top: 25rpx;
 }
 .goods-item{
 	margin-bottom: 40rpx;
 	background-color: #fff;
 	padding:  20rpx;
 }
+
+
 .goods-item .cover{
-	width: 240rpx;
-	height: 240rpx;
-	border-radius: 4px
+	width: 220rpx;
+	height: 220rpx;
+    margin-right: 20rpx;
+    display: inline-block;
 }
 .goods-item .content{
 	margin-left: 20rpx;
@@ -80,8 +83,7 @@
 }
 .goods-item  .title{
 	font-weight: bold;
-	font-size: 32rpx;
-	margin-bottom: 3px;
+    color: #666
 }
 .gray{
     color: #999;
@@ -98,10 +100,7 @@
 	font-size: 28rpx;
 }
 .goods-item .content .bottom{
-	position: absolute;
-	left:0;
-	right:0;
-	bottom:0;
+
 }
 .goods-item .buy{
 	font-size: 24rpx;
@@ -275,6 +274,10 @@ top:0rpx;
     margin:0 10px;
     height: 30px
 
+}
+
+.action_icon{
+    transform: rotate(90deg);
 }
 
 

@@ -96,6 +96,7 @@
                 <view class="text-muted text-xs">分享海报</view>
             </button>
         </view>
+
         <view class="load-area" wx:if="{{!goods}}">
             <wux-spin wux-class="spin" />
         </view>
@@ -106,7 +107,7 @@
     <!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button> -->
     <view class="page-wrap">
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}} white-bg ph-df cf">
-            <block wx:for="{{goods_spec}}" wx:key="{{item.item_id}}">
+            <block wx:for="{{goods_spec}}" >
                 <view class="solid-top"></view>
                 <view class="goods-price-item flex-box">
                     <view class="pics" wx:if="{{item.spec_pic}}">
@@ -118,11 +119,12 @@
                             <text class="price f12px">¥{{item.spec_price}}</text> 
 
                     </view>
-                        <view wx:if="{{item.spec_desc}}" class="f14px text-warning" style="margin-top: 10rpx;">
-                       <block  wx:if="{{item.spec_stock}}"> (剩余{{item.spec_stock}})</block>
-                       <block  wx:if="{{item.spec_stock==0}}"> (已售磬)</block>
-
+                        <view wx:if="{{item.spec_desc}}" class="f12 text-warning" style="margin-top: 10rpx;">
                         {{item.spec_desc}}</view>
+
+                        <view class="f12 gray-text"  wx:if="{{item.spec_stock}}">
+                        剩余:{{item.spec_stock}} </view>
+                       <view class="f12 gray-text" wx:if="{{item.spec_stock==0}}"> (已售磬)</view>
                     </view>
 
                     <!--  <text class="f12px" wx:if="{{item.spec_stock}}"> 
@@ -136,7 +138,7 @@
                 </view>
             </block>
         </view>
-        <view wx:if="{{goods.delivery_method == 2}}" data-lat="{{item.latitude}}" data-lng="{{item.longitude}}" wx:for="{{goods.self_address}}" wx:key="{{index}}" class="white-bg ph-sm mt-sm">
+        <view wx:if="{{goods.delivery_method == 2}}" data-lat="{{item.latitude}}" data-lng="{{item.longitude}}" wx:for="{{goods.self_address}}" wx:key="index" class="white-bg ph-sm mt-sm">
             <i-cell-group>
                 <i-cell title="{{'取货地点 '+item.name+' '+item.door_number}}" label="{{item.address}}" i-class="address-item">
                     <i-icon type="coordinates_fill" size="28" color="#999999" slot="icon" />
@@ -157,7 +159,7 @@
 
 
         <view class='sub-title scale-b-1px contentBox'>
-            最近参与
+            <text class="f12 blue-text" style="float: right;margin-top: 15rpx">查看所有订单 〉</text> 最近参与  
         </view>
         <view class="white-bg p-df cf">
             <view class="mt-sm" wx:if="{{orderUsers.length ==0}}">
@@ -201,8 +203,8 @@
         <view wx:if="{{goods.goods_video}}">
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view>
-        <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="{{index}}" wx:for-item="img">
-            <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
+        <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="index" wx:for-item="img">
+            <image bindtap="showGallery" data-current="index" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
 
                 <view class="flex text-center" style="padding: 15px 0">

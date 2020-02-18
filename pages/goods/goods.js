@@ -454,15 +454,23 @@ Page({
     },
 
     getGoodsInfo() {
+                console.log('getGoodsInfo')
 
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.goods_id,
                 from_id: this.data.from_id
             })
             .then(res => {
+                console.log('getGoodsInfo res.data.code',res.data.code==200)
                 if (res.data.code == 200) {
 
+
+          console.log('20030303030')
+
+
                     const d = res.data.data
+
+                    console.log(d)
 
                     //绘制朋友圈图片
                     drawGoods = d;
@@ -480,22 +488,22 @@ Page({
 
 
                     //把数量设为0
-
+                    //
                     d.goods.goods_spec.forEach(item => {
-                        console.log(item)
                         item.item_num = 0
-                        console.log(item)
 
                     })
 
                     // console.log('goods_spec bingen',d.goods.goods_spec)
 
                     // 没有规格图片使用第一张头图
-                    d.goods.goods_spec.forEach(e => {
-                        if (e.spec_pic.length == 0) {
-                            e.spec_pic.push(d.goods.goods_images[0].img_url)
+                    d.goods.goods_spec.forEach(item => {
+                        if (item.spec_pic && item.spec_pic.length == 0) {
+                            item.spec_pic.push(item.goods.goods_images[0].img_url)
                         }
                     })
+
+                    console.log('33333333')
 
                     this.setData({
                         goods: d.goods,

@@ -1,3 +1,10 @@
+
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="新申请">新申请</van-tab>
+  <van-tab title="合作中">合作中</van-tab>
+  <van-tab title="取消合作">取消合作</van-tab>
+</van-tabs>
+
 <view class="act-admin">
     <view class="act-list" wx:for="{{[1, 2, 3, 4]}}">
         <!--cell start -->

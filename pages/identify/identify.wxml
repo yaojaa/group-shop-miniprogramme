@@ -4,21 +4,17 @@
             <wux-cell-group>
                 <wux-cell hover-class="none">
                     <wux-input    controlled clear label="手机号" bind:change="changeMobile"  placeholder="输入您的手机号" value="{{mobile}}" />
-                    
-
                 </wux-cell>
                 <wux-cell hover-class="none">
                     <wux-input  controlled clear value="{{wechatnumber}}" label="微信号" bind:change="changeWX" placeholder="输入您的微信号" />
                 </wux-cell>
-
-                <wux-cell hover-class="none" title="您的收货地址" is-link url="../address/index" ></wux-cell>
             </wux-cell-group>
             
            
         </i-panel>
 
 
-        <i-panel title="微信名片二维码" extra="微信个人或微信群二维码 引导入群"  >
+        <i-panel title="微信名片二维码" extra="方便粉丝联系您哦"  >
            <view  wx:if="{{!wx_paycode}}"  class="weui-uploader__input-box" bindtap="chooseImage">
                         <text class="upload_txt">
                             </text>
@@ -31,6 +27,14 @@
 
         </i-panel>
 
+     <!--        <i-panel title="收货地址管理" >
+            <wux-cell-group>
+                <wux-cell hover-class="none" title="您的收货地址" is-link url="../address/index" ></wux-cell>
+            </wux-cell-group>
+            
+           
+        </i-panel>
+ -->
 
 
     </view>

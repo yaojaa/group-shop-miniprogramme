@@ -1,0 +1,39 @@
+<view class="act-view">
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+  <van-radio name="1">单选框 1 <view class="text">北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京</view></van-radio>
+  <van-radio name="2" icon-size="25px">单选框 2
+
+    <view class="text">北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京</view>
+
+  </van-radio>
+</van-radio-group>
+
+    <view class="tpl-add">
+        <button class="linenear_bg"  bindtap="goSetPrice"> 新增运费模板 </button>
+    </view>
+
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

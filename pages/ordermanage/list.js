@@ -221,14 +221,15 @@ Page({
     /**处理按钮事件***/
 
     orderActions(e) {
-        const opt = e.detail.target.dataset.opt
-        const cindex = e.detail.target.dataset.cindex
-        const pindex = e.detail.target.dataset.pindex
+        console.log(e)
+        const opt = e.currentTarget.dataset.opt
+        const cindex = e.currentTarget.dataset.cindex
+        const pindex = e.currentTarget.dataset.pindex
 
-        const order_id = e.detail.target.dataset.id
-        const txt = e.detail.target.dataset.txt
-        const avatar = e.detail.target.dataset.avatar
-        const user_name = e.detail.target.dataset.user_name
+        const order_id = e.currentTarget.dataset.id
+        const txt = e.currentTarget.dataset.txt
+        const avatar = e.currentTarget.dataset.avatar
+        const user_name = e.currentTarget.dataset.user_name
 
         // if (opt == 'toset_send' && this.data.delivery_method == 1) {
 
@@ -256,31 +257,34 @@ Page({
                                
                                 this.getStatistics()
                                 //操作完成之后的回调
-                                
+                                const currentItemKey = 'dataList['+pindex+']['+cindex+']'
                                 //当前操作的item
-                                const key = 'dataList['+pindex+']['+cindex+']'
-                                const currentItem = this.data.dataList[pindex][cindex]
-                                      currentItem.removed = true
+                                const key = 'dataList['+pindex+']['+cindex+'].seller_next_handle'
+                                const key2 = 'dataList['+pindex+']['+cindex+'].order_status'
+                                const key3 = 'dataList['+pindex+']['+cindex+'].order_status_txt'
 
-                                console.log('key',key)
-                                
+                    
                                 //删除逻辑
                                 if (opt == 'toset_del') {
 
+                                    this.data.dataList[pindex][cindex].removed = true
 
                                     this.setData({
-                                        [key]: currentItem
+                                        [currentItemKey]:this.data.dataList[pindex][cindex]
                                     },()=>{
-                                     wx.showToast({ title: '删除成功',icon:none })
+                                     wx.showToast({ title: '删除成功',icon:"none" })
                                     })
-
-
 
                                 } else {
 
                                    this.setData({
-                                        [key]: res.data.data
+                                         [key]: res.data.data.seller_next_handle,
+                                         [key2]: res.data.data.order_status,
+                                        [key3]: res.data.data.order_status_txt
                                     },()=>{
+
+                                    console.log('111',this.data.dataList[pindex][cindex])
+
 
                                      wx.showToast({ title: '操作成功',icon:"none" })
 
@@ -416,7 +420,7 @@ Page({
 
 
         return new Promise((resolve, reject) => {
-
+            wx.showLoading()
             util.wx.get('/api/seller/get_order_list', {
                 goods_id: this.data.goods_id,
                 cpage: this.data.cpage,
@@ -425,6 +429,7 @@ Page({
                 pagesize: 30
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
             }).then((res) => {
+            wx.hideLoading()
 
                 var resdata = res.data.data.order_list
 
@@ -683,21 +688,13 @@ Page({
     trim(str) {
         return str.replace(/(^\s*)|(\s*$)/g, "");
     },
-    formSubmit: function(e) {
-        this.data.formId = e.detail.formId
 
-        util.formSubmitCollectFormId.call(this, e)
-
-    },
     /**
      * 长按复制
      */
     
 
     copyTxt(e){
-
-
-    console.log(e)
 
       const txt = e.target.dataset.text
 
@@ -826,6 +823,21 @@ Page({
           url: '/pages/express/index?' + data
         })
 
+    },
+    to_refund(e){
+          console.log(e)
+
+        const order_refund_id = e.currentTarget.dataset.order_refund_id || null
+
+        const order_id = e.currentTarget.dataset.order_id
+
+        if(order_refund_id){
+
+           wx.navigateTo({
+            url:'../refundment-detail-seller/index?order_id='+order_id+'&id='+order_refund_id
+          })
+
+        }
     },
     /**
      * 页面上拉触底事件的处理函数

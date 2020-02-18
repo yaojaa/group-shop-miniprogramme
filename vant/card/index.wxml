@@ -1,12 +1,18 @@
 <wxs src="../wxs/utils.wxs" module="utils" />
 
 <view class="custom-class van-card">
+   <view class="van-card__header">
+    <slot name="header" />
+  </view>
+
   <view class="{{ utils.bem('card__header', { center: centered }) }}">
     <view class="van-card__thumb" bind:tap="onClickThumb">
       <image
         wx:if="{{ thumb }}"
         src="{{ thumb }}"
         mode="{{ thumbMode }}"
+        width="50"
+        height="50"
         lazy-load="{{ lazyLoad }}"
         class="van-card__img thumb-class"
       />

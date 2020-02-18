@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "确认发货",
+    "navigationBarTitleText": "添加运费模版",
     "usingComponents": {
         "van-cell": "../../vant/cell/index",
         "van-cell-group": "../../vant/cell-group/index",
@@ -15,7 +15,10 @@
         "van-checkbox-group": "../../vant/checkbox-group/index",
         "van-row": "../../vant/row/index",
         "van-col": "../../vant/col/index",
-        "van-dialog": "../../vant/dialog/index"
+        "van-dialog": "../../vant/dialog/index",
+  "van-icon": "../../vant/icon/index",
+  "van-dropdown-menu": "../../../vant/dropdown-menu/index",
+  "van-dropdown-item": "../../../vant/dropdown-item/index"
 
     }
 }

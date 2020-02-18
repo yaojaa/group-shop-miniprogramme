@@ -14,7 +14,7 @@ Page({
     },
     onLoad: function() {
 
-      util.setWatcher.call(this,this.watch)
+      // util.setWatcher.call(this,this.watch)
 
 
     },

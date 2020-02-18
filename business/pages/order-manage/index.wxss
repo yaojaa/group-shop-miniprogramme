@@ -1,0 +1,40 @@
+@import "../../../css/common.wxss";
+.custom-tab-df .van-tab {
+    font-size: 28rpx;
+}
+.goods-panel-hd,.goods-panel-fd{
+    min-height: 96rpx;
+}
+.code-popup{
+    width: 600rpx;
+    text-align: center;
+}
+.code-popup .code{
+    width: 320rpx;
+    height: 320rpx;
+    display: inline-block;
+}
+.code-popup .btn{
+    border-radius: 0 0 8rpx 8rpx;
+}
+.no-content{
+    padding: 30rpx 0
+}
+
+.spin{
+    display: inline-block;
+    margin: 0 auto
+}
+.time{
+    margin: 15px 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #666;
+    float: left;
+}
+
+ .text-hide {
+    display: -webkit-box;
+     -webkit-box-orient: vertical;
+
+  }

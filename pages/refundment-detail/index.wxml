@@ -1,25 +1,82 @@
-<i-custom-bar title="退货详情" showIcon="{{true}}"> </i-custom-bar>
-<view class="container cf" style="margin-top:80rpx;">
+<view class="container cf">
     <view class="primary ph-df pv-sm text-white">
-        <view class="text-xl">申请退款中</view>
-        <view class="text-sm"></view>
+        <view class="text-xl">
+        <text wx:if="{{detail.status ==1}}">退款申请中
+</text>
+        <text wx:if="{{detail.status ==2}}">退款已撤销</text>
+
+          <text wx:if="{{detail.status ==3}}">退款失败
+         <text  class="text-sm">{{detail.refund_desc}} {{detail.audittime}} </text>
+        </text>
+
+    
+         <text wx:if="{{detail.status ==4}}">已退款
+        <text  class="text-sm">退款时间：{{detail.audittime}}  退款金额：¥{{detail.real_refund_fee}} </text>
+         </text>
+      
+
+<!--         审核状态(1:待审核, 2:已撤销, 3:拒绝, 4:通过)',
+ -->
+        </view>
+
     </view>
+       <view class="goods-panel white-bg cf ph-df">
+            <view class="goods-panel-bd pb-df">
+                <navigator url="../service-detail/index" hover-class="none" class="flex mt-df goods-panel-item">
+                    <image src="{{order_detail.order_detail[0].goods_cover}}" class="cover mr-sm"></image>
+                    <view class="flex-sub por">
+                        <view class="text-hide one-line text-black bold title">
+                            {{order_detail.order_detail[0].goods_name}}
+                        </view>
+                        <view class="text-muted mt-xs text-sm des">
+                            {{order_detail.order_detail[0].spec_name}} 
+                            <text>x </text> <text>{{order_detail.order_detail[0].qty}}</text>
+                        </view>
+                        <view class="text-justify bt-bar">
+                            <view class="price secondary-text bold">￥{{order_detail.order_detail[0].total_price}}</view>
+                            </view>
+                        </view>
+                </navigator>
+            </view>
+        </view>
     <view class="item-list p-df mb-df">
         <view class="item">
             <text class="text-gray">退款金额：</text>
-            <text class="secondary-text">￥400</text>
+            <text class="secondary-text">￥{{detail.refund_fee}}</text>
         </view>
         <view class="item">
-            <text class="text-gray">退回账户：</text>
-            <text class="">微信or支付宝or银联</text>
+            <text class="text-gray">退款原因：</text>
+            <text class="">{{detail.reason }}</text>
+        </view>
+
+         <view class="item">
+            <text class="text-gray">退款说明：</text>
+            <text class="">{{detail.explain || '无'}}</text>
         </view>
         <view class="item">
-            <text class="text-gray">到账时间：</text>
-            <text class="">已到账</text>
+            <text class="text-gray">申请时间：</text>
+            <text class="">{{detail.apptime}}</text>
         </view>
+      <!--   <view class="item">
+            <text class="text-gray">凭证照片：</text>
+            <text class="">
+                <image src="http://wdwd-prod.wdwdcdn.com/5e3e1bc1d83dd.jpg" class="cover mr-sm"></image>
+                <image src="http://wdwd-prod.wdwdcdn.com/5e3e1bc1d83dd.jpg" class="cover mr-sm"></image>
+                <image src="http://wdwd-prod.wdwdcdn.com/5e3e1bc1d83dd.jpg" class="cover mr-sm"></image>
+            </text>
+        </view> -->
     </view>
-    <view class="ph-df">
-        <view class="">退款进度</view>
+
+
+<view class="center">
+     <button size="mini" open-type="contact" bindcontact="handleContact">投诉</button>
+</view>
+
+     <view class="fixed-btn">
+    <button class="btn xxl primary block" bindtap="cancel" wx:if="{{detail.status ==1}}">
+        撤销申请
+    </button>
     </view>
-    <van-steps steps="{{ steps }}" active="{{ active }}" direction="vertical" active-color="#49b34d" />
+    <van-dialog id="van-dialog" />
+
 </view>

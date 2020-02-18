@@ -1,0 +1,124 @@
+<view class="container cf">
+    <view class="primary ph-df pv-sm text-white">
+       <text wx:if="{{detail.status ==1}}">退款申请中
+</text>
+        <text wx:if="{{detail.status ==2}}">退款已撤销</text>
+
+          <text wx:if="{{detail.status ==3}}">已拒绝退款
+        <text  class="text-sm">{{detail.refund_desc}} {{detail.audittime}}  </text>
+        </text>
+
+         <text wx:if="{{detail.status ==4}}">已退款
+        <text  class="text-sm">退款时间：{{detail.audittime}}  退款金额：¥{{detail.real_refund_fee}} </text>
+         </text>
+    </view>
+         <view class="goods-panel white-bg cf ph-df">
+            <view class="goods-panel-bd pb-df">
+                <navigator url="../service-detail/index" hover-class="none" class="flex mt-df goods-panel-item">
+                    <image src="{{order_detail.order_detail[0].goods_cover}}" class="cover mr-sm"></image>
+                    <view class="flex-sub por">
+                        <view class="text-hide one-line text-black bold title">
+                            {{order_detail.order_detail[0].goods_name}}
+                        </view>
+                        <view class="text-muted mt-xs text-sm des">
+                            {{order_detail.order_detail[0].spec_name}} 
+                            <text>x </text> <text>{{order_detail.order_detail[0].qty}}</text>
+                        </view>
+                        <view class="text-justify bt-bar">
+                            <view class="price secondary-text bold">￥{{order_detail.order_detail[0].total_price}}</view>
+                            </view>
+                        </view>
+                </navigator>
+            </view>
+        </view>
+    <view class="item-list p-df mb-df">
+        <view class="item">
+            <text class="text-gray">申请用户：</text>
+            <text>{{order_detail.user.nickname}}</text>
+        </view>
+
+       <view class="item">
+            <text class="text-gray">订单状态：</text>
+            <text class="secondary-text">{{order_detail.order_status_txt}}</text>
+        </view>
+
+ <view class="item">
+            <text class="text-gray">订单金额：</text>
+            <text class="secondary-text">￥{{detail.order_price}}</text>
+        </view>
+
+        <view class="item">
+            <text class="text-gray">退款金额：</text>
+            <text class="secondary-text">￥{{detail.refund_fee}}</text>
+        </view>
+        <view class="item">
+            <text class="text-gray">申请原因：</text>
+            <text class="">{{detail.reason}}</text>
+        </view>
+         <view class="item">
+            <text class="text-gray">申请说明：</text>
+            <text class="">{{detail.explain || '无'}}</text>
+        </view>
+        <view class="item">
+            <text class="text-gray">申请时间：</text>
+            <text class="">{{detail.apptime}}</text>
+        </view>
+     <!--    <view class="item">
+            <text class="text-gray">凭证照片：</text>
+            <text class="">
+                <image src="http://wdwd-prod.wdwdcdn.com/5e3e1bc1d83dd.jpg" class="cover mr-sm"></image>
+                <image src="http://wdwd-prod.wdwdcdn.com/5e3e1bc1d83dd.jpg" class="cover mr-sm"></image>
+                <image src="http://wdwd-prod.wdwdcdn.com/5e3e1bc1d83dd.jpg" class="cover mr-sm"></image>
+            </text>
+        </view> -->
+    </view>
+
+
+<block wx:if="{{status ==1}}">
+
+    <view class="item-list p-df mb-df">
+
+    <view class="item">
+            <text class="text-gray">退款处理：</text>
+            <view class="secondary-text" >
+
+ <van-radio-group value="{{ radio_status }}" bind:change="onChange">
+  <van-radio name="4"  checked-color="#07c160" icon-size="35px">同意退款</van-radio>
+  <van-radio name="3"  checked-color="#07c160" icon-size="35px">拒绝退款</van-radio>
+</van-radio-group>
+                
+            </view>
+        </view>
+   <view class="item" wx:if="{{radio_status==4}}">
+   <van-field
+    value="{{ detail.refund_fee }}"
+    required
+    label="退款金额"
+    read-only="{{true}}"
+    bind:change ="feeChange"
+  />
+</view>
+
+<view class="item"  wx:if="{{radio_status==3}}">
+ <van-field
+    value="{{ detail.refund_desc }}"
+    required
+    clearable
+    label="拒绝理由"
+    placeholder="请输入拒绝理由"
+    bind:change="refundDescChange"
+  />
+</view>
+
+</view>
+
+     <view class="fixed-btn center">
+    <button class="btn xxl primary block" bindtap="submit">
+        确定
+    </button>
+    </view>
+
+</block>
+
+
+</view>

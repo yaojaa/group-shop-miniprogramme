@@ -1,7 +1,7 @@
 <view class="container">
     <view class="text-justify f14">
         <view>账户余额（元）</view>
-        <navigator url="../withdrawal-record/index">收款明细</navigator>
+        <navigator class="blue_txt" url="../withdrawal-record/index">累计为您收款{{store_money}}元</navigator>
     </view>
     <view class="money-box">
         <view class="money-yuan">¥ </view>

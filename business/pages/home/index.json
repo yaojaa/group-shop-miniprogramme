@@ -3,6 +3,12 @@
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "",
   "usingComponents": {
-  	"i-icon": "../../../iView/icon/index"
+  	 "van-tabbar": "../../../vant/tabbar/index",
+  	 "van-button": "../../../vant/button/index",
+     "van-tabbar-item": "../../../vant/tabbar-item/index",
+       "van-grid": "../../../vant/grid/index",
+       "van-grid-item": "../../../vant/grid-item/index",
+       "van-icon": "../../../vant/icon/index"
+
   }
 }

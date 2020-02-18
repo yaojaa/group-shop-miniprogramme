@@ -1,5 +1,5 @@
-<i-custom-bar showBackIcon="{{showIcon}}" hidden="{{shareIng}}" backUrl="/pages/home/index" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
-</i-custom-bar>
+<!-- <i-custom-bar showBackIcon="{{showIcon}}" hidden="{{shareIng}}" backUrl="/pages/home/index" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
+</i-custom-bar> -->
 <view class="container cf">
     <view class="swiper">
         <block wx:for="{{store_slide}}">
@@ -52,11 +52,10 @@
         </view>
 
 
-<van-tabbar  bind:change="onTabChange" active-color="#666" wx:if="{{showSetting}}" >
-  <van-tabbar-item icon="home-o" >返回我的</van-tabbar-item>
-  <van-tabbar-item icon="friends-o">主页设置</van-tabbar-item>
-  <van-tabbar-item icon="share">转发分享</van-tabbar-item>
-  
+<van-tabbar  active-color="#666" wx:if="{{showSetting}}" >
+  <van-tabbar-item bind:click="backMy" icon="home-o" >返回我的</van-tabbar-item>
+  <van-tabbar-item bind:click="backSetting" icon="friends-o">主页设置</van-tabbar-item>
+  <van-tabbar-item bind:click="showShare"icon="share">转发分享</van-tabbar-item>
 </van-tabbar>
 
 
@@ -88,21 +87,35 @@
     
       </view> -->
     <view class="goods-box">
-        <navigator open-type="redirect" url="../goods/goods?goods_id={{item.goods_id}}" data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
-            <view class="title text-hide">{{item.goods_name}}</view>
-            <view class="flex-box">
-                <view class="cover">
-                    <image class="cover" src="{{item.goods_cover}}-200"></image>
+        <view  data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
+            <view>
+
+                <view class="covers">
+                    <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
+
+        <image bindtap='previewImg' data-src="{{aimg}}" data-effect_pic='{{item.goods_images}}' wx:for="{{item.goods_images}}" wx:for-item="aimg" class="cover" src="{{aimg}}-200"></image>
+
+    </scroll-view>
+                                        
+
                 </view>
-                <view class="content">
+                <view class="content" url="../goods/goods?goods_id={{item.goods_id}}">
+                   <view class="title">{{item.goods_name}}</view>
+
                     <view class="des text-hide three">{{item.goods_content}}</view>
                     <view class="bottom text-justify">
-                        <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} </view>
-                        <text class="gray">{{item._buy_users_count}}人参与</text>
-                        <view>
-                            <button wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即参与</button>
-                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">已结束</button>
+                        <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} <text class="gray" wx:if="{{item._buy_users_count>0}}">{{item._buy_users_count}}人参与</text>
                         </view>
+
+                        <view class="action" data-index="{{index}}" data-goods_id="{{item.goods_id}}"  bindtap="showAction">
+                            <van-icon name="bars"  color="#999" size="22px" />
+                        </view>
+                        
+                        <view >
+                            <button bindtap="goDetail" wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即参与</button>
+                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">已截止</button>
+                        </view>
+                     <!--    <view class="action_icon" bindtap="showAction"><van-icon color="#999" size="26px" name="ellipsis" /></view> -->
                     </view>
                 </view>
             </view>
@@ -112,7 +125,7 @@
                     </view>
                     <view class="user f12 ml-xs text-muted"><text class="text-red">{{item._buy_users_count}}</text>人参与</view>
                 </view> -->
-        </navigator>
+        </view>
         <view wx:if="{{goodsList.length ==0 && !loading}}" class="text-center white-bg" style="padding: 100px 0">
             暂无内容
         </view>
@@ -171,4 +184,13 @@
 
         </van-cell-group>
     </van-dialog>
+
+  <van-action-sheet
+  title="快捷管理"
+  show="{{ show }}"
+  actions="{{ actions }}"
+  bind:close="onClose"
+  bind:select="onSelect"
+/>
+
 </view>

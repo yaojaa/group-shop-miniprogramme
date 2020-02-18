@@ -11,9 +11,13 @@ const app = getApp()
 const util = require('../../utils/util.js')
 
 const date = new Date()
+      date.setHours(0);
+      date.setMinutes(0)
+      date.setSeconds(0)
+
 
 const default_start_time = util.formatTime(date)
-date.setDate(date.getDate() + 7);
+date.setDate(date.getDate() + 30);
 const default_end_time = util.formatTime(date)
 
 
@@ -46,7 +50,7 @@ Page({
             start_date: default_start_time.split(' ')[0],
             end_date: default_end_time.split(' ')[0],
             start_time: '00:00:00',
-            end_time: '24:00:00',
+            end_time: '00:00:00',
         },
         spec: [{
             spec_name: '',
@@ -263,6 +267,8 @@ Page({
     // 
     addPictureDone() {
 
+        console.log('close!!!!')
+
         this.setData({
             visible_pictures: false
         })
@@ -475,7 +481,7 @@ Page({
     chooseImage: function(e) {
 
         wx.chooseImage({
-            count: 5, //最多可以选择的图片总数  
+            count: 9, //最多可以选择的图片总数  
             sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有  
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
             success: (res) => {

@@ -42,7 +42,7 @@
 				    data-index="{{index}}"
 				    bindtap="delectClick"
 				    color="#ccc"
-				    size="26"
+				    size="20"
 				    type="close"/>
 				<!-- end:请在该区域编写自己的渲染逻辑 -->
 

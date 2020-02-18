@@ -31,9 +31,18 @@
 
 .text-left{
 	float: left;
-	font-size: 12px
+	font-size: 12pxf
 }
 
 .code image{
 	width: 90%
+}
+.tuikuan-link{
+	color: #999;
+	position: absolute;
+	bottom: 30rpx;
+	left: 5px
+}
+.red{
+	color: #f00
 }

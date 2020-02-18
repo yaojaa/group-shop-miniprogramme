@@ -92,7 +92,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=1055",
+					"query": "goods_id=1370",
 					"scene": 1008
 				},
 				{
@@ -255,7 +255,7 @@
 					"id": 27,
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
-					"query": "id=2850",
+					"query": "id=1",
 					"scene": null
 				},
 				{
@@ -378,10 +378,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 45,
 					"name": "个人主页",
 					"pathName": "pages/create_shop/index",
-					"query": "",
+					"query": "id=93",
 					"scene": null
 				},
 				{
@@ -606,6 +606,125 @@
 					"name": "pages/userhome/index",
 					"pathName": "pages/userhome/index",
 					"query": "store_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/ordermanage/list",
+					"pathName": "pages/ordermanage/list",
+					"query": "id=1295&goods_name=%E6%B5%8B%E8%AF%95%E4%B8%80%E5%88%86%E9%92%B1&delivery_method=1",
+					"scene": null
+				},
+				{
+					"id": 79,
+					"name": "pages/b-login/login",
+					"pathName": "pages/b-login/login",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/b-login/login",
+					"pathName": "pages/create-home/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/home/index",
+					"pathName": "business/pages/home/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/create-home/index",
+					"pathName": "business/pages/create-home/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": 83,
+					"name": "供应商主页",
+					"pathName": "business/pages/home/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/acting-apply/index",
+					"pathName": "business/pages/acting-apply/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "代理申请",
+					"pathName": "business/pages/acting-apply/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/acting-admin/index",
+					"pathName": "business/pages/acting-admin/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/set-price/index",
+					"pathName": "business/pages/set-price/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/tpl-list/index",
+					"pathName": "business/pages/tpl-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的订单",
+					"pathName": "pages/order-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 90,
+					"name": "pages/refundment index",
+					"pathName": "pages/refundment/index",
+					"query": "order_id=8763",
+					"scene": null
+				},
+				{
+					"id": 91,
+					"name": "退款详情买家",
+					"pathName": "pages/refundment-detail/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "卖家处理退款",
+					"pathName": "pages/refundment-detail-seller/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/refundment-detail-seller/index",
+					"pathName": "pages/refundment-detail-seller/index",
+					"query": "order_id=9442&id=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userhome/index",
+					"pathName": "pages/userhome/index",
+					"query": "id=93",
 					"scene": null
 				}
 			]

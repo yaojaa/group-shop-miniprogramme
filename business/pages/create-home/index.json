@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "马云的主页",
+    "navigationBarTitleText": "创建供应商主页",
     "usingComponents":
     {
         "van-popup": "../../../vant/popup/index",

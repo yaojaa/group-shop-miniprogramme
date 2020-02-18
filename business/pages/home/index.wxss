@@ -51,7 +51,6 @@
     background-repeat: no-repeat;
     padding: 0 30rpx 30rpx;
     position: relative;
-    height: 310rpx;
     overflow: hidden;
 }
 
@@ -60,8 +59,9 @@
 
 .shop-name {
     color: #fff;
-    font-size: 40rpx;
+    font-size: 28rpx;
     font-weight: 400;
+    display: block;
 }
 
 .main-nav-box {
@@ -154,6 +154,8 @@
     width: 33.33333%;
     text-align: center;
 }
-.waveWrapperInner{
-    bottom:-60rpx;
+.ads{
+    padding: 10px;
+    color: #fff;
+    line-height: 1.5
 }
