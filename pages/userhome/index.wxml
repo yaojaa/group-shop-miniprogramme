@@ -2,9 +2,10 @@
 </i-custom-bar> -->
 <view class="container cf">
     <view class="swiper">
-        <block wx:for="{{store_slide}}">
-            <image src="{{item}}?imageView2/1/w/600/h/400/interlace/1" height="400" class="slide-image" />
-        </block>
+            <image src="{{store_slide[0]}}?imageView2/1/w/600/h/400/interlace/1" height="400" class="slide-image" />
+
+      <image src="http://img.daohangwa.com/mark.png" class="marker" />
+            
     </view>
     <view class="user-head pb-sm">
         <view class="avatar" bindtap="goContact" data-phone="{{info._user.mobile}}" data-wx="{{info._user.wechatnumber}}">
@@ -100,14 +101,27 @@
 
                 </view>
                 <view class="content" url="../goods/goods?goods_id={{item.goods_id}}">
-                   <view class="title">{{item.goods_name}}</view>
+                   <view class="title" 
+                   bindtap="goDetail"
+                   data-id="{{item.goods_id}}">{{item.goods_name}}</view>
 
-                    <view class="des text-hide three">{{item.goods_content}}</view>
+                    <view class="des text-hide three"
+
+                    bindtap="goDetail"
+                    data-id="{{item.goods_id}}"
+                    >{{item.goods_content}}</view>
                     <view class="bottom text-justify">
                         <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} <text class="gray" wx:if="{{item._buy_users_count>0}}">{{item._buy_users_count}}人参与</text>
                         </view>
 
-                        <view class="action" data-index="{{index}}" data-goods_id="{{item.goods_id}}"  bindtap="showAction">
+                        <view wx:if="{{showSetting}}"  class="action" data-index="{{index}}" 
+
+                        data-goods_id="{{item.goods_id}}"  
+                        data-goods_name="{{item.goods_name}}"  
+                        data-delivery_method="{{item.delivery_method}}" 
+                        data-goods_expires = "{{item.goods_expires}}" 
+
+                        bindtap="showAction">
                             <van-icon name="bars"  color="#999" size="22px" />
                         </view>
                         
@@ -186,7 +200,7 @@
     </van-dialog>
 
   <van-action-sheet
-  title="快捷管理"
+  title="快捷菜单"
   show="{{ show }}"
   actions="{{ actions }}"
   bind:close="onClose"

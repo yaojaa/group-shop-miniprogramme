@@ -30,18 +30,34 @@ Page({
         weChat: '',
         show:false,
         actions: [
-      { name: '隐藏', subname: '隐藏不在主页展示',key:'hide'},
-      { name: '结束',subname:'结束团购停止接单',key:'end'},
-      { name: '开启',subname:'快速开启继续接单' ,key:'start'},
-      { name: '置顶',subname:'在第一个位置显示' ,key:'top'},
-      { name: '编辑',subname:'重新编辑修改内容' ,key:'edit'}
+      {},
+      { name: '编辑',subname:'重新编辑修改内容' ,key:'edit'},
+      { name: '订单',subname:'进入订单管理页面' ,key:'order'},
+      { name: '隐藏', subname: '隐藏不在主页展示',key:'hide'}
 
              ]
     },
   showAction(e){
-
     this.goods_id = e.currentTarget.dataset.goods_id
     this.index = e.currentTarget.dataset.index
+    this.goods_id=e.currentTarget.dataset.goods_id
+    this.goods_name=e.currentTarget.dataset.goods_name
+    this.delivery_method=e.currentTarget.dataset.delivery_method 
+
+    this.goods_expires = e.currentTarget.dataset.goods_expires
+
+    if(this.goods_expires ==3 ){
+        this.data.actions[0]={ name: '开启',subname:'默认30天自动结束',key:'start'}
+    }
+
+    if(this.goods_expires ==1){
+        this.data.actions[0]=( { name: '结束',subname:'结束团购停止接单',key:'end'})
+    }
+
+    this.setData({
+        actions:this.data.actions
+    })
+
 
     console.log(this.goods_id)
 
@@ -61,10 +77,25 @@ Page({
         this.endIt()
         break;
 
+        case 'order':
+        this.onClose()
+        this.goOrders()
+
+        break;
+
+        case 'start':
+        this.startIt()
+        break;
+
+
+        break;
         case 'edit':
+
+        this.onClose()
         wx.redirectTo({
             url:'../publish/publish?goods_id='+this.goods_id
         })
+
         break
     }
 
@@ -73,6 +104,52 @@ Page({
   },
   onClose() {
     this.setData({ show: false });
+  },
+
+  goOrders() {
+
+
+        wx.redirectTo({
+            url: '../ordermanage/list?id=' + this.goods_id + '&goods_name=' + this.goods_name + '&delivery_method=' + this.delivery_method
+        })
+
+
+    },
+
+
+  startIt(){
+
+
+    const date = new Date()
+      date.setHours(0);
+      date.setMinutes(0)
+      date.setSeconds(0)
+date.setDate(date.getDate() + 7);
+const default_end_time = util.formatTime(date)
+
+
+    util.wx.post("/api/seller/goods_change_endtime",{
+            end_time:util.formatTime(default_end_time),
+            goods_id:this.goods_id
+        }).then(res=>{
+
+            wx.showToast({
+                title:'已开启，默认7天后结束',
+                icon:'none'
+            })
+
+            const key = 'goodsList['+this.index+'].goods_expires'
+
+            this.setData({
+                [key] : 1
+            })
+
+            this.onClose()
+        })
+
+
+
+
   },
   //结束
   endIt(){
@@ -85,13 +162,19 @@ Page({
             goods_id:this.goods_id
         }).then(res=>{
 
-            this.getDataList()
+            wx.showToast({
+                title:'已结束',
+                icon:'none'
+            })
+
+            const key = 'goodsList['+this.index+'].goods_expires'
+
+            this.setData({
+                [key] : 3
+            })
+
             this.onClose()
-
         })
-
-
-
   },
   //隐藏
   switchInSite(){

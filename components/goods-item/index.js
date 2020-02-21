@@ -17,7 +17,7 @@ Component({
 
     },
     data: {
-      is_recommend:'',
+      is_recommend:1,
       expires: '',
         urls: [
            
@@ -25,6 +25,8 @@ Component({
     },
     lifetimes: {
       attached: function() {
+
+        console.log('this.properties.item.is_recommend',this.properties.item.is_recommend)
         // 在组件实例进入页面节点树时执行
         this.setData({
           is_recommend:this.properties.item.is_recommend,

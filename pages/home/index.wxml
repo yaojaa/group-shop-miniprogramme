@@ -8,8 +8,8 @@
 
     <view class="head-box">
 
-            <view class="top_user mini-tag mt-xs">供应商入驻</view>
-
+<!--             <view class="top_user mini-tag mt-xs">供应商入驻</view>
+ -->
         <view class="flex align-center">
             <navigator url="../identify/identify" hover-class="none">
                 <view class="user-avatar mh-df">

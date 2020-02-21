@@ -24,6 +24,13 @@ Page({
 
   },
 
+      onShareAppMessage: function() {
+       
+        return {
+        title:'开心麻团 让团购简单'
+        }
+    },
+
 
 
   /***点击授权按钮***/

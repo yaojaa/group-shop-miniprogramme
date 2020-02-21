@@ -498,8 +498,9 @@ Page({
 
                     // 没有规格图片使用第一张头图
                     d.goods.goods_spec.forEach(item => {
-                        if (item.spec_pic && item.spec_pic.length == 0) {
-                            item.spec_pic.push(item.goods.goods_images[0].img_url)
+                        console.log('item.spec_pic',item.spec_pic.length==0,d.goods.goods_images[0].img_url)
+                        if (item.spec_pic.length == 0) {
+                            item.spec_pic.push(d.goods.goods_images[0].img_url)
                         }
                     })
 

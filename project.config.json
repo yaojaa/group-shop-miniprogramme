@@ -521,7 +521,7 @@
 					"id": 65,
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
-					"query": "id=1",
+					"query": "id=93",
 					"scene": null
 				},
 				{

@@ -26,8 +26,7 @@ Page({
                 this.setData({
                     mobile: res.data.data.mobile,
                     wechatnumber: res.data.data.wechatnumber,
-                    wx_paycode:res.data.data.wx_paycode
-                })
+                    wx_paycode:res.data.data.wx_paycode                })
             } else {
                wx.showToast({
                     title: res.data.msg,
@@ -57,9 +56,10 @@ Page({
 
             mobile: this.data.mobile,
             wechatnumber: this.data.wechatnumber,
-            wx_paycode:this.data.wx_paycode
+            wx_paycode:this.data.wx_paycode || '',
+            user_id : app.globalData.userInfo.user_id
+
         }).then(res => {
-            console.log(res)
 
             if (res.data.code == 200) {
                 wx.showToast({

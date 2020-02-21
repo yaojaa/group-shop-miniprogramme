@@ -32,7 +32,7 @@
 
                         data-wx_code="{{item.seller.wx_paycode}}"
 
-                         wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">客服</button>
+                         wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">联系</button>
                     
                         <button class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.express.length > 0}}" data-id="{{item.order_id}}" data-index="{{index}}" bindtap="checkexpress">物流信息</button>
                         <button class="btn round primary  w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>

@@ -158,7 +158,7 @@
         </view>
 
 
-        <view class='sub-title scale-b-1px contentBox'>
+        <view class='sub-title scale-b-1px contentBox' wx:if="{{showPanel}}"  bindtap="goOrders">
             <text class="f12 blue-text" style="float: right;margin-top: 15rpx">查看所有订单 〉</text> 最近参与  
         </view>
         <view class="white-bg p-df cf">
