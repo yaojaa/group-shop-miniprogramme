@@ -1152,3 +1152,29 @@ button {
     transform: scaleX(0.5);
     background: #49b34d;
 }
+.fixed-head {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+}
+
+
+.fixed-btn {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    z-index: 9;
+    background-color: #fff;
+}
+
+.fixed-btn+.content-wrap {
+    padding-bottom: 100rpx;
+}
+
+.fixed-btn .btn {
+    height: 100rpx;
+    border-radius: 0;
+}

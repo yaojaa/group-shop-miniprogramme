@@ -725,6 +725,22 @@ const addListener = function (who) {
 
     }
 
+//验证手机号函数
+
+ const checkMobile = function(mobile){
+
+     if(!mobile || !(/^1(3|4|5|6|7|8|9)\d{9}$/.test(mobile))){ 
+             wx.showToast({
+                        title: '手机号码有误',
+                        icon: 'none'
+                    });
+            return false; 
+        }
+
+ }
+
+
+
 const userListner = addListener('user')
 const sellerListner = addListener('seller')
 
@@ -748,5 +764,6 @@ module.exports = {
     bezier,
     setParentData,
     throttle,
-    url2json
+    url2json,
+    checkMobile
 }

@@ -79,10 +79,6 @@ Page({
         icon:'none'
       })
 
-      wx.redirectTo({
-        url:'../create-home/index'
-      })
-
 
     },res=>{
 

@@ -1,15 +1,27 @@
 <view class="container cf">
     <view class="reg-head cf white-bg">
-        <image src="http://leileiimg.toutoumei.com/beautiful/24_03.jpg?100" class="reg-logo"></image>
+     
+
+     <view class="uploadArea">
+     <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
+            <image src="{{ supplier_logo }}" wx:if="{{ supplier_logo }}" />
+            <text wx:else>+LOGO</text>
+     </wux-upload>
+     </view>
+
     </view>
     <form bindsubmit="submitForm">
         <van-cell-group>
-            <van-field value="{{addressee}}" name="addressee" label="名称"  placeholder="请输入供应商名称" />
-            <van-field value="{{phone}}" name="phone" label="手机号"  placeholder="请填写手机号" type="number" />
-            <van-field type="textarea" value="{{area}}" name="area" label="简介"  placeholder="请输入店铺介绍" autosize />
+            <van-field  name="supplier_name" label="名称"  placeholder="请输入供应商名称" />
+            <van-field  name="supplier_mobile" label="手机号"  placeholder="请填写手机号" type="number" />
+
+            <van-field value="{{phone}}" name="supplier_pwd" label="密码"  placeholder="请设置密码用于登陆电脑端" type="text" />
+
+
+            <van-field type="textarea" value="{{area}}" name="supplier_intro" label="简介"  placeholder="请输入店铺介绍" autosize />
         </van-cell-group>
         <view class="m-df mt-xl">
-            <button class="btn xl primary block" form-type="submit" disabled="{{disabled}}">
+            <button class="btn xl linenear_bg primary block" form-type="submit" disabled="{{disabled}}">
                 立即创建
             </button>
         </view>

@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "申请供应商成功",
+    "usingComponents":
+    {
+
+     "wux-result": "../../../wux/result/index"
+
+    }
+}

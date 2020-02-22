@@ -276,6 +276,8 @@ Page({
         let index = e.currentTarget.dataset.index;
         let current = this.data.order_list[index];
 
+        console.log('current.express',current.express)
+
         current.express.forEach((e, i) => {
             data += 'code' + i + '=' + e.express_code + '&com' + i + '=' + e.express_company + '&'
         })

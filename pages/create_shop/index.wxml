@@ -52,7 +52,7 @@
       <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
             <image src="{{ store_slide }}" wx:if="{{ store_slide }}" />
             <text wx:else>+上传</text>
-        </wux-upload>
+     </wux-upload>
     </view>
 
 </i-panel>

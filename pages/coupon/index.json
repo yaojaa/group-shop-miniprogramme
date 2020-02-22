@@ -1,0 +1,15 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "红包列表",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee",
+    "usingComponents":
+    {    
+        "van-tab": "../../vant/tab/index",
+        "van-tabs": "../../vant/tabs/index",
+        "van-button": "../../vant/button/index",
+        "van-icon": "../../vant/icon/index",
+        "head": "../../components/custom-bar/index"
+    }
+}

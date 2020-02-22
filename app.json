@@ -16,7 +16,6 @@
         "pages/paymethod/index",
         "pages/userhome/index",
         "pages/create_shop/index",
-        "pages/b-login/login",
         "pages/upload_pics/upload_pics",
         "pages/wxgroup/index",
         "pages/address/index",
@@ -41,14 +40,17 @@
         "pages/send-msg/index",
         "pages/refundment/index",
         "pages/refundment-detail/index",
-        "pages/refundment-detail-seller/index"
-
+        "pages/refundment-detail-seller/index",
+        "pages/coupon/index",
+        "pages/coupon-creat/index",
+        "pages/coupon-send/index"
     ],
     "subpackages": [{
         "root": "business",
         "pages": [
             "pages/home/index",
             "pages/create-home/index",
+            "pages/create-success/index",
             "pages/withdrawal/index",
             "pages/withdrawal-record/index",
             "pages/postageSetting/index",
