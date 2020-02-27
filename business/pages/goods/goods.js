@@ -463,7 +463,7 @@ Page({
 
     getGoodsInfo() {
 
-        util.wx.get('/api/goods/get_goods_detail', {
+        util.wx.get('/api/supplier/goods/get_goods_detail', {
                 goods_id: this.data.goods_id,
                 from_id: this.data.from_id
             })

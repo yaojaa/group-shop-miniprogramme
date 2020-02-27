@@ -1,11 +1,14 @@
+
+
+
 <view class="act-view">
+
     <van-radio-group value="{{ radio }}" bind:change="onChange">
-  <van-radio name="1">单选框 1 <view class="text">北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京</view></van-radio>
-  <van-radio name="2" icon-size="25px">单选框 2
 
-    <view class="text">北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京</view>
+  <van-radio  name="{{item.freight_tpl_id}}"  wx:for="{{lists}}">{{item.freight_tpl_name}}<block wx:for="{{item.freight_tpl_info}}" wx:for-key="city">
+  	{{city.name}}
+  </block></van-radio>
 
-  </van-radio>
 </van-radio-group>
 
     <view class="tpl-add">

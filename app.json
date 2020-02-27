@@ -50,7 +50,6 @@
         "pages": [
             "pages/home/index",
             "pages/create-home/index",
-            "pages/create-success/index",
             "pages/withdrawal/index",
             "pages/withdrawal-record/index",
             "pages/postageSetting/index",
@@ -58,12 +57,12 @@
             "pages/acting-admin/index",
             "pages/acting-apply/index",
             "pages/publish/publish",
-            "pages/tpl-list/index",
             "pages/goods/goods",
+            "pages/tpl-list/index",
             "pages/order-confirm/index",
-            "pages/express/index"
-
-
+            "pages/express/index",
+            "pages/supplier_set/index",
+            "pages/setting-list/index"
 
         ]
     }],

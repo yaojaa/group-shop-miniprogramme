@@ -7,9 +7,7 @@ Page({
      */
     data: {
         loading: true,
-            radio: '1',
-            lists:[],
-            isTocheck:false
+            radio: '1'
 
 
     },
@@ -27,21 +25,10 @@ Page({
 
   },
 
-  getTplData(){
-
-    util.wx.get('/api/supplier/get_freight_tpl').then(res=>{
-        this.setData({
-            lists:res.data.data.lists
-        })
-    })
-  },
-
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
-        this.getTplData()
 
     },
 

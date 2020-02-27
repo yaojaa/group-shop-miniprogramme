@@ -17,6 +17,15 @@ page{
 	background-size: auto 120%;
 }
 
+.address_textarea{
+	width: 90%;
+	display: block;
+	margin: 0 auto;
+	background: #f2f2f2;
+	padding: 8px;
+	height: 100px
+}
+
 .goods-cover-image{
 
 	width: 100rpx;

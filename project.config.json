@@ -638,8 +638,8 @@
 				},
 				{
 					"id": 82,
-					"name": "business/pages/create-success/index",
-					"pathName": "business/pages/create-success/index",
+					"name": "创建供应商",
+					"pathName": "business/pages/create-home/index",
 					"query": "id=1",
 					"scene": null
 				},
@@ -731,6 +731,41 @@
 					"id": 78,
 					"name": "pages/coupon-send/index",
 					"pathName": "pages/coupon-send/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "供应商添加商品",
+					"pathName": "business/pages/publish/publish",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": 97,
+					"name": "供应商发布",
+					"pathName": "business/pages/publish/publish",
+					"query": "goods_id=1492",
+					"scene": null
+				},
+				{
+					"id": 98,
+					"name": "business/pages/goods/goods",
+					"pathName": "business/pages/goods/goods",
+					"query": "goods_id=1492",
+					"scene": null
+				},
+				{
+					"id": 99,
+					"name": "business/pages/supplier_set/index",
+					"pathName": "business/pages/supplier_set/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加运费模版",
+					"pathName": "business/pages/set-price/index",
 					"query": "",
 					"scene": null
 				}

@@ -1,8 +1,15 @@
 
+
+
+   <view class="act-submit">
+        <button bindtap="actShare" class="linenear_bg">邀 请 代 理</button>
+    </view>
+
+
 <van-tabs active="{{ active }}" bind:change="onChange">
-  <van-tab title="新申请">新申请</van-tab>
-  <van-tab title="合作中">合作中</van-tab>
-  <van-tab title="取消合作">取消合作</van-tab>
+  <van-tab title="新申请">合作中</van-tab>
+  <van-tab title="合作中">新申请</van-tab>
+  <van-tab title="取消合作">已删除</van-tab>
 </van-tabs>
 
 <view class="act-admin">
@@ -14,12 +21,14 @@
             </view>
             <view class="act-main grow1">
                 <view class="act-top flex">
-                    <view class="name grow1">沙发沙发的萨芬就圣诞节发生的方法大街上了</view>
-                    <view class="time shrink0">2019-09-08</view>
+                    <view class="name grow1">代理名称</view>
+                    <view class="time shrink0">联系电话 13718134511</view>
                 </view>
                 <view class="act-bottom flex">
-                    <view class="reason grow1">申请理由申请理由申请理由申请理</view>
+                    <view class="reason grow1">粉丝 999</view>
                     <view class="button shrink0">通过</view>
+                    <view class="button shrink0">删除</view>
+ 
                 </view>
             </view>
         </view>
@@ -27,8 +36,6 @@
     </view>
     <view class="act-more-list">加载更多</view>
 
-    <view class="act-submit">
-        <button bindtap="actShare">邀 请 代 理</button>
-    </view>
+ 
 
 </view>

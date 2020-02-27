@@ -48,7 +48,7 @@
                 <i-badge dot="{{content_imgs.length}}">
                     <view class="demo-badge flex align-center">
                         <text class="primary-text mr-xs text-lg" style="vertical-align: middle;">+</text><text class="text-df">介绍图片（选填)</text>
-                        <image wx:key="{{item}}" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
+                        <image wx:key="item" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
                     </view>
                 </i-badge>
             </view>
@@ -66,7 +66,7 @@
                         <view class="pic_loading">
                             <i-spin wx:if="{{specProgress}}" />
                         </view>
-                        <view class="picture-item" wx:key="{{item}}" wx:for="{{current_spec_imgs}}">
+                        <view class="picture-item" wx:key="item" wx:for="{{current_spec_imgs}}">
                             <view class="img-list">
                                 <image mode="widthFix" src="{{item}}?imageView2/4/w/400/h/800" />
                                 <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
@@ -92,7 +92,7 @@
                 </view>
                 <scroll-view scroll-y class="maxheight">
                     <view class="con">
-                        <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="{{item}}" wx:for="{{content_imgs}}">
+                        <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="item" wx:for="{{content_imgs}}">
                             <view class="img-list">
                                 <image mode="widthFix" src="{{item}}?imageView2/4/w/400/h/800" />
                             </view>
@@ -233,7 +233,7 @@
                         <view class="weui-icon-warn" bindtap="handleOpen2">
                             <!--   <navigator url="/pages/map/index?delivery_method={{delivery_method}}"> -->
                             <text wx:if="{{delivery_method==0}}">选择配送方式</text>
-                            <text wx:if="{{delivery_method==1}}">快递邮寄</text>
+                            <text wx:if="{{delivery_method==1}}">快递配送</text>
                             <text class="address-txt" wx:if="{{delivery_method==2}}">自提：{{sell_address[0].name}}...</text>
                             <i-icon type="enter" size="28" />
                             <!-- </navigator>

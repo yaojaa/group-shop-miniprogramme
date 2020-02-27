@@ -90,12 +90,9 @@
     padding: 4rpx 10rpx;
 }
 
-.van-checkbox__icon {
-    width: 30rpx !important;
-    height: 30rpx !important;
-}
 
-.list{
+
+.list-line{
     padding: 10px 0
 }
 .input{

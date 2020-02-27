@@ -12,7 +12,7 @@ Page({
         user_info: {},
         news: [],
         loading: true,
-        info: ''
+        list: ''
     },
     handleChange({ detail }) {
         this.setData({
@@ -20,27 +20,16 @@ Page({
         })
     },
     getDetail() {
-        util.wx.get('/api/business/business/myBusinessDetail')
+        util.wx.get('/api/supplier/get_agent_list')
             .then(res => {
                 if (res.data.code == 0) {
                     this.setData({
-                        info: res.data.data
+                        list: res.data.data
                     })
                 }
             })
     },
-    getNews() {
-        util.wx.get('/api/business/news/index')
-            .then((res) => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        news: res.data.data,
-                        loading: false
-                    })
-                }
-
-            })
-    },
+ 
     authDialog(msg) {
         Dialog.confirm({
             title: '标题',

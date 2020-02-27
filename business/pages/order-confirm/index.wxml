@@ -46,28 +46,7 @@
                 </van-cell-group>
                 <view class="address-line"></view>
             </view>
-            <view class="address" wx:if="{{delivery_method==1}}">
-                <navigator url="../address/index?source=cart&id={{address.address_id}}" hover-class="none" class="white-bg flex align-center p-df" wx:if="{{address}}">
-                    <van-icon name="location-o" />
-                    <view class="flex-sub mh-sm">
-                        <view class="flex align-center">
-                            <text class="bold text-lg mr-xs">{{address.consignee}}</text>
-                            <text class="text-muted">{{address.mobile}}</text></view>
-                        <view class="text-sm mt-xs"><text class="text-gray">配送地址：</text>
-                            <text class="">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</text></view>
-                    </view>
-                    <van-icon name="arrow" color="#999" />
-                </navigator>
-                <van-cell-group wx:else>
-                    <van-cell title="手动添加收货地址" is-link url="../address-form/index?source=cart">
-                        <van-icon name="add-square" color="#FF5757" size="40rpx" slot="icon" custom-class="mr-xs" />
-                    </van-cell>
-                    <van-cell title="一键获取微信地址" is-link bindtap="openAddress">
-                        <van-icon name="chat" color="#49b34d" size="40rpx" slot="icon" custom-class="mr-xs" />
-                    </van-cell>
-                </van-cell-group>
-                <view class="address-line"></view>
-            </view>
+          
             <view class="load-area" wx:if="{{address_load}}">
                 <wux-spin wux-class="spin" />
             </view>
@@ -101,14 +80,31 @@
                 </view>
             </view>
         </view>
-        <van-cell-group custom-class="mb-sm">
-            <!--   <van-cell title="购买数量">
-                <van-stepper value="{{ 2 }}" min="1" integer bind:change="handleNumber" />
-            </van-cell> -->
-            <!--  <van-cell title="配送方式" value="自提" value-class="text-gray" />
-            <van-cell title="订单总价" value="￥100" value-class="" /> -->
-            <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
+
+
+        <!--添加收件人-->
+
+          <view class="address" wx:if="{{delivery_method==1}}">
+               
+              <van-cell-group custom-class="mv-sm">
+
+       <!--      <van-field name="address" value="{{address}}"  type="textarea" placeholder="粘贴收件人电话，姓名，地址" autosize /> -->
+            <form bindsubmit="bindTextAreaBlur">
+                    <textarea class="address_textarea" name="address_str" value="{{address_str}}" bindchange="setValue" placeholder="粘贴收件人电话 姓名 地址可自动识别 " />
+
+                          <view class="center">
+                             <button   formType="submit"  style="display: inline-block;margin: 0 auto 10px">智能识别</button>
+                          </view>
+            </form>
+
+
+            <van-field name="consignee" value="{{consignee}}" label="收货人" input-align="right" placeholder="请输入姓名" />
+            <van-field name="mobile" value="{{mobile}}" label="联系电话" input-align="right" placeholder="请填写手机号" type="number" />
+            <van-field label="所在地区" value="{{province?province+'/'+city+'/'+district:''}}" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleAreaModal" />
+            <van-field name="address" value="{{address}}" label="详细地址" type="textarea" placeholder="请填写详细地址，不少于5个字" autosize />
         </van-cell-group>
+            </view>
+
     </view>
     <i-message id="message" />
     <van-toast id="van-toast" />

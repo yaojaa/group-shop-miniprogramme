@@ -13,92 +13,35 @@
         </van-cell-group>
     </view>
 
+    <view class="add">
+        设置不同地区的邮费方案，如果不发货请设置为-1
+    </view>
+
     <view class="list" >
  <van-row >
-  <van-col span="10" style="text-align: center;">配送区域</van-col>
-  <van-col span="10" style="text-align: center;">运费</van-col>
+  <van-col span="14" style="text-align: center;">配送区域</van-col>
+  <van-col span="10" style="text-align: center;">运费金额</van-col>
 
  </van-row>
-        <van-row wx:for="{{list}}">
-  <van-col span="10" style="text-align: center;">{{item}}</van-col>
+
+
+ <van-row wx:for="{{list}}" class="list-line">
+  <van-col span="14" style="text-align: center;">{{item.name[0]}}</van-col>
   <van-col span="10">
-        <van-dropdown-menu>
-          <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-        </van-dropdown-menu>
+<!--       <wux-input-number controlled  value="{{item.price}}" min="{{ -1 }}" max="{{ 30 }}"/>
+ -->      
+
+ <wux-input-number data-index="{{index}}" longpress disabled="{{ false }}" default-value="{{ item.price }}"  min="{{ -10 }}" max="{{ 10 }}" bind:change="onChange" />
+
  </van-col>
 </van-row>
         
     </view>
 
-    <view class="addnewrule__table">
-        <view class="addnewrule__tr">
-            <view class="addnewrule__th">自定义配送区域</view>
-            <view class="addnewrule__th">运费</view>
-        </view>
-        <view class="addnewrule__tr"  wx:for="{{freight_tpl_info}}" wx:for-index="index" wx:for-item="item">
-            <view class="addnewrule__td">{{item.name}}</view>
-            <view class="addnewrule__td addnewrule__th-cell">
-                <view class="addnewrule__th_span-option" wx:if="{{!item.isNew}}">{{item.price}}</view>
-                <view class="addnewrule__th_input-option" wx:else>
-                   <!--  <van-field value="{{item.price}}" size="small" border="{{ true }}" bind:change="onChangePrice"  data-index="{{index}}" /> -->
 
-                   <input type="number" name="" placeholder="请输入金额"/>
-                </view>
-                <view class="addnewrule__th-option">
-               <!--      <view class="addnewrule__custom-option" bindtap="changeView" data-index="{{index}}">修改</view> -->
-                    <view class="addnewrule__custom-option" bindtap="deleteItem" data-index="{{index}}">删除</view>
-                </view>
-            </view>
-        </view>
-        <view class="addnewrule__tr">
-            <view class="addnewrule__td" bindtap="showDialog">
-                <van-button
-                    type="info"
-                    plain
-                    hairline
-                    size="small"
-                    class="addnewrule__td__button_add-area"
-                    >
-                    +添加地区
-                </van-button>
-            </view>
-        </view>
+    <view class="center">
+
+        <button class="btn linenear_bg" bindtap="addInfo">保存</button>
+  
     </view>
-
-    <view class="addnewrule__footer">
-        <van-button type="info" size="small"
-                    bind:click="addInfo">保存</van-button>
-    </view>
-
-   <van-dialog
-        show="{{ DialogShowStatus }}"
-        use-slot
-        bind:confirm="addAreaInfo"
-        title="点击按钮勾选地区"
-        >
-        <van-checkbox-group value="{{ newAreaData.name }}" bind:change="changeArea">
-            <scroll-view
-                scroll-y
-                style="height: 300px;"
-                bindscrolltoupper="upper"
-                bindscrolltolower="lower"
-                bindscroll="scroll"
-                scroll-into-view="{{toView}}"
-                scroll-top="{{scrollTop}}"
-                >
-                <view class="addnewrule__dialog_chooseItem">
-                    <van-checkbox
-                        icon-size="10px"
-                        wx:for="{{ list }}"
-                        wx:key="index"
-                        name="{{ item }}"
-                        data-index="{{ index }}"
-                        bind:click="toggle"
-                        >
-                        {{ item }}
-                    </van-checkbox>
-                </view>
-            </scroll-view>
-        </van-checkbox-group>
-    </van-dialog>
 </view>

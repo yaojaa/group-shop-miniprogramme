@@ -87,10 +87,6 @@ border-radius:10rpx;
 
 }
 
-.weui-uploader__files{
-  height:142rpx;
-}
-
 
 .weui-uploader__file {
 
@@ -252,3 +248,15 @@ video{
   top: 5px
 }
 
+.timePicker{
+  width: 500rpx
+}
+
+.miniInput{
+  display: inline-block;
+  width: 120rpx;
+  background: #fff;
+  margin-top: 10rpx;
+  padding: 3px;
+  height: 50rpx
+}

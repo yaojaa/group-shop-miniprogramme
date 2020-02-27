@@ -5,27 +5,44 @@ let index = 0
 
 Page({
     data: {
-        type: '', // 0 是添加 1是修改
-        freight_tpl_name: '',
+        type: 0, // 0 是添加 1是修改
+        freight_tpl_name: '请填写规则名称',
         freight_tpl_id: '',
-        freight_tpl_info: [],
-        newAreaData: {},
-        DialogShowStatus: false,
-    option1: [
-      { text: '0', value: 0 },
-      { text: '+2', value: 1 },
-      { text: '+3', value: 2 },
-      { text: '+4', value: 2 },
-      { text: '+5', value: 2 },
-      { text: '+6', value: 2 },
-      { text: '+7', value: 2 },
-      { text: '+8', value: 2 },
-      { text: '+9', value: 2 },
-      { text: '不发货', value: -1 }
+        freight_tpl_info:[],
+        list:[
+        {name:["北京"],price:10},
+        {name:["天津"],price:2},
+        {name:["吉林省"],price:3},
+        {name:["黑龙江省"],price:0},
+        {name:["上海"],price:0},
+        {name:["江苏省"],price:0},
+        {name:["浙江省"],price:0},
+        {name:["安徽省"],price:0},
+        {name:["福建省"],price:0},
+        {name:["江西省"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
+        {name:["北京"],price:0},
 
-    ],
-    value1: 0,
-        list: ['北京', '天津', '吉林省', '黑龙江省', '上海', '江苏省', '浙江省', '安徽省', '福建省', '江西省', '山东省', '河南省', '湖北省', '湖南省', '广东省', '广西壮族自治区', '海南省', '重庆', '四川省', '贵州省', '云南省', '西藏自治区', '陕西省', '甘肃省', '青海省', '宁夏回族自治区', '新疆维吾尔自治区']
+        ],
+
+        // list: ['北京', '天津', '吉林省', '黑龙江省', '上海', '江苏省', '浙江省', '安徽省', '福建省', '江西省', '山东省', '河南省', '湖北省', '湖南省', '广东省', '广西壮族自治区', '海南省', '重庆', '四川省', '贵州省', '云南省', '西藏自治区', '陕西省', '甘肃省', '青海省', '宁夏回族自治区', '新疆维吾尔自治区']
+    },
+
+      onChange(e) {
+        console.log(e)
+        const index = e.currentTarget.dataset.index
+        const key = 'list['+index+'].price'
+        this.setData({
+            [key]: e.detail.value,
+        })
     },
 
     /** 初始化原始数据 */
@@ -85,11 +102,33 @@ Page({
 
     /** 添加地址 */
     addInfo() {
+
+
+        //提取设置的值 不为0的
+        //
+        this.data.freight_tpl_info=[]
+        this.data.list.forEach(item=>{
+
+            if(item.price !== 0){
+
+                this.data.freight_tpl_info.push(item)
+
+            }
+        })
+
+
+        console.log(this.data.freight_tpl_info)
+
+        
+
+
+
+
         const { freight_tpl_info, freight_tpl_name, freight_tpl_id } = this.data;
         if (!freight_tpl_name || !freight_tpl_info.length) {
-            if (type === 0) { // 添加
+            if (this.data.type === 0) { // 添加
                 wx.showToast({
-                    title: '缺少参数',
+                    title: '请填写规格名字或设置运费金额',
                     icon: 'none'
                 })
                 return
@@ -102,20 +141,7 @@ Page({
             }
         }
 
-        const freight_tpl_info_null = freight_tpl_info.filter(item => {
-            if (!item.name || !item.name.length || !item.price) {
-                return true
-            }
-        })
-
-        if (freight_tpl_info_null.length > 0) {
-            wx.showToast({
-                title: '缺少参数',
-                icon: 'none'
-            })
-            return
-        }
-
+    
         const param = {
             freight_tpl_id, // 修改时填
             freight_tpl_name, // 模版名称
@@ -128,7 +154,6 @@ Page({
                     title: '设置运费模板成功',
                     icon: 'none'
                 });
-                if (res.data.code === 200) {
                     wx.showToast({
                         title: '设置运费模板成功',
                         icon: 'none'
@@ -136,7 +161,11 @@ Page({
                     setTimeout(() => {
                         wx.navigateBack();
                     }, 1500)
-                }
+               },res=>{
+                wx.showToast({
+                        title: res.data.msg,
+                        icon: 'none'
+                    })
             })
     },
 

@@ -13,12 +13,35 @@ Page({
         news: [],
         loading: true,
         info: '',
-        active:0
+        active:0,
+        goodsList:[]
     },
     handleChange({ detail }) {
         this.setData({
             mainTab: detail.key
         })
+    },
+
+     getInfo(){
+
+
+    util.wx.get('/api/supplier/get_supplier_detail').then(res=>{
+      this.setData({
+        info:res.data.data,
+        supplier_logo:res.data.data.supplier_logo
+      })
+    })
+
+
+  },
+
+    goInfoSet(){
+
+      wx.navigateTo({
+        url:'/business/pages/supplier_set/index'
+      })
+
+
     },
     getDetail() {
         util.wx.get('/api/business/business/myBusinessDetail')
@@ -30,16 +53,13 @@ Page({
                 }
             })
     },
-    getNews() {
-        util.wx.get('/api/business/news/index')
+    getGoodsList() {
+        util.wx.get('/api/supplier/get_goods_list')
             .then((res) => {
-                if (res.data.code == 0) {
                     this.setData({
-                        news: res.data.data,
+                        goodsList: res.data.data.goodslist,
                         loading: false
                     })
-                }
-
             })
     },
     authDialog(msg) {
@@ -64,14 +84,20 @@ Page({
         this.setData({
             userInfo: userInfo
         })
-        //this.getDetail()
-        //this.getNews()
+
+
     },
     goOrder(){
           wx.navigateTo({
                 url:'/business/pages/order-manage/index'
             })
 
+    },
+    goSetting(){
+
+        wx.navigateTo({
+                url:'/business/pages/setting-list/index'
+            })
     },
     goAdd(){
 
@@ -113,6 +139,10 @@ Page({
       })
 
       wx.hideHomeButton()
+
+        this.getInfo()
+        //this.getDetail()
+        this.getGoodsList()
 
         
     },

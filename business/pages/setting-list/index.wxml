@@ -1,0 +1,41 @@
+<view class="container">
+   <van-cell
+  is-link
+  title="基本信息"
+  link-type="navigateTo"
+  url="/pages/dashboard/index"
+/>
+
+<van-cell
+  is-link
+  title="运费模版"
+  link-type="navigateTo"
+  url="../tpl-list/index"
+/>
+
+
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

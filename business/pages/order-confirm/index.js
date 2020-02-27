@@ -116,6 +116,44 @@ Page({
             })
     },
 
+    bindTextAreaBlur(e){
+
+        　　var text= e.detail.value.address_str
+
+              text = text.split('\n').join(' ');
+
+
+        if(text==''){
+            return
+        }
+        
+
+
+        util.wx.post('/api/index/kuaibao_cloud_address_resolve',{
+            text:text
+        }).then(res=>{
+            wx.showToast({
+                title:'已识别 请核对',
+                icon:'none'
+            })
+            this.setData({
+                consignee:res.data.data[0].name,
+                mobile:res.data.data[0].mobile,
+                province: res.data.data[0].province_name,
+                city: res.data.data[0].city_name,
+                district: res.data.data[0].county_name,
+                address:res.data.data[0].detail
+            })
+        }).catch(e=>{
+            wx.showToast({
+                title:e.data.msg,
+                icon:'none'
+            })
+        })
+
+
+    },
+
     onAddressChange(e) {
 
         this.setData({

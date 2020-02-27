@@ -17,6 +17,14 @@ Page({
 
     },
 
+    reg(){
+
+        util.wx.post('/api/seller/apply_agent',{
+            supplier_id:'',
+            apply_remark:''
+        })
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

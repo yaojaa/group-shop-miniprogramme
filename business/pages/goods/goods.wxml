@@ -18,11 +18,11 @@
             <view class="user-body" catchtap="goContact" data-phone="{{goods.user.mobile}}" data-wx="{{goods.user.wechatnumber}}">
                 <view class="user-info-hd">
 
-                 <image src="{{goods.user.headimg}}" class="avatar"></image>
+                 <image src="https://static.kaixinmatuan.cn/logo.png" class="avatar"></image>
 
                 </view>
                 <view class="user-info-bd">
-                    <text class="name">{{goods.user.nickname}}</text>
+                    <text class="name">开心麻团官方</text>
 
                     <i-icon type="enter" size="20" color="#fff" />
                 </view>
@@ -93,7 +93,7 @@
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
                 <i-icon type="send" size="24" color="#f90" />
-                <view class="text-muted text-xs">分享海报</view>
+                <view class="text-muted text-xs">邀请销售</view>
             </button>
         </view>
         <view class="load-area" wx:if="{{!goods}}">

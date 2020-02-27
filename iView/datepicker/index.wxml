@@ -27,14 +27,14 @@
     <view class='space'> </view>
     <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.h}}" data-type="hour" bindchange="bindChange">
       <picker-view-column>
-        <view wx:for="{{hours}}" wx:key="item"  class='picker-row'>{{item}}点</view>
+        <view wx:for="{{hours}}" wx:key="item"  class='picker-row'>{{item}}时</view>
       </picker-view-column>
     </picker-view>
-<!--     <view class='space'>:</view>
- -->    <!-- <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.mm}}" data-type="minute" bindchange="bindChange">
+ <view class='space'>:</view>
+  <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.mm}}" data-type="minute" bindchange="bindChange">
       <picker-view-column>
-        <view wx:for="{{minutes}}" wx:key="item" class='picker-row'>{{item}}</view>
+        <view wx:for="{{minutes}}" wx:key="item" class='picker-row'>{{item}}分</view>
       </picker-view-column>
-    </picker-view> -->
+    </picker-view> 
   </view>
 </view>

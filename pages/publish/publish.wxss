@@ -88,7 +88,7 @@ border-radius:10rpx;
 }
 
 .weui-uploader__files{
-  height:142rpx;
+  min-height:142rpx;
 }
 
 

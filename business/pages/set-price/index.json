@@ -6,19 +6,14 @@
         "van-field": "../../vant/field/index",
         "van-picker": "../../vant/picker/index",
         "van-button": "../../vant/button/index",
-        "i-custom-bar": "../../components/custom-bar/index",
-        "wux-timeline": "../../wux/timeline/index",
-        "wux-timeline-item": "../../wux/timeline-item/index",
-        "van-switch": "../../vant/switch/index",
-
         "van-checkbox": "../../vant/checkbox/index",
         "van-checkbox-group": "../../vant/checkbox-group/index",
         "van-row": "../../vant/row/index",
         "van-col": "../../vant/col/index",
-        "van-dialog": "../../vant/dialog/index",
-  "van-icon": "../../vant/icon/index",
-  "van-dropdown-menu": "../../../vant/dropdown-menu/index",
-  "van-dropdown-item": "../../../vant/dropdown-item/index"
+       "van-icon": "../../vant/icon/index",
+        "wux-input-number": "../../../wux/input-number/index"
+
+
 
     }
 }

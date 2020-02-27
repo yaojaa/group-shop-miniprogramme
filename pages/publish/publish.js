@@ -91,7 +91,7 @@ Page({
         // darg
         size: 5,
     },
-    // darg start
+    // darg start5
     // 改变监听
     change(e) {
         this.data.goods_images = e.detail.listData
@@ -373,8 +373,6 @@ Page({
 
         util.uploadPicture({
             success: (result) => {
-
-                console.log('result', result)
 
                 this.data.content_imgs = this.data.content_imgs.concat([result])
                 console.log('this.data.content_imgs', this.data.content_imgs)
@@ -832,7 +830,8 @@ Page({
             })
         }
     },
-    /**回显数据**/
+
+        /**回显数据**/
     getPublishedData(goods_id, isCopy, temp) {
         // 是否是模板   1包邮模板   2自提模板
         if(temp == 1){
@@ -875,6 +874,7 @@ Page({
 
 
     },
+
     // 编辑模板初始数据加载
     initData(gs, isCopy){
         let starFormatTime = isCopy ? default_start_time : util.formatTime(new Date(gs.start_time * 1000))

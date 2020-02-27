@@ -90,6 +90,17 @@ Page({
         video_progress:false,
         // darg
         size: 5,
+        is_timelimit:0,
+        is_on_sale:1, //上下架状态(1:上架,2:下架) 默认1
+        is_on_sale_status:false
+    },
+
+    sale_status_onChange(event){
+
+        const detail = event.detail;
+        this.setData({
+            'is_on_sale_status' : detail.value
+        })
     },
     // darg start
     // 改变监听
@@ -266,8 +277,6 @@ Page({
     // },
     // 
     addPictureDone() {
-
-        console.log('close!!!!')
 
         this.setData({
             visible_pictures: false
@@ -673,7 +682,7 @@ Page({
 
         this.data.spec.every((value, index) => {
 
-            if (value.spec_name.trim() == '' || value.spec_price.trim() == '') {
+            if (value.spec_name.trim() == '' || value. agent_price.trim() == '') {
 
                 hasKeyName = false
 
@@ -745,7 +754,7 @@ Page({
 
         //提交
         //
-        util.wx.post('/api/seller/goods_add_or_edit', data).then(
+        util.wx.post('/api/supplier/goods_add_or_edit', data).then(
             res => {
                 wx.hideLoading()
                 this.data.goods_id = res.data.data.goods_id
@@ -763,6 +772,11 @@ Page({
 
 
 
+    },
+    hideTimePicker: function(e){
+        this.setData({
+            isShowTimePicker:false
+        })
     },
     deliveryChange: function(e) {
         this.setData({

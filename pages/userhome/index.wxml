@@ -111,7 +111,8 @@
                     data-id="{{item.goods_id}}"
                     >{{item.goods_content}}</view>
                     <view class="bottom text-justify">
-                        <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} <text class="gray" wx:if="{{item._buy_users_count>0}}">{{item._buy_users_count}}人参与</text>
+                        <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} 
+                           <!--  <text class="gray" wx:if="{{item._buy_users_count>0}}">{{item._buy_users_count}}人参与</text> -->
                         </view>
 
                         <view wx:if="{{showSetting}}"  class="action" data-index="{{index}}" 
@@ -127,7 +128,7 @@
                         
                         <view >
                             <button bindtap="goDetail" wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即参与</button>
-                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">已截止</button>
+                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">已经截止</button>
                         </view>
                      <!--    <view class="action_icon" bindtap="showAction"><van-icon color="#999" size="26px" name="ellipsis" /></view> -->
                     </view>
