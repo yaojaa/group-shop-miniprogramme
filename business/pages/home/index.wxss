@@ -4,55 +4,42 @@
 
 }
 
-.home-avatar {
-    width: 68rpx;
-    height: 68rpx;
-}
-
-.info-box {
-    height: 140rpx;
-    background: #fff;
-}
-
-.info-title{
-    height: 140rpx;
-    width: 120rpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.news-box {
-    height: 100rpx;
-    overflow: hidden;
-    margin-top: 24rpx;
-}
-
-.news-item {
-    font-size: 24rpx;
-    color: #666;
-    padding: 4rpx 0;
-    line-height: 1.6;
-}
-
-.new-label {
-    font-size: 20rpx;
-    border: 1px solid #FF5238;
-    color: #FF5238;
-    padding: 0rpx 6rpx;
-    border-radius: 4rpx;
-    display: inline-block;
-    margin-right: 20rpx;
-    line-height: 1.2;
-}
-
 .head-box {
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    padding: 0 30rpx 30rpx;
     position: relative;
+    background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center bottom no-repeat #fff;
+    background-size: 100% auto;
+    height: 300rpx;
+    position: relative;
+    width: 100%;
+    padding-top: 120rpx;
     overflow: hidden;
 }
+
+.head-side {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color:#fff;
+    text-align: center;
+}
+
+.set-icon {
+    position: absolute;
+    right: 0;
+    bottom: 0
+}
+
+.user-avatar {
+
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    position: relative;
+
+}
+
+
 
 .shop-box {
 }
@@ -155,7 +142,7 @@
     text-align: center;
 }
 .ads{
-    padding: 10px;
+    padding: 10px 30px;
     color: #fff;
     line-height: 1.5
 }

@@ -14,7 +14,24 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+ 
+        this.supplier_id = options.id || ''
 
+        if(this.supplier_id){
+            this.getinfo()
+        }else{
+            wx.showToast({
+                title:'URL缺少id参数'
+            })
+        }
+
+    },
+
+    getinfo(){
+        util.wx.get('/api/seller/get_supplier_detail?supplier_id='+this.supplier_id).then(res=>{
+
+
+        })
     },
 
     reg(){
