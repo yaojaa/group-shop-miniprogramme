@@ -11,9 +11,7 @@
         "van-row": "../../vant/row/index",
         "van-col": "../../vant/col/index",
        "van-icon": "../../vant/icon/index",
-        "wux-input-number": "../../../wux/input-number/index"
-
-
-
+        "wux-input-number": "../../../wux/input-number/index",
+        "van-stepper": "../../vant/stepper/index"
     }
 }

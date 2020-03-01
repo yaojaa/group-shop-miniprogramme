@@ -1,47 +1,23 @@
-<view class="container_addnewrule">
+<view class="container_addnewrule gray-wrap">
     <!-- 添加修改运费模板 -->
-    <view class='addnewrule__rule-name'>
-        <van-cell-group>
-            <van-field
-                value="{{ freight_tpl_name }}"
-                placeholder="请输入规则名称"
-                border="{{ true }}"
-                maxlength="{{ 50 }}"
-                bind:change="onChangePanName"
-                size="small"
-            />
+    <div class="white-bg">
+        <van-cell-group title="模板名称">
+            <van-field value="{{ freight_tpl_name }}" placeholder="请输入模板名称" border="{{ true }}" maxlength="{{ 50 }}" bind:change="onChangePanName" size="small" />
         </van-cell-group>
-    </view>
-
-    <view class="add">
-        设置不同地区的邮费方案，如果不发货请设置为-1
-    </view>
-
-    <view class="list" >
- <van-row >
-  <van-col span="14" style="text-align: center;">配送区域</van-col>
-  <van-col span="10" style="text-align: center;">运费金额</van-col>
-
- </van-row>
-
-
- <van-row wx:for="{{list}}" class="list-line">
-  <van-col span="14" style="text-align: center;">{{item.name[0]}}</van-col>
-  <van-col span="10">
-<!--       <wux-input-number controlled  value="{{item.price}}" min="{{ -1 }}" max="{{ 30 }}"/>
- -->      
-
- <wux-input-number data-index="{{index}}" longpress disabled="{{ false }}" default-value="{{ item.price }}"  min="{{ -10 }}" max="{{ 10 }}" bind:change="onChange" />
-
- </van-col>
-</van-row>
-        
-    </view>
-
-
-    <view class="center">
-
-        <button class="btn linenear_bg" bindtap="addInfo">保存</button>
-  
+        <van-cell-group title="设置不同地区的邮费方案，如果不发货请设置为-1">
+            <view class="white-bg text-justify p-df">
+                <view >配送区域</view>
+                <view >运费金额</view>
+            </view>
+            <van-cell wx:for="{{list}}" wx:key="index">
+                <view slot="title" class="text-gray">{{item.name[0]}}</view>
+                <van-stepper value="{{ item.price }}" min="{{ -10 }}" max="{{ 10 }}" data-index="{{index}}" bind:change="onChange" ></van-stepper>
+            </van-cell>
+        </van-cell-group>
+    </div>
+    <view class="m-df ">
+        <button class="btn xl primary block linenear_bg" bindtap="addInfo">
+            保存
+        </button>
     </view>
 </view>
