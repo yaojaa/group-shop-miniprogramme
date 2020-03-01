@@ -658,10 +658,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 85,
 					"name": "代理申请",
 					"pathName": "business/pages/acting-apply/index",
-					"query": "id=1",
+					"query": "supplier_id=4",
 					"scene": null
 				},
 				{
@@ -766,6 +766,20 @@
 					"id": -1,
 					"name": "添加运费模版",
 					"pathName": "business/pages/set-price/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "团长创建店铺主页",
+					"pathName": "pages/create-home/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的代理列表",
+					"pathName": "business/pages/acting-admin/index",
 					"query": "",
 					"scene": null
 				}

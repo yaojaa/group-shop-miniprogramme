@@ -2,6 +2,7 @@
     "pages": [
         "pages/home/index",
         "pages/login/login",
+        "pages/create-home/index",
         "pages/publish-select/index",
         "pages/index/index",
         "pages/withdrawal/index",

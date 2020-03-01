@@ -1,15 +1,26 @@
 <view class="act-view">
-    <image class="act-logo" mode="aspectFill" src="https://static.kaixinmatuan.cn/eccbc87e4b5ce2fe28308fd9f2a7baf320190603224615303.jpg?imageView2/2/w/200/h/200/format/jpg/q/75"></image>
+    <image class="act-logo" mode="aspectFill" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"></image>
     <view class="act-title">
-        供应商名称供应商名称供应商名
+        {{info.supplier_intro}}
     </view>
+    
+    <form bindsubmit='actSubmit'>
+
+
     <view class="act-textarea">
-        <textarea placeholder="我要申请代理权限"/>
+        <textarea name="apply_remark" value="我要您的申请团长 请通过谢谢">
+           
+        </textarea>
     </view>
 
     <view class="act-submit">
-        <button loading="{{loading}}" bindtap="actSubmit"> 立 即 申 请 </button>
+
+        <button type="primary" wx:if="{{showLoginbtn}}"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权登录 </button>
+        <button wx:else form-type='submit' > 立 即 申 请 </button>
+
     </view>
+
+</form>
 
 </view>
 

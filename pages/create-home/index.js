@@ -1,4 +1,6 @@
-const util = require('../../../utils/util')
+const util = require('../../utils/util')
+
+const app = getApp()
 
 Page({
 
@@ -7,13 +9,32 @@ Page({
    */
   data: {
       loading:false,
-      supplier_logo:''
+      store_logo:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    const uInfo = app.globalData.userInfo
+
+    if(uInfo.store_id){
+
+      wx.redirectTo({
+        url:'../home/index'
+      })
+
+    }
+
+
+
+    console.log(app.globalData.userInfo.headimg)
+
+    this.setData({
+      store_logo:uInfo.headimg,
+      store_name:uInfo.nickname
+    })
 
   },
    onChange(e) {
@@ -69,17 +90,25 @@ Page({
 
   submitForm(e){
 
-    util.checkMobile(e.detail.value.supplier_mobile)
-
     const postData=Object.assign({supplier_logo:this.data.supplier_logo},e.detail.value)
-    util.wx.post('/api/user/apply_supplier',postData).then(res=>{
+    util.wx.post('/api/user/store_apply',postData).then(res=>{
 
       wx.showToast({
         title:'提交成功',
         icon:'none'
       })
 
+      wx.redirectTo({
+        url:'../create-home/index'
+      })
+
+
     },res=>{
+
+        wx.showToast({
+        title:res.data.msg,
+        icon:'none'
+      })
 
     }).catch(e=>{
 

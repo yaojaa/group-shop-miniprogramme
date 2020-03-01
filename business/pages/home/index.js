@@ -2,6 +2,7 @@ const util = require('../../../utils/util')
 
 import Dialog from '../../../vant/dialog/dialog';
 import Toast from '../../../vant/toast/toast'
+const app = getApp()
 Page({
 
     /**
@@ -22,15 +23,31 @@ Page({
         })
     },
 
-     getInfo(){
-
+    getInfo(){
 
     util.wx.get('/api/supplier/get_supplier_detail').then(res=>{
       this.setData({
         info:res.data.data,
         supplier_logo:res.data.data.supplier_logo
       })
-    })
+
+      //将自己的供应商信息记录到全局
+
+      app.globalData.userInfo.identity = res.data.data;
+
+      console.log(app.globalData.userInfo)
+
+
+
+    },res=>{
+              if(res.data.code == -1){
+
+                wx.redirectTo({
+                  url:'/business/pages/create-home/index'
+                })
+
+              }
+            })
 
 
   },
@@ -43,16 +60,7 @@ Page({
 
 
     },
-    getDetail() {
-        util.wx.get('/api/business/business/myBusinessDetail')
-            .then(res => {
-                if (res.data.code == 0) {
-                    this.setData({
-                        info: res.data.data
-                    })
-                }
-            })
-    },
+
     getGoodsList() {
         util.wx.get('/api/supplier/get_goods_list')
             .then((res) => {
@@ -60,6 +68,16 @@ Page({
                         goodsList: res.data.data.goodslist,
                         loading: false
                     })
+            wx.hideLoading()
+
+            },res=>{
+              if(res.data.code == -1){
+
+                wx.redirectTo({
+                  url:'/business/pages/create-home/index'
+                })
+
+              }
             })
     },
     authDialog(msg) {
@@ -80,6 +98,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+      wx.showLoading()
         let userInfo = wx.getStorageSync('userInfo')
         this.setData({
             userInfo: userInfo
