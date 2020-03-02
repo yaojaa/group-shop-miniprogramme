@@ -44,7 +44,8 @@
         "pages/refundment-detail-seller/index",
         "pages/coupon/index",
         "pages/coupon-creat/index",
-        "pages/coupon-send/index"
+        "pages/coupon-send/index",
+        "pages/goods-up/index"
     ],
     "subpackages": [{
         "root": "business",
@@ -64,7 +65,6 @@
             "pages/express/index",
             "pages/supplier_set/index",
             "pages/setting-list/index"
-
         ]
     }],
     "usingComponents": {

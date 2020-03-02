@@ -1,0 +1,48 @@
+<view class="container gray-wrap  cf">
+    <form bindsubmit="submitForm">
+        <view class="white-bg ph-df pv-sm flex align-center">
+             <image src="https://static.kaixinmatuan.cn/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032235396620.jpg?imageView2/2/w/66/h/66/format/jpg/q/75" class="img-df"></image>
+             <view class="flex-sub ml-sm">山东大杨幂</view>
+        </view>
+        <van-cell-group custom-class="mt-sm">
+            <van-field value="{{scopeTitle}}" name=" " label="商品分类" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
+        </van-cell-group>
+        <view class="specs-item" wx:for="{{2}}" wx:key="index">
+            <van-cell-group custom-class="mt-sm">
+                <van-field value="5斤装" name="" label="规格" placeholder="" input-align="right" readonly></van-field>
+                <van-field value="￥29" name="" label="拿货价" placeholder="" input-align="right" readonly></van-field>
+                <van-field value="￥29-￥39" name="" label="可销售区间" placeholder="" input-align="right" readonly></van-field>
+            </van-cell-group>
+            <view class="mh-df mv-sm solid round-df">
+                <van-field use-button-slot value="29" name="" label="设置零售价" placeholder="请输入零售价" input-align="right" input-class="text-lg coral-text">
+                    <view slot="button">元</view>
+                </van-field>
+            </view>
+            <view class="ph-df  text-sm text-muted">
+                <view>温馨提醒：</view>
+                <view>微信或支付宝将收取加价部分的千分之六支付网费</view>
+            </view>
+        </view>
+        <view class="m-df">
+            <button class="btn xxl primary block" form-type="submit" disabled="{{disabled}}">
+                保存
+            </button>
+        </view>
+    </form>
+    <van-popup show="{{ scopeModal }}" is-title="true" title="投诉原因" position="bottom" bind:close="handleScopeModal">
+        <view class="pv-df">
+            <van-radio-group value="{{ scopeValue }}">
+                <van-cell-group border="{{false}}">
+                    <van-cell title="水果" clickable title-width="600rpx" border="{{false}}" data-name="2" data-title="水果" bind:click="changeScope">
+                        <van-radio name="2" />
+                    </van-cell>
+                    <van-cell title="干果" clickable title-width="600rpx" border="{{false}}" data-name="3" data-title="干果" bind:click="changeScope">
+                        <van-radio name="3" />
+                    </van-cell>
+                </van-cell-group>
+            </van-radio-group>
+        </view>
+    </van-popup>
+    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
+</view>

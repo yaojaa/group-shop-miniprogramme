@@ -757,8 +757,8 @@
 				},
 				{
 					"id": 99,
-					"name": "business/pages/supplier_set/index",
-					"pathName": "business/pages/supplier_set/index",
+					"name": "pages/goods-up/index",
+					"pathName": "pages/goods-up/index",
 					"query": "",
 					"scene": null
 				},
