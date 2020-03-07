@@ -56,6 +56,16 @@ Page({
 
             },
 
+            hidePoster(){
+
+                this.setData({
+                    poster: false,
+                    showShareFriendsCard: false
+
+                })
+
+            },
+
             saveImg() {
                 wx.downloadFile({
                         url: this.data.posterImg,

@@ -207,10 +207,13 @@ Page({
 
     },
     onShareAppMessage: function() {
-      
+        if (app.globalData.userInfo) {
+            uid = app.globalData.userInfo.user_id
+        }
         return {
-            title: '供应商名称邀请你上架'+this.data.goods.goods_name,
-            path: '/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id 
+            title: this.data.goods.goods_name || '我开了一个团推荐大家看看',
+            imageUrl: this.shareImg,
+            path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id + '&from_id=' + uid
         }
     },
     openShareFriends() {
@@ -720,7 +723,7 @@ Page({
         this.data.goods_spec.forEach(value => {
 
             console.log('value.spec_price * 100 * parseInt(value.item_num)', value.spec_price * 100 * parseInt(value.item_num))
-            amountMoney += value.spec_price * 1000 * parseInt(value.item_num)
+            amountMoney += value.agent_price * 1000 * parseInt(value.item_num)
             totalNum += value.item_num
         })
 
@@ -777,7 +780,7 @@ Page({
             let currentNum = value.item_num == 0 ? '1' : value.item_num
             this.setData({
                 'goods_spec[0].item_num': currentNum,
-                amountMoney: value.spec_price * 100 * currentNum / 100,
+                amountMoney: value.agent_price * 100 * currentNum / 100,
                 totalNum: 1
             })
 
@@ -1025,7 +1028,7 @@ Page({
             success: () => {
 
                 wx.navigateTo({
-                    url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method + '&from_id=' + this.data.from_id
+                    url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=1'
                 })
 
 

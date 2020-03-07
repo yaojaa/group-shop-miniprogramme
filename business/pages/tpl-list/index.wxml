@@ -5,8 +5,12 @@
 
     <van-radio-group value="{{ radio }}" bind:change="onChange">
 
-  <van-radio  name="{{item.freight_tpl_id}}"  wx:for="{{lists}}">{{item.freight_tpl_name}}<block wx:for="{{item.freight_tpl_info}}" wx:for-key="city">
-  	{{city.name}}
+  <van-radio disabled name="{{item.freight_tpl_id}}"  wx:for="{{lists}}">{{item.freight_tpl_name}}
+  	<button size="mini" bindtap="edit" data-id="{{item.freight_tpl_id}}">修改</button>
+  		<button size="mini" class="aa"  bindtap="remove" data-id="{{item.freight_tpl_id}}">删除</button>
+
+  	<block wx:for="{{item.freight_tpl_info}}" wx:for-key="city">
+  	{{city.name}} 
   </block></van-radio>
 
 </van-radio-group>
@@ -16,6 +20,9 @@
     </view>
 
 </view>
+
+<van-dialog id="van-dialog" />
+
 
 
 

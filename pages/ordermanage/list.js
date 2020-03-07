@@ -151,12 +151,14 @@ Page({
 
         this.data.cpage = 1
 
-        this.getOrderList()
-
-        this.getStatistics()
+        
 
     },
     onLoad: function(optiton) {
+
+
+
+
 
         if (!app.globalData.token) {
             app.globalData.token = wx.getStorageSync('token')
@@ -174,6 +176,10 @@ Page({
             delivery_method: optiton.delivery_method,
             goods_name:optiton.goods_name
         })
+
+        this.getOrderList()
+
+        this.getStatistics()
 
           wx.setNavigationBarTitle({
               title: '管理订单：'+optiton.goods_name 
@@ -246,8 +252,9 @@ Page({
             success: (res) => {
 
                 if (res.confirm) {
-                    wx.showLoading()
-
+                    this.setData({
+                            loading: true
+                        })
                     util.wx.post('/api/seller/set_order_status', {
                             opt,
                             order_id
@@ -300,11 +307,15 @@ Page({
 
                             }
                         },()=>{
-                             wx.hideLoading()
+                                this.setData({
+                                        loading: false
+                                    })
                         })
                         .catch(e => {
 
-                             wx.hideLoading()
+                              this.setData({
+                                        loading: false
+                                    })
 
                         })
                 }
@@ -410,17 +421,7 @@ Page({
             loading: true
         })
 
-
-        
-
-       
-
-
-
-
-
         return new Promise((resolve, reject) => {
-            wx.showLoading()
             util.wx.get('/api/seller/get_order_list', {
                 goods_id: this.data.goods_id,
                 cpage: this.data.cpage,
@@ -429,19 +430,14 @@ Page({
                 pagesize: 30
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
             }).then((res) => {
-            wx.hideLoading()
 
                 var resdata = res.data.data.order_list
-
-
-
                 var key = 'dataList[' + (this.data.cpage - 1) + ']'
 
                 this.setData({
                     [key]: resdata,
                     loading: false,
                     totalpage: res.data.data.page.totalpage
-
                 })
 
                 resolve()
@@ -777,19 +773,13 @@ Page({
             wx.stopPullDownRefresh();
         })
     },
-    checkexpress(e) {
+  checkexpress(e) {
         let pi = e.currentTarget.dataset.pi;
         let ci = e.currentTarget.dataset.ci;
         let current = this.data.dataList[pi][ci];
         let data = '';
 
-        current.express.forEach((e,i) => {
-            data += 'code'+ i +'='+ e.express_code
-                + '&com'+ i +'='+ e.express_company
-                + '&'
-        })
-
-        data += 'index=0&order_id='+ e.currentTarget.dataset.id
+        data += 'order_sn='+ e.currentTarget.dataset.sn
             + '&user=' + current.consignee
             + '&goods=' + current.order_detail[0].goods_name
 
@@ -799,22 +789,17 @@ Page({
 
 
     },
-    checkexpressorder(e) {
+     checkexpressorder(e) {
         let pi = e.currentTarget.dataset.pi;
         let ci = e.currentTarget.dataset.ci;
         let current = this.data.dataList[pi][ci];
         let data = '';
 
-
-        current.express.forEach((e,i) => {
-            data += 'code'+ i +'='+ e.express_code
-                + '&com'+ i +'='+ e.express_company
-                + '&id'+ i +'='+ e.express_id
-                + '&'
-        })
+        //将列表的单号信息保存到
 
         data += 'pi='+ pi +'&ci='+ ci +'&order_id='+ e.currentTarget.dataset.id
             + '&user=' + current.consignee
+            + '&sn=' + e.currentTarget.dataset.sn
             + '&goods=' + current.order_detail[0].goods_name
 
         console.log(data)

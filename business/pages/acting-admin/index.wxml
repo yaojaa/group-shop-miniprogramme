@@ -43,7 +43,7 @@
 <van-dialog id="van-dialog" />
 
     <view hidden="{{ !poster }}" class="share-friends-box">
-        <view class='share-friends-img' bindtap='handlePoster'>
+        <view class='share-friends-img' bindtap='hidePoster'>
             <view class="text-center share-img-box" wx:if="{{posterImg}}">
                 <view class="images" >
                     <image class='icon-img' src='{{posterImg}}' mode='aspectFit'></image>

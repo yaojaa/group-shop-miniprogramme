@@ -5,7 +5,8 @@
   "usingComponents": {
 
   "van-radio": "../../vant/radio/index",
-  "van-radio-group": "../../vant/radio-group/index"
+  "van-radio-group": "../../vant/radio-group/index",
+        "van-dialog": "../../../vant/dialog/index"
 
   }
 }

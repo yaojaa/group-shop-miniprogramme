@@ -3,7 +3,7 @@
   is-link
   title="基本信息"
   link-type="navigateTo"
-  url="/pages/dashboard/index"
+  url="../base-info/index"
 />
 
 <van-cell

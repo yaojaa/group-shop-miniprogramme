@@ -1,3 +1,4 @@
+@import "../../css/common.wxss";
 
 .goods-item {
     margin: 15px 0 10px 0;
@@ -47,6 +48,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     font-weight: bold;
+    margin-bottom:5px
 }
 
 .goods-body .bd .link {
@@ -99,7 +101,6 @@
 
 
 .count-item .label {
-    font-size: 24rpx;
     color: #666;
     display: block;
 }
@@ -127,9 +128,13 @@
 color:#49b34d;
 border-radius:50rpx;
 border:1px solid #ebffdb;
-margin-right:12px;
 padding:0 15px!important;
 background:#f9fff5;
+work-break:keep-all;
+ white-space:nowrap;
+ display: block;
+ margin: 0 auto
+
 
 }
 .statusBar{

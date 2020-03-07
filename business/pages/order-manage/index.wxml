@@ -1,87 +1,186 @@
-<view class="container gray-wrap cf">
-
-  <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" color="#49b34d">
-        <van-tab title="已确认订单"  ></van-tab>
-        <van-tab title="待确认" ></van-tab>
-        <van-tab title="待发货"></van-tab>
-    </van-tabs>
-
-
-    <view class="order-coentent">
-        <view class="order-box">
-            <block wx:for="{{order_list}}" wx:key="index">
-
-                <view class="goods-panel ph-df white-bg mv-sm cf">
-    <view class="goods-panel-hd pv-sm flex align-center">
-        <view class="flex-sub mr-df">
-
-        
-     
-
-            <view class="flex align-center" >
-
-                <image src="{{item.user.headimg}}" class="shop-tb mr-xs">
-                </image>
-                <view class="flex-sub text-hide" >
-                    {{item.user.nickname}}
-               </view>
-            </view>
-
-        </view>
-        <view class="text-muted {{'color_'+item.order_status}}">
-
-            <text wx:if="{{item.order_status==2 && user}}">等待收货</text>
-            <text wx:else>{{item.order_status_txt}}</text>
-        </view>
-    </view>
-    <view class="solid-bottom"></view>
-    <view class="goods-panel-bd pb-df" >
-
-         <navigator  wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="goods" 
-         url="../ordermanage/list?id={{item.order_detail[0].goods_id}}&goods_name={{item.order_detail[0].goods_name}}&delivery_method={{item.delivery_method}}" 
-         hover-class="none" class="flex mt-df goods-panel-item">
-            <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/159/h/150/format/jpg/q/75" class="cover mr-sm"></image>
-            <view class="flex-sub por">
-                <view class="text-hide  title">
-                    {{goods.goods_name}}
-                </view>
-                <view class="text-muted mt-xs text-sm"><text class="pr-sm">{{goods.spec_name}}</text></view>
-                <view class="text-justify bt-bar">
-                    <view class="price bold">￥{{goods.spec_price}}</view>
-                    <view class="text-muted"><text>x </text>
-                        <text>{{goods.qty}}</text></view>
-                </view>
-            </view>
-        </navigator>
-
-        <slot name="total"></slot>
-    </view>
-
-
-    <view class="solid-bottom"></view>
-    <view class="goods-panel-fd">
-        <slot name="footer"></slot>
-    </view>
-</view>
+<view class="container">
+    <view class="order-title text-primary">
       
-            </block>
+
+
+                <van-button wx:if="{{delivery_method==1}}" class="ml-sm" type="primary" plain size="mini" bindtap="toAddressList">地址列表</van-button>
+                <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">导出名单</van-button>
+          <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
+                    <i-icon size="20" type="other" />
+                </i-button> -->
+
+
+               <!--  <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}" bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx" bind:click="handleClickItem1" />
+                  <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
+                <!--            <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
+            <view slot="open">展开</view>
+            <view slot="close">收起</view>
+        </i-switch> -->
         </view>
-        <view class="no-content white-bg" style="height:calc(100vh - 88rpx)" wx:if="{{order_list.length ==0 && !loading}}">
-            <view class="no-content-bd">
-                <image src="https://static.kaixinmatuan.cn/no_data.png" class="no-content-icon"></image>
-                <view class="no-content-des"><text>您还没有相关订单</text></view>
+    <view class="tabsArea">
+        <van-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
+            <van-tab key="" title="待确认"></van-tab>
+            <van-tab key="3" title="待发货"></van-tab>
+            <van-tab key="4" title="已发货"></van-tab>
+        </van-tabs>
+    </view>
+    <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
+ -->
+
+
+    <view class="text-center" wx:if="{{!loading && dataList.length==0}}">
+        暂无订单
+    </view>
+    
+<block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
+
+    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="{{item.order_id}}" wx:if="{{!item.removed}}">
+        <view class="order-hd">
+            <view class="number">
+
+                <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
+            </view>
+            <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
+              </view>
+                <view class="msg_btn">
+               <!--  <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
+微信通知                </button> -->
+                </view>
+
+            <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
+
+               
+
+            </view>
+            <view wx:else class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
+            </view>
+        </view>
+        <view class="order-bd">
+                         <view class=goods_title f12">{{item.order_detail[0].goods_name}}</view>
+
+            <view class="   scale-b-1px" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="g">
+                <view class="text-justify type">
+                <view>{{g.spec_name}} ×{{g.qty}}</view>
+                <view class="text-info">¥ {{g.total_price}} </view>
+                </view>
+            </view>
+
+            <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}"  >
+              <!--  <button bindtap="modifyAddress" 
+               data-order_id = "{{item.order_id}}" 
+               class="modifybtn btn gray hollow xs round button-hover"> 修改地址</button>
+ -->
+
+                <button bindtap="copy" 
+                data-province="{{item.province}}"
+                data-city="{{item.city}}"
+                data-district="{{item.district}}"
+
+
+                data-address="{{item.address}}"
+                data-consignee="{{item.consignee}}"
+                data-mobile="{{item.mobile}}"
+                data-order_detail="{{item.order_detail}}"
+
+                data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="copybtn btn gray hollow xs round button-hover"> 
+                复制地址
+                </button>
+
+
+                <view class="address">
+                   <view> 姓名：{{item.consignee}}</view>
+                   <view>  电话：{{item.mobile}} <text   bindtap="copyTxt" data-text="{{item.mobile}}" class="blue_text">复制电话</text> </view>
+                   <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}} {{item.user_message}}</view>
+                </view>
+            </view>
+            <view class="remark scale-b-1px" wx:if="{{item.user_message}}">
+                <text class="text-danger" selectable="true" data-text="{{item.user_message}}" bindtap="copy" data-text="{{item.user_message}} ">
+                    用户备注：{{item.user_message}}
+                </text>
+            </view>
+            <view class="total text-justify scale-b-1px">
+                <view><text class="warning-text f18">¥{{item.pay_price}} </text>
+                    <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
+                </view>
+                <view class="text-right"> <text class="order-date">{{item.addtime}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="order-fd scale-b-1px">
+
+            <button wx:if="{{item.order_refund_id && item.order_refundstatus!==2}}" 
+            data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}"
+            bindtap="to_refund" class="f12 {{item.order_refundstatus==1?'text-danger':'gray-text'}} " style="float: left;margin-top: 25rpx">
+        
+        <text wx:if="{{item.order_refundstatus==1}}">有退款申请</text>
+        <text wx:else>退款信息</text>
+
+    </button>
+            <!--  <view class="spec_item">
+                
+            <text  wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
+                {{g.spec_key_name}} ×{{g.goods_num}}
+            </text>
+            </view> -->
+
+            <block wx:if="{{item.order_refundstatus!==4}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
+                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" 
+                    data-id="{{item.order_id}}" 
+                    data-opt = "{{btn.opt}}"
+                    data-cindex = "{{cindex}}"
+                    data-pindex = "{{pindex}}"
+                    data-txt = "{{btn.txt}}" 
+                    bindtap = "orderActions"
+                    >{{btn.txt}}</button>
+            </block>
+
+            <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">
+                <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}"></view>
+                <button data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-sn="{{item.order_sn}}" bindtap="checkexpressorder">
+                    <block wx:if="{{item.express.length > 0}}">快递单号</block>
+                    <block wx:else>录入单号</block>
+                </button>
+            </view>
+        </view>
+        <view class="note-box">
+            <i-icon type="brush" size="14" color="#999" class="note-icon" />
+            <view class="note-input">
+                <input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder=" 怕忘记备注一下哦" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
             </view>
         </view>
     </view>
-    <van-notify id="custom-selector" />
-    <van-dialog id="van-dialog" />
-    <van-dialog id="contact" use-slot>
-        <van-cell-group border="{{false}}" custom-class="mv-df">
-            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
-            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
-        </van-cell-group>
-    </van-dialog>
-    <view class="load-box" wx:if="{{loading}}">
-        <wux-spin wux-class="spin" size="large" />
-    </view>
+
+</block>
+
+   <view class="text-center mb-sm">
+        <wux-spin wx:if="{{loading}}"></wux-spin>
+  </view>
+
+
+
+
+
+    <i-modal title="订单确认" visible="{{ visible1 }}" actions="{{ actionsConfirm }}" bind:click="toConfirm">
+        <view>确认订单信息无误，可以接单</view>
+    </i-modal>
+    <i-modal title="取消订单" visible="{{ visible3 }}" actions="{{ actionsCancel }}" bind:click="toCancel">
+        <view>确定要取消这个订单吗？</view>
+    </i-modal>
+    <i-modal title="确认发货" visible="{{ visible2 }}" bind:ok="toShipping" bind:cancel="closeShipping">
+        <view class="price-input">
+            已经给Ta发完货了吗？
+            <!--             <input bindinput="noteInput" value="{{note}}" placeholder="备注(选填)" />
+ -->
+        </view>
+    </i-modal>
+    <i-modal title="确认已支付" visible="{{ visible4_pay }}" bind:ok="setPay" bind:cancel="closePay">
+        <view class="price-input">
+            请确认Ta已经线下支付过了哦
+        </view>
+    </i-modal>
+    <i-message id="message" />
 </view>

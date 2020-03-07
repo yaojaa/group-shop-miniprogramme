@@ -1,4 +1,7 @@
 const util = require('../../../utils/util')
+import Dialog from '../../../vant/dialog/dialog';
+
+console.log(Dialog)
 
 Page({
 
@@ -41,7 +44,6 @@ Page({
      */
     onLoad: function(options) {
 
-        this.getTplData()
 
     },
 
@@ -56,7 +58,27 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        
+
+       this.getTplData()
+    },
+
+    edit(e){
+        const id = e.currentTarget.dataset.id
+        wx.navigateTo({
+            url:'../set-price/index?id='+id
+        })
+    },
+    remove(e){
+
+        Dialog.confirm({
+          title: '确认要删除此模板吗',
+        }).then(() => {
+          // on confirm
+        }).catch(() => {
+          // on cancel
+        });
+
+
     },
 
     /**

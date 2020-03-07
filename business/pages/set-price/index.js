@@ -19,20 +19,25 @@ Page({
             { name: ["安徽省"], price: 0 },
             { name: ["福建省"], price: 0 },
             { name: ["江西省"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
-            { name: ["北京"], price: 0 },
+            { name: ["山东省"], price: 0 },
+            { name: ["河南省"], price: 0 },
+            { name: ["湖北省"], price: 0 },
+            { name: ["湖南省"], price: 0 },
+            { name: ["广东省"], price: 0 },
+            { name: ["广西壮族自治区"], price: 0 },
+            { name: ["海南省"], price: 0 },
+            { name: ["重庆"], price: 0 },
+            { name: ["四川省"], price: 0 },
+            { name: ["贵州省"], price: 0 },
+            { name: ["云南省"], price: 0 },
+            { name: ["西藏自治区"], price: 0 },
+            { name: ["陕西省"], price: 0 },
+            { name: ["甘肃省"], price: 0 },
+            { name: ["青海省"], price: 0 },
+            { name: ["宁夏回族自治区"], price: 0 },
+            { name: ["新疆维吾尔自治区"], price: 0 },
 
-        ],
-
-        // list: ['北京', '天津', '吉林省', '黑龙江省', '上海', '江苏省', '浙江省', '安徽省', '福建省', '江西省', '山东省', '河南省', '湖北省', '湖南省', '广东省', '广西壮族自治区', '海南省', '重庆', '四川省', '贵州省', '云南省', '西藏自治区', '陕西省', '甘肃省', '青海省', '宁夏回族自治区', '新疆维吾尔自治区']
+        ]
     },
 
     onChange(e) {
@@ -46,6 +51,10 @@ Page({
 
     /** 初始化原始数据 */
     onLoad(options) {
+        //如果是编辑
+        if(options.id){
+
+        }
         // const that = this;
         // console.log(options)
         // if (+options.type === 1) {

@@ -59,12 +59,14 @@
             "pages/acting-apply/index",
             "pages/publish/publish",
             "pages/goods/goods",
+            "pages/goods-user/goods",
             "pages/tpl-list/index",
             "pages/order-confirm/index",
             "pages/express/index",
             "pages/supplier_set/index",
-            "pages/setting-list/index"
-
+            "pages/setting-list/index",
+            "pages/base-info/index",
+            "pages/order-manage/index"
         ]
     }],
     "usingComponents": {

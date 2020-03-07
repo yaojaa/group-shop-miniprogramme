@@ -4,15 +4,13 @@
     <view class="fixed-btn flex">
       
         <view class="flex-sub">
-            <button url="../address-form/index" class="btn  xxl primary block" bindtap="openAddress">
-                <van-icon name="chat" color="#fff" size="30rpx" />
-                <text class="ml-xs">使用微信地址</text>
+            <button url="../address-form/index" class="btn linenear_bg xxl primary block" bindtap="openAddress">
+                使用微信地址
             </button>
         </view>
           <view class="flex-sub">
-            <view class="btn  xxl primary block" bindtap="newAddress">
-                <van-icon name="add-square" color="#fff" size="30rpx" />
-                <text class="ml-xs">添加新地址</text>
+            <view class="btn linenear_bg xxl primary block" bindtap="newAddress">
+               + 增加新地址
             </view>
         </view>
     </view>
@@ -25,7 +23,7 @@
                             <van-icon name="success" custom-class="iconsuccess" />
                         </view>
                         <view class="bd" data-id="{{item.address_id}}" data-item="{{item}}" bindtap="setSelected">
-                            <view class="text-lg bold"><text class="mr-sm">{{item.consignee}}</text><text class="mr-sm">{{item.mobile}}</text>
+                            <view class="text-lg "><text class="mr-sm bold">{{item.consignee}}</text><text class="mr-sm f12">{{item.mobile}}</text>
                                 <text wx:if="{{item.is_address_default==1}}" class="btn lt primary">默认</text>
                             </view>
                             <view class="text-gray mt-xs">

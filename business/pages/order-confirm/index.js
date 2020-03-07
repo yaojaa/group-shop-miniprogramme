@@ -12,7 +12,7 @@ Page({
      */
     data: {
         address_id: '',
-        address: '',
+        address: {},
         self_address: [],
         goods_name: '',
         seller: {},
@@ -99,6 +99,12 @@ Page({
             }
         })
     },
+
+    goAddress(){
+        wx.navigateTo({
+            url:'/pages/address/index?source=cart'
+        })
+    },
     getAddressList() {
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.goods_id
@@ -118,15 +124,19 @@ Page({
 
     bindTextAreaBlur(e){
 
+        console.log(e)
+
         　　var text= e.detail.value.address_str
+
+          if(text==''){
+            return
+        }
+        
 
               text = text.split('\n').join(' ');
 
 
-        if(text==''){
-            return
-        }
-        
+      
 
 
         util.wx.post('/api/index/kuaibao_cloud_address_resolve',{
@@ -163,12 +173,16 @@ Page({
 
     getGoodsInfo(){
         wx.showLoading()
-        util.wx.get('/api/goods/get_goods_detail', {
+        util.wx.get('/api/supplier/get_goods_detail', {
                 goods_id: this.data.goods_id
             })
             .then(res => {
 
-                const goods = res.data.data.goods
+                let goods = res.data.data.goods
+
+                goods.delivery_method = 1
+
+
 
                 /***处理快递自提****/
                 if(goods.delivery_method ==1){
@@ -229,7 +243,7 @@ Page({
 
 
         cart.map(value => {
-            amountMoney += value.spec_price * 1000 * parseInt(value.item_num)
+            amountMoney += value.agent_price * 1000 * parseInt(value.item_num)
             totalNumer += parseInt(value.item_num)
 
 

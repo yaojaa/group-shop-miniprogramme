@@ -4,7 +4,7 @@
   <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
   <van-tabbar-item bindtap="goOrder" icon="orders-o">订单</van-tabbar-item>
   <van-tabbar-item bindtap="goActing"  icon="friends-o">代理</van-tabbar-item>
-  <van-tabbar-item bindtap="gowithdrawal" name="setting" icon="setting-o">设置</van-tabbar-item>
+  <van-tabbar-item bindtap="goSetting" name="setting" icon="setting-o">设置</van-tabbar-item>
 </van-tabbar>
 
     <view class="head-box">
@@ -72,22 +72,26 @@
         <view class="goods-panel white-bg cf">
             <view class="goods-panel-bd" wx:for="{{goodsList}}" wx:key="index">
                 <view class="solid-bottom"></view>
-                <navigator url="/business/pages/goods/goods?id={{item.goods_id}}" hover-class="none" class="flex pv-df  pv-dh goods-panel-item">
+                <navigator url="/business/pages/goods/goods?id={{item.goods_id}}" hover-class="none" class="flex pv-df mh-sm pv-dh goods-panel-item">
                     <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line  bold title">
                             {{item.goods_name}}
                         </view>
-                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 939</text></view>
+                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 939</text>
+
+            <text style="color:#19be6b">进行中</text>
+
+                        </view>
                      
                     </view>
                 </navigator>
 
- <van-grid column-num="5">
-  <van-grid-item  text="查看" />
-  <van-grid-item text="修改" />
+ <van-grid column-num="4">
+  <van-grid-item  bindtap="goEdit" data-goods_id="{{item.goods_id}}" text="修改" />
+  <van-grid-item text="下架" />
   <van-grid-item  text="订单" /> 
-  <van-grid-item text="分享" />
+  <van-grid-item text="转发" />
 </van-grid>
             </view>
         </view>

@@ -68,7 +68,29 @@ Page({
     },
     onLoad: function(opt) {
 
-        console.log('opt',opt)
+
+        console.log(opt)
+
+        wx.showLoading()
+
+
+        util.wx.get('/api/seller/get_express_by_order_sn',{
+            order_sn:opt.sn
+        })
+        .then(res=>{
+
+        wx.hideLoading()
+
+            this.setData({
+                express:res.data.data
+            })
+
+        },res=>{
+            wx.hideLoading()
+        })
+
+
+
 
 
         let num = 0;
@@ -181,7 +203,7 @@ Page({
     send() {
         const key = 'dataList['+this.data.pindex+']['+this.data.cindex+']'
 
-        // const keyExpress = 'dataList['+this.data.pindex+']['+this.data.cindex+']["express"]'
+         const keyExpress = 'dataList['+this.data.pindex+']['+this.data.cindex+'].express'
 
         let express = this.data.express.filter(e => {
             return e.express_company && e.express_code && !e.express_id
@@ -205,13 +227,17 @@ Page({
                             title: '添加成功'
                         })
 
-                        wx.navigateBack()
+                        // setTimeout(()=>{
+                        //     wx.navigateBack()
+
+                        // },1000)
 
 
-
-                        // util.setParentData({
-                        //      [keyExpress]: [res.data.data]
-                        // })
+                        util.setParentData({
+                             [keyExpress]: ['ok']
+                        })
+                        
+                        
                     },res=>{
 
                         wx.showToast({
@@ -293,9 +319,15 @@ Page({
         let _this = this;
         wx.scanCode({
           success (res) {
+            wx.showToast({
+                title:'已识别',
+                icon:'none'
+            })
             _this.setData({
                 ['express[' + index + '].express_code']: res.result
             })
+             _this.setBtnStatus();
+
           },
           fail(res) {
             wx.showModal({

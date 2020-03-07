@@ -33,7 +33,7 @@
                     </navigator>
                     <navigator url="../withdrawal/index" hover-class="none" class="text-center"  wx:if="{{!isCustome}}">
                         <view class="text-lg bold">¥ {{pending_money}}</view>
-                        <view class="text-sm mt-xs">账户余额</view>
+                        <view class="text-sm mt-xs">账户提现</view>
                     </navigator>
                 </view>
             </view>

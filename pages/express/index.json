@@ -12,6 +12,8 @@
         "wux-timeline": "../../wux/timeline/index",
         "wux-timeline-item": "../../wux/timeline-item/index",
         "van-switch": "../../vant/switch/index",
-        "i-icon": "../../iView/icon/index"
+        "i-icon": "../../iView/icon/index",
+        "van-notice-bar": "../../vant/notice-bar/index"
+
     }
 }

@@ -105,8 +105,9 @@ background-size: cover;
   z-index: 99;
   background:#333
 }
-.weui-uploader__bd{
+.weui-uploader__bd,.eui-uploader__files{
   width:100%;
+  min-height:80px
 }
 .weui-uploader__input-box {
 

@@ -84,6 +84,16 @@
 
         <!--添加收件人-->
 
+             <view class="goods-panel-hd pv-sm flex align-center">
+                <view class="flex-sub mr-df">
+                    <view class="flex align-center">
+                        <view class="flex-sub text-hide">添加收件人</view>
+                        <view class="flex-sub text-hide" bindtap="goAddress">从顾客地址列表选择</view>
+                    </view>
+                </view>
+                <view class="text-muted"></view>
+            </view>
+
           <view class="address" wx:if="{{delivery_method==1}}">
                
               <van-cell-group custom-class="mv-sm">

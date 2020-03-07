@@ -8,7 +8,7 @@ Page({
         express_company: '',
         express_code: '',
         express: [],
-        currentIndex: null,
+        currentIndex: 0,
         order_id: '',
         errorMsg: '',
         traces: '',
@@ -17,7 +17,6 @@ Page({
     },
     checkExpress(options) {
 
-        console.log('options',options)
         let currentExpress = this.data.express[options.index];
         
         if(options.express_company=='自动识别快递公司'){
@@ -30,9 +29,8 @@ Page({
         })
         util.wx.get('/api/order/get_express_info', {
             express_company: options.express_company,
-            express_code: options.express_code,
-            order_id: options.order_id
-            }).then(res => {
+            express_code: options.express_code
+         }).then(res => {
             if (res.data.status) { // 物流单号正确
 
 
@@ -85,30 +83,7 @@ Page({
             }
         })
     },
-    send() {
-        let _this = this;
-        wx.showModal({
-          content: '是否确认发货？',
-          success (res) {
-            if (res.confirm) {
-                util.wx.post('/api/seller/set_order_status', {
-                    order_id: _this.data.order_id,
-                    opt: 'toset_send',
-                    action_remark: _this.data.action_remark,
-                    express_company: _this.data.express_company,
-                    express_code: _this.data.express_code
-                }).then(res => {
-                    if (res.data.code == 200) {
-                        wx.showToast({
-                            title: '发货成功，顾客将收到通知'
-                        })
-                        wx.navigateBack({delta: 2})
-                    }
-                })
-            }
-          }
-        })
-    },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -133,32 +108,38 @@ Page({
         //     }
         // }
 
-        let num = 0;
+        // let num = 0;
 
-        for(let i in options){
-            if(i.indexOf('code') > -1){
-                this.data.express.push({
-                    express_code: options['code' + num],
-                    express_company: decodeURIComponent(options['com' + num])
-                })
-                num ++;
-            }
-        }
+        // for(let i in options){
+        //     if(i.indexOf('code') > -1){
+        //         this.data.express.push({
+        //             express_code: options['code' + num],
+        //             express_company: decodeURIComponent(options['com' + num])
+        //         })
+        //         num ++;
+        //     }
+        // }
+        // 
+        util.wx.get('/api/seller/get_express_by_order_sn',{
+            order_sn:options.order_sn
+        })
+        .then(res=>{
 
+            this.setData({
+                express:res.data.data
+            })
 
-        this.setData({
-            express: this.data.express,
-            order_id: options.order_id
+         this.checkExpress({
+            express_code: this.data.express[0].express_code,
+            express_company:this.data.express[0].express_company,
+            index: 0
         })
 
-        this.checkExpress({
-            order_id: options.order_id,
-            express_code: options['code' + options.index],
-            express_company: options['com' + options.index],
-            index: options.index
         })
 
-         wx.setNavigationBarTitle({
+     
+
+      wx.setNavigationBarTitle({
       title: this.data.user+'的物流信息' 
     })
     },

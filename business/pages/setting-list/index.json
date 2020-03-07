@@ -1,7 +1,7 @@
 { 
   "navigationBarBackgroundColor": "#69b90b",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "设置运费模版",
+  "navigationBarTitleText": "设置",
   "usingComponents": {
 
   "van-cell": "../../vant/cell/index"

@@ -30,6 +30,8 @@ Page({
     },
 
     setSelected(e) {
+
+        console.log(e)
         if (!this.data.source) {
             return
         }

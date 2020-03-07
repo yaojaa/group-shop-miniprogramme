@@ -47,7 +47,7 @@ Component({
       this.goods_id = e.currentTarget.dataset.id
 
         wx.showActionSheet({
-          itemList: ['在主页隐藏', '在主页显示', '立即结束'],
+          itemList: ['在主页隐藏', '在主页显示', '立即结束','删除'],
           success :(res)=>{
 
             if(res.tapIndex == 0){
@@ -61,6 +61,10 @@ Component({
             }else if(res.tapIndex == 2){
               // 立即结束
               this.goodsOver()
+
+            }else if(res.tapIndex == 3){
+              // 立即结束
+              this.delGoods()
 
             }
 

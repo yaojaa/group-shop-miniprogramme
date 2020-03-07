@@ -28,7 +28,9 @@
     </view>
     <view class="tabsArea">
         <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-            <i-tab key="" title="所有订单（{{valid_order.count}}）"></i-tab>
+            <i-tab key="" title="所有订单"></i-tab>
+
+            <i-tab key="" title="已确认（{{valid_order.count}}）"></i-tab>
             <i-tab key="3" title="待发货（{{back_order.count}}）"></i-tab>
             <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
         </i-tabs>
@@ -97,9 +99,9 @@
                 <view class="text-info">¥ {{g.total_price}} </view>
             </view>
             <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}"  >
-               <button bindtap="modifyAddress" 
+            <!--    <button bindtap="modifyAddress" 
                data-order_id = "{{item.order_id}}" 
-               class="modifybtn btn gray hollow xs round button-hover"> 修改地址</button>
+               class="modifybtn btn gray hollow xs round button-hover"> 修改地址</button> -->
 
 
                 <button bindtap="copy" 
@@ -113,8 +115,8 @@
                 data-mobile="{{item.mobile}}"
                 data-order_detail="{{item.order_detail}}"
 
-                data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="copybtn btn gray hollow xs round button-hover"> 
-                复制地址
+                data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="copybtn blue_text btn  xs round button-hover"> 
+                复制收货地址
                 </button>
 
 
@@ -171,8 +173,10 @@
             </block>
 
             <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">
-                <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-pi="{{pindex}}"></view>
-                <button data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpressorder">
+                <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}">
+                    物流信息
+                </view>
+                <button data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-sn="{{item.order_sn}}" bindtap="checkexpressorder">
                     <block wx:if="{{item.express.length > 0}}">快递单号</block>
                     <block wx:else>录入单号</block>
                 </button>
@@ -182,7 +186,7 @@
         <view class="note-box">
             <i-icon type="brush" size="14" color="#999" class="note-icon" />
             <view class="note-input">
-                <input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder=" 怕忘记备注一下哦" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
+                <input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder="备注，退款、改产品、改地址等等都备注下来吧" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
             </view>
             <!-- <view class="note-submit">
                     <input type="hidden" hidden="true" name="order_id" value="{{item.order_id}}" />

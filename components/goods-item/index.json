@@ -3,7 +3,8 @@
   "usingComponents":{
   	  "van-dialog": "../../vant/dialog/index",
   	   "i-badge": "../../iView/badge/index",
-        "i-icon": "../../iView/icon/index"
-
+        "i-icon": "../../../iView/icon/index",
+        "van-grid": "../../vant/grid/index",
+        "van-grid-item": "../../vant/grid-item/index"
   }
 }

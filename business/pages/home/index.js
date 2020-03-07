@@ -52,6 +52,22 @@ Page({
 
   },
 
+  goEdit(e){
+
+    const goods_id = e.currentTarget.dataset.goods_id
+
+    wx.navigateTo({
+        url:'/business/pages/publish/publish?goods_id='+goods_id
+      })
+  },
+
+  goSetting(){
+
+     wx.navigateTo({
+        url:'/business/pages/setting-list/index'
+      })
+  },
+
     goInfoSet(){
 
       wx.navigateTo({

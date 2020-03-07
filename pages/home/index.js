@@ -378,10 +378,28 @@ Page({
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
     },
-    onShareAppMessage: function() {
+    onShareAppMessage: function(e) {
+        console.log(e)
         if (app.globalData.userInfo) {
             var _uid = app.globalData.userInfo.user_id
         }
+
+        if(e.target.dataset.type =='goods'){
+
+            const {cover,goods_name,goods_id} = e.target.dataset
+
+
+        return {
+            title:goods_name,
+            imageUrl: cover+'?imageView2/2/w/600/h/400/format/jpg/q/85',
+            path: 'pages/goods/goods?goods_id=' + goods_id
+        }
+
+
+        }
+
+
+
         return {
             title: app.globalData.userInfo.nickname + '推荐您一个好助手',
             imageUrl: this.shareImg,

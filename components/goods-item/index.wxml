@@ -14,37 +14,50 @@
                     </view>
                 </view>
             </navigator>
-            <view class="link">
-                <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button>
+            <view class="gray-text text-xs" >
+                <text class="ph-xs ph-xs" >浏览({{item.pageview_count}})</text> <text  class="ph-xs ph-xs"> 收款总额(￥{{item._order_total}})</text>
+
+                <view class="danger-text p-xs" wx:if="{{index==1}}">
+                    [合作中] 由"中西部农产品联盟"供货
+                </view>
+              <!--   <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button>
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="moreAction" size="mini">
                     <i-icon size="28" color="#49b34d" type="other" />
-                </button>
+                </button> -->
             </view>
         </view>
-        <view class="statusBar">
+        <view class="statusBar"> 
             <!--                                 _expires //是否过期 1正常 2未开始 3已过期
+        }
+        }
  -->
             <text wx:if="{{expires==2}}" style="color:#2d8cf0">未开始</text>
             <text wx:if="{{expires==1}}" style="color:#19be6b">开团中</text>
             <text wx:if="{{expires==3}}" style="color:#666">已结束</text>
         </view>
     </view>
-    <view class="goods-count">
-        <view class="count-item" data-name="{{item.goods_name}}" data-id="{{item.goods_id}}" bindtap="gofans">
-            <text class="num">{{item.pageview_count}}</text>
-            <text class="label">浏览人数</text>
-        </view>
-        <view class="count-item">
-            <text class="num" style="color:#666">￥{{item._order_total}}</text>
-            <text class="label">收款总额</text>
-        </view>
-        <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
-            <text class="num text-primary">{{item._order_count}}</text>
-            <view class="badge" wx:if="{{item._order_status1_count>0}}">+{{item._order_status1_count}}</view>
-            <text class="label">订单管理</text>
-        </view>
-    </view>
+
+     <van-grid column-num="5">
+  <van-grid-item use-slot>
+    <button  class="hollow" 
+    data-type="goods"
+    data-cover ="{{item.goods_cover}}"
+    data-goods_name = "{{item.goods_name}}"
+    data-goods_id = "{{item.goods_id}}"
+
+     size="mini" open-type="share">分享</button></van-grid-item>
+  <van-grid-item  use-slot > <button class="hollow" data-url="{{item.goods_id}}" bindtap="gofans"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 访客 </button> </van-grid-item>
+  <van-grid-item use-slot > <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> </van-grid-item>
+  <van-grid-item use-slot >
+      <button class="hollow"  bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}"  size="mini"> 订单({{item._order_count}}) </button>
+  </van-grid-item> 
+
+    <van-grid-item  use-slot>
+        <button class="hollow" size="mini"  data-id="{{item.goods_id}}"  bindtap="moreAction">  <i-icon size="22" color="#36cc3b" type="unfold" /> </button>
+    </van-grid-item>
+</van-grid>
+
     <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->
     <van-dialog id="van-dialog" />
 </view>

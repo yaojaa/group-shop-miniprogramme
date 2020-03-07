@@ -782,6 +782,34 @@
 					"pathName": "business/pages/acting-admin/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 103,
+					"name": "设置列表",
+					"pathName": "business/pages/setting-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "模板列表",
+					"pathName": "business/pages/tpl-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单管理",
+					"pathName": "business/pages/order-manage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 106,
+					"name": "团长查看分销页面",
+					"pathName": "business/pages/goods-user/goods",
+					"query": "id=4",
+					"scene": null
 				}
 			]
 		}

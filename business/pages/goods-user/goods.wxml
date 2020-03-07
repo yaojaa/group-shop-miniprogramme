@@ -122,14 +122,14 @@
                         {{item.spec_desc}}</view>
                     </view>
 
-                    <!--  <text class="f12px" wx:if="{{item.spec_stock}}"> 
+                     <text class="f12px" wx:if="{{item.spec_stock}}"> 
                         剩余({{item.spec_stock}})
                     </text>
- -->
 
-                  <!--   <view class="buy" catchtap="addAnimate">
+
+                    <view class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
-                    </view> -->
+                    </view>
                 </view>
             </block>
         </view>
@@ -200,24 +200,23 @@
     <van-goods-action>
   <van-goods-action-icon
     icon="home-o"
-    text="首页"
+    text="供应商"
     bind:click="toHome"
   />
-<!--   <van-goods-action-icon
+  <van-goods-action-icon
     icon="chat-o"
     text="客服"
     bind:click="onClickIcon"
   />
   <van-goods-action-button
-    text="代客下单"
+    text="直接下单"
 
     bind:click="cartPanelShow"
   />
- -->
+
    <van-goods-action-button
-    text="邀请团长分销"
+    text="上架到我的主页"
     type="warning"
-    open-type="share"
     bind:click="onClickButton"
   />
 </van-goods-action>
@@ -233,7 +232,7 @@
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">
                         <i-cell wx:if="{{item.item_num>0}}" wx:for="{{goods_spec}}" wx:key="index">
                             <view class="type-box text-justify">
-                                <view>{{item.spec_name}} / <text class="text-red f16"> ¥{{item.spec_price}}</text> </view>
+                                <view>{{item.spec_name}} / <text class="text-red f16"> ¥{{item.agent_price}}</text> </view>
                                 <i-input-number disabled id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
                             </view>
                         </i-cell>
@@ -247,8 +246,8 @@
                     <!-- <text class="f12 text-muted ml-sm">数量 x 1</text> -->
                 </view>
                
-                <form style="flex:2"  bindsubmit="formSubmit" data-fn="buy" report-submit="true">
-                    <button class="settlement linenear_bg" shape="circle" formType="submit">下一步</button>
+                <form style="flex:2">
+                    <button bindtap="buy" class="settlement linenear_bg" shape="circle" >下一步</button>
                 </form>
             </view>
         </view>
