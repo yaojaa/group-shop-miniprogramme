@@ -156,6 +156,12 @@
         </button> -->
 
         <i-panel title="我发布的" wx:if="{{goodslist.length > 0 }}" extra="进入我的主页" link="../userhome/index?id={{userInfo.store_id}}">
+            <van-search value="{{ value }}" placeholder="输入标题关键字搜索" background="#ffffff" 
+            show-action
+  bind:search="onSearch"
+  bind:cancel="onCancel"
+  />
+
             <view class="goods-box">
                 <block wx:key="index" wx:for="{{goodslist}}">
                     <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />

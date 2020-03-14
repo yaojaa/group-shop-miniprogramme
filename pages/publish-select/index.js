@@ -4,7 +4,8 @@ const util = require('../../utils/util.js')
 Page({
   data: {
 
-  	showAuth:false
+  	showAuth:false,
+    suppList:{}
 
   },
   onLoad: function (e) {
@@ -17,10 +18,28 @@ Page({
            }
 
 
- 
+  this.getMySupp()
+
+  },
+
+  toSupphome(e){
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url:'../supplier-home/index?id='+id
+    })
+  },
+
+  getMySupp(){
+    util.wx.get('/api/seller/my_supplier_list').then(res=>{
+
+      this.setData({
+        suppList:res.data.data.list
+      })
 
 
 
+    })
+    
   },
     rejectAuth() {
         this.setData({

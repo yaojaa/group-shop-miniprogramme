@@ -112,3 +112,18 @@ button.button{
 .authPopBox button{
   margin: 5px
 }
+
+.list-item{
+
+padding: 20px
+
+}
+
+.head_logo{
+  width: 80rpx;
+  height: 80rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto
+  
+}

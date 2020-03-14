@@ -7,7 +7,8 @@
      "van-tabbar-item": "../../../vant/tabbar-item/index",
        "van-grid": "../../../vant/grid/index",
        "van-grid-item": "../../../vant/grid-item/index",
-       "van-icon": "../../../vant/icon/index"
+       "van-icon": "../../../vant/icon/index",
+       "van-dialog": "../../../vant/dialog/index"
 
   }
 }

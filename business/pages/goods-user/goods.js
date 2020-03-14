@@ -398,6 +398,16 @@ Page({
         
 
     },
+    goods_up(){
+
+
+        console.log('go')
+
+        wx.navigateTo({
+            url: '/pages/goods-up/index?goods_id=' + this.data.goods_id 
+        })
+
+    },
 
     goVisitor() {
 
@@ -420,7 +430,7 @@ Page({
     toHome(){
 
         wx.redirectTo({
-            url: '/business/pages/home/index'
+            url: '/pages/supplier-home/index'
         })
     },
 

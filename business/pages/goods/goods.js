@@ -207,11 +207,15 @@ Page({
 
     },
     onShareAppMessage: function() {
+
+        console.log('/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id)
       
         return {
             title: '供应商名称邀请你上架'+this.data.goods.goods_name,
             path: '/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id 
         }
+
+
     },
     openShareFriends() {
         if (!this.data.shareFriendsImgStart) {
@@ -423,24 +427,24 @@ Page({
 
 
 
-    add_access() {
+    // add_access() {
 
-        // if (!app.globalData.userInfo) {
-        //     return
-        // }
-        //提交访问记录
-        util.wx.get('/api/index/add_access', {
-            type: 'goods_detail',
-            obj_id: this.data.goods_id,
-            user_id: app.globalData.userInfo ? app.globalData.userInfo.user_id : '',
-            user_scene: app.globalData.userScene,
-            user_phone: app.globalData.userPhone
-        }).then(res => {
-            this.access_id = res.data.data.access_id
-        }).catch(e => {
-            console.log(e)
-        })
-    },
+    //     // if (!app.globalData.userInfo) {
+    //     //     return
+    //     // }
+    //     //提交访问记录
+    //     util.wx.get('/api/index/add_access', {
+    //         type: 'goods_detail',
+    //         obj_id: this.data.goods_id,
+    //         user_id: app.globalData.userInfo ? app.globalData.userInfo.user_id : '',
+    //         user_scene: app.globalData.userScene,
+    //         user_phone: app.globalData.userPhone
+    //     }).then(res => {
+    //         this.access_id = res.data.data.access_id
+    //     }).catch(e => {
+    //         console.log(e)
+    //     })
+    // },
 
     getGoodsInfo() {
 

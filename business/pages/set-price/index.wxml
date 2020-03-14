@@ -10,8 +10,8 @@
                 <view >运费金额</view>
             </view>
             <van-cell wx:for="{{list}}" wx:key="index">
-                <view slot="title" class="text-gray">{{item.name[0]}}</view>
-                <van-stepper value="{{ item.price }}" min="{{ -10 }}" max="{{ 10 }}" data-index="{{index}}" bind:change="onChange" ></van-stepper>
+                <view slot="title" class="text-gray">{{item.name}}</view>
+                <van-stepper value="{{ item.price }}" min="{{ -1 }}" max="{{ 10 }}" data-index="{{index}}" bind:change="onChange" ></van-stepper>
             </van-cell>
         </van-cell-group>
     </div>

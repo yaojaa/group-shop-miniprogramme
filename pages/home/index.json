@@ -15,6 +15,8 @@
         "i-tab-bar-item": "../../iView/tab-bar-item/index",
         "i-goods-item": "../../components/goods-item/index",
         "wux-spin": "../../wux/spin/index",
-        "van-icon": "../../vant/icon/index"
+        "van-icon": "../../vant/icon/index",
+        "van-search": "../../vant/search/index"
+
     }
 }

@@ -8,11 +8,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        mainTab: 'postageSetting',
-        user_info: {},
-        news: [],
+        hasSelect:'0',
         loading: true,
-        tpl_list: []
+        tpl_list: [],
     },
     // 添加运费模板
     addPostageTpl(e) {
@@ -20,39 +18,46 @@ Page({
     },
     // 修改运费模板
     editPostageTpl(e) {
-        const {dataset: {index}} = e.target;
-        const currentItem = this.data.tpl_list[+index];
 
-        wx.setStorage({
-            key: 'tpl_data',
-            data: currentItem,
-            success: function(res){
-                wx.navigateTo({
-                    url: '../set-price/index?type=1'
-                });
-            }
+        console.log(e)
+
+        const {dataset: {id}} = e.target;
+
+        wx.navigateTo({
+            url: '../set-price/index?id='+id
         });
+  
     },
+
+
     // 删除运费模板
     deletePostageTpl(e) {
         console.log(e);
         const that = this;
         const {dataset: {id}} = e.target;
-        util.wx.get('/api/supplier/del_freight_tpl', {freight_tpl_id: id})
+
+        Dialog.confirm({
+          title: '确定要删除该运费模板吗？',
+          message: '删除后不可恢复'
+        }).then(() => {
+          // on confirm
+          console.log('yes')
+          util.wx.get('/api/supplier/del_freight_tpl', {freight_tpl_id:id})
             .then(res => {
-                if (res.data.code === 200) {
                     wx.showToast({
-                        title: '删除运费模板成功',
-                        icon: 'none'
+                        title: '删除成功'
                     });
-                    setTimeout(() => {
-                        that.getList()
-                    }, 1500)
-                }
+            this.getList()
             })
+
+        }).catch(() => {
+          // on cancel
+        });
+
+
     },
     getList() {
-        util.wx.get('/api/supplier/get_freight_tpl')
+        util.wx.get('/api/supplier/get_freight_tpl_list')
             .then(res => {
                 if (res.data.code === 200) {
                     const lists = res.data.data.lists;
@@ -70,9 +75,29 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        let userInfo = wx.getStorageSync('userInfo')
-        wx.setStorageSync('tpl_data', '');
+
+        //是否显示radio 从发布编辑页进入有选择radio
+        //。 从管理页进入没有
+        //
+
+        if(options.hasSelect){
+            this.setData({
+                hasSelect:options.hasSelect
+            })
+
+             wx.setNavigationBarTitle({
+                  title: '请选择运费模板方案' 
+                })
+        }
+    
         this.getList();
+    },
+
+    radioChange(e){
+
+        util.setParentData({
+            freight_tpl_id:e.detail.value
+        })
     },
 
     /**
@@ -86,7 +111,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        wx.setStorageSync('tpl_data', '');
         this.getList();
     },
 
@@ -119,8 +143,8 @@ Page({
     },
 
     addPostageTpl: function() {
-        wx.navigateTo({
-            url: '../set-price/index?type=0'
+        wx.redirectTo({
+            url: '../set-price/index?hasSelect='+this.data.hasSelect
         });
     }
 })

@@ -50,6 +50,11 @@
 
 订阅关注</van-button>
 
+<!-- <van-button  custom-class="actbtn" size="small" plain hairline bindtap="copy"   type="warning">
+                <van-icon size="18px"   name="star-o" />
+
+文字清单</van-button> -->
+
         </view>
 
 

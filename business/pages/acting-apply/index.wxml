@@ -8,7 +8,7 @@
 
 
     <view class="act-textarea">
-        <textarea name="apply_remark" value="我要您的申请团长 请通过谢谢">
+        <textarea name="apply_remark" value="申请加入 请通过谢谢">
            
         </textarea>
     </view>
@@ -27,6 +27,7 @@
 
 
 
+<van-dialog id="van-dialog" />
 
 
 

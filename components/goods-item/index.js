@@ -224,6 +224,17 @@ Component({
         })
     },
 
+    editPrice(e){
+            //供应商 产品ID和商家产品id
+            let supid  = e.currentTarget.dataset.id
+            let sellid = e.currentTarget.dataset.goods_id
+
+        wx.navigateTo({
+            url: '../goods-up/index?is_modify=true&supid=' + supid+'&sellid='+sellid
+        })
+
+    },
+
 
     gofans(e){
 
@@ -250,7 +261,6 @@ Component({
     //删除商品
     delGoods(e){
         //api/seller/goods_del
-        const id = e.currentTarget.dataset.id 
 
         wx.showModal({
             title:'确定要删除该商品吗？',
@@ -258,7 +268,7 @@ Component({
             success:(res)=>{
                 if(res.confirm){
                     util.wx.post('/api/seller/goods_del',{
-                        goods_id:id
+                        goods_id:this.goods_id
                     }).then(res=>{
                         if(res.data.code == 200){
                             wx.showToast({
@@ -266,7 +276,7 @@ Component({
                                 icon:'none' 
                             })
 
-                            this.triggerEvent('remove',id)
+                            this.triggerEvent('remove',this.goods_id)
 
 
                         }else{

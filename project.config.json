@@ -651,8 +651,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "business/pages/acting-apply/index",
+					"id": 84,
+					"name": "申请代理",
 					"pathName": "business/pages/acting-apply/index",
 					"query": "id=1",
 					"scene": null
@@ -721,9 +721,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/userhome/index",
-					"pathName": "pages/userhome/index",
+					"id": 94,
+					"name": "business/pages/home/index",
+					"pathName": "business/pages/home/index",
 					"query": "id=93",
 					"scene": null
 				},
@@ -735,10 +735,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 96,
 					"name": "供应商添加商品",
 					"pathName": "business/pages/publish/publish",
-					"query": "id=1",
+					"query": "",
 					"scene": null
 				},
 				{
@@ -757,8 +757,8 @@
 				},
 				{
 					"id": 99,
-					"name": "business/pages/supplier_set/index",
-					"pathName": "business/pages/supplier_set/index",
+					"name": "pages/goods-up/index",
+					"pathName": "pages/goods-up/index",
 					"query": "",
 					"scene": null
 				},
@@ -808,7 +808,42 @@
 					"id": 106,
 					"name": "团长查看分销页面",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "id=4",
+					"query": "id=7",
+					"scene": null
+				},
+				{
+					"id": 107,
+					"name": "上架成功",
+					"pathName": "pages/upSuccess/index",
+					"query": "goods_id=1657",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "供应商主页",
+					"pathName": "pages/supplier-home/index",
+					"query": "goods_id=1657",
+					"scene": null
+				},
+				{
+					"id": 109,
+					"name": "运费模版列表",
+					"pathName": "business/pages/postageSetting/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 110,
+					"name": "上架成功",
+					"pathName": "pages/upSuccess/index",
+					"query": "goods_id=7",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "供货商主页",
+					"pathName": "pages/supplier-home/index",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -31,7 +31,7 @@
                 
                     <navigator url="../withdrawal/index" hover-class="none" class="text-center"  wx:if="{{!isCustome}}">
                         <view class="text-lg bold">¥ {{pending_money || 0}}</view>
-                        <view class="text-sm mt-xs">账户余额</view>
+                        <view class="text-sm mt-xs">账户提现</view>
                     </navigator>
                 </view>
             </view>
@@ -80,19 +80,23 @@
                         </view>
                         <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 939</text>
 
-            <text style="color:#19be6b">进行中</text>
+            <text style="color:#19be6b" wx:if="{{item.is_on_sale==1}}">上架销售中</text>
+            <text style="color:#19be6b" wx:if="{{item.is_on_sale==2}}">已下架</text>
+
+            {{is_on_sale}}
 
                         </view>
                      
                     </view>
                 </navigator>
 
- <van-grid column-num="4">
+ <van-grid column-num="3">
   <van-grid-item  bindtap="goEdit" data-goods_id="{{item.goods_id}}" text="修改" />
-  <van-grid-item text="下架" />
+  <van-grid-item text="下架"   data-index="{{index}}"  bindtap="changOnSale" data-status="{{item.is_on_sale}}"  wx:if="{{item.is_on_sale==1}}" data-goods_id="{{item.goods_id}}"/>
+  <van-grid-item text="上架"  bindtap="changOnSale" data-status="{{item.is_on_sale}}" wx:if="{{item.is_on_sale==2}}" data-index="{{index}}"  data-goods_id="{{item.goods_id}}"/>
   <van-grid-item  text="订单" /> 
-  <van-grid-item text="转发" />
-</van-grid>
+<!--   <van-grid-item text="转发"  data-index="{{index}}" bindtap="shareGoods" />
+ --></van-grid>
             </view>
         </view>
     </view>

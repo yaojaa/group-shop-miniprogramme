@@ -1,0 +1,11 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents":
+    {
+        "i-panel": "../../iView/panel/index",
+        "van-card": "../../vant/card/index",
+             "van-grid": "../../vant/grid/index",
+       "van-grid-item": "../../vant/grid-item/index"
+
+    }
+}

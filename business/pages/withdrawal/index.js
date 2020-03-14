@@ -13,18 +13,11 @@ Page({
         disabled: false
     },
     getFinance() {
-        util.wx.get('/api/front/finance/index')
+        util.wx.get('/api/supplier/get_supplier_detail')
             .then(res => {
-                if (res.data.code == 0) {
-                    this.money = new $wuxCountUp(0, res.data.data.user_wallet_amount / 100, 2, 1, {
-                        printValue(value) {
-                            this.setData({
-                                money: value,
-                            })
-                        }
-                    })
-                    this.money.start()
-                }
+                 this.setData({
+                    money:res.data.data.supplier_money
+                 })
             })
     },
     takeMoney(e) {

@@ -92,7 +92,10 @@ Page({
         size: 5,
         is_timelimit:0,
         is_on_sale:1, //上下架状态(1:上架,2:下架) 默认1
-        is_on_sale_status:false
+        is_on_sale_status:false,
+        freight_tpl_id:0, //运费模版ID 默认0
+        freight_tpl_name:'默认方案全国包邮' //运费模版ID 默认0
+
     },
 
     sale_status_onChange(event){
@@ -472,6 +475,7 @@ Page({
 
     onShow: function(option) {
 
+        this.getTplList()
 
     },
     getInput(e) {
@@ -737,7 +741,8 @@ Page({
                 content_imgs: this.data.content_imgs,
                 goods_video:this.data.goods_video,
                 goods_video_cover:this.data.goods_video_cover,
-                is_timelimit:this.data.is_timelimit
+                is_timelimit:this.data.is_timelimit,
+                freight_tpl_id:this.data.freight_tpl_id
             },
 
         )
@@ -803,6 +808,16 @@ Page({
         });
     },
     handleOpen2() {
+
+        if(this.data.goods_id){
+
+            return wx.showToast({
+                title:'已发布商品配送方式不能修改',
+                icon:'none'
+            })
+        }
+
+
         this.setData({
             visible2: true
         });
@@ -877,9 +892,15 @@ Page({
         let starFormatTime = isCopy ? default_start_time : util.formatTime(new Date(gs.start_time * 1000))
         let endFormatTime = isCopy ? default_end_time : util.formatTime(new Date(gs.end_time * 1000))
         
-        console.log('endFormatTime',endFormatTime)
 
-        console.log(gs.goods_images)
+        var freight_tpl_name=''
+
+        this.freight_tpl_list.forEach(item=>{
+            if(item.freight_tpl_id ==gs.freight_tpl_id  ){
+
+                freight_tpl_name = item.freight_tpl_name
+            }
+        })
 
         this.setData({
             goods_images: gs.goods_images,
@@ -887,7 +908,8 @@ Page({
             goods_content: gs.goods_content,
             sell_address: gs.self_address,
             delivery_method: gs.delivery_method,
-            // collection_methods: gs.collection_methods,
+            freight_tpl_id: gs.freight_tpl_id || 0,
+            freight_tpl_name:freight_tpl_name,
             content_imgs: gs.content_imgs || [],
             goods_video:gs.goods_video,
             goods_video_cover:gs.goods_video_cover,
@@ -924,18 +946,39 @@ Page({
             context.setData({
                 displayTextArea: newValue ? 'none' : 'block'
             })
-        },
+        }
+
 
     },
 
     toPostageSetting(){
 
-        console.log('aaa')
         wx.navigateTo({
-            url:'/business/pages/tpl-list/index'
+            url:'/business/pages/postageSetting/index?hasSelect='+this.data.freight_tpl_id
         })
     },
+    //回显运费模版名称
 
+    getTplList() {
+        util.wx.get('/api/supplier/get_freight_tpl_list')
+            .then(res => {
+                    const lists = res.data.data.lists;
+                    lists.forEach(item => {
+                        if(item.freight_tpl_id == this.data.freight_tpl_id)
+                        {
+                            this.setData({
+                                freight_tpl_name:item.freight_tpl_name
+                            })
+                        }
+                    })
+
+
+                    this.freight_tpl_list = lists
+                
+
+
+            })
+    },
 
 
     onLoad: function(option) {
@@ -974,6 +1017,7 @@ Page({
 
 
         this.initValidate()
+
 
 
     },

@@ -39,7 +39,7 @@ Page({
         this.setData({
             loading: true
         })
-        util.wx.get('/api/front/withdraw/index', { date: fmtDate(this.data.currentDate) })
+        util.wx.get('/api/supplier/withdraw_list')
             .then(res => {
                 this.setData({
                     loading: false

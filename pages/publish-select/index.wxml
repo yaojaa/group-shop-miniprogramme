@@ -91,9 +91,24 @@
 </view> -->
 
 
-<!-- <view class="smallTit">
-  从供应商库选择：
-</view> -->
+<view class="smallTit">
+  从我的供应商中选择：
+</view>
+
+<view class="list">
+  <view class="list-item" wx:for="{{suppList}}" data-id="{{item.supplier_id}}" bindtap="toSupphome">
+
+    <van-card
+  desc="{{item.supplier_intro}}"
+  title="{{item.supplier_name}}"
+  thumb="{{  item.supplier_logo }}"
+/>
+
+ 
+  </view>
+
+  </view>
+
 
 
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" >

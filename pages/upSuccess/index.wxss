@@ -1,0 +1,14 @@
+.notice{
+  color: #ed6a0c;
+background-color: #fffbe8;
+padding:15px;
+font-size: 14px
+
+}
+.share_btn{
+  text-align: center;
+}
+
+.share_btn button{
+  margin: 20px
+}

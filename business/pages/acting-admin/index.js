@@ -221,13 +221,11 @@ Page({
 
                         this.closeShareFriends()
 
-                        if (app.globalData.userInfo) {
-                            var _uid = app.globalData.userInfo.user_id
-                        }
+                       
                         return {
                             title: _uid + '诚邀您的加入',
-                            imageUrl: 'http://img.daohangwa.com/invit.jpg',
-                            path: 'pages/login/login' + '?from_id=' + _uid
+                            imageUrl: 'https://img.daohangwa.com/invit.jpg',
+                            path: 'business/pages/acting-apply/index' + '?supplier_id=' + _uid
                         }
                     },
 

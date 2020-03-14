@@ -17,8 +17,8 @@
             <view class="gray-text text-xs" >
                 <text class="ph-xs ph-xs" >浏览({{item.pageview_count}})</text> <text  class="ph-xs ph-xs"> 收款总额(￥{{item._order_total}})</text>
 
-                <view class="danger-text p-xs" wx:if="{{index==1}}">
-                    [合作中] 由"中西部农产品联盟"供货
+                <view class="danger-text p-xs" wx:if="{{item.supplier_id >0 }}">
+                    [合作中] 由"{{item.supplier_name}}"负责发货
                 </view>
               <!--   <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button>
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
@@ -48,7 +48,18 @@
 
      size="mini" open-type="share">分享</button></van-grid-item>
   <van-grid-item  use-slot > <button class="hollow" data-url="{{item.goods_id}}" bindtap="gofans"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 访客 </button> </van-grid-item>
-  <van-grid-item use-slot > <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> </van-grid-item>
+
+
+
+  <van-grid-item use-slot wx:if="{{item.supplier_id >0 }}" > 
+    <button class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
+    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 修改价格 </button> 
+</van-grid-item>
+
+  <van-grid-item use-slot wx:else > <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> </van-grid-item>
+
+  
+
   <van-grid-item use-slot >
       <button class="hollow"  bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}"  size="mini"> 订单({{item._order_count}}) </button>
   </van-grid-item> 

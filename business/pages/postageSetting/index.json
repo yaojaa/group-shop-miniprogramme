@@ -5,6 +5,9 @@
   "usingComponents": {
     "van-row": "../../../vant/row/index",
     "van-col": "../../../vant/col/index",
-    "van-button": "../../../vant/button/index"
+    "van-button": "../../../vant/button/index",
+     "van-icon": "../../../vant/icon/index",
+     "van-dialog": "../../../vant/dialog/index"
+
   }
 }

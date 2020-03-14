@@ -52,6 +52,85 @@ Page({
 
   },
 
+  shareGoods(e){
+    console.log(e)
+
+
+  },
+
+  changOnSale(e){
+    const {status,goods_id,index} = e.currentTarget.dataset
+
+
+    console.log('当前',status)
+
+    const statusTxt = status=='1'?'下架':'上架'
+
+    const cstatus = status=='1'?'2':'1'
+
+
+
+    console.log('提交',cstatus)
+
+
+    Dialog.confirm({
+      title: '操作提示',
+      message: '确定要'+statusTxt+'此商品吗？',
+      asyncClose: true,
+      width:200
+    })
+      .then(() =>{
+
+        const key = 'goodsList['+index+'].is_on_sale'
+
+
+        console.log(key)
+
+
+        util.wx.post('/api/supplier/goods_change_on_sale',{
+          goods_id,
+          is_on_sale:cstatus
+        }).then((res)=>{
+
+          this.setData({
+            [key]:cstatus
+          })
+
+
+          wx.showToast({
+            title:res.data.msg
+             })
+
+       Dialog.close();
+
+
+        },(res)=>{
+
+           Dialog.close();
+    
+          wx.showToast({
+            title:res.data.msg,
+            icon:'none'
+          })
+        }).catch(e=>{
+           Dialog.close();
+           wx.showToast({
+                    title:'操作失败请稍后重试',
+                    icon:'none'
+                  })
+
+        })
+   
+  })
+  .catch(() => {
+    Dialog.close();
+  });
+
+
+
+
+  },
+
   goEdit(e){
 
     const goods_id = e.currentTarget.dataset.goods_id

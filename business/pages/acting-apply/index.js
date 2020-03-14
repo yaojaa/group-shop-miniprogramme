@@ -1,4 +1,5 @@
 const util = require('../../../utils/util')
+import Dialog from '../../../vant/dialog/dialog';
 
 const app = getApp()
 
@@ -72,22 +73,20 @@ Page({
             apply_remark:e.detail.value.apply_remark
         }).then(res=>{
 
-           wx.showToast({
-             title: res.data.msg,//提示文字
-             duration:3000,
-             icon:'none'
-             //显示时长
-          })
+         
 
-           wx.redirectTo({
-            url:'/pages/home/index'
-           })
+           Dialog.alert({
+              title: '申请成功',
+              message: '请等待审核 点击确定返回'
+            }).then(() => {
 
-
-
-
+                wx.redirectTo({
+                    url:'/pages/home/index'
+                   })
+            })
         },res=>{
 
+    
               wx.showToast({
          title: res.data.msg,//提示文字
          duration:3000,

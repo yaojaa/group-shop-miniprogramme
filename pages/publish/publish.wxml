@@ -236,9 +236,7 @@
                             <text wx:if="{{delivery_method==1}}">快递配送</text>
                             <text class="address-txt" wx:if="{{delivery_method==2}}">自提：{{sell_address[0].name}}...</text>
                             <i-icon type="enter" size="28" />
-                            <!-- </navigator>
- -->
-                        </view>
+                       </view>
                     </view>
                 </view>
             </view>

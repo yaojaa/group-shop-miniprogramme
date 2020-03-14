@@ -40,7 +40,15 @@
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
-            编辑修改
+            <block wx:if="{{item.supplier_id}}">
+                编辑修改
+            </block>
+
+            <block wx:else>
+                修改价格
+            </block>
+
+            
         </view>
         <view class="flex-item" bindtap="goSendMsg">
             <view class="num">

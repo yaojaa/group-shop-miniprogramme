@@ -9,34 +9,33 @@ Page({
         freight_tpl_id: '',
         freight_tpl_info: [],
         list: [
-            { name: ["北京"], price: 10 },
-            { name: ["天津"], price: 2 },
-            { name: ["吉林省"], price: 3 },
-            { name: ["黑龙江省"], price: 0 },
-            { name: ["上海"], price: 0 },
-            { name: ["江苏省"], price: 0 },
-            { name: ["浙江省"], price: 0 },
-            { name: ["安徽省"], price: 0 },
-            { name: ["福建省"], price: 0 },
-            { name: ["江西省"], price: 0 },
-            { name: ["山东省"], price: 0 },
-            { name: ["河南省"], price: 0 },
-            { name: ["湖北省"], price: 0 },
-            { name: ["湖南省"], price: 0 },
-            { name: ["广东省"], price: 0 },
-            { name: ["广西壮族自治区"], price: 0 },
-            { name: ["海南省"], price: 0 },
-            { name: ["重庆"], price: 0 },
-            { name: ["四川省"], price: 0 },
-            { name: ["贵州省"], price: 0 },
-            { name: ["云南省"], price: 0 },
-            { name: ["西藏自治区"], price: 0 },
-            { name: ["陕西省"], price: 0 },
-            { name: ["甘肃省"], price: 0 },
-            { name: ["青海省"], price: 0 },
-            { name: ["宁夏回族自治区"], price: 0 },
-            { name: ["新疆维吾尔自治区"], price: 0 },
-
+            { name: "北京", price: 0 },
+            { name: "天津", price: 0 },
+            { name: "吉林省", price: 0 },
+            { name: "黑龙江省", price: 0 },
+            { name: "上海", price: 0 },
+            { name: "江苏省", price: 0 },
+            { name: "浙江省", price: 0 },
+            { name: "安徽省", price: 0 },
+            { name: "福建省", price: 0 },
+            { name: "江西省", price: 0 },
+            { name: "山东省", price: 0 },
+            { name: "河南省", price: 0 },
+            { name: "湖北省", price: 0 },
+            { name: "湖南省", price: 0 },
+            { name: "广东省", price: 0 },
+            { name: "广西壮族自治区", price: 0 },
+            { name: "海南省", price: 0 },
+            { name: "重庆", price: 0 },
+            { name: "四川省", price: 0 },
+            { name: "贵州省", price: 0 },
+            { name: "云南省", price: 0 },
+            { name: "西藏自治区", price: 0 },
+            { name: "陕西省", price: 0 },
+            { name: "甘肃省", price: 0 },
+            { name: "青海省", price: 0 },
+            { name: "宁夏回族自治区", price: 0 },
+            { name: "新疆维吾尔自治区", price: 0 }
         ]
     },
 
@@ -47,6 +46,13 @@ Page({
         this.setData({
             [key]: e.detail,
         })
+
+        if(e.detail == -1){
+            wx.showToast({
+                title:'-1 表示当前地区不发货',
+                icon:'none'
+            })
+        }
     },
 
     /** 初始化原始数据 */
@@ -112,22 +118,29 @@ Page({
     addInfo() {
 
 
-        //提取设置的值 不为0的
         //
         this.data.freight_tpl_info = []
+        var price0length = 0
         this.data.list.forEach(item => {
 
-            if (item.price !== 0) {
 
-                this.data.freight_tpl_info.push(item)
-
+            if(item.price==0){
+                price0length+=1
             }
+
+
+           this.data.freight_tpl_info.push(item)
+
         })
 
+        if(this.data.list.length ==price0length){
 
-        console.log(this.data.freight_tpl_info)
+            return  wx.showToast({
+                    title: '请设置运费金额',
+                    icon: 'none'
+                })
 
-
+        }
 
 
 
@@ -162,13 +175,11 @@ Page({
                     title: '设置运费模板成功',
                     icon: 'none'
                 });
-                wx.showToast({
-                    title: '设置运费模板成功',
-                    icon: 'none'
-                })
-                setTimeout(() => {
-                    wx.navigateBack();
-                }, 1500)
+              
+                    wx.redirectTo({
+                        url:'../postageSetting/index?hasSelect='+0
+                    })
+                    
             }, res => {
                 wx.showToast({
                     title: res.data.msg,

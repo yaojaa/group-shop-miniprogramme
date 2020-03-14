@@ -248,6 +248,39 @@ const default_end_time = util.formatTime(date)
             }
         })
     },
+
+    copyList(){
+
+
+        var copyTxt = ''
+
+        this.data.goodsList.forEach(item=>{
+
+            copyTxt += '💕'+item.goods_name +'💰¥'
+            copyTxt += item._price_range.min +'\n\n'
+
+
+
+        })
+
+
+        console.log(copyTxt)
+
+
+         wx.setClipboardData({
+            data: copyTxt,
+            success: function (res) {
+                wx.getClipboardData({
+                    success: function (res) {
+                        wx.showToast({
+                            title: '复制成功'
+                        })
+                    }
+                })
+            }
+        })
+
+    },
     phoneCall() {
         wx.makePhoneCall({
             phoneNumber: this.data.phone

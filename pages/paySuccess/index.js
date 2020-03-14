@@ -2,7 +2,6 @@
 const app = getApp()
 const util = require('../../utils/util')
 Page({
-
     /**
      * 页面的初始数据
      */

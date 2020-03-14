@@ -1,0 +1,27 @@
+<view class="container">
+                
+<view class="notice">
+恭喜您成功上架{{info.name}},将由{{}}负责发货和更新订单状态（物流信息），您只需要引导顾客在您的商品链接下单即可。
+利润会自动结算到您的账户。
+</view>
+
+
+<view class="goods">
+  <van-card
+  num=""
+  price="{{info.agent_price}}"
+  desc="{{info.goods_content}}"
+  title="{{info.goods_name}}"
+  thumb="{{ info.goods_cover }}"
+/>
+</view>
+
+    <view class='share_btn'>
+        <button class="linenear_bg hollow" size="mini" hove-class="linenear_bg_hover" type='primary' open-type="share">分享转发</button>
+
+        <button class="linenear_bg hollow" size="mini" hove-class="linenear_bg_hover" type='primary' bindtap="toDetail">查看详情</button>
+
+    </view>
+
+  
+</view> 

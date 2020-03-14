@@ -18,16 +18,16 @@
             <view class="user-body" catchtap="goContact" data-phone="{{goods.user.mobile}}" data-wx="{{goods.user.wechatnumber}}">
                 <view class="user-info-hd">
 
-                 <image src="https://static.kaixinmatuan.cn/logo.png" class="avatar"></image>
+                 <image src="{{goods.supplier.supplier_logo}}" class="avatar"></image>
 
                 </view>
                 <view class="user-info-bd">
-                    <text class="name">开心麻团官方</text>
+                    <text class="name">{{goods.supplier.supplier_name}}</text>
                 </view>
             </view>
         </view>
     </imgs>
-    <view class="menu flex-box" wx:if="{{showPanel}}">
+<!--     <view class="menu flex-box" wx:if="{{showPanel}}">
         <view class="flex-item" bindtap="goVisitor">
             <view class="num">
                 <van-icon name="closed-eye" color="#4fac05" size="20px" />
@@ -52,7 +52,7 @@
             </view>
             管理订单
         </view>
-    </view>
+    </view> -->
     <view class="sale-panel">
         <view class="sale-panel-bd">
            
@@ -158,7 +158,6 @@
         </view> -->
         <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="index" wx:for-item="img">
 
-            1111
             <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
 

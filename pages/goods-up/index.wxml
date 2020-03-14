@@ -1,0 +1,42 @@
+<view class="container gray-wrap  cf">
+    <form bindsubmit="submitForm">
+        <view class="white-bg ph-df pv-sm flex align-center">
+             <image src="{{info.goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75" class="img-df"></image>
+             <view class="flex-sub ml-sm">{{info.goods_name}}</view>
+        </view>
+   <!--      <van-cell-group custom-class="mt-sm">
+            <van-field value="{{scopeTitle}}" name=" " label="商品分类" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
+        </van-cell-group> -->
+        <view class="specs-item" wx:for="{{info.goods_spec}}" wx:key="index">
+            <van-cell-group custom-class="mt-sm">
+                <van-field value="{{item.spec_name}}" name="" label="商品规格" placeholder="" input-align="right" readonly></van-field>
+                <van-field value="￥{{item.agent_price}}" name="" label="拿货价" placeholder="" input-align="right" readonly></van-field>
+                <van-field value="￥{{item.mspr_start}}-￥{{item.mspr_end}}" name="" label="可销售区间" placeholder="" input-align="right" readonly></van-field>
+            </van-cell-group>
+            <view class="mh-df mv-sm solid round-df">
+                <van-field use-button-slot data-mini="{{item.mspr_start}}"  data-max="{{item.mspr_end}}" value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="{{is_modify?'修改':'设置'}}零售价" data-index="{{index}}" placeholder="请输入零售价" bind:blur="validate" input-align="right" input-class="text-lg coral-text">
+                    <view slot="button">元</view>
+                </van-field>
+            </view>
+            <view class="ph-df  text-sm text-muted">
+                <view>温馨提醒：微信收取千分之六支付网费</view>
+            </view>
+        </view>
+        <view class="m-df">
+
+            <button wx:if="{{is_modify}}" class="btn xxl primary block linenear_bg" bindtap="modifyPrice" disabled="{{btnDisable}}">
+                保存
+            </button>
+            <button wx:else class="btn xxl primary block linenear_bg" bindtap="upup" disabled="{{btnDisable}}">
+                立即上架
+            </button>
+
+
+
+
+        </view>
+    </form>
+
+    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
+</view>

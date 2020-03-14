@@ -749,7 +749,7 @@ button {
 }
 
 .coral-text {
-    color: #FF5757;
+    color: #FF5757 !important;
 }
 
 .solids {
