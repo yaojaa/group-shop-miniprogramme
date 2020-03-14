@@ -1,7 +1,7 @@
 <view class="container">
                 
 <view class="notice">
-恭喜您成功上架{{info.name}},将由{{}}负责发货和更新订单状态（物流信息），您只需要引导顾客在您的商品链接下单即可。
+恭喜您成功上架,将由{{info.supplier_name}}负责发货，您只需要引导顾客在您的商品链接下单即可。
 利润会自动结算到您的账户。
 </view>
 

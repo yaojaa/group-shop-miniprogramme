@@ -836,7 +836,7 @@
 					"id": 110,
 					"name": "上架成功",
 					"pathName": "pages/upSuccess/index",
-					"query": "goods_id=7",
+					"query": "goods_id=1722",
 					"scene": null
 				},
 				{
