@@ -48,7 +48,8 @@
         "pages/goods-up/index",
         "pages/upSuccess/index",
         "pages/supplier-home/index",
-        "pages/supplier-list/index"
+        "pages/supplier-list/index",
+        "pages/my/index"
     ],
     "subpackages": [{
         "root": "business",
