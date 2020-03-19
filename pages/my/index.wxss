@@ -32,10 +32,10 @@
     position: relative;
     background: #ffaa4f;
     background-size: 100% auto;
-    height: 385rpx;
+    height: 300rpx;
     position: relative;
     width: 100%;
-    padding-top: 150rpx;
+    padding-top: 70rpx;
     overflow: hidden;
 }
 
