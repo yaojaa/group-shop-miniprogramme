@@ -90,8 +90,10 @@
                     </view>
                 </navigator>
 
- <van-grid column-num="3">
+ <van-grid column-num="4">
   <van-grid-item  bindtap="goEdit" data-goods_id="{{item.goods_id}}" text="修改" />
+  <van-grid-item  bindtap="removeGoods" data-goods_id="{{item.goods_id}}" text="删除" />
+
   <van-grid-item text="下架"   data-index="{{index}}"  bindtap="changOnSale" data-status="{{item.is_on_sale}}"  wx:if="{{item.is_on_sale==1}}" data-goods_id="{{item.goods_id}}"/>
   <van-grid-item text="上架"  bindtap="changOnSale" data-status="{{item.is_on_sale}}" wx:if="{{item.is_on_sale==2}}" data-index="{{index}}"  data-goods_id="{{item.goods_id}}"/>
   <van-grid-item  text="订单" /> 

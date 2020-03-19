@@ -10,14 +10,15 @@ Page({
              * 页面的初始数据
              */
             data: {
-                mainTab: 'homepage',
+                total: '',
                 user_info: {},
                 news: [],
                 loading: true,
-                list: '',
+                list: [],
                 showShareFriendsCard: false,
                 posterImg: '',
-                poster: false
+                poster: false,
+                cpage:1
             },
             handleChange({ detail }) {
                 this.setData({
@@ -25,10 +26,18 @@ Page({
                 })
             },
             getDetail() {
-                util.wx.get('/api/supplier/get_agent_list')
+                util.wx.get('/api/supplier/get_agent_list',{
+                    cpage: this.data.cpage,
+                    pagesize:2
+                })
                     .then(res => {
+                        const d = res.data.data
                         this.setData({
-                            list: res.data.data.agentlist
+                            list: this.data.list.concat(d.agentlist).concat(d.agentlist).concat(d.agentlist).concat(d.agentlist),
+                            total:d.page.total,
+                            cpage:d.page.cpage,
+                            totalpage:d.page.totalpage
+
                         })
                     })
             },
@@ -167,6 +176,7 @@ Page({
                         })
                     },
 
+
                     /**
                      * 生命周期函数--监听页面加载
                      */
@@ -221,11 +231,12 @@ Page({
 
                         this.closeShareFriends()
 
-                       
+                        const {supplier_name,supplier_id } =app.globalData.userInfo.identity
+
                         return {
-                            title: _uid + '诚邀您的加入',
-                            imageUrl: 'https://img.daohangwa.com/invit.jpg',
-                            path: 'business/pages/acting-apply/index' + '?supplier_id=' + _uid
+                            title: supplier_name + '诚邀您的加入',
+                            imageUrl: 'https://static.kaixinmatuan.cn/invit.jpg',
+                            path: 'business/pages/acting-apply/index' + '?supplier_id=' + supplier_id
                         }
                     },
 
@@ -233,6 +244,16 @@ Page({
                      * 页面上拉触底事件的处理函数
                      */
                     onReachBottom: function() {
+
+                        if(this.data.totalpage>this.data.cpage){
+                            this.data.cpage ++
+                            this.getDetail()
+
+                        }
+
+
+
+
 
                     }
                 })

@@ -47,8 +47,8 @@
         "pages/coupon-send/index",
         "pages/goods-up/index",
         "pages/upSuccess/index",
-        "pages/supplier-home/index"
-
+        "pages/supplier-home/index",
+        "pages/supplier-list/index"
     ],
     "subpackages": [{
         "root": "business",

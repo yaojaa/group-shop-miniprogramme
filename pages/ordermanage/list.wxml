@@ -28,9 +28,7 @@
     </view>
     <view class="tabsArea">
         <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-            <i-tab key="" title="所有订单"></i-tab>
-
-            <i-tab key="" title="已确认（{{valid_order.count}}）"></i-tab>
+            <i-tab key="0" title="所有订单"></i-tab>
             <i-tab key="3" title="待发货（{{back_order.count}}）"></i-tab>
             <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
         </i-tabs>
@@ -66,6 +64,11 @@
     <view class="text-center" wx:if="{{!loading && dataList.length==0}}">
         暂无订单
     </view>
+
+    <view class="text-center mb-sm">
+        <wux-spin wx:if="{{loading}}"></wux-spin>
+  </view>
+
     
 <block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
 
@@ -198,10 +201,7 @@
 
 </block>
 
-   <view class="text-center mb-sm">
-        <wux-spin wx:if="{{loading}}"></wux-spin>
-  </view>
-
+   
 
 
 

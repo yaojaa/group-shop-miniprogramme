@@ -208,11 +208,13 @@ Page({
     },
     onShareAppMessage: function() {
 
+        console.log(app.globalData.userInfo.identity.supplier_name)
+
         console.log('/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id)
       
         return {
-            title: '供应商名称邀请你上架'+this.data.goods.goods_name,
-            path: '/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id 
+            title: app.globalData.userInfo.identity.supplier_name+'邀请你上架'+this.data.goods.goods_name,
+            path: 'business/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id 
         }
 
 

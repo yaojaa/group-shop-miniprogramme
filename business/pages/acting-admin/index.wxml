@@ -1,16 +1,23 @@
 
 <view class="container">
+<van-search  placeholder="输入昵称搜索"  background="#69b90b" />
 
    <view class="act-submit">
-        <button   bindtap="openShareFriends" class="linenear_bg">邀 请 代 理</button>
+
+
+
+    <view><button   bindtap="openShareFriends" class="linenear_bg">邀请小伙伴</button></view>
+    
+        <view class="total">共{{total}}人</view>
+
     </view>
 
 
-<van-tabs active="{{ active }}" bind:change="onChange">
+<!-- <van-tabs active="{{ active }}" bind:change="onChange">
   <van-tab title="新申请"></van-tab>
   <van-tab title="合作中"></van-tab>
   <van-tab title="取消合作"></van-tab>
-</van-tabs>
+</van-tabs> -->
 
 <view class="act-admin">
 <!--     <van-search  background="#ffffff" value="{{ value }}" placeholder="请输入搜索关键词" />
@@ -24,10 +31,8 @@
             <view class="act-main grow1">
                 <view class="act-top flex">
                     <view class="name grow1">{{item.nickname}}</view>
-                    <view class="time shrink0">联系电话 13718134511</view>
                 </view>
                 <view class="act-bottom flex">
-                    <view class="reason grow1">粉丝 999</view>
                     
                     <view class="button shrink0" wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</view>
                     <view class="button shrink0" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</view>
@@ -59,7 +64,7 @@
         </view>
     </view>
 
-   <van-action-sheet overlay="{{fasle}}" show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
+   <van-action-sheet overlay="{{true}}" show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>

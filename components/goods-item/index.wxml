@@ -17,7 +17,7 @@
             <view class="gray-text text-xs" >
                 <text class="ph-xs ph-xs" >浏览({{item.pageview_count}})</text> <text  class="ph-xs ph-xs"> 收款总额(￥{{item._order_total}})</text>
 
-                <view class="danger-text p-xs" wx:if="{{item.supplier_id >0 }}">
+                <view class=" p-xs" wx:if="{{item.supplier_id >0 }}" style="color: #ff8900">
                     [合作中] 由"{{item.supplier_name}}"负责发货
                 </view>
               <!--   <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button>

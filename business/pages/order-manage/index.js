@@ -167,8 +167,8 @@ Page({
         })
 
           wx.setNavigationBarTitle({
-              title: '管理订单：'+optiton.goods_name 
-            })
+              title: '管理订单'+ (optiton.goods_name || '') 
+          })
     },
     handleTab({ detail }) {
         console.log(detail)
@@ -239,7 +239,7 @@ Page({
                 if (res.confirm) {
                     wx.showLoading()
 
-                    util.wx.post('/api/seller/set_order_status', {
+                    util.wx.post('/api/supplier/set_order_status', {
                             opt,
                             order_id
                         }).then(res => {
@@ -248,7 +248,7 @@ Page({
                                 //操作完成之后的回调
                                 const currentItemKey = 'dataList['+pindex+']['+cindex+']'
                                 //当前操作的item
-                                const key = 'dataList['+pindex+']['+cindex+'].seller_next_handle'
+                                const key = 'dataList['+pindex+']['+cindex+'].supplier_next_handle'
                                 const key2 = 'dataList['+pindex+']['+cindex+'].order_status'
                                 const key3 = 'dataList['+pindex+']['+cindex+'].order_status_txt'
 
@@ -267,7 +267,7 @@ Page({
                                 } else {
 
                                    this.setData({
-                                         [key]: res.data.data.seller_next_handle,
+                                         [key]: res.data.data.supplier_next_handle,
                                          [key2]: res.data.data.order_status,
                                         [key3]: res.data.data.order_status_txt
                                     },()=>{
@@ -322,7 +322,7 @@ Page({
     exportExcel() {
         wx.showToast({ title: '开始为你生成...', icon: 'none' })
 
-        util.wx.get('/api/seller/order_export_by_goods_id', {
+        util.wx.get('/api/supplier/order_export_by_goods_id', {
             goods_id: this.data.goods_id
         }).then(res => {
 
@@ -364,8 +364,8 @@ Page({
 
 
         return new Promise((resolve, reject) => {
-            util.wx.get('/api/seller/get_order_list', {
-                goods_id: this.data.goods_id,
+            util.wx.get('/api/supplier/get_order_list', {
+                goods_id: this.data.goods_id || '',
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
                 search_order_status: this.data.search_order_status,
@@ -412,7 +412,7 @@ Page({
         var order_id = e.target.dataset.id
         if (marke_value == '' || order_id == '') { return }
 
-        util.wx.post('/api/seller/set_order_seller_remarks', {
+        util.wx.post('/api/supplier/set_order_supplier_remarks', {
             order_id: order_id,
             order_remark: marke_value,
         }).then(res => {
@@ -523,7 +523,7 @@ Page({
         wx.showLoading()
 
 
-        util.wx.post('/api/seller/send_tmp_msg', params).then(res => {
+        util.wx.post('/api/supplier/send_tmp_msg', params).then(res => {
 
             wx.hideLoading()
 
@@ -710,8 +710,6 @@ Page({
         // 显示顶部刷新图标
         wx.showNavigationBarLoading();
         this.resetPageNumber()
-        this.getStatistics()
-
         this.getOrderList().then(() => {
             // 隐藏导航栏加载框
             wx.hideNavigationBarLoading();
@@ -765,7 +763,7 @@ Page({
         if(order_refund_id){
 
            wx.navigateTo({
-            url:'../refundment-detail-seller/index?order_id='+order_id+'&id='+order_refund_id
+            url:'../refundment-detail-supplier/index?order_id='+order_id+'&id='+order_refund_id
           })
 
         }

@@ -1,10 +1,6 @@
 <view class="container">
     <text class="iconfont icon-calendar text-xxl text-gray top-filter"></text>
     <view class="record-box">
-        <view class="record-hd ph-df pt-df pb-sm text-justify gray-bg-df">
-            <view class="">{{dateText}}</view>
-            <view class="iconfont icon-riqi" bindtap="handleDateModal"></view>
-        </view>
         <view class="record-bd ph-df" wx:if="{{info.length}}">
             <view class="record-item flex" wx:for="{{info}}" wx:key="{{index}}">
                 <view class="flex-sub">
@@ -30,7 +26,5 @@
     <view class="load-box" wx:if="{{loading}}">
         <wux-spin wux-class="spin" size="large" />
     </view>
-    <van-popup show="{{ dateModal }}" position="bottom" bind:close="handleDateModal">
-        <van-datetime-picker type="year-month" value="{{ currentDate }}" bind:change="" bind:cancel="handleDateModal" bind:confirm="handleDate" min-date="{{minDate}}" max-date="{{maxDate}}"></van-datetime-picker>
-    </van-popup>
+
 </view>

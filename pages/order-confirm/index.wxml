@@ -6,7 +6,7 @@
             </view>
             <view class="pb-xs">
                 <text class="text-muted text-sm">应付金额：</text>
-                <text class="text-lg bold coral-text">¥{{amountMoney}}</text>
+                <text class="text-lg bold coral-text">¥{{amountMoney+shipping_money}}</text>
                 <text class="text-muted text-sm"> 元</text>
             </view>
         </view>
@@ -102,11 +102,11 @@
             </view>
         </view>
         <van-cell-group custom-class="mb-sm">
-            <!--   <van-cell title="购买数量">
+
+             <!--  <van-cell title="购买数量">
                 <van-stepper value="{{ 2 }}" min="1" integer bind:change="handleNumber" />
             </van-cell> -->
-            <!--  <van-cell title="配送方式" value="自提" value-class="text-gray" />
-            <van-cell title="订单总价" value="￥100" value-class="" /> -->
+            <van-cell title="邮费" value="￥{{shipping_money}}" readonly value-class="" />
             <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
     </view>

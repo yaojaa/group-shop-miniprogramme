@@ -252,9 +252,7 @@ Page({
             success: (res) => {
 
                 if (res.confirm) {
-                    this.setData({
-                            loading: true
-                        })
+                  
                     util.wx.post('/api/seller/set_order_status', {
                             opt,
                             order_id
@@ -307,16 +305,11 @@ Page({
 
                             }
                         },()=>{
-                                this.setData({
-                                        loading: false
-                                    })
+                                
                         })
                         .catch(e => {
 
-                              this.setData({
-                                        loading: false
-                                    })
-
+                             
                         })
                 }
 
@@ -442,7 +435,12 @@ Page({
 
                 resolve()
             }, (err) => {
+
+                     this.setData({
+                            loading: false
+                        })
                 reject(err)
+
             })
 
 

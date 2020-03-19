@@ -61,7 +61,7 @@
 <van-tabbar  active-color="#666" wx:if="{{showSetting}}" >
   <van-tabbar-item bind:click="backMy" icon="home-o" >返回我的</van-tabbar-item>
   <van-tabbar-item bind:click="backSetting" icon="friends-o">主页设置</van-tabbar-item>
-  <van-tabbar-item bind:click="showShare"icon="share">转发分享</van-tabbar-item>
+  <van-tabbar-item bind:click="showShare" icon="share">转发分享</van-tabbar-item>
 </van-tabbar>
 
 

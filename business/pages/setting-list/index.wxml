@@ -14,6 +14,13 @@
 />
 
 
+<van-cell
+  is-link
+  title="切换代理身份"
+  link-type="navigateTo"
+  url="/pages/home/index"
+/>
+
 </view>
 
 

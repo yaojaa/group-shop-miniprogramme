@@ -131,6 +131,41 @@ Page({
 
   },
 
+  removeGoods(e){
+
+        const goods_id = e.currentTarget.dataset.goods_id
+
+        Dialog.confirm({
+          title: '确定要删除吗？',
+          message: '删除后不可恢复'
+        }).then(() => {
+
+             util.wx.post('/api/supplier/goods_del',{
+              goods_id:goods_id
+             })
+            .then((res) => {
+                   
+            Dialog.close()
+
+            },res=>{
+
+             Dialog.close()
+
+              
+            })
+
+
+          // on confirm
+        }).catch(() => {
+          // on cancel
+        });
+
+
+
+
+
+  },
+
   goEdit(e){
 
     const goods_id = e.currentTarget.dataset.goods_id
@@ -155,6 +190,7 @@ Page({
 
 
     },
+
 
     getGoodsList() {
         util.wx.get('/api/supplier/get_goods_list')

@@ -1,15 +1,7 @@
 <view class="container">
-    <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;" wx:if="{{show_tips}}">
-        <view class="collect-box">"点击右边
-            <van-icon name="weapp-nav" size="28rpx;" /> 添加到我的小程序"
-            <van-icon name="close" size="28rpx;" />
-        </view>
-    </view>
+
 
     <view class="head-box">
-
-<!--             <view class="top_user mini-tag mt-xs">供应商入驻</view>
- -->
         <view class="flex align-center">
             <navigator url="../identify/identify" hover-class="none">
                 <view class="user-avatar mh-df">
@@ -23,32 +15,35 @@
                 <view class="flex justify-between text-white">
                     <view class="user-box">
                         <view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}} </view>
-                        <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" wx:if="{{!isCustome}}">专属主页
-                        </navigator>
-                        <navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none" wx:else>完善资料</navigator>
+                      
+                        <navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none" >完善信息</navigator>
                     </view>
-                    <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
-                        <view class="text-lg bold">{{fansNum}}</view>
-                        <view class="text-sm mt-xs">我的粉丝</view>
-                    </navigator>
-                    <navigator url="../withdrawal/index" hover-class="none" class="text-center"  wx:if="{{!isCustome}}">
-                        <view class="text-lg bold">¥ {{pending_money}}</view>
-                        <view class="text-sm mt-xs">账户提现</view>
-                    </navigator>
                 </view>
             </view>
         </view>
     </view>
 
-        <i-panel style="margin-top: -200px">
-            <view class="flex-box myorder">
-            最新订单：红叶舞秋山3分钟前参与了“不知火丑橘”
+   <i-panel i-class="marginTop" >
+        <view slot="content" style="height: 130px; text-align:center;">
+
+            <view class="icon">
+                       可提现金额
+                    </view>
+            
+                    <view class="icon" style="font-size: 32px">
+                        ¥ {{pending_money}}
+                    </view>
+
+                    <view>
+                            <button class='pubbtn' bindtap="new_btn">
+                   立即提现
+                </button>
+                    </view>
         </view>
-        </i-panel>
+    </i-panel>
+<!-- 
 
-
-
-<!--     <i-panel i-class="marginTop" title="我参与的" extra="查看全部订单" link="../order-list/index">
+    <i-panel i-class="marginTop" title="我参与的" extra="查看全部订单" link="../order-list/index">
         <view slot="content">
             <view class="flex-box myorder">
                 <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">
@@ -70,14 +65,27 @@
                     </view>
                     已完成
                 </navigator>
-                      <view class="flex-item">
-             <view class="icon">
-                    <i-icon type="customerservice" size="28" color="#4fac05" />
-                </view>
-            退款售后</view>
             </view>
         </view>
-    </i-panel> -->
+    </i-panel>
+ -->
+
+ <van-cell-group>
+  <van-cell icon="home-o"  title="我的主页"  is-link
+  link-type="navigateTo"
+  url="../userhome/index?id={{userInfo.store_id}}" />
+    <van-cell icon="friends-o"  title="我的顾客 （{{fansNum}}）" is-link
+  link-type="navigateTo"
+  url="../fans-mg/index"  />
+
+      <van-cell icon="friends-o"  title="切换为供应商身份" is-link
+  link-type="navigateTo"
+  url="/business/pages/home/index"  />
+
+</van-cell-group>
+
+
+
 
     <i-panel  wx:if="{{isCustome && proList.length}}" title="您关注过的人 ">
         <block wx:for="{{proList}}" wx:key="{{index}}">
@@ -131,7 +139,7 @@
         </block>
     </i-panel>
 
-<!--     <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
+ <!--    <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
     <i-panel hide-border title="最新订单" extra="更多新订单" link="../new-order-list/index">
         <view class="control">
 
@@ -155,35 +163,21 @@
     <view class="text-center">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
-    <view class="panelbox">
 
-      
-        <!--   <button class='new-btn hollow' bindtap="new_btn">
-          <i-icon type="add" size="20" />新发布
-        </button> -->
 
-        <i-panel  wx:if="{{goodslist.length > 0 }}" >
-<!--             <van-search value="{{ value }}" placeholder="输入标题关键字搜索" background="#ffffff" 
-            show-action
-  bind:search="onSearch"
-  /> -->
 
-            <view class="goods-box">
-                <block wx:key="index" wx:for="{{goodslist}}">
-                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
-                </block>
-                <view class="text-center">
-                    <wux-spin wx:if="{{is_loading}}"></wux-spin>
-                </view>
+            <view style="margin-bottom:100rpx"></view>
+
+        <view class="weui-footer weui-footer_fixed-bottom">
+
+            <view class="weui-footer__links">
+
+            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">由开心麻团提供技术支持</button>    
+
             </view>
-        </i-panel>
-    </view>
-    <i-panel wx:if="{{isCustome && !is_loading }}">
-        <view class='new-goods' bindtap="new_btn">
-            <text>+ 发布商品 </text>
         </view>
-    </i-panel>
-    <view style="margin-bottom:100rpx"></view>
+
+
     <!--  <view wx:if="{{goodslist.length >= 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />
@@ -198,13 +192,11 @@
         </i-tab-bar>
     </view> -->
     <van-dialog id="van-dialog" />
-    <van-tabbar inactive-color="#ebffdb"  active-color="#ff8900"  >
+    <van-tabbar  active-color="#ff8900" >
   <van-tabbar-item bind:click="backMy" icon="home-o" >首页</van-tabbar-item>
-  <van-tabbar-item bind:click="goOrders" icon="friends-o" info="2">订单</van-tabbar-item>
-    <van-tabbar-item bind:click="goOrders"   icon="add">发布</van-tabbar-item>
-
-  <van-tabbar-item bind:click="goMySupplier" icon="friends-o" >发现</van-tabbar-item>
-    <van-tabbar-item bind:click="goMy" icon="user-circle-o">我的</van-tabbar-item>
+  <van-tabbar-item bind:click="goOrders" icon="friends-o">订单</van-tabbar-item>
+  <van-tabbar-item bind:click="showShare" icon="friends-o" >发现</van-tabbar-item>
+    <van-tabbar-item bind:click="showShare" icon="user-circle-o">我的</van-tabbar-item>
 
 </van-tabbar>
 

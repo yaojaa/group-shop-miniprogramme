@@ -18,7 +18,7 @@
         <view class="goods-panel white-bg cf">
             <view class="goods-panel-bd" wx:for="{{goodsList}}" wx:key="index">
                 <view class="solid-bottom"></view>
-                <view url="/business/pages/goods-user/goods?id={{item.goods_id}}" hover-class="none" class="flex pv-df mh-sm pv-dh goods-panel-item">
+                <navigator url="/business/pages/goods-user/goods?id={{item.goods_id}}" hover-class="none" class="flex pv-df mh-sm pv-dh goods-panel-item">
                     <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line  bold title">
@@ -32,11 +32,11 @@
 
                      
                     </view>
-                </view>
-                
+                </navigator>
+
  <van-grid column-num="2">
-  <van-grid-item text="直接下单" />
-  <van-grid-item text="上架到我的主页" data-id="{{item.goods_id}}" bindtap="goods_up"/>
+<!--   <van-grid-item text="直接下单" />
+ -->  <van-grid-item text="上架到我的主页" data-id="{{item.goods_id}}" bindtap="goods_up"/>
 </van-grid>
 
 

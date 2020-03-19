@@ -65,7 +65,9 @@ Page({
      */
     onLoad: function(options) {
 
-        this.data.supid = options.supid
+        console.log(options)
+
+        this.data.supid = options.supid || options.goods_id
 
         this.data.sellid = options.sellid
 
@@ -133,6 +135,7 @@ Page({
 
         getSellerGoodsInfo() {
 
+
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.sellid 
             })
@@ -182,9 +185,11 @@ Page({
 
                 //如果是修改价格
                 //
+                console.log(this.data.is_modify)
+                
                 if(this.data.is_modify){
 
-                    this.getSellerGoodsInfo()
+                  this.getSellerGoodsInfo()
 
                 }else{
 

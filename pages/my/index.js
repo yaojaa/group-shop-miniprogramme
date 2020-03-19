@@ -178,18 +178,6 @@ Page({
         })
     },
 
-    goMySupplier() {
-        wx.redirectTo({
-            url: '../supplier-list/index'
-        })
-    },
-    goMy(){
-       wx.redirectTo({
-            url: '../my/index'
-        })
-
-    },
-
     goHome() {
 
         wx.redirectTo({

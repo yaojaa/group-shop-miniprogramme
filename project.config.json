@@ -630,8 +630,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "business/pages/home/index",
+					"id": 81,
+					"name": "供应商我的主页",
 					"pathName": "business/pages/home/index",
 					"query": "id=1",
 					"scene": null
@@ -808,7 +808,7 @@
 					"id": 106,
 					"name": "团长查看分销页面",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "id=7",
+					"query": "id=11",
 					"scene": null
 				},
 				{
@@ -844,6 +844,33 @@
 					"name": "供货商主页",
 					"pathName": "pages/supplier-home/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "供应商提现",
+					"pathName": "business/pages/withdrawal/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "确认订单页面",
+					"pathName": "pages/order-confirm/index",
+					"query": "goods_id=1745&delivery_method=1&from_id=",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "确认订单",
+					"pathName": "pages/order-confirm/index",
+					"query": "goods_id=1753&delivery_method=1&from_id=",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/my/index",
 					"scene": null
 				}
 			]

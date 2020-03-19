@@ -25,15 +25,16 @@
     padding: 20rpx 0;
 }
 .act-img{
-    width: 120rpx;
-    height: 120rpx;
+    width: 100rpx;
+    height: 100rpx;
     margin-right: 10px;
 }
 
 .act-img .act-logo{
     width: 100%;
     height: 100%;
-    border-radius: 2%;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .act-main{
     width: 50%;
@@ -73,11 +74,17 @@
 
 .act-submit{
 
-    position: absolute;
-    bottom: 10px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     right: 0;
-    left: 0
+    left: 0;
+    display: flex;
+     flex-direction:row-reverse;
+     box-shadow: 0 -2px 5px #eee;
+     padding: 10px 0;
+     justify-content:space-between;
+     background: #fff
    
 }
 
@@ -87,8 +94,14 @@
     height: 80rpx;
     line-height: 80rpx;
     border-radius: 40rpx;
-    width: 80%;
     margin: 0 auto;
+    padding: 0 30px;
+    margin-right: 20px
+}
+
+.total{
+    margin: 20rpx 0 0 30px;
+    color: #666
 }
 .icon-img {
     width: 20px;
@@ -177,7 +190,9 @@
 .share-friends-loading-txt text {
     padding-top: 100rpx;
 }
-
+.act-logo{
+    border-radius: 50%
+}
 
 
 

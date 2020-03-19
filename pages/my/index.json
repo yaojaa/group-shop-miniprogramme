@@ -1,11 +1,8 @@
 {
-    "navigationStyle": "custom",
-    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "我的",
     "usingComponents":
     {
         "i-panel": "../../iView/panel/index",
-        "i-cell-group": "../../iView/cell-group/index",
-        "i-cell": "../../iView/cell/index",
         "i-row":"../../iView/row/index",
         "i-col":"../../iView/col/index",
         "i-badge": "../../iView/badge/index",
@@ -16,7 +13,9 @@
         "i-goods-item": "../../components/goods-item/index",
         "wux-spin": "../../wux/spin/index",
         "van-icon": "../../vant/icon/index",
-        "van-search": "../../vant/search/index"
+        "van-search": "../../vant/search/index",
+        "van-cell": "../../vant/cell/index",
+        "van-cell-group": "../../vant/cell-group/index"
 
     }
 }

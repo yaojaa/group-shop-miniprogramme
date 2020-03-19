@@ -22,14 +22,15 @@ Page({
         user_message: '',
         btn_load: false,
         loading: false,
-        address_load: false
+        address_load: false,
+        shipping_money:0
     },
     getUserAddress() {
         this.setData({
             address_load: true
         })
         util.wx.get('/api/user/address_list',{
-            pagesize:5
+            pagesize:10
         })
             .then(res => {
                 this.setData({
@@ -39,19 +40,16 @@ Page({
                 if (res.data.code == 200) {
                     if (data.length > 0) {
                         data.forEach((item) => {
-                            console.log(item, 'item')
                             if (item.is_address_default == 1) {
                                 this.setData({
                                     address: item,
                                     address_id: item.address_id
                                 })
-                            } else {
-                                this.setData({
-                                    address: data[0],
-                                    address_id: data[0].address_id
-                                })
-                            }
+
+                            } 
                         })
+
+
                     } else {
                         this.setData({
                             address: null,
@@ -122,6 +120,30 @@ Page({
             address_id: e.currentTarget.dataset.name
         });
     },
+    //获取邮费
+    get_shipping_money(){
+
+         util.wx.get('/api/goods/get_shipping_money', {
+                goods_id: this.data.goods_id,
+                address_id:this.data.address_id
+            })
+            .then(res => {
+
+
+                console.log('邮费',res.data.data)
+
+                this.setData({
+                    shipping_money:parseInt(res.data.data)
+                })
+
+
+            })
+
+
+
+    },
+
+    
 
     getGoodsInfo(){
         wx.showLoading()
@@ -175,6 +197,10 @@ Page({
      */
     onLoad: function(options) {
 
+
+        getApp().setWatcher(this.data, this.watch, this); // 设置监听器
+
+
         this.data.goods_id = options.goods_id
         this.data.from_id = options.from_id || ''
         this.getGoodsInfo()
@@ -183,6 +209,11 @@ Page({
         let amountMoney = 0;
         let totalNumer = 0
         let cartSource = wx.getStorageSync('cart')
+        console.log('cartSource',cartSource)
+        if(!cartSource){
+
+            return wx.navigateBack()
+        }
         let cart = typeof cartSource === 'string' ? JSON.parse(cartSource) : cartSource;
 
         // let goodsSource = wx.getStorageSync('goods');
@@ -209,6 +240,17 @@ Page({
 
    
     },
+    watch: {
+        address_id: (newValue, val, context) => {
+
+
+           context.address_id = newValue
+
+           context.get_shipping_money()
+        }
+
+    },
+
     inputConsignee(e) {
         this.setData({
             consignee: e.detail

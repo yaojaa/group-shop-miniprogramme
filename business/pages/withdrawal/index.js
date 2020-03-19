@@ -21,12 +21,11 @@ Page({
             })
     },
     takeMoney(e) {
-        let amount = parseInt(e.detail.value.amount)*100
+        let money = parseInt(e.detail.value.amount)
         this.setData({
             disabled: true
         })
-        console.log('amount',amount)
-        util.wx.post('/api/front/withdraw/getRedPack', { amount })
+        util.wx.post('/api/supplier/apply_withdraw', { apply_money:money })
             .then(res => {
                 this.setData({
                     disabled: false
@@ -42,6 +41,13 @@ Page({
                 } else {
                     Toast(res.data.msg)
                 }
+            },res=>{
+
+                wx.showToast({
+                    title:res.data.msg,
+                    icon:'none'
+                })
+
             })
     },
     /**

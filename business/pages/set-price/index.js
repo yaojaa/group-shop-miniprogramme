@@ -1,6 +1,19 @@
 const app = getApp()
 const util = require('../../../utils/util')
-let index = 0
+import areaData from '../../../utils/area'
+
+
+var areaList = []
+for(var key in areaData.province_list){
+
+    areaList.push({
+        name:areaData.province_list[key],
+        price:0
+    })
+
+
+}
+
 
 Page({
     data: {
@@ -8,35 +21,7 @@ Page({
         freight_tpl_name: '请填写规则名称',
         freight_tpl_id: '',
         freight_tpl_info: [],
-        list: [
-            { name: "北京", price: 0 },
-            { name: "天津", price: 0 },
-            { name: "吉林省", price: 0 },
-            { name: "黑龙江省", price: 0 },
-            { name: "上海", price: 0 },
-            { name: "江苏省", price: 0 },
-            { name: "浙江省", price: 0 },
-            { name: "安徽省", price: 0 },
-            { name: "福建省", price: 0 },
-            { name: "江西省", price: 0 },
-            { name: "山东省", price: 0 },
-            { name: "河南省", price: 0 },
-            { name: "湖北省", price: 0 },
-            { name: "湖南省", price: 0 },
-            { name: "广东省", price: 0 },
-            { name: "广西壮族自治区", price: 0 },
-            { name: "海南省", price: 0 },
-            { name: "重庆", price: 0 },
-            { name: "四川省", price: 0 },
-            { name: "贵州省", price: 0 },
-            { name: "云南省", price: 0 },
-            { name: "西藏自治区", price: 0 },
-            { name: "陕西省", price: 0 },
-            { name: "甘肃省", price: 0 },
-            { name: "青海省", price: 0 },
-            { name: "宁夏回族自治区", price: 0 },
-            { name: "新疆维吾尔自治区", price: 0 }
-        ]
+        list: areaList
     },
 
     onChange(e) {
