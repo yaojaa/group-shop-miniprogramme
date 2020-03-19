@@ -192,11 +192,13 @@
         </i-tab-bar>
     </view> -->
     <van-dialog id="van-dialog" />
-    <van-tabbar  active-color="#ff8900" >
+   <van-tabbar inactive-color="#ebffdb"  active-color="#ff8900"  >
   <van-tabbar-item bind:click="backMy" icon="home-o" >首页</van-tabbar-item>
-  <van-tabbar-item bind:click="goOrders" icon="friends-o">订单</van-tabbar-item>
-  <van-tabbar-item bind:click="showShare" icon="friends-o" >发现</van-tabbar-item>
-    <van-tabbar-item bind:click="showShare" icon="user-circle-o">我的</van-tabbar-item>
+  <van-tabbar-item bind:click="goOrders" icon="friends-o" info="2">订单</van-tabbar-item>
+    <van-tabbar-item bind:click="goOrders"   icon="add">发布</van-tabbar-item>
+
+  <van-tabbar-item bind:click="goMySupplier" icon="friends-o" >发现</van-tabbar-item>
+    <van-tabbar-item bind:click="goMy" icon="user-circle-o">我的</van-tabbar-item>
 
 </van-tabbar>
 
