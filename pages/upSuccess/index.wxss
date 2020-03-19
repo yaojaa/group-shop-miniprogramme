@@ -1,14 +1,23 @@
-.notice{
-  color: #ed6a0c;
-background-color: #fffbe8;
-padding:15px;
-font-size: 14px
+@import "../../css/common.wxss";
 
+.notice {
+  color: #ed6a0c;
+  background-color: #fffbe8;
+  padding: 25rpx 30rpx;
+  font-size: 24rpx
 }
-.share_btn{
+
+.share_btn {
   text-align: center;
 }
 
-.share_btn button{
+.share_btn button {
   margin: 20px
+}
+.goods-panel-bd{
+  box-shadow: 0 0 0;
+}
+.goods-panel-bd .cover {
+  width: 140rpx;
+  height: 140rpx;
 }
