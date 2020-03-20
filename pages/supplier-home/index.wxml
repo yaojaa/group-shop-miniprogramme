@@ -1,17 +1,10 @@
 <view class="container ">
 
-    <view class="header">
+    <view class="header flex">
 
-        <!--   <image class="logo" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  />
- -->
-        <view class="title">{{info.supplier_name }}</view>
-        <view class="title">这里是简介可能文字比较多{{info.supplier_intro}}</view>
+          <!-- <image class="logo" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  /> -->
+        <view class="title">{{info.supplier_intro}}</view>
 
-        <!-- 	<van-card
-  desc="{{info.supplier_intro}}"
-  title="{{info.supplier_name}}"
-  thumb="{{  info.supplier_logo }}"
-/> -->
     </view>
 
     <view class="goods-panel white-bg cf">
@@ -33,7 +26,7 @@
 
                     <view class="mt-xs des text-justify">
                        <view>
-                        <text class="text-muted text-sm ">采购：</text> <text class="coral-text f16">¥388</text>
+                        <text class="text-muted text-sm ">采购：</text> <text class="coral-text ">¥388</text>
                        </view>
                        <view class="flex align-center text-gray ">
                         <van-icon name="shopping-cart-o" size="36rpx" />

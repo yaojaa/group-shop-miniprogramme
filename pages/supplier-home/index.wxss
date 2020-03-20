@@ -2,9 +2,10 @@
 
 .header {
     position: relative;
-    padding: 20px;
+    padding: 30rpx;
     background: #ffaa4f;
-    text-align: center
+    text-align: center;
+    color:#fff;
 }
 
 .header .logo{
