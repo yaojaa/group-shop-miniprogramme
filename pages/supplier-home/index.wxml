@@ -2,7 +2,7 @@
 
     <view class="header flex">
 
-          <!-- <image class="logo" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  /> -->
+          <!-- <image class="logo mr-df" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  /> -->
         <view class="title">{{info.supplier_intro}}</view>
 
     </view>
