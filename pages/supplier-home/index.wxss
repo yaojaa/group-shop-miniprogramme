@@ -145,3 +145,11 @@
     color: #fff;
     line-height: 1.5
 }
+
+.goods-panel-bd{
+    box-shadow: 0 0 0 ;
+}
+.goods-panel-bd .cover{
+    width: 140rpx;
+    height: 140rpx;
+}

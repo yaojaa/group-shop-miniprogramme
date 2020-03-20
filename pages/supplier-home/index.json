@@ -4,8 +4,8 @@
     {
         "i-panel": "../../iView/panel/index",
         "van-card": "../../vant/card/index",
-             "van-grid": "../../vant/grid/index",
-       "van-grid-item": "../../vant/grid-item/index"
-
+        "van-grid": "../../vant/grid/index",
+       "van-grid-item": "../../vant/grid-item/index",
+       "van-icon": "../../vant/icon/index"
     }
 }
