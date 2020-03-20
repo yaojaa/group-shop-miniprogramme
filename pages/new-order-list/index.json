@@ -12,6 +12,8 @@
         "i-spin": "../../iView/spin/index",
         "van-cell": "../../vant/cell/index",
         "van-cell-group": "../../vant/cell-group/index",
-        "van-icon": "../../vant/icon/index"
+        "van-icon": "../../vant/icon/index",
+        "footerbar": "../../components/footerbar/index"
+
     }
 }

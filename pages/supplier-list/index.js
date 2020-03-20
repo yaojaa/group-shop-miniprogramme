@@ -30,13 +30,13 @@ Page({
   },
 
   getMySupp(){
+    wx.showLoading()
     util.wx.get('/api/seller/my_supplier_list').then(res=>{
 
       this.setData({
         suppList:res.data.data.list
       })
-
-
+      wx.hideLoading()
 
     })
     
@@ -46,37 +46,16 @@ Page({
             showAuth: false
         })
     },
-      getUserInfoEvt: function(e) {
-        console.log(e)
-        if (e.detail.errMsg !== "getUserInfo:ok") {
-            return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
-        }
 
-        app.globalData.userInfo = e.detail.userInfo
-        wx.showLoading()
-        app.getOpenId().then((openid) => {
-            console.log(openid)
-            app.globalData.openid = openid
-            app.login_third(e.detail).then((res) => {
-            	
-                    wx.showToast({
-                    	title:'登录成功',
-                    	icon:'none'
-                    })
-
-                    wx.hideLoading()
-                    this.setData({
-                        showAuth: false
-                    })
-
-                })
-                .catch(e => console.log(e))
-
-
-        })
-
-
-    },
+    onShareAppMessage: function(e) {
+                        const {supplier_id,name} = e.target.dataset
+                        const username = app.globalData.userInfo.nickname
+                        return {
+                            title: username + '邀请您您的加入'+name,
+                            imageUrl: 'https://static.kaixinmatuan.cn/invit.jpg',
+                            path: 'business/pages/acting-apply/index' + '?supplier_id=' + supplier_id
+                        }
+                    },
    
 
 })

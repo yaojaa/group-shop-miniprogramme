@@ -2,10 +2,10 @@
 
 <view class="header">
 
-  <image class="logo" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  />
-
+<!--   <image class="logo" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  />
+ -->
   <view class="title">{{info.supplier_name }}</view>
-
+  <view class="title">这里是简介可能文字比较多{{info.supplier_intro}}</view>
 
 <!-- 	<van-card
   desc="{{info.supplier_intro}}"
@@ -24,22 +24,31 @@
                         <view class="text-hide two-line  bold title">
                             {{item.goods_name}}
                         </view>
-                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 939</text>
+                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 939 可赚 ¥88 </text>
 
             <text style="color:#19be6b">进行中</text>
 
                         </view>
 
+                       <view class="text-muted mt-xs text-sm des">
+
+                        采购： <text class="red f24">¥388</text> 
+
+
+                        <button size="mini">下单</button>
+
+                         <button size="mini" data-id="{{item.goods_id}}" bindtap="goods_up">转发</button>
+
+
+                        </view>
+
+
+
+                   
+
                      
                     </view>
                 </navigator>
-
- <van-grid column-num="2">
-<!--   <van-grid-item text="直接下单" />
- -->  <van-grid-item text="上架到我的主页" data-id="{{item.goods_id}}" bindtap="goods_up"/>
-</van-grid>
-
-
             </view>
         </view>
     </view>

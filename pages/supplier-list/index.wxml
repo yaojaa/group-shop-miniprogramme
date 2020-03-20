@@ -2,13 +2,15 @@
 <view class="container ">
 
 <view class="list">
-  <view class="list-item" wx:for="{{suppList}}" data-id="{{item.supplier_id}}" bindtap="toSupphome">
+  <view class="list-item" wx:for="{{suppList}}" data-id="{{item.supplier_id}}" >
 
-    <van-card
+    <van-card data-id="{{item.supplier_id}}" bindtap="toSupphome"
   desc="{{item.supplier_intro}}"
   title="{{item.supplier_name}}"
   thumb="{{  item.supplier_logo }}"
 />
+
+<button size="mini" data-id="{{item.supplier_id}}" data-name="{{item.supplier_name}}" open-type="share">邀请小伙伴</button>
 
  
   </view>
@@ -32,4 +34,6 @@
 
 
 
-</view>
+</view> 
+
+<footerbar active="1" />
