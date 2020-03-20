@@ -96,9 +96,8 @@
 
   <van-grid-item text="下架"   data-index="{{index}}"  bindtap="changOnSale" data-status="{{item.is_on_sale}}"  wx:if="{{item.is_on_sale==1}}" data-goods_id="{{item.goods_id}}"/>
   <van-grid-item text="上架"  bindtap="changOnSale" data-status="{{item.is_on_sale}}" wx:if="{{item.is_on_sale==2}}" data-index="{{index}}"  data-goods_id="{{item.goods_id}}"/>
-  <van-grid-item  text="订单" /> 
-<!--   <van-grid-item text="转发"  data-index="{{index}}" bindtap="shareGoods" />
- --></van-grid>
+  <van-grid-item  text="订单"  bindtap="goGoodsOrder" data-goods_id="{{item.goods_id}}" data-goods_name="{{item.goods_name}}" /> 
+</van-grid>
             </view>
         </view>
     </view>

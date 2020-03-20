@@ -871,6 +871,13 @@
 					"id": -1,
 					"name": "我的",
 					"pathName": "pages/my/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "供应商管理订单",
+					"pathName": "business/pages/order-manage/index",
 					"scene": null
 				}
 			]

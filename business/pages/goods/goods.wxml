@@ -87,12 +87,12 @@
                 {{goods.goods_name}}
             </view>
         </view>
-  <!--       <view class="goods-share">
+        <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
                 <i-icon type="send" size="24" color="#f90" />
-                <view class="text-muted text-xs">邀请销售</view>
+                <view class="text-muted text-xs">产品海报</view>
             </button>
-        </view> -->
+        </view>
         <view class="load-area" wx:if="{{!goods}}">
             <wux-spin wux-class="spin" />
         </view>

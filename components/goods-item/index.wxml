@@ -38,36 +38,31 @@
         </view>
     </view>
 
-     <van-grid column-num="5">
-  <van-grid-item use-slot>
-    <button  class="hollow" 
+
+    <view  style="display:flex; justify-content:center">
+
+        <button  class="hollow" 
     data-type="goods"
     data-cover ="{{item.goods_cover}}"
     data-goods_name = "{{item.goods_name}}"
     data-goods_id = "{{item.goods_id}}"
 
-     size="mini" open-type="share">分享</button></van-grid-item>
-  <van-grid-item  use-slot > <button class="hollow" data-url="{{item.goods_id}}" bindtap="gofans"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 访客 </button> </van-grid-item>
+     size="mini" open-type="share">分享</button>
 
 
-
-  <van-grid-item use-slot wx:if="{{item.supplier_id >0 }}" > 
-    <button class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
+    <button  wx:if="{{item.supplier_id >0 }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
     data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 修改价格 </button> 
-</van-grid-item>
 
-  <van-grid-item use-slot wx:else > <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> </van-grid-item>
+  <button wx:else  class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> 
 
-  
+ <button class="hollow" data-url="{{item.goods_id}}" bindtap="gofans"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 访客 </button>
 
-  <van-grid-item use-slot >
       <button class="hollow"  bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}"  size="mini"> 订单({{item._order_count}}) </button>
-  </van-grid-item> 
 
-    <van-grid-item  use-slot>
-        <button class="hollow" size="mini"  data-id="{{item.goods_id}}"  bindtap="moreAction">  <i-icon size="22" color="#36cc3b" type="unfold" /> </button>
-    </van-grid-item>
-</van-grid>
+           <button class="hollow" size="mini"  data-id="{{item.goods_id}}"  bindtap="moreAction">  <i-icon size="22" color="#36cc3b" type="unfold" /> </button>
+        
+    </view>
+
 
     <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->
     <van-dialog id="van-dialog" />

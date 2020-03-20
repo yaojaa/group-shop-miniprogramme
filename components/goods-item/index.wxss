@@ -132,9 +132,7 @@ padding:0 15px!important;
 background:#f9fff5;
 work-break:keep-all;
  white-space:nowrap;
- display: block;
- margin: 0 auto
-
+ margin: 0 auto;
 
 }
 .statusBar{

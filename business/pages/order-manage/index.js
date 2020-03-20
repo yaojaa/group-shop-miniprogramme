@@ -29,7 +29,6 @@ Page({
         totalpage: 1,
         delivery_method: 0,
         sendAll: false,
-        // switchOrderList:false,//折叠展开订单
         actionsConfirm: [{
                 name: '取消'
             },
@@ -147,24 +146,20 @@ Page({
     },
     onLoad: function(optiton) {
 
-        this.getOrderList()
 
         if (!app.globalData.token) {
             app.globalData.token = wx.getStorageSync('token')
         }
 
-        const localSwichStatus = wx.getStorageSync('switchOrderList')
-
-        this.setData({
-            switchOrderList: localSwichStatus
-        })
+      
 
 
-        this.setData({
-            goods_id: optiton.id,
-            delivery_method: optiton.delivery_method,
-            goods_name:optiton.goods_name
-        })
+        this.data.goods_id = optiton.goods_id,
+            this.data.delivery_method = optiton.delivery_method || 1, 
+            this.data.goods_name = optiton.goods_name
+
+          this.getOrderList()
+
 
           wx.setNavigationBarTitle({
               title: '管理订单'+ (optiton.goods_name || '') 
@@ -201,13 +196,7 @@ Page({
             url:'../modify-address/index?order_id='+order_id
         })
     },
-    onChangeOrderSwitch(event) {
-        const detail = event.detail;
-        this.setData({
-            'switchOrderList': detail.value
-        })
-        wx.setStorageSync('switchOrderList', detail.value)
-    },
+
 
     /**处理按钮事件***/
 
@@ -322,7 +311,7 @@ Page({
     exportExcel() {
         wx.showToast({ title: '开始为你生成...', icon: 'none' })
 
-        util.wx.get('/api/supplier/order_export_by_goods_id', {
+        util.wx.get('/supplier/get_order_export_by_goods_id', {
             goods_id: this.data.goods_id
         }).then(res => {
 
@@ -639,7 +628,6 @@ Page({
     copyTxt(e){
 
       const txt = e.target.dataset.text
-
         wx.setClipboardData({
             data: txt,
             success: function(res) {
@@ -649,7 +637,6 @@ Page({
                 });
             }
         });
-
 
     },
     copyMobile(e){

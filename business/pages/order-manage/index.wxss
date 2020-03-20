@@ -271,7 +271,7 @@ padding: 15rpx 30rpx
 .copybtn{
     position: absolute;
     right: 10px;
-    top: 40rpx
+    top: 20rpx
 }
 .btn-toset_del{
     background: #f00
@@ -304,6 +304,7 @@ padding: 15rpx 30rpx
     font-size:12px;
     padding:24rpx 5px;
 line-height:1.6;
+color:#666
 
 }
 .blue_text{

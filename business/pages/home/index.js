@@ -243,6 +243,16 @@ Page({
             })
 
     },
+
+    goGoodsOrder(e){
+      console.log(e)
+      const {goods_id,goods_name} = e.currentTarget.dataset
+
+      console.log(goods_id,goods_name)
+          wx.navigateTo({
+                url:'/business/pages/order-manage/index?goods_id='+goods_id+'&goods_name='+goods_name
+            })
+    },
     goSetting(){
 
         wx.navigateTo({
