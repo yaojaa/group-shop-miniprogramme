@@ -13,7 +13,7 @@ Page({
   bindRegionChange(e) {},
   getSuppInfo() {
     util.wx
-      .get('/api/seller/get_supplier_detail?supplier_id=' + 6)
+      .get('/api/seller/get_supplier_detail?supplier_id=' + this.id)
       .then(res => {
         this.setData({
           info: res.data.data
