@@ -3,13 +3,8 @@
 .header {
     position: relative;
     padding: 20px;
-    background: #f8f8f8;
-    text-align: center;
-
-    height:250rpx;
-    background: url('https: //static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center bottom no-repeat #fff
-
-
+    background: #ffaa4f;
+    text-align: center
 }
 
 .header .logo{

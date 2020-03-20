@@ -38,4 +38,7 @@
     <view class="load-box" wx:if="{{loading}}">
         <wux-spin wux-class="spin" size="large" />
     </view>
+
+        <footerbar active="3" />
+
 </view>

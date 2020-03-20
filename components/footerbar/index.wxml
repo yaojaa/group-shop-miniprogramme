@@ -1,0 +1,9 @@
+<van-tabbar active="{{ active }}" inactive-color="#49b34d" active-color="#ff8900">
+    <van-tabbar-item bind:click="goHome" icon="home-o">首页</van-tabbar-item>
+     <van-tabbar-item bind:click="goMySupplier" icon="friends-o">发现</van-tabbar-item>
+
+    <van-tabbar-item bind:click="goPublish" icon="add">发布</van-tabbar-item>
+     <van-tabbar-item bind:click="goOrders" icon="friends-o" >订单</van-tabbar-item>
+
+    <van-tabbar-item bind:click="goMy" icon="user-circle-o">我的</van-tabbar-item>
+</van-tabbar>

@@ -19,7 +19,7 @@ Page({
   },
   getSuppInfo(){
 
-       util.wx.get('/api/seller/get_supplier_detail?supplier_id=2').then(res=>{
+       util.wx.get('/api/seller/get_supplier_detail?supplier_id='+this.id).then(res=>{
       this.setData({
         info:res.data.data
       })
@@ -27,7 +27,7 @@ Page({
   },
   getgoodsInfo(){
 
-    util.wx.get('/api/seller/get_supplier_goods?supplier_id=2').then(res=>{
+    util.wx.get('/api/seller/get_supplier_goods?supplier_id='+this.id).then(res=>{
       this.setData({
         goodsList:res.data.data.list
       })
@@ -48,7 +48,9 @@ Page({
 
     },
 
-  onLoad(){
+  onLoad(option){
+
+    this.id = option.id
 
     this.getSuppInfo()
     this.getgoodsInfo()

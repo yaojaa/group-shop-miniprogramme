@@ -40,12 +40,23 @@
         </view>
     </view>
 
-        <i-panel style="margin-top: -200px">
-            <view class="flex-box myorder">
-            最新订单：红叶舞秋山3分钟前参与了“不知火丑橘”
-        </view>
-        </i-panel>
+   <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
+    <i-panel hide-border title="最新订单" extra="更多" link="../new-order-list/index">
+        <view class="control">
 
+            <view class="newlist">
+
+                <scroll-view style="height: 100px" scroll-y>
+                    <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_detail[0].goods_id}}" data-delivery_method="{{item.delivery_method}}" data-name="{{item.order_detail[0].goods_name}}" bindtap="managePage">
+                        <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
+                        参与了你的
+                        <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </i-panel>
+    </view> 
 
 
 <!--     <i-panel i-class="marginTop" title="我参与的" extra="查看全部订单" link="../order-list/index">
@@ -131,27 +142,7 @@
         </block>
     </i-panel>
 
-<!--     <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
-    <i-panel hide-border title="最新订单" extra="更多新订单" link="../new-order-list/index">
-        <view class="control">
 
-            <view class="newlist">
-
-                <scroll-view style="height: 100px" scroll-y>
-                    <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_detail[0].goods_id}}" data-delivery_method="{{item.delivery_method}}" data-name="{{item.order_detail[0].goods_name}}" bindtap="managePage">
-                        <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
-                        参与了你的
-                        <text class="bold">{{item.order_detail[0].goods_name}}</text>
-                    </view>
-                </scroll-view>
-                <button class='pubbtn' bindtap="new_btn">
-                    <i-icon type="add" size="20" />新发布
-                </button>
-   
-            </view>
-        </view>
-    </i-panel>
-    </view> -->
     <view class="text-center">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
@@ -198,15 +189,8 @@
         </i-tab-bar>
     </view> -->
     <van-dialog id="van-dialog" />
-    <van-tabbar inactive-color="#ebffdb"  active-color="#ff8900"  >
-  <van-tabbar-item bind:click="backMy" icon="home-o" >首页</van-tabbar-item>
-  <van-tabbar-item bind:click="goOrders" icon="friends-o" info="2">订单</van-tabbar-item>
-    <van-tabbar-item bind:click="goOrders"   icon="add">发布</van-tabbar-item>
-
-  <van-tabbar-item bind:click="goMySupplier" icon="friends-o" >发现</van-tabbar-item>
-    <van-tabbar-item bind:click="goMy" icon="user-circle-o">我的</van-tabbar-item>
-
-</van-tabbar>
+  
+    <footerbar/>
 
 
 </view>
