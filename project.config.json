@@ -526,16 +526,16 @@
 				},
 				{
 					"id": 66,
-					"name": "pages/address-form/index",
-					"pathName": "pages/address-form/index",
+					"name": "自定义",
+					"pathName": "pages/supplier-home/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 67,
-					"name": "pages/fans-mg/index",
-					"pathName": "pages/fans-mg/index",
-					"query": "id=835&name=%E4%B8%93%E4%B8%9A%E7%BA%A7%E7%83%A4%E8%96%AF%E4%B8%93%E7%94%A8%E7%BA%A2%E8%96%AF%20%E7%AA%96%E8%97%8F%E4%B8%80%E4%B8%AA%E6%9C%88",
+					"name": "pages/supplier-list/index",
+					"pathName": "pages/supplier-list/index",
+					"query": "",
 					"scene": null
 				},
 				{
@@ -878,6 +878,7 @@
 					"id": -1,
 					"name": "供应商管理订单",
 					"pathName": "business/pages/order-manage/index",
+
 					"scene": null
 				}
 			]

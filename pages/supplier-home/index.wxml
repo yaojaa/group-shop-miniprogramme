@@ -1,55 +1,46 @@
 <view class="container ">
 
-<view class="header">
+    <view class="header flex">
 
-<!--   <image class="logo" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  />
- -->
-  <view class="title">{{info.supplier_name }}</view>
-  <view class="title">这里是简介可能文字比较多{{info.supplier_intro}}</view>
+          <!-- <image class="logo mr-df" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  /> -->
+        <view class="title">{{info.supplier_intro}}</view>
 
-<!-- 	<van-card
-  desc="{{info.supplier_intro}}"
-  title="{{info.supplier_name}}"
-  thumb="{{  info.supplier_logo }}"
-/> -->
-</view>
+    </view>
 
-    <view class="icon-nav-box mt-sm round-df">
-        <view class="goods-panel white-bg cf">
-            <view class="goods-panel-bd" wx:for="{{goodsList}}" wx:key="index">
-                <view class="solid-bottom"></view>
-                <navigator url="/business/pages/goods-user/goods?id={{item.goods_id}}" hover-class="none" class="flex pv-df mh-sm pv-dh goods-panel-item">
-                    <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
-                    <view class="flex-sub por">
-                        <view class="text-hide two-line  bold title">
-                            {{item.goods_name}}
-                        </view>
-                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 939 可赚 ¥88 </text>
-
-            <text style="color:#19be6b">进行中</text>
-
-                        </view>
-
-                       <view class="text-muted mt-xs text-sm des">
-
-                        采购： <text class="red f24">¥388</text> 
-
-
-                        <button size="mini">下单</button>
-
-                         <button size="mini" data-id="{{item.goods_id}}" bindtap="goods_up">转发</button>
-
-
-                        </view>
-
-
-
-                   
-
-                     
+    <view class="goods-panel white-bg cf">
+        <view class="goods-panel-bd" wx:for="{{goodsList}}" wx:key="index">
+           
+            <navigator url="/business/pages/goods-user/goods?id={{item.goods_id}}" hover-class="none"
+                class="flex p-df goods-panel-item">
+                <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm">
+                </image>
+                <view class="flex-sub por">
+                    <view class="text-hide two-line  bold title">
+                        {{item.goods_name}}
                     </view>
-                </navigator>
-            </view>
+                    <view class="text-muted mt-xs text-sm des text-justify"><text class="pr-sm">已售 939 可赚 ¥88 </text>
+
+                        <text style="color:#19be6b">进行中</text>
+
+                    </view>
+
+                    <view class="mt-xs des text-justify">
+                       <view>
+                        <text class="text-muted text-sm ">采购：</text> <text class="coral-text ">¥388</text>
+                       </view>
+                       <view class="flex align-center text-gray ">
+                        <van-icon name="shopping-cart-o" size="36rpx" />
+                        <text class="text-muted ph-xs"></text>
+                        <van-icon name="share"  size="36rpx" data-id="{{item.goods_id}}" bindtap="goods_up" />
+                       </view>
+                       
+
+                       
+                      
+                    </view>
+                </view>
+            </navigator>
+            <view class="solid-bottom mh-df"></view>
         </view>
     </view>
 
