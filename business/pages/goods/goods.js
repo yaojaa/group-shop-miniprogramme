@@ -79,7 +79,6 @@ Page({
         shareFriendsImgStart: false,
         shareFriendsImgs: [],
         template: {},
-        template2: {},
         shareCardConfig: {
             width: 750,
             goodsImg: {},
@@ -222,7 +221,7 @@ Page({
     openShareFriends() {
         if (!this.data.shareFriendsImgStart) {
             this.data.shareFriendsImgStart = true;
-            //util.drawShareFriends(this, drawGoods, drawBuyuser);
+            util.drawShareFriends(this, drawGoods, [], 'businessGoods');
         }
 
         this.setData({

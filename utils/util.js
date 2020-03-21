@@ -2,6 +2,7 @@ const qiniuUploader = require("./qiniuUploader");
 import Card from '../palette/card';
 import shareCard from '../palette/shareCard';
 import shareCard2 from '../palette/shareCard2';
+import shareCard3 from '../palette/shareCard3'; // 供应商海报
 const app = getApp();
 
 
@@ -550,10 +551,12 @@ const bezier = function(pots, amount) {
 }
 
 //绘制分享朋友圈图片
-function drawShareFriends(_this, res, buyuser) {
+function drawShareFriends(_this, res, buyuser, from) {
     var config = _this.data.shareCardConfig;
     var height = 0;
     var goods = res.goods;
+
+    console.log(res, buyuser)
 
     let goods_content = goods.goods_content.split(/[\r\n↵]/g);
     config.content.des = [];
@@ -583,7 +586,7 @@ function drawShareFriends(_this, res, buyuser) {
         shareCardConfig: _this.data.shareCardConfig
     }, () => {
 
-        config.qrcode.src = goods.xcx_qrcode;
+        config.qrcode.src = goods.qrcode;
         config.content.lineHeight = config.content.lineHeight || 56;
         config.content.fontSize = config.content.fontSize || 34;
         config.headImg.src = goods.user.headimg;
@@ -605,10 +608,16 @@ function drawShareFriends(_this, res, buyuser) {
                 config.height = height;
             })
             console.log(config);
-            _this.setData({
-                template: new shareCard().palette(config),
-                template2: new shareCard2().palette(config),
-            });
+            if(from == 'businessGoods'){
+                _this.setData({
+                    template: new shareCard3().palette(config),
+                });
+            }else{
+                _this.setData({
+                    template: new shareCard().palette(config),
+                    template2: new shareCard2().palette(config),
+                });
+            }
 
         })
 

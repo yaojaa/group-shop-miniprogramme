@@ -261,3 +261,10 @@ video{
   padding: 3px;
   height: 50rpx
 }
+
+.goods-cell-set{
+  padding-left: 30rpx;
+}
+.goods-cell-set button{
+  margin-right: 20rpx;
+}
