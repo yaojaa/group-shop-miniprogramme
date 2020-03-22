@@ -454,7 +454,7 @@ button {
 }
 
 .btn-reset {
-    padding: 0;
+    padding: 0 !important;
     line-height: 1.4;
     background: none !important;
 }

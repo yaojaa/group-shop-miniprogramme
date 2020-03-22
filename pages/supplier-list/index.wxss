@@ -1,5 +1,5 @@
 @import "../../utils/weui.wxss";
-
+@import "../../css/common.wxss";
 
 
 
@@ -126,4 +126,11 @@ padding: 20px
   border-radius: 50%;
   margin: 0 auto
   
+}
+.goods-panel-bd{
+  box-shadow: 0 0 0 ;
+}
+.goods-panel-bd .cover{
+  width: 140rpx;
+  height: 140rpx;
 }
