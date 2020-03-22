@@ -15,14 +15,15 @@ Page({
         address: {},
         self_address: [],
         goods_name: '',
-        seller: {},
+        supplier: {},
         delivery_method: 0,
         consignee: '',
         mobile: '',
         user_message: '',
         btn_load: false,
         loading: false,
-        address_load: false
+        address_load: false,
+        showAddressPanel:false
     },
     getUserAddress() {
         this.setData({
@@ -146,7 +147,11 @@ Page({
                 title:'已识别 请核对',
                 icon:'none'
             })
+
+
+
             this.setData({
+                showAddressPanel:true,
                 consignee:res.data.data[0].name,
                 mobile:res.data.data[0].mobile,
                 province: res.data.data[0].province_name,
@@ -187,7 +192,7 @@ Page({
                 /***处理快递自提****/
                 if(goods.delivery_method ==1){
 
-                     this.getUserAddress()
+                    // this.getUserAddress()
 
                 }else{
 
@@ -208,7 +213,7 @@ Page({
                 }
 
                  this.setData({
-            seller: goods.user,
+            supplier: goods.supplier,
             goods_name: goods.goods_name,
             delivery_method: goods.delivery_method
                     })
@@ -226,6 +231,8 @@ Page({
 
      */
     onLoad: function(options) {
+
+
 
         this.data.goods_id = options.goods_id
         this.data.from_id = options.from_id || ''
@@ -259,6 +266,8 @@ Page({
             totalNumer: totalNumer       
              })
 
+
+
    
     },
     inputConsignee(e) {
@@ -275,6 +284,11 @@ Page({
         this.setData({
             user_message: e.detail
         })
+    },
+    newAddress() {
+            wx.navigateTo({
+                url: '/pages/address-form/index?source=cart'
+            })
     },
     /**
      * 生命周期函数--监听页面显示

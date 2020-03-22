@@ -69,15 +69,25 @@
         </view>
     </i-panel>
  -->
+<i-panel>
 
 	<van-cell-group>
 		<van-cell icon="home-o" title="我的主页" is-link link-type="navigateTo" url="../userhome/index?id={{userInfo.store_id}}" />
 		<van-cell icon="friends-o" title="我的顾客 （{{fansNum}}）" is-link link-type="navigateTo" url="../fans-mg/index" />
 
-		<van-cell icon="friends-o" title="切换为供应商身份" is-link link-type="navigateTo" url="/business/pages/home/index" />
 
 	</van-cell-group>
+</i-panel>
 
+<i-panel>
+
+	<van-cell-group>
+
+		<van-cell icon="logistics" title="开通供应商主页" is-link link-type="navigateTo" url="/business/pages/home/index" />
+
+		<van-cell icon="logistics" title="切换为供应商身份" is-link link-type="navigateTo" url="/business/pages/home/index" />
+	</van-cell-group>
+</i-panel>
 
 
 

@@ -65,3 +65,18 @@
 .button-hover{
   color: #999
 }
+
+.textData{
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+
+}
+
+
+
+
+
+
+

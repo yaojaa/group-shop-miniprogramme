@@ -83,15 +83,43 @@ Page({
             id: options.id || ''
         })
 
+
+
+
+
         if (options.id) {
             this.getDetail()
             wx.setNavigationBarTitle({
                 title: '编辑地址'
             })
         }
+
+              wx.getClipboardData({
+          success:(res)=>{
+            //检测粘贴板是否含有省市区 含有则自动识别
+            
+            var reg = /.+?(省|市|自治区|自治州|县|区)/g
+
+            if(res.data.match(reg)){
+                this.setData({
+                    address_str:res.data
+                })
+     
+             this.bindTextAreaBlur()
+
+
+                }
+
+
+
+        
+
+          }
+        })
+
     },
 
-    setValue(){
+    setValue(e){
 
         const text= e.detail.value
 
@@ -108,23 +136,25 @@ Page({
 
     bindTextAreaBlur(e){
 
-        　　var text= e.detail.value.address_str
+        　　var text=  this.data.address_str || e.detail.value.address_str
 
               text = text.split('\n').join(' ');
 
-
         if(text==''){
-            return
+            return  wx.showToast({
+                title:'请先输入收件人地址信息',
+                icon:'none'
+            })
         }
-        
 
-
+        wx.showLoading()
         util.wx.post('/api/index/kuaibao_cloud_address_resolve',{
             text:text
         }).then(res=>{
             wx.showToast({
-                title:'已识别 请核对',
-                icon:'none'
+                title:'自动识别成功 请核对信息',
+                icon:'none',
+                delay:'3000'
             })
             this.setData({
                 consignee:res.data.data[0].name,

@@ -27,10 +27,10 @@
                         </navigator>
                         <navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none" wx:else>完善资料</navigator>
                     </view>
-                    <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
+                <!--     <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
                         <view class="text-sm mt-xs">我的粉丝</view>
-                    </navigator>
+                    </navigator> -->
                     <navigator url="../withdrawal/index" hover-class="none" class="text-center"  wx:if="{{!isCustome}}">
                         <view class="text-lg bold">¥ {{pending_money}}</view>
                         <view class="text-sm mt-xs">账户提现</view>

@@ -18,12 +18,12 @@ page{
 }
 
 .address_textarea{
-	width: 90%;
+	width: 100%;
 	display: block;
 	margin: 0 auto;
 	background: #f2f2f2;
 	padding: 8px;
-	height: 100px
+	height: 90px
 }
 
 .goods-cover-image{

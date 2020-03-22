@@ -878,7 +878,14 @@
 					"id": -1,
 					"name": "供应商管理订单",
 					"pathName": "business/pages/order-manage/index",
-
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 117,
+					"name": "代客下单",
+					"pathName": "business/pages/order-confirm/index",
+					"query": "goods_id=11&delivery_method=1",
 					"scene": null
 				}
 			]

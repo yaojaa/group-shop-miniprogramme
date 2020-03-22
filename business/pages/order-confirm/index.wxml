@@ -22,8 +22,8 @@
                     <view class="text-muted text-sm">提货点信息</view>
                 </view>
                 <van-cell-group>
-                    <van-field readonly label="联系人" value="{{seller.nickname}}" wx:if="{{seller.nickname}}" size="small" />
-                    <van-field readonly label="手机号" value="{{seller.mobile}}" wx:if="{{seller.mobile}}" size="small" />
+                    <van-field readonly label="联系人" value="{{supplier.nickname}}" wx:if="{{supplier.nickname}}" size="small" />
+                    <van-field readonly label="手机号" value="{{supplier.mobile}}" wx:if="{{supplier.mobile}}" size="small" />
                     <van-radio-group value="{{ address_id }}" bind:change="" wx:if="{{self_address.length>1}}">
                         <van-cell-group>
                             <van-cell clickable data-name="{{item.self_address_id}}" bind:click="onClick" size="small" wx:for="{{self_address}}" wx:key="{{index}}" value-class="self-ad-radio" bind:click="onAddressChange">
@@ -53,15 +53,7 @@
         </view>
         <view class="goods-panel ph-df white-bg mv-sm cf">
             <view class="goods-panel-hd pv-sm flex align-center">
-                <view class="flex-sub mr-df">
-                    <view class="flex align-center">
-                        <image src="{{seller.headimg}}" class="shop-tb mr-xs img-lg">
-                        </image>
-                         <view class="flex-sub text-hide">{{seller.nickname}}</view>
-                        <view class="flex-sub text-hide">{{goods_name}}</view>
-                    </view>
-                </view>
-                <view class="text-muted"></view>
+               {{goods_name}}
             </view>
             <view class="solid-bottom"></view>
             <view class="goods-panel-bd pb-df">
@@ -72,9 +64,11 @@
                             {{item.spec_name}} <text class="text-muted mt-xs text-sm">{{item.spec_desc}}</text>
                         </view>
                         <view class="text-justify bt-bar">
-                            <view class="price text-muted">￥{{item.spec_price}}</view>
-                            <view class="text-muted"><text>x </text>
-                                <text>{{item.item_num}}</text></view>
+                            <view class="price text-muted">￥{{item.agent_price}}</view>
+                            <view class="text-muted">
+                                <van-stepper value="{{ 1 }}" bind:change="countChange" />
+ 
+                                </view>
                         </view>
                     </view>
                 </view>
@@ -82,38 +76,30 @@
         </view>
 
 
-        <!--添加收件人-->
-
-             <view class="goods-panel-hd pv-sm flex align-center">
-                <view class="flex-sub mr-df">
-                    <view class="flex align-center">
-                        <view class="flex-sub text-hide">添加收件人</view>
-                        <view class="flex-sub text-hide" bindtap="goAddress">从顾客地址列表选择</view>
+          <view bindtap="goAddress"   hover-class="none" class="white-bg flex align-center p-df" >
+                    <van-icon name="location-o" />
+                    <view class="flex-sub mh-sm">
+                        <view class="flex align-center">
+                            <text class="bold text-lg mr-xs">{{address.consignee}}</text>
+                            <text class="text-muted">{{address.mobile}}</text></view>
+                        <view class="text-sm mt-xs"><text class="text-gray"></text>
+                            <text class="">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</text>
+                            <text class="f18" wx:if="{{!address_id}}">点击选择收件人</text>
+                        </view>
                     </view>
+                    <van-icon name="arrow" color="#999" />
                 </view>
-                <view class="text-muted"></view>
-            </view>
 
-          <view class="address" wx:if="{{delivery_method==1}}">
-               
-              <van-cell-group custom-class="mv-sm">
 
-       <!--      <van-field name="address" value="{{address}}"  type="textarea" placeholder="粘贴收件人电话，姓名，地址" autosize /> -->
-            <form bindsubmit="bindTextAreaBlur">
-                    <textarea class="address_textarea" name="address_str" value="{{address_str}}" bindchange="setValue" placeholder="粘贴收件人电话 姓名 地址可自动识别 " />
 
-                          <view class="center">
-                             <button   formType="submit"  style="display: inline-block;margin: 0 auto 10px">智能识别</button>
+         <view class="center p-df"  wx:if="{{!address.address_id}}">
+                    
+                             <button bindtap="newAddress"  class=" primary m-xs hollow  xl btn linenear_bg "  formType="submit"  > <van-icon name="add-o" color="#49b34d" />  新增收件地址</button>
+
+                                
                           </view>
-            </form>
 
 
-            <van-field name="consignee" value="{{consignee}}" label="收货人" input-align="right" placeholder="请输入姓名" />
-            <van-field name="mobile" value="{{mobile}}" label="联系电话" input-align="right" placeholder="请填写手机号" type="number" />
-            <van-field label="所在地区" value="{{province?province+'/'+city+'/'+district:''}}" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleAreaModal" />
-            <van-field name="address" value="{{address}}" label="详细地址" type="textarea" placeholder="请填写详细地址，不少于5个字" autosize />
-        </van-cell-group>
-            </view>
 
     </view>
     <i-message id="message" />

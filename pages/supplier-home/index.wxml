@@ -26,7 +26,7 @@
 
                     <view class="mt-xs des text-justify">
                        <view>
-                        <text class="text-muted text-sm ">采购：</text> <text class="coral-text ">¥388</text>
+                        <text class="text-muted text-sm ">采购：</text> <text class="coral-text ">¥{{item.agent_price}}</text>
                        </view>
                        <view class="flex align-center text-gray ">
                         <van-icon name="shopping-cart-o" size="36rpx" />
