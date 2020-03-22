@@ -7,6 +7,7 @@
         "i-custom-bar": "../../components/custom-bar/index",
         "van-popup": "../../vant/popup/index",
         "van-card": "../../vant/card/index",
-        "footerbar": "../../components/footerbar/index"
+        "footerbar": "../../components/footerbar/index",
+        "van-icon": "../../vant/icon/index"
     }
 }

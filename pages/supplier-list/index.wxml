@@ -1,39 +1,30 @@
-
 <view class="container ">
-
-<view class="list">
-  <view class="list-item" wx:for="{{suppList}}" data-id="{{item.supplier_id}}" >
-
-    <van-card data-id="{{item.supplier_id}}" bindtap="toSupphome"
-  desc="{{item.supplier_intro}}"
-  title="{{item.supplier_name}}"
-  thumb="{{  item.supplier_logo }}"
-/>
-
-<button size="mini" data-id="{{item.supplier_id}}" data-name="{{item.supplier_name}}" open-type="share">邀请小伙伴</button>
-
- 
-  </view>
-
-  </view>
-
-
-
-        <view class="weui-footer weui-footer_fixed-bottom">
-
-            <view class="weui-footer__links">
-
-            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">开心麻团儿</button>    
-
-            </view>
-
-            <view class="weui-footer__text">Copyright © 20018-2025 kaixinmatuan.cn</view>
-
+  <view class="goods-panel white-bg cf">
+    <view class="goods-panel-bd" wx:for="{{suppList}}" wx:key="index">
+      <view hover-class="none" class="flex p-df goods-panel-item" >
+        <image src="{{item.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm" data-id="{{item.supplier_id}}" bindtap="toSupphome"></image>
+        <view class="flex-sub por" data-id="{{item.supplier_id}}" bindtap="toSupphome">
+          <view class="text-hide two-line  bold">{{item.supplier_name}}</view>
+          <view class="text-muted mt-xs text-sm des">{{item.supplier_intro}}</view>
+          <!-- <view class="mt-xs des text-justify"></view> -->
         </view>
+        <view class="flex align-center">
+          <button size="mini" data-id="{{item.supplier_id}}" data-name="{{item.supplier_name}}" open-type="share" class="btn-reset p-n coral-text">
+            <van-icon name="add-o" size="30rpx" /> 邀请小伙伴
+          </button>
+        </view>
+      </view>
+      <view class="solid-bottom mh-df"></view>
+    </view>
+  </view>
 
-
-
-
-</view> 
-
+  <!-- <view class="weui-footer weui-footer_fixed-bottom">
+    <view class="weui-footer__links">
+      <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">
+        开心麻团儿
+      </button>
+    </view>
+    <view class="weui-footer__text">Copyright © 20018-2025 kaixinmatuan.cn</view>
+  </view> -->
+</view>
 <footerbar active="1" />
