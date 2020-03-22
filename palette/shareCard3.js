@@ -15,8 +15,8 @@ export default class LastMayday {
       //二维码
       {
         type: 'image',
-        url: config.qrcode.src,
-        // url: config.headImg.src,
+        // url: config.qrcode.src,
+        url: "https://static.kaixinmatuan.cn/cfcd208495d565ef66e7dff9f98764da201908041106007991.png",
         css: {
           top: `${desLeft}rpx`,
           left: `${desLeft}rpx`,
@@ -62,7 +62,7 @@ export default class LastMayday {
         type: 'text',
         text: config.userName,
         css: {
-          top: `${desLeft + (headImgSize/2-34)/2}rpx`,
+          top: `${desLeft + (headImgSize/2-30)/2}rpx`,
           left: `${desLeft + headImgSize + 20}rpx`,
           color: '#000',
           fontSize: "38rpx",
@@ -75,7 +75,7 @@ export default class LastMayday {
         type: 'text',
         text: '邀请您上架转发',
         css: {
-          top: `${desLeft + headImgSize/2 + 20}rpx`,
+          top: `${desLeft + headImgSize/2 + 10}rpx`,
           left: `${desLeft + headImgSize + 20}rpx`,
           color: '#000',
           fontSize: "40rpx",
