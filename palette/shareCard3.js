@@ -2,7 +2,7 @@ export default class LastMayday {
   palette(config) {
     const width = config.width || 750; //宽度
     const imgHeight = 600; //商品图片高度
-    const headImgSize = 160; //二维码尺寸
+    const headImgSize = 180; //二维码尺寸
     const desLeft = config.content.margin || 30; //文章两侧边距
     const qrcodeSize = 60; //规格高度
     const dpr = config.content.des[0].width ? (width - desLeft * 2) / config.content.des[0].width : 1;
