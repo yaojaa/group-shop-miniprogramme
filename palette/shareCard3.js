@@ -15,8 +15,8 @@ export default class LastMayday {
       //二维码
       {
         type: 'image',
-        // url: config.qrcode.src,
-        url: "https://static.kaixinmatuan.cn/cfcd208495d565ef66e7dff9f98764da201908041106007991.png",
+        url: config.qrcode.src,
+        // url: "https://static.kaixinmatuan.cn/cfcd208495d565ef66e7dff9f98764da201908041106007991.png",
         css: {
           top: `${desLeft}rpx`,
           left: `${desLeft}rpx`,
