@@ -586,7 +586,6 @@ function drawShareFriends(_this, res, buyuser, from) {
         shareCardConfig: _this.data.shareCardConfig
     }, () => {
 
-        config.qrcode.src = goods.qrcode;
         config.content.lineHeight = config.content.lineHeight || 56;
         config.content.fontSize = config.content.fontSize || 34;
         config.headImg.src = goods.user.headimg;
@@ -609,10 +608,12 @@ function drawShareFriends(_this, res, buyuser, from) {
             })
             console.log(config);
             if(from == 'businessGoods'){
+                config.qrcode.src = goods.qrcode;
                 _this.setData({
                     template: new shareCard3().palette(config),
                 });
             }else{
+                config.qrcode.src = goods.xcx_qrcode;
                 _this.setData({
                     template: new shareCard().palette(config),
                     template2: new shareCard2().palette(config),
