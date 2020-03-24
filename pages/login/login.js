@@ -59,9 +59,38 @@ Page({
           app.openid = openid;
 
           app.login_third(e.detail).then((res)=>{ 
-          console.group('登陆成功:',res)
+
+
+           const d = res.data.data
+
+           if(d.supplier){
+
+            wx.redirectTo({
+              url:'/business/pages/home/index'
+            })
+
+           } else if(d.store){
+
+              wx.redirectTo({
+                url:'../home/index'
+              })
+
+           }else{
+
+             wx.redirectTo({
+                url:'../userhome/index'
+              })
+
+           }
+
+
+
+
+
+
+
           wx.hideLoading()
-                      app.redirect2Home() 
+                      //app.redirect2Home() 
                     })
     .catch( e => console.log(e) )
 

@@ -1,5 +1,5 @@
 @import "../../utils/weui.wxss";
-
+@import "../../css/common.wxss";
 
 
 
@@ -126,4 +126,24 @@ padding: 20px
   border-radius: 50%;
   margin: 0 auto
   
+}
+.goods-panel-bd{
+  box-shadow: 0 0 0 ;
+}
+.goods-panel-bd .cover{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.no-content {
+    background: url('https://static.kaixinmatuan.cn/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.L93aAkSP1WBu55d11a6a3dd783840a0c548161476571.jpg');
+    background-color: #ffffff;
+    background-size: 50%;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 370rpx;
+    line-height: 315px;
+    text-align: center;
+    color: #888
 }

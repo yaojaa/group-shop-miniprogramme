@@ -48,6 +48,7 @@
         "pages/goods-up/index",
         "pages/upSuccess/index",
         "pages/supplier-home/index",
+        "pages/user-home/index",
         "pages/supplier-list/index",
         "pages/my/index"
     ],

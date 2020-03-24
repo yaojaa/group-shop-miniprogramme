@@ -21,6 +21,7 @@ Page({
         Custom: app.globalData.Custom,
         show_tips: false,
         orderList: [],
+        isCustome: true,
         fansNum: '...',
     },
     closleTips() {
@@ -42,14 +43,10 @@ Page({
 
     getProList() {
         util.wx.get('/api/user/get_bought_store_goods').then(res => {
-            if (res.data.code == 200) {
                 this.setData({
-                    proList: res.data.data.goods
+                    proList: res.data.data.goods,
+                    is_loading: false
                 })
-            }
-            this.setData({
-                isloading: false
-            })
         })
     },
 
@@ -122,6 +119,21 @@ Page({
     onshow() {
         this.getOrderCount()
     },
+    goSupperReg(){
+        wx.navigateTo({
+            url:'/business/pages/create-home/index'
+        })
+
+    },
+
+    goPublish(){
+        wx.navigateTo({
+            url:'../publish/publish'
+        })
+
+    },
+
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -150,8 +162,7 @@ Page({
 
         this.data.cpage = 1
         this.data.goodslist = []
-        this.get_store_info()
-        this.getGoodsList()
+        this.getProList()
     },
     getOrderCount() {
         util.wx.get('/api/user/get_order_count_groupby_static').then(res => {
@@ -164,191 +175,13 @@ Page({
             }
         })
     },
-    goCreate() {
-        wx.redirectTo({
-            url: '../create_shop/index'
-        })
-    },
+   
+   
 
-    goOrders() {
-        wx.redirectTo({
-            url: '../new-order-list/index'
-        })
-    },
-
-    goMySupplier() {
-        wx.redirectTo({
-            url: '../supplier-list/index'
-        })
-    },
-    goMy(){
-       wx.redirectTo({
-            url: '../my/index'
-        })
-
-    },
-
-    goHome() {
-
-        wx.redirectTo({
-            url: '../userhome/index'
-        })
-
-
-    },
-
-    get_store_info() {
-        util.wx.get('/api/seller/get_store_money').then(res => {
-            this.setData({
-                pending_money: res.data.data.pending_money,
-                fansNum :res.data.data.fans_count 
-                 })
-
-
-           
-             this.getOrderList()
-            
-
-
-        
-        })
-
-
-
-    },
-
-    ///////////
-    //获取最新订单 //
-    ///////////
-    ///
-    getOrderList() {
-
-        util.wx.get('/api/seller/get_order_list', {
-                // orderdate: 1,
-                order_status: 1,
-                pagesize: 20
-            })
-            .then(res => {
-
-                if (res.data.code == 200) {
-
-                    this.setData({
-                        orderList: res.data.data.order_list
-                    })
-                }
-            })
-    },
-
-    managePage(e) {
-        let id = e.currentTarget.dataset.id
-        let delivery_method = e.currentTarget.dataset.delivery_method
-        let goods_name = e.currentTarget.dataset.name.slice(0, 10)
-
-        wx.navigateTo({
-            url: '../ordermanage/list?id=' + id + '&delivery_method=' + delivery_method + '&goods_name=' + goods_name
-        })
-
-    },
+   
     addListen:util.sellerListner,
 
-
-    getGoodsList: function() {
-
-        this.setData({
-            is_loading: true
-        })
-
-        util.wx.get('/api/seller/get_goods_list', {
-                cpage: this.data.cpage,
-                pagesize: 15
-            })
-            .then(res => {
-
-                if (res.data.code == 200) {
-                    this.setData({
-                        goodslist: this.data.goodslist.concat(res.data.data.goodslist),
-                        is_loading: false
-                    })
-
-                    this.data.goodslist.forEach(item => {
-
-                        if (item._order_status1_count > 0) {
-                            this.setData({
-                                hasNewOrder: true
-                            })
-                        }
-
-
-
-                    })
-
-
-
-
-                    this.totalpage = res.data.data.page.totalpage
-
-
-                } else {
-                    this.setData({
-                        is_loading: false
-                    })
-                }
-            }).catch(e=>{
-
-
-                wx.showToast({
-                    title:'读取超时 请稍后重试'
-                })
-
-                this.setData({
-                        is_loading: false
-                    })
-
-
-            })
-
-    },
-    new_btn: function() {
-        wx.navigateTo({
-            url: '../publish/publish'
-        })
-    },
-    fansPage() {
-        wx.navigateTo({
-            url: '../fans/index'
-        })
-    },
-    goSite() {
-        console.log(this.data.userInfo.store_id)
-        wx.navigateTo({
-            url: '../userhome/index?id=' + this.data.userInfo.store_id
-        })
-    },
-    editPage(e) {
-        let url = e.currentTarget.dataset.url
-        wx.navigateTo({
-            url: '../publish/publish?goods_id=' + url,
-        })
-    },
-    detailPage(e) {
-        let url = e.currentTarget.dataset.url
-        let name = e.currentTarget.dataset.name
-        let delivery_method = e.currentTarget.dataset.delivery_method
-
-        wx.navigateTo({
-            url: '../ordermanage/list?goods_id=' + url + '&goods_name=' + name + '&delivery_method=' + delivery_method,
-        })
-    },
-    //复制商品
-    copyGoods(e) {
-        const goods_id = e.currentTarget.dataset.id
-        wx.navigateTo({
-            url: '../publish/publish?copy=' + goods_id
-        })
-
-
-    },
-
+    
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -377,11 +210,7 @@ Page({
 
         this.data.cpage = 1
         this.data.goodslist = []
-        this.getGoodsList()
-        this.getOrderCount()
-        this.get_store_info()
-
-
+     
     },
 
     /**
@@ -392,7 +221,7 @@ Page({
         ++this.data.cpage
 
         if (this.data.cpage <= this.totalpage) {
-            this.getGoodsList(); //重新调用请求获取下一页数据 
+           // this.getGoodsList(); //重新调用请求获取下一页数据 
         } else {
             this.data.cpage = this.totalpage
         }

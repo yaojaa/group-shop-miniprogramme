@@ -220,6 +220,7 @@ Page({
             path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id + '&from_id=' + uid
         }
     },
+
     openShareFriends() {
         if (!this.data.shareFriendsImgStart) {
             this.data.shareFriendsImgStart = true;
@@ -424,10 +425,7 @@ Page({
         util.wx.get('/api/index/goods_card', {
             goods_id: this.data.goods_id
         }).then(res => {
-
-            if (res.data.code == 200) {
                 this.shareImg = res.data.data.path
-            }
 
         }).catch(e => {
             return
@@ -605,10 +603,10 @@ Page({
 
         this.data.goods_id = option.goods_id || option.id || option
         this.data.from_id = option.from_id || ''
-
+        
+        this.getShareImg()
         this.getGoodsInfo()
 
-        this.getShareImg()
 
         this.add_access()
 

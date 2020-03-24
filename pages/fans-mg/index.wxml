@@ -3,8 +3,7 @@
 
 <view class="container">
     <view class="text-justify ph-df pb-sm pt-df">
-        <view class="f14">粉丝数据({{fansNum}}) </view>
-        <text class="f12">不仅要粉丝数量 更要粉丝质量哦</text> 
+        <view class="f14">顾客消费数据({{fansNum}}) </view>
 <!--         <van-button icon="star-o" type="primary" plain size="mini" >群发通知</van-button>
  -->    </view>
    <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />

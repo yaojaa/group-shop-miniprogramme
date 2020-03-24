@@ -181,7 +181,14 @@
                         </view>
                         <view class="weui-cell__bd"></view>
                     </view>
-                    <icon wx:if="{{spec.length >1 }}" data-index="{{index}}" bindtap="removeGoods" color="#ccc" class="close" type="clear" size="26" />
+
+                    <view wx:if="{{spec.length >1 }}" class="goods-cell-set">
+                        <button bindtap="upGoods" data-index="{{index}}" disabled="{{index == 0}}" size="mini">上移</button>
+                        <button bindtap="downGoods" data-index="{{index}}" disabled="{{index == spec.length-1}}" size="mini">下移</button>
+                        <button bindtap="topGoods" data-index="{{index}}" disabled="{{index == 0}}" size="mini">置顶</button>
+
+                        <icon bindtap="removeGoods" data-index="{{index}}" color="#ccc" class="close" type="clear" size="26" />
+                    </view>
                 </view>
                 <view class="new_add_btn" bindtap="addGoods">
                     <i-icon type="add" bindtap="addNew" size="20" color="#49b34d" /> 新增规格

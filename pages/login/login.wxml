@@ -6,7 +6,7 @@
 
         <image src="https://static.kaixinmatuan.cn/logo.png" class="userAvatar"></image>
 
-       <view class="textData">共有 <text class="bold">333838</text>个活动 累计服务<text class="bold">8884487</text>次</view>
+     <!--   <view class="textData">共有 <text class="bold">333838</text>个活动 累计服务<text class="bold">8884487</text>次</view> -->
 
 
 	 </view>

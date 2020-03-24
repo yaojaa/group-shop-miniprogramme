@@ -456,6 +456,44 @@ Page({
         })
     },
 
+    //上移商品
+    upGoods: function(e) {
+        let index = e.currentTarget.dataset.index
+        let good = this.data.spec.splice(index, 1)
+        // console.log(good)
+
+        this.data.spec.splice(index-1, 0, good[0])
+        // console.log(this.data.spec)
+        this.setData({
+            spec: this.data.spec
+        })
+    },
+
+    //置顶商品
+    topGoods: function(e) {
+        let index = e.currentTarget.dataset.index
+        let good = this.data.spec.splice(index, 1)
+        // console.log(good)
+
+        this.data.spec.splice(0, 0, good[0])
+        // console.log(this.data.spec)
+        this.setData({
+            spec: this.data.spec
+        })
+    },
+
+    //下移商品
+    downGoods: function(e) {
+        let index = e.currentTarget.dataset.index
+        let good = this.data.spec.splice(index, 1)
+        // console.log(good)
+
+        this.data.spec.splice(index+1, 0, good[0])
+        // console.log(this.data.spec)
+        this.setData({
+            spec: this.data.spec
+        })
+    },
 
 
     onShow: function(option) {
@@ -933,6 +971,8 @@ Page({
 
     onLoad: function(option) {
 
+
+
            //未登录 弹出授权弹窗
         if (!app.globalData.userInfo) {
             setTimeout(() => {
@@ -940,7 +980,14 @@ Page({
                     showAuth: true
                 })
             }, 2000)
+        }else{
+                wx.setNavigationBarTitle({
+                  title: app.globalData.userInfo.nickname+'您正在发布活动'
+                })
         }
+
+
+
 
 
 

@@ -292,7 +292,7 @@ Page({
     },
     new_btn: function() {
         wx.navigateTo({
-            url: '../publish/publish'
+            url: '../withdrawal/index'
         })
     },
     fansPage() {
@@ -305,30 +305,6 @@ Page({
         wx.navigateTo({
             url: '../userhome/index?id=' + this.data.userInfo.store_id
         })
-    },
-    editPage(e) {
-        let url = e.currentTarget.dataset.url
-        wx.navigateTo({
-            url: '../publish/publish?goods_id=' + url,
-        })
-    },
-    detailPage(e) {
-        let url = e.currentTarget.dataset.url
-        let name = e.currentTarget.dataset.name
-        let delivery_method = e.currentTarget.dataset.delivery_method
-
-        wx.navigateTo({
-            url: '../ordermanage/list?goods_id=' + url + '&goods_name=' + name + '&delivery_method=' + delivery_method,
-        })
-    },
-    //复制商品
-    copyGoods(e) {
-        const goods_id = e.currentTarget.dataset.id
-        wx.navigateTo({
-            url: '../publish/publish?copy=' + goods_id
-        })
-
-
     },
 
     /**

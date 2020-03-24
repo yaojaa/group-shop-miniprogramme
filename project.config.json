@@ -65,7 +65,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 72,
+			"current": 98,
 			"list": [
 				{
 					"id": 0,
@@ -752,7 +752,7 @@
 					"id": 98,
 					"name": "business/pages/goods/goods",
 					"pathName": "business/pages/goods/goods",
-					"query": "goods_id=1492",
+					"query": "id=10",
 					"scene": null
 				},
 				{
@@ -879,6 +879,7 @@
 					"name": "供应商管理订单",
 					"pathName": "business/pages/order-manage/index",
 					"query": "",
+<<<<<<< HEAD
 					"scene": null
 				},
 				{
@@ -886,6 +887,8 @@
 					"name": "代客下单",
 					"pathName": "business/pages/order-confirm/index",
 					"query": "goods_id=11&delivery_method=1",
+=======
+>>>>>>> 55bb5a56951a096001c94a5cff69b53739fe2083
 					"scene": null
 				}
 			]
