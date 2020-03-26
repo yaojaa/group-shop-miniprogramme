@@ -27,6 +27,7 @@ Page({
     util.wx
       .get('/api/seller/get_supplier_goods?supplier_id=' + this.id)
       .then(res => {
+
         this.setData({
           goodsList: res.data.data.list
         })

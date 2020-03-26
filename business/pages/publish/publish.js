@@ -1004,16 +1004,13 @@ Page({
                         if(item.freight_tpl_id == this.data.freight_tpl_id)
                         {
                             this.setData({
-                                freight_tpl_name:item.freight_tpl_name
+                                freight_tpl_name:item.freight_tpl_name 
                             })
                         }
                     })
 
-
                     this.freight_tpl_list = lists
                 
-
-
             })
     },
 

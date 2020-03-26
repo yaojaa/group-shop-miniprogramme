@@ -258,9 +258,9 @@
                     </view>
                     <view class="weui-cell__bd">
                     </view>
-                    <view class="weui-cell__ft">
+                    <view class="weui-cell__ft" bindtap="toPostageSetting">
                         <view class="weui-icon-warn" >
-                       <text bindtap="toPostageSetting" >{{freight_tpl_name}}</text>  
+                       <text  >{{freight_tpl_name}}</text>  
                        <i-icon type="enter" size="26" />
 
                         </view>

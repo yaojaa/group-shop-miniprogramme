@@ -166,7 +166,7 @@ Page({
 
     getGoodsInfo() {
 
-        util.wx.get('/api/supplier/get_goods_detail', {
+        util.wx.get('/api/seller/get_supplier_goods_detail', {
                 goods_id: this.data.supid 
             })
             .then(res => {

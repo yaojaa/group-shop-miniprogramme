@@ -158,6 +158,9 @@ App({
                         this.globalData.token = res.data.data.token
                         this.globalData.userInfo = res.data.data.user
                         this.globalData.userInfo.store_id = res.data.data.store && res.data.data.store.store_id || ''
+                         this.globalData.userInfo.store = res.data.data.store || ''
+                         this.globalData.userInfo.supplier = res.data.data.supplier || ''
+
                         console.group('储存登录userInfo')
                         wx.setStorage({ //存储到本地
                             key: "userInfo",

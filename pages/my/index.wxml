@@ -83,9 +83,9 @@
 
 	<van-cell-group>
 
-		<van-cell icon="logistics" title="开通供应商主页" is-link link-type="navigateTo" url="/business/pages/home/index" />
+		<van-cell icon="logistics" wx:if="{{!is_supperlier}}" title="开通供应商主页" is-link link-type="navigateTo" url="/business/pages/create-home/index" />
 
-		<van-cell icon="logistics" title="切换为供应商身份" is-link link-type="navigateTo" url="/business/pages/home/index" />
+		<van-cell icon="logistics" wx:else title="切换为供应商身份" is-link link-type="navigateTo" url="/business/pages/home/index" />
 	</van-cell-group>
 </i-panel>
 

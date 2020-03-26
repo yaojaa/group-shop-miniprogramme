@@ -16,8 +16,8 @@
         </view>
     <view class="tabsArea">
         <van-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-            <van-tab key="3" title="待发货"></van-tab>
-            <van-tab key="4" title="已发货"></van-tab>
+            <van-tab name="3" title="待发货"></van-tab>
+            <van-tab name="4" title="已发货"></van-tab>
         </van-tabs>
     </view>
     <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有

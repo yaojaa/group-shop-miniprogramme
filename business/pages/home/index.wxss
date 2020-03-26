@@ -69,6 +69,7 @@
     width: 690rpx;
     margin: 25rpx auto;
     border-radius: 8rpx;
+    margin-bottom: 120px
 }
 
 .info-box {
@@ -145,4 +146,22 @@
     padding: 10px 30px;
     color: #fff;
     line-height: 1.5
+}
+
+.hollow{
+
+color:#49b34d;
+border-radius:50rpx;
+padding:0 15px!important;
+background:#f9fff5;
+work-break:keep-all;
+ white-space:nowrap;
+ margin: 0 auto;
+
+}
+
+.hollow::after{ border: none; }
+
+.goods-panel-bd{
+    padding-bottom: 10px
 }

@@ -323,5 +323,7 @@ type="warning"
             <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
         </van-cell-group>
     </van-dialog>
+    <van-dialog id="van-dialog" />
+
     <wux-gallery id="wux-gallery" />
 </view>

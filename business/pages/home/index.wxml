@@ -1,6 +1,5 @@
 <view class="container gray-wrap cf">
-     <van-tabbar   active-color="#999"
- >
+     <van-tabbar   active-color="#999">
   <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
   <van-tabbar-item bindtap="goOrder" icon="orders-o">订单</van-tabbar-item>
   <van-tabbar-item bindtap="goActing"  icon="friends-o">代理</van-tabbar-item>
@@ -76,12 +75,12 @@
                     <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line  bold title">
-                            {{item.goods_name}}
+                            {{item.goods_name}}    
                         </view>
-                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 939</text>
+                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 {{item.sold_number}}             <text style="color:#19be6b" wx:if="{{item.is_on_sale==2}}">已下架</text>
+</text>
 
-            <text style="color:#19be6b" wx:if="{{item.is_on_sale==1}}">上架销售中</text>
-            <text style="color:#19be6b" wx:if="{{item.is_on_sale==2}}">已下架</text>
+        
 
             {{is_on_sale}}
 
@@ -90,14 +89,21 @@
                     </view>
                 </navigator>
 
- <van-grid column-num="4">
-  <van-grid-item  bindtap="goEdit" data-goods_id="{{item.goods_id}}" text="修改" />
-  <van-grid-item  bindtap="removeGoods" data-goods_id="{{item.goods_id}}" text="删除" />
 
-  <van-grid-item text="下架"   data-index="{{index}}"  bindtap="changOnSale" data-status="{{item.is_on_sale}}"  wx:if="{{item.is_on_sale==1}}" data-goods_id="{{item.goods_id}}"/>
-  <van-grid-item text="上架"  bindtap="changOnSale" data-status="{{item.is_on_sale}}" wx:if="{{item.is_on_sale==2}}" data-index="{{index}}"  data-goods_id="{{item.goods_id}}"/>
-  <van-grid-item  text="订单"  bindtap="goGoodsOrder" data-goods_id="{{item.goods_id}}" data-goods_name="{{item.goods_name}}" /> 
-</van-grid>
+<view  style="display:flex; justify-content:center">
+
+    <button size="mini" class="hollow"  bindtap="goEdit" data-goods_id="{{item.goods_id}}" text="修改" >修改</button>
+  <button size="mini" class="hollow"  bindtap="removeGoods" data-goods_id="{{item.goods_id}}" text="删除" >删除</button>
+
+  <button size="mini" class="hollow" text="下架"   data-index="{{index}}"  bindtap="changOnSale" data-status="{{item.is_on_sale}}"  wx:if="{{item.is_on_sale==1}}" data-goods_id="{{item.goods_id}}">下架</button>
+
+  <button size="mini" class="hollow" text="上架"  bindtap="changOnSale" data-status="{{item.is_on_sale}}" wx:if="{{item.is_on_sale==2}}" data-index="{{index}}"  data-goods_id="{{item.goods_id}}">上架</button>
+
+  <button size="mini" class="hollow"  text="订单"  bindtap="goGoodsOrder" data-goods_id="{{item.goods_id}}" data-goods_name="{{item.goods_name}}" > 订单</button>
+
+
+</view>
+
             </view>
         </view>
     </view>

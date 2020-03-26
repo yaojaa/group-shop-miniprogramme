@@ -138,14 +138,13 @@ Page({
             this.setData({
                 userInfo: app.globalData.userInfo
             })
-            wx.getStorage({
-                key: 'show_tips',
-                fail: (res) => {
-                    this.setData({
-                        show_tips: true
-                    })
-                }
-            })
+
+            if(app.globalData.userInfo.supplier){
+                this.setData({
+                    is_supperlier:true
+                })
+            }
+           
         }
 
 

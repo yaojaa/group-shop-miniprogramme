@@ -71,7 +71,9 @@
             "pages/supplier_set/index",
             "pages/setting-list/index",
             "pages/base-info/index",
-            "pages/order-manage/index"
+            "pages/order-manage/index",
+            "pages/paySuccess/index"
+
 
         ]
     }],

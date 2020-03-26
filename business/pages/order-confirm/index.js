@@ -23,7 +23,8 @@ Page({
         btn_load: false,
         loading: false,
         address_load: false,
-        showAddressPanel:false
+        showAddressPanel:false,
+        shipping_money:0
     },
     getUserAddress() {
         this.setData({
@@ -99,6 +100,36 @@ Page({
                 })
             }
         })
+    },
+
+    countChange(e){
+
+        console.log(e)
+
+        const index = e.currentTarget.dataset.index
+        const value = e.detail
+
+
+         this.data.cart[index].item_num = value
+
+
+        var num = 0
+        var price = 0
+
+        this.data.cart.forEach(item=>{
+            console.log(item.agent_price)
+            num += item.item_num
+            price += item.agent_price*1000 * item.item_num
+
+        })
+
+        this.setData({
+            totalNumer:num,
+            amountMoney:price/1000
+
+        })
+
+
     },
 
     goAddress(){
@@ -178,6 +209,10 @@ Page({
 
     getGoodsInfo(){
         wx.showLoading()
+
+
+        getApp().setWatcher(this.data, this.watch, this); // 设置监听器
+
         util.wx.get('/api/supplier/get_goods_detail', {
                 goods_id: this.data.goods_id
             })
@@ -226,6 +261,17 @@ Page({
             })
     },
 
+    watch: {
+        address_id: (newValue, val, context) => {
+
+
+           context.address_id = newValue
+
+           context.get_shipping_money()
+        }
+
+    },
+
     /**
      * 生命周期函数--监听页面加载 /order/create_order
 
@@ -242,18 +288,26 @@ Page({
         let amountMoney = 0;
         let totalNumer = 0
         let cartSource = wx.getStorageSync('cart')
+
+        if(!cartSource){
+
+
+            wx.navigateBack()
+
+            return wx.showToast({
+                title:'您没有选择商品',
+                icon:'none'
+            })
+        }
+
+        console.log(cartSource)
         let cart = typeof cartSource === 'string' ? JSON.parse(cartSource) : cartSource;
 
-        // let goodsSource = wx.getStorageSync('goods');
-
-        // let goods = typeof goodsSource === 'string' ? JSON.parse(goodsSource) : goodsSource;
-
+        
 
         cart.map(value => {
             amountMoney += value.agent_price * 1000 * parseInt(value.item_num)
             totalNumer += parseInt(value.item_num)
-
-
         })
 
 
@@ -266,9 +320,6 @@ Page({
             totalNumer: totalNumer       
              })
 
-
-
-   
     },
     inputConsignee(e) {
         this.setData({
@@ -307,7 +358,6 @@ Page({
         this.setData({
             loading: true
         })
-        wx.showLoading()
 
         const specs = this.data.cart.map(item => {
             return {
@@ -336,7 +386,7 @@ Page({
         console.log(postData)
 
 
-        util.wx.post('/api/order/create_order', Object.assign({
+        util.wx.post('/api/seller/create_valet_order', Object.assign({
             specs: specs,
             user_message: this.data.user_message,
             goods_id: this.data.goods_id,
@@ -346,6 +396,7 @@ Page({
                 this.pay(res.data.data)
 
         }, (e) => {
+            console.log('reject1111')
             this.setData({
                 loading: false
             })
@@ -354,10 +405,15 @@ Page({
                 icon: 'none'
             })
 
+
         }).catch(e => {
             wx.showToast({
                 title: '服务器出小差儿了' + e,
                 icon: 'none'
+            })
+
+              this.setData({
+                loading: false
             })
         })
 
@@ -400,6 +456,26 @@ Page({
         //       }
         //          }
         //          )
+
+    },
+
+       //获取邮费
+    get_shipping_money(){
+
+         util.wx.get('/api/goods/get_shipping_money', {
+                goods_id: this.data.goods_id,
+                address_id:this.data.address_id,
+                goods_type:1
+            })
+            .then(res => {
+
+
+                this.setData({
+                    shipping_money:parseInt(res.data.data)
+                })
+
+
+            })
 
     },
 
@@ -544,30 +620,5 @@ Page({
     onUnload: function() {
        this.clearTimer()
 
-    },
-
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    },
-    formSubmit: function(e) {
-        util.formSubmitCollectFormId.call(this, e)
     }
 })

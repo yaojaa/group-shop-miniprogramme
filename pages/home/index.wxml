@@ -22,9 +22,9 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}} </view>
-                        <navigator  class="mini-tag mt-xs" hover-class="none" hover-class="none" >专属主页
-                        </navigator>
+                        <view class="user-name mr-sm">{{userInfo.nickname}} </view>
+                        <text   bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none" >我的专属主页
+                        </text>
                        
                     </view>
                 <!--     <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">

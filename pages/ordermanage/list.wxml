@@ -175,6 +175,12 @@
                     >{{btn.txt}}</button>
             </block>
 
+            <view class="mt-sm f12 text-warning" wx:if="{{item.supplier_id !== 0}}">
+
+                由“{{item.supplier.supplier_name}}”代发货
+                
+            </view>
+
             <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">
                 <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}">
                     物流信息

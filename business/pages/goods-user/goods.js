@@ -457,10 +457,15 @@ Page({
 
     getGoodsInfo() {
 
-        util.wx.get('/api/supplier/get_goods_detail', {
+        util.wx.get('/api/seller/get_supplier_goods_detail', {
                 goods_id: this.data.goods_id 
             })
             .then(res => {
+
+                console.log(res)
+
+
+
                 if (res.data.code == 200) {
 
                     const d = res.data.data
@@ -509,41 +514,32 @@ Page({
                     this.wuxCountDown(formatDateTime(d.goods.end_time))
 
 
-                    this.data.seller = d.goods.user,
-                        this.data.store_id = d.goods.store.store_id
+                    this.data.seller = d.goods.user
 
-                    //显示管理面板
+                }
+            }).catch(res=>{
+                console.log(res)
 
-                    if (this.data.seller.user_id == app.globalData.userInfo.user_id) {
-                        console.log('是管理')
 
-                        this.setData({
-                            showPanel: true
+                if (res.data.code == -113 || res.data.code == -114 || res.data.code == -115) {
+
+                    Dialog.alert({
+                      title: '您无权查看该产品',
+                      message: '请联系相关人员开通权限'
+                    }).then(() => {
+
+                        console.log('e',1111)
+
+                        wx.redirectTo({
+                            url:'/pages/login/login'
                         })
-
-                    }
-
+                      // on close
+                    })
 
 
                 }
-            }, res => {
-                wx.showToast({
-                    title: '商品不存在啦',
-                    icon: 'none'
-                })
-
-                setTimeout(() => {
-
-                    wx.redirectTo({
-                        url: '../home/index'
-                    })
-
-                }, 3000)
 
 
-
-            }).catch(e => {
-                return
             })
     },
     onHide: function() {

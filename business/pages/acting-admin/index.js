@@ -233,6 +233,9 @@ Page({
 
                         const {supplier_name,supplier_id } =app.globalData.userInfo.identity
 
+
+                        console.log('business/pages/acting-apply/index' + '?supplier_id=' + supplier_id)
+
                         return {
                             title: supplier_name + '诚邀您的加入',
                             imageUrl: 'https://static.kaixinmatuan.cn/invit.jpg',

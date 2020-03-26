@@ -6,7 +6,7 @@ const util = require('../../../utils/util.js')
 
 Page({
     data: {
-        tab: 0,
+        tab: 3,
         current: "tab1",
         visible: false,
         goods_name: "",
@@ -165,12 +165,16 @@ Page({
               title: '管理订单'+ (optiton.goods_name || '') 
           })
     },
-    handleTab({ detail }) {
-        console.log(detail)
+    handleTab(e) {
+
+        console.log(e)
+
+        const index = e.detail.index
+
         this.setData({
             tab: detail.key,
             cpage: 1,
-            search_order_status: detail.key
+            search_order_status: index
         })
 
         this.getOrderList()

@@ -71,12 +71,12 @@
                 <text class="text-sm n-bold"> /起</text>
             </view>
             <view class="text-sm text-muted">访问人数 {{goods.pageview_count+1
-                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
+                }} 已售 {{goods.sold_number}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
           
         </view>
-        <view class="sale-panel-fd {{goods._expires !==1?'off':''}}">
+        <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
             <view class="marker"></view>
-            <view wx:if="{{countdownTime && goods._expires ==1 }}">
+            <view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
                 <view class="tit">距离结束</view>
                 <view class="count-down">
                     <text class="time-area">{{days}}</text><text class="space">:</text>
@@ -86,7 +86,7 @@
                 </view>
             </view>
             <view wx:else>
-                {{['','开团中','尚未开始','已结束'][goods._expires]}}
+                {{['','开团中','尚未开始','已结束'][goods.goods_expires]}}
             </view>
         </view>
     </view>

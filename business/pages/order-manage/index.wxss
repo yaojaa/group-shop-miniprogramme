@@ -70,6 +70,7 @@ background:#c90;
     padding: 15rpx 15px 20rpx;
     color:#333;
     position: relative;
+    text-align: right;
 }
 .order-item{
     padding: 15px 15px 15px;

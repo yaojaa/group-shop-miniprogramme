@@ -2,17 +2,16 @@
     <view class="fixed-btn text-justify">
         <view class="flex align-center">
             <view class="mh-df text-muted text-sm">
-                共计 {{totalNumer}} 件
+                共计{{totalNumer}}件 <text wx:if="{{shipping_money>0}}">运费{{shipping_money}}元</text>
             </view>
             <view class="pb-xs">
                 <text class="text-muted text-sm">应付金额：</text>
-                <text class="text-lg bold coral-text">¥{{amountMoney}}</text>
+                <text class="text-lg bold coral-text">¥{{amountMoney+shipping_money}}</text>
                 <text class="text-muted text-sm"> 元</text>
             </view>
         </view>
-        <form bindsubmit="formSubmit" report-submit="true" data-fn="createOrder">
-            <button class="btn primary w-min-lg lg linenear_bg" formType="submit" loading="{{loading}}" disabled="{{loading}}">立即支付</button>
-        </form>
+        
+            <button class="btn primary w-min-lg lg linenear_bg" bindtap="createOrder" loading="{{loading}}" disabled="{{loading}}">立即支付</button>
     </view>
     <view class="content-wrap">
         <view class="por">
@@ -66,7 +65,7 @@
                         <view class="text-justify bt-bar">
                             <view class="price text-muted">￥{{item.agent_price}}</view>
                             <view class="text-muted">
-                                <van-stepper value="{{ 1 }}" bind:change="countChange" />
+                                <van-stepper value="{{ item.item_num }}" data-index="{{index}}" bind:change="countChange" />
  
                                 </view>
                         </view>
@@ -90,14 +89,26 @@
                     <van-icon name="arrow" color="#999" />
                 </view>
 
+       
+
 
 
          <view class="center p-df"  wx:if="{{!address.address_id}}">
                     
-                             <button bindtap="newAddress"  class=" primary m-xs hollow  xl btn linenear_bg "  formType="submit"  > <van-icon name="add-o" color="#49b34d" />  新增收件地址</button>
+                             <button bindtap="newAddress"  class=" primary m-xs hollow  xl btn linenear_bg "  formType="submit"  > <van-icon name="add-o" color="#49b34d" />  新增收件地址
+                             </button>
 
                                 
-                          </view>
+         </view>
+
+        <van-cell-group custom-class="mb-sm">
+
+             <!--  <van-cell title="购买数量">
+                <van-stepper value="{{ 2 }}" min="1" integer bind:change="handleNumber" />
+            </van-cell> -->
+            <van-cell wx:if="{{delivery_method==1}}" title="邮费" value="{{address.province}} ￥{{shipping_money}}" readonly value-class="" />
+            <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
+        </van-cell-group>
 
 
 

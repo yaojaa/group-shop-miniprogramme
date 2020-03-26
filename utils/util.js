@@ -719,7 +719,7 @@ const addListener = function (who) {
                       return
                     }else{
                       wx.showToast({
-                        title:'已订阅 建议多订阅几次哦',
+                        title:'已订阅',
                         icon:'none'
                       })
                     }
