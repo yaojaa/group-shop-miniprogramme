@@ -27,19 +27,19 @@
             </view>
         </view>
     </imgs>
-    <view class="sale-panel">
+   <view class="sale-panel">
         <view class="sale-panel-bd">
            
-            <view class="text-sm text-muted"> 已售 {{goods.total_qty}} 
+            <view class="text-sm text-muted"> 已售 {{goods.sold_number}} 
 
-                <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text>
+                <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）{{goods.is_timelimit}} {{goods.goods_expires}}</text>
 
             </view>
           
         </view>
-        <view wx:if="{{goods.is_timelimit==1}}" class="sale-panel-fd {{goods._expires !==1?'off':''}}">
+        <view wx:if="{{goods.is_timelimit==1}}" class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
             <view class="marker"></view>
-            <view wx:if="{{countdownTime && goods._expires ==1 }}">
+            <view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
                 <view class="tit">距离结束</view>
                 <view class="count-down">
                     <text class="time-area">{{days}}</text><text class="space">:</text>
@@ -49,9 +49,14 @@
                 </view>
             </view>
             <view wx:else>
-                {{['','开团中','尚未开始','已结束'][goods._expires]}}
+                {{['','开团中','尚未开始','已结束'][goods.goods_expires]}}
             </view>
         </view>
+
+        <view  wx:if="{{goods.is_timelimit==0}}" class="time-area tit" style="line-height: 1.5;padding: 0 30px">
+                进行中
+        </view>
+
     </view>
 
 
@@ -89,16 +94,15 @@
                             <text class="price f12px">¥{{item.agent_price}}</text> 
 
                     </view>
-                        <view wx:if="{{item.spec_desc}}" class="f14px text-warning" style="margin-top: 10rpx;">
-                       <block  wx:if="{{item.spec_stock}}"> (剩余{{item.spec_stock}})</block>
+                        <view  class="f14px text-warning" style="margin-top: 10rpx;">
+                 
+                        <block  wx:if="{{item.spec_stock}}"> (剩余{{item.spec_stock}})</block>
                        <block  wx:if="{{item.spec_stock==0}}"> (已售磬)</block>
-
-                        {{item.spec_desc}}</view>
+                        {{item.spec_desc}}
+                    </view>
                     </view>
 
-                     <text class="f12px" wx:if="{{item.spec_stock}}"> 
-                        剩余({{item.spec_stock}})
-                    </text>
+                 
 
 
                     <view class="buy" catchtap="addAnimate">
@@ -144,53 +148,28 @@
  
     </view>
 
-<!-- 供应商
 
- <view class='footer-cart'>
-
-    <van-goods-action>
-  <van-goods-action-icon
-    icon="home-o"
-    text="首页"
-    bind:click="onClickIcon"
-  />
-  <van-goods-action-icon
-    icon="chat-o"
-    text="客服"
-    bind:click="onClickIcon"
-  />
-  <van-goods-action-button
-    text="邀请代理转发销售"
-    type="warning"
-
-    bind:click="onClickButton"
-  />
-</van-goods-action>
-</view> -->
 
 <view class='footer-cart'>
 
-    <van-goods-action>
-  <van-goods-action-icon
-    icon="home-o"
-    text="供应商"
-    bind:click="toHome"
-  />
+          <view class='icon' bindtap='toHome'>
+            <i-icon type="mine" size="26" color="#333" />
+            <text class="label">首页</text>
+        </view>
 
-  <van-goods-action-button
-    text="直接下单"
-type="warning"
-    bind:click="cartPanelShow"
-  />
+        <view bindtap='cartPanelShow' style="flex:2;position: relative;">
+              <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
 
-   <van-goods-action-button
-    text="上架到我的主页"
-    type="warning"
-    bind:click="goods_up"
-  />
-</van-goods-action>
-</view>
+             <button  class="buy linenear_bg" formType="submit">直接下单</button>
+        </view>
 
+
+        <form style="flex:2;position: relative;" bindsubmit="formSubmit" data-fn="goods_up" report-submit="true">
+            <button wx:if="{{goods && goods.goods_expires==1 }}" class="buy linenear_bg" formType="submit">上架到我的主页</button>
+            <button wx:if="{{goods && goods.goods_expires == 2 }}" class="buy linenear_bg" formType="submit">未开始</button>
+            <button wx:if="{{goods && goods.goods_expires == 3 }}" class="buy linenear_bg" formType="submit">已结束</button>
+        </form>
+    </view>
 
 
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
@@ -307,7 +286,7 @@ type="warning"
     <van-dialog id="contact" use-slot>
 
             <view class="center">
-                   <image src="{{goods.user.headimg}}" class="avatar" 
+                   <image src="{{goods.supplier.supplier_logo}}" class="avatar" 
              style="width: 66px;height: 66px;margin: 13px auto 0">
             </image>
 
@@ -317,10 +296,10 @@ type="warning"
         <van-cell-group border="{{false}}" custom-class="mv-df">
 
             
-            <van-cell title="{{goods.user.nickname}}" value="主页" is-link icon="manager-o" title-width="400rpx" bindtap="goHomePage"  />
+            <van-cell title="{{goods.supplier.supplier_name}}" value="主页" is-link icon="manager-o" title-width="400rpx" bindtap="goHomePage"  />
 
-            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
-            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+            <van-cell title="手机号：{{goods.supplier.supplier_mobile}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{goods.supplier.supplier_mobile}}" />
+            
         </van-cell-group>
     </van-dialog>
     <van-dialog id="van-dialog" />

@@ -5,6 +5,10 @@
         <image src="{{item.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm" data-id="{{item.supplier_id}}" bindtap="toSupphome"></image>
         <view class="flex-sub por" data-id="{{item.supplier_id}}" bindtap="toSupphome">
           <view class="text-hide two-line  bold">{{item.supplier_name}}</view>
+
+          <view class="text-muted mt-xs text-sm des">商品：{{item.goods_count}} 成员：{{item.agent_count}}</view>
+
+
           <view class="text-muted mt-xs text-sm des">{{item.supplier_intro}}</view>
           <!-- <view class="mt-xs des text-justify"></view> -->
         </view>

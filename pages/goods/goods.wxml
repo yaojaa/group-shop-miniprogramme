@@ -178,7 +178,7 @@
 
        <!--      <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll"> -->
 
-                    <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="{{index}}">
+                    <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
                         <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
                             <text class="number">{{item.create_number}} </text>
                             <image class="buyer-avatar" src="{{item.headimg}}"></image>
@@ -252,7 +252,7 @@
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
             <button wx:if="{{goods && goods._expires==1 }}" class="buy linenear_bg" formType="submit">立即参与</button>
             <button wx:if="{{goods && goods._expires == 2 }}" class="buy linenear_bg" formType="submit">未开始</button>
-            <button wx:if="{{goods && goods._expires == 3 }}" class="buy linenear_bg" formType="submit">已结束</button>
+            <button disabled="{{true}}" wx:if="{{goods && goods._expires == 3 || putaway_status==2 }}" class="buy linenear_bg" formType="submit">已结束</button>
         </form>
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
@@ -261,7 +261,7 @@
             <scroll-view scroll-y style="max-height:500px;">
                 <i-panel>
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">
-                        <i-cell wx:if="{{item.item_num>0}}" wx:for="{{goods_spec}}" wx:key="{{index}}">
+                        <i-cell wx:if="{{item.item_num>0}}" wx:for="{{goods_spec}}" wx:key="index">
                             <view class="type-box text-justify">
                                 <view>{{item.spec_name}} / <text class="text-red f16"> ¥{{item.spec_price}}</text> </view>
                                 <i-input-number disabled id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
@@ -299,7 +299,7 @@
     </i-modal>
 
     <view class='share-painter'>
-        <view wx:for="{{shareCardConfig.content.des}}" wx:key="{{index}}" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
+        <view wx:for="{{shareCardConfig.content.des}}" wx:key="index" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
         <share-painter palette="{{template2}}" bind:imgOK="onFriendsImgOK" />
         <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
     </view>

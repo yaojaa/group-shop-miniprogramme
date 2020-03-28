@@ -9,15 +9,12 @@
                 </view>
 
                
-                      
-
-
     <view class='content'>
 
         <view class='header'>
             <view class='title'> {{create_number}}. <open-data type="userNickName"></open-data>已参团 +{{qty}}</view>
              <view class="emoji" >
-            👇👇👇
+            👇<text class="f22 bold">我的第{{order_count}}次参与</text>👇
           </view>
         </view>
 

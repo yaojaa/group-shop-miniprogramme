@@ -15,7 +15,7 @@
     </view>
     <imgs imgs="{{imgs}}">
         <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{StatusBar}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
-            <view class="user-body" catchtap="goContact" data-phone="{{goods.user.mobile}}" data-wx="{{goods.user.wechatnumber}}">
+            <view class="user-body" >
                 <view class="user-info-hd">
 
                  <image src="{{goods.supplier.supplier_logo}}" class="avatar"></image>
@@ -340,24 +340,5 @@
             </view>
         </view>
     </view>
-    <van-dialog id="contact" use-slot>
-
-            <view class="center">
-                   <image src="{{goods.user.headimg}}" class="avatar" 
-             style="width: 66px;height: 66px;margin: 13px auto 0">
-            </image>
-
-            </view>
-         
-
-        <van-cell-group border="{{false}}" custom-class="mv-df">
-
-            
-            <van-cell title="{{goods.user.nickname}}" value="主页" is-link icon="manager-o" title-width="400rpx" bindtap="goHomePage"  />
-
-            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
-            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
-        </van-cell-group>
-    </van-dialog>
     <wux-gallery id="wux-gallery" />
 </view>

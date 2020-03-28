@@ -155,23 +155,7 @@ Page({
             }
         })
     },
-    goContact(e) {
-        const { phone, wx } = e.currentTarget.dataset
-        this.setData({
-            phone: phone,
-            weChat: wx
-        })
-       Dialog.confirm   ({
-            confirmButtonText:'进入主页',
-            selector: '#contact'
-        }).then(() => {
 
-          this.goHomePage()
-
-        }).catch(() => {
-          // on cancel
-        })
-    },
     copyWx(event) {
         wx.setClipboardData({
             data: this.data.weChat,

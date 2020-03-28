@@ -211,8 +211,7 @@ Page({
             uid = app.globalData.userInfo.user_id
         }
         return {
-            title: this.data.goods.goods_name || '我开了一个团推荐大家看看',
-            imageUrl: this.shareImg,
+            title: this.data.goods.goods_name ,
             path: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id + '&from_id=' + uid
         }
     },
@@ -343,8 +342,6 @@ Page({
             return item + '?imageMogr2/thumbnail/700x/size-limit/35k!'
         })
 
-        console.log(urls)
-
         this.$wuxGallery = $wuxGallery()
 
         this.$wuxGallery.show({
@@ -365,39 +362,6 @@ Page({
         })
     },
 
-    toOrder(){
-        wx.redirectTo({
-            url: '../userhome/index?id=' + this.data.store_id
-        })
-    },
-
-    goHomePage() {
-        wx.redirectTo({
-            url: '../userhome/index?id=' + this.data.store_id
-        })
-    },
-
-    goOrders() {
-
-
-        wx.navigateTo({
-            url: '../ordermanage/list?id=' + this.data.goods_id + '&goods_name=' + this.data.goods.goods_name + '&delivery_method=' + this.data.goods.delivery_method
-        })
-
-
-    },
-
-    goSendMsg() {
-
-
-        wx.navigateTo({
-            url: '../send-msg/index?id=' + this.data.goods_id + '&name=' + this.data.goods.goods_name
-        })
-
-
-        
-
-    },
     goods_up(){
 
 
@@ -409,29 +373,21 @@ Page({
 
     },
 
-    goVisitor() {
-
-
-        wx.navigateTo({
-            url: '../fans/index?id=' + this.data.goods_id + '&name=' + this.data.goods.goods_name
-        })
-
-
-    },
-
-    goModify() {
-
-
-        wx.navigateTo({
-            url: '../publish/publish?goods_id=' + this.data.goods_id
-        })
-
-    },
     toHome(){
 
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2]; //上一个页面
+
+
+    if(prevPage){
+        wx.navigateBack()
+    }else{
+
         wx.redirectTo({
-            url: '/pages/supplier-home/index'
+            url: '/pages/supplier-home/index?id='+this.data.goods.supplier_id
         })
+    }
+
     },
 
 
@@ -596,7 +552,6 @@ Page({
 
         this.getGoodsInfo()
 
-        // this.getShareImg()
 
         // this.add_access()
 

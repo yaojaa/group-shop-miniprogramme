@@ -379,9 +379,9 @@ Page({
 
     },
 
-    jumpToSuccess() {
+    jumpToSuccess(order_count) {
         wx.redirectTo({
-            url: '../paySuccess/index?order_id=' + this.data.order_id + '&goods_id=' + this.data.goods_id
+            url: '../paySuccess/index?order_id=' + this.data.order_id + '&goods_id=' + this.data.goods_id+'&order_count='+order_count
         })
     },
 
@@ -402,16 +402,14 @@ Page({
                 signType: data['signType'],
                 paySign: data['paySign'],
                 success: (res) => {
-
                     wx.hideLoading()
 
                     util.wx.post('/api/pay/orderpay', {
                         order_sn: order_sn
                     })
-
                   util.userListner()
 
-                  this.jumpToSuccess();
+                  this.jumpToSuccess(data.order_count);
                 },
                 fail: (res) => {
                     wx.redirectTo({

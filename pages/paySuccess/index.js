@@ -20,15 +20,12 @@ Page({
         qty:1,
         numers: '❶❶❷❸❹❺❻❼❽❾❿'.split(''),
         wordArr: {
-            1: '值，躺着把钱省了',
-            2: '人生太多选择题 跟着买 就对了',
+            1: '跟着买 就对了',
+            2: '跟着买 就对了',
             3: '错过又要等一年 该出手时就出手',
             4: '该出手时就出手',
             5: '不要睡 起来嗨',
-            6: '机不可失，失不再来',
-            7: '',
-            8: '',
-            9: ' '
+            6: '机不可失，失不再来'
         },
         order:{}
     },
@@ -42,13 +39,12 @@ Page({
 
         this.setData({
             goods_id: options.goods_id,
+            order_count:options.order_count
         })
 
         //开始绘制
 
         // util.get_painter_data_and_draw.call(this, options.goods_id, true)
-
-
     },
     // onImgOk(e) {
 
@@ -136,7 +132,7 @@ Page({
 
 
 
-        let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...' + this.data.goods_name
+        let shareTitle = this.data.wordArr[1] 
         let numberIcon = ''
         return {
             title: '',

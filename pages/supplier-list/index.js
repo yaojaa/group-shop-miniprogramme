@@ -43,8 +43,8 @@ Page({
     const { supplier_id, name } = e.target.dataset
     const username = app.globalData.userInfo.nickname
     return {
-      title: username + '邀请您您的加入' + name,
-      imageUrl: 'https://static.kaixinmatuan.cn/invit.jpg',
+      title: username + '邀请您加入' + name,
+      imageUrl: 'https://static.kaixinmatuan.cn/staticinvitation2.jpg',
       path: 'business/pages/acting-apply/index' + '?supplier_id=' + supplier_id
     }
   }
