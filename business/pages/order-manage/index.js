@@ -739,6 +739,8 @@ Page({
 
         console.log(data)
 
+        app.globalData.express = 'supplier'
+
         wx.navigateTo({
           url: '/pages/express/index?' + data
         })

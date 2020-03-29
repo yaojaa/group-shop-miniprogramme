@@ -70,6 +70,8 @@ Page({
 
         console.log('opt',opt)
 
+        //判断是供应商还是团长
+
 
         let num = 0;
 

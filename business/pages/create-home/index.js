@@ -110,5 +110,11 @@ Page({
    */
   onReachBottom: function () {
 
-  }
+  },
+  onShareAppMessage: function() {
+   
+        return {
+            title: '创建供应商主页',
+            imageUrl: ''        }
+    },
 })
