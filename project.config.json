@@ -14,8 +14,12 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"coverView": true,
 		"nodeModules": false,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": true,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -23,20 +27,25 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"uglifyFileName": true
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.4",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
 	"cloudfunctionTemplateRoot": "",
+	"watchOptions": {
+		"ignore": []
+	},
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
+	"apiMock": {
+		"useApiMock": false,
+		"apiList": {},
+		"apiMockConfig": ""
+	},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -65,7 +74,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 98,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -757,9 +766,9 @@
 				},
 				{
 					"id": 99,
-					"name": "pages/goods-up/index",
-					"pathName": "pages/goods-up/index",
-					"query": "",
+					"name": "business/pages/goods-user/goods",
+					"pathName": "business/pages/goods-user/goods",
+					"query": "goods_id=17",
 					"scene": null
 				},
 				{
@@ -879,16 +888,13 @@
 					"name": "供应商管理订单",
 					"pathName": "business/pages/order-manage/index",
 					"query": "",
-<<<<<<< HEAD
 					"scene": null
 				},
 				{
-					"id": 117,
-					"name": "代客下单",
-					"pathName": "business/pages/order-confirm/index",
-					"query": "goods_id=11&delivery_method=1",
-=======
->>>>>>> 55bb5a56951a096001c94a5cff69b53739fe2083
+					"id": -1,
+					"name": "business/pages/goods-user/goods",
+					"pathName": "business/pages/goods-user/goods",
+					"query": "id=11",
 					"scene": null
 				}
 			]
