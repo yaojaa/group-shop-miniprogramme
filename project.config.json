@@ -896,6 +896,12 @@
 					"pathName": "business/pages/goods-user/goods",
 					"query": "id=11",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/order-manage/index",
+					"pathName": "business/pages/order-manage/index",
+					"scene": null
 				}
 			]
 		}

@@ -30,7 +30,6 @@ Page({
                 this.setData({
                     disabled: false
                 })
-                if (res.data.code == 0) {
                     Dialog.alert({
                         selector: '#dialog-success',
                         confirmButtonText: '好的'
@@ -38,9 +37,6 @@ Page({
 
                     })
                     this.getFinance()
-                } else {
-                    Toast(res.data.msg)
-                }
             },res=>{
 
                 wx.showToast({

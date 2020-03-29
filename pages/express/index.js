@@ -69,12 +69,18 @@ Page({
     onLoad: function(opt) {
 
 
-        console.log(opt)
+
+        this.apiPrix = app.globalData.express=='supplier'?'supplier':'seller'
+
+        console.log('this.apiPrix',this.apiPrix)
+
+
+        this.data.order_sn = opt.sn
 
         wx.showLoading()
 
 
-        util.wx.get('/api/seller/get_express_by_order_sn',{
+        util.wx.get('/api/'+this.apiPrix+'/get_express_by_order_sn',{
             order_sn:opt.sn
         })
         .then(res=>{
@@ -158,7 +164,7 @@ Page({
 
                     wx.showLoading()
 
-                    util.wx.post('/api/seller/del_order_express', {
+                    util.wx.post('/api/'+this.apiPrix+'/del_order_express', {
                         express_id: currentExpress.express_id
                     }).then(res => {
 
@@ -218,7 +224,7 @@ Page({
 
 
 
-               util.wx.post('/api/seller/add_order_express', {
+               util.wx.post('/api/'+this.apiPrix+'/add_order_express', {
                     order_id: this.data.order_id,
                     express: express
                 }).then(res => {
@@ -356,6 +362,7 @@ Page({
 
         data += 'index='+ (index - _index) +'&order_id='+ this.data.order_id
             +'&user='+ this.data.user
+            +'&order_sn='+ this.data.order_sn
             +'&goods='+ this.data.goods
 
         wx.navigateTo({
@@ -371,7 +378,7 @@ Page({
 
             wx.showLoading()
 
-            util.wx.post('/api/seller/edit_order_express', {
+            util.wx.post('/api/'+this.apiPrix+'/edit_order_express', {
                 express_id: currentExpress.express_id,
                 express_code: currentExpress.express_code,
                 express_company: currentExpress.express_company

@@ -164,11 +164,12 @@ Page({
             app.globalData.token = wx.getStorageSync('token')
         }
 
-        const localSwichStatus = wx.getStorageSync('switchOrderList')
 
-        this.setData({
-            switchOrderList: localSwichStatus
-        })
+       app.globalData.express = 'seller'
+
+       
+
+   
 
 
         this.setData({

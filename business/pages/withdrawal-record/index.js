@@ -44,11 +44,9 @@ Page({
                 this.setData({
                     loading: false
                 })
-                if (res.data.code == 0) {
                     this.setData({
-                        info: res.data.data
+                        info: res.data.data.withdraw_list
                     })
-                }
             })
     },
     /**

@@ -1,0 +1,9 @@
+{ 
+  "navigationBarBackgroundColor": "#69b90b",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "设置",
+  "usingComponents": {
+
+  "van-cell": "../../vant/cell/index"
+  }
+}

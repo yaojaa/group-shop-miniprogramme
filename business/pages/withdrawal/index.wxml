@@ -24,15 +24,11 @@
     </form>
     <van-dialog id="dialog-success" use-slot>
         <view class="dialog-head">
-            <image src="http://leileiimg.toutoumei.com/front/img/dialog-head.png?103" mode="widthFix" class="w-full" />
+            <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
             <view class="title">
                 <view>已提交</view>
                 <view class="text-sm n-bold mt-lt">待审核</view>
             </view>
-        </view>
-        <view class="text-center ph-df pv-xl text-gray text-df">
-            <view>为保障提现金额顺利到账</view>
-            <view>请关注<text class="bolds primary-text">【蕾蕾美颜】</text>微信公众号</view>
         </view>
     </van-dialog>
     <van-toast id="van-toast" />

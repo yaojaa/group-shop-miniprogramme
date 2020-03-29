@@ -1,4 +1,5 @@
 const util = require('../../utils/util.js')
+const app =  getApp()
 Page({
 
     /**
@@ -93,8 +94,9 @@ Page({
         //     express_code:options.code || '',
         //     order_id:options.id || ''
         // })
+       this.apiPrix = app.globalData.express=='supplier'?'supplier':'seller'
 
-        console.log(options)
+        console.log('this.apiPrix',this.apiPrix)
 
         this.data.user = decodeURIComponent(options.user)
         this.data.goods = decodeURIComponent(options.goods)
@@ -120,7 +122,7 @@ Page({
         //     }
         // }
         // 
-        util.wx.get('/api/seller/get_express_by_order_sn',{
+        util.wx.get('/api/'+this.apiPrix+'/get_express_by_order_sn',{
             order_sn:options.order_sn
         })
         .then(res=>{
