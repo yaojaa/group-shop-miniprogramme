@@ -16,3 +16,46 @@
 	width: 150rpx;
 	margin: 40px auto 0
 }
+
+.authPopBox .logo image {
+
+    width: 120rpx;
+    height: 120rpx;
+    margin-bottom: 15px
+
+
+}
+
+
+.content-pop{
+    padding: 30rpx;
+    width: 450rpx;
+    text-align: center;
+}
+
+.content-pop button{
+    margin: 15px 5px
+}
+
+.avatar-mini {
+    width: 34rpx;
+    height: 34rpx;
+    border-radius: 100%;
+    overflow: hidden;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -74,7 +74,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 119,
 			"list": [
 				{
 					"id": 0,
@@ -901,6 +901,13 @@
 					"id": -1,
 					"name": "business/pages/order-manage/index",
 					"pathName": "business/pages/order-manage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/create-home/index",
+					"pathName": "business/pages/create-home/index",
 					"scene": null
 				}
 			]

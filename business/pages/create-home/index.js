@@ -1,4 +1,5 @@
 const util = require('../../../utils/util')
+const app = getApp()
 
 Page({
 
@@ -6,8 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-      loading:false,
-      supplier_logo:''
+      loading: false,
+      showAuth: true,
+      supplier_logo: ''
   },
 
   /**
@@ -90,6 +92,36 @@ Page({
 
 
   },
+     getUserInfoEvt: function(e) {
+        console.log(e)
+        if (e.detail.errMsg !== "getUserInfo:ok") {
+            return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
+        }
+
+        app.globalData.userInfo = e.detail.userInfo
+        wx.showLoading()
+        app.getOpenId().then((openid) => {
+            app.globalData.openid = openid
+            app.login_third(e.detail).then((res) => {
+                    wx.hideLoading()
+                    wx.showToast({
+                        title: '登录成功',
+                        icon: 'none'
+                    })
+
+                    this.setData({
+                        showAuth: false
+                    })
+                })
+                .catch(e => console.log(e))
+        })
+
+    },
+    rejectAuth() {
+        this.setData({
+            showAuth: false
+        })
+    },
 
   /**
    * 生命周期函数--监听页面卸载
