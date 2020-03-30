@@ -5,7 +5,7 @@
   <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
   <van-tabbar-item bindtap="goOrder" icon="orders-o">订单</van-tabbar-item>
   <van-tabbar-item bindtap="goActing"  icon="friends-o">代理</van-tabbar-item>
-  <van-tabbar-item bindtap="goSetting" name="setting" icon="setting-o">设置</van-tabbar-item>
+  <van-tabbar-item bindtap="goSetting" name="setting" icon="setting-o">我的</van-tabbar-item>
 </van-tabbar>
 
     <view class="head-box">
@@ -25,9 +25,8 @@
                 <view class="flex justify-between text-white">
                     <view class="user-box">
                         <view class="user-name mr-sm" bindtap="goSite">{{info.supplier_name}} </view>
-                        <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" wx:if="{{!isCustome}}">{{userInfo.nickname}}
+                        <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" >{{userInfo.nickname}}
                         </navigator>
-                        <navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none" wx:else>完善资料</navigator>
                     </view>
                 
                     <navigator url="../withdrawal/index" hover-class="none" class="text-center"  wx:if="{{!isCustome}}">
@@ -95,7 +94,7 @@
 <view  style="display:flex; justify-content:center">
 
     <button size="mini" class="hollow"  bindtap="goEdit" data-goods_id="{{item.goods_id}}" text="修改" >修改</button>
-  <button size="mini" class="hollow"  bindtap="removeGoods" data-goods_id="{{item.goods_id}}" text="删除" >删除</button>
+  <button size="mini" class="hollow"  bindtap="removeGoods" data-index="{{index}}"   data-goods_id="{{item.goods_id}}" text="删除" >删除</button>
 
   <button size="mini" class="hollow" text="下架"   data-index="{{index}}"  bindtap="changOnSale" data-status="{{item.is_on_sale}}"  wx:if="{{item.is_on_sale==1}}" data-goods_id="{{item.goods_id}}">下架</button>
 

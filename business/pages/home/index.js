@@ -134,6 +134,7 @@ Page({
   removeGoods(e){
 
         const goods_id = e.currentTarget.dataset.goods_id
+        const index = e.currentTarget.dataset.index
 
         Dialog.confirm({
           title: '确定要删除吗？',
@@ -144,6 +145,16 @@ Page({
               goods_id:goods_id
              })
             .then((res) => {
+
+              console.log('his.data.goodsList',this.data.goodsList)
+
+              this.data.goodsList.splice(index,1)
+
+              this.setData({
+                goodsList:this.data.goodsList
+              })
+
+
                    
             Dialog.close()
 

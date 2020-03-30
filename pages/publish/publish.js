@@ -90,6 +90,8 @@ Page({
         video_progress:false,
         // darg
         size: 5,
+        freight_tpl_id:0, //运费模版ID 默认0
+        freight_tpl_name:'默认方案全国包邮' //运费模版ID 默认0
     },
     // darg start5
     // 改变监听
@@ -124,6 +126,12 @@ Page({
           urls: urls // 需要预览的图片http链接列表
         })
 
+    },
+     toPostageSetting(){
+
+        wx.navigateTo({
+            url:'/business/pages/postageSetting/index?hasSelect='+this.data.freight_tpl_id
+        })
     },
     // 删除图片
     deleteClick(e) {
@@ -497,6 +505,8 @@ Page({
 
 
     onShow: function(option) {
+
+        this.getTplList()
 
 
     },
@@ -968,6 +978,26 @@ Page({
 
     },
 
+        //回显运费模版名称
+
+    getTplList() {
+        util.wx.get('/api/supplier/get_freight_tpl_list')
+            .then(res => {
+                    const lists = res.data.data.lists;
+                    lists.forEach(item => {
+                        if(item.freight_tpl_id == this.data.freight_tpl_id)
+                        {
+                            this.setData({
+                                freight_tpl_name:item.freight_tpl_name 
+                            })
+                        }
+                    })
+
+                    this.freight_tpl_list = lists
+                
+            })
+    },
+
 
     onLoad: function(option) {
 
@@ -985,6 +1015,8 @@ Page({
                   title: app.globalData.userInfo.nickname+'您正在发布活动'
                 })
         }
+
+
 
 
 

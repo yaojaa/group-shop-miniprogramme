@@ -194,11 +194,25 @@ Page({
         console.log(app.globalData.userInfo.identity.supplier_name)
 
         console.log('/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id)
+
+        this.setData({
+            shareTit:'邀请您转发销售'
+        })
+
+         setTimeout(()=>{
+            this.setData({
+                        shareTit:''
+                    })
+        },1000)
+
       
         return {
-            title: app.globalData.userInfo.identity.supplier_name+'邀请你上架'+this.data.goods.goods_name,
-            path: 'business/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id 
+            title: this.data.goods.goods_name,
+            path: 'business/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id,
+            
         }
+
+
 
 
     },

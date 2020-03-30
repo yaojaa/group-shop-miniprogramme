@@ -197,17 +197,18 @@
         </i-panel>
         <i-panel title="设置" i-class="no-margin">
             <view class="weui-cells_form">
-                <!-- <view class="weui-cell">
-                    <view class="weui-cell__hd"><view class="weui-label">配送方式：</view></view>
+                
+<view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label">收款方式：</view></view>
                     <view class="weui-cell__bd">
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                       <i-button type="ghost" bindtap="handleOpen2">{{actions2[delivery_method-1].name}}</i-button> <i-icon type="enter" size="28" />        
+                       <i-button type="ghost" bindtap="handleOpen2">{{actions1[0].name}}</i-button> <i-icon type="enter" size="28" />        
                     </view>
                      </view>
 
-</view> -->
+</view> 
                 <i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />
                 <i-action-sheet visible="{{ visible2 }}" actions="{{ actions2 }}" show-cancel bind:cancel="handleCancel2" bind:click="handleClickItem2" />
                 <view class="weui-cell">
@@ -246,6 +247,23 @@
                        </view>
                     </view>
                 </view>
+
+                  <view class="weui-cell" wx:if="{{delivery_method==1}}">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">邮费设置：</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                    </view>
+                    <view class="weui-cell__ft" bindtap="toPostageSetting">
+                        <view class="weui-icon-warn" >
+                       <text  >{{freight_tpl_name}}</text>  
+                       <i-icon type="enter" size="26" />
+
+                        </view>
+                    </view>
+                </view>
+
+                
             </view>
         </i-panel>
         <button style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">确定发布</button>

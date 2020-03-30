@@ -22,7 +22,7 @@
 
                 </view>
                 <view class="user-info-bd">
-                    <text class="name">{{goods.supplier.supplier_name}}</text>
+                    <text class="name">{{goods.supplier.supplier_name}}{{shareTit}}</text>
                 </view>
             </view>
         </view>

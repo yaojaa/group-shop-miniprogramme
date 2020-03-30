@@ -768,7 +768,7 @@
 					"id": 99,
 					"name": "business/pages/goods-user/goods",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "goods_id=17",
+					"query": "goods_id=30",
 					"scene": null
 				},
 				{
@@ -817,7 +817,7 @@
 					"id": 106,
 					"name": "团长查看分销页面",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "id=11",
+					"query": "id=29",
 					"scene": null
 				},
 				{
@@ -901,6 +901,7 @@
 					"id": -1,
 					"name": "business/pages/order-manage/index",
 					"pathName": "business/pages/order-manage/index",
+					"query": "",
 					"scene": null
 				}
 			]
