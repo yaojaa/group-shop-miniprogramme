@@ -997,7 +997,7 @@ Page({
     //回显运费模版名称
 
     getTplList() {
-        util.wx.get('/api/supplier/get_freight_tpl_list')
+        util.wx.get('/api/user/get_freight_tpl_list')
             .then(res => {
                     const lists = res.data.data.lists;
                     lists.forEach(item => {

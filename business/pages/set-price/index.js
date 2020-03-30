@@ -18,7 +18,7 @@ for(var key in areaData.province_list){
 Page({
     data: {
         type: 0, // 0 是添加 1是修改
-        freight_tpl_name: '请填写规则名称',
+        freight_tpl_name: '',
         freight_tpl_id: '',
         freight_tpl_info: [],
         list: areaList
@@ -45,6 +45,9 @@ Page({
         //如果是编辑
         if(options.id){
 
+
+            this.getTplInfo(options.id)
+
         }
         // const that = this;
         // console.log(options)
@@ -70,6 +73,26 @@ Page({
         //         type: options.type
         //     });
         // }
+    },
+
+    getTplInfo(id){
+
+        util.wx.get('/api/user/get_freight_tpl_detail',{
+            freight_tpl_id:id
+        })
+        .then(res=>{
+
+            this.setData({
+                list: res.data.data.freight_tpl_info,
+                freight_tpl_name:res.data.data.freight_tpl_name
+            })
+
+
+
+        })
+
+
+
     },
 
     /** 展示弹窗 */
@@ -154,7 +177,7 @@ Page({
             freight_tpl_info: this.data.freight_tpl_info // 地区运费详情
         }
 
-        util.wx.post('/api/supplier/set_freight_tpl', param)
+        util.wx.post('/api/user/set_freight_tpl', param)
             .then(res => {
                 wx.showToast({
                     title: '设置运费模板成功',

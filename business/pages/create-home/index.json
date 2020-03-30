@@ -6,6 +6,7 @@
         "van-field": "../../../vant/field/index",
         "van-cell-group": "../../../vant/cell-group/index",
         "van-notify": "../../../vant/notify/index",
+        "van-popup": "../../../vant/popup/index",
          "wux-upload": "../../../wux/upload/index"
 
     }

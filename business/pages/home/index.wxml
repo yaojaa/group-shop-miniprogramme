@@ -1,12 +1,7 @@
 <view class="container gray-wrap cf">
 
- <van-tabbar   inactive-color="" active-color="#49b34d" z-index="{{9}}">
+    <footerbar active="{{active}}" />
 
-  <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
-  <van-tabbar-item bindtap="goOrder" icon="orders-o">订单</van-tabbar-item>
-  <van-tabbar-item bindtap="goActing"  icon="friends-o">代理</van-tabbar-item>
-  <van-tabbar-item bindtap="goSetting" name="setting" icon="setting-o">我的</van-tabbar-item>
-</van-tabbar>
 
     <view class="head-box">
 
@@ -36,8 +31,8 @@
                 </view>
             </view>
         </view>
-                <view class="ads">{{info.supplier_intro}}</view>
-
+<!--                 <view class="ads one-line">{{info.supplier_intro}}</view>
+ -->
     </view>
 
 <!--     <view class="head-box gradual-bg">

@@ -202,9 +202,10 @@ Page({
 
     },
 
-
     getGoodsList() {
-        util.wx.get('/api/supplier/get_goods_list')
+        util.wx.get('/api/supplier/get_goods_list',{
+          pagesize:50
+        })
             .then((res) => {
                     this.setData({
                         goodsList: res.data.data.goodslist,
@@ -301,9 +302,7 @@ Page({
      */
     onShow: function() {
 
-      this.data.active = 0
-
-      console.log(this.data.active)
+  
 
       this.setData({
         active:0

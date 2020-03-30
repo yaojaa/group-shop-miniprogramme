@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        hasSelect:'',
+        hasSelect:'0',
         loading: true,
         tpl_list: [],
     },
@@ -61,11 +61,8 @@ Page({
             .then(res => {
                 if (res.data.code === 200) {
                     const lists = res.data.data.lists;
-                    lists.forEach(item => {
-                        item.freight_tpl_info_list = item.freight_tpl_info
-                    });
                     this.setData({
-                        tpl_list: lists
+                        tpl_list:lists.freight_tpl_info
                     })
                 }
             })
@@ -90,6 +87,7 @@ Page({
                 })
         }
     
+        this.getList();
     },
 
     radioChange(e){

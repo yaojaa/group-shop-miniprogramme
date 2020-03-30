@@ -2,12 +2,12 @@
     <!-- 添加修改运费模板 -->
     <div class="white-bg">
         <van-cell-group title="模板名称">
-            <van-field value="{{ freight_tpl_name }}" placeholder="请输入模板名称" border="{{ true }}" maxlength="{{ 50 }}" bind:change="onChangePanName" size="small" />
+            <van-field value="{{ freight_tpl_name }}" placeholder="请输入模板名称，如北京上海+2元" border="{{ true }}" maxlength="{{ 50 }}" bind:change="onChangePanName" size="small" />
         </van-cell-group>
         <van-cell-group title="设置不同地区的邮费方案，如果不发货请设置为-1">
             <view class="white-bg text-justify p-df">
                 <view >配送区域</view>
-                <view >运费金额</view>
+                <view >运费金额（元）</view>
             </view>
             <van-cell wx:for="{{list}}" wx:key="index">
                 <view slot="title" class="text-gray">{{item.name}}</view>

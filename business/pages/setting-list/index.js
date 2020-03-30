@@ -17,7 +17,8 @@ Page({
         store_money: "",
         pending_money: '***',
         StatusBar: app.globalData.StatusBar,
-        CustomBar: app.globalData.CustomBar
+        CustomBar: app.globalData.CustomBar,
+        active:3
     },
 
     getInfo(){
@@ -38,27 +39,13 @@ Page({
         })
     },
 
-    //切换显示隐藏状态事件
-    recommendHandle(e) {
+     goSetPrice(){
+    wx.navigateTo({
+        url:'/business/pages/set-price/index'
+    })
 
-        //  console.log(e.detail)
+  },
 
-        // this.data.goodslist.forEach((item,index)=>{
-
-        //      if(item.goods_id == e.detail){
-
-        //          const key = 'goodslist['+index+'].is_recommend'
-
-        //          this.setData({
-        //              [key]: e.detail.is_recommend
-        //          })
-        //      }
-
-        // })
-
-        // this.getGoodsList()
-
-    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -91,31 +78,7 @@ Page({
         })
     },
 
-    goOrders() {
-        wx.redirectTo({
-            url: '../new-order-list/index'
-        })
-    },
 
-    goHome() {
-
-        wx.redirectTo({
-            url: '../userhome/index'
-        })
-
-
-    },
-
-    managePage(e) {
-        let id = e.currentTarget.dataset.id
-        let delivery_method = e.currentTarget.dataset.delivery_method
-        let goods_name = e.currentTarget.dataset.name.slice(0, 10)
-
-        wx.navigateTo({
-            url: '../ordermanage/list?id=' + id + '&delivery_method=' + delivery_method + '&goods_name=' + goods_name
-        })
-
-    },
  
     
 

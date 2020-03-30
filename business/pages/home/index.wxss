@@ -67,7 +67,7 @@
 
 .icon-nav-box {
     width: 690rpx;
-    margin: 25rpx auto;
+    margin: -35rpx auto 25px;
     border-radius: 8rpx;
     margin-bottom: 120px
 }
