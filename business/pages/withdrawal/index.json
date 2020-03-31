@@ -1,7 +1,7 @@
 {
   "disableScroll":true,
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#8E50E0",
+  "navigationBarBackgroundColor": "#ffaa4f",
   "navigationBarTitleText": "提现",
   "navigationBarTextStyle": "white",
   "usingComponents": {

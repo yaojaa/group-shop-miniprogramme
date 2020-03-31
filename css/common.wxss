@@ -1178,3 +1178,18 @@ button {
     height: 100rpx;
     border-radius: 0;
 }
+.dialog-head {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+}
+
+.dialog-head .title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
