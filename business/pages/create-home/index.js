@@ -8,7 +8,7 @@ Page({
    */
   data: {
       loading: false,
-      showAuth: true,
+      showAuth: false,
       supplier_logo: ''
   },
 
@@ -16,7 +16,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //未登录 弹出授权弹窗
+    if (!app.globalData.userInfo) {
+        setTimeout(() => {
+            this.setData({
+                showAuth: true
+            })
+        }, 5000)
+    }
   },
    onChange(e) {
       wx.showLoading()
@@ -70,6 +77,7 @@ Page({
   },
 
   submitForm(e){
+    let _this = this;
 
     util.checkMobile(e.detail.value.supplier_mobile)
 
@@ -82,7 +90,16 @@ Page({
       })
 
     },res=>{
-
+      console.log(res)
+      wx.showModal({
+        content: res.data.msg,
+        showCancel: false,
+        success (res) {
+          if (res.confirm) {
+            _this.toHome()
+          }
+        }
+      })
     }).catch(e=>{
 
       console.log(e)
@@ -92,6 +109,13 @@ Page({
 
 
   },
+  toHome(){
+
+        wx.redirectTo({
+            url: '../home/index'
+        })
+    },
+
      getUserInfoEvt: function(e) {
         console.log(e)
         if (e.detail.errMsg !== "getUserInfo:ok") {
@@ -145,8 +169,9 @@ Page({
   },
   onShareAppMessage: function() {
    
-        return {
-            title: '创建供应商主页',
-            imageUrl: ''        }
-    },
+    return {
+        title: '创建供应商主页',
+        imageUrl: ''        
+    }
+  },
 })
