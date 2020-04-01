@@ -457,20 +457,18 @@ const request = (url, data, method) => {
             },
             success: function(res) { //服务器返回数据
                
-               console.log(url,res.data.code)
+               console.log('success',url,res.data.code)
 
-                if (res.data.code == 200) {
-                    resolve(res)
-                } else if (res.data.code == '-99' || res.data.code == '-100') {
+                if (res.data.code == '-99' || res.data.code == '-100') {
                     console.log('应该调到等路')
                      wx.clearStorageSync() 
                      app.redirectToLogin()
 
-                } else{ //返回错误提示信息
-                    reject(res)
+                } else { //返回错误提示信息
+                    resolve(res)
                 }
             },
-            error: function(e) {
+            fail: function(e) {
                 reject('网络出错' + e)
             }
         })

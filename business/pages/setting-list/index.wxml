@@ -100,7 +100,7 @@
 
 
 
-		<van-cell icon="logistics"  title="切换为供应商身份" is-link link-type="navigateTo" url="/business/pages/home/index" />
+		<van-cell icon="logistics"  title="切换为团长身份" is-link link-type="navigateTo" url="/pages/home/index" />
 	</van-cell-group>
 </i-panel>
 

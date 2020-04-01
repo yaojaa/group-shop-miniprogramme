@@ -85,11 +85,18 @@ Page({
         })
         .then(res=>{
 
+            console.log(res)
+
         wx.hideLoading()
+
+        if(res.data.code == 200){
 
             this.setData({
                 express:res.data.data
             })
+        }
+
+
 
         },res=>{
             wx.hideLoading()

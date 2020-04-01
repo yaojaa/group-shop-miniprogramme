@@ -16,7 +16,8 @@ Page({
         self_address: [],
         goods_name: '',
         seller: {},
-        delivery_method: 0,
+        payment_method: 0,
+        pay_btn_txt:'立即支付',
         consignee: '',
         mobile: '',
         user_message: '',
@@ -133,7 +134,7 @@ Page({
                 console.log('邮费',res.data.data)
 
                 this.setData({
-                    shipping_money:parseInt(res.data.data)
+                    shipping_money:res.data.data==-1?'不发货' : parseInt(res.data.data)
                 })
 
 
@@ -203,6 +204,18 @@ Page({
 
         this.data.goods_id = options.goods_id
         this.data.from_id = options.from_id || ''
+
+        this.data.payment_method = options.payment_method
+
+
+            if(options.payment_method==1){
+                this.setData({
+                    pay_btn_txt:'立即参与'
+                })
+           }
+
+
+
         this.getGoodsInfo()
        
 
@@ -216,10 +229,6 @@ Page({
         }
         let cart = typeof cartSource === 'string' ? JSON.parse(cartSource) : cartSource;
 
-        // let goodsSource = wx.getStorageSync('goods');
-
-        // let goods = typeof goodsSource === 'string' ? JSON.parse(goodsSource) : goodsSource;
-
 
         cart.map(value => {
             amountMoney += value.spec_price * 1000 * parseInt(value.item_num)
@@ -231,7 +240,6 @@ Page({
 
 
         this.setData({
-          
             goods_id: options.goods_id,
             cart: cart || [],
             amountMoney: amountMoney / 1000,
@@ -309,9 +317,6 @@ Page({
 
         }
 
-        console.log(postData)
-
-
         util.wx.post('/api/order/create_order', Object.assign({
             specs: specs,
             user_message: this.data.user_message,
@@ -319,7 +324,15 @@ Page({
             from_user_id:this.data.from_id
         }, postData)).then(res => {
                 this.data.order_id = res.data.data.order_id;
-                this.pay(res.data.data)
+
+                  //创建订单成功
+                  if(this.data.payment_method==0){
+                      
+                      this.pay(res.data.data)
+
+                    }else{
+                      this.jumpToSuccess(res.data.data.order_count);
+                   }
 
         }, (e) => {
             this.setData({

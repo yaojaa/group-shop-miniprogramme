@@ -204,7 +204,8 @@
                     </view>
                     <view class="weui-cell__ft">
                     <view class="weui-icon-warn">
-                       <i-button type="ghost" bindtap="handleOpen2">{{actions1[0].name}}</i-button> <i-icon type="enter" size="28" />        
+                                 <i-button type="ghost" bindtap="handleOpen1">{{actions1[payment_method].name}}</i-button> <i-icon type="enter" size="28" />
+     
                     </view>
                      </view>
 

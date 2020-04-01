@@ -8,7 +8,7 @@ Page({
    */
   data: {
       loading: false,
-      showAuth: true,
+      showAuth: false,
       supplier_logo: ''
   },
 
@@ -16,6 +16,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+
+    console.log(app.globalData.userInfo)
+
+    if(!app.globalData.userInfo){
+      this.setData({
+        showAuth:true
+      })
+    }
+
+
 
   },
    onChange(e) {
@@ -77,7 +88,7 @@ Page({
     util.wx.post('/api/user/apply_supplier',postData).then(res=>{
 
       wx.showToast({
-        title:'提交成功',
+        title:res.data.msg,
         icon:'none'
       })
 

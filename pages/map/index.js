@@ -15,13 +15,14 @@ Page({
 
     },
     getHistoryList(){
-
+        wx.showLoading()
         util.wx.get('/api/seller/self_address_list').then(res=>{
             if(res.data.code == 200){
                 this.setData({
                     hisList:res.data.data.self_address_list
                 })
             }
+        wx.hideLoading()
         })
     },
     onLoad: function(e) {

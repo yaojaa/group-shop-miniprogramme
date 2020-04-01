@@ -15,11 +15,14 @@ Page({
     // 添加运费模板
     addPostageTpl(e) {
 
+         wx.redirectTo({
+            url: '../set-price/index?hasSelect='+this.data.hasSelect
+        });
+
     },
     // 修改运费模板
     editPostageTpl(e) {
 
-        console.log(e)
 
         const {dataset: {id}} = e.target;
 
@@ -94,9 +97,18 @@ Page({
 
     radioChange(e){
 
-        util.setParentData({
-            freight_tpl_id:e.detail.value
+      this.data.tpl_list.forEach(item=>{
+        if(item.freight_tpl_id == e.detail.value){
+
+           util.setParentData({
+            freight_tpl_id:e.detail.value,
+            freight_tpl_name:item.freight_tpl_name
         })
+
+        }
+      })
+
+       
     },
 
     /**
@@ -139,11 +151,5 @@ Page({
      */
     onReachBottom: function() {
 
-    },
-
-    addPostageTpl: function() {
-        wx.redirectTo({
-            url: '../set-price/index?hasSelect='+this.data.hasSelect
-        });
     }
 })

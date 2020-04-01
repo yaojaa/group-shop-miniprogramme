@@ -1100,7 +1100,7 @@ Page({
             success: () => {
 
                 wx.navigateTo({
-                    url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&delivery_method=' + this.data.goods.delivery_method + '&from_id=' + this.data.from_id
+                    url: '../order-confirm/index?goods_id=' + this.data.goods.goods_id + '&payment_method=' + this.data.goods.payment_method + '&delivery_method=' + this.data.goods.delivery_method + '&from_id=' + this.data.from_id
                 })
 
 

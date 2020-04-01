@@ -41,11 +41,11 @@
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
             <block wx:if="{{item.supplier_id}}">
-                编辑修改
+               修改价格
             </block>
 
             <block wx:else>
-                修改价格
+               编辑修改
             </block>
 
             
@@ -115,7 +115,7 @@
     <!--     <button wx:if="{{copy}}" bindtap="copy">复制商品</button> -->
     <view class="page-wrap">
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}} white-bg ph-df cf">
-            <block wx:for="{{goods_spec}}" >
+            <block wx:for="{{goods_spec}}" wx:key="spec_id" >
                 <view class="solid-top"></view>
                 <view class="goods-price-item flex-box">
                     <view class="pics" wx:if="{{item.spec_pic}}">

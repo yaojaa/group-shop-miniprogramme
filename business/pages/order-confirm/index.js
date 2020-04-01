@@ -16,7 +16,8 @@ Page({
         self_address: [],
         goods_name: '',
         supplier: {},
-        delivery_method: 0,
+        payment_method: 0,
+        pay_btn_txt:'立即支付',
         consignee: '',
         mobile: '',
         user_message: '',
@@ -282,6 +283,16 @@ Page({
 
         this.data.goods_id = options.goods_id
         this.data.from_id = options.from_id || ''
+
+        console.log(options.payment_method==1,options.payment_method)
+
+        if(options.payment_method==1){
+                this.setData({
+                    pay_btn_txt:'立即参与'
+                })
+        }
+
+
         this.getGoodsInfo()
        
 

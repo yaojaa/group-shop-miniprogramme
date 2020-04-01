@@ -68,34 +68,57 @@ Page({
         }
 
 
-        util.wx.post('/api/seller/apply_agent',{
+
+        util.wx.get('/api/seller/apply_agent',{
             supplier_id:this.supplier_id,
-            apply_remark:e.detail.value.apply_remark
-        }).then(res=>{
-
-         
-
-           Dialog.alert({
+           apply_remark:e.detail.value.apply_remark        
+        })
+        .then(res=>{
+            Dialog.alert({
               title: '申请成功',
-              message: '请等待审核 点击确定返回'
+              message: res.data.msg
             }).then(() => {
 
                 wx.redirectTo({
-                    url:'/pages/home/index'
+                    url:'/pages/supplier-list/index'
                    })
             })
-        },res=>{
 
-    
-              wx.showToast({
-         title: res.data.msg,//提示文字
-         duration:3000,
-         icon:'none'
-         //显示时长
-      })
-
+        wx.hideLoading()
+        console.log('第一',res)
 
         })
+
+
+
+      //   util.wx.post('/api/seller/apply_agent',{
+      //       supplier_id:this.supplier_id,
+      //       apply_remark:e.detail.value.apply_remark
+      //   }).then(res=>{
+
+         
+      //       console.log('111',res)
+      //      Dialog.alert({
+      //         title: '申请成功',
+      //         message: res.data.msg
+      //       }).then(() => {
+
+      //           wx.redirectTo({
+      //               url:'/pages/home/index'
+      //              })
+      //       })
+      //   },res=>{
+      //       console.log('222',res)
+
+      //         wx.showToast({
+      //    title: res.data.msg,//提示文字
+      //    duration:3000,
+      //    icon:'none'
+      //    //显示时长
+      // })
+
+
+      //   })
     },
 
      /***点击授权按钮***/

@@ -10,18 +10,6 @@
 
 
 
-.new-btn {
-    position: absolute;
-    right: 10px;
-    top: 9rpx;
-    z-index: 9999;
-    color: #fff;
-    border-radius: 50rpx;
-    border: 1px solid #ebffdb;
-    margin-right: 10px;
-    font-size: 24rpx;
-    background: #85c002
-}
 
 
 .panelbox {
@@ -30,12 +18,11 @@
 
 .head-box {
     position: relative;
-    background: #ffaa4f;
+    background: #80cc2b;
     background-size: 100% auto;
-    height: 270rpx;
+    height: 240rpx;
     position: relative;
     width: 100%;
-    padding-top: 34rpx;
     overflow: hidden;
 }
 
@@ -252,165 +239,8 @@
     flex: 1;
 }
 
-.new_btn {
-    position: absolute;
-    right: 10rpx;
-    top: 170rpx
-}
 
-.count-box {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    background: #fff;
-}
 
-.count-item {
-    -webkit-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
-    -o-flex: 1;
-    flex: 1;
-    text-align: center;
-    margin: 30rpx 0;
-    border-right: 1rpx solid #f2f2f2;
-}
-
-.count-item .label {
-    font-size: 24rpx;
-    color: #666;
-    display: block;
-}
-
-.count-item .num {
-    font-size: 32rpx;
-    color: #333;
-    display: block;
-    padding: 15rpx 0;
-}
-
-.count-item.active {
-    border-bottom: 2px solid #6dbf0c
-}
-
-.goods-count {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-}
-
-.goods-item {
-    margin: 15px 10px 10px 0;
-}
-
-.goods-item .rm_btn {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    color: rgb(204, 203, 203)
-}
-
-.goods-body {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    padding: 0 20rpx;
-    position: relative;
-}
-
-.goods-body .hd {
-    width: 120rpx;
-    height: 120rpx;
-}
-
-.goods-body .bd {
-    margin: 0 20rpx;
-    -webkit-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
-    -o-flex: 1;
-    flex: 1;
-    border-radius: 10px
-}
-
-.goods-body .bd .tit {
-    font-size: 16px;
-    color: #474245;
-    width: 100%;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.goods-body .bd .link {
-
-    padding: 14rpx 0 0 5rpx
-}
-
-.goods-body .bd .link text {
-    font-size: 13px;
-    color: #49b34d;
-}
-
-.goods-body .fd {
-    color: #999;
-    font-size: 28rpx;
-    position: absolute;
-    right: 0;
-    top: 0
-}
-
-.goods-count .count-item {
-    margin: 30rpx auto 0;
-}
-
-.goods-count .count-item .label {
-    color: #666;
-}
-
-.goods-count .count-item .num {
-    font-size: 28rpx;
-    color: #333
-}
-
-.add-goods {
-    position: absolute;
-    right: 0;
-    top: 70rpx;
-    background: #FFA14E;
-    color: #fff;
-    width: 180rpx;
-    height: 70rpx;
-    line-height: 70rpx;
-    text-align: center;
-    border-radius: 35rpx 0 0 35rpx;
-    text-align: center;
-    font-size: 30rpx;
-}
-
-.link button {
-    margin-right: 10px
-}
-
-.new-goods {
-    background: url('https://static.kaixinmatuan.cn/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.L93aAkSP1WBu55d11a6a3dd783840a0c548161476571.jpg');
-    background-color: #ffffff;
-    background-size: 50%;
-    background-position: center 40%;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 370rpx;
-    line-height: 315px;
-    text-align: center;
-    color: #888
-}
 
 .tip_txt {
     text-align: center;

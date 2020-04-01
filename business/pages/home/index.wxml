@@ -19,7 +19,7 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm" bindtap="goSite">{{info.supplier_name}} </view>
+                        <view class="shop-name mr-sm" bindtap="goSite">{{info.supplier_name}} </view>
                         <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" >{{userInfo.nickname}}
                         </navigator>
                     </view>

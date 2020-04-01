@@ -21,7 +21,8 @@ Page({
         freight_tpl_name: '',
         freight_tpl_id: '',
         freight_tpl_info: [],
-        list: areaList
+        list: areaList,
+        hasSelect:''
     },
 
     onChange(e) {
@@ -45,10 +46,21 @@ Page({
         //如果是编辑
         if(options.id){
 
+            this.data.freight_tpl_id = options.id
+
 
             this.getTplInfo(options.id)
 
         }
+
+
+        if(options.hasSelect){
+            this.setData({
+                hasSelect:options.hasSelect
+              })
+        }
+
+
         // const that = this;
         // console.log(options)
         // if (+options.type === 1) {
@@ -183,10 +195,17 @@ Page({
                     title: '设置运费模板成功',
                     icon: 'none'
                 });
+
+                    if(this.data.hasSelect){
+
+                        this.data.hasSelect = res.data.data
+
+                    }
               
                     wx.redirectTo({
-                        url:'../postageSetting/index?hasSelect='+0
+                        url:'../postageSetting/index?hasSelect='+this.data.hasSelect
                     })
+
                     
             }, res => {
                 wx.showToast({

@@ -59,17 +59,18 @@ Page({
             spec_pic: [],
             spec_desc: ''
         }],
-        collection_methods: 1, //(1:平台代收,2:商户微信收款码)
+        payment_method: 0, //0:线上微信支付,1:线下支付'
         visible1: false,
         visible2: false,
         type: 'photo', //上传图片或视频
         actions1: [
 
+           
             {
-                name: '先收款 微信即时支付'
+                name: '微信支付即时收款',
             },
-            {
-                name: '先统计报名 线下收款',
+             {
+                name: '线下收款 只统计报名 '
             },
         ],
         actions2: [{
@@ -506,7 +507,19 @@ Page({
 
     onShow: function(option) {
 
-        this.getTplList()
+      //  this.getTplList()
+      //  
+          if(this.freight_tpl_list){
+
+            this.freight_tpl_list.forEach(item => {
+                        if(item.freight_tpl_id == this.data.freight_tpl_id)
+                        {
+                            this.setData({
+                                freight_tpl_name:item.freight_tpl_name 
+                            })
+                        }
+                    })
+         }
 
     },
     getInput(e) {
@@ -770,12 +783,13 @@ Page({
                     return item.self_address_id
                 }),
                 delivery_method: this.data.delivery_method,
-                // collection_methods: this.data.collection_methods,
+                payment_method: this.data.payment_method,
                 start_time: this.data.start_time,
                 end_time: this.data.end_time,
                 content_imgs: this.data.content_imgs,
                 goods_video:this.data.goods_video,
                 goods_video_cover:this.data.goods_video_cover,
+                freight_tpl_id:this.data.freight_tpl_id,
                 cat_id: 8
             },
 
@@ -852,10 +866,9 @@ Page({
 
     /**收款方式**/
     handleClickItem1({ detail }) {
-        const index = detail.index + 1;
 
         this.setData({
-            collection_methods: index,
+            payment_method: detail.index,
             visible1: false
         });
     },
@@ -879,22 +892,9 @@ Page({
     },
 
         /**回显数据**/
-    getPublishedData(goods_id, isCopy, temp) {
+    getPublishedData(goods_id, isCopy) {
         // 是否是模板   1包邮模板   2自提模板
-        if(temp == 1){
-            this.initData({"goods_name":"这里是标题：\u5c71\u4e1c\u70df\u53f0\u798f\u5c71\u5927\u6a31\u6843","goods_cover":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032214405156.jpg","goods_video_cover":"","goods_video":"","goods_content":"\u798f\u5c71\u662f\u70df\u53f0\u5927\u6a31\u6843\u7684\u751f\u4ea7\u5730\uff0c\u4e5f\u662f\u70df\u53f0\u6700\u597d\u5403\u7684\u5927\u6a31\u6843\u4ea7\u5730\uff0c\u88ab\u56fd\u5bb6\u547d\u540d\u4e3a\u201c\u4e2d\u56fd\u5927\u6a31\u6843\u4e4b\u4e61\u201c\u3002\n\u6a31\u6843\u6811\u4ece\u571f\u58e4\u6539\u826f\u5f00\u59cb\uff0c\u65bd\u7528\u519c\u5bb6\u80a5\uff0c\u53ea\u7528\u4e94\u5e74\u4ee5\u4e0a\u6811\u9f84\u7684\u679c\u6811\u6302\u679c\uff0c\u6bcf\u5e743\u67084\u65e5\uff0c\u6a31\u6843\u6811\u5f00\u82b1\uff0c\u871c\u8702\u6388\u7c89\uff0c\u4eba\u5de5\u758f\u82b1\u758f\u679c\u62a4\u7406\uff0c\u5c71\u6cc9\u6c34\u704c\u6e89\uff0c\u4eba\u5de5\u91c7\u6458\u6311\u9009\uff0c\u73b0\u6458\u73b0\u53d1\uff0c\u54c1\u8d28\u4fdd\u969c\u3002\n1\uff0c\u8272\u6cfd\u8273\u4e3d\uff0c\u6676\u83b9\u5254\u900f\uff0c\u5916\u5f62\u9971\u6ee1\uff0c\u5a07\u8273\u6b32\u6ef4\u3002\n2\uff0c\u4e2a\u5934\u5927\uff0c\u9897\u9897\u9971\u6ee1\uff0c\u76ae\u8584\u8089\u539a\uff0c\u65b0\u9c9c\u91c7\u6458\u3002\n3\uff0c\u76ae\u8584\u6838\u5c0f\uff0c\u8089\u539a\u8106\u751c\uff0c\u53e3\u611f\u4f73\uff0c\u597d\u5403\u505c\u4e0d\u4e0b\u3002\n4\uff0c\u9178\u751c\u53ef\u53e3\uff0c\u8106\u723d\u591a\u6c41\uff0c\u4e00\u53e3\u7206\u6d46\uff0c\u53e3\u5473\u60a0\u957f\u3002\n5\uff0c\u65b0\u9c9c\u91c7\u6458\uff0c\u73b0\u6458\u73b0\u53d1\uff0c\u679c\u67c4\u78a7\u7eff\u5904\u5904\u6563\u53d1\u65b0\u9c9c\u3002\n6\uff0c\u6e05\u6668\u91c7\u6458\uff0c\u7cbe\u6311\u7ec6\u9009\uff0c\u9897\u9897\u6311\u9009\u4e00\u7ea7\u597d\u679c\u3002","pageview_count":0,"collect_count":0,"comment_count":0,"store_sort":null,"is_on_sale":1,"is_del":1,"addtime":1559572333,"updatetime":1559573434,"delivery_method":1,"start_time":1559569987,"end_time":1592835682,"content_imgs":["https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032229506866.jpg","https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032230027360.jpg","https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032230219849.jpg","https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032230334715.jpg"],"goods_spec":[{"goods_spec_id":8,"goods_id":4,"spec_id":0,"spec_name":"\u5927\u6a31\u68432\u65a4","spec_price":"98.00","spec_stock":null,"spec_pic":["https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf320190603223155441.jpg"],"is_limited_stock":1,"addtime":1559573434,"spec_desc":""}],"goods_images":[{"img_id":15,"goods_id":4,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032214405156.jpg","img_sort":0,"is_cover":1},{"img_id":16,"goods_id":4,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032214517830.jpg","img_sort":1,"is_cover":0},{"img_id":17,"goods_id":4,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032214553804.jpg","img_sort":2,"is_cover":0},{"img_id":18,"goods_id":4,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032215151274.jpg","img_sort":3,"is_cover":0}],"self_address":[],"_expires":1,"total_qty":0,"buyuser_count":0}, isCopy);
-            return;
-        }else if(temp == 2){
-            this.initData({
-"goods_name":"这里是标题：\u7ea2\u989c\u5976\u6cb9\u8349\u8393","goods_cover":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032235396620.jpg",
-"goods_video_cover":"",
-"goods_video":"",
-"goods_content":"\u679c\u5f62\u5706\u9525\u5f62\uff0c\u7ea2\u8273\u6b32\u6ef4\uff0c\u679c\u8089\u8f6f\uff0c\u5ae9\u5473\u751c\uff1b\u9897\u7c92\u9971\u6ee1\uff0c\u8272\u6cfd\u8273\u4e3d\uff0c\u54ac\u4e00\u53e3\uff0c\u679c\u8089\u5b9e\u5fc3\u4e30\u76c8\uff0c\u679c\u6c41\u8fdb\u6e85\uff0c\u9f7f\u988a\u5c3d\u7559\u9999\u751c\u3002\n\u7ea2\u989c\u5976\u6cb9\u8349\u8393\uff0c\u201d\u8393\u201c\u597d\u751f\u6d3b\uff0c\u7406\u5f53\u7ea2\u989c\u76f8\u4f34\u3002\n\u5b9e\u5fc3\u7f8e\u5473\uff0c\u6c34\u5ae9\u5976\u9999\uff0c\u5168\u5bb6\u5171\u4eab\u3002","pageview_count":0,"collect_count":0,"comment_count":0,"store_sort":null,"is_on_sale":1,"is_del":1,"addtime":1559573208,"updatetime":1559573660,"delivery_method":2,"start_time":1559569987,"end_time":1592835682,
-"content_imgs":["https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032243261303.jpg","https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032243378431.jpg","https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032243431872.jpg"],"goods_spec":[{"goods_spec_id":9,"goods_id":5,"spec_id":0,"spec_name":"500g\/20-24\u9897","spec_price":"42.90","spec_stock":null,"spec_pic":["https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf320190603224615303.jpg"],"is_limited_stock":1,"addtime":1559573660,"spec_desc":"\u5976\u9999\u8349\u8393\uff0c\u65b0\u9c9c\u91c7\u6458"},{"goods_spec_id":10,"goods_id":5,"spec_id":0,"spec_name":"3斤装","spec_price":"78.90","spec_stock":null,"spec_pic":["https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032243378431.jpg","https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032235396620.jpg"],"is_limited_stock":1,"addtime":1559573660,"spec_desc":""}],"goods_images":[{"img_id":19,"goods_id":5,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032235396620.jpg","img_sort":0,"is_cover":1},{"img_id":20,"goods_id":5,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032236146589.jpg","img_sort":1,"is_cover":0},{"img_id":21,"goods_id":5,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032236212470.jpg","img_sort":2,"is_cover":0},{"img_id":22,"goods_id":5,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032236267545.jpg","img_sort":3,"is_cover":0},{"img_id":23,"goods_id":5,"img_url":"https:\/\/static.kaixinmatuan.cn\/eccbc87e4b5ce2fe28308fd9f2a7baf3201906032253004423.jpg","img_sort":4,"is_cover":0}],
-"self_address":[],"_expires":1,"total_qty":0,"buyuser_count":0}, isCopy);
 
-            return;
-        }
 
 
         wx.showLoading()
@@ -927,9 +927,22 @@ Page({
         let starFormatTime = isCopy ? default_start_time : util.formatTime(new Date(gs.start_time * 1000))
         let endFormatTime = isCopy ? default_end_time : util.formatTime(new Date(gs.end_time * 1000))
         
-        console.log('endFormatTime',endFormatTime)
+       
+        var freight_tpl_name=''
 
-        console.log(gs.goods_images)
+        //获取地址列表 和获取详情异步f vfv
+        //
+        if(gs.freight_tpl_id){
+
+            this.getTplList()
+
+        }
+
+
+       
+
+
+
 
         this.setData({
             goods_images: gs.goods_images,
@@ -937,7 +950,7 @@ Page({
             goods_content: gs.goods_content,
             sell_address: gs.self_address,
             delivery_method: gs.delivery_method,
-            // collection_methods: gs.collection_methods,
+             payment_method: gs.payment_method,
             content_imgs: gs.content_imgs || [],
             goods_video:gs.goods_video,
             goods_video_cover:gs.goods_video_cover,
@@ -950,8 +963,9 @@ Page({
                 end_time: endFormatTime.split(' ')[1],
             },
             spec: gs.goods_spec,
-            isShowTimePicker: true
-        })
+            isShowTimePicker: true,
+            freight_tpl_id: gs.freight_tpl_id || 0       
+             })
         console.log('picker',this.data.picker)
 
     },
@@ -980,10 +994,28 @@ Page({
         //回显运费模版名称
 
     getTplList() {
+        console.log('this.freight_tpl_list',this.freight_tpl_list)
+    //减少一个请求
+        if(this.freight_tpl_list){
+
+            this.freight_tpl_list.forEach(item => {
+                        if(item.freight_tpl_id == this.data.freight_tpl_id)
+                        {
+                            this.setData({
+                                freight_tpl_name:item.freight_tpl_name 
+                            })
+                        }
+                    })
+
+            return
+        }
+
+
         util.wx.get('/api/user/get_freight_tpl_list')
             .then(res => {
                     const lists = res.data.data.lists;
                     lists.forEach(item => {
+                        console.log(item.freight_tpl_id,this.data.freight_tpl_id)
                         if(item.freight_tpl_id == this.data.freight_tpl_id)
                         {
                             this.setData({
@@ -1039,8 +1071,6 @@ Page({
 
             this.getPublishedData(option.goods_id)
 
-        }else if(option.temp){ // 是否是模板
-            this.getPublishedData('', '', option.temp);
         }
 
 

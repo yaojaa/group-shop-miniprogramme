@@ -35,6 +35,12 @@ Page({
                 resolve()
             }, (err) => {
                 reject(err)
+            }).catch(e=>{
+                wx.showToast({
+                    title:'获取订单失败 稍微再试',
+                    icon:'none'
+                })
+                 reject(err)
             })
         })
     },

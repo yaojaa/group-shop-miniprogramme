@@ -236,7 +236,7 @@ Page({
                         orderList: res.data.data.order_list
                     })
                 }
-            })
+            }).catch(e=>{})
     },
 
     managePage(e) {

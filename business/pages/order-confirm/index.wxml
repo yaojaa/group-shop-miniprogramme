@@ -11,7 +11,7 @@
             </view>
         </view>
         
-            <button class="btn primary w-min-lg lg linenear_bg" bindtap="createOrder" loading="{{loading}}" disabled="{{loading}}">立即支付</button>
+            <button class="btn primary w-min-lg lg linenear_bg" bindtap="createOrder" loading="{{loading}}" disabled="{{loading}}"> {{pay_btn_txt}} </button>
     </view>
     <view class="content-wrap">
         <view class="por">

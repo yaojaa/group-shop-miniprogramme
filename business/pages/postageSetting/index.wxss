@@ -1,7 +1,7 @@
 @import "../../../css/common.wxss";
 
 .rule-title {
-    padding: 40rpx;
+    padding: 20rpx;
     position: relative;
 }
 
@@ -19,11 +19,11 @@
 }
 
 .table {
-    border: 1px solid #eee;
+    border-top: 1px solid #eee;
     border-right: 0;
     border-bottom: 0;
-    width: 90%;
-    margin: 10rpx auto;
+    border-left: 0;
+
 }
 
 .tr {
@@ -46,6 +46,13 @@
 }
 
 .title{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
+}
+.box{
+	box-shadow: 0 0 6px #ddd;
+	margin: 10px;
+	background: #fcfff9;
+	padding-bottom: 20px;
+	margin-bottom: 20px
 }

@@ -35,7 +35,7 @@
 			</view>
 
 			<view>
-				<button class='pubbtn' bindtap="new_btn">
+				<button class='btn linenear_bg block' bindtap="new_btn">
 					立即提现
 				</button>
 			</view>
@@ -72,6 +72,9 @@
 <i-panel>
 
 	<van-cell-group>
+
+		
+
 		<van-cell icon="home-o" title="我的主页" is-link link-type="navigateTo" url="../userhome/index?id={{userInfo.store_id}}" />
 		<van-cell icon="friends-o" title="我的顾客 （{{fansNum}}）" is-link link-type="navigateTo" url="../fans-mg/index" />
 
@@ -80,8 +83,8 @@
 </i-panel>
 
 <i-panel>
-
 	<van-cell-group>
+		<van-cell icon="cart-circle-o" title="我参与过的订单 " is-link link-type="navigateTo" url="../order-list/index" />
 
 		<van-cell icon="logistics" wx:if="{{!is_supperlier}}" title="开通供应商主页" is-link link-type="navigateTo" url="/business/pages/create-home/index" />
 

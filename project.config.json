@@ -30,7 +30,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
+	"libVersion": "2.9.5",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
 	"cloudfunctionTemplateRoot": "",
@@ -41,11 +41,8 @@
 		"hidedInDevtools": []
 	},
 	"scripts": {},
-	"apiMock": {
-		"useApiMock": false,
-		"apiList": {},
-		"apiMockConfig": ""
-	},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -74,7 +71,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 119,
+			"current": 85,
 			"list": [
 				{
 					"id": 0,
@@ -800,9 +797,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "模板列表",
-					"pathName": "business/pages/tpl-list/index",
+					"id": 104,
+					"name": "business/pages/postageSetting/index",
+					"pathName": "business/pages/postageSetting/index",
 					"query": "",
 					"scene": null
 				},
@@ -902,15 +899,20 @@
 					"name": "business/pages/order-manage/index",
 					"pathName": "business/pages/order-manage/index",
 					"query": "",
-<<<<<<< HEAD
-=======
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "business/pages/create-home/index",
-					"pathName": "business/pages/create-home/index",
->>>>>>> dca6e848d31e2c6d63a992d4b082ce570ee508b9
+					"name": "pages/identify/identify",
+					"pathName": "pages/identify/identify",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/express/index",
+					"pathName": "pages/express/index",
+					"query": "pi=0&ci=1&order_id=11482&user=%E8%91%A3%E5%8D%8E&sn=202003301529505300793437&goods=%E9%87%91%E7%85%8C%20%E8%B4%B5%E5%A6%83%20%E5%8F%B0%E5%86%9C%20%E9%AB%98%E5%93%81%E8%B4%A8%E6%A0%91%E4%B8%8A%E7%86%9F%20%E6%9D%A5%E8%87%AA%E6%B5%B7%E5%8D%97%E5%B2%9B%E7%9A%84%E7%94%9C%E8%9C%9C%E6%9A%B4%E5%87%BB",
 					"scene": null
 				}
 			]

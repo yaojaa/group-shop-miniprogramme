@@ -59,23 +59,17 @@ Page({
             wx_paycode:this.data.wx_paycode || '',
             user_id : app.globalData.userInfo.user_id
 
-        }).then(res => {
-
-            if (res.data.code == 200) {
-                wx.showToast({
-                    title:'保存成功',
-                    icon:'none'
-                })
-            } else {
-                wx.showToast({
-                    title:res.data.msg,
-                    icon:'none'
-                })
-            }
-        },res=>{
+        }).then(res=>{
+          console.log('1',res)
           wx.showToast({
-            title: res.data.msg,
-            icon: 'none'
+            title:res.data.msg,
+            icon:'none'
+          })
+        },res=>{
+          console.log('2',res)
+          wx.showToast({
+            title:res.data.msg,
+            icon:'none'
           })
         })
 

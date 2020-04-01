@@ -15,7 +15,7 @@
                     </view>
                     <view class="mt-xs des text-justify">
                        <view>
-                        <text class="text-muted text-sm ">采购：</text> <text class="coral-text ">¥{{item.min_price}}</text>
+                        <text class="text-muted text-sm ">采购：</text> <text class="coral-text ">¥{{item.price_min}}</text>
                        </view>
                        <view class="flex align-center text-gray ">
                         <van-icon name="shopping-cart-o" size="46rpx" />
