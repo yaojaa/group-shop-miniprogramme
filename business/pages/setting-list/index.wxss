@@ -2,6 +2,7 @@
 
 .container,page {
     background: #f8f8f8;
+    padding-bottom: 50px;
 }
 
 .weui-footer_fixed-bottom{

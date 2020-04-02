@@ -1,5 +1,5 @@
 {     "navigationStyle": "custom",
-  "navigationBarBackgroundColor": "#69b90b",
+  "navigationBarBackgroundColor": "#ffaa4f",
   "navigationBarTextStyle": "white",
   "usingComponents": {
   	 "van-tabbar": "../../../vant/tabbar/index",

@@ -1,6 +1,7 @@
 @import "../../../css/common.wxss";
 
 .container{
+    padding-bottom: 50px;
 }
 
 .flex{
@@ -63,7 +64,7 @@
     height: 40rpx;
     line-height: 40rpx;
     color: #fff;
-    background: #69b90b;
+    background: #ffaa4f;
     font-size: 24rpx;
 }
 .act-more-list{
@@ -75,7 +76,7 @@
 .act-submit{
 
     position: fixed;
-    bottom: 0;
+    bottom: 50px;
     width: 100%;
     right: 0;
     left: 0;
@@ -89,7 +90,7 @@
 }
 
 .act-submit button{
-    background-color: #69b90b;
+    background-color: #ffaa4f;
     color: #fff;
     height: 80rpx;
     line-height: 80rpx;

@@ -180,4 +180,5 @@
         </view>
     </i-modal>
     <i-message id="message" />
+        <footerbar active="{{1}}" />
 </view>
