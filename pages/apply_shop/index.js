@@ -172,32 +172,11 @@ Page({
   onLoad: function (options) {
 
     this.setData({
-      store_name:app.globalData.userInfo.nickname+'的主页'
+      store_name:app.globalData.userInfo.user.nickname+'的主页'
     })
 
   },
-  getInfo:function(){
 
-
-    util.wx.get('/api/seller/get_store_info').then(res=>{
-      if(res.data.code !== 200){
-        this.setData({
-          info:res.data.data,
-          store_name:res.data.data.store_name,
-          store_intro:res.data.data.store_intro,
-          store_slide:res.data.data.store_slide,
-          postURl:'/api/seller/store_set'
-        })
-      }else{
-
-         this.setData({
-            btn_txt:'立即创建',
-            postURl:'/api/user/store_apply'
-        })
-
-      }
-    })
-  },
        //上传相册
   chooseImage:function(e){
 
@@ -285,9 +264,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  },
+  
   onOpen1() {
         this.setData({ visible1: true })
     },
@@ -325,49 +302,6 @@ Page({
         console.log('onChange2', e.detail)
         this.setData({ value2: e.detail.value, title2: e.detail.done && e.detail.options.map((n) => n.label).join('/') })
     },
-    onLoadOptions(e) {
-        console.log('onLoadOptions', e.detail)
-        const { value } = e.detail
-        const options2 = [...this.data.options2]
-
-
-        setTimeout(() => {
-            if (value[value.length - 1] === 'beijing') {
-                options2.forEach((n) => {
-                    if (n.value === 'beijing') {
-                        n.children = [
-                            {
-                                value: 'baidu',
-                                label: '百度'
-                            },
-                            {
-                                value: 'sina',
-                                label: '新浪'
-                            },
-                        ]
-                    }
-                })
-            } else if (value[value.length - 1] === 'hangzhou') {
-                options2.forEach((n) => {
-                    if (n.value === 'hangzhou') {
-                        n.children = [
-                            {
-                                value: 'ali',
-                                label: '阿里巴巴'
-                            },
-                            {
-                                value: '163',
-                                label: '网易'
-                            },
-                        ]
-                    }
-                })
-            }
-
-            wx.hideLoading()
-
-            this.setData({ value2: value, options2 })
-        }, 1000)
-    },
+   
     inputDuplex:util.inputDuplex
 })

@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function (options) {
 
-    const uInfo = app.globalData.userInfo
+    const uInfo = app.globalData.userInfo.user
 
     if(uInfo.store_id){
 
@@ -29,7 +29,6 @@ Page({
 
 
 
-    console.log(app.globalData.userInfo.headimg)
 
     this.setData({
       store_logo:uInfo.headimg,

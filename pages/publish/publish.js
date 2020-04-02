@@ -1050,7 +1050,7 @@ Page({
         
     
                 wx.setNavigationBarTitle({
-                  title: app.globalData.userInfo.nickname+'您正在发布活动'
+                  title: app.globalData.userInfo.user.nickname+'您正在发布活动'
                 })
     
 

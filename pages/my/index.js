@@ -327,61 +327,18 @@ Page({
 
     },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
 
-        this.data.cpage = 1
-        this.data.goodslist = []
-        this.getGoodsList()
-        this.getOrderCount()
-        this.get_store_info()
-
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-        ++this.data.cpage
-
-        if (this.data.cpage <= this.totalpage) {
-            this.getGoodsList(); //重新调用请求获取下一页数据 
-        } else {
-            this.data.cpage = this.totalpage
-        }
-
-    },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
     },
     onShareAppMessage: function(e) {
         console.log(e)
         if (app.globalData.userInfo) {
-            var _uid = app.globalData.userInfo.user_id
+            var _uid = app.globalData.userInfo.user.user_id
         }
-
-        if(e.target.dataset.type =='goods'){
-
-            const {cover,goods_name,goods_id} = e.target.dataset
-
 
         return {
-            title:goods_name,
-            imageUrl: cover+'?imageView2/2/w/600/h/400/format/jpg/q/85',
-            path: 'pages/goods/goods?goods_id=' + goods_id
-        }
-
-
-        }
-
-
-
-        return {
-            title: app.globalData.userInfo.nickname + '推荐您一个好助手',
+            title: app.globalData.userInfo.user.nickname + '推荐您一个好助手',
             imageUrl: 'https://static.kaixinmatuan.cn/static/share-cover.jpg',
             path: 'pages/login/login' + '?from_id=' + _uid
         }
