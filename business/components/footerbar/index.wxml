@@ -1,4 +1,4 @@
-<van-tabbar active="{{ active }}"   inactive-color="" active-color="#49b34d" z-index="{{9}}">
+<van-tabbar active="{{ active }}"   inactive-color="" active-color="#49b34d" z-index="{{9}}" bind:change="onChange">
   <van-tabbar-item name="home" bind:click="goHome" icon="home-o">首页</van-tabbar-item>
   <van-tabbar-item bindtap="goOrder" icon="orders-o">订单</van-tabbar-item>
   <van-tabbar-item bindtap="goActing"  icon="friends-o">代理</van-tabbar-item>
