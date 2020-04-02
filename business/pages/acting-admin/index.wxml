@@ -1,12 +1,12 @@
 
 <view class="container">
-<van-search  placeholder="输入昵称搜索"  background="#69b90b" />
+<van-search  placeholder="输入昵称搜索"  background="#ffaa4f" />
 
    <view class="act-submit">
 
 
 
-    <view><button   bindtap="openShareFriends" class="linenear_bg">邀请小伙伴</button></view>
+    <view><button   bindtap="openShareFriends" >邀请小伙伴</button></view>
     
         <view class="total">共{{total}}人</view>
 
@@ -76,5 +76,5 @@
             </view>
         </view>
     </van-action-sheet>
-
+    <footerbar active="{{2}}" />
 </view>

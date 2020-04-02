@@ -16,7 +16,8 @@
         "van-button": "../../../vant/button/index",
          "van-card": "../../../vant/card/index",
           "van-tab": "../../../vant/tab/index",
-          "van-tabs": "../../../vant/tabs/index"
+          "van-tabs": "../../../vant/tabs/index",
+          "footerbar": "../components/footerbar/index"
     }
 
 }
