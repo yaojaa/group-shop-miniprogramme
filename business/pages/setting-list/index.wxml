@@ -96,11 +96,14 @@
 
 <i-panel>
 
-	<van-cell-group>
 
 
-<van-cell icon="logistics"  title="切换为团长身份" is-link link-type="navigateTo" url="/pages/home/index" />
-	</van-cell-group>
+<van-cell-group>
+
+<van-cell icon="logistics"  title="切换到团长界面" bindtap="goGroup" />
+</van-cell-group>
+
+
 </i-panel>
 
 <i-panel>

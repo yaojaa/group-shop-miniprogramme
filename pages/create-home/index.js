@@ -97,9 +97,20 @@ Page({
         icon:'none'
       })
 
-      wx.redirectTo({
-        url:'../create-home/index'
-      })
+
+            const d = res.data.data
+
+            app.globalData.userInfo = d
+         
+            wx.setStorage({ //存储到本地
+                key: "userInfo",
+                data: d,
+                success:function(){
+                  wx.redirectTo({
+                    url:'/pages/home/index'
+                  })
+                }
+            })
 
 
     },res=>{

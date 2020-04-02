@@ -72,10 +72,22 @@ Page({
 
     },
 
-    goCreate() {
-        wx.redirectTo({
-            url: '../create_shop/index'
+    goGroup() {
+
+        if(app.globalData.userInfo.store){
+
+                    wx.redirectTo({
+            url: '/pages/home/index'
         })
+
+
+        }else{
+
+                    wx.redirectTo({
+            url: '/pages/create-home/index'
+        })
+        }
+
     },
 
 
