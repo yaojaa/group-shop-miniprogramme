@@ -30,12 +30,11 @@
 
 .head-box {
     position: relative;
-    background: #ffaa4f;
+    background: #80cc2b;
     background-size: 100% auto;
     height: 270rpx;
     position: relative;
     width: 100%;
-    padding-top: 34rpx;
     overflow: hidden;
 }
 

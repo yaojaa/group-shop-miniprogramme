@@ -128,7 +128,7 @@ Page({
 
     goPublish(){
         wx.navigateTo({
-            url:'../publish/publish'
+            url:'../apply_shop/index'
         })
 
     },
@@ -147,7 +147,7 @@ Page({
         } else {
 
             this.setData({
-                userInfo: app.globalData.userInfo
+                userInfo: app.globalData.userInfo.user
             })
             wx.getStorage({
                 key: 'show_tips',

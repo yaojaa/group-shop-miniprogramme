@@ -1,5 +1,5 @@
 {
-   "navigationBarTitleText": "主页设置",
+   "navigationBarTitleText": "免费开通个人主页",
   "usingComponents": {
   	     "i-panel": "../../iView/panel/index",
         "i-input": "../../iView/input/index",

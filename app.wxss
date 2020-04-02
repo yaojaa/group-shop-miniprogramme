@@ -1148,8 +1148,8 @@ fieldset[disabled] .btn-link {
 }
 
 .no-content-icon {
-    width: 270rpx;
-    height: 270rpx;
+    width: 170rpx;
+    height: 170rpx;
 }
 
 

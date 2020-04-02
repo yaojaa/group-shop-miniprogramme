@@ -99,8 +99,7 @@
 	<van-cell-group>
 
 
-
-		<van-cell icon="logistics"  title="切换为团长身份" is-link link-type="navigateTo" url="/pages/home/index" />
+<van-cell icon="logistics"  title="切换为团长身份" is-link link-type="navigateTo" url="/pages/home/index" />
 	</van-cell-group>
 </i-panel>
 
@@ -110,7 +109,7 @@
 <van-cell
   
 >  
-<button>分享朋友使用</button>  </van-cell>
+<button open-type="share">分享朋友使用</button>  </van-cell>
   
  </van-cell-group>
 </i-panel>

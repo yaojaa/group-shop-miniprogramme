@@ -3,20 +3,28 @@
 
 <wux-toptips id="wux-toptips" />
 
+
 <i-panel  i-class="shadow-panel" hideBorder>
     <wux-cell-group >
             <wux-cell hover-class="none">
-               <wux-input controlled="{{true}}" placeholder="输入主页名称" value="{{ store_name }}" bind:change="inputDuplex" data-key="store_name" />
+               <wux-input label="主页名称" controlled="{{true}}" placeholder="输入主页名称" value="{{ store_name }}" bind:change="inputDuplex" data-key="store_name" />
             </wux-cell>
-        </wux-cell-group>
+              <wux-cell hover-class="none">
+               <wux-input label="真实姓名" controlled="{{true}}" placeholder="输入真实姓名 用于提现" value="{{ realname }}" bind:change="inputDuplex" data-key="realname" />
+            </wux-cell>
 
-  <wux-cell-group >
-            <wux-cell hover-class="none">
-                <wux-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro"  controlled="{{true}}" placeholder="输入小店名字"  hasCount rows="3" cursorSpacing="80" value="{{store_intro}}" placeholder="输入一段真诚的介绍，更容易打动客户哦" />
+              <wux-cell hover-class="none">
+               <wux-input type="number" label="手机号码" controlled="{{true}}" placeholder="输入手机号码 方便客户联系" value="{{ mobile }}" bind:change="inputDuplex" data-key="mobile" />
+            </wux-cell>
+
+              <wux-cell hover-class="none">
+               <wux-input label="微信号码" controlled="{{true}}" placeholder="输入微信号码 方便客户联系" value="{{ wechatnumber }}" bind:change="inputDuplex" data-key="wechatnumber" />
             </wux-cell>
         </wux-cell-group>
 
 </i-panel>
+
+
 
 
 <!--ssss-->
@@ -60,5 +68,5 @@
 </view>
 
 <view class="footer-btn padding20">
-    <button bindtap="createSubmit" class="linenear_bg">保存</button>
+    <button bindtap="createSubmit" class="linenear_bg">提交</button>
 </view>

@@ -61,7 +61,7 @@ Page({
 
 
             this.setData({
-                nickname : app.globalData.userInfo.nickname
+                nickname : app.globalData.userInfo.user.nickname
             })
 
 

@@ -55,7 +55,7 @@
 
 
 
-	<i-panel  title="我购买过的人 ">
+	<i-panel  title="我购买过的人 " wx:if="{{proList.length}}" >
 		<block wx:for="{{proList}}" wx:key="{{index}}">
 
 			<view class='product-item'>
@@ -142,8 +142,8 @@
 	<view class="weui-footer weui-footer_fixed-bottom">
 
 		<view class="center" style="margin-bottom:100rpx; text-align: center;"> 
-			<text bindtap="goPublish" class="text-primary">我也要发布活动</text> | 
-			<text bindtap="goSupperReg" class="text-primary">开通供应商主页</text> </view> 
+			<text bindtap="goPublish" class="text-primary">免费创建团长个人主页</text> | 
+			<text bindtap="goSupperReg" class="text-primary">创建品牌供应商主页</text> </view> 
 
 		<view class="weui-footer__links">
 

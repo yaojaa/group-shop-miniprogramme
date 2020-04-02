@@ -136,7 +136,7 @@ Page({
         } else {
 
             this.setData({
-                userInfo: app.globalData.userInfo
+                userInfo: app.globalData.userInfo.user
             })
 
             if(app.globalData.userInfo.supplier){
@@ -382,7 +382,7 @@ Page({
 
         return {
             title: app.globalData.userInfo.nickname + '推荐您一个好助手',
-            imageUrl: this.shareImg,
+            imageUrl: 'https://static.kaixinmatuan.cn/static/share-cover.jpg',
             path: 'pages/login/login' + '?from_id=' + _uid
         }
     },

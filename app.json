@@ -1,7 +1,7 @@
 {
     "pages": [
+         "pages/login/login",
         "pages/home/index",
-        "pages/login/login",
         "pages/create-home/index",
         "pages/publish-select/index",
         "pages/index/index",
@@ -50,7 +50,8 @@
         "pages/supplier-home/index",
         "pages/user-home/index",
         "pages/supplier-list/index",
-        "pages/my/index"
+        "pages/my/index",
+        "pages/apply_shop/index"
     ],
     "subpackages": [{
         "root": "business",

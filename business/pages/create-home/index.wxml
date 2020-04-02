@@ -18,7 +18,7 @@
       <!--       <van-field value="{{phone}}" name="supplier_pwd" label="密码"  placeholder="请设置密码用于登陆电脑端" type="text" /> -->
 
 
-            <van-field type="textarea" style="height: 200px" value="{{area}}" name="supplier_intro" label="简介"  placeholder="请输入店铺介绍" autosize />
+            <van-field type="textarea" style="height: 200px" value="{{area}}" name="supplier_intro" label="简介"  placeholder="请输入简单介绍" autosize />
 
 
         </van-cell-group>

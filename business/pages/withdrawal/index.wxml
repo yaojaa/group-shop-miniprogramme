@@ -30,6 +30,9 @@
                 <view class="text-sm n-bold mt-lt">待审核</view>
             </view>
         </view>
+        <view class="p-lg text-center text-gray text-df">
+        1-3个工作日到账
+        </view>
     </van-dialog>
     <van-toast id="van-toast" />
 </view>

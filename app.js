@@ -155,17 +155,17 @@ App({
                 success: (res) => {
 
                     if (res.data.code === 200) {
+                        console.log('res.data.data.token',res.data.data.token)
                         this.globalData.token = res.data.data.token
-                        this.globalData.userInfo = res.data.data.user
-                        this.globalData.userInfo.store_id = res.data.data.store && res.data.data.store.store_id || ''
-                         this.globalData.userInfo.store = res.data.data.store || ''
-                         this.globalData.userInfo.supplier = res.data.data.supplier || ''
+                        this.globalData.userInfo = res.data.data
+
 
                         console.group('储存登录userInfo')
                         wx.setStorage({ //存储到本地
                             key: "userInfo",
                             data: this.globalData.userInfo
                         })
+                        console.log(this.globalData)
                         console.groupEnd()
 
                         resolve(res)
@@ -317,10 +317,10 @@ App({
         if (userInfo) {
             this.globalData.token = userInfo.token
             this.globalData.userInfo = userInfo
-            console.log('已经登录.退出')
             if (this.userLoginReadyCallback) {
                 this.userLoginReadyCallback(this.globalData.userInfo)
             }
+
         }
 
 

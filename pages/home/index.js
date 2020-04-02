@@ -135,7 +135,7 @@ Page({
         } else {
 
             this.setData({
-                userInfo: app.globalData.userInfo
+                userInfo: app.globalData.userInfo.user
             })
             wx.getStorage({
                 key: 'show_tips',
@@ -309,9 +309,21 @@ Page({
 
     },
     new_btn: function() {
-        wx.navigateTo({
+
+
+        console.log('app.globalData.userInfo.store',typeof app.globalData.userInfo.store)
+
+        if(typeof app.globalData.userInfo.store !=='undefined'){
+               wx.navigateTo({
             url: '../publish/publish'
         })
+           }else{
+
+          wx.navigateTo({
+                url: '../apply_shop/index'
+            })
+           }
+     
     },
     fansPage() {
         wx.navigateTo({

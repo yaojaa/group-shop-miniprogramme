@@ -645,7 +645,7 @@ const default_end_time = util.formatTime(date)
         }
 
         return {
-            title: this.data.info.store_name+'的主页'
+            title: this.data.info.store_name
         }
     }
 })

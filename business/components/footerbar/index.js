@@ -35,7 +35,7 @@ Component({
             })
             },
             goMy(){
-               wx.navigateTo({
+               wx.redirectTo({
                     url: '../../pages/setting-list/index'
                 })
 

@@ -124,10 +124,14 @@
             <text>+ 立即发布活动 </text>
         </view>
 
-        <button style="margin:0 auto; display: block;" size="mini" open-type="contact" bindcontact="handleContact"> <van-icon name="chat-o" /> 使用咨询</button>
+      
 
     </i-panel>
     <view style="margin-bottom:100rpx"></view>
+
+      <button style="margin:0 auto; display: block;" size="mini" open-type="contact" bindcontact="handleContact"> <van-icon name="chat-o" /> 使用咨询</button>
+
+      
     <!--  <view wx:if="{{goodslist.length >= 0}}">
         <view class='new-goods' bindtap="new_btn">
             <i-icon type="add" size="22" />

@@ -7,6 +7,16 @@ Page({
     hasScope:false
   },
   onLoad: function () {
+
+
+    const userInfo = app.globalData.userInfo
+
+    console.log('userInfo',userInfo)
+    if(userInfo){
+          this.jump(userInfo)
+
+    }
+
           
 
  
@@ -30,6 +40,29 @@ Page({
         title:'开心麻团 让团购简单'
         }
     },
+
+
+  jump(d){
+               if(d.supplier){
+
+            wx.redirectTo({
+              url:'/business/pages/home/index'
+            })
+
+           } else if(d.store){
+
+              wx.redirectTo({
+                url:'../home/index'
+              })
+
+           }else{
+
+             wx.redirectTo({
+                url:'../user-home/index'
+              })
+
+           }
+  },
 
 
 
@@ -63,34 +96,10 @@ Page({
 
            const d = res.data.data
 
-           if(d.supplier){
-
-            wx.redirectTo({
-              url:'/business/pages/home/index'
-            })
-
-           } else if(d.store){
-
-              wx.redirectTo({
-                url:'../home/index'
-              })
-
-           }else{
-
-             wx.redirectTo({
-                url:'../userhome/index'
-              })
-
-           }
-
-
-
-
-
+           this.jump(d)
 
 
           wx.hideLoading()
-                      //app.redirect2Home() 
                     })
     .catch( e => console.log(e) )
 

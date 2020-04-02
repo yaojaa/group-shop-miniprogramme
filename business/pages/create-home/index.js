@@ -17,14 +17,16 @@ Page({
    */
   onLoad: function (options) {
 
+    console.log('getApp().globalData.userInfo',app.globalData.userInfo)
 
-    console.log(app.globalData.userInfo)
+
 
     if(!app.globalData.userInfo){
       this.setData({
         showAuth:true
       })
     }
+
 
 
 
@@ -48,9 +50,9 @@ Page({
     },
     onFail(e) {
     wx.showToast({
-            title:'上传失败请重试',
-            icon:'none'
-          })    
+      title:'上传失败请重试',
+      icon:'none'
+    })    
 },
     onComplete(e) {
         wx.hideLoading()
@@ -81,6 +83,7 @@ Page({
   },
 
   submitForm(e){
+    let _this = this;
 
     util.checkMobile(e.detail.value.supplier_mobile)
 
@@ -92,7 +95,24 @@ Page({
         icon:'none'
       })
 
-    },res=>{
+
+        const d = res.data.data
+
+
+            app.globalData.userInfo = d
+         
+            wx.setStorage({ //存储到本地
+                key: "userInfo",
+                data: d,
+                success:function(){
+                  wx.redirectTo({
+                    url:'../home/index'
+                  })
+                }
+            })
+
+
+
 
     }).catch(e=>{
 
@@ -103,36 +123,43 @@ Page({
 
 
   },
-     getUserInfoEvt: function(e) {
-        console.log(e)
-        if (e.detail.errMsg !== "getUserInfo:ok") {
-            return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
-        }
+  toHome(){
 
-        app.globalData.userInfo = e.detail.userInfo
-        wx.showLoading()
-        app.getOpenId().then((openid) => {
-            app.globalData.openid = openid
-            app.login_third(e.detail).then((res) => {
-                    wx.hideLoading()
-                    wx.showToast({
-                        title: '登录成功',
-                        icon: 'none'
-                    })
+      wx.redirectTo({
+          url: '/business/pages/home/index'
+      })
+  },
 
-                    this.setData({
-                        showAuth: false
-                    })
-                })
-                .catch(e => console.log(e))
-        })
+   getUserInfoEvt: function(e) {
+      console.log(e)
+      if (e.detail.errMsg !== "getUserInfo:ok") {
+          return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
+      }
 
-    },
-    rejectAuth() {
-        this.setData({
-            showAuth: false
-        })
-    },
+      app.globalData.userInfo = e.detail.userInfo
+      wx.showLoading()
+      app.getOpenId().then((openid) => {
+          app.globalData.openid = openid
+          app.login_third(e.detail).then((res) => {
+                  wx.hideLoading()
+                  wx.showToast({
+                      title: '登录成功',
+                      icon: 'none'
+                  })
+
+                  this.setData({
+                      showAuth: false
+                  })
+              })
+              .catch(e => console.log(e))
+      })
+
+  },
+  rejectAuth() {
+      this.setData({
+          showAuth: false
+      })
+  },
 
   /**
    * 生命周期函数--监听页面卸载
@@ -155,9 +182,9 @@ Page({
 
   },
   onShareAppMessage: function() {
-   
-        return {
-            title: '创建供应商主页',
-            imageUrl: ''        }
-    },
+    return {
+        title: '创建供应商主页',
+        imageUrl: ''        
+    }
+  },
 })

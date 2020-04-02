@@ -1032,20 +1032,27 @@ Page({
 
     onLoad: function(option) {
 
-
-
            //未登录 弹出授权弹窗
         if (!app.globalData.userInfo) {
-            setTimeout(() => {
+           return setTimeout(() => {
                 this.setData({
                     showAuth: true
                 })
-            }, 2000)
+            }, 1000)
         }else{
+            if(!app.globalData.userInfo.store){
+          return  wx.redirectTo({
+                url:'../create_shop/index'
+            })
+        }
+        }
+
+        
+    
                 wx.setNavigationBarTitle({
                   title: app.globalData.userInfo.nickname+'您正在发布活动'
                 })
-        }
+    
 
 
 
