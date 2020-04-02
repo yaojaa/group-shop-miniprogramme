@@ -25,8 +25,12 @@
 
 
 
-    <i-panel i-class="marginTop" title="我参与的" extra="查看" link="../order-list/index">
+
+    <i-panel i-class="marginTop" title="我参与过的订单" extra="查看" link="../order-list/index">
         <view slot="content">
+
+        		<textarea autoheight>{{local}}</textarea>
+
        
                   <view class="flex-box myorder">
                 <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">

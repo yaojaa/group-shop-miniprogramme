@@ -49,7 +49,7 @@ Page({
               url:'/business/pages/home/index'
             })
 
-           } else if(d.store){
+           } else if(d.store || d.store_id){
 
               wx.redirectTo({
                 url:'../home/index'

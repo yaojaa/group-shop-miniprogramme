@@ -22,7 +22,7 @@ Page({
         show_tips: false,
         orderList: [],
         isCustome: true,
-        fansNum: '...',
+        local: '...',
     },
     closleTips() {
         this.setData({
@@ -147,16 +147,10 @@ Page({
         } else {
 
             this.setData({
-                userInfo: app.globalData.userInfo.user
+                userInfo: app.globalData.userInfo.user,
+                local: JSON.stringify(app.globalData)
             })
-            wx.getStorage({
-                key: 'show_tips',
-                fail: (res) => {
-                    this.setData({
-                        show_tips: true
-                    })
-                }
-            })
+           
         }
 
 

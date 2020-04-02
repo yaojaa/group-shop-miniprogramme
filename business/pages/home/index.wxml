@@ -4,9 +4,6 @@
 
 
     <view class="head-box">
-
-<!--             <view class="top_user mini-tag mt-xs">供应商入驻</view>
- -->
         <view class="flex align-center">
             <navigator url="../identify/identify" hover-class="none">
                 <view class="user-avatar mh-df">
@@ -20,7 +17,7 @@
                 <view class="flex justify-between text-white">
                     <view class="user-box">
                         <view class="shop-name mr-sm" bindtap="goSite">{{info.supplier_name}} </view>
-                        <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" >{{userInfo.nickname}}
+                        <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" >{{userInfo.user.nickname}}
                         </navigator>
                     </view>
                 

@@ -601,9 +601,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/userhome/index",
-					"pathName": "pages/userhome/index",
+					"id": 76,
+					"name": "pages/user-home/index",
+					"pathName": "pages/user-home/index",
 					"query": "",
 					"scene": null
 				},
