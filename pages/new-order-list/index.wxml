@@ -39,6 +39,6 @@
         <wux-spin wux-class="spin" size="large" />
     </view>
 
-        <footerbar active="3" />
+        <footerbar active="{{1}}" />
 
 </view>

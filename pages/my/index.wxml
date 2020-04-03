@@ -158,6 +158,6 @@
         </i-tab-bar>
     </view> -->
 
-    <footerbar active="4"/>
+    <footerbar active="{{3}}"/>
 
 </view>

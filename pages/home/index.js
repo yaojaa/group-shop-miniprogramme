@@ -119,7 +119,8 @@ Page({
         }
 
     },
-    onshow() {
+    onShow() {
+        wx.hideHomeButton()
         this.getOrderCount()
     },
     /**

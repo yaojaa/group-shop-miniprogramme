@@ -38,7 +38,10 @@ Page({
       showAuth: false
     })
   },
+  onShow: function() {
+    wx.hideHomeButton()
 
+},
   onShareAppMessage: function(e) {
     const { supplier_id, name } = e.target.dataset
     const username = app.globalData.userInfo.nickname

@@ -147,7 +147,7 @@
     </view> -->
     <van-dialog id="van-dialog" />
   
-    <footerbar/>
+    <footerbar active="{{0}}"/>
 
 
 </view>

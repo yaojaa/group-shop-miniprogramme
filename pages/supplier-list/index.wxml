@@ -42,4 +42,4 @@
     <view class="weui-footer__text">Copyright © 20018-2025 kaixinmatuan.cn</view>
   </view> -->
 </view>
-<footerbar active="1" />
+<footerbar active="{{2}}" />

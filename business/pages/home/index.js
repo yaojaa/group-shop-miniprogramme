@@ -302,7 +302,7 @@ Page({
      */
     onShow: function() {
 
-  
+      wx.hideHomeButton()
 
       this.setData({
         active:0

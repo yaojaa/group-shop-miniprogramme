@@ -120,14 +120,15 @@ Page({
         }
 
     },
-    onshow() {
+    onShow() {
+        wx.hideHomeButton()
         this.getOrderCount()
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        wx.hideHomeButton()
 
         if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
