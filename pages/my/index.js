@@ -121,6 +121,8 @@ Page({
 
     },
     onshow() {
+        wx.hideHomeButton();
+
         this.getOrderCount()
     },
     /**
@@ -136,7 +138,7 @@ Page({
         } else {
 
             this.setData({
-                userInfo: app.globalData.userInfo.user
+                userInfo: app.globalData.userInfo
             })
 
             if(app.globalData.userInfo.supplier){
@@ -334,11 +336,11 @@ Page({
     onShareAppMessage: function(e) {
         console.log(e)
         if (app.globalData.userInfo) {
-            var _uid = app.globalData.userInfo.user.user_id
+            var _uid = app.globalData.userInfo.user_id
         }
 
         return {
-            title: app.globalData.userInfo.user.nickname + '推荐您一个好助手',
+            title: app.globalData.userInfo.nickname + '推荐您一个好助手',
             imageUrl: 'https://static.kaixinmatuan.cn/static/share-cover.jpg',
             path: 'pages/login/login' + '?from_id=' + _uid
         }

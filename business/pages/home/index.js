@@ -31,23 +31,15 @@ Page({
         supplier_logo:res.data.data.supplier_logo
       })
 
-      //将自己的供应商信息记录到全局
-
-      app.globalData.userInfo.identity = res.data.data;
-
-      console.log(app.globalData.userInfo)
-
-
-
-    },res=>{
-              if(res.data.code == -1){
+    if(res.data.code == -1){
 
                 wx.redirectTo({
                   url:'/business/pages/create-home/index'
                 })
 
-              }
-            })
+    }
+
+    })
 
 
   },

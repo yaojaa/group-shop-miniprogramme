@@ -33,7 +33,7 @@ Page({
                     .then(res => {
                         const d = res.data.data
                         this.setData({
-                            list: this.data.list.concat(d.agentlist).concat(d.agentlist).concat(d.agentlist).concat(d.agentlist),
+                            list: this.data.list.concat(d.agentlist),
                             total:d.page.total,
                             cpage:d.page.cpage,
                             totalpage:d.page.totalpage
@@ -202,6 +202,8 @@ Page({
                      * 生命周期函数--监听页面显示
                      */
                     onShow: function() {
+
+                            wx.hideHomeButton();
 
                     },
 

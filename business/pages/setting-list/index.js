@@ -52,6 +52,11 @@ Page({
      */
     onLoad: function(options) {
 
+            wx.hideHomeButton();
+
+
+
+
 
         if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
@@ -130,6 +135,18 @@ Page({
 
 
 
-    }
+    },
+   onShareAppMessage: function(e) {
+        console.log(e)
+        if (app.globalData.userInfo) {
+            var _uid = app.globalData.userInfo.user_id
+        }
+
+        return {
+            title: app.globalData.userInfo.nickname + '推荐您一个好助手',
+            imageUrl: 'https://static.kaixinmatuan.cn/static/share-cover.jpg',
+            path: 'business/pages/create-home/index' + '?from_id=' + _uid
+        }
+    },
 
 })
