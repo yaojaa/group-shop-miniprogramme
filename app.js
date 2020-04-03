@@ -156,8 +156,14 @@ App({
 
                     if (res.data.code === 200) {
                         console.log('res.data.data.token',res.data.data.token)
+
+                        var userInfo = res.data.data.user
+                            userInfo.store =  res.data.data.store
+                            userInfo.supplier =  res.data.data.supplier
+
+
                         this.globalData.token = res.data.data.token
-                        this.globalData.userInfo = res.data.data
+                        this.globalData.userInfo = userInfo
 
 
                         console.group('储存登录userInfo')

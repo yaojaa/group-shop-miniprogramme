@@ -135,7 +135,7 @@ Page({
         } else {
 
             this.setData({
-                userInfo: app.globalData.userInfo.user
+                userInfo: app.globalData.userInfo
             })
             wx.getStorage({
                 key: 'show_tips',
