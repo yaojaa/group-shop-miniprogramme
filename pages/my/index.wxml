@@ -142,22 +142,9 @@
 
 		</view>
 	</view>
+	<view style="margin-bottom:100rpx"></view>
 
 
-	<!--  <view wx:if="{{goodslist.length >= 0}}">
-        <view class='new-goods' bindtap="new_btn">
-            <i-icon type="add" size="22" />
-            <text>发布一个团购 </text>
-        </view>
-    </view> -->
-	<!--    <view class="footer_bar">
-        <i-tab-bar current="nearby" color="#188f00" bindchange="handleTabBarChange">
-            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="我的"></i-tab-bar-item>
-            <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
-            <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
-        </i-tab-bar>
-    </view> -->
-
-    <footerbar active="4"/>
+    <footerbar active="{{3}}"/>
 
 </view>

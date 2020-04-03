@@ -369,11 +369,19 @@ Page({
             }
         })
     },
-
+    //卖家和客户对应不同的地址
     goHomePage() {
+
+
+
+
+
         wx.redirectTo({
             url: '../userhome/index?id=' + this.data.store_id
         })
+
+
+
     },
 
     goOrders() {
@@ -849,16 +857,35 @@ Page({
     },
     homepage() {
 
-        var pages = getCurrentPages();
-        var prevPage = pages[pages.length - 2]; //上一个页面
-        if (prevPage && prevPage.route == 'pages/home/index') {
-            wx.navigateBack()
-        } else {
-            wx.redirectTo({
-                url: '../home/index'
+         //app.globalData.userInfo.hasOwnProperty('store')
+         //
+         if(!app.globalData.userInfo){
+          return  this.setData({
+                showAuth:true
             })
+         }else if(app.globalData.userInfo.hasOwnProperty('store')){
 
-        }
+             var pages = getCurrentPages();
+                var prevPage = pages[pages.length - 2]; //上一个页面
+                if (prevPage && prevPage.route == 'pages/home/index') {
+                    wx.navigateBack()
+                } else {
+                    wx.redirectTo({
+                        url: '../home/index'
+                    })
+
+                }
+
+         }else{
+
+              wx.redirectTo({
+                        url: '../user-home/index'
+                    })
+
+         }
+
+
+       
     },
     getUserInfoEvt: function(e) {
         console.log(e)

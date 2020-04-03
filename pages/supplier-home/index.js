@@ -8,7 +8,8 @@ Page({
    */
   data: {
     goodsList: [],
-    info: {}
+    info: {},
+    active:2
   },
   bindRegionChange(e) {},
   getSuppInfo() {
@@ -48,6 +49,7 @@ Page({
 
     this.getSuppInfo()
     this.getgoodsInfo()
+    wx.hideHomeButton()
   },
 
   /**

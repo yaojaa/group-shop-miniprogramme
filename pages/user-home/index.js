@@ -21,8 +21,7 @@ Page({
         Custom: app.globalData.Custom,
         show_tips: false,
         orderList: [],
-        isCustome: true,
-        local: '...',
+        isCustome: true    
     },
     closleTips() {
         this.setData({
@@ -147,8 +146,7 @@ Page({
         } else {
 
             this.setData({
-                userInfo: app.globalData.userInfo.user,
-                local: JSON.stringify(app.globalData)
+                userInfo: app.globalData.userInfo
             })
            
         }

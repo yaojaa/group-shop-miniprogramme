@@ -89,6 +89,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        console.log(options)
         // this.setData({
         //     express_company:options.name || '',
         //     express_code:options.code || '',
@@ -101,41 +103,30 @@ Page({
         this.data.user = decodeURIComponent(options.user)
         this.data.goods = decodeURIComponent(options.goods)
 
-        // for(let i in options){
-        //     if(i.indexOf('code') > -1){
-        //         this.data.express.push({
-        //             express_code: options[i],
-        //             express_company: decodeURIComponent(options['com'+ i.replace('code','')])
-        //         })
-        //     }
-        // }
 
-        // let num = 0;
-
-        // for(let i in options){
-        //     if(i.indexOf('code') > -1){
-        //         this.data.express.push({
-        //             express_code: options['code' + num],
-        //             express_company: decodeURIComponent(options['com' + num])
-        //         })
-        //         num ++;
-        //     }
-        // }
         // 
         util.wx.get('/api/'+this.apiPrix+'/get_express_by_order_sn',{
             order_sn:options.order_sn
         })
         .then(res=>{
 
+
+            if(res.data.code == 200){
+
+
             this.setData({
                 express:res.data.data
             })
 
-         this.checkExpress({
-            express_code: this.data.express[0].express_code,
-            express_company:this.data.express[0].express_company,
-            index: 0
-        })
+             this.checkExpress({
+                express_code: this.data.express[0].express_code,
+                express_company:this.data.express[0].express_company,
+                index: 0
+            })
+
+
+            }
+
 
         })
 

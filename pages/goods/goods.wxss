@@ -139,7 +139,7 @@
 
 
 .goods-price .price {
-font-size:24rpx!important;
+font-size:28rpx!important;
 font-weight:bold;
 color:#ff9000;
 float:right
@@ -512,27 +512,27 @@ float:right
 }
 
 .goods-price-item .info {
-    margin: 0 20rpx;
+    margin: 0 0 0 10px;
     flex: 1;
 }
 
 .goods-price-item .buy {
     align-self: right;
     text-align: right;
-    width:190rpx;
+    width:175rpx;
 }
 
 .pics {
     position: relative;
     vertical-align: middle;
-    width: 90rpx;
-    height: 90rpx;
+    width: 130rpx;
+    height: 130rpx;
     overflow: hidden;
 }
 
 .pics image {
-    width: 90rpx;
-    height: 90rpx;
+    width: 130rpx;
+    height: 130rpx;
     border-radius: 8rpx
 }
 

@@ -43,21 +43,47 @@ Page({
 
 
   jump(d){
-               if(d.supplier){
 
-            wx.redirectTo({
+
+     var lastVisit = wx.getStorageSync('lastVisit') 
+
+
+     console.log('lastVisit=',lastVisit)
+
+     if(d.supplier && d.store && lastVisit){
+
+        if(lastVisit=='seller'){
+          return wx.redirectTo({
+                url:'../home/index'
+              })
+        }else{
+
+              return   wx.redirectTo({
+              url:'/business/pages/home/index'
+            })
+        }
+
+       
+
+     } 
+
+     if(d.supplier && !lastVisit){
+
+         return   wx.redirectTo({
               url:'/business/pages/home/index'
             })
 
-           } else if(d.store || d.store_id){
+           } 
 
-              wx.redirectTo({
+      if(d.store || d.store_id){
+
+             return wx.redirectTo({
                 url:'../home/index'
               })
 
            }else{
 
-             wx.redirectTo({
+            return wx.redirectTo({
                 url:'../user-home/index'
               })
 

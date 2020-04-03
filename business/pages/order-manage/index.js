@@ -139,7 +139,7 @@ Page({
     onShow: function() {
 
          wx.hideHomeButton();
-        this.data.cpage = 1
+
 
        // this.getOrderList()
 

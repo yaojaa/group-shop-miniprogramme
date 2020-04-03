@@ -44,11 +44,6 @@ Page({
 
   },
 
-  shareGoods(e){
-    console.log(e)
-
-
-  },
 
   changOnSale(e){
     const {status,goods_id,index} = e.currentTarget.dataset
@@ -234,9 +229,15 @@ Page({
      */
     onLoad: function(options) {
       wx.showLoading()
-        let userInfo = wx.getStorageSync('userInfo')
+        let userInfo = app.globalData.userInfo || wx.getStorageSync('userInfo')
         this.setData({
             userInfo: userInfo
+        })
+
+
+        wx.setStorage({
+          key:'lastVisit',
+          data:'supplier'
         })
 
 
@@ -294,7 +295,7 @@ Page({
      */
     onShow: function() {
 
-  
+      wx.hideHomeButton()
 
       this.setData({
         active:0

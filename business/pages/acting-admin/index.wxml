@@ -29,10 +29,11 @@
                 <image class="act-logo" mode="aspectFill" src="{{item.headimg}}"></image>  
             </view>
             <view class="act-main grow1">
-                <view class="act-top flex">
-                    <view class="name grow1">{{item.nickname}}</view>
+                <view class=" flex">
+                    <view class="name grow1">{{item.nickname}}  {{item.addtime}}</view>
                 </view>
                 <view class="act-bottom flex">
+                       销量：{{item.order_count}}    粉丝：{{item.fans_count}}
                     
                     <view class="button shrink0" wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</view>
                     <view class="button shrink0" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</view>

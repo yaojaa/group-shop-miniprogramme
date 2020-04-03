@@ -119,7 +119,8 @@ Page({
         }
 
     },
-    onshow() {
+    onShow() {
+        wx.hideHomeButton()
         this.getOrderCount()
     },
     /**
@@ -146,6 +147,12 @@ Page({
                 }
             })
         }
+
+        //设置最后访问身份
+        wx.setStorage({
+          key:'lastVisit',
+          data:'seller'
+        })
 
 
         this.data.cpage = 1
@@ -331,9 +338,8 @@ Page({
         })
     },
     goSite() {
-        console.log(this.data.userInfo.store_id)
         wx.navigateTo({
-            url: '../userhome/index?id=' + this.data.userInfo.store_id
+            url: '../userhome/index?id=' + this.data.userInfo.store.store_id
         })
     },
     editPage(e) {

@@ -123,13 +123,12 @@ Page({
     onshow() {
         wx.hideHomeButton();
 
-        this.getOrderCount()
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        wx.hideHomeButton()
 
         if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
@@ -340,9 +339,9 @@ Page({
         }
 
         return {
-            title: app.globalData.userInfo.nickname + '推荐您一个好助手',
+            title: app.globalData.userInfo.nickname + '推荐您一个接单好助手',
             imageUrl: 'https://static.kaixinmatuan.cn/static/share-cover.jpg',
-            path: 'pages/login/login' + '?from_id=' + _uid
+            path: 'pages/create-home/index' + '?from_id=' + _uid
         }
     },
 

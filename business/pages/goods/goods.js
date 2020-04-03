@@ -191,7 +191,6 @@ Page({
     },
     onShareAppMessage: function() {
 
-        console.log(app.globalData.userInfo.identity.supplier_name)
 
         console.log('/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id)
 

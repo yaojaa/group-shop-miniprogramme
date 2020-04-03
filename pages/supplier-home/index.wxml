@@ -33,4 +33,5 @@
             <view class="solid-bottom mh-df"></view>
         </view>
     </view>
+        <footerbar active="{{active}}"/>
 </view>

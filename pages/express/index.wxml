@@ -14,11 +14,11 @@
             </view>
 
 
-            <van-field input-class ="f20"  value="{{item.express_code}}" label="填写单号" placeholder="请输入运单号"  data-index="{{index}}" bind:blur="blurInput" bind:focus="saveOldExpress" bind:change="inputDuplex" use-button-slot>
-              <button class="btn primary sm hollow" slot="button" bindtap="checkexpress" data-index="{{index}}" wx:if="{{item.express_code}}">
+            <van-field input-class ="f20"  value="{{item.express_code}}" label="填写单号" placeholder="请输入运单号"  data-index="{{index}}" bind:blur="blurInput" bind:focus="saveOldExpress" bind:change="inputDuplex">
+              <!-- <button class="btn primary sm hollow" slot="button" bindtap="checkexpress" data-index="{{index}}" wx:if="{{item.express_code}}">
                 查询
-              </button>
-              <button class="btn primary sm hollow" slot="button" bindtap="saomaInput" data-index="{{index}}" wx:else>扫描单号识别</button>
+              </button> -->
+              <button class="btn primary sm hollow" slot="button" bindtap="saomaInput" data-index="{{index}}" wx:if="{{!item.express_code}}">扫描单号识别</button>
             </van-field >
         </van-cell-group>
     </view>

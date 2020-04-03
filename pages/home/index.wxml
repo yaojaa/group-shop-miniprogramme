@@ -40,7 +40,7 @@
         </view>
     </view>
 
-   <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
+   <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+收不到新订单提醒？记得订阅</button>
     <i-panel hide-border title="最新订单" extra="更多" link="../new-order-list/index">
         <view class="control">
 
@@ -55,40 +55,12 @@
                 </scroll-view>
             </view>
         </view>
+
+        <button class="pubbtn" bindtap="new_btn">+ 新发布</button>
     </i-panel>
     </view> 
 
 
-<!--     <i-panel i-class="marginTop" title="我参与的" extra="查看全部订单" link="../order-list/index">
-        <view slot="content">
-            <view class="flex-box myorder">
-                <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">
-                    <view class="icon">
-                        <i-icon type="redpacket" size="28" color="#4fac05" />
-                    </view>
-                    待付款
-                    <view class="badge" wx:if="{{waitpay>0}}">{{waitpay}}</view>
-                </navigator>
-                <navigator url="../order-list/index?search_status=2" hover-class="none" class="flex-item">
-                    <view class="icon">
-                        <i-icon type="service" size="28" color="#4fac05" />
-                    </view>
-                    待收货<view class="badge" wx:if="{{waitreceived>0}}">{{waitreceived}}</view>
-                </navigator>
-                <navigator url="../order-list/index?search_status=3" hover-class="none" class="flex-item">
-                    <view class="icon">
-                        <i-icon type="interactive" size="28" color="#4fac05" />
-                    </view>
-                    已完成
-                </navigator>
-                      <view class="flex-item">
-             <view class="icon">
-                    <i-icon type="customerservice" size="28" color="#4fac05" />
-                </view>
-            退款售后</view>
-            </view>
-        </view>
-    </i-panel> -->
 
 
 
@@ -147,7 +119,7 @@
     </view> -->
     <van-dialog id="van-dialog" />
   
-    <footerbar/>
+    <footerbar active="{{0}}"/>
 
 
 </view>

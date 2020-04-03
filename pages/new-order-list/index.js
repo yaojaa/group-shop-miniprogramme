@@ -158,6 +158,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
+        wx.hideHomeButton()
         this.data.order_list = []
         this.data.cpage = 1
         this.getOrderList()
