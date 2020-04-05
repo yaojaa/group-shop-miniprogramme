@@ -28,7 +28,7 @@ Page({
   goView(){
 
     wx.navigateTo({
-      url:'../publish/publish'
+      url:'../create-home/index'
     })
 
 

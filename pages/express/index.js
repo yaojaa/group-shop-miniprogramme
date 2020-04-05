@@ -227,37 +227,36 @@ Page({
             return;
         }
 
-        console.log('express',express)
-
-
-
+    
+               wx.showLoading()
                util.wx.post('/api/'+this.apiPrix+'/add_order_express', {
                     order_id: this.data.order_id,
                     express: express
                 }).then(res => {
 
-                        wx.showToast({
+                     wx.hideLoading()
+
+
+                    if(res.data.code == 200){
+
+                         wx.showToast({
                             title: '添加成功'
                         })
-
-                        // setTimeout(()=>{
-                        //     wx.navigateBack()
-
-                        // },1000)
-
 
                         util.setParentData({
                              [keyExpress]: ['ok']
                         })
-                        
-                        
-                    },res=>{
 
-                        wx.showToast({
+                    }else{
+
+                          wx.showToast({
                             title: res.data.msg
                         })
 
-                })
+
+                    }
+                        
+                    })
                 .catch(res=>{
 
                     console.log(res)

@@ -128,6 +128,8 @@ Page({
      */
     onLoad: function(options) {
 
+        console.log('app.globalData.userInfo',app.globalData.userInfo)
+
 
         if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
@@ -159,6 +161,9 @@ Page({
         this.data.goodslist = []
         this.get_store_info()
         this.getGoodsList()
+        this.getOrderList()
+
+
     },
     getOrderCount() {
         util.wx.get('/api/user/get_order_count_groupby_static').then(res => {
@@ -211,13 +216,6 @@ Page({
                 fansNum :res.data.data.fans_count 
                  })
 
-
-           
-             this.getOrderList()
-            
-
-
-        
         })
 
 
@@ -317,18 +315,26 @@ Page({
     },
     new_btn: function() {
 
+        const uInfo = app.globalData.userInfo
 
-        console.log('app.globalData.userInfo.store',typeof app.globalData.userInfo.store)
+        console.log(app.globalData.userInfo)
+        console.log(uInfo.store_id,uInfo.store)
 
-        if(typeof app.globalData.userInfo.store !=='undefined'){
-               wx.navigateTo({
-            url: '../publish/publish'
-        })
+
+        if(uInfo.hasOwnProperty('store') || uInfo.hasOwnProperty('store_id')){
+
+             wx.navigateTo({
+           url: '../publish/publish'
+
+            })
+           
            }else{
 
-          wx.navigateTo({
-                url: '../apply_shop/index'
-            })
+                wx.navigateTo({
+                 url: '../apply_shop/index' 
+             })
+
+         
            }
      
     },
@@ -338,8 +344,13 @@ Page({
         })
     },
     goSite() {
+
+      
+
+        const store_id =app.globalData.userInfo.store_id || app.globalData.userInfo.store.store_id
+
         wx.navigateTo({
-            url: '../userhome/index?id=' + this.data.userInfo.store.store_id
+            url: '../userhome/index?id=' + store_id
         })
     },
     editPage(e) {
@@ -398,6 +409,7 @@ Page({
         this.getGoodsList()
         this.getOrderCount()
         this.get_store_info()
+        this.getOrderList()
 
 
     },
@@ -432,7 +444,7 @@ Page({
 
         return {
             title:goods_name,
-            imageUrl: cover+'?imageView2/2/w/600/h/400/format/jpg/q/85',
+            imageUrl: cover+'?imageView2/1/w/500/h/400',
             path: 'pages/goods/goods?goods_id=' + goods_id
         }
 

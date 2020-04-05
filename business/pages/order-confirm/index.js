@@ -279,18 +279,11 @@ Page({
      */
     onLoad: function(options) {
 
+        console.log(options.payment_method==1,options.payment_method)
 
 
         this.data.goods_id = options.goods_id
         this.data.from_id = options.from_id || ''
-
-        console.log(options.payment_method==1,options.payment_method)
-
-        if(options.payment_method==1){
-                this.setData({
-                    pay_btn_txt:'立即参与'
-                })
-        }
 
 
         this.getGoodsInfo()

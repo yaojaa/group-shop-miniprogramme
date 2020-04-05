@@ -191,6 +191,8 @@ Page({
 
         util.wx.post('/api/user/set_freight_tpl', param)
             .then(res => {
+
+                if(res.data.code ==200){
                 wx.showToast({
                     title: '设置运费模板成功',
                     icon: 'none'
@@ -205,13 +207,17 @@ Page({
                     wx.redirectTo({
                         url:'../postageSetting/index?hasSelect='+this.data.hasSelect
                     })
+                }else{
 
-                    
-            }, res => {
-                wx.showToast({
+             wx.showToast({
                     title: res.data.msg,
                     icon: 'none'
-                })
+                });
+
+
+                }
+
+                    
             })
     },
 

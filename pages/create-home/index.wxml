@@ -1,22 +1,27 @@
 <view class="container cf">
-    <view class="reg-head cf white-bg">
+    <view class="reg-head cf">
      
 
      <view class="uploadArea">
-     <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
+     <wux-upload  wx:if="{{store_logo }}" listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
             <image src="{{ store_logo }}" wx:if="{{store_logo }}" />
-            <text wx:else>+LOGO</text>
      </wux-upload>
+
+     <open-data wx:else type="userAvatarUrl" class="img" ></open-data>
+
+
+
+
      </view>
 
     </view>
     <form bindsubmit="submitForm">
         <van-cell-group>
-            <van-field required value="{{store_name}}" name="store_name" label="主页名称"  placeholder="请输入主页名称" />
-  <van-field required name="realname" label="真实姓名"  placeholder="涉及提现请填写真实姓名" type="text" />
+ 
+  <van-field required name="realname" bind:input="inputDuplex"  data-key="realname" label="真实姓名"  placeholder="请填写真实姓名" type="text" />
 
-            <van-field required  name="mobile" label="手机号"  placeholder="请填写手机号" type="number" />
-        <van-field required name="wechatnumber" label="微信号"  placeholder="请填写微信号方便客户咨询" type="text" />
+            <van-field required data-key="mobile" bind:input="inputDuplex"   name="mobile" label="手机号"  placeholder="请填写手机号" type="number" />
+        <van-field required data-key="wechatnumber"  bind:input="inputDuplex"  name="wechatnumber" label="微信号"  placeholder="请填写微信号方便客户咨询" type="text" />
             
 
   
@@ -28,6 +33,24 @@
             </button>
         </view>
     </form>
-    <van-notify id="custom-selector" />
-    <van-toast id="van-toast" />
+
+
+      <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页" >
+
+        <view class="content-pop">
+          <view class="logo">
+              <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
+          </view>
+          <view class="info">
+         注册需要获取您的身份信息
+          </view>
+          <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">我同意</button>
+
+           <button size="mini"  plain="false" bindtap="cancel">不用了</button>
+        </view>
+    </van-popup>
+
+
+
+
 </view>

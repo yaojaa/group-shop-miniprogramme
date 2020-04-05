@@ -1,6 +1,6 @@
 <view class="container">
     <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;" wx:if="{{show_tips}}">
-        <view class="collect-box">"点击右边
+        <view class="collect-box">"点击右边 
             <van-icon name="weapp-nav" size="28rpx;" /> 添加到我的小程序"
             <van-icon name="close" size="28rpx;" />
         </view>
@@ -32,8 +32,7 @@
                         <view class="text-sm mt-xs">我的粉丝</view>
                     </navigator> -->
                     <navigator url="../withdrawal/index" hover-class="none" class="text-center">
-                        <view class="text-lg bold">¥ {{pending_money}}</view>
-                        <view class="text-sm mt-xs">账户提现</view>
+                        <view  class="text-lg bold"> ¥ {{pending_money}}</view>
                     </navigator>
                 </view>
             </view>
@@ -65,8 +64,8 @@
 
 
 
-    <view class="text-center">
-        <wux-spin wx:if="{{is_loading}}"></wux-spin>
+    <view class="text-center" style="padding: 120px" wx:if="{{is_loading}}">
+        <wux-spin  wx:if="{{is_loading}}"></wux-spin>
     </view>
     <view class="panelbox">
 

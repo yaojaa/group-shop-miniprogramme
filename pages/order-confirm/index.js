@@ -207,13 +207,11 @@ Page({
 
         this.data.payment_method = options.payment_method
 
-
             if(options.payment_method==1){
                 this.setData({
                     pay_btn_txt:'立即参与'
                 })
            }
-
 
 
         this.getGoodsInfo()

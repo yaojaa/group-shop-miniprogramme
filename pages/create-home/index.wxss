@@ -1,4 +1,7 @@
 @import "../../css/common.wxss";
+
+
+
 .reg-logo{
 	width: 180rpx;
 	height: 180rpx;
@@ -7,7 +10,7 @@
 }
 .reg-head{
 	text-align: center;
-	padding-bottom: 80rpx;
+	padding-bottom: 40rpx
 }
 
 

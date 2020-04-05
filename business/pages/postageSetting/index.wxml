@@ -4,14 +4,14 @@
                         <text class="title ml-sm">运费模板设置</text>
                     </van-col>   
                     <van-col span="8">
-                        <button size="mini"  class="btn primary linenear_bg" bindtap="addPostageTpl">+添加新模板</button>
+                        <button size="mini"  class="btn right primary linenear_bg" bindtap="addPostageTpl">+添加新模板</button>
                     </van-col>
 </van-row>
 
 
 <view class="defult-rules white-bg">
         
-<radio-group class="radio-group" bindchange="radioChange">
+<radio-group class="radio-group">
 
         <view class="custom-rule" wx:for="{{tpl_list}}"  wx:for-index="index" wx:for-item="item">
         
@@ -21,7 +21,7 @@
                 <van-row>
                     <van-col span="16">
                         <view class="title"> 
-   <radio wx:if="{{hasSelect}}" value="{{item.freight_tpl_id}}" class="radio" 
+   <radio bindtap="selectIt" data-value="{{item.freight_tpl_id}}" wx:if="{{hasSelect}}" value="{{item.freight_tpl_id}}" class="radio" 
    checked="{{hasSelect == item.freight_tpl_id}}"/>
 
                         {{item.freight_tpl_name}}</view>

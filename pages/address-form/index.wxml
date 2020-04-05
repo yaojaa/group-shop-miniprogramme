@@ -14,7 +14,7 @@
             <van-field name="consignee" value="{{consignee}}" label="收货人" input-align="left" placeholder="请输入姓名" />
             <van-field name="mobile" value="{{mobile}}" label="联系电话" input-align="left" placeholder="请填写手机号" type="number" />
             <van-field label="所在地区" value="{{province?province+'/'+city+'/'+district:''}}" input-align="left" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleAreaModal" />
-            <van-field name="address" value="{{address}}" label="详细地址" type="textarea" placeholder="请填写详细地址，不少于5个字" autosize />
+            <van-field name="address" value="{{address}}" label="详细地址" type="textarea" placeholder="请填写详细地址，不少于5个字" custom-style="height:200px" autosize="{min-height:220}" />
         </van-cell-group>
         <view class="ph-df mt-xs">
             <van-checkbox name="is_address_default" value="{{ is_address_default }}" bind:change="addressDefault" checked-color="#49b34d">设为默认地址</van-checkbox>

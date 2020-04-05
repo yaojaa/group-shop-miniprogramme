@@ -253,9 +253,9 @@
 				{
 					"id": 26,
 					"name": "创建店铺",
-					"pathName": "pages/create_shop/index",
+					"pathName": "pages/create-home/index",
 					"query": "",
-					"scene": "1001"
+					"scene": 1001
 				},
 				{
 					"id": 27,

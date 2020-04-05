@@ -9,7 +9,11 @@ Page({
    */
   data: {
       loading:false,
-      store_logo:''
+      showAuth: false,
+      store_name:'',
+      wechatnumber:'',
+      realname:'',
+      mobile:''
   },
 
   /**
@@ -17,23 +21,28 @@ Page({
    */
   onLoad: function (options) {
 
-    const uInfo = app.globalData.userInfo.user
+    const uInfo = app.globalData.userInfo || {}
 
-    if(uInfo.store_id){
+    if(uInfo && uInfo.hasOwnProperty('store_id')){
 
       wx.redirectTo({
         url:'../home/index'
       })
 
+    }else{
+
+      // this.setData({
+      //   showAuth:true
+      // })
     }
 
-
-
-
     this.setData({
-      store_logo:uInfo.headimg,
-      store_name:uInfo.nickname
+      store_logo:uInfo.headimg || '',
+      store_name:uInfo.nickname || ''
     })
+
+
+
 
   },
    onChange(e) {
@@ -87,12 +96,34 @@ Page({
 
   },
 
-  submitForm(e){
+  cancel:function(){
+       this.setData({
+        showAuth:false
+      })
+  },
 
-    const postData=Object.assign({supplier_logo:this.data.supplier_logo},e.detail.value)
+  submitForm(e){
+    const uInfo = app.globalData.userInfo || null
+
+    if(!uInfo){
+
+    this.setData({
+        showAuth:true
+      })
+      return  
+    }
+
+    const postData=Object.assign({
+      store_name:app.globalData.userInfo.nickname,
+      wechatnumber:this.data.wechatnumber,
+      realname:this.data.realname,
+      mobile:this.data.mobile
+    })
+
     util.wx.post('/api/user/store_apply',postData).then(res=>{
 
-      wx.showToast({
+    if(res.data.code == 200){
+        wx.showToast({
         title:'提交成功',
         icon:'none'
       })
@@ -111,14 +142,13 @@ Page({
                   })
                 }
             })
+          }else{
 
-
-    },res=>{
-
-        wx.showToast({
+            return    wx.showToast({
         title:res.data.msg,
         icon:'none'
       })
+          }
 
     }).catch(e=>{
 
@@ -129,6 +159,53 @@ Page({
 
 
   },
+
+  getUserInfoEvt: function(e) {
+      console.log(e)
+      if (e.detail.errMsg !== "getUserInfo:ok") {
+          return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
+      }
+
+      this.setData({
+                      showAuth: false
+                    })
+
+      app.globalData.userInfo = e.detail.userInfo
+      wx.showLoading()
+      app.getOpenId().then((openid) => {
+          app.globalData.openid = openid
+          app.login_third(e.detail).then((res) => {
+                  wx.hideLoading()
+                
+                  console.log(this.submitForm,e)
+                 this.submitForm(this.form)
+
+
+                  const uInfo = app.globalData.userInfo
+
+                  if(uInfo.hasOwnProperty('store_id')){
+                      // wx.redirectTo({
+                      //   url:'/pages/home/index'
+                      // })
+                  }else{
+
+                   this.setData({
+                      showAuth: false,
+                      store_logo:uInfo.headimg || '',
+                      store_name:uInfo.nickname || ''
+                   })
+
+
+
+                  }
+
+              
+              })
+              .catch(e => console.log(e))
+      })
+
+  },
+  inputDuplex:util.inputDuplex,
 
   /**
    * 生命周期函数--监听页面卸载

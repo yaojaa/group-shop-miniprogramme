@@ -20,17 +20,15 @@
 
        
 
-        <view class="imglist" wx:if="{{onshare}}">
+        <view class="imglist" hidden="{{!onshare}}">
 
            <view class='left'><image class="photos"  src="{{order.order_detail[0].goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75"></image> </view>
-           <view class='right'>{{goods_name}}</view>
-
-            
+           <view class='left f22 bold'>{{goods_name}}</view>
         </view> 
 
 
-        <view class='order' wx:if="{{!onshare}}">
-                  <view class='title'>  
+        <view class='order' hidden="{{onshare}}">
+                  <view class="f18 bold p-xs">  
                   {{goods_name}}</view>
 
             <view class="goodsList">
@@ -73,6 +71,13 @@
     <view class='share'>
       😘跪求分享，以免遗漏～同时活跃群气氛
   </view><view></view>
+
+    <view class="center" style="padding-top: 30px" hidden="{{!onshare}}">
+          <button bindtap="goUserSite"  class="button-area">去{{seller_name}}的主页看看</button>
+    </view>
+
+
+
 
   <button bindtap="addListener" size="mini"></button>
   

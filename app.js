@@ -157,10 +157,11 @@ App({
                     if (res.data.code === 200) {
                         console.log('res.data.data.token',res.data.data.token)
 
+                        
                         var userInfo = res.data.data.user
                             userInfo.store =  res.data.data.store
+                            userInfo.store_id =  res.data.data.store.store_id
                             userInfo.supplier =  res.data.data.supplier
-
 
                         this.globalData.token = res.data.data.token
                         this.globalData.userInfo = userInfo
@@ -323,6 +324,20 @@ App({
         if (userInfo) {
             this.globalData.token = userInfo.token
             this.globalData.userInfo = userInfo
+
+            //兼容旧版本
+            //
+            if(userInfo.hasOwnProperty('store')){
+
+                this.globalData.userInfo.store_id = userInfo.store.store_id
+            }
+
+            if( userInfo.hasOwnProperty('store_id')){
+
+                this.globalData.userInfo.store_id = userInfo.store_id
+            }
+
+        
             if (this.userLoginReadyCallback) {
                 this.userLoginReadyCallback(this.globalData.userInfo)
             }

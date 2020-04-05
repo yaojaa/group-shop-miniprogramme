@@ -94,7 +94,7 @@ Page({
             })
         }
 
-              wx.getClipboardData({
+         wx.getClipboardData({
           success:(res)=>{
             //检测粘贴板是否含有省市区 含有则自动识别
             
@@ -104,6 +104,13 @@ Page({
                 this.setData({
                     address_str:res.data
                 })
+
+             wx.showToast({
+                title:'检测到粘贴板地址信息'
+             })
+
+
+
      
              this.bindTextAreaBlur()
 
@@ -151,11 +158,14 @@ Page({
         util.wx.post('/api/index/kuaibao_cloud_address_resolve',{
             text:text
         }).then(res=>{
+
+            wx.hideLoading()
+
             wx.showToast({
-                title:'自动识别成功 请核对信息',
-                icon:'none',
-                delay:'3000'
+                title:'已识别 请仔细核对信息',
+                icon:'none' 
             })
+
             this.setData({
                 consignee:res.data.data[0].name,
                 mobile:res.data.data[0].mobile,
@@ -165,10 +175,13 @@ Page({
                 address:res.data.data[0].detail
             })
         }).catch(e=>{
+
             wx.showToast({
                 title:e.data.msg,
                 icon:'none'
             })
+            wx.hideLoading()
+
         })
 
 

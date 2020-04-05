@@ -99,11 +99,13 @@ Page({
         const d = res.data.data
 
 
-            app.globalData.userInfo = d
-         
+            app.globalData.userInfo = d.user
+            app.globalData.userInfo.store = d.store
+            app.globalData.userInfo.supplier = d.supplier
+
             wx.setStorage({ //存储到本地
                 key: "userInfo",
-                data: d,
+                data: app.globalData.userInfo,
                 success:function(){
                   wx.redirectTo({
                     url:'../home/index'

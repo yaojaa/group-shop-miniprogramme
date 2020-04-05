@@ -539,8 +539,8 @@ Page({
 
 
 
-                }
-            }, res => {
+                }else{
+
                 wx.showToast({
                     title: '商品不存在啦',
                     icon: 'none'
@@ -554,8 +554,7 @@ Page({
 
                 }, 3000)
 
-
-
+                }
             }).catch(e => {
                 return
             })
@@ -857,13 +856,13 @@ Page({
     },
     homepage() {
 
-         //app.globalData.userInfo.hasOwnProperty('store')
+        const uInfo = app.globalData.userInfo
          //
-         if(!app.globalData.userInfo){
+         if(!uInfo){
           return  this.setData({
                 showAuth:true
             })
-         }else if(app.globalData.userInfo.hasOwnProperty('store')){
+         }else if(uInfo.hasOwnProperty('store') || uInfo.hasOwnProperty('store_id')){
 
              var pages = getCurrentPages();
                 var prevPage = pages[pages.length - 2]; //上一个页面

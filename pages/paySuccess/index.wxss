@@ -1,4 +1,4 @@
-
+@import "../../css/common.wxss";
 page{
   background: #ffffff
 }
@@ -32,7 +32,10 @@ page{
   font-size: 54rpx;
   color: #ff7200;
   font-weight:bold;
- margin-bottom:46rpx;
+ margin-bottom:25rpx;
+ text-overflow: ellipsis;
+ word-break: keep-all;
+ white-space: nowrap;
 
 }
 .order{
@@ -201,14 +204,15 @@ page{
 .imglist{
   text-align: center;
   background: #f7efe3;
-  padding:5px 2px 12px 4px;
+  padding:5px 2px 15px 4px;
   border-radius:8px;
-  margin-bottom: 150rpx;
-  height:150rpx;
+  margin-bottom: 180rpx;
+  height:180rpx;
   display: block;
   margin-top: 20rpx;
   margin-left: 5px;
-  margin-right: 5px
+  margin-right: 5px;
+  overflow: hidden;
 
 }
 

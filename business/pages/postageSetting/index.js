@@ -26,8 +26,8 @@ Page({
 
         const {dataset: {id}} = e.target;
 
-        wx.navigateTo({
-            url: '../set-price/index?id='+id
+        wx.redirectTo({
+            url: '../set-price/index?id='+id+'&hasSelect='+this.data.hasSelect
         });
   
     },
@@ -95,20 +95,36 @@ Page({
     
     },
 
-    radioChange(e){
+    // radioChange(e){
+    //   console.log('radioChange',e)
+    //   return
 
-      this.data.tpl_list.forEach(item=>{
-        if(item.freight_tpl_id == e.detail.value){
+    //   this.data.tpl_list.forEach(item=>{
+    //     if(item.freight_tpl_id == e.detail.value){
 
+    //        util.setParentData({
+    //         freight_tpl_id:e.detail.value,
+    //         freight_tpl_name:item.freight_tpl_name
+    //     })
+
+    //     }
+    //   })
+
+       
+    // },
+    selectIt(e){
+     this.data.tpl_list.forEach(item=>{
+        if(item.freight_tpl_id == e.target.dataset.value){
            util.setParentData({
-            freight_tpl_id:e.detail.value,
+            freight_tpl_id:e.target.dataset.value,
             freight_tpl_name:item.freight_tpl_name
         })
 
         }
       })
 
-       
+
+
     },
 
     /**

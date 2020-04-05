@@ -27,7 +27,8 @@ Page({
             5: '不要睡 起来嗨',
             6: '机不可失，失不再来'
         },
-        order:{}
+        seller_name:'',
+        seller_store_id:''
     },
 
     /**
@@ -87,7 +88,9 @@ Page({
                     create_number: res.data.data.create_number,
                     goods_name: res.data.data.order_detail[0].goods_name,
                     order_time: res.data.data.addtime,
-                    qty:qty
+                    qty:qty,
+                    seller_name:res.data.data.seller.nickname,
+                    seller_store_id:res.data.data.store.store_id
                 })
             }
         }).catch(e=>{
@@ -116,6 +119,13 @@ Page({
 
         wx.redirectTo({
             url: '../home/index'
+        })
+
+    },
+    goUserSite(){
+
+         wx.redirectTo({
+            url: '../userhome/index?id='+this.data.seller_store_id
         })
 
     },

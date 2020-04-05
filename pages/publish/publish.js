@@ -507,19 +507,10 @@ Page({
 
     onShow: function(option) {
 
-      //  this.getTplList()
-      //  
-          if(this.freight_tpl_list){
+      if(app.globalData.userInfo){
+               this.getTplList()
+      }
 
-            this.freight_tpl_list.forEach(item => {
-                        if(item.freight_tpl_id == this.data.freight_tpl_id)
-                        {
-                            this.setData({
-                                freight_tpl_name:item.freight_tpl_name 
-                            })
-                        }
-                    })
-         }
 
     },
     getInput(e) {
@@ -994,22 +985,6 @@ Page({
         //回显运费模版名称
 
     getTplList() {
-        console.log('this.freight_tpl_list',this.freight_tpl_list)
-    //减少一个请求
-        if(this.freight_tpl_list){
-
-            this.freight_tpl_list.forEach(item => {
-                        if(item.freight_tpl_id == this.data.freight_tpl_id)
-                        {
-                            this.setData({
-                                freight_tpl_name:item.freight_tpl_name 
-                            })
-                        }
-                    })
-
-            return
-        }
-
 
         util.wx.get('/api/user/get_freight_tpl_list')
             .then(res => {
@@ -1033,20 +1008,12 @@ Page({
     onLoad: function(option) {
 
            //未登录 弹出授权弹窗
-        if (!app.globalData.userInfo) {
-           return setTimeout(() => {
-                this.setData({
-                    showAuth: true
-                })
-            }, 1000)
-        }else{
-            if(!app.globalData.userInfo.store){
-          return  wx.redirectTo({
-                url:'../create_shop/index'
-            })
-        }
-        }
 
+            if(app.globalData.userInfo && !app.globalData.userInfo.hasOwnProperty('store_id')){
+                  return  wx.redirectTo({
+                        url:'../create_shop/index'
+                    })
+                }
         
     
                 wx.setNavigationBarTitle({

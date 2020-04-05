@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "开通团长主页",
+    "navigationBarTitleText": "创建您的专属个人主页",
     "usingComponents":
     {
         "van-popup": "../../../vant/popup/index",

@@ -14,15 +14,15 @@
 	<view class="intro">
 			<view >  开心麻团 团购统计 </view>
 			 <view >管理订单 物流跟踪 </view>
-       			<view > 简单高效的小工具</view>
-       			<view >繁琐的事情交给我  </view>
+             <view >高效传播 躺着收单 </view>
+       			<view >繁琐费时的工作交给我  </view>
+            <view >主人！您去干更重要的大事情吧！  </view>
 
 	</view>
     <view class='start-btn  text-center' wx:if="{{!hasScope}}">
         <button type="primary"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权登录 </button>
         
         <button type="default"  plain="true" bindtap="goView">体验试用</button>
-
 
     </view>
 

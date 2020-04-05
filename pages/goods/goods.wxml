@@ -71,7 +71,7 @@
                 <text class="text-sm n-bold"> /起</text>
             </view>
             <view class="text-sm text-muted">访问人数 {{goods.pageview_count+1
-                }} 已售 {{goods.sold_number}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
+                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
           
         </view>
         <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">

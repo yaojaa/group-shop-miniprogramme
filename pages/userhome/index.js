@@ -314,15 +314,24 @@ const default_end_time = util.formatTime(date)
             util.wx.get('/api/store/get_store_poster', {
                 store_id: this.store_id
             }).then(res => {
-                this.setData({
+                if(res.data.code == 200){
+
+                  this.setData({
                     shareFriendsImg: res.data.data
                 })
-            }, res => {
 
-                wx.showToast({
-                    title: res.data.msg,
-                    icon: 'none'
-                })
+                }else{
+                    wx.showToast({
+                        title:'生成失败！'+res.data.msg,
+                        icon:"none"
+                    })
+
+                    this.setData({
+                        overlay: false,
+                        poster: false
+                    })
+                }
+              
             })
         }
     },
