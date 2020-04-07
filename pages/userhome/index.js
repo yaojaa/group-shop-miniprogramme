@@ -1,7 +1,5 @@
 const util = require('../../utils/util.js')
 import Dialog from '../../vant/dialog/dialog';
-
-console.log(util.addEventLister)
 const app = getApp()
 Page({
 
@@ -483,23 +481,22 @@ const default_end_time = util.formatTime(date)
     getStoreInfo(options) {
 
         util.wx.get('/api/store/get_store_homepage', {
-            store_id: this.store_id || app.globalData.userInfo.store_id
+            store_id: this.store_id
         })
             .then(res => {
 
-                var store_slide
-                if (res.data.data.store_slide.length == 0) {
-                    store_slide = ['https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b201906271717046776.jpg']
-                } else {
-                    store_slide = res.data.data.store_slide
-                }
+
+                if(res.data.code ==200){
+
 
                 this.setData({
-                    store_slide: store_slide,
+                    store_slide: res.data.data.store_slide,
                     info: res.data.data,
-                    showSetting: app.globalData.userInfo && app.globalData.userInfo.store_id == this.store_id ? true : false
+                    showSetting: app.globalData.userInfo && app.globalData.userInfo.store.store_id == this.store_id ? true : false
                 })
-            }, res => {
+            }
+
+
 
             })
 

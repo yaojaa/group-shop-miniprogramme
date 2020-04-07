@@ -140,7 +140,7 @@ Page({
                 userInfo: app.globalData.userInfo
             })
 
-            if(app.globalData.userInfo.supplier){
+            if(!!app.globalData.userInfo.supplier){
                 this.setData({
                     is_supperlier:true
                 })

@@ -19,7 +19,7 @@ Page({
         city: '',
         district: '',
         address: '',
-        is_address_default: '',
+        is_address_default: true,
         address_str:''
     },
     addressDefault(event) {

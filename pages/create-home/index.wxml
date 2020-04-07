@@ -34,6 +34,12 @@
         </view>
     </form>
 
+      <view class="m-df mt-xl">
+            <button class="btn xl btn-area primary block" bindtap="goPublish">
+                先看看别人的
+            </button>
+        </view>
+
 
       <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页" >
 
@@ -46,7 +52,7 @@
           </view>
           <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">我同意</button>
 
-           <button size="mini"  plain="false" bindtap="cancel">不用了</button>
+           <button size="mini"  plain="false" bindtap="cancel">先看看</button>
         </view>
     </van-popup>
 

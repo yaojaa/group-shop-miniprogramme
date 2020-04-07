@@ -91,6 +91,9 @@ Page({
 
     clearStorage() {
 
+
+        app.globalData.userInfo = null
+
         wx.clearStorageSync()
 
         wx.redirectTo({

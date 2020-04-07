@@ -16,7 +16,7 @@
 			 <view >管理订单 物流跟踪 </view>
              <view >高效传播 躺着收单 </view>
        			<view >繁琐费时的工作交给我  </view>
-            <view >主人！您去干更重要的大事情吧！  </view>
+            <view >您去干大事情吧！  </view>
 
 	</view>
     <view class='start-btn  text-center' wx:if="{{!hasScope}}">

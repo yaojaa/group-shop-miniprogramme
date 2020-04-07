@@ -230,7 +230,7 @@
 
         <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
         <view class="weui-footer__links" bindtap="toPublish">
-            <button size="mini" class="btn_no_style" > + 我也要发布 </button>
+            <button size="mini" type="primary" class="btn_no_style linenear_bg" > + 我也要使用开心麻团 </button>
         </view>
     </view>
 

@@ -30,10 +30,11 @@
             </view>
             <view class="act-main grow1">
                 <view class=" flex">
-                    <view class="name grow1">{{item.nickname}}  {{item.addtime}}</view>
+                    <view class="name grow1">{{item.nickname}}  <text class="right f12">{{item.apply_time}}</text></view>
                 </view>
                 <view class="act-bottom flex">
-                       销量：{{item.order_count}}    粉丝：{{item.fans_count}}
+                       
+                       <text class="12">下单量：{{item.order_count}}    粉丝：{{item.fans_count}}</text>
                     
                     <view class="button shrink0" wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</view>
                     <view class="button shrink0" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</view>

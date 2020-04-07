@@ -797,18 +797,28 @@ Page({
         //
         util.wx.post('/api/seller/goods_add_or_edit', data).then(
             res => {
+
+
                 wx.hideLoading()
+
+
+                if(res.data.code == 200){
+
+
                 this.data.goods_id = res.data.data.goods_id
               
                 this.jump()
-             
-            },(res)=>{
-                wx.hideLoading()
+               }else{
+
+          
 
                 wx.showModal({
-                        title: res.data.msg,
+                        title: res.data.msg || '错误',
                         showCancel: false
                 })
+            
+               }
+             
             })
 
 
@@ -1007,17 +1017,35 @@ Page({
 
     onLoad: function(option) {
 
-           //未登录 弹出授权弹窗
+        console.log(app.globalData.userInfo,app.globalData.userInfo.store.store_id)
 
-            if(app.globalData.userInfo && !app.globalData.userInfo.hasOwnProperty('store_id')){
-                  return  wx.redirectTo({
-                        url:'../create_shop/index'
+           //未登录 弹出授权弹窗
+           //
+           console.log(app.globalData.userInfo.store.store_id=='')
+
+            if(app.globalData.userInfo.store.store_id===''){
+
+                console.log('跳转呀...')
+                    wx.redirectTo({
+                        url:'../create-home/index'
                     })
+
+                    return
                 }
+
+             var user
+            if(app.globalData.userInfo){
+               user = app.globalData.userInfo.nickname
+
+            }else{
+                user=''
+            }
+
+
         
     
                 wx.setNavigationBarTitle({
-                  title: app.globalData.userInfo.nickname+'您正在发布活动'
+                  title: user+'您正在发布活动'
                 })
     
 

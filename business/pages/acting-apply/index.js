@@ -33,6 +33,18 @@ Page({
 
         }
 
+        console.log(options)
+
+
+         //如果是扫二维码进来 带scene
+        if (typeof options.scene !== 'undefined') {
+            var scene = decodeURIComponent(options.scene)
+            options = this.url2json(scene)
+           
+        } 
+
+
+        console.log(scene)
 
 
  
@@ -180,6 +192,22 @@ Page({
 
 
   },
+      url2json : function(string, overwrite) {
+    var obj = {},
+        pairs = string.split('&'),
+        d = decodeURIComponent,
+        name, value;
+
+    pairs.forEach((item, i) => {
+        var pair = item.split('=');
+        name = d(pair[0]);
+        value = d(pair[1]);
+        obj[name] = value;
+
+    })
+    console.log('url2json',obj)
+    return obj;
+},
 
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -204,34 +204,43 @@ page{
 .imglist{
   text-align: center;
   background: #f7efe3;
-  padding:5px 2px 15px 4px;
   border-radius:8px;
   margin-bottom: 180rpx;
-  height:180rpx;
-  display: block;
   margin-top: 20rpx;
   margin-left: 5px;
   margin-right: 5px;
   overflow: hidden;
+  display: flex;
 
 }
 
-.imglist .left{
-  float: left;
-  margin-right: 8px;
 
+#left{
+  width: 200px;
+  height: 100px;
 }
+#right{
+  height: 100px;
+  flex: 1;
+}
+
+.count{
+  color: #ff7200
+}
+
 .imglist .right{
   font-size: 46rpx;
 text-align: left;
 line-height: 1.6;
 height: 160rpx;
 overflow: hidden;
-  padding-right: 10px
+  flex: 1;
+  padding: 10px;
+
 }
 .photos{
 
-    height: 160rpx;
+  height: 160rpx;
   width: 160rpx;
   overflow: hidden;
     border-radius:8px;

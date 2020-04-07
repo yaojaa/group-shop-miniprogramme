@@ -1,5 +1,6 @@
 // pages/login/login.js
 const app = getApp()
+const util = require('../../utils/util.js')
 
 Page({
   data: {
@@ -13,7 +14,9 @@ Page({
 
     console.log('userInfo',userInfo)
     if(userInfo){
-          this.jump(userInfo)
+         this.jump(userInfo)
+         // 
+        // this.getUserInfo()
 
     }
 
@@ -22,8 +25,6 @@ Page({
  
 
   },
-
-
 
   goView(){
 
@@ -48,7 +49,9 @@ Page({
      var lastVisit = wx.getStorageSync('lastVisit') 
 
 
-     console.log('lastVisit=',lastVisit)
+     console.log('跳转=',d)
+
+     console.log(d.store && d.store_id)
 
      if(d.supplier && d.store && lastVisit){
 
@@ -75,7 +78,8 @@ Page({
 
            } 
 
-      if(d.store || d.store_id){
+
+      if(d.store && d.store.store_id){
 
              return wx.redirectTo({
                 url:'../home/index'
@@ -121,8 +125,13 @@ Page({
 
 
            const d = res.data.data
+           var userInfo ={}
+                userInfo = d.user
+               userInfo['store']= d.store
+               userInfo.supplier= d.supplier
 
-           this.jump(d)
+
+           this.jump(userInfo)
 
 
           wx.hideLoading()

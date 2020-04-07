@@ -207,7 +207,7 @@ Page({
       
         return {
             title: this.data.goods.goods_name,
-            path: 'business/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id,
+            path: 'business/pages/goods-user/goods?id=' + this.data.goods.goods_id,
             
         }
 

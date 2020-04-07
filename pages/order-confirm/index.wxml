@@ -90,7 +90,7 @@
                     <image class="goods-cover-image" src="{{item.spec_pic[0]}}"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line  bold title">
-                            {{item.spec_name}} <text class="text-muted mt-xs text-sm">{{item.spec_desc}}</text>
+                            {{item.spec_name}}
                         </view>
                         <view class="text-justify bt-bar">
                             <view class="price text-muted">￥{{item.spec_price}}</view>
