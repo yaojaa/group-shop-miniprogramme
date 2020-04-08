@@ -16,7 +16,7 @@ Page({
         util.wx.get('/api/supplier/get_supplier_detail')
             .then(res => {
                  this.setData({
-                    money:res.data.data.supplier_money
+                    money:res.data.data.pending_money
                  })
             })
     },
