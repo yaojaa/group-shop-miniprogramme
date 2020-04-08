@@ -141,7 +141,7 @@
 
 		</view>
 	</view>
-	<view style="margin-bottom:100rpx"></view>
+	<view style="margin-bottom:200rpx"></view>
 
 
     <footerbar active="{{3}}"/>

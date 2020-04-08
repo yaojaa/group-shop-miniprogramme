@@ -297,12 +297,17 @@ App({
                     this.globalData.CustomBar = e.statusBarHeight+20
                 }
 
-
-                
-
             }
         })
-        //检测设备尺寸
+        //检测胶囊高度
+           var menu = wx.getMenuButtonBoundingClientRect()
+    console.log('菜单按键宽度：',menu.width)
+    console.log('菜单按键高度：',menu.height)
+    console.log('菜单按键上边界坐标：',menu.top)
+    console.log('菜单按键右边界坐标：',menu.right)
+    console.log('菜单按键下边界坐标：',menu.bottom)
+    console.log('菜单按键左边界坐标：',menu.left)
+
   
 
 

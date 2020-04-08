@@ -9,7 +9,7 @@
 		]
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -814,7 +814,7 @@
 					"id": 106,
 					"name": "团长查看分销页面",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "id=29",
+					"query": "id=26",
 					"scene": null
 				},
 				{

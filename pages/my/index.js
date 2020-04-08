@@ -301,9 +301,8 @@ Page({
         })
     },
     goSite() {
-        console.log(this.data.userInfo.store_id)
         wx.navigateTo({
-            url: '../userhome/index?id=' + this.data.userInfo.store_id
+            url: '../userhome/index?id=' + this.data.userInfo.store.store_id
         })
     },
 

@@ -16,6 +16,8 @@ Page({
   onLoad: function(options) {
     this.data.goods_id = options.goods_id
 
+    wx.showLoading()
+
     util.wx.get('/api/seller/get_order_export_by_goods_id', {
       goods_id: this.data.goods_id
     }).then(res=>{
@@ -25,6 +27,8 @@ Page({
       this.setData({
         orders:res.data.data.orders
       })
+        wx.hideLoading()
+
     })
   },
   copyAll() {
