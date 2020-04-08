@@ -333,7 +333,6 @@ Page({
         util.formSubmitCollectFormId.call(this, e)
     },
     onShareAppMessage: function(e) {
-        console.log(e)
         if (app.globalData.userInfo) {
             var _uid = app.globalData.userInfo.user_id
         }
@@ -341,7 +340,7 @@ Page({
         return {
             title: app.globalData.userInfo.nickname + '推荐您一个接单好助手',
             imageUrl: 'https://static.kaixinmatuan.cn/static/share-cover.jpg',
-            path: 'pages/create-home/index' + '?from_id=' + _uid
+            path: 'pages/login/login' + '?from_id=' + _uid
         }
     },
 
