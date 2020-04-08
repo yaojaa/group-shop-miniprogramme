@@ -187,15 +187,15 @@ color:#666;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 48px;
+    height: 54px;
     background: #fff;
     color: #fff;
     text-align: center;
     font-weight: 400;
     font-size: 32rpx;
     display: flex;
-    border-top: 1rpx solid #f1f1f1;
-    z-index: 99
+    z-index: 99;
+    align-items: center;
 }
 
 .footer-cart .icon {
@@ -211,11 +211,18 @@ color:#666;
 
 .footer-cart .buy {
     flex: 3;
-    line-height: 48px;
+    line-height: 40px;
     color: #fff;
-    border-radius: 0;
     border: none;
+    font-size: 30rpx;
+    margin-right: 10px;
 }
+
+.footer-cart .buy.round {
+    border-radius: 100px;
+}
+
+
 
 .footer-cart .buy:after,
 .footer-cart .buy:before {
