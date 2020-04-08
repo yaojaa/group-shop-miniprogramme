@@ -10,7 +10,9 @@
             <block wx:for="{{order_list}}" wx:key="{{index}}">
                 <order-list item="{{item}}">
                     <view class="text-right text-gray mt-df" slot="total">
-                   <text class="text-left f12"> （No.{{item.create_number}}） {{item.pay_time}}</text>  总计：¥<text class="text-black f12">{{item.total_price}}</text>
+                   <text class="text-left f12"> （No.{{item.create_number}}） {{item.pay_time}}</text> 
+                   <text class="text-black f12" wx:if="{{item.shipping_money!=='0.00'}}">运费：¥{{item.shipping_money}} </text> 
+                  <text class="text-black f12"> 总计：¥{{item.pay_price}}</text>
                     </view>
                     <view class="flex relative justify-end align-center" slot="footer">
                     

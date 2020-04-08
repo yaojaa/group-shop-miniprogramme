@@ -21,13 +21,25 @@
     <!-- <view>累计收款：{{store_money}}元</view>
      <view>约为您节省{{store_money/40*4}}小时</view> -->
     <view class="erweima" style="font-size: 14px;line-height: 1.5; text-align: left;color: #cc0000">
-        <view>提现微信收取手续费0.6%，平台不收任何费用。</view>
-          <view>	微信限制每天最高提现5000元，超过次日到账。</view>
-          <view>单次提现金额小于2000元，秒到账！</view>
+        <view>提现微信收取手续费0.6%，平台不收任何费用。全网最低！</view>
+          <view>微信限制每天最高提现2万元。</view>
          <view> 有疑问可联系客服。</view>
     </view>
     <view class="center">
         <button open-type="contact" bindcontact="handleContact">联系客服</button>
-        <i-message id="message" />
     </view>
+
+     <van-dialog   show="{{ showDialog }}" id="dialog-success" use-slot>
+        <view class="dialog-head">
+            <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
+            <view class="title">
+                <view>提现成功</view>
+            </view>
+        </view>
+        <view class="p-lg text-center text-gray text-df">
+        请查收 如有疑问联系客服
+        </view>
+    </van-dialog>
+
+
 </view>
