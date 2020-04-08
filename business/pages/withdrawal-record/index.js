@@ -13,7 +13,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        info: '',
+        info: [],
         loading: false,
         status: ['审核拒绝', '等待审核', '审核通过', '其他'],
         dateModal: false,

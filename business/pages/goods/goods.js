@@ -192,7 +192,7 @@ Page({
     onShareAppMessage: function() {
 
 
-        console.log('/pages/goods-user/goods?goods_id=' + this.data.goods.goods_id)
+        console.log('/business/goods-user/goods?goods_id=' + this.data.goods.goods_id)
 
         this.setData({
             shareTit:'邀请您转发销售'
