@@ -1,6 +1,6 @@
 const app = getApp()
-const { $Message } = require('../../iView/base/index');
 const util = require('../../utils/util')
+import Dialog from '../../vant/dialog/dialog'
 
 Page({
 
@@ -13,7 +13,8 @@ Page({
         inputMoney: '',
         withdrawalslist: [],
         totalpage: 1,
-        store_money:'*'
+        store_money:'*',
+        showDialog:false
     },
 
     /**
@@ -58,21 +59,29 @@ Page({
     },
     getMoney() {
 
-      if(this.data.inputMoney>5000){
-        return wx.showToast({
-          title:'每日限额5000',
-          icon:'none'
-        })
-      }
 
-      if(this.data.inputMoney<10){
-        return wx.showToast({
-          title:'至少提现10元',
-          icon:'none'
-        })
-      }
+      // if(this.data.inputMoney<1){
+      //   return wx.showToast({
+      //     title:'至少提现1元',
+      //     icon:'none'
+      //   })
+      // }
 
-        if (this.data.inputMoney) {
+
+
+      // return console.log(typeof this.data.inputMoney)
+
+
+
+      //   if (this.data.inputMoney=='') {
+      //      return  wx.showToast({
+      //                   title: '请输入提现金额',
+      //                   icon:'none'
+      //               })
+
+      //   }
+
+
 
           wx.showLoading()
 
@@ -80,41 +89,38 @@ Page({
                 apply_money: this.data.inputMoney
             }).then((res) => {
 
-                   wx.showToast({
-                        title: '提现成功',
-                        icon: 'none'
+                if(res.data.code == 200){
+
+                     Dialog.alert({
+                        selector: '#dialog-success',
+                        confirmButtonText: '好的'
+                    }).then(() => {
+
                     })
 
-                   this.setData({
+                    this.setData({
                     inputMoney:'' 
-                  })
+                   })
 
                    wx.hideLoading()
-
                     this.finance_withdrawal_list()
                     this.get_store_info()
 
+                }else{
+
+                    wx.hideLoading()
+                      wx.showToast({
+                                title: res.data.msg,
+                                icon:'none',
+                                duration:5000
+                            })
+
+                }
+
+               
                 
-            },(res)=>{
-             wx.hideLoading()
-
-             this.finance_withdrawal_list()
-                    this.get_store_info()
-
-              wx.showToast({
-                        title: res.data.msg,
-                        icon:'none',
-                        duration:5000
-                    })
             })
-        }else{
-
-          wx.showToast({
-                        title: '请输入提现金额',
-                        icon:'none'
-                    })
-
-        }
+       
 
     },
     get_store_info() {
@@ -192,13 +198,6 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
 
     }
 })

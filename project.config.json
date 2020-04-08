@@ -949,6 +949,27 @@
 					"pathName": "pages/home/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-list/index",
+					"pathName": "pages/order-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-detail/index",
+					"pathName": "pages/order-detail/index",
+					"query": "id=12056",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/withdrawal/index",
+					"pathName": "pages/withdrawal/index",
+					"query": "id=12056",
+					"scene": null
 				}
 			]
 		}
