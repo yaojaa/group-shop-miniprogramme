@@ -16,7 +16,7 @@
                 </view>
             </view>
             <view class="solid-bottom"></view>
-            <view class="pv-df ph-lg f13 text-muted ">提示:1-3个工作日到账</view>
+            <view class="pv-df ph-lg f13 text-muted ">提示:即时到账</view>
         </view>
         <view class="p-lg pt-xl">
             <button class="btn primary xl block round" disabled="{{money>1?false:true || disabled }}" form-type="submit"> 确定 </button>
@@ -26,12 +26,12 @@
         <view class="dialog-head">
             <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
             <view class="title">
-                <view>已提交</view>
-                <view class="text-sm n-bold mt-lt">待审核</view>
+                <view>提现成功</view>
+               
             </view>
         </view>
         <view class="p-lg text-center text-gray text-df">
-        1-3个工作日到账
+        请查收 如有疑问联系客服
         </view>
     </van-dialog>
     <van-toast id="van-toast" />
