@@ -160,15 +160,15 @@
 		<view bindtap='cartPanelShow' style="flex:2;position: relative;">
 			<text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">{{totalNum}}</text>
              
-			<button class="buy linenear_bg" formType="submit" wx:if="{{goods && goods.goods_expires == 1 }}">直接下单</button>
+			<button class="buy round linenear_bg" formType="submit" wx:if="{{goods && goods.goods_expires == 1 }}">直接下单</button>
             <button class="buy" formType="submit" disabled="true"  wx:else>直接下单</button>
 		</view>
 
 
 		<form style="flex:2;position: relative;" bindsubmit="formSubmit" data-fn="goods_up" report-submit="true">
-			<button wx:if="{{goods && goods.goods_expires==1 }}" class="buy linenear_bg" formType="submit">上架到我的主页</button>
-			<button wx:if="{{goods && goods.goods_expires == 2 }}" class="buy" formType="submit" disabled="true">未开始</button>
-			<button wx:if="{{goods && goods.goods_expires == 3 }}" class="buy" formType="submit" disabled="true">已结束</button>
+			<button wx:if="{{goods && goods.goods_expires==1 }}" class="buy round linenear_bg" formType="submit">上架到我的主页</button>
+			<button wx:if="{{goods && goods.goods_expires == 2 }}" class="buy round" formType="submit" disabled="true">未开始</button>
+			<button wx:if="{{goods && goods.goods_expires == 3 }}" class="buy round" formType="submit" disabled="true">已结束</button>
 		</form>
 	</view>
 
