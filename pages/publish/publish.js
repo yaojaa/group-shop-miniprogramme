@@ -825,33 +825,12 @@ Page({
 
 
                 wx.hideLoading()
-<<<<<<< HEAD
+                
                 if(res.data.data){
                     this.data.goods_id = res.data.data.goods_id
                   
                     this.jump()
                 }else{
-                    wx.showModal({
-                        title: res.data.msg,
-                        showCancel: false
-                    })
-                }
-             
-            },(res)=>{
-                wx.hideLoading()
-=======
-
-
-                if(res.data.code == 200){
-
-
-                this.data.goods_id = res.data.data.goods_id
-              
-                this.jump()
-               }else{
-
-          
->>>>>>> fd4b4fae4ec8c9e18607d19f9614a64aaa585b1d
 
                 wx.showModal({
                         title: res.data.msg || '错误',

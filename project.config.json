@@ -98,11 +98,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-<<<<<<< HEAD
-					"query": "goods_id=350",
-=======
 					"query": "id= 1925",
->>>>>>> fd4b4fae4ec8c9e18607d19f9614a64aaa585b1d
 					"scene": 1008
 				},
 				{
