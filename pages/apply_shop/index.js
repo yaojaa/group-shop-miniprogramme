@@ -122,12 +122,6 @@ Page({
 
 
         this.setStorage(d)
-
-
-           
-
-
-
           
         }else{
 
@@ -136,10 +130,6 @@ Page({
             title:res.data.msg,
             icon:"none"
           })
-
-           this.setStorage(d)
-
-
         }
 
       }).catch(res=>{
@@ -151,11 +141,15 @@ Page({
 
   setStorage(d){
 
-     app.globalData.userInfo = d
+    var userInfo = d.user
+        userInfo.store = d.store
+        userInfo.supplier = d.supplier
+
+     app.globalData.userInfo = userInfo
          
             wx.setStorage({ //存储到本地
                 key: "userInfo",
-                data: d,
+                data: userInfo,
                 success:function(){
                   wx.redirectTo({
                     url:'../home/index'
@@ -172,7 +166,7 @@ Page({
   onLoad: function (options) {
 
     this.setData({
-      store_name:app.globalData.userInfo.user.nickname+'的主页'
+      store_name:app.globalData.userInfo.nickname+'的主页'
     })
 
   },

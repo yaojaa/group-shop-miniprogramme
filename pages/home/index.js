@@ -71,6 +71,74 @@ Page({
         }
 
     },
+
+    //重新获取用户信息 矫正旧数据 如果没有店铺的跳转到个人 并覆盖本地
+    //
+      reGetUserInfo(){
+
+        util.wx.get('/api/user/get_user_info').then(res=>{
+
+            if(res.data.code == 200){
+
+                const d = res.data.data
+
+
+                 if(d.store == null && d.supplier == null){
+
+                                var userInfo = d.user
+                                    userInfo.supplier = null
+                                    userInfo.store = null
+
+                    console.log('wx.setStorage',userInfo)
+
+
+                    app.globalData.userInfo = userInfo
+                    
+
+                     wx.setStorageSync('userInfo', userInfo)
+
+
+                     wx.redirectTo({
+                                    url:'../user-home/index'
+                                })
+
+                   
+
+                   }
+
+
+
+                 //        var userInfo = d.user
+                            
+                           
+
+                 //             if(d.hasOwnProperty('supplier')){
+                 //                userInfo.supplier =  d.supplier
+                 //            }
+                            
+                 //        this.globalData.token = d.token 
+                 //        this.globalData.userInfo = userInfo
+
+                 //        wx.setStorage({ //存储到本地
+                 //            key: "userInfo",
+                 //            data: this.globalData.userInfo
+                 //        })
+
+            }
+
+
+          console.log(res)
+
+
+
+
+        })
+
+      },
+
+
+
+
     //切换显示隐藏状态事件
     recommendHandle(e) {
 
@@ -122,6 +190,8 @@ Page({
     onShow() {
         wx.hideHomeButton()
         this.getOrderCount()
+
+        this.reGetUserInfo()
     },
     /**
      * 生命周期函数--监听页面加载

@@ -207,6 +207,23 @@ Page({
             this.getOrderUserList(this.data.goods_id)
         }
 
+             //获取价格区域的高度，滚动到此位置
+
+        const query = wx.createSelectorQuery()
+        query.select('#spec_box').boundingClientRect()
+        query.selectViewport().scrollOffset()
+        query.exec((res) => {
+
+            console.log(res)
+
+            if(res && res.length){
+               this.data.spec_box_top = res[0].top
+            }
+
+
+
+        })
+
     },
     onReady: function() {
 
@@ -636,15 +653,7 @@ Page({
 
 
 
-        //获取价格区域的高度，滚动到此位置
 
-        const query = wx.createSelectorQuery()
-        query.select('#spec_box').boundingClientRect()
-        query.selectViewport().scrollOffset()
-        query.exec((res) => {
-
-            this.data.spec_box_top = res[0].top
-        })
 
 
         this.setData({
@@ -775,7 +784,7 @@ Page({
     toPublish() {
 
         wx.navigateTo({
-            url: '../publish-select/index'
+            url: '../publish/publish'
         })
 
     },
@@ -865,12 +874,14 @@ Page({
     homepage() {
 
         const uInfo = app.globalData.userInfo
+
+        console.log(uInfo)
          //
          if(!uInfo){
           return  this.setData({
                 showAuth:true
             })
-         }else if(uInfo.hasOwnProperty('store') || uInfo.hasOwnProperty('store_id')){
+         }else if(!!uInfo.store&& uInfo.store.store_id){
 
              var pages = getCurrentPages();
                 var prevPage = pages[pages.length - 2]; //上一个页面

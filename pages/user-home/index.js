@@ -58,7 +58,7 @@ Page({
 
     goPublish(){
         wx.navigateTo({
-            url:'../apply_shop/index'
+            url:'../create-home/index'
         })
 
     },

@@ -38,3 +38,6 @@
 .btn:after{
 	display: none;
 }
+.btn.primary{
+	background-color: #ffaa4f;
+}

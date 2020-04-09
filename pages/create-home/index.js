@@ -13,8 +13,7 @@ Page({
       store_name:'',
       wechatnumber:'',
       realname:'',
-      mobile:''
-  },
+      mobile:''  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -22,19 +21,6 @@ Page({
   onLoad: function (options) {
 
     const uInfo = app.globalData.userInfo || {}
-
-    if(uInfo && uInfo.hasOwnProperty('store_id')){
-
-      wx.redirectTo({
-        url:'../home/index'
-      })
-
-    }else{
-
-      // this.setData({
-      //   showAuth:true
-      // })
-    }
 
     this.setData({
       store_logo:uInfo.headimg || '',
@@ -48,31 +34,6 @@ Page({
    onChange(e) {
       wx.showLoading()
 
-    },
-    onSuccess(e,l) {
-
-      wx.showToast({
-        title:'上传成功',
-        icon:'none'
-      })
-
-        const data = JSON.parse(e.detail)
-
-        this.setData({
-          supplier_logo:data.data.file_url
-        })
-    },
-    onFail(e) {
-    wx.showToast({
-            title:'上传失败请重试',
-            icon:'none'
-          })    
-},
-    onComplete(e) {
-        wx.hideLoading()
-    },
-    onProgress(e) {
-       
     },
 
   /**
@@ -124,18 +85,21 @@ Page({
 
     if(res.data.code == 200){
         wx.showToast({
-        title:'提交成功',
+        title:'恭喜您申请成功',
         icon:'none'
       })
 
 
             const d = res.data.data
 
-            app.globalData.userInfo = d
+            var userInfo = res.data.data.user;
+                userInfo.store = res.data.data.store
+
+            app.globalData.userInfo = userInfo
          
             wx.setStorage({ //存储到本地
                 key: "userInfo",
-                data: d,
+                data: userInfo,
                 success:function(){
                   wx.redirectTo({
                     url:'/pages/home/index'
@@ -145,9 +109,9 @@ Page({
           }else{
 
             return    wx.showToast({
-        title:res.data.msg,
-        icon:'none'
-      })
+                title:res.data.msg,
+                icon:'none'
+              })
           }
 
     }).catch(e=>{
@@ -158,6 +122,11 @@ Page({
 
 
 
+  },
+  goPublish(){
+    wx.redirectTo({
+      url:'../userhome/index?id=6931'
+    })
   },
 
   getUserInfoEvt: function(e) {
@@ -176,25 +145,27 @@ Page({
           app.globalData.openid = openid
           app.login_third(e.detail).then((res) => {
                   wx.hideLoading()
+              
+                  const uInfo = app.globalData.userInfo 
+
+                  console.log('uInfouInfo',uInfo)
+
+                  if(uInfo.store && uInfo.store.store_id){
+                        wx.showToast({
+                        title:'您已经申请过啦',
+                        icon:'none'
+                      })
                 
-                  console.log(this.submitForm,e)
-                 this.submitForm(this.form)
-
-
-                  const uInfo = app.globalData.userInfo
-
-                  if(uInfo.hasOwnProperty('store_id')){
-                      // wx.redirectTo({
-                      //   url:'/pages/home/index'
-                      // })
+                 wx.redirectTo({
+                        url:'/pages/home/index'
+                      })
                   }else{
 
                    this.setData({
-                      showAuth: false,
-                      store_logo:uInfo.headimg || '',
-                      store_name:uInfo.nickname || ''
+                      showAuth: false
                    })
 
+                   this.submitForm()
 
 
                   }

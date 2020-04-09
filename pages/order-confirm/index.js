@@ -282,14 +282,13 @@ Page({
     createOrder: function() {
 
 
+
+
         let addressData = {
             'consignee': this.data.consignee,
             'mobile': this.data.mobile
         }
-        this.setData({
-            loading: true
-        })
-        wx.showLoading()
+     
 
         const specs = this.data.cart.map(item => {
             return {
@@ -315,13 +314,31 @@ Page({
 
         }
 
+          if(!this.data.address_id && this.data.delivery_method == 1){
+
+           return wx.showToast({
+                title: '请先选择收货地址',
+                icon: 'none'
+            })
+            
+        }
+
+        this.setData({
+            loading: true
+        })
+        wx.showLoading()
+
         util.wx.post('/api/order/create_order', Object.assign({
             specs: specs,
             user_message: this.data.user_message,
             goods_id: this.data.goods_id,
             from_user_id:this.data.from_id
         }, postData)).then(res => {
-                this.data.order_id = res.data.data.order_id;
+
+
+                if(res.data.code == 200){
+
+                    this.data.order_id = res.data.data.order_id;
 
                   //创建订单成功
                   if(this.data.payment_method==0){
@@ -331,15 +348,24 @@ Page({
                     }else{
                       this.jumpToSuccess(res.data.data.order_count);
                    }
-
-        }, (e) => {
+                }else{
             this.setData({
                 loading: false
             })
             wx.showToast({
-                title: e.data.msg,
+                title: res.data.msg,
                 icon: 'none'
             })
+
+   
+                }
+                  
+
+ this.setData({
+                loading: false
+            })
+
+
 
         }).catch(e => {
             wx.showToast({

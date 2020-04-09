@@ -185,7 +185,7 @@
                 <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}">
                     物流信息
                 </view>
-                <button data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-sn="{{item.order_sn}}" bindtap="checkexpressorder">
+                <button wx:if="{{item.supplier_id == 0}}" data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-sn="{{item.order_sn}}" bindtap="checkexpressorder">
                     <block wx:if="{{item.express.length > 0}}">快递单号</block>
                     <block wx:else>录入单号</block>
                 </button>

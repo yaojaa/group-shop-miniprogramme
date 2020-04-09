@@ -14,7 +14,7 @@
         <view class='header'>
             <view class='title'> {{create_number}}. <open-data type="userNickName"></open-data>已参团 +{{qty}}</view>
              <view class="emoji" >
-            👇<text class="f22 bold">我的第{{order_count}}次参与</text>👇
+            👇<text class="f22 bold count">我的第{{order_count}}次参与</text>👇
           </view>
         </view>
 
@@ -22,8 +22,8 @@
 
         <view class="imglist" hidden="{{!onshare}}">
 
-           <view class='left'><image class="photos"  src="{{order.order_detail[0].goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75"></image> </view>
-           <view class='left f22 bold'>{{goods_name}}</view>
+           <view class='left'><image class="photos"  src="{{order.order_detail[0].goods_cover}}?imageView2/2/w/160/h/160/format/jpg/q/75"></image> </view>
+           <view class='right f22 bold'>{{goods_name}}</view>
         </view> 
 
 

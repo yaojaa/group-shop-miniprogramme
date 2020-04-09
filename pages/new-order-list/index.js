@@ -32,15 +32,13 @@ Page({
                     order_list: this.data.order_list.concat(res.data.data.order_list),
                     totalpage: res.data.data.page.totalpage
                 })
-                resolve()
-            }, (err) => {
-                reject(err)
+                resolve(res)
             }).catch(e=>{
                 wx.showToast({
                     title:'获取订单失败 稍微再试',
                     icon:'none'
                 })
-                 reject(err)
+                 reject(res)
             })
         })
     },

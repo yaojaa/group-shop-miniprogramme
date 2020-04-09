@@ -155,25 +155,26 @@ App({
                 success: (res) => {
 
                     if (res.data.code === 200) {
-                        console.log('res.data.data.token',res.data.data.token)
+                      
+                      const d = res.data.data
+                        var userInfo = d.user
+                            
+                            if(d.hasOwnProperty('store')){
+                                userInfo.store =  d.store
+                            }
 
-                        
-                        var userInfo = res.data.data.user
-                            userInfo.store =  res.data.data.store
-                            userInfo.store_id =  res.data.data.store.store_id
-                            userInfo.supplier =  res.data.data.supplier
-
-                        this.globalData.token = res.data.data.token
+                             if(d.hasOwnProperty('supplier')){
+                                userInfo.supplier =  d.supplier
+                            }
+                            
+                        this.globalData.token = d.token 
                         this.globalData.userInfo = userInfo
 
-
-                        console.group('储存登录userInfo')
                         wx.setStorage({ //存储到本地
                             key: "userInfo",
                             data: this.globalData.userInfo
                         })
-                        console.log(this.globalData)
-                        console.groupEnd()
+                    
 
                         resolve(res)
 
@@ -267,16 +268,7 @@ App({
 
         this.comeInfo = {}
 
-        //如果是扫二维码进来 带scene
-        if (typeof option.query.scene !== 'undefined') {
-            var scene = decodeURIComponent(option.query.scene)
-            scene = this.url2json(scene)
-            this.comeInfo.from_user_id = scene.from_id || ''
-            this.comeInfo.online = 0
-        } else {
-            this.comeInfo.online = 1
-            this.comeInfo.from_user_id = option.query.from_id || ''
-        }
+    
 
         /**记录用户打开的场景**/
         if (option.scene) {
@@ -327,7 +319,7 @@ App({
 
             //兼容旧版本
             //
-            if(userInfo.hasOwnProperty('store')){
+            if(userInfo.store && userInfo.store.store_id ){
 
                 this.globalData.userInfo.store_id = userInfo.store.store_id
             }

@@ -39,9 +39,9 @@
         </view>
     </view>
 
-   <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+收不到新订单提醒？记得订阅</button>
+   <view class="new_order" wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+收不到新订单提醒？记得订阅</button>
     <i-panel hide-border title="最新订单" extra="更多" link="../new-order-list/index">
-        <view class="control">
+        <view class="control"  >
 
             <view class="newlist">
 
@@ -54,13 +54,13 @@
                 </scroll-view>
             </view>
         </view>
-
-        <button class="pubbtn" bindtap="new_btn">+ 新发布</button>
     </i-panel>
     </view> 
 
 
-
+    <view class="mt-xl">
+                <button class="pubbtn" bindtap="new_btn">+ 新发布</button>
+    </view>
 
 
 
@@ -90,17 +90,34 @@
             </view>
         </i-panel>
     </view>
-    <i-panel wx:if="{{goodslist.length== 0 && !is_loading }}">
+    <i-panel title="新人小贴士" wx:if="{{goodslist.length== 0 && !is_loading }}">
         <view class='new-goods' bindtap="new_btn" style="margin-bottom:100rpx">
-            <text>+ 立即发布活动 </text>
+
+            <view class="bold">问：使用开心麻团小程序收费吗？</view>
+
+            <view class="mb-df">答：不收费，但使用在线支付微信会收取0.6%的通道费，这个是谁都无法避免的，拿金钱换高效值得！</view>
+
+
+            <view class="bold">问：收款的钱到哪里去了？</view>
+
+            <view  class="mb-df">在您的个人账户，点击右上角余额数字，可提现到微信钱包，在自动扣除0.6%的手续费后会即时到账！</view>
+ 
+            <view class="bold">问：有什么核心主要功能？</view>
+
+            <view  class="mb-df">答：自助接单，方便的订单管理；群发通知给参与的用户；免费的个人主页，展示您的产品；生成海报方便发布朋友圈。</view>
+
+            <view class="bold">问：有什么特色或理念？</view>
+
+            <view class="mb-df">答：专注私域流量的管理与辅助营销， 而不是共享的大平台。大道至简，可能是最好的接单营销小程序</view>
+      <button style="margin:0 auto; display: block;" size="mini" open-type="contact" bindcontact="handleContact"> <van-icon name="chat-o" /> 更多问题请咨询客服</button>
         </view>
 
       
 
     </i-panel>
-    <view style="margin-bottom:100rpx"></view>
+    <view class="mb-df"></view>
 
-      <button style="margin:0 auto; display: block;" size="mini" open-type="contact" bindcontact="handleContact"> <van-icon name="chat-o" /> 使用咨询</button>
+
 
 
     <!--  <view wx:if="{{goodslist.length >= 0}}">

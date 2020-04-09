@@ -144,8 +144,8 @@
 	<view class="weui-footer weui-footer_fixed-bottom">
 
 		<view class="center" style="margin-bottom:100rpx; text-align: center;"> 
-			<text bindtap="goPublish" class="text-primary">免费创建团长个人主页</text> | 
-			<text bindtap="goSupperReg" class="text-primary">创建品牌供应商主页</text> </view> 
+			<text bindtap="goPublish" class="text-primary">免费创建团长个人主页</text> 
+			<!-- <text bindtap="goSupperReg" class="text-primary">创建品牌供应商主页</text> --> </view> 
 
 		<view class="weui-footer__links">
 
