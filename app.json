@@ -51,6 +51,7 @@
         "pages/user-home/index",
         "pages/supplier-list/index",
         "pages/my/index",
+        "pages/editor/editor",
         "pages/apply_shop/index"
     ],
     "subpackages": [{

@@ -155,7 +155,7 @@
         </view>
 
 
-        <view class='goods-content-wraper por'>
+        <view wx:if="{{isEmptyEditor}}" class='goods-content-wraper por'>
             <view class='goods-content' bindtap="openUrl">
                 <text>{{goods.goods_content}}</text>
             </view>
@@ -201,7 +201,7 @@
                 </view>
             </scroll-view> -->
         </view>
-        <view wx:if="{{goods.content_imgs.length}}">
+        <view>
             <view class='sub-title scale-b-1px'>
                 图文介绍
             </view>
@@ -211,10 +211,12 @@
         <view wx:if="{{goods.goods_video}}">
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view>
-        <block class="pic" wx:for="{{goods.content_imgs}}" wx:key="index" wx:for-item="img">
+        <block wx:if="{{isEmptyEditor}}" class="pic" wx:for="{{goods.content_imgs}}" wx:key="index" wx:for-item="img">
             <image bindtap="showGallery" data-current="index" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
-
+        <view class="editor-content" wx:if="{{!isEmptyEditor}}">
+            <rich-text nodes="{{editorContent.html}}"></rich-text>
+        </view>
                 <view class="flex text-center" style="padding: 15px 0">
                     <view class="flex-sub"><button class="btn green_bg" bindtap='copyGoods'>
 <i-icon type="editor" color="#49b34d" />   复制发布                   </button></view>

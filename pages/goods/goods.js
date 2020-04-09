@@ -113,8 +113,10 @@ Page({
             winWidth: app.globalData.winWidth,
             imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
             phone: '',
-            weChat: ''
+            weChat: '',
         },
+        isEmptyEditor: true,
+        editorContent: null
     },
     openUrl() {
         // let that = this
@@ -510,9 +512,15 @@ Page({
                         }
                     })
 
-                    console.log('33333333')
+                    let editorContent = JSON.parse(d.goods.content);
+                    editorContent = editorContent ? editorContent : {html:'', text:''};
+                    let isEmptyEditor = editorContent.text.replace(/\n/g,'').length == 0 && !/img/g.test(editorContent.html);
+
+                    editorContent.html = editorContent.html.replace(/<img\s/g,'<img class="editor-img" ')
 
                     this.setData({
+                        isEmptyEditor: isEmptyEditor,
+                        editorContent: editorContent,
                         goods: d.goods,
                         'imgs.src': d.goods.goods_images,
                         goods_spec: d.goods.goods_spec.length == 0 ? d.goods.goods_images : d.goods.goods_spec,
@@ -1182,8 +1190,9 @@ Page({
             userList.unshift(item.create_number + '.' + item.nickname + " \b " + spec + (item.pay_status == 1 ? "(已付)" : "未付"))
         })
 
-        var content = this.data.goods.goods_name + "\n" + this.data.goods.goods_content + "\n" +
-            price +
+        var content = this.data.goods.goods_name + "\n"
+        if(this.data.goods.goods_content) content += this.data.goods.goods_content + "\n"
+            content = content + price +
             '----' + this.data.seller.nickname + "\n" +
             "⏰ 截团时间:" + util.formatTime(new Date(this.data.goods.end_time * 1000)) +
             "\n" + '为节约时间，请大家继续在小程序里接龙哦:\n' +

@@ -92,7 +92,9 @@ Page({
         // darg
         size: 5,
         freight_tpl_id:0, //运费模版ID 默认0
-        freight_tpl_name:'默认方案全国包邮' //运费模版ID 默认0
+        freight_tpl_name:'默认方案全国包邮', //运费模版ID 默认0
+        editorContent: null,
+        isEmptyEditor: true
     },
     // darg start5
     // 改变监听
@@ -127,6 +129,20 @@ Page({
           urls: urls // 需要预览的图片http链接列表
         })
 
+    },
+    goEditor(){
+        let _this = this;
+        console.log(_this.data.editorContent)
+        wx.setStorage({
+          key:"editorContent",
+          data:_this.data.editorContent,
+          success(){
+            wx.navigateTo({
+                url: '../editor/editor'
+            })
+          }
+        })
+        
     },
      toPostageSetting(){
 
@@ -677,9 +693,9 @@ Page({
             goods_name: {
                 required: true
             },
-            goods_content: {
-                required: true
-            }
+            // goods_content: {
+            //     required: true
+            // }
         }
 
         // 验证字段的提示信息，若不传则调用默认的信息
@@ -687,10 +703,20 @@ Page({
             goods_name: {
                 required: '请输入标题'
             },
-            goods_content: {
+            // goods_content: {
+            //     required: '请输入描述'
+            // }
+        }
+
+        if(this.data.isEmptyEditor){
+            rules.goods_content = {
+                required: true
+            }
+            messages.goods_content = {
                 required: '请输入描述'
             }
         }
+
         this.WxValidate = new WxValidate(rules, messages)
 
 
@@ -702,6 +728,8 @@ Page({
     },
     //提交表单
     submitForm(e) {
+
+        this.initValidate()
 
         if (this.data.goods_images.length <= 0) {
             wx.showModal({ title: '请上传商品相册', showCancel: false })
@@ -767,6 +795,7 @@ Page({
 
         let data = Object.assign(
             goods_id,
+            {content: JSON.stringify(this.data.editorContent)},
             e.detail.value, //表单的数据
             { spec: this.data.spec }, //商品数组数据
             { goods_images: this.data.goods_images }, {
@@ -789,18 +818,21 @@ Page({
 
         wx.showLoading()
 
-        
-
-
-
         //提交
         //
         util.wx.post('/api/seller/goods_add_or_edit', data).then(
             res => {
                 wx.hideLoading()
-                this.data.goods_id = res.data.data.goods_id
-              
-                this.jump()
+                if(res.data.data){
+                    this.data.goods_id = res.data.data.goods_id
+                  
+                    this.jump()
+                }else{
+                    wx.showModal({
+                        title: res.data.msg,
+                        showCancel: false
+                    })
+                }
              
             },(res)=>{
                 wx.hideLoading()
@@ -929,16 +961,16 @@ Page({
 
         }
 
-
-       
-
-
-
+        let editorContent = JSON.parse(gs.content);
+        editorContent = editorContent ? editorContent : {html:'', text:''};
+        let isEmptyEditor = editorContent.text.replace(/\n/g,'').length == 0 && !/img/g.test(editorContent.html);
 
         this.setData({
             goods_images: gs.goods_images,
             goods_name: gs.goods_name,
             goods_content: gs.goods_content,
+            isEmptyEditor: isEmptyEditor,
+            editorContent: editorContent,
             sell_address: gs.self_address,
             delivery_method: gs.delivery_method,
              payment_method: gs.payment_method,
@@ -1046,9 +1078,6 @@ Page({
             this.getPublishedData(option.goods_id)
 
         }
-
-
-        this.initValidate()
 
 
     },
