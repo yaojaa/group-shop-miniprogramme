@@ -3,7 +3,7 @@
         <van-cell-group custom-class="mv-sm">
 
        <!--      <van-field name="address" value="{{address}}"  type="textarea" placeholder="粘贴收件人电话，姓名，地址" autosize /> -->
-<form bindsubmit="bindTextAreaBlur">
+<form bindsubmit="bindTextAreaBlur" wx:if="{{!isEdit}}">
         <textarea class="address_textarea" name="address_str" value="{{address_str}}" bindinput="setValue" placeholder="粘贴收件人电话 姓名 地址可自动识别 " />
 
               <view class="center" style="margin-bottom: 20px">
@@ -21,7 +21,7 @@
         </view>
         <view class="m-df mt-xl">
             <button class="btn xl primary block linenear_bg" form-type="submit">
-                确定添加
+                {{btnTxt}}
             </button>
         </view>
     </form>

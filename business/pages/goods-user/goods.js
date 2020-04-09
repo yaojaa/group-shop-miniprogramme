@@ -472,6 +472,10 @@ Page({
 
                     this.data.seller = d.goods.user
 
+                }else{
+                    wx.showToast({
+                        title:res.data.msg
+                    })
                 }
             }).catch(res=>{
                 console.log(res)

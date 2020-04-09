@@ -189,7 +189,6 @@ Page({
         // this.setData({
         //     userInfo: userInfo
         // })
-        this.userIdentity = app.globalData.userInfo.identity
 
         this.getDetail()
         //this.getNews()

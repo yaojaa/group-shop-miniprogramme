@@ -970,6 +970,20 @@
 					"pathName": "pages/withdrawal/index",
 					"query": "id=12056",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/acting-admin/index",
+					"pathName": "business/pages/acting-admin/index",
+					"query": "id=26",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/ordermanage/list",
+					"pathName": "pages/ordermanage/list",
+					"query": "id=1909&delivery_method=1&goods_name=%E9%B9%8C%E9%B9%91%E8%9B%8B",
+					"scene": null
 				}
 			]
 		}

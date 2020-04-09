@@ -75,7 +75,7 @@
 
 		
 
-		<van-cell icon="home-o" title="我的主页" is-link link-type="navigateTo" url="../userhome/index?id={{userInfo.store_id}}" />
+		<van-cell icon="home-o" title="我的主页" is-link link-type="navigateTo" url="../userhome/index?id={{userInfo.store.store_id}}" />
 		<van-cell icon="friends-o" title="我的顾客 （{{fansNum}}）" is-link link-type="navigateTo" url="../fans-mg/index" />
 
 

@@ -396,18 +396,23 @@ Page({
             goods_id: this.data.goods_id,
             from_user_id:this.data.from_id
         }, postData)).then(res => {
+
+            if(res.data.code == 200){
+
                 this.data.order_id = res.data.data.order_id;
                 this.pay(res.data.data)
 
-        }, (e) => {
-            console.log('reject1111')
-            this.setData({
+            }else{
+
+                this.setData({
                 loading: false
-            })
-            wx.showToast({
-                title: e.data.msg,
-                icon: 'none'
-            })
+               })
+                wx.showToast({
+                    title: e.data.msg,
+                    icon: 'none'
+                })
+
+            }
 
 
         }).catch(e => {

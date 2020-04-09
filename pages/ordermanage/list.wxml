@@ -101,6 +101,12 @@
                 <view>{{g.spec_name}} ×{{g.qty}}</view>
                 <view class="text-info">¥ {{g.total_price}} </view>
             </view>
+
+            <view class="type text-justify  scale-b-1px" wx:if="{{item.shipping_money!='0.00'}}">
+                <view>运费</view>
+                <view class="text-info">¥ {{item.shipping_money}} </view>
+            </view>
+
             <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}"  >
             <!--    <button bindtap="modifyAddress" 
                data-order_id = "{{item.order_id}}" 
