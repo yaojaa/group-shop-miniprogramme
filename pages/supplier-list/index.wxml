@@ -13,7 +13,7 @@
           <!-- <view class="mt-xs des text-justify"></view> -->
         </view>
         <view class="flex align-center">
-          <button size="mini" data-id="{{item.supplier_id}}" data-name="{{item.supplier_name}}" open-type="share" class="btn-reset p-n coral-text">
+          <button size="mini" data-supplier_id="{{item.supplier_id}}" data-name="{{item.supplier_name}}" open-type="share" class="btn-reset p-n coral-text">
             <van-icon name="add-o" size="30rpx" /> 邀请小伙伴
           </button>
         </view>

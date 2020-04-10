@@ -61,11 +61,41 @@ Page({
     },
 
     getinfo(){
+      wx.showLoading()
         util.wx.get('/api/seller/get_supplier_detail?supplier_id='+this.supplier_id).then(res=>{
-                this.setData({
+
+                wx.hideLoading()
+                if(res.data.code == 200){
+                   this.setData({
                     info:res.data.data
                 })
+                }
 
+                //申请通过的弹窗
+                if(res.data.data.supplier_status==2){
+
+                  wx.showModal({
+                    title:'您已经申请过了哦',
+                    content:'请直接前往查看吧',
+                    confirmText:'好的',
+                    showCancel: false,
+                    success:(res)=>{
+
+                     wx.redirectTo({
+                    url:'/pages/supplier-list/index'
+                   })
+                     
+                    }
+                  })
+
+                }
+
+
+
+
+
+
+               
         })
     },
 

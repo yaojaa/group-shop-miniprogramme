@@ -71,7 +71,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 85,
+			"current": 123,
 			"list": [
 				{
 					"id": 0,
@@ -931,6 +931,12 @@
 				},
 				{
 					"id": -1,
+<<<<<<< HEAD
+					"name": "pages/editor/editor",
+					"pathName": "pages/editor/editor",
+					"query": "",
+					"scene": null
+=======
 					"name": "pages/paySuccess/index",
 					"pathName": "pages/paySuccess/index",
 					"query": "order_id=11890&goods_id=1963&order_count=5",
@@ -970,6 +976,7 @@
 					"pathName": "pages/withdrawal/index",
 					"query": "id=12056",
 					"scene": null
+<<<<<<< HEAD
 				},
 				{
 					"id": -1,
@@ -984,6 +991,9 @@
 					"pathName": "pages/ordermanage/list",
 					"query": "id=1909&delivery_method=1&goods_name=%E9%B9%8C%E9%B9%91%E8%9B%8B",
 					"scene": null
+=======
+>>>>>>> fd4b4fae4ec8c9e18607d19f9614a64aaa585b1d
+>>>>>>> 60199128b939203a6441237fd5e6d5ef66504a08
 				}
 			]
 		}

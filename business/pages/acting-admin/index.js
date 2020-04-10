@@ -173,10 +173,19 @@ Page({
     },
 
     getPoster(msg) {
+        wx.showLoading()
         util.wx.get('/api/supplier/get_invite_qrcode').then(res => {
+            
+            if(res.data.code == 200){
             this.setData({
                 posterImg: res.data.data
             })
+        }else{
+            wx.showToast({
+                title:res.data.msg || '生成失败'
+            })
+        }
+
         })
     },
 
