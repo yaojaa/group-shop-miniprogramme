@@ -153,7 +153,7 @@
 	<view class='footer-cart'>
 
 		<view class='icon' bindtap='toHome'>
-			<i-icon type="mine" size="26" color="#333" />
+			<image src="{{goods.supplier.supplier_logo}}" class="avatar"></image>
 			<text class="label">首页</text>
 		</view>
 
