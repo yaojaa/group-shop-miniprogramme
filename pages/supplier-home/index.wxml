@@ -14,24 +14,23 @@
                         <text style="color:#19be6b">进行中</text>
                     </view>
                     <view class="mt-xs des text-justify">
-                       <view>
-                        <text class="text-muted text-sm ">采购：</text> <text class="coral-text ">¥{{item.price_min}}</text>
-                       </view>
-                       <view class="flex align-center text-gray ">
-                        <van-icon name="shopping-cart-o" size="46rpx" />
-                        <text class="text-muted ph-xs"></text>
-                        <van-icon name="share"  size="46rpx" data-id="{{item.goods_id}}" bindtap="goods_up" />
-                       </view>
-                       
-
-                       
-                      
-
+                        <view>
+                            <text class="text-muted text-sm ">采购：</text>
+                            <text class="coral-text ">¥{{item.price_min}}</text>
+                        </view>
+                        <view class="flex align-center text-gray ">
+                            <van-icon name="shopping-cart-o" size="46rpx" />
+                            <text class="text-muted ph-xs"></text>
+                            <van-icon name="share" size="46rpx" data-id="{{item.goods_id}}" bindtap="goods_up" />
+                        </view>
                     </view>
                 </view>
             </navigator>
             <view class="solid-bottom mh-df"></view>
         </view>
     </view>
-        <footerbar active="{{active}}"/>
+    <footerbar active="{{active}}" />
+    <view class="load-box" wx:if="{{loading}}">
+        <wux-spin wux-class="spin" size="large" />
+    </view>
 </view>
