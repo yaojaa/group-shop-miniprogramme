@@ -235,33 +235,39 @@ Page({
 
         }).then(res=>{
 
+           if(res.data.code ==200){ 
            wx.showToast({
             title:'修改成功'
            })
 
+            wx.redirectTo({
+                url:'../upSuccess/index?goods_id='+res.data.data.goods_id
+            })
 
-        },res=>{
+
+       }else{
+           {
 
             wx.showToast({
                 title:res.data.msg,
                 icon:'none'
             })
 
-            // if(res.data.code ==101){
-
-            //     wx.redirectTo({
-            //     url:'../upSuccess/index?goods_id='+res.data.data.goods_id
-            // })
+        }
+       }
 
 
-
-           // }
         })
 
 
     },
 
       upup(){
+
+
+        wx.showLoading()
+
+
         util.wx.post('/api/seller/putaway_supplier_goods',{
 
             goods_id:this.data.supid,
@@ -269,27 +275,32 @@ Page({
 
         }).then(res=>{
 
+        wx.hideLoading()
+
+            console.log(res.data.code == -103)
+
+
+            if(res.data.code == 200){
+
             wx.redirectTo({
                 url:'../upSuccess/index?goods_id='+res.data.data.goods_id
             })
+        }else if(res.data.code == -103){
+
+           wx.showToast({
+            title:'您已经上架过此商品了',
+            icon:'none'
+           })
 
 
-        },res=>{
-
-            wx.showToast({
+        }else{
+                  wx.showToast({
                 title:res.data.msg,
                 icon:'none'
             })
-
-            if(res.data.code ==101){
-
-                wx.redirectTo({
-                url:'../upSuccess/index?goods_id='+res.data.data.goods_id
-            })
+        }
 
 
-
-            }
         })
         // 上架供应商商品 /seller/putaway_supplier_goods
     },

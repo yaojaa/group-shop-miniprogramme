@@ -75,7 +75,11 @@
         </view>
 
 
-          <view bindtap="goAddress"   hover-class="none" class="white-bg flex align-center p-df" >
+
+
+
+
+          <view bindtap="goAddress"   hover-class="none" class=" white-bg flex align-center p-df" >
                     <van-icon name="location-o" />
                     <view class="flex-sub mh-sm">
                         <view class="flex align-center">
@@ -83,7 +87,7 @@
                             <text class="text-muted">{{address.mobile}}</text></view>
                         <view class="text-sm mt-xs"><text class="text-gray"></text>
                             <text class="">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</text>
-                            <text class="f18" wx:if="{{!address_id}}">点击选择收件人</text>
+                            <text class="f18 " wx:if="{{!address_id}}">选择已有收件人</text>
                         </view>
                     </view>
                     <van-icon name="arrow" color="#999" />

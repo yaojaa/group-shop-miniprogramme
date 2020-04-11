@@ -564,20 +564,27 @@ Page({
 
 
 
-                }else{
+                }else if(res.data.code == 0){
+
+                    wx.showModal({
+                        title:'亲，已经结束了，下次早点来哦',
+                        showCancel:false,
+                        success:()=>{
+                           this.homepage()
+                        }
+                    })
+                     
+                }
+                else{
 
                 wx.showToast({
                     title: '商品不存在啦',
                     icon: 'none'
                 })
 
-                setTimeout(() => {
+                this.homepage()
 
-                    wx.redirectTo({
-                        url: '../home/index'
-                    })
-
-                }, 3000)
+               
 
                 }
             }).catch(e => {

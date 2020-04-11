@@ -8,7 +8,9 @@ const app = getApp();
 
 
 const config = {
-    apiUrl: 'https://www.kaixinmatuan.cn'
+    // apiUrl: 'https://www.kaixinmatuan.cn'
+    apiUrl: 'http://dev.kaixinmatuan.cn'
+
 }
 
 const formatTime = date => {
@@ -448,7 +450,7 @@ const WX = {}
 const request = (url, data, method) => {
     return new Promise((resolve, reject) => {
         wx.request({
-            url: 'https://www.kaixinmatuan.cn' + url,
+            url: config.apiUrl + url,
             data: data,
             method: method,
             header: {

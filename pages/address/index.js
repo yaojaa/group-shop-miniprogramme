@@ -48,19 +48,35 @@ Page({
   remove(e) {
     const address = wx.getStorageSync('userAddress') || {}
     let { id, add } = e.currentTarget.dataset
-    util.wx.post('/api/user/address_del', { address_id: id }).then((res) => {
-      if (res.data.code == 200) {
-        Toast.success('删除成功')
-        if (add.address_id == address.address_id) {
-          wx.removeStorageSync('userAddress')
+    wx.showModal({
+      title: '删除地址',
+      content: '确定要删除该收货地址？',
+      showCancel: true, //是否显示取消按钮
+      cancelText: '取消', //默认是“取消”
+      confirmText: '确定', //默认是“确定”
+      success: (res) => {
+        if (res.cancel) {
+          //点击取消,默认隐藏弹框
+        } else {
+          //点击确定
+          util.wx
+            .post('/api/user/address_del', { address_id: id })
+            .then((res) => {
+              if (res.data.code == 200) {
+                Toast.success('删除成功')
+                if (add.address_id == address.address_id) {
+                  wx.removeStorageSync('userAddress')
+                }
+                this.getAddress()
+              } else {
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'none',
+                })
+              }
+            })
         }
-        this.getAddress()
-      } else {
-        wx.showToast({
-          title: res.data.msg,
-          icon: 'none',
-        })
-      }
+      },
     })
   },
 

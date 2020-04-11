@@ -2,7 +2,7 @@
 </i-custom-bar> -->
 <view class="container cf">
     <view class="swiper">
-            <image src="{{store_slide[0]}}" height="400" class="slide-image" />
+            <image src="{{store_slide}}?imageView2/2/w/600/h/400/format/jpg/q/75" height="400" class="slide-image" />
 
       <image src="http://img.daohangwa.com/mark.png" class="marker" />
             

@@ -24,6 +24,17 @@
     text-align: center;
 }
 
+.mini-tag{
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 20rpx;
+    height: 34rpx;
+    line-height: 34rpx;
+    padding: 0 14rpx;
+    border-radius: 20rpx;
+    color: #fff;
+    display: inline-block;
+}
+
 .set-icon {
     position: absolute;
     right: 0;

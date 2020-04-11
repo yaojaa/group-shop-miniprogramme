@@ -45,6 +45,7 @@ Page({
   onShareAppMessage: function(e) {
     const { supplier_id, name } = e.target.dataset
     const username = app.globalData.userInfo.nickname
+    console.log('business/pages/acting-apply/index' + '?supplier_id=' + supplier_id)
     return {
       title: username + '邀请您加入' + name,
       imageUrl: 'https://static.kaixinmatuan.cn/staticinvitation2.jpg',

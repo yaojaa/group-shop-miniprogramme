@@ -9,14 +9,14 @@
             </button>
         </view> -->
           <view class="flex-sub">
-            <view class="btn linenear_bg xxl primary block" bindtap="newAddress">
+            <view class="btn xl primary block linenear_bg" bindtap="newAddress">
                + 增加新地址
             </view>
         </view>
     </view>
     <view class="content-wrap" wx:if="{{address.length>0}}">
         <view class="white-bg mv-sm">
-            <van-swipe-cell right-width="{{ 60 }}" wx:for="{{address}}" wx:key="{{index}}" disabled="{{disabled}}">
+            <view right-width="{{ 60 }}" wx:for="{{address}}" wx:key="{{index}}" disabled="{{disabled}}">
                 <view class="address-item">
                     <view class="flex align-center">
                         <view class="mr-df ttm-checkbox align-self-center {{item.address_id==selected?'checked':''}}" wx:if="{{source}}" data-id="{{item.address_id}}" data-item="{{item}}" bindtap="setSelected">
@@ -33,10 +33,14 @@
                         <view class="fd solid-left" bindtap="editAddress" data-id="{{item.address_id}}">
                             <van-icon name="records" size="44rpx" />
                         </view>
+                         <view  class="fd solid-left" bindtap="remove" data-id="{{item.address_id}}" data-add="{{item}}">
+                         <van-icon name="delete" size="44rpx" />
+
+                         </view>
                     </view>
                 </view>
-                <view slot="right" class="address-del coral" bindtap="remove" data-id="{{item.address_id}}" data-add="{{item}}">删除</view>
-            </van-swipe-cell>
+               
+            </view>
         </view>
     </view>
     <view class="no-content white-bg" style="height:calc(100vh - 100rpx)" wx:if="{{ address.length ==0 && !loading }}">

@@ -22,22 +22,35 @@
 <view class="act-admin">
 <!--     <van-search  background="#ffffff" value="{{ value }}" placeholder="请输入搜索关键词" />
  -->
-    <view class="act-list" wx:for="{{list}}">
+    <view wx:for="{{list}}">
         <!--cell start -->
         <view class="act-cell flex">
             <view class="act-img shrink0">
                 <image class="act-logo" mode="aspectFill" src="{{item.headimg}}"></image>  
             </view>
-            <view class="act-main grow1">
+            <view class="grow1">
                 <view class=" flex">
-                    <view class="name grow1">{{item.nickname}}  <text class="right f12">{{item.apply_time}}</text></view>
+                    <view class="name grow1">{{item.nickname}}  <text class="right f10">{{item.apply_time}}</text></view>
                 </view>
-                <view class="act-bottom flex">
+                <view class="act-bottom">
+
+
                        
-                       <text class="12">下单量：{{item.order_count}}    粉丝：{{item.fans_count}}</text>
+            <text class="f10 left">销量:{{item.order_count}}    粉丝:{{item.fans_count}}</text>
+
+            <view class=" right" >
+                
+                    <view class="button left"  wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</view>
+
+                    <button class="button shrink0 left" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</button>
+
+                     <view class="f10 " wx:if="{{item.supplier_agent_status==2}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit"><van-icon name="delete" size="20px" color="#666" /></view>
+
+            </view>
                     
-                    <view class="button shrink0" wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</view>
-                    <view class="button shrink0" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</view>
+              
+
+
  
                 </view>
             </view>

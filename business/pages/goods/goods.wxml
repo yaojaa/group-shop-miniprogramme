@@ -79,7 +79,7 @@
             </view>
         </view>
 
-        <view  wx:if="{{goods.is_timelimit==0}}" class="time-area tit" style="line-height: 1.5;padding: 0 30px">
+        <view  wx:if="{{goods.is_timelimit==0}}" class="time-area tit" style="line-height: 3.5;padding: 0 30px">
                 进行中
         </view>
 
@@ -93,7 +93,7 @@
             </view>
         </view>
         <view class="goods-share">
-            <button bindtap='openShareFriends' class="btn-reset">
+            <button bindtap='handlePoster' class="btn-reset">
                 <i-icon type="send" size="24" color="#f90" />
                 <view class="text-muted text-xs">产品海报</view>
             </button>

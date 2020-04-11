@@ -39,6 +39,8 @@ Page({
     },
     getGoodsInfo() {
 
+        wx.showLoading()
+
         util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.goods_id
             })
@@ -47,6 +49,9 @@ Page({
                 this.setData({
                     info: res.data.data.goods
                 })
+
+            wx.hideLoading()
+
 
             })
     },

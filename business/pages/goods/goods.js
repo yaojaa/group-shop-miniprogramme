@@ -514,10 +514,9 @@ Page({
 
 
 
-                }
-            }, res => {
+                }else{
                 wx.showToast({
-                    title: '商品不存在啦',
+                    title: res.data.msg,
                     icon: 'none'
                 })
 
@@ -531,43 +530,16 @@ Page({
 
 
 
+            }
+        
             }).catch(e => {
                 return
             })
     },
     onHide: function() {
-        // 用户查看图片不触发
-        if (this.data.imgPreviewFlag) { return; }
-
-
-
-        console.log('用户离开了 onHide')
-
-        this.setStayTime()
-
-
-
-
+        // 用户查看图片不触
     },
-    setStayTime() {
-        //提交访问记录
-        if (this.access_id) {
 
-            this.leaveDate = new Date()
-
-            //用户停留时间毫秒
-            const userStayTime = this.leaveDate.getTime() - this.enterDate.getTime()
-
-
-            util.wx.get('/api/index/set_user_staytime', {
-                access_id: this.access_id,
-                user_staytime: userStayTime,
-            })
-
-
-        }
-
-    },
     onLoad: function(option) {
         console.log('用户进入了', option)
 
@@ -972,10 +944,6 @@ Page({
     },
     onUnload: function() {
 
-
-
-        console.log('用户离开了onUnload')
-        this.setStayTime()
 
 
     },

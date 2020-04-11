@@ -17,9 +17,20 @@
             <view class="gray-text text-xs" >
                 <text class="ph-xs ph-xs" >浏览({{item.pageview_count}})</text> <text  class="ph-xs ph-xs"> 收款总额(￥{{item._order_total}})</text>
 
-                <view class=" p-xs" wx:if="{{item.supplier_id >0 }}" style="color: #ff8900">
+                <view class=" p-xs" wx:if="{{item.supplier_id >0 && item.is_on_sale ==1 && item.supplier_goods_isdel == 0 }}" style="color: #ff8900">
                     [合作中] 由"{{item.supplier_name}}"负责发货
                 </view>
+
+
+ <view class=" p-xs" wx:if="{{item.supplier_goods_isdel == -1 }}" style="color: #ff8900">
+                    [已删除] {{item.supplier_name}}已删除该商品
+  </view>
+
+   <view class=" p-xs" wx:if="{{item.is_on_sale == 0 && item.supplier_goods_isdel == 1}}" style="color: #ff8900">
+                    [已下架] {{item.supplier_name}}已下架该商品
+  </view>
+
+
               <!--   <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button>
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
                 <button class="hollow" data-id="{{item.goods_id}}" bindtap="moreAction" size="mini">
