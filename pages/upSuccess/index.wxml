@@ -21,8 +21,8 @@
 		利润会自动结算到您的账户。
 	</view>
 	<view class="m-df mt-xl">
-		<button class="btn xl primary block linenear_bg" form-type="submit" open-type="share">
-			分享转发
+		<button class="btn xl primary block linenear_bg" bindtap="toDetail">
+			点击查看
 		</button>
 	</view>
 </view>

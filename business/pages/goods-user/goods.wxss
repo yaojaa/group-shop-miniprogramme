@@ -197,10 +197,14 @@ color:#666;
     z-index: 99;
     align-items: center;
 }
-
+.footer-cart .avatar {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-bottom: 2px;
+}
 .footer-cart .icon {
     flex: 1;
-    padding-top: 1px;
 }
 
 .footer-cart .label {

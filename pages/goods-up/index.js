@@ -235,27 +235,28 @@ Page({
 
         }).then(res=>{
 
+           if(res.data.code ==200){ 
            wx.showToast({
             title:'修改成功'
            })
 
+            wx.redirectTo({
+                url:'../upSuccess/index?goods_id='+res.data.data.goods_id
+            })
 
-        },res=>{
+
+       }else{
+           {
 
             wx.showToast({
                 title:res.data.msg,
                 icon:'none'
             })
 
-            // if(res.data.code ==101){
-
-            //     wx.redirectTo({
-            //     url:'../upSuccess/index?goods_id='+res.data.data.goods_id
-            // })
+        }
+       }
 
 
-
-           // }
         })
 
 

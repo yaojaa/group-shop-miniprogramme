@@ -154,9 +154,7 @@
 	<view class='footer-cart'>
 
 		<view class='icon' bindtap='toHome'>
-
 			<image src="{{goods.supplier.supplier_logo}}" class="avatar"></image>
-
 			<text class="label">首页</text>
 		</view>
 
@@ -297,8 +295,6 @@
 
 
 		<van-cell-group border="{{false}}" custom-class="mv-df">
-
-
 			<van-cell title="{{goods.supplier.supplier_name}}" value="主页" is-link icon="manager-o" title-width="400rpx" bindtap="goHomePage" />
 
 			<van-cell title="手机号：{{goods.supplier.supplier_mobile}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{goods.supplier.supplier_mobile}}" />

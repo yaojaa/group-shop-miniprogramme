@@ -567,10 +567,10 @@ Page({
                 }else if(res.data.code == 0){
 
                     wx.showModal({
-                        title:'亲，已经下架啦',
+                        title:'亲，已经结束了，下次早点来哦',
                         showCancel:false,
                         success:()=>{
-                            wx.navigateBack()
+                           this.homepage()
                         }
                     })
                      
@@ -582,13 +582,9 @@ Page({
                     icon: 'none'
                 })
 
-                setTimeout(() => {
+                this.homepage()
 
-                    wx.redirectTo({
-                        url: '../home/index'
-                    })
-
-                }, 3000)
+               
 
                 }
             }).catch(e => {
