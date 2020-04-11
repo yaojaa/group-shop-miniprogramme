@@ -162,7 +162,6 @@ Page({
         if (data.code == 200) {
           this.setData({
             address: this.data.address.concat(data.data.address_list),
-
             loading: false,
           })
         }
@@ -202,15 +201,13 @@ Page({
     console.log('bottom')
     if (this.data.cpage && !this.data.loading) {
       this.setData({
-        cpage: ++this.data.cpage, //每次触发上拉事件，把requestPageNum+1
+        cpage: ++this.data.cpage,
       })
       if (this.data.cpage > this.data.totalpage) {
         return
       }
       this.getConcatData().then(() => {
-        // 隐藏导航栏加载框
         wx.hideNavigationBarLoading()
-        // 停止下拉动作
         wx.stopPullDownRefresh()
       })
     }
