@@ -1748,3 +1748,4 @@ fieldset[disabled] .btn-link {
     vertical-align: middle;
 }
 
+.editorCONTENTimg{ margin-top: 5px; }

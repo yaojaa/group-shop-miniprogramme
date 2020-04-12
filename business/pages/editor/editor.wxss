@@ -1,4 +1,4 @@
-@import "../../utils/editor/iconfont.wxss"
+@import "../../../utils/editor/iconfont.wxss"
 
 .container {
   position: absolute; 

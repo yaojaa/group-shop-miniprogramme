@@ -74,6 +74,7 @@
             "pages/setting-list/index",
             "pages/base-info/index",
             "pages/order-manage/index",
+            "pages/editor/editor",
             "pages/paySuccess/index"
 
 

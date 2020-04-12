@@ -533,7 +533,7 @@ Page({
                     editorContent = editorContent ? editorContent : {html:'', text:''};
                     let isEmptyEditor = editorContent.text.replace(/\n/g,'').length == 0 && !/img/g.test(editorContent.html);
 
-                    editorContent.html = editorContent.html.replace(/<img\s/g,'<img class="editor-img" ')
+                    // editorContent.html = editorContent.html.replace(/<img\s/g,'<img class="editor-img" ')
 
                     this.setData({
                         isEmptyEditor: isEmptyEditor,
