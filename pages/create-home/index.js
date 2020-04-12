@@ -125,7 +125,7 @@ Page({
   },
   goPublish(){
     wx.redirectTo({
-      url:'../userhome/index?id=6931'
+      url:'../userhome/index?id=7312'
     })
   },
 

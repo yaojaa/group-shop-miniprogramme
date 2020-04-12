@@ -79,13 +79,16 @@ Page({
 
         wx.showLoading()
 
+        
+
+
 
         util.wx.get('/api/'+this.apiPrix+'/get_express_by_order_sn',{
             order_sn:opt.sn
         })
         .then(res=>{
 
-            console.log(res)
+            console.log('121222',res)
 
         wx.hideLoading()
 
@@ -94,6 +97,29 @@ Page({
             this.setData({
                 express:res.data.data
             })
+        }else{
+
+
+        //读取剪切板快递单号
+        //
+        // wx.getClipboardData({
+        //       success :(res)=>{
+        //        var patt = /^[A-Za-z0-9-]{4,35}$/
+
+        //           if(patt.test(res.data)){
+
+        //             const key = 'express['+(this.data.express.length-1)+'].express_code'
+        //             console.log(key)
+
+        //             this.setData({
+        //                 [key]:res.data
+        //             })
+
+        //           }
+                
+        //       }
+        //     })
+
         }
 
 

@@ -11,14 +11,5 @@
 	font-size: 40rpx;
 }
 .address-item .fd{
-	padding: 20rpx 20rpx 20rpx 40rpx;
-}
-.address-del{
-	color:#fff;
-	height: 100%;
-	width: 60px;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	padding-left:25rpx
 }

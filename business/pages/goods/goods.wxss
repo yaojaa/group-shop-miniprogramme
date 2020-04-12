@@ -1024,7 +1024,6 @@ display: inline-block;
     min-width: 32rpx;
     background: #fff;
     border-radius: 4rpx;
-    margin: 0 4rpx;
     display: inline-block;
     font-size: 20rpx;
     color: #fff;

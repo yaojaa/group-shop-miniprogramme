@@ -66,6 +66,9 @@
     color: #fff;
     background: #ffaa4f;
     font-size: 24rpx;
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
 }
 .act-more-list{
     font-size: 32rpx;
@@ -85,7 +88,8 @@
      box-shadow: 0 -2px 5px #eee;
      padding: 10px 0;
      justify-content:space-between;
-     background: #fff
+     background: #fff;
+     z-index: 3
    
 }
 
@@ -97,7 +101,8 @@
     border-radius: 40rpx;
     margin: 0 auto;
     padding: 0 30px;
-    margin-right: 20px
+    margin-right: 20px;
+    display: inline-block;
 }
 
 .total{

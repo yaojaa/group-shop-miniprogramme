@@ -167,7 +167,7 @@ Page({
             selector: '#contact'
         }).then(() => {
 
-          this.goHomePage()
+          this.toHome()
 
         }).catch(() => {
           // on cancel
@@ -471,6 +471,22 @@ Page({
 
 
                     this.data.seller = d.goods.user
+
+                }else{
+
+                     wx.showModal({
+      title: "2222步",
+      content: currentCache ? "确定为自己城市添加步数吗" : "确定取消为自己城市添加步数吗？",
+      showCancel: false,
+      // cancelText: "取消111",
+      // cancelColor: "#000",
+      confirmText: "确定",
+      confirmColor: "#0f0"
+  })
+                    wx.showToast({
+                        title:res.data.msg
+                    })
+
 
                 }
             }).catch(res=>{

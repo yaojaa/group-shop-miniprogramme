@@ -143,7 +143,10 @@ Page({
     //获取提醒记录
     finance_withdrawal_list() {
 
-      util.wx.get('/api/seller/withdraw_list')
+      util.wx.get('/api/seller/withdraw_list',{
+        pagesize:10,
+        cpage:1
+      })
       .then(res=>{
 
         if (res.data.code == 200) {

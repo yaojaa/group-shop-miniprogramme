@@ -931,13 +931,14 @@ Page({
         
 
         var freight_tpl_name=''
-
+        if(this.freight_tpl_list.length){
         this.freight_tpl_list.forEach(item=>{
             if(item.freight_tpl_id ==gs.freight_tpl_id  ){
 
                 freight_tpl_name = item.freight_tpl_name
             }
         })
+       }
 
         this.setData({
             goods_images: gs.goods_images,

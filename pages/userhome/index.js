@@ -490,7 +490,7 @@ const default_end_time = util.formatTime(date)
 
 
                 this.setData({
-                    store_slide: res.data.data.store_slide,
+                    store_slide: res.data.data.store_slide[0],
                     info: res.data.data,
                     showSetting: app.globalData.userInfo && app.globalData.userInfo.store.store_id == this.store_id ? true : false
                 })

@@ -67,3 +67,24 @@ page{
 	text-align: right;
 	flex: none !important;
 }
+
+.notice {
+    animation-name: flash;
+    animation-duration: 0.8s;
+    animation-fill-mode: both
+}
+
+
+@keyframes flash {
+
+    from,
+    50%,
+    to {
+        box-shadow: 0 0 8px #f00;
+    }
+
+    25%,
+    75% {
+        box-shadow: 0 0 1px #f00;
+    }
+}

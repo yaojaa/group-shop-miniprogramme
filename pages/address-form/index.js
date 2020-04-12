@@ -20,7 +20,9 @@ Page({
         district: '',
         address: '',
         is_address_default: true,
-        address_str:''
+        address_str:'',
+        btnTxt:'立即添加',
+        isEdit:false
     },
     addressDefault(event) {
         this.setData({
@@ -89,19 +91,33 @@ Page({
 
         if (options.id) {
             this.getDetail()
+            this.setData({
+                 btnTxt:'立即保存' ,
+                isEdit:true
+            })
             wx.setNavigationBarTitle({
                 title: '编辑地址'
             })
-        }
+        }else{
 
-         wx.getClipboardData({
+                     wx.getClipboardData({
           success:(res)=>{
             //检测粘贴板是否含有省市区 含有则自动识别
             
             var reg = /.+?(省|市|自治区|自治州|县|区)/g
 
             if(res.data.match(reg)){
-                this.setData({
+
+
+              wx.showModal({
+         title: '检测到粘贴板地址信息',
+         content: res.data,
+         showCancel: true,//是否显示取消按钮
+         cancelText:"取消",//默认是“取消”
+         confirmText:"粘贴",//默认是“确定”
+         success:  (r) =>{
+            if (r.confirm) {
+                 this.setData({
                     address_str:res.data
                 })
 
@@ -109,20 +125,22 @@ Page({
                 title:'检测到粘贴板地址信息'
              })
 
-
-
-     
              this.bindTextAreaBlur()
-
+            }
+        }
+         })
 
                 }
-
-
-
-        
-
           }
         })
+
+
+
+
+
+        }
+
+
 
     },
 
@@ -141,11 +159,12 @@ Page({
 
     },
 
-    bindTextAreaBlur(e){
+    bindTextAreaBlur(){
 
-        　　var text=  this.data.address_str || e.detail.value.address_str
+        　　var text =  this.data.address_str 
 
-              text = text.split('\n').join(' ');
+        console.log(text)
+               text = text.split('\n').join(' ')
 
         if(text==''){
             return  wx.showToast({

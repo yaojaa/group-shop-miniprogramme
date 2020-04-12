@@ -359,10 +359,7 @@ Page({
             'consignee': this.data.consignee,
             'mobile': this.data.mobile
         }
-        this.setData({
-            loading: true
-        })
-
+    
         const specs = this.data.cart.map(item => {
             return {
                 id: item.goods_spec_id,
@@ -381,13 +378,27 @@ Page({
 
             }
         } else {
+
+             if(!this.data.address_id){
+
+                wx.showToast({
+                    title:'请选择收货地址',
+                    icon:'none'
+                })
+                return
+
+            }
             postData = {
                 address_id: this.data.address_id
             }
 
+           
+
         }
 
-        console.log(postData)
+       this.setData({
+            loading: true
+        })
 
 
         util.wx.post('/api/seller/create_valet_order', Object.assign({
@@ -396,23 +407,29 @@ Page({
             goods_id: this.data.goods_id,
             from_user_id:this.data.from_id
         }, postData)).then(res => {
+
+            if(res.data.code == 200){
+
                 this.data.order_id = res.data.data.order_id;
                 this.pay(res.data.data)
 
-        }, (e) => {
-            console.log('reject1111')
-            this.setData({
+            }else{
+
+                this.setData({
                 loading: false
-            })
-            wx.showToast({
-                title: e.data.msg,
-                icon: 'none'
-            })
+               })
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
+                })
+
+            }
 
 
         }).catch(e => {
+            console.log(e)
             wx.showToast({
-                title: '服务器出小差儿了' + e,
+                title: e.data.msg,
                 icon: 'none'
             })
 
@@ -518,9 +535,18 @@ Page({
                   this.jumpToSuccess();
                 },
                 fail: (res) => {
-                    wx.redirectTo({
-                        url: '../order-list/index'
-                    })
+
+                      this.setData({
+                            loading: false
+                        })
+
+                      wx.showToast({
+                        title:'支付失败',
+                        icon:'none'
+                      })
+                    // wx.redirectTo({
+                    //     url: '../order-list/index'
+                    // })
                 }
             })
 
