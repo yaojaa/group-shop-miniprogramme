@@ -94,7 +94,9 @@ Page({
         is_on_sale:1, //上下架状态(1:上架,2:下架) 默认1
         is_on_sale_status:false,
         freight_tpl_id:0, //运费模版ID 默认0
-        freight_tpl_name:'默认方案全国包邮' //运费模版ID 默认0
+        freight_tpl_name:'默认方案全国包邮', //运费模版ID 默认0
+        editorContent: null,
+        isEmptyEditor: true
 
     },
 
@@ -679,9 +681,9 @@ Page({
             goods_name: {
                 required: true
             },
-            goods_content: {
-                required: true
-            }
+            // goods_content: {
+            //     required: true
+            // }
         }
 
         // 验证字段的提示信息，若不传则调用默认的信息
@@ -689,10 +691,20 @@ Page({
             goods_name: {
                 required: '请输入标题'
             },
-            goods_content: {
+            // goods_content: {
+            //     required: '请输入描述'
+            // }
+        }
+
+        if(this.data.isEmptyEditor){
+            rules.goods_content = {
+                required: true
+            }
+            messages.goods_content = {
                 required: '请输入描述'
             }
         }
+
         this.WxValidate = new WxValidate(rules, messages)
 
 
@@ -704,6 +716,7 @@ Page({
     },
     //提交表单
     submitForm(e) {
+        this.initValidate()
 
         if (this.data.goods_images.length <= 0) {
             wx.showModal({ title: '请上传商品相册', showCancel: false })
@@ -769,6 +782,7 @@ Page({
 
         let data = Object.assign(
             goods_id,
+            {content: JSON.stringify(this.data.editorContent)},
             e.detail.value, //表单的数据
             { spec: this.data.spec }, //商品数组数据
             { goods_images: this.data.goods_images }, 
@@ -897,6 +911,20 @@ Page({
             })
         }
     },
+    goEditor(){
+        let _this = this;
+        console.log(_this.data.editorContent)
+        wx.setStorage({
+          key:"editorContent",
+          data:_this.data.editorContent,
+          success(){
+            wx.navigateTo({
+                url: '../editor/editor'
+            })
+          }
+        })
+        
+    },
     /**回显数据**/
     getPublishedData(goods_id, isCopy, temp) {
        
@@ -931,7 +959,7 @@ Page({
         
 
         var freight_tpl_name=''
-        if(this.freight_tpl_list.length){
+        if(this.freight_tpl_list && this.freight_tpl_list.length){
         this.freight_tpl_list.forEach(item=>{
             if(item.freight_tpl_id ==gs.freight_tpl_id  ){
 
@@ -940,10 +968,16 @@ Page({
         })
        }
 
+        let editorContent = JSON.parse(gs.content);
+        editorContent = editorContent ? editorContent : {html:'', text:''};
+        let isEmptyEditor = editorContent.text.replace(/\n/g,'').length == 0 && !/img/g.test(editorContent.html);
+
         this.setData({
             goods_images: gs.goods_images,
             goods_name: gs.goods_name,
             goods_content: gs.goods_content,
+            isEmptyEditor: isEmptyEditor,
+            editorContent: editorContent,
             sell_address: gs.self_address,
             delivery_method: gs.delivery_method,
             freight_tpl_id: gs.freight_tpl_id || 0,
@@ -1051,7 +1085,6 @@ Page({
         }
 
 
-        this.initValidate()
 
 
 
