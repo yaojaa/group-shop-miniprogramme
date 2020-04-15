@@ -1,2 +1,5 @@
-<!--pages/spec-detail/index.wxml-->
-<text>pages/spec-detail/index.wxml</text>
+<view class="container">
+    <wux-upload listType="picture-card" fileList="{{ fileList }}" max="3" controlled url="{{url}}/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
+        <text>上传图片</text>
+    </wux-upload>
+</view>
