@@ -381,20 +381,21 @@ Page({
     /****/
 
     exportExcel() {
-        wx.showToast({ title: '开始为你生成...', icon: 'none' })
+        // wx.showToast({ title: '开始为你生成...', icon: 'none' })
+        wx.showLoading({title: '加载中...'})
 
         util.wx.get('/api/seller/order_export_by_goods_id', {
             goods_id: this.data.goods_id
         }).then(res => {
 
             if (res.data.code == 200) {
-
-                wx.setClipboardData({
-                    data: res.data.data.filepath,
-                    success: function(res) {
-                        wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
-                    }
-                })
+                this.downloadfile(res.data.data.filepath);
+                // wx.setClipboardData({
+                //     data: res.data.data.filepath,
+                //     success: function(res) {
+                //         wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
+                //     }
+                // })
             }
 
 
@@ -402,7 +403,42 @@ Page({
 
     },
 
-
+    // 预览文件
+    downloadfile(url){
+        //下载文件，生成临时地址
+        wx.downloadFile({
+          url: url, 
+          success(res) {
+            //保存到本地
+            wx.openDocument({
+                  filePath: res.tempFilePath,
+                  showMenu: true,
+                  success: function (res) {
+                    wx.hideLoading()
+                    console.log('打开文档成功')
+                  },
+                });
+            // wx.saveFile({
+            //   tempFilePath: res.tempFilePath,
+            //   success: function (res) {
+            //     const savedFilePath = res.savedFilePath;
+            //     // 打开文件
+            //     wx.openDocument({
+            //       filePath: savedFilePath,
+            //       showMenu: true,
+            //       success: function (res) {
+            //         wx.hideLoading()
+            //         console.log('打开文档成功')
+            //       },
+            //     });
+            //   },
+            //   fail: function (err) {
+            //     console.log('保存失败：', err)
+            //   }
+            // });
+          }
+        })
+    },
 
     resetPageNumber(e) {
         this.setData({
