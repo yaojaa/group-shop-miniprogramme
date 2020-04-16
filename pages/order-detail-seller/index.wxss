@@ -1,0 +1,17 @@
+@import "../../css/common.wxss";
+
+.goods-panel-bd .cover {
+width:140rpx;
+height:140rpx
+}
+.footer-btn{
+	text-align: right;
+	padding:20rpx 25rpx
+}
+
+.btn-toset_del{
+    background: #f00
+}
+.btn-toset_confirm{
+    background: #ff9000
+}

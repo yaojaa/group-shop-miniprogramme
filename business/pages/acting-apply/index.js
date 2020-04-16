@@ -69,6 +69,28 @@ Page({
                    this.setData({
                     info:res.data.data
                 })
+                }else if(res.data.code == -2000){
+
+
+                   wx.showModal({
+                    title:'您还没有创建主页',
+                    content:'请先创建主页',
+                    confirmText:'立即去创建',
+                    showCancel: false,
+                    success:(res)=>{
+
+                     wx.redirectTo({
+                      url:'/pages/create-home/index'
+                     })
+                     
+                    }
+                  })
+
+
+
+
+
+
                 }
 
                 //申请通过的弹窗

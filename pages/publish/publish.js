@@ -94,6 +94,7 @@ Page({
     editorContent: null,
     isEmptyEditor: true,
     specItem: '',
+    show_buyerlist:0
   },
   // darg start5
   // 改变监听
@@ -725,6 +726,7 @@ Page({
         goods_video: this.data.goods_video,
         goods_video_cover: this.data.goods_video_cover,
         freight_tpl_id: this.data.freight_tpl_id,
+        show_buyerlist:this.data.show_buyerlist,
         cat_id: 8,
       }
     )
@@ -882,6 +884,7 @@ Page({
       goods_images: gs.goods_images,
       goods_name: gs.goods_name,
       goods_content: gs.goods_content,
+      show_buyerlist: gs.show_buyerlist,
       isEmptyEditor: isEmptyEditor,
       editorContent: editorContent,
       sell_address: gs.self_address,
@@ -940,13 +943,15 @@ Page({
       this.freight_tpl_list = lists
     })
   },
+  toMore(){
+    wx.navigateTo({
+      url:'../publish-setting/index?show_buyerlist='+this.data.show_buyerlist
+    })
+  },
 
   onLoad: function (option) {
-    console.log(app.globalData.userInfo, app.globalData.userInfo.store.store_id)
 
-    //未登录 弹出授权弹窗
-    //
-    console.log(app.globalData.userInfo.store.store_id == '')
+   
 
     if (app.globalData.userInfo.store.store_id === '') {
       console.log('跳转呀...')

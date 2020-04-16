@@ -79,7 +79,7 @@ Page({
            } 
 
 
-      if(d.store && d.store.store_id){
+      if(d.store || d.store.store_id){
 
              return wx.redirectTo({
                 url:'../home/index'

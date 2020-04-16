@@ -165,7 +165,7 @@
                         <view class="weui-cell__bd">
                             <input class="miniInput" value="{{item.mspr_start}}" type="digit" bindinput="inputDuplex" 
                             data-key="spec[{{index}}].mspr_start" maxlength="50" placeholder="最低价" /> -
-                             <input class="miniInput" value="{{item.mspr_end}}" type="digit" bindinput="inputDuplex" data-key="spec[{{index}}].mspr_end" maxlength="50" placeholder="最高价" /> 
+                             <input class="miniInput" value="{{item.mspr_end}}" type="digit" bindinput="inputDuplex" data-key="spec[{{index}}].mspr_end" maxlength="50" placeholder="最高价(留空为不限制)" /> 
                         </view>
                     </view>
 

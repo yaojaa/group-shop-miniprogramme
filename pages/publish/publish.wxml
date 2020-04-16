@@ -30,18 +30,14 @@
                             <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" class="weui-textarea" placeholder="简介描述" rows="6"></textarea>
                         </view>
                     </view>
-                    <view class="editor-btn" bindtap='goEditor'>使用图文模式 ></view>
+                    <view class="editor-btn primary-text" bindtap='goEditor'>使用图文编辑模式 ></view>
                 </view>
                 <view class="add_btn_pic ph-sm pb-sm pt-xs" data-type="photo" bindtap="add">
-                    <i-badge dot="{{content_imgs.length}}">
                         <view class="demo-badge flex align-center">
-                            <text class="primary-text mr-xs text-lg" style="vertical-align: middle;">
-                                +
-                            </text>
-                            <text class="text-df">介绍图片（选填)</text>
+                        
+                            <text class=" mr-xs text-lg f12">+ 上传介绍图片（选填)</text>
                             <image wx:key="item" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
                         </view>
-                    </i-badge>
                 </view>
             </block>
             <view wx:else class="weui-cell editor-box" bindtap='goEditor'>
@@ -175,16 +171,22 @@
                         <view class="weui-cell__bd"></view>
                     </view>
                     <view wx:if="{{spec.length >1 }}" class="goods-cell-set">
-                        <button bindtap="upGoods" data-index="{{index}}" disabled="{{index == 0}}" size="mini">
+                        <button bindtap="upGoods" data-index="{{index}}" disabled="{{index == 0}}" class="mini">
                             上移
                         </button>
-                        <button bindtap="downGoods" data-index="{{index}}" disabled="{{index == spec.length-1}}" size="mini">
+                        <button bindtap="downGoods" data-index="{{index}}" disabled="{{index == spec.length-1}}" class="mini">
                             下移
                         </button>
-                        <button bindtap="topGoods" data-index="{{index}}" disabled="{{index == 0}}" size="mini">
+                        <button bindtap="topGoods" data-index="{{index}}" disabled="{{index == 0}}" class="mini">
                             置顶
                         </button>
-                        <icon bindtap="removeGoods" data-index="{{index}}" color="#ccc" class="close" type="clear" size="26" />
+
+                          <button bindtap="removeGoods" data-index="{{index}}" disabled="{{index == 0}}" class="mini">
+                            删除
+                        </button>
+
+<!-- 
+                        <icon bindtap="removeGoods" data-index="{{index}}" color="#ccc" class="close" type="clear" size="26" /> -->
                     </view>
                 </view>
                 <view class="new_add_btn" bindtap="addGoods">
@@ -260,6 +262,13 @@
                 </view>
             </view>
         </i-panel>
+
+
+        <view class="orther" bindtap="toMore">
+            其它设置
+        </view>
+
+
         <button style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">
             确定发布
         </button>

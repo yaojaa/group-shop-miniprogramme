@@ -68,35 +68,37 @@ Page({
     },
     onLoad: function(opt) {
 
-
-
-        this.apiPrix = app.globalData.express=='supplier'?'supplier':'seller'
-
-        console.log('this.apiPrix',this.apiPrix)
+        this.apiPrix = app.globalData.apiPrix
 
 
         this.data.order_sn = opt.sn
 
         wx.showLoading()
 
-        
+    
 
-
-
-        util.wx.get('/api/'+this.apiPrix+'/get_express_by_order_sn',{
+        util.wx.get('/api/user/get_express_byordersn',{
             order_sn:opt.sn
         })
         .then(res=>{
-
-            console.log('121222',res)
 
         wx.hideLoading()
 
         if(res.data.code == 200){
 
+
+            const d = res.data.data
+
             this.setData({
-                express:res.data.data
+                express:d.express,
+                user:d.orderinfo.consignee,
+                goods:d.detail[0].goods_name
             })
+
+            wx.setNavigationBarTitle({
+              title: this.data.user+'的快递单号' +this.data.goods
+            })
+
         }else{
 
 
@@ -146,7 +148,6 @@ Page({
             }
         }
 
-      console.log('app.globalData.last_express', app.globalData.last_express)
 
         if(this.data.express.length == 0){
             this.data.express.push({
@@ -162,12 +163,6 @@ Page({
 
         this.data.pindex = opt.pi
         this.data.cindex = opt.ci
-        this.data.user = decodeURIComponent(opt.user)
-        this.data.goods = decodeURIComponent(opt.goods)
-
-    wx.setNavigationBarTitle({
-      title: this.data.user+'的快递单号' 
-    })
 
         this.getData()
     },
@@ -269,9 +264,16 @@ Page({
                             title: '添加成功'
                         })
 
-                        util.setParentData({
+
+                         if(this.data.pindex){
+                             util.setParentData({
                              [keyExpress]: ['ok']
-                        })
+                             })
+                         }
+
+                       
+
+
 
                     }else{
 

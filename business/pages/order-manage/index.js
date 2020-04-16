@@ -148,11 +148,10 @@ Page({
     onLoad: function(optiton) {
 
 
-        if (!app.globalData.token) {
-            app.globalData.token = wx.getStorageSync('token')
+        if (!app.globalData.userInfo) {
+            app.globalData.token = wx.getStorageSync('userInfo').token
         }
 
-       app.globalData.express = 'supplier'
 
 
       

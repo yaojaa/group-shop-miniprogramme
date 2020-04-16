@@ -25,7 +25,7 @@ Page({
   feeChange(event){
 
     this.setData({
-      refund_fee: event.detail
+      real_refund_fee: event.detail
     });
   },
 
@@ -57,9 +57,11 @@ Page({
         util.wx.get('/api/seller/get_order_detail?order_id='+this.order_id)
         .then(res=>{
             this.setData({
-                order_detail:res.data.data[0],
-                refund_fee:res.data.data[0].order_detail[0].total_price
+                order_detail:res.data.data,
+                refund_fee:res.data.data.order_detail[0].pay_price
             })
+
+            console.log(this.data.order_detail.supplier_id)
         })
     },
 
@@ -82,19 +84,31 @@ Page({
                   refund_desc:this.data.refund_desc,// 审核原因
                  real_refund_fee:this.data.real_refund_fee //真是退款金额
         }).then(res=>{
-            wx.showToast({
+
+            if(res.data.code == 200){
+
+                  wx.showToast({
                 title:'操作成功',
                 icon:'none'
             })
+
             this.getDetail()
-        },res=>{
+
+
+            }else{
+
             wx.showToast({
                 title:res.data.msg,
                 icon:'none'
 
             })
+    
+            }
+          
         })
     },
+
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成

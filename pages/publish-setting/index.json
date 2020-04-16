@@ -1,0 +1,9 @@
+{
+
+  "navigationBarTitleText": "其它设置",
+  "usingComponents": {
+      "van-cell": "../../vant/cell/index",
+     "van-cell-group": "../../vant/cell-group/index",
+      "van-switch": "../../vant/switch/index"
+  }
+}

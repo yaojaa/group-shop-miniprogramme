@@ -199,10 +199,18 @@
         </view>
         <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
         <view class="note-box">
+                <text class="right" data-order_id="{{item.order_id}}" bindtap="toOrderDetail">订单详情</text>   
+
             <i-icon type="brush" size="14" color="#999" class="note-icon" />
             <view class="note-input">
                 <input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder="备注，退款、改产品、改地址等等都备注下来吧" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
+
+
+
+
+
             </view>
+
             <!-- <view class="note-submit">
                     <input type="hidden" hidden="true" name="order_id" value="{{item.order_id}}" />
                     <button shape="circle" size="mini" formType="submit" data-id="{{item.order_id}}">保存</button>

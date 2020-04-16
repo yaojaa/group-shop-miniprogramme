@@ -18,7 +18,8 @@
                             <text>x </text> <text>{{order_detail.order_detail[0].qty}}</text>
                         </view>
                         <view class="text-justify bt-bar">
-                            <view class="price secondary-text bold">￥{{order_detail.order_detail[0].total_price}}</view>
+                            <view class="price secondary-text bold">￥{{order_detail.order_detail[0].total_price}} </view> 
+                            <text  class="text-muted" wx:if="{{order_detail.shipping_money!='' && order_detail.shipping_money!='0.00'}}">+ {{order_detail.shipping_money}} 运费</text>
                             </view>
                         </view>
                 </navigator>
@@ -50,7 +51,7 @@
         <!-- end -->
         <van-cell-group>
             <van-field value="{{problemTitle}}" required label="退款原因" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleProblemModal" required />
-            <van-field value="{{refund_fee}}"  readonly="{{true}}" bind:change="setRefund_fee"  label="退款金额" input-align="right"  required />
+            <van-field value="{{refund_fee}}"  bind:change="setRefund_fee"  label="退款金额" input-align="right"  required />
             <van-field value="{{explain}}" label="退款说明" type="textarea" placeholder="请填写其它说明" bind:change="setExplain"    autosize  />
         </van-cell-group>
      <!--    <view class="m-df">

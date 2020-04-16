@@ -63,6 +63,50 @@ Page({
 
     },
 
+     reGetUserInfo(){
+
+        util.wx.get('/api/user/get_user_info').then(res=>{
+            if(res.data.code == 200){
+                const d = res.data.data
+
+
+                        var userInfo = d.user
+                            
+                            if(d.hasOwnProperty('store')){
+                                userInfo.store =  d.store
+                            }
+
+                             if(d.hasOwnProperty('supplier')){
+                                userInfo.supplier =  d.supplier
+                            }
+                            
+                        app.globalData.token = userInfo.token 
+                        app.globalData.userInfo = userInfo
+
+                        wx.setStorage({ //存储到本地
+                            key: "userInfo",
+                            data: userInfo
+                        })
+
+                         if(d.store){
+
+                             wx.redirectTo({
+                                            url:'../home/index'
+                                        })
+                           }
+
+
+
+
+
+
+                
+
+            }
+        })
+
+      },
+
 
     /**
      * 生命周期函数--监听页面加载
@@ -82,9 +126,8 @@ Page({
            
         }
 
+        this.reGetUserInfo()
 
-        this.data.cpage = 1
-        this.data.goodslist = []
         this.getProList()
     },
     getOrderCount() {
@@ -97,89 +140,5 @@ Page({
                 })
             }
         })
-    },
-   
-   
-
-   
-    addListen:util.sellerListner,
-
-    
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-        this.data.cpage = 1
-        this.data.goodslist = []
-     
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-        ++this.data.cpage
-
-        if (this.data.cpage <= this.totalpage) {
-           // this.getGoodsList(); //重新调用请求获取下一页数据 
-        } else {
-            this.data.cpage = this.totalpage
-        }
-
-    },
-    formSubmit: function(e) {
-        util.formSubmitCollectFormId.call(this, e)
-    },
-    onShareAppMessage: function(e) {
-        console.log(e)
-        if (app.globalData.userInfo) {
-            var _uid = app.globalData.userInfo.user_id
-        }
-
-        if(e.target.dataset.type =='goods'){
-
-            const {cover,goods_name,goods_id} = e.target.dataset
-
-
-        return {
-            title:goods_name,
-            imageUrl: cover+'?imageView2/2/w/600/h/400/format/jpg/q/85',
-            path: 'pages/goods/goods?goods_id=' + goods_id
-        }
-
-
-        }
-
-
-
-        return {
-            title: app.globalData.userInfo.nickname + '推荐您一个好助手',
-            imageUrl: this.shareImg,
-            path: 'pages/login/login' + '?from_id=' + _uid
-        }
-    },
-
+    }
 })

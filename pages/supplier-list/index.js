@@ -27,10 +27,19 @@ Page({
   getMySupp() {
     wx.showLoading()
     util.wx.get('/api/seller/my_supplier_list').then(res => {
+        wx.hideLoading()
+
+      if(res.data.code == 200){
       this.setData({
         suppList: res.data.data.list
       })
-      wx.hideLoading()
+    }else{
+
+    }
+    }).catch(e=>{
+      wx.showToast({
+        title:'服务器休息一下 请稍后'
+      })
     })
   },
   rejectAuth() {

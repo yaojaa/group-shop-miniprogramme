@@ -53,7 +53,8 @@
     "pages/my/index",
     "pages/editor/editor",
     "pages/apply_shop/index",
-    "pages/spec-detail/index"
+    "pages/spec-detail/index",
+    "pages/publish-setting/index"
   ],
   "subpackages": [
     {

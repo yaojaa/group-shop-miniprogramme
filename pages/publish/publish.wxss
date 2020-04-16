@@ -259,11 +259,11 @@ video{
   margin-right: 20rpx;
 }
 .editor-btn{
-  color: #69b90b;
-  font-size: 12px;
+  font-size: 13px;
   position: absolute;
   right: 15px;
-  bottom: -10px;
+  bottom: 10px;
+  z-index: 10
 }
 .editorContentCss{
   white-space: pre-wrap;
@@ -291,4 +291,11 @@ video{
   justify-content: center;
   align-items: center;
   color: #333;
+}
+
+.orther{
+  text-align: center;
+  line-height: 2;
+  font-size: 28rpx;
+  margin-bottom: 10px
 }

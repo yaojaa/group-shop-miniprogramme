@@ -10,8 +10,8 @@ Page({
     data: {
         fileList: [],
         problemModal: false,
-        problemValue: '',
-        problemTitle:'',
+        problemValue: 2,
+        problemTitle:'计划有变，不想要了',
         goodsNumber:'2',
         tkType:'1',
         order_detail:{},
@@ -31,7 +31,7 @@ Page({
         .then(res=>{
             this.setData({
                 order_detail:res.data.data,
-                refund_fee:res.data.data.order_detail[0].total_price
+                refund_fee:res.data.data.pay_price
             })
         })
     },
@@ -44,19 +44,22 @@ Page({
               reason :    this.data.problemTitle,
               explain:this.data.explain
         }).then(res=>{
+
+        if(res.data.code ==200){
         wx.hideLoading()
 
         wx.redirectTo({
             url:'../refundment-detail/index?id='+res.data.data+'&order_id='+this.order_id
-        })
+        })}
+        else{
 
-        },res=>{
-        wx.hideLoading()
-
+            wx.hideLoading()
             wx.showToast({
                 title:res.data.msg,
                 icon:'none'
             })
+        }
+
         })
     },
 

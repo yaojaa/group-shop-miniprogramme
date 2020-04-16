@@ -46,7 +46,7 @@
             <view class="newlist">
 
                 <scroll-view style="height: 100px" scroll-y>
-                    <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_detail[0].goods_id}}" data-delivery_method="{{item.delivery_method}}" data-name="{{item.order_detail[0].goods_name}}" bindtap="managePage">
+                    <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}"  bindtap="todetail">
                         <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
                         参与了你的
                         <text class="bold">{{item.order_detail[0].goods_name}}</text>

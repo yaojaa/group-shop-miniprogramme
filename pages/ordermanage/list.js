@@ -157,20 +157,11 @@ Page({
     onLoad: function(optiton) {
 
 
-
-
-
         if (!app.globalData.token) {
-            app.globalData.token = wx.getStorageSync('token')
+            app.globalData.token = wx.getStorageSync('userInfo').token
         }
 
-
-       app.globalData.express = 'seller'
-
-       
-
-   
-
+        app.globalData.apiPrix = 'seller'
 
         this.setData({
             goods_id: optiton.id,
@@ -776,7 +767,7 @@ Page({
 
         var order_string =''
               order_detail.forEach(item=>{
-                order_string+= item.spec_name + ' +'+item.qty+'件\n'
+                order_string+= item.spec_name + ' 数量：'+item.qty+'\n'
               })
 
         const txt = consignee+'\n'+mobile+'\n'+province+city+district+address +'\n'+order_string
@@ -792,6 +783,16 @@ Page({
                 });
             }
         });
+    },
+
+    toOrderDetail(e){
+
+        const order_id = e.currentTarget.dataset.order_id
+
+        wx.navigateTo({
+            url:'../order-detail-seller/index?id='+order_id
+        })
+
     },
 
     // 下拉刷新

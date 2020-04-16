@@ -943,6 +943,27 @@
 					"pathName": "business/pages/editor/editor",
 					"query": "goods_id=350",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publish/publish",
+					"pathName": "pages/publish/publish",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/setting-list/index",
+					"pathName": "business/pages/setting-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 127,
+					"name": "pages/publish-setting/index",
+					"pathName": "pages/publish-setting/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

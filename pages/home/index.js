@@ -85,53 +85,12 @@ Page({
 
                  if(d.store == null && d.supplier == null){
 
-                                var userInfo = d.user
-                                    userInfo.supplier = null
-                                    userInfo.store = null
-
-                    console.log('wx.setStorage',userInfo)
-
-
-                    app.globalData.userInfo = userInfo
-                    
-
-                     wx.setStorageSync('userInfo', userInfo)
-
-
                      wx.redirectTo({
                                     url:'../user-home/index'
                                 })
-
-                   
-
                    }
 
-
-
-                 //        var userInfo = d.user
-                            
-                           
-
-                 //             if(d.hasOwnProperty('supplier')){
-                 //                userInfo.supplier =  d.supplier
-                 //            }
-                            
-                 //        this.globalData.token = d.token 
-                 //        this.globalData.userInfo = userInfo
-
-                 //        wx.setStorage({ //存储到本地
-                 //            key: "userInfo",
-                 //            data: this.globalData.userInfo
-                 //        })
-
             }
-
-
-          console.log(res)
-
-
-
-
         })
 
       },
@@ -191,7 +150,7 @@ Page({
         wx.hideHomeButton()
         this.getOrderCount()
 
-        this.reGetUserInfo()
+       this.reGetUserInfo()
     },
     /**
      * 生命周期函数--监听页面加载
@@ -314,13 +273,12 @@ Page({
             }).catch(e=>{})
     },
 
-    managePage(e) {
+    todetail(e) {
         let id = e.currentTarget.dataset.id
-        let delivery_method = e.currentTarget.dataset.delivery_method
-        let goods_name = e.currentTarget.dataset.name.slice(0, 10)
+
 
         wx.navigateTo({
-            url: '../ordermanage/list?id=' + id + '&delivery_method=' + delivery_method + '&goods_name=' + goods_name
+            url: '../order-detail-seller/index?id=' + id 
         })
 
     },

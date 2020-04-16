@@ -1,7 +1,7 @@
 <view class="container cf">
     <view class="primary ph-df pv-sm text-white">
         <view class="text-xl">
-        <text wx:if="{{detail.status ==1}}">退款申请中
+        <text wx:if="{{detail.status ==1}}">退款申请中（请等待处理）
 </text>
         <text wx:if="{{detail.status ==2}}">退款已撤销</text>
 
@@ -34,6 +34,7 @@
                         </view>
                         <view class="text-justify bt-bar">
                             <view class="price secondary-text bold">￥{{order_detail.order_detail[0].total_price}}</view>
+                               <text  class="text-muted" wx:if="{{order_detail.shipping_money!='' && order_detail.shipping_money!='0.00'}}">+ {{order_detail.shipping_money}} 运费</text>
                             </view>
                         </view>
                 </navigator>
