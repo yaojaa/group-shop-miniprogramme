@@ -139,7 +139,7 @@
                             <input value="{{item.spec_name}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_name" maxlength="50" placeholder="如：白色、大号、10斤" />
                         </view>
                         <!-- 添加规格图片 -->
-                        <view class="weui-cell__bd" data-index="{{index}}" bindtap="addSpecPic">
+                        <view class="weui-cell__bd" data-index="{{index}}" bindtap="fromSpec">
                             <view wx:if="{{item.spec_pic.length}}">
                                 <image class="spec_pic_small" src="{{item.spec_pic[0]}}-small" />
                             </view>
