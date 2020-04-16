@@ -32,7 +32,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.9.5",
 	"appid": "wx6ac9955f87c289f0",
-	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
+	"projectname": "group",
 	"cloudfunctionTemplateRoot": "",
 	"watchOptions": {
 		"ignore": []
@@ -71,7 +71,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 123,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -98,7 +98,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "id= 1925",
+					"query": "goods_id=350",
 					"scene": 1008
 				},
 				{
@@ -608,10 +608,10 @@
 					"scene": null
 				},
 				{
-					"id": 77,
+					"id": -1,
 					"name": "pages/userhome/index",
 					"pathName": "pages/userhome/index",
-					"query": "store_id= 7068",
+					"query": "store_id=1",
 					"scene": null
 				},
 				{
@@ -814,7 +814,7 @@
 					"id": 106,
 					"name": "团长查看分销页面",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "id=26",
+					"query": "id=29",
 					"scene": null
 				},
 				{
@@ -923,77 +923,46 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/order-list/index",
-					"pathName": "pages/order-list/index",
-					"query": "code0=SF1020260420266&com0=%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E5%BF%AB%E9%80%92%E5%85%AC%E5%8F%B8&index=0&order_id=11570&user=%E5%A7%9A%E5%A7%9A&order_sn=202004011713102430764943&goods=%E6%B5%B7%E5%8D%97%E4%B8%89%E4%BA%9A%E7%A9%BA%E8%BF%90%E6%A0%91%E7%86%9F%E9%87%91%E8%83%96%E5%AD%90%E7%B2%BE%E5%93%81%E8%B6%85%E5%A4%A7%E7%81%AB%E9%BE%99%E6%9E%9C%20%E4%B8%8D%E5%AF%A1%E6%B7%A1%C2%A0%20%E7%86%9F%E5%BA%A6%E9%AB%98%C2%A0%20%E8%B5%B0%E5%BF%83%E7%94%9C",
+					"id": 122,
+					"name": "pages/spec-detail/index",
+					"pathName": "pages/spec-detail/index",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-<<<<<<< HEAD
 					"name": "pages/editor/editor",
 					"pathName": "pages/editor/editor",
 					"query": "",
 					"scene": null
-=======
-					"name": "pages/paySuccess/index",
-					"pathName": "pages/paySuccess/index",
-					"query": "order_id=11890&goods_id=1963&order_count=5",
-					"scene": null
 				},
 				{
-					"id": 124,
-					"name": "pages/userhome/index",
-					"pathName": "pages/userhome/index",
-					"query": "id=1",
+					"id": -1,
+					"name": "business/pages/editor/editor",
+					"pathName": "business/pages/editor/editor",
+					"query": "goods_id=350",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/home/index",
-					"pathName": "pages/home/index",
+					"name": "pages/publish/publish",
+					"pathName": "pages/publish/publish",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/order-list/index",
-					"pathName": "pages/order-list/index",
+					"name": "business/pages/setting-list/index",
+					"pathName": "business/pages/setting-list/index",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/order-detail/index",
-					"pathName": "pages/order-detail/index",
-					"query": "id=12056",
+					"id": 127,
+					"name": "pages/publish-setting/index",
+					"pathName": "pages/publish-setting/index",
+					"query": "",
 					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/withdrawal/index",
-					"pathName": "pages/withdrawal/index",
-					"query": "id=12056",
-					"scene": null
-<<<<<<< HEAD
-				},
-				{
-					"id": -1,
-					"name": "business/pages/acting-admin/index",
-					"pathName": "business/pages/acting-admin/index",
-					"query": "id=26",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/ordermanage/list",
-					"pathName": "pages/ordermanage/list",
-					"query": "id=1909&delivery_method=1&goods_name=%E9%B9%8C%E9%B9%91%E8%9B%8B",
-					"scene": null
-=======
->>>>>>> fd4b4fae4ec8c9e18607d19f9614a64aaa585b1d
->>>>>>> 60199128b939203a6441237fd5e6d5ef66504a08
 				}
 			]
 		}

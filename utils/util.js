@@ -558,7 +558,7 @@ function drawShareFriends(_this, res, buyuser, from) {
 
     console.log(res, buyuser)
 
-    let goods_content = goods.goods_content.split(/[\r\n↵]/g);
+    let goods_content = goods.goods_content ? goods.goods_content.split(/[\r\n↵]/g) : [];
     config.content.des = [];
     //分段
     [goods.goods_name].concat(goods_content).forEach((e, i) => {

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "wux-upload": "../../wux/upload/index",
+    "drag": "../../components/drag/index"
+  }
+}

@@ -113,6 +113,8 @@ Page({
             phone: '',
             weChat: ''
         },
+        isEmptyEditor: true,
+        editorContent: null
     },
     openUrl() {
         // let that = this
@@ -487,7 +489,13 @@ Page({
                         }
                     })
 
+                    let editorContent = JSON.parse(d.goods.content);
+                    editorContent = editorContent ? editorContent : {html:'', text:''};
+                    let isEmptyEditor = editorContent.text.replace(/\n/g,'').length == 0 && !/img/g.test(editorContent.html);
+
                     this.setData({
+                        isEmptyEditor: isEmptyEditor,
+                        editorContent: editorContent,
                         goods: d.goods,
                         'imgs.src': d.goods.goods_images,
                         goods_spec: d.goods.goods_spec.length == 0 ? d.goods.goods_images : d.goods.goods_spec,
@@ -1051,9 +1059,10 @@ Page({
             userList.unshift(item.create_number + '.' + item.nickname + " \b " + spec + (item.pay_status == 1 ? "(已付)" : "未付"))
         })
 
-        var content = this.data.goods.goods_name + "\n" + this.data.goods.goods_content + "\n" +
-            price +
-            '----' + this.data.seller.nickname + "\n"
+        var content = this.data.goods.goods_name + "\n" 
+        + (this.data.goods.goods_content ? (this.data.goods_content + "\n") : '') 
+        + price 
+        + '----' + this.data.seller.nickname + "\n"
 
         wx.setClipboardData({
             data: content,

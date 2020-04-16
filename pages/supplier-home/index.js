@@ -1,6 +1,4 @@
 const util = require('../../utils/util.js')
-import data from '../../utils/city_data'
-import { $wuxToptips } from '../../wux/index'
 
 Page({
   /**
@@ -31,25 +29,19 @@ Page({
     this.setData({
       loading: true,
     })
-    return new Promise((resolve, reject) => {
-      util.wx
-        .get('/api/seller/get_supplier_goods', {
-          supplier_id: this.id,
-          cpage: this.data.cpage,
-          pagesize: 10,
+    return util.wx
+      .get('/api/seller/get_supplier_goods', {
+        supplier_id: this.id,
+        cpage: this.data.cpage,
+        pagesize: 10,
+      })
+      .then((res) => {
+        this.setData({
+          loading: false,
+          totalpage: res.data.data.page.totalpage,
+          goodsList: this.data.goodsList.concat(res.data.data.list),
         })
-        .then((res) => {
-          this.setData({
-            loading: false,
-            totalpage: res.data.data.page.totalpage,
-            goodsList: [...res.data.data.list],
-          })
-          resolve()
-        }),
-        (err) => {
-          reject(err)
-        }
-    })
+      })
   },
 
   goods_up(e) {
@@ -99,15 +91,13 @@ Page({
   onReachBottom: function () {
     if (this.data.cpage && !this.data.loading) {
       this.setData({
-        cpage: this.data.cpage + 1, //每次触发上拉事件，把requestPageNum+1
+        cpage: ++this.data.cpage,
       })
       if (this.data.cpage > this.data.totalpage) {
         return
       }
       this.getgoodsInfo().then(() => {
-        // 隐藏导航栏加载框
         wx.hideNavigationBarLoading()
-        // 停止下拉动作
         wx.stopPullDownRefresh()
       })
     }
