@@ -135,7 +135,7 @@
                             <input value="{{item.spec_name}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_name" maxlength="50" placeholder="如：白色、大号、10斤" />
                         </view>
                         <!-- 添加规格图片 -->
-                        <view class="weui-cell__bd" data-index="{{index}}" bindtap="addSpecPic">
+                        <view class="weui-cell__bd" data-index="{{index}}" bindtap="fromSpec">
                             <view wx:if="{{item.spec_pic.length}}">
                                 <image class="spec_pic_small" src="{{item.spec_pic[0]}}-small" />
                             </view>
@@ -171,16 +171,22 @@
                         <view class="weui-cell__bd"></view>
                     </view>
                     <view wx:if="{{spec.length >1 }}" class="goods-cell-set">
-                        <button bindtap="upGoods" data-index="{{index}}" disabled="{{index == 0}}" size="mini">
+                        <button bindtap="upGoods" data-index="{{index}}" disabled="{{index == 0}}" class="mini">
                             上移
                         </button>
-                        <button bindtap="downGoods" data-index="{{index}}" disabled="{{index == spec.length-1}}" size="mini">
+                        <button bindtap="downGoods" data-index="{{index}}" disabled="{{index == spec.length-1}}" class="mini">
                             下移
                         </button>
-                        <button bindtap="topGoods" data-index="{{index}}" disabled="{{index == 0}}" size="mini">
+                        <button bindtap="topGoods" data-index="{{index}}" disabled="{{index == 0}}" class="mini">
                             置顶
                         </button>
-                        <icon bindtap="removeGoods" data-index="{{index}}" color="#ccc" class="close" type="clear" size="26" />
+
+                          <button bindtap="removeGoods" data-index="{{index}}" disabled="{{index == 0}}" class="mini">
+                            删除
+                        </button>
+
+<!-- 
+                        <icon bindtap="removeGoods" data-index="{{index}}" color="#ccc" class="close" type="clear" size="26" /> -->
                     </view>
                 </view>
                 <view class="new_add_btn" bindtap="addGoods">
@@ -258,7 +264,7 @@
         </i-panel>
 
 
-        <view class="orther">
+        <view class="orther" bindtap="toMore">
             其它设置
         </view>
 

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents":
+    {
+        "wux-textarea": "../../wux/textarea/index"
+    }
+}

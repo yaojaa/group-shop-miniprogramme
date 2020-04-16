@@ -83,6 +83,13 @@ button.linenear_bg_light {
     color: #69b90b
 }
 
+
+button.mini{
+    display: inline-block;
+    line-height: 2.3;
+    font-size: 12px;
+}
+
 /*button.linenear_bg_light:active {
     color: green
 }
@@ -1643,6 +1650,8 @@ fieldset[disabled] .btn-link {
     width: 100%;
     background: #fff;
 }
+
+
 
 
 

@@ -302,6 +302,9 @@ App({
         })
         //检测胶囊高度
            var menu = wx.getMenuButtonBoundingClientRect()
+    console.log('菜单按键宽度：',menu.width)
+    console.log('菜单按键高度：',menu.height)
+    
 
 
         const userInfo = wx.getStorageSync('userInfo')

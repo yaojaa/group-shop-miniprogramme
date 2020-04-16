@@ -70,8 +70,10 @@
                 <text class="price">{{goods.price_min}}</text>
                 <text class="text-sm n-bold"> /起</text>
             </view>
-            <view class="text-sm text-muted">访问人数 {{goods.pageview_count+1
-                }} 已售 {{goods.total_qty}} <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
+            <view class="text-sm text-muted" >访问人数 {{goods.pageview_count+1
+                }} 
+
+                <text wx:if="{{goods.show_buyerlist!==1}}">已售 {{goods.total_qty}}</text> <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text></view>
           
         </view>
         <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
@@ -165,9 +167,9 @@
          
         </view>
 
-
-        <view class='sub-title scale-b-1px contentBox' wx:if="{{showPanel}}"  bindtap="goOrders">
-            <text class="f12 blue-text" style="float: right;margin-top: 15rpx">查看所有订单 〉</text> 最近参与  
+ <block  wx:if="{{goods.show_buyerlist!==1}}">
+        <view class='sub-title scale-b-1px contentBox'>
+            <text class="f12 blue-text"  wx:if="{{showPanel}}"  bindtap="goOrders" style="float: right;margin-top: 15rpx">查看所有订单 〉</text> 最近参与  
         </view>
         <view class="white-bg p-df cf">
             <view class="mt-sm" wx:if="{{orderUsers.length ==0}}">
@@ -175,6 +177,7 @@
                     暂时还没有人参与哦 点击这里分享转发
                 </button>
             </view>
+
 
        <!--      <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll"> -->
 
@@ -201,6 +204,10 @@
                 </view>
             </scroll-view> -->
         </view>
+
+    </block>
+
+
         <view>
             <view class='sub-title scale-b-1px'>
                 图文介绍
@@ -221,7 +228,7 @@
                     <view class="flex-sub"><button class="btn green_bg" bindtap='copyGoods'>
 <i-icon type="editor" color="#49b34d" />   复制发布                   </button></view>
                     <div class="solid-right"></div>
-                    <view class="flex-sub"><button class="btn green_bg" bindtap='copyDetail'>
+                    <view class="flex-sub" wx:if="{{goods.show_buyerlist!==1}}"><button class="btn green_bg" bindtap='copyDetail'>
                     <i-icon type="barrage" color="#49b34d" /> 
                     文字接龙</button></view>
                     <!--   <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
@@ -231,7 +238,7 @@
 
 
         <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
-        <view class="weui-footer__links" bindtap="toPublish">
+        <view class="weui-footer__links" bindtap="toPublish" wx:if="{{!showPanel}}">
             <button size="mini" type="primary" class="btn_no_style linenear_bg" > + 我也要使用开心麻团 </button>
         </view>
     </view>

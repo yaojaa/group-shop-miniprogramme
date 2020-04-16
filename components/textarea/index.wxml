@@ -1,0 +1,7 @@
+<view class="textarea-box" style="overflow:hidden;height: {{row*14*1.47058824}}px">
+    <view class="textarea-view" style="height: {{row*14*1.47058824}}px" wx:if="{{toggle}}" bindtap="handleTextarea">
+        <text wx:if="{{textarea}}">{{textarea}}</text>
+        <text class="textarea-placeholder" wx:else>{{tips}}</text>
+    </view>
+    <wux-textarea rows="{{row}}" cursorSpacing="80" placeholder="{{tips}}" value="{{textarea}}" wx:else bind:blur="handleTextarea" focus="{{!toggle}}" bind:change="handleInput" controlled placeholder-class="textarea-placeholder" name="textarea" />
+</view>

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "wux-upload": "../../wux/upload/index",
-    "drag": "../../components/drag/index"
+    "van-dialog": "../../vant/dialog/index",
+    "v-textarea": "../../components/textarea/index"
   }
 }
