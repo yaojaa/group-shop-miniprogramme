@@ -1,7 +1,7 @@
 <view class="container">
     <view class="spce-main">
         <view class="pb-sm solid-bottom" style="overflow:hidden">
-            <input type="text" value="{{info.spec_name}}" bindblur="setName"></input>
+            <input type="text" value="{{info.spec_name}}" bindblur="setName" placeholder="请输入名称"></input>
         </view>
         <view class="textarea-box mt-sm">
             <v-textarea row="10" tips="{{'请输入商品详情'}}" textarea="{{info.spec_content}}" bind:sendData="getValue"></v-textarea>
