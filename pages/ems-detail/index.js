@@ -96,16 +96,12 @@ Page({
         //     express_code:options.code || '',
         //     order_id:options.id || ''
         // })
-       this.apiPrix = app.globalData.express=='supplier'?'supplier':'seller'
-
-        console.log('this.apiPrix',this.apiPrix)
-
         this.data.user = decodeURIComponent(options.user)
         this.data.goods = decodeURIComponent(options.goods)
 
 
         // 
-        util.wx.get('/api/'+this.apiPrix+'/get_express_by_order_sn',{
+        util.wx.get('/api/user/get_express_byordersn',{
             order_sn:options.order_sn
         })
         .then(res=>{
@@ -113,16 +109,23 @@ Page({
 
             if(res.data.code == 200){
 
+               const d =res.data.data
 
-            this.setData({
-                express:res.data.data
-            })
+                this.setData({
+                    express:d.express,
+                     user:d.orderinfo.consignee,
+                    goods:d.detail[0].goods_name
+                })
 
              this.checkExpress({
                 express_code: this.data.express[0].express_code,
                 express_company:this.data.express[0].express_company,
                 index: 0
             })
+
+                   wx.setNavigationBarTitle({
+                  title: this.data.user+'的物流信息' 
+                })
 
 
             }
@@ -132,9 +135,7 @@ Page({
 
      
 
-      wx.setNavigationBarTitle({
-      title: this.data.user+'的物流信息' 
-    })
+
     },
     toCheckExpress(e) {
 

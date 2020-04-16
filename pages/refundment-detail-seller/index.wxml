@@ -26,6 +26,7 @@
                         </view>
                         <view class="text-justify bt-bar">
                             <view class="price secondary-text bold">￥{{order_detail.order_detail[0].total_price}}</view>
+                               <text class="text-muted" wx:if="{{order_detail.shipping_money!=='' && order_detail.shipping_money!=='0.00'}}">+ {{order_detail.shipping_money}} 运费</text>
                             </view>
                         </view>
                 </navigator>
@@ -74,7 +75,7 @@
     </view>
 
 
-<block wx:if="{{status ==1}}">
+<block wx:if="{{status ==1 && order_detail.supplier_id == 0}}">
 
     <view class="item-list p-df mb-df">
 
@@ -89,7 +90,9 @@
                 
             </view>
         </view>
-   <view class="item" wx:if="{{radio_status==4}}">
+
+
+<view class="item" wx:if="{{radio_status==4}}">
    <van-field
     value="{{ detail.refund_fee }}"
     required
@@ -112,13 +115,20 @@
 
 </view>
 
+</block>
+
+
      <view class="fixed-btn center">
-    <button class="btn xxl primary block" bindtap="submit">
-        确定
+
+
+    <button class="btn xxl primary block" bindtap="submit" wx:if="{{order_detail.supplier_id == 0}}">
+        确定 {{order_detail.supplier_id}}
     </button>
+    <text wx:else class="f12 text-warning center">
+         此商品由“{{order_detail.supplier.supplier_name}}”供货和售后
+    </text>
     </view>
 
-</block>
 
 
 </view>

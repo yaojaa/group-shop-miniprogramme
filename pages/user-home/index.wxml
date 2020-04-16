@@ -109,27 +109,6 @@
 		</block>
 	</i-panel>
 
-	<!--    <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
-    <i-panel hide-border title="最新订单" extra="更多新订单" link="../new-order-list/index">
-        <view class="control">
-
-            <view class="newlist">
-
-                <scroll-view style="height: 100px" scroll-y>
-                    <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_detail[0].goods_id}}" data-delivery_method="{{item.delivery_method}}" data-name="{{item.order_detail[0].goods_name}}" bindtap="managePage">
-                        <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
-                        参与了你的
-                        <text class="bold">{{item.order_detail[0].goods_name}}</text>
-                    </view>
-                </scroll-view>
-                <button class='pubbtn' bindtap="new_btn">
-                    <i-icon type="add" size="20" />新发布
-                </button>
-   
-            </view>
-        </view>
-    </i-panel>
-    </view> -->
 	<view class="text-center">
 		<wux-spin wx:if="{{is_loading}}"></wux-spin>
 	</view>

@@ -24,6 +24,7 @@
         "pages/order-list/index",
         "pages/new-order-list/index",
         "pages/order-detail/index",
+        "pages/order-detail-seller/index",
         "pages/ems-detail/index",
         "pages/evaluate/index",
         "pages/wxgroup_add/index",

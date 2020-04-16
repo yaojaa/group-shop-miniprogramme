@@ -244,12 +244,18 @@ padding: 15rpx 30rpx
 .note-input{
     font-size: 12px;
     line-height: 1.2;
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
     margin-bottom: -1px;
     overflow: hidden;
     padding-left: 10px
 
+}
+
+.right{
+    float: right;
+    font-size: 12px;
+    margin-top: 10rpx;
 }
 
 .modifybtn{

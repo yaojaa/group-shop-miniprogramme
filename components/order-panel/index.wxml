@@ -49,7 +49,7 @@
         </navigator>
 
          <navigator wx:if="{{!user}}" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="goods" 
-         url="../ordermanage/list?id={{item.order_detail[0].goods_id}}&goods_name={{item.order_detail[0].goods_name}}&delivery_method={{item.delivery_method}}" 
+         url="../order-detail-seller/index?id={{item.order_id}}" 
          hover-class="none" class="flex mt-df goods-panel-item">
             <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/159/h/150/format/jpg/q/75" class="cover mr-sm"></image>
             <view class="flex-sub por">

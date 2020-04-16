@@ -795,18 +795,25 @@ Page({
         //
         util.wx.post('/api/supplier/goods_add_or_edit', data).then(
             res => {
-                wx.hideLoading()
-                this.data.goods_id = res.data.data.goods_id
-              
-                this.jump()
-             
-            },(res)=>{
+
+
                 wx.hideLoading()
 
+                if(res.data.code == 200){
+
+                       this.data.goods_id = res.data.data.goods_id
+                       this.jump()
+
+                }
+
+             else{
+                wx.hideLoading()
                 wx.showModal({
                         title: res.data.msg,
                         showCancel: false
                 })
+                }
+             
             })
 
 
@@ -931,7 +938,7 @@ Page({
         
 
         var freight_tpl_name=''
-        if(this.freight_tpl_list.length){
+        if(this.freight_tpl_list){
         this.freight_tpl_list.forEach(item=>{
             if(item.freight_tpl_id ==gs.freight_tpl_id  ){
 

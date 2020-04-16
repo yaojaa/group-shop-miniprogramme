@@ -255,7 +255,7 @@ video{
 
 .miniInput{
   display: inline-block;
-  width: 120rpx;
+  width: 180rpx;
   background: #fff;
   margin-top: 10rpx;
   padding: 3px;
