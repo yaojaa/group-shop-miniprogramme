@@ -396,19 +396,20 @@ Page({
 
     // 预览文件
     downloadfile(url){
+        url = url.replace(/http:/,'https:')
         //下载文件，生成临时地址
         wx.downloadFile({
-          url: url, 
+          url: url,
           success(res) {
-            //保存到本地
+            // 打开文档
             wx.openDocument({
-                  filePath: res.tempFilePath,
-                  showMenu: true,
-                  success: function (res) {
-                    wx.hideLoading()
-                    console.log('打开文档成功')
-                  },
-                });
+              filePath: res.tempFilePath,
+              showMenu: true,
+              success: function (res) {
+                wx.hideLoading()
+              }
+            });
+            //保存到本地
             // wx.saveFile({
             //   tempFilePath: res.tempFilePath,
             //   success: function (res) {
@@ -422,9 +423,6 @@ Page({
             //         console.log('打开文档成功')
             //       },
             //     });
-            //   },
-            //   fail: function (err) {
-            //     console.log('保存失败：', err)
             //   }
             // });
           }
