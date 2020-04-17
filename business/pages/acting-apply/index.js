@@ -62,22 +62,28 @@ Page({
 
     getinfo(){
       wx.showLoading()
-        util.wx.get('/api/seller/get_supplier_detail?supplier_id='+this.supplier_id).then(res=>{
+        util.wx.get('/api/index/get_supplier_detail?supplier_id='+this.supplier_id).then(res=>{
 
                 wx.hideLoading()
+
                 if(res.data.code == 200){
                    this.setData({
                     info:res.data.data
                 })
+
+
                 }else if(res.data.code == -2000){
 
 
-                   wx.showModal({
+                    wx.showModal({
                     title:'您还没有创建主页',
                     content:'请先创建主页',
-                    confirmText:'立即去创建',
+                    confirmText:'好的马上',
                     showCancel: false,
                     success:(res)=>{
+
+                    //申请通过后再跳转回来
+                    app.globalData.backUrl = '/business/pages/acting-apply/index?supplier_id'+this.supplier_id
 
                      wx.redirectTo({
                       url:'/pages/create-home/index'
@@ -86,36 +92,26 @@ Page({
                     }
                   })
 
-
-
-
-
-
                 }
 
                 //申请通过的弹窗
-                if(res.data.data.supplier_status==2){
+                // if(res.data.data.supplier_status==2){
 
-                  wx.showModal({
-                    title:'您已经申请过了哦',
-                    content:'请直接前往查看吧',
-                    confirmText:'好的',
-                    showCancel: false,
-                    success:(res)=>{
+                //   wx.showModal({
+                //     title:'您已经申请过了哦',
+                //     content:'请直接前往查看吧',
+                //     confirmText:'好的',
+                //     showCancel: false,
+                //     success:(res)=>{
 
-                     wx.redirectTo({
-                    url:'/pages/supplier-list/index'
-                   })
+                //      wx.redirectTo({
+                //     url:'/pages/supplier-list/index'
+                //    })
                      
-                    }
-                  })
+                //     }
+                //   })
 
-                }
-
-
-
-
-
+                // }
 
                
         })
@@ -212,6 +208,9 @@ Page({
 
           app.login_third(e.detail).then((res)=>{ 
           console.group('登陆成功:',res)
+          this.setData({
+            showLoginbtn:false
+          })
           wx.hideLoading()
 
 

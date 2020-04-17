@@ -4,7 +4,7 @@ Page({
   data: {
     formats: {},
     editorContent: null,
-    placeholder: '请输入文字编辑',
+    placeholder: '请输入文字或插入图片开始编辑吧，注意：使用了图文编辑器，普通的文字介绍+详情图片将不会被展示',
     editorHeight: '100%',
     keyboardHeight: 0,
     isIOS: false,
