@@ -1081,7 +1081,16 @@
   padding: 0;
   vertical-align: top;
 }
-
+.spec-main {
+  position: relative;
+}
+.spec-main .close {
+  position: absolute;
+  top: 14rpx;
+  right: 10px;
+  color: #999;
+  z-index: 9;
+}
 .spec-main .body {
   padding: 30rpx;
   background: #fff;
@@ -1090,4 +1099,7 @@
 }
 .spec-main .content {
   background: #f8f8f8;
+}
+.spec-main .price-group {
+  font-size: 32rpx;
 }

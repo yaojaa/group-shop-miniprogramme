@@ -118,6 +118,9 @@
                         <view wx:if="{{item.spec_desc}}" class="f12 text-warning" style="margin-top: 10rpx;">
                             {{item.spec_desc}}
                         </view>
+                        <view wx:if="{{item.spec_content && !item.spec_desc}}" class="f12 text-warning text-hide two-line" style="margin-top: 10rpx;">
+                            {{item.spec_content}}
+                        </view>
                         <view class="f12 gray-text" wx:if="{{item.spec_stock}}">
                             剩余:{{item.spec_stock}}
                         </view>
@@ -364,13 +367,14 @@
     </van-dialog>
     <van-popup show="{{ specPopup }}" custom-style="background:none;" position="bottom" bind:close="handleSpecPopup">
         <scroll-view scroll-y style="max-height: 850rpx" class="spec-main">
+            <van-icon name="close" class="close" size="48rpx" color="#999" bind:click="handleSpecPopup" />
             <view class="body">
                 <view class="panel-box">
                     <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
                     <view class="panel-bd ml-sm">
-                        <view class="bolds">{{specItem.spec_name}}</view>
+                        <view class="bolds mr-xl">{{specItem.spec_name}}</view>
                         <view class="text-sm text-gray mt-xs">{{specItem.spec_desc}}</view>
-                        <view class="price-group text-xxl mt-xs">
+                        <view class="price-group text-lg mt-xs">
                             <text class="symbol">￥</text>
                             <text class="number">{{specItem.spec_price}}</text>
                         </view>
