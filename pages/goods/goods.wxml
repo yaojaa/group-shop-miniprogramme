@@ -111,20 +111,18 @@
                         </view>
                     </view>
                     <view class="info">
-                        <view class="f14 text-default">
-                            {{item.spec_name}}
-                            <text class="price f12px">¥{{item.spec_price}}</text>
-                        </view>
+                        <view class="f14 text-default">{{item.spec_name}}</view>
                         <view wx:if="{{item.spec_desc}}" class="f12 text-warning" style="margin-top: 10rpx;">
                             {{item.spec_desc}}
                         </view>
                         <view wx:if="{{item.spec_content && !item.spec_desc}}" class="f12 text-warning text-hide two-line" style="margin-top: 10rpx;">
                             {{item.spec_content}}
                         </view>
-                        <view class="f12 gray-text" wx:if="{{item.spec_stock}}">
-                            剩余:{{item.spec_stock}}
+                        <view class="f12 gray-text">
+                            <text class="price f12px">¥{{item.spec_price}}</text>
+                            <text wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</text>
+                            <text wx:if="{{tem.spec_stock==0}}">已售磬</text>
                         </view>
-                        <view class="f12 gray-text" wx:if="{{item.spec_stock==0}}">(已售磬)</view>
                     </view>
                     <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 
                         剩余({{item.spec_stock}})
@@ -152,7 +150,7 @@
         </view>
         <block wx:if="{{goods.show_buyerlist!==1}}">
             <view class='sub-title scale-b-1px contentBox'>
-                <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top: 15rpx">
+                <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
                     查看所有订单 〉
                 </text>
                 最近参与

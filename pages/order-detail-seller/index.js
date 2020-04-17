@@ -44,9 +44,8 @@ Page({
     onLoad: function(options) {
 
         app.globalData.apiPrix ='seller'
-        this.setData({
-            id: options.id || '' })
-        
+        this.data.id = options.id 
+
     },
     onShow:function(){
         this.getInfo()
@@ -59,7 +58,6 @@ Page({
 
     },
     getInfo() {
-        console.log(this.data.type)
         wx.showLoading()
         util.wx.get('/api/seller/get_order_detail', {
                 order_id: this.data.id
@@ -153,9 +151,6 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
-
-    },
 
     /**
      * 生命周期函数--监听页面隐藏
