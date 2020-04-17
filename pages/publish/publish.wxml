@@ -181,7 +181,7 @@
                             置顶
                         </button>
 
-                          <button bindtap="removeGoods" data-index="{{index}}" disabled="{{index == 0}}" class="mini">
+                          <button bindtap="removeGoods" data-index="{{index}}" class="mini">
                             删除
                         </button>
 

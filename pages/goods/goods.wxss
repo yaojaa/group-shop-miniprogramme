@@ -131,7 +131,6 @@
   font-size: 28rpx !important;
   font-weight: bold;
   color: #ff9000;
-  float: right;
 }
 
 .goods-addres {

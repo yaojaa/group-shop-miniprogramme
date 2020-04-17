@@ -113,15 +113,15 @@
                     <view class="info">
                         <view class="f14 text-default">
                             {{item.spec_name}}
-                            <text class="price f12px">¥{{item.spec_price}}</text>
                         </view>
                         <view wx:if="{{item.spec_desc}}" class="f12 text-warning" style="margin-top: 10rpx;">
                             {{item.spec_desc}}
                         </view>
-                        <view class="f12 gray-text" wx:if="{{item.spec_stock}}">
-                            剩余:{{item.spec_stock}}
+                        <view class="f12 gray-text" >
+                            <text class="price f12px">¥{{item.spec_price}}</text> 
+                            <text wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</text>
+                            <text wx:if="{{tem.spec_stock==0}}">已售磬</text>
                         </view>
-                        <view class="f12 gray-text" wx:if="{{item.spec_stock==0}}">(已售磬)</view>
                     </view>
                     <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 
                         剩余({{item.spec_stock}})
