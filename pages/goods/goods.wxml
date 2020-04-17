@@ -149,7 +149,7 @@
         </view>
         <block wx:if="{{goods.show_buyerlist!==1}}">
             <view class='sub-title scale-b-1px contentBox'>
-                <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top: 15rpx">
+                <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
                     查看所有订单 〉
                 </text>
                 最近参与
