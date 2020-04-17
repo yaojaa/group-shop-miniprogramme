@@ -101,12 +101,34 @@ Page({
                 key: "userInfo",
                 data: userInfo,
                 success:function(){
-                  wx.redirectTo({
+
+                  if(app.globalData.backUrl){
+
+                     wx.redirectTo({
+                       url:app.globalData.backUrl
+                     })
+
+                  }else{
+
+                     wx.redirectTo({
                     url:'/pages/home/index'
                   })
+
+                  }
+
+
+                 
                 }
             })
-          }else{
+          }else if(res.data.code == 2){
+
+                wx.redirectTo({
+                    url:'/pages/home/index'
+                  })
+
+          }
+
+          else{
 
             return    wx.showToast({
                 title:res.data.msg,

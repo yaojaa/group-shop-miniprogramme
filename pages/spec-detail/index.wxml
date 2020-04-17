@@ -10,10 +10,10 @@
             <text>上传图片</text>
         </wux-upload>
     </view>
-    <view class="ph-df text-muted text-sm">
+<!--     <view class="ph-df text-muted text-sm">
         <view>温馨提示：</view>
         <view class="mt-xs">开团中修改商品库存的任何内容,均不会同步至活动</view>
-    </view>
+    </view> -->
     <view class="m-df">
         <button class="btn xl primary block linenear_bg" bindtap="submit">确认</button>
     </view>
