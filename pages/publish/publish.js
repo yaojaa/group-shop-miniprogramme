@@ -951,17 +951,6 @@ Page({
 
   onLoad: function (option) {
 
-   
-
-    if (app.globalData.userInfo.store.store_id === '') {
-      console.log('跳转呀...')
-      wx.redirectTo({
-        url: '../create-home/index',
-      })
-
-      return
-    }
-
     var user
     if (app.globalData.userInfo) {
       user = app.globalData.userInfo.nickname

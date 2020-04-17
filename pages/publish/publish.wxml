@@ -30,14 +30,26 @@
                             <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" class="weui-textarea" placeholder="简介描述" rows="6"></textarea>
                         </view>
                     </view>
-                    <view class="editor-btn primary-text" bindtap='goEditor'>使用图文编辑模式 〉</view>
                 </view>
-                <view class="add_btn_pic ph-sm pb-sm pt-xs" data-type="photo" bindtap="add">
-                        <view class="demo-badge flex align-center">
+                <view class="add_btn_pic ph-sm pb-sm pt-xs" >
+                        <view class="flex-space">
+                            <text data-type="photo" bindtap="add" class="left mr-xs text-lg f12">+ 上传介绍图片（选填)</text>
+
+                             <text class="editor-btn primary-text" bindtap='goEditor'>使用图文编辑模式 〉</text>
                         
-                            <text class=" mr-xs text-lg f12">+ 上传介绍图片（选填)</text>
-                            <image wx:key="item" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
+
+
+                           
                         </view>
+
+                       <view class="imgList" wx:if="{{content_imgs.length}}">
+
+                         <image wx:key="item" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
+                           
+                       </view>
+
+          
+
                 </view>
             </block>
             <view wx:else class="weui-cell editor-box" bindtap='goEditor'>
@@ -140,7 +152,7 @@
                                 <image class="spec_pic_small" src="{{item.spec_pic[0]}}-small" />
                             </view>
                             <view wx:else>
-                                <i-icon type="picture" size="22" color="#888" />
+                                <i-icon type="picture" size="26" color="#888" />
                             </view>
                         </view>
                         <!-- 添加规格图片 -->
@@ -158,7 +170,7 @@
                             <view class="weui-label">描述:</view>
                         </view>
                         <view class="weui-cell__bd" class="width70">
-                            <input value="{{item.spec_desc}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_desc" maxlength="50" placeholder="选填、简短描述或亮点" />
+                            <input  value="{{item.spec_desc}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_desc" maxlength="50" placeholder="选填、简短描述或亮点" />
                         </view>
                     </view>
                     <view class="weui-cell">

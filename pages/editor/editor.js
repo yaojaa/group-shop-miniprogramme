@@ -4,14 +4,21 @@ Page({
   data: {
     formats: {},
     editorContent: null,
-    placeholder: '请输入文字或插入图片开始编辑吧，注意：使用了图文编辑器，普通的文字介绍+详情图片将不会被展示',
+    placeholder: '请输入文字或插入图片开始编辑吧，注意：使用了图文编辑器，普通的文字介绍+详情图片就会不显示',
     editorHeight: '100%',
     keyboardHeight: 0,
     isIOS: false,
     style: 'height: 300px'
   },
+  onUnload(){
+    if(this.timer){
+      clearTimeout(this.timer)
+    }
+    wx.onKeyboardHeightChang=null
+  },
   onLoad() {
     let _this = this;
+
     wx.getStorage({
       key: 'editorContent',
       success (res) {
@@ -30,10 +37,11 @@ Page({
     this.updatePosition(0)
     let keyboardHeight = 0
     wx.onKeyboardHeightChange(res => {
+
       if (res.height === keyboardHeight) return
       const duration = res.height > 0 ? res.duration * 1000 : 0
       keyboardHeight = res.height
-      setTimeout(() => {
+      this.timer = setTimeout(() => {
         wx.pageScrollTo({
           scrollTop: 0,
           success() {

@@ -122,7 +122,7 @@
 
 
     <button class="btn xxl primary block" bindtap="submit" wx:if="{{order_detail.supplier_id == 0}}">
-        确定 {{order_detail.supplier_id}}
+        确定
     </button>
     <text wx:else class="f12 text-warning center">
          此商品由“{{order_detail.supplier.supplier_name}}”供货和售后

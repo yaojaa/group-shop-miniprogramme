@@ -488,12 +488,20 @@ const default_end_time = util.formatTime(date)
 
                 if(res.data.code ==200){
 
+                    const uInfo = app.globalData.userInfo
+
+                    if(uInfo && uInfo.hasOwnProperty('store')&& uInfo.store.hasOwnProperty('store_id') &app.globalData.userInfo.store.store_id == this.store_id ){
+
+                         this.setData({
+
+                            showSetting: true 
+                         })
+                    }
+
 
                 this.setData({
                     store_slide: res.data.data.store_slide[0],
-                    info: res.data.data,
-                    showSetting: app.globalData.userInfo && app.globalData.userInfo.store.store_id == this.store_id ? true : false
-                })
+                    info: res.data.data                })
             }
 
 

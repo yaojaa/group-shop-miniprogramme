@@ -1,6 +1,6 @@
 <view class="container">
   <van-cell-group title="其它设置">
-  <van-cell title="屏蔽跟团名单列表"  label="不展示跟团列表 不显示已售数量" >
+  <van-cell title="隐藏跟团名单"  label="不展示跟团名单 不显示已售数量" >
 <van-switch  slot="right-icon"
   checked="{{ show_buyerlist }}"
    bind:change="onChange" 

@@ -20,9 +20,6 @@ Page({
 
     }
 
-          
-
- 
 
   },
 
@@ -79,7 +76,7 @@ Page({
            } 
 
 
-      if(d.store || d.store.store_id){
+      if(d.hasOwnProperty('store') && d.store.hasOwnProperty('store_id')){
 
              return wx.redirectTo({
                 url:'../home/index'
