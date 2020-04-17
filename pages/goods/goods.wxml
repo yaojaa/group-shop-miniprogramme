@@ -372,7 +372,7 @@
                         <view class="text-sm text-gray mt-xs">{{specItem.spec_desc}}</view>
                         <view class="price-group text-xxl mt-xs">
                             <text class="symbol">￥</text>
-                            <text class="number">{{specItem.agent_price}}</text>
+                            <text class="number">{{specItem.spec_price}}</text>
                         </view>
                     </view>
                 </view>
