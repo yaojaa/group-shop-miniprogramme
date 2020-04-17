@@ -123,10 +123,12 @@ Page({
   },
   handleSpecPopup(e) {
     let { item } = e.currentTarget.dataset
-    this.setData({
-      specItem: item,
-      specPopup: !this.data.specPopup,
-    })
+    if (item) {
+      this.setData({
+        specItem: item,
+        specPopup: !this.data.specPopup,
+      })
+    }
   },
   openUrl() {
     // let that = this
