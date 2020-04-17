@@ -964,6 +964,27 @@
 					"pathName": "pages/publish-setting/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "c",
+					"pathName": "pages/create-home/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/acting-apply/index",
+					"pathName": "business/pages/acting-apply/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

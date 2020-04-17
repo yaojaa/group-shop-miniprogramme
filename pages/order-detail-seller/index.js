@@ -46,6 +46,9 @@ Page({
         app.globalData.apiPrix ='seller'
         this.setData({
             id: options.id || '' })
+        
+    },
+    onShow:function(){
         this.getInfo()
     },
 

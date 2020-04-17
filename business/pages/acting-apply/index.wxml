@@ -1,9 +1,9 @@
 <view class="act-view">
     <image class="act-logo" mode="aspectFill" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"></image>
     <view class="act-title">
-        {{info.supplier_intro}}
+        {{info.supplier_name}}
     </view>
-    
+
     <form bindsubmit='actSubmit'>
 
 
