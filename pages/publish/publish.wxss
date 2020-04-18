@@ -264,8 +264,7 @@ video{
   margin-top:10rpx;
 }
 .editorContentCss{
-  white-space: pre-wrap;
-  height: 300rpx;
+  max-height: 250rpx;
   width: 100%;
   /*overflow: auto;*/
   word-wrap: break-word;
@@ -273,22 +272,16 @@ video{
   line-height: 50rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 5;
   overflow: hidden;
 }
 .editor-box{
-  position: relative;
+  min-height: 320rpx;
+  display: block;
 }
 .to-editor{
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #333;
+  height: 50rpx;
+  line-height: 50rpx;
 }
 .imgList{
   padding-top: 10px

@@ -44,20 +44,31 @@
                         <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" class="weui-textarea" placeholder="简介描述" rows="6"></textarea>
                     </view>
                 </view>
-                <view class="editor-btn" bindtap='goEditor'>使用图文模式 ></view>
             </view>
-            <view class="add_btn_pic ph-sm pb-sm pt-xs" data-type="photo" bindtap="add">
-                <i-badge dot="{{content_imgs.length}}">
-                    <view class="demo-badge flex align-center">
-                        <text class="primary-text mr-xs text-lg" style="vertical-align: middle;">+</text><text class="text-df">介绍图片（选填)</text>
-                        <image wx:key="{{item}}" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
-                    </view>
-                </i-badge>
-            </view>
+            <view class="add_btn_pic ph-sm pb-sm pt-xs" >
+                        <view class="flex-space">
+                            <text data-type="photo" bindtap="add" class="left mr-xs text-lg f12">+ 上传介绍图片（选填)</text>
+
+                             <text class="editor-btn primary-text" bindtap='goEditor'>使用图文编辑模式 〉</text>
+                        
+
+
+                           
+                        </view>
+
+                       <view class="imgList" wx:if="{{content_imgs.length}}">
+
+                         <image wx:key="item" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
+                           
+                       </view>
+
+          
+
+                </view>
             </block>
             <view wx:else class="weui-cell editor-box" bindtap='goEditor'>
                 <view class="editorContentCss">{{editorContent.text}}</view>
-                <!-- <view class="to-editor">点击编辑</view> -->
+                <view class="to-editor primary-text">(点击进入图文模式)</view>
             </view>
             <!--    <view class="new_add_btn" data-type="video" bindtap="addVideo">
                 <i-badge dot="{{goods_video.length}}">

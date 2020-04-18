@@ -918,20 +918,36 @@ Page({
             })
         }
     },
-    goEditor(){
-        let _this = this;
-        console.log(_this.data.editorContent)
-        wx.setStorage({
-          key:"editorContent",
-          data:_this.data.editorContent,
-          success(){
-            wx.navigateTo({
-                url: '../editor/editor'
-            })
-          }
+    goEditor() {
+        let _this = this
+        console.log(_this.data.isEmptyEditor, this.data.content_imgs, this.data.currentInput)
+        if(this.data.isEmptyEditor && (this.data.content_imgs.length > 0 || this.data.currentInput)){
+          wx.showModal({
+            title: '温馨提示',
+            content: '使用图文模式将替代原有内容和描述',
+            success (res) {
+              if (res.confirm) {
+                _this.jumpEditor();
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }else{
+          wx.setStorage({
+            key: 'editorContent',
+            data: _this.data.editorContent,
+            success() {
+              _this.jumpEditor();
+            },
+          })
+        }
+      },
+      jumpEditor(){
+        wx.navigateTo({
+          url: '../editor/editor',
         })
-        
-    },
+      },
     /**回显数据**/
     getPublishedData(goods_id, isCopy, temp) {
        
