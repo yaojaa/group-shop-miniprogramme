@@ -1098,3 +1098,13 @@ display: inline-block;
 .price-group {
     font-size: 40rpx;
 }
+.editor-content{
+    padding: 10px 15px;
+    font-size: 32rpx;
+    line-height: 1.7;
+    background: #fff;
+    word-wrap: break-word;
+    overflow: hidden;
+    word-break: break-all;
+    margin-top: 20rpx;
+}
