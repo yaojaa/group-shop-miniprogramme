@@ -103,9 +103,9 @@
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}} white-bg ph-df cf">
             <block wx:for="{{goods_spec}}" wx:key="spec_id">
                 <view class="solid-top"></view>
-                <view class="goods-price-item flex-box">
+                <view class="goods-price-item flex-box"  bindtap="handleSpecPopup" data-item="{{item}}">
                     <view class="pics" wx:if="{{item.spec_pic}}">
-                        <image bindtap="handleSpecPopup" data-item="{{item}}" data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/100/h/100/format/jpg/q/85"></image>
+                        <image data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/100/h/100/format/jpg/q/85"></image>
                         <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">
                             {{item.spec_pic.length}}张
                         </view>
@@ -364,6 +364,7 @@
         </van-cell-group>
     </van-dialog>
     <van-popup show="{{ specPopup }}" custom-style="background:none;" position="bottom" bind:close="handleSpecPopup">
+        <view class="spec-wrap">
         <scroll-view scroll-y style="max-height: 850rpx" class="spec-main">
             <van-icon name="close" class="close" size="48rpx" color="#999" bind:click="handleSpecPopup" />
             <view class="body">
@@ -387,6 +388,7 @@
                 </view>
             </view>
         </scroll-view>
+        </view>
     </van-popup>
     <wux-gallery id="wux-gallery" />
 </view>
