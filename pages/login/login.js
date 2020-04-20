@@ -12,12 +12,8 @@ Page({
 
     const userInfo = app.globalData.userInfo
 
-    console.log('userInfo',userInfo)
-    if(userInfo){
+    if(userInfo!==null){
          this.jump(userInfo)
-         // 
-        // this.getUserInfo()
-
     }
 
 
@@ -45,11 +41,6 @@ Page({
 
      var lastVisit = wx.getStorageSync('lastVisit') 
 
-
-     console.log('跳转=',d)
-
-     console.log(d.store && d.store_id)
-
      if(d.supplier && d.store && lastVisit){
 
         if(lastVisit=='seller'){
@@ -74,6 +65,8 @@ Page({
             })
 
            } 
+
+    console.log(d.hasOwnProperty('store') && d.store.hasOwnProperty('store_id'))
 
 
       if(d.hasOwnProperty('store') && d.store.hasOwnProperty('store_id')){

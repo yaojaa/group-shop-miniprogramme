@@ -128,11 +128,11 @@
 }
 
 .goods-price .price {
-  font-size: 28rpx !important;
+  font-size: 26rpx !important;
   font-weight: bold;
-  color: #ff9000;
+  color: #69b90b;
+  padding-top: 3px
 }
-
 .goods-addres {
   font-size: 26rpx;
 }
@@ -508,14 +508,14 @@
 .pics {
   position: relative;
   vertical-align: middle;
-  width: 130rpx;
-  height: 130rpx;
+  width: 140rpx;
+  height: 140rpx;
   overflow: hidden;
 }
 
 .pics image {
-  width: 130rpx;
-  height: 130rpx;
+  width: 140rpx;
+  height: 140rpx;
   border-radius: 8rpx;
 }
 
@@ -907,7 +907,7 @@
   align-items: center;
   color: #fff;
   position: fixed;
-  left: 30rpx;
+  left: 15rpx;
   top: 0rpx;
   z-index: 2013;
 }
@@ -921,8 +921,8 @@
 }
 
 .user-info .avatar {
-  width: 70rpx;
-  height: 70rpx;
+  width:90rpx;
+  height: 90rpx;
   border-radius: 100%;
   overflow: hidden;
   font-size: 0;
@@ -948,9 +948,22 @@
   vertical-align: middle;
 }
 
+.tags{
+    height: 19px;
+    line-height: 19px;
+    padding: 0 4px;
+    font-size: 10px;
+    color: #ff8900;
+    border: 1px solid #ff8900;
+    text-decoration: none;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 5px
+}
+
 .user-info-bd {
   flex: 1;
-  padding: 0 20rpx;
+  padding: 0 20rpx 0 10rpx;
 }
 
 .user-info .name {

@@ -81,8 +81,6 @@ Page({
             if(res.data.code == 200){
 
                 const d = res.data.data
-
-
                  if(d.store == null && d.supplier == null){
 
                      wx.redirectTo({
@@ -438,7 +436,7 @@ Page({
         this.getOrderCount()
         this.get_store_info()
         this.getOrderList()
-
+        wx.stopPullDownRefresh()
 
     },
 

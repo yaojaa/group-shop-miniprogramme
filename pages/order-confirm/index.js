@@ -24,8 +24,7 @@ Page({
         btn_load: false,
         loading: false,
         address_load: false,
-        shipping_money:0
-    },
+        shipping_money:0    },
     getUserAddress() {
         this.setData({
             address_load: true
@@ -134,7 +133,7 @@ Page({
                 console.log('邮费',res.data.data)
 
                 this.setData({
-                    shipping_money:res.data.data==-1?'不发货' : parseInt(res.data.data)
+                    shipping_money:res.data.data==-1?'不发货' : parseInt(res.data.data)*this.data.totalNumer
                 })
 
 

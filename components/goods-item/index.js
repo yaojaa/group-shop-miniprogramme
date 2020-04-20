@@ -37,6 +37,20 @@ Component({
         // 在组件实例被从页面节点树移除时执行
       }
    },
+
+
+  observers: {
+    'item': function(data) {
+      // 在 rate被设置时，执行这个函数
+      //this.updataRate()
+          this.setData({
+          is_recommend:data.is_recommend,
+          expires: data._expires
+        })
+
+
+    }
+    },
     methods: {
 
      addListen(e){

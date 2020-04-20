@@ -1,9 +1,27 @@
 <view class="container gray-wrap cf">
 
+            <view class="rightAction">
+ 
+
+                     <button size="mini" class="mt-sm f12 btn" bindtap="ordermanage" >
+
+                     <van-icon name="replay" size="20" /> 全部订单
+                    </button> 
+                
+
+            </view>
     <view class="order-wrap">
-        <view class="primary ph-df pv-sm text-white mb-sm  flex align-center" style="min-height: 120rpx">
+
+
+
+
+
+        <view class="primary ph-df pv-sm text-white mb-sm align-center" style="min-height: 120rpx">
             <text>{{info.order_status_txt}}</text>
+
         </view>
+
+
 
 
         <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 1}}">
@@ -47,10 +65,10 @@
                     <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none" class="flex pv-df">
                         <image src="{{item.spec_pic[0] || item.goods_cover}}?imageView2/2/w/150/h/150/format/jpg/q/75" class="cover mr-sm"></image>
                         <view class="flex-sub por">
-                            <view class="text-hide text-black bold title">
+                            <view class="text-hide text-black title">
                                 {{item.goods_name}}
                             </view>
-                            <view class="text-muted text-sm des">{{item.spec_name}}</view>
+                            <view class="text-warning text-sm">{{item.spec_name}}</view>
                             <view class="text-justify bt-bar">
                                 <view class="price bold">￥{{item.spec_price}}</view>
                                 <view class="text-muted"><text>x </text>
@@ -58,11 +76,7 @@
                             </view>
                         </view>
                     </navigator>
- <button class="mt-sm f12 t" bindtap="ordermanage" >
-
-         <van-icon name="balance-list-o" size="20" />       查看此商品下的订单
-                
-            </button>                </view>
+               </view>
             </view>
 
            

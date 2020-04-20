@@ -304,6 +304,11 @@ App({
            var menu = wx.getMenuButtonBoundingClientRect()
     console.log('菜单按键宽度：',menu.width)
     console.log('菜单按键高度：',menu.height)
+    console.log('菜单按键top：',menu.top)
+
+         this.globalData.menuBarTop = menu.top;
+
+
     
 
 

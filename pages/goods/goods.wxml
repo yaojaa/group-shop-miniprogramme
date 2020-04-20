@@ -12,14 +12,16 @@
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}"></view>
     <imgs imgs="{{imgs}}">
-        <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{StatusBar}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+        <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{menuBarTop}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
             <view class="user-body" catchtap="goContact" data-phone="{{goods.user.mobile}}" data-wx="{{goods.user.wechatnumber}}">
                 <view class="user-info-hd">
                     <image src="{{goods.user.headimg}}" class="avatar"></image>
                 </view>
                 <view class="user-info-bd">
-                    <text class="name">{{goods.user.nickname}}为您推荐</text>
-                    <i-icon type="enter" size="20" color="#fff" />
+                    <view class="name">{{goods.user.nickname}}<text class="tags">已实名</text> <van-icon color="#a3df00" name="phone" size="20px" />  
+                    </view>
+                    <view class="f12">
+                    累计{{goods.buyuser_count}}人跟TA团了{{goods.store.order_count}}次</view>
                 </view>
             </view>
         </view>
@@ -120,8 +122,8 @@
                         </view>
                         <view class="f12 gray-text">
                             <text class="price f12px">¥{{item.spec_price}}</text>
-                            <text wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</text>
-                            <text wx:if="{{tem.spec_stock==0}}">已售磬</text>
+                            <text wx:if="{{item.spec_stock}}"> 剩余:{{item.spec_stock}}</text>
+                            <text wx:if="{{item.spec_stock==0}}"> （已售磬）</text>
                         </view>
                     </view>
                     <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 

@@ -95,20 +95,20 @@
 
             <view class="bold">问：使用开心麻团小程序收费吗？</view>
 
-            <view class="mb-df">答：不收费，但使用在线支付微信会收取0.6%的通道费，这个是谁都无法避免的，拿金钱换高效值得！</view>
+            <view class="mb-df text-muted">答：不收费，但使用在线支付微信会收取0.6%的通道费，全网最低，拿金钱换高效值得！</view>
 
 
             <view class="bold">问：收款的钱到哪里去了？</view>
 
-            <view  class="mb-df">在您的个人账户，点击右上角余额数字，可提现到微信钱包，在自动扣除0.6%的手续费后会即时到账！</view>
+            <view  class="mb-df text-muted">答：在您的个人账户，点击右上角余额数字，可提现到微信钱包，在自动扣除0.6%的手续费后会即时到账！</view>
  
             <view class="bold">问：有什么核心主要功能？</view>
 
-            <view  class="mb-df">答：自助接单，方便的订单管理；群发通知给参与的用户；免费的个人主页，展示您的产品；生成海报方便发布朋友圈。</view>
+            <view  class="mb-df text-muted">答：自助接单，方便的订单管理；群发通知给参与的用户；免费的个人主页，展示您的产品；生成海报方便发布朋友圈。</view>
 
             <view class="bold">问：有什么特色或理念？</view>
 
-            <view class="mb-df">答：专注私域流量的管理与辅助营销， 而不是共享的大平台。大道至简，可能是最好的接单营销小程序</view>
+            <view class="mb-df text-muted">答：专注私域流量的管理与辅助营销， 而不是共享的大平台。大道至简，可能是最懂您的接单营销小程序</view>
       <button style="margin:0 auto; display: block;" size="mini" open-type="contact" bindcontact="handleContact"> <van-icon name="chat-o" /> 更多问题请咨询客服</button>
         </view>
 

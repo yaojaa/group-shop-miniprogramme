@@ -276,6 +276,23 @@
         </i-panel>
 
 
+        <i-panel title="代理设置" i-class="no-margin">
+            
+                <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">代理帮卖：</view>
+                    </view>
+                    <view class="weui-cell__bd"></view>
+                    <view class="weui-cell__ft" bindtap="toPostageSetting">
+                        <view class="weui-icon-warn">
+                            去开启
+                        </view>
+                    </view>
+                </view>
+        </i-panel>
+
+
+
         <view class="orther" bindtap="toMore">
             其它设置 〉
         </view>

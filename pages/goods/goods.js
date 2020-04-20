@@ -36,7 +36,7 @@ function formatDateTime(inputTime) {
 
 Page({
   data: {
-    StatusBar: app.globalData.StatusBar,
+    menuBarTop: app.globalData.menuBarTop,
     CustomBar: app.globalData.CustomBar,
     url: '',
     showMsgTips: false,
@@ -108,7 +108,7 @@ Page({
       showRoll: 0,
       totalNum: 0, //已选择的总数
       notice: '', //价格提示框class
-      StatusBar: '',
+      menuBarTop: '',
       toShowPic: false,
       poster: false,
       winWidth: app.globalData.winWidth,
@@ -633,7 +633,7 @@ Page({
     }
 
     this.setData({
-      StatusBar: app.globalData.StatusBar,
+      menuBarTop: app.globalData.menuBarTop,
     })
   },
   /**群发通知**/
