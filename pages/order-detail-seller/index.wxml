@@ -17,7 +17,7 @@
 
 
         <view class="primary ph-df pv-sm text-white mb-sm align-center" style="min-height: 120rpx">
-            <text>{{info.order_status_txt}}</text>
+            <text class="f20">{{info.order_status_txt}}</text>
 
         </view>
 
