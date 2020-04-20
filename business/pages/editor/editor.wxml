@@ -12,8 +12,8 @@
 
 <view class="toolbar" catchtouchend="format">
   <i class="iconfont icon-charutupian" catchtouchend="insertImage"></i>
-  <i class="iconfont icon-format-header-1 {{formats.header === 2 ? 'ql-active' : ''}}" data-name="header" data-value="{{2}}"></i>
-  <!-- <i class="iconfont icon-format-header-3 {{formats.header === 3 ? 'ql-active' : ''}}" data-name="header" data-value="{{3}}"></i> -->
+<!--   <i class="iconfont icon-format-header-1 {{formats.header === 2 ? 'ql-active' : ''}}" data-name="header" data-value="{{2}}"></i> -->
+  <i class="iconfont icon-format-header-1 {{formats.header === 3 ? 'ql-active' : ''}}" data-name="header" data-value="{{3}}"></i>
   <i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold"></i>
   <!-- <i class="iconfont icon-zitixieti {{formats.italic ? 'ql-active' : ''}}" data-name="italic"></i> -->
   <!-- <i class="iconfont icon-zitixiahuaxian {{formats.underline ? 'ql-active' : ''}}" data-name="underline"></i> -->
@@ -23,6 +23,6 @@
 </view>
 
 <view class="bottom-btn">
-  <button size='mini' bindtap='clearGoBack'>清空并返回</button>
+  <button size='mini' bindtap='clearGoBack'>切换为简单模式</button>
   <button class="linenear_bg" size='mini' bindtap='saveGoBack'>保存并返回</button>
 </view>

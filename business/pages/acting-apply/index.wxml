@@ -1,5 +1,5 @@
 <view class="act-view">
-    <image class="act-logo" mode="aspectFill" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"></image>
+    <image wx:if="{{info.supplier_logo}}" class="act-logo" mode="aspectFill" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"></image>
     <view class="act-title">
         {{info.supplier_name}}
     </view>
@@ -8,15 +8,14 @@
 
 
     <view class="act-textarea">
-        <textarea name="apply_remark" value="申请加入 请通过谢谢">
-           
-        </textarea>
+        <view wx:if="{{submit}}" class="textarea box"><text>{{textareaVal}}</text></view>
+        <textarea wx:else class="textarea" name="apply_remark" value="申请加入 请通过谢谢"></textarea>
     </view>
 
     <view class="act-submit">
 
         <button type="primary" wx:if="{{showLoginbtn}}"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权登录 </button>
-        <button wx:else form-type='submit' > 立 即 申 请 </button>
+        <button wx:else form-type='submit' loading="{{loading}}"> 立 即 申 请 </button>
 
     </view>
 

@@ -12,6 +12,7 @@
 
                    <van-button wx:if="{{delivery_method==1}}" class="ml-sm" type="primary" plain size="mini" bindtap="toAddressList">地址列表</van-button>
                 <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">导出名单</van-button>
+                <van-button class="ml-sm" type="primary" plain size="mini" bindtap="checkExcel">查看名单</van-button>
           <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
                     <i-icon size="20" type="other" />
                 </i-button> -->

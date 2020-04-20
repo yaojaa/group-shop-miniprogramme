@@ -62,7 +62,8 @@ Page({
              {
                 name: '发货名单'
             }
-        ]
+        ],
+        excelUrl: '',
     },
 
     sendMsgAll(){
@@ -370,33 +371,48 @@ Page({
         });
     },
     /****/
-
-    exportExcel() {
-        // wx.showToast({ title: '开始为你生成...', icon: 'none' })
-        wx.showLoading({title: '加载中...'})
-
+    getExcelUrl(fn){
+        if(this.data.excelUrl){
+            fn(this.data.excelUrl)
+            return;
+        }
         util.wx.get('/api/seller/order_export_by_goods_id', {
             goods_id: this.data.goods_id
         }).then(res => {
 
             if (res.data.code == 200) {
-                this.downloadfile(res.data.data.filepath);
-                // wx.setClipboardData({
-                //     data: res.data.data.filepath,
-                //     success: function(res) {
-                //         wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
-                //     }
-                // })
+                this.data.excelUrl = res.data.data.filepath
+                fn(this.data.excelUrl)
             }
-
-
         })
-
+    },
+    // 导出名单
+    exportExcel() {
+        wx.showToast({ title: '开始为你生成...', icon: 'none' })
+        this.getExcelUrl(url => {
+            this.copyLoadFile(url);
+        })
+        
+    },
+    // 查看名单
+    checkExcel(){
+        wx.showLoading({title: '加载中...'})
+        this.getExcelUrl(url => {
+            this.downloadfile(url);
+        })
+    },
+    // 复制文件地址
+    copyLoadFile(url){
+        wx.setClipboardData({
+            data: url,
+            success: function(res) {
+                wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
+            }
+        })
     },
 
     // 预览文件
     downloadfile(url){
-        url = url.replace(/http:/,'https:')
         //下载文件，生成临时地址
         wx.downloadFile({
           url: url,
@@ -404,27 +420,11 @@ Page({
             // 打开文档
             wx.openDocument({
               filePath: res.tempFilePath,
-              showMenu: true,
-              success: function (res) {
+              success: function () {
                 wx.hideLoading()
+                wx.removeSavedFile({filePath: res.tempFilePath})
               }
             });
-            //保存到本地
-            // wx.saveFile({
-            //   tempFilePath: res.tempFilePath,
-            //   success: function (res) {
-            //     const savedFilePath = res.savedFilePath;
-            //     // 打开文件
-            //     wx.openDocument({
-            //       filePath: savedFilePath,
-            //       showMenu: true,
-            //       success: function (res) {
-            //         wx.hideLoading()
-            //         console.log('打开文档成功')
-            //       },
-            //     });
-            //   }
-            // });
           }
         })
     },

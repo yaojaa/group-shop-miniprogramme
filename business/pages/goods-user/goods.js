@@ -114,6 +114,8 @@ Page({
             phone: '',
             weChat: ''
         },
+        isEmptyEditor: true,
+        editorContent: null
     },
     openUrl() {
         // let that = this
@@ -458,8 +460,14 @@ Page({
                             e.spec_pic.push(d.goods.goods_images[0].img_url)
                         }
                     })
+                    
+                    let editorContent = JSON.parse(d.goods.content);
+                    editorContent = editorContent ? editorContent : {html:'', text:''};
+                    let isEmptyEditor = editorContent.text.replace(/\n/g,'').length == 0 && !/img/g.test(editorContent.html);
 
                     this.setData({
+                        isEmptyEditor: isEmptyEditor,
+                        editorContent: editorContent,
                         goods: d.goods,
                         'imgs.src': d.goods.goods_images,
                         goods_spec: d.goods.goods_spec.length == 0 ? d.goods.goods_images : d.goods.goods_spec,

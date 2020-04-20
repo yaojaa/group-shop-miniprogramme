@@ -23,6 +23,6 @@
 </view>
 
 <view class="bottom-btn">
-  <button size='mini' bindtap='clearGoBack'>清空并返回</button>
+  <button size='mini' bindtap='clearGoBack'>切换为简单模式</button>
   <button class="linenear_bg" size='mini' bindtap='saveGoBack'>保存并返回</button>
 </view>

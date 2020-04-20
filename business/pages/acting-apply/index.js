@@ -9,9 +9,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        loading: true,
-        showLoginbtn:false
-
+        loading: false,
+        showLoginbtn:false,
+        textareaVal: '',
+        submit: false
     },
 
     /**
@@ -120,6 +121,7 @@ Page({
     actSubmit(e){
 
         console.log(e)
+        if(this.data.loading) return
 
         if(!e.detail.value.apply_remark){
             return wx.showToast({
@@ -127,13 +129,17 @@ Page({
             })
         }
 
-
+        this.setData({
+          submit: false,
+          loading: true
+        })
 
         util.wx.get('/api/seller/apply_agent',{
             supplier_id:this.supplier_id,
            apply_remark:e.detail.value.apply_remark        
         })
         .then(res=>{
+
             Dialog.alert({
               title: '申请成功',
               message: res.data.msg
@@ -143,9 +149,14 @@ Page({
                     url:'/pages/supplier-list/index'
                    })
             })
+            this.setData({
+              textareaVal: e.detail.value.apply_remark,
+              submit: true,
+              loading: false
+            })
 
-        wx.hideLoading()
-        console.log('第一',res)
+            wx.hideLoading()
+            console.log('第一',res)
 
         })
 

@@ -53,8 +53,8 @@
                 </view>
             </block>
             <view wx:else class="weui-cell editor-box" bindtap='goEditor'>
-                <view class="editorContentCss">{{editorContent.text}}</view>
-                <!-- <view class="to-editor">点击编辑</view> -->
+                <view class="editorContentCss"><text>{{editorContent.text}}</text></view>
+                <view class="to-editor primary-text">(点击进入图文模式)</view>
             </view>
             <!-- <view class="new_add_btn" data-type="video" bindtap="addVideo">
                 <i-badge dot="{{goods_video.length}}">
