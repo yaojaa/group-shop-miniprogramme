@@ -276,7 +276,7 @@
         </i-panel>
 
 
-        <i-panel title="代理设置" i-class="no-margin">
+ <!--        <i-panel title="代理设置" i-class="no-margin">
             
                 <view class="weui-cell">
                     <view class="weui-cell__hd">
@@ -290,7 +290,7 @@
                     </view>
                 </view>
         </i-panel>
-
+ -->
 
 
         <view class="orther" bindtap="toMore">

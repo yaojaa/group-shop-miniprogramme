@@ -131,16 +131,13 @@ Page({
   },
   goEditor() {
     let _this = this
-    console.log(_this.data.isEmptyEditor, this.data.content_imgs, this.data.currentInput)
     if(this.data.isEmptyEditor && (this.data.content_imgs.length > 0 || this.data.currentInput)){
       wx.showModal({
         title: '温馨提示',
-        content: '使用图文模式将替代原有内容和描述',
+        content: '图文编辑模式将替换原有内容描述，两者不能同时使用',
         success (res) {
           if (res.confirm) {
             _this.jumpEditor();
-          } else if (res.cancel) {
-            console.log('用户点击取消')
           }
         }
       })
