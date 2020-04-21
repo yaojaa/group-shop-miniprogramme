@@ -188,7 +188,7 @@
             <view class='sub-title scale-b-1px'>图文介绍</view>
         </view>
     </view>
-    <view class="piclist-container" wx:if="{{toShowPic}}">
+    <view class="piclist-container" wx:if="{{toShowPic || !isEmptyEditor}}">
         <view wx:if="{{goods.goods_video}}">
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view>
