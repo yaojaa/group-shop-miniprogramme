@@ -1093,22 +1093,26 @@
   padding: 0;
   vertical-align: top;
 }
+.spec-wrap{
+  border-radius: 10rpx 10px 0 0;
+  overflow: hidden;
+  padding: 30rpx;
+  background: #fff;
+}
 .spec-main {
   position: relative;
+  border-radius: 10rpx 10px 0 0;
 }
 .spec-main .close {
-  position: absolute;
+  position: fixed;
   top: 14rpx;
   right: 10px;
   color: #999;
   z-index: 9;
+  background-color: #fff;
+  border-radius: 100px;
 }
-.spec-main .body {
-  padding: 30rpx;
-  background: #fff;
-  border-radius: 10rpx 10px 0 0;
-  overflow: hidden;
-}
+
 .spec-main .content {
   background: #f8f8f8;
 }
