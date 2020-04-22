@@ -80,42 +80,6 @@ Page({
     shareFriendsImg: '',
     shareFriendsImgStart: false,
     shareFriendsImgs: [],
-    template: {},
-    template2: {},
-    shareCardConfig: {
-      width: 750,
-      goodsImg: {},
-      headImg: {
-        size: 120, //默认140
-      },
-      userName: '开心麻团儿',
-      content: {
-        des: [], //一个元素一个段落
-        margin: 30, //左右边界默认30
-        lineHeight: 52,
-        fontSize: 30,
-        title: {
-          fontSize: 38,
-          lineHeight: 50,
-        },
-      },
-      qrcode: {
-        src: '',
-        size: 300, //二维码显示尺寸默认300
-      },
-      hw_data: null,
-      showAuth: false,
-      showRoll: 0,
-      totalNum: 0, //已选择的总数
-      notice: '', //价格提示框class
-      StatusBar: '',
-      toShowPic: false,
-      poster: false,
-      winWidth: app.globalData.winWidth,
-      imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
-      phone: '',
-      weChat: '',
-    },
     isEmptyEditor: true,
     editorContent: null,
     specPopup: false,
@@ -249,7 +213,12 @@ Page({
   openShareFriends() {
     if (!this.data.shareFriendsImgStart) {
       this.data.shareFriendsImgStart = true
-      util.drawShareFriends(this, drawGoods, drawBuyuser)
+      util.wx.get('/api/goods/get_goods_card', {
+        goods_id: this.data.goods_id
+      })
+      .then(res => {
+        console.log(res)
+      })
     }
 
     this.setData({
@@ -317,12 +286,6 @@ Page({
     })
     console.log('imgOk', this.data.shareFriendsImgs)
   },
-  // onFriendsImgOK(e) {
-  //     this.setData({
-  //         shareFriendsImg2: e.detail.path
-  //     })
-  //     console.log('imgOk', e);
-  // },
   friendsImgChange(e) {
     console.log(e.detail.current)
     this.data.shareFriendsImg = this.data.shareFriendsImgs[e.detail.current]

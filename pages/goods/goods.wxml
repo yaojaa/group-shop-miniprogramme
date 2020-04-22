@@ -290,13 +290,6 @@
             </form>
         </view>
     </i-modal>
-    <view class='share-painter'>
-        <view wx:for="{{shareCardConfig.content.des}}" wx:key="index" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>
-            {{item.txt}}
-        </view>
-        <share-painter palette="{{template2}}" bind:imgOK="onFriendsImgOK" />
-        <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
-    </view>
     <!-- <i-message id="message" /> -->
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页">
         <view class="content-pop">
