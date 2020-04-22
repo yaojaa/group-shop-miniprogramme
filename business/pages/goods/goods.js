@@ -78,41 +78,6 @@ Page({
         shareFriendsImg: '',
         shareFriendsImgStart: false,
         shareFriendsImgs: [],
-        template: {},
-        shareCardConfig: {
-            width: 750,
-            goodsImg: {},
-            headImg: {
-                size: 120, //默认140
-            },
-            userName: '开心麻团儿',
-            content: {
-                des: [], //一个元素一个段落
-                margin: 30, //左右边界默认30
-                lineHeight: 52,
-                fontSize: 30,
-                title: {
-                    fontSize: 38,
-                    lineHeight: 50
-                },
-            },
-            qrcode: {
-                src: '',
-                size: 300 //二维码显示尺寸默认300
-            },
-            hw_data: null,
-            showAuth: false,
-            showRoll: 0,
-            totalNum: 0, //已选择的总数
-            notice: '', //价格提示框class
-            StatusBar: '',
-            toShowPic: false,
-            poster: false,
-            winWidth: app.globalData.winWidth,
-            imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
-            phone: '',
-            weChat: ''
-        },
         isEmptyEditor: true,
         editorContent: null
     },
@@ -220,12 +185,19 @@ Page({
     openShareFriends() {
         if (!this.data.shareFriendsImgStart) {
             this.data.shareFriendsImgStart = true;
-            util.drawShareFriends(this, drawGoods, [], 'businessGoods');
+            util.wx.get('/api/supplier/get_goods_card', {
+                goods_id: this.data.goods_id
+            })
+            .then(res => {
+                if(res.data.code == 200 && res.data.data.path){
+                    this.onFriendsImgOK(res.data.data.path);
+                }
+            })
         }
 
-        this.setData({
-            showShareFriendsCard: true
-        })
+        // this.setData({
+        //     showShareFriendsCard: true
+        // })
 
     },
     closeShareFriends() {
@@ -234,6 +206,7 @@ Page({
         })
     },
     handlePoster() {
+        this.openShareFriends()
         this.setData({
             showShareFriendsCard: false,
             poster: !this.data.poster
@@ -250,29 +223,13 @@ Page({
                         wx.authorize({
                             scope: 'scope.writePhotosAlbum',
                             success() {
-                                console.log(1)
-                                wx.saveImageToPhotosAlbum({
-                                    filePath: _this.data.shareFriendsImg,
-                                      success(result) {
-                                            wx.showToast({
-                                                title:"保存成功",
-                                                icon:"none"
-                                            })
-                                          }
-                                });
+                                
+                _this.getSaveImg(_this.data.shareFriendsImg, _this);
                             }
                         })
                     } else {
-                        console.log(2)
-                        wx.saveImageToPhotosAlbum({
-                            filePath: _this.data.shareFriendsImg,
-                             success(result) {
-                                wx.showToast({
-                                    title:"保存成功",
-                                    icon:"none"
-                                })
-                              }
-                        });
+                        
+                _this.getSaveImg(_this.data.shareFriendsImg, _this);
                     }
                 }
             })
@@ -280,8 +237,29 @@ Page({
             this.handlePoster();
         }
     },
-    onFriendsImgOK(e) {
-        this.data.shareFriendsImgs.push(e.detail.path);
+    getSaveImg(path, _this){
+        console.log('path', path)
+        wx.getImageInfo({
+          src: path,
+          success(res){
+            wx.saveImageToPhotosAlbum({
+              filePath: res.path,
+              success(result) {
+                wx.showToast({
+                  title: '保存成功',
+                  icon: 'none',
+                })
+              },
+            })
+          },
+          fail(){
+            console.log(`flag${_this}`)
+            _this && _this.getSaveImg(path);
+          }
+        })
+    },
+    onFriendsImgOK(path) {
+        this.data.shareFriendsImgs.push(path);
         this.data.shareFriendsImg = this.data.shareFriendsImgs[0];
         this.setData({
             shareFriendsImgs: this.data.shareFriendsImgs,
@@ -289,12 +267,6 @@ Page({
         })
         console.log('imgOk', this.data.shareFriendsImgs);
     },
-    // onFriendsImgOK(e) {
-    //     this.setData({
-    //         shareFriendsImg2: e.detail.path
-    //     })
-    //     console.log('imgOk', e);
-    // },
     friendsImgChange(e){
         console.log(e.detail.current)
         this.data.shareFriendsImg = this.data.shareFriendsImgs[e.detail.current]

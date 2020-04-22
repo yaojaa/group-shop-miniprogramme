@@ -217,7 +217,9 @@ Page({
         goods_id: this.data.goods_id
       })
       .then(res => {
-        console.log(res)
+        if(res.data.code == 200 && res.data.data.path){
+          this.onFriendsImgOK(res.data.data.path);
+        }
       })
     }
 
@@ -247,29 +249,11 @@ Page({
             wx.authorize({
               scope: 'scope.writePhotosAlbum',
               success() {
-                console.log(1)
-                wx.saveImageToPhotosAlbum({
-                  filePath: _this.data.shareFriendsImg,
-                  success(result) {
-                    wx.showToast({
-                      title: '保存成功',
-                      icon: 'none',
-                    })
-                  },
-                })
+                _this.getSaveImg(_this.data.shareFriendsImg, _this);  
               },
             })
           } else {
-            console.log(2)
-            wx.saveImageToPhotosAlbum({
-              filePath: _this.data.shareFriendsImg,
-              success(result) {
-                wx.showToast({
-                  title: '保存成功',
-                  icon: 'none',
-                })
-              },
-            })
+            _this.getSaveImg(_this.data.shareFriendsImg, _this);            
           }
         },
       })
@@ -277,8 +261,31 @@ Page({
       this.handlePoster()
     }
   },
-  onFriendsImgOK(e) {
-    this.data.shareFriendsImgs.push(e.detail.path)
+
+  getSaveImg(path, _this){
+    console.log('path', path)
+    wx.getImageInfo({
+      src: path,
+      success(res){
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success(result) {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'none',
+            })
+          },
+        })
+      },
+      fail(){
+        console.log(`flag${_this}`)
+        _this && _this.getSaveImg(path);
+      }
+    })
+  },
+
+  onFriendsImgOK(path) {
+    this.data.shareFriendsImgs.push(path)
     this.data.shareFriendsImg = this.data.shareFriendsImgs[0]
     this.setData({
       shareFriendsImgs: this.data.shareFriendsImgs,
