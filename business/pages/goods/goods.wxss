@@ -129,10 +129,8 @@
 
 .goods-price .price {
   font-size: 28rpx !important;
-  color: #333;
-  padding-left: 21px;
   font-weight: bold;
-  color: #666;
+  color: #ff9000;
 }
 
 .goods-addres {
@@ -508,14 +506,14 @@
 .pics {
   position: relative;
   vertical-align: middle;
-  width: 90rpx;
-  height: 90rpx;
+  width: 130rpx;
+  height: 130rpx;
   overflow: hidden;
 }
 
 .pics image {
-  width: 90rpx;
-  height: 90rpx;
+  width: 130rpx;
+  height: 130rpx;
   border-radius: 8rpx;
 }
 
@@ -1073,6 +1071,12 @@
   overflow: hidden;
   word-break: break-all;
   margin-top: 20rpx;
+}
+.spec-wrap {
+  border-radius: 10rpx 10px 0 0;
+  overflow: hidden;
+  padding: 30rpx;
+  background: #fff;
 }
 .spec-main {
   position: relative;

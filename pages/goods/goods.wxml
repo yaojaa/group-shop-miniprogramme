@@ -103,7 +103,7 @@
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}} white-bg ph-df cf">
             <block wx:for="{{goods_spec}}" wx:key="spec_id">
                 <view class="solid-top"></view>
-                <view class="goods-price-item flex-box"  bindtap="handleSpecPopup" data-item="{{item}}">
+                <view class="goods-price-item flex-box" bindtap="handleSpecPopup" data-item="{{item}}">
                     <view class="pics" wx:if="{{item.spec_pic}}">
                         <image data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/100/h/100/format/jpg/q/85"></image>
                         <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">
@@ -358,29 +358,29 @@
     </van-dialog>
     <van-popup show="{{ specPopup }}" custom-style="background:none;" position="bottom" bind:close="handleSpecPopup">
         <view class="spec-wrap">
-        <scroll-view scroll-y style="max-height: 850rpx" class="spec-main">
-            <van-icon name="close" class="close" size="48rpx" color="#999" bind:click="handleSpecPopup" />
-            <view class="body">
-                <view class="panel-box">
-                    <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
-                    <view class="panel-bd ml-sm">
-                        <view class="bolds mr-xl">{{specItem.spec_name}}</view>
-                        <view class="text-sm text-gray mt-xs">{{specItem.spec_desc}}</view>
-                        <view class="price-group text-lg mt-xs">
-                            <text class="symbol">￥</text>
-                            <text class="number">{{specItem.spec_price}}</text>
+            <scroll-view scroll-y style="max-height: 850rpx" class="spec-main">
+                <van-icon name="close" class="close" size="48rpx" color="#999" bind:click="handleSpecPopup" />
+                <view class="body">
+                    <view class="panel-box">
+                        <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
+                        <view class="panel-bd ml-sm">
+                            <view class="bolds mr-xl">{{specItem.spec_name}}</view>
+                            <view class="text-sm text-gray mt-xs">{{specItem.spec_desc}}</view>
+                            <view class="price-group text-lg mt-xs">
+                                <text>￥</text>
+                                <text>{{specItem.spec_price}}</text>
+                            </view>
                         </view>
                     </view>
+                    <view class="content p-df mt-df round-df" wx:if="{{specItem.spec_content}}">
+                        <view class="pb-df primary-text text-lg text-center cf">商品介绍</view>
+                        <view class="text-gray">{{specItem.spec_content}}</view>
+                    </view>
+                    <view wx:if="{{specItem.spec_pic.length}}">
+                        <image src="{{item}}" wx:for="{{specItem.spec_pic}}" class="w-full pt-sm" wx:key="index" mode="widthFix"></image>
+                    </view>
                 </view>
-                <view class="content p-df mt-df round-df" wx:if="{{specItem.spec_content}}">
-                    <view class="pb-df primary-text text-lg text-center cf">商品介绍</view>
-                    <view class="text-gray">{{specItem.spec_content}}</view>
-                </view>
-                <view wx:if="{{specItem.spec_pic.length}}">
-                    <image src="{{item}}" wx:for="{{specItem.spec_pic}}" class="w-full pt-sm" wx:key="index" mode="widthFix"></image>
-                </view>
-            </view>
-        </scroll-view>
+            </scroll-view>
         </view>
     </van-popup>
     <wux-gallery id="wux-gallery" />

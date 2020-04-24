@@ -73,24 +73,30 @@
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}} white-bg ph-df cf">
             <block wx:for="{{goods_spec}}" wx:key="index">
                 <view class="solid-top"></view>
-                <view class="goods-price-item flex-box">
+                <view class="goods-price-item flex-box" bindtap="handleSpecPopup" data-item="{{item}}">
                     <view class="pics" wx:if="{{item.spec_pic}}">
-                        <image bindtap="showGallerySpec" data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/100/h/100/format/jpg/q/85"></image>
+                        <image data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/100/h/100/format/jpg/q/85"></image>
                         <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">
                             {{item.spec_pic.length}}张
                         </view>
                     </view>
                     <view class="info">
-                        <view class="f14 text-default">
-                            {{item.spec_name}}
-                            <text class="price f12px">¥{{item.agent_price}}</text>
-                        </view>
-                        <view class="f14px text-warning" style="margin-top: 10rpx;">
-                            <block wx:if="{{item.spec_stock}}">(剩余{{item.spec_stock}})</block>
-                            <block wx:if="{{item.spec_stock==0}}">(已售磬)</block>
+                        <view class="f14 text-default">{{item.spec_name}}</view>
+                        <view wx:if="{{item.spec_desc}}" class="f12 text-warning" style="margin-top: 10rpx;">
                             {{item.spec_desc}}
                         </view>
+                        <view wx:if="{{item.spec_content && !item.spec_desc}}" class="f12 text-warning text-hide two-line" style="margin-top: 10rpx;">
+                            {{item.spec_content}}
+                        </view>
+                        <view class="f12 gray-text">
+                            <text class="price f12px">¥{{item.agent_price}}</text>
+                            <text wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</text>
+                            <text wx:if="{{tem.spec_stock==0}}">已售磬</text>
+                        </view>
                     </view>
+                    <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 
+                        剩余({{item.spec_stock}})
+                    </text> -->
                     <view class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                     </view>
@@ -273,8 +279,8 @@
                             <view class="bolds mr-xl">{{specItem.spec_name}}</view>
                             <view class="text-sm text-gray mt-xs">{{specItem.spec_desc}}</view>
                             <view class="price-group text-lg mt-xs">
-                                <text class="symbol">￥</text>
-                                <text class="number">{{specItem.spec_price}}</text>
+                                <text>￥</text>
+                                <text>{{specItem.agent_price}}</text>
                             </view>
                         </view>
                     </view>
