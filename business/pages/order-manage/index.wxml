@@ -19,8 +19,8 @@
         </view>
     <view class="tabsArea">
         <van-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-            <van-tab name="3" title="待发货"></van-tab>
-            <van-tab name="4" title="已发货"></van-tab>
+            <van-tab name="2" title="待发货"></van-tab>
+            <van-tab name="3" title="已发货"></van-tab>
         </van-tabs>
     </view>
     <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
@@ -88,7 +88,7 @@
 
 
                 <view class="address">
-                   <view> 收件人：{{item.consignee}} 电话：{{item.mobile}} <text   bindtap="copyTxt" data-text="{{item.mobile}}" class="blue_text">复制电话</text></view>
+                   <view> 收件人：{{item.consignee}} {{item.mobile}} <text   bindtap="copyTxt" data-text="{{item.mobile}}" class="blue_text">复制电话</text></view>
                    <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}} {{item.user_message}}</view>
                 </view>
             </view>

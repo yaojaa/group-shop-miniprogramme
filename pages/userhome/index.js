@@ -114,6 +114,15 @@ Page({
 
     },
 
+   goCreateHome(){
+
+   wx.redirectTo({
+            url: '../create-home/index'
+        })
+
+
+   },
+
 
   startIt(){
 
@@ -122,7 +131,7 @@ Page({
       date.setHours(0);
       date.setMinutes(0)
       date.setSeconds(0)
-date.setDate(date.getDate() + 7);
+date.setDate(date.getDate() + 30);
 const default_end_time = util.formatTime(date)
 
 

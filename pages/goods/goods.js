@@ -116,6 +116,7 @@ Page({
       phone: '',
       weChat: '',
     },
+
     isEmptyEditor: true,
     editorContent: null,
     specPopup: false,
@@ -249,7 +250,14 @@ Page({
   openShareFriends() {
     if (!this.data.shareFriendsImgStart) {
       this.data.shareFriendsImgStart = true
-      util.drawShareFriends(this, drawGoods, drawBuyuser)
+      util.wx.get('/api/goods/get_goods_card', {
+        goods_id: this.data.goods_id
+      })
+      .then(res => {
+        if(res.data.code == 200 && res.data.data.path){
+          this.onFriendsImgOK(res.data.data.path);
+        }
+      })
     }
 
     this.setData({
@@ -278,29 +286,11 @@ Page({
             wx.authorize({
               scope: 'scope.writePhotosAlbum',
               success() {
-                console.log(1)
-                wx.saveImageToPhotosAlbum({
-                  filePath: _this.data.shareFriendsImg,
-                  success(result) {
-                    wx.showToast({
-                      title: '保存成功',
-                      icon: 'none',
-                    })
-                  },
-                })
+                _this.getSaveImg(_this.data.shareFriendsImg, _this);  
               },
             })
           } else {
-            console.log(2)
-            wx.saveImageToPhotosAlbum({
-              filePath: _this.data.shareFriendsImg,
-              success(result) {
-                wx.showToast({
-                  title: '保存成功',
-                  icon: 'none',
-                })
-              },
-            })
+            _this.getSaveImg(_this.data.shareFriendsImg, _this);            
           }
         },
       })
@@ -308,8 +298,31 @@ Page({
       this.handlePoster()
     }
   },
-  onFriendsImgOK(e) {
-    this.data.shareFriendsImgs.push(e.detail.path)
+
+  getSaveImg(path, _this){
+    console.log('path', path)
+    wx.getImageInfo({
+      src: path,
+      success(res){
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success(result) {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'none',
+            })
+          },
+        })
+      },
+      fail(){
+        console.log(`flag${_this}`)
+        _this && _this.getSaveImg(path);
+      }
+    })
+  },
+
+  onFriendsImgOK(path) {
+    this.data.shareFriendsImgs.push(path)
     this.data.shareFriendsImg = this.data.shareFriendsImgs[0]
     this.setData({
       shareFriendsImgs: this.data.shareFriendsImgs,
@@ -317,12 +330,6 @@ Page({
     })
     console.log('imgOk', this.data.shareFriendsImgs)
   },
-  // onFriendsImgOK(e) {
-  //     this.setData({
-  //         shareFriendsImg2: e.detail.path
-  //     })
-  //     console.log('imgOk', e);
-  // },
   friendsImgChange(e) {
     console.log(e.detail.current)
     this.data.shareFriendsImg = this.data.shareFriendsImgs[e.detail.current]
@@ -433,9 +440,29 @@ Page({
   },
 
   goModify() {
-    wx.navigateTo({
-      url: '../publish/publish?goods_id=' + this.data.goods_id,
-    })
+
+
+    console.log('this.data.goods.supplier_id',this.data.goods_id)
+
+
+    if(this.data.goods.supplier_id==0){
+
+            wx.navigateTo({
+              url: '../publish/publish?goods_id=' + this.data.goods_id,
+            })
+
+        }else{
+
+        const supid = this.data.goods.supplier_goods_id
+        const sellid = this.data.goods_id
+
+        wx.navigateTo({
+          url: '../goods-up/index?is_modify=true&supid='+supid+'&sellid='+sellid
+        })
+
+       
+
+        }
   },
 
   getShareImg() {

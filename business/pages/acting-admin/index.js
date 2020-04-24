@@ -35,7 +35,7 @@ Page({
             .then(res => {
                 const d = res.data.data
                 this.setData({
-                    list: this.data.list.concat(d.agentlist),
+                    list: d.agentlist,
                     total: d.page.total,
                     cpage: d.page.cpage,
                     totalpage: d.page.totalpage
@@ -136,10 +136,10 @@ Page({
             supplier_agent_id
         } = e.currentTarget.dataset
 
-        const txt = agent_status == 2 ? '通过' : '拒绝'
+        const txt = agent_status == 2 ? '确认要通过Ta吗？' : '确认要拒绝Ta吗？'
 
         Dialog.confirm({
-            title: txt + '申请',
+            title: txt  ,
             message: agent_user,
             context: this,
             confirmButtonText: '确定'
@@ -151,8 +151,10 @@ Page({
                 })
                 .then(res => {
 
+        const txt = agent_status == 2 ? '已通过' : '已拒绝'
+
                     wx.showToast({
-                        title: '操作成功',
+                        title: txt+agent_user,
                         icon: 'none'
                     })
 
@@ -175,7 +177,8 @@ Page({
     getPoster(msg) {
         wx.showLoading()
         util.wx.get('/api/supplier/get_invite_qrcode').then(res => {
-            
+            wx.hideLoading()
+
             if(res.data.code == 200){
             this.setData({
                 posterImg: res.data.data

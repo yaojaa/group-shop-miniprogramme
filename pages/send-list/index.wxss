@@ -73,27 +73,12 @@ page{
 }
 
 .tips{
-  font-size: 14px;
-  line-height: 1.6;
-  padding: 20px;
-  color:#f00;
-}
+  color: #ed6a0c;
+  background-color: #fffbe8;
+  padding: 25rpx 30rpx;
+  font-size: 28rpx;
 
-.header{
-  width: 100%;
-  box-sizing: border-box;
-  padding: 30rpx;
-  display: flex;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  background-color: #fff;
 }
-
-.header .center-btn{
-  margin: 0 5px;
-}
-
 
 .custom-class{
   border-top: 1px solid #ddd;

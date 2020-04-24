@@ -26,7 +26,7 @@
         <view class="dialog-head">
             <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
             <view class="title">
-                <view>提现成功</view>
+                <view>提现成功 请查收</view>
                
             </view>
         </view>

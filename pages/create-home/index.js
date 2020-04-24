@@ -108,6 +108,8 @@ Page({
                        url:app.globalData.backUrl
                      })
 
+                     app.globalData.backUrl = null
+
                   }else{
 
                      wx.redirectTo({
@@ -122,9 +124,23 @@ Page({
             })
           }else if(res.data.code == 2){
 
-                wx.redirectTo({
+
+            if(app.globalData.backUrl){
+
+                     wx.redirectTo({
+                       url:app.globalData.backUrl
+                     })
+
+                     app.globalData.backUrl = null
+                }else{
+
+                   wx.redirectTo({
                     url:'/pages/home/index'
                   })
+
+                }
+
+
 
           }
 

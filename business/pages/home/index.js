@@ -15,7 +15,8 @@ Page({
         loading: true,
         info: '',
         active:0,
-        goodsList:[]
+        goodsList:[],
+        pending_money:''
     },
     handleChange({ detail }) {
         this.setData({
@@ -28,7 +29,8 @@ Page({
     util.wx.get('/api/supplier/get_supplier_detail').then(res=>{
       this.setData({
         info:res.data.data,
-        supplier_logo:res.data.data.supplier_logo
+        supplier_logo:res.data.data.supplier_logo,
+        pending_money:res.data.data.pending_money
       })
 
     if(res.data.code == -1){

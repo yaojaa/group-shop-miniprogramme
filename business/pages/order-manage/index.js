@@ -6,7 +6,7 @@ const util = require('../../../utils/util.js')
 
 Page({
     data: {
-        tab: 3,
+        tab: 2,
         current: "tab1",
         visible: false,
         goods_name: "",
@@ -152,6 +152,9 @@ Page({
             app.globalData.token = wx.getStorageSync('userInfo').token
         }
 
+       app.globalData.apiPrix = 'supplier'
+
+
 
 
       
@@ -168,16 +171,19 @@ Page({
               title: '管理订单'+ (optiton.goods_name || '') 
           })
     },
+
+    /**订单状态(-3:已删除,-2:已关闭, -1:已取消,0:待付款,1:待确认(已付款),2:待发货(已确认),3:待收货(已发货),4:已完成(已收货))            }).then((res) => {
+**/
     handleTab(e) {
 
-        console.log(e)
+        console.log(e.detail.name)
 
         const index = e.detail.index
 
         this.setData({
-            tab: detail.key,
+            tab: index,
             cpage: 1,
-            search_order_status: index
+            search_order_status: index+2
         })
 
         this.getOrderList()
@@ -318,7 +324,7 @@ Page({
     exportExcel() {
         wx.showToast({ title: '开始为你生成...', icon: 'none' })
 
-        util.wx.get('/supplier/get_order_export_by_goods_id', {
+        util.wx.get('/api/supplier/order_export_by_goods_id', {
             goods_id: this.data.goods_id
         }).then(res => {
 
@@ -351,28 +357,18 @@ Page({
         })
 
 
-        
-
-       
-
-
-
-
-
         return new Promise((resolve, reject) => {
             util.wx.get('/api/supplier/get_order_list', {
                 goods_id: this.data.goods_id || '',
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
-                search_order_status: this.data.search_order_status,
+                order_status: this.data.search_order_status,
                 pagesize: 30
-                // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
-            }).then((res) => {
+            }).then(res=>{
 
+                if(res.data.code == 200){
+                
                 var resdata = res.data.data.order_list
-
-
-
                 var key = 'dataList[' + (this.data.cpage - 1) + ']'
 
                 this.setData({
@@ -382,12 +378,12 @@ Page({
 
                 })
 
-                resolve()
-            }, (err) => {
-                reject(err)
+                 resolve()
+                }else{
+                   reject(res.data)
+
+                }
             })
-
-
 
         })
 
@@ -588,15 +584,6 @@ Page({
             visible3: true,
             order_id: target.dataset.id
         })
-    },
-
-
-
-
-    handleChange({ detail }) {
-        this.setData({
-            current: detail.key
-        });
     },
 
     openAlert({ target }) {

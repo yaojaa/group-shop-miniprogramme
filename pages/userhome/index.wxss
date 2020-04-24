@@ -288,5 +288,7 @@ top:0rpx;
     width: 100%;
     height:20px;
 }
-
+.weui-footer{
+   margin-bottom:70px
+}
 

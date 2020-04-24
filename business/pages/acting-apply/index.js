@@ -78,7 +78,7 @@ Page({
 
                     wx.showModal({
                     title:'您还没有创建主页',
-                    content:'请先创建主页',
+                    content:'请先免费创建主页',
                     confirmText:'好的马上',
                     showCancel: false,
                     success:(res)=>{
@@ -140,23 +140,35 @@ Page({
         })
         .then(res=>{
 
+          if(res.data.code ==200){
+
+                Dialog.alert({
+                title: '申请成功',
+                message: res.data.msg
+                }).then(() => {
+
+                  wx.redirectTo({
+                      url:'/pages/supplier-list/index'
+                     })
+              })
+
+          }else{
+
+
             Dialog.alert({
-              title: '申请成功',
-              message: res.data.msg
-            }).then(() => {
+                title: '温馨提示',
+                message: res.data.msg
+                })
 
-                wx.redirectTo({
-                    url:'/pages/supplier-list/index'
-                   })
-            })
+
+          }
+
+          
+           
             this.setData({
-              textareaVal: e.detail.value.apply_remark,
-              submit: true,
-              loading: false
+              loading:false
             })
-
             wx.hideLoading()
-            console.log('第一',res)
 
         })
 

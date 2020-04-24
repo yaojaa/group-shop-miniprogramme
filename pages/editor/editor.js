@@ -1,5 +1,5 @@
 const util = require('../../utils/util')
-
+const app = getApp()
 Page({
   data: {
     formats: {},
@@ -9,12 +9,6 @@ Page({
     keyboardHeight: 0,
     isIOS: false,
     style: 'height: 300px'
-  },
-  onUnload(){
-    if(this.timer){
-      clearTimeout(this.timer)
-    }
-    wx.onKeyboardHeightChang=null
   },
   onLoad() {
     let _this = this;
@@ -30,9 +24,11 @@ Page({
       }
     })
 
-    const platform = wx.getSystemInfoSync().platform
+    const platform = app.globalData.systemInfo.platform
     const isIOS = platform === 'ios'
     this.setData({ isIOS})
+
+
     const that = this
     this.updatePosition(0)
     let keyboardHeight = 0
@@ -186,6 +182,9 @@ Page({
     if(this.timer){
       clearTimeout(this.timer)
     }
-    wx.onKeyboardHeightChang=null
+
+   //取消监听
+   wx.onKeyboardHeightChange(() =>{})    
+   console.log(this.timer,wx.onKeyboardHeightChang)
   }
 })

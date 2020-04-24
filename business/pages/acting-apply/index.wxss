@@ -19,9 +19,9 @@
 }
 .act-textarea{
     width: 100%;
-    height: 300rpx;
+    height: 180rpx;
     padding: 20rpx;
-    background: #efefef;
+    background: #f8f8f8;
     box-sizing: border-box;
     border-radius: 10rpx;
     word-wrap: break-word;

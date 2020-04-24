@@ -66,8 +66,6 @@ Page({
 
            } 
 
-    console.log(d.hasOwnProperty('store') && d.store.hasOwnProperty('store_id'))
-
 
       if(d.hasOwnProperty('store') && d.store.hasOwnProperty('store_id')){
 

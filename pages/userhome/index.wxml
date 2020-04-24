@@ -114,7 +114,7 @@
 
                     bindtap="goDetail"
                     data-id="{{item.goods_id}}"
-                    >{{item.goods_content}}</view>
+                    >{{item.goods_content || ''}}</view>
                     <view class="bottom text-justify">
                         <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} 
                            <!--  <text class="gray" wx:if="{{item._buy_users_count>0}}">{{item._buy_users_count}}人参与</text> -->
@@ -187,10 +187,15 @@
         </view>
     </view>
     <view class="weui-footer">
+
+
+        <button bindtap="goCreateHome" size="mini" type="primary" wx:if="{{!showSetting}}">+我也要免费小程序主页</button>
+
+
         <view class="weui-footer__links">
             <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>
         </view>
-        <view class="weui-footer__text">Copyright © 20018-2025</view>
+        <view class="weui-footer__text">Copyright © 北京原子动力科技有限公司 20018-2025</view>
     </view>
     <van-dialog id="contact" use-slot>
           <van-cell-group border="{{false}}" custom-class="mv-df">

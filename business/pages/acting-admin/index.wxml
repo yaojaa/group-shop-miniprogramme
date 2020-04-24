@@ -1,12 +1,11 @@
 
 <view class="container">
-<van-search  placeholder="输入昵称搜索"  background="#ffaa4f" />
 
    <view class="act-submit">
 
 
 
-    <view><button   bindtap="openShareFriends" >邀请小伙伴</button></view>
+    <view><button size="mini"  bindtap="openShareFriends" >邀请小伙伴</button></view>
     
         <view class="total">共{{total}}人</view>
 
@@ -36,7 +35,7 @@
 
 
                        
-            <text class="f10 left">销量:{{item.order_count}}    粉丝:{{item.fans_count}}</text>
+            <text class="f12 left text-muted">销量:{{item.order_count}}    粉丝:{{item.fans_count}}</text>
 
             <view class=" right" >
                 

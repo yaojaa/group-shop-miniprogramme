@@ -37,7 +37,7 @@
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
-            <block wx:if="{{item.supplier_id}}">修改价格</block>
+            <block wx:if="{{goods.supplier_id}}">改价</block>
             <block wx:else>编辑修改</block>
         </view>
         <view class="flex-item" bindtap="goSendMsg">
@@ -66,6 +66,13 @@
                 <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text>
             </view>
         </view>
+
+        
+
+
+        <block wx:if="{{goods.is_on_sale ==1}}">
+
+
         <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
             <view class="marker"></view>
             <view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
@@ -82,6 +89,21 @@
             </view>
             <view wx:else>{{['','开团中','尚未开始','已结束'][goods.goods_expires]}}</view>
         </view>
+      </block>
+
+     <block wx:if="{{goods.is_on_sale ==2}}">
+
+         <view class="sale-panel-fd off">
+
+            已下架
+             
+         </view>
+
+     </block>
+
+
+
+
     </view>
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
@@ -236,17 +258,17 @@
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-        <form style="flex:2;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow" report-submit="true">
+        <form style="flex:2;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow">
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
-            <button wx:if="{{goods && goods._expires==1 }}" class="buy linenear_bg" formType="submit">
+            <button wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg" formType="submit">
                 立即参与
             </button>
-            <button wx:if="{{goods && goods._expires == 2 }}" class="buy linenear_bg" formType="submit">
+            <button wx:if="{{goods && goods.is_on_sale ==1 && goods._expires == 2 }}" class="buy linenear_bg" formType="submit">
                 未开始
             </button>
-            <button disabled="{{true}}" wx:if="{{goods && goods._expires == 3 || putaway_status==2 }}" class="buy linenear_bg" formType="submit">
+            <button disabled="{{true}}" wx:if="{{goods && goods._expires == 3 || putaway_status==2 || goods.is_on_sale == 2}}" class="buy" formType="submit">
                 已结束
             </button>
         </form>
@@ -292,13 +314,6 @@
             </form>
         </view>
     </i-modal>
-    <view class='share-painter'>
-        <view wx:for="{{shareCardConfig.content.des}}" wx:key="index" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>
-            {{item.txt}}
-        </view>
-        <share-painter palette="{{template2}}" bind:imgOK="onFriendsImgOK" />
-        <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
-    </view>
     <!-- <i-message id="message" /> -->
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页">
         <view class="content-pop">

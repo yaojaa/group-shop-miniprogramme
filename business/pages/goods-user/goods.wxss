@@ -1053,7 +1053,7 @@ display: inline-block;
 }
 
 .sale-panel-bd {
-    padding: 14rpx 30rpx 20rpx;
+    padding: 10rpx 30rpx 10rpx;
     background:linear-gradient(left top, #fffdf9, #fff9e8);
         background: -webkit-linear-gradient(left top, #fffdf9, #fff9e8);
     flex: 1;

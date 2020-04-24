@@ -61,10 +61,21 @@ Page({
 
   copy(opt) {
     let msg = '';
+    let lastNum = []
+    let dup_txt = ''
 
     opt.forEach( (item, i) => {
 
-      msg += `${item.province}${item.city}${item.district}${item.address}, ${item.consignee}, ${item.mobile}, ${item.spec_name}, ${item.qty}件\n\n`
+      lastNum.push(item.create_number)
+
+      if(item.create_number == lastNum[i-1]){
+        console.log('重复1')
+        dup_txt='（同上面地址再加一件）'
+      }else{
+        dup_txt=''
+      }
+
+      msg += `${item.create_number}、 ${dup_txt}${item.province}${item.city}${item.district}${item.address}, ${item.consignee}, ${item.mobile}, ${item.spec_name}, ${item.qty}件\n\n`
 
     })
 

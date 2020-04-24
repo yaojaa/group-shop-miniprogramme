@@ -29,34 +29,52 @@
 	</imgs>
 	<view class="sale-panel">
 		<view class="sale-panel-bd">
-
-			<view class="text-sm text-muted"> 已售 {{goods.sold_number}}
-
-				<text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text>
-				<text wx:else>社区配送</text>
-
-			</view>
+            <view class="price-group">
+                <text class="symbol">￥</text>
+                <text class="price">{{goods.price_min}}</text>
+                <text class="text-sm n-bold">/起</text>
+            </view>
+            <view class="text-sm text-muted">
+                访问人数 {{goods.pageview_count+1}}
+                <text wx:if="{{goods.show_buyerlist!==1}}">已售 {{goods.sold_number}}</text>
+                <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text><text wx:else>社区配送</text>
+            </view>
 
 		</view>
-		<view wx:if="{{goods.is_timelimit==1}}" class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
-			<view class="marker"></view>
-			<view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
-				<view class="tit">距离结束</view>
-				<view class="count-down">
-					<text class="time-area">{{days}}</text><text class="space">:</text>
-					<text class="time-area">{{hours}}</text><text class="space">:</text>
-					<text class="time-area">{{min}}</text><text class="space">:</text>
-					<text class="time-area">{{sec}}</text>
-				</view>
-			</view>
-			<view wx:else>
-				{{['','开团中','尚未开始','已结束'][goods.goods_expires]}}
-			</view>
-		</view>
 
-		<view wx:if="{{goods.is_timelimit==0}}" class="sale-panel-fd">
-			<view class="tit">进行中</view>
-		</view>
+		
+        <block wx:if="{{goods.is_on_sale ==1}}">
+
+
+        <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
+            <view class="marker"></view>
+            <view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
+                <view class="tit">距离结束</view>
+                <view class="count-down">
+                    <text class="time-area">{{days}}</text>
+                    <text class="space">:</text>
+                    <text class="time-area">{{hours}}</text>
+                    <text class="space">:</text>
+                    <text class="time-area">{{min}}</text>
+                    <text class="space">:</text>
+                    <text class="time-area">{{sec}}</text>
+                </view>
+            </view>
+            <view wx:else>{{['','开团中','尚未开始','已结束'][goods.goods_expires]}}</view>
+        </view>
+      </block>
+
+     <block wx:if="{{goods.is_on_sale ==2}}">
+
+         <view class="sale-panel-fd off">
+
+            已下架
+             
+         </view>
+
+     </block>
+
+
 
 	</view>
 

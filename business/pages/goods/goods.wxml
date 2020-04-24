@@ -55,33 +55,53 @@
     </view> -->
     <view class="sale-panel">
         <view class="sale-panel-bd">
-           
-            <view class="text-sm text-muted"> 已售 {{goods.sold_number}} 
-
-                <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）{{goods.is_timelimit}} {{goods.goods_expires}}</text>
-
+            <view class="price-group">
+                <text class="symbol">￥</text>
+                <text class="price">{{goods.price_min}}</text>
+                <text class="text-sm n-bold">/起</text>
             </view>
-          
+            <view class="text-sm text-muted">
+                访问人数 {{goods.pageview_count+1}}
+                <text wx:if="{{goods.show_buyerlist!==1}}">已售 {{goods.sold_number}}</text>
+                <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text><text wx:else>社区配送</text>
+            </view>
         </view>
-        <view wx:if="{{goods.is_timelimit==1}}" class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
+
+        
+        <block wx:if="{{goods.is_on_sale ==1}}">
+
+
+        <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
             <view class="marker"></view>
             <view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
                 <view class="tit">距离结束</view>
                 <view class="count-down">
-                    <text class="time-area">{{days}}</text><text class="space">:</text>
-                    <text class="time-area">{{hours}}</text><text class="space">:</text>
-                    <text class="time-area">{{min}}</text><text class="space">:</text>
+                    <text class="time-area">{{days}}</text>
+                    <text class="space">:</text>
+                    <text class="time-area">{{hours}}</text>
+                    <text class="space">:</text>
+                    <text class="time-area">{{min}}</text>
+                    <text class="space">:</text>
                     <text class="time-area">{{sec}}</text>
                 </view>
             </view>
-            <view wx:else>
-                {{['','开团中','尚未开始','已结束'][goods.goods_expires]}}
-            </view>
+            <view wx:else>{{['','开团中','尚未开始','已结束'][goods.goods_expires]}}</view>
         </view>
+      </block>
 
-        <view  wx:if="{{goods.is_timelimit==0}}" class="time-area tit" style="line-height: 3.5;padding: 0 30px">
-                进行中
-        </view>
+     <block wx:if="{{goods.is_on_sale ==2}}">
+
+         <view class="sale-panel-fd off">
+
+            已下架
+             
+         </view>
+
+     </block>
+
+
+
+
 
     </view>
 
@@ -274,16 +294,6 @@
             </form>
         </view>
     </i-modal>
-
-    <view class='share-painter'>
-        <view wx:for="{{shareCardConfig.content.des}}" wx:key="index" class='des-content' style='width:{{shareCardConfig.width - shareCardConfig.content.margin*2}}rpx; line-height:{{index == 0 ? shareCardConfig.content.title.lineHeight : shareCardConfig.content.lineHeight}}rpx; font-size: {{index == 0 ? shareCardConfig.content.title.fontSize : shareCardConfig.content.fontSize}}rpx; font-weight: {{index == 0 ? 700 : 400}};'>{{item.txt}}</view>
-        <share-painter palette="{{template2}}" bind:imgOK="onFriendsImgOK" />
-        <share-painter palette="{{template}}" bind:imgOK="onFriendsImgOK" />
-    </view>
-    <!--     <i-message id="message" />
- -->
-
-
 
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页" >
 

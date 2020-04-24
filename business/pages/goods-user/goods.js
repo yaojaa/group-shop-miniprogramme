@@ -392,27 +392,6 @@ Page({
 
     },
 
-
-
-    add_access() {
-
-        // if (!app.globalData.userInfo) {
-        //     return
-        // }
-        //提交访问记录
-        util.wx.get('/api/index/add_access', {
-            type: 'goods_detail',
-            obj_id: this.data.goods_id,
-            user_id: app.globalData.userInfo ? app.globalData.userInfo.user_id : '',
-            user_scene: app.globalData.userScene,
-            user_phone: app.globalData.userPhone
-        }).then(res => {
-            this.access_id = res.data.data.access_id
-        }).catch(e => {
-            console.log(e)
-        })
-    },
-
     getGoodsInfo() {
 
         util.wx.get('/api/seller/get_supplier_goods_detail', {
@@ -420,28 +399,13 @@ Page({
             })
             .then(res => {
 
-                console.log(res)
+                console.log(res.data.code)
 
 
 
                 if (res.data.code == 200) {
 
                     const d = res.data.data
-
-                    //绘制朋友圈图片
-                    drawGoods = d;
-
-                    // //延迟5秒再绘制 提高首次加载性能速度
-                    // timer2 = setTimeout(() => {
-
-                    //     if (drawBuyuser) {
-                    //         util.drawShareFriends(this, d, drawBuyuser);
-                    //     }
-
-                    // }, 5e3)
-
-
-
 
                     //把数量设为0
 
@@ -480,44 +444,39 @@ Page({
 
                     this.data.seller = d.goods.user
 
-                }else{
+                }else if (res.data.code == -2000){
 
-                     wx.showModal({
-      title: "2222步",
-      content: currentCache ? "确定为自己城市添加步数吗" : "确定取消为自己城市添加步数吗？",
-      showCancel: false,
-      // cancelText: "取消111",
-      // cancelColor: "#000",
-      confirmText: "确定",
-      confirmColor: "#0f0"
-  })
-                    wx.showToast({
-                        title:res.data.msg
+                     Dialog.alert({
+                      title: '您没权限访问此页',
+                      message: '请先免费创建一个团长主页'
+                    }).then(() => {
+                        app.globalData.backUrl = '/business/pages/goods-user/goods?id='+this.data.goods_id 
+                        wx.redirectTo({
+                            url:'/pages/create-home/index'
+                        })
                     })
 
+                }
+
+                else if(res.data.code == -113 || res.data.code == -114 || res.data.code == -115)
+// 如果-99(没登陆)，-2000(没店铺、审核中、未通过审核)，-113(无权访问，先申请代理), -114(无权访问，代理审核中)，-115(无权访问，代理申请被拒绝)
+                      {
+
+                    Dialog.alert({
+                      title: '您没权限访问此页',
+                      message: '请先申请权限'
+                    }).then(() => {
+                        wx.redirectTo({
+                            url:'/business/pages/acting-apply/index?supplier_id='+res.data.data.supplier_id
+                        })
+                    })
 
                 }
             }).catch(res=>{
-                console.log(res)
+                console.log('catch',res)
 
 
-                if (res.data.code == -113 || res.data.code == -114 || res.data.code == -115) {
-
-                    Dialog.alert({
-                      title: '您无权查看该产品',
-                      message: '请联系相关人员开通权限'
-                    }).then(() => {
-
-                        console.log('e',1111)
-
-                        wx.redirectTo({
-                            url:'/pages/login/login'
-                        })
-                      // on close
-                    })
-
-
-                }
+               
 
 
             })

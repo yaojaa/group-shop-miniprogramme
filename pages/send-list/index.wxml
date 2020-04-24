@@ -1,7 +1,7 @@
 <view class="container">
   <view class='content'>
     <view class="tips">
-        收货地址已经为您整理好，直接复制吧。同一地址多件自动被拆分为多条。
+        当前商品的全部收货地址。注意：1、同一地址下单多件的自动被拆分为了多条。2、序号可能不是连续的，因为有退款订单或取消订单的。3、地址数量特别多的时候，超出粘贴板长度限制将无法全部复制，可使用导出Excel订单功能
     </view> 
     <view class='order'>
       <view class="goodsList">

@@ -17,11 +17,6 @@ Page({
      */
     data: {
         list: [],
-        date: '',
-        dateModal: false,
-        minDate: new Date(1950, 1, 1).getTime(),
-        currentDate: new Date().getTime(),
-        maxDate: new Date().getTime(),
         scopeModal: false,
         scopeValue: '',
         scopeTitle: '',
@@ -280,7 +275,7 @@ Page({
             console.log(res.data.code == -103)
 
 
-            if(res.data.code == 200){
+       if(res.data.code == 200){
 
             wx.redirectTo({
                 url:'../upSuccess/index?goods_id='+res.data.data.goods_id
@@ -294,7 +289,7 @@ Page({
 
 
         }else{
-                  wx.showToast({
+            wx.showToast({
                 title:res.data.msg,
                 icon:'none'
             })

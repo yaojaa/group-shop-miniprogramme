@@ -283,7 +283,7 @@
 					"id": 30,
 					"name": "详情页",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id= 7907  ",
+					"query": "goods_id=2184  ",
 					"scene": null
 				},
 				{
@@ -766,7 +766,7 @@
 					"id": 99,
 					"name": "business/pages/goods-user/goods",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "goods_id=30",
+					"query": "goods_id=39",
 					"scene": null
 				},
 				{
@@ -1005,6 +1005,13 @@
 					"name": "pages/order-detail-seller/index",
 					"pathName": "pages/order-detail-seller/index",
 					"query": "id=12075",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/send-list/index",
+					"pathName": "pages/send-list/index",
+					"query": "goods_id=1854",
 					"scene": null
 				}
 			]
