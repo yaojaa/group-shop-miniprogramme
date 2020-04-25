@@ -13,6 +13,7 @@ VantComponent({
         showCancelButton: Boolean,
         closeOnClickOverlay: Boolean,
         confirmButtonOpenType: String,
+        width:String,
         zIndex: {
             type: Number,
             value: 2000

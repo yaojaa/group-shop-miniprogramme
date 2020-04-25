@@ -22,6 +22,7 @@ Page({
         show_tips: false,
         orderList: [],
         fansNum: '...',
+        showDialog:true // 订阅提示弹窗
     },
     closleTips() {
         this.setData({

@@ -133,8 +133,41 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
-    <van-dialog id="van-dialog" />
-  
+<!-- <van-dialog
+  use-slot
+  title="经营报告"
+  confirmButtonText="我知道了"
+  show="{{ showDialog }}"
+  confirm-button-open-type="getUserInfo"
+  bind:close="onClose"
+  bind:getuserinfo="getUserInfo"
+  customStyle="width:200px"
+  >
+<view class="dialog_content">
+   <view>今日访客数：15</view>
+  <view>今日新订单：5</view>
+  <view>待发货订单：35</view>
+</view>
+
+</van-dialog> -->
+<!-- <van-popup
+  show="{{ showDialog }}"
+  overlay="{{false}}"
+  closeable
+  position="center"
+  custom-style="height: 20%"
+  bind:close="onClose"
+>
+  <view class="dialog_content">
+   <view>今日访客数：15</view>
+  <view>今日新订单：5</view>
+  <view>待发货订单：35</view>
+</view>  
+
+<button>明天再提醒我</button>
+
+</van-popup> -->
+
     <footerbar active="{{0}}"/>
 
 

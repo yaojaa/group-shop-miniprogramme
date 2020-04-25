@@ -10,12 +10,6 @@ Page({
     isIOS: false,
     style: 'height: 300px'
   },
-  onUnload(){
-    if(this.timer){
-      clearTimeout(this.timer)
-    }
-    wx.onKeyboardHeightChang=null
-  },
   onLoad() {
     let _this = this;
 
@@ -186,6 +180,6 @@ Page({
     if(this.timer){
       clearTimeout(this.timer)
     }
-    wx.onKeyboardHeightChang=null
+    wx.onKeyboardHeightChang(e=>{})
   }
 })
