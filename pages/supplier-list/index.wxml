@@ -1,4 +1,11 @@
 <view class="container ">
+
+ <!--  <van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="我创建的团队">内容 1</van-tab>
+  <van-tab title="我加入的团队">内容 2</van-tab>
+</van-tabs>
+ -->
+
   <view class="goods-panel white-bg cf">
     <view class="goods-panel-bd" wx:for="{{suppList}}" wx:key="index">
       <view hover-class="none" class="flex p-df goods-panel-item" >

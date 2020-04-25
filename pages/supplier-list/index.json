@@ -1,5 +1,5 @@
 {
-	"navigationBarTitleText": "发现",
+	"navigationBarTitleText": "团队",
     "usingComponents":
     {
         "i-button": "../../iView/button/index",
@@ -8,6 +8,8 @@
         "van-popup": "../../vant/popup/index",
         "van-card": "../../vant/card/index",
         "footerbar": "../../components/footerbar/index",
-        "van-icon": "../../vant/icon/index"
+        "van-icon": "../../vant/icon/index",
+          "van-tab": "../../vant/tab/index",
+          "van-tabs": "../../vant/tabs/index"
     }
 }
