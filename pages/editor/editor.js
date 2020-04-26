@@ -153,6 +153,41 @@ Page({
     })
   },
 
+  insertVideo() {
+    const that = this;
+    let vw = 'auto', vh = 'auto';
+    wx.showLoading()
+    wx.chooseVideo({
+      sourceType: ['album','camera'],
+      maxDuration: 60,
+      compressed: true,
+      camera: 'back',
+      success(res) {
+        util.uploadFile({filePath: res.tempFilePath}).then(res => {
+          if(res.code == 200){
+            let videoImg = 'https://static.kaixinmatuan.cn/video-cover.jpg';
+            that.editorCtx.insertImage({
+              src: videoImg,
+              width: '100%',
+              alt: res.data.file_url,
+              extClass: 'editorCONTENTVIDEO',
+              success: function () {
+                wx.hideLoading()
+                setTimeout(()=>{
+                    that.editorCtx.scrollIntoView();
+                },500)
+              }
+            })
+
+
+
+            console.log(res.data.file_url)
+          }
+        })
+
+      }
+    })
+  },
   insertImage() {
     const that = this
     util.uploadPicture({

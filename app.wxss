@@ -1759,3 +1759,7 @@ fieldset[disabled] .btn-link {
 }
 
 .editorCONTENTimg{ margin-top: 5px; }
+
+.editorCONTENTVIDEO{ display: none; }
+
+.editor-video{ width: 100%; }
