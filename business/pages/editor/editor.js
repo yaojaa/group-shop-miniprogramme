@@ -1,5 +1,5 @@
 const util = require('../../../utils/util')
-
+const app = getApp()
 Page({
   data: {
     formats: {},
@@ -24,9 +24,11 @@ Page({
       }
     })
 
-    const platform = wx.getSystemInfoSync().platform
+    const platform = app.globalData.systemInfo.platform
     const isIOS = platform === 'ios'
     this.setData({ isIOS})
+
+
     const that = this
     this.updatePosition(0)
     let keyboardHeight = 0
@@ -151,6 +153,41 @@ Page({
     })
   },
 
+  insertVideo() {
+    const that = this;
+    let vw = 'auto', vh = 'auto';
+    wx.showLoading()
+    wx.chooseVideo({
+      sourceType: ['album','camera'],
+      maxDuration: 60,
+      compressed: true,
+      camera: 'back',
+      success(res) {
+        util.uploadFile({filePath: res.tempFilePath}).then(res => {
+          if(res.code == 200){
+            let videoImg = 'https://static.kaixinmatuan.cn/video-cover.jpg';
+            that.editorCtx.insertImage({
+              src: videoImg,
+              width: '100%',
+              alt: res.data.file_url,
+              extClass: 'editorCONTENTVIDEO',
+              success: function () {
+                wx.hideLoading()
+                setTimeout(()=>{
+                    that.editorCtx.scrollIntoView();
+                },500)
+              }
+            })
+
+
+
+            console.log(res.data.file_url)
+          }
+        })
+
+      }
+    })
+  },
   insertImage() {
     const that = this
     util.uploadPicture({
@@ -180,6 +217,9 @@ Page({
     if(this.timer){
       clearTimeout(this.timer)
     }
-    wx.onKeyboardHeightChang(e=>{})
+
+   //取消监听
+   wx.onKeyboardHeightChange(() =>{})    
+   console.log(this.timer,wx.onKeyboardHeightChang)
   }
 })

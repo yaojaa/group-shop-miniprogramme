@@ -396,6 +396,18 @@ Page({
             editorContent.text.replace(/\n/g, '').length == 0 &&
             !/img/g.test(editorContent.html)
 
+          editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
+          editorContent.htmlArr = editorContent.html.split(/<img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/);
+
+          if(editorContent.video){
+            editorContent.video = editorContent.video.map(e => {
+              return e.replace(/(alt=)|["']/g,'')
+            })
+          }else{
+            editorContent.video=[]
+          }
+          console.log(editorContent)
+
           this.setData({
             isEmptyEditor: isEmptyEditor,
             editorContent: editorContent,

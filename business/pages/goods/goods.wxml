@@ -164,7 +164,10 @@
             <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
         <view wx:if="{{!isEmptyEditor}}" class="editor-content">
-            <rich-text nodes="{{editorContent.html}}"></rich-text>
+            <block wx:for='{{editorContent.htmlArr}}'>
+                <rich-text nodes="{{item}}"></rich-text>
+                <video class="editor-video" wx:if="{{editorContent.video[index]}}" src="{{editorContent.video[index]}}"></video>
+            </block>
         </view>
     </view>
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px"></view>

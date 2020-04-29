@@ -557,18 +557,6 @@ Page({
 
           console.log(d)
 
-          //绘制朋友圈图片
-          drawGoods = d
-
-          // //延迟5秒再绘制 提高首次加载性能速度
-          // timer2 = setTimeout(() => {
-
-          //     if (drawBuyuser) {
-          //         util.drawShareFriends(this, d, drawBuyuser);
-          //     }
-
-          // }, 5e3)
-
           //把数量设为0
           //
           d.goods.goods_spec.forEach((item) => {
@@ -594,6 +582,18 @@ Page({
           let isEmptyEditor =
             editorContent.text.replace(/\n/g, '').length == 0 &&
             !/img/g.test(editorContent.html)
+
+          editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
+          editorContent.htmlArr = editorContent.html.split(/<img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/);
+
+          if(editorContent.video){
+            editorContent.video = editorContent.video.map(e => {
+              return e.replace(/(alt=)|["']/g,'')
+            })
+          }else{
+            editorContent.video=[]
+          }
+          console.log(editorContent)
 
           // editorContent.html = editorContent.html.replace(/<img\s/g,'<img class="editor-img" ')
 
