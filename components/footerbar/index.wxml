@@ -2,8 +2,8 @@
     <van-tabbar-item bind:click="goHome" icon="home-o">首页</van-tabbar-item>
 
 <!--     <van-tabbar-item bind:click="goPublish" icon="add">发布</van-tabbar-item>
- -->     <van-tabbar-item bind:click="goOrders" icon="friends-o" >订单</van-tabbar-item>
-     <van-tabbar-item bind:click="goMySupplier" icon="friends-o">发现</van-tabbar-item>
+ -->     <van-tabbar-item bind:click="goOrders" icon="description" >订单</van-tabbar-item>
+     <van-tabbar-item bind:click="goMySupplier" icon="friends-o">团队</van-tabbar-item>
 
     <van-tabbar-item bind:click="goMy" icon="user-circle-o">我的</van-tabbar-item>
 </van-tabbar>

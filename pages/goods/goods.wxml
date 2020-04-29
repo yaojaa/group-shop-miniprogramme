@@ -48,10 +48,24 @@
         </view>
         <view class="flex-item" bindtap="goOrders">
             <view class="num">
-                <van-icon name="friends-o" color="#4fac05" size="20px" />
+                <van-icon name="orders-o" color="#4fac05" size="20px" />
             </view>
             管理订单
         </view>
+        
+        <view class="flex-item" bindtap="openInviteFriends">
+            <view class="num">
+                <van-icon name="friends-o" color="#4fac05" size="20px" />
+            </view>
+            邀请帮卖
+        </view>
+<!-- 
+         <view class="flex-item" bindtap="goOrders">
+            <view class="num">
+                <van-icon name="ellipsis" color="#4fac05" size="20px" />
+            </view>
+            更多
+        </view> -->
     </view>
     <view class="sale-panel">
         <view class="sale-panel-bd">
@@ -127,7 +141,7 @@
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}} white-bg ph-df cf">
             <block wx:for="{{goods_spec}}" wx:key="spec_id">
                 <view class="solid-top"></view>
-                <view class="goods-price-item flex-box" bindtap="handleSpecPopup" data-item="{{item}}">
+                <view class="goods-price-item flex-box"  bindtap="handleSpecPopup" data-item="{{item}}">
                     <view class="pics" wx:if="{{item.spec_pic}}">
                         <image data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/100/h/100/format/jpg/q/85"></image>
                         <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">
@@ -258,12 +272,25 @@
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
+
+        <view class='icon' wx:if="{{is_help_sale}}" style="flex:2">
+
+
+            <button bindtap="helpSaleUp" wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg">
+                我要帮卖
+            </button>
+        </view>
+
+
+
         <form style="flex:2;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow">
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
             <button wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg" formType="submit">
-                立即参与
+                 
+                <block wx:if="{{is_help_sale}}">代客下单</block>
+                <block wx:else>立即参与</block>
             </button>
             <button wx:if="{{goods && goods.is_on_sale ==1 && goods._expires == 2 }}" class="buy linenear_bg" formType="submit">
                 未开始
@@ -327,6 +354,8 @@
             <button size="mini" type="default" plain="false" bindtap="rejectAuth">取 消</button>
         </view>
     </van-popup>
+
+
     <van-action-sheet show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <button class="flex-sub btn-reset" open-type="share">
@@ -339,6 +368,26 @@
             </view>
         </view>
     </van-action-sheet>
+
+
+      <van-action-sheet show="{{ showInviteFriend }}" title="邀请好友代理帮卖" bind:close="closeInviteFriend">
+        <view class="tips pv-xs">
+            将小程序或者海报转发好友帮你分销，订单会自动汇总到你这里。 可以点击这里<text class="text-warning">修改代理价格</text>
+        </view>
+        <view class="flex text-center p-xl ">
+            <button class="flex-sub btn-reset" data-type="invit" open-type="share">
+                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
+                <view class="text-weak mt-sm text-df">转发小程序</view>
+            </button>
+            <view bindtap='handlePoster' class="flex-sub share-pyq">
+                <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
+                <view class="text-weak mt-sm">生成邀请海报</view>
+            </view>
+        </view>
+    </van-action-sheet>
+
+
+
     <!-- <view show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;"> -->
     <view hidden="{{ !poster }}" class="share-friends-box">
         <view class='share-friends-img' bindtap='handlePoster'>
@@ -382,30 +431,47 @@
     </van-dialog>
     <van-popup show="{{ specPopup }}" custom-style="background:none;" position="bottom" bind:close="handleSpecPopup">
         <view class="spec-wrap">
-            <scroll-view scroll-y style="max-height: 850rpx" class="spec-main">
-                <van-icon name="close" class="close" size="48rpx" color="#999" bind:click="handleSpecPopup" />
-                <view class="body">
-                    <view class="panel-box">
-                        <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
-                        <view class="panel-bd ml-sm">
-                            <view class="bolds mr-xl">{{specItem.spec_name}}</view>
-                            <view class="text-sm text-gray mt-xs">{{specItem.spec_desc}}</view>
-                            <view class="price-group text-lg mt-xs">
-                                <text>￥</text>
-                                <text>{{specItem.spec_price}}</text>
-                            </view>
+        <scroll-view scroll-y style="max-height: 850rpx" class="spec-main">
+            <van-icon name="close" class="close" size="48rpx" color="#999" bind:click="handleSpecPopup" />
+            <view class="body">
+                <view class="panel-box">
+                    <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
+                    <view class="panel-bd ml-sm">
+                        <view class="bolds mr-xl">{{specItem.spec_name}}</view>
+                        <view class="text-sm text-gray mt-xs">{{specItem.spec_desc}}</view>
+                        <view class="price-group text-lg mt-xs">
+                            <text class="symbol">￥</text>
+                            <text class="number">{{specItem.spec_price}}</text>
                         </view>
                     </view>
-                    <view class="content p-df mt-df round-df" wx:if="{{specItem.spec_content}}">
-                        <view class="pb-df primary-text text-lg text-center cf">商品介绍</view>
-                        <view class="text-gray">{{specItem.spec_content}}</view>
-                    </view>
-                    <view wx:if="{{specItem.spec_pic.length}}">
-                        <image src="{{item}}" wx:for="{{specItem.spec_pic}}" class="w-full pt-sm" wx:key="index" mode="widthFix"></image>
-                    </view>
                 </view>
-            </scroll-view>
+                <view class="content p-df mt-df round-df" wx:if="{{specItem.spec_content}}">
+                    <view class="pb-df primary-text text-lg text-center cf">商品介绍</view>
+                    <view class="text-gray">{{specItem.spec_content}}</view>
+                </view>
+                <view wx:if="{{specItem.spec_pic.length}}">
+                    <image src="{{item}}" wx:for="{{specItem.spec_pic}}" class="w-full pt-sm" wx:key="index" mode="widthFix"></image>
+                </view>
+            </view>
+        </scroll-view>
         </view>
     </van-popup>
     <wux-gallery id="wux-gallery" />
+
+       <van-dialog  id="dialog-success" use-slot>
+        <view class="dialog-head">
+            <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
+            <view class="title">
+                <view>你已经是帮卖成员</view>
+            </view>
+        </view>
+        <view class="p-lg text-center text-gray text-df">
+        点击我要帮卖上架商品吧
+        </view>
+    </van-dialog>
+
+
+
+
+
 </view>

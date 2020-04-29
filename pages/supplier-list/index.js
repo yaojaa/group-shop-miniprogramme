@@ -4,7 +4,9 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     showAuth: false,
-    suppList: {}
+    suppList: {},
+    helpSaleList:[],
+    groupUserList:[]
   },
   onLoad: function(e) {
     //未登录 弹出授权弹窗
@@ -15,6 +17,8 @@ Page({
     }
 
     this.getMySupp()
+    this.getMyHelpSale()
+    this.getMyHelpSaleUser()
   },
 
   toSupphome(e) {
@@ -22,6 +26,59 @@ Page({
     wx.navigateTo({
       url: '../supplier-home/index?id=' + id
     })
+  },
+
+  //获取我的帮卖成员
+  //
+  getMyHelpSaleUser(){
+
+     wx.showLoading()
+    util.wx.get('/api/helper/store_helper_list').then(res => {
+        wx.hideLoading()
+
+      if(res.data.code == 200){
+      this.setData({
+        groupUserList: res.data.data
+      })
+    }else{
+
+    }
+    }).catch(e=>{
+      wx.showToast({
+        title:'服务器休息一下 请稍后'
+      })
+    })
+
+
+
+   
+
+  },
+
+
+  //获取我加入的帮卖店铺
+  getMyHelpSale(){
+
+  
+    wx.showLoading()
+    util.wx.get('/api/helper/joined_store_list').then(res => {
+        wx.hideLoading()
+
+      if(res.data.code == 200){
+      this.setData({
+        helpSaleList: res.data.data.list
+      })
+    }else{
+
+    }
+    }).catch(e=>{
+      wx.showToast({
+        title:'服务器休息一下 请稍后'
+      })
+    })
+
+
+
   },
 
   getMySupp() {

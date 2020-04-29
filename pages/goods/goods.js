@@ -5,7 +5,6 @@ const { $Message } = require('../../iView/base/index')
 import { $wuxGallery } from '../../wux/index'
 import { $wuxCountDown } from '../../wux/index'
 import Dialog from '../../vant/dialog/dialog'
-console.log('$wuxGallery', $wuxGallery)
 
 const app = getApp()
 app.that = null
@@ -121,6 +120,8 @@ Page({
     editorContent: null,
     specPopup: false,
     specItem: {},
+    showInviteFriend:false,
+    is_help_sale:false
   },
   handleSpecPopup(e) {
     let { item } = e.currentTarget.dataset
@@ -129,14 +130,16 @@ Page({
       specPopup: !this.data.specPopup,
     })
   },
+
+  checkIsHelper(){
+    util.wx.get('/api/helper/is_store_helper').then(res=>{
+
+      console.log(res)
+
+    })
+
+  },
   openUrl() {
-    // let that = this
-    // let reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
-    // this.data.goods.goods_content.replace(reg, function(website) {
-    //     that.setData({
-    //         url: website
-    //     })
-    // });
     wx.setClipboardData({
       data: this.data.goods.goods_content,
       success: function (res) {
@@ -232,19 +235,51 @@ Page({
     })
   },
   onReady: function () {},
-  onShareAppMessage: function () {
+  onShareAppMessage: function (e) {
+
+    console.log(e)
+
+
+    const {type} = e.target.dataset
+    var pathParam = ''
+
+    if(type == 'invit'){
+
+      var title = this.data.goods.user.nickname +'邀请你帮卖【'+this.data.goods.goods_name+'】'
+         pathParam = '&help_sale=true'
+    }else{
+
+      var title = '['+this.data.goods.user.nickname+']'+ this.data.goods.goods_name
+
+    }
+
+    console.log('/pages/goods/goods?goods_id=' +
+        this.data.goods.goods_id +
+        '&from_id=' +
+        uid+pathParam)
+
+
+
+
     if (app.globalData.userInfo) {
       uid = app.globalData.userInfo.user_id
     }
     return {
-      title: this.data.goods.goods_name || '我开了一个团推荐大家看看',
+      title: title,
       imageUrl: this.shareImg,
       path:
         '/pages/goods/goods?goods_id=' +
         this.data.goods.goods_id +
         '&from_id=' +
-        uid,
+        uid+pathParam
     }
+  },
+    /**弹出邀请**/
+    openInviteFriends() {
+ 
+    this.setData({
+      showInviteFriend: true,
+    })
   },
 
   openShareFriends() {
@@ -268,6 +303,13 @@ Page({
     this.setData({
       showShareFriendsCard: false,
     })
+  },
+  closeInviteFriend(){
+
+      this.setData({
+      showInviteFriend: false,
+    })
+
   },
   handlePoster() {
     this.setData({
@@ -510,7 +552,6 @@ Page({
       .then((res) => {
         console.log('getGoodsInfo res.data.code', res.data.code == 200)
         if (res.data.code == 200) {
-          console.log('20030303030')
 
           const d = res.data.data
 
@@ -572,6 +613,10 @@ Page({
           this.wuxCountDown(formatDateTime(d.goods.end_time))
           ;(this.data.seller = d.goods.user),
             (this.data.store_id = d.goods.store.store_id)
+
+            if(this.data.is_help_sale){
+              this.applyHelpSale()
+            }
 
           //显示管理面板
 
@@ -644,6 +689,23 @@ Page({
 
     this.data.goods_id = option.goods_id || option.id || option
     this.data.from_id = option.from_id || ''
+
+    //url里有帮卖参数 表示邀请帮卖页面
+    if(option.help_sale){
+      this.setData({
+        is_help_sale:true
+      })
+
+
+
+    }
+
+
+
+
+
+
+    this.checkIsHelper()
 
     this.getShareImg()
     this.getGoodsInfo()
@@ -1130,9 +1192,6 @@ Page({
       '----' +
       this.data.seller.nickname +
       '\n' +
-      '⏰ 截团时间:' +
-      util.formatTime(new Date(this.data.goods.end_time * 1000)) +
-      '\n' +
       '为节约时间，请大家继续在小程序里接龙哦:\n' +
       userList.join('\n')
 
@@ -1146,6 +1205,61 @@ Page({
         })
       },
     })
+  },
+
+  /**申请自动加入帮卖**/
+  applyHelpSale(){
+
+
+      Dialog.alert({
+                        selector: '#dialog-success',
+                        confirmButtonText: '好的'
+                    }).then(() => {
+
+                    })
+
+     util.wx.post('/api/helper/apply_store_helper',{
+      store_id:this.data.store_id
+    }).then(res=>{
+
+
+
+
+    })
+
+    
+
+
+
+  },
+
+  helpSaleUp:function(){
+
+
+    util.wx.get('/api/helper/add_agent_goods',{
+      goods_id:this.data.goods_id
+    }).then(res=>{
+
+      if(res.data.code ==200){
+
+        const id = res.data.data.goods_id
+
+          wx.navigateTo({
+          url:'../help-sell-up/index?goods_id='+this.data.goods.goods_id
+        })
+
+      }else{
+        wx.showToast({
+          title:res.data.msg,
+          icon:'none'
+        })
+      }
+
+
+    })
+
+      
+
   },
   // buyUserScroll: function(e) {
   //     if(orderUsersFlag){

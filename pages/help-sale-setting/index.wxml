@@ -1,0 +1,47 @@
+<view class="container gray-wrap  cf">
+    
+
+    <view class="notice mt-sm">
+        设置您的代理供货价 
+    </view>
+
+
+    <form bindsubmit="submitForm">
+        <view class="white-bg ph-df pv-sm flex align-center">
+             <image src="{{info.goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75" class="img-df"></image>
+             <view class="flex-sub ml-sm">{{info.goods_name}}</view>
+        </view>
+   <!--      <van-cell-group custom-class="mt-sm">
+            <van-field value="{{scopeTitle}}" name=" " label="商品分类" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
+        </van-cell-group> -->
+        <view class="specs-item" wx:for="{{info.goods_spec}}" wx:key="index">
+            <van-cell-group custom-class="mt-sm">
+                <van-field value="{{item.spec_name}}" name="" label="规格名称" placeholder="" input-align="right" readonly></van-field>
+                <van-field value="{{item.spec_price}}元" name="" label="参考售价" placeholder="" input-align="right" readonly></van-field>
+            </van-cell-group>
+            <view class="solid round-df">
+                <van-field use-button-slot data-spec_price="{{item.spec_price}}"  value="{{item.sub_agent_price}}" error-message="{{errorMsg}}" name="" label="设置供货价" 
+                data-index="{{index}}" placeholder="请输入你给代理的价格" bind:blur="validate" input-align="right" input-class="text-lg coral-text">
+                    <view slot="button">元</view>
+                </van-field>
+            </view>
+           
+        </view>
+        <view class="m-df flex">
+
+               <button class="btn flex-item xl linenear_bg_light" bindtap="cancelHelp" disabled="{{btnDisable}}">
+                取消设置
+            </button>
+
+            <button class="btn flex-item  xl primary  linenear_bg" bindtap="modifyPrice" disabled="{{btnDisable}}">
+                保存设置
+            </button>
+    
+
+
+        </view>
+    </form>
+
+    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
+</view>

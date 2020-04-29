@@ -55,7 +55,10 @@
     "pages/apply_shop/index",
     "pages/spec-detail/index",
     "pages/publish-setting/index",
-    "pages/order-detail-seller/index"
+    "pages/order-detail-seller/index",
+    "pages/help-sale-setting/index",
+    "pages/help-sale-invite/index",
+    "pages/help-sale-up/index"
 
   ],
   "subpackages": [

@@ -21,10 +21,12 @@
   padding: 15px 0 20px;
   color: #999;
   position: relative;
+  font-size: 12px
 }
 
 .menu .num {
   margin-bottom: 10px;
+  font-size: 14px
 }
 
 .text {
@@ -1118,4 +1120,10 @@
 }
 .spec-main .price-group {
   font-size: 32rpx;
+}
+
+.tips{
+  padding:20px;
+  line-height: 1.6;
+  color: #555
 }

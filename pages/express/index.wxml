@@ -6,20 +6,22 @@
 />
     <view class="express-area" wx:for="{{express}}" wx:key="{{item}}">
         <van-cell-group custom-class="mv-sm">
-            <view class="express">
-                <van-field input-class ="f20"  value="{{item.express_company}}" label="快递名称" placeholder="自动识别快递公司" readonly="{{true}}" data-index="{{index}}" bindtap="handleEmsPopup" use-button-slot>
-                </van-field>
-
-                    <i-icon slot="button" bindtap="delexpress" data-index="{{index}}" type="trash" color="#999999" size="28"  />
-            </view>
+          
 
 
             <van-field input-class ="f20"  value="{{item.express_code}}" label="填写单号" placeholder="请输入运单号"  data-index="{{index}}" bind:blur="blurInput" bind:focus="saveOldExpress" bind:change="inputDuplex" use-button-slot>
               <!-- <button class="btn primary sm hollow" slot="button" bindtap="checkexpress" data-index="{{index}}" wx:if="{{item.express_code}}">
                 查询
               </button> -->
-              <button class="btn primary sm hollow" slot="button" bindtap="saomaInput" data-index="{{index}}" wx:if="{{!item.express_code}}">扫描单号识别</button>
+              <button class="btn primary sm hollow" slot="button" bindtap="saomaInput" data-index="{{index}}" wx:if="{{!item.express_code}}">扫描单号</button>
             </van-field >
+
+                <van-field input-class ="f20"  value="{{item.express_company}}" label="快递名称" placeholder="请选择快递公司（默认自动识别）" readonly="{{true}}" data-index="{{index}}" bindtap="handleEmsPopup" use-button-slot>
+                         <i-icon class="right" slot="button" catchtap="delexpress" data-index="{{index}}" type="trash" color="#999999" size="28"  />
+                </van-field>
+
+               
+
         </van-cell-group>
     </view>
   <!--   <view class="express-area">
@@ -33,11 +35,23 @@
         </van-cell-group>
     </view> -->
 
+
+
+
+
     <view class="add-number" bindtap="addExpress">+添加新单号</view>
 
 
 
-
+<van-cell-group>
+  <van-cell title="同时发送物流提醒通知"  label="顾客将收到包含物流信息的微信通知" >
+<van-switch  slot="right-icon"
+  checked="{{ send_msg }}"
+   bind:change="onSend_msgChange" 
+  active-color="#06ae5c"
+/>
+  </van-cell>
+</van-cell-group>
 
     <!-- </block> -->
 

@@ -4,7 +4,7 @@
 <van-switch  slot="right-icon"
   checked="{{ show_buyerlist }}"
    bind:change="onChange" 
-  active-color="#06ae5c"
+  active-color="#69b90b"
 />
   </van-cell>
 </van-cell-group>

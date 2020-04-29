@@ -94,7 +94,7 @@ Page({
     editorContent: null,
     isEmptyEditor: true,
     specItem: '',
-    show_buyerlist:0
+    agent_opt :0 //'是否可以代理:0否;1是',
   },
   // darg start5
   // 改变监听
@@ -161,6 +161,28 @@ Page({
       url:
         '/business/pages/postageSetting/index?hasSelect=' +
         this.data.freight_tpl_id,
+    })
+  },
+  toHelpSetting() {
+
+    if(this.data.goods_name == '' || this.data.goods_images.length ==0 || this.data.spec[0].spec_name=='' || this.data.spec[0].spec_price==''){
+
+      return wx.showToast({
+        title:'请先填写完整',
+        icon:'none'
+      })
+
+    }
+
+    app.globalData.helpSaleData ={
+      goods_name:this.data.goods_name,
+      goods_cover:this.data.goods_images[0].img_url,
+      goods_spec:this.data.spec
+    }
+
+
+    wx.navigateTo({
+      url:'../help-sale-setting/index',
     })
   },
   // 删除图片
@@ -830,8 +852,6 @@ Page({
 
   handleClickItem2({ detail }) {
     const index = detail.index + 1
-
-    console.log(index)
 
     this.setData({
       delivery_method: index,

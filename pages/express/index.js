@@ -20,6 +20,7 @@ Page({
         checked: true,
         emsPopup: false,
         btnText:'返 回',
+        send_msg:false,
         express_data:[
         {"name":"\u81ea\u52a8\u8bc6\u522b\u5feb\u9012\u516c\u53f8"},
         {"name":"\u987a\u4e30\u901f\u8fd0"},
@@ -51,6 +52,23 @@ Page({
             oldExpress.push(data)
         })
     },
+    onSend_msgChange({detail}){
+
+            this.setData({ send_msg: detail })
+
+    },
+    /**发送物流提醒通知**/
+    send_msg_tips(){
+
+        util.wx.post('/api/seller/send_delivery_notice',{
+            order_id:this.data.order_id
+        }).then(res=>{
+
+
+        })
+
+    },
+
     changeEms(e){
        const { value } = e.detail;
 
@@ -72,6 +90,7 @@ Page({
 
 
         this.data.order_sn = opt.sn
+        this.data.order_id = opt.order_id
 
         wx.showLoading()
 
@@ -85,7 +104,6 @@ Page({
         wx.hideLoading()
 
         if(res.data.code == 200){
-
 
             const d = res.data.data
 
@@ -103,24 +121,60 @@ Page({
 
 
         //读取剪切板快递单号
-        //
-        // wx.getClipboardData({
-        //       success :(res)=>{
-        //        var patt = /^[A-Za-z0-9-]{4,35}$/
+        
+        wx.getClipboardData({
+              success :(res)=>{
+               var patt = /[A-Za-z0-9]{12,35}/
 
-        //           if(patt.test(res.data)){
 
-        //             const key = 'express['+(this.data.express.length-1)+'].express_code'
-        //             console.log(key)
 
-        //             this.setData({
-        //                 [key]:res.data
-        //             })
 
-        //           }
+                  if(res.data.match(patt).length>0){
+
+
+                      var code = res.data.match(patt)[0]
+
+
+                    const key = 'express['+(this.data.express.length-1)+'].express_code'
+                    console.log(key)
+                 
+                    wx.showModal({
+                      title: "是否自动粘贴",
+                      content:'检测到你可能复制了快递单号：' +code,
+                      showCancel: true,
+                      cancelText: "取消",
+                      confirmText: "使用",
+                      success:  (r)=>{
+                            if (r.confirm) {
+                            this.setData({
+                            [key]:code}
+                            )
+
+                             wx.setClipboardData({
+                                   data: '',
+                                   success() {
+                                      wx.hideToast()
+                                }
+                            })
+
+                            this.setData({
+                                btnText:'确认添加'
+                            })
+
+
+                            }
+                      }
+                    })
+
+
+
+
+                    
+
+                  }
                 
-        //       }
-        //     })
+              }
+            })
 
         }
 
@@ -151,7 +205,7 @@ Page({
 
         if(this.data.express.length == 0){
             this.data.express.push({
-              express_company: app.globalData.last_express || '自动识别快递公司',
+              express_company: app.globalData.last_express,
                 express_code:''
             })
         }
@@ -184,7 +238,7 @@ Page({
         let currentExpress = this.data.express[i];
 
         wx.showModal({
-          content: '是否确认删除？',
+          content: '确认要删除此快递单号吗？',
           success: (res)=> {
             if (res.confirm) {
 
@@ -265,6 +319,9 @@ Page({
                         })
 
 
+                        this.send_msg_tips()
+
+
                          if(this.data.pindex){
                              util.setParentData({
                              [keyExpress]: ['ok']
@@ -298,6 +355,8 @@ Page({
         let express = this.data.express.filter(e => {
             return e.express_company && e.express_code && !e.express_id
         })
+
+        console.log(express)
         this.setData({
             btnText: express.length == 0 ? '返 回' : '确 认 添 加'
         })
@@ -330,7 +389,7 @@ Page({
             return;
         }
         this.data.express.push({
-            express_company: this.data.express.length?this.data.express[this.data.express.length-1].express_company : '自动识别快递公司',
+            express_company: this.data.express.length?this.data.express[this.data.express.length-1].express_company : '',
             express_code:""
         })
         this.setData({

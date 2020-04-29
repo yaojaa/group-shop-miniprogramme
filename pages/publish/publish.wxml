@@ -20,7 +20,7 @@
         </view>
         <view class="weui-cells weui-cells_form white-bg" style="overflow: hidden;">
             <view class="weui-cell">
-                <input name="goods_name" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="请输入标题" />
+                <input name="goods_name" data-key="goods_name" bindchange="inputDuplex" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="请输入标题" />
             </view>
             <block wx:if='{{isEmptyEditor}}'>
                 <view class="weui-cell">
@@ -276,21 +276,24 @@
         </i-panel>
 
 
- <!--        <i-panel title="代理设置" i-class="no-margin">
-            
+        <i-panel i-class="no-margin">
                 <view class="weui-cell">
                     <view class="weui-cell__hd">
                         <view class="weui-label">代理帮卖：</view>
                     </view>
                     <view class="weui-cell__bd"></view>
-                    <view class="weui-cell__ft" bindtap="toPostageSetting">
+                    <view class="weui-cell__ft" bindtap="toHelpSetting">
                         <view class="weui-icon-warn">
-                            去开启
+                            <van-switch  slot="right-icon"
+                              checked="{{ agent_opt==0?false:true}}"
+                               bind:change="onChange" 
+                               active-color="#69b90b"
+                            />
                         </view>
                     </view>
                 </view>
         </i-panel>
- -->
+
 
 
         <view class="orther" bindtap="toMore">
