@@ -766,7 +766,7 @@
 					"id": 99,
 					"name": "business/pages/goods-user/goods",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "goods_id=39",
+					"query": "goods_id=15",
 					"scene": null
 				},
 				{
@@ -1012,6 +1012,13 @@
 					"name": "pages/send-list/index",
 					"pathName": "pages/send-list/index",
 					"query": "goods_id=1854",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/publish/publish",
+					"pathName": "business/pages/publish/publish",
+					"query": "goods_id=15",
 					"scene": null
 				}
 			]

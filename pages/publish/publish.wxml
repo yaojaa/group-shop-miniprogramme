@@ -227,18 +227,23 @@
                 <i-action-sheet visible="{{ visible2 }}" actions="{{ actions2 }}" show-cancel bind:cancel="handleCancel2" bind:click="handleClickItem2" />
                 <view class="weui-cell">
                     <view class="weui-cell__hd">
-                        <view class="weui-label">结束时间：</view>
+                        <view class="weui-label">限时售卖：</view>
                     </view>
-                    <view class="weui-cell__bd"></view>
-                    <view class="weui-cell__ft">
+                    <!-- <view class="weui-cell__bd"></view> -->
+                    <view class="weui-cell__ft" style="flex-grow: 1;">
                         <view class="weui-icon-warn">
                             <view class="timePicker" wx:if="{{!isShowTimePicker}}" bindtap="showTimePicker">
-                                默认30天
+                                默认不启用
                                 <i-icon type="enter" size="28" />
                             </view>
-                            <view class="timePicker" wx:if="{{isShowTimePicker}}">
-                                <i-datepicker label="起：" title="开始日期" date="{{picker.start_date}}" time="{{picker.start_time}}" bind:datachange="start_time"></i-datepicker>
-                                <i-datepicker label="至：" title="结束日期" date="{{picker.end_date}}" time="{{picker.end_time}}" bind:datachange="end_time"></i-datepicker>
+                            <view class="timePicker" style="display: flex; align-items: center; justify-content: space-between;" wx:else>
+                                <view bindtap="hideTimePicker" style="color: #c00">
+                                    不启用
+                                </view>
+                                <view>
+                                    <i-datepicker label="起：" title="开始日期" date="{{picker.start_date}}" time="{{picker.start_time}}" bind:datachange="start_time"></i-datepicker>
+                                    <i-datepicker label="至：" title="结束日期" date="{{picker.end_date}}" time="{{picker.end_time}}" bind:datachange="end_time"></i-datepicker>
+                                </view>
                             </view>
                         </view>
                     </view>
