@@ -766,7 +766,7 @@
 					"id": 99,
 					"name": "business/pages/goods-user/goods",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "goods_id=39",
+					"query": "goods_id=15",
 					"scene": null
 				},
 				{
@@ -1054,13 +1054,6 @@
 					"name": "订单管理",
 					"pathName": "pages/ordermanage/list",
 					"query": "id=1867&goods_name=%E4%B8%9C%E5%8C%97%E7%94%9C%E7%B3%AF%E7%8E%89%E7%B1%B3%20%20%E5%90%83%E7%B2%97%E7%B2%AE%E5%B0%B1%E8%A6%81%E5%90%83%E5%81%A5%E5%BA%B7%E5%8F%88%E7%BE%8E%E5%91%B3%E7%9A%84&delivery_method=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/supplier-list/index",
-					"pathName": "pages/supplier-list/index",
-					"query": "",
 					"scene": null
 				}
 			]

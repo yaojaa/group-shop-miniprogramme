@@ -53,12 +53,12 @@
             管理订单
         </view>
         
-        <view class="flex-item" bindtap="openInviteFriends">
+  <!--       <view class="flex-item" bindtap="openInviteFriends">
             <view class="num">
                 <van-icon name="friends-o" color="#4fac05" size="20px" />
             </view>
             邀请帮卖
-        </view>
+        </view> -->
 <!-- 
          <view class="flex-item" bindtap="goOrders">
             <view class="num">
@@ -84,12 +84,11 @@
         
 
 
-        <block wx:if="{{goods.is_on_sale ==1}}">
-
+     <block wx:if="{{goods.is_on_sale ==1}}">
 
         <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
             <view class="marker"></view>
-            <view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
+            <view wx:if="{{countdownTime && goods.is_timelimit==1 && goods.goods_expires ==1 }}">
                 <view class="tit">距离结束</view>
                 <view class="count-down">
                     <text class="time-area">{{days}}</text>
@@ -434,8 +433,7 @@
     </van-dialog>
     <van-popup show="{{ specPopup }}" custom-style="background:none;" position="bottom" bind:close="handleSpecPopup">
         <view class="spec-wrap">
-        <scroll-view scroll-y style="max-height: 850rpx" class="spec-main">
-            <van-icon name="close" class="close" size="48rpx" color="#999" bind:click="handleSpecPopup" />
+        <scroll-view scroll-y style="max-height: 950rpx" class="spec-main">
             <view class="body">
                 <view class="panel-box">
                     <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
@@ -456,6 +454,8 @@
                     <image src="{{item}}" wx:for="{{specItem.spec_pic}}" class="w-full pt-sm" wx:key="index" mode="widthFix"></image>
                 </view>
             </view>
+
+            <van-icon name="close" class="close_bottom" size="58rpx" color="#fff" bind:click="handleSpecPopup" />
         </scroll-view>
         </view>
     </van-popup>

@@ -1105,16 +1105,17 @@
   position: relative;
   border-radius: 10rpx 10px 0 0;
 }
-.spec-main .close {
-  position: fixed;
-  top: 14rpx;
-  right: 10px;
-  color: #999;
-  z-index: 9;
-  background-color: #fff;
-  border-radius: 100px;
-}
 
+.spec-main .close_bottom {
+  position: fixed;
+  bottom: 14rpx;
+  left: 50%;
+  margin-left: -25rpx;
+  color: #fff;
+  z-index: 9;
+  background-color: #333;
+  border-radius: 50%;
+}
 .spec-main .content {
   background: #f8f8f8;
 }

@@ -593,7 +593,6 @@ Page({
           }else{
             editorContent.video=[]
           }
-          console.log(editorContent)
 
           // editorContent.html = editorContent.html.replace(/<img\s/g,'<img class="editor-img" ')
 
@@ -610,7 +609,12 @@ Page({
             countdownTime: new Date(d.goods.end_time * 1000).getTime(),
           })
 
-          this.wuxCountDown(formatDateTime(d.goods.end_time))
+          if(d.goods.is_timelimit == 1){
+
+            this.wuxCountDown(formatDateTime(d.goods.end_time))
+          }
+
+
           ;(this.data.seller = d.goods.user),
             (this.data.store_id = d.goods.store.store_id)
 
@@ -705,7 +709,7 @@ Page({
 
 
 
-    this.checkIsHelper()
+   // this.checkIsHelper()
 
     this.getShareImg()
     this.getGoodsInfo()

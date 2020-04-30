@@ -95,7 +95,9 @@ Page({
     editorContent: null,
     isEmptyEditor: true,
     specItem: '',
-    agent_opt :0 //'是否可以代理:0否;1是',
+    agent_opt :0,//'是否可以代理:0否;1是',
+    show_buyerlist:0,
+    is_timelimit: 0,
   },
   // darg start5
   // 改变监听
@@ -207,6 +209,13 @@ Page({
   showTimePicker: function () {
     this.setData({
       isShowTimePicker: true,
+      is_timelimit: 1,
+    })
+  },
+  hideTimePicker: function (e) {
+    this.setData({
+      isShowTimePicker: false,
+      is_timelimit: 0
     })
   },
 
@@ -611,7 +620,6 @@ Page({
       },
     })
   },
-
   //删除一张照片
   removePicture: function (e) {
     let index = e.currentTarget.dataset.index
@@ -767,6 +775,7 @@ Page({
         show_buyerlist:this.data.show_buyerlist,
         agent_opt:this.data.agent_opt,
         cat_id: 8,
+        is_timelimit: this.data.is_timelimit,
       }
     )
 
@@ -925,6 +934,7 @@ Page({
       show_buyerlist: gs.show_buyerlist,
       isEmptyEditor: isEmptyEditor,
       editorContent: editorContent,
+      is_timelimit: gs.is_timelimit,
       sell_address: gs.self_address,
       delivery_method: gs.delivery_method,
       payment_method: gs.payment_method,
@@ -940,7 +950,7 @@ Page({
         end_time: endFormatTime.split(' ')[1],
       },
       spec: gs.goods_spec,
-      isShowTimePicker: true,
+      isShowTimePicker: gs.is_timelimit == 1,
       freight_tpl_id: gs.freight_tpl_id || 0,
     })
     console.log('picker', this.data.picker)
