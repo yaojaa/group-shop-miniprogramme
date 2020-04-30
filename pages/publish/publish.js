@@ -53,6 +53,7 @@ Page({
       {
         spec_name: '',
         spec_price: '',
+        sub_agent_price:0.00,
         spec_stock: '',
         spec_pic: [],
         spec_desc: '',
@@ -443,6 +444,7 @@ Page({
       spec_stock: '',
       spec_pic: [],
       spec_desc: '',
+      sub_agent_price:'0'
     }
 
     this.data.spec = this.data.spec.concat([dataTpl])
@@ -763,6 +765,7 @@ Page({
         goods_video_cover: this.data.goods_video_cover,
         freight_tpl_id: this.data.freight_tpl_id,
         show_buyerlist:this.data.show_buyerlist,
+        agent_opt:this.data.agent_opt,
         cat_id: 8,
       }
     )
@@ -917,6 +920,7 @@ Page({
     this.setData({
       goods_images: gs.goods_images,
       goods_name: gs.goods_name,
+      agent_opt:gs.agent_opt,
       goods_content: gs.goods_content,
       show_buyerlist: gs.show_buyerlist,
       isEmptyEditor: isEmptyEditor,

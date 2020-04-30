@@ -27,7 +27,7 @@
                 </van-field>
             </view>
             <view class="ph-df  text-sm text-muted">
-                <view>温馨提醒：微信收取千分之六支付网费</view>
+                <view>温馨提示：如果需要代理团长分销可以点击设置代理价</view>
             </view>
         </view>
         <view class="m-df">

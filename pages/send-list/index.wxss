@@ -76,7 +76,7 @@ page{
   color: #ed6a0c;
   background-color: #fffbe8;
   padding: 25rpx 30rpx;
-  font-size: 28rpx;
+  font-size: 24rpx;
 
 }
 

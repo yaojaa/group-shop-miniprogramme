@@ -294,3 +294,8 @@ video{
   font-size: 28rpx;
   margin-bottom: 10px
 }
+
+.spec_detail{
+  width: 60rpx;
+  text-align: right;
+}

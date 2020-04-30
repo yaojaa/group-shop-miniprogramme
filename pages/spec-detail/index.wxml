@@ -6,7 +6,7 @@
         <view class="textarea-box mt-sm">
             <v-textarea row="10" tips="{{'请输入商品详情'}}" textarea="{{info.spec_content}}" bind:sendData="getValue"></v-textarea>
         </view>
-        <wux-upload listType="picture-card" fileList="{{ fileList }}" max="4" controlled url="{{url}}/api/seller/upload" bind:change="onChange" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
+        <wux-upload listType="picture-card" fileList="{{ fileList }}" max="10" controlled url="{{url}}/api/seller/upload" bind:change="onChange" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
             <text>上传图片</text>
         </wux-upload>
     </view>
