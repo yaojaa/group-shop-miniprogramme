@@ -25,11 +25,11 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-     <block wx:for="{{access_list}}">
+<!--      <block wx:for="{{access_list}}">
 
           <image src="{{item.headimg}}" class="mini-avatar" ></image>
 
-</block> 最近访问》
+</block> 最近访问》 -->
 
 <!--   <view class="i-join">
 <navigator url="../order-list/index">

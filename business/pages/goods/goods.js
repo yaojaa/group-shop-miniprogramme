@@ -233,6 +233,29 @@ Page({
       this.handlePoster()
     }
   },
+
+  getSaveImg(path, _this){
+    console.log('path', path)
+    wx.getImageInfo({
+      src: path,
+      success(res){
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success(result) {
+            wx.showToast({
+              title: '已保存到手机相册',
+              icon: 'none',
+            })
+          },
+        })
+      },
+      fail(){
+        console.log(`flag${_this}`)
+        _this && _this.getSaveImg(path);
+      }
+    })
+  },
+
   onFriendsImgOK(path) {
     this.data.shareFriendsImgs.push(path)
     this.data.shareFriendsImg = this.data.shareFriendsImgs[0]

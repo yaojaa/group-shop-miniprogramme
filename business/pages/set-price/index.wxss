@@ -98,3 +98,8 @@
 .input{
     padding: 0 5px
 }
+.bg{
+    background: #fff;
+    padding: 10px;
+    line-height: 2.1
+}

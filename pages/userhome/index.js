@@ -479,7 +479,7 @@ const default_end_time = util.formatTime(date)
         // }
 
 
-         this.add_access()
+        // this.add_access()
 
         this.cpage = 1
         this.getDataList(options)

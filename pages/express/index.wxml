@@ -16,7 +16,7 @@
               <button class="btn primary sm hollow" slot="button" bindtap="saomaInput" data-index="{{index}}" wx:if="{{!item.express_code}}">扫描单号</button>
             </van-field >
 
-                <van-field input-class ="f20"  value="{{item.express_company}}" label="快递名称" placeholder="请选择快递公司（默认自动识别）" readonly="{{true}}" data-index="{{index}}" bindtap="handleEmsPopup" use-button-slot>
+                <van-field input-class ="f20"  value="{{item.express_company}}" label="快递名称" placeholder="请选择快递公司" readonly="{{true}}" data-index="{{index}}" bindtap="handleEmsPopup" use-button-slot>
                          <i-icon class="right" slot="button" catchtap="delexpress" data-index="{{index}}" type="trash" color="#999999" size="28"  />
                 </van-field>
 

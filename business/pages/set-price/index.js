@@ -22,7 +22,15 @@ Page({
         freight_tpl_id: '',
         freight_tpl_info: [],
         list: areaList,
-        hasSelect:''
+        hasSelect:'',
+        freight_tpl_formula_mode:"1"
+    },
+
+    onformulaChange(event){
+
+    this.setData({
+      freight_tpl_formula_mode: event.detail
+    })
     },
 
     onChange(e) {
@@ -96,7 +104,8 @@ Page({
 
             this.setData({
                 list: res.data.data.freight_tpl_info,
-                freight_tpl_name:res.data.data.freight_tpl_name
+                freight_tpl_name:res.data.data.freight_tpl_name,
+                freight_tpl_formula_mode:res.data.data.freight_tpl_formula_mode+'',
             })
 
 
@@ -186,7 +195,8 @@ Page({
         const param = {
             freight_tpl_id, // 修改时填
             freight_tpl_name, // 模版名称
-            freight_tpl_info: this.data.freight_tpl_info // 地区运费详情
+            freight_tpl_info: this.data.freight_tpl_info, // 地区运费详情
+            freight_tpl_formula_mode:this.data.freight_tpl_formula_mode
         }
 
         util.wx.post('/api/user/set_freight_tpl', param)

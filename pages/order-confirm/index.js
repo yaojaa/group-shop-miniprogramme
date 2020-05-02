@@ -125,17 +125,14 @@ Page({
 
          util.wx.get('/api/goods/get_shipping_money', {
                 goods_id: this.data.goods_id,
-                address_id:this.data.address_id
+                address_id:this.data.address_id,
+                qty:this.data.totalNumer
             })
             .then(res => {
-
-
                 console.log('邮费',res.data.data)
-
                 this.setData({
-                    shipping_money:res.data.data==-1?'不发货' : parseInt(res.data.data)*this.data.totalNumer
+                    shipping_money:res.data.data==-1?'该地区不发货' : parseInt(res.data.data)
                 })
-
 
             })
 
