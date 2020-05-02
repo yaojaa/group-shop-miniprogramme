@@ -17,8 +17,8 @@ Page({
     }
 
     this.getMySupp()
-    this.getMyHelpSale()
-    this.getMyHelpSaleUser()
+    // this.getMyHelpSale()
+    // this.getMyHelpSaleUser()
   },
 
   toSupphome(e) {

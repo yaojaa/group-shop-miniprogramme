@@ -2,7 +2,7 @@
     <!-- 添加修改运费模板 -->
     <div class="white-bg">
         <van-cell-group title="模板名称">
-            <van-field value="{{ freight_tpl_name }}" placeholder="请输入模板名称，如北京上海+2元" border="{{ true }}" maxlength="{{ 50 }}" bind:change="onChangePanName" size="small" />
+            <van-field value="{{ freight_tpl_name }}" placeholder="请输入模板名称，如橙子运费方案、北京上海+2元" border="{{ true }}" maxlength="{{ 50 }}" bind:change="onChangePanName" size="small" />
         </van-cell-group>
         <van-cell-group title="设置不同地区的邮费方案，如果不发货请设置为-1">
             <view class="white-bg text-justify p-df">
@@ -14,6 +14,12 @@
                 <van-stepper value="{{ item.price }}" min="{{ -1 }}" max="{{ 50 }}" data-index="{{index}}" bind:change="onChange" ></van-stepper>
             </van-cell>
         </van-cell-group>
+
+          <van-cell-group title="运费累加方案">
+            <van-field value="{{ freight_tpl_name }}" placeholder="请输入模板名称，如北京上海+2元" border="{{ true }}" maxlength="{{ 50 }}" bind:change="onChangePanName" size="small" />
+        </van-cell-group>
+
+
     </div>
     <view class="m-df ">
         <button class="btn xl primary block linenear_bg" bindtap="addInfo">

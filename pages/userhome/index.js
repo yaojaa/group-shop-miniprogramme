@@ -26,6 +26,7 @@ Page({
         shareIng: false,
         phone: '',
         weChat: '',
+        access_list:[],
         show:false,
         actions: [
       {},
@@ -119,6 +120,28 @@ Page({
    wx.redirectTo({
             url: '../create-home/index'
         })
+
+
+   },
+
+   getVisiter(){
+
+
+    util.wx.post("/api/index/get_access_record",{
+            type:'store',
+            obj_id:this.store_id
+        }).then(res=>{
+
+            if(res.data.code == 200){
+                this.setData({
+                    access_list:res.data.data.access_list
+                })
+            }
+
+        
+        })
+
+
 
 
    },
@@ -411,6 +434,7 @@ const default_end_time = util.formatTime(date)
      */
     onLoad: function (options) {
         this.loadPage(options);
+        this.getVisiter()
     },
     onShow() {
 
@@ -455,9 +479,7 @@ const default_end_time = util.formatTime(date)
         // }
 
 
-        if (app.globalData.userInfo && !this.data.onLoadOpt) {
-            this.add_access()
-        }
+         this.add_access()
 
         this.cpage = 1
         this.getDataList(options)

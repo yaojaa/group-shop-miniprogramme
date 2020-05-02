@@ -237,26 +237,34 @@ Page({
   onReady: function () {},
   onShareAppMessage: function (e) {
 
-    console.log(e)
+
+    var title = ''
 
 
-    const {type} = e.target.dataset
-    var pathParam = ''
+    if(e.from == 'menu'){
+      
+            title = this.data.goods.goods_name
 
-    if(type == 'invit'){
 
-      var title = this.data.goods.user.nickname +'邀请你帮卖【'+this.data.goods.goods_name+'】'
-         pathParam = '&help_sale=true'
     }else{
 
-      var title = '['+this.data.goods.user.nickname+']'+ this.data.goods.goods_name
+      const {type} = e.target.dataset
+          var pathParam = ''
+
+          if(type == 'invit'){
+
+            title = this.data.goods.user.nickname +'邀请你帮卖【'+this.data.goods.goods_name+'】'
+               pathParam = '&help_sale=true'
+          }else{
+
+            title = this.data.goods.goods_name
+
+          }
+
+
 
     }
 
-    console.log('/pages/goods/goods?goods_id=' +
-        this.data.goods.goods_id +
-        '&from_id=' +
-        uid+pathParam)
 
 
 

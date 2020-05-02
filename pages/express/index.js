@@ -124,19 +124,19 @@ Page({
         
         wx.getClipboardData({
               success :(res)=>{
+                console.log('res',res)
                var patt = /[A-Za-z0-9]{12,35}/
 
 
+               if(!patt.test(res.data)){
+                return
+               }
 
+               if(res.data.match(patt).length>0){
 
-                  if(res.data.match(patt).length>0){
-
-
-                      var code = res.data.match(patt)[0]
-
+                    var code = res.data.match(patt)[0]
 
                     const key = 'express['+(this.data.express.length-1)+'].express_code'
-                    console.log(key)
                  
                     wx.showModal({
                       title: "是否自动粘贴",

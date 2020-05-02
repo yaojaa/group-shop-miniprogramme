@@ -1086,7 +1086,7 @@ button::after {
 
 .listen_btn{
     position: absolute;
-    left: 198rpx;
+    left: 245rpx;
     top: 32rpx;
     z-index: 2;
     font-size: 12px;
@@ -1096,7 +1096,8 @@ button::after {
     background: #fff;
     border-radius: 5px;
     border:0.5px solid #ff8900;
-    color: #ff8900
+    color: #ff8900;
+
 }
 
 .top_user{

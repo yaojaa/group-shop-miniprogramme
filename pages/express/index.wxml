@@ -1,6 +1,6 @@
 <view class="container gray-wrap cf">
 <van-notice-bar
-  wrapable
+    wrapable
   scrollable="false"
   text="录入快递单号顾客就可以看到物流信息了，也方便您跟踪"
 />

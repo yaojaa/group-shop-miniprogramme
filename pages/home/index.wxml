@@ -39,7 +39,7 @@
         </view>
     </view>
 
-   <view class="new_order" wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+收不到新订单提醒？记得订阅</button>
+   <view class="new_order" wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅新订单提醒</button>
     <i-panel hide-border title="最新订单" extra="更多" link="../new-order-list/index">
         <view class="control"  >
 

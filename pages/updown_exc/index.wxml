@@ -1,7 +1,7 @@
 <view class="view-page">
 	<view class="page-title">下载订单表格</view>
 	<view class="exc-select-time">
-		<view class="left">账单时间</view>
+		<view class="left">下单时间</view>
 		<view class="right exc-btn-list">
 			<button class='btn-cell' size='mini' type="{{timeFlag == 0 ? 'primary' : 'default'}}" bindtap="todayOrder">今天</button>
 			<button class='btn-cell' size='mini' type="{{timeFlag == 1 ? 'primary' : 'default'}}" bindtap="yesterdayOrder">昨天</button>

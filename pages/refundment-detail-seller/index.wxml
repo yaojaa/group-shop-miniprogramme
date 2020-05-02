@@ -121,10 +121,11 @@
      <view class="fixed-btn center">
 
 
-    <button class="btn xxl primary block" bindtap="submit" wx:if="{{order_detail.supplier_id == 0}}">
+    <button class="btn xxl primary block" bindtap="submit" 
+    wx:if="{{order_detail.supplier_id == 0 && detail.status ==1}}">
         确定
     </button>
-    <text wx:else class="f12 text-warning center">
+    <text wx:if="{{order_detail.supplier_id !== 0 }}" class="f12 text-warning center">
          此商品由“{{order_detail.supplier.supplier_name}}”供货和售后
     </text>
     </view>

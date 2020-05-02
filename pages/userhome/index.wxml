@@ -25,16 +25,19 @@
         </view>
         <view class="des">{{info.store_intro}}</view>
         <view class="info f12 ">
-       <!--      访问 <text class="text-default">{{info._access_count}} </text> 成交<text class="text-default">{{info._order_count}}</text> 笔  -->
+     <block wx:for="{{access_list}}">
+
+          <image src="{{item.headimg}}" class="mini-avatar" ></image>
+
+</block> 最近访问》
 
 <!--   <view class="i-join">
- -->          <!--                                 <navigator url="../order-list/index">
+<navigator url="../order-list/index">
 
 
-
-                   <view class="mini-avatar"> <open-data type="userAvatarUrl"></open-data></view> 我的订单
-</navigator> -->
-            <!--    </view> -->
+<view class="mini-avatar"> <open-data type="userAvatarUrl"></open-data></view> 我的订单
+</navigator>
+               </view> -->
         </view>
 
         <view class="btns">
@@ -96,6 +99,27 @@
         <view  data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
             <view>
 
+                    <view class="title" 
+                   bindtap="goDetail"
+                   data-id="{{item.goods_id}}">{{item.goods_name}}</view>
+
+
+                   <!--设置下拉菜单-->
+
+                         <view wx:if="{{showSetting}}"  class="action" data-index="{{index}}" 
+
+                        data-goods_id="{{item.goods_id}}"  
+                        data-goods_name="{{item.goods_name}}"  
+                        data-delivery_method="{{item.delivery_method}}" 
+                        data-goods_expires = "{{item.goods_expires}}" 
+
+                        bindtap="showAction">
+                            <van-icon name="bars"  color="#999" size="22px" />
+                        </view>
+
+                   <!--设置下拉菜单end-->
+
+
                 <view class="covers">
                     <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
 
@@ -106,9 +130,7 @@
 
                 </view>
                 <view class="content" url="../goods/goods?goods_id={{item.goods_id}}">
-                   <view class="title" 
-                   bindtap="goDetail"
-                   data-id="{{item.goods_id}}">{{item.goods_name}}</view>
+               
 
                     <view class="des text-hide three"
 
@@ -120,16 +142,7 @@
                            <!--  <text class="gray" wx:if="{{item._buy_users_count>0}}">{{item._buy_users_count}}人参与</text> -->
                         </view>
 
-                        <view wx:if="{{showSetting}}"  class="action" data-index="{{index}}" 
-
-                        data-goods_id="{{item.goods_id}}"  
-                        data-goods_name="{{item.goods_name}}"  
-                        data-delivery_method="{{item.delivery_method}}" 
-                        data-goods_expires = "{{item.goods_expires}}" 
-
-                        bindtap="showAction">
-                            <van-icon name="bars"  color="#999" size="22px" />
-                        </view>
+                  
                         
                         <view >
                             <button bindtap="goDetail" wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即参与</button>
