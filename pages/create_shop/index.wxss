@@ -1,22 +1,22 @@
-/* pages/create_shop.wxss */
-.container{
-	box-sizing: border-box;
-	background: #f8f8f8;
-	height: 100vh
+@import '../../css/common.wxss';
+.container {
+  box-sizing: border-box;
+  background: #f8f8f8;
+  height: 100vh;
 }
 
-.padding20{
-	padding:20px;
-	box-sizing: border-box;
+.padding20 {
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.shadow-panel{
-	box-shadow: 0 0 15px #ddd;
-	background: #fff;
-	padding: 0rpx 20rpx 20rpx;
-	margin: 30rpx 0;
-	border-radius: 20rpx
+.shadow-panel {
+  box-shadow: 0 0 15px #ddd;
+  background: #fff;
+  padding: 0rpx 20rpx 20rpx;
+  margin: 30rpx 0;
+  border-radius: 20rpx;
 }
-.up-area{
-	padding: 15px 5px
+.up-area {
+  padding: 15px 5px;
 }

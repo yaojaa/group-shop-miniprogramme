@@ -1,163 +1,126 @@
 <!-- <i-custom-bar showBackIcon="{{showIcon}}" hidden="{{shareIng}}" backUrl="/pages/home/index" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
 </i-custom-bar> -->
 <view class="container cf">
-    <view class="swiper">
-            <image src="{{store_slide}}?imageView2/2/w/600/h/400/format/jpg/q/75" height="400" class="slide-image" />
-
-      <image src="http://img.daohangwa.com/mark.png" class="marker" />
-            
+    <view class="swiper" style="background:url({{store_slide}}?imageView2/2/w/600/h/400/format/jpg/q/75) center bottom;background-size:cover">
+        <!-- <image src="{{store_slide}}" height="400" class="slide-image" /> -->
+        <image src="http://img.daohangwa.com/mark.png" mode="widthFix" class="marker" />
     </view>
     <view class="user-head pb-sm">
         <view class="avatar" bindtap="goContact" data-phone="{{info._user.mobile}}" data-wx="{{info._user.wechatnumber}}">
             <image src="{{info._user.headimg}}" />
         </view>
         <view class="flex justify-between ph-sm" style="padding-top: 80rpx;">
-         <!--    <navigator hidden="{{shareIng}}" wx:if="{{showSetting}}" url="../create_shop/index">
+            <!-- <navigator hidden="{{shareIng}}" wx:if="{{showSetting}}" url="../create_shop/index">
                 <i-icon type="setup" size="28" color="#999" />
             </navigator> -->
             <view class="name">{{info.store_name}}</view>
-           <!--  <button hidden="{{shareIng}}" bindtap="showShare" class="btn-reset">
+            <!-- <button hidden="{{shareIng}}" bindtap="showShare" class="btn-reset">
                 <i-icon size="28" type="share" color="#999" /></button> -->
-            
-<!--             <button bindtap="addEventLister" size="mini">关注订阅</button>
- -->
-
+            <!-- <button bindtap="addEventLister" size="mini">关注订阅</button> -->
         </view>
         <view class="des">{{info.store_intro}}</view>
-        <view class="info f12 ">
-     <block wx:for="{{access_list}}">
-
-          <image src="{{item.headimg}}" class="mini-avatar" ></image>
-
-</block> 最近访问》
-
-<!--   <view class="i-join">
-<navigator url="../order-list/index">
-
-
-<view class="mini-avatar"> <open-data type="userAvatarUrl"></open-data></view> 我的订单
-</navigator>
-               </view> -->
-        </view>
-
-        <view class="btns">
-            <van-button bindtap="goContact" custom-class="actbtn"     size="small"  plain hairline  type="warning">
-                <van-icon size="18px"  name="friends-o" />
- 加为好友</van-button>
-<van-button  custom-class="actbtn" bindtap="showShare"  size="small" plain hairline   type="warning">
-                <van-icon size="18px"  name="share" />
-
-            分享朋友</van-button>
-<van-button  custom-class="actbtn" size="small" plain hairline bindtap="addEventLister"   type="warning">
-                <van-icon size="18px"   name="star-o" />
-
-订阅关注</van-button>
-
-<!-- <van-button  custom-class="actbtn" size="small" plain hairline bindtap="copy"   type="warning">
-                <van-icon size="18px"   name="star-o" />
-
-文字清单</van-button> -->
-
-        </view>
-
-
-<van-tabbar  active-color="#666" wx:if="{{showSetting}}" >
-  <van-tabbar-item bind:click="backMy" icon="home-o" >返回我的</van-tabbar-item>
-  <van-tabbar-item bind:click="backSetting" icon="friends-o">主页设置</van-tabbar-item>
-  <van-tabbar-item bind:click="showShare" icon="share">转发分享</van-tabbar-item>
-</van-tabbar>
-
-
-
-
-    </view>
-    <!--     <view class="menu flex-box">
-        <view class="flex-item">
-              <view class="num">
-                    {{info._access_count}}
+        <navigator hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&name={{info.store_name}}">
+            <view class="flex-box align-center justify-center " style="padding: 10px 0">
+                <view class="avatar-group">
+                    <image class="head" src="{{user.headimg}}" wx:for-item="user" wx:for="{{access_list}}" wx:key="index"></image>
                 </view>
-            访问记录
-        </view>
-        
-        <view class="flex-item">
-                <navigator url="../fans-mg/index">
-                        <view class="num">9995</view>
-                        粉丝管理
-                </navigator>
-        </view>
-     
-       <view class="flex-item">
-          <view class="num"><i-icon type="setup" size="28" color="#999" /></view>
-    主页设置</view> 
-    
-    <view class="flex-item">
-        <view class="num">889</view>
-    商品管理</view>
-    
-      </view> -->
-    <view class="goods-box">
-        <view  data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
-            <view>
-
-                    <view class="title" 
-                   bindtap="goDetail"
-                   data-id="{{item.goods_id}}">{{item.goods_name}}</view>
-
-
-                   <!--设置下拉菜单-->
-
-                         <view wx:if="{{showSetting}}"  class="action" data-index="{{index}}" 
-
-                        data-goods_id="{{item.goods_id}}"  
-                        data-goods_name="{{item.goods_name}}"  
-                        data-delivery_method="{{item.delivery_method}}" 
-                        data-goods_expires = "{{item.goods_expires}}" 
-
-                        bindtap="showAction">
-                            <van-icon name="bars"  color="#999" size="22px" />
-                        </view>
-
-                   <!--设置下拉菜单end-->
-
-
-                <view class="covers">
-                    <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
-
-        <image bindtap='previewImg' data-src="{{aimg}}" data-effect_pic='{{item.goods_images}}' wx:for="{{item.goods_images}}" wx:for-item="aimg" class="cover" src="{{aimg}}-200"></image>
-
-    </scroll-view>
-                                        
-
-                </view>
-                <view class="content" url="../goods/goods?goods_id={{item.goods_id}}">
-               
-
-                    <view class="des text-hide three"
-
-                    bindtap="goDetail"
-                    data-id="{{item.goods_id}}"
-                    >{{item.goods_content || ''}}</view>
-                    <view class="bottom text-justify">
-                        <view class="price bold text-red"><text class="f12">￥</text> {{item._price_range.min}} 
-                           <!--  <text class="gray" wx:if="{{item._buy_users_count>0}}">{{item._buy_users_count}}人参与</text> -->
-                        </view>
-
-                  
-                        
-                        <view >
-                            <button bindtap="goDetail" wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg"> 立即参与</button>
-                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">已经截止</button>
-                        </view>
-                     <!--    <view class="action_icon" bindtap="showAction"><van-icon color="#999" size="26px" name="ellipsis" /></view> -->
-                    </view>
+                <view class="user f12 ml-xs text-muted">
+                    <!-- <text class="text-red">{{access_list.length}}</text> -->
+                    最近访问 >
                 </view>
             </view>
-            <!--            <view class="flex-box align-center" style="padding: 10px 0">
+        </navigator>
+        <view class="btns">
+            <van-button bindtap="goContact" custom-class="actbtn" size="small" plain hairline type="warning">
+                <van-icon size="18px" name="friends-o" />
+                加为好友
+            </van-button>
+            <van-button custom-class="actbtn" bindtap="showShare" size="small" plain hairline type="warning">
+                <van-icon size="18px" name="share" />
+                分享朋友
+            </van-button>
+            <van-button custom-class="actbtn" size="small" plain hairline bindtap="addEventLister" type="warning">
+                <van-icon size="18px" name="star-o" />
+                订阅关注
+            </van-button>
+        </view>
+    </view>
+    <view class="goods-box">
+        <block wx:if="{{info.store_style==1}}">
+            <view data-id="{{item.goods_id}}" class="goods-item " wx:for="{{goodsList}}" wx:key="index">
+                <view class="flex">
+                    <view class="title flex-sub" bindtap="goDetail" data-id="{{item.goods_id}}">
+                        {{item.goods_name}}
+                    </view>
+                    <!-- 设置下拉菜单 -->
+                    <view wx:if="{{showSetting}}" class="action ml-df" data-index="{{index}}" data-goods_id="{{item.goods_id}}" data-goods_name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}" data-goods_expires="{{item.goods_expires}}" bindtap="showAction">
+                        <van-icon name="bars" color="#999" size="22px" />
+                    </view>
+                    <!-- 设置下拉菜单end -->
+                </view>
+                <view class="covers">
+                    <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex">
+                        <image bindtap='previewImg' data-src="{{aimg}}" data-effect_pic='{{item.goods_images}}' wx:for="{{item.goods_images}}" wx:for-item="aimg" class="cover" src="{{aimg}}-200"></image>
+                    </scroll-view>
+                </view>
+                <view class="content">
+                    <view class="des text-hide three" bindtap="goDetail" data-id="{{item.goods_id}}">
+                        {{item.goods_content || ''}}
+                    </view>
+                    <view class="bottom text-justify">
+                        <view class="price bold text-red">
+                            <text class="f12">￥</text>
+                            {{item._price_range.min}}
+                            <!-- <text class="gray" wx:if="{{item._buy_users_count>0}}">{{item._buy_users_count}}人参与</text> -->
+                        </view>
+                        <view>
+                            <button bindtap="goDetail" wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">
+                                立即参与
+                            </button>
+                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">
+                                已经截止
+                            </button>
+                        </view>
+                        <!-- <view class="action_icon" bindtap="showAction"><van-icon color="#999" size="26px" name="ellipsis" /></view> -->
+                    </view>
+                </view>
+                <!-- <view class="flex-box align-center" style="padding: 10px 0">
                     <view class="avatar-group">
                         <image class="avatar" src="{{user.headimg}}" wx:for-item="user" wx:for="{{item._buy_users}}" wx:key="index"></image>
                     </view>
                     <view class="user f12 ml-xs text-muted"><text class="text-red">{{item._buy_users_count}}</text>人参与</view>
                 </view> -->
+            </view>
+        </block>
+        <view class="goods-two" wx:if="{{info.store_style==2}}">
+            <view data-id="{{item.goods_id}}" class="goods-two-item" wx:for="{{goodsList}}" wx:key="index">
+                <!-- 设置下拉菜单 -->
+                <view wx:if="{{showSetting}}" class="action " data-index="{{index}}" data-goods_id="{{item.goods_id}}" data-goods_name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}" data-goods_expires="{{item.goods_expires}}" bindtap="showAction">
+                    商品管理
+                    <!-- <van-icon name="bars" color="#fff" size="22px" /> -->
+                </view>
+                <!-- 设置下拉菜单end -->
+                <image bindtap='previewImg' data-src="{{item.goods_images[0]}}" data-effect_pic='{{item.goods_images}}' class="cover" src="{{item.goods_images[0]}}"></image>
+                <view class="p-sm">
+                    <view class="title text-hide two-line" bindtap="goDetail" data-id="{{item.goods_id}}">
+                        {{item.goods_name}}
+                    </view>
+                    <view class="text-justify mt-xs">
+                        <view class="price bold text-red">
+                            <text class="f12">￥</text>
+                            {{item._price_range.min}}
+                        </view>
+                        <view>
+                            <button bindtap="goDetail" wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">
+                                立即参与
+                            </button>
+                            <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">
+                                已经截止
+                            </button>
+                        </view>
+                    </view>
+                </view>
+            </view>
         </view>
         <view wx:if="{{goodsList.length ==0 && !loading}}" class="text-center white-bg" style="padding: 100px 0">
             暂无内容
@@ -170,10 +133,10 @@
         <view class="logo">
             <image class="avatar" src="{{info._user.headimg}}" />
         </view>
-        <view class="info">
-            您好，请允许获取公开信息
-        </view>
-        <button size="default" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">授 权</button>
+        <view class="info">您好，请允许获取公开信息</view>
+        <button size="default" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">
+            授 权
+        </button>
     </van-popup>
     <van-action-sheet show="{{ sharebar }}" close-on-click-overlay overlay="{{overlay}}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
@@ -191,44 +154,42 @@
         <view class='share-friends-img' bindtap='handlePoster'>
             <view class="share-img-box" wx:if="{{!shareFriendsImg}}">
                 <i-spin i-class='share-friends-loading' fix size="large"></i-spin>
-                <view class='share-friends-loading-txt'><text>努力生成中,请稍等...</text></view>
+                <view class='share-friends-loading-txt'>
+                    <text>努力生成中,请稍等...</text>
+                </view>
             </view>
             <view class="text-center share-img-box" wx:else>
                 <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
-                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages"> 保存海报 </button>
+                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages">
+                    保存海报
+                </button>
             </view>
         </view>
     </view>
     <view class="weui-footer">
-
-
-        <button bindtap="goCreateHome" size="mini" type="primary" wx:if="{{!showSetting}}">+我也要免费小程序主页</button>
-
-
+        <button bindtap="goCreateHome" size="mini" type="primary" wx:if="{{!showSetting}}">
+            +我也要免费小程序主页
+        </button>
         <view class="weui-footer__links">
-            <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">咨询 建议 投诉</button>
+            <button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">
+                咨询 建议 投诉
+            </button>
         </view>
         <view class="weui-footer__text">Copyright © 北京原子动力科技有限公司 20018-2025</view>
     </view>
     <van-dialog id="contact" use-slot>
-          <van-cell-group border="{{false}}" custom-class="mv-df">
+        <van-cell-group border="{{false}}" custom-class="mv-df">
             <van-cell title="手机号：{{info._user.mobile}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{info._user.mobile}}" />
-
             <van-cell border="{{false}}" title="微信号：{{info._user.wechatnumber}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{info._user.wechatnumber}}" />
-
             <view class="code text-center" wx:if="{{info._user.wx_paycode}}">
                 <image src="{{info._user.wx_paycode}}" mode="widthFix" style="width: 400rpx;hegith:400rpx; margin:0 auto " />
             </view>
-
         </van-cell-group>
     </van-dialog>
-
-  <van-action-sheet
-  title="快捷菜单"
-  show="{{ show }}"
-  actions="{{ actions }}"
-  bind:close="onClose"
-  bind:select="onSelect"
-/>
-
+    <van-action-sheet title="快捷菜单" show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" />
+    <van-tabbar active-color="#666" wx:if="{{showSetting}}">
+        <van-tabbar-item bind:click="backMy" icon="home-o">返回我的</van-tabbar-item>
+        <van-tabbar-item bind:click="backSetting" icon="friends-o">主页设置</van-tabbar-item>
+        <van-tabbar-item bind:click="showShare" icon="share">转发分享</van-tabbar-item>
+    </van-tabbar>
 </view>
