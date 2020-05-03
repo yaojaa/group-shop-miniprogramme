@@ -15,11 +15,14 @@
             </van-cell>
         </van-cell-group>
 
-          <van-cell-group title="运费累加方案">
-            <van-field value="{{ freight_tpl_name }}" placeholder="请输入模板名称，如北京上海+2元" border="{{ true }}" maxlength="{{ 50 }}" bind:change="onChangePanName" size="small" />
+       <van-cell-group title="当一次购买多件的时 运费累加方案">
+        <view class="bg">
+             <van-radio-group value="{{ freight_tpl_formula_mode }}" bind:change="onformulaChange">
+              <van-radio name="1"   checked-color="#07c160">按数量累加，每件都要加上运费</van-radio>
+              <van-radio name="0"  checked-color="#07c160">不按数量累加，多件也只算一件运费</van-radio>
+             </van-radio-group>
+         </view>
         </van-cell-group>
-
-
     </div>
     <view class="m-df ">
         <button class="btn xl primary block linenear_bg" bindtap="addInfo">

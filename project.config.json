@@ -1069,6 +1069,12 @@
 					"pathName": "pages/refundment-detail-seller/index",
 					"query": "order_id=14306&id=92",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/postageSetting/index",
+					"pathName": "business/pages/postageSetting/index",
+					"scene": null
 				}
 			]
 		}

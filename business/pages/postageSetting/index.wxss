@@ -51,9 +51,7 @@
     font-weight: bold;
 }
 .box{
-	box-shadow: 0 0 6px #ddd;
 	margin: 10px;
 	background: #fcfff9;
-	padding-bottom: 20px;
 	margin-bottom: 20px
 }

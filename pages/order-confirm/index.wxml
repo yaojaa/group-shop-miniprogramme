@@ -4,10 +4,15 @@
             <view class="mh-df text-muted text-sm">
                 共计 {{totalNumer}} 件
             </view>
-            <view class="pb-xs">
+            <view class="pb-xs" wx:if="{{shipping_money!=='该地区不发货'}}">
                 <text class="text-muted text-sm">应付金额：</text>
                 <text class="text-lg bold coral-text">¥{{amountMoney+shipping_money}}</text>
                 <text class="text-muted text-sm"> 元</text>
+            </view>
+            <view wx:else>
+
+                该地区不发货
+                
             </view>
         </view>
         <form bindsubmit="formSubmit" report-submit="true" data-fn="createOrder">

@@ -1043,6 +1043,7 @@
 .sale-panel-fd {
   padding: 20rpx;
   background: #ffe6a0;
+  color: #ff9000;
   text-align: center;
   position: relative;
   display: flex;

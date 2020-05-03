@@ -4,7 +4,7 @@
                         <text class="title ml-sm">运费模板设置</text>
                     </van-col>   
                     <van-col span="8">
-                        <button size="mini"  class="btn right primary linenear_bg" bindtap="addPostageTpl">+添加新模板</button>
+                        <button size="mini"  class="btn  primary linenear_bg" bindtap="addPostageTpl">+添加新模板</button>
                     </van-col>
 </van-row>
 
