@@ -281,7 +281,7 @@
         </i-panel>
 
 
-<!--         <i-panel i-class="no-margin">
+        <i-panel i-class="no-margin">
                 <view class="weui-cell">
                     <view class="weui-cell__hd">
                         <view class="weui-label">代理帮卖：</view>
@@ -297,7 +297,7 @@
                         </view>
                     </view>
                 </view>
-        </i-panel> -->
+        </i-panel>
 
 
 

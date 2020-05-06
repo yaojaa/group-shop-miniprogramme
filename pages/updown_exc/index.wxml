@@ -1,15 +1,51 @@
 <view class="view-page">
-	<view class="page-title">下载订单表格</view>
-	<view class="exc-select-time">
-		<view class="left">下单时间</view>
-		<view class="right exc-btn-list">
-			<button class='btn-cell' size='mini' type="{{timeFlag == 0 ? 'primary' : 'default'}}" bindtap="todayOrder">今天</button>
-			<button class='btn-cell' size='mini' type="{{timeFlag == 1 ? 'primary' : 'default'}}" bindtap="yesterdayOrder">昨天</button>
-			<button class='btn-cell' size='mini' type="{{timeFlag == 2 ? 'primary' : 'default'}}" bindtap="allOrder">全部</button>
-			<button class='btn-cell' size='mini' type="{{timeFlag == 3 ? 'primary' : 'default'}}" bindtap="userOrders">自定义</button>
-		</view>
+
+
+
+	<view class="menu">
+		<van-dropdown-menu>
+
+  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+  <van-dropdown-item  value="{{ value2 }}" options="{{ option2 }}" />
+  <van-dropdown-item  value="{{ value2 }}" options="{{ option3 }}" />
+
+</van-dropdown-menu>
 	</view>
-	<view class="select-time-body">
+
+
+<view class="select-time-body" >
+
+<scroll-view>
+
+	<van-checkbox-group value="{{ result }}" bind:change="onChange">
+  <van-checkbox checked-color="#07c160" name="a"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text> </van-checkbox>
+  <van-checkbox checked-color="#07c160" name="b"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+  <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+    <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+      <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+        <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+          <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+            <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+              <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+                <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+                  <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+                    <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
+</van-checkbox-group>
+</scroll-view>
+</view>
+
+
+<view class="record select-time-body">
+	<view class="title">导出记录:</view>
+		<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
+			<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
+				<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
+					<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
+						<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
+
+</view>
+
+<!-- 	<view class="select-time-body">
 		<view class="exc-select-time">
 			<view class="left">起始时间</view>
 			<view class="right">
@@ -22,11 +58,11 @@
 				<i-datepicker label='' i-picker-title='i-picker-title' title="结束时间" date="{{endDate[0]}}" time="{{endDate[1]}}" bind:datachange="bindEndDateChange"></i-datepicker>
 			</view>
 		</view>
-	</view>
+	</view> -->
 	
 
 	<view class="create-link">
-		<button class="btn" type="primary" bindtap="exportExcel">生成下载链接</button>
+		<button class="btn linenear_bg" type="primary" bindtap="exportExcel">导出</button>
 	</view>
 	
 

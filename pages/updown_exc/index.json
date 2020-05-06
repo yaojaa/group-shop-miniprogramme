@@ -1,5 +1,10 @@
 {
+  "navigationBarTitleText": "导出订单",
   "usingComponents": {
-        "i-datepicker": "../../iView/datepicker/index"
+        "i-datepicker": "../../iView/datepicker/index",
+         "van-checkbox": "../../vant/checkbox/index",
+  "van-checkbox-group": "../../vant/checkbox-group/index",
+    "van-dropdown-menu": "../../vant/dropdown-menu/index",
+  "van-dropdown-item": "../../vant/dropdown-item/index"
   }
 }

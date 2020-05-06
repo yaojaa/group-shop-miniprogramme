@@ -12,6 +12,28 @@ Page({
     endDate:  ['2019-10-21', '10:22:00'],
     goods_id: '',
     timeFlag: 0,  // 0 今天  1 昨天  2 全部  3 自定义
+    result: ['a', 'b'],
+    option1: [
+      { text: '待发货', value: 0 },
+      { text: '已发货', value: 1 },
+    ],
+    option2: [
+      { text: '按商品选择', value: 'a' },
+      { text: '全部商品', value: 'b' }
+      ],
+        option3: [
+      { text: '未导出', value: 'a' },
+      { text: '已导出', value: 'b' }
+      ],
+    value1: 0,
+    value2: 'a'
+
+  },
+
+    onChange(event) {
+    this.setData({
+      result: event.detail
+    });
   },
 
   /**

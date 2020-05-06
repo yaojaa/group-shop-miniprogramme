@@ -58,11 +58,11 @@ Page({
 
                     this.setData({
                         'list': this.data.list,
-                        'total': res.data.data.page.total,
+                        'access_count': res.data.data.access_count,
                         'user_count': res.data.data.user_count
                     })
                     wx.setNavigationBarTitle({
-                        title: '访问记录 有' + this.data.user_count + '人' + this.data.total + '次访问'
+                        title: '访问记录 有' + this.data.user_count + '人' + this.data.access_count + '次访问'
                     })
                 }
             }

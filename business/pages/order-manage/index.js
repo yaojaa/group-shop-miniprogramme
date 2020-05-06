@@ -322,24 +322,28 @@ Page({
     /****/
 
     exportExcel() {
-        wx.showToast({ title: '开始为你生成...', icon: 'none' })
 
-        util.wx.get('/api/supplier/order_export_by_goods_id', {
-            goods_id: this.data.goods_id
-        }).then(res => {
-
-            if (res.data.code == 200) {
-
-                wx.setClipboardData({
-                    data: res.data.data.filepath,
-                    success: function(res) {
-                        wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
-                    }
-                })
-            }
-
-
+        wx.navigateTo({
+            url:'/pages/updown_exc/index'
         })
+        // wx.showToast({ title: '开始为你生成...', icon: 'none' })
+
+        // util.wx.get('/api/supplier/order_export_by_goods_id', {
+        //     goods_id: this.data.goods_id
+        // }).then(res => {
+
+        //     if (res.data.code == 200) {
+
+        //         wx.setClipboardData({
+        //             data: res.data.data.filepath,
+        //             success: function(res) {
+        //                 wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
+        //             }
+        //         })
+        //     }
+
+
+        // })
 
     },
 

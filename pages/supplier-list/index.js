@@ -6,7 +6,9 @@ Page({
     showAuth: false,
     suppList: {},
     helpSaleList:[],
-    groupUserList:[]
+    groupUserList:[],
+    isCheck:false,
+    showSetting:false
   },
   onLoad: function(e) {
     //未登录 弹出授权弹窗
@@ -17,8 +19,14 @@ Page({
     }
 
     this.getMySupp()
-    // this.getMyHelpSale()
-    // this.getMyHelpSaleUser()
+    this.getMyHelpSale()
+    this.getMyHelpSaleUser()
+  },
+
+  openSetting(){
+    this.setData({
+      showSetting:true
+    })
   },
 
   toSupphome(e) {
@@ -65,8 +73,9 @@ Page({
         wx.hideLoading()
 
       if(res.data.code == 200){
+        this.data.suppList.concat(res.data.data.list)
       this.setData({
-        helpSaleList: res.data.data.list
+        suppList: this.data.suppList
       })
     }else{
 
@@ -106,16 +115,39 @@ Page({
   },
   onShow: function() {
     wx.hideHomeButton()
+    wx.hideShareMenu();
 
 },
-  onShareAppMessage: function(e) {
-    const { supplier_id, name } = e.target.dataset
-    const username = app.globalData.userInfo.nickname
-    console.log('business/pages/acting-apply/index' + '?supplier_id=' + supplier_id)
+onChange({ detail }) {
+    // 需要手动对 show_buyerlist 状态进行更新
+    this.setData({ isCheck: detail });
+  },
+onShareAppMessage: function(e) {
+    const { supplier_id, supplier_name,type } = e.target.dataset
+    const {nickname,user_id} = app.globalData.userInfo
+
+    console.log(app.globalData.userInfo)
+
+    if(type=='user'){
+
+            var title=nickname + '邀请您加入Ta的帮卖团队' 
+            var path = '../acting-apply/index' + '?userid=' + user_id
+
+
+    }else{
+
+            var title=nickname + '邀请您加入'+supplier_name 
+            var path = 'business/pages/acting-apply/index' + '?supplier_id=' + supplier_id
+
+    }
+
+    console.log(path)
+
+
     return {
-      title: username + '邀请您加入' + name,
+      title: title ,
       imageUrl: 'https://static.kaixinmatuan.cn/staticinvitation2.jpg',
-      path: 'business/pages/acting-apply/index' + '?supplier_id=' + supplier_id
+      path: path
     }
   }
 })

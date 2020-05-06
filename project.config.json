@@ -1043,10 +1043,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 139,
 					"name": "帮卖查看商品",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=1182&from_id=&help_sale=true",
+					"query": "goods_id=2003&from_id=&help_sale=true",
 					"scene": null
 				},
 				{
@@ -1074,6 +1074,21 @@
 					"id": -1,
 					"name": "business/pages/postageSetting/index",
 					"pathName": "business/pages/postageSetting/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 144,
+					"name": "帮卖上架",
+					"pathName": "pages/help-sale-up/index",
+					"query": "goods_id=2046",
+					"scene": null
+				},
+				{
+					"id": 145,
+					"name": "pages/acting-apply/index",
+					"pathName": "pages/acting-apply/index",
+					"query": "user_id=1",
 					"scene": null
 				}
 			]

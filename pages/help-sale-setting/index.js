@@ -29,44 +29,58 @@ Page({
         // 需要手动对 checked 状态进行更新
         this.setData({ checked: detail });
     },
-    handleDateModal() {
-        this.setData({
-            dateModal: !this.data.dateModal
-        });
-    },
-    handleDate(event) {
-        this.setData({
-            currentDate: event.detail,
-            date: fmtDate(event.detail),
-            dateModal: !this.data.dateModal
-        });
-        console.log(event)
-    },
-    handleScopeModal() {
-        this.setData({
-            scopeModal: !this.data.scopeModal
-        });
-    },
-    changeScope(event) {
-        console.log(event)
-        this.setData({
-            scopeValue: event.target.dataset.name,
-            scopeTitle: event.target.dataset.title,
-            scopeModal: false
-        });
-    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
 
-        console.log(app.globalData.helpSaleData)
+
+        if(options.goods_id){
+
+
+            this.data.goods_id = options.goods_id
+
+            this.getGoodsInfo()
+
+        }else{
 
         this.setData({
             info:app.globalData.helpSaleData
         })
+        }
+
+
+
 
     },
+
+    getGoodsInfo(){
+    util.wx
+      .get('/api/goods/get_goods_detail', {
+        goods_id: this.data.goods_id
+    })
+      .then((res) => {
+
+        if(res.data.code == 200){
+               this.setData({
+            info:res.data.data.goods
+             })
+        }
+
+
+      })
+    },
+
+    editSubmit(){
+
+        util.wx.post('/api/seller/goods_add_or_edit',{
+            goods_id:this.data.goods_id,
+            goods_spec:this.data.info.goods_spec
+        })
+
+    },
+
+
 
     validate(e){
 
@@ -78,6 +92,8 @@ Page({
 
 
         const value = e.detail.value
+
+        console.log(value,spec_price)
 
          if(value > spec_price){
 
@@ -95,9 +111,6 @@ Page({
          }else{
 
             this.data.info.goods_spec[index].sub_agent_price = value
-
-                    console.log('change',value)
-
 
               this.setData({
                 btnDisable:false
@@ -122,55 +135,20 @@ Page({
 
     modifyPrice(){
 
-        util.setParentData({
-            agent_opt:1
-        })
+        if(this.data.goods_id){
 
-
-
-    },
-
-      upup(){
-
-
-        wx.showLoading()
-
-
-        util.wx.post('/api/seller/putaway_supplier_goods',{
-
-            goods_id:this.data.supid,
-            spec:this.data.info.goods_spec
-
-        }).then(res=>{
-
-        wx.hideLoading()
-
-            console.log(res.data.code == -103)
-
-
-       if(res.data.code == 200){
-
-            wx.redirectTo({
-                url:'../upSuccess/index?goods_id='+res.data.data.goods_id
-            })
-        }else if(res.data.code == -103){
-
-           wx.showToast({
-            title:'您已经上架过此商品了',
-            icon:'none'
-           })
-
+            this.editSubmit()
 
         }else{
-            wx.showToast({
-                title:res.data.msg,
-                icon:'none'
+            util.setParentData({
+                agent_opt:1
             })
         }
 
 
-        })
-        // 上架供应商商品 /seller/putaway_supplier_goods
+
+
+
     },
 
     /**
@@ -199,39 +177,6 @@ Page({
      */
     onUnload: function() {
 
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-        // 显示顶部刷新图标
-        wx.showNavigationBarLoading();
-        this.getDataList(this.data.sortstr).then(() => {
-            // 隐藏导航栏加载框
-            wx.hideNavigationBarLoading();
-            // 停止下拉动作
-            wx.stopPullDownRefresh();
-        })
-    },
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-        if (this.data.cpage && !this.data.loading) {
-            this.setData({
-                cpage: this.data.cpage + 1, //每次触发上拉事件，把requestPageNum+1
-            })
-            if (this.data.cpage > this.data.totalpage) {
-                return
-            }
-            this.getDataList(this.data.sortstr).then(() => {
-                // 隐藏导航栏加载框
-                wx.hideNavigationBarLoading();
-                // 停止下拉动作
-                wx.stopPullDownRefresh();
-            })
-        }
     },
 
     /**

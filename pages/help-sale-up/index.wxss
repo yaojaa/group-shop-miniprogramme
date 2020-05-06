@@ -1,1 +1,7 @@
-/* pages/help-sale-up/index.wxss */
+@import "../../css/common.wxss";
+.notice {
+  color: #ed6a0c;
+  background-color: #fffbe8;
+  padding: 25rpx 30rpx;
+  font-size: 24rpx
+}

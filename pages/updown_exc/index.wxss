@@ -1,6 +1,12 @@
+@import "../../css/common.wxss";
 .view-page{
 	background-color:#fff;
 }
+
+.menu{
+  background: #f8f8f8
+}
+
 .page-title{
   font-size: 20px;
   line-height: 36px;
@@ -9,7 +15,8 @@
   letter-spacing: 1px;
 }
 .exc-btn-list .btn-cell{
-  margin: 0 2px;
+  margin-left:10px;
+  width: 250rpx
 }
 .exc-btn-list{
   font-size: 14px;
@@ -24,6 +31,7 @@
 .exc-select-time .left{
   width: 75px;
   flex-shrink: 0;
+  color: #666
 }
 .exc-select-time .right{
   flex-shrink: 0;
@@ -52,4 +60,9 @@ i-datepicker{
   font-size: 16px;
   letter-spacing: 1px;
   width: 60%;
+}
+.select-time-body{
+  padding: 10px;
+  background: #f8f8f8;
+  margin: 20px
 }

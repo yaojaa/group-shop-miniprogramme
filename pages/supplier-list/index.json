@@ -6,10 +6,14 @@
         "i-icon": "../../iView/icon/index",
         "i-custom-bar": "../../components/custom-bar/index",
         "van-popup": "../../vant/popup/index",
+        "van-dialog": "../../vant/dialog/index",
         "van-card": "../../vant/card/index",
         "footerbar": "../../components/footerbar/index",
         "van-icon": "../../vant/icon/index",
           "van-tab": "../../vant/tab/index",
-          "van-tabs": "../../vant/tabs/index"
+          "van-tabs": "../../vant/tabs/index",
+                "van-cell": "../../vant/cell/index",
+     "van-cell-group": "../../vant/cell-group/index",
+      "van-switch": "../../vant/switch/index"
     }
 }

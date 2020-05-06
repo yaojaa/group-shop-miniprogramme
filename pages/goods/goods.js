@@ -284,10 +284,22 @@ Page({
   },
     /**弹出邀请**/
     openInviteFriends() {
- 
-    this.setData({
-      showInviteFriend: true,
-    })
+      console.log(this.data.goods.agent_opt)
+    
+    if(this.data.goods.agent_opt==0){
+
+       wx.redirectTo({
+              url: '../help-sale-setting/index?goods_id=' + this.data.goods_id,
+            })
+
+    }else{
+      this.setData({
+        showInviteFriend: true,
+      })
+    }
+
+
+
   },
 
   openShareFriends() {
@@ -488,11 +500,14 @@ Page({
         this.data.goods.goods_name,
     })
   },
-
+  /**修改当前商品的帮卖价格**/
+  goModifyPrice(){
+    console.log('go')
+         wx.redirectTo({
+              url: '../help-sale-setting/index?goods_id=' + this.data.goods_id,
+            })
+  },
   goModify() {
-
-
-    console.log('this.data.goods.supplier_id',this.data.goods_id)
 
 
     if(this.data.goods.supplier_id==0){
@@ -1248,30 +1263,34 @@ Page({
   helpSaleUp:function(){
 
 
-    util.wx.get('/api/helper/add_agent_goods',{
-      goods_id:this.data.goods_id
+    console.log('helper')
+
+    wx.showLoading()
+
+    util.wx.post('/api/helper/add_agent_goods',{
+      goods_id:this.data.goods.goods_id
     }).then(res=>{
 
-      if(res.data.code ==200){
+      if(res.data.code == 200){
 
-        const id = res.data.data.goods_id
-
-          wx.navigateTo({
-          url:'../help-sell-up/index?goods_id='+this.data.goods.goods_id
+         wx.redirectTo({
+          url:'../help-sale-up/index?goods_id='+this.data.goods.goods_id
         })
 
       }else{
+
         wx.showToast({
           title:res.data.msg,
           icon:'none'
         })
       }
 
-
     })
 
-      
 
+ 
+
+      
   },
   // buyUserScroll: function(e) {
   //     if(orderUsersFlag){
