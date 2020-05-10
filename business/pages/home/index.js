@@ -16,7 +16,8 @@ Page({
         info: '',
         active:0,
         goodsList:[],
-        pending_money:''
+        pending_money:'',
+        top:'30'
     },
     handleChange({ detail }) {
         this.setData({
@@ -233,7 +234,8 @@ Page({
       wx.showLoading()
         let userInfo = app.globalData.userInfo || wx.getStorageSync('userInfo')
         this.setData({
-            userInfo: userInfo
+            userInfo: userInfo,
+            top:app.globalData.menuBarTop
         })
 
 

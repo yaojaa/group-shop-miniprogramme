@@ -48,9 +48,9 @@ Page({
 
 
  
-        this.user_id = options.user_id || ''
+        this.data.store_id = options.store_id || ''
 
-        if(this.user_id){
+        if(this.data.store_id){
             this.getinfo()
         }else{
             wx.showToast({
@@ -62,7 +62,7 @@ Page({
 
     getinfo(){
       wx.showLoading()
-        util.wx.get('/api/index/get_supplier_detail?supplier_id='+this.supplier_id).then(res=>{
+        util.wx.get('/api/store/get_store_homepage?store_id='+this.data.store_id).then(res=>{
 
                 wx.hideLoading()
 
@@ -133,8 +133,9 @@ Page({
           loading: true
         })
 
-        util.wx.get('/api/seller/apply_agent',{
-            supplier_id:this.supplier_id,
+
+        util.wx.post('/api/helper/apply_store_helper',{
+            store_id  : this.data.store_id,
            apply_remark:e.detail.value.apply_remark        
         })
         .then(res=>{

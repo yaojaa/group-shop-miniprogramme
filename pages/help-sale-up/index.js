@@ -1,13 +1,6 @@
 const util = require('../../utils/util')
 const app = getApp()
 
-function fmtDate(obj) {
-    var date = new Date(obj);
-    var y = 1900 + date.getYear();
-    var m = "0" + (date.getMonth() + 1);
-    var d = "0" + date.getDate();
-    return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length);
-}
 
 
 Page({
@@ -23,7 +16,8 @@ Page({
         checked: false,
         errorMsg:'',
         btnDisable:false,
-        is_modify:false
+        is_modify:false,
+        is_loading:true
     },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
@@ -93,13 +87,11 @@ Page({
 
 
 
-        const {index,mini,max} = e.currentTarget.dataset
-
-
+        const {sub_agent_price,goods_spec_id} = e.currentTarget.dataset
 
         const value = e.detail.value
 
-         if(value>max || value<mini){
+         if(value<sub_agent_price){
 
             wx.showToast({
                 title:'价格请在合理范围',
@@ -114,9 +106,9 @@ Page({
 
          }else{
 
-            this.data.info.goods_spec[index].spec_price = value
+            this.spec_edit(goods_spec_id,value)
 
-                    console.log('change',value)
+           
 
 
               this.setData({
@@ -126,36 +118,28 @@ Page({
 
     },
 
+    spec_edit(id,price){
 
-        getSellerGoodsInfo() {
+      wx.showLoading()
 
-
-        util.wx.get('/api/goods/get_goods_detail', {
-                goods_id: this.data.sellid 
+       util.wx.post('/api/seller/spec_edit',{
+            goods_spec_id:id,
+            spec_price:price
+        }).then(res=>{
+          if(res.data.code == 200){
+            wx.showToast({
+              title:'价格修改成功',
+              icon:'none'
             })
-            .then(res => {
-
-                this.data.currentGoodsSpec = res.data.data.goods.goods_spec
-
-                 for(var i=0;  i<this.data.info.goods_spec.length;i++ ){
-
-
-                        this.data.info.goods_spec[i].spec_price = this.data.currentGoodsSpec[i].spec_price
-
-
-                    }
-
-                console.log('this.data.info',this.data.info)
-
-                this.setData({
-                    info:this.data.info
-                })
-
-
-            }
-        )
-        },
-
+          }else{
+            wx.showToast({
+              title:'价格修改失败',
+              icon:'none'
+            })
+          }
+        })
+      wx.hideLoading()
+    },
 
 
     getGoodsInfo() {
@@ -167,7 +151,8 @@ Page({
                 var data = res.data.data.goods
 
                   this.setData({
-                    info:res.data.data.goods
+                    info:res.data.data.goods,
+                    is_loading:false
                  })
 
             }
@@ -228,47 +213,13 @@ Page({
 
     },
 
-      upup(){
+    goDetail(){
 
-
-        wx.showLoading()
-
-
-        util.wx.post('/api/seller/putaway_supplier_goods',{
-
-            goods_id:this.data.supid,
-            spec:this.data.info.goods_spec
-
-        }).then(res=>{
-
-        wx.hideLoading()
-
-            console.log(res.data.code == -103)
-
-
-       if(res.data.code == 200){
-
-            wx.redirectTo({
-                url:'../upSuccess/index?goods_id='+res.data.data.goods_id
-            })
-        }else if(res.data.code == -103){
-
-           wx.showToast({
-            title:'您已经上架过此商品了',
-            icon:'none'
-           })
-
-
-        }else{
-            wx.showToast({
-                title:res.data.msg,
-                icon:'none'
-            })
-        }
-
-
+        wx.redirectTo({
+            url:'../goods/goods?goods_id='+this.data.goods_id
         })
-        // 上架供应商商品 /seller/putaway_supplier_goods
+
+
     },
 
     toModify(){

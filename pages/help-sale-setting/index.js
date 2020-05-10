@@ -41,6 +41,7 @@ Page({
             this.data.goods_id = options.goods_id
 
             this.getGoodsInfo()
+            this.is_modify = true
 
         }else{
 
@@ -73,11 +74,34 @@ Page({
 
     editSubmit(){
 
-        util.wx.post('/api/seller/goods_add_or_edit',{
+        util.wx.post('/api/seller/spec_edit',{
             goods_id:this.data.goods_id,
             goods_spec:this.data.info.goods_spec
         })
 
+    },
+
+    spec_edit(id,price){
+
+      wx.showLoading()
+
+       util.wx.post('/api/seller/spec_edit',{
+            goods_spec_id:id,
+            sub_agent_price:price
+        }).then(res=>{
+          if(res.data.code == 200){
+            wx.showToast({
+              title:'价格修改成功',
+              icon:'none'
+            })
+          }else{
+            wx.showToast({
+              title:'价格修改失败',
+              icon:'none'
+            })
+          }
+        })
+      wx.hideLoading()
     },
 
 
@@ -87,7 +111,7 @@ Page({
 
 
 
-        const {index,spec_price} = e.currentTarget.dataset
+        const {index,spec_price,goods_spec_id} = e.currentTarget.dataset
 
 
 
@@ -109,12 +133,25 @@ Page({
             return false
 
          }else{
+          /**修改价格调用接口**/
+          if(this.is_modify){
+            this.spec_edit(goods_spec_id,value)
+            return
+          }
+
+
+
 
             this.data.info.goods_spec[index].sub_agent_price = value
 
               this.setData({
                 btnDisable:false
             })
+
+
+
+
+
          }
 
     },
@@ -123,9 +160,29 @@ Page({
 
   cancelHelp(){
 
-        util.setParentData({
+
+    wx.showModal({
+      title:'确认要取消帮卖设置吗？',
+      success:(res)=>{
+        if(res.confirm){
+
+
+          if(this.is_modify){
+            console.log('调修改接口')
+            return
+          }
+
+
+
+
+          util.setParentData({
             agent_opt:0
-        })
+           })
+        }
+      }
+    })
+
+      
 
 
 
@@ -135,9 +192,11 @@ Page({
 
     modifyPrice(){
 
-        if(this.data.goods_id){
-
-            this.editSubmit()
+        if(this.is_modify){
+          //返回详情页
+          
+           wx.navigateBack()
+          console.log('返回详情页')
 
         }else{
             util.setParentData({

@@ -59,8 +59,8 @@
     "pages/help-sale-setting/index",
     "pages/help-sale-invite/index",
     "pages/help-sale-up/index",
-    "pages/acting-apply/index"
-
+    "pages/acting-apply/index",
+    "pages/user-help-home/index"
   ],
   "subpackages": [
     {

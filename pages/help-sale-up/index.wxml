@@ -7,6 +7,13 @@
     </view>
 
 
+
+     <view class="center" wx:if="{{is_loading}}">
+         <wux-spin wux-class="spin" />
+     </view>       
+
+
+
     <form bindsubmit="submitForm">
         <view class="white-bg ph-df pv-sm flex align-center">
              <image src="{{info.goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75" class="img-df"></image>
@@ -22,7 +29,11 @@
                 <van-field value="{{item.sub_agent_price}}元" name="" label="拿货价" placeholder="" input-align="right" readonly></van-field>
             </van-cell-group>
             <view class="mh-df mv-sm solid round-df">
-                <van-field use-button-slot value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="{{is_modify?'修改':'设置'}}零售价" data-index="{{index}}" placeholder="请输入零售价" bind:blur="validate" bind:change="change" input-align="right" input-class="text-lg coral-text">
+                <van-field use-button-slot value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="{{is_modify?'修改':'设置'}}零售价" 
+                data-goods_spec_id="{{item.goods_spec_id}}"
+                data-sub_agent_price="{{item.sub_agent_price}}"
+
+                data-index="{{index}}" placeholder="请输入零售价" bind:blur="validate" bind:change="change" input-align="right" input-class="text-lg coral-text">
                     <view slot="button">元</view>
                 </van-field>
             </view>
@@ -44,8 +55,8 @@
             <button wx:if="{{is_modify}}" class="btn xxl primary block linenear_bg" bindtap="modifyPrice" disabled="{{btnDisable}}">
                 保存
             </button>
-            <button wx:else class="btn xxl primary block linenear_bg" bindtap="upup" disabled="{{btnDisable}}">
-                立即上架
+            <button wx:else class="btn xxl primary block linenear_bg" bindtap="goDetail" disabled="{{btnDisable}}">
+                立即查看
             </button>
 
 

@@ -262,7 +262,7 @@
 					"id": 27,
 					"name": "个人主页",
 					"pathName": "pages/userhome/index",
-					"query": "id=1",
+					"query": "id=115",
 					"scene": null
 				},
 				{
@@ -1046,7 +1046,7 @@
 					"id": 139,
 					"name": "帮卖查看商品",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=2003&from_id=&help_sale=true",
+					"query": "goods_id=2067&from_id=&help_sale=true",
 					"scene": null
 				},
 				{
@@ -1081,7 +1081,7 @@
 					"id": 144,
 					"name": "帮卖上架",
 					"pathName": "pages/help-sale-up/index",
-					"query": "goods_id=2046",
+					"query": "goods_id=2067",
 					"scene": null
 				},
 				{
@@ -1089,6 +1089,34 @@
 					"name": "pages/acting-apply/index",
 					"pathName": "pages/acting-apply/index",
 					"query": "user_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "帮卖修改",
+					"pathName": "pages/help-sale-setting/index",
+					"query": "goods_id=2003",
+					"scene": null
+				},
+				{
+					"id": 147,
+					"name": "pages/help-sale-up/index",
+					"pathName": "pages/help-sale-up/index",
+					"query": "goods_id=2048",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "us",
+					"pathName": "pages/userhome/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": 149,
+					"name": "申请代理",
+					"pathName": "pages/acting-apply/index",
+					"query": "store_id=1",
 					"scene": null
 				}
 			]

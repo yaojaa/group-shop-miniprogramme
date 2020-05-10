@@ -15,7 +15,7 @@
     text-align: center;
     line-height: 36rpx;
     padding-top: 30rpx;
-    margin-bottom: 80rpx;
+    margin-bottom: 10rpx;
 }
 .act-textarea{
     width: 100%;

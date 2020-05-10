@@ -4,6 +4,12 @@
 
 }
 
+.switch{
+    position: absolute;
+    z-index: 99;
+    left: 10px
+}
+
 .head-box {
     position: relative;
     background: url('https://static.kaixinmatuan.cn/static/bg2.jpg') center bottom no-repeat #fff;

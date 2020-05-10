@@ -3,6 +3,11 @@
     <footerbar active="{{active}}" />
 
 
+    <view class="switch" style="top:{{top}}px"><van-icon name="exchange" color="#fff" size="24px"/>
+        切换为团长
+    </view>
+
+
     <view class="head-box">
         <view class="flex align-center">
             <navigator url="../identify/identify" hover-class="none">

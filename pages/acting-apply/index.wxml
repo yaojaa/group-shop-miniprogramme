@@ -1,7 +1,11 @@
 <view class="act-view">
-    <image wx:if="{{info.supplier_logo}}" class="act-logo" mode="aspectFill" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"></image>
+    <image wx:if="{{info._user.headimg}}" class="act-logo" mode="aspectFill" src="{{info._user.headimg}}"></image>
     <view class="act-title">
-        {{info.supplier_name}}
+        {{info._user.nickname}}
+    </view>
+
+    <view class="desc text-muted pv-h">
+        {{info.store_intro}}
     </view>
 
     <form bindsubmit='actSubmit'>

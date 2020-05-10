@@ -4,7 +4,7 @@ const util = require('../../utils/util.js')
 Page({
   data: {
     showAuth: false,
-    suppList: {},
+    suppList: [],
     helpSaleList:[],
     groupUserList:[],
     isCheck:false,
@@ -30,10 +30,22 @@ Page({
   },
 
   toSupphome(e) {
-    const id = e.currentTarget.dataset.id
-    wx.navigateTo({
+    const {id,type} = e.currentTarget.dataset
+    if(type=='supplier'){
+
+          wx.navigateTo({
       url: '../supplier-home/index?id=' + id
     })
+
+    }else{
+
+    wx.navigateTo({
+      url: '../userhome/index?id=' + id
+    })
+    }
+
+
+
   },
 
   //获取我的帮卖成员
@@ -73,9 +85,9 @@ Page({
         wx.hideLoading()
 
       if(res.data.code == 200){
-        this.data.suppList.concat(res.data.data.list)
+        this.data.suppList.concat(res.data.data)
       this.setData({
-        suppList: this.data.suppList
+        suppList: res.data.data
       })
     }else{
 
@@ -123,15 +135,15 @@ onChange({ detail }) {
     this.setData({ isCheck: detail });
   },
 onShareAppMessage: function(e) {
-    const { supplier_id, supplier_name,type } = e.target.dataset
+    const { supplier_id, supplier_name,type ,store_id} = e.target.dataset
     const {nickname,user_id} = app.globalData.userInfo
 
-    console.log(app.globalData.userInfo)
+    console.log(type)
 
-    if(type=='user'){
+    if(type=='store'){
 
             var title=nickname + '邀请您加入Ta的帮卖团队' 
-            var path = '../acting-apply/index' + '?userid=' + user_id
+            var path = '../acting-apply/index' + '?store_id=' + store_id
 
 
     }else{

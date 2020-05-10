@@ -17,7 +17,11 @@
             <view class="gray-text text-xs" >
                 <text class="ph-xs ph-xs" >浏览({{item.pageview_count}})</text> <text  class="ph-xs ph-xs"> 收款总额(￥{{item._order_total}})</text>
 
+             <view style="color: #ff8900" wx:if="{{item.link_goods.length==2 && item.link_goods[1]!==null}}">
+                由“{{item.link_goods[1].nickname}}”负责发货
+             </view>
          
+              <view  wx:if="{{item.supplier_id && item.supplier_id >0}}" class="aa" style="color: #ff8900">由"{{item.supplier_name}}"负责发货</view>
 
               <view  wx:if="{{item.supplier_id && item.supplier_id >0}}" class="aa" style="color: #ff8900">由"{{item.supplier_name}}"负责发货</view>
 

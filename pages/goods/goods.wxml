@@ -9,6 +9,8 @@
         </view>
     </view>
 </custom-bar>
+
+
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}"></view>
     <imgs imgs="{{imgs}}">
@@ -26,7 +28,7 @@
             </view>
         </view>
     </imgs>
-    <view class="menu flex-box" wx:if="{{showPanel}}">
+    <view  class="menu flex-box" wx:if="{{showPanel}}">
         <view class="flex-item" bindtap="goVisitor">
             <view class="num">
                 <van-icon name="closed-eye" color="#4fac05" size="20px" />
@@ -37,8 +39,7 @@
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
-            <block wx:if="{{goods.supplier_id}}">改价</block>
-            <block wx:else>编辑修改</block>
+            <block>编辑修改</block>
         </view>
         <view class="flex-item" bindtap="goSendMsg">
             <view class="num">
@@ -53,7 +54,7 @@
             管理订单
         </view>
         
-        <view class="flex-item" bindtap="openInviteFriends">
+        <view class="flex-item" bindtap="openInviteFriends" wx:if="{{goods.goods_link.length<2}}">
             <view class="num">
                 <van-icon name="friends-o" color="#4fac05" size="20px" />
             </view>
@@ -279,7 +280,7 @@
 
 
 
-        <form style="flex:2;position: relative;" bindsubmit="formSubmit" data-fn="cartPanelShow">
+        <form style="flex:2;position: relative;" bindtap="cartPanelShow" >
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>

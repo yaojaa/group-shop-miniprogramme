@@ -56,6 +56,8 @@ Component({
      addListen(e){
       util.sellerListner()
      }, 
+
+     /*下拉菜单*/
      moreAction(e){
 
       this.goods_id = e.currentTarget.dataset.id

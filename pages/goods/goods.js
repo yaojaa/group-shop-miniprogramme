@@ -1,5 +1,13 @@
 //index.js
 //获取应用实例
+//
+//
+// goods_link
+// store_link
+// spec_link
+// price_link
+
+
 const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index')
 import { $wuxGallery } from '../../wux/index'
@@ -288,7 +296,7 @@ Page({
     
     if(this.data.goods.agent_opt==0){
 
-       wx.redirectTo({
+       wx.navigateTo({
               url: '../help-sale-setting/index?goods_id=' + this.data.goods_id,
             })
 
@@ -509,6 +517,12 @@ Page({
   },
   goModify() {
 
+      wx.navigateTo({
+              url: '../publish/publish?goods_id=' + this.data.goods_id,
+            })
+
+      return
+
 
     if(this.data.goods.supplier_id==0){
 
@@ -641,9 +655,7 @@ Page({
           ;(this.data.seller = d.goods.user),
             (this.data.store_id = d.goods.store.store_id)
 
-            if(this.data.is_help_sale){
-              this.applyHelpSale()
-            }
+           
 
           //显示管理面板
 
@@ -654,6 +666,15 @@ Page({
               showPanel: true,
             })
           }
+
+
+           if(this.data.is_help_sale && !this.data.showPanel){
+              this.applyHelpSale()
+            }
+
+
+
+
         } else if (res.data.code == 0) {
           wx.showModal({
             title: '亲，已经结束了，下次早点来哦',
@@ -683,7 +704,6 @@ Page({
 
     console.log('用户离开了 onHide')
 
-    this.setStayTime()
   },
   setStayTime() {
     //提交访问记录
@@ -700,7 +720,6 @@ Page({
     }
   },
   onLoad: function (option) {
-    console.log('用户进入了', option)
 
     if (option.scene) {
       option = decodeURIComponent(option.scene)
@@ -722,8 +741,6 @@ Page({
       this.setData({
         is_help_sale:true
       })
-
-
 
     }
 
@@ -1274,7 +1291,7 @@ Page({
       if(res.data.code == 200){
 
          wx.redirectTo({
-          url:'../help-sale-up/index?goods_id='+this.data.goods.goods_id
+          url:'../help-sale-up/index?goods_id='+res.data.data
         })
 
       }else{
@@ -1330,7 +1347,7 @@ Page({
 
   // },
   onPageScroll: function (e) {
-    if (e.scrollTop > 200 && !this.data.toShowPic) {
+    if (e.scrollTop > 50 && !this.data.toShowPic) {
       this.setData({
         toShowPic: true,
       })

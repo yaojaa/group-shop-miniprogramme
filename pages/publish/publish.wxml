@@ -237,7 +237,7 @@
                                 <i-icon type="enter" size="28" />
                             </view>
                             <view class="timePicker" style="display: flex; align-items: center; justify-content: space-between;" wx:else>
-                                <view bindtap="hideTimePicker" style="color: #c00">
+                                <view bindtap="hideTimePicker" class="primary-text">
                                     不启用
                                 </view>
                                 <view>
