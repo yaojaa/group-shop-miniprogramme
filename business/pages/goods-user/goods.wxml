@@ -140,7 +140,7 @@
             </view>
         </view>
     </view>
-    <view class="piclist-container" wx:if="{{toShowPic || !isEmptyEditor}}">
+    <view class="piclist-container">
         <!-- <view wx:if="{{goods.goods_video}}">
             <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
         </view> -->
@@ -148,7 +148,7 @@
             <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
         </block>
         <view wx:if="{{!isEmptyEditor}}" class="editor-content">
-            <block wx:for='{{editorContent.htmlArr}}'>
+            <block wx:for='{{editorContent.htmlArr}}' wx:key='index'>
                 <rich-text nodes="{{item}}"></rich-text>
                 <video class="editor-video" wx:if="{{editorContent.video[index]}}" src="{{editorContent.video[index]}}"></video>
             </block>

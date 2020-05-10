@@ -11,8 +11,8 @@
 </view>
 
 <view class="toolbar" catchtouchend="format">
-  <i class="iconfont upload-img" catchtouchend="insertVideo"></i>
   <i class="iconfont icon-charutupian" catchtouchend="insertImage"></i>
+  <i class="iconfont upload-img" catchtouchend="insertVideo"></i>
 <!--   <i class="iconfont icon-format-header-1 {{formats.header === 2 ? 'ql-active' : ''}}" data-name="header" data-value="{{2}}"></i> -->
   <i class="iconfont icon-format-header-1 {{formats.header === 3 ? 'ql-active' : ''}}" data-name="header" data-value="{{3}}"></i>
   <i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold"></i>

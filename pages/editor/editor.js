@@ -156,13 +156,26 @@ Page({
   insertVideo() {
     const that = this;
     let vw = 'auto', vh = 'auto';
-    wx.showLoading()
+
     wx.chooseVideo({
       sourceType: ['album','camera'],
       maxDuration: 60,
       compressed: true,
       camera: 'back',
       success(res) {
+        wx.showLoading();
+
+        that.getEditorContent(data => {
+          if(data.isEmptyEditor){
+            that.editorCtx.insertText({
+              text:'\n',
+              success: function (res) {
+                console.log(res)
+              }
+            })
+          }
+        });
+
         util.uploadFile({filePath: res.tempFilePath}).then(res => {
           if(res.code == 200){
             let videoImg = 'https://static.kaixinmatuan.cn/video-cover.jpg';
@@ -178,8 +191,6 @@ Page({
                 },500)
               }
             })
-
-
 
             console.log(res.data.file_url)
           }

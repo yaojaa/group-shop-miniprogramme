@@ -616,8 +616,12 @@ Page({
 
           let editorContent = JSON.parse(d.goods.content)
           editorContent = editorContent ? editorContent : { html: '', text: '' }
-          let isEmptyEditor =
-            editorContent.text.replace(/\n/g, '').length == 0 &&
+
+          if(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p><p( wx:nodeid="\d+")?><img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/.test(editorContent.html)){
+            editorContent.html = editorContent.html.replace(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p>/,'<p>');
+          }
+          
+          let isEmptyEditor = editorContent.text.replace(/\n/g, '').length == 0 &&
             !/img/g.test(editorContent.html)
 
           editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
