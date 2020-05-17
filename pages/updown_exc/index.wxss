@@ -62,7 +62,18 @@ i-datepicker{
   width: 60%;
 }
 .select-time-body{
-  padding: 10px;
+  margin:0 10px;
+  border-radius: 4px;
   background: #f8f8f8;
-  margin: 20px
+  padding: 0 2px 0 5px;
 }
+
+.goods-list{
+  padding: 5px 2px;
+}
+
+.tac{ text-align: center; padding: 10px;}
+
+.pt10{ padding-top: 10px; }
+
+.checkorder{ padding: 4px; color: #105f96; }

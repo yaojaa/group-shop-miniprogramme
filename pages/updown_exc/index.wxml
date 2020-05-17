@@ -1,41 +1,40 @@
 <view class="view-page">
-
-
-
 	<view class="menu">
 		<van-dropdown-menu>
 
-  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-  <van-dropdown-item  value="{{ value2 }}" options="{{ option2 }}" />
-  <van-dropdown-item  value="{{ value2 }}" options="{{ option3 }}" />
+		  <van-dropdown-item value="{{ value1 }}" bind:change="onChange1" options="{{ option1 }}" />
+		  <block wx:if="{{value1 == 0}}">
+			  <van-dropdown-item  value="{{ value2 }}" bind:change="onChange2" options="{{ option2 }}" />
+			</block>
+		  <block wx:if="{{value2 == 0 && value1 == 0}}">
+		  	<van-dropdown-item  value="{{ value3 }}" bind:change="onChange3" options="{{ option3 }}" />
+		  </block>
 
-</van-dropdown-menu>
+		</van-dropdown-menu>
 	</view>
 
 
-<view class="select-time-body" >
-
-<scroll-view>
-
-	<van-checkbox-group value="{{ result }}" bind:change="onChange">
-  <van-checkbox checked-color="#07c160" name="a"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text> </van-checkbox>
-  <van-checkbox checked-color="#07c160" name="b"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-  <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-    <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-      <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-        <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-          <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-            <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-              <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-                <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-                  <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-                    <van-checkbox checked-color="#07c160" name="c"><text class="f12">商品规格名称 订单数量:2 订单金额:399 查看 </text></van-checkbox>
-</van-checkbox-group>
-</scroll-view>
+<view class="select-time-body" wx:if="{{value2 != 1 || value1 != 0}}">
+	<!-- <scroll-view> -->
+		<van-checkbox-group value="{{ result }}" bind:change="onChange">
+			<block wx:if="{{list.length > 0}}">
+			  <van-checkbox wx:for='{{list}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}">
+			  	<view class='goods-list'>
+			  		<text class="f14">{{item.goods_name}}</text>
+			  		<view class="f12">{{item.spec_name}} 订单数量:{{item.total_qty}} 订单金额:{{item.total_price}} <text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text></view>
+			  	</view>
+			  </van-checkbox>
+			  <view class="tac pt10" hidden="{{listmore}}">没有更多了~</view>
+			</block>
+		  <block wx:else>
+		  	<view class="tac">暂无订单</view>
+		  </block>
+		</van-checkbox-group>
+	<!-- </scroll-view> -->
 </view>
 
 
-<view class="record select-time-body">
+<!-- <view class="record select-time-body">
 	<view class="title">导出记录:</view>
 		<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
 			<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
@@ -43,7 +42,7 @@
 					<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
 						<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
 
-</view>
+</view> -->
 
 <!-- 	<view class="select-time-body">
 		<view class="exc-select-time">
@@ -62,7 +61,7 @@
 	
 
 	<view class="create-link">
-		<button class="btn linenear_bg" type="primary" bindtap="exportExcel">导出</button>
+		<button class="btn linenear_bg" disabled="{{list.length == 0 && value2 == 0}}" type="primary" bindtap="exportExcel">导出</button>
 	</view>
 	
 
