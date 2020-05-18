@@ -123,7 +123,7 @@ Page({
 
         if(res.data.data.lists.length > 0){
           this.setData({
-            list: this.data.list.concat(res.data.data.lists),
+            ['list['+(_data.cpage-1)+']']: res.data.data.lists,
             listmore: true
           })
         }else if(this.data.list.length > 0){
@@ -272,3 +272,4 @@ Page({
 
   // }
 })
+

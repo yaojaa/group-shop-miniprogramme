@@ -17,8 +17,9 @@
 <view class="select-time-body" wx:if="{{value2 != 1 || value1 != 0}}">
 	<!-- <scroll-view> -->
 		<van-checkbox-group value="{{ result }}" bind:change="onChange">
-			<block wx:if="{{list.length > 0}}">
-			  <van-checkbox wx:for='{{list}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}">
+			<blockquote wx:if="{{list.length > 0}}">
+			<block wx:for="{{list}}" wx:key='index' wx:for-item="lis">
+			  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}">
 			  	<view class='goods-list'>
 			  		<text class="f14">{{item.goods_name}}</text>
 			  		<view class="f12">{{item.spec_name}} 订单数量:{{item.total_qty}} 订单金额:{{item.total_price}} <text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text></view>
@@ -26,6 +27,7 @@
 			  </van-checkbox>
 			  <view class="tac pt10" hidden="{{listmore}}">没有更多了~</view>
 			</block>
+			</blockquote>
 		  <block wx:else>
 		  	<view class="tac">暂无订单</view>
 		  </block>
