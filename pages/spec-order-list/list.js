@@ -447,7 +447,7 @@ Page({
         return new Promise((resolve, reject) => {
             util.wx.get('/api/seller/export_show_detail', {
                 goods_spec_id: this.data.goods_spec_id,
-                // cpage: this.data.cpage,
+                cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
                 // search_order_status: this.data.search_order_status,
                 // pagesize: 30
