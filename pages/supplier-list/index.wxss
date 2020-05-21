@@ -155,6 +155,7 @@ padding: 20px
 .act-cell{
     border-bottom: 1px solid #efefef;
     padding: 20rpx 0;
+    position: relative;
 }
 .act-img{
     width: 100rpx;
@@ -236,4 +237,10 @@ padding: 20px
 .total{
     margin: 10rpx 0 0 30px;
     color: #666
+}
+
+.po_right{
+  position: absolute;
+  right: 5px;
+  top: 25rpx
 }

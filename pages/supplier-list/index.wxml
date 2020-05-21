@@ -8,7 +8,7 @@
 
 
 
-    <view><button size="mini" data-type="user" open-type="share"   bindtap="openShareFriends" >邀请小伙伴</button></view>
+    <view><button size="mini" data-type="store" open-type="share"   bindtap="openShareFriends" >邀请小伙伴</button></view>
     
         <view class="total">共{{total || 0}}个成员 <van-icon bindtap="openSetting" size="20px" name="setting-o" /></view>
 
@@ -27,19 +27,23 @@
                 <view class="act-bottom">
             <text class="f12 left text-muted">销量:{{item.order_num}}    粉丝:{{item.fans_num}}</text>
 
-            <view class=" right" >
+         
+                  
+ 
+                </view>
+            </view>
+
+               <view class="po_right" >
                 
                     <view class="button left"  wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</view>
 
                     <button class="button shrink0 left" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</button>
 
-                     <view class="f10 " wx:if="{{item.supplier_agent_status==2}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit"><van-icon name="delete" size="20px" color="#666" /></view>
+                     <view class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit"><van-icon name="delete" size="20px" color="#666" /></view>
 
             </view>
-                  
- 
-                </view>
-            </view>
+
+
         </view>
     </view>
 
@@ -77,7 +81,9 @@
         </view>
         <view class="flex align-center">
 
-          <button size="mini" data-supplier_id="{{item.supplier_id}}" 
+          <button size="mini" 
+          data-supplier_id="{{item.supplier_id}}" 
+          data-store_id="{{item.store_id}}" 
           open-type="share"
           data-supplier_name="{{item.supplier_name}}"  
           data-type="{{item.supplier_id?'supplier':'store'}}" 
@@ -118,6 +124,7 @@
 
     </van-dialog>
 
+<van-dialog id="van-dialog" />
 
 
 

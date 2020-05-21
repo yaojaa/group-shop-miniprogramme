@@ -4,6 +4,10 @@
         {{info.supplier_name}}
     </view>
 
+    <view class="info text-muted">
+        {{info.supplier_intro}}
+    </view>
+
     <form bindsubmit='actSubmit'>
 
 

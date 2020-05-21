@@ -72,6 +72,8 @@ Page({
 
         }).then(res => {
 
+            console.log('没走成公')
+
                     wx.hideLoading()
 
 
@@ -80,8 +82,10 @@ Page({
                 //订购数量
                 var qty = 0;
                  res.data.data.order_detail.forEach(item=>{
-                    qty+= item.qty
+                    qty+= parseInt(item.qty)
                  })
+
+                console.log('res.data.data.order_detail[0].goods_name',res.data.data.order_detail[0].goods_name)
                 
                 this.setData({
                     order: res.data.data,
@@ -93,14 +97,6 @@ Page({
                     seller_store_id:res.data.data.store.store_id
                 })
             }
-        }).catch(e=>{
-           wx.hideLoading()
-
-           wx.showToast({
-            title:e.data.msg,
-            icon:'none'
-           })
-
         })
 
     },

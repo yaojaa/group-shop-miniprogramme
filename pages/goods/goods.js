@@ -139,10 +139,17 @@ Page({
     })
   },
 
-  checkIsHelper(){
-    util.wx.get('/api/helper/is_store_helper').then(res=>{
+  checkIsHelper(store_id){
+    util.wx.post('/api/helper/is_store_helper',{
+      store_id:this.data.store_id
+    }).then(res=>{
 
-      console.log(res)
+      if(res.data.code == 200){
+        this.setData({
+          is_help_sale_user:res.data.data==1?true:false
+        })
+      }
+     
 
     })
 
@@ -217,6 +224,7 @@ Page({
       phoneNumber: this.data.phone,
     })
   },
+
   onShow: function () {
     // 关闭查看图片预览标识
     this.data.imgPreviewFlag = false
@@ -268,8 +276,6 @@ Page({
             title = this.data.goods.goods_name
 
           }
-
-
 
     }
 
@@ -659,7 +665,7 @@ Page({
           ;(this.data.seller = d.goods.user),
             (this.data.store_id = d.goods.store.store_id)
 
-           
+         
 
           //显示管理面板
 
@@ -670,6 +676,12 @@ Page({
               showPanel: true,
             })
           }
+
+            //判断是否是帮卖代理浏览
+           
+           if(d.goods.agent_opt==1 && !this.data.showPanel){
+            this.checkIsHelper()
+           }
 
 
            if(this.data.is_help_sale && !this.data.showPanel){
@@ -753,7 +765,6 @@ Page({
 
 
 
-   // this.checkIsHelper()
 
     this.getShareImg()
     this.getGoodsInfo()
@@ -1275,10 +1286,7 @@ Page({
 
     })
 
-    
-
-
-
+  
   },
 
   helpSaleUp:function(){

@@ -29,6 +29,7 @@ Page({
         totalpage: 1,
         delivery_method: 0,
         sendAll: false,
+        user_id:'',
         // switchOrderList:false,//折叠展开订单
         actionsConfirm: [{
                 name: '取消'
@@ -165,6 +166,7 @@ Page({
         app.globalData.apiPrix = 'seller'
 
         this.setData({
+            user_id:app.globalData.userInfo.user_id,
             goods_id: optiton.id,
             delivery_method: optiton.delivery_method,
             goods_name:optiton.goods_name

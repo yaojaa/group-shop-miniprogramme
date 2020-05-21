@@ -171,7 +171,7 @@
             </text>
             </view> -->
 
-            <block wx:if="{{item.order_refundstatus!==4}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
+            <block wx:if="{{item.link_store.length !==2 && item.order_refundstatus!==4}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
                     <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" 
                     data-id="{{item.order_id}}" 
                     data-opt = "{{btn.opt}}"
@@ -182,11 +182,24 @@
                     >{{btn.txt}}</button>
             </block>
 
-            <view class="mt-sm f12 text-warning" wx:if="{{item.supplier_id !== 0}}">
+    <!--是帮卖团长查看 限时赚多少钱和发货人-->
+     <block wx:if="{{item.link_store.length ==2 && user_id !=item.link_store[1].user_id}}">
+          <view class="mt-sm f12 ">
 
-                由“{{item.supplier.supplier_name}}”代发货
-                
-            </view>
+             <view class="fl_left">赚 <text class="text-warning">¥{{item.link_store[1].profit}}</text>元 </view>
+
+             <view class="fl_right">由<text class="text-success">{{item.link_store[1].nickname}}</text>发货  </view>
+         </view>
+     </block>
+
+
+     <!--  <block wx:if="user_id !== item.info">
+
+      </block> -->
+
+
+
+            
 
             <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">
                 <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}">

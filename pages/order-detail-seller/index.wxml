@@ -90,11 +90,16 @@
             <van-cell customStyle="padding:5px 20px" title="付款时间" wx:if="{{info.addtime}}" value="{{info.addtime}}" border="{{ false }}" value-class="text-gray" />
         </van-cell-group>
 
-            <view class="mt-sm f12 text-warning center" wx:if="{{info.supplier_id !== 0}}">
+          
 
-                此商品由“{{info.supplier.supplier_name}}”供货
-                
-            </view>
+         
+
+               <view class="ml-lg mr-lg mt-xxl f12 " wx:if="{{info.link_store.length ==2 && info.link_store[1]!==null}}">
+
+             <view class="fl_left">可赚 <text class="text-warning">¥{{info.link_store[1].profit}}</text>元 </view>
+
+             <view class="fl_right">由<text class="text-success">{{info.link_store[1].nickname}}</text>发货  </view>
+         </view>
 
    
 
@@ -119,7 +124,7 @@
                     物流信息
                 </button>
 
-          <block wx:for="{{info.seller_next_handle}}" wx:key="{{index}}">
+          <block wx:if="{{info.info.link_store.length<2}}" wx:for="{{info.seller_next_handle}}" wx:key="{{index}}">
             <button class="btn round primary btn-{{item.opt}}" bindtap="orderActions" 
             data-opt="{{item.opt}}"
             data-order_id="{{info.order_id}}" 

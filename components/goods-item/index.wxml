@@ -14,41 +14,28 @@
                     </view>
                 </view>
             </navigator>
-            <view class="gray-text text-xs" >
-                <text class="ph-xs ph-xs" >浏览({{item.pageview_count}})</text> <text  class="ph-xs ph-xs"> 收款总额(￥{{item._order_total}})</text>
+            <view class="gray-text " >
+                <text class="ph-xs ph-xs f12px" >浏览({{item.pageview_count}})</text> <text  class="ph-xs ph-xs f12px"> 收款总额(￥{{item._order_total}})</text>
 
-             <view style="color: #ff8900" wx:if="{{item.link_goods.length==2 && item.link_goods[1]!==null}}">
-                由“{{item.link_goods[1].nickname}}”负责发货
+
+             <view class="f12px" style="color: #ff8900" wx:if="{{item.link_goods.length==2 && item.link_goods[1]!==null}}">
+                由“{{item.link_goods[1].nickname}}”负责发货 
+
+                <text wx:if="{{item.link_goods[1].is_del!=-1 && item.link_goods[1].is_on_sale==1}}">[上架中]</text>
+                <text wx:if="{{item.link_goods[1].is_del==-1}}">[已删除]</text>
+
+                
              </view>
-         
-              <view  wx:if="{{item.supplier_id && item.supplier_id >0}}" class="aa" style="color: #ff8900">由"{{item.supplier_name}}"负责发货</view>
 
-              <view  wx:if="{{item.supplier_id && item.supplier_id >0}}" class="aa" style="color: #ff8900">由"{{item.supplier_name}}"负责发货</view>
+  
 
+              <view wx:if="{{item.link_goods.length==1 && item.link_goods[0]!==null}}" class="f12px"style="color: #ff8900">由"{{item.link_goods[0].store_name}}"负责发货 <text wx:if="{{item.link_goods[0].is_on_sale==1}}">[上架中]</text></view>
 
-              <!--   <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button>
-                <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
-                <button class="hollow" data-id="{{item.goods_id}}" bindtap="moreAction" size="mini">
-                    <i-icon size="28" color="#49b34d" type="other" />
-                </button> -->
             </view>
         </view>
 
-<view class="statusBar" wx:if="{{item.supplier_id && item.supplier_id >0}}">
-   
-       <view class=" p-xs" wx:if="{{item.supplier_id >0 && item.is_on_sale ==1 && item.supplier_goods_isdel == 1 }}" style="color: #ff8900">
-                    [合作中] 
-                </view>
-
- <view class=" p-xs" wx:if="{{item.supplier_goods_isdel == -1 }}" style="color: #ff8900">
-                    [已删除] 
-  </view>
-
-   <view class=" p-xs" wx:if="{{item.is_on_sale == 2 && item.supplier_goods_isdel == 1}}" style="color: #ff8900">
-                    [已下架] 
-  </view>
-        </view>
-        <view class="statusBar" wx:else> 
+ 
+        <view class="statusBar"> 
             <!--                                 _expires //是否过期 1正常 2未开始 3已过期
         }
         }

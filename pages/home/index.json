@@ -13,6 +13,7 @@
         "i-button": "../../iView/button/index",
         "van-tabbar": "../../vant/tabbar/index",
         "van-tabbar-item": "../../vant/tabbar-item/index",
+        "van-dialog": "../../vant/dialog/index",
         "i-goods-item": "../../components/goods-item/index",
         "wux-spin": "../../wux/spin/index",
         "van-icon": "../../vant/icon/index",

@@ -286,7 +286,7 @@
             </text>
             <button wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg" formType="submit">
                  
-                <block wx:if="{{is_help_sale}}">代客下单</block>
+                <block wx:if="{{is_help_sale}}">直接下单</block>
                 <block wx:else>立即参与</block>
             </button>
             <button wx:if="{{goods && goods.is_on_sale ==1 && goods._expires == 2 }}" class="buy linenear_bg" formType="submit">
@@ -297,7 +297,7 @@
             </button>
         </form>
 
-                <view class='icon' wx:if="{{is_help_sale}}" style="flex:2">
+                <view class='icon' wx:if="{{is_help_sale || is_help_sale_user}}" style="flex:2">
 
 
             <button bindtap="helpSaleUp" wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg">

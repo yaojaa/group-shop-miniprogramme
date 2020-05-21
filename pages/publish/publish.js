@@ -566,6 +566,25 @@ Page({
               Authorization: app.globalData.token,
             },
             success: (res) => {
+
+              console.log(res)
+
+              if(res.statusCode == 413){
+
+                this.setData({
+                  photoProgress: false,
+                })
+
+                 wx.showToast({
+                  title: '图片太大啦',
+                  icon: 'none',
+                })
+
+                return 
+              }
+
+
+
               var data = JSON.parse(res.data)
 
               if (data.code !== 200) {

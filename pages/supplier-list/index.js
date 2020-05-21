@@ -1,5 +1,6 @@
 const app = getApp()
 const util = require('../../utils/util.js')
+import Dialog from '../../vant/dialog/dialog';
 
 Page({
   data: {
@@ -48,6 +49,55 @@ Page({
 
   },
 
+  //拒绝
+  
+
+   audit(e) {
+
+        const {
+            agent_status,
+            agent_user,
+            supplier_agent_id
+        } = e.currentTarget.dataset
+
+        const txt = agent_status == 2 ? '确认要通过Ta吗？' : '确认要移除Ta吗？'
+
+        Dialog.confirm({
+            title: txt  ,
+            message: agent_user,
+            context: this,
+            confirmButtonText: '确定'
+        }).then(() => {
+
+            util.wx.post('/api/helper/set_helper_status', {
+                    status: 2, //1通过;2拒绝;(-1删除，暂时不考虑）
+                    h_store_id: app.globalData.userInfo.store.store_id
+                })
+                .then(res => {
+
+        const txt = agent_status == 2 ? '已通过' : '已拒绝'
+
+                    wx.showToast({
+                        title: txt+agent_user,
+                        icon: 'none'
+                    })
+
+                    this.getDetail()
+
+                })
+
+        }).catch(() => {
+            // on cancel
+        });
+
+
+
+
+
+
+
+    },
+
   //获取我的帮卖成员
   //
   getMyHelpSaleUser(){
@@ -85,9 +135,9 @@ Page({
         wx.hideLoading()
 
       if(res.data.code == 200){
-        this.data.suppList.concat(res.data.data)
+        this.data.suppList = this.data.suppList.concat(res.data.data)
       this.setData({
-        suppList: res.data.data
+        suppList: this.data.suppList
       })
     }else{
 
@@ -108,8 +158,10 @@ Page({
         wx.hideLoading()
 
       if(res.data.code == 200){
+
+       this.data.suppList = this.data.suppList.concat(res.data.data.list)
       this.setData({
-        suppList: res.data.data.list
+        suppList: this.data.suppList
       })
     }else{
 

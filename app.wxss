@@ -481,6 +481,14 @@ fieldset[disabled] .btn-link {
     text-align: left;
 }
 
+.fl_left {
+float:left
+}
+
+.fl_right {
+float:right
+}
+
 .list-flex {
     display: flex;
 }

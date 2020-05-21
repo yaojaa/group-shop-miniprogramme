@@ -148,12 +148,14 @@ Page({
             })
             .then(res => {
 
-                var data = res.data.data.goods
+              if(res.data.code ==200){
+                  var data = res.data.data.goods
 
-                  this.setData({
-                    info:res.data.data.goods,
-                    is_loading:false
-                 })
+                                  this.setData({
+                                    info:res.data.data.goods,
+                                    is_loading:false
+                                 })
+              }
 
             }
         )

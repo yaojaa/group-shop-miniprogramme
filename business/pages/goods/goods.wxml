@@ -66,7 +66,10 @@
         
         <block wx:if="{{goods.is_on_sale ==1}}">
 
-        <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
+
+            <block wx:if="{{goods.is_timelimit=='1'}}">
+
+           <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
             <view class="marker"></view>
             <view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
                 <view class="tit">距离结束</view>
@@ -81,7 +84,20 @@
                 </view>
             </view>
             <view wx:else>{{['','开团中','尚未开始','已结束'][goods.goods_expires]}}</view>
-        </view>
+          </view>
+                
+
+            </block>
+
+
+             <block wx:if="{{goods.is_timelimit=='0'}}">
+
+                <view class="sale-panel-fd text-warning" >热销中</view>
+                
+
+            </block>
+
+        
       </block>
      <block wx:if="{{goods.is_on_sale ==2}}">
 
@@ -96,7 +112,10 @@
     </view>
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
-            <view class="goods-name pv-xs">{{goods.goods_name}}</view>
+            <view class="goods-name pv-xs">{{goods.goods_name}} 
+        {{goods.is_timelimit}}
+        {{goods.is_timelimit=='0'}}
+</view>
         </view>
         <view class="goods-share">
             <button bindtap='handlePoster' class="btn-reset">

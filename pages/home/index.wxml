@@ -133,7 +133,7 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
-<!-- <van-dialog
+<van-dialog
   use-slot
   title="经营报告"
   confirmButtonText="我知道了"
@@ -144,12 +144,16 @@
   customStyle="width:200px"
   >
 <view class="dialog_content">
-   <view>今日访客数：15</view>
-  <view>今日新订单：5</view>
-  <view>待发货订单：35</view>
+   <view class="data">今日访客数：<text class="bold">15</text></view>
+  <view class="data">今日新订单：<text class="bold">15</text></view>
+  <view class="data">待发货订单：<text class="bold">15</text></view>
+
+  <view class="tips text-muted">
+          <checkbox value="下次微信通知我" checked="true"  disabled="{{true}}" />
+  下次微信通知我</view>
 </view>
 
-</van-dialog> -->
+</van-dialog>
 <!-- <van-popup
   show="{{ showDialog }}"
   overlay="{{false}}"

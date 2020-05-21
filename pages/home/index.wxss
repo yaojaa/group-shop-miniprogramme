@@ -296,6 +296,13 @@
     display: block;
 }
 
+.dialog_content .data{
+
+    font-size: 18px;
+    line-height: 2.0
+
+}
+
 .count-item .num {
     font-size: 32rpx;
     color: #333;

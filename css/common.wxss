@@ -1201,3 +1201,8 @@ button {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+
+.f12px {
+    font-size: 12px !important;
+}

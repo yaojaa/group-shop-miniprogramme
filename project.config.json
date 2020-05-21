@@ -1046,7 +1046,7 @@
 					"id": 139,
 					"name": "帮卖查看商品",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=2067&from_id=&help_sale=true",
+					"query": "goods_id=2096&from_id=&help_sale=true",
 					"scene": null
 				},
 				{
@@ -1117,6 +1117,34 @@
 					"name": "申请代理",
 					"pathName": "pages/acting-apply/index",
 					"query": "store_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/acting-apply/index",
+					"pathName": "business/pages/acting-apply/index",
+					"query": "supplier_id=4",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/supplier-list/index",
+					"pathName": "pages/supplier-list/index",
+					"query": "supplier_id=4",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order-detail-seller/index",
+					"pathName": "pages/order-detail-seller/index",
+					"query": "id=12102",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/paySuccess/index",
+					"pathName": "pages/paySuccess/index",
+					"query": "order_id=12103&goods_id=2082&order_count=191",
 					"scene": null
 				}
 			]
