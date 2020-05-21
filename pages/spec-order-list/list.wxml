@@ -1,0 +1,90 @@
+<view class="container">
+
+    <view class="text-center" wx:if="{{!loading && dataList.length==0}}">
+        暂无订单
+    </view>
+
+    <view class="text-center mb-sm">
+        <wux-spin wx:if="{{loading}}"></wux-spin>
+    </view>
+
+    
+<block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
+
+    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="{{item.order_id}}" wx:if="{{!item.removed}}">
+        <view class="order-hd">
+            <view class="goods_name">{{item.goods_name}}</view>
+
+            <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
+            </view>
+            <view wx:else class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
+            </view>
+        </view>
+        <view class="order-bd">
+            <view class="type text-justify  scale-b-1px">
+                <view>{{item.spec_name}} ×{{item.qty}}</view>
+                <view class="text-info">¥ {{item.total_price}} </view>
+            </view>
+
+            <view class="type text-justify  scale-b-1px" wx:if="{{item.shipping_money!='0.00'}}">
+                <view>运费</view>
+                <view class="text-info">¥ {{item.shipping_money}} </view>
+            </view>
+
+            <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}"  >
+
+
+                
+
+
+                <view class="address">
+                   <view> 姓名：{{item.consignee}}</view>
+                   <view>  电话：{{item.mobile}} <text   bindtap="copyTxt" data-text="{{item.mobile}}" class="blue_text">复制电话</text> </view>
+                   <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}} {{item.user_message}}
+                    <button bindtap="copy" 
+                    data-province="{{item.province}}"
+                    data-city="{{item.city}}"
+                    data-district="{{item.district}}"
+
+
+                    data-address="{{item.address}}"
+                    data-consignee="{{item.consignee}}"
+                    data-mobile="{{item.mobile}}"
+                    data-order_detail="{{item.order_detail}}"
+
+                    data-text="{{item.province+item.city+item.district+item.address+','+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="blue_text btn  xs round button-hover"> 
+                    复制收货地址
+                    </button>
+                   </view>
+                </view>
+            </view>
+            <view class="total text-justify scale-b-1px">
+                <view><text class="warning-text f18">¥{{item.pay_price}} </text>
+                    <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
+                </view>
+                <view class="text-right"> <text class="order-date">{{item.addtime}}</text>
+                </view>
+            </view>
+        </view>
+<!--         <view class="tar scale-b-1px" wx:if="{{item.supplier_id !== 0}}">
+
+            <view class="mt-sm f12 text-warning">
+
+                由“{{item.supplier.supplier_name}}”代发货
+                
+            </view>
+
+        </view> -->
+
+        <!-- </form> -->
+    </view>
+
+</block>
+
+   
+
+</view>

@@ -1,0 +1,25 @@
+{
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "管理订单",
+    "usingComponents":
+    {
+        "i-modal": "../../iView/modal/index",
+        "i-tabs": "../../iView/tabs/index",
+        "i-tab": "../../iView/tab/index",
+        "i-button": "../../iView/button/index",
+        "i-message": "../../iView/message/index",
+        "i-divider": "../../iView/divider/index",
+        "i-icon": "../../iView/icon/index",
+        "i-load-more": "../../iView/load-more/index",
+        "i-input": "../../iView/input/index",
+        "i-cell": "../../iView/input/index",
+        "i-custom-bar": "../../components/custom-bar/index",
+        "i-switch": "../../iView/switch/index",
+        "i-pop-menu": "../../iView/pop-menu/index",
+        "wux-spin": "../../wux/spin/index",
+        "van-button": "../../vant/button/index"
+
+
+    }
+
+}
