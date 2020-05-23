@@ -45,9 +45,23 @@ Page({
 
         }else{
 
-        this.setData({
-            info:app.globalData.helpSaleData
+        //修正下级价格为空
+        app.globalData.helpSaleData.goods_spec.forEach(item=>{
+          if(item.sub_agent_price =='' || item.sub_agent_price == 0){
+             this.data.btnDisable = true
+          }
         })
+
+
+
+        this.setData({
+            info: app.globalData.helpSaleData,
+            btnDisable: this.data.btnDisable
+        })
+
+        
+
+
         }
 
 
@@ -108,21 +122,30 @@ Page({
 
     validate(e){
 
-
+      console.log(e)
 
 
         const {index,spec_price,goods_spec_id} = e.currentTarget.dataset
 
+        var value = e.detail
 
+        if(value !== '' && !util.isMoney(value)){
 
-        const value = e.detail.value
+          wx.showToast({
+                    title:'价格格式不合法',
+                    icon:'none'
+                })
 
-        console.log(value,spec_price)
+           return this.setData({
+                btnDisable:true
+            })
 
-         if(value > spec_price){
+        }
+
+         if(value == '' || value == 0 || value > parseInt(spec_price)){
 
             wx.showToast({
-                title:'这价格有点高吧',
+                title:'请设置合理的供货价',
                 icon:'none'
             })
 
@@ -141,12 +164,19 @@ Page({
 
 
 
-
+            //这里this.data.info 对是app.globaldata.helpData的引用，修改会同步修改
             this.data.info.goods_spec[index].sub_agent_price = value
 
-              this.setData({
-                btnDisable:false
-            })
+          var is_btnDisable =false  
+          app.globalData.helpSaleData.goods_spec.forEach(item=>{
+            if(item.sub_agent_price =='' || item.sub_agent_price == 0){
+               is_btnDisable = true
+            }
+          })
+
+        this.setData({
+           btnDisable:is_btnDisable
+        })
 
 
 
@@ -155,42 +185,14 @@ Page({
          }
 
     },
-
-
-
-  cancelHelp(){
-
-
-    wx.showModal({
-      title:'确认要取消帮卖设置吗？',
-      success:(res)=>{
-        if(res.confirm){
-
-
-          if(this.is_modify){
-            console.log('调修改接口')
-            return
-          }
-
-
-
-
-          util.setParentData({
-            agent_opt:0
-           })
-        }
-      }
-    })
-
-      
-
-
-
-    },
-
-
-
+    /**点击确定按钮**/
     modifyPrice(){
+
+
+
+
+
+
 
         if(this.is_modify){
           //返回详情页
@@ -203,10 +205,6 @@ Page({
                 agent_opt:1
             })
         }
-
-
-
-
 
     },
 

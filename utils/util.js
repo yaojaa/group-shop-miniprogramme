@@ -8,8 +8,8 @@ const app = getApp();
 
 
 const config = {
-     apiUrl: 'https://www.kaixinmatuan.cn'
-    // apiUrl: 'http://dev.kaixinmatuan.cn'
+     // apiUrl: 'https://www.kaixinmatuan.cn'
+    apiUrl: 'http://dev.kaixinmatuan.cn'
 
 }
 
@@ -37,6 +37,19 @@ const formatNumber = n => {
     n = n.toString()
     return n[1] ? n : '0' + n
 }
+
+
+const isMoney = val =>{
+
+     var reg = /((^[1-9]\d*)|^0)(\.\d{0,2}){0,1}$/;
+     if(!reg.test(val)){
+            return false
+        }else{
+            return true
+        }
+    }
+
+
 
 const countTime = (nowDate, endDate) => {
 
@@ -775,5 +788,6 @@ module.exports = {
     setParentData,
     throttle,
     url2json,
-    checkMobile
+    checkMobile,
+    isMoney
 }

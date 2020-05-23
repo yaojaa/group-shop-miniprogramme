@@ -4,7 +4,7 @@
         {{info._user.nickname}}
     </view>
 
-    <view class="desc text-muted pv-h">
+    <view class="desc text-muted mv-xs">
         {{info.store_intro}}
     </view>
 

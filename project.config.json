@@ -12,7 +12,6 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
-		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
@@ -28,7 +27,9 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"preloadBackgroundData": false,
+		"useCompilerModule": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.5",
@@ -1046,7 +1047,7 @@
 					"id": 139,
 					"name": "帮卖查看商品",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=2096&from_id=&help_sale=true",
+					"query": "goods_id=2102&from_id=&help_sale=true",
 					"scene": null
 				},
 				{
@@ -1081,7 +1082,7 @@
 					"id": 144,
 					"name": "帮卖上架",
 					"pathName": "pages/help-sale-up/index",
-					"query": "goods_id=2067",
+					"query": "goods_id=2101",
 					"scene": null
 				},
 				{

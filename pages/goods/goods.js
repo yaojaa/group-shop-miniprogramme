@@ -139,14 +139,55 @@ Page({
     })
   },
 
-  checkIsHelper(store_id){
+ /**
+ *@method  弹出层
+ * 
+ */
+
+  showApplyModal(){
+                wx.showModal({  
+              title: '您没有权限代理此商品',  
+              content: '是否立即申请',
+              confirm_text:'立即申请',
+              success:(res)=>{    
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url:'../acting-apply/index?store_id='+this.data.store_id
+                  })
+                 
+                } else if (res.cancel) {   
+                   console.log('用户点击取消')
+                }
+              }
+            })
+  },
+
+  /**
+ *@method  检测当前用户是不是代理成员
+ * @return null
+ * 
+ */
+
+  checkIsHelper(){
     util.wx.post('/api/helper/is_store_helper',{
       store_id:this.data.store_id
     }).then(res=>{
 
       if(res.data.code == 200){
+
+        //不是帮卖成员
+        if(res.data.data == 1){
+
+          this.showApplyModal()
+
+
+        }
+
+
+
+
         this.setData({
-          is_help_sale_user:res.data.data==1?true:false
+          is_help_sale_user:res.data.data==1?false:true
         })
       }
      
@@ -680,7 +721,7 @@ Page({
             //判断是否是帮卖代理浏览
            
            if(d.goods.agent_opt==1 && !this.data.showPanel){
-            this.checkIsHelper()
+            this.checkIsHelper(d.goods.store.store_id)
            }
 
 
@@ -1300,13 +1341,19 @@ Page({
       goods_id:this.data.goods.goods_id
     }).then(res=>{
 
+       wx.hideLoading()
+
+
       if(res.data.code == 200){
 
          wx.redirectTo({
           url:'../help-sale-up/index?goods_id='+res.data.data
         })
 
-      }else{
+      }else if(res.data.code == 0){
+       this.showApplyModal()
+      }
+      else{
 
         wx.showToast({
           title:res.data.msg,

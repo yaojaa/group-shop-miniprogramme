@@ -135,13 +135,8 @@
     </view> -->
 <van-dialog
   use-slot
-  title="经营报告"
-  confirmButtonText="我知道了"
+  showConfirmButton="{{false}}"
   show="{{ showDialog }}"
-  confirm-button-open-type="getUserInfo"
-  bind:close="onClose"
-  bind:getuserinfo="getUserInfo"
-  customStyle="width:200px"
   >
 <view class="dialog_content">
    <view class="data">今日访客数：<text class="bold">15</text></view>
@@ -151,6 +146,10 @@
   <view class="tips text-muted">
           <checkbox value="下次微信通知我" checked="true"  disabled="{{true}}" />
   下次微信通知我</view>
+
+  <button>我知道了</button>
+
+
 </view>
 
 </van-dialog>

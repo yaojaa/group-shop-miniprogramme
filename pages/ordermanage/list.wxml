@@ -171,7 +171,9 @@
             </text>
             </view> -->
 
-            <block wx:if="{{item.link_store.length !==2 && item.order_refundstatus!==4}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
+            {{item.link_store.length ==2 && user_id ==item.link_store[1].user_id}}
+
+            <block wx:if="{{item.link_store.length ==1 || (item.link_store.length ==2 && user_id ==item.link_store[1].user_id) && item.order_refundstatus!==4}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
                     <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" 
                     data-id="{{item.order_id}}" 
                     data-opt = "{{btn.opt}}"

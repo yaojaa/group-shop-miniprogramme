@@ -1120,7 +1120,4 @@ button::after {
     color: #666;
     padding: 20px
 }
-.van-dialog{
-    width: 200px;
-    background: #c00
-}
+

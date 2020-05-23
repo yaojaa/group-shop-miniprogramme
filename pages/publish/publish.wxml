@@ -289,11 +289,9 @@
                     <view class="weui-cell__bd"></view>
                     <view class="weui-cell__ft" bindtap="toHelpSetting">
                         <view class="weui-icon-warn">
-                            <van-switch  slot="right-icon"
-                              checked="{{ agent_opt==0?false:true}}"
-                               bind:change="onChange" 
-                               active-color="#69b90b"
-                            />
+                           <text>设置</text>
+
+                             <i-icon type="enter" size="26" />
                         </view>
                     </view>
                 </view>

@@ -53,7 +53,7 @@ Page({
       {
         spec_name: '',
         spec_price: '',
-        sub_agent_price:0.00,
+        sub_agent_price:'',
         spec_stock: '',
         spec_pic: [],
         spec_desc: '',
@@ -453,7 +453,7 @@ Page({
       spec_stock: '',
       spec_pic: [],
       spec_desc: '',
-      sub_agent_price:'0'
+      sub_agent_price:''
     }
 
     this.data.spec = this.data.spec.concat([dataTpl])
@@ -523,6 +523,10 @@ Page({
     if (app.globalData.userInfo) {
       this.getTplList()
     }
+
+    console.log('app.globalData.helpSaleData',app.globalData.helpSaleData)
+
+
   },
   getInput(e) {
     this.setData({

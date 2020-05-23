@@ -465,11 +465,11 @@
     </van-popup>
     <wux-gallery id="wux-gallery" />
 
-       <van-dialog  id="dialog-success" use-slot>
+       <van-dialog wx:if="{{is_help_sale_user}}"  id="dialog-success" use-slot>
         <view class="dialog-head">
             <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
             <view class="title">
-                <view>你已经是帮卖成员</view>
+                <view>你已经是帮卖成员 {{is_help_sale_user}}</view>
             </view>
         </view>
         <view class="p-lg text-center text-gray text-df">

@@ -39,7 +39,11 @@
 
                     <button class="button shrink0 left" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</button>
 
-                     <view class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit"><van-icon name="delete" size="20px" color="#666" /></view>
+                     <view class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" 
+
+                     data-h_store_id="{{item.h_store_id}}"
+
+                     data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="removeHelper"><van-icon name="delete" size="20px" color="#666" /></view>
 
             </view>
 
@@ -71,7 +75,7 @@
         <image src="{{item.supplier_logo || item.headimg}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm" data-id="{{item.supplier_id || item.store_id}}" data-type="{{item.supplier_id?'supplier':'store'}}"  bindtap="toSupphome"></image>
         <view class="flex-sub por" data-id="{{item.supplier_id || item.store_id}}" 
         data-type="{{item.supplier_id?'supplier':'store'}}"  bindtap="toSupphome">
-          <view class="text-hide two-line  bold">{{item.supplier_name || item.store_name}}</view>
+          <view class="text-hide two-line  bold">{{item.supplier_name || item.nickname}}</view>
 
           <view class="text-muted mt-xs text-sm des">商品：{{item.goods_count || item.goods_num}} 成员：{{item.agent_count || item.helper_num}}</view>
 

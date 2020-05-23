@@ -1,7 +1,7 @@
 @import '../common/index.wxss';
 
 .van-dialog {
-    width: 85%;
+    width: 75%;
     overflow: hidden;
     font-size: 16px;
     background-color: #fff;

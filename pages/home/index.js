@@ -190,6 +190,7 @@ Page({
         this.get_store_info()
         this.getGoodsList()
         this.getOrderList()
+        this.getDayReport()
 
 
     },
@@ -403,6 +404,17 @@ Page({
         })
 
 
+    },
+
+    /**
+     * 获取每日数据
+     */
+    getDayReport(){
+        util.wx.get('/api/seller/today_sale_reports').then(res=>{
+            if(res.data.code == 200){
+                this.reportData = res.data.data
+            }
+        })
     },
 
     /**

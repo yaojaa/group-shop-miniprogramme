@@ -49,7 +49,49 @@ Page({
 
   },
 
-  //拒绝
+/****移除帮卖成员***/
+  removeHelper(e) {
+
+        const {
+            agent_status,
+            agent_user,
+            h_store_id
+        } = e.currentTarget.dataset
+
+        const txt = '确认要移除'+agent_user+'吗？'
+
+        Dialog.confirm({
+            title: txt  ,
+            context: this,
+            confirmButtonText: '确定'
+        }).then(() => {
+
+            util.wx.post('/api/helper/set_helper_status', {
+                    status: -1, //1通过;2拒绝;(-1删除，暂时不考虑）
+                    h_store_id
+                })
+                .then(res => {
+
+                    wx.showToast({
+                        title: '移除成功！',
+                        icon: 'none'
+                    })
+
+                   this.getMyHelpSaleUser()
+
+                })
+
+        }).catch(() => {
+            // on cancel
+        });
+
+
+
+
+
+
+
+    },
   
 
    audit(e) {
@@ -82,7 +124,7 @@ Page({
                         icon: 'none'
                     })
 
-                    this.getDetail()
+                    // this.getDetail()
 
                 })
 
