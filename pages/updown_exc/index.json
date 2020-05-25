@@ -5,6 +5,10 @@
          "van-checkbox": "../../vant/checkbox/index",
   "van-checkbox-group": "../../vant/checkbox-group/index",
     "van-dropdown-menu": "../../vant/dropdown-menu/index",
-  "van-dropdown-item": "../../vant/dropdown-item/index"
+  "van-dropdown-item": "../../vant/dropdown-item/index",
+  "van-popup": "../../vant/popup/index",
+  
+  "van-radio": "../../vant/radio/index",
+  "van-radio-group": "../../vant/radio-group/index"
   }
 }

@@ -25,12 +25,23 @@ Page({
       { text: '未导出', value: 0 },
       { text: '已导出', value: 1 }
     ],
-    value1: 0, // 未发货
-    value2: 0, // 按商品选择
-    value3: 0, // 未导出
+    value1: '0', // 未发货
+    value2: '0', // 按商品选择
+    value3: '0', // 未导出
     list: [],
-    listmore: true
+    listmore: true,
+    show: false
 
+  },
+  popShow(){
+    this.setData({
+      show: true
+    })
+  },
+  onClose(){
+    this.setData({
+      show: false
+    })
   },
 
   onChange1(event) {
@@ -208,7 +219,6 @@ Page({
 
   // 生成链接并复制
   exportExcel() {
-    wx.showToast({ title: '开始为你生成...', icon: 'none', mask: true })
 
     let data = {}
 
@@ -217,12 +227,15 @@ Page({
       data.goods_spec_id_arr = [];
     }else{
       data.goods_spec_id_arr = this.data.result;
-
+      if(this.data.list.length == 0 ){
+        return
+      }
       if(data.goods_spec_id_arr.length == 0){
         wx.showToast({ title: '请先选择要导出的商品', icon: 'none' })
         return;
       }
     }
+    wx.showToast({ title: '开始为你生成...', icon: 'none', mask: true })
 
     util.wx.post('/api/seller/order_export', data).then(res => {
 
