@@ -60,6 +60,9 @@
 
     <view class="mt-xl">
                 <button class="pubbtn" bindtap="new_btn">+ 新发布</button>
+                    <navigator url="plugin-private://wx6ac9955f87c289f0/pages/live-player-plugin?room_id=5">                <button class="pubbtn">进入直播间</button>
+</navigator>
+
     </view>
 
 
@@ -133,7 +136,7 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
-<van-dialog
+<!-- <van-dialog
   use-slot
   showConfirmButton="{{false}}"
   show="{{ showDialog }}"
@@ -152,7 +155,7 @@
 
 </view>
 
-</van-dialog>
+</van-dialog> -->
 <!-- <van-popup
   show="{{ showDialog }}"
   overlay="{{false}}"
