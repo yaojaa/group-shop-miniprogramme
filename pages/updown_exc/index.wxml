@@ -19,6 +19,21 @@
 		</van-radio-group>
 	</block>
 
+	<view hidden="{{value1 != 1}}" class="select-time-body">
+		<view class="exc-select-time">
+			<view class="left">起始时间</view>
+			<view class="right">
+				<i-datepicker label='' i-picker-title='i-picker-title' title="开始时间" date="{{startDate[0]}}" time="{{startDate[1]}}" bind:datachange="bindStartDateChange"></i-datepicker>
+			</view>
+		</view>
+		<view class="exc-select-time">
+			<view class="left">结束时间</view>
+			<view class="right">
+				<i-datepicker label='' i-picker-title='i-picker-title' title="结束时间" date="{{endDate[0]}}" time="{{endDate[1]}}" bind:datachange="bindEndDateChange"></i-datepicker>
+			</view>
+		</view>
+	</view>
+
 	<!-- <view class="menu">
 		<van-dropdown-menu>
 
@@ -34,7 +49,7 @@
 	</view> -->
 
 
-<view class="select-time-body" wx:if="{{value2 != 1 || value1 != 0}}">
+<view class="select-time-body" wx:if="{{value1 != 1 && value2 != 1}}">
 	<!-- <scroll-view> -->
 		<van-checkbox-group value="{{ result }}" bind:change="onChange">
 			<blockquote wx:if="{{list.length > 0}}">
@@ -48,9 +63,9 @@
 				</block>
 			  	<view class="tac pt10" hidden="{{listmore}}">没有更多了~</view>
 			</blockquote>
-		  <block wx:else>
-		  	<view class="tac">暂无订单</view>
-		  </block>
+		  	<block wx:else>
+			  	<view class="tac">暂无订单</view>
+			</block>
 		</van-checkbox-group>
 	<!-- </scroll-view> -->
 </view>
@@ -66,20 +81,7 @@
 
 </view> -->
 
-<!-- 	<view class="select-time-body">
-		<view class="exc-select-time">
-			<view class="left">起始时间</view>
-			<view class="right">
-				<i-datepicker label='' i-picker-title='i-picker-title' title="开始时间" date="{{startDate[0]}}" time="{{startDate[1]}}" bind:datachange="bindStartDateChange"></i-datepicker>
-			</view>
-		</view>
-		<view class="exc-select-time">
-			<view class="left">结束时间</view>
-			<view class="right">
-				<i-datepicker label='' i-picker-title='i-picker-title' title="结束时间" date="{{endDate[0]}}" time="{{endDate[1]}}" bind:datachange="bindEndDateChange"></i-datepicker>
-			</view>
-		</view>
-	</view> -->
+
 	
 
 	<view class="create-link">

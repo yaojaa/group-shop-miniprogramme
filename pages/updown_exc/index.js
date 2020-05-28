@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    startDate: ['2019-10-21', '10:22:00'],
-    endDate:  ['2019-10-21', '10:22:00'],
+    startDate: ['2019-10-21','00:00:00'],
+    endDate:  ['2019-10-21','23:59:59'],
     goods_id: '',
     timeFlag: 0,  // 0 今天  1 昨天  2 全部  3 自定义
     result: [],
@@ -49,6 +49,8 @@ Page({
     this.setData({
       value1: val
     });
+
+    if(val == 1) return
 
     data = {
       cpage: 1,
@@ -221,13 +223,22 @@ Page({
   exportExcel() {
 
     let data = {}
-
-    if(this.data.value2 == 1 && this.data.value1 == 0){
-      data.send_status = 0;
-      data.goods_spec_id_arr = [];
+    if(this.data.value1 == 1){
+      data = {
+        send_status: 1,
+        goods_spec_id_arr: [],
+        start_date: this.data.startDate[0] + ' ' + this.data.startDate[1],
+        end_date: this.data.endDate[0] + ' ' + this.data.endDate[1]
+      }
+    }else if(this.data.value2 == 1){
+      data = {
+        send_status: 0,
+        goods_spec_id_arr: []
+      }
     }else{
       data.goods_spec_id_arr = this.data.result;
       if(this.data.list.length == 0 ){
+        console.log('暂无订单')
         return
       }
       if(data.goods_spec_id_arr.length == 0){
