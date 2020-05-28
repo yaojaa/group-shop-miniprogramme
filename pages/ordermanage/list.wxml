@@ -188,7 +188,7 @@
      <block wx:if="{{item.link_store.length ==2 && user_id !=item.link_store[1].user_id}}">
           <view class="mt-sm f12 ">
 
-             <view class="fl_left">赚 <text class="text-warning">¥{{item.link_store[1].profit}}</text>元 </view>
+             <view class="fl_left">赚 <text class="text-warning">¥{{item.profit}}</text>元 </view>
 
              <view class="fl_right">由<text class="text-success">{{item.link_store[1].nickname}}</text>发货  </view>
          </view>

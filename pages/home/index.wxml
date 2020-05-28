@@ -133,7 +133,7 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
-<van-dialog
+<!-- <van-dialog
   use-slot
   showConfirmButton="{{false}}"
   show="{{ showDialog }}"
@@ -144,15 +144,14 @@
   <view class="data">待发货订单：<text class="bold">15</text></view>
 
   <view class="tips text-muted">
-          <checkbox value="下次微信通知我" checked="true"  disabled="{{true}}" />
-  下次微信通知我</view>
+  订阅微信通知 不错过订单 </view>
 
   <button>我知道了</button>
 
 
 </view>
 
-</van-dialog>
+</van-dialog> -->
 <!-- <van-popup
   show="{{ showDialog }}"
   overlay="{{false}}"

@@ -11,10 +11,7 @@
     <form bindsubmit='actSubmit'>
 
 
-    <view class="act-textarea">
-        <view wx:if="{{submit}}" class="textarea box"><text>{{textareaVal}}</text></view>
-        <textarea wx:else class="textarea" name="apply_remark" value="申请加入 请通过谢谢"></textarea>
-    </view>
+    
 
     <view class="act-submit">
 

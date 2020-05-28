@@ -109,7 +109,7 @@
 
          <view class="sale-panel-fd off">
 
-            已下架
+            已结束
              
          </view>
 
@@ -261,7 +261,17 @@
             <button size="mini" type="primary" class="btn_no_style linenear_bg">+ 我也要使用开心麻团</button>
         </view>
     </view>
-    <view class='footer-cart'>
+    
+
+    <view class='footer-cart'  wx:if="{{is_help_sale || is_help_sale_user}}">
+         <view class='icon'>
+            <button bindtap="helpSaleUp" wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg">
+                我要帮卖
+            </button>
+        </view>
+    </view>
+
+    <view class='footer-cart' wx:else>
         <!-- <view class='icon' bindtap='goHomePage'>
 
              <image src="{{goods.user.headimg}}" class="avatar" 
@@ -297,13 +307,7 @@
             </button>
         </form>
 
-                <view class='icon' wx:if="{{is_help_sale || is_help_sale_user}}" style="flex:2">
-
-
-            <button bindtap="helpSaleUp" wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg">
-                我要帮卖
-            </button>
-        </view>
+       
         
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
@@ -385,7 +389,7 @@
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm text-df">转发小程序</view>
             </button>
-            <view bindtap='handlePoster' class="flex-sub share-pyq">
+            <view bindtap='getHelpPost' class="flex-sub share-pyq">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm">生成邀请海报</view>
             </view>
