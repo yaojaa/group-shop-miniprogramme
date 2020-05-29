@@ -1,5 +1,6 @@
 const util = require('../../utils/util.js');
 let data = {};
+let flag = true;
 
 
 Page({
@@ -126,13 +127,22 @@ Page({
   getGoodsOrders(_data){
     // _data.goods_id = this.data.goods_id;
     if(_data.cpage == 1){
-      this.data.list = []
+      this.data.list = [];
+      flag = true;
+    }
+    if(!flag){
+      return;
     }
     wx.showLoading()
     util.wx.get('/api/seller/order_export_show', _data).then( res => {
 
       if(res.data.code == 200){
         wx.hideLoading()
+        if(res.data.data.lists.length == 0){
+          flag = false;
+        }
+
+        console.log(flag)
 
         if(res.data.data.lists.length > 0){
           this.setData({
@@ -251,13 +261,35 @@ Page({
     util.wx.post('/api/seller/order_export', data).then(res => {
 
         if (res.data.code == 200) {
+          wx.hideToast()
+          let path = res.data.data.filepath
 
-            wx.setClipboardData({
-                data: res.data.data.filepath,
-                success: function(res) {
-                    wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
-                }
-            })
+          wx.showModal({
+            content: '订单导出已生成下载地址：'+path,
+            confirmText: '复制链接',
+            success (res) {
+              if (res.confirm) {
+
+
+                wx.setClipboardData({
+                  data: path,
+                  success: function(res) {
+                      wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
+                  }
+                })
+
+
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+
+
+
+
+            
         }else{
           wx.showToast({ title: res.data.msg, duration: 5000, icon: 'none' })
         }
