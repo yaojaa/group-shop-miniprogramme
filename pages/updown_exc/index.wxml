@@ -54,7 +54,7 @@
 		<van-checkbox-group value="{{ result }}" bind:change="onChange">
 			<blockquote wx:if="{{list.length > 0}}">
 				<block wx:for="{{list}}" wx:key='index' wx:for-item="lis">
-				  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}">
+				  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}" custom-class="list-checkbox">
 				  	<view class='goods-list'>
 				  		<text class="f14">{{item.goods_name}}</text>
 				  		<view class="f12">{{item.spec_name}} 订单数量:{{item.total_qty}} 订单金额:{{item.total_price}} <text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text></view>

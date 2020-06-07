@@ -202,7 +202,6 @@ Page({
   insertImage() {
     const that = this
     util.uploadPicture({
-        count: 1,
         success: res=>{
             wx.hideLoading()
             this.editorCtx.insertImage({

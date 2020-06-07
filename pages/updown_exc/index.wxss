@@ -87,3 +87,5 @@ i-datepicker{
 .radio-group .radio{
   margin-left: 20px;
 }
+
+.list-checkbox{ display: flex; align-items: center; }
