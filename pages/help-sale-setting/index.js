@@ -37,9 +37,7 @@ Page({
 
         if(options.goods_id){
 
-
             this.data.goods_id = options.goods_id
-
             this.getGoodsInfo()
             this.is_modify = true
 
@@ -52,6 +50,7 @@ Page({
           }
         })
 
+        console.log(app.globalData.helpSaleData)
 
 
         this.setData({
@@ -104,10 +103,10 @@ Page({
             sub_agent_price:price
         }).then(res=>{
           if(res.data.code == 200){
-            wx.showToast({
-              title:'价格修改成功',
-              icon:'none'
-            })
+            // wx.showToast({
+            //   title:'价格修改成功',
+            //   icon:'none'
+            // })
           }else{
             wx.showToast({
               title:'价格修改失败',
@@ -122,10 +121,8 @@ Page({
 
     validate(e){
 
-      console.log(e)
-
-
         const {index,spec_price,goods_spec_id} = e.currentTarget.dataset
+        var is_btnDisable =false  
 
         var value = e.detail
 
@@ -142,10 +139,21 @@ Page({
 
         }
 
-         if(value == '' || value == 0 || value > parseInt(spec_price)){
+         if(value == '' || value == 0){
+
+      
+            this.setData({
+                btnDisable:true
+            })
+
+            return false
+
+         }
+
+         if(value > parseInt(spec_price)){
 
             wx.showToast({
-                title:'请设置合理的供货价',
+                title:'代理价不能超过你自己的售价',
                 icon:'none'
             })
 
@@ -159,15 +167,14 @@ Page({
           /**修改价格调用接口**/
           if(this.is_modify){
             this.spec_edit(goods_spec_id,value)
-            return
+            is_btnDisable = false
           }
 
 
 
             //这里this.data.info 对是app.globaldata.helpData的引用，修改会同步修改
-            this.data.info.goods_spec[index].sub_agent_price = value
+          this.data.info.goods_spec[index].sub_agent_price = value
 
-          var is_btnDisable =false  
           app.globalData.helpSaleData.goods_spec.forEach(item=>{
             if(item.sub_agent_price =='' || item.sub_agent_price == 0){
                is_btnDisable = true
@@ -188,16 +195,46 @@ Page({
     /**点击确定按钮**/
     modifyPrice(){
 
+      console.log(this.data.info.goods_spec)
 
 
+         this.data.info.goods_spec.forEach((item)=>{
 
+          if(item.sub_agent_price=='0.00' || item.sub_agent_price==''){
+             wx.showModal({
+              title:'请设置代理价格'
+            })
 
+           return
+
+          }
+
+         })
 
 
         if(this.is_modify){
-          //返回详情页
-          
-           wx.navigateBack()
+          wx.showLoading()
+          util.wx.post('/api/seller/set_goods_agent_opt',{
+            agent_opt:1,
+            goods_id:this.data.goods_id
+          }).then(res=>{
+
+            if(res.data.code == 200){
+                 wx.hideLoading()
+                 wx.showToast({
+                  title:'修改成功！'
+                 })
+                 wx.navigateBack()
+            }else{
+              wx.showToast({
+                title:res.data.msg,
+                icon:'none'
+              })
+            }
+
+
+          })
+          //返回上一页
           console.log('返回详情页')
 
         }else{

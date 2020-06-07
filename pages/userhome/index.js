@@ -107,6 +107,14 @@ Page({
     this.setData({ show: false })
   },
 
+  toLiveRoom(){
+
+      wx.redirectTo({
+          url: '../live-room/index'
+        })
+
+  },
+
   goOrders() {
     wx.redirectTo({
       url:

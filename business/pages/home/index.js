@@ -166,6 +166,26 @@ Page({
 
 
   },
+  //切换为团长页面
+  swichToLeader(){
+
+    wx.showModal({
+         title: '是否切换到团长页面',
+         showCancel: true,//是否显示取消按钮
+         confirmText:"切换",//默认是“确定”
+         confirmColor: '#90d200',//确定文字的颜色
+         success: function (res) {
+            if (res.confirm) {
+                wx.redirectTo({
+                  url:'/pages/home/index'
+                })
+            }
+         },
+         fail: function (res) { },//接口调用失败的回调函数
+         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+      })
+
+  },
 
   goEdit(e){
 
@@ -237,6 +257,8 @@ Page({
             userInfo: userInfo,
             top:app.globalData.menuBarTop
         })
+
+        console.log(userInfo)
 
 
         wx.setStorage({

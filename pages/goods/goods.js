@@ -144,11 +144,12 @@ Page({
  * 
  */
 
-  showApplyModal(){
+  showApplyModal(msg){
                 wx.showModal({  
-              title: '您没有权限代理此商品',  
+              title: msg,  
               content: '是否立即申请',
-              confirm_text:'立即申请',
+              confirmText:'立即申请',
+              confirmColor:'#4bb000',
               success:(res)=>{    
                 if (res.confirm) {
                   wx.redirectTo({
@@ -312,6 +313,8 @@ Page({
 
             title = this.data.goods.user.nickname +'邀请你帮卖【'+this.data.goods.goods_name+'】'
                pathParam = '&help_sale=true'
+
+            this.shareImg = this.data.goods.goods_cover
           }else{
 
             title = this.data.goods.goods_name
@@ -390,14 +393,17 @@ Page({
     getHelpPost(){
 
      util.wx
-      .get('/api/goods/get_goods_base_card', {
+      .get('/api/goods/get_goods_helper_card', {
         goods_id: this.data.goods_id,
       })
       .then((res) => {
         this.shareImg = res.data.data.path
       })
       .catch((e) => {
-        return
+        wx.showToast({
+          title:'生成海报失败',
+          icon:'none'
+        })
       })
 
   },
@@ -1003,7 +1009,7 @@ Page({
   getUserInfoEvt: function (e) {
     console.log(e)
     if (e.detail.errMsg !== 'getUserInfo:ok') {
-      return wx.showToast({ title: '允许一下又不会怀孕', icon: 'none' })
+      return wx.showToast({ title: e.detail.errMsg, icon: 'none' })
     }
 
     app.globalData.userInfo = e.detail.userInfo
@@ -1294,8 +1300,6 @@ Page({
     }).then(res=>{
 
        wx.hideLoading()
-
-
       if(res.data.code == 200){
 
          wx.redirectTo({
@@ -1303,7 +1307,7 @@ Page({
         })
 
       }else if(res.data.code == 0){
-       this.showApplyModal()
+       this.showApplyModal(res.data.msg)
       }
       else{
 

@@ -1,5 +1,25 @@
 <view class="view-page">
-	<view class="menu">
+
+	<van-radio-group class="radio-group" value="{{ value1 }}" bind:change="onChange1">
+	  <van-radio class="radio" name="0" checked-color="#07c160">待发货</van-radio>
+	  <van-radio class="radio" name="1" checked-color="#07c160">已发货</van-radio>
+	</van-radio-group>
+
+	<block wx:if="{{value1 == 0}}">
+		<van-radio-group class="radio-group" value="{{ value2 }}" bind:change="onChange2">
+		  <van-radio class="radio" name="0" checked-color="#07c160">按商品选择</van-radio>
+		  <van-radio class="radio" name="1" checked-color="#07c160">全部商品</van-radio>
+		</van-radio-group>
+	</block>
+
+	<block wx:if="{{value2 == 0 && value1 == 0}}">
+		<van-radio-group class="radio-group" value="{{ value3 }}" bind:change="onChange3">
+		  <van-radio class="radio" name="0" checked-color="#07c160">未导出</van-radio>
+		  <van-radio class="radio" name="1" checked-color="#07c160">已导出</van-radio>
+		</van-radio-group>
+	</block>
+
+	<!-- <view class="menu">
 		<van-dropdown-menu>
 
 		  <van-dropdown-item value="{{ value1 }}" bind:change="onChange1" options="{{ option1 }}" />
@@ -11,22 +31,22 @@
 		  </block>
 
 		</van-dropdown-menu>
-	</view>
+	</view> -->
 
 
 <view class="select-time-body" wx:if="{{value2 != 1 || value1 != 0}}">
 	<!-- <scroll-view> -->
 		<van-checkbox-group value="{{ result }}" bind:change="onChange">
 			<blockquote wx:if="{{list.length > 0}}">
-			<block wx:for="{{list}}" wx:key='index' wx:for-item="lis">
-			  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}">
-			  	<view class='goods-list'>
-			  		<text class="f14">{{item.goods_name}}</text>
-			  		<view class="f12">{{item.spec_name}} 订单数量:{{item.total_qty}} 订单金额:{{item.total_price}} <text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text></view>
-			  	</view>
-			  </van-checkbox>
-			  <view class="tac pt10" hidden="{{listmore}}">没有更多了~</view>
-			</block>
+				<block wx:for="{{list}}" wx:key='index' wx:for-item="lis">
+				  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}">
+				  	<view class='goods-list'>
+				  		<text class="f14">{{item.goods_name}}</text>
+				  		<view class="f12">{{item.spec_name}} 订单数量:{{item.total_qty}} 订单金额:{{item.total_price}} <text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text></view>
+				  	</view>
+				  </van-checkbox>
+				</block>
+			  	<view class="tac pt10" hidden="{{listmore}}">没有更多了~</view>
 			</blockquote>
 		  <block wx:else>
 		  	<view class="tac">暂无订单</view>
@@ -63,7 +83,7 @@
 	
 
 	<view class="create-link">
-		<button class="btn linenear_bg" disabled="{{list.length == 0 && value2 == 0}}" type="primary" bindtap="exportExcel">导出</button>
+		<button class="btn linenear_bg" type="primary" bindtap="exportExcel">导出</button>
 	</view>
 	
 

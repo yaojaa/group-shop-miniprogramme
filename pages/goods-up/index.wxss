@@ -5,3 +5,13 @@
   padding: 25rpx 30rpx;
   font-size: 24rpx
 }
+
+.spec_title{
+	font-size: 38rpx;
+	font-weight: bold;
+	padding: 15px 10px 0;
+}
+.specs-item{
+	margin: 10px;
+	background: #fff
+}

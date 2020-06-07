@@ -34,7 +34,6 @@
             </view>
         </view>
 
- {{item.is_timelimit}} {{item._expires}}
         <view class="statusBar" wx:if="{{item.is_timelimit==1}}"> 
             <!--                                 _expires //是否过期 1正常 2未开始 3已过期
         }
@@ -61,10 +60,14 @@
      size="mini" open-type="share">分享</button>
 
 
-    <button  wx:if="{{item.link_goods[0] !==null || item.link_goods.length ==2 }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
-    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 修改价格 </button> 
+    <button  wx:if="{{item.link_goods[0] !==null && item.link_goods[0].goods_id }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
+    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 改价1 </button> 
 
-  <button wx:else  class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> 
+    <button  wx:if="{{item.link_goods[1] !==null && item.link_goods[1].goods_id }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
+    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 改价2 </button> 
+
+
+  <button wx:if="{{item.link_goods.length == 1 && item.link_goods[0]==null}}"  class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> 
 
  <button class="hollow" data-url="{{item.goods_id}}" bindtap="gofans"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 访客 </button>
 

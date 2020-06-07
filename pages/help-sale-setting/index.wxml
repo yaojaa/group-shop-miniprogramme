@@ -15,16 +15,22 @@
             <van-field value="{{scopeTitle}}" name=" " label="商品分类" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
         </van-cell-group> -->
         <view class="specs-item" wx:for="{{info.goods_spec}}" wx:key="index">
+
+            <view class="spec_title">{{item.spec_name}}</view>
             <van-cell-group custom-class="mt-sm">
-                <van-field value="{{item.spec_name}}" name="" label="规格名称" placeholder="" input-align="right" readonly></van-field>
-                <van-field value="{{item.spec_price}}元" name="" label="参考售价" placeholder="" input-align="right" readonly></van-field>
+
+ <van-field wx:if="{{item.agent_price!=='0.00'}}" value="{{item.agent_price}}" name="" label="您的拿货价" placeholder="" input-align="right" readonly></van-field>
+
+ <van-field value="{{item.spec_price}}元" name="" label="您的售价" placeholder="" input-align="right" readonly></van-field>
+
+
             </van-cell-group>
             <view class="solid round-df">
                 <van-field use-button-slot 
                 data-spec_price="{{item.spec_price}}"
                 data-goods_spec_id="{{item.goods_spec_id}}"
 
-                  value="{{item.sub_agent_price}}" error-message="{{errorMsg}}" name="" label="设置供货价" 
+                  value="{{item.sub_agent_price}}" error-message="{{errorMsg}}" name="" label="设置代理价" 
                 data-index="{{index}}" placeholder="请输入你给代理的价格" bind:change="validate" input-align="right" input-class="text-lg coral-text">
                     <view slot="button">元</view>
                 </van-field>

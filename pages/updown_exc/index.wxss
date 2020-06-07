@@ -77,3 +77,13 @@ i-datepicker{
 .pt10{ padding-top: 10px; }
 
 .checkorder{ padding: 4px; color: #105f96; }
+
+
+
+.radio-group{
+  display: flex;
+  padding: 10px 0;
+}
+.radio-group .radio{
+  margin-left: 20px;
+}

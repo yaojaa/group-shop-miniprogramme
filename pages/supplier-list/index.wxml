@@ -10,7 +10,7 @@
 
     <view><button size="mini" data-type="store" open-type="share"   bindtap="openShareFriends" >邀请小伙伴</button></view>
     
-        <view class="total">共{{total || 0}}个成员 <van-icon bindtap="openSetting" size="20px" name="setting-o" /></view>
+        <view class="total">共{{fansCount}}个成员 <van-icon bindtap="openSetting" size="20px" name="setting-o" /></view>
 
     </view>
 

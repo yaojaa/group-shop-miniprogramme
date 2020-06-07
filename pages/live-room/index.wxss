@@ -1,0 +1,9 @@
+/* pages/create_shop.wxss */
+.container{
+	box-sizing: border-box;
+}
+
+.cover-img{
+	width: 100%;
+	height: 200px;
+}
