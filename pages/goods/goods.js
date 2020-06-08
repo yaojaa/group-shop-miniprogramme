@@ -144,15 +144,16 @@ Page({
  * 
  */
 
-  showApplyModal(){
+  showApplyModal(msg){
                 wx.showModal({  
-              title: '您没有权限代理此商品',  
+              title: msg,  
               content: '是否立即申请',
-              confirm_text:'立即申请',
+              confirmText:'立即申请',
+              confirmColor:'#4bb000',
               success:(res)=>{    
                 if (res.confirm) {
                   wx.redirectTo({
-                    url:'../acting-apply/index?store_id='+this.data.store_id
+                    url:'../acting-apply/index?store_id='+this.data.store_id+'&goods_id='+this.data.goods_id
                   })
                  
                 } else if (res.cancel) {   
@@ -176,7 +177,7 @@ Page({
       if(res.data.code == 200){
 
         //不是帮卖成员
-        if(res.data.data == 1){
+        if(res.data.data == 0){
 
           this.showApplyModal()
 
@@ -187,7 +188,7 @@ Page({
 
 
         this.setData({
-          is_help_sale_user:res.data.data==1?false:true
+          is_help_sale_user:res.data.data==0?false:true
         })
       }
      
@@ -312,6 +313,8 @@ Page({
 
             title = this.data.goods.user.nickname +'邀请你帮卖【'+this.data.goods.goods_name+'】'
                pathParam = '&help_sale=true'
+
+            this.shareImg = this.data.goods.goods_cover
           }else{
 
             title = this.data.goods.goods_name
@@ -386,6 +389,26 @@ Page({
     })
 
   },
+  //生成帮卖海报
+    getHelpPost(){
+
+     util.wx
+      .get('/api/goods/get_goods_helper_card', {
+        goods_id: this.data.goods_id,
+      })
+      .then((res) => {
+        this.shareImg = res.data.data.path
+      })
+      .catch((e) => {
+        wx.showToast({
+          title:'生成海报失败',
+          icon:'none'
+        })
+      })
+
+  },
+
+
   handlePoster() {
     this.setData({
       showShareFriendsCard: false,
@@ -465,8 +488,6 @@ Page({
       },
       previewImgHidden: false,
     })
-
-    return
 
     this.$wuxGallery = $wuxGallery()
 
@@ -590,6 +611,8 @@ Page({
 
         }
   },
+
+
 
   getShareImg() {
     util.wx
@@ -725,9 +748,7 @@ Page({
            }
 
 
-           if(this.data.is_help_sale && !this.data.showPanel){
-              this.applyHelpSale()
-            }
+           
 
 
 
@@ -824,46 +845,6 @@ Page({
     this.setData({
       menuBarTop: app.globalData.menuBarTop,
     })
-  },
-  /**群发通知**/
-  setTips() {
-    if (this.data.note == '') {
-      return wx.showToast({ title: '没有输入内容', icon: 'none' })
-    }
-
-    wx.showLoading()
-
-    util.wx
-      .post('/api/seller/send_tmp_msg', {
-        goods_id: this.data.goods_id,
-        note: this.data.note,
-      })
-      .then(
-        (res) => {
-          wx.hideLoading()
-
-          if (res.data.code == 200) {
-            wx.showToast({ title: '群发通知成功！' })
-          } else {
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'none',
-            })
-          }
-
-          this.setData({
-            showMsgTips: false,
-          })
-        },
-        (res) => {
-          wx.hideLoading()
-
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-          })
-        }
-      )
   },
   inputNote(e) {
     this.setData({
@@ -1028,7 +1009,7 @@ Page({
   getUserInfoEvt: function (e) {
     console.log(e)
     if (e.detail.errMsg !== 'getUserInfo:ok') {
-      return wx.showToast({ title: '允许一下又不会怀孕', icon: 'none' })
+      return wx.showToast({ title: e.detail.errMsg, icon: 'none' })
     }
 
     app.globalData.userInfo = e.detail.userInfo
@@ -1307,29 +1288,6 @@ Page({
     })
   },
 
-  /**申请自动加入帮卖**/
-  applyHelpSale(){
-
-
-      Dialog.alert({
-                        selector: '#dialog-success',
-                        confirmButtonText: '好的'
-                    }).then(() => {
-
-                    })
-
-     util.wx.post('/api/helper/apply_store_helper',{
-      store_id:this.data.store_id
-    }).then(res=>{
-
-
-
-
-    })
-
-  
-  },
-
   helpSaleUp:function(){
 
 
@@ -1342,8 +1300,6 @@ Page({
     }).then(res=>{
 
        wx.hideLoading()
-
-
       if(res.data.code == 200){
 
          wx.redirectTo({
@@ -1351,7 +1307,7 @@ Page({
         })
 
       }else if(res.data.code == 0){
-       this.showApplyModal()
+       this.showApplyModal(res.data.msg)
       }
       else{
 

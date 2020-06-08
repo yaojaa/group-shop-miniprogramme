@@ -34,15 +34,17 @@
             </view>
         </view>
 
- 
-        <view class="statusBar"> 
+        <view class="statusBar" wx:if="{{item.is_timelimit==1}}"> 
             <!--                                 _expires //是否过期 1正常 2未开始 3已过期
         }
         }
  -->
             <text wx:if="{{expires==2}}" style="color:#2d8cf0">未开始</text>
-            <text wx:if="{{expires==1}}" style="color:#19be6b">开团中</text>
+            <text wx:if="{{expires==1}}" style="color:#19be6b">进行中</text>
             <text wx:if="{{expires==3}}" style="color:#666">已结束</text>
+        </view>
+        <view wx:else>
+            <text  style="color:#19be6b">进行中</text>
         </view>
     </view>
 
@@ -58,10 +60,14 @@
      size="mini" open-type="share">分享</button>
 
 
-    <button  wx:if="{{item.supplier_id >0 }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
-    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 修改价格 </button> 
+    <button  wx:if="{{item.link_goods[0] !==null && item.link_goods[0].goods_id }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
+    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 改价1 </button> 
 
-  <button wx:else  class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> 
+    <button  wx:if="{{item.link_goods[1] !==null && item.link_goods[1].goods_id }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
+    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 改价2 </button> 
+
+
+  <button wx:if="{{item.link_goods.length == 1 && item.link_goods[0]==null}}"  class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> 
 
  <button class="hollow" data-url="{{item.goods_id}}" bindtap="gofans"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 访客 </button>
 

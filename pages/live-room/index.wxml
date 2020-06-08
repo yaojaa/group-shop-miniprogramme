@@ -1,0 +1,25 @@
+<view class="container ">
+
+<i-panel  i-class="shadow-panel"  wx:for="{{roomList}}" hideBorder="true">
+    <wux-cell-group >
+            <wux-cell hover-class="none">
+
+            	<image  class="cover-img"  src="{{item.cover_img}}" /> 
+
+                <view class="title">{{item.name}} </view> 
+
+<button size="small" data-id="{{item.roomid}}" bindtap="toRoom" size="small">进入直播间</button>
+         
+            </wux-cell>
+</wux-cell-group>
+
+
+
+</i-panel>
+
+
+
+
+
+
+</view>

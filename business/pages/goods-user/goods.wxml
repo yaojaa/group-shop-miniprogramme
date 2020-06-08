@@ -45,10 +45,10 @@
         <block wx:if="{{goods.is_on_sale ==1}}">
 
 
-        <view class="sale-panel-fd {{goods.goods_expires !==1?'off':''}}">
+        <view class="sale-panel-fd">
 
             <view class="marker"></view>
-            <view wx:if="{{countdownTime && goods.goods_expires ==1 }}">
+            <view wx:if="{{item.is_timelimit ==1 && countdownTime && goods.goods_expires ==1 }}">
                 <view class="tit">距离结束</view>
                 <view class="count-down">
                     <text class="time-area">{{days}}</text>

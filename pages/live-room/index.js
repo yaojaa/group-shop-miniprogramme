@@ -25,85 +25,40 @@ Page({
 
         ]
     },
-   bindRegionChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
-  },
-
-  onChange(e) {
-        console.log('onChange', e)
-        const { file } = e.detail
-        // if (file.status === 'uploading') {
-        //     this.setData({
-        //         progress: 0,
-        //     })
-        //     wx.showLoading()
-        // } else if (file.status === 'done') {
-        //     this.setData({
-        //         imageUrl: file.url,
-        //     })
-        // }
-    },
-    onSuccess(e,l) {
-        console.log('onSuccess图片上传成功',e,l)
-
-        this.data.store_slide.push(e.detail.url)
-
-
-    },
-    onFail(e) {
-        console.log('onFail', e)
-    },
-    onComplete(e) {
-        wx.hideLoading()
-    },
-    onProgress(e) {
-        console.log('onProgress', e)
-        this.setData({
-            progress: e.detail.file.progress,
-        })
-    },
-    onPreview(e) {
-        console.log('onPreview', e)
-        const { file, fileList } = e.detail
-        wx.previewImage({
-            current: file.url,
-            urls: fileList.map((n) => n.url),
-        })
-    },
-    onRemove(e) {
-        const { file, fileList } = e.detail
-        wx.showModal({
-            content: '确定删除？',
-            success: (res) => {
-                if (res.confirm) {
-                    this.setData({
-                        fileList: fileList.filter((n) => n.uid !== file.uid),
-                    })
-                }
-            },
-        })
-    },
-    add(){
-
-      wx.navigateTo({
-        url:'../wxgroup_add/index'
-      })
-    },
+  
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
-  },
-  showDetail(){
+    this.getRoomList()
 
-    this.setData({
-      visible1:true
+  },
+  toRoom(e){
+
+
+    const roomId = e.currentTarget.dataset.id
+
+    let customParams = encodeURIComponent(JSON.stringify({ path: 'pages/index/index', pid: 1 })) // 开发者在直播间页面路径上携带自定义参数（如示例中的path和pid参数），后续可以在分享卡片链接和跳转至商详页时获取，详见【获取自定义参数】、【直播间到商详页面携带参数】章节（上限600个字符，超过部分会被截断）
+    wx.navigateTo({
+        url: `plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=${roomId}&custom_params=${customParams}`
     })
+
+  },
+  getRoomList(){
+
+    util.wx.get('/api/live/room_list').then(res=>{
+
+      if(res.data.code == 200){
+        this.setData({
+          roomList:res.data.data
+        })
+      }
+
+
+    })
+
   },
   handleClose2(){
 

@@ -53,8 +53,7 @@
             </view>
             管理订单
         </view>
-        
-        <view class="flex-item" bindtap="openInviteFriends" wx:if="{{goods.goods_link.length<2}}">
+        <view class="flex-item" bindtap="openInviteFriends" wx:if="{{goods.link_goods.length!==2}}">
             <view class="num">
                 <van-icon name="friends-o" color="#4fac05" size="20px" />
             </view>
@@ -87,6 +86,8 @@
 
      <block wx:if="{{goods.is_on_sale ==1}}">
 
+        <block wx:if="{{goods.is_timelimit ==1}}"> 
+
         <view class="sale-panel-fd {{goods.goods_expires!=1?'off':''}}">
             <view class="marker"></view>
             <view wx:if="{{countdownTime && goods.is_timelimit==1 && goods.goods_expires ==1 }}">
@@ -104,12 +105,16 @@
             <view wx:else>{{['','开团中','尚未开始','已结束'][goods.goods_expires]}}</view>
         </view>
       </block>
+      <view wx:else class="sale-panel-fd">进行中</view>
+
+
+    </block>
 
      <block wx:if="{{goods.is_on_sale ==2}}">
 
          <view class="sale-panel-fd off">
 
-            已下架
+            已结束
              
          </view>
 
@@ -161,6 +166,12 @@
                             <text wx:if="{{item.spec_stock}}"> 剩余:{{item.spec_stock}}</text>
                             <text wx:if="{{item.spec_stock==0}}"> （已售磬）</text>
                         </view>
+
+                        <view class="f12 n-bold text-warning" wx:if="{{is_help_sale_user}}">
+                            代理价：¥{{item.sub_agent_price}}
+                        </view>
+
+
                     </view>
                     <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 
                         剩余({{item.spec_stock}})
@@ -261,7 +272,17 @@
             <button size="mini" type="primary" class="btn_no_style linenear_bg">+ 我也要使用开心麻团</button>
         </view>
     </view>
-    <view class='footer-cart'>
+    
+
+    <view class='footer-cart'  wx:if="{{is_help_sale || is_help_sale_user}}">
+         <view class='icon'>
+            <button bindtap="helpSaleUp" wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg">
+                我要帮卖
+            </button>
+        </view>
+    </view>
+
+    <view class='footer-cart' wx:else>
         <!-- <view class='icon' bindtap='goHomePage'>
 
              <image src="{{goods.user.headimg}}" class="avatar" 
@@ -280,30 +301,35 @@
 
 
 
-        <form style="flex:2;position: relative;" bindtap="cartPanelShow" >
+        <form wx:if="{{!showPanel}}" style="flex:2;position: relative;" bindtap="cartPanelShow" >
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
-            <button wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg" formType="submit">
+
+            <!--如果是团看自己-->
+
+            
+
+
+            <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg" formType="submit">
                  
                 <block wx:if="{{is_help_sale}}">直接下单</block>
                 <block wx:else>立即参与</block>
+
+
             </button>
-            <button wx:if="{{goods && goods.is_on_sale ==1 && goods._expires == 2 }}" class="buy linenear_bg" formType="submit">
+            <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires == 2 }}" class="buy linenear_bg" formType="submit">
                 未开始
             </button>
-            <button disabled="{{true}}" wx:if="{{goods && goods._expires == 3 || putaway_status==2 || goods.is_on_sale == 2}}" class="buy" formType="submit">
+            <button disabled="{{true}}" wx:if="{{goods && goods.goods_expires == 3 || putaway_status==2 || goods.is_on_sale == 2}}" class="buy" formType="submit">
                 已结束
             </button>
         </form>
 
-                <view class='icon' wx:if="{{is_help_sale || is_help_sale_user}}" style="flex:2">
-
-
-            <button bindtap="helpSaleUp" wx:if="{{goods && goods.is_on_sale ==1 && goods._expires==1 }}" class="buy linenear_bg">
-                我要帮卖
+<button wx:if="{{showPanel}}" class="buy linenear_bg" bindtap="openShareFriends">
+                 立即转发顾客
             </button>
-        </view>
+       
         
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
@@ -364,14 +390,14 @@
 
     <van-action-sheet show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
-            <button class="flex-sub btn-reset" open-type="share">
-                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
-                <view class="text-weak mt-sm text-df">微信好友</view>
-            </button>
             <view bindtap='handlePoster' class="flex-sub share-pyq">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
-                <view class="text-weak mt-sm">专属海报</view>
+                <view class="text-weak mt-sm">生成海报</view>
             </view>
+            <button class="flex-sub btn-reset" open-type="share">
+                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
+                <view class="text-weak mt-sm text-df">微信群</view>
+            </button>
         </view>
     </van-action-sheet>
 
@@ -381,14 +407,18 @@
             将小程序或者海报转发好友帮你分销，订单会自动汇总到你这里。 可以点击这里<text class="text-warning">修改代理价格</text>
         </view>
         <view class="flex text-center p-xl ">
-            <button class="flex-sub btn-reset" data-type="invit" open-type="share">
-                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
-                <view class="text-weak mt-sm text-df">转发小程序</view>
-            </button>
-            <view bindtap='handlePoster' class="flex-sub share-pyq">
+           
+            <view bindtap='getHelpPost' class="flex-sub share-pyq">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm">生成邀请海报</view>
             </view>
+
+             <button class="flex-sub btn-reset" data-type="invit" open-type="share">
+                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
+                <view class="text-weak mt-sm text-df">转发小程序</view>
+            </button>
+
+
         </view>
     </van-action-sheet>
 
@@ -430,9 +460,9 @@
             <image src="{{goods.user.headimg}}" class="avatar" style="width: 66px;height: 66px;margin: 13px auto 0"></image>
         </view>
         <van-cell-group border="{{false}}" custom-class="mv-df">
-            <van-cell title="{{goods.user.nickname}}" value="主页" is-link icon="manager-o" title-width="400rpx" bindtap="goHomePage" />
-            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="400rpx" bindtap="phoneCall" wx:if="{{phone}}" />
-            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="400rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+            <van-cell title="{{goods.user.nickname}}" value="主页" is-link icon="manager-o" title-width="300rpx" bindtap="goHomePage" />
+            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="300rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="300rpx" bindtap="copyWx" wx:if="{{weChat}}" />
         </van-cell-group>
     </van-dialog>
     <van-popup show="{{ specPopup }}" custom-style="background:none;" position="bottom" bind:close="handleSpecPopup">

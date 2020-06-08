@@ -16,7 +16,6 @@ App({
         obj[name] = value;
 
     })
-    console.log('url2json',obj)
     return obj;
 },
 
