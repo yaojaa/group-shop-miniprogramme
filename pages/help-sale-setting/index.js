@@ -168,6 +168,7 @@ Page({
           if(this.is_modify){
             this.spec_edit(goods_spec_id,value)
             is_btnDisable = false
+            return
           }
 
 
