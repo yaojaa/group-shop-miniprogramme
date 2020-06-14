@@ -84,23 +84,23 @@ Page({
 
         }
 
+        this.getSellerGoodsInfo()
 
-        this.getGoodsInfo()
 
     },
 
     validate(e){
 
-
-
-
         const {index,mini,max} = e.currentTarget.dataset
 
+        console.log(e)
 
 
-        const value = e.detail.value
+        const value = e.detail
 
-         if(value>max || value<mini){
+        console.log(value,+mini,+max)
+
+         if(value> +max || value< +mini){
 
             wx.showToast({
                 title:'价格请在合理范围',
@@ -115,10 +115,7 @@ Page({
 
          }else{
 
-            this.data.info.goods_spec[index].spec_price = value
-
-                    console.log('change',value)
-
+            this.spec_edit(this.data.info.goods_spec[index].goods_spec_id,value)
 
               this.setData({
                 btnDisable:false
@@ -127,8 +124,35 @@ Page({
 
     },
 
+        spec_edit(id,price){
 
-        getSellerGoodsInfo() {
+            console.log(id,price)
+
+      wx.showLoading()
+
+       util.wx.post('/api/seller/spec_edit',{
+            goods_spec_id:id,
+            spec_price:price
+        }).then(res=>{
+          if(res.data.code == 200){
+            // wx.showToast({
+            //   title:'价格修改成功',
+            //   icon:'none'
+            // })
+          }else{
+            wx.showToast({
+              title:'价格修改失败',
+              icon:'none'
+            })
+          }
+        })
+      wx.hideLoading()
+    },
+
+
+    getSellerGoodsInfo() {
+
+        wx.showLoading()
 
 
         util.wx.get('/api/goods/get_goods_detail', {
@@ -136,124 +160,25 @@ Page({
             })
             .then(res => {
 
-                this.data.currentGoodsSpec = res.data.data.goods.goods_spec
+                wx.hideLoading()
 
-                 for(var i=0;  i<this.data.info.goods_spec.length;i++ ){
-
-
-                        this.data.info.goods_spec[i].spec_price = this.data.currentGoodsSpec[i].spec_price
-
-
-                    }
-
-                console.log('this.data.info',this.data.info)
-
-                this.setData({
-                    info:this.data.info
-                })
-
-
-            }
-        )
-        },
-
-
-
-    getGoodsInfo() {
-
-        util.wx.get('/api/seller/get_supplier_goods_detail', {
-                goods_id: this.data.supid 
-            })
-            .then(res => {
-
-                var data = res.data.data.goods
-
-                data.goods_spec.forEach(it=>{
-                    it.spec_price = it.mspr_end || ''
-                })
-
-                  this.setData({
+                if(res.data.code == 200){
+                     this.setData({
                     info:res.data.data.goods
-                 })
-
-             
-
-                //如果是修改价格
-                //
-                console.log(this.data.is_modify)
-                
-                if(this.data.is_modify){
-
-                  this.getSellerGoodsInfo()
-
-                }else{
-
-                 res.data.data.goods.goods_spec.forEach(item=>{
-                    item.spec_price = item.mspr_end || ''
                     })
-
-               
-
-
                 }
 
-                 
+
 
             }
         )
         },
-
 
     modifyPrice(){
 
-
-        //供应商商品规格id 和商家的规格id 不一样 。提交需要商家规格id
-        //
-        //
-        //
-        for(var i=0;  i<this.data.info.goods_spec.length;i++ ){
-
-
-            this.data.info.goods_spec[i].goods_spec_id = this.data.currentGoodsSpec[i].goods_spec_id
-            // this.data.info.goods_spec[i].spec_price = this.data.currentGoodsSpec[i].spec_price
-
-
-        }
-
-
-
-
-         util.wx.post('/api/seller/edit_supplier_goods',{
-
-            goods_id:this.data.sellid,
-            spec:this.data.info.goods_spec
-
-        }).then(res=>{
-
-           if(res.data.code ==200){ 
-           wx.showToast({
-            title:'修改成功'
-           })
-
-            wx.redirectTo({
-                url:'../upSuccess/index?goods_id='+res.data.data.goods_id
+          wx.redirectTo({
+                url:'../upSuccess/index?goods_id='+this.data.sellid
             })
-
-
-       }else{
-           {
-
-            wx.showToast({
-                title:res.data.msg,
-                icon:'none'
-            })
-
-        }
-       }
-
-
-        })
-
 
     },
 

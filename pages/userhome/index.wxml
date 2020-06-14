@@ -39,10 +39,15 @@
                 <van-icon size="18px" name="share" />
                 分享朋友
             </van-button>
-            <van-button custom-class="actbtn" size="small" plain hairline bindtap="addEventLister" type="warning">
+
+            <van-button custom-class="actbtn" size="small" plain hairline bindtap="toLiveRoom" type="warning">
+                <van-icon size="18px" name="star-o" />
+                直播间
+            </van-button>
+<!--             <van-button custom-class="actbtn" size="small" plain hairline bindtap="addEventLister" type="warning">
                 <van-icon size="18px" name="star-o" />
                 订阅关注
-            </van-button>
+            </van-button> -->
         </view>
     </view>
     <view class="goods-box">

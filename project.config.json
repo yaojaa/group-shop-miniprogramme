@@ -12,6 +12,7 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
+		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
@@ -28,8 +29,8 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"preloadBackgroundData": false,
-		"useCompilerModule": false
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.5",
@@ -660,9 +661,9 @@
 				},
 				{
 					"id": 84,
-					"name": "申请代理",
+					"name": "申请供应商代理",
 					"pathName": "business/pages/acting-apply/index",
-					"query": "id=1",
+					"query": "supplier_id=7",
 					"scene": null
 				},
 				{
@@ -1037,17 +1038,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 138,
 					"name": "pages/goods/goods",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=2250",
+					"query": "goods_id=2121",
 					"scene": null
 				},
 				{
 					"id": 139,
 					"name": "帮卖查看商品",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=2102&from_id=&help_sale=true",
+					"query": "goods_id=2123&from_id=&help_sale=true",
 					"scene": null
 				},
 				{
@@ -1146,6 +1147,27 @@
 					"name": "pages/paySuccess/index",
 					"pathName": "pages/paySuccess/index",
 					"query": "order_id=12103&goods_id=2082&order_count=191",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/acting-apply/index",
+					"pathName": "pages/acting-apply/index",
+					"query": "store_id=7312",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/goods-user/goods",
+					"pathName": "business/pages/goods-user/goods",
+					"query": "goods_id=41",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "帮卖设置",
+					"pathName": "pages/help-sale-setting/index",
+					"query": "goods_id=2108",
 					"scene": null
 				}
 			]

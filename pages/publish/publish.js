@@ -177,16 +177,24 @@ Page({
 
     }
 
-    app.globalData.helpSaleData ={
+
+   if(!this.data.goods_id){
+      app.globalData.helpSaleData ={
       goods_name:this.data.goods_name,
       goods_cover:this.data.goods_images[0].img_url,
       goods_spec:this.data.spec
     }
-
-
-    wx.navigateTo({
+       wx.navigateTo({
       url:'../help-sale-setting/index',
     })
+
+   }else{
+       wx.navigateTo({
+      url:'../help-sale-setting/index?goods_id='+this.data.goods_id,
+    })
+   }
+
+ 
   },
   // 删除图片
   deleteClick(e) {

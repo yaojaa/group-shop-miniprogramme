@@ -260,8 +260,8 @@
                     <view class="weui-cell__bd"></view>
                     <view class="weui-cell__ft">
                         <i-switch value="{{is_on_sale_status}}" size="large" bind:change="sale_status_onChange" slot="footer">
-                            <view slot="open">否</view>
-                            <view slot="close">是</view>
+                            <view slot="open">是</view>
+                            <view slot="close">否</view>
                         </i-switch>
                     </view>
                 </view>

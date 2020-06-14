@@ -9,7 +9,8 @@ Page({
     helpSaleList:[],
     groupUserList:[],
     isCheck:false,
-    showSetting:false
+    showSetting:false,
+    fansCount: 0
   },
   onLoad: function(e) {
     //未登录 弹出授权弹窗
@@ -150,7 +151,8 @@ Page({
 
       if(res.data.code == 200){
       this.setData({
-        groupUserList: res.data.data
+        groupUserList: res.data.data.list,
+        fansCount: res.data.data.count
       })
     }else{
 
@@ -160,10 +162,6 @@ Page({
         title:'服务器休息一下 请稍后'
       })
     })
-
-
-
-   
 
   },
 
@@ -237,7 +235,7 @@ onShareAppMessage: function(e) {
     if(type=='store'){
 
             var title=nickname + '邀请您加入Ta的帮卖团队' 
-            var path = '../acting-apply/index' + '?store_id=' + store_id
+            var path = 'pages/acting-apply/index' + '?store_id=' + app.globalData.userInfo.store.store_id
 
 
     }else{

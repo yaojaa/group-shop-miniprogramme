@@ -48,7 +48,7 @@
                 <scroll-view style="height: 100px" scroll-y>
                     <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}"  bindtap="todetail">
                         <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
-                        参与了你的
+                        下单
                         <text class="bold">{{item.order_detail[0].goods_name}}</text>
                     </view>
                 </scroll-view>
@@ -133,7 +133,7 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
-<van-dialog
+<!-- <van-dialog
   use-slot
   showConfirmButton="{{false}}"
   show="{{ showDialog }}"
@@ -144,15 +144,14 @@
   <view class="data">待发货订单：<text class="bold">15</text></view>
 
   <view class="tips text-muted">
-          <checkbox value="下次微信通知我" checked="true"  disabled="{{true}}" />
-  下次微信通知我</view>
+  订阅微信通知 不错过订单 </view>
 
   <button>我知道了</button>
 
 
 </view>
 
-</van-dialog>
+</van-dialog> -->
 <!-- <van-popup
   show="{{ showDialog }}"
   overlay="{{false}}"

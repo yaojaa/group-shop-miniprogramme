@@ -20,6 +20,7 @@ Page({
      */
     onLoad: function(options) {
 
+
         if(app.globalData.userInfo){
 
         }else{
@@ -43,6 +44,12 @@ Page({
             options = this.url2json(scene)
            
         } 
+
+
+        if(options.goods_id){
+
+          
+        }
 
 
 
@@ -122,11 +129,7 @@ Page({
         console.log(e)
         if(this.data.loading) return
 
-        if(!e.detail.value.apply_remark){
-            return wx.showToast({
-                title:'请填写申请信息'
-            })
-        }
+        
 
         this.setData({
           submit: false,
@@ -135,8 +138,7 @@ Page({
 
 
         util.wx.post('/api/helper/apply_store_helper',{
-            store_id  : this.data.store_id,
-           apply_remark:e.detail.value.apply_remark        
+            store_id  : this.data.store_id
         })
         .then(res=>{
 

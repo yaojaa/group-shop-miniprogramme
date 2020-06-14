@@ -18,7 +18,6 @@
     "pages/userhome/index",
     "pages/create_shop/index",
     "pages/upload_pics/upload_pics",
-    "pages/wxgroup/index",
     "pages/address/index",
     "pages/address-form/index",
     "pages/order-list/index",
@@ -85,12 +84,20 @@
         "pages/base-info/index",
         "pages/order-manage/index",
         "pages/editor/editor",
-        "pages/paySuccess/index"
+        "pages/paySuccess/index",
+        "pages/live-room/index"
+
       ]
     }
   ],
   "usingComponents": {
     "wux-spin": "../../wux/spin/index"
+  },
+  "plugins": {
+    "live-player-plugin": {
+      "version": "1.0.13",
+      "provider": "wx2b03c6e691cd7370"
+        }
   },
   "permission": {
     "scope.userLocation": {

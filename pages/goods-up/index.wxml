@@ -16,24 +16,22 @@
             <van-field value="{{scopeTitle}}" name=" " label="商品分类" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
         </van-cell-group> -->
         <view class="specs-item" wx:for="{{info.goods_spec}}" wx:key="index">
+             <view class="spec_title">{{item.spec_name}}</view>
+
             <van-cell-group custom-class="mt-sm">
-                <van-field value="{{item.spec_name}}" name="" label="商品规格" placeholder="" input-align="right" readonly></van-field>
                 <van-field value="{{item.agent_price}}元" name="" label="拿货价" placeholder="" input-align="right" readonly></van-field>
-                <van-field value="{{item.mspr_start}} 至 {{item.mspr_end}}元" name="" label="可销售区间" placeholder="" input-align="right" readonly></van-field>
+                <van-field wx:if="{{info.link_goods[0]!==null}}" value="{{item.mspr_start}} 至 {{item.mspr_end}}元" name="" label="可销售区间" placeholder="" input-align="right" readonly></van-field>
             </van-cell-group>
             <view class="mh-df mv-sm solid round-df">
-                <van-field use-button-slot data-mini="{{item.mspr_start}}"  data-max="{{item.mspr_end}}" value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="{{is_modify?'修改':'设置'}}零售价" data-index="{{index}}" placeholder="请输入零售价" bind:blur="validate" input-align="right" input-class="text-lg coral-text">
+                <van-field use-button-slot data-mini="{{item.mspr_start}}"  data-max="{{item.mspr_end}}" value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="{{is_modify?'修改':'设置'}}零售价" data-index="{{index}}" placeholder="请输入零售价" bind:change="validate" input-align="right" input-class="text-lg coral-text">
                     <view slot="button">元</view>
                 </van-field>
-            </view>
-            <view class="ph-df  text-sm text-muted">
-                <view>温馨提示：如果需要代理团长分销可以点击设置代理价</view>
             </view>
         </view>
         <view class="m-df">
 
             <button wx:if="{{is_modify}}" class="btn xxl primary block linenear_bg" bindtap="modifyPrice" disabled="{{btnDisable}}">
-                保存
+                确定
             </button>
             <button wx:else class="btn xxl primary block linenear_bg" bindtap="upup" disabled="{{btnDisable}}">
                 立即上架
