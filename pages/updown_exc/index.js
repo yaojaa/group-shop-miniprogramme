@@ -238,33 +238,33 @@ Page({
   // 生成链接并复制
   exportExcel() {
     let _this = this;
-    let data = {}
+    let thisData = {}
     if(this.data.value1 == 1){
-      data = {
+      thisData = {
         send_status: 1,
         goods_spec_id_arr: [],
         start_date: this.data.startDate[0] + ' ' + this.data.startDate[1],
         end_date: this.data.endDate[0] + ' ' + this.data.endDate[1]
       }
     }else if(this.data.value2 == 1){
-      data = {
+      thisData = {
         send_status: 0,
         goods_spec_id_arr: []
       }
     }else{
-      data.goods_spec_id_arr = this.data.result;
+      thisData.goods_spec_id_arr = this.data.result;
       if(this.data.list.length == 0 ){
         console.log('暂无订单')
         return
       }
-      if(data.goods_spec_id_arr.length == 0){
+      if(thisData.goods_spec_id_arr.length == 0){
         wx.showToast({ title: '请先选择要导出的商品', icon: 'none' })
         return;
       }
     }
     wx.showToast({ title: '开始为你生成...', icon: 'none', mask: true })
 
-    util.wx.post('/api/seller/order_export', data).then(res => {
+    util.wx.post('/api/seller/order_export', thisData).then(res => {
 
         if (res.data.code == 200) {
           wx.hideToast()
@@ -276,8 +276,6 @@ Page({
             confirmText: '复制链接',
             success (res) {
               if (res.confirm) {
-
-
                 wx.setClipboardData({
                   data: path,
                   success: function(res) {
@@ -289,19 +287,15 @@ Page({
                       if(_this.data.value1 == 1 || _this.data.value2 == 1){
                         return;
                       }
-                      wx.redirectTo({
-                        url: '../updown_exc/index'
-                      })
+                      
+                      data.cpage = 1;
+                      _this.getGoodsOrders(data);
                   }
                 })
                 
               }
             }
           })
-
-
-
-
             
         }else{
           wx.showToast({ title: res.data.msg, duration: 5000, icon: 'none' })
