@@ -1,6 +1,7 @@
 @import "../../css/common.wxss";
 .view-page{
 	background-color:#fff;
+  padding-bottom: 200rpx;
 }
 
 .menu{
@@ -52,7 +53,12 @@ i-datepicker{
 }
 
 .create-link{
-  padding-top: 160px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  padding: 20rpx 0 40rpx;
+  width: 100%;
   text-align: center;
 }
 
@@ -63,9 +69,6 @@ i-datepicker{
 }
 .select-time-body{
   margin:0 10px;
-  border-radius: 4px;
-  background: #f8f8f8;
-  padding: 0 2px 0 5px;
 }
 
 .goods-list{
@@ -88,4 +91,11 @@ i-datepicker{
   margin-left: 20px;
 }
 
-.list-checkbox{ display: flex; align-items: center; }
+.list-checkbox{
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  background: #f8f8f8;
+  padding: 0 2px 0 5px;
+  margin-bottom: 5px;
+}

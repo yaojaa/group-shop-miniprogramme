@@ -127,7 +127,13 @@ Page({
   getGoodsOrders(_data){
     // _data.goods_id = this.data.goods_id;
     if(_data.cpage == 1){
-      this.data.list = [];
+      this.setData({
+        list: [],
+        result: [],
+        listmore: true,
+        show: false
+      })
+
       flag = true;
     }
     if(!flag){
@@ -231,7 +237,7 @@ Page({
 
   // 生成链接并复制
   exportExcel() {
-
+    let _this = this;
     let data = {}
     if(this.data.value1 == 1){
       data = {
@@ -266,6 +272,7 @@ Page({
 
           wx.showModal({
             content: '订单导出已生成下载地址：'+path,
+            showCancel: false,
             confirmText: '复制链接',
             success (res) {
               if (res.confirm) {
@@ -274,14 +281,20 @@ Page({
                 wx.setClipboardData({
                   data: path,
                   success: function(res) {
-                      wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
+                      // wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
+                      // setTimeout(()=>{
+                      //   console.log(_this.data.result)
+                      // },3000)
+                      console.log(_this.data.result)
+                      if(_this.data.value1 == 1 || _this.data.value2 == 1){
+                        return;
+                      }
+                      wx.redirectTo({
+                        url: '../updown_exc/index'
+                      })
                   }
                 })
-
-
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
+                
               }
             }
           })

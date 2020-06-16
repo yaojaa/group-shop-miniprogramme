@@ -368,7 +368,9 @@ Page({
       })
       .then(res => {
         if(res.data.code == 200 && res.data.data.path){
-          this.onFriendsImgOK(res.data.data.path);
+            this.setData({
+              shareFriendsImg:res.data.data.path
+            })
         }
       })
     }
@@ -389,15 +391,44 @@ Page({
     })
 
   },
+  /**代理商品修改价格**/
+  goModifyPrice(){
+
+    wx.navigateTo({
+      url:'pages/goods-up/index'
+    })
+
+  },
   //生成帮卖海报
     getHelpPost(){
 
+     wx.showLoading()
      util.wx
       .get('/api/goods/get_goods_helper_card', {
         goods_id: this.data.goods_id,
       })
       .then((res) => {
-        this.shareImg = res.data.data.path
+        wx.hideLoading()
+
+        if(res.data.code = 200){
+          this.setData({
+            shareFriendsImg:res.data.data.path,
+            poster:true,
+            showInviteFriend: false
+          })
+
+        }else{
+
+        wx.showToast({
+          title:'生成海报失败',
+          icon:'none'
+        })
+
+        }
+
+
+
+
       })
       .catch((e) => {
         wx.showToast({
@@ -461,22 +492,7 @@ Page({
     })
   },
 
-  onFriendsImgOK(path) {
-    this.data.shareFriendsImgs.push(path)
-    this.data.shareFriendsImg = this.data.shareFriendsImgs[0]
-    this.setData({
-      shareFriendsImgs: this.data.shareFriendsImgs,
-      shareFriendsImg: this.data.shareFriendsImg,
-    })
-    console.log('imgOk', this.data.shareFriendsImgs)
-  },
-  friendsImgChange(e) {
-    console.log(e.detail.current)
-    this.data.shareFriendsImg = this.data.shareFriendsImgs[e.detail.current]
-    this.setData({
-      currentIndex: e.detail.current,
-    })
-  },
+
   showGallery(e) {
     const { current } = e.currentTarget.dataset
     const urls = this.data.goods.content_imgs
@@ -1289,6 +1305,15 @@ Page({
   },
 
   helpSaleUp:function(){
+
+    //如果是自己
+    if(this.data.goods.store.user_id == app.globalData.userInfo.user_id){
+
+      return wx.showToast({
+        title:'您不能自己卖自己的商品',
+        icon: 'none'
+      })
+    }    
 
 
     console.log('helper')

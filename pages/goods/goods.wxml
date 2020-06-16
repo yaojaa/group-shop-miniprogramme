@@ -35,12 +35,21 @@
             </view>
             访问记录
         </view>
-        <view class="flex-item" bindtap="goModify">
+        
+        <view class="flex-item" bindtap="goModify" wx:if="{{goods.goods_link ==0}}">
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
             <block>编辑修改</block>
         </view>
+
+        <view class="flex-item" bindtap="goModifyPrice" wx:else>
+            <view class="num">
+                <van-icon name="edit" color="#4fac05" size="20px" />
+            </view>
+            <block>修改价格</block>
+        </view>
+
         <view class="flex-item" bindtap="goSendMsg">
             <view class="num">
                 <van-icon name="envelop-o" color="#4fac05" size="20px" />
@@ -275,7 +284,12 @@
     
 
     <view class='footer-cart'  wx:if="{{is_help_sale || is_help_sale_user}}">
-         <view class='icon'>
+         <view class='icon' bindtap='homepage'>
+            <i-icon type="mine" size="26" color="#333" />
+            <text class="label">我 的</text>
+        </view>
+
+         <view class='icon' style="flex:4">
             <button bindtap="helpSaleUp" wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg">
                 我要帮卖
             </button>
@@ -301,7 +315,7 @@
 
 
 
-        <form wx:if="{{!showPanel}}" style="flex:2;position: relative;" bindtap="cartPanelShow" >
+        <form wx:if="{{!showPanel}}" style="flex:4;position: relative;" bindtap="cartPanelShow" >
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
@@ -326,7 +340,11 @@
             </button>
         </form>
 
-<button wx:if="{{showPanel}}" class="buy linenear_bg" bindtap="openShareFriends">
+<button wx:if="{{showPanel}}" bindtap="openInviteFriends" wx:if="{{goods.agent_opt==1}}" class="flex2 buy linenear_bg">
+                 邀请代理帮卖
+            </button>
+
+<button wx:if="{{showPanel}}" class="flex2 buy linenear_bg" bindtap="openShareFriends">
                  立即转发顾客
             </button>
        
@@ -427,21 +445,9 @@
     <!-- <view show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;"> -->
     <view hidden="{{ !poster }}" class="share-friends-box">
         <view class='share-friends-img' bindtap='handlePoster'>
-            <view class="text-center share-img-box" wx:if="{{shareFriendsImgs.length > 0}}">
-                <swiper class="images" bindchange="friendsImgChange">
-                    <swiper-item wx:for="{{shareFriendsImgs}}">
-                        <image class='icon-img' src='{{item}}' mode='aspectFit'></image>
-                    </swiper-item>
-                    <!-- <swiper-item>
-                      <image class='icon-img' src='{{shareFriendsImg2}}' mode='aspectFit'></image>
-                    </swiper-item> -->
-                </swiper>
-                <view class="share-friends-indicator">
-                    <view class="dots-box">
-                        <block wx:for="{{shareFriendsImgs}}">
-                            <view class="dots{{index == currentIndex ? ' on' : ''}}"></view>
-                        </block>
-                    </view>
+            <view class="text-center share-img-box" wx:if="{{shareFriendsImg}}">
+                <view class="images">
+                        <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
                 </view>
                 <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages">
                     保存海报图

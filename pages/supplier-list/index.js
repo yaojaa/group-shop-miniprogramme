@@ -235,7 +235,7 @@ onShareAppMessage: function(e) {
     if(type=='store'){
 
             var title=nickname + '邀请您加入Ta的帮卖团队' 
-            var path = '../acting-apply/index' + '?store_id=' + app.globalData.userInfo.store.store_id
+            var path = 'pages/acting-apply/index' + '?store_id=' + app.globalData.userInfo.store.store_id
 
 
     }else{
