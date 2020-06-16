@@ -1,76 +1,6 @@
 {
-<<<<<<< HEAD
     "pages": [
         "pages/login/login",
-=======
-  "pages": [
-    "pages/login/login",
-    "pages/home/index",
-    "pages/create-home/index",
-    "pages/publish-select/index",
-    "pages/index/index",
-    "pages/withdrawal/index",
-    "pages/withdrawal-record/index",
-    "pages/goods/goods",
-    "pages/publish/publish",
-    "pages/publish-success/publish-success",
-    "pages/map/index",
-    "pages/paySuccess/index",
-    "pages/userLocation/index",
-    "pages/myPublish/index",
-    "pages/paymethod/index",
-    "pages/userhome/index",
-    "pages/create_shop/index",
-    "pages/upload_pics/upload_pics",
-    "pages/address/index",
-    "pages/address-form/index",
-    "pages/order-list/index",
-    "pages/new-order-list/index",
-    "pages/order-detail/index",
-    "pages/ems-detail/index",
-    "pages/evaluate/index",
-    "pages/wxgroup_add/index",
-    "pages/order-confirm/index",
-    "pages/fans/index",
-    "pages/fans-mg/index",
-    "pages/ordermanage/list",
-    "pages/spec-order-list/list",
-    "pages/to-send/index",
-    "pages/identify/identify",
-    "pages/modify-address/index",
-    "pages/express/index",
-    "pages/send-list/index",
-    "pages/ems/ems",
-    "pages/updown_exc/index",
-    "pages/send-msg/index",
-    "pages/refundment/index",
-    "pages/refundment-detail/index",
-    "pages/refundment-detail-seller/index",
-    "pages/coupon/index",
-    "pages/coupon-creat/index",
-    "pages/coupon-send/index",
-    "pages/goods-up/index",
-    "pages/upSuccess/index",
-    "pages/supplier-home/index",
-    "pages/user-home/index",
-    "pages/supplier-list/index",
-    "pages/my/index",
-    "pages/editor/editor",
-    "pages/apply_shop/index",
-    "pages/spec-detail/index",
-    "pages/publish-setting/index",
-    "pages/order-detail-seller/index",
-    "pages/help-sale-setting/index",
-    "pages/help-sale-invite/index",
-    "pages/help-sale-up/index",
-    "pages/acting-apply/index",
-    "pages/user-help-home/index"
-  ],
-  "subpackages": [
-    {
-      "root": "business",
-      "pages": [
->>>>>>> 0da0d547931f339a107957033018c31f9ba7ff3a
         "pages/home/index",
         "pages/create-home/index",
         "pages/publish-select/index",
@@ -88,7 +18,6 @@
         "pages/userhome/index",
         "pages/create_shop/index",
         "pages/upload_pics/upload_pics",
-        "pages/wxgroup/index",
         "pages/address/index",
         "pages/address-form/index",
         "pages/order-list/index",
@@ -96,7 +25,6 @@
         "pages/order-detail/index",
         "pages/ems-detail/index",
         "pages/evaluate/index",
-        "pages/wxgroup_add/index",
         "pages/order-confirm/index",
         "pages/fans/index",
         "pages/fans-mg/index",
@@ -123,7 +51,6 @@
         "pages/supplier-list/index",
         "pages/my/index",
         "pages/editor/editor",
-<<<<<<< HEAD
         "pages/apply_shop/index",
         "pages/spec-detail/index",
         "pages/publish-setting/index",
@@ -182,34 +109,3 @@
     },
     "sitemapLocation": "sitemap.json"
 }
-=======
-        "pages/paySuccess/index",
-        "pages/live-room/index"
-
-      ]
-    }
-  ],
-  "usingComponents": {
-    "wux-spin": "../../wux/spin/index"
-  },
-  "plugins": {
-    "live-player-plugin": {
-      "version": "1.0.13",
-      "provider": "wx2b03c6e691cd7370"
-        }
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息用于获取附近的团购活动"
-    }
-  },
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "开心麻团儿",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#eeeeee"
-  },
-  "sitemapLocation": "sitemap.json"
-}
->>>>>>> 0da0d547931f339a107957033018c31f9ba7ff3a

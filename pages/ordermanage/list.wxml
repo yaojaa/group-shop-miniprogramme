@@ -76,12 +76,13 @@
     <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="{{item.order_id}}" wx:if="{{!item.removed}}">
         <view class="order-hd">
             <view class="number">
-                  <text class="create_number">{{item.create_number}}</text>
-
+                <text class="create_number">{{item.create_number}}</text>
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
             </view>
             <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
-                <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text></view>
+                <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text>
+            </view>
+
                 <view class="msg_btn">
                <!--  <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
 微信通知                </button> -->
@@ -142,21 +143,25 @@
                 </text>
             </view>
             <view class="total text-justify scale-b-1px">
-                <view><text class="warning-text f18">¥{{item.pay_price}} </text>
-                    <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
+                <view>
+                        <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
                     <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
+                   <!--如果下单的店铺不是自己的店铺，就显示是来自代理的-->
+                    <text class="warning-text f18" wx:if="{{user_id == item.store.user_id }}" >¥{{item.pay_price}} </text>
+                    <text class="warning-text f18" wx:else>¥{{item.pay_price-item.profit}} <text class="f12">来自代理“{{item.store.store_name}}”</text> </text>
+
+                
                 </view>
+
+
+
                 <view class="text-right"> <text class="order-date">{{item.addtime}}</text>
                 </view>
             </view>
         </view>
 
-          <!--如果下单的店铺不是自己的店铺，就显示是来自代理的-->
-     <view class="tips" wx:if="{{user_id !==item.store.user_id }}">
-         来自代理“{{item.store.store_name}}”
-     </view>
-
+   
      
         <view class="order-fd scale-b-1px">
 
