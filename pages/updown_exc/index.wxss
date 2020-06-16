@@ -73,14 +73,24 @@ i-datepicker{
 
 .goods-list{
   padding: 5px 2px;
+  position: relative;
+  width: 100%
 }
 
 .tac{ text-align: center; padding: 10px;}
 
 .pt10{ padding-top: 10px; }
 
-.checkorder{ padding: 4px; color: #105f96; }
+.checkorder{ 
+  padding: 4px; color: #105f96; 
+  position: absolute;
+  right: 10px;
+  bottom: 10px
 
+}
+.item-list{
+  position: relative;
+}
 
 
 .radio-group{
@@ -98,4 +108,15 @@ i-datepicker{
   background: #f8f8f8;
   padding: 0 2px 0 5px;
   margin-bottom: 5px;
+}
+.width50{
+  width:300rpx
+}
+
+.width200{
+  width:80px;
+  display: inline-block;
+}
+.tips{
+  padding:10px;
 }
