@@ -127,7 +127,13 @@ Page({
   getGoodsOrders(_data){
     // _data.goods_id = this.data.goods_id;
     if(_data.cpage == 1){
-      this.data.list = [];
+      this.setData({
+        list: [],
+        result: [],
+        listmore: true,
+        show: false
+      })
+
       flag = true;
     }
     if(!flag){
@@ -231,34 +237,34 @@ Page({
 
   // 生成链接并复制
   exportExcel() {
-
-    let data = {}
+    let _this = this;
+    let thisData = {}
     if(this.data.value1 == 1){
-      data = {
+      thisData = {
         send_status: 1,
         goods_spec_id_arr: [],
         start_date: this.data.startDate[0] + ' ' + this.data.startDate[1],
         end_date: this.data.endDate[0] + ' ' + this.data.endDate[1]
       }
     }else if(this.data.value2 == 1){
-      data = {
+      thisData = {
         send_status: 0,
         goods_spec_id_arr: []
       }
     }else{
-      data.goods_spec_id_arr = this.data.result;
+      thisData.goods_spec_id_arr = this.data.result;
       if(this.data.list.length == 0 ){
         console.log('暂无订单')
         return
       }
-      if(data.goods_spec_id_arr.length == 0){
+      if(thisData.goods_spec_id_arr.length == 0){
         wx.showToast({ title: '请先选择要导出的商品', icon: 'none' })
         return;
       }
     }
     wx.showToast({ title: '开始为你生成...', icon: 'none', mask: true })
 
-    util.wx.post('/api/seller/order_export', data).then(res => {
+    util.wx.post('/api/seller/order_export', thisData).then(res => {
 
         if (res.data.code == 200) {
           wx.hideToast()
@@ -266,29 +272,30 @@ Page({
 
           wx.showModal({
             content: '订单导出已生成下载地址：'+path,
+            showCancel: false,
             confirmText: '复制链接',
             success (res) {
               if (res.confirm) {
-
-
                 wx.setClipboardData({
                   data: path,
                   success: function(res) {
-                      wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
+                      // wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
+                      // setTimeout(()=>{
+                      //   console.log(_this.data.result)
+                      // },3000)
+                      console.log(_this.data.result)
+                      if(_this.data.value1 == 1 || _this.data.value2 == 1){
+                        return;
+                      }
+                      
+                      data.cpage = 1;
+                      _this.getGoodsOrders(data);
                   }
                 })
-
-
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
+                
               }
             }
           })
-
-
-
-
             
         }else{
           wx.showToast({ title: res.data.msg, duration: 5000, icon: 'none' })
