@@ -153,11 +153,11 @@
         </view>
 
           <!--如果下单的店铺不是自己的店铺，就显示是来自代理的-->
-     <view class="tips" wx:if="{{user_id !==item.store.user_id }}">
-         来自代理“{{item.store.store_name}}”
+     <view class="type" wx:if="{{user_id !==item.store.user_id }}">
+         来自“{{item.store.store_name}}” 
      </view>
 
-     
+
         <view class="order-fd scale-b-1px">
 
 

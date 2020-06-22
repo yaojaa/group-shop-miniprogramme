@@ -20,10 +20,10 @@
                     <image src="{{goods.user.headimg}}" class="avatar"></image>
                 </view>
                 <view class="user-info-bd">
-                    <view class="name">{{goods.user.nickname}}<text class="tags">已实名</text> <van-icon color="#a3df00" name="phone" size="20px" />  
+                    <view class="name">{{goods.user.nickname}}<!-- <text class="tags">已实名</text> <van-icon color="#a3df00" name="phone" size="20px" />   -->
                     </view>
-                    <view class="f12">
-                    累计{{goods.buyuser_count}}人跟TA团了{{goods.store.order_count}}次</view>
+          <!--           <view class="f12">
+                    累计{{goods.buyuser_count}}人跟TA团了{{goods.store.order_count}}次</view> -->
                 </view>
             </view>
         </view>
@@ -185,7 +185,7 @@
                     <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 
                         剩余({{item.spec_stock}})
                     </text> -->
-                    <view class="buy" catchtap="addAnimate">
+                    <view wx:if="{{!showPanel}}" class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                     </view>
                 </view>
@@ -321,10 +321,6 @@
             </text>
 
             <!--如果是团看自己-->
-
-            
-
-
             <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg" formType="submit">
                  
                 <block wx:if="{{is_help_sale}}">直接下单</block>
@@ -344,7 +340,7 @@
                  邀请代理帮卖
             </button>
 
-<button wx:if="{{showPanel}}" class="flex2 buy linenear_bg" bindtap="openShareFriends">
+<button wx:if="{{showPanel}}" class="flex2 buy linenear_bg" open-type="share">
                  立即转发顾客
             </button>
        

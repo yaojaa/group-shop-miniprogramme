@@ -58,9 +58,6 @@ Page({
             btnDisable: this.data.btnDisable
         })
 
-        
-
-
         }
 
 
@@ -94,7 +91,7 @@ Page({
 
     },
 
-    spec_edit(id,price){
+    spec_edit(id,price,index){
 
       wx.showLoading()
 
@@ -107,6 +104,11 @@ Page({
             //   title:'价格修改成功',
             //   icon:'none'
             // })
+            const key = 'spec['+index+'].sub_agent_price'
+            util.setParentData({
+                [key]:price
+            },true)
+            
           }else{
             wx.showToast({
               title:'价格修改失败',
@@ -166,7 +168,9 @@ Page({
          }else{
           /**修改价格调用接口**/
           if(this.is_modify){
-            this.spec_edit(goods_spec_id,value)
+
+            this.data.info.goods_spec[index].sub_agent_price = value
+            this.spec_edit(goods_spec_id,value,index)
             is_btnDisable = false
             return
           }
@@ -213,7 +217,7 @@ Page({
          })
 
 
-        if(this.is_modify){
+        if(this.is_modify && this.data.info.agent_opt !=='1'){
           wx.showLoading()
           util.wx.post('/api/seller/set_goods_agent_opt',{
             agent_opt:1,
