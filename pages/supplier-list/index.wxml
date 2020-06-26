@@ -38,8 +38,13 @@
             </view>
 
                <view class="po_right" >
+
+                  <button wx:if="{{item.is_admin !== 0}}" size="mini" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}"   bindtap="setAdmin">设为管理员</button>
+
+                  <button wx:else size="mini" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}"  bindtap="setAdmin">取消管理员</button>
+
                 
-                    <view class="button left"  wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</view>
+                    <button class="button left"  wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</button>
 
                     <button class="button shrink0 left" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</button>
 

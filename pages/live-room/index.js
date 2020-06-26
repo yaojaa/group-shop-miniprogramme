@@ -3,30 +3,23 @@ import data from '../../utils/city_data'
 import { $wuxToptips } from '../../wux/index'
 
 
-
-
 Page({
 
   /**
    * 页面的初始数据
    */
    data: {
-        groups:[
-        {
-          title:'金鱼团团群',
-          des:'金域东郡业主团购群,加群需要认证业主',
-          master:'yaojaa'
-        },
-                {
-          title:'运河湾美食群',
-          des:'经常分享好美食聚划算，加群需要认证业主',
-          master:'yaojaa'
-        }
-
-        ]
+    roomState:{
+      101: '直播中', 
+      102: '未开始', 
+      103: '已结束', 
+      104: '禁播', 
+      105: '暂停中', 
+      106: '异常', 
+      107: '已过期'
+    }
     },
   
-
   /**
    * 生命周期函数--监听页面加载
    */

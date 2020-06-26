@@ -2,7 +2,6 @@
     "navigationBarTitleText": "直播间列表",
     "usingComponents":
     {
-        "i-panel": "../../iView/panel/index",
         "i-button": "../../iView/button/index",
         "i-modal": "../../iView/modal/index",
         "wux-cell-group": "../../wux/cell-group/index",

@@ -24,6 +24,43 @@ Page({
     this.getMyHelpSale()
     this.getMyHelpSaleUser()
   },
+  //把粉丝设置为管理
+  setAdmin(e){
+
+    const {user_id,user_name,is_admin} = e.target.dataset
+
+     const state_txt = is_admin==0?'设为你的':'取消'
+     const state_txt1 = is_admin==0?'有':'无'
+
+
+    wx.showModal({
+         title: '确定要将'+user_name+state_txt+'管理员吗？',
+         content: '他将'+state_txt1+'权限帮你操作订单',
+         showCancel: true,//是否显示取消按钮
+         cancelText:"取消",//默认是“取消”
+         confirmText:"确定",//默认是“确定”
+         confirmColor: 'green',//确定文字的颜色
+         success: function (res) {
+            if (!res.cancel) {
+               //点击取消,默认隐藏弹框
+               util.wx.post('/api/store/set_admin', {
+                    status: is_admin ==0 ?1: 0, //1;0
+                    user_id
+                })
+                .then(res => {
+
+                    wx.showToast({
+                        title: '设置成功',
+                        icon: 'none'
+                    })
+
+                })
+            } 
+         },
+         fail: function (res) { },//接口调用失败的回调函数
+         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+      })
+  },
 
   openSetting(){
     this.setData({
