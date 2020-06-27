@@ -1181,6 +1181,21 @@
 					"id": -1,
 					"name": "pages/supplier-list/index",
 					"pathName": "pages/supplier-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user-help-home/index",
+					"pathName": "pages/user-help-home/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goods",
+					"pathName": "pages/goods/goods",
+					"query": "goods_id=2134&help_sale=true",
 					"scene": null
 				}
 			]

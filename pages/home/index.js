@@ -134,6 +134,10 @@ Page({
                      wx.redirectTo({
                                     url:'../user-home/index'
                                 })
+                   }else{
+                    this.setData({
+                        pending_money: res.data.data.store.pending_money,
+                    })
                    }
 
             }
@@ -235,7 +239,6 @@ Page({
 
         this.data.cpage = 1
         this.data.goodslist = []
-        this.get_store_info()
         this.getGoodsList()
         this.getOrderList()
 
@@ -285,18 +288,18 @@ Page({
 
     },
 
-    get_store_info() {
-        util.wx.get('/api/seller/get_store_money').then(res => {
-            this.setData({
-                pending_money: res.data.data.pending_money,
-                fansNum :res.data.data.fans_count 
-                 })
+    // get_store_info() {
+    //     util.wx.get('/api/seller/get_store_money').then(res => {
+    //         this.setData({
+    //             pending_money: res.data.data.pending_money,
+    //             fansNum :res.data.data.fans_count 
+    //              })
 
-        })
+    //     })
 
 
 
-    },
+    // },
 
     ///////////
     //获取最新订单 //
