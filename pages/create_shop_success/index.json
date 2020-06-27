@@ -2,7 +2,7 @@
   "navigationBarTitleText": "创建成功",
 
   "usingComponents": {
-        "wux-icon": "../../wux/icon/index",
-        "wux-result": "../../wux/result/index"
+        "wux-icon": "../../wux/icon/index"
+        
   }
 }

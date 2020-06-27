@@ -11,6 +11,7 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
@@ -24,11 +25,13 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"useIsolateContext": true,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
@@ -1171,10 +1174,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/goods/goods",
-					"pathName": "pages/goods/goods",
-					"query": "goods_id=2130",
+					"id": 157,
+					"name": "pages/acting-apply/index",
+					"pathName": "pages/acting-apply/index",
+					"query": "store_id=7404",
 					"scene": null
 				},
 				{

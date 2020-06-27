@@ -1,145 +1,91 @@
 <view class="container ">
-
-
- <van-tabs active="{{ active }}" bind:change="onChange">
-  <van-tab title="我创建的团队">
-
-   <view class="act-submit">
-
-
-
-    <view><button size="mini" data-type="store" open-type="share"   bindtap="openShareFriends" >邀请小伙伴</button></view>
-    
-        <view class="total">共{{fansCount}}个成员 
-
-<!--           <van-icon bindtap="openSetting" size="20px" name="setting-o" />
- -->
+  <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab title="我创建的团队">
+      <view class="text-justify p-df top-head">
+        <view>
+          共{{fansCount}}个成员
+          <!-- <van-icon bindtap="openSetting" size="20px" name="setting-o" /> -->
         </view>
-
-    </view>
-
-
-      <view class="user-container" wx:for="{{groupUserList}}">
-        <view class="act-cell flex">
-            <view class="act-img shrink0">
-                <image class="act-logo" mode="aspectFill" src="{{item.headimg}}"></image>  
+        <button class="btn sm primary round" data-type="store" open-type="share" bindtap="openShareFriends">
+          邀请小伙伴
+        </button>
+      </view>
+      <view class="user-container">
+        <view class="act-cell flex align-center" wx:for="{{groupUserList}}" wx:key="index">
+          <view class="act-img shrink0">
+            <image class="act-logo" mode="aspectFill" src="{{item.headimg}}"></image>
+          </view>
+          <view class="grow1 flex-sub">
+            <view class=" flex">
+              <view class="name grow1">
+                {{item.nickname}}
+                <text class="right f10">{{item.apply_time}}</text>
+              </view>
             </view>
-            <view class="grow1">
-                <view class=" flex">
-                    <view class="name grow1">{{item.nickname}}  <text class="right f10">{{item.apply_time}}</text></view>
-                </view>
-                <view class="act-bottom">
-            <text class="f12 left text-muted">销量:{{item.order_num}}    粉丝:{{item.fans_num}}</text>
-
-         
-                  
- 
-                </view>
+            <view class="act-bottom">
+              <text class="f12 left text-muted">销量:{{item.order_num}}    粉丝:{{item.fans_num}}</text>
             </view>
-
-               <view class="po_right" >
-
-                  <button wx:if="{{item.is_admin !== 0}}" size="mini" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}"   bindtap="setAdmin">设为管理员</button>
-
-                  <button wx:else size="mini" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}"  bindtap="setAdmin">取消管理员</button>
-
-                
-                    <button class="button left"  wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</button>
-
-                    <button class="button shrink0 left" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</button>
-
-                     <view class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" 
-
-                     data-h_store_id="{{item.h_store_id}}"
-
-                     data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="removeHelper"><van-icon name="delete" size="20px" color="#666" /></view>
-
-            </view>
-
-
-        </view>
-    </view>
-
-    <view wx:if="{{groupUserList.length==0}}">
-
-       <view class="no-content" >
-
-          
-
-      
-    </view>
-    <view class="center">你还有没有帮卖成员</view>
-      
-    </view>
-
-
-
-
-  </van-tab>
-  <van-tab title="我加入的团队">
-
-      <view class="goods-panel white-bg cf">
-    <view class="goods-panel-bd" wx:for="{{suppList}}" wx:key="index">
-      <view hover-class="none" class="flex p-df goods-panel-item" >
-        <image src="{{item.supplier_logo || item.headimg}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm" data-id="{{item.supplier_id || item.store_id}}" data-type="{{item.supplier_id?'supplier':'store'}}"  bindtap="toSupphome"></image>
-        <view class="flex-sub por" data-id="{{item.supplier_id || item.store_id}}" 
-        data-type="{{item.supplier_id?'supplier':'store'}}"  bindtap="toSupphome">
-          <view class="text-hide two-line  bold">{{item.supplier_name || item.nickname}}</view>
-
-          <view class="text-muted mt-xs text-sm des">商品：{{item.goods_count || item.goods_num}} 成员：{{item.agent_count || item.helper_num}}</view>
-
-
-          <view class="text-muted mt-xs text-sm des">{{item.supplier_intro}}</view>
-          <view class="mt-xs des text-justify"></view> 
-        </view>
-        <view class="flex align-center">
-
-          <button size="mini" 
-          data-supplier_id="{{item.supplier_id}}" 
-          data-store_id="{{item.store_id}}" 
-          open-type="share"
-          data-supplier_name="{{item.supplier_name}}"  
-          data-type="{{item.supplier_id?'supplier':'store'}}" 
-          class="btn-reset p-n coral-text">
-            <van-icon name="add-o" size="30rpx" /> 邀请小伙伴 
-          </button>
+          </view>
+          <view class="flex align-center" wx:if="{{item.supplier_agent_status==0}}">
+            <button data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_status="2" bindtap="audit" class="btn sm  primary ">
+              通过
+            </button>
+            <button data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}" data-agent_status="1" bindtap="audit" class="btn sm  ml-sm">
+              拒绝
+            </button>
+          </view>
+          <view class="flex align-center" wx:else>
+            <button wx:if="{{item.is_admin == 0}}" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm primary" class="btn sm warning ml-sm">
+              设为管理员
+            </button>
+            <button wx:else data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm  coral ml-sm">
+              取消管理员
+            </button>
+            <button class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-h_store_id="{{item.h_store_id}}" data-agent_user="{{item.nickname}}" data-agent_status="1" bindtap="removeHelper" class="btn sm ml-sm">
+              删除成员
+            </button>
+          </view>
         </view>
       </view>
-      <view class="solid-bottom mh-df"></view>
-    </view>
-
-    <view wx:if="{{suppList.length == 0}}" class="align-center center grey">
-    <view class="no-content" >
-
-
-      
-    </view>
-        空空如也
-
-  </view>
-
-  </view>
-    
-
-
-  </van-tab>
-</van-tabs> 
-
-     <van-dialog   title="设置"  id="dialog-success"   show="{{ showSetting }}"
- use-slot>
-  <van-cell title="成员加入是否审核"  label="默认无须审核就有权限帮卖你的商品" >
-<van-switch  slot="right-icon"
-  checked="{{ isCheck }}"
-   bind:change="onChange" 
-  active-color="#69b90b"
-/>
-  </van-cell>
-
-    </van-dialog>
-
-<van-dialog id="van-dialog" />
-
-
-
+      <view wx:if="{{groupUserList.length==0}}">
+        <view class="no-content"></view>
+        <view class="center">你还有没有帮卖成员</view>
+      </view>
+    </van-tab>
+    <van-tab title="我加入的团队">
+      <view class="goods-panel white-bg cf">
+        <view class="goods-panel-bd" wx:for="{{suppList}}" wx:key="index">
+          <view hover-class="none" class="flex p-df goods-panel-item">
+            <image src="{{item.supplier_logo || item.headimg}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm" data-id="{{item.supplier_id || item.store_id}}" data-type="{{item.supplier_id?'supplier':'store'}}" bindtap="toSupphome"></image>
+            <view class="flex-sub por" data-id="{{item.supplier_id || item.store_id}}" data-type="{{item.supplier_id?'supplier':'store'}}" bindtap="toSupphome">
+              <view class="text-hide two-line  bold">{{item.supplier_name || item.nickname}}</view>
+              <view class="text-muted mt-xs text-sm des">
+                商品：{{item.goods_count || item.goods_num}} 成员：{{item.agent_count || item.helper_num}}
+              </view>
+              <view class="text-muted mt-xs text-sm des">{{item.supplier_intro}}</view>
+              <view class="mt-xs des text-justify"></view>
+            </view>
+            <view class="flex align-center">
+              <button size="mini" data-supplier_id="{{item.supplier_id}}" data-store_id="{{item.store_id}}" open-type="share" data-supplier_name="{{item.supplier_name}}" data-type="{{item.supplier_id?'supplier':'store'}}" class="btn-reset p-n coral-text">
+                <van-icon name="add-o" size="30rpx" />
+                邀请小伙伴
+              </button>
+            </view>
+          </view>
+          <view class="solid-bottom mh-df"></view>
+        </view>
+        <view wx:if="{{suppList.length == 0}}" class="align-center center grey">
+          <view class="no-content"></view>
+          空空如也
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
+  <van-dialog title="设置" id="dialog-success" show="{{ showSetting }}" use-slot>
+    <van-cell title="成员加入是否审核" label="默认无须审核就有权限帮卖你的商品">
+      <van-switch slot="right-icon" checked="{{ isCheck }}" bind:change="onChange" active-color="#69b90b" />
+    </van-cell>
+  </van-dialog>
+  <van-dialog id="van-dialog" />
 </view>
 <footerbar active="{{2}}" />
