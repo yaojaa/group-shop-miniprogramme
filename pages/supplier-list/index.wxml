@@ -1,16 +1,14 @@
 <view class="container ">
   <van-tabs active="{{ active }}" bind:change="onChange">
     <van-tab title="我创建的团队">
-      <view class="act-submit">
+      <view class="text-justify p-df top-head">
         <view>
-          <button size="mini" data-type="store" open-type="share" bindtap="openShareFriends">
-            邀请小伙伴
-          </button>
-        </view>
-        <view class="total">
           共{{fansCount}}个成员
           <!-- <van-icon bindtap="openSetting" size="20px" name="setting-o" /> -->
         </view>
+        <button class="btn sm primary round" data-type="store" open-type="share" bindtap="openShareFriends">
+          邀请小伙伴
+        </button>
       </view>
       <view class="user-container">
         <view class="act-cell flex align-center" wx:for="{{groupUserList}}" wx:key="index">

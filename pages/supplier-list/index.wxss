@@ -1,6 +1,8 @@
 @import '../../utils/weui.wxss';
 @import '../../css/common.wxss';
-
+.top-head {
+  background: #f8f8f8;
+}
 button.button {
   background: #1aad19 !important;
   width: 86%;
@@ -199,7 +201,7 @@ button.button {
 }
 
 .user-container {
-  padding: 0 15px;
+  padding: 0 30rpx;
 }
 
 .act-submit {
