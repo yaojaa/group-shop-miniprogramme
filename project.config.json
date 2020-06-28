@@ -11,6 +11,7 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
@@ -24,11 +25,13 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"useIsolateContext": true,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
@@ -817,7 +820,7 @@
 					"id": 106,
 					"name": "团长查看分销页面",
 					"pathName": "business/pages/goods-user/goods",
-					"query": "id=29",
+					"query": "id=2129",
 					"scene": null
 				},
 				{
@@ -1048,7 +1051,7 @@
 					"id": 139,
 					"name": "帮卖查看商品",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=2123&from_id=&help_sale=true",
+					"query": "goods_id=2129&from_id=&help_sale=true",
 					"scene": null
 				},
 				{
@@ -1168,6 +1171,34 @@
 					"name": "帮卖设置",
 					"pathName": "pages/help-sale-setting/index",
 					"query": "goods_id=2108",
+					"scene": null
+				},
+				{
+					"id": 157,
+					"name": "pages/acting-apply/index",
+					"pathName": "pages/acting-apply/index",
+					"query": "store_id=7404",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/supplier-list/index",
+					"pathName": "pages/supplier-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user-help-home/index",
+					"pathName": "pages/user-help-home/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goods",
+					"pathName": "pages/goods/goods",
+					"query": "goods_id=2134&help_sale=true",
 					"scene": null
 				}
 			]

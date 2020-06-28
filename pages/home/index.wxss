@@ -15,6 +15,9 @@
     align-items: center;
     justify-content: flex-end;
 }
+.tips{
+    padding:10px 0
+}
 
 .collect-box {
     border-radius: 100rpx;

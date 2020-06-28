@@ -40,10 +40,12 @@
                 分享朋友
             </van-button>
 
-            <van-button custom-class="actbtn" size="small" plain hairline bindtap="toLiveRoom" type="warning">
-                <van-icon size="18px" name="star-o" />
+            <van-button wx:if="{{info.store_id==1}}" custom-class="actbtn" size="small" plain hairline bindtap="toLiveRoom" type="warning">
+                <van-icon size="18px" name="tv-o" />
                 直播间
             </van-button>
+
+             <!--    <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=5">                <button class="pubbtn">进入直播间</button> -->
 <!--             <van-button custom-class="actbtn" size="small" plain hairline bindtap="addEventLister" type="warning">
                 <van-icon size="18px" name="star-o" />
                 订阅关注

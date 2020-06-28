@@ -22,8 +22,55 @@ Page({
         show_tips: false,
         orderList: [],
         fansNum: '...',
-        showDialog:true // 订阅提示弹窗
+        reportData:{},
+        showDialog:false // 订阅提示弹窗
     },
+    isShowPopTips(){
+
+        console.log('获取本地日期')
+
+        wx.getStorage({
+              key: 'today',
+              success: (res)=> {
+                //成功的话 说明之前执行过，再判断时间是否是当天
+                if (res.data && res.data != new Date().toLocaleDateString()) {
+
+                  this.getDayReport()
+
+                  this.setData({
+                    showDialog:true
+                  })
+                }else{
+                  this.setData({
+                    showDialog:false
+                  })
+                }
+              },
+              fail: (res) =>{
+
+             //没有执行过的话 先存一下当前的执行时间
+                  this.setData({
+                    showDialog:true
+                  }) 
+              this.getDayReport()
+
+                 wx.setStorageSync("today", new Date().toLocaleDateString());
+              }
+            })
+
+    },
+
+    setHasTips(){
+         this.setData({
+                    showDialog:false
+                  }) 
+
+        wx.setStorageSync("today", new Date().toLocaleDateString())
+        this.addListen()
+
+    },
+
+
     closleTips() {
         this.setData({
             show_tips: false
@@ -87,6 +134,10 @@ Page({
                      wx.redirectTo({
                                     url:'../user-home/index'
                                 })
+                   }else{
+                    this.setData({
+                        pending_money: res.data.data.store.pending_money,
+                    })
                    }
 
             }
@@ -163,9 +214,9 @@ Page({
             app.redirectToLogin()
 
             return
-        } else {
+        } 
 
-            this.setData({
+        this.setData({
                 userInfo: app.globalData.userInfo
             })
             wx.getStorage({
@@ -176,7 +227,8 @@ Page({
                     })
                 }
             })
-        }
+        
+        this.isShowPopTips()
 
         //设置最后访问身份
         wx.setStorage({
@@ -187,10 +239,8 @@ Page({
 
         this.data.cpage = 1
         this.data.goodslist = []
-        this.get_store_info()
         this.getGoodsList()
         this.getOrderList()
-        this.getDayReport()
 
 
     },
@@ -238,18 +288,18 @@ Page({
 
     },
 
-    get_store_info() {
-        util.wx.get('/api/seller/get_store_money').then(res => {
-            this.setData({
-                pending_money: res.data.data.pending_money,
-                fansNum :res.data.data.fans_count 
-                 })
+    // get_store_info() {
+    //     util.wx.get('/api/seller/get_store_money').then(res => {
+    //         this.setData({
+    //             pending_money: res.data.data.pending_money,
+    //             fansNum :res.data.data.fans_count 
+    //              })
 
-        })
+    //     })
 
 
 
-    },
+    // },
 
     ///////////
     //获取最新订单 //
@@ -412,7 +462,9 @@ Page({
     getDayReport(){
         util.wx.get('/api/seller/today_sale_reports').then(res=>{
             if(res.data.code == 200){
-                this.reportData = res.data.data
+                this.setData({
+                    reportData:res.data.data
+                })
             }
         })
     },

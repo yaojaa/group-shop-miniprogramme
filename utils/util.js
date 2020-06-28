@@ -673,7 +673,7 @@ const url2json = function(string, overwrite) {
 }
 
 //上一页赋值
-const setParentData = function(data) {
+const setParentData = function(data,back) {
 
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1]; //当前页面
@@ -682,9 +682,11 @@ const setParentData = function(data) {
 
     prevPage.setData(data, () => {
         console.log('赋值成功', data)
+        if(!back){
         wx.navigateBack({
             delta: 1
         })
+        }
     })
 }
 

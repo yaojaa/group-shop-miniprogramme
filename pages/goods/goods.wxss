@@ -923,8 +923,8 @@
 }
 
 .user-info .avatar {
-  width:90rpx;
-  height: 90rpx;
+  width:70rpx;
+  height: 70rpx;
   border-radius: 100%;
   overflow: hidden;
   font-size: 0;

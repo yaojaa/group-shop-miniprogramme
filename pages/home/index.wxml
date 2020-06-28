@@ -39,7 +39,7 @@
         </view>
     </view>
 
-   <view class="new_order" wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅新订单提醒</button>
+   <view class="new_order" wx:if="{{orderList.length}}"> <!-- <button class="listen_btn hollow" bindtap="addListen">+订阅新订单提醒</button> -->
     <i-panel hide-border title="最新订单" extra="更多" link="../new-order-list/index">
         <view class="control"  >
 
@@ -47,7 +47,12 @@
 
                 <scroll-view style="height: 100px" scroll-y>
                     <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}"  bindtap="todetail">
-                        <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
+                        <text class="bold" wx:if="{{item.is_valet!=='0'}}">{{item.user.nickname}}</text>
+                        <text class="bold" wx:else>{{item.store.nickname}}</text>
+
+
+
+                         {{item.time_ago}}
                         下单
                         <text class="bold">{{item.order_detail[0].goods_name}}</text>
                     </view>
@@ -60,9 +65,6 @@
 
     <view class="mt-xl">
                 <button class="pubbtn" bindtap="new_btn">+ 新发布</button>
-                    <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=5">                <button class="pubbtn">进入直播间</button>
-</navigator>
-
     </view>
 
 
@@ -136,25 +138,24 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
-<!-- <van-dialog
+<van-dialog
   use-slot
   showConfirmButton="{{false}}"
   show="{{ showDialog }}"
   >
 <view class="dialog_content">
-   <view class="data">今日访客数：<text class="bold">15</text></view>
-  <view class="data">今日新订单：<text class="bold">15</text></view>
-  <view class="data">待发货订单：<text class="bold">15</text></view>
+   <view class="data">今日访客数：<text class="bold">{{reportData.visit_count}}</text></view>
+  <view class="data">今日新订单：<text class="bold">{{reportData.new_order_count}}</text></view>
+  <view class="data">待发货订单：<text class="bold">{{reportData.wait_send_order_count}}</text></view>
 
-  <view class="tips text-muted">
+  <view class="tips f12 text-muted">
   订阅微信通知 不错过订单 </view>
 
-  <button>我知道了</button>
-
+  <button bindtap="setHasTips" class="linenear_bg">我知道了</button>
 
 </view>
 
-</van-dialog> -->
+</van-dialog>
 <!-- <van-popup
   show="{{ showDialog }}"
   overlay="{{false}}"

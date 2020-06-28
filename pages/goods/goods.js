@@ -391,14 +391,7 @@ Page({
     })
 
   },
-  /**代理商品修改价格**/
-  goModifyPrice(){
 
-    wx.navigateTo({
-      url:'pages/goods-up/index'
-    })
-
-  },
   //生成帮卖海报
     getHelpPost(){
 
@@ -410,7 +403,9 @@ Page({
       .then((res) => {
         wx.hideLoading()
 
-        if(res.data.code = 200){
+        console.log(res.data.code)
+
+        if(res.data.code == 200){
           this.setData({
             shareFriendsImg:res.data.data.path,
             poster:true,
@@ -419,14 +414,17 @@ Page({
 
         }else{
 
+           this.setData({
+            poster:false,
+            showInviteFriend: false
+          })
+
         wx.showToast({
           title:'生成海报失败',
           icon:'none'
         })
 
         }
-
-
 
 
       })
@@ -592,13 +590,17 @@ Page({
         this.data.goods.goods_name,
     })
   },
-  /**修改当前商品的帮卖价格**/
-  goModifyPrice(){
-    console.log('go')
-         wx.redirectTo({
-              url: '../help-sale-setting/index?goods_id=' + this.data.goods_id,
-            })
+
+  goModifyPrice(e){
+           let supid  = e.currentTarget.dataset.id
+            let sellid = e.currentTarget.dataset.goods_id
+
+        wx.navigateTo({
+            url: '../goods-up/index?is_modify=true&supid=' + supid+'&sellid='+sellid
+        })
   },
+
+  /**修改当前商品的帮卖价格**/
   goModify() {
 
       wx.navigateTo({
@@ -759,7 +761,7 @@ Page({
 
             //判断是否是帮卖代理浏览
            
-           if(d.goods.agent_opt==1 && !this.data.showPanel){
+           if(d.goods.agent_opt==1 && !this.data.showPanel && app.globalData.userInfo ){
             this.checkIsHelper(d.goods.store.store_id)
            }
 
@@ -1289,7 +1291,7 @@ Page({
       '----' +
       this.data.seller.nickname +
       '\n' +
-      '为节约时间，请大家继续在小程序里接龙哦:\n' +
+      '请大家在小程序里接龙哦:\n' +
       userList.join('\n')
 
     wx.setClipboardData({
