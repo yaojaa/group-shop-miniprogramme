@@ -1200,6 +1200,20 @@
 					"pathName": "pages/goods/goods",
 					"query": "goods_id=2134&help_sale=true",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/goods/goods",
+					"pathName": "business/pages/goods/goods",
+					"query": "goods_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/goods-user/goods",
+					"pathName": "business/pages/goods-user/goods",
+					"query": "goods_id=1",
+					"scene": null
 				}
 			]
 		}

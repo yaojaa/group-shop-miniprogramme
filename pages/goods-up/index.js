@@ -155,8 +155,8 @@ Page({
         wx.showLoading()
 
 
-        util.wx.get('/api/goods/get_goods_detail', {
-                goods_id: this.data.sellid 
+        util.wx.get('/api/seller/get_supplier_goods_detail', {
+                goods_id: this.data.supid 
             })
             .then(res => {
 

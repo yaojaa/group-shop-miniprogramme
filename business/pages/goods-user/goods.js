@@ -250,7 +250,7 @@ Page({
                         countdownTime: new Date(d.goods.end_time * 1000).getTime()
                     })
 
-                    this.wuxCountDown(formatDateTime(d.goods.end_time))
+                    // this.wuxCountDown(formatDateTime(d.goods.end_time))
 
 
                     this.data.seller = d.goods.user
@@ -457,8 +457,10 @@ Page({
 
     this.enterDate = new Date()
 
-    this.data.goods_id = option.goods_id || option.id || option
+    this.data.goods_id =  option.id || option.goods_id || option
     this.data.from_id = option.from_id || ''
+
+    console.log(this.data.goods_id)
 
     this.getGoodsInfo()
 

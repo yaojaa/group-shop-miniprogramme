@@ -64,14 +64,27 @@ Page({
             })
             .then(res => {
                 if (res.data.code == 200) {
-                    this.setData({
-                        info: res.data.data,
-                        addtime: res.data.data.addtime,
-                        pay_time: res.data.data.pay_time,
-                        goods_id:res.data.data.order_detail[0].goods_id,
-                        goods_name:res.data.data.order_detail[0].goods_name,
-                        delivery_method:res.data.data.delivery_method
 
+                    var data = res.data.data
+
+                    if(data.link_store.length >=2){
+                        data.link_store.forEach(it=>{
+                            if(it && it.store_id == app.globalData.userInfo.store_id){
+                                console.log('你有权限管理')
+                                data.showAction = true
+                            }
+                        })
+                    }
+
+
+
+                    this.setData({
+                        info: data,
+                        addtime: data.addtime,
+                        pay_time: data.pay_time,
+                        goods_id:data.order_detail[0].goods_id,
+                        goods_name:data.order_detail[0].goods_name,
+                        delivery_method:data.delivery_method
                     })
                 }
                 wx.hideLoading()
