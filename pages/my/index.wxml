@@ -86,7 +86,7 @@
 	<van-cell-group>
 		<van-cell icon="cart-circle-o" title="我参与的订单 " is-link link-type="navigateTo" url="../order-list/index" />
 
-	<!-- 	<van-cell icon="logistics" wx:if="{{!is_supperlier}}" title="创建品牌供应商主页" is-link link-type="navigateTo" url="/business/pages/create-home/index" /> -->
+		<van-cell icon="logistics" wx:if="{{!is_supperlier}}" title="创建品牌供应商主页" is-link link-type="navigateTo" url="/business/pages/create-home/index" />
 		<van-cell icon="logistics" wx:if="{{is_supperlier}}" title="切换为供应商身份" is-link link-type="navigateTo" url="/business/pages/home/index" />
 	</van-cell-group>
 </i-panel>

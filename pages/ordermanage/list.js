@@ -163,6 +163,10 @@ Page({
             app.globalData.token = wx.getStorageSync('userInfo').token
         }
 
+        if(optiton.store_id){
+            this.data.store_id = optiton.store_id
+        }
+
         app.globalData.apiPrix = 'seller'
 
         this.setData({
@@ -449,7 +453,7 @@ Page({
             util.wx.get('/api/seller/get_order_list', {
                 goods_id: this.data.goods_id,
                 cpage: this.data.cpage,
-                // shipping_status:this.data.shipping_status,
+                transform_store_id:this.data.store_id,
                 search_order_status: this.data.search_order_status,
                 pagesize: 30
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
@@ -457,6 +461,25 @@ Page({
 
                 var resdata = res.data.data.order_list
                 var key = 'dataList[' + (this.data.cpage - 1) + ']'
+
+                //过滤数据 区分用户角色 是否显示发货按钮等
+                resdata.forEach(item=>{
+
+                    if(item.link_store.length == 1 && item.order_refundstatus !==4){
+                        item.showAction == true
+                    }
+
+                    else if(item.link_store.length ==2){
+                        item.link_store.forEach(it=>{
+                            if(it && it.store_id == app.globalData.userInfo.store_id){
+                                console.log('你有权限管理')
+                                item.showAction = true
+                            }
+                        })
+                    }
+
+
+                })
 
                 this.setData({
                     [key]: resdata,

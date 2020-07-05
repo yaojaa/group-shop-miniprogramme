@@ -36,18 +36,20 @@
             访问记录
         </view>
         
-        <view class="flex-item" bindtap="goModify" wx:if="{{goods.goods_link ==0}}">
+        <view class="flex-item" bindtap="goModify" wx:if="{{goods.goods_link == 0}}">
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
             <block>编辑修改</block>
         </view>
 
-        <view class="flex-item" bindtap="goModifyPrice" wx:else>
+        <view class="flex-item"
+          data-id="{{goods.supplier_goods_id}}" data-goods_id="{{goods.goods_id}}"
+           bindtap="goModifyPrice" wx:else>
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
-            <block>修改价格</block>
+            <block>修改价格23</block>
         </view>
 
         <view class="flex-item" bindtap="goSendMsg">

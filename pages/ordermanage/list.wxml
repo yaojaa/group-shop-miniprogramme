@@ -161,11 +161,7 @@
             </view>
         </view>
 
-          <!--如果下单的店铺不是自己的店铺，就显示是来自代理的-->
-     <view class="type" wx:if="{{user_id !==item.store.user_id }}">
-         来自“{{item.store.store_name}}” 
-     </view>
-
+   
         <view class="order-fd scale-b-1px">
 
 
@@ -179,11 +175,10 @@
         <text wx:else>退款信息</text>
 
     </button>
+
            
   
-
-
-            <block wx:if="{{item.link_store.length ==1 || (item.link_store.length ==2 && user_id ==item.link_store[1].user_id) && item.order_refundstatus!==4}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
+<block wx:if="{{item.showAction}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
                     <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" 
                     data-id="{{item.order_id}}" 
                     data-opt = "{{btn.opt}}"
@@ -194,12 +189,10 @@
                     >{{btn.txt}}</button>
             </block>
 
-    <!--是帮卖团长查看 限时赚多少钱和发货人-->
+    <!--是帮卖团长查看 显示赚多少钱和发货人-->
      <block wx:if="{{item.link_store.length ==2 && user_id !=item.link_store[1].user_id}}">
           <view class="mt-sm f12 ">
-
-             <view class="fl_left">赚 <text class="text-warning">¥{{item.profit}}</text>元 </view>
-
+             <view class="fl_left">赚<text class="text-warning">¥{{item.profit}}</text>元 </view>
              <view class="fl_right">由<text class="text-success">{{item.link_store[1].nickname}}</text>发货  </view>
          </view>
      </block>
@@ -217,7 +210,7 @@
                 <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}">
                     物流信息
                 </view>
-                <button wx:if="{{item.supplier_id == 0}}" data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-sn="{{item.order_sn}}" bindtap="checkexpressorder">
+                <button  wx:if="{{item.showAction}}"  data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-sn="{{item.order_sn}}" bindtap="checkexpressorder">
                     <block wx:if="{{item.express.length > 0}}">快递单号</block>
                     <block wx:else>录入单号</block>
                 </button>

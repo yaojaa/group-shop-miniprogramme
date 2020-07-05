@@ -23,7 +23,8 @@ Page({
         checked: false,
         errorMsg:'',
         btnDisable:false,
-        is_modify:false
+        is_modify:false,
+        loading:true
     },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
@@ -84,7 +85,48 @@ Page({
 
         }
 
-        this.getSellerGoodsInfo()
+
+        if(this.data.is_modify){
+
+        Promise.all([this.getSupplierGoodsInfo(),this.getSellerGoodsInfo()]).then(res=>{
+            console.log(res)
+            this.megeData(res[0].data.data.goods,res[1].data.data.goods.goods_spec)
+        }).catch(e=>{
+            console.log(e)
+        })
+
+        }else{
+            this.getSupplierGoodsInfo().then(res=>{
+                if(res.data.code == 200){
+                    this.setData({
+                        info:res.data.data.goods
+                    })
+                }
+
+
+            })
+        }
+
+
+    },
+
+    //合并数据 读取供应商的最新价格，和自己的售价1供应商 2是自己
+    megeData(goods,spec){
+
+        goods.goods_spec.forEach(item=>{
+            spec.forEach(spe=>{
+                if(spe.supplier_spec_id == item.goods_spec_id){
+                    item.spec_price = spe.spec_price
+                    item.goods_spec_id = spe.goods_spec_id
+                }
+            })
+        })
+
+        this.setData({
+            info:goods,
+            loading:false
+        })
+
 
 
     },
@@ -113,27 +155,40 @@ Page({
 
             return false
 
-         }else{
+         }
 
-            this.spec_edit(this.data.info.goods_spec[index].goods_spec_id,value)
+          if(this.data.is_modify){
 
-              this.setData({
+           this.spec_edit(this.data.info.goods_spec[index].goods_spec_id,value)
+
+          }
+
+          else{
+           this.data.info.goods_spec[index].spec_price = value
+        }
+
+          
+            this.setData({
                 btnDisable:false
             })
-         }
+         
 
     },
 
         spec_edit(id,price){
 
-            console.log(id,price)
-
-      wx.showLoading()
-
+       this.setData({
+        loading:true
+       })
        util.wx.post('/api/seller/spec_edit',{
             goods_spec_id:id,
             spec_price:price
         }).then(res=>{
+
+        this.setData({
+        loading:false
+       })
+
           if(res.data.code == 200){
             // wx.showToast({
             //   title:'价格修改成功',
@@ -152,31 +207,22 @@ Page({
 
     getSellerGoodsInfo() {
 
-        wx.showLoading()
-
-
-        util.wx.get('/api/goods/get_goods_detail', {
+       return util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.sellid 
             })
-            .then(res => {
+        },
 
-                wx.hideLoading()
-
-                if(res.data.code == 200){
-                     this.setData({
-                    info:res.data.data.goods
-                    })
-                }
+     getSupplierGoodsInfo() {
 
 
-
-            }
-        )
+       return util.wx.get('/api/seller/get_supplier_goods_detail', {
+                goods_id: this.data.supid 
+            })
         },
 
     modifyPrice(){
 
-          wx.redirectTo({
+        return wx.redirectTo({
                 url:'../upSuccess/index?goods_id='+this.data.sellid
             })
 
@@ -185,8 +231,9 @@ Page({
       upup(){
 
 
-        wx.showLoading()
-
+    this.setData({
+        loading:true
+       })
 
         util.wx.post('/api/seller/putaway_supplier_goods',{
 
@@ -195,9 +242,9 @@ Page({
 
         }).then(res=>{
 
-        wx.hideLoading()
-
-            console.log(res.data.code == -103)
+    this.setData({
+        loading:false
+       })
 
 
        if(res.data.code == 200){

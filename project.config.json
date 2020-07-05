@@ -11,6 +11,7 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
@@ -30,7 +31,9 @@
 			"outputPath": ""
 		},
 		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"compileHotReLoad": false,
+		"useIsolateContext": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.5",
@@ -1171,16 +1174,45 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/goods/goods",
-					"pathName": "pages/goods/goods",
-					"query": "goods_id=2130",
+					"id": 157,
+					"name": "pages/acting-apply/index",
+					"pathName": "pages/acting-apply/index",
+					"query": "store_id=7404",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "pages/supplier-list/index",
 					"pathName": "pages/supplier-list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user-help-home/index",
+					"pathName": "pages/user-help-home/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goods",
+					"pathName": "pages/goods/goods",
+					"query": "goods_id=2134&help_sale=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/goods/goods",
+					"pathName": "business/pages/goods/goods",
+					"query": "goods_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/goods-user/goods",
+					"pathName": "business/pages/goods-user/goods",
+					"query": "goods_id=1",
 					"scene": null
 				}
 			]

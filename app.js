@@ -30,7 +30,7 @@ App({
                     if (res.code) {
                         //发起网络请求index/get_openid
                         wx.request({
-                            url: 'https://www.kaixinmatuan.cn/api/index/get_openid?js_code=' + res.code,
+                            url: 'https://dev.kaixinmatuan.cn/api/index/get_openid?js_code=' + res.code,
                             data: {
                                 code: res.code
                             },
@@ -142,7 +142,7 @@ App({
 
         return new Promise((resolve, reject) => {
             wx.request({
-                url: 'https://www.kaixinmatuan.cn/api/index/login_by_openid',
+                url: 'https://dev.kaixinmatuan.cn/api/index/login_by_openid',
                 method: 'POST',
                 data: {
                     openid: this.openId,

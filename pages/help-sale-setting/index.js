@@ -229,7 +229,12 @@ Page({
                  wx.showToast({
                   title:'修改成功！'
                  })
-                 wx.navigateBack()
+
+                 util.setParentData({
+                  'goods.agent_opt':1
+                 })
+
+
             }else{
               wx.showToast({
                 title:res.data.msg,

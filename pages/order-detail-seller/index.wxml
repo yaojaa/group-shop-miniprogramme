@@ -139,14 +139,14 @@
            
 
                 
-                <button wx:if="{{info.order_status == 3 && info.delivery_method == 1 && info.supplier_id == 0}}"  class="btn round primary  w-min-big mv-sm ml-sm" data-id="{{info.order_id}}" data-sn="{{info.order_sn}}" bindtap="checkexpressorder">
-                    <block wx:if="{{info.express.length > 0}}">快递单号</block>
-                    <block wx:else>录入单号</block>
-                </button>
+        <button wx:if="{{info.order_status == 3 && info.delivery_method == 1 && info.showAction}}"  class="btn round primary  w-min-big mv-sm ml-sm" data-id="{{info.order_id}}" data-sn="{{info.order_sn}}" bindtap="checkexpressorder">
+            <block wx:if="{{info.express.length > 0}}">快递单号</block>
+            <block wx:else>录入单号</block>
+        </button>
     
 
        
-         </view>
+       </view>
 
        
 

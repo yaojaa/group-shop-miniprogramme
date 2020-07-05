@@ -85,6 +85,13 @@ Page({
   submitForm(e){
     let _this = this;
 
+    if(this.data.supplier_logo == ''){
+      return wx.showToast({
+        title:'请上传LOGO',
+        icon: 'none'
+      })
+    }
+
     util.checkMobile(e.detail.value.supplier_mobile)
 
     const postData=Object.assign({supplier_logo:this.data.supplier_logo},e.detail.value)

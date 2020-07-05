@@ -6,6 +6,10 @@
         利润会自动结算到您的账户。方便省事，躺赚就这么简单！
     </view>
 
+    
+     <view class="load-area" wx:if="{{loading}}">
+            <wux-spin wux-class="spin" />
+        </view>
 
     <form bindsubmit="submitForm">
         <view class="white-bg ph-df pv-sm flex align-center">

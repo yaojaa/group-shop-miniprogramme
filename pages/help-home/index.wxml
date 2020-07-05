@@ -10,14 +10,19 @@
                 <view class="flex-sub por">
                     <view class="text-hide two-line  bold title">{{item.goods_name}}</view>
                     <view class="text-muted mt-xs text-sm des text-justify">
-                        <text class="pr-sm">已售 {{item.order_num}}</text>
+                        <text class="pr-sm">已售 {{item.sold_number}}</text>
+   <text wx:if="{{item.goods_expires ==3}}" style="color:#ffcc00">已结束</text>
+   <text wx:if="{{item.goods_expires ==2}}" style="color:#19be6b">未开始</text>
+
                     </view>
                     <view class="mt-xs des text-justify">
                         <view>
-                            <text class="text-muted text-sm ">价格：</text>
-                            <text class="coral-text ">¥{{item.sub_agent_price[0]}}</text>
+                            <text class="text-muted text-sm ">采购：</text>
+                            <text class="coral-text ">¥{{item.price_min}}</text>
                         </view>
                         <view class="flex align-center text-gray ">
+                            <van-icon name="shopping-cart-o" size="46rpx" />
+                            <text class="text-muted ph-xs"></text>
                             <van-icon name="share" size="46rpx" data-id="{{item.goods_id}}" bindtap="goods_up" />
                         </view>
                     </view>
