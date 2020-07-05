@@ -499,7 +499,6 @@ Page({
         this.data.goodslist = []
         this.getGoodsList()
         this.getOrderCount()
-        this.get_store_info()
         this.getOrderList()
         wx.stopPullDownRefresh()
 

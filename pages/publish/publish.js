@@ -1,7 +1,6 @@
 //index.js
 //
 //
-//
 //获取应用实例
 var WxValidate = require('../../utils/wxValidate.js')
 
@@ -21,11 +20,6 @@ const default_end_time = util.formatTime(date)
 Page({
   data: {
     height: '300', //文本框的高度
-    // previewImgs: {
-    //     current: "",
-    //     urls: [],
-    // },
-    // previewImgHidden: true,
     link_url: '',
     goods_id: '',
     isShowTimePicker: false,
@@ -203,9 +197,14 @@ Page({
       this.data.goods_images[0].is_cover = 1
     }
 
-    this.setData({
-      goods_images: this.data.goods_images,
-    })
+    let imgData = {
+      goods_images: this.data.goods_images
+    }
+
+    this.setData(imgData)
+    this.editor(imgData)
+
+
   },
   // dart end
 
@@ -411,7 +410,6 @@ Page({
     util.uploadPicture({
       success: (result) => {
         this.data.content_imgs = this.data.content_imgs.concat([result])
-        console.log('this.data.content_imgs', this.data.content_imgs)
         this.setData({
           content_imgs: this.data.content_imgs,
           uploadProgress: false,
@@ -619,8 +617,13 @@ Page({
               console.log(this.data.goods_images)
 
               this.setData({
-                goods_images: this.data.goods_images,
+                goods_images: this.data.goods_images
               })
+
+              this.editor({
+                goods_images: this.data.goods_images
+              })
+
 
               //如果是最后一张,则隐藏等待中
               if (uploadImgCount == tempFilePaths.length) {
@@ -824,6 +827,26 @@ Page({
       }
     })
   },
+  /*修改商品名称*/
+  editGoodsName(){
+
+    this.editor({goods_name:this.data.goods_name})
+  },
+
+  editor:function(data){
+
+    util.wx.post('/api/seller/goods_add_or_edit', data).then(res=>{
+      if(res.data.code !== 200){
+        wx.showToast({
+          title:res.data.msg,
+          icon:'none'
+        })
+      }
+    })
+
+  },
+
+
   deliveryChange: function (e) {
     this.setData({
       delivery_method: e.detail.value ? 1 : 2,
@@ -843,11 +866,25 @@ Page({
     })
   },
   handleOpen1() {
+    if(this.data.is_edit){
+      return wx.showToast({
+        title:'支付方式不允许修改',
+        icon:'none'
+      })
+    }
+
     this.setData({
       visible1: true,
     })
   },
   handleOpen2() {
+    if(this.data.is_edit){
+      return wx.showToast({
+        title:'配送方式不允许修改',
+        icon:'none'
+      })
+    }
+
     this.setData({
       visible2: true,
     })
@@ -942,9 +979,9 @@ Page({
 
     //获取地址列表 和获取详情异步f vfv
     //
-    if (gs.freight_tpl_id) {
-      this.getTplList()
-    }
+    // if (gs.freight_tpl_id) {
+    //   this.getTplList()
+    // }
 
     let editorContent = JSON.parse(gs.content)
     editorContent = editorContent ? editorContent : { html: '', text: '' }
@@ -983,6 +1020,26 @@ Page({
   },
 
   watch: {
+
+    content_imgs:(newValue, val, context)=>{
+
+ if(newValue == val){
+        return
+      }
+      context.editor({content_imgs:newValue})
+
+    },
+
+    editorContent:(newValue, val, context)=>{
+
+      if(newValue == val){
+        return
+      }
+
+      context.editor({editorContent:context.data.editorContent})
+
+    },
+
     visible_pictures: (newValue, val, context) => {
       context.setData({
         displayTextArea: newValue ? 'none' : 'block',
@@ -1046,6 +1103,7 @@ Page({
     if (option.goods_id) {
       this.setData({
         goods_id: option.goods_id,
+        is_edit:true
       })
 
       this.getPublishedData(option.goods_id)
