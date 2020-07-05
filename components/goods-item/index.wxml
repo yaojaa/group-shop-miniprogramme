@@ -60,14 +60,15 @@
      size="mini" open-type="share">分享</button> -->
 
 
-    <button  wx:if="{{item.link_goods[0] !==null && item.link_goods[0].goods_id }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
-    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 改价 </button> 
 
-    <button  wx:if="{{item.link_goods[1] !==null && item.link_goods[1].goods_id }}" class="hollow"  bindtap="editPrice"  data-spec="{{item.spec}}" 
-    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 改价 </button> 
 
 
   <button wx:if="{{item.link_goods.length == 1 && item.link_goods[0]==null}}"  class="hollow" data-url="{{item.goods_id}}" bindtap="editPage"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 修改 </button> 
+
+
+    <button  wx:else class="hollow"  bindtap="editPrice"  
+    data-link_goods="{{item.link_goods}}" 
+    data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}"  size="mini"> 改价 </button> 
 
  <button class="hollow" data-url="{{item.goods_id}}" bindtap="gofans"  data-name="{{item.goods_name}}" data-id="{{item.goods_id}}"  size="mini"> 访客 </button>
 

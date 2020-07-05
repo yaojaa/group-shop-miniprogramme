@@ -1,6 +1,13 @@
 const util = require('../../utils/util')
 const app = getApp()
 
+function fmtDate(obj) {
+    var date = new Date(obj);
+    var y = 1900 + date.getYear();
+    var m = "0" + (date.getMonth() + 1);
+    var d = "0" + date.getDate();
+    return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length);
+}
 
 
 Page({
@@ -17,7 +24,7 @@ Page({
         errorMsg:'',
         btnDisable:false,
         is_modify:false,
-        is_loading:true
+        loading:true
     },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
@@ -56,8 +63,9 @@ Page({
 
         console.log(options)
 
-        this.data.goods_id = options.goods_id || options.sellid
+        this.data.supid = options.supid || options.goods_id
 
+        this.data.sellid = options.sellid
 
         // is_modify=true&supid=7&sellid=1708
 
@@ -78,20 +86,63 @@ Page({
         }
 
 
-        this.getGoodsInfo()
+        if(this.data.is_modify){
+
+        Promise.all([this.getSupplierGoodsInfo(),this.getSellerGoodsInfo()]).then(res=>{
+            console.log(res)
+            this.megeData(res[0].data.data.goods,res[1].data.data.goods.goods_spec)
+        }).catch(e=>{
+            console.log(e)
+        })
+
+        }else{
+            this.getSupplierGoodsInfo().then(res=>{
+                if(res.data.code == 200){
+                    this.setData({
+                        info:res.data.data.goods
+                    })
+                }
+
+
+            })
+        }
+
+
+    },
+
+    //合并数据 读取供应商的最新价格，和自己的售价1供应商 2是自己
+    megeData(goods,spec){
+
+        goods.goods_spec.forEach(item=>{
+            spec.forEach(spe=>{
+                if(spe.supplier_spec_id == item.goods_spec_id){
+                    item.spec_price = spe.spec_price
+                    item.goods_spec_id = spe.goods_spec_id
+                }
+            })
+        })
+
+        this.setData({
+            info:goods,
+            loading:false
+        })
+
+
 
     },
 
     validate(e){
 
+        const {index,mini,max} = e.currentTarget.dataset
+
+        console.log(e)
 
 
+        const value = e.detail
 
-        const {sub_agent_price,goods_spec_id} = e.currentTarget.dataset
+        console.log(value,+mini,+max)
 
-        const value = e.detail.value
-
-         if(value<sub_agent_price){
+         if(value> +max || value< +mini){
 
             wx.showToast({
                 title:'价格请在合理范围',
@@ -104,33 +155,45 @@ Page({
 
             return false
 
-         }else{
+         }
 
-            this.spec_edit(goods_spec_id,value)
+          if(this.data.is_modify){
 
-           
+           this.spec_edit(this.data.info.goods_spec[index].goods_spec_id,value)
 
+          }
 
-              this.setData({
+          else{
+           this.data.info.goods_spec[index].spec_price = value
+        }
+
+          
+            this.setData({
                 btnDisable:false
             })
-         }
+         
 
     },
 
-    spec_edit(id,price){
+        spec_edit(id,price){
 
-      wx.showLoading()
-
+       this.setData({
+        loading:true
+       })
        util.wx.post('/api/seller/spec_edit',{
             goods_spec_id:id,
             spec_price:price
         }).then(res=>{
+
+        this.setData({
+        loading:false
+       })
+
           if(res.data.code == 200){
-            wx.showToast({
-              title:'价格修改成功',
-              icon:'none'
-            })
+            // wx.showToast({
+            //   title:'价格修改成功',
+            //   icon:'none'
+            // })
           }else{
             wx.showToast({
               title:'价格修改失败',
@@ -142,92 +205,71 @@ Page({
     },
 
 
-    getGoodsInfo() {
-        util.wx.get('/api/goods/get_goods_detail', {
-                goods_id: this.data.goods_id 
+    getSellerGoodsInfo() {
+
+       return util.wx.get('/api/goods/get_goods_detail', {
+                goods_id: this.data.sellid 
             })
-            .then(res => {
-
-              if(res.data.code ==200){
-                  var data = res.data.data.goods
-
-                                  this.setData({
-                                    info:res.data.data.goods,
-                                    is_loading:false
-                                 })
-              }
-
-            }
-        )
         },
 
+     getSupplierGoodsInfo() {
+
+
+       return util.wx.get('/api/seller/get_supplier_goods_detail', {
+                goods_id: this.data.supid 
+            })
+        },
 
     modifyPrice(){
 
+        return wx.redirectTo({
+                url:'../upSuccess/index?goods_id='+this.data.sellid
+            })
 
-        //供应商商品规格id 和商家的规格id 不一样 。提交需要商家规格id
-        //
-        //
-        //
-        for(var i=0;  i<this.data.info.goods_spec.length;i++ ){
+    },
 
-
-            this.data.info.goods_spec[i].goods_spec_id = this.data.currentGoodsSpec[i].goods_spec_id
-            // this.data.info.goods_spec[i].spec_price = this.data.currentGoodsSpec[i].spec_price
+      upup(){
 
 
-        }
+    this.setData({
+        loading:true
+       })
 
+        util.wx.post('/api/seller/putaway_supplier_goods',{
 
-
-
-         util.wx.post('/api/seller/edit_supplier_goods',{
-
-            goods_id:this.data.sellid,
+            goods_id:this.data.supid,
             spec:this.data.info.goods_spec
 
         }).then(res=>{
 
-           if(res.data.code ==200){ 
-           wx.showToast({
-            title:'修改成功'
-           })
+    this.setData({
+        loading:false
+       })
+
+
+       if(res.data.code == 200){
 
             wx.redirectTo({
                 url:'../upSuccess/index?goods_id='+res.data.data.goods_id
             })
+        }else if(res.data.code == -103){
+
+           wx.showToast({
+            title:'您已经上架过此商品了',
+            icon:'none'
+           })
 
 
-       }else{
-           {
-
+        }else{
             wx.showToast({
                 title:res.data.msg,
                 icon:'none'
             })
-
         }
-       }
 
 
         })
-
-
-    },
-
-    goDetail(){
-
-        wx.redirectTo({
-            url:'../goods/goods?goods_id='+this.data.goods_id
-        })
-
-
-    },
-
-    toModify(){
-      wx.navigateTo({
-        url:'../publish/publish?goods_id='+this.data.goods_id
-      })
+        // 上架供应商商品 /seller/putaway_supplier_goods
     },
 
     /**

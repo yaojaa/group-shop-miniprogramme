@@ -94,7 +94,7 @@
 
          
 
-          <view class="ml-lg mr-lg mt-xxl f12 " wx:if="{{info.link_store.length ==2 && info.link_store[1]!==null}}">
+          <view class="ml-lg mr-lg mt-xxl f12 " wx:if="{{!info.showAction}}">
 
              <view class="fl_left">可赚 <text class="text-warning">¥{{info.profit}}</text>元 </view>
 
@@ -109,7 +109,7 @@
           <view class="order-fixed-footer footer-btn" >
 
 
-               <button wx:if="{{info.order_refund_id && info.order_refundstatus!==2}}" 
+        <button wx:if="{{info.order_refund_id && info.order_refundstatus!==2}}" 
             data-order_refund_id="{{info.order_refund_id}}" data-order_id="{{info.order_id}}"
             bindtap="to_refund" class="f12 {{info.order_refundstatus==1?'text-danger':'gray-text'}} " style="float: left">
         

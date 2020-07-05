@@ -61,7 +61,6 @@ Page({
      */
     onLoad: function(options) {
 
-        console.log(options)
 
         this.data.supid = options.supid || options.goods_id
 
@@ -99,7 +98,8 @@ Page({
             this.getSupplierGoodsInfo().then(res=>{
                 if(res.data.code == 200){
                     this.setData({
-                        info:res.data.data.goods
+                        info:res.data.data.goods,
+                        loading:false
                     })
                 }
 

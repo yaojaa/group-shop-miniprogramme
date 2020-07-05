@@ -46,6 +46,10 @@ Page({
         app.globalData.apiPrix ='seller'
         this.data.id = options.id 
 
+        this.setData({
+            userStoreId :app.globalData.userInfo.store_id
+        })
+
     },
     onShow:function(){
         this.getInfo()
@@ -68,6 +72,20 @@ Page({
                     var data = res.data.data
 
                     if(data.link_store.length >=2){
+                        data.link_store.forEach(it=>{
+                            if(it && it.store_id == app.globalData.userInfo.store_id){
+                                console.log('你有权限管理')
+                                data.showAction = true
+                            }
+                        })
+                    }
+
+
+                    if(data.link_store.length == 1){
+                        data.showAction == true
+                    }
+
+                    else if(data.link_store.length ==2){
                         data.link_store.forEach(it=>{
                             if(it && it.store_id == app.globalData.userInfo.store_id){
                                 console.log('你有权限管理')

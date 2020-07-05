@@ -1,6 +1,7 @@
 import { $wuxGallery } from '../../wux/index'
 const util = require('../../utils/util.js')
 import Dialog from '../../vant/dialog/dialog';
+const app = getApp()
 
 
 Component({
@@ -242,12 +243,36 @@ Component({
 
     editPrice(e){
             //供应商 产品ID和商家产品id
-            let supid  = e.currentTarget.dataset.id
-            let sellid = e.currentTarget.dataset.goods_id
+        
 
-        wx.navigateTo({
+        let link_goods = e.currentTarget.dataset.link_goods
+        let goods_id = e.currentTarget.dataset.goods_id
+
+
+        
+
+        if(link_goods[1] && link_goods[1].store_id !== app.globalData.userInfo.store_id) {
+
+           wx.navigateTo({
+                          url: '../help-sale-up/index?is_modify=true&goods_id='+goods_id
+                      })
+
+        }
+
+        if(link_goods[0]!==null){
+
+         wx.navigateTo({
             url: '../goods-up/index?is_modify=true&supid=' + supid+'&sellid='+sellid
         })
+
+
+        }
+
+   
+
+
+
+       
 
     },
 

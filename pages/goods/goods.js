@@ -595,9 +595,28 @@ Page({
            let supid  = e.currentTarget.dataset.id
             let sellid = e.currentTarget.dataset.goods_id
 
-        wx.navigateTo({
+            //上级不是供应商
+            if(this.data.goods.link_goods[0] == null){
+
+              wx.navigateTo({
+                          url: '../help-sale-up/index?is_modify=true&sellid='+sellid
+                      })
+
+            }else{
+
+            wx.navigateTo({
             url: '../goods-up/index?is_modify=true&supid=' + supid+'&sellid='+sellid
-        })
+            })
+
+
+
+            }
+
+
+
+
+
+
   },
 
   /**修改当前商品的帮卖价格**/
@@ -761,7 +780,7 @@ Page({
 
             //判断是否是帮卖代理浏览
            
-           if(d.goods.agent_opt==1 && !this.data.showPanel && app.globalData.userInfo ){
+           if(this.data.is_help_sale && app.globalData.userInfo ){
             this.checkIsHelper(d.goods.store.store_id)
            }
 
