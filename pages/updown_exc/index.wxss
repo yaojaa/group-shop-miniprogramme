@@ -74,7 +74,7 @@ i-datepicker{
 .goods-list{
   padding: 5px 2px;
   position: relative;
-  width: 100%
+  width: 100%;
 }
 
 .tac{ text-align: center; padding: 10px;}
@@ -85,7 +85,7 @@ i-datepicker{
   padding: 4px; color: #105f96; 
   position: absolute;
   right: 10px;
-  bottom: 10px
+  bottom: 0px
 
 }
 .item-list{
@@ -109,6 +109,11 @@ i-datepicker{
   padding: 0 2px 0 5px;
   margin-bottom: 5px;
 }
+
+.list-checkbox .van-checkbox__label{
+  flex-grow: 1;
+}
+
 .width50{
   width:300rpx
 }
