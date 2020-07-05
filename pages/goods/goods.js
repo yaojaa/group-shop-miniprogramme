@@ -361,11 +361,13 @@ Page({
   },
 
   openShareFriends() {
+    let params = {
+      goods_id: this.data.goods_id
+    }
+    this.data.goods.goods_spec.length>3 ? params.img_num =4 :''
     if (!this.data.shareFriendsImgStart) {
       this.data.shareFriendsImgStart = true
-      util.wx.get('/api/goods/get_goods_card', {
-        goods_id: this.data.goods_id
-      })
+      util.wx.get('/api/goods/get_goods_card', params)
       .then(res => {
         if(res.data.code == 200 && res.data.data.path){
             this.setData({
