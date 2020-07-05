@@ -390,9 +390,12 @@ Page({
     },
     // 导出名单
     exportExcel() {
-        wx.showToast({ title: '开始为你生成...', icon: 'none' })
-        this.getExcelUrl(url => {
-            this.copyLoadFile(url);
+        // wx.showToast({ title: '开始为你生成...', icon: 'none' })
+        // this.getExcelUrl(url => {
+        //     this.copyLoadFile(url);
+        // })
+        wx.navigateTo({
+            url:'../updown_exc/index?role=seller&id='+this.data.goods_id
         })
         
     },

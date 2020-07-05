@@ -1,6 +1,7 @@
 const util = require('../../utils/util.js');
 let data = {};
 let flag = true;
+let role = "supplier";
 
 
 Page({
@@ -94,7 +95,7 @@ Page({
     const spec_id = e.currentTarget.dataset.id
 
         wx.navigateTo({
-            url:'../spec-order-list/list?spec_id='+spec_id
+            url:'../spec-order-list/list?role='+ role +'&spec_id='+spec_id
         })
   },
   /**
@@ -102,6 +103,13 @@ Page({
    */
   onLoad: function (options) {
     this.data.goods_id = options.goods_id;
+    if(this.data.goods_id){
+      this.setData({
+        value2:'1'
+      })
+    }
+    role = options.role ? options.role : "supplier";
+
     let t = util.formatTime(new Date());
     t = t.split(' ')
 
@@ -125,7 +133,9 @@ Page({
   },
   // 获取商品订单
   getGoodsOrders(_data){
-    // _data.goods_id = this.data.goods_id;
+    if(this.data.goods_id){
+      _data.goods_id = this.data.goods_id;
+    }
     if(_data.cpage == 1){
       this.setData({
         list: [],
@@ -140,7 +150,7 @@ Page({
       return;
     }
     wx.showLoading()
-    util.wx.get('/api/seller/order_export_show', _data).then( res => {
+    util.wx.get('/api/'+role+'/order_export_show', _data).then( res => {
 
       if(res.data.code == 200){
         wx.hideLoading()
@@ -246,10 +256,16 @@ Page({
         start_date: this.data.startDate[0] + ' ' + this.data.startDate[1],
         end_date: this.data.endDate[0] + ' ' + this.data.endDate[1]
       }
+      if(this.data.goods_id){
+        thisData.goods_id = this.data.goods_id;
+      }
     }else if(this.data.value2 == 1){
       thisData = {
         send_status: 0,
         goods_spec_id_arr: []
+      }
+      if(this.data.goods_id){
+        thisData.goods_id = this.data.goods_id;
       }
     }else{
       thisData.goods_spec_id_arr = this.data.result;
@@ -264,7 +280,7 @@ Page({
     }
     wx.showToast({ title: '开始为你生成...', icon: 'none', mask: true })
 
-    util.wx.post('/api/seller/order_export', thisData).then(res => {
+    util.wx.post('/api/'+role+'/order_export', thisData).then(res => {
 
         if (res.data.code == 200) {
           wx.hideToast()
