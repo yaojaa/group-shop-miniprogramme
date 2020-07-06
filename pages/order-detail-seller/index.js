@@ -24,9 +24,9 @@ Page({
             // on cancel
         });
     },
-    copyTxt(e){
+    copyTxt(e) {
 
-      const txt = e.target.dataset.text
+        const txt = e.target.dataset.text
 
         wx.setClipboardData({
             data: txt,
@@ -43,11 +43,15 @@ Page({
      */
     onLoad: function(options) {
 
-        app.globalData.apiPrix ='seller'
-        this.data.id = options.id 
+        app.globalData.apiPrix = 'seller'
+        this.data.id = options.id
+
+        this.setData({
+            userStoreId: app.globalData.userInfo.store_id
+        })
 
     },
-    onShow:function(){
+    onShow: function() {
         this.getInfo()
     },
 
@@ -67,41 +71,72 @@ Page({
 
                     var data = res.data.data
 
-                
+
+                    if (data.link_store.length >= 2) {
+                        data.link_store.forEach(it => {
+                            if (it && it.store_id == app.globalData.userInfo.store_id) {
+                                console.log('你有权限管理')
+                                data.showAction = true
+                            }
+                        })
+                    }
+
+
+                    if (data.link_store.length == 1) {
+                        data.showAction == true
+                    } else if (data.link_store.length == 2) {
+                        data.link_store.forEach(it => {
+                            if (it && it.store_id == app.globalData.userInfo.store_id) {
+                                console.log('你有权限管理')
+                                data.showAction = true
+                            }
+                        })
+                    }
+
+
                     this.setData({
                         info: data,
                         addtime: data.addtime,
                         pay_time: data.pay_time,
-                        goods_id:data.order_detail[0].goods_id,
-                        goods_name:data.order_detail[0].goods_name,
-                        delivery_method:data.delivery_method
+                        goods_id: data.order_detail[0].goods_id,
+                        goods_name: data.order_detail[0].goods_name,
+                        delivery_method: data.delivery_method
                     })
                 }
                 wx.hideLoading()
             })
     },
-    ordermanage(){
+    ordermanage() {
         wx.navigateTo({
             url: '../ordermanage/list?id=' + this.data.goods_id + '&goods_name=' + this.data.goods_name + '&delivery_method=' + this.data.delivery_method
         })
 
     },
     orderActions(e) {
-        const { opt, order_id, txt,sn } = e.currentTarget.dataset
-       
+        const {
+            opt,
+            order_id,
+            txt,
+            sn
+        } = e.currentTarget.dataset
+
         wx.showModal({
             title: '您要' + txt + '吗？',
             success: (res) => {
                 if (res.confirm) {
-                       util.wx.post('/api/seller/set_order_status', {
-                            opt,
-                            order_id
-                        }).then(res => {
+                    util.wx.post('/api/seller/set_order_status', {
+                        opt,
+                        order_id
+                    }).then(res => {
                         if (res.data.code == 200) {
-                            wx.showToast({ title: '订单操作成功' })
+                            wx.showToast({
+                                title: '订单操作成功'
+                            })
                             this.getInfo()
                         } else {
-                            wx.showToast({ title: '订单操作失败' })
+                            wx.showToast({
+                                title: '订单操作失败'
+                            })
                         }
                     })
                 }
@@ -109,45 +144,45 @@ Page({
         })
     },
 
-   checkexpressorder(e) {
-   
+    checkexpressorder(e) {
+
         let data = '';
 
         //将列表的单号信息保存到
 
-        data += 'order_id='+ e.currentTarget.dataset.id
-        data += '&sn='+ e.currentTarget.dataset.sn
+        data += 'order_id=' + e.currentTarget.dataset.id
+        data += '&sn=' + e.currentTarget.dataset.sn
 
         console.log(data)
         wx.navigateTo({
-          url: '/pages/express/index?' + data
+            url: '/pages/express/index?' + data
         })
 
     },
 
-  checkexpress(e) {
+    checkexpress(e) {
 
         let data = '';
 
-        data += 'order_sn='+ e.currentTarget.dataset.sn
-            + '&user=' + e.currentTarget.dataset
+        data += 'order_sn=' + e.currentTarget.dataset.sn +
+            '&user=' + e.currentTarget.dataset
 
         wx.navigateTo({
-          url: '/pages/ems-detail/index?' + data
+            url: '/pages/ems-detail/index?' + data
         })
 
 
     },
-    to_refund(e){
+    to_refund(e) {
 
         const order_refund_id = e.currentTarget.dataset.order_refund_id || null
 
         const order_id = e.currentTarget.dataset.order_id
 
-        if(order_refund_id){
-           wx.navigateTo({
-            url:'../refundment-detail-seller/index?order_id='+order_id+'&id='+order_refund_id
-          })
+        if (order_refund_id) {
+            wx.navigateTo({
+                url: '../refundment-detail-seller/index?order_id=' + order_id + '&id=' + order_refund_id
+            })
 
         }
     },

@@ -2,7 +2,9 @@ const app = getApp()
 
 const { $Message } = require('../../iView/base/index');
 
-const util = require('../../utils/util.js')
+const util = require('../../utils/util.js');
+
+let role = "supplier";
 
 Page({
     data: {
@@ -164,6 +166,8 @@ Page({
         }
 
         app.globalData.apiPrix = 'seller'
+
+        role = options.role ? options.role : "supplier";
 
         this.setData({
             goods_id: optiton.id,
@@ -445,7 +449,7 @@ Page({
         })
 
         return new Promise((resolve, reject) => {
-            util.wx.get('/api/seller/export_show_detail', {
+            util.wx.get('/api/'+role+'/export_show_detail', {
                 goods_spec_id: this.data.goods_spec_id,
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,

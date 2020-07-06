@@ -43,15 +43,21 @@ Page({
      */
     onLoad: function(options) {
 
+            //goods_id
           if(options.id){
             this.id = options.id
             this.getDetail()
          }
 
-           if(options.order_id){
+        if(options.order_id){
             this.order_id = options.order_id
             this.getOrderdetail()
         }
+
+        this.setData({
+            userStoreId :app.globalData.userInfo.store_id
+        })
+
 
     },
 
@@ -73,7 +79,6 @@ Page({
             })
         }
 
-            console.log(this.data.order_detail.supplier_id)
         })
     },
 
@@ -107,7 +112,7 @@ Page({
 
             if(res.data.code == 200){
 
-                  wx.showToast({
+            wx.showToast({
                 title:'操作成功',
                 icon:'none'
             })

@@ -322,9 +322,13 @@ Page({
     /****/
 
     exportExcel() {
+        let url = '/pages/updown_exc/index'
+        if(this.data.goods_id){
+            url = url+'?goods_id='+this.data.goods_id
+        }
 
         wx.navigateTo({
-            url:'/pages/updown_exc/index'
+            url: url
         })
         // wx.showToast({ title: '开始为你生成...', icon: 'none' })
 
