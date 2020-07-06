@@ -231,6 +231,8 @@ Page({
 
         })
 
+        console.log(cart)
+
 
 
         this.setData({
@@ -292,6 +294,9 @@ Page({
                 qty: item.item_num
             }
         })
+
+
+        console.log('specs is',specs)
 
 
         var postData = {}

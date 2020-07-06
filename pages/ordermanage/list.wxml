@@ -164,14 +164,11 @@
    
         <view class="order-fd scale-b-1px">
 
-
-
-
             <button wx:if="{{item.order_refund_id && item.order_refundstatus!==2}}" 
             data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}"
             bindtap="to_refund" class="f12 {{item.order_refundstatus==1?'text-danger':'gray-text'}} " style="float: left;margin-top: 25rpx">
         
-        <text wx:if="{{item.order_refundstatus==1}}">有退款申请</text>
+        <text wx:if="{{item.order_refundstatus==1}}">有退款申请！</text>
         <text wx:else>退款信息</text>
 
     </button>
@@ -189,24 +186,9 @@
                     >{{btn.txt}}</button>
             </block>
 
-    <!--是帮卖团长查看 显示赚多少钱和发货人-->
-     <block wx:if="{{item.link_store.length ==2 && user_id !=item.link_store[1].user_id}}">
-          <view class="mt-sm f12 ">
-             <view class="fl_left">赚<text class="text-warning">¥{{item.profit}}</text>元 </view>
-             <view class="fl_right">由<text class="text-success">{{item.link_store[1].nickname}}</text>发货  </view>
-         </view>
-     </block>
 
 
-     <!--  <block wx:if="user_id !== item.info">
-
-      </block> -->
-
-
-
-            
-
-            <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">
+            <view class="express" wx:if="{{item.order_status >= 3 && item.delivery_method == 1 }}">
                 <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}">
                     物流信息
                 </view>
@@ -216,19 +198,20 @@
                 </button>
             </view>
         </view>
+
+            <!--是帮卖团长查看 显示赚多少钱和发货人-->
+     <view wx:if="{{item.link_store.length ==2 && user_id !== item.link_store[1].user_id}}">
+          <view class="mt-sm f12 clear_fix">
+           赚<text class="text-warning">¥{{item.profit}}</text>元 由<text class="text-success">{{item.link_store[1].nickname}}</text>发货 
+         </view>
+     </view>
         <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->
         <view class="note-box">
-                <text class="right" data-order_id="{{item.order_id}}" bindtap="toOrderDetail">订单详情</text>   
+         <text  data-order_id="{{item.order_id}}" bindtap="toOrderDetail">查看订单详情</text>   
 
-            <i-icon type="brush" size="14" color="#999" class="note-icon" />
-            <view class="note-input">
+       <!--      <view class="note-input">
                 <input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder="备注，退款、改产品、改地址等等都备注下来吧" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
-
-
-
-
-
-            </view>
+            </view> -->
 
             <!-- <view class="note-submit">
                     <input type="hidden" hidden="true" name="order_id" value="{{item.order_id}}" />

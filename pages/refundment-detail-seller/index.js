@@ -1,5 +1,7 @@
 const util = require('../../utils/util')
 
+const app = getApp()
+
 Page({
 
     /**
@@ -56,10 +58,20 @@ Page({
     getOrderdetail(){
         util.wx.get('/api/seller/get_order_detail?order_id='+this.order_id)
         .then(res=>{
+
+        if(res.data.code == 200){
+
+            let data = res.data.data 
+
+            const isOrderManege = util.checkIsOrderManege(data.link_store,app.globalData.userInfo.store_id)
+
+            console.log('isOrderManege',isOrderManege)
             this.setData({
+                isOrderManege:isOrderManege,
                 order_detail:res.data.data,
                 refund_fee:res.data.data.order_detail[0].pay_price
             })
+        }
 
             console.log(this.data.order_detail.supplier_id)
         })
@@ -78,6 +90,14 @@ Page({
     },
 
     submit(){
+
+        if(this.data.radio_status ==3 && this.data.refund_desc ==''){
+            return wx.showToast({
+                title:'请输入理由'
+            })
+        }
+
+
         util.wx.post('/api/seller/order_refund_audit',{
               order_refund_id:this.id,// 退款记录的主键（记录列表里有返回）
                        status:this.data.radio_status,// 审核结果（3:拒绝, 4:通过）

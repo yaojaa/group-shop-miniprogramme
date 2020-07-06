@@ -233,7 +233,9 @@ padding: 15rpx 30rpx
 }
 .note-box{
     position: relative;
-    margin-top: 5px;
+    margin-top: 10px;
+    color:#999;
+
 }
 .note-icon{
     position: absolute;
@@ -303,9 +305,10 @@ padding: 15rpx 30rpx
       white-space: nowrap;
 }
 .address{
-    font-size:12px;
+    font-size:10px;
     padding:24rpx 5px;
-line-height:1.6;
+    line-height:1.6;
+    color:#999
 
 }
 .blue_text{
@@ -349,6 +352,7 @@ line-height:1.6;
     display: flex;
     align-items: center;
     justify-content:flex-end;
+    margin-top:10px
 }
 .express-msg{
     height: 30rpx;

@@ -462,19 +462,7 @@ Page({
                 //过滤数据 区分用户角色 是否显示发货按钮等
                 resdata.forEach(item=>{
 
-                    if(item.link_store.length == 1 && item.order_refundstatus !==4){
-                        item.showAction == true
-                    }
-
-                    else if(item.link_store.length ==2){
-                        item.link_store.forEach(it=>{
-                            if(it && it.store_id == app.globalData.userInfo.store_id){
-                                console.log('你有权限管理')
-                                item.showAction = true
-                            }
-                        })
-                    }
-
+                    item.showAction = util.checkIsOrderManege(item.link_store, app.globalData.userInfo.store_id)
 
                 })
 

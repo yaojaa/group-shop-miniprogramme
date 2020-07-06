@@ -62,11 +62,18 @@ Page({
 
         console.log(options)
 
+            Promise.all([detail,comments,likeStatus]).then((res)=>{
+
+            })
+
+
         this.data.supid = options.supid || options.goods_id
 
         this.data.sellid = options.sellid
 
         // is_modify=true&supid=7&sellid=1708
+
+        //团长修改走团长商品id 1708
 
 
         if(options.is_modify){
@@ -82,9 +89,11 @@ Page({
 
 
 
+        }else{
+           this.getSellerGoodsInfo()
         }
 
-        this.getSellerGoodsInfo()
+        this.getSupplierGoodsInfo()
 
 
     },
@@ -115,9 +124,15 @@ Page({
 
          }else{
 
-            this.spec_edit(this.data.info.goods_spec[index].goods_spec_id,value)
+            if(this.data.is_modify){
+               this.spec_edit(this.data.info.goods_spec[index].goods_spec_id,value)
+            }
+
+
+              this.data.info.goods_spec[index].spec_price = value
 
               this.setData({
+
                 btnDisable:false
             })
          }
@@ -149,29 +164,20 @@ Page({
       wx.hideLoading()
     },
 
-
+    //获取团长商品详情
     getSellerGoodsInfo() {
 
-        wx.showLoading()
+        util.wx.get('/api/goods/get_goods_detail', {
+                goods_id: this.data.sellid 
+            })
 
+        },
+    //获取供应商品详情
 
+     getSupplierGoodsInfo() {
         util.wx.get('/api/seller/get_supplier_goods_detail', {
                 goods_id: this.data.supid 
             })
-            .then(res => {
-
-                wx.hideLoading()
-
-                if(res.data.code == 200){
-                     this.setData({
-                    info:res.data.data.goods
-                    })
-                }
-
-
-
-            }
-        )
         },
 
     modifyPrice(){

@@ -67,17 +67,7 @@ Page({
 
                     var data = res.data.data
 
-                    if(data.link_store.length >=2){
-                        data.link_store.forEach(it=>{
-                            if(it && it.store_id == app.globalData.userInfo.store_id){
-                                console.log('你有权限管理')
-                                data.showAction = true
-                            }
-                        })
-                    }
-
-
-
+                
                     this.setData({
                         info: data,
                         addtime: data.addtime,

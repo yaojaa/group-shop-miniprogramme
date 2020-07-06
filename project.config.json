@@ -25,15 +25,15 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useIsolateContext": true,
 		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"compileHotReLoad": false,
+		"useIsolateContext": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.5",
@@ -1202,10 +1202,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 161,
 					"name": "business/pages/goods/goods",
 					"pathName": "business/pages/goods/goods",
-					"query": "goods_id=1",
+					"query": "goods_id=2138",
 					"scene": null
 				},
 				{
@@ -1213,6 +1213,13 @@
 					"name": "business/pages/goods-user/goods",
 					"pathName": "business/pages/goods-user/goods",
 					"query": "goods_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goods",
+					"pathName": "pages/goods/goods",
+					"query": "goods_id=2138",
 					"scene": null
 				}
 			]
