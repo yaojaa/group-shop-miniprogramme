@@ -84,8 +84,8 @@
             </view>
 
                 <view class="msg_btn">
-               <!--  <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
-微信通知                </button> -->
+                <button data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
+微信通知                </button>
                 </view>
 
             <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">

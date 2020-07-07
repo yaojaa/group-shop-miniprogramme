@@ -830,7 +830,25 @@ Page({
   /*修改商品名称*/
   editGoodsName(){
 
+
     this.editor({goods_name:this.data.goods_name})
+  },
+  //点击保存只提交商品规格部分
+  saveEdit(){
+
+
+    console.log(JSON.stringify(this.data.spec), JSON.stringify(this.oldSpec))
+
+    if(JSON.stringify(this.data.spec) ===  JSON.stringify(this.oldSpec)){
+      return
+    }
+    
+
+
+    this.editor({
+      spec:this.data.spec
+    })
+
   },
 
   editor:function(data){
@@ -955,6 +973,8 @@ Page({
         wx.hideLoading()
         let d = res.data
         let gs = d.data.goods
+
+        this.oldSpec = gs.spec
 
         if (d.code == 200) {
           // 初始数据

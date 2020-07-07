@@ -308,7 +308,7 @@
             确定发布
         </button>
 
-        <button wx:else style="margin: 15px" bindtap="jump" class="weui-btn weui-btn_primary linenear_bg">
+        <button wx:else style="margin: 15px" bindtap="saveEdit" class="weui-btn weui-btn_primary linenear_bg">
             保存修改
         </button>
     </form>
