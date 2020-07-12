@@ -49,7 +49,7 @@
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
-            <block>修改价格23</block>
+            <block>修改价格</block>
         </view>
 
         <view class="flex-item" bindtap="goSendMsg">
@@ -338,7 +338,7 @@
             </button>
         </form>
 
-<button wx:if="{{showPanel}}" bindtap="openInviteFriends" wx:if="{{goods.agent_opt==1}}" class="flex2 buy linenear_bg">
+<button  bindtap="openInviteFriends" wx:if="{{showPanel && goods.agent_opt==1}}" class="flex2 buy linenear_bg">
                  邀请代理帮卖
             </button>
 

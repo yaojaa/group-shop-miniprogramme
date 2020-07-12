@@ -3,7 +3,7 @@
 
         <view class="notice mt-sm">
         转发上架到主页成为你的商品,可让顾客在您的商品页自助下单。
-        利润会自动结算到您的账户。方便省事，躺赚就这么简单！
+        利润会自动结算到您的账户。方便省事！
     </view>
 
 
@@ -52,15 +52,9 @@
 
         <view class="m-df">
 
-            <button wx:if="{{is_modify}}" class="btn xxl primary block linenear_bg" bindtap="modifyPrice" disabled="{{btnDisable}}">
-                保存
+            <button class="btn  primary block linenear_bg" bindtap="goDetail" disabled="{{btnDisable}}">
+                查看详情
             </button>
-            <button wx:else class="btn xxl primary block linenear_bg" bindtap="goDetail" disabled="{{btnDisable}}">
-                立即查看
-            </button>
-
-
-
 
         </view>
     </form>

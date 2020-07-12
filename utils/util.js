@@ -764,6 +764,33 @@ const addListener = function (who) {
 
  }
 
+ //检查是否是订单管理者
+const checkIsOrderManege = function(link_store,store_id){
+
+    const user_store_id = store_id || app.globalData.userInfo.store_id
+    let orderManager = false
+   
+    // link_store[null]
+    if(link_store.length ==1 && link_store[0] == null){
+        return orderManager = true
+    }
+   
+    // link_store[null,{...}]
+
+     if(link_store.length ==2 && link_store[0] == null && link_store[1].store_id == user_store_id){
+        return orderManager = true
+    }
+
+   // link_store[{...},{...}]
+
+    if(link_store[0] !== null && link_store[2]!==null ){
+        return orderManager = false
+    }
+
+    return orderManager
+
+}
+
 
 
 const userListner = addListener('user')
@@ -791,5 +818,6 @@ module.exports = {
     throttle,
     url2json,
     checkMobile,
-    isMoney
+    isMoney,
+    checkIsOrderManege
 }

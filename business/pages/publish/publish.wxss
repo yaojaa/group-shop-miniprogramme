@@ -1,5 +1,6 @@
 @import "../../../utils/weui.wxss";
 @import "../../../css/common.wxss";
+@import "../../../utils/editor/iconfont.wxss"
 
 .page-body{
   position: relative;

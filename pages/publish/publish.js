@@ -732,6 +732,9 @@ Page({
   },
   //提交表单
   submitForm(e) {
+
+    console.log(e.detail.value)
+
     this.initValidate()
 
     if (this.data.goods_images.length <= 0) {
@@ -830,12 +833,43 @@ Page({
   /*修改商品名称*/
   editGoodsName(){
 
+
     this.editor({goods_name:this.data.goods_name})
+  },
+  //点击保存只提交商品规格部分
+  saveEdit(){
+
+
+    console.log(JSON.stringify(this.data.spec) == JSON.stringify(this.data.oldSpec))
+
+    console.log(this.data.spec)
+        console.log(this.data.oldSpec)
+
+
+    if(JSON.stringify(this.data.spec) == JSON.stringify(this.data.oldSpec)){
+      this.jump()
+      return
+    }
+    
+
+    util.wx.post('/api/seller/goods_add_or_edit',Object.assign({goods_id:this.data.goods_id,spec:this.data.spec})).then(res=>{
+      if(res.data.code !== 200){
+        wx.showToast({
+          title:res.data.msg,
+          icon:'none'
+        })
+      }else{
+        this.jump()
+      }
+    })
+
   },
 
   editor:function(data){
 
-    util.wx.post('/api/seller/goods_add_or_edit', data).then(res=>{
+    
+
+    util.wx.post('/api/seller/goods_add_or_edit', Object.assign({goods_id:this.data.goods_id},data)).then(res=>{
       if(res.data.code !== 200){
         wx.showToast({
           title:res.data.msg,
@@ -955,6 +989,7 @@ Page({
         let gs = d.data.goods
 
         if (d.code == 200) {
+          this.data.oldSpec = Object.assign({},gs.goods_spec)
           // 初始数据
           this.initData(gs, isCopy)
         } else {
@@ -1023,7 +1058,7 @@ Page({
 
     content_imgs:(newValue, val, context)=>{
 
- if(newValue == val){
+    if(newValue == val){
         return
       }
       context.editor({content_imgs:newValue})
