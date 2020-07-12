@@ -295,10 +295,8 @@ Page({
                 wx.setClipboardData({
                   data: path,
                   success: function(res) {
-                      // wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
-                      // setTimeout(()=>{
-                      //   console.log(_this.data.result)
-                      // },3000)
+                      wx.showToast({ title: '链接已复制,请打开浏览器查看或下载', duration: 5000, icon: 'none' })
+
                       console.log(_this.data.result)
                       if(_this.data.value1 == 1 || _this.data.value2 == 1){
                         return;

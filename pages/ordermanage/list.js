@@ -399,7 +399,7 @@ Page({
         //     this.copyLoadFile(url);
         // })
         wx.navigateTo({
-            url:'../updown_exc/index?role=seller&id='+this.data.goods_id
+            url:'../updown_exc/index?role=seller&goods_id='+this.data.goods_id
         })
         
     },
