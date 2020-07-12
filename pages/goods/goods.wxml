@@ -343,7 +343,7 @@
             </button>
 
 <button wx:if="{{showPanel}}" class="flex2 buy linenear_bg" open-type="share">
-                 立即转发顾客
+                 立即转发到微信群
             </button>
        
         

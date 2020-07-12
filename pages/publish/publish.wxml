@@ -27,7 +27,7 @@
                     <view class="weui-cell__bd">
                         <view class='row' id="textareawrap">
                             <text>{{currentInput}}</text>
-                            <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" class="weui-textarea" placeholder="简介描述" rows="6"></textarea>
+                            <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" bindblur="editGoodsContent" class="weui-textarea" placeholder="简介描述" rows="6"></textarea>
                         </view>
                     </view>
                 </view>
