@@ -511,13 +511,29 @@ Page({
   downGoods: function (e) {
     let index = e.currentTarget.dataset.index
     let good = this.data.spec.splice(index, 1)
-    // console.log(good)
-
     this.data.spec.splice(index + 1, 0, good[0])
     // console.log(this.data.spec)
     this.setData({
       spec: this.data.spec,
     })
+  },
+  //复制规格
+  copySpec(e){
+  let index = e.currentTarget.dataset.index
+    let good = this.data.spec[index]
+
+    good = JSON.parse(JSON.stringify(good))
+    good['goods_spec_id'] = ''
+    
+    console.log(index,good)
+
+    this.data.spec.splice(index, 0, good)
+    console.log(this.data.spec)
+    this.setData({
+      spec: this.data.spec
+    })
+
+
   },
 
   onShow: function (option) {
@@ -1058,6 +1074,12 @@ Page({
   },
 
   watch: {
+
+    agent_opt:(newValue, val, context)=>{
+
+      context.editor({agent_opt:newValue})
+
+    },
 
     is_timelimit:(newValue, val, context)=>{
 

@@ -31,7 +31,7 @@ Component({
         // 在组件实例进入页面节点树时执行
         this.setData({
           is_recommend:this.properties.item.is_recommend,
-          expires: this.properties.item._expires
+          expires: this.properties.item.goods_expires
         })
       },
       detached: function() {
@@ -262,7 +262,7 @@ Component({
         if(link_goods[0]!==null){
 
          wx.navigateTo({
-            url: '../goods-up/index?is_modify=true&supid=' + supid+'&sellid='+sellid
+            url: '../goods-up/index?is_modify=true&supid=' + link_goods[0].goods_id+'&sellid='+goods_id
         })
 
 

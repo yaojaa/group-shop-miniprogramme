@@ -27,7 +27,7 @@
                 <van-field wx:if="{{info.link_goods[0]!==null}}" value="{{item.mspr_start}} 至 {{item.mspr_end}}元" name="" label="可销售区间" placeholder="" input-align="right" readonly></van-field>
             </van-cell-group>
             <view class="mh-df mv-sm solid round-df">
-                <van-field use-button-slot data-mini="{{item.mspr_start}}"  data-max="{{item.mspr_end}}" value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="{{is_modify?'修改':'设置'}}零售价" data-index="{{index}}" placeholder="请输入零售价" bind:change="validate" input-align="right" input-class="text-lg coral-text">
+                <van-field use-button-slot data-mini="{{item.mspr_start}}"  data-max="{{item.mspr_end}}" value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="{{is_modify?'修改':'设置'}}售价" data-index="{{index}}" placeholder="请输入您的售价" bind:change="validate" input-align="right" input-class="text-lg coral-text">
                     <view slot="button">元</view>
                 </van-field>
             </view>

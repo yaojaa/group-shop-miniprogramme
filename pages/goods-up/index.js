@@ -62,9 +62,9 @@ Page({
     onLoad: function(options) {
 
 
-            Promise.all([detail,comments,likeStatus]).then((res)=>{
+            // Promise.all([detail,comments,likeStatus]).then((res)=>{
 
-            })
+            // })
 
 
         this.data.supid = options.supid || options.goods_id
@@ -75,10 +75,9 @@ Page({
 
         //团长修改走团长商品id 1708
 
-
         if(options.is_modify){
 
-              wx.setNavigationBarTitle({
+            wx.setNavigationBarTitle({
                   title: '修改价格' 
                 })
 
@@ -88,21 +87,16 @@ Page({
         })
 
 
+        this.getSellerGoodsInfo().then(res=>{
+                if(res.data.code == 200){
+                    this.setData({
+                        info:res.data.data.goods,
+                        loading:false
+                    })
+                }
 
-        }else{
-           this.getSellerGoodsInfo()
-        }
-
-
-
-        if(this.data.is_modify){
-
-        Promise.all([this.getSupplierGoodsInfo(),this.getSellerGoodsInfo()]).then(res=>{
-            console.log(res)
-            this.megeData(res[0].data.data.goods,res[1].data.data.goods.goods_spec)
-        }).catch(e=>{
-            console.log(e)
         })
+
 
         }else{
             this.getSupplierGoodsInfo().then(res=>{
@@ -216,18 +210,12 @@ Page({
 
     //获取团长商品详情
     getSellerGoodsInfo() {
-        util.wx.get('/api/goods/get_goods_detail', {
+      return  util.wx.get('/api/goods/get_goods_detail', {
                 goods_id: this.data.sellid 
             })
 
         },
     //获取供应商品详情
-
-     getSupplierGoodsInfo() {
-        util.wx.get('/api/seller/get_supplier_goods_detail', {
-                goods_id: this.data.supid 
-            })
-        },
 
     modifyPrice(){
 

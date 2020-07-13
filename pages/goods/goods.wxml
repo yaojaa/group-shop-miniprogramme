@@ -308,7 +308,7 @@
 
     <text class="label">主 页</text>
         </view> -->
-        <view class='icon' bindtap='homepage'>
+        <view class='icon' bindtap='homepage' style="flex: 22">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
@@ -317,7 +317,7 @@
 
 
 
-        <form wx:if="{{!showPanel}}" style="flex:4;position: relative;" bindtap="cartPanelShow" >
+        <form wx:if="{{!showPanel}}" style="flex:78;position: relative;" bindtap="cartPanelShow" >
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
@@ -338,12 +338,12 @@
             </button>
         </form>
 
-<button  bindtap="openInviteFriends" wx:if="{{showPanel && goods.agent_opt==1}}" class="flex2 buy linenear_bg">
-                 邀请代理帮卖
+<button  bindtap="openInviteFriends" wx:if="{{showPanel && goods.agent_opt==1}}" style="flex: 39" class="buy linenear_bg">
+                 邀请好友帮卖
             </button>
 
-<button wx:if="{{showPanel}}" class="flex2 buy linenear_bg" open-type="share">
-                 立即转发到微信群
+<button wx:if="{{showPanel}}" class="buy linenear_bg" open-type="share" style="flex: 39">
+                 转发到群聊
             </button>
        
         

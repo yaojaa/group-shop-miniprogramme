@@ -192,7 +192,9 @@
                         <button bindtap="topGoods" data-index="{{index}}" disabled="{{index == 0}}" class="mini">
                             置顶
                         </button>
-
+                        <button bindtap="copySpec" data-index="{{index}}"  class="mini">
+                            复制
+                        </button>
                           <button bindtap="removeGoods" data-index="{{index}}" class="mini">
                             删除
                         </button>
