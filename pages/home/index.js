@@ -465,6 +465,8 @@ Page({
                 this.setData({
                     reportData:res.data.data
                 })
+            }else if(res.data.code == 2000){
+                app.redirectToLogin()
             }
         })
     },
