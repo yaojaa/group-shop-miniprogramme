@@ -167,7 +167,7 @@ Page({
 
         app.globalData.apiPrix = 'seller'
 
-        role = options.role ? options.role : "supplier";
+        role = optiton.role ? optiton.role : "supplier";
 
         this.setData({
             goods_id: optiton.id,
