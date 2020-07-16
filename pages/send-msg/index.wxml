@@ -7,17 +7,22 @@
 
     <van-radio-group value="{{ radio }}" bind:change="onChange">
 
-         <view class="mv-df">
+        <block wx:if="{{customerName}}">
+            <view class="mv-df" >
+            <van-radio name="pickup" checked-color="#49b34d"><view class="text-df">留言通知（发送一条留言给{{customerName}}）</view></van-radio>
+            </view>
+        </block>
+        <block wx:else>
+
+         <view class="mv-df" wx:if="customerName">
         
         <van-radio name="pickup" checked-color="#49b34d"><view class="text-df">留言通知（发送一条留言给本商品所有下单顾客）</view></van-radio>
         </view>
 
-        
-
         <view class="mv-df">
           <van-radio name="new_goods" checked-color="#49b34d"><view class="text-df">上新通知（发送一条新品通知给所有粉丝顾客）</view></van-radio>
         </view>
-
+        </block>
 
        
 
