@@ -253,7 +253,7 @@
                         </view>
                     </view>
                 </view>
-                <view class="weui-cell">
+           <!--      <view class="weui-cell">
                     <view class="weui-cell__hd">
                         <view class="weui-label">立即上架：</view>
                     </view>
@@ -264,7 +264,7 @@
                             <view slot="close">否</view>
                         </i-switch>
                     </view>
-                </view>
+                </view> -->
             </view>
         </i-panel>
         <button style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">

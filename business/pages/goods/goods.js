@@ -102,7 +102,7 @@ Page({
         console.log('/business/goods-user/goods?goods_id=' + this.data.goods.goods_id)
 
         this.setData({
-            shareTit:'邀请您转发销售'
+            shareTit:'邀请您上架绑定商品'
         })
 
          setTimeout(()=>{

@@ -511,13 +511,29 @@ Page({
   downGoods: function (e) {
     let index = e.currentTarget.dataset.index
     let good = this.data.spec.splice(index, 1)
-    // console.log(good)
-
     this.data.spec.splice(index + 1, 0, good[0])
     // console.log(this.data.spec)
     this.setData({
       spec: this.data.spec,
     })
+  },
+  //复制规格
+  copySpec(e){
+  let index = e.currentTarget.dataset.index
+    let good = this.data.spec[index]
+
+    good = JSON.parse(JSON.stringify(good))
+    good['goods_spec_id'] = ''
+    
+    console.log(index,good)
+
+    this.data.spec.splice(index, 0, good)
+    console.log(this.data.spec)
+    this.setData({
+      spec: this.data.spec
+    })
+
+
   },
 
   onShow: function (option) {
@@ -836,17 +852,16 @@ Page({
 
     this.editor({goods_name:this.data.goods_name})
   },
+    editGoodsContent(){
+
+
+    this.editor({goods_content:this.data.goods_content})
+  },
   //点击保存只提交商品规格部分
   saveEdit(){
 
 
-    console.log(JSON.stringify(this.data.spec) == JSON.stringify(this.data.oldSpec))
-
-    console.log(this.data.spec)
-        console.log(this.data.oldSpec)
-
-
-    if(JSON.stringify(this.data.spec) == JSON.stringify(this.data.oldSpec)){
+    if(JSON.stringify(this.data.spec) == this.data.oldSpec){
       this.jump()
       return
     }
@@ -867,7 +882,10 @@ Page({
 
   editor:function(data){
 
-    
+
+    if(!this.data.is_edit){
+      return
+    }
 
     util.wx.post('/api/seller/goods_add_or_edit', Object.assign({goods_id:this.data.goods_id},data)).then(res=>{
       if(res.data.code !== 200){
@@ -989,7 +1007,7 @@ Page({
         let gs = d.data.goods
 
         if (d.code == 200) {
-          this.data.oldSpec = Object.assign({},gs.goods_spec)
+          this.data.oldSpec = JSON.stringify(gs.goods_spec)
           // 初始数据
           this.initData(gs, isCopy)
         } else {
@@ -1051,10 +1069,35 @@ Page({
       isShowTimePicker: gs.is_timelimit == 1,
       freight_tpl_id: gs.freight_tpl_id || 0,
     })
-    console.log('picker', this.data.picker)
+
+    this.setWatcher()
   },
 
   watch: {
+
+    agent_opt:(newValue, val, context)=>{
+
+      context.editor({agent_opt:newValue})
+
+    },
+
+    is_timelimit:(newValue, val, context)=>{
+
+      context.editor({is_timelimit:newValue,start_time:context.data.start_time,end_time:context.data.end_time})
+
+    },
+
+    end_time:(newValue, val, context)=>{
+
+      context.editor({start_time:context.data.start_time,end_time:context.data.end_time})
+
+    },
+
+    start_time:(newValue, val, context)=>{
+
+      context.editor({start_time:context.data.start_time,start_time:context.data.start_time})
+
+    },
 
     content_imgs:(newValue, val, context)=>{
 
@@ -1115,6 +1158,10 @@ Page({
     })
   },
 
+  setWatcher(){
+    getApp().setWatcher(this.data, this.watch, this) // 设置监听器
+  },
+
   onLoad: function (option) {
 
     var user
@@ -1132,7 +1179,6 @@ Page({
       this.copy = true
     }
 
-    getApp().setWatcher(this.data, this.watch, this) // 设置监听器
 
     //编辑的时候
     if (option.goods_id) {
@@ -1142,6 +1188,8 @@ Page({
       })
 
       this.getPublishedData(option.goods_id)
+    }else{
+      this.setWatcher()
     }
   },
   inputDuplex: util.inputDuplex,

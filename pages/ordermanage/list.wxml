@@ -12,8 +12,8 @@
 
                    <van-button wx:if="{{delivery_method==1}}" class="ml-sm" type="primary" plain size="mini" bindtap="toAddressList">地址列表</van-button>
                 <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">导出名单</van-button>
-                <van-button class="ml-sm" type="primary" plain size="mini" bindtap="checkExcel">查看名单</van-button>
-          <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
+<!--                 <van-button class="ml-sm" type="primary" plain size="mini" bindtap="checkExcel">查看名单</van-button>
+ -->          <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
                     <i-icon size="20" type="other" />
                 </i-button> -->
 
@@ -79,20 +79,18 @@
                 <text class="create_number">{{item.create_number}}</text>
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
             </view>
-            <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
+            <view class="user-info"><view class="name"> {{item.user.nickname}}</view> 
                 <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text>
+                 <text data-customer_name="{{item.user.nickname}}" data-order_id="{{item.order_id}}" bindtap="sendMsgSingle" class="blue_text" >（微信通知）</text>
             </view>
 
-                <view class="msg_btn">
-                <button data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
-微信通知                </button>
-                </view>
+
+
 
             <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">
                 <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
 
                
-
             </view>
             <view wx:else class="order-status">
                 <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
