@@ -4,6 +4,9 @@
         <view class="title">{{info.supplier_intro}}</view>
     </view>
     <view class="goods-panel white-bg cf">
+        <view class="no-content" wx:if="{{goodsList.length == 0}}">
+            
+        </view>
         <view class="goods-panel-bd" wx:for="{{goodsList}}" wx:key="index">
             <navigator url="/business/pages/goods-user/goods?id={{item.goods_id}}" hover-class="none" class="flex p-df goods-panel-item">
                 <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>

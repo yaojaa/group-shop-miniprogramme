@@ -10,7 +10,8 @@ Page({
     groupUserList: [],
     isCheck: false,
     showSetting: false,
-    fansCount: 0
+    fansCount: 0,
+    active:0
   },
   onLoad: function (e) {
     //未登录 弹出授权弹窗
@@ -223,6 +224,9 @@ Page({
   onShow: function () {
     wx.hideHomeButton()
     wx.hideShareMenu()
+    this.setData({
+      active:1
+    })
   },
   onChange({ detail }) {
     // 需要手动对 show_buyerlist 状态进行更新
