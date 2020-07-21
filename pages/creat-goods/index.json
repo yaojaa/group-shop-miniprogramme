@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "rich-editor": "plugin://richeditor/richeditor"
+  }
+}
