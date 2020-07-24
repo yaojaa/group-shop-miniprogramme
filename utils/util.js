@@ -8,8 +8,8 @@ const app = getApp();
 
 
 const config = {
-     // apiUrl: 'https://www.kaixinmatuan.cn'
-    apiUrl: 'https://dev.kaixinmatuan.cn'
+     apiUrl: 'https://www.kaixinmatuan.cn'
+    // apiUrl: 'https://dev.kaixinmatuan.cn'
 
 }
 
@@ -141,7 +141,7 @@ const uploadFile = function(opt) {
                 if (typeof res.data == 'string') {
                     res = JSON.parse(res.data)
                 }
-                console.log('res.data.data', res)
+                console.log('res.data.data',res.code, res)
                 if(res.code == 200){
                   reslove(res)
               }else{
@@ -767,8 +767,14 @@ const addListener = function (who) {
  //检查是否是订单管理者
 const checkIsOrderManege = function(link_store,store_id){
 
+    console.log(link_store,store_id)
+
     const user_store_id = store_id || app.globalData.userInfo.store_id
     let orderManager = false
+
+    if(!link_store){
+         return true
+    }
    
     // link_store[null]
     if(link_store.length ==1 && link_store[0] == null){

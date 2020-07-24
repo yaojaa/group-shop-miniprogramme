@@ -25,15 +25,15 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useIsolateContext": true,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"compileHotReLoad": false,
+		"useIsolateContext": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.5",
@@ -1226,6 +1226,13 @@
 					"id": 164,
 					"name": "添加商品",
 					"pathName": "pages/creat-goods/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "business/pages/publish/publish",
+					"pathName": "business/pages/publish/publish",
 					"query": "",
 					"scene": null
 				}

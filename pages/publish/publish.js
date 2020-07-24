@@ -514,7 +514,7 @@ Page({
     this.data.spec.splice(index + 1, 0, good[0])
     // console.log(this.data.spec)
     this.setData({
-      spec: this.data.spec,
+      spec: this.data.spec
     })
   },
   //复制规格

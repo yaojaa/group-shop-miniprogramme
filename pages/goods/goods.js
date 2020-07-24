@@ -1075,7 +1075,6 @@ Page({
   },
   //购物车抛物线
   startAnimation() {
-    console.log('开始动画')
     this.setData({
       showRoll: 1,
     })

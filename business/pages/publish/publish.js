@@ -79,6 +79,13 @@ Page({
       }
     ],
 
+    goods_content:[{
+              // 模块类型
+              "type": "text",
+              // 文本内容
+              "desc": ""
+            }],
+
     content_imgs_length: '',
     visible_pictures: false, //上传图片弹层是否显示
     visible_video: false,
@@ -103,6 +110,24 @@ Page({
     this.setData({
       is_on_sale_status: detail.value
     })
+  },
+  //编辑
+    editor:function(data){
+
+
+    if(!this.data.is_edit){
+      return
+    }
+
+    util.wx.post('/api/seller/goods_add_or_edit', Object.assign({goods_id:this.data.goods_id},data)).then(res=>{
+      if(res.data.code !== 200){
+        wx.showToast({
+          title:res.data.msg,
+          icon:'none'
+        })
+      }
+    })
+
   },
   fromSpec(e) {
     let { index } = e.currentTarget.dataset
@@ -983,6 +1008,12 @@ Page({
     })
   },
 
+  getObject: function (res) {
+      //　返回当前的对象
+      result = res
+      console.log(res)
+    },
+
   onLoad: function (option) {
     //未登录 弹出授权弹窗
     if (!app.globalData.userInfo) {
@@ -1002,7 +1033,8 @@ Page({
     //编辑的时候
     if (option.goods_id) {
       this.setData({
-        goods_id: option.goods_id
+        goods_id: option.goods_id,
+        is_edit: true
       })
 
       this.getPublishedData(option.goods_id)

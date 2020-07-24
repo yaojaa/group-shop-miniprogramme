@@ -14,6 +14,7 @@
         "i-custom-bar": "../../../components/custom-bar/index",
         "drag": "../../../components/drag/index",
         "preview-view": "../../../components/preview-img/view",
-        "wux-popup":"../../../wux/popup/index"
+        "wux-popup":"../../../wux/popup/index",
+        "rich-editor":"../../../components/richeditor/richeditor"
     }
 }

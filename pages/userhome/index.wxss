@@ -321,6 +321,6 @@
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   font-size: 20rpx;
-  z-index: 99;
+  z-index: 1;
   border-radius: 50%;
 }
