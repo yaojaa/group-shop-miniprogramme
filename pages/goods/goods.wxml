@@ -187,7 +187,7 @@
                     <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 
                         剩余({{item.spec_stock}})
                     </text> -->
-                    <view wx:if="{{!showPanel}}" class="buy" catchtap="addAnimate">
+                    <view  class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                     </view>
                 </view>
@@ -245,7 +245,7 @@
             </view>
         </block>
         <view>
-            <view class='sub-title scale-b-1px'>图文介绍</view>
+            <view class='sub-title scale-b-1px'>图文介绍111 {{totalNum}}</view>
         </view>
     </view>
     <view class="piclist-container" wx:if="{{toShowPic || !isEmptyEditor}}">
@@ -288,7 +288,7 @@
     <view class='footer-cart'  wx:if="{{is_help_sale || is_help_sale_user}}">
          <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
-            <text class="label">我 的</text>
+            <text class="label">我 的 {{totalNum}}</text>
         </view>
 
          <view class='icon' style="flex:4">
@@ -315,9 +315,9 @@
 
 
 
+        <block wx:if="{{totalNum > 0}}">
 
-
-        <form wx:if="{{!showPanel}}" style="flex:78;position: relative;" bindtap="cartPanelShow" >
+        <form style="flex:78;position: relative;" bindtap="cartPanelShow" >
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
@@ -337,13 +337,15 @@
                 已结束
             </button>
         </form>
+    </block>
 
-<button  bindtap="openInviteFriends" wx:if="{{showPanel && goods.agent_opt==1}}" style="flex: 39" class="buy linenear_bg">
+
+<button    bindtap="openInviteFriends" wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 39" class="buy linenear_bg left-raduis">
                  邀请好友帮卖
             </button>
 
-<button wx:if="{{showPanel}}" class="buy linenear_bg" open-type="share" style="flex: 39">
-                 转发到群聊
+<button wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg right-raduis" open-type="share" style="flex: 39">
+                 转发顾客下单
             </button>
        
         

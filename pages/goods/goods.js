@@ -89,7 +89,6 @@ Page({
     shareFriendsImgs: [],
     template: {},
     template2: {},
-    shareCardConfig: {
       width: 750,
       goodsImg: {},
       headImg: {
@@ -122,7 +121,6 @@ Page({
       imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
       phone: '',
       weChat: '',
-    },
 
     isEmptyEditor: true,
     editorContent: null,
@@ -1075,7 +1073,6 @@ Page({
   },
   //购物车抛物线
   startAnimation() {
-    console.log('开始动画')
     this.setData({
       showRoll: 1,
     })

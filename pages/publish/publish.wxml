@@ -36,13 +36,9 @@
                             <text data-type="photo" bindtap="add" class="left mr-xs text-lg f12">+ 上传介绍图片（选填)</text>
 
                              <text class="editor-btn primary-text" bindtap='goEditor'>使用图文编辑模式 〉</text>
-                        
-
-
-                           
                         </view>
 
-                       <view class="imgList" wx:if="{{content_imgs.length}}">
+                       <view class="imgList" wx:if="{{content_imgs.length}}" bindtap="add">
 
                          <image wx:key="item" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
                            

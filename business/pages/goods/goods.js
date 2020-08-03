@@ -399,7 +399,6 @@ Page({
         if (res.data.code == 200) {
           const d = res.data.data
 
-
           d.goods.goods_spec.forEach((item) => {
             item.item_num = 0
           })
@@ -413,32 +412,51 @@ Page({
             }
           })
 
-          let editorContent = JSON.parse(d.goods.content)
-          editorContent = editorContent ? editorContent : { html: '', text: '' }
+         
 
-          if(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p><p( wx:nodeid="\d+")?><img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/.test(editorContent.html)){
-            editorContent.html = editorContent.html.replace(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p>/,'<p>');
-          }
 
-          let isEmptyEditor = editorContent.text.replace(/\n/g, '').length == 0 &&
-            !/img/g.test(editorContent.html)
+          let content = JSON.parse(d.goods.content)
 
-          editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
-          editorContent.htmlArr = editorContent.html.split(/<img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/);
+          console.log(typeof content)
 
-          if(editorContent.video){
-            editorContent.video = editorContent.video.map(e => {
-              return e.replace(/(alt=)|["']/g,'')
-            })
-          }else{
-            editorContent.video=[]
-          }
-          console.log(editorContent)
+          // try {
+          // }
+          // catch(err) {
+          // let editorContent = [{
+          //     // 模块类型
+          //     "type": "text",
+          //     // 文本内容
+          //     "desc": d.goods.goods_content
+          //   }]
+          // }
+
+          // editorContent = editorContent ? editorContent : { html: '', text: '' }
+
+          // if(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p><p( wx:nodeid="\d+")?><img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/.test(editorContent.html)){
+          //   editorContent.html = editorContent.html.replace(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p>/,'<p>');
+          // }
+
+          // let isEmptyEditor = editorContent.text.replace(/\n/g, '').length == 0 &&
+          //   !/img/g.test(editorContent.html)
+
+          // editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
+          // editorContent.htmlArr = editorContent.html.split(/<img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/);
+
+          // if(editorContent.video){
+          //   editorContent.video = editorContent.video.map(e => {
+          //     return e.replace(/(alt=)|["']/g,'')
+          //   })
+          // }else{
+          //   editorContent.video=[]
+          // }
+
+
 
           this.setData({
-            isEmptyEditor: isEmptyEditor,
-            editorContent: editorContent,
+            goods_content:d.goods.goods_content,
+            content,
             goods: d.goods,
+
             'imgs.src': d.goods.goods_images,
             goods_spec:
               d.goods.goods_spec.length == 0
@@ -704,6 +722,19 @@ Page({
     wx.navigateTo({
       url: '../orderList/orderList'
     })
+  },
+  showMasterMenu(){
+
+    wx.showActionSheet({
+      itemList: ['管理订单', '修改商品', '删除商品'],
+      success (res) {
+        console.log(res.tapIndex)
+      },
+      fail (res) {
+        console.log(res.errMsg)
+      }
+    })
+
   },
 
   //预览图片

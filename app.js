@@ -1,5 +1,6 @@
 //app.js
 
+import config from './utils/conf.js'
 
 App({
 
@@ -22,6 +23,8 @@ App({
     //请求维系获取openId
     getOpenId: function() {
 
+        console.log(config.apiUrl)
+
         return new Promise((resolve, reject) => {
             // 登录
             wx.login({
@@ -30,7 +33,7 @@ App({
                     if (res.code) {
                         //发起网络请求index/get_openid
                         wx.request({
-                            url: 'https://dev.kaixinmatuan.cn/api/index/get_openid?js_code=' + res.code,
+                            url: config.apiUrl+'/api/index/get_openid?js_code=' + res.code,
                             data: {
                                 code: res.code
                             },
@@ -142,7 +145,7 @@ App({
 
         return new Promise((resolve, reject) => {
             wx.request({
-                url: 'https://dev.kaixinmatuan.cn/api/index/login_by_openid',
+                url: config.apiUrl+'/api/index/login_by_openid',
                 method: 'POST',
                 data: {
                     openid: this.openId,

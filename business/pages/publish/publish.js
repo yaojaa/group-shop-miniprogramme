@@ -79,6 +79,13 @@ Page({
       }
     ],
 
+    content:[{
+              // 模块类型
+              "type": "text",
+              // 文本内容
+              "desc": ""
+            }],
+
     content_imgs_length: '',
     visible_pictures: false, //上传图片弹层是否显示
     visible_video: false,
@@ -94,8 +101,7 @@ Page({
     is_on_sale_status: true,
     freight_tpl_id: 0, //运费模版ID 默认0
     freight_tpl_name: '默认方案全国包邮', //运费模版ID 默认0
-    editorContent: null,
-    isEmptyEditor: true
+    editorContent: null  
   },
 
   sale_status_onChange(event) {
@@ -103,6 +109,24 @@ Page({
     this.setData({
       is_on_sale_status: detail.value
     })
+  },
+  //编辑
+    editor:function(data){
+
+
+    if(!this.data.is_edit){
+      return
+    }
+
+    util.wx.post('/api/seller/goods_add_or_edit', Object.assign({goods_id:this.data.goods_id},data)).then(res=>{
+      if(res.data.code !== 200){
+        wx.showToast({
+          title:res.data.msg,
+          icon:'none'
+        })
+      }
+    })
+
   },
   fromSpec(e) {
     let { index } = e.currentTarget.dataset
@@ -269,83 +293,6 @@ Page({
         visible_spec: false
       })
     }
-  },
-  // addPicture(e){
-  //   const type = e.currentTarget.dataset.type
-  //   wx.navigateTo({
-  //     url:'../upload_pics/upload_pics?type='+type
-  //   })
-  // },
-  //
-  addPictureDone() {
-    this.setData({
-      visible_pictures: false
-    })
-  },
-  addVideoDone() {
-    this.setData({
-      visible_video: false
-    })
-  },
-
-  addVideo() {
-    if (this.data.goods_video) {
-      this.setData({
-        visible_video: true
-      })
-    } else {
-      this.addVideoCore()
-    }
-  },
-
-  addVideoCore() {
-    wx.chooseVideo({
-      sourceType: ['album', 'camera'],
-      maxDuration: 180,
-      camera: 'back',
-      success: (res) => {
-        this.setData({
-          video_progress: true
-        })
-
-        var videoFile = res.tempFilePath || ''
-        var videothumb = res.thumbTempFilePath || ''
-
-        console.log('videoFile', res)
-
-        let p1 = util.uploadFile({ filePath: videoFile })
-
-        p1.then(
-          (result) => {
-            this.setData({
-              goods_video: result.data.file_url,
-              goods_video_cover: result.data.file_url + '?vframe/jpg/offset/2',
-              video_progress: false
-            })
-            this.setData({
-              visible_video: true
-            })
-          },
-          (err) => {
-            wx.showToast({
-              title: '上传失败' + err,
-              icon: 'none'
-            })
-
-            this.setData({
-              video_progress: false
-            })
-          }
-        )
-      }
-    })
-  },
-
-  removeVideo() {
-    this.setData({
-      visible_video: false,
-      goods_video: ''
-    })
   },
 
   add() {
@@ -579,19 +526,7 @@ Page({
     })
   },
 
-  //删除一张照片
-  removePicture: function (e) {
-    let index = e.currentTarget.dataset.index
 
-    this.data.content_imgs.splice(index, 1)
-    this.setData({
-      content_imgs: this.data.content_imgs
-    })
-    wx.showToast({
-      title: '删除成功',
-      icon: 'none'
-    })
-  },
   handleAnimalChange: function (event) {
     const detail = event.detail
     this.setData({
@@ -629,9 +564,6 @@ Page({
       goods_name: {
         required: true
       }
-      // goods_content: {
-      //     required: true
-      // }
     }
 
     // 验证字段的提示信息，若不传则调用默认的信息
@@ -639,19 +571,8 @@ Page({
       goods_name: {
         required: '请输入标题'
       }
-      // goods_content: {
-      //     required: '请输入描述'
-      // }
     }
 
-    if (this.data.isEmptyEditor) {
-      rules.goods_content = {
-        required: true
-      }
-      messages.goods_content = {
-        required: '请输入描述'
-      }
-    }
 
     this.WxValidate = new WxValidate(rules, messages)
   },
@@ -712,32 +633,31 @@ Page({
     })
 
     var goods_id = this.copy ? {} : { goods_id: this.data.goods_id }
-
+    //提交的数据
     let data = Object.assign(
       goods_id,
-      { content: JSON.stringify(this.data.editorContent) },
       e.detail.value, //表单的数据
       { spec: this.data.spec }, //商品数组数据
-      { goods_images: this.data.goods_images },
+      { goods_images: this.data.goods_images ,
+        content:this.data.content},
       {
         delivery_method: this.data.delivery_method,
         start_time: this.data.start_time,
         end_time: this.data.end_time,
-        content_imgs: this.data.content_imgs,
-        goods_video: this.data.goods_video,
-        goods_video_cover: this.data.goods_video_cover,
+        content_imgs: '',
+        goods_content:'',
         is_timelimit: this.data.is_timelimit,
         freight_tpl_id: this.data.freight_tpl_id
       }
     )
 
     wx.showLoading()
+    console.log(data)
 
     //提交
     //
     util.wx.post('/api/supplier/goods_add_or_edit', data).then((res) => {
       wx.hideLoading()
-
       if (res.data.code == 200) {
         this.data.goods_id = res.data.data.goods_id
         this.jump()
@@ -748,6 +668,11 @@ Page({
           showCancel: false
         })
       }
+    }).catch(e=>{
+      wx.showToast({
+        title:'提交失败请稍后再试',
+        icon:'none'
+      })
     })
   },
   hideTimePicker: function (e) {
@@ -827,43 +752,7 @@ Page({
       })
     }
   },
-  goEditor() {
-    let _this = this
-    console.log(
-      _this.data.isEmptyEditor,
-      this.data.content_imgs,
-      this.data.currentInput
-    )
-    if (
-      this.data.isEmptyEditor &&
-      (this.data.content_imgs.length > 0 || this.data.currentInput)
-    ) {
-      wx.showModal({
-        title: '温馨提示',
-        content: '使用图文模式将替代原有内容和描述',
-        success(res) {
-          if (res.confirm) {
-            _this.jumpEditor()
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-    } else {
-      wx.setStorage({
-        key: 'editorContent',
-        data: _this.data.editorContent,
-        success() {
-          _this.jumpEditor()
-        }
-      })
-    }
-  },
-  jumpEditor() {
-    wx.navigateTo({
-      url: '../editor/editor'
-    })
-  },
+
   /**回显数据**/
   getPublishedData(goods_id, isCopy, temp) {
     wx.showLoading()
@@ -907,18 +796,65 @@ Page({
       })
     }
 
-    let editorContent = JSON.parse(gs.content)
-    editorContent = editorContent ? editorContent : { html: '', text: '' }
-    let isEmptyEditor =
-      editorContent.text.replace(/\n/g, '').length == 0 &&
-      !/img/g.test(editorContent.html)
+    // let editorContent = JSON.parse(gs.content)
+    // editorContent = editorContent ? editorContent : { html: '', text: '' }
+    // let isEmptyEditor =
+    //   editorContent.text.replace(/\n/g, '').length == 0 &&
+    //   !/img/g.test(editorContent.html)
+
+    //处理转换content的数据
+     // content:[{
+     //          // 模块类型
+     //          "type": "text",
+     //          // 文本内容
+     //          "desc": ""
+     //        }],
+     // 
+     // 
+     console.log(typeof (gs.content) == 'string')
+     if(typeof (gs.content) == 'string'){
+      var content=[
+         {
+              "type": "text",
+              "desc": JSON.parse(gs.content).html
+            }
+      ]
+     }
+    
+    
+     console.log('content',content)
+     if(gs.goods_content){
+
+      var content = []
+      content.push({
+              "type": "text",
+              "desc": gs.goods_content
+            })
+
+      gs.content_imgs.forEach(src=>{
+
+        content.push({
+              "type": "image",
+              "src": src
+        })
+
+      })
+
+
+
+     }
+
+     console.log(content)
+
+
+
+
+
 
     this.setData({
       goods_images: gs.goods_images,
       goods_name: gs.goods_name,
-      goods_content: gs.goods_content,
-      isEmptyEditor: isEmptyEditor,
-      editorContent: editorContent,
+      content: content,
       sell_address: gs.self_address,
       delivery_method: gs.delivery_method,
       freight_tpl_id: gs.freight_tpl_id || 0,
@@ -938,7 +874,6 @@ Page({
       is_timelimit: gs.is_timelimit,
       isShowTimePicker: gs.is_timelimit == 0 ? false : true
     })
-    console.log('picker', this.data.picker)
   },
 
   watch: {
@@ -983,6 +918,13 @@ Page({
     })
   },
 
+  getObject: function (res) {
+      //　返回当前的对象
+      console.log('接受到到监听')
+      this.data.content = res.detail
+      console.log('this.content',this.data.content)
+    },
+
   onLoad: function (option) {
     //未登录 弹出授权弹窗
     if (!app.globalData.userInfo) {
@@ -1002,7 +944,8 @@ Page({
     //编辑的时候
     if (option.goods_id) {
       this.setData({
-        goods_id: option.goods_id
+        goods_id: option.goods_id,
+        is_edit: true
       })
 
       this.getPublishedData(option.goods_id)

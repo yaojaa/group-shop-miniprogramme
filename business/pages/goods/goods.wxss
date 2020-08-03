@@ -738,7 +738,7 @@
     box-shadow: 0 0px 33px #eee;*/
   background: #fff;
   border: 1px solid #f9f9f9;
-  padding: 0 30rpx;
+  padding:30rpx;
   margin-top: 20rpx;
 }
 
@@ -1098,3 +1098,15 @@
 .spec-main .price-group {
   font-size: 32rpx;
 }
+/**新增**/
+.content-item image{
+  width: 100%
+}
+
+
+
+
+
+
+
+

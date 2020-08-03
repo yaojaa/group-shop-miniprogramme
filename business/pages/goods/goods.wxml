@@ -166,36 +166,53 @@
                 </i-cell>
             </i-cell-group>
         </view>
-        <view wx:if="{{isEmptyEditor}}" class='goods-content-wraper por'>
-            <view class='goods-content' bindtap="openUrl">
-                <text>{{goods.goods_content}}</text>
+        <view  class='goods-content-wraper por'>
+            <view class='goods-content' wx:if="{{goods_content}}">
+
+                {{goods_content}}
+
             </view>
+
+                <block wx:if="{{content.length}}">
+                <!--编辑器正文区-->
+                <view class="content-item" wx:for="{{content}}">
+
+                    <block wx:if="{{ item.type === 'text' }}">
+                        {{item.desc}}
+                    </block>
+
+                    <block wx:if="{{ item.type === 'image' }}">
+
+                    <image src="{{ item.src }}" mode="widthFix"></image>
+                    </block>
+
+                    <block wx:if="{{ item.type === 'video' }}">
+                        <video  src="{{ item.src }}"></video>
+                    </block>
+                </view>
+                </block>
+
+                <block wx:else>
+                    
+                 <rich-text nodes="{{content.html || '暂无介绍'}}"></rich-text>
+
+                </block>
+
             <view class="load-area" wx:if="{{!goods}}">
                 <wux-spin wux-class="spin" />
             </view>
         </view>
     </view>
-    <view class="piclist-container">
-        <!-- <view wx:if="{{goods.goods_video}}">
-            <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
-        </view> -->
-        <block wx:if="{{isEmptyEditor}}" class="pic" wx:for="{{goods.content_imgs}}" wx:key="index" wx:for-item="img">
-            <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
-        </block>
-        <view wx:if="{{!isEmptyEditor}}" class="editor-content">
-            <block wx:for='{{editorContent.htmlArr}}' wx:key='index'>
-                <rich-text nodes="{{item}}"></rich-text>
-                <video class="editor-video" wx:if="{{editorContent.video[index]}}" src="{{editorContent.video[index]}}"></video>
-            </block>
-        </view>
-    </view>
+
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px"></view>
 
 
     <view class='footer-cart'>
         <van-goods-action>
             <van-goods-action-icon icon="home-o" text="首页" bind:click="toHome" />
-            <van-goods-action-button text="邀请团长上架绑定商品" type="warning" open-type="share" bind:click="onClickButton" />
+            <van-goods-action-icon icon="home-o" text="管理" bind:click="showMasterMenu" />
+
+            <van-goods-action-button text="邀请代理下单或绑定商品" type="warning" open-type="share" bind:click="onClickButton" />
         </van-goods-action>
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
