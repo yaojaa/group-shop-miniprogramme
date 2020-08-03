@@ -5,13 +5,9 @@ import shareCard2 from '../palette/shareCard2';
 import shareCard3 from '../palette/shareCard3'; // 供应商海报
 const app = getApp();
 
+import config from './conf.js'
 
-
-const config = {
-     apiUrl: 'https://www.kaixinmatuan.cn'
-    // apiUrl: 'https://dev.kaixinmatuan.cn'
-
-}
+console.log('config',config)
 
 const formatTime = date => {
     var date = new Date(date);
@@ -138,18 +134,25 @@ const uploadFile = function(opt) {
             },
             success: function(res) {
 
+                console.log('success',res)
+
+                if(res.statusCode == 413){
+                    reject('文件体积太大')
+                    return
+                }
+
                 if (typeof res.data == 'string') {
                     res = JSON.parse(res.data)
                 }
-                console.log('res.data.data',res.code, res)
-                if(res.code == 200){
+                if(res.code == 200 ){
                   reslove(res)
-              }else{
-                reject(res)
-              }
+                  }else{
+                    reject(res)
+                  }
 
             },
             fail: function(e) {
+                console.log('fail',res)
 
                 reject(e)
 
@@ -762,6 +765,8 @@ const addListener = function (who) {
             return false; 
         }
 
+        return true
+
  }
 
  //检查是否是订单管理者
@@ -803,6 +808,7 @@ const userListner = addListener('user')
 const sellerListner = addListener('seller')
 
 module.exports = {
+    apiUrl:config.apiUrl,
     formatTime,
     fmtDate,
     inputDuplex,

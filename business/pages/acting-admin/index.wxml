@@ -21,7 +21,7 @@
 <view class="act-admin">
 <!--     <van-search  background="#ffffff" value="{{ value }}" placeholder="请输入搜索关键词" />
  -->
-    <view wx:for="{{list}}">
+    <view wx:for="{{list}}" wx:if="{{list.length > 0}}">
         <!--cell start -->
         <view class="act-cell flex">
             <view class="act-img shrink0">

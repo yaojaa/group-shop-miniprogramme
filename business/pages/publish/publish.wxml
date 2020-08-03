@@ -18,11 +18,13 @@
                 </view>
             </view>
         </view>
-        <view class="weui-cells weui-cells_form white-bg" style="overflow: hidden;">
-            <view class="weui-cell">
-                <input name="goods_name" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="请输入标题" />
+        <view class="white-bg" >
+            <view class="goods_name_box">
+              <!--   <input name="goods_name" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="请输入标题"  /> -->
+                   <textarea   value="{{goods_name}}" name="goods_name" class="goods_name" placeholder="请输入标题" auto-height></textarea>
             </view>
-            <block wx:if='{{isEmptyEditor}}'>
+
+
            <!--      <view class="weui-cell">
                     <view class="weui-cell__bd">
                         <view class='row' id="textareawrap">
@@ -46,18 +48,11 @@
                 <!--富文本编辑器-->
                 <rich-editor 
                 ctl-style="main-color" 
-                init-data="{{ goods_content }}" 
+                init-data="{{ content }}" 
                 op-style="btn-color" 
-                get-object="{{ getObject }}"/>
+                bind:updateData="getObject"/>
 
                 <!--富文本编辑器-->
-
-
-            </block>
-            <view wx:else class="weui-cell editor-box" bindtap='goEditor'>
-                <view class="editorContentCss">{{editorContent.text}}</view>
-                <view class="to-editor primary-text">(点击进入图文模式)</view>
-            </view>
             <!-- <view class="new_add_btn" data-type="video" bindtap="addVideo">
                 <i-badge dot="{{goods_video.length}}">
                     <i-icon type="add" size="16" color="#69b90b" /> 视频短片（选填）
@@ -223,7 +218,7 @@
                     <view class="weui-cell__ft">
                         <view class="weui-icon-warn">
                             <view class="timePicker" wx:if="{{!isShowTimePicker}}" bindtap="showTimePicker">
-                                默认不启用
+                                  点击启用
                                 <i-icon type="enter" size="26" />
                             </view>
                             <view class="timePicker" style="display: flex; align-items: center; justify-content: space-between;" wx:else>
@@ -281,5 +276,6 @@
         <button style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">
             确定发布
         </button>
+
     </form>
 </view>

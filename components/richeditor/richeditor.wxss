@@ -14,7 +14,7 @@ input{
   width: 640rpx;
   margin: 28rpx auto;
   border-radius: 12rpx;
-  border: 1rpx solid #81d8cf;
+  border: 1rpx solid #19be6b;
   overflow: hidden;
 }
 
@@ -24,18 +24,18 @@ input{
   font-size: 28rpx;
   height: 64rpx;
   line-height: 64rpx;
-  color: #81d8cf;
+  color: #19be6b;
   background-color: #fff;
-  border-left: 1rpx solid #81d8cf;
+  border-left: 1rpx solid #19be6b;
 }
 
 .editor-ctl-item:active{
   color: #fff;
-  background-color: #81d8cf;
+  background-color: #19be6b;
 }
 
 .editor-ctl-item:first-child:active{
-  border-left: 1rpx solid #81d8cf;
+  border-left: 1rpx solid #19be6b;
 }
 
 .editor-ctl-item:first-child{
@@ -84,7 +84,7 @@ input{
 .down-ctx{
   text-align: left;
   font: 28rpx;
-  border-top: 1rpx solid #e4e4e4;
+  border-bottom:: 1rpx solid #e4e4e4;
 }
 
 .op-btn-wrp{

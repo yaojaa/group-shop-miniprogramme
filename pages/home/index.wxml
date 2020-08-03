@@ -47,11 +47,8 @@
 
                 <scroll-view style="height: 100px" scroll-y>
                     <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}"  bindtap="todetail">
-                        <text class="bold" wx:if="{{item.is_valet!=='0'}}">{{item.user.nickname}}</text>
+                        <text class="bold" wx:if="{{item.is_valet=='0'}}">{{item.user.nickname}}</text>
                         <text class="bold" wx:else>{{item.store.nickname}}</text>
-
-
-
                          {{item.time_ago}}
                         下单
                         <text class="bold">{{item.order_detail[0].goods_name}}</text>

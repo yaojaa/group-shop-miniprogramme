@@ -1,11 +1,4 @@
 
-const config = {
-     // apiUrl: 'https://www.kaixinmatuan.cn'
+export default {
     apiUrl: 'http://dev.kaixinmatuan.cn'
-
-}
-
-
-module.exports = {
-    apiUrl
 }

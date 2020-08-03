@@ -8,15 +8,7 @@ Component({
    */
   properties: {
     initData: {
-      type: Array,
-      value:[
-      {
-              // 模块类型
-              "type": "text",
-              // 文本内容
-              "desc": "2323232"
-            }
-     ]
+      type: Array
     },
     // 绘画单位
     drawUnit: {
@@ -118,11 +110,18 @@ Component({
     curIndex: -1,
     newCurIndex: -1
   },
+  observers: {
+  'initData': function (data) {//  'params'是要监听的字段，（data）是已更新变化后的数据
+    this.setData({
+      innerInitData: data
+    })
+  }
+},
 
   attached: function() {
-    let self = this
-    self.setData({
-      innerInitData: self.properties.initData
+    console.log('组件初始化',this.properties.initData)
+    this.setData({
+      innerInitData: this.properties.initData
     })
   },
 
@@ -130,31 +129,29 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    triggerEvent: function(e) {
+    insertEvent: function(e) {
+      console.log(e)
       let self = this
       let index = e.currentTarget.dataset.index
-      // if (self.data.globalEditing) {
-      //   wx.showToast({
-      //     title: '请完成已编辑的内容',
-      //     icon: 'none'
-      //   })
-      //   return false
-      // }
+
       let insertType = e.currentTarget.dataset.type
       switch (insertType) {
         case "image":
-
                   // 上传图片
           wx.chooseImage({
-            count: 5,
+            count: 9,
             supportSource: self.properties.supportType.image.supportSource,
             sizeType: self.properties.supportType.image.sizeType,
             success:(res) => {
 
-
+              let i = 0
               res.tempFilePaths.forEach(item=>{
 
+
+
                 uploadFile({filePath:item}).then(resp=>{
+
+                  i++
 
                  this.data.innerInitData.push({
                       isEditing: true,
@@ -168,48 +165,37 @@ Component({
                 innerInitData: this.data.innerInitData
               })
 
+              if(i==res.tempFilePaths.length){
+                this.saveBlock()
+              }
+
+
+
 
                 })
 
 
               })
 
-              // console.log(res.tempFilePaths[0])
-
-              // uploadFile({filePath:res.tempFilePaths[0]}).then(res=>{
-              // console.log(res.data.file_url)
-
-              // self.data.innerInitData[index].src = res.data.file_url
-              // self.setData({
-              //   innerInitData: self.data.innerInitData
-              // })
-
-              // })
-
-
-              return
 
             }
           })
-          // if (index !== undefined) {
-          //   self.data.innerInitData.splice(index + 1, 0, {
-          //     isEditing: true,
-          //     "type": "image",
-          //     "src": "",
-          //     "desc": "",
-          //     "mode": ""
-          //   })
-          // } else {
-          //   self.data.innerInitData.push({
-          //     isEditing: true,
-          //     "type": "image",
-          //     "src": "",
-          //     "desc": "",
-          //     "mode": ""
-          //   })
-          // }
           break
         case "text":
+
+        let len = self.data.innerInitData.length
+        console.log(self.data.innerInitData)
+        //如果最后一个文本框内容是空的 不让插入
+        if(self.data.innerInitData[len-1].type=='text' && self.data.innerInitData[len-1].desc==''){
+          return wx.showToast({
+            title:'请输入文字',
+            icon: 'none'
+          })
+        }
+
+        console.log('index',index)
+
+
           if (index !== undefined) {
             self.data.innerInitData.splice(index + 1, 0, {
               // 模块类型
@@ -229,6 +215,12 @@ Component({
               "width": ""
             })
           }
+
+
+          self.setData({
+            innerInitData: self.data.innerInitData
+          })
+
           break
 
         //如果是新增视频
@@ -243,9 +235,6 @@ Component({
 
               wx.showLoading()
              uploadFile({filePath:res.tempFilePath}).then(res=>{
-
-              console.log('then',res)
-
 
 
              if (index !== undefined) {
@@ -286,13 +275,15 @@ Component({
                 innerInitData: self.data.innerInitData
               })
 
+              this.saveBlock()
+
               wx.hideLoading()
 
 
                 }).catch(e=>{
                   console.log(e)
                     wx.showToast({
-                title:'上传视频失败',
+                title:e,
                 icon:'none'
                  })
 
@@ -306,20 +297,19 @@ Component({
 
           break
       }
-      if (index !== undefined) {
-        self.setData({
-          globalEditing: true,
-          innerInitData: self.data.innerInitData,
-          curIndex: index + 1
-        })
-      } else {
-        self.setData({
-          globalEditing: true,
-          innerInitData: self.data.innerInitData,
-          curIndex: self.data.innerInitData.length - 1
-        })
-      }
-      
+      // if (index !== undefined) {
+      //   self.setData({
+      //     globalEditing: true,
+      //     innerInitData: self.data.innerInitData,
+      //     curIndex: index + 1
+      //   })
+      // } else {
+      //   self.setData({
+      //     globalEditing: true,
+      //     innerInitData: self.data.innerInitData,
+      //     curIndex: self.data.innerInitData.length - 1
+      //   })
+      // }
     },
     deleteBlock: function (e) {
       let index = e.currentTarget.dataset.index
@@ -331,50 +321,13 @@ Component({
         curIndex: -1,
         newCurIndex: -1
       })
+      this.saveBlock()
     },
-    saveBlock: function (e) {
-      let index = e.currentTarget.dataset.index
-      let self = this
-      switch (self.data.innerInitData[index].type) {
-        case "image":
-          if (self.data.innerInitData[index].src === '') {
-            wx.showToast({
-              title: '图片不能为空',
-              icon: 'none'
-            })
-            return false
-          }
-          break
-        case "text":
-          if (self.data.innerInitData[index].desc === '') {
-            wx.showToast({
-              title: '文本不能为空',
-              icon: 'none'
-            })
-            return false
-          }
-          break
-        case "video":
-          if (self.data.innerInitData[index].src === '') {
-            wx.showToast({
-              title: '视频不能为空',
-              icon: 'none'
-            })
-            return false
-          }
-          break
-      }
-      self.data.innerInitData[index].isEditing = false
-      self.setData({
-        globalEditing: false,
-        innerInitData: self.data.innerInitData,
-        curIndex: -1
-      })
+    //保存数据
+    saveBlock: function () {
 
-      console.log(self.data.innerInitData)
-      console.log(self.properties)
-      // 获取对象
-      self.properties.getObject(self.data.innerInitData)
+       this.triggerEvent('updateData',this.data.innerInitData)
+
     },
     tapEvent: function (e) {
       let index = e.currentTarget.dataset.index
@@ -384,22 +337,33 @@ Component({
         case "image":
           // 上传图片
           wx.chooseImage({
-            count: 5,
+            count: 9,
             supportSource: self.properties.supportType.image.supportSource,
             sizeType: self.properties.supportType.image.sizeType,
             success: function(res) {
 
-              console.log(res.tempFilePaths[0])
+              let i = 0;
+              res.tempFilePaths.forEach(item=>{
 
-              uploadFile({filePath:res.tempFilePaths[0]}).then(res=>{
-                console.log(res.data.file_url)
+              uploadFile({filePath:item}).then(res=>{
 
-              self.data.innerInitData[index].src = res.data.file_url
-              self.setData({
-                innerInitData: self.data.innerInitData
+                i++
+
+                self.data.innerInitData[index].src = res.data.file_url
+                self.setData({
+                  innerInitData: self.data.innerInitData
+                })
+
+                if(i==res.tempFilePaths.length){
+                  this.saveBlock()
+                }
+
               })
 
+
+
               })
+
 
 
               return
@@ -419,20 +383,20 @@ Component({
               self.setData({
                 innerInitData: self.data.innerInitData
               })
+              this.saveBlock()
             }
           })
       }
+
     },
     changeInput: function (e) {
       let index = e.currentTarget.dataset.index
       let self = this
       self.data.innerInitData[index].desc = e.detail.value
-
-
-
       self.setData({
         innerInitData: self.data.innerInitData
       })
+      this.saveBlock()
     },
     moveUp: function (e) {
       let index = e.currentTarget.dataset.index
@@ -445,6 +409,8 @@ Component({
         innerInitData: self.data.innerInitData,
         newCurIndex: -1
       })
+
+      this.saveBlock()
     },
     moveDown: function (e) {
       let index = e.currentTarget.dataset.index
@@ -457,6 +423,7 @@ Component({
         innerInitData: self.data.innerInitData,
         newCurIndex: -1
       })
+      this.saveBlock()
     },
     newItem: function (e) {
       let index = e.currentTarget.dataset.index
@@ -470,6 +437,7 @@ Component({
           newCurIndex: index
         })
       }
+      this.saveBlock()
     }
   },
 

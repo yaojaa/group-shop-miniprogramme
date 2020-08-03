@@ -13,17 +13,17 @@
               <view class="down-ctx">
               <view class="op-btn-wrp nt op-style">
                 <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
-                  +
+                  <van-icon color="#666666" name="plus" size="24px" />
                   <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                     <view class="float-tri"></view>
-                    <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="triggerEvent" data-index="{{ index }}">
+                    <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
                       插入{{ item.name }}
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}">上移</view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}">下移</view>
-                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">删除</view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#666666" name="arrow-up" size="24px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#666666" name="arrow-down" size="24px" /></view>
+                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">  <van-icon color="#666666" name="close" size="24px" /></view>
               </view>
             </view>
 
@@ -44,17 +44,19 @@
             <view class="down-ctx" wx:if="{{innerInitData.length > 1}}">
               <view class="op-btn-wrp nt op-style">
                 <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
-                  +
+                  <van-icon color="#666666" name="plus" size="24px" />
                   <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                     <view class="float-tri"></view>
-                    <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="triggerEvent" data-index="{{ index }}">
+                    <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
                       插入{{ item.name }}
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}">上移</view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}">下移</view>
-                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">x</view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#666666" name="arrow-up" size="24px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#666666" name="arrow-down" size="24px" /></view>
+                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}"> 
+                 <van-icon color="#666666" name="close" size="24px" />
+               </view>
               </view>
             </view>
           </view>
@@ -77,17 +79,18 @@
             <view class="down-ctx">
               <view class="op-btn-wrp op-style">
                 <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
-                  +
+                  <van-icon color="#666666" name="plus" size="24px" />
                   <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                     <view class="float-tri"></view>
-                    <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="triggerEvent" data-index="{{ index }}">
+                    <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
                       插入{{ item.name }}
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}">上移</view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}">下移</view>
-                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">X</view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#666666" name="arrow-up" size="24px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#666666" name="arrow-down" size="24px" /></view>
+                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">
+                  <van-icon color="#666666" name="close" size="24px" /></view>
               </view>
             </view>
           </view>
@@ -98,7 +101,7 @@
   </view>
   <!-- 主要的控制栏 -->
   <view class="main-editor-ctl">
-    <view class="editor-ctl-item ctl-style" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="triggerEvent">
+    <view class="editor-ctl-item ctl-style" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key"  bindtap="insertEvent">
       插入{{ item.name }}
     </view>
   </view>

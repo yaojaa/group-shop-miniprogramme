@@ -9,7 +9,8 @@ Page({
   data: {
       loading: false,
       showAuth: false,
-      supplier_logo: ''
+      supplier_logo: '',
+      apiUrl:util.apiUrl
   },
 
   /**
@@ -92,7 +93,11 @@ Page({
       })
     }
 
-    util.checkMobile(e.detail.value.supplier_mobile)
+    if(!util.checkMobile(e.detail.value.supplier_mobile)){
+      return 
+    }
+
+
 
     const postData=Object.assign({supplier_logo:this.data.supplier_logo},e.detail.value)
     util.wx.post('/api/user/apply_supplier',postData).then(res=>{
