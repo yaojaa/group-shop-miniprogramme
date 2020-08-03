@@ -1,3 +1,5 @@
+<i-share-painter palette="{{template}}" bind:imgOK="onImgOK"></i-share-painter>
+<!-- <image src="{{imgOkPath}}"></image> -->
 <preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view>
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
     <view slot="bottom">

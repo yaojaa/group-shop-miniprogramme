@@ -88,6 +88,7 @@ Page({
     shareFriendsImgStart: false,
     shareFriendsImgs: [],
     template: {},
+    imgOkPath:'',
     template2: {},
       width: 750,
       goodsImg: {},
@@ -134,6 +135,13 @@ Page({
     this.setData({
       specItem: item,
       specPopup: !this.data.specPopup,
+    })
+  },
+
+  onImgOK(e){
+    console.log('imgOK',e)
+    this.setData({
+      imgOkPath: e.detail.path
     })
   },
 
@@ -266,6 +274,7 @@ Page({
   },
 
   onShow: function () {
+
     // 关闭查看图片预览标识
     this.data.imgPreviewFlag = false
 
@@ -328,9 +337,12 @@ Page({
     if (app.globalData.userInfo) {
       uid = app.globalData.userInfo.user_id
     }
+
+    console.log(this.data.imgOkPath)
+
     return {
       title: title,
-      imageUrl: this.shareImg,
+      imageUrl: this.data.imgOkPath || this.shareImg,
       path:
         '/pages/goods/goods?goods_id=' +
         this.data.goods.goods_id +
@@ -700,6 +712,8 @@ Page({
           const d = res.data.data
 
           console.log(d)
+
+          util.drawShareFriends(this, d.goods)
 
           //把数量设为0
           //

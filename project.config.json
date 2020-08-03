@@ -104,7 +104,7 @@
 					"id": 3,
 					"name": "详情页启动",
 					"pathName": "pages/goods/goods",
-					"query": "goods_id=1992",
+					"query": "goods_id=2798",
 					"scene": 1008
 				},
 				{

@@ -1,8 +1,9 @@
 const qiniuUploader = require("./qiniuUploader");
-import Card from '../palette/card';
-import shareCard from '../palette/shareCard';
-import shareCard2 from '../palette/shareCard2';
-import shareCard3 from '../palette/shareCard3'; // 供应商海报
+// import Card from '../palette/card';
+// import shareCard from '../palette/shareCard';
+// import shareCard2 from '../palette/shareCard2';
+// import shareCard3 from '../palette/shareCard3'; // 供应商海报
+import shareCard4 from '../palette/shareCard4';
 const app = getApp();
 
 import config from './conf.js'
@@ -566,78 +567,85 @@ const bezier = function(pots, amount) {
     };
 }
 
+// //绘制分享朋友圈图片
+// function drawShareFriends(_this, res, buyuser, from) {
+//     var config = _this.data.shareCardConfig;
+//     var height = 0;
+//     var goods = res.goods;
+
+//     console.log(res, buyuser)
+
+//     let goods_content = goods.goods_content ? goods.goods_content.split(/[\r\n↵]/g) : [];
+//     config.content.des = [];
+//     //分段
+//     [goods.goods_name].concat(goods_content).forEach((e, i) => {
+//         config.content.des.push({ txt: e });
+//     })
+//     // 规格最小值
+//     // config.spec_price = parseFloat(goods.goods_spec[0].spec_price);
+//     // goods.goods_spec.forEach((e,i)=>{
+//     //     if(parseFloat(e.spec_price) < config.spec_price){
+//     //         config.spec_price = parseFloat(e.spec_price)
+//     //     }
+//     // })
+//     // 规格
+//     config.spec = goods.goods_spec;
+
+//     // 购买头像
+//     config.buyuser = buyuser;
+
+//     // 商品最大值和最小值
+//     config.price_max = goods.price_max;
+//     config.price_min = goods.price_min;
+
+//     //内容赋值获取高度
+//     _this.setData({
+//         shareCardConfig: _this.data.shareCardConfig
+//     }, () => {
+
+//         config.content.lineHeight = config.content.lineHeight || 56;
+//         config.content.fontSize = config.content.fontSize || 34;
+//         config.headImg.src = goods.user.headimg;
+//         config.userName = goods.user.nickname;
+//         // config.goodsImg.src = res[1].data.images[0];
+//         config.goodsImg.src = goods.goods_cover;
+
+//         //获取文本高度 绘制图片
+//         wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
+//             rects = rects[0];
+//             let dpr = (config.width - config.content.margin * 2) / rects[0].width;
+
+//             rects.forEach((e, i) => {
+//                 config.content.des[i].width = Math.ceil(e.width);
+//                 config.content.des[i].lines = Math.ceil(e.height / config.content.lineHeight * dpr);
+//                 config.content.des[i].height = config.content.des[i].lines * config.content.lineHeight;
+//                 height += config.content.des[i].height;
+
+//                 config.height = height;
+//             })
+//             console.log(config);
+//             if(from == 'businessGoods'){
+//                 config.qrcode.src = goods.qrcode;
+//                 _this.setData({
+//                     template: new shareCard3().palette(config),
+//                 });
+//             }else{
+//                 config.qrcode.src = goods.xcx_qrcode;
+//                 _this.setData({
+//                     template: new shareCard().palette(config),
+//                     template2: new shareCard2().palette(config),
+//                 });
+//             }
+
+//         })
+
+//     });
+// }
 //绘制分享朋友圈图片
-function drawShareFriends(_this, res, buyuser, from) {
-    var config = _this.data.shareCardConfig;
-    var height = 0;
-    var goods = res.goods;
-
-    console.log(res, buyuser)
-
-    let goods_content = goods.goods_content ? goods.goods_content.split(/[\r\n↵]/g) : [];
-    config.content.des = [];
-    //分段
-    [goods.goods_name].concat(goods_content).forEach((e, i) => {
-        config.content.des.push({ txt: e });
-    })
-    // 规格最小值
-    // config.spec_price = parseFloat(goods.goods_spec[0].spec_price);
-    // goods.goods_spec.forEach((e,i)=>{
-    //     if(parseFloat(e.spec_price) < config.spec_price){
-    //         config.spec_price = parseFloat(e.spec_price)
-    //     }
-    // })
-    // 规格
-    config.spec = goods.goods_spec;
-
-    // 购买头像
-    config.buyuser = buyuser;
-
-    // 商品最大值和最小值
-    config.price_max = goods.price_max;
-    config.price_min = goods.price_min;
-
-    //内容赋值获取高度
+function drawShareFriends(_this, goods) {
+    console.log(goods)
     _this.setData({
-        shareCardConfig: _this.data.shareCardConfig
-    }, () => {
-
-        config.content.lineHeight = config.content.lineHeight || 56;
-        config.content.fontSize = config.content.fontSize || 34;
-        config.headImg.src = goods.user.headimg;
-        config.userName = goods.user.nickname;
-        // config.goodsImg.src = res[1].data.images[0];
-        config.goodsImg.src = goods.goods_cover;
-
-        //获取文本高度 绘制图片
-        wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
-            rects = rects[0];
-            let dpr = (config.width - config.content.margin * 2) / rects[0].width;
-
-            rects.forEach((e, i) => {
-                config.content.des[i].width = Math.ceil(e.width);
-                config.content.des[i].lines = Math.ceil(e.height / config.content.lineHeight * dpr);
-                config.content.des[i].height = config.content.des[i].lines * config.content.lineHeight;
-                height += config.content.des[i].height;
-
-                config.height = height;
-            })
-            console.log(config);
-            if(from == 'businessGoods'){
-                config.qrcode.src = goods.qrcode;
-                _this.setData({
-                    template: new shareCard3().palette(config),
-                });
-            }else{
-                config.qrcode.src = goods.xcx_qrcode;
-                _this.setData({
-                    template: new shareCard().palette(config),
-                    template2: new shareCard2().palette(config),
-                });
-            }
-
-        })
-
+        template: new shareCard4().palette(goods)
     });
 }
 
