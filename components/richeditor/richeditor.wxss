@@ -84,7 +84,7 @@ input{
 .down-ctx{
   text-align: left;
   font: 28rpx;
-  border-bottom:: 1rpx solid #e4e4e4;
+  border-bottom: 1rpx solid #e4e4e4;
 }
 
 .op-btn-wrp{
