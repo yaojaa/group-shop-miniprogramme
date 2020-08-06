@@ -268,7 +268,11 @@ Page({
         thisData.goods_id = this.data.goods_id;
       }
     }else{
-      thisData.goods_spec_id_arr = this.data.result;
+      thisData = {
+        goods_spec_id_arr: this.data.result,
+        export_status: this.data.value3,
+        send_status: this.data.value1
+      }
       if(this.data.list.length == 0 ){
         console.log('暂无订单')
         return
@@ -278,6 +282,9 @@ Page({
         return;
       }
     }
+
+    thisData.goods_spec_ids = thisData.goods_spec_id_arr.toString();
+
     wx.showToast({ title: '开始为你生成...', icon: 'none', mask: true })
 
     util.wx.post('/api/'+role+'/order_export', thisData).then(res => {
