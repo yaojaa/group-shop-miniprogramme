@@ -22,7 +22,16 @@
             <view class="weui-cell">
                 <input name="goods_name" bindblur="editGoodsName" data-key="goods_name" bindchange="inputDuplex" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="请输入标题" />
             </view>
-            <block wx:if='{{isEmptyEditor}}'>
+
+                     <!--富文本编辑器-->
+                <rich-editor 
+                ctl-style="main-color" 
+                init-data="{{ content }}" 
+                op-style="btn-color" 
+                bind:updateData="getObject"/>
+
+                <!--富文本编辑器-->
+          <!--   <block wx:if='{{isEmptyEditor}}'>
                 <view class="weui-cell">
                     <view class="weui-cell__bd">
                         <view class='row' id="textareawrap">
@@ -51,7 +60,7 @@
             <view wx:else class="weui-cell editor-box" bindtap='goEditor'>
                 <view class="editorContentCss"><text>{{editorContent.text}}</text></view>
                 <view class="to-editor primary-text">(点击进入图文编辑)</view>
-            </view>
+            </view> -->
             <!-- <view class="new_add_btn" data-type="video" bindtap="addVideo">
                 <i-badge dot="{{goods_video.length}}">
                     <i-icon type="add" size="16" color="#69b90b" /> 视频短片（选填）

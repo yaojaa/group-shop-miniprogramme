@@ -203,7 +203,7 @@ Page({
       if(isSame){
         return wx.showToast({
             title:'已经有该地点啦',
-            icon:none
+            icon:'none'
         })
       }
 

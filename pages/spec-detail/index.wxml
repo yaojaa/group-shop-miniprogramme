@@ -4,7 +4,7 @@
             <input type="text" value="{{info.spec_name}}" bindblur="setName" placeholder="请输入名称"></input>
         </view>
         <view class="textarea-box mt-sm">
-            <v-textarea row="10" tips="{{'请输入商品详情'}}" textarea="{{info.spec_content}}" bind:sendData="getValue"></v-textarea>
+            <v-textarea row="10" tips="{{'请输入商品详情'}}" textarea="{{info.spec_desc}}" bind:sendData="getValue"></v-textarea>
         </view>
         <wux-upload listType="picture-card" fileList="{{ fileList }}" max="10" controlled url="{{url}}/api/seller/upload" bind:change="onChange" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
             <text>上传图片</text>

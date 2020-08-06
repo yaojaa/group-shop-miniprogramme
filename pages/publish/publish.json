@@ -15,7 +15,9 @@
         "wux-popup": "../../wux/popup/index",
         "drag": "../../components/drag/index",
         "preview-view": "../../components/preview-img/view",
-        "van-switch": "../../vant/switch/index"
+        "van-switch": "../../vant/switch/index",
+        "rich-editor":"../../components/richeditor/richeditor"
+
 
     }
 }

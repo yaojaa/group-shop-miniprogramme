@@ -411,6 +411,7 @@ Component({
       })
 
       this.saveBlock()
+      return false
     },
     moveDown: function (e) {
       let index = e.currentTarget.dataset.index
@@ -424,6 +425,7 @@ Component({
         newCurIndex: -1
       })
       this.saveBlock()
+      return false
     },
     newItem: function (e) {
       let index = e.currentTarget.dataset.index

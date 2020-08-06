@@ -1233,7 +1233,7 @@
 					"id": 165,
 					"name": "business/pages/publish/publish",
 					"pathName": "business/pages/publish/publish",
-					"query": "goods_id=50",
+					"query": "",
 					"scene": null
 				},
 				{
@@ -1247,6 +1247,13 @@
 					"id": -1,
 					"name": "创建供应商主页",
 					"pathName": "business/pages/create-home/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publish/publish",
+					"pathName": "pages/publish/publish",
 					"query": "",
 					"scene": null
 				}

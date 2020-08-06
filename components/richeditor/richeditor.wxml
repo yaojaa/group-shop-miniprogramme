@@ -7,13 +7,12 @@
         <block wx:if="{{ item.type === 'image' }}">
           <view class="common-contain image-contain">
             <view class="up-ctx" bindtap='tapEvent' data-index="{{ index }}" data-type="image">
-              <image wx:if="{{ item.src }}" src="{{ item.src }}" mode="{{ item.mode ? item.mode : 'widthFix' }}" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : 'width: auto;' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : 'height: auto;' }}"></image>
-              <image wx:else class="add-img" src='../../assets/icon/addimg.png'></image>
+              <image wx:if="{{ item.src }}" src="{{ item.src }}?imageView2/2/w/400/h/400/format/jpg/q/75" mode="{{ item.mode ? item.mode : 'widthFix' }}" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : 'width: auto;' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : 'height: auto;' }}"></image>
             </view>
               <view class="down-ctx">
               <view class="op-btn-wrp nt op-style">
                 <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
-                  <van-icon color="#666666" name="plus" size="24px" />
+                  <van-icon color="#999" name="plus" size="22px" />
                   <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                     <view class="float-tri"></view>
                     <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
@@ -21,9 +20,9 @@
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#666666" name="arrow-up" size="24px" /></view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#666666" name="arrow-down" size="24px" /></view>
-                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">  <van-icon color="#666666" name="close" size="24px" /></view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#999" name="arrow-down" size="22px" /></view>
+                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">  <van-icon color="#999" name="delete" size="22px" /></view>
               </view>
             </view>
 
@@ -44,7 +43,7 @@
             <view class="down-ctx" wx:if="{{innerInitData.length > 1}}">
               <view class="op-btn-wrp nt op-style">
                 <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
-                  <van-icon color="#666666" name="plus" size="24px" />
+                  <van-icon color="#999" name="plus" size="22px" />
                   <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                     <view class="float-tri"></view>
                     <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
@@ -52,10 +51,10 @@
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#666666" name="arrow-up" size="24px" /></view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#666666" name="arrow-down" size="24px" /></view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#999" name="arrow-down" size="22px" /></view>
                 <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}"> 
-                 <van-icon color="#666666" name="close" size="24px" />
+                 <van-icon color="#999" name="delete" size="22px" />
                </view>
               </view>
             </view>
@@ -79,7 +78,7 @@
             <view class="down-ctx">
               <view class="op-btn-wrp op-style">
                 <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
-                  <van-icon color="#666666" name="plus" size="24px" />
+                  <van-icon color="#999" name="plus" size="22px" />
                   <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                     <view class="float-tri"></view>
                     <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
@@ -87,10 +86,10 @@
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#666666" name="arrow-up" size="24px" /></view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#666666" name="arrow-down" size="24px" /></view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#999" name="arrow-down" size="22px" /></view>
                 <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">
-                  <van-icon color="#666666" name="close" size="24px" /></view>
+                  <van-icon color="#999" name="delete" size="22px" /></view>
               </view>
             </view>
           </view>

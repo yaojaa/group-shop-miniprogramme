@@ -37,6 +37,12 @@ Page({
     end_time: default_end_time,
     goods_video: '',
     goods_video_cover: '',
+    content:[{
+              // 模块类型
+              "type": "text",
+              // 文本内容
+              "desc": ""
+            }],
     picker: {
       start_date: default_start_time.split(' ')[0],
       end_date: default_end_time.split(' ')[0],
@@ -86,8 +92,6 @@ Page({
     size: 5,
     freight_tpl_id: 0, //运费模版ID 默认0
     freight_tpl_name: '默认方案全国包邮', //运费模版ID 默认0
-    editorContent: null,
-    isEmptyEditor: true,
     specItem: '',
     agent_opt :0,//'是否可以代理:0否;1是',
     show_buyerlist:0,
@@ -126,28 +130,6 @@ Page({
       urls: urls, // 需要预览的图片http链接列表
     })
   },
-  goEditor() {
-    let _this = this
-    if(this.data.isEmptyEditor && (this.data.content_imgs.length > 0 || this.data.currentInput)){
-      wx.showModal({
-        title: '温馨提示',
-        content: '图文编辑模式将替换原有内容描述，两者不能同时使用',
-        success (res) {
-          if (res.confirm) {
-            _this.jumpEditor();
-          }
-        }
-      })
-    }else{
-      wx.setStorage({
-        key: 'editorContent',
-        data: _this.data.editorContent,
-        success() {
-          _this.jumpEditor();
-        },
-      })
-    }
-  },
   jumpEditor(){
     wx.navigateTo({
       url: '../editor/editor',
@@ -162,7 +144,7 @@ Page({
   },
   toHelpSetting() {
 
-    if(this.data.goods_name == '' || this.data.goods_images.length ==0 || this.data.spec[0].spec_name=='' || this.data.spec[0].spec_price==''){
+    if(this.data.goods_name == '' || this.data.spec[0].spec_name=='' || this.data.spec[0].spec_price==''){
 
       return wx.showToast({
         title:'请先填写完整',
@@ -724,20 +706,17 @@ Page({
     const messages = {
       goods_name: {
         required: '请输入标题',
-      },
-      // goods_content: {
-      //     required: '请输入描述'
-      // }
+      }
     }
 
-    if (this.data.isEmptyEditor) {
-      rules.goods_content = {
-        required: true,
-      }
-      messages.goods_content = {
-        required: '请输入描述',
-      }
-    }
+    // if (this.data.isEmptyEditor) {
+    //   rules.goods_content = {
+    //     required: true,
+    //   }
+    //   messages.goods_content = {
+    //     required: '请输入描述',
+    //   }
+    // }
 
     this.WxValidate = new WxValidate(rules, messages)
   },
@@ -746,6 +725,10 @@ Page({
       url: '../goods/goods?goods_id=' + this.data.goods_id,
     })
   },
+    getObject: function (res) {
+      this.data.content = res.detail
+    },
+
   //提交表单
   submitForm(e) {
 
@@ -804,10 +787,11 @@ Page({
 
     let data = Object.assign(
       goods_id,
-      { content: JSON.stringify(this.data.editorContent) },
       e.detail.value, //表单的数据
       { spec: this.data.spec }, //商品数组数据
-      { goods_images: this.data.goods_images },
+      { goods_images: this.data.goods_images ,
+             content: this.data.content
+      },
       {
         self_address_id: this.data.sell_address.map((item) => {
           return item.self_address_id
@@ -953,14 +937,14 @@ Page({
   },
   fromSpec(e) {
     let { index } = e.currentTarget.dataset
-    let { spec_name, spec_pic, spec_content } = this.data.spec[index]
+    let { spec_name, spec_pic, spec_desc } = this.data.spec[index]
     wx.setStorage({
       key: 'specItem',
       data: {
         index,
         spec_name,
         spec_pic,
-        spec_content,
+        spec_desc,
       },
       success() {
         wx.navigateTo({
@@ -1030,19 +1014,37 @@ Page({
 
     var freight_tpl_name = ''
 
-    //获取地址列表 和获取详情异步f vfv
-    //
-    // if (gs.freight_tpl_id) {
-    //   this.getTplList()
-    // }
+    if(gs.content){
+      var content = JSON.parse(gs.content)
+     }
+  
+    
+     if(gs.goods_content){
 
-    let editorContent = JSON.parse(gs.content)
-    editorContent = editorContent ? editorContent : { html: '', text: '' }
-    let isEmptyEditor =
-      editorContent.text.replace(/\n/g, '').length == 0 &&
-      !/img/g.test(editorContent.html)
+      var content = []
+      content.push({
+              "type": "text",
+              "desc": gs.goods_content
+            })
+
+      gs.content_imgs.forEach(src=>{
+
+        content.push({
+              "type": "image",
+              "src": src
+        })
+
+      })
+
+
+
+     }
+
+     console.log(content)
+
 
     this.setData({
+      content,
       goods_images: gs.goods_images,
       goods_name: gs.goods_name,
       agent_opt:gs.agent_opt,

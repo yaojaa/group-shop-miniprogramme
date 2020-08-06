@@ -723,12 +723,63 @@ Page({
       url: '../orderList/orderList'
     })
   },
+
+
+  removeGoods(){
+
+        const goods_id = this.data.goods_id
+
+        Dialog.confirm({
+          title: '确定要删除此商品吗？',
+          message: '删除后暂时不可恢复'
+        }).then(() => {
+
+             util.wx.post('/api/supplier/goods_del',{
+              goods_id:goods_id
+             })
+            .then((res) => {
+           
+            Dialog.close()
+            this.toHome()
+
+            },res=>{
+
+             Dialog.close()
+
+              
+            })
+
+        }).catch(() => {
+          // on cancel
+        });
+
+  },
   showMasterMenu(){
 
     wx.showActionSheet({
       itemList: ['管理订单', '修改商品', '删除商品'],
-      success (res) {
+      success :(res)=> {
         console.log(res.tapIndex)
+        switch(res.tapIndex) {
+           case 0:
+            wx.navigateTo({
+                url:'/business/pages/order-manage/index?goods_id='+this.data.goods_id+'&goods_name='+this.data.goods.goods_name
+            })
+              break;
+           case 1:
+            wx.navigateTo({
+              url:'/business/pages/publish/publish?goods_id='+this.data.goods_id
+            })
+
+              break;
+
+          case 2:
+              this.removeGoods()
+                
+              break;
+      } 
+
+
       },
       fail (res) {
         console.log(res.errMsg)

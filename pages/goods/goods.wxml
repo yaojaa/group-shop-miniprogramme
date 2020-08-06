@@ -200,14 +200,8 @@
                 </i-cell>
             </i-cell-group>
         </view>
-        <view wx:if="{{isEmptyEditor}}" class='goods-content-wraper por'>
-            <view class='goods-content' bindtap="openUrl">
-                <text>{{goods.goods_content}}</text>
-            </view>
-            <view class="load-area" wx:if="{{!goods}}">
-                <wux-spin wux-class="spin" />
-            </view>
-        </view>
+
+
         <block wx:if="{{goods.show_buyerlist!==1}}">
             <view class='sub-title scale-b-1px contentBox'>
                 <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
@@ -245,39 +239,51 @@
             </view>
         </block>
         <view>
-            <view class='sub-title scale-b-1px'>图文介绍111 {{totalNum}}</view>
+            <view class='sub-title scale-b-1px'>图文介绍</view>
+
+                    <view  class='goods-content-wraper por'>
+            <view class='goods-content' wx:if="{{goods_content}}">
+
+                {{goods_content}}
+
+            </view>
+
+                <block wx:if="{{content.length}}">
+                <!--编辑器正文区-->
+                <view class="content-item" wx:for="{{content}}">
+
+                    <block wx:if="{{ item.type === 'text' }}">
+                        {{item.desc}}
+                    </block>
+
+                    <block wx:if="{{ item.type === 'image' }}">
+
+                    <image src="{{ item.src }}" mode="widthFix"></image>
+                    </block>
+
+                    <block wx:if="{{ item.type === 'video' }}">
+                        <video width="100%" src="{{ item.src }}"></video>
+                    </block>
+                </view>
+                </block>
+
+                <block wx:else>
+                    
+                 <rich-text nodes="{{content.html || '暂无介绍'}}"></rich-text>
+
+                </block>
+
+            <view class="load-area" wx:if="{{!goods}}">
+                <wux-spin wux-class="spin" />
+            </view>
+        </view>
+
+
+
         </view>
     </view>
-    <view class="piclist-container" wx:if="{{toShowPic || !isEmptyEditor}}">
-        <view wx:if="{{goods.goods_video}}">
-            <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
-        </view>
-        <block wx:if="{{isEmptyEditor}}" class="pic" wx:for="{{goods.content_imgs}}" wx:key="index" wx:for-item="img">
-            <image bindtap="showGallery" data-current="index" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
-        </block>
-        <view class="editor-content" wx:if="{{!isEmptyEditor}}">
-            <block wx:for='{{editorContent.htmlArr}}' wx:key='index'>
-                <rich-text nodes="{{item}}"></rich-text>
-                <video class="editor-video" wx:if="{{editorContent.video[index]}}" src="{{editorContent.video[index]}}"></video>
-            </block>
-        </view>
-        <view class="flex text-center" style="padding: 15px 0">
-            <view class="flex-sub">
-                <button class="btn green_bg" bindtap='copyGoods'>
-                    <i-icon type="editor" color="#49b34d" />
-                    复制发布
-                </button>
-            </view>
-            <div class="solid-right"></div>
-            <view class="flex-sub" wx:if="{{goods.show_buyerlist!==1}}">
-                <button class="btn green_bg" bindtap='copyDetail'>
-                    <i-icon type="barrage" color="#49b34d" />
-                    文字接龙
-                </button>
-            </view>
-            <!-- <share-button product="{{hw_data}}" bind:error="on_error" type="1" wx:if="{{hw_data}}" /> -->
-        </view>
-    </view>
+
+
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
         <view class="weui-footer__links" bindtap="toPublish" wx:if="{{!showPanel}}">
             <button size="mini" type="primary" class="btn_no_style linenear_bg">+ 我也要使用开心麻团</button>

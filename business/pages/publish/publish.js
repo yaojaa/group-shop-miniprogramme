@@ -811,15 +811,11 @@ Page({
      //        }],
      // 
      // 
-     console.log(typeof (gs.content) == 'string')
-     if(typeof (gs.content) == 'string'){
-      var content=[
-         {
-              "type": "text",
-              "desc": JSON.parse(gs.content).html
-            }
-      ]
+     // 
+     if(gs.content){
+      var content = JSON.parse(gs.content)
      }
+  
     
     
      console.log('content',content)

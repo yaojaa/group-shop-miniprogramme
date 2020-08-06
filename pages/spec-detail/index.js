@@ -19,7 +19,18 @@ Page({
     }
   },
   onComplete(e) {
+    console.log(e)
+
+
     wx.hideLoading()
+
+    if(!e.detail.statusCode == 200){
+      return wx.showToast({
+        title:'上传失败请重试'
+      })
+    }
+
+
     let data = JSON.parse(e.detail.data)
     let img = {}
     if (data.code == 200) {
@@ -53,7 +64,7 @@ Page({
   },
   getValue(e) {
     this.setData({
-      'info.spec_content': e.detail,
+      'info.spec_desc': e.detail,
     })
   },
   setName(e) {
@@ -62,12 +73,12 @@ Page({
     })
   },
   submit() {
-    let { index, spec_name, spec_pic, spec_content } = this.data.info
+    let { index, spec_name, spec_pic, spec_desc } = this.data.info
     spec_pic = this.data.fileList.map((item) => item.url)
     util.setParentData({
       ['spec[' + index + '].spec_name']: spec_name,
       ['spec[' + index + '].spec_pic']: spec_pic,
-      ['spec[' + index + '].spec_content']: spec_content,
+      ['spec[' + index + '].spec_desc']: spec_desc,
     })
   },
   /**

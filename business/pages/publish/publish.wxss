@@ -267,8 +267,15 @@ video{
 
 .miniInput{
   display: inline-block;
-  width: 180rpx;
-  background: #fff;
+  width: 140rpx;
+  margin-top: 10rpx;
+  padding: 3px;
+  height: 50rpx
+}
+
+.miniInput2{
+  display: inline-block;
+  width: 250rpx;
   margin-top: 10rpx;
   padding: 3px;
   height: 50rpx
