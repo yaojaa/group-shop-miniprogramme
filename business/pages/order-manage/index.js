@@ -51,8 +51,21 @@ Page({
         shipped_order: 0,
         back_order: 0,
         showPop: false,
-        search_order_status:''
+        search_order_status:'',
+        activeNames: [],
+        isShowTui: false,
+        orderData: {}
     },
+    closeTui(){
+        this.setData({
+            isShowTui: false
+        })
+    },
+      onChange(event) {
+        this.setData({
+          activeNames: event.detail,
+        });
+      },
 
     sendMsgAll(){
 
@@ -744,17 +757,35 @@ Page({
 
     },
     to_refund(e){
-          console.log(e)
 
         const order_refund_id = e.currentTarget.dataset.order_refund_id || null
 
         const order_id = e.currentTarget.dataset.order_id
 
+        let data = null;
+
+        this.data.dataList.forEach( e => {
+            e.forEach(d=>{
+                if(d.order_id == order_id){
+                    data = d;
+                } 
+            })
+        })
+          // console.log('33',e)
+          console.log(data, order_refund_id, order_id)
+
+
         if(order_refund_id){
 
-           wx.navigateTo({
-            url:'../refundment-detail-supplier/index?order_id='+order_id+'&id='+order_refund_id
-          })
+            this.setData({
+                orderData: data,
+                activeNames: this.data.activeNames,
+                isShowTui: true
+            })
+
+          //  wx.navigateTo({
+          //   url:'../refundment-detail-supplier/index?order_id='+order_id+'&id='+order_refund_id
+          // })
 
         }
     },
