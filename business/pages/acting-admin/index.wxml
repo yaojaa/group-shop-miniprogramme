@@ -5,7 +5,7 @@
 
 
 
-    <view><button size="mini"  bindtap="openShareFriends" >邀请小伙伴</button></view>
+    <view><button size="mini"  bindtap="openShareFriends" >邀请代理成员</button></view>
     
         <view class="total">共{{total}}人</view>
 
@@ -21,6 +21,14 @@
 <view class="act-admin">
 <!--     <van-search  background="#ffffff" value="{{ value }}" placeholder="请输入搜索关键词" />
  -->
+
+    <view  wx:if="{{list.length == 0}}" class="center">
+
+        <view style="color:#666; margin-top: 100px">暂无成员...</view>
+
+    </view>
+
+
     <view wx:for="{{list}}" wx:if="{{list.length > 0}}">
         <!--cell start -->
         <view class="act-cell flex">

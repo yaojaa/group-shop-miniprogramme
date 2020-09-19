@@ -725,9 +725,14 @@ Page({
       url: '../goods/goods?goods_id=' + this.data.goods_id,
     })
   },
-    getObject: function (res) {
+    getObject: util.debounce(function (res) {
+      
       this.data.content = res.detail
-    },
+
+      this.editor({content:res.detail})
+
+      console.log('编辑器内容改变：',this.data.content)
+    },2000),
 
   //提交表单
   submitForm(e) {
@@ -841,7 +846,7 @@ Page({
 
     this.editor({goods_content:this.data.goods_content})
   },
-  //点击保存只提交商品规格部分
+  //点击保存只提交商品规格部分 
   saveEdit(){
 
 
@@ -1050,8 +1055,6 @@ Page({
       agent_opt:gs.agent_opt,
       goods_content: gs.goods_content,
       show_buyerlist: gs.show_buyerlist,
-      isEmptyEditor: isEmptyEditor,
-      editorContent: editorContent,
       is_timelimit: gs.is_timelimit,
       sell_address: gs.self_address,
       delivery_method: gs.delivery_method,

@@ -98,6 +98,29 @@ const throttle = function (fn, gapTime) {
   }
 }
 
+function debounce (fn, delay) {
+    let timer   = null;
+
+    return function () {
+    let args = arguments;
+    let context = this;
+
+        if (timer) {
+            clearTimeout(timer);
+
+            timer = setTimeout(function () {
+                fn.apply(context, args);
+            }, delay);
+        } else {
+            timer = setTimeout(function () {
+                fn.apply(context, args);
+            }, delay);
+        }
+    }
+}
+
+
+
 
 //input双向绑定 注意context
 
@@ -836,6 +859,7 @@ module.exports = {
     bezier,
     setParentData,
     throttle,
+    debounce,
     url2json,
     checkMobile,
     isMoney,

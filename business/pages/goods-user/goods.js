@@ -116,7 +116,6 @@ Page({
       weChat: ''
     },
     isEmptyEditor: true,
-    editorContent: null,
     specPopup: false,
     specItem: {}
   },
@@ -218,31 +217,33 @@ Page({
                             e.spec_pic.push(d.goods.goods_images[0].img_url)
                         }
                     })
+
+                    let content = JSON.parse(d.goods.content)
+
                     
-                    let editorContent = JSON.parse(d.goods.content);
-                    editorContent = editorContent ? editorContent : {html:'', text:''};
+          //           let editorContent = JSON.parse(d.goods.content);
+          //           editorContent = editorContent ? editorContent : {html:'', text:''};
 
-                    if(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p><p( wx:nodeid="\d+")?><img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/.test(editorContent.html)){
-            editorContent.html = editorContent.html.replace(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p>/,'<p>');
-          }
+          //           if(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p><p( wx:nodeid="\d+")?><img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/.test(editorContent.html)){
+          //   editorContent.html = editorContent.html.replace(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p>/,'<p>');
+          // }
         
-                    let isEmptyEditor = editorContent.text.replace(/\n/g,'').length == 0 && !/img/g.test(editorContent.html);
+          //           let isEmptyEditor = editorContent.text.replace(/\n/g,'').length == 0 && !/img/g.test(editorContent.html);
 
-                    editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
-                    editorContent.htmlArr = editorContent.html.split(/<img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/);
+          //           editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
+          //           editorContent.htmlArr = editorContent.html.split(/<img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/);
 
-                    if(editorContent.video){
-                      editorContent.video = editorContent.video.map(e => {
-                        return e.replace(/(alt=)|["']/g,'')
-                      })
-                    }else{
-                      editorContent.video=[]
-                    }
-                    console.log(editorContent)
+          //           if(editorContent.video){
+          //             editorContent.video = editorContent.video.map(e => {
+          //               return e.replace(/(alt=)|["']/g,'')
+          //             })
+          //           }else{
+          //             editorContent.video=[]
+          //           }
+          //           console.log(editorContent)
 
                     this.setData({
-                        isEmptyEditor: isEmptyEditor,
-                        editorContent: editorContent,
+                        content,
                         goods: d.goods,
                         'imgs.src': d.goods.goods_images,
                         goods_spec: d.goods.goods_spec.length == 0 ? d.goods.goods_images : d.goods.goods_spec,

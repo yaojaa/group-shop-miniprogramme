@@ -151,7 +151,7 @@ Page({
  */
 
   showApplyModal(msg){
-                wx.showModal({  
+              wx.showModal({  
               title: msg,  
               content: '是否立即申请',
               confirmText:'立即申请',
@@ -189,9 +189,6 @@ Page({
 
 
         }
-
-
-
 
         this.setData({
           is_help_sale_user:res.data.data==0?false:true
@@ -304,6 +301,7 @@ Page({
 
 
     var title = ''
+    var img_url =''
 
 
     if(e.from == 'menu'){
@@ -314,6 +312,8 @@ Page({
     }else{
 
       const {type} = e.target.dataset
+
+
           var pathParam = ''
 
           if(type == 'invit'){
@@ -321,10 +321,13 @@ Page({
             title = this.data.goods.user.nickname +'邀请你帮卖【'+this.data.goods.goods_name+'】'
                pathParam = '&help_sale=true'
 
-            this.shareImg = this.data.goods.goods_cover
+               img_url = this.data.imgOkPath
+
+
           }else{
 
             title = this.data.goods.goods_name
+            img_url = this.shareImg
 
           }
 
@@ -338,11 +341,14 @@ Page({
       uid = app.globalData.userInfo.user_id
     }
 
-    console.log(this.data.imgOkPath)
+    console.log('/pages/goods/goods?goods_id=' +
+        this.data.goods.goods_id +
+        '&from_id=' +
+        uid+pathParam)
 
     return {
       title: title,
-      imageUrl: this.data.imgOkPath || this.shareImg,
+      imageUrl: img_url,
       path:
         '/pages/goods/goods?goods_id=' +
         this.data.goods.goods_id +
@@ -354,17 +360,13 @@ Page({
     openInviteFriends() {
       console.log(this.data.goods.agent_opt)
     
-    if(this.data.goods.agent_opt==0){
-
        wx.navigateTo({
               url: '../help-sale-setting/index?goods_id=' + this.data.goods_id,
             })
 
-    }else{
-      this.setData({
-        showInviteFriend: true,
-      })
-    }
+      // this.setData({
+      //   showInviteFriend: true,
+      // })
 
 
 
@@ -634,17 +636,11 @@ Page({
   /**修改当前商品的帮卖价格**/
   goModify() {
 
-      wx.navigateTo({
-              url: '../publish/publish?goods_id=' + this.data.goods_id,
-            })
 
-      return
-
-
+      //如果商品上级不是供应商 
     if(this.data.goods.supplier_id==0){
-
             wx.navigateTo({
-              url: '../publish/publish?goods_id=' + this.data.goods_id,
+              url: '../help-sale-setting/index?goods_id=' + this.data.goods_id
             })
 
         }else{
@@ -735,7 +731,9 @@ Page({
             }
           })
 
-                    let content = JSON.parse(d.goods.content)
+           let content = JSON.parse(d.goods.content)
+
+           console.log('content is ',content)
 
 
           // let editorContent = JSON.parse(d.goods.content)
@@ -1347,7 +1345,7 @@ Page({
     if(this.data.goods.store.user_id == app.globalData.userInfo.user_id){
 
       return wx.showToast({
-        title:'您不能自己卖自己的商品',
+        title:'您不能自己帮卖自己的商品',
         icon: 'none'
       })
     }    
@@ -1370,6 +1368,26 @@ Page({
 
       }else if(res.data.code == 0){
        this.showApplyModal(res.data.msg)
+      }
+      else if(res.data.code == -2000){ //没有店铺
+
+           wx.showModal({  
+              title: '你需要先创建团长主页',  
+              content: '是否立即创建',
+              confirmText:'立即创建',
+              confirmColor:'#4bb000',
+              success:(res)=>{    
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url:'../create-home/index'
+                  })
+                 
+                } else if (res.cancel) {   
+                   console.log('用户点击取消')
+                }
+              }
+            })
+
       }
       else{
 

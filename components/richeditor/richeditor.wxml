@@ -20,8 +20,8 @@
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#999" name="arrow-down" size="22px" /></view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}"><van-icon color="#999" name="arrow-down" size="22px" /></view>
                 <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">  <van-icon color="#999" name="delete" size="22px" /></view>
               </view>
             </view>
@@ -34,7 +34,7 @@
         <block>
           <view class="common-contain text-contain" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.color ? 'color: ' + item.color + ';' : 'color: #33333;' }}{{ item.size ? 'font-size:q ' + item.size + 'rpx;' : 'font-size: 28rpx;' }}">
            <view class="up-ctx">
-              <textarea bindinput='changeInput' data-index="{{ index }}"  class="common-edit-contain" placeholder='请输入文本内容' value="{{item.desc}}" > 
+              <textarea maxlength="1000" bindinput='changeInput' data-index="{{ index }}"  class="common-edit-contain" placeholder='请输入文字描述' value="{{item.desc}}" > 
               </textarea>
 
 
@@ -51,8 +51,8 @@
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#999" name="arrow-down" size="22px" /></view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" ><van-icon color="#999" name="arrow-down" size="22px" /></view>
                 <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}"> 
                  <van-icon color="#999" name="delete" size="22px" />
                </view>
@@ -86,8 +86,8 @@
                     </view>
                   </view>
                 </view>
-                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}" wx:if="{{ index !== 0 }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
-                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" wx:if="{{ index !== innerInitData.length - 1 }}"><van-icon color="#999" name="arrow-down" size="22px" /></view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}"><van-icon color="#999" name="arrow-up" size="22px" /></view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}" ><van-icon color="#999" name="arrow-down" size="22px" /></view>
                 <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">
                   <van-icon color="#999" name="delete" size="22px" /></view>
               </view>

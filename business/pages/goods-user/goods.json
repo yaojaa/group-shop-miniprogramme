@@ -22,6 +22,7 @@
         "van-popup": "../../../vant/popup/index",
         "van-action-sheet": "../../../vant/action-sheet/index",
         "custom-bar": "../../../components/custom-bar/index",
+        "goods-detail": "../../../components/goods-detail/index",
         "wux-gallery": "../../../wux/gallery/index",
         "van-dialog": "../../../vant/dialog/index",
         "van-cell": "../../../vant/cell/index",

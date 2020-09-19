@@ -4,6 +4,6 @@
   "navigationBarTitleText": "代理申请",
   "usingComponents": {
 
-  "van-dialog": "../../vant/dialog/index"
+  "van-dialog": "../../../vant/dialog/index"
   }
 }

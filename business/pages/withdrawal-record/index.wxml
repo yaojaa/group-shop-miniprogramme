@@ -18,7 +18,6 @@
         </view>
         <view class="no-content" style="height:80vh" wx:else>
             <view class="no-content-bd">
-                <image src="http://leileiimg.toutoumei.com/front/img/test_none.png" class="no-content-icon"></image>
                 <view class="no-content-des"><text>您还没有提现记录</text></view>
             </view>
         </view>

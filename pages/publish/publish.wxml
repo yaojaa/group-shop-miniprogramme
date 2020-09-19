@@ -19,7 +19,7 @@
             </view>
         </view>
         <view class="weui-cells weui-cells_form white-bg" style="overflow: hidden;">
-            <view class="weui-cell">
+            <view>
                 <input name="goods_name" bindblur="editGoodsName" data-key="goods_name" bindchange="inputDuplex" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="请输入标题" />
             </view>
 
@@ -141,7 +141,7 @@
                 </view>
             </wux-popup>
         </view>
-        <i-panel i-class="no-margin" title="规格名称">
+        <i-panel i-class="no-margin" title="商品或规格名称">
             <view class="weui-cells_form">
                 <view class="item" wx:for="{{spec}}" wx:key="$this">
                     <view class="weui-cell">

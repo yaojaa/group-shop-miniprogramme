@@ -83,7 +83,7 @@ Page({
 
 
                     if (data.link_store.length == 1) {
-                        data.showAction == true
+                        data.showAction =true
                     } else if (data.link_store.length == 2) {
                         data.link_store.forEach(it => {
                             if (it && it.store_id == app.globalData.userInfo.store_id) {

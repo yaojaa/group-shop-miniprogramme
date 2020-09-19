@@ -71,11 +71,11 @@ Page({
     const { id, type } = e.currentTarget.dataset
     if (type == 'supplier') {
       wx.navigateTo({
-        url: '../supplier-home/index?id=' + id
+        url: '../supplier-home/index?type=supplier&id=' + id
       })
     } else {
       wx.navigateTo({
-        url: '../userhome/index?id=' + id
+        url: '../supplier-home/index?type=seller&id=' + id
       })
     }
   },

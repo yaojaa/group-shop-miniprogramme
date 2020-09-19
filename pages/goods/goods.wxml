@@ -70,7 +70,7 @@
             <view class="num">
                 <van-icon name="friends-o" color="#4fac05" size="20px" />
             </view>
-            邀请帮卖
+            帮卖设置
         </view>
 <!-- 
          <view class="flex-item" bindtap="goOrders">
@@ -226,7 +226,7 @@
                             <view class="name">{{item.nickname}}</view>
                             <view class="type">
                                 <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
-                                    跟 {{gds.qty}} 件
+                                  {{gds.spec_name}} + {{gds.qty}}
                                 </view>
                             </view>
                         </view>
@@ -241,7 +241,9 @@
             </view>
         </block>
         <view>
-            <view class='sub-title scale-b-1px'>图文介绍</view>
+
+        <goods-detail content="{{content}}"></goods-detail>
+   <!--          <view class='sub-title scale-b-1px'>图文介绍</view>
 
                     <view  class='goods-content-wraper por'>
             <view class='goods-content' wx:if="{{goods_content}}">
@@ -251,23 +253,17 @@
             </view>
 
                 <block wx:if="{{content.length}}">
-                <!--编辑器正文区-->
-                <view class="content-item" wx:for="{{content}}">
-
-                    <block wx:if="{{ item.type === 'text' }}">
+                <view class="content-item" wx:for="{{content}}"><block wx:if="{{ item.type === 'text' }}">
                         {{item.desc}}
                     </block>
-
                     <block wx:if="{{ item.type === 'image' }}">
-
                     <image src="{{ item.src }}" mode="widthFix"></image>
                     </block>
 
                     <block wx:if="{{ item.type === 'video' }}">
                         <video width="100%" src="{{ item.src }}"></video>
                     </block>
-                </view>
-                </block>
+                </view></block>
 
                 <block wx:else>
                     
@@ -278,7 +274,7 @@
             <view class="load-area" wx:if="{{!goods}}">
                 <wux-spin wux-class="spin" />
             </view>
-        </view>
+        </view> -->
 
 
 
@@ -292,11 +288,12 @@
         </view>
     </view>
     
+    <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->
 
-    <view class='footer-cart'  wx:if="{{is_help_sale || is_help_sale_user}}">
+    <view class='footer-cart'  wx:if="{{is_help_sale || (is_help_sale_user && goods.agent_opt==1)}}">
          <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
-            <text class="label">我 的 {{totalNum}}</text>
+            <text class="label">我 的</text>
         </view>
 
          <view class='icon' style="flex:4">
@@ -306,24 +303,17 @@
         </view>
     </view>
 
-    <view class='footer-cart' wx:else>
-        <!-- <view class='icon' bindtap='goHomePage'>
 
-             <image src="{{goods.user.headimg}}" class="avatar" 
-             style="width: 18px;height: 18px;margin-top: 3px">
-                    </image>
+    <!--正常客户下单-->
 
-
-    <text class="label">主 页</text>
-        </view> -->
+    <view class='footer-cart' wx:if="{{!is_help_sale_user}}">
         <view class='icon' bindtap='homepage' style="flex: 22">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
 
 
-
-        <block wx:if="{{totalNum > 0}}">
+        <block>
 
         <form style="flex:78;position: relative;" bindtap="cartPanelShow" >
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
@@ -332,32 +322,54 @@
 
             <!--如果是团看自己-->
             <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg" formType="submit">
-                 
-                <block wx:if="{{is_help_sale}}">直接下单</block>
-                <block wx:else>立即参与</block>
-
-
+              立即参与
             </button>
             <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires == 2 }}" class="buy linenear_bg" formType="submit">
-                未开始
+              未开始
             </button>
             <button disabled="{{true}}" wx:if="{{goods && goods.goods_expires == 3 || putaway_status==2 || goods.is_on_sale == 2}}" class="buy" formType="submit">
-                已结束
+              已结束
             </button>
         </form>
-    </block>
+    </block>  
+    </view>
 
 
-<button    bindtap="openInviteFriends" wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 39" class="buy linenear_bg left-raduis">
+    <!--是团长自己自己-->
+
+   <view class='footer-cart' wx:if="{{showPanel}}">
+        <view class='icon' bindtap='homepage' style="flex: 22">
+            <i-icon type="mine" size="26" color="#333" />
+            <text class="label">我 的</text>
+        </view>
+        <button  open-type="share"  wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 39" data-type="invit" class="buy linenear_bg left-raduis right-raduis">
                  邀请好友帮卖
-            </button>
+        </button>
 
-<button wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg right-raduis" open-type="share" style="flex: 39">
+<button  open-type="share" data-type="share"   wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 78">
                  转发顾客下单
             </button>
-       
+
+         <form wx:if="{{totalNum > 0}}" style="flex:78;position: relative;" bindtap="cartPanelShow" >
+            <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
+                {{totalNum}}
+            </text>
+
+            <!--如果是团看自己-->
+            <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg left-raduis right-raduis" formType="submit">
+              立即参与
+            </button>
+            <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires == 2 }}" class="buy linenear_bg left-raduis right-raduis" formType="submit">
+              未开始
+            </button>
+            <button disabled="{{true}}" wx:if="{{goods && goods.goods_expires == 3 || putaway_status==2 || goods.is_on_sale == 2}}" class="buy" formType="submit">
+              已结束
+            </button>
+        </form>
         
     </view>
+
+
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="title f14 pt-sm pl-df" style="margin-bottom: -5px">确定数量</view>
@@ -429,7 +441,7 @@
 
 
       <van-action-sheet show="{{ showInviteFriend }}" title="邀请好友代理帮卖" bind:close="closeInviteFriend">
-        <view class="tips pv-xs" bindtap="goModifyPrice">
+        <view class="tips pv-xs" bindtap="goModify">
             将小程序或者海报转发好友帮你分销，订单会自动汇总到你这里。 可以点击这里<text class="text-warning">修改代理价格</text>
         </view>
         <view class="flex text-center p-xl ">

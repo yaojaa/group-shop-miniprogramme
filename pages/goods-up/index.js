@@ -141,7 +141,7 @@ Page({
         console.log(e)
 
 
-        const value = e.detail
+        const value = e.detail.value
 
         console.log(value,+mini,+max)
 
@@ -216,6 +216,12 @@ Page({
 
         },
     //获取供应商品详情
+    getSupplierGoodsInfo(){
+      return  util.wx.get('/api/seller/get_supplier_goods_detail', {
+                goods_id: this.data.supid 
+            })
+
+    },
 
     modifyPrice(){
 

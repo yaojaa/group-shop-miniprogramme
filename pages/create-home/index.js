@@ -26,13 +26,70 @@ Page({
       store_logo:uInfo.headimg || '',
       store_name:uInfo.nickname || ''
     })
-
+    this.getWxCode()
 
 
 
   },
    onChange(e) {
       wx.showLoading()
+
+    },
+
+   getWxCode() {
+        wx.login({
+            success: res => {
+                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                if (res.code) {
+                    console.log(res)
+                    this.data.code = res.code
+
+                    util.wx.get('/api/index/get_openid', {
+                        js_code: res.code
+                    }).then(res => {
+                        if (res.data.code == 200) {
+                            this.data.session_key = res.data.data.session_key
+                        }
+                    })
+                }
+            }
+        })
+    },
+     //通过绑定手机号登录
+    getPhoneNumber: function(e) {
+
+
+        util.wx.post('/api/user/get_wx_mobile', {
+            'encryptedData': e.detail.encryptedData,
+            'iv': e.detail.iv,
+            'session_key': this.data.session_key
+        }).then((res) => {
+
+          console.log(res.data.code,res.data.data.phoneNumber)
+
+            if (res.data.code == 200 || res.data.code == 400611) {
+                this.setData({
+                    mobile: res.data.data.phoneNumber
+                })
+
+                  wx.showToast({
+                    title: '获取手机号成功',
+                    icon: 'none'
+                })
+                // wx.redirectTo({
+                //     url: '/' + this.data.url + '?id=' + this.data.id
+                // })
+            } else {
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
+                })
+
+               // this.getWxCode()
+
+            }
+        })
+
 
     },
 
@@ -124,7 +181,6 @@ Page({
             })
           }else if(res.data.code == 2){
 
-
             if(app.globalData.backUrl){
 
                      wx.redirectTo({
@@ -139,8 +195,6 @@ Page({
                   })
 
                 }
-
-
 
           }
 

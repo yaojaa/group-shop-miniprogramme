@@ -1732,11 +1732,7 @@ float:right
     vertical-align: middle;
 }
 
-.editorCONTENTimg{ margin-top: 5px; }
 
-.editorCONTENTVIDEO{ display: none; }
-
-.editor-video{ width: 100%; }
 
 .no-content {
 background: url('https: //static.kaixinmatuan.cn/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.L93aAkSP1WBu55d11a6a3dd783840a0c548161476571.jpg');
@@ -1750,3 +1746,5 @@ line-height: 315px;
 text-align: center;
 color: #888;
 }
+
+

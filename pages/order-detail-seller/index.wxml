@@ -90,6 +90,7 @@
             <van-cell customStyle="padding:5px 20px" title="付款时间" wx:if="{{info.addtime}}" value="{{info.addtime}}" border="{{ false }}" value-class="text-gray" />
         </van-cell-group>
 
+
         <view class="ml-lg mr-lg mt-xxl f12 " wx:if="{{!info.showAction}}">
 
              <view class="fl_left">可赚 <text class="text-warning">¥{{info.profit}}</text>元 </view>

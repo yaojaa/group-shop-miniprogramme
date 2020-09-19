@@ -100,14 +100,19 @@ Page({
             sub_agent_price:price
         }).then(res=>{
           if(res.data.code == 200){
-            // wx.showToast({
-            //   title:'价格修改成功',
-            //   icon:'none'
-            // })
+            wx.showToast({
+              title:'价格修改成功',
+              icon:'none'
+            })
+            this.setData({
+                btnDisable:false
+            })
+
             const key = 'spec['+index+'].sub_agent_price'
             util.setParentData({
                 [key]:price
             },true)
+            
             
           }else{
             wx.showToast({
@@ -126,20 +131,22 @@ Page({
         const {index,spec_price,goods_spec_id} = e.currentTarget.dataset
         var is_btnDisable =false  
 
-        var value = e.detail
+        var value = parseFloat(e.detail.value)
 
-        if(value !== '' && !util.isMoney(value)){
+        console.log(1111,value)
+
+        console.log(util.isMoney(value))
+
+        if(!util.isMoney(value)){
 
           wx.showToast({
                     title:'价格格式不合法',
                     icon:'none'
                 })
-
-           return this.setData({
-                btnDisable:true
-            })
-
+           return 
         }
+
+        console.log('执行了这里')
 
          if(value == '' || value == 0){
 

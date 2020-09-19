@@ -456,7 +456,6 @@ Page({
             goods_content:d.goods.goods_content,
             content,
             goods: d.goods,
-
             'imgs.src': d.goods.goods_images,
             goods_spec:
               d.goods.goods_spec.length == 0

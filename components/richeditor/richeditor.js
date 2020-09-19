@@ -202,17 +202,13 @@ Component({
               "type": "text",
               // 文本内容
               "desc": "",
-              // 容器宽
-              "width": ""
-            })
+              })
           } else {
             self.data.innerInitData.push({
               // 模块类型
               "type": "text",
               // 文本内容
-              "desc": "",
-              // 容器宽
-              "width": ""
+              "desc": ""
             })
           }
 
@@ -244,14 +240,7 @@ Component({
                   "type": "video",
                   // 视频地址
                   "src": res.data.file_url,
-                  // 容器宽
-                  "width": "",
-                  // 容器高
-                  "height": "",
-                  // 视频描述
-                  "desc": "",
-                  // 视频模式
-                  "mode": ""
+ 
                 })
               } else {
                 self.data.innerInitData.push({
@@ -259,15 +248,7 @@ Component({
                   // 模块类型
                   "type": "video",
                   // 视频地址
-                  "src": res.data.file_url,
-                  // 容器宽
-                  "width": "",
-                  // 容器高
-                  "height": "",
-                  // 视频描述
-                  "desc": "",
-                  // 视频模式
-                  "mode": ""
+                  "src": res.data.file_url
                 })
               }
 

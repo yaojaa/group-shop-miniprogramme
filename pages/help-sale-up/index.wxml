@@ -52,8 +52,8 @@
 
         <view class="m-df">
 
-            <button class="btn  primary block linenear_bg" bindtap="goDetail" disabled="{{btnDisable}}">
-                查看详情
+            <button class="btn primary block linenear_bg" bindtap="goDetail" disabled="{{btnDisable}}">
+                确定
             </button>
 
         </view>

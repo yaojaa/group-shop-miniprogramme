@@ -2,9 +2,8 @@
     <view class="order-title ">
 
 
-     <text class="f18" style="float: left;">最新订单</text>
       
-      <van-button class="ml-sm" type="primary" plain  bindtap="exportExcel">导出Excel</van-button>
+      <button type="success"   size="mini" bindtap="exportExcel">导出订单</button>
           <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
                     <i-icon size="20" type="other" />
                 </i-button> -->
@@ -18,7 +17,7 @@
         </i-switch> -->
         </view>
     <view class="tabsArea">
-        <van-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
+        <van-tabs current="{{ tab }}" color="#ffaa4f" bindchange="handleTab">
             <van-tab name="2" title="待发货"></van-tab>
             <van-tab name="3" title="已发货"></van-tab>
         </van-tabs>
@@ -27,9 +26,9 @@
  -->
 
 
-    <view class="text-center" wx:if="{{!loading && dataList.length==0}}">
-        暂无订单
-    </view>
+ <view class="no-content" wx:if="{{dataList[0].length == 0}}">
+     你还没有订单
+ </view>
     
 <block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
 
@@ -152,6 +151,10 @@
     </view>
 
 </block>
+
+   <view class="text-center" wx:if="{{dataList.length == 0}}">
+        暂无订单
+    </view>
 
    <view class="text-center mb-sm">
         <wux-spin wx:if="{{loading}}"></wux-spin>

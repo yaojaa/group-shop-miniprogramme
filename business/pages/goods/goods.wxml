@@ -57,7 +57,6 @@
                 <text class="text-sm n-bold">/起</text>
             </view>
             <view class="text-sm text-muted">
-                访问人数 {{goods.pageview_count+1}}
                 <text wx:if="{{goods.show_buyerlist!==1}}">已售 {{goods.sold_number}}</text>
                 <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text><text wx:else>社区配送</text>
             </view>
@@ -113,9 +112,7 @@
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
             <view class="goods-name pv-xs">{{goods.goods_name}} 
-        {{goods.is_timelimit}}
-        {{goods.is_timelimit=='0'}}
-</view>
+            </view>
         </view>
         <view class="goods-share">
             <button bindtap='handlePoster' class="btn-reset">
@@ -143,7 +140,7 @@
                         </view>
                     </view>
                     <view class="info">
-                        <view class="f14 text-default">{{item.spec_name}}</view>
+                        <view class="f16 bold text-default">{{item.spec_name}}</view>
                         <view wx:if="{{item.spec_desc}}" class="f12 text-warning" style="margin-top: 10rpx;">
                             {{item.spec_desc}}
                         </view>
@@ -151,9 +148,9 @@
                             {{item.spec_content}}
                         </view>
                         <view class="f12 gray-text">
-                            <text class="price f12px">¥{{item.agent_price}}</text>
-                            <text wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</text>
-                            <text wx:if="{{tem.spec_stock==0}}">已售磬</text>
+                            代理价：<text class="price f12px">¥{{item.agent_price}}</text>
+                            <view wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</view>
+                            <view wx:if="{{tem.spec_stock==0}}">已售磬</view>
                         </view>
                     </view>
                 </view>
@@ -166,42 +163,10 @@
                 </i-cell>
             </i-cell-group>
         </view>
-        <view  class='goods-content-wraper por'>
-            <view class='goods-content' wx:if="{{goods_content}}">
 
-                {{goods_content}}
+                <goods-detail content="{{content}}"></goods-detail>
 
-            </view>
 
-                <block wx:if="{{content.length}}">
-                <!--编辑器正文区-->
-                <view class="content-item" wx:for="{{content}}">
-
-                    <block wx:if="{{ item.type === 'text' }}">
-                        {{item.desc}}
-                    </block>
-
-                    <block wx:if="{{ item.type === 'image' }}">
-
-                    <image src="{{ item.src }}" mode="widthFix"></image>
-                    </block>
-
-                    <block wx:if="{{ item.type === 'video' }}">
-                        <video  src="{{ item.src }}"></video>
-                    </block>
-                </view>
-                </block>
-
-                <block wx:else>
-                    
-                 <rich-text nodes="{{content.html || '暂无介绍'}}"></rich-text>
-
-                </block>
-
-            <view class="load-area" wx:if="{{!goods}}">
-                <wux-spin wux-class="spin" />
-            </view>
-        </view>
     </view>
 
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px"></view>
@@ -212,7 +177,7 @@
             <van-goods-action-icon icon="home-o" text="首页" bind:click="toHome" />
             <van-goods-action-icon icon="setting-o" text="管理" bind:click="showMasterMenu" />
 
-            <van-goods-action-button text="邀请代理下单或绑定商品" type="warning" open-type="share" bind:click="onClickButton" />
+            <van-goods-action-button text="邀请代理上架绑定商品" type="warning" open-type="share" bind:click="onClickButton" />
         </van-goods-action>
     </view>
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">

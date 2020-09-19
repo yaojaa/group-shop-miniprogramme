@@ -62,9 +62,20 @@
 
 
     <view class="icon-nav-box mt-sm round-df">
-        <van-button bindtap="goAdd" color="linear-gradient(to right, #4bb0ff, #6149f6)" block>+ 添加新产品</van-button>
+        <van-button bindtap="goAdd" color="linear-gradient(to right, #ccc000, #6149f6)" block>+ 添加新产品</van-button>
 
         <view class="goods-panel white-bg cf">
+
+
+          <view class="no-content" wx:if="{{goodsList.length == 0}}">
+
+          </view>
+
+
+           
+
+
+
             <view class="goods-panel-bd" wx:for="{{goodsList}}" wx:key="index">
                 <view class="solid-bottom"></view>
                 <navigator url="/business/pages/goods/goods?id={{item.goods_id}}" hover-class="none" class="flex pv-df mh-sm pv-dh goods-panel-item">
@@ -103,6 +114,9 @@
             </view>
         </view>
     </view>
+
+
+
     <van-dialog id="van-dialog" />
     <van-toast id="van-toast" />
     <auth />

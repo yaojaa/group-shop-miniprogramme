@@ -1,4 +1,5 @@
 const util = require('../../utils/util.js')
+import Dialog from '../../vant/dialog/dialog'
 
 Page({
   /**
@@ -13,6 +14,7 @@ Page({
     totalpage: 1,
   },
   bindRegionChange(e) {},
+
   getSuppInfo() {
     util.wx
       .get('/api/seller/get_supplier_detail?supplier_id=' + this.id)
@@ -21,27 +23,73 @@ Page({
           info: res.data.data,
         })
         wx.setNavigationBarTitle({
-          title: this.data.info.supplier_name,
+          title: this.data.info.supplier_name        
         })
       })
   },
+
+  getStoreInfo() {
+    util.wx
+      .get('/api/store/get_store_homepage?store_id=' + this.id)
+      .then((res) => {
+        this.setData({
+          info: res.data.data,
+        })
+        wx.setNavigationBarTitle({
+          title: this.data.info.store_name
+        })
+      })
+  },
+
+
+
   getgoodsInfo() {
     this.setData({
       loading: true,
     })
-    return util.wx
+
+    //是供应商或者是团长
+    if(this.type =='supplier'){
+          return util.wx
       .get('/api/seller/get_supplier_goods', {
         supplier_id: this.id,
         cpage: this.data.cpage,
         pagesize: 10,
       })
       .then((res) => {
-        this.setData({
-          loading: false,
-          totalpage: res.data.data.page.totalpage,
-          goodsList: this.data.goodsList.concat(res.data.data.list),
-        })
+      if(res.data.code == 200){
+          this.setData({
+            loading: false,
+            totalpage: res.data.data.page.totalpage,
+            goodsList: this.data.goodsList.concat(res.data.data.list),
+          })
+        }
       })
+
+    }else{
+
+          return util.wx
+      .post('/api/helper/get_store_goods_for_helper', {
+        store_id: this.id,
+        cpage: this.data.cpage,
+        pagesize: 10,
+      })
+      .then((res) => {
+        if(res.data.code == 200){
+          this.setData({
+            loading: false,
+            totalpage: res.data.data.page.totalpage,
+            goodsList: this.data.goodsList.concat(res.data.data.list),
+          })
+       }
+      })
+
+
+    }
+
+
+
+
   },
 
   goods_up(e) {
@@ -54,12 +102,51 @@ Page({
 
   onLoad(option) {
     this.id = option.id
+    this.type = option.type
 
-    this.getSuppInfo()
+    if(this.type == 'supplier'){
+        this.getSuppInfo()
+    }else{
+        this.getStoreInfo()
+
+    }
+
     this.getgoodsInfo()
     wx.hideHomeButton()
   },
+    goContact(e) {
+    const { phone, wx } = e.currentTarget.dataset
+    this.setData({
+      phone: phone,
+      weChat: wx
+    })
+    Dialog.alert({
+      confirmButtonText: '复制微信',
+      selector: '#contact',
+    })
+      .then(() => {
+        this.goHomePage()
+      })
+      .catch(() => {
+        // on cancel
+      })
+  },
+  toDetail(e){
+    console.log(e)
+        const { type, goods_id } = e.currentTarget.dataset
 
+        if(type == 'supplier'){
+          wx.redirectTo({
+            url:'/business/pages/goods-user/goods?id='+goods_id
+          })
+        }else{
+          wx.redirectTo({
+            url:'/pages/goods/goods?help_sale=true&id='+goods_id
+          })
+        }
+
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

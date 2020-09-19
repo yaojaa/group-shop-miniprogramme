@@ -25,6 +25,7 @@
     "van-cell-group": "../../vant/cell-group/index",
     "van-icon": "../../vant/icon/index",
     "i-share-painter": "../../iView/share-painter/share-painter",
-    "i-modal": "../../iView/modal/index"
+    "i-modal": "../../iView/modal/index",
+    "goods-detail": "../../components/goods-detail/index"
   }
 }

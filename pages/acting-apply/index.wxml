@@ -16,7 +16,7 @@
     <view class="act-submit">
 
         <button type="primary" wx:if="{{showLoginbtn}}"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权登录 </button>
-        <button class="linenear_bgsss" wx:else form-type='submit' loading="{{loading}}"> 立 即 申 请 </button>
+        <button class="linenear_bgsss" wx:else form-type='submit' loading="{{loading}}"> 立即加入 </button>
 
     </view>
 
@@ -28,23 +28,3 @@
 
 
 <van-dialog id="van-dialog" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,18 +2,24 @@
 
 .header {
   position: relative;
-  padding: 30rpx;
+  padding: 0 30rpx 30rpx;
+  height: 130rpx;
   background: #ffaa4f;
   color: #fff;
+  overflow: scroll;
+
 }
 
 .header .logo {
-  margin-top: 20rpx;
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
+  margin-right: 10px;
+  float:left
 }
+.title{
 
+}
 .head-side {
   position: absolute;
   top: 50%;

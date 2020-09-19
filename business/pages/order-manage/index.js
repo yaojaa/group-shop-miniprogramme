@@ -212,9 +212,6 @@ Page({
     onReady: function(e) {
 
 
-
-
-
     },
     modifyAddress(e){
         const order_id = e.currentTarget.dataset.order_id
@@ -579,16 +576,6 @@ Page({
                     showMsgTips: false
                 });
          })
-    },
-
-    /**群发提醒**/
-
-    sendTipsAll() {
-
-        this.dataList.forEach()
-
-
-
     },
 
 

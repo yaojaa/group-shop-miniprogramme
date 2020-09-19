@@ -110,7 +110,7 @@
                             {{item.spec_content}}
                         </view>
                         <view class="f12 gray-text">
-                            <text class="price f12px">¥{{item.agent_price}}</text>
+                           <view>拿货价： <text class="price f12px">¥{{item.agent_price}}</text></view>
                             <text wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</text>
                             <text wx:if="{{tem.spec_stock==0}}">已售磬</text>
                         </view>
@@ -131,29 +131,13 @@
                 </i-cell>
             </i-cell-group>
         </view>
-        <view wx:if="{{isEmptyEditor}}" class='goods-content-wraper por'>
-            <view class='goods-content' bindtap="openUrl">
-                <text>{{goods.goods_content}}</text>
-            </view>
-            <view class="load-area" wx:if="{{!goods}}">
-                <wux-spin wux-class="spin" />
-            </view>
-        </view>
+
+        <goods-detail content="{{content}}"></goods-detail>
+
+
+      
     </view>
-    <view class="piclist-container">
-        <!-- <view wx:if="{{goods.goods_video}}">
-            <video id="myVideo" src="{{goods.goods_video}}" poster="{{goods.goods_video_cover}}" controls></video>
-        </view> -->
-        <block wx:if="{{isEmptyEditor}}" class="pic" wx:for="{{goods.content_imgs}}" wx:key="index" wx:for-item="img">
-            <image bindtap="showGallery" data-current="{{ index }}" data-list="{{goods.content_imgs}}" data-src="{{img}}" src="{{img}}?imageMogr2/thumbnail/750x" mode="widthFix" />
-        </block>
-        <view wx:if="{{!isEmptyEditor}}" class="editor-content">
-            <block wx:for='{{editorContent.htmlArr}}' wx:key='index'>
-                <rich-text nodes="{{item}}"></rich-text>
-                <video class="editor-video" wx:if="{{editorContent.video[index]}}" src="{{editorContent.video[index]}}"></video>
-            </block>
-        </view>
-    </view>
+  
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px"></view>
     <view class='footer-cart'>
         <view class='icon' bindtap='toHome'>
@@ -165,9 +149,9 @@
                 {{totalNum}}
             </text>
             <button class="buy round linenear_bg" formType="submit" wx:if="{{goods && goods.goods_expires == 1 }}">
-                直接下单
+              采购下单
             </button>
-            <button class="buy" formType="submit" disabled="true" wx:else>直接下单</button>
+            <button class="buy"  disabled="true" wx:else>采购下单</button>
         </view>
         <form style="flex:2;position: relative;" bindtap="goods_up">
             <button wx:if="{{goods && goods.goods_expires==1 }}" class="buy round linenear_bg" formType="submit">
