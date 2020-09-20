@@ -68,6 +68,8 @@ Page({
     _orderUsers: [], // 存储
     _orderUsers_: [], // 执行
     orderUsersLoading: false,
+    template: {},
+    imgOkPath:'',
     imagePath: '',
     collection_methods: '',
     copy: false,
@@ -96,6 +98,13 @@ Page({
 
 
     },
+
+  onImgOK(e){
+    console.log('imgOK',e)
+    this.setData({
+      imgOkPath: e.detail.path
+    })
+  },
     onShareAppMessage: function() {
 
 
@@ -111,12 +120,18 @@ Page({
                     })
         },1000)
 
-      
-        return {
+        var returnData = {
             title: '【'+this.data.goods.supplier.supplier_name+'】'+this.data.goods.goods_name,
             path: 'business/pages/goods-user/goods?id=' + this.data.goods.goods_id,
             
         }
+
+        if(this.data.imgOkPath){
+          returnData.title = this.data.goods.supplier.supplier_name +'邀请你帮卖【'+this.data.goods.goods_name+'】'
+          returnData.imageUrl = this.data.imgOkPath
+        }
+      
+        return returnData;
 
 
 
@@ -411,6 +426,10 @@ Page({
               e.spec_pic.push(d.goods.goods_images[0].img_url)
             }
           })
+
+          console.log(d)
+
+          util.drawShareFriends(this, d.goods)
 
          
 
