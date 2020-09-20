@@ -35,12 +35,13 @@
             </button>
           </view>
           <view class="flex align-center" wx:else>
-            <button wx:if="{{item.is_admin == 0}}" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm primary" class="btn sm  ml-sm">
+         <!--    <button wx:if="{{item.is_admin == 0}}" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm primary" class="btn sm  ml-sm">
               设为管理员
-            </button>
+            </button> 
             <button wx:else data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm  coral ml-sm">
               取消管理员
             </button>
+          -->
             <button class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-h_store_id="{{item.h_store_id}}" data-agent_user="{{item.nickname}}" data-agent_status="1" bindtap="removeHelper" class="btn sm ml-sm">
               删除成员
             </button>

@@ -1293,6 +1293,13 @@
           "id": -1,
           "name": "创建申请供应商",
           "pathName": "business/pages/create-home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/order-manage/index",
+          "pathName": "business/pages/order-manage/index",
           "scene": null
         }
       ]

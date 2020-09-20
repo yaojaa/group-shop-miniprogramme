@@ -411,7 +411,14 @@ color:#666
 }
 
 
-
+.link{
+    float:left;
+    width: 70%;
+    overflow: hidden;
+    text-align: left;
+    word-break: keep-all;
+    margin-top: 10rpx
+}
 
 
 

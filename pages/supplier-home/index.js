@@ -121,15 +121,10 @@ Page({
       weChat: wx
     })
     Dialog.alert({
-      confirmButtonText: '复制微信',
+      confirmButtonText: '确定',
       selector: '#contact',
     })
-      .then(() => {
-        this.goHomePage()
-      })
-      .catch(() => {
-        // on cancel
-      })
+
   },
   toDetail(e){
     console.log(e)

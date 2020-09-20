@@ -2,6 +2,10 @@
     <view class="order-title ">
 
 
+        <view class="link text-success" bindtap="copyLink">去PC端管理订单(点击复制链接)</view>
+
+<van-dialog id="van-dialog" />
+
       
       <button type="success"   size="mini" bindtap="exportExcel">导出订单</button>
           <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">

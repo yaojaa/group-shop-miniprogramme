@@ -3,6 +3,7 @@ const app = getApp()
 const { $Message } = require('../../../iView/base/index');
 
 const util = require('../../../utils/util.js')
+import Dialog from '../../../vant/dialog/dialog';
 
 Page({
     data: {
@@ -218,6 +219,22 @@ Page({
         wx.navigateTo({
             url:'../modify-address/index?order_id='+order_id
         })
+    },
+    copyLink(){
+
+               Dialog.alert({
+          message: '请在PC端浏览器中访问 kaixinmatuan.cn/seller，登录账号为您绑定的手机号',
+          confirmButtonText:'复制地址'
+        }).then(() => {
+            wx.setClipboardData({
+            data: 'http://kaixinmatuan.cn/seller',
+            success: function(res) {
+
+            }
+            })
+        })
+
+
     },
 
 

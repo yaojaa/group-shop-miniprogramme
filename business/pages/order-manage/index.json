@@ -19,6 +19,7 @@
           "van-tabs": "../../../vant/tabs/index",
           "footerbar": "../../components/footerbar/index",
           "van-collapse": "../../../vant/collapse/index",
+          "van-dialog": "../../../vant/dialog/index",
           "van-collapse-item": "../../../vant/collapse-item/index"
     }
 

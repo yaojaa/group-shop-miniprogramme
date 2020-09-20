@@ -106,7 +106,6 @@ Component({
    */
   data: {
     innerInitData: [],
-    globalEditing: false,
     curIndex: -1,
     newCurIndex: -1
   },
@@ -294,11 +293,15 @@ Component({
     },
     deleteBlock: function (e) {
       let index = e.currentTarget.dataset.index
-      let self = this
-      self.data.innerInitData.splice(index, 1)
-      self.setData({
-        globalEditing: false,
-        innerInitData: self.data.innerInitData,
+      if(this.data.innerInitData.length ==1){
+        return wx.showToast({
+          title:'内容不能为空',
+          icon:'none'
+        })
+      }
+      this.data.innerInitData.splice(index, 1)
+      this.setData({
+        innerInitData: this.data.innerInitData,
         curIndex: -1,
         newCurIndex: -1
       })
