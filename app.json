@@ -89,7 +89,7 @@
     }
   ],
   "usingComponents": {
-    "wux-spin": "../../wux/spin/index"
+    "wux-spin": "wux/spin/index"
   },
 
   "plugins": {

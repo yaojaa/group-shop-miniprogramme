@@ -28,8 +28,9 @@
         "van-cell-group": "../../../vant/cell-group/index",
         "van-icon": "../../../vant/icon/index",
         "i-modal": "../../../iView/modal/index",
-          "van-goods-action": "../../../vant/goods-action/index",
-          "van-goods-action-icon": "../../../vant/goods-action-icon/index",
-          "van-goods-action-button": "../../../vant/goods-action-button/index"
+        "van-goods-action": "../../../vant/goods-action/index",
+        "van-goods-action-icon": "../../../vant/goods-action-icon/index",
+        "van-goods-action-button": "../../../vant/goods-action-button/index",
+        "i-share-painter": "../../../iView/share-painter/share-painter"
     }
 }
