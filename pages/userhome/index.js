@@ -238,7 +238,7 @@ Page({
   goDetail(e) {
     const id = e.currentTarget.dataset.id
 
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../goods/goods?goods_id=' + id
     })
   },

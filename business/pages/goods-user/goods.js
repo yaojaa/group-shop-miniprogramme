@@ -177,12 +177,10 @@ Page({
     if(prevPage){
         wx.navigateBack()
     }else{
-
         wx.redirectTo({
-            url: '/pages/supplier-home/index?id='+this.data.goods.supplier_id
+            url: '/pages/supplier-home/index?type=supplier&id='+this.data.goods.supplier_id
         })
     }
-
     },
 
     getGoodsInfo() {

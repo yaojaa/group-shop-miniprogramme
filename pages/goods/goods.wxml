@@ -17,7 +17,13 @@
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}"></view>
     <imgs imgs="{{imgs}}">
         <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{menuBarTop}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+            
+            <view class="user-body" wx:if="{{showBackIcon}}" style="margin-right: 3px">
+                  <view class="icon-back" catchtap="goBack"><van-icon name="arrow-left" size="30px"/></view> 
+                </view>
+
             <view class="user-body" catchtap="goContact" data-phone="{{goods.user.mobile}}" data-wx="{{goods.user.wechatnumber}}">
+               
                 <view class="user-info-hd">
                     <image src="{{goods.user.headimg}}" class="avatar"></image>
                 </view>

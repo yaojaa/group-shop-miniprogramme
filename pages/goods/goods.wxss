@@ -948,7 +948,7 @@
 
 .user-info .name {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .user-info .info {
@@ -958,8 +958,11 @@
 }
 
 .user-info .icon {
-  margin-left: 20rpx;
   vertical-align: top;
+}
+
+.icon-back{
+  padding:3px
 }
 
 .bar {

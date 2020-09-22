@@ -82,7 +82,7 @@
                         </view>
                         <view>
                             <button bindtap="goDetail" wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">
-                                立即参与
+                                查看详情
                             </button>
                             <button wx:if="{{item.goods_expires ==3 }}" data-id="{{item.goods_id}}" class="btn ">
                                 已经截止

@@ -233,6 +233,11 @@ Page({
       },
     })
   },
+  goBack(){
+    wx.navigateBack({
+    delta: 1
+   })
+  },
   goContact(e) {
     const { phone, wx } = e.currentTarget.dataset
     this.setData({
@@ -894,9 +899,17 @@ Page({
       }, 5000)
     }
 
+
+       var pages = getCurrentPages()
+
+
     this.setData({
       menuBarTop: app.globalData.menuBarTop,
+      showBackIcon: pages.length >1 ? true : false
     })
+
+
+
   },
   inputNote(e) {
     this.setData({
