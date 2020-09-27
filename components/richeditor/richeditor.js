@@ -408,7 +408,9 @@ Component({
         newCurIndex: -1
       })
       
-      this.triggerEvent('moveItem',index)
+      this.triggerEvent('moveItem',+index-1)
+
+     
 
       this.saveBlock()
       return false
@@ -429,24 +431,30 @@ Component({
         newCurIndex: -1
       })
 
-      this.triggerEvent('moveItem',index)
+      this.triggerEvent('moveItem',+index+1)
 
       this.saveBlock()
       return false
     },
     newItem: function (e) {
       let index = e.currentTarget.dataset.index
-      let self = this
-      if (self.data.newCurIndex === index) {
-        self.setData({
+      if (this.data.newCurIndex === index) {
+        this.setData({
           newCurIndex: -1
         })
       } else {
-        self.setData({
+        this.setData({
           newCurIndex: index
         })
       }
       this.saveBlock()
+    },
+    pageScrollToPosition(selector){
+     wx.pageScrollTo({
+      scrollTop: this.currentScrollTop,
+      duration:10,
+      selector:selector
+     })
     }
   },
 

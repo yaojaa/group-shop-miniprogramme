@@ -921,6 +921,15 @@ Page({
       console.log('this.content',this.data.content)
     },
 
+      moveItemEvent(e){
+    const index = e.detail
+    console.log(index,'.page-body>>>.item'+index)
+      wx.pageScrollTo({
+      duration:10,
+      selector:'.page-body>>>.item'+index
+     })
+  },
+
   onLoad: function (option) {
     //未登录 弹出授权弹窗
     if (!app.globalData.userInfo) {

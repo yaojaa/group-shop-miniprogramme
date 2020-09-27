@@ -150,7 +150,6 @@ Page({
  */
 
   showApplyModal(msg){
-    console.log('showApplyModal')
               wx.showModal({  
               title: msg,  
               content: '是否立即申请',
@@ -185,9 +184,7 @@ Page({
         //不是帮卖成员
         if(res.data.data == 0){
 
-          wx.showToast({
-            title:'你不是帮卖成员'
-          })
+          
 
           this.showApplyModal('您没有权限帮卖Ta的商品！')
 

@@ -361,7 +361,7 @@
                 {{totalNum}}
             </text>
 
-            <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg" formType="submit">
+            <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg left-raduis right-raduis" formType="submit">
               立即参与
             </button>
             <button wx:if="{{goods.goods_expires.status == 2 }}" disabled="{{true}}" class="buy linenear_bg" formType="submit">

@@ -1169,15 +1169,13 @@ Page({
     getApp().setWatcher(this.data, this.watch, this) // 设置监听器
   },
 
-  onPageScroll:function(e){ // 获取滚动条当前位置
-    console.log(e)
-    console.log(e.scrollTop)//获取滚动条当前位置的值
-    this.currentScrollTop = e.scrollTop
-  },
 
-  moveItemEvent(){
-     wx.pageScrollTo({
-      scrollTop: this.currentScrollTop
+  moveItemEvent(e){
+    const index = e.detail
+    console.log(index,'.page-body>>>.item'+index)
+      wx.pageScrollTo({
+      duration:10,
+      selector:'.page-body>>>.item'+index
      })
   },
 
