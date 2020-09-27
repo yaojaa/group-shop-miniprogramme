@@ -72,7 +72,6 @@ Component({
 
       if (!(getApp().globalData.systemInfo && getApp().globalData.systemInfo.screenWidth)) {
         try {
-                    console.log('wx.getSystemInfoSync')
 
           getApp().globalData.systemInfo = wx.getSystemInfoSync();
         } catch (e) {

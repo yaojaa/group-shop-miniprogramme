@@ -35,9 +35,9 @@ console.log(goods.goods_cover)
         width: '130px',
         height: '120px',
         align: 'center',
-        borderRadius: '8px',
-        borderWidth: '4px',
-        borderColor: '#999',
+        borderRadius: '10px',
+        borderWidth: '5px',
+        borderColor: '#ccc',
       },
     },
 
@@ -47,8 +47,8 @@ console.log(goods.goods_cover)
       css: {
         top: `205px`,
         left: `${wid/2}px`,
-        color: '#666666',
-        fontSize: "24px",
+        color: '#444',
+        fontSize: "26px",
         lineHeight: '60px',
         fontWeight: 'bold',
         align: 'center'

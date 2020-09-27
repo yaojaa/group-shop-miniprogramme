@@ -936,7 +936,7 @@ button::after {
 
 .item-name {
     text-align: left;
-    line-height: 1.4
+    line-height: 1.6
 }
 
 .item-avatar {

@@ -26,7 +26,7 @@
 
 
 
-    <i-panel i-class="marginTop" title="我参与的订单" extra="查看" link="../order-list/index">
+    <i-panel i-class="marginTop" title="我的订单" extra="查看" link="../order-list/index">
         <view slot="content">
 
        
@@ -57,7 +57,7 @@
 
 
 
-	<i-panel  title="我购买过的" wx:if="{{proList.length}}" >
+	<i-panel wx:if="{{proList.length}}" >
 		<block wx:for="{{proList}}" wx:key="{{index}}">
 
 			<view class='product-item'>
@@ -68,13 +68,11 @@
 						</view>
 						<view class="item-name flex-sub">
 							<view class="text-justify">
-								<text class="f14">{{item.user.nickname}}</text>
-								<view class="right-info">
-									<i-icon type="homepage_fill" color="#999" /><text class="f12 text-muted">去主页逛逛</text></view>
+								<text class="f12">{{item.user.nickname}}</text>
+								
 							</view>
-							<view class="time text-xs text-muted">剩余时间：{{item._expires.countdown.day}}天
-								{{item._expires.countdown.hour}}小时
-								{{item._expires.countdown.min}}分
+							<view class="time text-xs text-muted">
+								{{item.pageview_count}}次查看 <text style="font-size: 12rpx">|</text> {{item._buy_users_count}}人参与
 							</view>
 						</view>
 					</navigator>
@@ -122,11 +120,15 @@
 
 	<view class="weui-footer weui-footer_fixed-bottom">
 
-		<view class="center" style="margin-bottom:100rpx; text-align: center;"> 
-			<text bindtap="goPublish" class="text-primary">免费创建团长个人主页</text> 
-			<!-- <text bindtap="goSupperReg" class="text-primary">创建品牌供应商主页</text> --> </view> 
+	
 
 		<view class="weui-footer__links">
+
+		<view class="center" style="margin-bottom:10px; text-align: center;"> 
+			<text bindtap="goPublish" class="text-primary">开通团长主页</text>  
+			<text class="text-muted"> | </text>
+			<text bindtap="goSupperReg" class="text-primary">开通供应商主页</text> 
+		</view> 
 
 			<button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">由开心麻团提供技术支持</button>
 

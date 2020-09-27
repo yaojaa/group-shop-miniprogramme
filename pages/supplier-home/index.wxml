@@ -30,10 +30,7 @@
             <view bindtap="toDetail" data-type="{{item.supplier_id?'supplier' : 'seller'}}" data-goods_id="{{item.goods_id}}" hover-class="none" class="flex p-df goods-panel-item">
                 <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
                 <view class="flex-sub por">
-                    <view class="text-hide two-line  bold title">{{item.goods_name}}
-   <van-tag wx:if="{{item.goods_expires ==3 || item.is_on_sale == 2 }}" style="color:#666">已结束</van-tag>
-   <van-tag wx:if="{{item.goods_expires ==2}}" style="color:#19be6b">未开始</van-tag>
-                    </view>
+                    <view class="text-hide two-line  bold title">{{item.goods_name}}</view>
                     <view class="text-muted mt-xs text-sm des text-justify">
 
 
@@ -43,7 +40,7 @@
                     </view>
                     <view class="mt-xs des text-justify">
                         <view>
-                            <text class="text-muted text-sm ">代理价：</text>
+                            <text class="text-muted text-sm ">拿货价：</text>
                             <text class="coral-text ">¥{{item.price_min || item.sub_agent_price[0]}} </text>
                         </view>
                         <view class="flex align-center text-gray ">

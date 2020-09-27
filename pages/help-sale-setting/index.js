@@ -159,10 +159,10 @@ Page({
 
          }
 
-         if(value > parseInt(spec_price)){
+         if(value >= parseInt(spec_price)){
 
             wx.showToast({
-                title:'代理价不能超过你自己的售价',
+                title:'代理价不能超过你的售价',
                 icon:'none'
             })
 
@@ -251,10 +251,10 @@ Page({
 
 
           })
-          //返回上一页
-          console.log('返回详情页')
-
+        
         }else{
+            //返回上一页
+          console.log('返回详情页')
             util.setParentData({
                 agent_opt:1
             })

@@ -127,7 +127,7 @@
     </button>
 
     <text wx:if="{{!isOrderManege}}" class="f12 text-warning center">
-         此商品由“{{order_detail.link_store[1].nickname || order_detail.link_store[0].nickname}}”供货和售后
+         此商品由“{{order_detail.link_store[1].nickname || order_detail.link_store[0].store_name}}”负责售后服务
     </text>
 
     </view>

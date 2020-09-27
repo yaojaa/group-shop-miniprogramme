@@ -5,7 +5,8 @@
                 <view class="content-item" wx:for="{{content}}">
 
                     <view class="text" wx:if="{{ item.type === 'text' }}">
-                        {{item.desc}}
+                        <text> {{item.desc}} </text>
+
                     </view>
                     <block wx:if="{{ item.type === 'image' }}">
                     <image class="image" src="{{ item.src }}" mode="widthFix"></image>

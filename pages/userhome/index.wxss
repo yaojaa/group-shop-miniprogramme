@@ -295,19 +295,18 @@
 .goods-two {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -30rpx;
 }
 .goods-two-item {
   background: #fff;
-  width: 330rpx;
-  margin-left: 30rpx;
-  margin-bottom: 30rpx;
+  width: 350rpx;
+  margin-left: 18rpx;
+  margin-bottom: 20rpx;
   position: relative;
 }
 
 .goods-two-item .cover {
-  width: 330rpx;
-  height: 330rpx;
+  width: 350rpx;
+  height: 350rpx;
 }
 .goods-two-item .btn {
   font-size: 24rpx;

@@ -131,11 +131,11 @@ Page({
         const { type, goods_id } = e.currentTarget.dataset
 
         if(type == 'supplier'){
-          wx.redirectTo({
+          wx.navigateTo({
             url:'/business/pages/goods-user/goods?id='+goods_id
           })
         }else{
-          wx.redirectTo({
+          wx.navigateTo({
             url:'/pages/goods/goods?help_sale=true&id='+goods_id
           })
         }

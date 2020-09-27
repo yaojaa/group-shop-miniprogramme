@@ -1094,6 +1094,8 @@ Page({
 
     end_time:(newValue, val, context)=>{
 
+      console.log({start_time:context.data.start_time,end_time:context.data.end_time})
+
       context.editor({start_time:context.data.start_time,end_time:context.data.end_time})
 
     },
@@ -1165,6 +1167,18 @@ Page({
 
   setWatcher(){
     getApp().setWatcher(this.data, this.watch, this) // 设置监听器
+  },
+
+  onPageScroll:function(e){ // 获取滚动条当前位置
+    console.log(e)
+    console.log(e.scrollTop)//获取滚动条当前位置的值
+    this.currentScrollTop = e.scrollTop
+  },
+
+  moveItemEvent(){
+     wx.pageScrollTo({
+      scrollTop: this.currentScrollTop
+     })
   },
 
   onLoad: function (option) {

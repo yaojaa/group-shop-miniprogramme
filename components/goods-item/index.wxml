@@ -9,7 +9,8 @@
                     <i-icon type="lock" color="#ffa200" size="18" wx:if="{{is_recommend==0}}" />
                     <view class="flex-sub ml-xs">
                         <view class="tit ">
-                            <view class="">{{item.goods_name}}</view>
+                            <view class="">{{item.goods_name}}
+</view>
                         </view>
                     </view>
                 </view>
@@ -23,34 +24,22 @@
 
                 <text wx:if="{{item.link_goods[1].is_del!=-1 && item.link_goods[1].is_on_sale==1}}">[上架中]</text>
                 <text wx:if="{{item.link_goods[1].is_del==-1}}">[已删除]</text>
-
-
-
                 
              </view>
 
   
 
               <view wx:if="{{item.link_goods.length==1 && item.link_goods[0]!==null}}" class="f12px"style="color: #ff8900">由"{{item.link_goods[0].store_name}}" 发货 
-                <text wx:if="{{item.link_goods[0].is_on_sale==1}}">[上架中]</text>
-                <text wx:if="{{item.link_goods[0].is_on_sale==2}}">[已下架]</text>
-
-            </view>
+              </view>
 
             </view>
         </view>
 
-        <view class="statusBar" wx:if="{{item.is_timelimit==1}}"> 
-<!--    1正常 2未开始 3已过期 4 已下架
- -->            <text wx:if="{{expires==2}}" style="color:#2d8cf0">未开始</text>
-            <text wx:if="{{expires==1}}" style="color:#19be6b">进行中</text>
-            <text wx:if="{{expires==3}}" style="color:#666">已结束</text>
-            <text wx:if="{{expires==4}}" style="color:#666">已下架</text>
+        <view class="statusBar"> 
+    <text style="color:#666">{{['','进行中','未开始','已结束','已下架'][item.goods_expires.status]}}</text>
+        </view>
 
-        </view>
-        <view wx:else>
-            <text  style="color:#19be6b">进行中</text>
-        </view>
+
     </view>
 
 
@@ -79,7 +68,8 @@
 
       <button class="hollow"  bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}"  size="mini"> 订单({{item._order_count}}) </button>
 
-           <button class="hollow" size="mini"  data-id="{{item.goods_id}}"  bindtap="moreAction">  <i-icon size="22" color="#36cc3b" type="unfold" /> </button>
+           <button class="hollow" size="mini" data-id="{{item.goods_id}}"  bindtap="moreAction">  
+            操作<i-icon size="22" color="#36cc3b" type="unfold" /> </button>
         
     </view>
 

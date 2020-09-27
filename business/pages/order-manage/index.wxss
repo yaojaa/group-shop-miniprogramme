@@ -126,7 +126,7 @@ border-radius:8rpx;
 
 .order-hd .user-info .name{
     color:#555;
-    font-size: 24rpx;
+    font-size: 28rpx;
     text-overflow: ellipsis;
     display: inline-block;
 }

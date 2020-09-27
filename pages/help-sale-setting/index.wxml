@@ -19,7 +19,9 @@
             <view class="spec_title">{{item.spec_name}}</view>
             <van-cell-group custom-class="mt-sm">
 
- <van-field wx:if="{{item.agent_price!=='0.00'}}" value="{{item.agent_price}}" name="" label="您的拿货价" placeholder="" input-align="right" readonly></van-field>
+
+
+ <van-field wx:if="{{item.supplier_spec_id != 0}}" value="{{item.agent_price}}" name="" label="您的拿货价" placeholder="" input-align="right" readonly></van-field>
 
  <van-field value="{{item.spec_price}}元" name="" label="您的售价" placeholder="" input-align="right" readonly></van-field>
 

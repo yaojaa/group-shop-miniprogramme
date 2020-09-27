@@ -134,13 +134,13 @@
 
 
 
-	<view style="margin-bottom:100rpx"></view>
+	<view style="margin-bottom:200rpx"></view>
 
 	<view class="weui-footer weui-footer_fixed-bottom">
 
 		<view class="weui-footer__links">
 
-			<button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">由开心麻团提供技术支持</button>
+			<button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">技术支持</button>
 
 		</view>
 	</view>

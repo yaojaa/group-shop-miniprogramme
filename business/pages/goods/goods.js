@@ -108,34 +108,19 @@ Page({
     onShareAppMessage: function() {
 
 
-        console.log('/business/goods-user/goods?goods_id=' + this.data.goods.goods_id)
-
-        this.setData({
-            shareTit:'邀请您上架绑定商品'
-        })
-
-         setTimeout(()=>{
-            this.setData({
-                        shareTit:''
-                    })
-        },1000)
+     
 
         var returnData = {
-            title: '【'+this.data.goods.supplier.supplier_name+'】'+this.data.goods.goods_name,
+            title: '【'+this.data.goods.supplier.supplier_name+'】邀请你上架'+this.data.goods.goods_name,
             path: 'business/pages/goods-user/goods?id=' + this.data.goods.goods_id,
             
         }
 
         if(this.data.imgOkPath){
-          returnData.title = this.data.goods.supplier.supplier_name +'邀请你帮卖【'+this.data.goods.goods_name+'】'
           returnData.imageUrl = this.data.imgOkPath
         }
       
-        return returnData;
-
-
-
-
+        return returnData
     },
     openShareFriends() {
         if (!this.data.shareFriendsImgStart) {

@@ -25,10 +25,12 @@
 
                      <!--富文本编辑器-->
                 <rich-editor 
-                ctl-style="main-color" 
-                init-data="{{ content }}" 
-                op-style="btn-color" 
-                bind:updateData="getObject"/>
+                ctl-style = "main-color" 
+                init-data = "{{ content }}" 
+                op-style  = "btn-color" 
+                bind:updateData = "getObject"
+                bind:moveItem   = "moveItemEvent"
+                />
 
                 <!--富文本编辑器-->
           <!--   <block wx:if='{{isEmptyEditor}}'>

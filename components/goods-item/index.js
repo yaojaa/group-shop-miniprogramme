@@ -64,8 +64,10 @@ Component({
       this.goods_id = e.currentTarget.dataset.id
 
         wx.showActionSheet({
-          itemList: ['在主页隐藏', '在主页显示', '立即结束','删除'],
+          itemList: ['在主页隐藏', '在主页显示', '上架','下架','删除'],
           success :(res)=>{
+
+            console.log(res)
 
             if(res.tapIndex == 0){
 
@@ -75,11 +77,20 @@ Component({
 
               this.switchInSite(1)
 
-            }else if(res.tapIndex == 2){
-              // 立即结束
-              this.goodsOver()
+            }
+             else if(res.tapIndex ==2){
 
-            }else if(res.tapIndex == 3){
+              this.goodsUp(1)
+
+            }
+
+             else if(res.tapIndex ==3){
+
+              this.goodsDown(1)
+
+            }
+
+            else if(res.tapIndex == 4){
               // 立即结束
               this.delGoods()
 
@@ -91,6 +102,45 @@ Component({
           }
         })
     },
+
+     goodsUp(){
+
+        Dialog.confirm({
+          title: '确定要上架此商品吗？',
+          asyncClose: true,
+          context:this
+        })
+        .then(() => {
+          this.goodsUpDown(1);
+          Dialog.close();
+        })
+        .catch(() => {
+          Dialog.close();
+        })
+
+      },
+
+
+     goodsDown(){
+
+        Dialog.confirm({
+          title: '确定要下架此商品吗？',
+          asyncClose: true,
+          context:this
+        })
+        .then(() => {
+          console.log('结束')
+          this.goodsUpDown(2);
+          Dialog.close();
+        })
+        .catch(() => {
+          console.log('取消')
+          Dialog.close();
+        })
+
+      },
+
+
     //切换个人主页显示
     switchInSite(status){
       wx.showLoading()
@@ -152,6 +202,19 @@ Component({
         })
 
 
+
+      },
+
+      //上下架
+      goodsUpDown(s){
+
+
+        util.wx.post("/api/seller/goods_change_on_sale",{
+            goods_id: this.goods_id,
+            is_on_sale: s
+        }).then(res=>{
+
+        })
 
       },
 

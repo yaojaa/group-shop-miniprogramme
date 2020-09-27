@@ -94,12 +94,6 @@ Page({
                                             url:'../home/index'
                                         })
                            }
-
-
-
-
-
-
                 
 
             }
@@ -126,7 +120,7 @@ Page({
            
         }
 
-        this.reGetUserInfo()
+       // this.reGetUserInfo()
 
         this.getProList()
     },

@@ -81,7 +81,7 @@ Page({
 
         if(app.globalData.userInfo.store){
 
-                    wx.redirectTo({
+        wx.redirectTo({
             url: '/pages/home/index'
         })
 

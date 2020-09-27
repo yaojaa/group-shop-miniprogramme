@@ -143,12 +143,16 @@ Component({
             sizeType: self.properties.supportType.image.sizeType,
             success:(res) => {
 
+              wx.showLoading({
+                title:'上传中...'
+              })
+
               let i = 0
               res.tempFilePaths.forEach(item=>{
 
-
-
                 uploadFile({filePath:item}).then(resp=>{
+
+
 
                   i++
 
@@ -165,6 +169,9 @@ Component({
               })
 
               if(i==res.tempFilePaths.length){
+
+                wx.hideLoading()
+
                 this.saveBlock()
               }
 
@@ -228,7 +235,9 @@ Component({
             camera: self.properties.supportType.video.camera,
             success:function (res){
 
-              wx.showLoading()
+              wx.showLoading({
+                title:'上传中'
+              })
              uploadFile({filePath:res.tempFilePath}).then(res=>{
 
 
@@ -381,9 +390,14 @@ Component({
         innerInitData: self.data.innerInitData
       })
       this.saveBlock()
+
     },
     moveUp: function (e) {
       let index = e.currentTarget.dataset.index
+      console.log(index)
+      if(index == 0){
+        return
+      }
       let self = this
       let thisData = self.data.innerInitData[index]
       let prevData = self.data.innerInitData[index - 1]
@@ -393,21 +407,30 @@ Component({
         innerInitData: self.data.innerInitData,
         newCurIndex: -1
       })
+      
+      this.triggerEvent('moveItem',index)
 
       this.saveBlock()
       return false
     },
     moveDown: function (e) {
       let index = e.currentTarget.dataset.index
-      let self = this
-      let thisData = self.data.innerInitData[index]
-      let nextData = self.data.innerInitData[index + 1]
-      self.data.innerInitData[index] = nextData
-      self.data.innerInitData[index + 1] = thisData
-      self.setData({
-        innerInitData: self.data.innerInitData,
+      console.log(index)
+       if(index == this.data.innerInitData.length - 1){
+        return
+      }
+
+      let thisData = this.data.innerInitData[index]
+      let nextData = this.data.innerInitData[index + 1]
+      this.data.innerInitData[index] = nextData
+      this.data.innerInitData[index + 1] = thisData
+      this.setData({
+        innerInitData: this.data.innerInitData,
         newCurIndex: -1
       })
+
+      this.triggerEvent('moveItem',index)
+
       this.saveBlock()
       return false
     },

@@ -42,7 +42,7 @@
 
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
             </view>
-            <view class="user-info"><text class="name"> {{item.user.nickname}}</text>
+            <view class="user-info"><text class="name"> {{item.consignee}}</text>
               </view>
                 <view class="msg_btn">
                <!--  <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
@@ -65,7 +65,7 @@
             <view class="   scale-b-1px" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="g">
                 <view class="text-justify type">
                 <view>{{g.spec_name}} ×{{g.qty}}</view>
-                <view class="text-info">¥ {{g.total_price}} </view>
+                <view class="text-info">¥ {{g.agent_price}} </view>
                 </view>
             </view>
 
@@ -101,7 +101,7 @@
                 </text>
             </view>
             <view class="total text-justify scale-b-1px">
-                <view><text class="warning-text f18">¥{{item.pay_price}} </text>
+                <view><text class="warning-text f18">¥{{item.profit}} </text>
                     <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
                     <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
@@ -198,8 +198,8 @@
         </view>
 
         <view class="mid-cell">
-            <view>￥ {{orderData.pay_price}}</view>
-            <text class="f28">退款金额将从您的账户余额中扣除</text>
+            <view>￥ {{orderData.pay_price}}             {{item.order_refundstatus}} </view>
+            <text class="f28">退款金额将从您的账户余额中扣除，请确保账户余额。</text>
         </view>
         <view class="center-content">
             <scroll-view scroll-y>
@@ -221,6 +221,7 @@
             </scroll-view>
         </view>
         <view class="bottom-btn">
+            {{item.order_refundstatus}}
             <button wx:if="{{item.order_refundstatus==1}}" type="primary" data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}">确认退款</button>
             <button wx:else type="primary" data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}" bind:tap="closeTui">关闭</button>
         </view>

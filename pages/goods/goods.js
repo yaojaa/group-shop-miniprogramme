@@ -71,7 +71,6 @@ Page({
     code: false,
     cartPanel: false,
     amountMoney: 0,
-    countdownTime: 0,
     clearTimer: false,
     myFormat: ['天', '小时', '分', '秒'],
     orderUsers: [],
@@ -151,6 +150,7 @@ Page({
  */
 
   showApplyModal(msg){
+    console.log('showApplyModal')
               wx.showModal({  
               title: msg,  
               content: '是否立即申请',
@@ -180,21 +180,23 @@ Page({
       store_id:this.data.store_id
     }).then(res=>{
 
-      if(res.data.code == 200){
+      console.log(res.data.data == 0)
 
         //不是帮卖成员
         if(res.data.data == 0){
 
-          this.showApplyModal()
+          wx.showToast({
+            title:'你不是帮卖成员'
+          })
 
+          this.showApplyModal('您没有权限帮卖Ta的商品！')
 
         }
 
         this.setData({
           is_help_sale_user:res.data.data==0?false:true
         })
-      }
-     
+           
 
     })
 
@@ -239,13 +241,16 @@ Page({
    })
   },
   goContact(e) {
-    const { phone, wx } = e.currentTarget.dataset
     this.setData({
-      phone: phone,
-      weChat: wx,
+      phone: this.data.goods.user.mobile,
+      weChat: this.data.goods.user.wechatnumber,
     })
+
+
+    console.log(this.data.goods)
+
     Dialog.confirm({
-      confirmButtonText: '进入主页',
+      confirmButtonText: '逛逛Ta的主页',
       selector: '#contact',
     })
       .then(() => {
@@ -324,7 +329,7 @@ Page({
           if(type == 'invit'){
 
             title = this.data.goods.user.nickname +'邀请你帮卖【'+this.data.goods.goods_name+'】'
-               pathParam = '&help_sale=true'
+            pathParam = '&help_sale=true'
 
                img_url = this.data.imgOkPath
 
@@ -346,10 +351,15 @@ Page({
       uid = app.globalData.userInfo.user_id
     }
 
-    console.log('/pages/goods/goods?goods_id=' +
+    console.log({
+      title: title,
+      imageUrl: img_url,
+      path:
+        '/pages/goods/goods?goods_id=' +
         this.data.goods.goods_id +
         '&from_id=' +
-        uid+pathParam)
+        uid+pathParam
+    })
 
     return {
       title: title,
@@ -637,6 +647,13 @@ Page({
 
 
   },
+  goPublish(){
+
+     wx.redirectTo({
+              url: '../publish/publish?goods_id=' + this.data.goods_id
+            })
+
+  },
 
   /**修改当前商品的帮卖价格**/
   goModify() {
@@ -805,11 +822,6 @@ Page({
            }
 
 
-           
-
-
-
-
         } else if (res.data.code == 0) {
           wx.showModal({
             title: '亲，已经结束了，下次早点来哦',
@@ -871,13 +883,19 @@ Page({
     this.data.goods_id = option.goods_id || option.id || option
     this.data.from_id = option.from_id || ''
 
-    //url里有帮卖参数 表示邀请帮卖页面
+    //url里有帮卖参数 表示邀请帮卖页面 这里首页要判断权限 没有权限的不让看
     if(option.help_sale){
       this.setData({
         is_help_sale:true
       })
 
+      wx.showToast({
+        title:'是帮卖参数页面'
+      })
+
     }
+
+    console.log('option',option)
 
 
 
@@ -896,7 +914,7 @@ Page({
         this.setData({
           showAuth: true,
         })
-      }, 5000)
+      }, 1000)
     }
 
 
@@ -1094,6 +1112,7 @@ Page({
             showAuth: false,
           })
 
+          this.getGoodsInfo()
           this.add_access()
         })
         .catch((e) => console.log(e))
@@ -1353,6 +1372,13 @@ Page({
   },
 
   helpSaleUp:function(){
+
+     //未登录 弹出授权弹窗
+    if (!app.globalData.userInfo) {
+      return  this.setData({
+          showAuth: true,
+        })
+    }
 
     //如果是自己
     if(this.data.goods.store.user_id == app.globalData.userInfo.user_id){

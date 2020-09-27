@@ -1,11 +1,15 @@
 /* plugin/components/richeditor/richeditor.wxss */
 input{
-  font-size: 28rpx;
+  font-size: 30rpx;
   padding: 0 28rpx;
   height: 88rpx;
 }
 
 .rich-editor-wrp{
+
+  padding-right: 20px;
+  padding-left: 20px;
+  background: #f8f8f8
 
 }
 
@@ -52,8 +56,19 @@ input{
   overflow: hidden;
 }
 
+.up-ctx textarea {
+
+  font-size: 16px;
+  line-height: 22px;
+  background: #fff;
+  padding: 4px;
+  min-height: 88px
+
+  
+}
+
 .common-contain.text-contain .up-ctx {
-  padding: 28rpx;
+  padding-top: 28rpx;
 }
 
 .common-contain.video-contain .up-ctx video{

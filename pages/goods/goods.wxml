@@ -18,11 +18,9 @@
     <imgs imgs="{{imgs}}">
         <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{menuBarTop}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
             
-            <view class="user-body" wx:if="{{showBackIcon}}" style="margin-right: 3px">
-                  <view class="icon-back" catchtap="goBack"><van-icon name="arrow-left" size="30px"/></view> 
-                </view>
+                  <view class="icon-back"  wx:if="{{showBackIcon}}" catchtap="goBack"><van-icon name="arrow-left" size="30px"/></view> 
 
-            <view class="user-body" catchtap="goContact" data-phone="{{goods.user.mobile}}" data-wx="{{goods.user.wechatnumber}}">
+            <view class="user-body" catchtap="goContact">
                
                 <view class="user-info-hd">
                     <image src="{{goods.user.headimg}}" class="avatar"></image>
@@ -44,7 +42,7 @@
             访问记录
         </view>
         
-        <view class="flex-item" bindtap="goModify" wx:if="{{goods.goods_link == 0}}">
+        <view class="flex-item" bindtap="goPublish" wx:if="{{goods.goods_link == 0}}">
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
@@ -103,14 +101,14 @@
         
 
 
-     <block wx:if="{{goods.is_on_sale ==1}}">
+     <block wx:if="{{goods.goods_expires.status== 1}}">
 
-        <block wx:if="{{goods.is_timelimit ==1}}"> 
+        <block wx:if="{{goods.goods_expires.countdown !==0}}"> 
 
-        <view class="sale-panel-fd {{goods.goods_expires!=1?'off':''}}">
+        <view class="sale-panel-fd">
             <view class="marker"></view>
-            <view wx:if="{{countdownTime && goods.is_timelimit==1 && goods.goods_expires ==1 }}">
-                <view class="tit">距离结束</view>
+            <view >
+                <view class="tit">限时销售</view>
                 <view class="count-down">
                     <text class="time-area">{{days}}</text>
                     <text class="space">:</text>
@@ -121,7 +119,6 @@
                     <text class="time-area">{{sec}}</text>
                 </view>
             </view>
-            <view wx:else>{{['','开团中','尚未开始','已结束'][goods.goods_expires]}}</view>
         </view>
       </block>
       <view wx:else class="sale-panel-fd">进行中</view>
@@ -129,12 +126,12 @@
 
     </block>
 
-     <block wx:if="{{goods.is_on_sale ==2}}">
+     <block wx:else>
 
          <view class="sale-panel-fd off">
 
-            已结束
-             
+            {{['','进行中','未开始','已结束','已下架'][goods.goods_expires.status]}}
+
          </view>
 
      </block>
@@ -210,11 +207,16 @@
         </view>
 
 
-        <block wx:if="{{goods.show_buyerlist!==1}}">
+     
+        <view>
+
+        <goods-detail content="{{content}}"></goods-detail>
+
+           <block wx:if="{{goods.show_buyerlist!==1}}">
             <view class='sub-title scale-b-1px contentBox'>
-                <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
+                <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
                     查看所有订单 〉
-                </text>
+                </text> -->
                 最近参与
             </view>
             <view class="white-bg p-df cf">
@@ -246,9 +248,6 @@
             </scroll-view> -->
             </view>
         </block>
-        <view>
-
-        <goods-detail content="{{content}}"></goods-detail>
    <!--          <view class='sub-title scale-b-1px'>图文介绍</view>
 
                     <view  class='goods-content-wraper por'>
@@ -296,14 +295,14 @@
     
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->
 
-    <view class='footer-cart'  wx:if="{{is_help_sale || (is_help_sale_user && goods.agent_opt==1)}}">
+    <view class='footer-cart'  wx:if="{{is_help_sale && goods.agent_opt==1}}">
          <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
 
          <view class='icon' style="flex:4">
-            <button bindtap="helpSaleUp" wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg">
+            <button bindtap="helpSaleUp" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg">
                 我要帮卖
             </button>
         </view>
@@ -312,7 +311,7 @@
 
     <!--正常客户下单-->
 
-    <view class='footer-cart' wx:if="{{!is_help_sale_user}}">
+    <view class='footer-cart' wx:if="{{!is_help_sale}}">
         <view class='icon' bindtap='homepage' style="flex: 22">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
@@ -325,16 +324,17 @@
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
-
-            <!--如果是团看自己-->
-            <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg" formType="submit">
+            <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg" formType="submit">
               立即参与
             </button>
-            <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires == 2 }}" class="buy linenear_bg" formType="submit">
+            <button wx:if="{{goods.goods_expires.status == 2 }}" disabled="{{true}}" class="buy linenear_bg" formType="submit">
               未开始
             </button>
-            <button disabled="{{true}}" wx:if="{{goods && goods.goods_expires == 3 || putaway_status==2 || goods.is_on_sale == 2}}" class="buy" formType="submit">
-              已结束
+            <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 3}}" class="buy" formType="submit">
+              已过期
+            </button>
+            <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 4}}" class="buy" formType="submit">
+              已下架
             </button>
         </form>
     </block>  
@@ -354,22 +354,24 @@
 
 <button  open-type="share" data-type="share"   wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 78">
                  转发顾客下单
-            </button>
+</button>
 
-         <form wx:if="{{totalNum > 0}}" style="flex:78;position: relative;" bindtap="cartPanelShow" >
+         <form wx:if="{{totalNum > 0 }}" style="flex:78;position: relative;" bindtap="cartPanelShow" >
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
 
-            <!--如果是团看自己-->
-            <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires==1 }}" class="buy linenear_bg left-raduis right-raduis" formType="submit">
+            <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg" formType="submit">
               立即参与
             </button>
-            <button wx:if="{{goods && goods.is_on_sale ==1 && goods.goods_expires == 2 }}" class="buy linenear_bg left-raduis right-raduis" formType="submit">
+            <button wx:if="{{goods.goods_expires.status == 2 }}" disabled="{{true}}" class="buy linenear_bg" formType="submit">
               未开始
             </button>
-            <button disabled="{{true}}" wx:if="{{goods && goods.goods_expires == 3 || putaway_status==2 || goods.is_on_sale == 2}}" class="buy" formType="submit">
-              已结束
+            <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 3}}" class="buy" formType="submit">
+              已过期
+            </button>
+            <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 4}}" class="buy" formType="submit">
+              已下架
             </button>
         </form>
         
@@ -493,8 +495,8 @@
         </view>
         <van-cell-group border="{{false}}" custom-class="mv-df">
             <van-cell title="{{goods.user.nickname}}" value="主页" is-link icon="manager-o" title-width="300rpx" bindtap="goHomePage" />
-            <van-cell title="手机号：{{phone}}" value="拨号" is-link icon="phone-o" title-width="300rpx" bindtap="phoneCall" wx:if="{{phone}}" />
-            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" is-link icon="chat-o" title-width="300rpx" bindtap="copyWx" wx:if="{{weChat}}" />
+            <van-cell title="手机号：{{phone || '这家伙很懒'}}" value="拨号" is-link icon="phone-o" title-width="300rpx" bindtap="phoneCall"  />
+            <van-cell border="{{false}}" title="微信号：{{weChat || '这家伙很懒'}}" value="复制" is-link icon="chat-o" title-width="300rpx" bindtap="copyWx"  />
         </van-cell-group>
     </van-dialog>
     <van-popup show="{{ specPopup }}" custom-style="background:none;" position="bottom" bind:close="handleSpecPopup">

@@ -14,6 +14,36 @@
             <button class="btn primary w-min-lg lg linenear_bg" bindtap="createOrder" loading="{{loading}}" disabled="{{loading}}"> {{pay_btn_txt}} </button>
     </view>
     <view class="content-wrap">
+
+
+              <view bindtap="goAddress"   hover-class="none" class=" white-bg flex align-center p-df" >
+                    <van-icon name="location-o" />
+                    <view class="flex-sub mh-sm">
+                        <view class="flex align-center">
+                            <text class="bold text-lg mr-xs">{{address.consignee}}</text>
+                            <text class="text-muted">{{address.mobile}}</text></view>
+                        <view class="text-sm mt-xs"><text class="text-gray"></text>
+                            <text class="">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</text>
+                            <text class="f18 " wx:if="{{!address_id}}">选择已有收件人</text>
+                        </view>
+                    </view>
+                    <van-icon name="arrow" color="#999" />
+                </view>
+
+       
+
+
+
+         <view class="center p-df"  wx:if="{{!address.address_id}}">
+                    
+                             <button bindtap="newAddress"  class=" primary m-xs hollow  xl btn linenear_bg "  formType="submit"  > <van-icon name="add-o" color="#49b34d" />  新增收件地址
+                             </button>
+
+                                
+         </view>
+
+
+         
         <view class="por">
             <view class="ziti" wx:if="{{delivery_method==2}}">
                 <view class="flex align-center ph-df pt-df pb-xs">
@@ -79,31 +109,7 @@
 
 
 
-          <view bindtap="goAddress"   hover-class="none" class=" white-bg flex align-center p-df" >
-                    <van-icon name="location-o" />
-                    <view class="flex-sub mh-sm">
-                        <view class="flex align-center">
-                            <text class="bold text-lg mr-xs">{{address.consignee}}</text>
-                            <text class="text-muted">{{address.mobile}}</text></view>
-                        <view class="text-sm mt-xs"><text class="text-gray"></text>
-                            <text class="">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</text>
-                            <text class="f18 " wx:if="{{!address_id}}">选择已有收件人</text>
-                        </view>
-                    </view>
-                    <van-icon name="arrow" color="#999" />
-                </view>
-
-       
-
-
-
-         <view class="center p-df"  wx:if="{{!address.address_id}}">
-                    
-                             <button bindtap="newAddress"  class=" primary m-xs hollow  xl btn linenear_bg "  formType="submit"  > <van-icon name="add-o" color="#49b34d" />  新增收件地址
-                             </button>
-
-                                
-         </view>
+    
 
         <van-cell-group custom-class="mb-sm">
 
