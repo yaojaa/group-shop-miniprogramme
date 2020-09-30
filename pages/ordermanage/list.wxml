@@ -75,16 +75,43 @@
 
     <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="{{item.order_id}}" wx:if="{{!item.removed}}">
         <view class="order-hd">
+
+
+
+       <!--如果下单的店铺不是自己的店铺，就显示是来自代理的头像而不是下单用户的头像-->
+    
+         <block wx:if="{{user_id == item.store.user_id }}">
             <view class="number">
                 <text class="create_number">{{item.create_number}}</text>
                 <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
             </view>
-            <view class="user-info"><view class="name"> {{item.user.nickname}}</view> 
-                <text class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</text>
-                 <text data-customer_name="{{item.user.nickname}}" data-order_id="{{item.order_id}}" bindtap="sendMsgSingle" class="blue_text" >（微信通知）</text>
+            <view class="user-info">
+                <view class="name"> {{item.user.nickname}}  
+
+   <van-button data-customer_name="{{item.user.nickname}}" data-order_id="{{item.order_id}}" bindtap="sendMsgSingle" class="ml-sm" type="primary" plain size="mini" bindtap="sendMsgSingle">发送通知</van-button>
+                </view> 
+
+                     
+
+
+                <view class="tel" bindtap="calluser" data-text="{{item.user.mobile}}" data-mobile="{{item.user.mobile || item.mobile}}">{{item.user.mobile || item.mobile}}</view>
+                
             </view>
+        </block>
 
+        <block wx:else>
 
+             <view class="number">
+                <text class="create_number">{{item.create_number}}</text>
+                <image class="userinfo-avatar" mode="cover" src="{{item.store.headimg}}" />
+            </view>
+            <view class="user-info"><view class="name"> {{item.store.nickname}}</view> 
+                <view class="tel">帮卖订单</view>
+                
+            </view>
+            
+
+        </block>
 
 
             <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">
@@ -99,7 +126,14 @@
         <view class="order-bd">
             <view class="type text-justify  scale-b-1px" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="g">
                 <view>{{g.spec_name}} ×{{g.qty}}</view>
-                <view class="text-info">¥ {{g.total_price}} </view>
+
+    <view class="text-info" wx:if="{{user_id == item.store.user_id }}">¥ {{g.total_price}} </view>
+    <view class="text-info" wx:else="{{user_id == item.store.user_id }}">¥ {{g.agent_price*g.qty}} </view>
+
+
+
+                
+
             </view>
 
             <view class="type text-justify  scale-b-1px" wx:if="{{item.shipping_money!='0.00'}}">
@@ -142,12 +176,15 @@
             </view>
             <view class="total text-justify scale-b-1px">
                 <view>
-                        <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
-                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
-                    <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
+                        <text class="success-text" wx:if="{{item.pay_status==1}}">已支付 </text>
+                    <text class="danger-text" wx:if="{{item.pay_status==0}}">未支付 </text>
+                    <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败 </text>
                    <!--如果下单的店铺不是自己的店铺，就显示是来自代理的-->
                     <text class="warning-text f18" wx:if="{{user_id == item.store.user_id }}" >¥{{item.pay_price}} </text>
-                    <text class="warning-text f18" wx:else>¥{{item.pay_price-item.profit}} <text class="f12">来自代理“{{item.store.store_name}}”</text> </text>
+                    
+                    <text class="warning-text f18" wx:else>¥{{item.pay_price-item.profit}}
+
+                </text>
 
                 
                 </view>
@@ -186,7 +223,7 @@
 
 
 
-            <view class="express" wx:if="{{item.order_status >= 3 && item.delivery_method == 1 }}">
+            <view class="express" wx:if="{{item.link_store[0]==null && item.order_status >= 3 && item.delivery_method == 1 }}">
                 <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}">
                     物流信息
                 </view>
@@ -200,7 +237,15 @@
             <!--是帮卖团长查看 显示赚多少钱和发货人-->
      <view wx:if="{{item.link_store.length ==2 && user_id !== item.link_store[1].user_id}}">
           <view class="mt-sm f12 clear_fix">
-           赚<text class="text-warning">¥{{item.profit}}</text>元 由<text class="text-success">{{item.link_store[1].nickname}}</text>发货 
+           赚<text class="text-warning">¥{{item.profit}}</text>元 由<text class="text-primary">{{item.link_store[1].nickname}}</text>发货 
+         </view>
+     </view>
+
+
+             <!--是供应商的商品 显示赚多少钱和发货人-->
+     <view wx:if="{{item.link_store.length ==1 && item.link_store[0].store_id}}">
+          <view class="mt-sm f12 clear_fix">
+           赚<text class="text-warning">¥{{item.profit}}</text>元 由<text class="text-warning">{{item.link_store[0].store_name}}</text>发货 
          </view>
      </view>
         <!--  <form bindsubmit="order_remarkSubmit" report-submit="true"> -->

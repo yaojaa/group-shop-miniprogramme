@@ -367,6 +367,8 @@ Page({
             }
         })
 
+      
+
 
         var postData = {}
 
@@ -486,7 +488,8 @@ Page({
          util.wx.get('/api/goods/get_shipping_money', {
                 goods_id: this.data.goods_id,
                 address_id:this.data.address_id,
-                goods_type:1
+                goods_type:1,
+                qty:this.data.totalNumer
             })
             .then(res => {
 

@@ -441,9 +441,10 @@ Page({
         let url = e.currentTarget.dataset.url
         let name = e.currentTarget.dataset.name
         let delivery_method = e.currentTarget.dataset.delivery_method
+        let store_id = app.globalData.userInfo.store.store_id
 
         wx.navigateTo({
-            url: '../ordermanage/list?goods_id=' + url + '&goods_name=' + name + '&delivery_method=' + delivery_method,
+            url: '../ordermanage/list?goods_id=' + url + '&goods_name=' + name + '&delivery_method=' + delivery_method+'&store_id='+store_id,
         })
     },
     //复制商品

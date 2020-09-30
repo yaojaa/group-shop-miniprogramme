@@ -41,7 +41,6 @@ Page({
             date: fmtDate(event.detail),
             dateModal: !this.data.dateModal
         });
-        console.log(event)
     },
     handleScopeModal() {
         this.setData({

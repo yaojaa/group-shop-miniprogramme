@@ -46,7 +46,7 @@
                         <view class="flex align-center text-gray ">
                             <van-icon name="shopping-cart-o" size="46rpx" />
                             <text class="text-muted ph-xs"></text>
-                            <van-icon name="share" size="46rpx" data-id="{{item.goods_id}}" bindtap="goods_up" />
+                            <van-icon name="share" size="46rpx" data-id="{{item.goods_id}}" catchtap="goods_up" />
                         </view>
                     </view>
                 </view>

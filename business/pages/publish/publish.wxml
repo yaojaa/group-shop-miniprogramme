@@ -241,11 +241,11 @@
                     </view>
                     <view class="weui-cell__bd"></view>
                     <view class="weui-cell__ft">
-                        <view class="weui-icon-warn" bindtap="handleOpen2">
-                            <text wx:if="{{delivery_method==0}}">选择配送方式</text>
-                            <text wx:if="{{delivery_method==1}}">快递邮寄</text>
-                            <text class="address-txt" wx:if="{{delivery_method==2}}">配送到团长提货点</text>
-                            <i-icon type="enter" size="26" />
+                        <view class="weui-icon-warn">
+<!--                             <text wx:if="{{delivery_method==0}}">选择配送方式</text>
+ -->                            <text wx:if="{{delivery_method==1}}">快递邮寄</text>
+<!--                             <text class="address-txt" wx:if="{{delivery_method==2}}">配送到团长提货点</text>
+ -->                            <i-icon type="enter" size="26" />
                         </view>
                     </view>
                 </view>

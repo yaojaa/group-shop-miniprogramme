@@ -95,10 +95,36 @@ Page({
   goods_up(e) {
     const { id } = e.target.dataset
 
-    wx.navigateTo({
-      url: '/pages/goods-up/index?supid=' + id,
-    })
+    console.log('goods uppppp')
+
+    if(this.type == 'supplier'){
+
+        wx.navigateTo({
+          url: '/pages/goods-up/index?supid=' + id,
+        })
+
+    }else{
+
+    wx.showLoading()
+
+    util.wx.post('/api/helper/add_agent_goods',{
+      goods_id:id
+    }).then(res=>{
+
+       wx.hideLoading()
+      if(res.data.code == 200){
+
+         wx.redirectTo({
+          url:'../help-sale-up/index?goods_id='+res.data.data
+        })
+
+       }
+     })
+  
+    }
   },
+
+
 
   onLoad(option) {
     this.id = option.id

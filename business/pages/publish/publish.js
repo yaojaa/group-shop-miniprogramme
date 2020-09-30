@@ -31,7 +31,7 @@ Page({
     isShowTimePicker: false,
     goods_images: [],
     content_imgs: [],
-    delivery_method: 0, //配送方式配送方式 1:送货 2:自提',
+    delivery_method: 1, //配送方式配送方式 1:送货 2:自提',
     sell_address: [],
     isGave: 0,
     address: 0,

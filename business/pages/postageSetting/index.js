@@ -60,9 +60,17 @@ Page({
 
     },
     getList() {
+      wx.showLoading()
         util.wx.get('/api/user/get_freight_tpl_list')
             .then(res => {
+
+                wx.hideLoading({
+                  title:'加载中...',
+                  icon: 'none'
+                })
+
                 if (res.data.code === 200) {
+
                     const lists = res.data.data.lists;
                     lists.forEach(item => {
                         item.freight_tpl_info_list = item.freight_tpl_info

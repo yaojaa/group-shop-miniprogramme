@@ -901,7 +901,7 @@
           "id": 117,
           "name": "business/pages/goods-user/goods",
           "pathName": "business/pages/goods-user/goods",
-          "query": "id=47",
+          "query": "id=69",
           "scene": null
         },
         {
@@ -1202,7 +1202,7 @@
           "id": 160,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2155&help_sale=true",
+          "query": "goods_id=3473",
           "scene": null
         },
         {
@@ -1322,6 +1322,34 @@
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
           "query": "goods_id=3150&from_id=9490",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=3151&goods_name=牛奶&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/publish/publish",
+          "pathName": "business/pages/publish/publish",
+          "query": "id=3151&goods_name=牛奶&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=seller&id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/publish/publish",
+          "pathName": "business/pages/publish/publish",
+          "query": "type=seller&id=1",
           "scene": null
         }
       ]

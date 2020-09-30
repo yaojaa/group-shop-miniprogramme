@@ -175,7 +175,7 @@ Page({
 
         this.setData({
             user_id: app.globalData.userInfo.user_id,
-            goods_id: optiton.id,
+            goods_id: optiton.goods_id,
             delivery_method: optiton.delivery_method,
             goods_name: optiton.goods_name
         })

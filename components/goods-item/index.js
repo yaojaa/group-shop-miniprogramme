@@ -353,14 +353,17 @@ Component({
     },
 
     managePage(e){
+     
   let id = e.currentTarget.dataset.id
   let delivery_method = e.currentTarget.dataset.delivery_method
   let goods_name = e.currentTarget.dataset.name
+  let store_id = app.globalData.userInfo.store.store_id
+
+  
 
         wx.navigateTo({
-            url: '../ordermanage/list?id=' + id+'&goods_name='+goods_name+'&delivery_method='+delivery_method,
+            url: '../ordermanage/list?goods_id=' + id + '&goods_name=' + goods_name + '&delivery_method=' + delivery_method+'&store_id='+store_id,
         })
-
     },
     //删除商品
     delGoods(e){

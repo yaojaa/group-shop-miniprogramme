@@ -90,8 +90,8 @@ border-radius:8rpx;
     padding-bottom: 8px;
 }
 .order-hd .number{
-    width: 80rpx;
-    height: 80rpx;
+    width: 70rpx;
+    height: 70rpx;
     text-align: center;
     line-height: 50rpx;
     background: #f2f2f2;
@@ -113,17 +113,16 @@ border-radius:8rpx;
 
 .order-hd .user-info .name{
     color:#555;
-    font-size: 26rpx;
-    width: 260rpx;
+    font-size: 24rpx;
     text-overflow: ellipsis;
     display: inline-block;
+    margin-bottom: 2px;
 }
 .order-hd .user-info .tel{
     color:#999;
     font-size: 22rpx
 }
 .order-hd .order-status{
-    width: 200rpx;
     text-align: right;
     font-size: 28rpx;
     line-height: 1.2;
@@ -158,7 +157,7 @@ border-radius:8rpx;
 }
 .order-fd{
     text-align: right;
-    min-height: 100rpx
+    overflow: hidden;
 
 }
 .order-fd form{
@@ -326,8 +325,8 @@ padding: 15rpx 30rpx
     margin: 3rpx 0 25rpx
 }
 .userinfo-avatar{
-    width: 80rpx;
-    height: 80rpx;
+    width: 70rpx;
+    height: 70rpx;
     border-radius: 50%
 
 }

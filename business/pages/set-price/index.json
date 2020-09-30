@@ -1,19 +1,19 @@
 {
     "navigationBarTitleText": "添加运费模版",
     "usingComponents": {
-        "van-cell": "../../vant/cell/index",
-        "van-cell-group": "../../vant/cell-group/index",
-        "van-field": "../../vant/field/index",
-        "van-picker": "../../vant/picker/index",
-        "van-button": "../../vant/button/index",
-        "van-checkbox": "../../vant/checkbox/index",
-        "van-checkbox-group": "../../vant/checkbox-group/index",
-        "van-row": "../../vant/row/index",
-        "van-col": "../../vant/col/index",
-       "van-icon": "../../vant/icon/index",
+        "van-cell": "../../../vant/cell/index",
+        "van-cell-group": "../../../vant/cell-group/index",
+        "van-field": "../../../vant/field/index",
+        "van-picker": "../../../vant/picker/index",
+        "van-button": "../../../vant/button/index",
+        "van-checkbox": "../../../vant/checkbox/index",
+        "van-checkbox-group": "../../../vant/checkbox-group/index",
+        "van-row": "../../../vant/row/index",
+        "van-col": "../../../vant/col/index",
+       "van-icon": "../../../vant/icon/index",
         "wux-input-number": "../../../wux/input-number/index",
-        "van-stepper": "../../vant/stepper/index",
-        "van-radio": "../../vant/radio/index",
-        "van-radio-group": "../../vant/radio-group/index"
+        "van-stepper": "../../../vant/stepper/index",
+        "van-radio": "../../../vant/radio/index",
+        "van-radio-group": "../../../vant/radio-group/index"
     }
 }

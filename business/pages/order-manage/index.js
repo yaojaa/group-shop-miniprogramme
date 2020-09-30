@@ -397,7 +397,7 @@ Page({
                 goods_id: this.data.goods_id || '',
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
-                order_status: this.data.search_order_status,
+                search_order_status: this.data.search_order_status,
                 pagesize: 30
             }).then(res=>{
 
