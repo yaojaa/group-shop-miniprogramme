@@ -50,7 +50,8 @@
         </view>
 
         <view class="flex-item"
-          data-id="{{goods.supplier_goods_id}}" data-goods_id="{{goods.goods_id}}"
+          data-id="{{goods.supplier_goods_id}}" 
+          data-goods_id="{{goods.goods_id}}"
            bindtap="goModifyPrice" wx:else>
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
@@ -108,7 +109,7 @@
         <view class="sale-panel-fd">
             <view class="marker"></view>
             <view >
-                <view class="tit">限时销售</view>
+                <view class="tit">结束时间</view>
                 <view class="count-down">
                     <text class="time-area">{{days}}</text>
                     <text class="space">:</text>
@@ -288,8 +289,11 @@
 
 
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
-        <view class="weui-footer__links" bindtap="toPublish" wx:if="{{!showPanel}}">
-            <button size="mini" type="primary" class="btn_no_style linenear_bg">+ 我也要使用开心麻团</button>
+        <view class="weui-footer__links">
+            <button size="mini"  class="btn_no_style " bindtap="copyGoods"> 复制此商品</button>
+
+            <button size="mini" bindtap="toPublish"  class="btn_no_style">+ 发布新商品</button>
+
         </view>
     </view>
     
@@ -353,7 +357,7 @@
         </button>
 
 <button  open-type="share" data-type="share"   wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 78">
-                 转发顾客下单
+                 分享顾客
 </button>
 
          <form wx:if="{{totalNum > 0 }}" style="flex:78;position: relative;" bindtap="cartPanelShow" >
@@ -507,16 +511,14 @@
                     <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
                     <view class="panel-bd ml-sm">
                         <view class="bolds mr-xl">{{specItem.spec_name}}</view>
-                        <view class="text-sm text-gray mt-xs">{{specItem.spec_desc}}</view>
                         <view class="price-group text-lg mt-xs">
                             <text class="symbol">￥</text>
                             <text class="number">{{specItem.spec_price}}</text>
                         </view>
                     </view>
                 </view>
-                <view class="content p-df mt-df round-df" wx:if="{{specItem.spec_content}}">
-                    <view class="pb-df primary-text text-lg text-center cf">商品介绍</view>
-                    <view class="text-gray">{{specItem.spec_content}}</view>
+                <view class="content p-df mt-df round-df" wx:if="{{specItem.spec_desc}}">
+                    <text class="text-gray">{{specItem.spec_desc}}</text>
                 </view>
                 <view wx:if="{{specItem.spec_pic.length}}">
                     <image src="{{item}}" wx:for="{{specItem.spec_pic}}" class="w-full pt-sm" wx:key="index" mode="widthFix"></image>

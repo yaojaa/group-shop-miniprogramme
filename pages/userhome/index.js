@@ -28,7 +28,6 @@ Page({
     access_list: [],
     show: false,
     actions: [
-      {},
       { name: '编辑', subname: '重新编辑修改内容', key: 'edit' },
       { name: '订单', subname: '进入订单管理页面', key: 'order' },
       { name: '隐藏', subname: '隐藏不在主页展示', key: 'hide' }
@@ -43,21 +42,21 @@ Page({
 
     this.goods_expires = e.currentTarget.dataset.goods_expires
 
-    if (this.goods_expires == 3) {
-      this.data.actions[0] = {
-        name: '开启',
-        subname: '默认30天自动结束',
-        key: 'start'
-      }
-    }
+    // if (this.goods_expires == 3) {
+    //   this.data.actions[0] = {
+    //     name: '开启',
+    //     subname: '默认30天自动结束',
+    //     key: 'start'
+    //   }
+    // }
 
-    if (this.goods_expires == 1) {
-      this.data.actions[0] = {
-        name: '结束',
-        subname: '结束团购停止接单',
-        key: 'end'
-      }
-    }
+    // if (this.goods_expires == 1) {
+    //   this.data.actions[0] = {
+    //     name: '结束',
+    //     subname: '结束团购停止接单',
+    //     key: 'end'
+    //   }
+    // }
 
     this.setData({
       actions: this.data.actions

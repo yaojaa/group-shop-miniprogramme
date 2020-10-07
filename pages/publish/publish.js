@@ -854,6 +854,8 @@ Page({
       this.jump()
       return
     }
+
+
     
 
     util.wx.post('/api/seller/goods_add_or_edit',Object.assign({goods_id:this.data.goods_id,spec:this.data.spec})).then(res=>{
@@ -1041,8 +1043,22 @@ Page({
 
       })
 
+     }
 
+     if(isCopy){
+      var spec = gs.goods_spec.map(item=>{
 
+        return  {
+          spec_name: item.spec_name,
+          spec_price: item.spec_price,
+          spec_stock: item.spec_stock,
+          spec_pic: item.spec_pic,
+          spec_desc: item.spec_desc,
+          sub_agent_price:item.sub_agent_price || item.spec_price
+        }
+      })
+     }else{
+      var spec = gs.goods_spec
      }
 
      console.log(content)
@@ -1070,7 +1086,7 @@ Page({
         end_date: endFormatTime.split(' ')[0],
         end_time: endFormatTime.split(' ')[1],
       },
-      spec: gs.goods_spec,
+      spec: spec,
       isShowTimePicker: gs.is_timelimit == 1,
       freight_tpl_id: gs.freight_tpl_id || 0,
     })
@@ -1201,10 +1217,11 @@ Page({
     if (option.goods_id) {
       this.setData({
         goods_id: option.goods_id,
-        is_edit:true
+        is_edit:true,
+        is_copy: option.copy ? true:false
       })
 
-      this.getPublishedData(option.goods_id)
+      this.getPublishedData(option.goods_id, this.data.is_copy)
     }else{
       this.setWatcher()
     }

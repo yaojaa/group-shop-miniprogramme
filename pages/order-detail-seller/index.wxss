@@ -21,3 +21,8 @@ height:140rpx
 .rightAction{
 	float: right;
 	margin-right: 10px}
+.btn{
+	position: absolute;
+	right: 0px;
+	top:1px;
+}

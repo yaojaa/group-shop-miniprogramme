@@ -145,7 +145,7 @@ Page({
         }
 
         return {
-            title: app.globalData.userInfo.nickname + '推荐您一个好助手',
+            title: app.globalData.userInfo.nickname + '推荐您一个代理接单小助手',
             imageUrl: 'https://static.kaixinmatuan.cn/static/share-cover.jpg',
             path: 'business/pages/create-home/index' + '?from_id=' + _uid
         }

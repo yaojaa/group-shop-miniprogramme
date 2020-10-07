@@ -8,7 +8,7 @@
 
     <view class="head-box">
         <view class="flex align-center">
-            <navigator url="../identify/identify" hover-class="none">
+            <navigator url="../base-info/index" hover-class="none">
                 <view class="user-avatar mh-df">
                     <image class="user-avatar" src="{{info.supplier_logo}}" />
                     <view class="set-icon">

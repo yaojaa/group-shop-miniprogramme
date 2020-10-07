@@ -56,7 +56,8 @@ Page({
 
         console.log(options)
 
-        this.data.goods_id = options.goods_id || options.sellid
+        this.data.goods_id = options.goods_id 
+        console.log(options)
 
 
         // is_modify=true&supid=7&sellid=1708
@@ -141,6 +142,7 @@ Page({
       wx.hideLoading()
     },
 
+    /**先获取父商品数据，再获取子商品数据，两个数据合并一下**/
 
     getGoodsInfo() {
         util.wx.get('/api/goods/get_goods_detail', {
@@ -151,10 +153,38 @@ Page({
               if(res.data.code ==200){
                   var data = res.data.data.goods
 
-                                  this.setData({
-                                    info:res.data.data.goods,
+                  var parent_goods_id =res.data.data.goods.link_goods[1].goods_id
+
+                  var goods_spec =res.data.data.goods.goods_spec
+
+                  util.wx.get('/api/goods/get_goods_detail', {
+                      goods_id: parent_goods_id
+                  }).then(re => {
+
+                      let parent_goods_spec =re.data.data.goods.goods_spec
+
+                      goods_spec.forEach((item,index) =>{
+
+                        item.sub_agent_price = parent_goods_spec[index].sub_agent_price
+
+                     
+
+                      })
+
+                      this.setData({
+                                    info: data,
+                                    goods_spec: goods_spec,
                                     is_loading:false
                                  })
+
+
+
+                  })
+
+
+
+
+                                  
               }
 
             }

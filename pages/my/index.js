@@ -12,7 +12,6 @@ Page({
         goods_id: "",
         order_id: "",
         link_url: "",
-        is_loading: true,
         scrollTop: 0,
         store_money: "",
         pending_money: '***',
@@ -54,72 +53,6 @@ Page({
         })
     },
 
-    handleTabBarChange({ detail }) {
-        this.setData({
-            current: detail.key
-        })
-
-        if (detail.key == 'publish') {
-            wx.navigateTo({
-                url: '../publish-select/index'
-            })
-        }
-
-        if (detail.key == 'nearby') {
-            wx.redirectTo({
-                url: '../index/index'
-            })
-        }
-
-    },
-    //切换显示隐藏状态事件
-    recommendHandle(e) {
-
-        //  console.log(e.detail)
-
-        // this.data.goodslist.forEach((item,index)=>{
-
-        //      if(item.goods_id == e.detail){
-
-        //          const key = 'goodslist['+index+'].is_recommend'
-
-        //          this.setData({
-        //              [key]: e.detail.is_recommend
-        //          })
-        //      }
-
-        // })
-
-        // this.getGoodsList()
-
-    },
-    removeHandle(e) {
-        console.log(e, '删除成功事件')
-
-        var id = e.detail
-
-        var c = null
-
-
-        this.data.goodslist.forEach((item, index) => {
-            console.log(item.goods_id, id)
-
-            if (item.goods_id == id) {
-                c = index
-            }
-        })
-
-        if (c !== null) {
-
-            this.data.goodslist.splice(c, 1)
-
-            this.setData({
-                'goodslist': this.data.goodslist
-            })
-
-        }
-
-    },
     onshow() {
         wx.hideHomeButton();
 
@@ -148,23 +81,8 @@ Page({
            
         }
 
-
-        this.data.cpage = 1
-        this.data.goodslist = []
         this.get_store_info()
 
-        this.getGoodsList()
-    },
-    getOrderCount() {
-        util.wx.get('/api/user/get_order_count_groupby_static').then(res => {
-            if (res.data.code == 200) {
-                this.setData({
-                    waitpay: res.data.data.waitpay,
-                    waitreceived: res.data.data.waitreceived,
-                    complete: res.data.data.complete
-                })
-            }
-        })
     },
     goCreate() {
         wx.redirectTo({
@@ -245,51 +163,6 @@ Page({
     },
     addListen:util.sellerListner,
 
-
-    getGoodsList: function() {
-
-        this.setData({
-            is_loading: true
-        })
-
-        util.wx.get('/api/seller/get_goods_list', {
-                cpage: this.data.cpage,
-                pagesize: 15
-            })
-            .then(res => {
-
-                if (res.data.code == 200) {
-                    this.setData({
-                        goodslist: this.data.goodslist.concat(res.data.data.goodslist),
-                        is_loading: false
-                    })
-
-                    this.data.goodslist.forEach(item => {
-
-                        if (item._order_status1_count > 0) {
-                            this.setData({
-                                hasNewOrder: true
-                            })
-                        }
-
-
-
-                    })
-
-
-
-
-                    this.totalpage = res.data.data.page.totalpage
-
-
-                } else {
-                    this.setData({
-                        is_loading: false
-                    })
-                }
-            })
-
-    },
     new_btn: function() {
         wx.navigateTo({
             url: '../withdrawal/index'

@@ -313,7 +313,7 @@
         </view>
 
 
-        <button wx:if="{{!is_edit}}" style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">
+        <button wx:if="{{!is_edit || is_copy}}" style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">
             确定发布
         </button>
 

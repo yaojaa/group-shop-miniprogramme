@@ -159,7 +159,7 @@ Page({
 
          }
 
-         if(value >= parseInt(spec_price)){
+         if(value > parseInt(spec_price)){
 
             wx.showToast({
                 title:'代理价不能超过你的售价',

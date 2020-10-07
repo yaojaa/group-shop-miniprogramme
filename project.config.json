@@ -1269,10 +1269,10 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 170,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3112",
+          "query": "goods_id=234",
           "scene": null
         },
         {
@@ -1350,6 +1350,41 @@
           "name": "business/pages/publish/publish",
           "pathName": "business/pages/publish/publish",
           "query": "type=seller&id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=19853",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=3161&from_id=1576&help_sale=true",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=19874",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/publish/publish",
+          "pathName": "business/pages/publish/publish",
+          "query": "goods_id=234",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/userhome/index",
+          "pathName": "pages/userhome/index",
+          "query": "id=1585",
           "scene": null
         }
       ]

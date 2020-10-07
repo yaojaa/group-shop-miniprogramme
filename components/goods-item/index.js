@@ -64,7 +64,7 @@ Component({
       this.goods_id = e.currentTarget.dataset.id
 
         wx.showActionSheet({
-          itemList: ['在主页隐藏', '在主页显示', '上架','下架','删除'],
+          itemList: ['在主页隐藏', '在主页显示', '上架','下架','删除','复制'],
           success :(res)=>{
 
             console.log(res)
@@ -94,6 +94,8 @@ Component({
               // 立即结束
               this.delGoods()
 
+            }else if(res.tapIndex == 5){
+              this.copyGoods()
             }
 
           },
@@ -224,6 +226,7 @@ Component({
 
         util.wx.post("/api/seller/goods_change_endtime",{
             goods_id: this.goods_id,
+            is_time_limit:1,
             end_time: util.formatTime(new Date()), 
         }).then(res=>{
           console.log(res)
@@ -359,11 +362,21 @@ Component({
   let goods_name = e.currentTarget.dataset.name
   let store_id = app.globalData.userInfo.store.store_id
 
-  
+
 
         wx.navigateTo({
             url: '../ordermanage/list?goods_id=' + id + '&goods_name=' + goods_name + '&delivery_method=' + delivery_method+'&store_id='+store_id,
         })
+    },
+      //复制商品
+    copyGoods() {
+    wx.redirectTo({
+      url:
+        '../publish/publish?goods_id=' +
+        this.goods_id +
+        '&copy=true',
+    })
+
     },
     //删除商品
     delGoods(e){

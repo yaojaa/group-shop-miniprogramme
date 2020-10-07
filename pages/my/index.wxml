@@ -128,10 +128,6 @@
         </view>
     </i-panel>
     </view> -->
-	<view class="text-center">
-		<wux-spin wx:if="{{is_loading}}"></wux-spin>
-	</view>
-
 
 
 	<view style="margin-bottom:200rpx"></view>

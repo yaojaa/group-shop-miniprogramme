@@ -447,15 +447,7 @@ Page({
             url: '../ordermanage/list?goods_id=' + url + '&goods_name=' + name + '&delivery_method=' + delivery_method+'&store_id='+store_id,
         })
     },
-    //复制商品
-    copyGoods(e) {
-        const goods_id = e.currentTarget.dataset.id
-        wx.navigateTo({
-            url: '../publish/publish?copy=' + goods_id
-        })
-
-
-    },
+  
 
     /**
      * 获取每日数据

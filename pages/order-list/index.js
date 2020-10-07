@@ -169,11 +169,12 @@ Page({
 
     },
     goContact(e) {
-        const { phone, wx,wx_code } = e.currentTarget.dataset
+        const { phone, wx,wx_code,nickname } = e.currentTarget.dataset
         this.setData({
             phone: phone,
             weChat: wx,
-            wx_code:wx_code
+            wx_code:wx_code,
+            nickname:nickname
         })
         Dialog.alert({
             selector: '#contact'

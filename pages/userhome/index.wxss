@@ -317,7 +317,7 @@
   top: 6rpx;
   right: 6rpx;
   padding:8rpx;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.15);
   color: #fff;
   font-size: 20rpx;
   z-index: 1;

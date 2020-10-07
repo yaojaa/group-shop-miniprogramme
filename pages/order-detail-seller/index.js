@@ -82,7 +82,7 @@ Page({
                     }
 
 
-                    if (data.link_store.length == 1) {
+                    if (data.link_store.length == 1 && data.link_store[0]==null ) {
                         data.showAction =true
                     } else if (data.link_store.length == 2) {
                         data.link_store.forEach(it => {
@@ -92,6 +92,9 @@ Page({
                             }
                         })
                     }
+
+
+                    console.log(data.showAction)
 
 
                     this.setData({

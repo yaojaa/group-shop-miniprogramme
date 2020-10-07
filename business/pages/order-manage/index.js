@@ -52,7 +52,7 @@ Page({
         shipped_order: 0,
         back_order: 0,
         showPop: false,
-        search_order_status:'',
+        search_order_status:3,
         activeNames: [],
         isShowTui: false,
         orderData: {}

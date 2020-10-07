@@ -265,6 +265,15 @@ video{
   width: 500rpx
 }
 
+.inline-text{
+  display: inline-block;
+  height: 50rpx;
+  line-height: 50rpx;
+  position: relative;
+  top: -13rpx;
+  color: #999;
+  margin-right: 10px
+}
 .miniInput{
   display: inline-block;
   width: 140rpx;
@@ -275,8 +284,7 @@ video{
 
 .miniInput2{
   display: inline-block;
-  width: 250rpx;
-  margin-top: 10rpx;
+  width: 80px;
   padding: 3px;
   height: 50rpx
 }

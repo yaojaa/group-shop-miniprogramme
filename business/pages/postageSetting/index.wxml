@@ -1,7 +1,7 @@
 <view class="container cf">
  <van-row style="padding: 10px">
                     <van-col span="16">
-                        <text class="title ml-sm">运费模板设置</text>
+                        <text class="title ml-sm">运费模板管理</text>
                     </van-col>   
                     <van-col span="8">
                         <button size="mini"  class="btn  primary linenear_bg" bindtap="addPostageTpl">+添加新模板</button>

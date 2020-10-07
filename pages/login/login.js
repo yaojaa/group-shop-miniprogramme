@@ -12,9 +12,9 @@ Page({
 
     const userInfo = app.globalData.userInfo
 
-    // if(userInfo!==null){
-    //      this.jump(userInfo)
-    // }
+    if(userInfo!==null){
+         this.jump(userInfo)
+    }
 
 
   },

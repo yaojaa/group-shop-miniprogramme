@@ -7,8 +7,8 @@ input{
 
 .rich-editor-wrp{
 
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
   background: #f8f8f8
 
 }
@@ -59,7 +59,7 @@ input{
 .up-ctx textarea {
 
   font-size: 16px;
-  line-height: 22px;
+  line-height: 28px;
   background: #fff;
   padding: 4px;
   min-height: 88px

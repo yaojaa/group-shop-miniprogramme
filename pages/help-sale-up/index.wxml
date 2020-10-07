@@ -1,3 +1,5 @@
+<!--点击我要帮卖跳转的价格设置页-->
+
 <view class="container gray-wrap  cf">
     
 
@@ -22,11 +24,11 @@
    <!--      <van-cell-group custom-class="mt-sm">
             <van-field value="{{scopeTitle}}" name=" " label="商品分类" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
         </van-cell-group> -->
-        <view class="specs-item" wx:for="{{info.goods_spec}}" wx:key="index">
+        <view class="specs-item" wx:for="{{goods_spec}}" wx:key="index">
             <van-cell-group custom-class="mt-sm">
                 <van-field value="{{item.spec_name}}" name="" label="规格名称" placeholder="" input-align="right" readonly></van-field>
                   <van-field value="{{item.spec_price}}元" name="" label="参考售价" placeholder="" input-align="right" readonly></van-field>
-                <van-field value="{{item.agent_price}}元" name="" label="拿货价" placeholder="" input-align="right" readonly></van-field>
+                <van-field value="{{item.sub_agent_price}}元" name="" label="代理价" placeholder="" input-align="right" readonly></van-field>
             </van-cell-group>
             <view class="mh-df mv-sm solid round-df">
                 <van-field use-button-slot value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="您的售价" 

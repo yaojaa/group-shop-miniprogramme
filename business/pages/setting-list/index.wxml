@@ -103,6 +103,15 @@
 <van-cell icon="logistics"  title="切换到团长身份" bindtap="goGroup" />
 </van-cell-group>
 
+ <van-cell-group>
+    
+<van-cell
+  
+>  
+<button open-type="share">分享朋友使用</button>  </van-cell>
+  
+ </van-cell-group>
+
 
 </i-panel>
 

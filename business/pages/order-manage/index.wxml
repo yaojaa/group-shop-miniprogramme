@@ -32,7 +32,7 @@
 
 
  <view class="no-content" wx:if="{{dataList[0].length == 0}}">
-     你还没有订单
+     还没有相关订单
  </view>
     
 <block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">

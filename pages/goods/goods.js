@@ -618,14 +618,16 @@ Page({
   },
 
   goModifyPrice(e){
+
+
            let supid  = e.currentTarget.dataset.id
             let sellid = e.currentTarget.dataset.goods_id
 
-            //上级不是供应商
-            if(this.data.goods.link_goods[0] == null){
+            //上级是帮卖
+            if(this.data.goods.link_goods.length == 2 ){
 
               wx.navigateTo({
-                          url: '../help-sale-up/index?is_modify=true&sellid='+sellid
+                          url: '../help-sale-up/index?is_modify=true&goods_id='+sellid
                       })
 
             }else{
@@ -814,8 +816,8 @@ Page({
 
             //判断是否是帮卖代理浏览
            
-           if(this.data.is_help_sale && app.globalData.userInfo ){
-            this.checkIsHelper(d.goods.store.store_id)
+           if(this.data.is_help_sale && app.globalData.userInfo.store_id != d.goods.store.store_id ){
+            this.checkIsHelper()
            }
 
 
@@ -884,10 +886,6 @@ Page({
     if(option.help_sale){
       this.setData({
         is_help_sale:true
-      })
-
-      wx.showToast({
-        title:'是帮卖参数页面'
       })
 
     }
