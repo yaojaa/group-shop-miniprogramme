@@ -52,9 +52,7 @@
         <view class="goods-panel ph-df white-bg cf">
             <view class="goods-panel-bd " style="position: relative;">
 
-                <button size="mini" class="mt-sm f12 btn" bindtap="ordermanage" >
-                     <van-icon name="replay" size="20" /> 此商品的所有订单
-                </button>
+               
 
                 <view class="goods-panel-item " wx:for="{{info.order_detail}}" wx:key="{{index}}">
                     <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none" class="flex pv-df">
@@ -73,7 +71,9 @@
                     </navigator>
                </view>
 
-                      
+                       <button  class="mt-sm f12 " catchtap="ordermanage" >
+                      查看此商品下的所有订单
+                </button>
             </view>
 
            
