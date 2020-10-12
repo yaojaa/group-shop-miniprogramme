@@ -22,9 +22,9 @@
         </view>
     <view class="tabsArea">
         <van-tabs current="{{ tab }}" color="#ffaa4f" bindchange="handleTab">
-            <van-tab name="2" title="待发货"></van-tab>
-            <van-tab name="3" title="已发货"></van-tab>
-            <van-tab name="3" title="退款"></van-tab>
+            <van-tab name="3" title="待发货"></van-tab>
+            <van-tab name="4" title="已发货"></van-tab>
+            <van-tab name="6" title="退款售后"></van-tab>
         </van-tabs>
     </view>
     <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
@@ -188,7 +188,6 @@
         </view>
     </i-modal>
     <i-message id="message" />
-        <footerbar active="{{1}}" />
 </view>
 
 <view class="alert-box" hidden="{{!isShowTui}}">
@@ -229,5 +228,6 @@
     </view>
 </view>
 
+        <footerbar active="{{1}}" />
 
 

@@ -21,6 +21,8 @@ Component({
   lifetimes: {
     attached: function () {
 
+      console.log('zujian ok ',this.data.active,this)
+
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
@@ -56,7 +58,7 @@ Component({
     onChange(event) {
       // event.detail 的值为当前选中项的索引
       this.setData({
-        active: event.detail
+        active: event.detail.index
       });
     }
   },

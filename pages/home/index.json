@@ -18,8 +18,6 @@
         "wux-spin": "../../wux/spin/index",
         "van-icon": "../../vant/icon/index",
         "van-search": "../../vant/search/index",
-        "van-popup": "../../vant/popup/index",
-        "footerbar": "../../components/footerbar/index"
-
+        "van-popup": "../../vant/popup/index"
     }
 }

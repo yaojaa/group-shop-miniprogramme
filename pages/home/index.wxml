@@ -171,7 +171,5 @@
 
 </van-popup> -->
 
-    <footerbar active="{{0}}"/>
-
 
 </view>

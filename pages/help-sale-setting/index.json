@@ -19,6 +19,8 @@
         "van-popup": "../../vant/popup/index",
         "van-radio": "../../vant/radio/index",
         "van-radio-group": "../../vant/radio-group/index",
-        "van-switch": "../../vant/switch/index"
+        "van-switch": "../../vant/switch/index",
+        "van-dialog": "../../vant/dialog/index"
+
     }
 }

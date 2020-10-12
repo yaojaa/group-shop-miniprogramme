@@ -257,7 +257,7 @@ Page({
                 }else if (res.data.code == -2000){
 
                      Dialog.alert({
-                      title: '您没权限访问此页',
+                      title: '您没权限访问此商品',
                       message: '请先免费创建一个团长主页'
                     }).then(() => {
                         app.globalData.backUrl = '/business/pages/goods-user/goods?id='+this.data.goods_id 
@@ -273,8 +273,10 @@ Page({
                       {
 
                     Dialog.alert({
-                      title: '您没权限访问此页',
-                      message: '请先申请权限'
+                      title: '您没权限访问此商品',
+                      message: '请先联系供货商 申请代理权限',
+                      theme: 'round-button'
+
                     }).then(() => {
                         wx.redirectTo({
                             url:'/business/pages/acting-apply/index?supplier_id='+res.data.data.supplier_id

@@ -227,6 +227,8 @@ Page({
     this.setData({
       active:1
     })
+    this.getTabBar().init()
+
   },
   onChange({ detail }) {
     // 需要手动对 show_buyerlist 状态进行更新

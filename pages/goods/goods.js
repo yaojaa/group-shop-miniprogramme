@@ -752,9 +752,45 @@ Page({
             }
           })
 
-           let content = JSON.parse(d.goods.content)
+  //转换内容数据
+          if(d.goods.content){
 
-           console.log('content is ',content)
+             var content = JSON.parse(d.goods.content)
+
+          }else{
+            var content = []
+          }
+
+
+
+           console.log('content is ',content.length == 0 || content.html == '')
+
+           if(content.length == 0 || content.html == ''){
+
+            content = []
+
+            content.push({
+              "type": "text",
+              "desc": d.goods.goods_content
+            })
+
+           d.goods.content_imgs.forEach(src=>{
+
+              content.push({
+                    "type": "image",
+                    "src": src
+              })
+
+            })
+
+           }else{
+            console.log('else',content.html)
+            content = [content.html]
+           }
+
+           console.log(typeof content,content)
+
+          
 
 
           // let editorContent = JSON.parse(d.goods.content)
@@ -1061,8 +1097,6 @@ Page({
   },
   homepage() {
     const uInfo = app.globalData.userInfo
-
-    console.log(uInfo)
     //
     if (!uInfo) {
       return this.setData({
@@ -1074,7 +1108,7 @@ Page({
       if (prevPage && prevPage.route == 'pages/home/index') {
         wx.navigateBack()
       } else {
-        wx.redirectTo({
+        wx.switchTab({
           url: '../home/index',
         })
       }

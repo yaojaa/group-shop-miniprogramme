@@ -160,6 +160,8 @@ Page({
         this.data.order_list = []
         this.data.cpage = 1
         this.getOrderList()
+    this.getTabBar().init()
+
     },
 
     /**

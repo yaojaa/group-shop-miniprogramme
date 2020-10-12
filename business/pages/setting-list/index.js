@@ -17,9 +17,8 @@ Page({
         store_money: "",
         pending_money: '***',
         StatusBar: app.globalData.StatusBar,
-        CustomBar: app.globalData.CustomBar,
-        active:3
-    },
+        CustomBar: app.globalData.CustomBar    
+      },
 
     getInfo(){
          util.wx.get('/api/supplier/get_supplier_detail').then(res=>{
@@ -81,14 +80,14 @@ Page({
 
         if(app.globalData.userInfo.store){
 
-        wx.redirectTo({
+        wx.switchTab({
             url: '/pages/home/index'
         })
 
 
         }else{
 
-                    wx.redirectTo({
+         wx.redirectTo({
             url: '/pages/create-home/index'
         })
         }

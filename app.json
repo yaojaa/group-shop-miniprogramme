@@ -1,118 +1,145 @@
 {
-  "pages": [
-    "pages/login/login",
-    "pages/home/index",
-    "pages/create-home/index",
-    "pages/creat-goods/index",
-    "pages/publish-select/index",
-    "pages/index/index",
-    "pages/withdrawal/index",
-    "pages/withdrawal-record/index",
-    "pages/goods/goods",
-    "pages/publish/publish",
-    "pages/publish-success/publish-success",
-    "pages/map/index",
-    "pages/paySuccess/index",
-    "pages/userLocation/index",
-    "pages/myPublish/index",
-    "pages/paymethod/index",
-    "pages/userhome/index",
-    "pages/create_shop/index",
-    "pages/upload_pics/upload_pics",
-    "pages/address/index",
-    "pages/address-form/index",
-    "pages/order-list/index",
-    "pages/new-order-list/index",
-    "pages/order-detail/index",
-    "pages/ems-detail/index",
-    "pages/evaluate/index",
-    "pages/order-confirm/index",
-    "pages/fans/index",
-    "pages/fans-mg/index",
-    "pages/ordermanage/list",
-    "pages/spec-order-list/list",
-    "pages/to-send/index",
-    "pages/identify/identify",
-    "pages/modify-address/index",
-    "pages/express/index",
-    "pages/send-list/index",
-    "pages/ems/ems",
-    "pages/updown_exc/index",
-    "pages/send-msg/index",
-    "pages/refundment/index",
-    "pages/refundment-detail/index",
-    "pages/refundment-detail-seller/index",
-    "pages/coupon/index",
-    "pages/coupon-creat/index",
-    "pages/coupon-send/index",
-    "pages/goods-up/index",
-    "pages/upSuccess/index",
-    "pages/supplier-home/index",
-    "pages/user-home/index",
-    "pages/supplier-list/index",
-    "pages/my/index",
-    "pages/editor/editor",
-    "pages/apply_shop/index",
-    "pages/spec-detail/index",
-    "pages/publish-setting/index",
-    "pages/order-detail-seller/index",
-    "pages/help-sale-setting/index",
-    "pages/help-sale-invite/index",
-    "pages/help-sale-up/index",
-    "pages/acting-apply/index",
-    "pages/user-help-home/index"
-  ],
-  "subpackages": [
-    {
-      "root": "business",
-      "pages": [
+    "pages": [
+        "pages/login/login",
         "pages/home/index",
         "pages/create-home/index",
+        "pages/creat-goods/index",
+        "pages/publish-select/index",
+        "pages/index/index",
         "pages/withdrawal/index",
         "pages/withdrawal-record/index",
-        "pages/postageSetting/index",
-        "pages/set-price/index",
-        "pages/acting-admin/index",
-        "pages/acting-apply/index",
-        "pages/publish/publish",
         "pages/goods/goods",
-        "pages/goods-user/goods",
+        "pages/publish/publish",
+        "pages/publish-success/publish-success",
+        "pages/map/index",
+        "pages/paySuccess/index",
+        "pages/userLocation/index",
+        "pages/myPublish/index",
+        "pages/paymethod/index",
+        "pages/userhome/index",
+        "pages/create_shop/index",
+        "pages/upload_pics/upload_pics",
+        "pages/address/index",
+        "pages/address-form/index",
+        "pages/order-list/index",
+        "pages/new-order-list/index",
+        "pages/order-detail/index",
+        "pages/ems-detail/index",
+        "pages/evaluate/index",
         "pages/order-confirm/index",
+        "pages/fans/index",
+        "pages/fans-mg/index",
+        "pages/ordermanage/list",
+        "pages/spec-order-list/list",
+        "pages/to-send/index",
+        "pages/identify/identify",
+        "pages/modify-address/index",
         "pages/express/index",
-        "pages/supplier_set/index",
-        "pages/setting-list/index",
-        "pages/base-info/index",
-        "pages/order-manage/index",
+        "pages/send-list/index",
+        "pages/ems/ems",
+        "pages/updown_exc/index",
+        "pages/send-msg/index",
+        "pages/refundment/index",
+        "pages/refundment-detail/index",
+        "pages/refundment-detail-seller/index",
+        "pages/coupon/index",
+        "pages/coupon-creat/index",
+        "pages/coupon-send/index",
+        "pages/goods-up/index",
+        "pages/upSuccess/index",
+        "pages/supplier-home/index",
+        "pages/user-home/index",
+        "pages/supplier-list/index",
+        "pages/my/index",
         "pages/editor/editor",
-        "pages/paySuccess/index"
-      ]
-    }
-  ],
-  "usingComponents": {
-    "wux-spin": "wux/spin/index"
-  },
-
-  "plugins": {
-    "live-player-plugin": {
-      "version": "1.0.13",
-      "provider": "wx2b03c6e691cd7370"
+        "pages/apply_shop/index",
+        "pages/spec-detail/index",
+        "pages/publish-setting/index",
+        "pages/order-detail-seller/index",
+        "pages/help-sale-setting/index",
+        "pages/help-sale-invite/index",
+        "pages/help-sale-up/index",
+        "pages/acting-apply/index",
+        "pages/user-help-home/index"
+    ],
+    "subpackages": [
+    {
+        "root": "business",
+        "pages": [
+            "pages/home/index",
+            "pages/create-home/index",
+            "pages/withdrawal/index",
+            "pages/withdrawal-record/index",
+            "pages/postageSetting/index",
+            "pages/set-price/index",
+            "pages/acting-admin/index",
+            "pages/acting-apply/index",
+            "pages/publish/publish",
+            "pages/goods/goods",
+            "pages/goods-user/goods",
+            "pages/order-confirm/index",
+            "pages/express/index",
+            "pages/supplier_set/index",
+            "pages/setting-list/index",
+            "pages/base-info/index",
+            "pages/order-manage/index",
+            "pages/editor/editor",
+            "pages/paySuccess/index"
+        ]
+    }],
+    "tabBar":
+    {
+        "custom": true,
+        "color": "#000000",
+        "selectedColor": "#49b34d",
+        "backgroundColor": "#000000",
+        "list": [
+        {
+            "pagePath": "pages/home/index"
+        },
+        {
+            "pagePath": "pages/new-order-list/index"
+        },
+        {
+            "pagePath": "pages/supplier-list/index"
+        },
+        {
+            "pagePath": "pages/my/index"
+        }
+    ]
     },
-    "richeditor": {
-      "version": "1.0.0",
-      "provider": "wxe65a0c242998f59f"
-    }
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息用于获取附近的团购活动"
-    }
-  },
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "开心麻团儿",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#eeeeee"
-  },
-  "sitemapLocation": "sitemap.json"
+    "usingComponents":
+    {
+        "wux-spin": "wux/spin/index"
+    },
+
+    "plugins":
+    {
+        "live-player-plugin":
+        {
+            "version": "1.0.13",
+            "provider": "wx2b03c6e691cd7370"
+        },
+        "richeditor":
+        {
+            "version": "1.0.0",
+            "provider": "wxe65a0c242998f59f"
+        }
+    },
+    "permission":
+    {
+        "scope.userLocation":
+        {
+            "desc": "你的位置信息用于获取附近的团购活动"
+        }
+    },
+    "window":
+    {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTitleText": "开心麻团儿",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#eeeeee"
+    },
+    "sitemapLocation": "sitemap.json"
 }

@@ -1,63 +1,61 @@
 import { VantComponent } from '../common/component';
-import { iphonex } from '../mixins/iphonex';
 VantComponent({
-    mixins: [iphonex],
-    relation: {
-        name: 'tabbar-item',
-        type: 'descendant',
-        linked(target) {
-            this.data.items.push(target);
-            setTimeout(() => {
-                this.setActiveItem();
-            });
-        },
-        unlinked(target) {
-            this.data.items = this.data.items.filter(item => item !== target);
-            setTimeout(() => {
-                this.setActiveItem();
-            });
-        }
+  relation: {
+    name: 'tabbar-item',
+    type: 'descendant',
+    current: 'tabbar',
+    linked(target) {
+      target.parent = this;
+      target.updateFromParent();
     },
-    props: {
-        active: Number,
-        activeColor: String,
-        fixed: {
-            type: Boolean,
-            value: true
-        },
-        zIndex: {
-            type: Number,
-            value: 1
-        }
+    unlinked() {
+      this.updateChildren();
     },
-    data: {
-        items: []
+  },
+  props: {
+    active: {
+      type: null,
+      observer: 'updateChildren',
     },
-    watch: {
-        active(active) {
-            this.currentActive = active;
-            this.setActiveItem();
-        }
+    activeColor: {
+      type: String,
+      observer: 'updateChildren',
     },
-    created() {
-        this.currentActive = this.data.active;
+    inactiveColor: {
+      type: String,
+      observer: 'updateChildren',
     },
-    methods: {
-        setActiveItem() {
-            this.data.items.forEach((item, index) => {
-                item.setActive({
-                    active: index === this.currentActive,
-                    color: this.data.activeColor
-                });
-            });
-        },
-        onChange(child) {
-            const active = this.data.items.indexOf(child);
-            if (active !== this.currentActive && active !== -1) {
-                this.$emit('change', active);
-                this.currentActive = active;
-                this.setActiveItem();
-            }
-        }
-    }
+    fixed: {
+      type: Boolean,
+      value: true,
+    },
+    border: {
+      type: Boolean,
+      value: true,
+    },
+    zIndex: {
+      type: Number,
+      value: 1,
+    },
+    safeAreaInsetBottom: {
+      type: Boolean,
+      value: true,
+    },
+  },
+  methods: {
+    updateChildren() {
+      const { children } = this;
+      if (!Array.isArray(children) || !children.length) {
+        return Promise.resolve();
+      }
+      return Promise.all(children.map((child) => child.updateFromParent()));
+    },
+    onChange(child) {
+      const index = this.children.indexOf(child);
+      const active = child.data.name || index;
+      if (active !== this.data.active) {
+        this.$emit('change', active);
+      }
+    },
+  },
 });

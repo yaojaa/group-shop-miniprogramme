@@ -1,5 +1,6 @@
 const util = require('../../utils/util')
 const app = getApp()
+import Dialog from '../../vant/dialog/dialog';
 
 function fmtDate(obj) {
     var date = new Date(obj);
@@ -209,19 +210,27 @@ Page({
 
       console.log(this.data.info.goods_spec)
 
+        try {
 
          this.data.info.goods_spec.forEach((item)=>{
 
           if(item.sub_agent_price=='0.00' || item.sub_agent_price==''){
-             wx.showModal({
-              title:'请设置代理价格'
+            
+            wx.showToast({
+              title:'请设置代理价格',
+              icon: 'warning',
+              duration: 2000
+
             })
 
-           return
-
+            throw Error();
           }
 
          })
+       }
+       catch(e){
+        return
+       }
 
 
         if(this.is_modify && this.data.info.agent_opt !=='1'){
@@ -233,14 +242,20 @@ Page({
 
             if(res.data.code == 200){
                  wx.hideLoading()
-                 wx.showToast({
-                  title:'修改成功！'
-                 })
 
-                 util.setParentData({
-                  'goods.agent_opt':1
-                 })
+                 Dialog.alert({
+                      title: '开启成功',
+                      message: '开启帮忙成功，可以邀请小伙伴上架您的商品帮卖了！',
+                      theme: 'round-button',
+                      selector:'dlg'
+                    }).then(() => {
+                       util.setParentData({
+                                      'goods.agent_opt':1
+                                     })
 
+                    });
+                 
+                
 
             }else{
               wx.showToast({

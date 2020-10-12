@@ -1,5 +1,6 @@
 <view class="container gray-wrap  cf">
-    
+   
+
 
     <view class="notice mt-sm">
         设置您的代理供货价，并开启帮卖
@@ -53,6 +54,6 @@
         </view>
     </form>
 
-    <van-notify id="custom-selector" />
-    <van-toast id="van-toast" />
+   <van-dialog id="dlg" />
+
 </view>

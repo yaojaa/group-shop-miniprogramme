@@ -1,7 +1,14 @@
 
-<van-tabbar active="{{ active }}"   inactive-color="" active-color="#ff7800" z-index="{{9}}" bind:change="onChange">
-  <van-tabbar-item name="home" bind:click="goHome" icon="home-o">首页</van-tabbar-item>
+<!-- <van-tabbar active="{{ active }}"   inactive-color="" active-color="#ff7800" z-index="{{9}}" bind:change="onChange">
+  <van-tabbar-item name="home" bind:click="goHome" icon="home-o">首页 {{active}}</van-tabbar-item>
   <van-tabbar-item bindtap="goOrder" icon="orders-o">订单</van-tabbar-item>
   <van-tabbar-item bindtap="goActing"  icon="friends-o">代理</van-tabbar-item>
   <van-tabbar-item bindtap="goMy" name="setting" icon="smile-o">我的</van-tabbar-item>
+</van-tabbar> -->
+
+<van-tabbar active="{{ active }}" inactive-color="" active-color="#ff7800"  inactive-color="" active-color="#ff7800"  bind:change="onChange">
+  <van-tabbar-item bind:click="goHome" icon="home-o">首页</van-tabbar-item>
+  <van-tabbar-item bindtap="goOrder" icon="orders-o">订单</van-tabbar-item>
+  <van-tabbar-item bindtap="goActing" icon="friends-o">代理</van-tabbar-item>
+  <van-tabbar-item bindtap="goMy" icon="smile-o">我的</van-tabbar-item>
 </van-tabbar>

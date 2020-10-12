@@ -529,7 +529,7 @@ Page({
   },
 
   backMy() {
-    wx.redirectTo({
+    wx.switchTab({
       url: '../home/index'
     })
   },

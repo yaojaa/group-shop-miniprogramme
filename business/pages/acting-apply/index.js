@@ -148,7 +148,7 @@ Page({
                 }).then(() => {
 
                   wx.redirectTo({
-                      url:'/pages/supplier-list/index'
+                      url:'/pages/supplier-home/index?type=supplier&id='+this.supplier_id
                      })
               })
 
@@ -158,6 +158,12 @@ Page({
             Dialog.alert({
                 title: '温馨提示',
                 message: res.data.msg
+                }).then(()=>{
+
+                   wx.redirectTo({
+                      url:'/pages/supplier-home/index?type=supplier&id='+this.supplier_id
+                     })
+
                 })
 
 

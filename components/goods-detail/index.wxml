@@ -1,5 +1,6 @@
             <view  class='goods-content-wraper por'>
 
+
                 <block wx:if="{{content.length}}">
                 <!--编辑器正文区-->
                 <view class="content-item" wx:for="{{content}}">
@@ -15,15 +16,23 @@
                     <block wx:if="{{ item.type === 'video' }}">
                         <video class="video" width="100%" src="{{ item.src }}"></video>
                     </block>
+
+
+
+                <block wx:if="{{item.type == null}}">
+
+
+                  <rich-text nodes="{{item}}"></rich-text>
+
+                    
+
+                </block>
+
                 </view>
 
                 </block>
 
-                <block wx:else>
-                    
-                 <rich-text nodes="{{content.html || '暂无介绍'}}"></rich-text>
-
-                </block>
+              
 
             <view class="load-area" wx:if="{{!content}}">
                 <wux-spin wux-class="spin" />

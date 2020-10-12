@@ -167,6 +167,32 @@ Page({
   
  
   },
+  //规格描述获得焦点 如果有详情图片,进入详情页
+  specDescFocus(e){
+
+    const {index} = e.currentTarget.dataset
+
+    if(this.data.spec[index].spec_pic.length || e.detail.value.length > 20){
+
+      let { spec_name, spec_pic, spec_desc } = this.data.spec[index]
+        wx.setStorage({
+          key: 'specItem',
+          data: {
+            index,
+            spec_name,
+            spec_pic,
+            spec_desc,
+          },
+          success() {
+            wx.navigateTo({
+              url: '../spec-detail/index',
+            })
+          },
+        })
+    }
+
+
+  },
   // 删除图片
   deleteClick(e) {
     this.removePhoto(e)
@@ -685,12 +711,6 @@ Page({
       },
     })
   },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs',
-    })
-  },
   initValidate: function () {
     // 验证字段的规则
     const rules = {
@@ -1041,6 +1061,12 @@ Page({
               "src": src
         })
 
+      })
+      console.log('编辑提交为空')
+      this.editor({
+        content:content,
+        goods_content:'',
+        content_imgs:[]
       })
 
      }

@@ -1,6 +1,6 @@
 <view class="container gray-wrap cf">
 
-    <footerbar active="{{active}}" />
+    <footerbar active="{{0}}" />
 
 
     <view wx:if="{{userInfo.store.store_id}}" class="switch" bindtap="swichToLeader" style="top:{{top}}px"><van-icon name="exchange" color="#fff" size="24px"/>
@@ -62,7 +62,7 @@
 
 
     <view class="icon-nav-box mt-sm round-df">
-        <van-button bindtap="goAdd" color="linear-gradient(to right, #ccc000, #6149f6)" block>+ 添加新产品</van-button>
+        <van-button bindtap="goAdd"  block>+ 添加新产品</van-button>
 
         <view class="goods-panel white-bg cf">
 

@@ -1,4 +1,5 @@
-{
+{ 
+  "navigationBarTitleText": "规格详情",
   "usingComponents": {
     "wux-upload": "../../wux/upload/index",
     "van-dialog": "../../vant/dialog/index",

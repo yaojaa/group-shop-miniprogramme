@@ -72,11 +72,6 @@ Page({
       .then(() =>{
 
         const key = 'goodsList['+index+'].is_on_sale'
-
-
-        console.log(key)
-
-
         util.wx.post('/api/supplier/goods_change_on_sale',{
           goods_id,
           is_on_sale:cstatus
@@ -326,6 +321,8 @@ Page({
       this.setData({
         active:0
       })
+
+
 
       wx.hideHomeButton()
 

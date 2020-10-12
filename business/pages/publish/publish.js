@@ -843,6 +843,13 @@ Page({
      console.log(content)
 
 
+     // gs.goods_spec.forEach(item=>{
+     //  if(item.spec_stock==null){
+     //    item.spec_stock = ''
+     //  }
+     // })
+
+
 
 
 

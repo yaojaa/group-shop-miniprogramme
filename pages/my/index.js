@@ -82,6 +82,8 @@ Page({
         }
 
         this.get_store_info()
+    this.getTabBar().init()
+
 
     },
     goCreate() {

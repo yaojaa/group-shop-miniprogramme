@@ -248,7 +248,7 @@ Page({
                         icon:'none'
                       })
                 
-                 wx.redirectTo({
+                 wx.switchTab({
                         url:'/pages/home/index'
                       })
                   }else{

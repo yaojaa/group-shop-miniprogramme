@@ -3,8 +3,6 @@
   "navigationBarTitleText": "恭喜您 支付成功",
   "usingComponents": {
     "i-panel": "/iView/panel/index",
-    "i-cell": "/iView/cell/index",
-    "painter": "../../iView/painter/painter"
-
+    "i-cell": "/iView/cell/index"
   }
 }

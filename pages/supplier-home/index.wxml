@@ -54,7 +54,6 @@
             <view class="solid-bottom mh-df"></view>
         </view>
     </view>
-    <footerbar active="{{active}}" />
     <view class="load-box" wx:if="{{loading}}">
         <wux-spin wux-class="spin" size="large" />
     </view>

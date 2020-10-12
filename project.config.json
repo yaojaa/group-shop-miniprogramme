@@ -19,7 +19,7 @@
     "coverView": true,
     "nodeModules": false,
     "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
+    "showShadowRootInWxmlPanel": false,
     "scopeDataCheck": false,
     "uglifyFileName": true,
     "checkInvalidKey": true,
@@ -40,7 +40,7 @@
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.9.5",
+  "libVersion": "2.12.2",
   "appid": "wx6ac9955f87c289f0",
   "projectname": "group",
   "cloudfunctionTemplateRoot": "",
@@ -775,7 +775,7 @@
           "id": 99,
           "name": "business/pages/goods-user/goods",
           "pathName": "business/pages/goods-user/goods",
-          "query": "id=5",
+          "query": "id=55",
           "scene": null
         },
         {
@@ -982,10 +982,10 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 129,
           "name": "business/pages/acting-apply/index",
           "pathName": "business/pages/acting-apply/index",
-          "query": "",
+          "query": "supplier_id=4",
           "scene": null
         },
         {
@@ -1385,6 +1385,48 @@
           "name": "pages/userhome/index",
           "pathName": "pages/userhome/index",
           "query": "id=1585",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/order-manage/index",
+          "pathName": "business/pages/order-manage/index",
+          "query": "id=1585",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/home/index",
+          "pathName": "business/pages/home/index",
+          "query": "id=1585",
+          "scene": null
+        },
+        {
+          "id": 189,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=3404",
+          "scene": null
+        },
+        {
+          "id": 190,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id= 3200",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=supplier&id=4",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "待客下单成功",
+          "pathName": "business/pages/paySuccess/index",
+          "query": "order_id=24750&goods_id=55",
           "scene": null
         }
       ]

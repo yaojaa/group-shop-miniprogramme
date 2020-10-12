@@ -177,7 +177,7 @@
                             <view class="weui-label">描述:</view>
                         </view>
                         <view class="weui-cell__bd" class="width70">
-                            <input  value="{{item.spec_desc}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_desc" maxlength="50" placeholder="选填、简短描述或亮点" />
+                            <input bindfocus="specDescFocus" data-index="{{index}}" value="{{item.spec_desc}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_desc" maxlength="50" placeholder="选填、简短描述或亮点" />
                         </view>
                     </view>
                     <view class="weui-cell">

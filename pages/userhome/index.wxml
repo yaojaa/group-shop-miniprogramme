@@ -19,7 +19,27 @@
             <!-- <button bindtap="addEventLister" size="mini">关注订阅</button> -->
         </view>
         <view class="des">{{info.store_intro}}</view>
-        <navigator wx:if="{{access_list.length>0}}" hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&source=store&name={{info.store_name}}">
+     
+        <view class="btns">
+            <van-button bindtap="goContact"  plain size="small"   type="warning">
+                咨询联系
+            </van-button>
+
+
+            <van-button custom-class="actbtn" bindtap="showShare" plain size="small"   type="warning">
+                分享朋友
+            </van-button>
+
+          <!--   <van-button wx:if="{{info.store_id==1}}" custom-class="actbtn" size="small"   bindtap="toLiveRoom" type="warning">
+                <van-icon size="18px" name="tv-o" />
+                直播间
+            </van-button> -->
+            <van-button custom-class="actbtn" size="small" plain  bindtap="addEventLister" type="warning">
+                订阅关注
+            </van-button> 
+        </view>
+
+           <navigator wx:if="{{access_list.length>0}}" hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&source=store&name={{info.store_name}}">
             <view class="flex-box align-center justify-center " style="padding: 10px 0">
                 <view class="avatar-group">
                     <image class="head" src="{{user.headimg}}" wx:for-item="user" wx:for="{{access_list}}" wx:key="index"></image>
@@ -30,27 +50,7 @@
                 </view>
             </view>
         </navigator>
-        <view class="btns">
-            <van-button bindtap="goContact" custom-class="actbtn" size="small" plain hairline type="warning">
-                <van-icon size="18px" name="friends-o" />
-                加为好友
-            </van-button>
-            <van-button custom-class="actbtn" bindtap="showShare" size="small" plain hairline type="warning">
-                <van-icon size="18px" name="share" />
-                分享朋友
-            </van-button>
-
-            <van-button wx:if="{{info.store_id==1}}" custom-class="actbtn" size="small" plain hairline bindtap="toLiveRoom" type="warning">
-                <van-icon size="18px" name="tv-o" />
-                直播间
-            </van-button>
-
-             <!--    <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=5">                <button class="pubbtn">进入直播间</button> -->
-<!--             <van-button custom-class="actbtn" size="small" plain hairline bindtap="addEventLister" type="warning">
-                <van-icon size="18px" name="star-o" />
-                订阅关注
-            </van-button> -->
-        </view>
+        
     </view>
     <view class="goods-box">
         <block wx:if="{{info.store_style==1}}">

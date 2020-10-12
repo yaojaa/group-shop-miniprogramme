@@ -38,13 +38,15 @@ Page({
 
   jump(d){
 
+    console.log('d',d)
+
 
      var lastVisit = wx.getStorageSync('lastVisit') 
 
      if(d.supplier && d.store && lastVisit){
 
         if(lastVisit=='seller'){
-          return wx.redirectTo({
+          return wx.switchTab({
                 url:'../home/index'
               })
         }else{
@@ -67,9 +69,9 @@ Page({
            } 
 
 
-      if(d.hasOwnProperty('store') && d.store.hasOwnProperty('store_id')){
+      if(d.store && d.store.hasOwnProperty('store_id')){
 
-             return wx.redirectTo({
+             return wx.switchTab({
                 url:'../home/index'
               })
 

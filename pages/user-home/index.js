@@ -120,7 +120,10 @@ Page({
            
         }
 
-       // this.reGetUserInfo()
+        wx.hideHomeButton()
+
+
+         // this.reGetUserInfo()
 
         this.getProList()
     },

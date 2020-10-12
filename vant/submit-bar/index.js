@@ -1,44 +1,57 @@
 import { VantComponent } from '../common/component';
-import { iphonex } from '../mixins/iphonex';
 VantComponent({
-    mixins: [iphonex],
-    classes: [
-        'bar-class',
-        'price-class',
-        'button-class'
-    ],
-    props: {
-        tip: null,
-        type: Number,
-        price: null,
-        label: String,
-        loading: Boolean,
-        disabled: Boolean,
-        buttonText: String,
-        currency: {
-            type: String,
-            value: '¥'
-        },
-        buttonType: {
-            type: String,
-            value: 'danger'
-        }
+  classes: ['bar-class', 'price-class', 'button-class'],
+  props: {
+    tip: {
+      type: null,
+      observer: 'updateTip',
     },
-    computed: {
-        hasPrice() {
-            return typeof this.data.price === 'number';
-        },
-        priceStr() {
-            return (this.data.price / 100).toFixed(2);
-        },
-        tipStr() {
-            const { tip } = this.data;
-            return typeof tip === 'string' ? tip : '';
-        }
+    tipIcon: String,
+    type: Number,
+    price: {
+      type: null,
+      observer: 'updatePrice',
     },
-    methods: {
-        onSubmit(event) {
-            this.$emit('submit', event.detail);
-        }
-    }
+    label: String,
+    loading: Boolean,
+    disabled: Boolean,
+    buttonText: String,
+    currency: {
+      type: String,
+      value: '¥',
+    },
+    buttonType: {
+      type: String,
+      value: 'danger',
+    },
+    decimalLength: {
+      type: Number,
+      value: 2,
+      observer: 'updatePrice',
+    },
+    suffixLabel: String,
+    safeAreaInsetBottom: {
+      type: Boolean,
+      value: true,
+    },
+  },
+  methods: {
+    updatePrice() {
+      const { price, decimalLength } = this.data;
+      const priceStrArr =
+        typeof price === 'number' &&
+        (price / 100).toFixed(decimalLength).split('.');
+      this.setData({
+        hasPrice: typeof price === 'number',
+        integerStr: priceStrArr && priceStrArr[0],
+        decimalStr: decimalLength && priceStrArr ? `.${priceStrArr[1]}` : '',
+      });
+    },
+    updateTip() {
+      this.setData({ hasTip: typeof this.data.tip === 'string' });
+    },
+    onSubmit(event) {
+      this.$emit('submit', event.detail);
+    },
+  },
 });

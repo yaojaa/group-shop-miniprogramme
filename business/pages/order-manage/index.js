@@ -7,7 +7,7 @@ import Dialog from '../../../vant/dialog/dialog';
 
 Page({
     data: {
-        tab: 2,
+        tab: 3,
         current: "tab1",
         visible: false,
         goods_name: "",
@@ -186,18 +186,16 @@ Page({
           })
     },
 
-    /**订单状态(-3:已删除,-2:已关闭, -1:已取消,0:待付款,1:待确认(已付款),2:待发货(已确认),3:待收货(已发货),4:已完成(已收货))            }).then((res) => {
-**/
     handleTab(e) {
 
-        console.log(e.detail.name)
+        console.log(e)
 
-        const index = e.detail.index
+        const name = e.detail.name
 
         this.setData({
-            tab: index,
+            tab: name,
             cpage: 1,
-            search_order_status: index+2
+            search_order_status: name
         })
 
         this.getOrderList()
