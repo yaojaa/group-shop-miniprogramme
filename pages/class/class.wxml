@@ -1,0 +1,36 @@
+<view class="top-title">
+    <text class='txt'>已有分类</text>
+    <van-button custom-class='btn' plain size="mini" icon="plus" type="primary" bind:click="addClass">添加分类（{{list.length}}/150）</van-button>
+</view>
+<view class="lists" wx:if="{{list.length > 0}}">
+    <view class="list" wx:for="{{list}}">
+        <view class="name">{{item.name}}</view>
+        <van-button color="#666" custom-class='btn' plain size="small" icon="delete" type="primary" data-index="{{index}}" bind:click="delete">删除</van-button>
+        <van-button color="#666" custom-class='btn' plain size="small" icon="edit" type="primary" data-index="{{index}}" bind:click="edit">修改</van-button>
+        <van-button color="#666" custom-class='btn' plain size="small" icon="upgrade" type="primary" data-index="{{index}}" bind:click="up">置顶</van-button>
+    </view>
+</view>
+<view wx:else class="no-data">您还没有添加任何分类</view>
+
+<view wx:if="{{loves.length>0}}" class='love-title'>您可能想添加：</view>
+<view class="love">
+    <van-button wx:for="{{loves}}" custom-class='btns' size="small" round color="#eee" type="info" data-index="{{index}}" bind:click="addLoveClass">{{item.name}}</van-button>
+</view>
+
+<van-overlay show="{{show}}">
+    <view class="alert">
+        <view class="alert-main">
+            <view class="title">{{alert.title}}</view>
+            <view class="input">
+                <input class="wu-input" bindinput="bindKeyInput" maxlength="10" placeholder="请输入分类名称" />
+                <text class="num">{{inputValue.length}}/10</text>
+            </view>
+            <view class="btns">
+                <button class='btn' plain type="primary" catch:tap="cancel">取消</button>
+                <button class='btn' plain type="primary" catch:tap="sure">{{alert.btn}}</button>
+            </view>
+        </view>
+    </view>
+</van-overlay>
+
+<van-dialog id="van-dialog" />
