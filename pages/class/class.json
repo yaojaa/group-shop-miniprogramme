@@ -3,8 +3,8 @@
     {
         "van-button": "../../vant/button/index",
         "van-overlay": "../../vant/overlay/index",
-        "van-dialog": "../../vant/dialog/index"
-
+        "van-dialog": "../../vant/dialog/index",
+        "van-loading": "../../vant/loading/index"
 
     }
 }

@@ -4,12 +4,14 @@
 </view>
 <view class="lists" wx:if="{{list.length > 0}}">
     <view class="list" wx:for="{{list}}">
-        <view class="name">{{item.name}}</view>
+        <view class="name">{{item.cat_name}}</view>
         <van-button color="#666" custom-class='btn' plain size="small" icon="delete" type="primary" data-index="{{index}}" bind:click="delete">删除</van-button>
         <van-button color="#666" custom-class='btn' plain size="small" icon="edit" type="primary" data-index="{{index}}" bind:click="edit">修改</van-button>
         <van-button color="#666" custom-class='btn' plain size="small" icon="upgrade" type="primary" data-index="{{index}}" bind:click="up">置顶</van-button>
     </view>
 </view>
+<view style="display: flex; justify-content: center; padding-top: 20px;" wx:elif="{{loading}}"><van-loading size="24px" type="spinner" /></view>
+
 <view wx:else class="no-data">您还没有添加任何分类</view>
 
 <view wx:if="{{loves.length>0}}" class='love-title'>您可能想添加：</view>
