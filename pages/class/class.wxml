@@ -22,7 +22,7 @@
         <view class="alert-main">
             <view class="title">{{alert.title}}</view>
             <view class="input">
-                <input class="wu-input" bindinput="bindKeyInput" maxlength="10" placeholder="请输入分类名称" />
+                <input class="wu-input" bindinput="bindKeyInput" maxlength="10" value="{{inputValue}}" placeholder="请输入分类名称" />
                 <text class="num">{{inputValue.length}}/10</text>
             </view>
             <view class="btns">
