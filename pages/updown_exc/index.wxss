@@ -72,9 +72,10 @@ i-datepicker{
 }
 
 .goods-list{
-  padding: 5px 2px;
+  padding: 15px 10px;
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 .tac{ text-align: center; padding: 10px;}
@@ -95,7 +96,8 @@ i-datepicker{
 
 .radio-group{
   display: flex;
-  padding: 10px 0;
+  padding: 10px;
+  
 }
 .radio-group .radio{
   margin-left: 20px;
@@ -121,7 +123,13 @@ i-datepicker{
 .width200{
   width:80px;
   display: inline-block;
+  text-align: right;
+  color: #666
 }
 .tips{
   padding:10px;
+}
+.desc{
+  color: #999;
+  line-height: 2
 }

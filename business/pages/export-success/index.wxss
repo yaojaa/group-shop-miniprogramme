@@ -1,0 +1,24 @@
+@import "../../../css/common.wxss";
+
+.icon {
+  color: #ed6a0c;
+  padding: 125rpx 30rpx 10px;
+  text-align: center;
+}
+
+.btns {
+  text-align: center;
+}
+
+.btns button{
+
+	margin: 0 10px;
+	padding-left: 50rpx!important;
+	padding-right: 50rpx!important;
+	border-radius: 20px;
+	box-shadow: 0 0 10px #ccc
+}
+
+.link{
+  padding: 20px
+}

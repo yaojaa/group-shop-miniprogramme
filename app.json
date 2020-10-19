@@ -84,7 +84,9 @@
             "pages/base-info/index",
             "pages/order-manage/index",
             "pages/editor/editor",
-            "pages/paySuccess/index"
+            "pages/paySuccess/index",
+            "pages/export-success/index"
+
         ]
     }],
     "tabBar":

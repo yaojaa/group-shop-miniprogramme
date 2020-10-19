@@ -1428,6 +1428,27 @@
           "pathName": "business/pages/paySuccess/index",
           "query": "order_id=24750&goods_id=55",
           "scene": null
+        },
+        {
+          "id": 193,
+          "name": "business/pages/goods-user/goods",
+          "pathName": "business/pages/goods-user/goods",
+          "query": "id=56",
+          "scene": null
+        },
+        {
+          "id": 194,
+          "name": "导出订单页",
+          "pathName": "pages/updown_exc/index",
+          "query": "id=56",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/export-success/index",
+          "pathName": "business/pages/export-success/index",
+          "query": "id=56",
+          "scene": null
         }
       ]
     }

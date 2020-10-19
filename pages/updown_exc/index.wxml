@@ -5,14 +5,14 @@
 	  <van-radio class="radio" name="1" checked-color="#07c160">已发货</van-radio>
 	</van-radio-group>
 
-	<block wx:if="{{value1 == 0}}">
+	<!-- <block wx:if="{{value1 == 0 && !isGoodsOrder}}">
 		<van-radio-group class="radio-group" value="{{ value2 }}" bind:change="onChange2">
 		  <van-radio class="radio width50" name="0" checked-color="#07c160">按商品选择</van-radio>
 		  <van-radio class="radio" name="1" checked-color="#07c160">全部商品</van-radio>
 		</van-radio-group>
-	</block>
+	</block> -->
 
-	<block wx:if="{{value2 == 0 && value1 == 0}}">
+	<block wx:if="{{ value1 == 0}}">
 		<van-radio-group class="radio-group" value="{{ value3 }}" bind:change="onChange3">
 		  <van-radio class="radio width50" name="0" checked-color="#07c160">未导出</van-radio>
 		  <van-radio class="radio" name="1" checked-color="#07c160">已导出</van-radio>
@@ -49,19 +49,24 @@
 	</view> -->
 
 <view class="select-time-body" wx:if="{{value1 != 1 && value2 != 1}}">
-<view class="tips">请选择商品：</view>
+<view class="tips">请选择：</view>
 	<!-- <scroll-view> -->
 		<van-checkbox-group value="{{ result }}" bind:change="onChange">
 			<block wx:if="{{list.length > 0}}">
 				<view wx:for="{{list}}" class="item-list" wx:key='index' wx:for-item="lis">
 				  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}" custom-class="list-checkbox">
 				  	<view class='goods-list'>
-				  		<text class="f12">{{item.goods_name}}</text>
-				  		<view class="f12">{{item.spec_name}} </view>
-						<view class="f14">
-							<text class="width200"> 订单数量:{{item.total_qty}} </text>  订单金额:{{item.total_price}}
+				  		<view class="left">
+
+				  		<view class="f16 bold">{{item.spec_name}} </view>
+				  	    <text class="f12 desc">{{item.goods_name}}</text>
+				  		</view>
+
+						<view class="right f14">
+							<view class="width200"> 
+								<text class="f18 bold">{{item.total_qty}}</text> 件 </view>  
 						</view>
-				   		<text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text>
+				  <!--  		<text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text> -->
 				  	</view>
 				  </van-checkbox>
 				</view>
@@ -89,7 +94,7 @@
 	
 
 	<view class="create-link">
-		<button class="btn linenear_bg" type="primary" bindtap="exportExcel">导出</button>
+		<button class="btn linenear_bg" type="primary" bindtap="exportExcel">下一步</button>
 	</view>
 	
 

@@ -105,7 +105,8 @@ Page({
     this.data.goods_id = options.goods_id;
     if(this.data.goods_id){
       this.setData({
-        value2:'1'
+        value2:0,
+        isGoodsOrder:true //有商品ID的订单 不显示商品选择
       })
     }
     role = options.role ? options.role : "supplier";

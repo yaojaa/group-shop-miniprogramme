@@ -1,0 +1,21 @@
+<view class="container">
+
+	<view class="icon">
+		<van-icon size="90px" name="passed" />
+	</view>
+	<view class="bold center f20">
+		导出完成	
+	</view>
+	<view class="link mt-sm">
+		{{link}}
+	</view>
+	<view class="btns m-df mt-xl">
+		<button class="btn xl   " bindtap="toDetail">
+			预览表格
+		</button>
+
+		<button class="btn xl primary  linenear_bg" bindtap="toDetail">
+			复制链接
+		</button>
+	</view>
+</view>

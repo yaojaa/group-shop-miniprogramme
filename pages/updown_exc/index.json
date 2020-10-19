@@ -9,6 +9,8 @@
   "van-popup": "../../vant/popup/index",
   
   "van-radio": "../../vant/radio/index",
-  "van-radio-group": "../../vant/radio-group/index"
+  "van-radio-group": "../../vant/radio-group/index",
+    "van-empty": "../../vant/empty/index"
+
   }
 }

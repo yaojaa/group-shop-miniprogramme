@@ -75,7 +75,6 @@ Page({
 
                 }else if(res.data.code == -2000){
 
-
                     wx.showModal({
                     title:'您还没有创建主页',
                     content:'请先免费创建主页',

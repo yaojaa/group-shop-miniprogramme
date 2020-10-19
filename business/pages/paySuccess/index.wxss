@@ -43,12 +43,15 @@ page{
   /*border:1px solid #fff9ee*/
 }
 .order .title{
-  font-size: 32rpx;
+  font-size: 24px;
   line-height: 1.7;
   margin:0  20px;
   font-weight: bold;
-  border-bottom: 1px dotted #ccc;
-  padding: 8rpx 0
+  color: #666;
+  padding: 20rpx 0 5px
+}
+.small{
+  font-size: 14px
 }
 .line{
   position: relative;
@@ -265,6 +268,12 @@ overflow: hidden;
   opacity: 0.6;
   width: 100%
 }
+.address{
+  padding: 0 35rpx 30rpx;
+  font-size: 12px
+  color: #666;
+    border-bottom: 1px dotted #ccc;
 
+}
 
 

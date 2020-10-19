@@ -18,18 +18,6 @@ Page({
         create_number: 54,
         clickShare:false,
         qty:1,
-        numers: '❶❶❷❸❹❺❻❼❽❾❿'.split(''),
-        wordArr: {
-            1: '值，躺着把钱省了',
-            2: '人生太多选择题 跟着买 就对了',
-            3: '错过又要等一年 该出手时就出手',
-            4: '该出手时就出手',
-            5: '不要睡 起来嗨',
-            6: '机不可失，失不再来',
-            7: '',
-            8: '',
-            9: ' '
-        },
         order:{}
     },
 
@@ -40,15 +28,7 @@ Page({
         this.data.order_id = options.order_id
         this.getOrderInfo();
 
-        this.setData({
-            goods_id: options.goods_id,
-        })
-
-        //开始绘制
-
-        // util.get_painter_data_and_draw.call(this, options.goods_id, true)
-
-
+        this.data.goods_id = options.goods_id
     },
     // onImgOk(e) {
 

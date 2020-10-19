@@ -59,6 +59,10 @@
     font-size: 48rpx !important;
 }
 
+.left{
+    float:left
+}
+
 .text-left {
     text-align: left;
 }

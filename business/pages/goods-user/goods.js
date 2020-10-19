@@ -186,7 +186,7 @@ Page({
     getGoodsInfo() {
 
         util.wx.get('/api/seller/get_supplier_goods_detail', {
-                goods_id: this.data.goods_id 
+                goods_id: this.data.goods_id
             })
             .then(res => {
 
