@@ -1449,6 +1449,13 @@
           "pathName": "business/pages/export-success/index",
           "query": "id=56",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=supplier&id=18",
+          "scene": null
         }
       ]
     }

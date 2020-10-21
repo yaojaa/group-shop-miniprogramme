@@ -41,6 +41,18 @@ Page({
       })
   },
 
+  copyWx(e){
+
+    console.log(e)
+
+    const txt = e.currentTarget.dataset.wx
+
+    wx.setClipboardData({
+      data:txt
+    })
+
+  },
+
 
 
   getgoodsInfo() {
@@ -138,7 +150,6 @@ Page({
     }
 
     this.getgoodsInfo()
-    wx.hideHomeButton()
   },
     goContact(e) {
     const { phone, wx } = e.currentTarget.dataset
@@ -177,8 +188,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-        this.getTabBar().init()
 
   },
 

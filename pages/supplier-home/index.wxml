@@ -14,8 +14,8 @@
             <image src="{{info.supplier_logo || info.store_logo || info._user.headimg}}" class="avatar" style="width: 66px;height: 66px;margin: 13px auto 0"></image>
         </view>
         <van-cell-group border="{{false}}" custom-class="mv-df">
-            <van-cell title="手机号：{{info._user.mobile}}" value="拨号" is-link icon="phone-o" title-width="300rpx" bindtap="phoneCall" />
-            <van-cell border="{{false}}" title="微信号：{{info._user.wechatnumber}}" value="复制" is-link icon="chat-o" title-width="300rpx" bindtap="copyWx"  />
+            <van-cell title="手机号：{{info._user.mobile || info.supplier_mobile}}" value="拨号" is-link icon="phone-o" title-width="340rpx" bindtap="phoneCall" />
+            <van-cell border="{{false}}" data-wx="{{info._user.wechatnumber || info.wechatnumber}}" title="微信号：{{info._user.wechatnumber || info.wechatnumber}}" value="复制" is-link icon="chat-o" title-width="300rpx" bindtap="copyWx"  />
         </van-cell-group>
     </van-dialog>
 

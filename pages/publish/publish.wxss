@@ -256,7 +256,7 @@ video{
   padding-left: 30rpx;
 }
 .goods-cell-set button{
-  margin-right: 20rpx;
+  margin-right: 12rpx;
 }
 .editor-btn{
   font-size: 13px;
