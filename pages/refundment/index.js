@@ -35,8 +35,19 @@ Page({
             })
         })
     },
-
     refund(){
+
+          wx.showModal({
+            content: '您确定要申请退款吗？',
+            success :(res)=> {
+              if (res.confirm) {
+               　this.refundIt()
+              }
+            }
+          })
+    },
+
+    refundIt(){
         wx.showLoading()
         util.wx.post('/api/user/order_refund_apply',{
               order_id:    this.order_id,

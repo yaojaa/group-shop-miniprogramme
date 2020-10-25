@@ -9,12 +9,16 @@
 	<view class="link mt-sm">
 		{{link}}
 	</view>
+
+	<view class="desc">
+		复制链接在浏览器中下载订单表格
+	</view>
 	<view class="btns m-df mt-xl">
-		<button class="btn xl   " bindtap="toDetail">
+		<button class="btn xl" bindtap="preview">
 			预览表格
 		</button>
 
-		<button class="btn xl primary  linenear_bg" bindtap="toDetail">
+		<button class="btn xl primary  linenear_bg" bindtap="copylink">
 			复制链接
 		</button>
 	</view>

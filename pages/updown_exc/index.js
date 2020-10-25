@@ -294,30 +294,10 @@ Page({
           wx.hideToast()
           let path = res.data.data.filepath
 
-          wx.showModal({
-            content: '订单导出已生成下载地址：'+path,
-            showCancel: false,
-            confirmText: '复制链接',
-            success (res) {
-              if (res.confirm) {
-                wx.setClipboardData({
-                  data: path,
-                  success: function(res) {
-                      wx.showToast({ title: '链接已复制,请打开浏览器查看或下载', duration: 5000, icon: 'none' })
-
-                      console.log(_this.data.result)
-                      if(_this.data.value1 == 1 || _this.data.value2 == 1){
-                        return;
-                      }
-                      
-                      data.cpage = 1;
-                      _this.getGoodsOrders(data);
-                  }
-                })
-                
-              }
-            }
+          wx.redirectTo({
+            url:'../business/pages/export-success/index?path='+path
           })
+
             
         }else{
           wx.showToast({ title: res.data.msg, duration: 5000, icon: 'none' })

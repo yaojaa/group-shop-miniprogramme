@@ -7,7 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        link: 'http://www.kaixinma.sdc/sdfsf.success'
+        link: 'http://www.kaixinmatuan.cn/upload/seller/order_excel/order_report_1_202010202141067085635639.xls'
     },
 
     /**
@@ -28,13 +28,57 @@ Page({
         })
 
     },
-    toDetail() {
+    copylink(){
 
-        wx.redirectTo({
-            url: '../goods/goods?goods_id=' + this.data.goods_id
+        wx.setClipboardData({
+          data: this.data.link,
+          success (res) {
+
+          }
+        }  )
+
+    },
+    preview() {
+      wx.showLoading()
+  //下载文件，生成临时地址
+        wx.downloadFile({
+            url: this.data.link,
+            success(res) {
+                // 打开文档
+                                        wx.hideLoading()
+
+                wx.openDocument({
+                    filePath: res.tempFilePath,
+                    fileType:'xls',
+                    success: function() {
+                        wx.hideLoading()
+                        wx.removeSavedFile({
+                            filePath: res.tempFilePath
+                        })
+                    }
+                });
+            }
         })
 
 
+    },
+    getGoodsInfo() {
+
+        wx.showLoading()
+
+        util.wx.get('/api/goods/get_goods_detail', {
+                goods_id: this.data.goods_id
+            })
+            .then(res => {
+
+                this.setData({
+                    info: res.data.data.goods
+                })
+
+            wx.hideLoading()
+
+
+            })
     },
     // addListener:util.userListner,
     /**

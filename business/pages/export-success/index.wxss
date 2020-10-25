@@ -20,5 +20,9 @@
 }
 
 .link{
-  padding: 20px
+  padding: 20px;
+  word-break: break-all;
+}
+.desc{
+	text-align: center;
 }

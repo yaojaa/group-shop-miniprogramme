@@ -97,7 +97,7 @@ i-datepicker{
 .radio-group{
   display: flex;
   padding: 10px;
-  
+
 }
 .radio-group .radio{
   margin-left: 20px;
@@ -133,3 +133,21 @@ i-datepicker{
   color: #999;
   line-height: 2
 }
+
+.cover{
+   width: 100rpx;
+   height: 100rpx;
+   float: left;
+   margin-right: 10px;
+   border-radius: 10px
+}
+
+
+
+
+
+
+
+
+
+

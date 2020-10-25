@@ -270,7 +270,7 @@ overflow: hidden;
 }
 .address{
   padding: 0 35rpx 30rpx;
-  font-size: 12px
+  font-size: 12px;
   color: #666;
     border-bottom: 1px dotted #ccc;
 
