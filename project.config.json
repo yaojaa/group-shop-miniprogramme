@@ -1452,12 +1452,30 @@
         },
         {
           "id": -1,
-          "name": "pages/new-order-list/index",
-          "pathName": "pages/new-order-list/index",
-          "query": "id=56",
           "name": "pages/supplier-home/index",
           "pathName": "pages/supplier-home/index",
           "query": "type=supplier&id=18",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/home/index",
+          "pathName": "business/pages/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/order-manage/index",
+          "pathName": "business/pages/order-manage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 199,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=3503",
           "scene": null
         }
       ]

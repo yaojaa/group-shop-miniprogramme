@@ -1,10 +1,6 @@
 <view class="goods-panel ph-df white-bg mv-sm cf">
     <view class="goods-panel-hd pv-sm flex align-center">
         <view class="flex-sub mr-df">
-
-        
-       
-
             <view class="flex align-center">
 
                 <image src="{{item.user.headimg}}" class="shop-tb mr-xs">
@@ -29,17 +25,17 @@
             <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/159/h/150/format/jpg/q/75" class="cover mr-sm"></image>
             <view class="flex-sub por">
                 <view class="text-hide title">
-                    {{goods.spec_name}}                           <text class="text-muted"> x{{goods.qty}}</text>
+                    {{goods.spec_name}}  <text class="text-muted"> x{{goods.qty}}</text>
                 </view>
-                <view class="text-muted text-hide mt-xs text-sm"><text class="pr-sm">{{goods.goods_name}}</text></view>
-                <view class="bt-bar">
-                    <text class="price bold">￥{{goods.spec_price}}</text>
+                <view class="text-muted text-hide text-sm" style="padding: 4px 0">{{goods.goods_name}}</view>
+                <view >
+                    <text class="price bold ">￥{{goods.spec_price}}</text>
                     <block wx:if="{{item.shipping_money!='0.00'}}">
                         + ¥ {{item.shipping_money}}(运费) 
                     </block>
                 </view>
             </view>
-                            <view >{{item.time_ago}}</view>
+           <view >{{item.time_ago}}</view>
 
         </navigator>
     </view>

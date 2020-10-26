@@ -61,7 +61,7 @@
             </view>
         </view>
         <view class="order-bd">
-                         <view class=goods_title f12">{{item.order_detail[0].goods_name}}</view>
+                         <view class="goods_title f12">{{item.order_detail[0].goods_name}}</view>
 
             <view class="   scale-b-1px" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="g">
                 <view class="text-justify type">
@@ -102,7 +102,7 @@
                 </text>
             </view>
             <view class="total text-justify scale-b-1px">
-                <view><text class="warning-text f18">¥{{item.profit}} </text>
+                <view><text class="warning-text f18">¥{{item.total_price - item.profit}} </text>
                     <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
                     <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
                     <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
@@ -147,12 +147,7 @@
                 </button>
             </view>
         </view>
-        <view class="note-box">
-            <i-icon type="brush" size="14" color="#999" class="note-icon" />
-            <view class="note-input">
-                <input type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder=" 怕忘记备注一下哦" i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
-            </view>
-        </view>
+
     </view>
 
 </block>

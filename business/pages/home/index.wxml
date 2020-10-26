@@ -97,7 +97,7 @@
                 </navigator>
 
 
-<view  style="display:flex; justify-content:center">
+<view  style="display:flex; justify-content:center" >
 
     <button size="mini" class="hollow"  bindtap="goEdit" data-goods_id="{{item.goods_id}}" text="修改" >修改</button>
   <button size="mini" class="hollow"  bindtap="removeGoods" data-index="{{index}}"   data-goods_id="{{item.goods_id}}" text="删除" >删除</button>
