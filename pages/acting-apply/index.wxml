@@ -16,7 +16,7 @@
     <view class="act-submit">
 
         <button type="primary" wx:if="{{showLoginbtn}}"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权登录 </button>
-        <button class="linenear_bgsss" wx:else form-type='submit' loading="{{loading}}"> 立即加入 </button>
+        <button class="linenear_bgsss" wx:else form-type='submit' loading="{{loading}}"> 立即申请 </button>
 
     </view>
 

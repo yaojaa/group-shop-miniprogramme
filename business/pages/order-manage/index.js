@@ -55,7 +55,7 @@ Page({
         search_order_status:3,
         activeNames: [],
         isShowTui: false,
-        orderData: {}
+        orderData: {},
     },
     closeTui(){
         this.setData({
@@ -165,13 +165,8 @@ Page({
         if (!app.globalData.userInfo) {
             app.globalData.token = wx.getStorageSync('userInfo').token
         }
-
+        //用于首次登陆的跳转，记住最后访问
        app.globalData.apiPrix = 'supplier'
-
-
-
-
-      
 
 
         this.data.goods_id = optiton.goods_id,
@@ -221,8 +216,8 @@ Page({
     copyLink(){
 
                Dialog.alert({
-          message: '请在PC端浏览器中访问 kaixinmatuan.cn/seller，登录账号为您绑定的手机号',
-          confirmButtonText:'复制地址'
+          message: '请在PC端浏览器中访问 kaixinmatuan.cn/seller，登录账号为您绑定的手机号'+app.globalData.userInfo.supplier.supplier_mobile,
+          confirmButtonText:'复制访问地址'
         }).then(() => {
             wx.setClipboardData({
             data: 'http://kaixinmatuan.cn/seller',

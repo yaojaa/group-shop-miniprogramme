@@ -245,9 +245,8 @@ Page({
 
                  Dialog.alert({
                       title: '开启成功',
-                      message: '开启帮忙成功，可以邀请小伙伴上架您的商品帮卖了！',
-                      theme: 'round-button',
-                      selector:'dlg'
+                      message: '开启帮忙成功，可以邀请小伙伴帮卖商品了！',
+                      theme: 'round-button' 
                     }).then(() => {
                        util.setParentData({
                                       'goods.agent_opt':1

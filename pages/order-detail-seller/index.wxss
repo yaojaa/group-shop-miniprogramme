@@ -5,8 +5,8 @@ width:140rpx;
 height:140rpx
 }
 .footer-btn{
-	text-align: right;
-	padding:20rpx 25rpx
+	height: 40px;
+	padding-top: 20px
 }
 
 .btn-toset_del{
@@ -25,4 +25,8 @@ height:140rpx
 	position: absolute;
 	right: 0px;
 	top:1px;
+}
+.title{
+	font-weight: bold;
+	font-size: 30rpx
 }

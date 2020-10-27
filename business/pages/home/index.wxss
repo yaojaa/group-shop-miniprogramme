@@ -9,6 +9,10 @@
     z-index: 99;
     left: 10px
 }
+.title{
+    font-size: 38rpx;
+    font-weight: bold;
+}
 
 .head-box {
     position: relative;

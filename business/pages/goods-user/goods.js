@@ -266,6 +266,22 @@ Page({
                         })
                     })
 
+                }else if (res.data.code = -112){
+
+                   Dialog.alert({
+                      title: '商品已经不存在啦！',
+                      message: '看看其它商品',
+                      theme: 'round-button'
+
+                    }).then(() => {
+
+                      wx.switchTab({
+                            url:'/pages/supplier-list/index'
+                        })
+
+                    })
+
+
                 }
 
                 else if(res.data.code == -113 || res.data.code == -114 || res.data.code == -115)

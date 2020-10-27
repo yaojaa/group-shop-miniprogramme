@@ -149,7 +149,7 @@ Page({
                 message: res.data.msg
                 }).then(() => {
 
-                  wx.redirectTo({
+                  wx.switchTab({
                       url:'/pages/supplier-list/index'
                      })
               })

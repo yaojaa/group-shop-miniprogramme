@@ -96,19 +96,19 @@
         "selectedColor": "#49b34d",
         "backgroundColor": "#000000",
         "list": [
-        {
-            "pagePath": "pages/home/index"
-        },
-        {
-            "pagePath": "pages/new-order-list/index"
-        },
-        {
-            "pagePath": "pages/supplier-list/index"
-        },
-        {
-            "pagePath": "pages/my/index"
-        }
-    ]
+            {
+                "pagePath": "pages/home/index"
+            },
+            {
+                "pagePath": "pages/new-order-list/index"
+            },
+            {
+                "pagePath": "pages/supplier-list/index"
+            },
+            {
+                "pagePath": "pages/my/index"
+            }
+        ]
     },
     "usingComponents":
     {

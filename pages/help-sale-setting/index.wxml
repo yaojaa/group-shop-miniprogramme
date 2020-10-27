@@ -54,6 +54,6 @@
         </view>
     </form>
 
-   <van-dialog id="dlg" />
+    <van-dialog id="van-dialog" />
 
 </view>
