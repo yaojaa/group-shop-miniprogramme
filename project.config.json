@@ -1367,10 +1367,10 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 184,
           "name": "pages/order-detail-seller/index",
           "pathName": "pages/order-detail-seller/index",
-          "query": "id=19874",
+          "query": "id=24752",
           "scene": null
         },
         {
@@ -1475,14 +1475,14 @@
           "id": 199,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3503",
+          "query": "goods_id=3505&help_sale=true",
           "scene": null
         },
         {
           "id": 200,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3503&from_id=1&help_sale=true",
+          "query": "goods_id=3506",
           "scene": null
         }
       ]

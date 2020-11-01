@@ -30,3 +30,7 @@ height:140rpx
 	font-weight: bold;
 	font-size: 30rpx
 }
+
+.order-fixed-footer{
+	padding:10px
+}
