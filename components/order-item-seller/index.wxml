@@ -30,28 +30,12 @@
                 <view class="text-muted text-hide text-sm" style="padding: 4px 0">{{goods.goods_name}}</view>
                 <view >
                     <text class="price bold ">￥{{goods.spec_price}}</text>
-                    <block wx:if="{{item.shipping_money!='0.00'}}">
+                    <block wx:if="{{item.shipping_money && item.shipping_money!='0.00'}}">
                         + ¥ {{item.shipping_money}}(运费) 
                     </block>
                 </view>
             </view>
            <view >{{item.time_ago}}</view>
-
         </navigator>
-    </view>
-
-
-    <view class="solid-bottom"></view>
-    <view class="goods-panel-fd">
-        <block wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
-                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" 
-                    data-id="{{item.order_id}}" 
-                    data-opt = "{{btn.opt}}"
-                    data-cindex = "{{cindex}}"
-                    data-pindex = "{{pindex}}"
-                    data-txt = "{{btn.txt}}" 
-                    bindtap = "orderActions"
-                    >{{btn.txt}}</button>
-            </block>
     </view>
 </view>

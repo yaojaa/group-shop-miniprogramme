@@ -1532,9 +1532,6 @@ float:right
     border-radius: 8rpx;
 }
 
-.goods-panel-bd{
-    box-shadow: 0 0 1px #eee
-}
 
 .goods-panel-bd .bt-bar {
     position: absolute;
