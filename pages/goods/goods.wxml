@@ -222,7 +222,7 @@
             </view>
             <view class="white-bg p-df cf">
                 <view class="mt-sm" wx:if="{{orderUsers.length ==0}}">
-                    <button size="mini" class="btn-round" open-type="share">
+                    <button size="mini" class="btn-no-style" open-type="share">
                         暂时还没有人参与哦 点击这里分享转发
                     </button>
                 </view>
@@ -290,9 +290,9 @@
 
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
         <view class="weui-footer__links">
-            <button size="mini"  class="btn_no_style " bindtap="copyGoods"> 复制此商品</button>
+            <button size="large" style="margin-right: 20px"  class="btn primary hollow" bindtap="copyGoods"> 复制此商品</button>
 
-            <button size="mini" bindtap="toPublish"  class="btn_no_style">+ 发布新商品</button>
+            <button size="large"  bindtap="toPublish"  class="btn primary hollow">+ 发布新商品</button>
 
         </view>
     </view>
@@ -348,15 +348,15 @@
     <!--是团长自己自己-->
 
    <view class='footer-cart' wx:if="{{showPanel}}">
-        <view class='icon' bindtap='homepage' style="flex: 22">
+        <view class='icon' bindtap='homepage' style="flex: 25">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-        <button  open-type="share"  wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 39" data-type="invit" class="buy linenear_bg left-raduis right-raduis">
+        <button  open-type="share"  wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 30" data-type="invit" class="buy linenear_bg  left-raduis right-raduis">
                  邀请好友帮卖
         </button>
 
-<button  open-type="share" data-type="share"   wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 78">
+<button  open-type="share" data-type="share"   wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 45">
                  分享顾客
 </button>
 

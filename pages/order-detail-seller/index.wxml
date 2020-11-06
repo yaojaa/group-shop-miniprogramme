@@ -96,17 +96,16 @@
         data-order_refund_id="{{info.order_refund_id}}" 
         data-order_id="{{info.order_id}}" 
         bindtap="to_refund" 
-        class="f12 {{info.order_refundstatus==1?'text-danger':'gray-text'}} ">
+        class=" primary btn hollow round {{info.order_refundstatus==1?'text-danger':'gray-text'}} ">
             <text wx:if="{{info.order_refundstatus==1}}">有退款申请</text>
             <text wx:else>退款信息</text>
         </button>
-        <button wx:if="{{info.express.length > 0}}" class="round default " bindtap="checkexpress" data-sn="{{info.order_sn}}" data-id="{{info.order_id}}">
-            物流信息
-        </button>
+        <button wx:if="{{info.express.length > 0}}" class="round btn primary hollow" bindtap="checkexpress" data-sn="{{info.order_sn}}" data-id="{{info.order_id}}">物流信息</button>
+
         <block wx:if="{{info.showAction}}" wx:for="{{info.seller_next_handle}}" wx:key="{{index}}">
             <button class="round primary linenear_bg btn-{{item.opt}}" bindtap="orderActions" data-opt="{{item.opt}}" data-order_id="{{info.order_id}}" data-txt="{{item.txt}}">{{item.txt}}</button>
         </block>
-        <button wx:if="{{info.order_status == 3 && info.delivery_method == 1 && info.showAction}}" class="round primary  linenear_bg" data-id="{{info.order_id}}" data-sn="{{info.order_sn}}" bindtap="checkexpressorder">
+        <button wx:if="{{info.order_status == 3 && info.delivery_method == 1 && info.showAction}}" class="round primary linenear_bg" data-id="{{info.order_id}}" data-sn="{{info.order_sn}}" bindtap="checkexpressorder">
             <block wx:if="{{info.express.length > 0}}">快递单号</block>
             <block wx:else>录入单号</block>
         </button>

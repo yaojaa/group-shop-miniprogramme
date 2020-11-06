@@ -21,11 +21,7 @@ height:140rpx
 .rightAction{
 	float: right;
 	margin-right: 10px}
-.btn{
-	position: absolute;
-	right: 0px;
-	top:1px;
-}
+
 .title{
 	font-weight: bold;
 	font-size: 30rpx
@@ -34,4 +30,10 @@ height:140rpx
 .order-fixed-footer{
 	padding:10px;
 	display: flex;
+}
+.order-fixed-footer button{
+
+	flex: 1;
+	margin: 0 10px
+
 }

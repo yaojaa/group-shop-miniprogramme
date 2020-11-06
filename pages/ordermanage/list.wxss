@@ -190,7 +190,7 @@ padding: 15rpx 30rpx
 .remark{
     font-size: 24rpx;
     color: #666;
-    padding: 18rpx 20rpx 18rpx
+    padding: 0 20rpx 18rpx
 }
 .tabsArea{
         border-radius: 10px 10px 0 0;

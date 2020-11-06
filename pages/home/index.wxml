@@ -77,11 +77,22 @@
           <i-icon type="add" size="20" />新发布
         </button> -->
 
+
         <i-panel  wx:if="{{goodslist.length > 0 }}" >
-<!--             <van-search value="{{ value }}" placeholder="输入标题关键字搜索" background="#ffffff" 
-            show-action
-  bind:search="onSearch"
-  /> -->
+
+
+  <van-search
+  value="{{ value }}"
+  shape="round"
+  background="#fff"
+  placeholder="请输入搜索关键词"
+/>
+
+  <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
+  <van-tab title="进行中"></van-tab>
+  <van-tab title="已结束"></van-tab>
+  <van-tab title="已删除"></van-tab>
+</van-tabs>
 
             <view class="goods-box">
                 <block wx:key="index" wx:for="{{goodslist}}">
