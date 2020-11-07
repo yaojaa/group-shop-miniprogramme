@@ -96,7 +96,7 @@
 
             <view class="goods-box">
                 <block wx:key="index" wx:for="{{goodslist}}">
-                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
+    <i-goods-item  bindupdateList="getGoodsList" bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
                 </block>
                 <view class="text-center">
                     <wux-spin wx:if="{{is_loading}}"></wux-spin>

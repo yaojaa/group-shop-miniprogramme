@@ -79,7 +79,8 @@
             <view class="num">
                 <van-icon name="friends-o" color="#4fac05" size="20px" />
             </view>
-            帮卖设置
+           <block wx:if="{{goods.agent_opt== '0'}}"> 开启帮卖</block>
+           <block wx:if="{{goods.agent_opt== '1' }}"> 帮卖设置</block>
         </view>
 <!-- 
          <view class="flex-item" bindtap="goOrders">
