@@ -1,6 +1,5 @@
             <view  class='goods-content-wraper por'>
 
-
                 <block wx:if="{{content.length}}">
                 <!--编辑器正文区-->
                 <view class="content-item" wx:for="{{content}}">

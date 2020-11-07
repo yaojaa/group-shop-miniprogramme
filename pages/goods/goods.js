@@ -757,13 +757,13 @@ Page({
 
              var content = JSON.parse(d.goods.content)
 
+
           }else{
             var content = []
           }
 
 
 
-           console.log('content is ',content.length == 0 || content.html == '')
 
            if(content.length == 0 || content.html == ''){
 
@@ -785,7 +785,6 @@ Page({
 
            }else{
             console.log('else',content.html)
-            content = [content.html]
            }
 
            console.log(typeof content,content)

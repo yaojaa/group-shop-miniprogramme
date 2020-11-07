@@ -254,11 +254,6 @@
     flex: 1;
 }
 
-.user-info .name {
-    display: inline-block;
-    padding-left: 10px;
-    line-height: 1.4;
-}
 
 .user-info .name text {
     line-height: 1.6;
@@ -948,7 +943,10 @@
 
 .user-info .name {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
+      display: inline-block;
+    padding-left: 10px;
+    line-height: 1.6;
 }
 
 .user-info .info {

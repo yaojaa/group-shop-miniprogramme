@@ -5,8 +5,11 @@
     <view slot="bottom">
         <view class="flex align-center pl-df cus-head" style="padding-right: 220rpx">
             <!-- <image class="avatar mr-sm" src="{{goods.user.headimg}}" /> -->
-            <view class="flex-sub">
-                <view class="text-hide">{{goods.goods_name}}</view>
+            <view class="flex-sub" bindtap="goHomePage">
+                 <image src="{{goods.user.headimg}}" class="avatar"></image>
+
+                    <text class="f18 bold">{{goods.user.nickname}} </text>
+                    <van-icon color="#a3df00" name="wap-home-o" size="22px" />  
             </view>
         </view>
     </view>
@@ -26,9 +29,10 @@
                     <image src="{{goods.user.headimg}}" class="avatar"></image>
                 </view>
                 <view class="user-info-bd">
-                    <view class="name">{{goods.user.nickname}}<!-- <text class="tags">已实名</text> <van-icon color="#a3df00" name="phone" size="20px" />   -->
+                    <view class="name">{{goods.user.nickname}} 
+                        <van-icon color="#a3df00" name="chat-o" size="22px" />  
                     </view>
-          <!--           <view class="f12">
+                  <!--   <view class="f12">
                     累计{{goods.buyuser_count}}人跟TA团了{{goods.store.order_count}}次</view> -->
                 </view>
             </view>
@@ -190,9 +194,7 @@
 
 
                     </view>
-                    <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 
-                        剩余({{item.spec_stock}})
-                    </text> -->
+               
                     <view  class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                     </view>
@@ -210,6 +212,7 @@
 
      
         <view>
+
 
         <goods-detail content="{{content}}"></goods-detail>
 
