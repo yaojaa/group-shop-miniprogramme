@@ -1124,3 +1124,10 @@ button::after {
     padding: 20px
 }
 
+.pt20{ padding-top: 20px; }
+
+.no-data-txt{
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+}

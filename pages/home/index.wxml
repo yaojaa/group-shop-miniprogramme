@@ -68,13 +68,32 @@
           <i-icon type="add" size="20" />新发布
         </button> -->
         <i-panel wx:if="{{goodslist.length > 0 }}">
-            <van-search value="{{ value }}" shape="round" background="#fff" placeholder="请输入搜索关键词" />
+            <van-search 
+            value="{{ value }}" 
+            shape="round" 
+            background="#fff" 
+            placeholder="请输入搜索关键词"
+            show-action
+            bind:search="onSearch"
+            bind:cancel="onCancel"
+            />
             <!-- <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
   <van-tab title="进行中"></van-tab>
   <van-tab title="已结束"></van-tab>
   <van-tab title="已删除"></van-tab>
 </van-tabs> -->
-            <view class="goods-box">
+            <!-- search -->
+            <view class="goods-box" wx:if='{{searchWords}}'>
+                <block wx:key="index" wx:for="{{searchGoodslist}}">
+    <i-goods-item  bindupdateList="getGoodsList" bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
+                </block>
+                <view class="text-center pt20">
+                    <wux-spin wx:if="{{search_is_loading}}"></wux-spin>
+                </view>
+                <view class="no-data-txt" wx:if="{{searchGoodslist.length == 0 && !search_is_loading}}">没有找到商品，换个关键词试试吧~</view>
+            </view>
+            <!-- ./search -->
+            <view class="goods-box" wx:else>
                 <block wx:key="index" wx:for="{{goodslist}}">
                     <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" bind:updateList="updateList" />
                 </block>
