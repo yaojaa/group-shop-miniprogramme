@@ -38,6 +38,7 @@ console.log(goods.goods_cover)
         borderRadius: '10px',
         borderWidth: '5px',
         borderColor: '#ccc',
+        mode: 'aspectFill',
       },
     },
 
