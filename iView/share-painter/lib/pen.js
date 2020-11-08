@@ -253,13 +253,22 @@ export default class Painter {
       this.ctx.drawImage(view.url, -(width / 2), -(height / 2), width, height);
     } else {
 
-      if (view.sHeight > view.sWidth) {
+      // if (view.sHeight > view.sWidth) {
+      //   rHeight = Math.round((view.sWidth / width) * height);
+      //   rWidth = view.sWidth;
+      // } else {
+      //   rWidth = Math.round((view.sHeight / height) * width);
+      //   rHeight = view.sHeight;
+      // }
+
+      if (view.sHeight/view.sWidth > height/width) {
         rHeight = Math.round((view.sWidth / width) * height);
         rWidth = view.sWidth;
       } else {
         rWidth = Math.round((view.sHeight / height) * width);
         rHeight = view.sHeight;
       }
+
       if (view.sWidth > rWidth) {
         startX = Math.round((view.sWidth - rWidth) / 2);
       }

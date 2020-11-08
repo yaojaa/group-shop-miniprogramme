@@ -32,8 +32,8 @@ console.log(goods.goods_cover)
       css: {
         top: `55px`,
         left: `${wid/2}px`,
-        width: '130px',
-        height: '120px',
+        width: '200px',
+        height: '160px',
         align: 'center',
         borderRadius: '10px',
         borderWidth: '5px',
@@ -46,7 +46,7 @@ console.log(goods.goods_cover)
       type: 'text',
       text: '#绑定商品#',
       css: {
-        top: `205px`,
+        top: `225px`,
         left: `${wid/2}px`,
         color: '#444',
         fontSize: "26px",

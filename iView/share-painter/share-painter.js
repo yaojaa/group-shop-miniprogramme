@@ -133,6 +133,7 @@ Component({
                   src: view.url,
                   success: (res) => {
                     // 获得一下图片信息，供后续裁减使用
+                    console.log('===============',res)
                     view.sWidth = res.width;
                     view.sHeight = res.height;
                   },
