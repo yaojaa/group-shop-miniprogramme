@@ -37,48 +37,40 @@ Page({
     end_time: default_end_time,
     goods_video: '',
     goods_video_cover: '',
-    content:[{
-              // 模块类型
-              "type": "text",
-              // 文本内容
-              "desc": ""
-            }],
+    content: [{
+      // 模块类型
+      "type": "text",
+      // 文本内容
+      "desc": ""
+    }],
     picker: {
       start_date: default_start_time.split(' ')[0],
       end_date: default_end_time.split(' ')[0],
       start_time: '00:00:00',
       end_time: '00:00:00',
     },
-    spec: [
-      {
-        spec_name: '',
-        spec_price: '',
-        sub_agent_price:'',
-        spec_stock: '',
-        spec_pic: [],
-        spec_desc: '',
-      },
-    ],
+    spec: [{
+      spec_name: '',
+      spec_price: '',
+      sub_agent_price: '',
+      spec_stock: '',
+      spec_pic: [],
+      spec_desc: '',
+    }, ],
     payment_method: 0, //0:线上微信支付,1:线下支付'
     visible1: false,
     visible2: false,
     type: 'photo', //上传图片或视频
-    actions1: [
-      {
-        name: '微信支付即时收款',
-      },
-      {
-        name: '线下收款 只统计报名 ',
-      },
-    ],
-    actions2: [
-      {
-        name: '快递邮寄',
-      },
-      {
-        name: '用户自提',
-      },
-    ],
+    actions1: [{
+      name: '微信支付即时收款',
+    }, {
+      name: '线下收款 只统计报名 ',
+    }, ],
+    actions2: [{
+      name: '快递邮寄',
+    }, {
+      name: '用户自提',
+    }, ],
 
     content_imgs_length: '',
     visible_pictures: false, //上传图片弹层是否显示
@@ -93,8 +85,8 @@ Page({
     freight_tpl_id: 0, //运费模版ID 默认0
     freight_tpl_name: '默认方案全国包邮', //运费模版ID 默认0
     specItem: '',
-    agent_opt :0,//'是否可以代理:0否;1是',
-    show_buyerlist:0,
+    agent_opt: 0, //'是否可以代理:0否;1是',
+    show_buyerlist: 0,
     is_timelimit: 0,
   },
   // darg start5
@@ -130,65 +122,70 @@ Page({
       urls: urls, // 需要预览的图片http链接列表
     })
   },
-  jumpEditor(){
+  jumpEditor() {
     wx.navigateTo({
       url: '../editor/editor',
     })
   },
   toPostageSetting() {
     wx.navigateTo({
-      url:
-        '/business/pages/postageSetting/index?hasSelect=' +
+      url: '/business/pages/postageSetting/index?hasSelect=' +
         this.data.freight_tpl_id,
     })
   },
   toHelpSetting() {
 
-    if(this.data.goods_name == '' || this.data.spec[0].spec_name=='' || this.data.spec[0].spec_price==''){
+    if (this.data.goods_name == '' || this.data.spec[0].spec_name == '' || this.data.spec[0].spec_price == '') {
 
       return wx.showToast({
-        title:'请先填写完整',
-        icon:'none'
+        title: '请先填写完整',
+        icon: 'none'
       })
 
     }
 
 
-      app.globalData.helpSaleData ={
-      goods_name:this.data.goods_name,
-      goods_cover:this.data.goods_images[0].img_url,
-      goods_spec:this.data.spec
+    app.globalData.helpSaleData = {
+      goods_name: this.data.goods_name,
+      goods_cover: this.data.goods_images[0].img_url,
+      goods_spec: this.data.spec
     }
-    
-      wx.navigateTo({
-        url:'../help-sale-setting/index',
-      })
 
-  
- 
+    wx.navigateTo({
+      url: '../help-sale-setting/index',
+    })
+
+
+
   },
   //规格描述获得焦点 如果有详情图片,进入详情页
-  specDescFocus(e){
+  specDescFocus(e) {
 
-    const {index} = e.currentTarget.dataset
+    const {
+      index
+    } = e.currentTarget.dataset
 
-    if(this.data.spec[index].spec_pic.length || e.detail.value.length > 20){
+    if (this.data.spec[index].spec_pic.length || e.detail.value.length > 20) {
 
-      let { spec_name, spec_pic, spec_desc } = this.data.spec[index]
-        wx.setStorage({
-          key: 'specItem',
-          data: {
-            index,
-            spec_name,
-            spec_pic,
-            spec_desc,
-          },
-          success() {
-            wx.navigateTo({
-              url: '../spec-detail/index',
-            })
-          },
-        })
+      let {
+        spec_name,
+        spec_pic,
+        spec_desc
+      } = this.data.spec[index]
+      wx.setStorage({
+        key: 'specItem',
+        data: {
+          index,
+          spec_name,
+          spec_pic,
+          spec_desc,
+        },
+        success() {
+          wx.navigateTo({
+            url: '../spec-detail/index',
+          })
+        },
+      })
     }
 
 
@@ -198,7 +195,7 @@ Page({
     this.removePhoto(e)
   },
   //删除一张照片
-  removePhoto: function (e) {
+  removePhoto: function(e) {
     let index = e.currentTarget.dataset.index || e.detail.newKey
     this.data.goods_images.splice(index, 1)
     if (this.data.goods_images.length) {
@@ -216,13 +213,13 @@ Page({
   },
   // dart end
 
-  showTimePicker: function () {
+  showTimePicker: function() {
     this.setData({
       isShowTimePicker: true,
       is_timelimit: 1,
     })
   },
-  hideTimePicker: function (e) {
+  hideTimePicker: function(e) {
     this.setData({
       isShowTimePicker: false,
       is_timelimit: 0
@@ -243,8 +240,7 @@ Page({
 
       //先显示隐藏层 再setdata 否则报错
       //
-      this.setData(
-        {
+      this.setData({
           visible_spec: true,
         },
         () => {
@@ -280,8 +276,7 @@ Page({
         })
       },
       progressState: (s) => {
-        this.setData(
-          {
+        this.setData({
             visible_spec: true,
           },
           () => {
@@ -364,7 +359,9 @@ Page({
 
         console.log('videoFile', res)
 
-        let p1 = util.uploadFile({ filePath: videoFile })
+        let p1 = util.uploadFile({
+          filePath: videoFile
+        })
 
         p1.then(
           (result) => {
@@ -450,19 +447,18 @@ Page({
     let index = e.currentTarget.dataset.index
     if (index != this.data.content_imgs.length - 1) {
       this.swapArray(index, index + 1)
-    } else {
-    }
+    } else {}
   },
 
   //添加商品
-  addGoods: function () {
+  addGoods: function() {
     const dataTpl = {
       spec_name: '',
       spec_price: '',
       spec_stock: '',
       spec_pic: [],
       spec_desc: '',
-      sub_agent_price:''
+      sub_agent_price: ''
     }
 
     this.data.spec = this.data.spec.concat([dataTpl])
@@ -472,7 +468,7 @@ Page({
     })
   },
   //删除商品
-  removeGoods: function (e) {
+  removeGoods: function(e) {
     if (this.data.spec.length <= 1) {
       wx.showToast({
         title: '请至少保留一个商品',
@@ -490,7 +486,7 @@ Page({
   },
 
   //上移商品
-  upGoods: function (e) {
+  upGoods: function(e) {
     let index = e.currentTarget.dataset.index
     let good = this.data.spec.splice(index, 1)
     // console.log(good)
@@ -503,7 +499,7 @@ Page({
   },
 
   //置顶商品
-  topGoods: function (e) {
+  topGoods: function(e) {
     let index = e.currentTarget.dataset.index
     let good = this.data.spec.splice(index, 1)
     // console.log(good)
@@ -516,7 +512,7 @@ Page({
   },
 
   //下移商品
-  downGoods: function (e) {
+  downGoods: function(e) {
     let index = e.currentTarget.dataset.index
     let good = this.data.spec.splice(index, 1)
     this.data.spec.splice(index + 1, 0, good[0])
@@ -526,14 +522,14 @@ Page({
     })
   },
   //复制规格
-  copySpec(e){
-  let index = e.currentTarget.dataset.index
+  copySpec(e) {
+    let index = e.currentTarget.dataset.index
     let good = this.data.spec[index]
 
     good = JSON.parse(JSON.stringify(good))
     good['goods_spec_id'] = ''
-    
-    console.log(index,good)
+
+    console.log(index, good)
 
     this.data.spec.splice(index, 0, good)
     console.log(this.data.spec)
@@ -544,12 +540,12 @@ Page({
 
   },
 
-  onShow: function (option) {
+  onShow: function(option) {
     if (app.globalData.userInfo) {
       this.getTplList()
     }
 
-    console.log('app.globalData.helpSaleData',app.globalData.helpSaleData)
+    console.log('app.globalData.helpSaleData', app.globalData.helpSaleData)
 
 
   },
@@ -558,14 +554,18 @@ Page({
       currentInput: e.detail.value,
     })
   },
-  switch2Change: function (e) {
-    this.setData({ hasType: e.detail.value })
+  switch2Change: function(e) {
+    this.setData({
+      hasType: e.detail.value
+    })
   },
-  deliverChange: function (e) {
-    this.setData({ deliver: e.detail.value })
+  deliverChange: function(e) {
+    this.setData({
+      deliver: e.detail.value
+    })
   },
   //上传相册
-  chooseImage: function (e) {
+  chooseImage: function(e) {
     wx.chooseImage({
       count: 9, //最多可以选择的图片总数
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -598,18 +598,18 @@ Page({
 
               console.log(res)
 
-              if(res.statusCode == 413){
+              if (res.statusCode == 413) {
 
                 this.setData({
                   photoProgress: false,
                 })
 
-                 wx.showToast({
+                wx.showToast({
                   title: '图片太大啦',
                   icon: 'none',
                 })
 
-                return 
+                return
               }
 
 
@@ -665,7 +665,7 @@ Page({
                 title: '错误提示',
                 content: '上传图片失败',
                 showCancel: false,
-                success: function (res) {},
+                success: function(res) {},
               })
             },
           })
@@ -674,7 +674,7 @@ Page({
     })
   },
   //删除一张照片
-  removePicture: function (e) {
+  removePicture: function(e) {
     let index = e.currentTarget.dataset.index
 
     this.data.content_imgs.splice(index, 1)
@@ -686,32 +686,32 @@ Page({
       icon: 'none',
     })
   },
-  handleAnimalChange: function (event) {
+  handleAnimalChange: function(event) {
     const detail = event.detail
     this.setData({
       morePic: detail.value,
     })
   },
-  navigateToAddress: function () {
+  navigateToAddress: function() {
     wx.navigateTo({
       url: '../../address/list/list',
     })
   },
-  chooseMap: function (e) {
+  chooseMap: function(e) {
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: function (res) {
+      success: function(res) {
         var latitude = res.latitude
         var longitude = res.longitude
         wx.chooseLocation({
-          success: function (res) {
+          success: function(res) {
             console.log(res)
           },
         })
       },
     })
   },
-  initValidate: function () {
+  initValidate: function() {
     // 验证字段的规则
     const rules = {
       goods_name: {
@@ -745,14 +745,16 @@ Page({
       url: '../goods/goods?goods_id=' + this.data.goods_id,
     })
   },
-    getObject: util.debounce(function (res) {
-      
-      this.data.content = res.detail
+  getObject: util.debounce(function(res) {
 
-      this.editor({content:res.detail})
+    this.data.content = res.detail
 
-      console.log('编辑器内容改变：',this.data.content)
-    },2000),
+    this.editor({
+      content: res.detail
+    })
+
+    console.log('编辑器内容改变：', this.data.content)
+  }, 2000),
 
   //提交表单
   submitForm(e) {
@@ -762,14 +764,20 @@ Page({
     this.initValidate()
 
     if (this.data.goods_images.length <= 0) {
-      wx.showModal({ title: '请上传商品相册', showCancel: false })
+      wx.showModal({
+        title: '请上传商品相册',
+        showCancel: false
+      })
       return util.playSound('../../img/error.mp3')
     }
 
     // 传入表单数据，调用验证方法
     if (!this.WxValidate.checkForm(e)) {
       const error = this.WxValidate.errorList[0]
-      wx.showModal({ title: error.msg, showCancel: false })
+      wx.showModal({
+        title: error.msg,
+        showCancel: false
+      })
       return util.playSound('../../img/error.mp3')
     }
 
@@ -787,17 +795,26 @@ Page({
     })
 
     if (!hasKeyName) {
-      wx.showModal({ title: '请填写规则名称和价格', showCancel: false })
+      wx.showModal({
+        title: '请填写规则名称和价格',
+        showCancel: false
+      })
       return
     }
 
     if (this.data.delivery_method == 0) {
-      wx.showModal({ title: '请选择配送方式', showCancel: false })
+      wx.showModal({
+        title: '请选择配送方式',
+        showCancel: false
+      })
       return false
     }
 
     if (this.data.delivery_method == 2 && this.data.sell_address.length == 0) {
-      wx.showModal({ title: '请填写自提点', showCancel: false })
+      wx.showModal({
+        title: '请填写自提点',
+        showCancel: false
+      })
       return false
     }
 
@@ -808,16 +825,20 @@ Page({
       }
     })
 
-    var goods_id = this.copy ? {} : { goods_id: this.data.goods_id }
+    var goods_id = this.copy ? {} : {
+      goods_id: this.data.goods_id
+    }
 
     let data = Object.assign(
       goods_id,
       e.detail.value, //表单的数据
-      { spec: this.data.spec }, //商品数组数据
-      { goods_images: this.data.goods_images ,
-             content: this.data.content
-      },
       {
+        spec: this.data.spec
+      }, //商品数组数据
+      {
+        goods_images: this.data.goods_images,
+        content: this.data.content
+      }, {
         self_address_id: this.data.sell_address.map((item) => {
           return item.self_address_id
         }),
@@ -829,8 +850,8 @@ Page({
         goods_video: this.data.goods_video,
         goods_video_cover: this.data.goods_video_cover,
         freight_tpl_id: this.data.freight_tpl_id,
-        show_buyerlist:this.data.show_buyerlist,
-        agent_opt:this.data.agent_opt,
+        show_buyerlist: this.data.show_buyerlist,
+        agent_opt: this.data.agent_opt,
         cat_id: 8,
         is_timelimit: this.data.is_timelimit,
       }
@@ -856,53 +877,61 @@ Page({
     })
   },
   /*修改商品名称*/
-  editGoodsName(){
+  editGoodsName() {
 
 
-    this.editor({goods_name:this.data.goods_name})
+    this.editor({
+      goods_name: this.data.goods_name
+    })
   },
-    editGoodsContent(){
+  editGoodsContent() {
 
 
-    this.editor({goods_content:this.data.goods_content})
+    this.editor({
+      goods_content: this.data.goods_content
+    })
   },
   //点击保存只提交商品规格部分 
-  saveEdit(){
+  saveEdit() {
 
 
-    if(JSON.stringify(this.data.spec) == this.data.oldSpec){
+    if (JSON.stringify(this.data.spec) == this.data.oldSpec) {
       this.jump()
       return
     }
 
 
-    
 
-    util.wx.post('/api/seller/goods_add_or_edit',Object.assign({goods_id:this.data.goods_id,spec:this.data.spec})).then(res=>{
-      if(res.data.code !== 200){
+    util.wx.post('/api/seller/goods_add_or_edit', Object.assign({
+      goods_id: this.data.goods_id,
+      spec: this.data.spec
+    })).then(res => {
+      if (res.data.code !== 200) {
         wx.showToast({
-          title:res.data.msg,
-          icon:'none'
+          title: res.data.msg,
+          icon: 'none'
         })
-      }else{
+      } else {
         this.jump()
       }
     })
 
   },
 
-  editor:function(data){
+  editor: function(data) {
 
 
-    if(!this.data.is_edit){
+    if (!this.data.is_edit) {
       return
     }
 
-    util.wx.post('/api/seller/goods_add_or_edit', Object.assign({goods_id:this.data.goods_id},data)).then(res=>{
-      if(res.data.code !== 200){
+    util.wx.post('/api/seller/goods_add_or_edit', Object.assign({
+      goods_id: this.data.goods_id
+    }, data)).then(res => {
+      if (res.data.code !== 200) {
         wx.showToast({
-          title:res.data.msg,
-          icon:'none'
+          title: res.data.msg,
+          icon: 'none'
         })
       }
     })
@@ -910,18 +939,18 @@ Page({
   },
 
 
-  deliveryChange: function (e) {
+  deliveryChange: function(e) {
     this.setData({
       delivery_method: e.detail.value ? 1 : 2,
     })
   },
-  start_time: function (e) {
+  start_time: function(e) {
     let t = e.detail //"2018", "10", "20", "16", "00"
     this.setData({
       start_time: t[0] + '-' + t[1] + '-' + t[2] + ' ' + t[3] + ':' + t[4],
     })
   },
-  end_time: function (e) {
+  end_time: function(e) {
     let t = e.detail //"2018", "10", "20", "16", "00"
 
     this.setData({
@@ -929,10 +958,10 @@ Page({
     })
   },
   handleOpen1() {
-    if(this.data.is_edit){
+    if (this.data.is_edit) {
       return wx.showToast({
-        title:'支付方式不允许修改',
-        icon:'none'
+        title: '支付方式不允许修改',
+        icon: 'none'
       })
     }
 
@@ -941,10 +970,10 @@ Page({
     })
   },
   handleOpen2() {
-    if(this.data.is_edit){
+    if (this.data.is_edit) {
       return wx.showToast({
-        title:'配送方式不允许修改',
-        icon:'none'
+        title: '配送方式不允许修改',
+        icon: 'none'
       })
     }
 
@@ -963,8 +992,14 @@ Page({
     })
   },
   fromSpec(e) {
-    let { index } = e.currentTarget.dataset
-    let { spec_name, spec_pic, spec_desc } = this.data.spec[index]
+    let {
+      index
+    } = e.currentTarget.dataset
+    let {
+      spec_name,
+      spec_pic,
+      spec_desc
+    } = this.data.spec[index]
     wx.setStorage({
       key: 'specItem',
       data: {
@@ -981,14 +1016,18 @@ Page({
     })
   },
   /**收款方式**/
-  handleClickItem1({ detail }) {
+  handleClickItem1({
+    detail
+  }) {
     this.setData({
       payment_method: detail.index,
       visible1: false,
     })
   },
 
-  handleClickItem2({ detail }) {
+  handleClickItem2({
+    detail
+  }) {
     const index = detail.index + 1
 
     this.setData({
@@ -1032,69 +1071,69 @@ Page({
 
   // 编辑模板初始数据加载
   initData(gs, isCopy) {
-    let starFormatTime = isCopy
-      ? default_start_time
-      : util.formatTime(new Date(gs.start_time * 1000))
-    let endFormatTime = isCopy
-      ? default_end_time
-      : util.formatTime(new Date(gs.end_time * 1000))
+    let starFormatTime = isCopy ?
+      default_start_time :
+      util.formatTime(new Date(gs.start_time * 1000))
+    let endFormatTime = isCopy ?
+      default_end_time :
+      util.formatTime(new Date(gs.end_time * 1000))
 
     var freight_tpl_name = ''
 
-    if(gs.content){
+    if (gs.content) {
       var content = JSON.parse(gs.content)
-     }
-  
-    
-     if(gs.goods_content){
+    }
+
+
+    if (gs.goods_content) {
 
       var content = []
       content.push({
-              "type": "text",
-              "desc": gs.goods_content
-            })
+        "type": "text",
+        "desc": gs.goods_content
+      })
 
-      gs.content_imgs.forEach(src=>{
+      gs.content_imgs.forEach(src => {
 
         content.push({
-              "type": "image",
-              "src": src
+          "type": "image",
+          "src": src
         })
 
       })
       console.log('编辑提交为空')
       this.editor({
-        content:content,
-        goods_content:'',
-        content_imgs:[]
+        content: content,
+        goods_content: '',
+        content_imgs: []
       })
 
-     }
+    }
 
-     if(isCopy){
-      var spec = gs.goods_spec.map(item=>{
+    if (isCopy) {
+      var spec = gs.goods_spec.map(item => {
 
-        return  {
+        return {
           spec_name: item.spec_name,
           spec_price: item.spec_price,
           spec_stock: item.spec_stock,
           spec_pic: item.spec_pic,
           spec_desc: item.spec_desc,
-          sub_agent_price:item.sub_agent_price || item.spec_price
+          sub_agent_price: item.sub_agent_price || item.spec_price
         }
       })
-     }else{
+    } else {
       var spec = gs.goods_spec
-     }
+    }
 
-     console.log(content)
+    console.log(content)
 
 
     this.setData({
       content,
       goods_images: gs.goods_images,
       goods_name: gs.goods_name,
-      agent_opt:gs.agent_opt,
+      agent_opt: gs.agent_opt,
       goods_content: gs.goods_content,
       show_buyerlist: gs.show_buyerlist,
       is_timelimit: gs.is_timelimit,
@@ -1122,48 +1161,67 @@ Page({
 
   watch: {
 
-    agent_opt:(newValue, val, context)=>{
+    agent_opt: (newValue, val, context) => {
 
-      context.editor({agent_opt:newValue})
-
-    },
-
-    is_timelimit:(newValue, val, context)=>{
-
-      context.editor({is_timelimit:newValue,start_time:context.data.start_time,end_time:context.data.end_time})
+      context.editor({
+        agent_opt: newValue
+      })
 
     },
 
-    end_time:(newValue, val, context)=>{
+    is_timelimit: (newValue, val, context) => {
 
-      console.log({start_time:context.data.start_time,end_time:context.data.end_time})
-
-      context.editor({start_time:context.data.start_time,end_time:context.data.end_time})
-
-    },
-
-    start_time:(newValue, val, context)=>{
-
-      context.editor({start_time:context.data.start_time,start_time:context.data.start_time})
+      context.editor({
+        is_timelimit: newValue,
+        start_time: context.data.start_time,
+        end_time: context.data.end_time
+      })
 
     },
 
-    content_imgs:(newValue, val, context)=>{
+    end_time: (newValue, val, context) => {
 
-    if(newValue == val){
+      console.log({
+        start_time: context.data.start_time,
+        end_time: context.data.end_time
+      })
+
+      context.editor({
+        start_time: context.data.start_time,
+        end_time: context.data.end_time
+      })
+
+    },
+
+    start_time: (newValue, val, context) => {
+
+      context.editor({
+        start_time: context.data.start_time,
+        start_time: context.data.start_time
+      })
+
+    },
+
+    content_imgs: (newValue, val, context) => {
+
+      if (newValue == val) {
         return
       }
-      context.editor({content_imgs:newValue})
+      context.editor({
+        content_imgs: newValue
+      })
 
     },
 
-    editorContent:(newValue, val, context)=>{
+    editorContent: (newValue, val, context) => {
 
-      if(newValue == val){
+      if (newValue == val) {
         return
       }
 
-      context.editor({editorContent:context.data.editorContent})
+      context.editor({
+        editorContent: context.data.editorContent
+      })
 
     },
 
@@ -1201,27 +1259,38 @@ Page({
       this.freight_tpl_list = lists
     })
   },
-  toMore(){
+  toMore() {
     wx.navigateTo({
-      url:'../publish-setting/index?show_buyerlist='+this.data.show_buyerlist
+      url: '../publish-setting/index?show_buyerlist=' + this.data.show_buyerlist
     })
   },
 
-  setWatcher(){
+  setWatcher() {
     getApp().setWatcher(this.data, this.watch, this) // 设置监听器
   },
 
 
-  moveItemEvent(e){
+  moveItemEvent(e) {
     const index = e.detail
-    console.log(index,'.page-body>>>.item'+index)
-      wx.pageScrollTo({
-      duration:10,
-      selector:'.page-body>>>.item'+index
-     })
+    console.log(index, '.page-body>>>.item' + index)
+    wx.pageScrollTo({
+      duration: 10,
+      selector: '.page-body>>>.item' + index
+    })
   },
 
-  onLoad: function (option) {
+  autoSave() {
+
+    setInterval(() => {
+      wx.setStorage({
+        key: 'publish-data',
+        data: this.data
+      })
+    }, 5000)
+
+  },
+
+  onLoad: function(option) {
 
     var user
     if (app.globalData.userInfo) {
@@ -1243,12 +1312,12 @@ Page({
     if (option.goods_id) {
       this.setData({
         goods_id: option.goods_id,
-        is_edit:true,
-        is_copy: option.copy ? true:false
+        is_edit: true,
+        is_copy: option.copy ? true : false
       })
 
       this.getPublishedData(option.goods_id, this.data.is_copy)
-    }else{
+    } else {
       this.setWatcher()
     }
   },

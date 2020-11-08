@@ -5,8 +5,11 @@
     <view slot="bottom">
         <view class="flex align-center pl-df cus-head" style="padding-right: 220rpx">
             <!-- <image class="avatar mr-sm" src="{{goods.user.headimg}}" /> -->
-            <view class="flex-sub">
-                <view class="text-hide">{{goods.goods_name}}</view>
+            <view class="flex-sub" bindtap="goHomePage">
+                 <image src="{{goods.user.headimg}}" class="avatar"></image>
+
+                    <text class="f18 bold">{{goods.user.nickname}} </text>
+                    <van-icon color="#a3df00" name="wap-home-o" size="22px" />  
             </view>
         </view>
     </view>
@@ -26,9 +29,10 @@
                     <image src="{{goods.user.headimg}}" class="avatar"></image>
                 </view>
                 <view class="user-info-bd">
-                    <view class="name">{{goods.user.nickname}}<!-- <text class="tags">已实名</text> <van-icon color="#a3df00" name="phone" size="20px" />   -->
+                    <view class="name">{{goods.user.nickname}} 
+                        <van-icon color="#a3df00" name="chat-o" size="22px" />  
                     </view>
-          <!--           <view class="f12">
+                  <!--   <view class="f12">
                     累计{{goods.buyuser_count}}人跟TA团了{{goods.store.order_count}}次</view> -->
                 </view>
             </view>
@@ -75,7 +79,8 @@
             <view class="num">
                 <van-icon name="friends-o" color="#4fac05" size="20px" />
             </view>
-            帮卖设置
+           <block wx:if="{{goods.agent_opt== '0'}}"> 开启帮卖</block>
+           <block wx:if="{{goods.agent_opt== '1' }}"> 帮卖设置</block>
         </view>
 <!-- 
          <view class="flex-item" bindtap="goOrders">
@@ -190,9 +195,7 @@
 
 
                     </view>
-                    <!-- <text class="f12px" wx:if="{{item.spec_stock}}"> 
-                        剩余({{item.spec_stock}})
-                    </text> -->
+               
                     <view  class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                     </view>
@@ -211,6 +214,7 @@
      
         <view>
 
+
         <goods-detail content="{{content}}"></goods-detail>
 
            <block wx:if="{{goods.show_buyerlist!==1}}">
@@ -222,7 +226,7 @@
             </view>
             <view class="white-bg p-df cf">
                 <view class="mt-sm" wx:if="{{orderUsers.length ==0}}">
-                    <button size="mini" class="btn-round" open-type="share">
+                    <button size="mini" class="btn-no-style" open-type="share">
                         暂时还没有人参与哦 点击这里分享转发
                     </button>
                 </view>
@@ -290,9 +294,9 @@
 
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
         <view class="weui-footer__links">
-            <button size="mini"  class="btn_no_style " bindtap="copyGoods"> 复制此商品</button>
+            <button size="large" style="margin-right: 20px"  class="btn primary hollow" bindtap="copyGoods"> 复制此商品</button>
 
-            <button size="mini" bindtap="toPublish"  class="btn_no_style">+ 发布新商品</button>
+            <button size="large"  bindtap="toPublish"  class="btn primary hollow">+ 发布新商品</button>
 
         </view>
     </view>
@@ -348,15 +352,15 @@
     <!--是团长自己自己-->
 
    <view class='footer-cart' wx:if="{{showPanel}}">
-        <view class='icon' bindtap='homepage' style="flex: 22">
+        <view class='icon' bindtap='homepage' style="flex: 25">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-        <button  open-type="share"  wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 39" data-type="invit" class="buy linenear_bg left-raduis right-raduis">
+        <button  open-type="share"  wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 30" data-type="invit" class="buy linenear_bg  left-raduis right-raduis">
                  邀请好友帮卖
         </button>
 
-<button  open-type="share" data-type="share"   wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 78">
+<button  open-type="share" data-type="share"   wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 45">
                  分享顾客
 </button>
 

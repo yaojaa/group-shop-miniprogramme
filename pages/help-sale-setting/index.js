@@ -24,8 +24,8 @@ Page({
         checked: false,
         errorMsg:'',
         btnDisable:false,
-        is_modify:false
-    },
+        is_modify:false    
+      },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
         this.setData({ checked: detail });
@@ -35,7 +35,7 @@ Page({
      */
     onLoad: function(options) {
 
-
+        //从详情页进入
         if(options.goods_id){
 
             this.data.goods_id = options.goods_id
@@ -44,7 +44,7 @@ Page({
 
         }else{
 
-        //修正下级价格为空
+        //从发布或者编辑页进入，修正下级价格为空
         app.globalData.helpSaleData.goods_spec.forEach(item=>{
           if(item.sub_agent_price =='' || item.sub_agent_price == 0){
              this.data.btnDisable = true
@@ -74,9 +74,19 @@ Page({
       .then((res) => {
 
         if(res.data.code == 200){
+
+          let goodsData = res.data.data.goods
+
+              goodsData.goods_spec.forEach(it=>{
+                if(it.sub_agent_price == '0.00'){
+                   it.sub_agent_price = it.spec_price
+                }
+              })
+
+
                this.setData({
-            info:res.data.data.goods
-             })
+            info:goodsData 
+          })
         }
 
 

@@ -85,7 +85,7 @@
 <van-cell
   is-link
   title="运费模版"
-  link-type="swicthTab"
+  link-type="navigateTo"
   url="../postageSetting/index"
 />
 
@@ -175,5 +175,5 @@
 
     <footerbar active="{{3}}" />
 
-
+    
 </view>

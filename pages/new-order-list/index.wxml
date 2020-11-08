@@ -10,7 +10,7 @@
     <view class="order-coentent">
         <view class="order-box">
             <block wx:for="{{order_list}}" wx:key="{{index}}">
-                <order-list item="{{item}}" user="{{false}}">
+                <order-list item="{{item}}">
                 </order-list>
             </block>
         </view>
@@ -33,6 +33,5 @@
         <wux-spin wux-class="spin" size="large" />
     </view>
 
-        <footerbar active="{{1}}" />
 
 </view>

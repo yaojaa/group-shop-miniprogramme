@@ -71,6 +71,13 @@ Page({
 
                     var data = res.data.data
 
+                    //订单的店铺人 不是当前卖家 证明来自帮卖下级
+                    if(data.seller.userId == app.globalData.userInfo.userId){
+
+                        data.isAgentOrder = true
+
+                    }
+
 
                     if (data.link_store.length >= 2) {
                         data.link_store.forEach(it => {

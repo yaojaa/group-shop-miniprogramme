@@ -98,8 +98,9 @@ input{
 
 .down-ctx{
   text-align: left;
-  font: 28rpx;
+  font-size: 28rpx;
   border-bottom: 1rpx solid #e4e4e4;
+  padding-top: 8rpx
 }
 
 .op-btn-wrp{
@@ -115,8 +116,8 @@ input{
   flex: 1;
   text-align: center;
   font-size: 24rpx;
-  line-height: 68rpx;
   position: relative;
+  padding-top: 3px
 }
 
 .white-mask{

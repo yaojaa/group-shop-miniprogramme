@@ -2,8 +2,8 @@
    
 
 
-    <view class="notice mt-sm">
-        设置您的代理供货价，并开启帮卖
+    <view class="notice mt-sm" wx:if="{{agent_opt==0}}">
+        开启帮卖，请先设置您给代理的供货价
     </view>
 
 

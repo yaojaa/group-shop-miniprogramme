@@ -1532,9 +1532,6 @@ float:right
     border-radius: 8rpx;
 }
 
-.goods-panel-bd{
-    box-shadow: 0 0 1px #eee
-}
 
 .goods-panel-bd .bt-bar {
     position: absolute;
@@ -1736,6 +1733,14 @@ float:right
     vertical-align: middle;
 }
 
+.primary.btn.hollow {
+  color: #49b34d;
+}
+
+.primary.btn.hollow::after {
+  border: 2px solid #49b34d;
+  display: block;
+}
 
 
 .no-content {
