@@ -1486,6 +1486,13 @@
           "pathName": "pages/goods/goods",
           "query": "goods_id=3629",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=26580",
+          "scene": null
         }
       ]
     }

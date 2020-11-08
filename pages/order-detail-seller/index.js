@@ -72,36 +72,42 @@ Page({
                     var data = res.data.data
 
                     //订单的店铺人 不是当前卖家 证明来自帮卖下级
-                    if(data.seller.userId == app.globalData.userInfo.userId){
+                    if (data.seller.userId == !app.globalData.userInfo.userId) {
 
                         data.isAgentOrder = true
 
                     }
 
+                    if (data.link_store) {
 
-                    if (data.link_store.length >= 2) {
-                        data.link_store.forEach(it => {
-                            if (it && it.store_id == app.globalData.userInfo.store_id) {
-                                console.log('你有权限管理')
-                                data.showAction = true
-                            }
-                        })
+
+                        if (data.link_store.length >= 2) {
+                            data.link_store.forEach(it => {
+                                if (it && it.store_id == app.globalData.userInfo.store_id) {
+                                    console.log('你有权限管理')
+                                    data.showAction = true
+                                }
+                            })
+                        }
+
+
+                        if (data.link_store.length == 1 && data.link_store[0] == null) {
+                            data.showAction = true
+                        } else if (data.link_store.length == 2) {
+                            data.link_store.forEach(it => {
+                                if (it && it.store_id == app.globalData.userInfo.store_id) {
+                                    console.log('你有权限管理')
+                                    data.showAction = true
+                                }
+                            })
+                        }
+
+
+                    }else{
+                       data.showAction = true
                     }
 
 
-                    if (data.link_store.length == 1 && data.link_store[0]==null ) {
-                        data.showAction =true
-                    } else if (data.link_store.length == 2) {
-                        data.link_store.forEach(it => {
-                            if (it && it.store_id == app.globalData.userInfo.store_id) {
-                                console.log('你有权限管理')
-                                data.showAction = true
-                            }
-                        })
-                    }
-
-
-                    console.log(data.showAction)
 
 
                     this.setData({

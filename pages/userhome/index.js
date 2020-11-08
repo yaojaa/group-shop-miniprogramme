@@ -450,7 +450,7 @@ Page({
       obj_id: this.store_id,
       user_scene: app.globalData.userScene,
       user_phone: app.globalData.userPhone,
-      user_id: app.globalData.userInfo.user_id || ''
+      user_id: app.globalData.userInfo? app.globalData.userInfo.user_id : ''
     })
   },
 
