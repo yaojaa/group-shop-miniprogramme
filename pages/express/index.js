@@ -54,6 +54,8 @@ Page({
     },
     onSend_msgChange({detail}){
 
+        console.log(detail)
+
             this.setData({ send_msg: detail })
 
     },
@@ -318,14 +320,19 @@ Page({
                             title: '添加成功'
                         })
 
+                         if(this.data.send_msg){
+                            this.send_msg_tips()
+                         }
 
-                        this.send_msg_tips()
+
 
 
                          if(this.data.pindex){
                              util.setParentData({
                              [keyExpress]: ['ok']
                              })
+                         }else{
+                             wx.navigateBack()
                          }
 
                        

@@ -75,24 +75,16 @@
     </view>
     <view class="order-fixed-footer">
 
-        <block  wx:for="{{info.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
-                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  mv-sm ml-sm btn-{{btn.opt}}" 
-                    data-order_id="{{info.order_id}}" 
-                    data-opt = "{{btn.opt}}"
-                    data-txt = "{{btn.txt}}" 
-                    bindtap = "orderActions"
-                    >{{btn.txt}}</button>
-            </block>
-
-
+     
 
         <button wx:if="{{info.order_refund_id && info.order_refundstatus!==2 && info.showAction}}" data-order_refund_id="{{info.order_refund_id}}" data-order_id="{{info.order_id}}" bindtap="to_refund" class=" primary btn hollow round {{info.order_refundstatus==1?'text-danger':'gray-text'}} ">
             <text wx:if="{{info.order_refundstatus==1}}">有退款申请</text>
             <text wx:else>退款信息</text>
         </button>
         <button wx:if="{{info.express.length > 0}}" class="round btn primary hollow" bindtap="checkexpress" data-sn="{{info.order_sn}}" data-id="{{info.order_id}}">物流信息</button>
+
         <block wx:if="{{info.showAction}}" wx:for="{{info.seller_next_handle}}" wx:key="{{index}}">
-            <button class="round primary linenear_bg btn-{{item.opt}}" bindtap="orderActions" data-opt="{{item.opt}}" data-order_id="{{info.order_id}}" data-txt="{{item.txt}}">{{item.txt}}</button>
+            <button class="round primary  btn-{{item.opt}}" bindtap="orderActions" data-opt="{{item.opt}}" data-order_id="{{info.order_id}}" data-txt="{{item.txt}}">{{item.txt}}</button>
         </block>
         <button wx:if="{{info.order_status == 3 && info.delivery_method == 1 && info.showAction}}" class="round primary linenear_bg" data-id="{{info.order_id}}" data-sn="{{info.order_sn}}" bindtap="checkexpressorder">
             <block wx:if="{{info.express.length > 0}}">快递单号</block>

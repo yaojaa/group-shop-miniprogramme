@@ -1488,10 +1488,10 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 202,
           "name": "pages/order-detail-seller/index",
           "pathName": "pages/order-detail-seller/index",
-          "query": "id=26580",
+          "query": "id=24753",
           "scene": null
         }
       ]

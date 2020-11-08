@@ -60,13 +60,15 @@ Page({
 
      } 
 
-     if(d.supplier && !lastVisit){
+     //暂时不跳转供应商
 
-         return   wx.redirectTo({
-              url:'/business/pages/home/index'
-            })
+     // if(d.supplier && !lastVisit){
 
-           } 
+     //     return   wx.redirectTo({
+     //          url:'/business/pages/home/index'
+     //        })
+
+     //       } 
 
 
       if(d.store && d.store.hasOwnProperty('store_id')){
