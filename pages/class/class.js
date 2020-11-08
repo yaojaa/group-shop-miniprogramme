@@ -89,10 +89,23 @@ Page({
   // 置顶分类
   up(e){
     let i = e.currentTarget.dataset.index;
-    // this.submitClass({
-    //   cat_name: this.data.list[i].cat_name,
-    //   cat_id: this.data.list[i].cat_id,
-    // })
+    wx.showLoading()
+    util.wx.post('/api/seller/cat_set_top', {
+      cat_id: this.data.list[i].cat_id,
+      cat_is_top: 1
+    }).then((res) => {
+        wx.hideLoading()
+        console.log(res)
+        if(res.data.code == 200){
+          this.getList();
+        }
+      })
+      .catch((e) => {
+        wx.showToast({
+          title: '网络繁忙',
+          icon:'none'
+        })
+      })
   },
   // 添加想添加分类
   addLoveClass(e){
