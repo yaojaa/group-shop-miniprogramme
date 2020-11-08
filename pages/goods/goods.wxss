@@ -21,12 +21,12 @@
   padding: 15px 0 20px;
   color: #999;
   position: relative;
-  font-size: 12px
+  font-size: 12px;
 }
 
 .menu .num {
   margin-bottom: 10px;
-  font-size: 14px
+  font-size: 14px;
 }
 
 .text {
@@ -133,7 +133,7 @@
   font-size: 26rpx !important;
   font-weight: bold;
   color: #69b90b;
-  padding-top: 3px
+  padding-top: 3px;
 }
 .goods-addres {
   font-size: 26rpx;
@@ -205,7 +205,7 @@
   font-weight: 500;
   color: #fff;
   border: none;
-  margin-right: 3px
+  margin-right: 3px;
 }
 
 .footer-cart .buy:after,
@@ -735,8 +735,6 @@
   word-wrap: break-word;
 }
 
-
-
 .userinfo-avatar {
   width: 100rpx;
   height: 100rpx;
@@ -893,11 +891,12 @@
   align-items: center;
   padding: 4rpx;
   border-radius: 100px;
+  padding-right: 10rpx;
 }
 
 .user-info .avatar {
-  width:70rpx;
-  height: 70rpx;
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
   overflow: hidden;
   font-size: 0;
@@ -923,17 +922,17 @@
   vertical-align: middle;
 }
 
-.tags{
-    height: 19px;
-    line-height: 19px;
-    padding: 0 4px;
-    font-size: 10px;
-    color: #ff8900;
-    border: 1px solid #ff8900;
-    text-decoration: none;
-    border-radius: 3px;
-    display: inline-block;
-    margin: 0 5px
+.tags {
+  height: 19px;
+  line-height: 19px;
+  padding: 0 4px;
+  font-size: 10px;
+  color: #ff8900;
+  border: 1px solid #ff8900;
+  text-decoration: none;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 5px;
 }
 
 .user-info-bd {
@@ -943,10 +942,9 @@
 
 .user-info .name {
   font-weight: bold;
-  font-size: 20px;
-      display: inline-block;
-    padding-left: 10px;
-    line-height: 1.6;
+  font-size: 16px;
+  display: inline-block;
+  padding-left: 10rpx;
 }
 
 .user-info .info {
@@ -957,10 +955,6 @@
 
 .user-info .icon {
   vertical-align: top;
-}
-
-.icon-back{
-  padding:3px
 }
 
 .bar {
@@ -1075,7 +1069,7 @@
   padding: 0;
   vertical-align: top;
 }
-.spec-wrap{
+.spec-wrap {
   border-radius: 10rpx 10px 0 0;
   overflow: hidden;
   padding: 30rpx;
@@ -1103,20 +1097,18 @@
   font-size: 32rpx;
 }
 
-.tips{
-  padding:20px;
+.tips {
+  padding: 20px;
   line-height: 1.6;
-  color: #555
+  color: #555;
 }
 
-.left-raduis{
-  border-top-left-radius:999px;
-  border-bottom-left-radius:999px;
-
+.left-raduis {
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
 }
 
-.right-raduis{
-  border-top-right-radius:999px;
- border-bottom-right-radius:999px;
-
+.right-raduis {
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
 }

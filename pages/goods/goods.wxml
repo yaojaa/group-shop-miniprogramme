@@ -4,65 +4,51 @@
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
     <view slot="bottom">
         <view class="flex align-center pl-df cus-head" style="padding-right: 220rpx">
-            <!-- <image class="avatar mr-sm" src="{{goods.user.headimg}}" /> -->
+            <image src="{{goods.user.headimg}}" class="avatar"></image>
             <view class="flex-sub" bindtap="goHomePage">
-                 <image src="{{goods.user.headimg}}" class="avatar"></image>
-
-                    <text class="f18 bold">{{goods.user.nickname}} </text>
-                    <van-icon color="#a3df00" name="wap-home-o" size="22px" />  
+                <text class="f16 bold ph-sm">{{goods.user.nickname}}</text>
             </view>
+            <van-icon color="#a3df00" name="wap-home-o" size="22px" />
         </view>
     </view>
 </custom-bar>
-
-
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}"></view>
     <imgs imgs="{{imgs}}">
         <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{menuBarTop}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
-            
-                  <view class="icon-back"  wx:if="{{showBackIcon}}" catchtap="goBack"><van-icon name="arrow-left" size="30px"/></view> 
-
+            <view class="icon-back" wx:if="{{showBackIcon}}" catchtap="goBack">
+                <van-icon name="arrow-left" size="30px" class="icon" />
+            </view>
             <view class="user-body" catchtap="goContact">
-               
                 <view class="user-info-hd">
                     <image src="{{goods.user.headimg}}" class="avatar"></image>
                 </view>
                 <view class="user-info-bd">
-                    <view class="name">{{goods.user.nickname}} 
-                        <van-icon color="#a3df00" name="chat-o" size="22px" />  
-                    </view>
-                  <!--   <view class="f12">
-                    累计{{goods.buyuser_count}}人跟TA团了{{goods.store.order_count}}次</view> -->
+                    <view class="name">{{goods.user.nickname}}</view>
                 </view>
+                <van-icon color="#a3df00" name="chat-o" size="22px" />
             </view>
         </view>
     </imgs>
-    <view  class="menu flex-box" wx:if="{{showPanel}}">
+    <view class="menu flex-box" wx:if="{{showPanel}}">
         <view class="flex-item" bindtap="goVisitor">
             <view class="num">
                 <van-icon name="closed-eye" color="#4fac05" size="20px" />
             </view>
             访问记录
         </view>
-        
         <view class="flex-item" bindtap="goPublish" wx:if="{{goods.goods_link == 0}}">
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
             <block>编辑修改</block>
         </view>
-
-        <view class="flex-item"
-          data-id="{{goods.supplier_goods_id}}" 
-          data-goods_id="{{goods.goods_id}}"
-           bindtap="goModifyPrice" wx:else>
+        <view class="flex-item" data-id="{{goods.supplier_goods_id}}" data-goods_id="{{goods.goods_id}}" bindtap="goModifyPrice" wx:else>
             <view class="num">
                 <van-icon name="edit" color="#4fac05" size="20px" />
             </view>
             <block>修改价格</block>
         </view>
-
         <view class="flex-item" bindtap="goSendMsg">
             <view class="num">
                 <van-icon name="envelop-o" color="#4fac05" size="20px" />
@@ -79,11 +65,10 @@
             <view class="num">
                 <van-icon name="friends-o" color="#4fac05" size="20px" />
             </view>
-           <block wx:if="{{goods.agent_opt== '0'}}"> 开启帮卖</block>
-           <block wx:if="{{goods.agent_opt== '1' }}"> 帮卖设置</block>
+            <block wx:if="{{goods.agent_opt== '0'}}">开启帮卖</block>
+            <block wx:if="{{goods.agent_opt== '1' }}">帮卖设置</block>
         </view>
-<!-- 
-         <view class="flex-item" bindtap="goOrders">
+        <!-- <view class="flex-item" bindtap="goOrders">
             <view class="num">
                 <van-icon name="ellipsis" color="#4fac05" size="20px" />
             </view>
@@ -103,48 +88,31 @@
                 <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text>
             </view>
         </view>
-
-        
-
-
-     <block wx:if="{{goods.goods_expires.status== 1}}">
-
-        <block wx:if="{{goods.goods_expires.countdown !==0}}"> 
-
-        <view class="sale-panel-fd">
-            <view class="marker"></view>
-            <view >
-                <view class="tit">结束时间</view>
-                <view class="count-down">
-                    <text class="time-area">{{days}}</text>
-                    <text class="space">:</text>
-                    <text class="time-area">{{hours}}</text>
-                    <text class="space">:</text>
-                    <text class="time-area">{{min}}</text>
-                    <text class="space">:</text>
-                    <text class="time-area">{{sec}}</text>
+        <block wx:if="{{goods.goods_expires.status== 1}}">
+            <block wx:if="{{goods.goods_expires.countdown !==0}}">
+                <view class="sale-panel-fd">
+                    <view class="marker"></view>
+                    <view>
+                        <view class="tit">结束时间</view>
+                        <view class="count-down">
+                            <text class="time-area">{{days}}</text>
+                            <text class="space">:</text>
+                            <text class="time-area">{{hours}}</text>
+                            <text class="space">:</text>
+                            <text class="time-area">{{min}}</text>
+                            <text class="space">:</text>
+                            <text class="time-area">{{sec}}</text>
+                        </view>
+                    </view>
                 </view>
+            </block>
+            <view wx:else class="sale-panel-fd">进行中</view>
+        </block>
+        <block wx:else>
+            <view class="sale-panel-fd off">
+                {{['','进行中','未开始','已结束','已下架'][goods.goods_expires.status]}}
             </view>
-        </view>
-      </block>
-      <view wx:else class="sale-panel-fd">进行中</view>
-
-
-    </block>
-
-     <block wx:else>
-
-         <view class="sale-panel-fd off">
-
-            {{['','进行中','未开始','已结束','已下架'][goods.goods_expires.status]}}
-
-         </view>
-
-     </block>
-
-
-
-
+        </block>
     </view>
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
@@ -168,7 +136,7 @@
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}} white-bg ph-df cf">
             <block wx:for="{{goods_spec}}" wx:key="spec_id">
                 <view class="solid-top"></view>
-                <view class="goods-price-item flex-box"  bindtap="handleSpecPopup" data-item="{{item}}">
+                <view class="goods-price-item flex-box" bindtap="handleSpecPopup" data-item="{{item}}">
                     <view class="pics" wx:if="{{item.spec_pic}}">
                         <image data-urls="{{item.spec_pic}}" data-current="{{0}}" data-list="{{item.spec_pic}}" src="{{item.spec_pic[0]}}?imageView2/2/w/100/h/100/format/jpg/q/85"></image>
                         <view class="smallnum" wx:if="{{item.spec_pic.length>1}}">
@@ -185,18 +153,14 @@
                         </view>
                         <view class="f12 gray-text">
                             <text class="price f12px">¥{{item.spec_price}}</text>
-                            <text wx:if="{{item.spec_stock}}"> 剩余:{{item.spec_stock}}</text>
-                            <text wx:if="{{item.spec_stock==0}}"> （已售磬）</text>
+                            <text wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</text>
+                            <text wx:if="{{item.spec_stock==0}}">（已售磬）</text>
                         </view>
-
                         <view class="f12 n-bold text-warning" wx:if="{{is_help_sale_user}}">
                             代理价：¥{{item.sub_agent_price}}
                         </view>
-
-
                     </view>
-               
-                    <view  class="buy" catchtap="addAnimate">
+                    <view class="buy" catchtap="addAnimate">
                         <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                     </view>
                 </view>
@@ -209,51 +173,45 @@
                 </i-cell>
             </i-cell-group>
         </view>
-
-
-     
         <view>
-
-
-        <goods-detail content="{{content}}"></goods-detail>
-
-           <block wx:if="{{goods.show_buyerlist!==1}}">
-            <view class='sub-title scale-b-1px contentBox'>
-                <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
+            <goods-detail content="{{content}}"></goods-detail>
+            <block wx:if="{{goods.show_buyerlist!==1}}">
+                <view class='sub-title scale-b-1px contentBox'>
+                    <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
                     查看所有订单 〉
                 </text> -->
-                最近参与
-            </view>
-            <view class="white-bg p-df cf">
-                <view class="mt-sm" wx:if="{{orderUsers.length ==0}}">
-                    <button size="mini" class="btn-no-style" open-type="share">
-                        暂时还没有人参与哦 点击这里分享转发
-                    </button>
+                    最近参与
                 </view>
-                <!-- <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll"> -->
-                <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
-                    <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
-                        <text class="number">{{item.create_number}}</text>
-                        <image class="buyer-avatar" src="{{item.headimg}}"></image>
-                        <view class="buyer-info">
-                            <view class="name">{{item.nickname}}</view>
-                            <view class="type">
-                                <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
-                                  {{gds.spec_name}} + {{gds.qty}}
+                <view class="white-bg p-df cf">
+                    <view class="mt-sm" wx:if="{{orderUsers.length ==0}}">
+                        <button size="mini" class="btn-no-style" open-type="share">
+                            暂时还没有人参与哦 点击这里分享转发
+                        </button>
+                    </view>
+                    <!-- <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll"> -->
+                    <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
+                        <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
+                            <text class="number">{{item.create_number}}</text>
+                            <image class="buyer-avatar" src="{{item.headimg}}"></image>
+                            <view class="buyer-info">
+                                <view class="name">{{item.nickname}}</view>
+                                <view class="type">
+                                    <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
+                                        {{gds.spec_name}} + {{gds.qty}}
+                                    </view>
                                 </view>
                             </view>
+                            <view class="buyer-date">{{item.timeago}}</view>
+                            <view class="bottom-line"></view>
                         </view>
-                        <view class="buyer-date">{{item.timeago}}</view>
-                        <view class="bottom-line"></view>
-                    </view>
-                </block>
-                <!-- <view class="text-center" hidden="{{!orderUsersLoading}}">
+                    </block>
+                    <!-- <view class="text-center" hidden="{{!orderUsersLoading}}">
                     <wux-spin></wux-spin>
                 </view>
             </scroll-view> -->
-            </view>
-        </block>
-   <!--          <view class='sub-title scale-b-1px'>图文介绍</view>
+                </view>
+            </block>
+            <!-- <view class='sub-title scale-b-1px'>图文介绍</view>
 
                     <view  class='goods-content-wraper por'>
             <view class='goods-content' wx:if="{{goods_content}}">
@@ -285,107 +243,84 @@
                 <wux-spin wux-class="spin" />
             </view>
         </view> -->
-
-
-
         </view>
     </view>
-
-
     <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
         <view class="weui-footer__links">
-            <button size="large" style="margin-right: 20px"  class="btn primary hollow" bindtap="copyGoods"> 复制此商品</button>
-
-            <button size="large"  bindtap="toPublish"  class="btn primary hollow">+ 发布新商品</button>
-
+            <button size="large" style="margin-right: 20px" class="btn primary hollow" bindtap="copyGoods">
+                复制此商品
+            </button>
+            <button size="large" bindtap="toPublish" class="btn primary hollow">+ 发布新商品</button>
         </view>
     </view>
-    
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->
-
-    <view class='footer-cart'  wx:if="{{is_help_sale && goods.agent_opt==1}}">
-         <view class='icon' bindtap='homepage'>
+    <view class='footer-cart' wx:if="{{is_help_sale && goods.agent_opt==1}}">
+        <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-
-         <view class='icon' style="flex:4">
+        <view class='icon' style="flex:4">
             <button bindtap="helpSaleUp" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg">
                 我要帮卖
             </button>
         </view>
     </view>
-
-
-    <!--正常客户下单-->
-
+    <!-- 正常客户下单 -->
     <view class='footer-cart' wx:if="{{!is_help_sale}}">
         <view class='icon' bindtap='homepage' style="flex: 22">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-
-
         <block>
-
-        <form style="flex:78;position: relative;" bindtap="cartPanelShow" >
-            <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
-                {{totalNum}}
-            </text>
-            <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg" formType="submit">
-              立即参与
-            </button>
-            <button wx:if="{{goods.goods_expires.status == 2 }}" disabled="{{true}}" class="buy linenear_bg" formType="submit">
-              未开始
-            </button>
-            <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 3}}" class="buy" formType="submit">
-              已过期
-            </button>
-            <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 4}}" class="buy" formType="submit">
-              已下架
-            </button>
-        </form>
-    </block>  
+            <form style="flex:78;position: relative;" bindtap="cartPanelShow">
+                <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
+                    {{totalNum}}
+                </text>
+                <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg" formType="submit">
+                    立即参与
+                </button>
+                <button wx:if="{{goods.goods_expires.status == 2 }}" disabled="{{true}}" class="buy linenear_bg" formType="submit">
+                    未开始
+                </button>
+                <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 3}}" class="buy" formType="submit">
+                    已过期
+                </button>
+                <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 4}}" class="buy" formType="submit">
+                    已下架
+                </button>
+            </form>
+        </block>
     </view>
-
-
-    <!--是团长自己自己-->
-
-   <view class='footer-cart' wx:if="{{showPanel}}">
+    <!-- 是团长自己自己 -->
+    <view class='footer-cart' wx:if="{{showPanel}}">
         <view class='icon' bindtap='homepage' style="flex: 25">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-        <button  open-type="share"  wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 30" data-type="invit" class="buy linenear_bg  left-raduis right-raduis">
-                 邀请好友帮卖
+        <button open-type="share" wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 30" data-type="invit" class="buy linenear_bg  left-raduis right-raduis">
+            邀请好友帮卖
         </button>
-
-<button  open-type="share" data-type="share"   wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 45">
-                 分享顾客
-</button>
-
-         <form wx:if="{{totalNum > 0 }}" style="flex:78;position: relative;" bindtap="cartPanelShow" >
+        <button open-type="share" data-type="share" wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 45">
+            分享顾客
+        </button>
+        <form wx:if="{{totalNum > 0 }}" style="flex:78;position: relative;" bindtap="cartPanelShow">
             <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </text>
-
             <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg left-raduis right-raduis" formType="submit">
-              立即参与
+                立即参与
             </button>
             <button wx:if="{{goods.goods_expires.status == 2 }}" disabled="{{true}}" class="buy linenear_bg" formType="submit">
-              未开始
+                未开始
             </button>
             <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 3}}" class="buy" formType="submit">
-              已过期
+                已过期
             </button>
             <button disabled="{{true}}" wx:if="{{goods.goods_expires.status == 4}}" class="buy" formType="submit">
-              已下架
+                已下架
             </button>
         </form>
-        
     </view>
-
-
     <i-action-sheet wx:if="{{amountMoney!==0}}" visible="{{ cartPanel }}" show-cancel bind:cancel="cartPanelHide" show-cancel="{{ false }}">
         <view slot="header" class="cart-panel">
             <view class="title f14 pt-sm pl-df" style="margin-bottom: -5px">确定数量</view>
@@ -440,8 +375,6 @@
             <button size="mini" type="default" plain="false" bindtap="rejectAuth">取 消</button>
         </view>
     </van-popup>
-
-
     <van-action-sheet show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
             <view bindtap='handlePoster' class="flex-sub share-pyq">
@@ -454,36 +387,28 @@
             </button>
         </view>
     </van-action-sheet>
-
-
-      <van-action-sheet show="{{ showInviteFriend }}" title="邀请好友代理帮卖" bind:close="closeInviteFriend">
+    <van-action-sheet show="{{ showInviteFriend }}" title="邀请好友代理帮卖" bind:close="closeInviteFriend">
         <view class="tips pv-xs" bindtap="goModify">
-            将小程序或者海报转发好友帮你分销，订单会自动汇总到你这里。 可以点击这里<text class="text-warning">修改代理价格</text>
+            将小程序或者海报转发好友帮你分销，订单会自动汇总到你这里。 可以点击这里
+            <text class="text-warning">修改代理价格</text>
         </view>
         <view class="flex text-center p-xl ">
-           
             <view bindtap='getHelpPost' class="flex-sub share-pyq">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm">生成邀请海报</view>
             </view>
-
-             <button class="flex-sub btn-reset" data-type="invit" open-type="share">
+            <button class="flex-sub btn-reset" data-type="invit" open-type="share">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm text-df">转发小程序</view>
             </button>
-
-
         </view>
     </van-action-sheet>
-
-
-
     <!-- <view show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;"> -->
     <view hidden="{{ !poster }}" class="share-friends-box">
         <view class='share-friends-img' bindtap='handlePoster'>
             <view class="text-center share-img-box" wx:if="{{shareFriendsImg}}">
                 <view class="images">
-                        <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
+                    <image class='icon-img' src='{{shareFriendsImg}}' mode='aspectFit'></image>
                 </view>
                 <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages">
                     保存海报图
@@ -503,52 +428,43 @@
         </view>
         <van-cell-group border="{{false}}" custom-class="mv-df">
             <van-cell title="{{goods.user.nickname}}" value="主页" is-link icon="manager-o" title-width="300rpx" bindtap="goHomePage" />
-            <van-cell title="手机号：{{phone || '这家伙很懒'}}" value="拨号" is-link icon="phone-o" title-width="300rpx" bindtap="phoneCall"  />
-            <van-cell border="{{false}}" title="微信号：{{weChat || '这家伙很懒'}}" value="复制" is-link icon="chat-o" title-width="300rpx" bindtap="copyWx"  />
+            <van-cell title="手机号：{{phone || '这家伙很懒'}}" value="拨号" is-link icon="phone-o" title-width="300rpx" bindtap="phoneCall" />
+            <van-cell border="{{false}}" title="微信号：{{weChat || '这家伙很懒'}}" value="复制" is-link icon="chat-o" title-width="300rpx" bindtap="copyWx" />
         </van-cell-group>
     </van-dialog>
     <van-popup show="{{ specPopup }}" custom-style="background:none;" position="bottom" bind:close="handleSpecPopup">
         <view class="spec-wrap">
-        <scroll-view scroll-y style="max-height: 950rpx" class="spec-main">
-            <view class="body">
-                <view class="panel-box">
-                    <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
-                    <view class="panel-bd ml-sm">
-                        <view class="bolds mr-xl">{{specItem.spec_name}}</view>
-                        <view class="price-group text-lg mt-xs">
-                            <text class="symbol">￥</text>
-                            <text class="number">{{specItem.spec_price}}</text>
+            <scroll-view scroll-y style="max-height: 950rpx" class="spec-main">
+                <view class="body">
+                    <view class="panel-box">
+                        <image src="{{specItem.spec_pic[0]}}" class="img-80 round-df"></image>
+                        <view class="panel-bd ml-sm">
+                            <view class="bolds mr-xl">{{specItem.spec_name}}</view>
+                            <view class="price-group text-lg mt-xs">
+                                <text class="symbol">￥</text>
+                                <text class="number">{{specItem.spec_price}}</text>
+                            </view>
                         </view>
                     </view>
+                    <view class="content p-df mt-df round-df" wx:if="{{specItem.spec_desc}}">
+                        <text class="text-gray">{{specItem.spec_desc}}</text>
+                    </view>
+                    <view wx:if="{{specItem.spec_pic.length}}">
+                        <image src="{{item}}" wx:for="{{specItem.spec_pic}}" class="w-full pt-sm" wx:key="index" mode="widthFix"></image>
+                    </view>
                 </view>
-                <view class="content p-df mt-df round-df" wx:if="{{specItem.spec_desc}}">
-                    <text class="text-gray">{{specItem.spec_desc}}</text>
-                </view>
-                <view wx:if="{{specItem.spec_pic.length}}">
-                    <image src="{{item}}" wx:for="{{specItem.spec_pic}}" class="w-full pt-sm" wx:key="index" mode="widthFix"></image>
-                </view>
-            </view>
-
-            <van-icon name="close" class="close_bottom" size="58rpx" color="#fff" bind:click="handleSpecPopup" />
-        </scroll-view>
+                <van-icon name="close" class="close_bottom" size="58rpx" color="#fff" bind:click="handleSpecPopup" />
+            </scroll-view>
         </view>
     </van-popup>
     <wux-gallery id="wux-gallery" />
-
-       <van-dialog wx:if="{{is_help_sale_user}}"  id="dialog-success" use-slot>
+    <van-dialog wx:if="{{is_help_sale_user}}" id="dialog-success" use-slot>
         <view class="dialog-head">
             <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
             <view class="title">
                 <view>你已经是帮卖成员 {{is_help_sale_user}}</view>
             </view>
         </view>
-        <view class="p-lg text-center text-gray text-df">
-        点击我要帮卖上架商品吧
-        </view>
+        <view class="p-lg text-center text-gray text-df">点击我要帮卖上架商品吧</view>
     </van-dialog>
-
-
-
-
-
 </view>

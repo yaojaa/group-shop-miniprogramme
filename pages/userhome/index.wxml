@@ -19,27 +19,20 @@
             <!-- <button bindtap="addEventLister" size="mini">关注订阅</button> -->
         </view>
         <view class="des">{{info.store_intro}}</view>
-     
         <view class="btns">
-            <van-button bindtap="goContact"  plain size="small"   type="warning">
-                咨询联系
-            </van-button>
-
-
-            <van-button custom-class="actbtn" bindtap="showShare" plain size="small"   type="warning">
+            <van-button bindtap="goContact" plain size="small" type="warning">咨询联系</van-button>
+            <van-button custom-class="actbtn" bindtap="showShare" plain size="small" type="warning">
                 分享朋友
             </van-button>
-
-          <!--   <van-button wx:if="{{info.store_id==1}}" custom-class="actbtn" size="small"   bindtap="toLiveRoom" type="warning">
+            <!-- <van-button wx:if="{{info.store_id==1}}" custom-class="actbtn" size="small"   bindtap="toLiveRoom" type="warning">
                 <van-icon size="18px" name="tv-o" />
                 直播间
             </van-button> -->
-            <van-button custom-class="actbtn" size="small" plain  bindtap="addEventLister" type="warning">
+            <van-button custom-class="actbtn" size="small" plain bindtap="addEventLister" type="warning">
                 订阅关注
-            </van-button> 
+            </van-button>
         </view>
-
-           <navigator wx:if="{{access_list.length>0}}" hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&source=store&name={{info.store_name}}">
+        <navigator wx:if="{{access_list.length>0}}" hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&source=store&name={{info.store_name}}">
             <view class="flex-box align-center justify-center " style="padding: 10px 0">
                 <view class="avatar-group">
                     <image class="head" src="{{user.headimg}}" wx:for-item="user" wx:for="{{access_list}}" wx:key="index"></image>
@@ -50,7 +43,6 @@
                 </view>
             </view>
         </navigator>
-        
     </view>
     <view class="goods-box">
         <block wx:if="{{info.store_style==1}}">
@@ -100,17 +92,15 @@
             </view>
         </block>
         <view class="goods-two" wx:if="{{info.store_style==2}}">
-            <view class="goods-two-item" wx:for="{{goodsList}}" wx:key="index"  >
+            <view class="goods-two-item" wx:for="{{goodsList}}" wx:key="index">
                 <!-- 设置下拉菜单 -->
                 <view wx:if="{{showSetting}}" class="action " data-index="{{index}}" data-goods_id="{{item.goods_id}}" data-goods_name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}" data-goods_expires="{{item.goods_expires}}" bindtap="showAction">
                     <van-icon name="arrow-down" size="20px" />
                 </view>
                 <!-- 设置下拉菜单end -->
-                <image bindtap="goDetail"  data-id="{{item.goods_id}}" class="cover" src="{{item.goods_images[0]}}?imageView2/1/w/200/h/200"></image>
+                <image bindtap="goDetail" data-id="{{item.goods_id}}" class="cover" src="{{item.goods_images[0]}}?imageView2/1/w/200/h/200"></image>
                 <view class="p-sm" data-id="{{item.goods_id}}" bindtap="goDetail">
-                    <view class="title text-hide two-line" >
-                        {{item.goods_name}}
-                    </view>
+                    <view class="title text-hide two-line">{{item.goods_name}}</view>
                     <view class="text-justify mt-xs">
                         <view class="price bold text-red">
                             <text class="f12">￥</text>

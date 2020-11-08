@@ -1,12 +1,13 @@
 {
   "component": true,
-  "usingComponents":{
-  	  "van-dialog": "../../vant/dialog/index",
-  	   "i-badge": "../../iView/badge/index",
-        "i-icon": "../../../iView/icon/index",
-        "van-grid": "../../vant/grid/index",
-        "van-grid-item": "../../vant/grid-item/index",
-        "van-dropdown-menu": "../../vant/dropdown-menu/index",
-  "van-dropdown-item": "../../vant/dropdown-item/index"
+  "usingComponents": {
+    "van-dialog": "../../vant/dialog/index",
+    "i-badge": "../../iView/badge/index",
+    "i-icon": "../../../iView/icon/index",
+    "van-grid": "../../vant/grid/index",
+    "van-grid-item": "../../vant/grid-item/index",
+    "van-dropdown-menu": "../../vant/dropdown-menu/index",
+    "van-dropdown-item": "../../vant/dropdown-item/index",
+    "van-action-sheet": "../../vant/action-sheet/index"
   }
 }
