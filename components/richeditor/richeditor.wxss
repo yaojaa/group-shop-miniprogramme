@@ -1,19 +1,17 @@
 /* plugin/components/richeditor/richeditor.wxss */
-input{
+input {
   font-size: 30rpx;
   padding: 0 28rpx;
   height: 88rpx;
 }
 
-.rich-editor-wrp{
-
+.rich-editor-wrp {
   padding-right: 10px;
   padding-left: 10px;
-  background: #f8f8f8
-
+  background: #f8f8f8;
 }
 
-.main-editor-ctl{
+.main-editor-ctl {
   display: flex;
   width: 640rpx;
   margin: 28rpx auto;
@@ -22,7 +20,7 @@ input{
   overflow: hidden;
 }
 
-.editor-ctl-item{
+.editor-ctl-item {
   flex: 1;
   text-align: center;
   font-size: 26rpx;
@@ -33,94 +31,91 @@ input{
   border-left: 1rpx solid #49b34d;
 }
 
-.editor-ctl-item:active{
+.editor-ctl-item:active {
   color: #fff;
   background-color: #49b34d;
 }
 
-.editor-ctl-item:first-child:active{
+.editor-ctl-item:first-child:active {
   border-left: 1rpx solid #49b34d;
 }
 
-.editor-ctl-item:first-child{
+.editor-ctl-item:first-child {
   border-left: 1rpx solid #fff;
 }
 
-.common-contain{
+.common-contain {
   margin: 32rpx 12rpx;
   background-color: #f8f8f8;
   position: relative;
 }
 
-.up-ctx{
+.up-ctx {
   overflow: hidden;
 }
 
 .up-ctx textarea {
-
   font-size: 16px;
   line-height: 28px;
   background: #fff;
   padding: 4px;
-  min-height: 88px
-
-  
+  min-height: 88px;
 }
 
 .common-contain.text-contain .up-ctx {
   padding-top: 28rpx;
 }
 
-.common-contain.video-contain .up-ctx video{
+.common-contain.video-contain .up-ctx video {
   width: 100%;
 }
 
-.common-contain.video-contain .up-ctx{
+.common-contain.video-contain .up-ctx {
   height: 450rpx;
 }
 
-.common-contain.image-contain{
+.common-contain.image-contain {
   text-align: center;
 }
 
-.common-contain.image-contain image{
+.common-contain.image-contain image {
   display: block;
 }
 
-.common-contain.video-contain{
+.common-contain.video-contain {
   text-align: center;
 }
 
-.common-contain .image-desc{
+.common-contain .image-desc {
   font-size: 24rpx;
   color: #666;
 }
 
-.down-ctx{
+.down-ctx {
   text-align: left;
   font-size: 28rpx;
   border-bottom: 1rpx solid #e4e4e4;
-  padding-top: 8rpx
+  padding-top: 8rpx;
 }
 
-.op-btn-wrp{
+.op-btn-wrp {
   display: flex;
   border-top: 1rpx solid #e4e4e4;
 }
 
-.op-btn-wrp.nt{
+.op-btn-wrp.nt {
   border-top: 0;
 }
 
-.op-btn{
+.op-btn {
   flex: 1;
   text-align: center;
   font-size: 24rpx;
   position: relative;
-  padding-top: 3px
+  padding-top: 3px;
 }
 
-.white-mask{
+.white-mask {
   width: 100%;
   height: 100%;
   z-index: 3;
@@ -128,25 +123,25 @@ input{
   position: absolute;
 }
 
-.add-img{
+.add-img {
   width: 120rpx;
   height: 120rpx;
   margin: 40rpx auto;
 }
 
-.add-video{
+.add-video {
   width: 140rpx;
   height: 140rpx;
   margin: 140rpx auto;
 }
 
-.common-edit-contain{
+.common-edit-contain {
   font-size: 16px;
   height: 100px;
-  width: 100%
+  width: 100%;
 }
 
-.float-ctl{
+.float-ctl {
   position: absolute;
   left: 0;
   width: 100%;
@@ -156,16 +151,27 @@ input{
   z-index: 9;
 }
 
-.float-tri{
-  display:block;
-  width:0;
-  height:0;
-  border-width:0 28rpx 28rpx;
-  border-style:solid;
-  border-color:transparent transparent #fff;/*透明 透明  黄*/
-  position:absolute;
-  top:-20rpx;
-  left:50%;
-  margin-left:-28rpx;
-
+.float-tri {
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 0 28rpx 28rpx;
+  border-style: solid;
+  border-color: transparent transparent #fff; /*透明 透明  黄*/
+  position: absolute;
+  top: -20rpx;
+  left: 50%;
+  margin-left: -28rpx;
+}
+.editor-nav {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 30rpx;
+}
+.editor-nav .item {
+  text-align: center;
+}
+.editor-nav .item .label {
+  color: #666;
+  font-size: 14px;
 }
