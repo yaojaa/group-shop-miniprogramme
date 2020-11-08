@@ -71,7 +71,7 @@ Page({
      //       } 
 
 
-      if(d.store && d.store.hasOwnProperty('store_id')){
+      if(d.store && d.store.store_id){
 
              return wx.switchTab({
                 url:'../home/index'

@@ -19,8 +19,6 @@ Page({
         CustomBar: app.globalData.CustomBar,
         Custom: app.globalData.Custom,
         show_tips: false,
-        orderList: [],
-        isCustome: true,
         fansNum: '...',
     },
     closleTips() {
@@ -113,18 +111,7 @@ Page({
                 pending_money: res.data.data.pending_money,
                 fansNum :res.data.data.fans_count ,
                 isCustome:res.data.data.income > 0?false:true
-            })
-
-            console.log(this.data.isCustome)
-
-            if(this.data.isCustome){
-               this.getProList()
-            }else{
-             this.getOrderList()
-            }
-
-
-        
+            })    
         })
 
 

@@ -202,17 +202,11 @@ App({
     },
     redirectToLogin: function() {
 
+        console.log('redirectToLogin')
+
         wx.redirectTo({
             url: '/pages/login/login'
         })
-
-
-        //  setTimeout(()=>{
-        //   wx.redirectTo({
-        //     url:'/pages/login/login'
-        //   })
-        // },2000)
-
 
     },
 
