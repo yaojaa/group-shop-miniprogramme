@@ -1082,6 +1082,15 @@ Page({
 
     if (gs.content) {
       var content = JSON.parse(gs.content)
+
+      //旧数据有富文本数据
+      if(content.html){
+
+        content = util.getChinese(content.html)
+
+      }
+
+
     }
 
 
