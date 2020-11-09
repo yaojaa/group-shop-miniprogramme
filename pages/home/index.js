@@ -412,12 +412,23 @@ Page({
             search_is_loading: false
         })
     },
-  updateList() {
+  updateList(e) {
     this.setData({
       goodslist: []
     });
     console.log(this.data.goodslist, '夺夺夺');
+    console.log(e)
     this.getGoodsList();
+    try{
+      if(e.detail.id == 5){
+        wx.pageScrollTo({
+          scrollTop: 50,
+          duration: 300
+        })
+      }
+    }
+    catch(err){}
+    
   },
   new_btn: function () {
     const uInfo = app.globalData.userInfo;

@@ -89,7 +89,7 @@ Component({
       } else if (item.id == 4) {
         this.copyGoods();
       } else if(item.id == 5) {
-        this.upTop();
+        this.upTop(item);
       } else if(item.id == 6) {
         this.onClose()
       }
@@ -221,7 +221,11 @@ Component({
           goods_id: this.data.item.goods_id,
         })
         .then((res) => {
-          this.triggerEvent('updateList');
+          wx.showToast({
+            title: '已置顶',
+            icon: 'none'
+          });
+          this.triggerEvent('updateList', s);
         });
     },
 
