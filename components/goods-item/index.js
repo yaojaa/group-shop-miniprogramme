@@ -44,6 +44,14 @@ Component({
           {
             id: 4,
             name: '复制'
+          },
+          {
+            id: 5,
+            name: '置顶'
+          },
+          {
+            id: 6,
+            name: '取消'
           }
         ]
       });
@@ -80,6 +88,10 @@ Component({
         this.delGoods();
       } else if (item.id == 4) {
         this.copyGoods();
+      } else if(item.id == 5) {
+        this.upTop(item);
+      } else if(item.id == 6) {
+        this.onClose()
       }
     },
     /*下拉菜单*/
@@ -199,6 +211,21 @@ Component({
         .catch(() => {
           console.log('取消');
           Dialog.close();
+        });
+    },
+
+    //置顶
+    upTop(s) {
+      util.wx
+        .post('/api/seller/set_goods_sort', {
+          goods_id: this.data.item.goods_id,
+        })
+        .then((res) => {
+          wx.showToast({
+            title: '已置顶',
+            icon: 'none'
+          });
+          this.triggerEvent('updateList', s);
         });
     },
 
