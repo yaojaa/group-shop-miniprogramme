@@ -1,11 +1,4 @@
 <view class="container gray-wrap  cf">
-   
-
-
-    <view class="notice mt-sm" wx:if="{{agent_opt==0}}">
-        开启帮卖，请先设置您给代理的供货价
-    </view>
-
 
     <form bindsubmit="submitForm">
         <view class="white-bg ph-df pv-sm flex align-center">
@@ -46,7 +39,7 @@
           
 
             <button class="btn flex-item  xl primary  linenear_bg" bindtap="modifyPrice" disabled="{{btnDisable}}">
-                确定
+                确 定
             </button>
     
 

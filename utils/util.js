@@ -839,12 +839,26 @@ const checkIsOrderManege = function(link_store,store_id){
 
 }
 
+ //正则提取汉字
+
+function getChinese(strValue) {  
+    if(strValue!= null && strValue!= ""){  
+        var reg = /[\u4e00-\u9fa5]/g;   
+        return strValue.match(reg).join("");  
+    }  
+    else  
+        return "";  
+} 
+
+ //正则提取汉字
+
 
 
 const userListner = addListener('user')
 const sellerListner = addListener('seller')
 
 module.exports = {
+    getChinese,
     apiUrl:config.apiUrl,
     formatTime,
     fmtDate,

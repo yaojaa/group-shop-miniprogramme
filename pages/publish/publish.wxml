@@ -212,7 +212,7 @@
                 </view>
                 <view class="new_add_btn" bindtap="addGoods">
                     <i-icon type="add" bindtap="addNew" size="20" color="#49b34d" />
-                    新增规格
+                    增加规格
                 </view>
             </view>
         </i-panel>
