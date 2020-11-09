@@ -49,7 +49,7 @@
                             </view>
                             <view class="text-sm">{{item.goods_name}}</view>
                             <view class="text-justify bt-bar">
-                                <view wx:if="{{info.isAgentOrder}}" class="price bold">￥{{item.agent_price}}</view>
+                                <view wx:if="{{info.isFromAgent}}" class="price bold">帮卖价：￥{{item.agent_price}}</view>
                                 <view wx:else class="price bold">￥{{item.spec_price}}</view>
                                 <view class="text-muted"><text>x </text>
                                     <text>{{item.qty}}</text></view>
@@ -60,7 +60,7 @@
             </view>
         </view>
         <van-cell-group>
-            <van-cell wx:if="isAgentOrder" customStyle="padding:5px 20px" title="代理订单" value="{{info.seller.nickname}}" border="{{ false }}" />
+            <van-cell wx:if="{{info.isFromAgent}}" customStyle="padding:5px 20px" title="帮卖订单" value="{{info.seller.nickname}}" border="{{ false }}" />
             <van-cell customStyle="padding:5px 20px" title="订单用户" value="{{info.user.nickname}}" border="{{ false }}" />
             <van-cell customStyle="padding:5px 20px" title="订单运费" value="￥{{info.shipping_money}}" border="{{ false }}" />
             <van-cell customStyle="padding:5px 20px" title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />

@@ -850,6 +850,23 @@ function getChinese(strValue) {
         return "";  
 } 
 
+//卖家订单类型
+
+function sellerLevel(o){
+    //第一种 上级供应商 下级帮卖  客户
+    //第二种 上级供应商  客户
+    //第三种 上级空     下级帮卖  客户
+    //第四种 上级空     下级空    客户
+    //第五种 上级帮卖    客户
+    //
+    sendUser =='sup'
+    sendUser =='seller'
+    sendUser =='self'
+
+    const uid = app.globalData.userInfo.user_id
+
+}
+
  //正则提取汉字
 
 

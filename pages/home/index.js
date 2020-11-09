@@ -191,7 +191,6 @@ Page({
   },
   onShow() {
     wx.hideHomeButton();
-    this.getOrderCount();
 
     this.reGetUserInfo();
 
@@ -236,17 +235,6 @@ Page({
     this.data.goodslist = [];
     this.getGoodsList();
     this.getOrderList();
-  },
-  getOrderCount() {
-    util.wx.get('/api/user/get_order_count_groupby_static').then((res) => {
-      if (res.data.code == 200) {
-        this.setData({
-          waitpay: res.data.data.waitpay,
-          waitreceived: res.data.data.waitreceived,
-          complete: res.data.data.complete
-        });
-      }
-    });
   },
   goCreate() {
     wx.redirectTo({
@@ -301,8 +289,20 @@ Page({
       })
       .then((res) => {
         if (res.data.code == 200) {
+
+          let data = res.data.data.order_list
+                data.forEach(item =>{
+              if (item.store.user_id == app.globalData.userInfo.user_id) {
+
+                  item.isFromSlef = true
+              }
+
+
+                })
+
+
           this.setData({
-            orderList: res.data.data.order_list
+            orderList: data
           });
         }
       })
@@ -513,7 +513,6 @@ Page({
         this.data.goodslist = []
         this.getGoodsList()
     }
-    this.getOrderCount();
     this.getOrderList();
     wx.stopPullDownRefresh();
   },

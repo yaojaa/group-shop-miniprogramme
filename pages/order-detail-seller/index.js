@@ -71,11 +71,15 @@ Page({
 
                     var data = res.data.data
 
+                    console.log(data.seller.user_id ,app.globalData.userInfo.user_id)
+
                     //订单的店铺人 不是当前卖家 证明来自帮卖下级
-                    if (data.seller.userId == !app.globalData.userInfo.userId) {
+                    if (data.seller.user_id == app.globalData.userInfo.user_id) {
 
-                        data.isAgentOrder = true
+                        data.isFromAgent = false
 
+                    }else{
+                        data.isFromAgent = true
                     }
 
                     if (data.link_store) {
