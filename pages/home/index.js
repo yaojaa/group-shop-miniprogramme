@@ -22,8 +22,30 @@ Page({
     orderList: [],
     fansNum: '...',
     reportData: {},
-    showDialog: false // 订阅提示弹窗
+    showDialog: false, // 订阅提示弹窗
+    searchGoodslist: [],
+    searchWords: '',
+    search_is_loading: true,
   },
+    // 搜索
+    onSearch(e){
+        var sv = e.detail.replace(/(^\s*)|(\s*$)/g,'');
+        console.log(sv)
+        if(sv){
+            this.data.s_cpage = 1;
+            this.setData({
+                searchWords: sv,
+                searchGoodslist: []
+            })
+            this.getGoodsList();
+        }
+    },
+    onCancel(){
+        this.setData({
+            searchWords: ''
+        })
+
+    },
   isShowPopTips() {
     console.log('获取本地日期');
 
@@ -296,48 +318,100 @@ Page({
   },
   addListen: util.sellerListner,
 
-  getGoodsList: function () {
-    this.setData({
-      is_loading: true
-    });
-
-    util.wx
-      .get('/api/seller/get_goods_list', {
-        cpage: this.data.cpage,
-        pagesize: 15
-      })
-      .then((res) => {
-        if (res.data.code == 200) {
-          this.setData({
-            goodslist: this.data.goodslist.concat(res.data.data.goodslist),
-            is_loading: false
-          });
-
-          this.data.goodslist.forEach((item) => {
-            if (item._order_status1_count > 0) {
-              this.setData({
-                hasNewOrder: true
-              });
+    getGoodsList: function() {
+        let ajaxData = {
+                cpage: this.data.cpage,
+                pagesize: 15
             }
-          });
-
-          this.totalpage = res.data.data.page.totalpage;
-        } else {
-          this.setData({
-            is_loading: false
-          });
+        if(this.data.searchWords){ // 搜索模式
+            ajaxData = {
+                cpage: this.data.s_cpage,
+                pagesize: 15,
+                keyword: this.data.searchWords
+            }
+            this.setData({
+                search_is_loading: true
+            })
+        }else{
+            this.setData({
+                is_loading: true
+            })
         }
-      })
-      .catch((e) => {
-        wx.showToast({
-          title: '读取超时 请稍后重试'
-        });
 
+        
+
+        util.wx.get('/api/seller/get_goods_list', ajaxData)
+            .then(res => {
+
+                if(this.data.searchWords){ //搜索
+                    this.searchLoadData(res);
+                    return;
+                }
+
+                if (res.data.code == 200) {
+                    this.setData({
+                        goodslist: this.data.goodslist.concat(res.data.data.goodslist),
+                        is_loading: false
+                    })
+
+                    this.data.goodslist.forEach(item => {
+
+                        if (item._order_status1_count > 0) {
+                            this.setData({
+                                hasNewOrder: true
+                            })
+                        }
+
+
+
+                    })
+
+
+
+
+                    this.totalpage = res.data.data.page.totalpage
+
+
+                } else {
+                    this.setData({
+                        is_loading: false
+                    })
+                }
+            }).catch(e=>{
+
+
+                wx.showToast({
+                    title:'读取超时 请稍后重试'
+                })
+                if(this.data.searchWords){
+                    this.setData({
+                        search_is_loading: false
+                    })
+                }else{
+                    this.setData({
+                        is_loading: false
+                    })
+                }
+
+
+
+            })
+
+    },
+
+    searchLoadData(res){
+        if (res.data.code == 200) {
+            this.setData({
+                searchGoodslist: this.data.searchGoodslist.concat(res.data.data.goodslist),
+            })
+            this.s_totalpage = res.data.data.page.totalpage
+
+
+        }
         this.setData({
-          is_loading: false
-        });
-      });
-  },
+            search_is_loading: false
+        })
+    },
   updateList() {
     this.setData({
       goodslist: []
@@ -434,9 +508,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.data.cpage = 1;
-    this.data.goodslist = [];
-    this.getGoodsList();
+    if(!this.data.searchWords){
+        this.data.cpage = 1
+        this.data.goodslist = []
+        this.getGoodsList()
+    }
     this.getOrderCount();
     this.getOrderList();
     wx.stopPullDownRefresh();
@@ -446,6 +522,16 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(this.data.searchWords){  // 搜索状态
+        ++this.data.s_cpage
+
+        if (this.data.s_cpage <= this.s_totalpage) {
+            this.getGoodsList(); //重新调用请求获取下一页数据 
+        } else {
+            this.data.s_cpage = this.s_totalpage
+        }
+        return;
+    }
     ++this.data.cpage;
 
     if (this.data.cpage <= this.totalpage) {
