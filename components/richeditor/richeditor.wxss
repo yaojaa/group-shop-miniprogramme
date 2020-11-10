@@ -149,8 +149,12 @@ input {
   box-shadow: 1rpx 5rpx 6rpx rgba(0, 0, 0, 0.1);
   margin-top: 18rpx;
   z-index: 9;
+  padding: 5px 0;
 }
-
+.float-ctl .item {
+  padding: 5px 0;
+  font-size: 14px;
+}
 .float-tri {
   display: block;
   width: 0;

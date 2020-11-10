@@ -14,7 +14,7 @@
                 <van-icon color="#999" name="plus" size="22px" />
                 <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                   <view class="float-tri"></view>
-                  <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
+                  <view class="item" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
                     插入{{ item.name }}
                   </view>
                 </view>
@@ -46,7 +46,7 @@
                   <van-icon color="#999" name="plus" size="22px" />
                   <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                     <view class="float-tri"></view>
-                    <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
+                    <view class="item" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
                       插入{{ item.name }}
                     </view>
                   </view>
@@ -81,7 +81,7 @@
                   <van-icon color="#999" name="plus" size="22px" />
                   <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
                     <view class="float-tri"></view>
-                    <view data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
+                    <view class="item" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
                       插入{{ item.name }}
                     </view>
                   </view>
