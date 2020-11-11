@@ -188,7 +188,7 @@
                             暂时还没有人参与哦 点击这里分享转发
                         </button>
                     </view>
-                    <!-- <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll"> -->
+                    <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
                     <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
                         <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
                             <text class="number">{{item.create_number}}</text>
@@ -205,10 +205,10 @@
                             <view class="bottom-line"></view>
                         </view>
                     </block>
-                    <!-- <view class="text-center" hidden="{{!orderUsersLoading}}">
+                    <view class="text-center" hidden="{{!orderUsersLoading}}">
                     <wux-spin></wux-spin>
                 </view>
-            </scroll-view> -->
+            </scroll-view>
                 </view>
             </block>
             <!-- <view class='sub-title scale-b-1px'>图文介绍</view>
@@ -387,22 +387,7 @@
             </button>
         </view>
     </van-action-sheet>
-    <van-action-sheet show="{{ showInviteFriend }}" title="邀请好友代理帮卖" bind:close="closeInviteFriend">
-        <view class="tips pv-xs" bindtap="goModify">
-            将小程序或者海报转发好友帮你分销，订单会自动汇总到你这里。 可以点击这里
-            <text class="text-warning">修改代理价格</text>
-        </view>
-        <view class="flex text-center p-xl ">
-            <view bindtap='getHelpPost' class="flex-sub share-pyq">
-                <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
-                <view class="text-weak mt-sm">生成邀请海报</view>
-            </view>
-            <button class="flex-sub btn-reset" data-type="invit" open-type="share">
-                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
-                <view class="text-weak mt-sm text-df">转发小程序</view>
-            </button>
-        </view>
-    </van-action-sheet>
+ 
     <!-- <view show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;"> -->
     <view hidden="{{ !poster }}" class="share-friends-box">
         <view class='share-friends-img' bindtap='handlePoster'>

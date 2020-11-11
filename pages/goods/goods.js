@@ -17,7 +17,6 @@ import Dialog from '../../vant/dialog/dialog'
 const app = getApp()
 app.that = null
 let drawGoods = null
-let drawBuyuser = null
 let orderUsersLen = 30 // 购买用户每次加载数量
 let orderUsersFlag = false // 购买用户是否正在加载
 let orderUsersPage = 1 // 购买用户是否正在加载页
@@ -1190,34 +1189,14 @@ Page({
         cpage: orderUsersPage,
       })
       .then((res) => {
-        drawBuyuser = res.data.data.order_list
 
         orderUsersPage++
 
-        // timer3 = setTimeout(() => {
-
-        //     if (drawBuyuser) {
-        //         util.drawShareFriends(this, drawGoods, drawBuyuser);
-        //     }
-
-        // }, 5e3)
+     
 
         this.data.orderUsers = res.data.data.order_list
 
-        // this.data._orderUsers = [];
         this.data._orderUsers_ = []
-
-        // this.data._orderUsers[0] = [];
-
-        // res.data.data.order_list.forEach((e, i) => {
-        //     let _i = parseInt(i / orderUsersLen);
-        //     if (i % orderUsersLen == 0 && i >= orderUsersLen - 1) {
-        //         this.data._orderUsers[_i] = [];
-        //     }
-        //     this.data._orderUsers[_i].push(e)
-        // })
-
-        // this.data._orderUsers_.push(this.data._orderUsers.shift())
 
         this.data._orderUsers_.push(res.data.data.order_list)
 

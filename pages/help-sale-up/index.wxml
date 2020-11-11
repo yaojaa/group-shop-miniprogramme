@@ -21,7 +21,7 @@
              <image src="{{info.goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75" class="img-df"></image>
              <view class="flex-sub ml-sm">{{info.goods_name}}</view>
         </view>
-   <!--      <van-cell-group custom-class="mt-sm">
+    <!--     <van-cell-group custom-class="mt-sm">
             <van-field value="{{scopeTitle}}" name=" " label="商品分类" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
         </van-cell-group> -->
         <view class="specs-item" wx:for="{{goods_spec}}" wx:key="index">

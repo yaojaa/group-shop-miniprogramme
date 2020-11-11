@@ -818,10 +818,13 @@ Page({
       return false
     }
 
-    //默认重置价格为0
+    //默认重置价格为0 默认代理价格为零售价
     this.data.spec.forEach((value, index) => {
       if (value.spec_price == '') {
         this.data.spec[index].spec_price = 0
+      }
+      if (value.sub_agent_price == '') {
+        value.sub_agent_price = value.spec_price 
       }
     })
 
@@ -899,8 +902,6 @@ Page({
       this.jump()
       return
     }
-
-
 
     util.wx.post('/api/seller/goods_add_or_edit', Object.assign({
       goods_id: this.data.goods_id,

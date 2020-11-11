@@ -28,7 +28,7 @@
                 type="digit"
 
                   value="{{item.sub_agent_price}}" error-message="{{errorMsg}}" name="" label="设置代理价" 
-                data-index="{{index}}" placeholder="请输入你给代理的价格" bind:blur="validate" input-align="right" input-class="text-lg coral-text">
+                data-index="{{index}}" placeholder="请输入你给代理的价格" bind:change="validate" input-align="right" input-class="text-lg coral-text">
                     <view slot="button">元</view>
                 </van-field>
             </view>

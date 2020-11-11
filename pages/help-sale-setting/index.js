@@ -51,7 +51,6 @@ Page({
           }
         })
 
-        console.log(app.globalData.helpSaleData)
 
 
         this.setData({
@@ -77,14 +76,10 @@ Page({
 
           let goodsData = res.data.data.goods
 
-              goodsData.goods_spec.forEach(it=>{
-                if(it.sub_agent_price == '0.00'){
-                   it.sub_agent_price = it.spec_price
-                }
-              })
+             
 
 
-               this.setData({
+           this.setData({
             info:goodsData 
           })
         }
@@ -93,14 +88,6 @@ Page({
       })
     },
 
-    editSubmit(){
-
-        util.wx.post('/api/seller/spec_edit',{
-            goods_id:this.data.goods_id,
-            goods_spec:this.data.info.goods_spec
-        })
-
-    },
 
     spec_edit(id,price,index){
 
@@ -111,10 +98,7 @@ Page({
             sub_agent_price:price
         }).then(res=>{
           if(res.data.code == 200){
-            wx.showToast({
-              title:'价格修改成功',
-              icon:'none'
-            })
+           
             this.setData({
                 btnDisable:false
             })
@@ -142,9 +126,9 @@ Page({
         const {index,spec_price,goods_spec_id} = e.currentTarget.dataset
         var is_btnDisable =false  
 
-        var value = parseFloat(e.detail.value)
+        var value = parseFloat(e.detail)
 
-        console.log(1111,value)
+        console.log(1111,e)
 
         console.log(util.isMoney(value))
 
@@ -197,7 +181,6 @@ Page({
 
             //这里this.data.info 对是app.globaldata.helpData的引用，修改会同步修改
           this.data.info.goods_spec[index].sub_agent_price = value
-
           app.globalData.helpSaleData.goods_spec.forEach(item=>{
             if(item.sub_agent_price =='' || item.sub_agent_price == 0){
                is_btnDisable = true

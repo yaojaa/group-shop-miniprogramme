@@ -54,14 +54,10 @@ Page({
      */
     onLoad: function(options) {
 
-        console.log(options)
 
         this.data.goods_id = options.goods_id 
-        console.log(options)
-
 
         // is_modify=true&supid=7&sellid=1708
-
 
         if(options.is_modify){
 
@@ -156,6 +152,8 @@ Page({
                   var parent_goods_id =res.data.data.goods.link_goods[1].goods_id
 
                   var goods_spec =res.data.data.goods.goods_spec
+                  
+                  console.log('goods_spec',goods_spec)
 
                   util.wx.get('/api/goods/get_goods_detail', {
                       goods_id: parent_goods_id
@@ -167,9 +165,9 @@ Page({
 
                         item.sub_agent_price = parent_goods_spec[index].sub_agent_price
 
-                     
-
                       })
+
+                      console.log('goods_spec',goods_spec)
 
                       this.setData({
                                     info: data,

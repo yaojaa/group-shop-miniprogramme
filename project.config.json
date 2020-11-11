@@ -1486,7 +1486,7 @@
           "id": 201,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3510",
+          "query": "goods_id=3518&from_id=10290&help_sale=true",
           "scene": null
         },
         {
@@ -1501,6 +1501,13 @@
           "name": "pages/order-detail-seller/index",
           "pathName": "pages/order-detail-seller/index",
           "query": "id=24755",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/help-sale-up/index",
+          "pathName": "pages/help-sale-up/index",
+          "query": "goods_id=3517",
           "scene": null
         }
       ]
