@@ -77,10 +77,16 @@
 
      
 
-        <button wx:if="{{info.order_refund_id && info.order_refundstatus!==2 && info.showAction}}" data-order_refund_id="{{info.order_refund_id}}" data-order_id="{{info.order_id}}" bindtap="to_refund" class=" primary btn hollow round {{info.order_refundstatus==1?'text-danger':'gray-text'}} ">
+        <button wx:if="{{info.order_refund_id && info.order_refundstatus!==2 }}" data-order_refund_id="{{info.order_refund_id}}" data-order_id="{{info.order_id}}" bindtap="to_refund" class=" primary btn hollow round {{info.order_refundstatus==1?'text-danger':'gray-text'}} ">
             <text wx:if="{{info.order_refundstatus==1}}">有退款申请</text>
             <text wx:else>退款信息</text>
         </button>
+
+
+      
+
+
+
         <button wx:if="{{info.express.length > 0}}" class="round btn primary hollow" bindtap="checkexpress" data-sn="{{info.order_sn}}" data-id="{{info.order_id}}">物流信息</button>
 
         <block wx:if="{{info.showAction}}" wx:for="{{info.seller_next_handle}}" wx:key="{{index}}">

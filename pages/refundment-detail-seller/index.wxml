@@ -35,7 +35,7 @@
     <view class="item-list p-df mb-df">
         <view class="item">
             <text class="text-gray">申请用户：</text>
-            <text>{{order_detail.user.nickname}}</text>
+            <text> <image src=" {{order_detail.user.avatar}}" /> {{order_detail.user.nickname}}</text>
         </view>
 
        <view class="item">
@@ -127,7 +127,7 @@
     </button>
 
     <text wx:if="{{!isOrderManege}}" class="f12 text-warning center">
-         此商品由“{{order_detail.link_store[1].nickname || order_detail.link_store[0].store_name}}”负责售后服务
+         此订单由“{{order_detail.link_store[1].nickname || order_detail.link_store[0].store_name}}”负责售后服务
     </text>
 
     </view>
