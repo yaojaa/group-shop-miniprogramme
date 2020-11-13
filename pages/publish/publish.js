@@ -1087,10 +1087,20 @@ Page({
       //旧数据有富文本数据
       if(content.html){
 
-        content = util.getChinese(content.html)
+        content = [
+          {
+            "type": "text",
+            "desc": util.getChinese(content.html)
+          }
+        ]
+
+       this.editor({
+        content: content,
+        goods_content: '',
+        content_imgs: []
+      })
 
       }
-
 
     }
 
@@ -1111,7 +1121,7 @@ Page({
         })
 
       })
-      console.log('编辑提交为空')
+
       this.editor({
         content: content,
         goods_content: '',
