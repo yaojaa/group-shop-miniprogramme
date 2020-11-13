@@ -91,7 +91,6 @@ Page({
 
     spec_edit(id,price,index){
 
-      wx.showLoading()
 
        util.wx.post('/api/seller/spec_edit',{
             goods_spec_id:id,
@@ -116,7 +115,6 @@ Page({
             })
           }
         })
-      wx.hideLoading()
     },
 
 

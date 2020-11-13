@@ -1,4 +1,4 @@
 
 export default {
-    apiUrl: 'http://dev.kaixinmatuan.cn'
+    apiUrl: 'https://www.kaixinmatuan.cn'
 }

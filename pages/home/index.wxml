@@ -41,11 +41,7 @@
             <view class="control">
                 <view class="newlist">
                     <scroll-view style="height: 100px" scroll-y>
-                        <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}" bindtap="todetail">
-                            {{item.time_ago}} <text wx:if="{{item.isFromSlef}}">
-                            {{item.user.nickname}} 下单：</text>
-                            <text wx:else>{{item.store.nickname}} 帮卖：</text> 
-                            <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                        <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}" bindtap="todetail">{{item.time_ago}} <text wx:if="{{item.isFromSlef}}">{{item.user.nickname}} 下单：</text><text wx:else>{{item.store.nickname}} 帮卖：</text> <text class="bold">{{item.order_detail[0].goods_name}}</text>
                         </view>
                     </scroll-view>
                 </view>

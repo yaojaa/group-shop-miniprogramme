@@ -152,7 +152,7 @@ input {
   padding: 5px 0;
 }
 .float-ctl .item {
-  padding: 5px 0;
+  padding: 8px 0;
   font-size: 14px;
 }
 .float-tri {

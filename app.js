@@ -337,9 +337,7 @@ App({
 
         this.checkAppVersion()
 
-        wx.setEnableDebug({
-          enableDebug: true
-        })
+
 
 
     },
