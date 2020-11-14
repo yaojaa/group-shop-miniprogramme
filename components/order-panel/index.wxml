@@ -1,29 +1,45 @@
 <view class="goods-panel ph-df white-bg mv-sm cf">
     <view class="goods-panel-hd pv-sm flex align-center">
         <view class="flex-sub mr-df">
-            <view class="flex align-center">
-                <image src="{{item.seller.headimg}}" class="shop-tb mr-xs">
+
+        
+        <view class="flex align-center" wx:if="{{user}}">
+
+        <navigator url="../userhome/index?id={{item.store.store_id}}"  open-type="redirect">
+                <image src="{{item.seller.headimg}}" class="shop-tb mr-xs" >
                 </image>
-                <view class="flex-sub text-hide">
-                {{item.seller.nickname}}
+       </navigator>
 
-                （电话：{{item.seller.mobile}}
-                微信：{{item.seller.wechatnumber}}）
+                <view class="flex-sub text-hide" >
+                    {{item.seller.nickname}}
+               </view>
+            </view>
 
+            <view class="flex align-center" wx:else >
+
+                <image src="{{item.user.headimg}}" class="shop-tb mr-xs">
+                </image>
+                <view class="flex-sub text-hide" >
+                    {{item.user.nickname}}
+               </view>
             </view>
-            </view>
+
         </view>
-        <view class="text-muted {{'color_'+item.order_status}}">{{item.order_status_txt}}</view>
+        <view class="text-muted {{'color_'+item.order_status}}">
+
+            <text wx:if="{{item.order_status==2 && user}}">等待收货</text>
+            <text wx:else>{{item.order_status_txt}}</text>
+        </view>
     </view>
     <view class="solid-bottom"></view>
-    <view class="goods-panel-bd pb-df">
-        <navigator wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="goods" url="../order-detail/index?id={{item.order_id}}" hover-class="none" class="flex mt-df goods-panel-item">
-            <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
+    <view class="goods-panel-bd pb-df" >
+        <navigator wx:if="{{user}}" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="goods" url="../order-detail/index?id={{item.order_id}}" hover-class="none" class="flex mt-df goods-panel-item">
+            <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/150/h/150/format/jpg/q/75" class="cover mr-sm"></image>
             <view class="flex-sub por">
-                <view class="text-hide two-line  bold title">
+                <view class="text-hide bold title">
                     {{goods.goods_name}}
                 </view>
-                <view class="text-muted mt-xs text-sm des"><text class="pr-sm">{{goods.spec_name}}</text></view>
+                <view class="text-muted text-hide mt-xs text-sm des"><text class="pr-sm">{{goods.spec_name}}</text></view>
                 <view class="text-justify bt-bar">
                     <view class="price bold">￥{{goods.spec_price}}</view>
                     <view class="text-muted"><text>x </text>
@@ -31,8 +47,28 @@
                 </view>
             </view>
         </navigator>
+
+         <navigator wx:if="{{!user}}" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="goods" 
+         url="../order-detail-seller/index?id={{item.order_id}}" 
+         hover-class="none" class="flex mt-df goods-panel-item">
+            <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/159/h/150/format/jpg/q/75" class="cover mr-sm"></image>
+            <view class="flex-sub por">
+                <view class="text-hide  title">
+                    {{goods.goods_name}}
+                </view>
+                <view class="text-muted mt-xs text-sm"><text class="pr-sm">{{goods.spec_name}}</text></view>
+                <view class="text-justify bt-bar">
+                    <view class="price bold">￥{{goods.spec_price}}</view>
+                    <view class="text-muted"><text>x </text>
+                        <text>{{goods.qty}}</text></view>
+                </view>
+            </view>
+        </navigator>
+
         <slot name="total"></slot>
     </view>
+
+
     <view class="solid-bottom"></view>
     <view class="goods-panel-fd">
         <slot name="footer"></slot>

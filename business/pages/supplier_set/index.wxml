@@ -1,0 +1,33 @@
+<view class="container cf">
+    <view class="reg-head cf white-bg">
+     
+
+     <view class="uploadArea">
+     <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
+            <image src="{{ info.supplier_logo }}" wx:if="{{ info.supplier_logo }}" />
+            <text wx:else>+LOGO</text>
+     </wux-upload>
+     </view>
+
+    </view>
+    <form bindsubmit="submitForm">
+        <van-cell-group>
+            <van-field value="{{info.supplier_name}}"  name="supplier_name" label="名称"  placeholder="请输入供应商名称" />
+            <van-field  value="{{info.supplier_mobile}}" name="supplier_mobile" label="手机号"  placeholder="请填写手机号" type="number" />
+
+      <!--       <van-field value="{{phone}}" name="supplier_pwd" label="密码"  placeholder="请设置密码用于登陆电脑端" type="text" /> -->
+
+
+            <van-field  type="textarea" style="height: 200px" value="{{info.supplier_intro}}" name="supplier_intro" label="简介"  placeholder="请输入店铺介绍" autosize />
+
+
+        </van-cell-group>
+        <view class="m-df mt-xl">
+            <button class="btn xl linenear_bg primary block" form-type="submit" disabled="{{disabled}}">
+                保存
+            </button>
+        </view>
+    </form>
+    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
+</view>

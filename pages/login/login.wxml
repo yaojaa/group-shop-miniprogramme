@@ -1,10 +1,28 @@
 <!--pages/login/login.wxml-->
 <view class="container">
+	<view class="header">
+		<image src="https://static.kaixinmatuan.cn/home_bg.jpg"/>
+
+
+        <image src="https://static.kaixinmatuan.cn/logo.png" class="userAvatar"></image>
+
+     <!--   <view class="textData">共有 <text class="bold">333838</text>个活动 累计服务<text class="bold">8884487</text>次</view> -->
+
+
+	 </view>
+
+	<view class="intro">
+			<view >  开心麻团 团购统计 </view>
+			 <view >管理订单 物流跟踪 </view>
+             <view >高效传播 躺着收单 </view>
+       			<view >繁琐费时的工作交给我  </view>
+
+	</view>
     <view class='start-btn  text-center' wx:if="{{!hasScope}}">
-        <button type="primary"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">进入开心麻团儿</button>
+        <button type="primary"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权登录 </button>
+        
+        <button type="default"  plain="true" bindtap="goView">体验试用</button>
+
     </view>
-    <view class='text-center' wx:else>
-      加载中...请稍后
-    </view>  
 
 </view>

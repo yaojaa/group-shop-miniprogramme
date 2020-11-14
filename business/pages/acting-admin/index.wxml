@@ -1,0 +1,102 @@
+
+<view class="container">
+
+   <view class="act-submit">
+
+
+
+    <view><button size="mini"  bindtap="openShareFriends" >邀请代理成员</button></view>
+    
+        <view class="total">共{{total}}人</view>
+
+    </view>
+
+
+<!-- <van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="新申请"></van-tab>
+  <van-tab title="合作中"></van-tab>
+  <van-tab title="取消合作"></van-tab>
+</van-tabs> -->
+
+<view class="act-admin">
+<!--     <van-search  background="#ffffff" value="{{ value }}" placeholder="请输入搜索关键词" />
+ -->
+
+    <view  wx:if="{{list.length == 0}}" class="center">
+
+        <view style="color:#666; margin-top: 100px">暂无成员...</view>
+
+    </view>
+
+
+    <view wx:for="{{list}}" wx:if="{{list.length > 0}}">
+        <!--cell start -->
+        <view class="act-cell flex">
+            <view class="act-img shrink0">
+                <image class="act-logo" mode="aspectFill" src="{{item.headimg}}"></image>  
+            </view>
+            <view class="grow1">
+                <view class=" flex">
+                    <view class="name grow1">{{item.nickname}}  <text class="right f10">{{item.apply_time}}</text></view>
+                </view>
+                <view class="act-bottom">
+
+
+                       
+            <text class="f12 left text-muted">销量:{{item.order_count}}    粉丝:{{item.fans_count}}</text>
+
+            <view class=" right" >
+                
+                    <view class="button left"  wx:if="{{item.supplier_agent_status==0}}" data-agent_user="{{item.nickname}}" data-supplier_agent_id="{{item.supplier_agent_id}}"  data-agent_status="2" bindtap="audit">通过</view>
+
+                    <button class="button shrink0 left" wx:if="{{item.supplier_agent_status==0}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit">拒绝</button>
+
+                     <view class="f10 " wx:if="{{item.supplier_agent_status==2}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-agent_user="{{item.nickname}}"  data-agent_status="1" bindtap="audit"><van-icon name="delete" size="20px" color="#666" /></view>
+
+            </view>
+                    
+              
+
+
+ 
+                </view>
+            </view>
+        </view>
+    </view>
+
+ 
+
+</view>
+<van-dialog id="van-dialog" />
+
+    <view hidden="{{ !poster }}" class="share-friends-box">
+        <view class='share-friends-img' bindtap='hidePoster'>
+            <view class="text-center share-img-box" wx:if="{{posterImg}}">
+                <view class="images" >
+                    <image class='icon-img' src='{{posterImg}}' mode='aspectFit'></image>
+                </view>
+             
+                <button class="btn primary linenear_bg round lg" catchtap="savaSelfImages">  保存海报图 </button>
+            </view>
+
+            <view class="share-img-box" wx:else>
+                <i-spin i-class='share-friends-loading' fix size="large"></i-spin>
+                <view class='share-friends-loading-txt'><text>努力生成中,请稍等10秒...</text></view>
+            </view>
+        </view>
+    </view>
+
+   <van-action-sheet overlay="{{true}}" show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
+        <view class="flex text-center p-xl ">
+            <button class="flex-sub btn-reset" open-type="share">
+                <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
+                <view class="text-weak mt-sm text-df">微信好友</view>
+            </button>
+            <view bindtap='handlePoster' class="flex-sub share-pyq">
+                <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
+                <view class="text-weak mt-sm">专属海报</view>
+            </view>
+        </view>
+    </van-action-sheet>
+    <footerbar active="{{2}}" />
+</view>

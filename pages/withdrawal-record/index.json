@@ -1,0 +1,14 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#69b90b",
+    "navigationBarTitleText": "收款明细",
+    "navigationBarTextStyle": "white",
+    "usingComponents":
+    {
+        "van-datetime-picker": "../../vant/datetime-picker/index",
+        "van-popup": "../../vant/popup/index",
+        "van-icon": "../../vant/icon/index",
+        "van-collapse": "../../vant/collapse/index",
+        "van-collapse-item": "../../vant/collapse-item/index"
+    }
+}

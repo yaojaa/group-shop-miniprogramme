@@ -3,6 +3,8 @@
     "usingComponents":
     {
         "van-icon": "../../vant/icon/index",
-        "van-steps": "../../vant/steps/index"
+        "van-steps": "../../vant/steps/index",
+                "van-dialog": "../../vant/dialog/index"
+
     }
 }

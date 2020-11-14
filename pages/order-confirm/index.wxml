@@ -4,14 +4,19 @@
             <view class="mh-df text-muted text-sm">
                 共计 {{totalNumer}} 件
             </view>
-            <view class="pb-xs">
+            <view class="pb-xs" wx:if="{{shipping_money!=='该地区不发货'}}">
                 <text class="text-muted text-sm">应付金额：</text>
-                <text class="text-lg bold coral-text">¥{{amountMoney}}</text>
+                <text class="text-lg bold coral-text">¥{{amountMoney+shipping_money}}</text>
                 <text class="text-muted text-sm"> 元</text>
+            </view>
+            <view wx:else>
+
+                该地区不发货
+                
             </view>
         </view>
         <form bindsubmit="formSubmit" report-submit="true" data-fn="createOrder">
-            <button class="btn primary w-min-lg lg linenear_bg" formType="submit" loading="{{loading}}" disabled="{{loading}}">立即支付</button>
+            <button class="btn primary w-min-lg lg linenear_bg" formType="submit" loading="{{loading}}" disabled="{{loading}}">{{pay_btn_txt}}</button>
         </form>
     </view>
     <view class="content-wrap">
@@ -90,7 +95,7 @@
                     <image class="goods-cover-image" src="{{item.spec_pic[0]}}"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line  bold title">
-                            {{item.spec_name}} <text class="text-muted mt-xs text-sm">{{item.spec_desc}}</text>
+                            {{item.spec_name}}
                         </view>
                         <view class="text-justify bt-bar">
                             <view class="price text-muted">￥{{item.spec_price}}</view>
@@ -102,11 +107,12 @@
             </view>
         </view>
         <van-cell-group custom-class="mb-sm">
-            <!--   <van-cell title="购买数量">
+
+             <!--  <van-cell title="购买数量">
                 <van-stepper value="{{ 2 }}" min="1" integer bind:change="handleNumber" />
             </van-cell> -->
-            <!--  <van-cell title="配送方式" value="自提" value-class="text-gray" />
-            <van-cell title="订单总价" value="￥100" value-class="" /> -->
+            <van-cell wx:if="{{delivery_method==1}}" title="运费（{{address.province}}）" value="{{shipping_money}}" readonly value-class="" />
+
             <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
     </view>

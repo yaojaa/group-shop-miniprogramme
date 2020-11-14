@@ -1,4 +1,5 @@
 @import "../../utils/weui.wxss";
+
 .container{
    min-height: 100vh;
 }
@@ -7,6 +8,10 @@
 }
 .info-box{
 	position: relative;
+}
+.pic_box{
+  text-align: center;
+  padding: 15px 0
 }
 .getMobile{
 	position: absolute;
@@ -48,4 +53,8 @@ border:1px solid #d9d9d9;
 text-align: center;
 margin: 30rpx
 
+}
+.blue_text{
+    color:#105f96!important;
+    font-size: 13px
 }

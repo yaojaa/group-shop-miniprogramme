@@ -1,0 +1,53 @@
+@import "../../../css/common.wxss";
+.act-view{
+    padding: 100rpx 30rpx 0;
+}
+.act-logo{
+    display: block;
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.act-title{
+    font-size: 28rpx;
+    font-weight: bold;
+    text-align: center;
+    line-height: 36rpx;
+    padding-top: 30rpx;
+    margin-bottom: 20rpx;
+}
+.act-textarea{
+    width: 100%;
+    height: 180rpx;
+    padding: 20rpx;
+    background: #f8f8f8;
+    box-sizing: border-box;
+    border-radius: 10rpx;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-top: 20px
+}
+
+.act-textarea .box{
+    overflow: auto;
+}
+
+.act-textarea .textarea{
+    width: 100%;
+    height: 100%;
+}
+.act-submit{
+    padding-top: 200rpx;
+}
+
+.act-submit button{
+    background-color: #69b90b;
+    color: #fff;
+}
+
+
+
+
+
+

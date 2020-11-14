@@ -1,3 +1,5 @@
+@import "../../css/common.wxss";
+
 .goods-item {
     margin: 15px 0 10px 0;
     border-bottom:1px solid #eee;
@@ -38,7 +40,7 @@
 }
 
 .goods-body .bd .tit {
-    font-size: 16px;
+    font-size: 14px;
     color: #474245;
     width: 80%;
     display: -webkit-box;
@@ -46,6 +48,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     font-weight: bold;
+    margin-bottom:5px
 }
 
 .goods-body .bd .link {
@@ -76,7 +79,7 @@
 
 .goods-count .count-item .num {
     font-size: 28rpx;
-    color: #333
+    color: #34a
 }
 .count-box {
 
@@ -98,7 +101,6 @@
 
 
 .count-item .label {
-    font-size: 24rpx;
     color: #666;
     display: block;
 }
@@ -126,9 +128,11 @@
 color:#49b34d;
 border-radius:50rpx;
 border:1px solid #ebffdb;
-margin-right:10px;
-padding:0 20px!important;
+padding:0 15px!important;
 background:#f9fff5;
+work-break:keep-all;
+ white-space:nowrap;
+ margin: 0 auto;
 
 }
 .statusBar{

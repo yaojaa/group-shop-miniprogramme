@@ -1,0 +1,9 @@
+{ 
+  "navigationBarBackgroundColor": "#69b90b",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "代理申请",
+  "usingComponents": {
+
+  "van-dialog": "../../../vant/dialog/index"
+  }
+}

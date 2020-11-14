@@ -1,0 +1,101 @@
+<view class="container gray-wrap cf">
+    <view class="order-wrap">
+        <view class="primary ph-df pv-sm text-white mb-sm align-center">
+            <text class="f20">{{info.order_status_txt}}</text> <text class="f14 blue_txt fl_right" style="margin-top: 10rpx" catchtap="ordermanage">（查看此商品下的所有订单）</text>
+        </view>
+        <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 1}}">
+            <van-icon name="location" color="#999" />
+            <view class="flex-sub ml-xs">
+                <view class="text-justify">
+                    <view><text class="mr-df">{{info.consignee}}</text>
+                        <text data-text="{{info.mobile}}" bindtap="copyTxt">{{info.mobile}}</text></view>
+                    <view class="text-sm warning-text" data-text="{{info.consignee}} {{info.mobile}} {{info.province}}{{info.city}}{{info.district}}{{info.address}}" bindtap="copyTxt">复制地址</view>
+                </view>
+                <view class="pt-xs text-sm text-gray" data-text="{{info.consignee}} {{info.mobile}} {{info.province}}{{info.city}}{{info.district}}{{info.address}}" bindtap="copyTxt">
+                    收货地址： {{info.province}}{{info.city}}{{info.district}}{{info.address}}
+                </view>
+            </view>
+        </view>
+        <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 2}}">
+            <van-icon name="location" color="#999" />
+            <view class="flex-sub ml-xs">
+                <view class="text-justify">
+                    <view><text class="mr-df">{{info.seller.nickname}}</text>
+                        <text>{{info.seller.mobile}}</text></view>
+                    <view class="text-sm warning-text">自提</view>
+                </view>
+                <view class="pt-xs text-sm text-gray">
+                    自提点： {{info.self_address}}
+                </view>
+                <view class="pt-xs text-sm text-gray">
+                    提货码： <text class="text-danger">{{info.create_number}}</text>
+                </view>
+                <view class="pt-xs text-sm text-gray">
+                    提货人姓名： <text class="text-danger">{{info.consignee}}</text>
+                </view>
+                <view class="pt-xs text-sm text-gray">
+                    提货人电话： <text class="text-danger">{{info.mobile}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="goods-panel ph-df white-bg cf">
+            <view class="goods-panel-bd " style="position: relative;">
+                <view class="goods-panel-item " wx:for="{{info.order_detail}}" wx:key="{{index}}">
+                    <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none" class="flex pv-df">
+                        <image src="{{item.spec_pic[0] || item.goods_cover}}?imageView2/2/w/150/h/150/format/jpg/q/75" class="cover mr-sm"></image>
+                        <view class="flex-sub por">
+                            <view class="text-hide text-black title bold">
+                                <text> {{item.spec_name}}</text>
+                            </view>
+                            <view class="text-sm">{{item.goods_name}}</view>
+                            <view class="text-justify bt-bar">
+                                <view wx:if="{{info.isFromAgent}}" class="price bold">帮卖价：￥{{item.agent_price}}</view>
+                                <view wx:else class="price bold">￥{{item.spec_price}}</view>
+                                <view class="text-muted"><text>x </text>
+                                    <text>{{item.qty}}</text></view>
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+        <van-cell-group>
+            <van-cell wx:if="{{info.isFromAgent}}" customStyle="padding:5px 20px" title="帮卖订单" value="{{info.seller.nickname}}" border="{{ false }}" />
+            <van-cell customStyle="padding:5px 20px" title="订单用户" value="{{info.user.nickname}}" border="{{ false }}" />
+            <van-cell customStyle="padding:5px 20px" title="订单运费" value="￥{{info.shipping_money}}" border="{{ false }}" />
+            <van-cell customStyle="padding:5px 20px" title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
+            <van-cell customStyle="padding:5px 20px" title="订单编号" title-width="200rpx" border="{{ false }}" value="{{info.order_sn}}" value-class="text-gray" />
+            <!--     <van-cell customStyle="padding:5px 20px" title="创建时间" value="{{info.addtime}}" border="{{ false }}" value-class="text-gray" /> -->
+            <van-cell customStyle="padding:5px 20px" title="付款时间" wx:if="{{info.addtime}}" value="{{info.addtime}}" border="{{ false }}" value-class="text-gray" />
+        </van-cell-group>
+        <view class="ml-lg mr-lg mt-xxl f12 " wx:if="{{info.link_store && !info.showAction}}">
+            <view class="fl_left">赚 <text class="text-warning">¥{{info.profit}}</text>元 </view>
+            <view class="fl_right">由<text class="text-success">{{info.link_store[1].nickname || info.link_store[0].store_name}}</text>发货 </view>
+        </view>
+    </view>
+    <view class="order-fixed-footer">
+
+     
+
+        <button wx:if="{{info.order_refund_id && info.order_refundstatus!==2 }}" data-order_refund_id="{{info.order_refund_id}}" data-order_id="{{info.order_id}}" bindtap="to_refund" class=" primary btn hollow round {{info.order_refundstatus==1?'text-danger':'gray-text'}} ">
+            <text wx:if="{{info.order_refundstatus==1}}">有退款申请</text>
+            <text wx:else>退款信息</text>
+        </button>
+
+
+      
+
+
+
+        <button wx:if="{{info.express.length > 0}}" class="round btn primary hollow" bindtap="checkexpress" data-sn="{{info.order_sn}}" data-id="{{info.order_id}}">物流信息</button>
+
+        <block wx:if="{{info.showAction}}" wx:for="{{info.seller_next_handle}}" wx:key="{{index}}">
+            <button class="round primary  btn-{{item.opt}}" bindtap="orderActions" data-opt="{{item.opt}}" data-order_id="{{info.order_id}}" data-txt="{{item.txt}}">{{item.txt}}</button>
+        </block>
+        <button wx:if="{{info.order_status == 3 && info.delivery_method == 1 && info.showAction}}" class="round primary linenear_bg" data-id="{{info.order_id}}" data-sn="{{info.order_sn}}" bindtap="checkexpressorder">
+            <block wx:if="{{info.express.length > 0}}">快递单号</block>
+            <block wx:else>录入单号</block>
+        </button>
+    </view>
+    <van-dialog id="van-dialog" />
+</view>

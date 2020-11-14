@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "退款详情",
+    "usingComponents":
+    {
+     "van-radio": "../../vant/radio/index",
+     "van-field": "../../vant/field/index",
+     "van-radio-group": "../../vant/radio-group/index"
+    }
+}

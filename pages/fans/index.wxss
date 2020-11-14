@@ -1,56 +1,60 @@
+@import "../../css/common.wxss";
 
-page{
-	background: #f8f8f8
-}
-
-.guest-box{
-		margin-bottom: 10px
-
+page {
+    background: #f8f8f8
 }
 
-.guest-item{
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	background:#ffffff;
-	padding: 10px
+.guest-box {
+    padding: 0 30rpx;
+    background: #ffffff;
 }
-.guest-item .hd{
-	width: 80rpx;
-	height: 80rpx;
-	margin-right: 20rpx;
+
+.guest-item {
+    display: flex;
+    padding: 30rpx 0;
 }
-.guest-item .bd{
-	-webkit-flex: 1;
-	-moz-flex: 1;
-	-ms-flex: 1;
-	-o-flex: 1;
-	flex: 1;
+
+.guest-item .hd {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
 }
-.guest-item .avatar{
-	 width: 80rpx;
-	 height: 80rpx;
-	 border-radius: 8rpx
+
+.guest-item .bd {
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    -o-flex: 1;
+    flex: 1;
 }
-.guest-item .name{
-	font-size: 28rpx;
+
+.guest-item .avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 8rpx
 }
-.guest-item .date{
-	margin-top: 12rpx;
-	color:#999;
-	font-size: 24rpx;
+
+.guest-item .name {
+    font-size: 28rpx;
 }
-.guest-item .num{
-	font-size: 24rpx;
-	color:#666;
-	padding-right: 20rpx;
-	display: inline-block;
+
+.guest-item .date {
+    margin-top: 12rpx;
+    color: #999;
+    font-size: 24rpx;
 }
-.fans-box{
-	padding:5px 10px;
+
+.guest-item .num {
+    font-size: 24rpx;
+    color: #666;
+    padding-right: 20rpx;
+    display: inline-block;
 }
-.fans-box .btn-group button{
-	margin-left: 20rpx;
+
+.fans-box {
+    padding: 5px 10px;
+}
+
+.fans-box .btn-group button {
+    margin-left: 20rpx;
 }

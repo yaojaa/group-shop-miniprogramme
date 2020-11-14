@@ -1,0 +1,22 @@
+<view class="container">
+    <view class="spce-main">
+        <view class="pb-sm solid-bottom" style="overflow:hidden">
+            <input type="text" value="{{info.spec_name}}" bindblur="setName" placeholder="请输入名称"></input>
+        </view>
+        <view class="textarea-box mt-sm">
+            <v-textarea row="10" tips="{{'请输入商品详情'}}" textarea="{{info.spec_desc}}" bind:sendData="getValue"></v-textarea>
+
+        </view>
+        <wux-upload listType="picture-card" fileList="{{ fileList }}" max="10" controlled url="{{url}}/api/seller/upload" bind:change="onChange" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove">
+            <text>+ 图片</text>
+        </wux-upload>
+    </view>
+<!--     <view class="ph-df text-muted text-sm">
+        <view>温馨提示：</view>
+        <view class="mt-xs">开团中修改商品库存的任何内容,均不会同步至活动</view>
+    </view> -->
+    <view class="m-df">
+        <button class="btn xl primary block linenear_bg" bindtap="submit">确认</button>
+    </view>
+    <van-dialog id="van-dialog" />
+</view>

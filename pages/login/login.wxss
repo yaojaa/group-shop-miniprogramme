@@ -5,13 +5,48 @@
   bottom:0;
   left:0;
   right:0;
-  background: url('https://static.kaixinmatuan.cn/staitc-img/start.jpg');
-  background-size: 100% auto;
+/*  background: url('https://static.kaixinmatuan.cn/staitc-img/start.jpg');
+*/  background-size: 100% auto;
   background-position: center bottom
+}
+
+.header {
+  position:relative;
+
+
+}
+
+.header image{
+
+  width: 100%;
+  display:block;
+  overflow:hidden;
+
+}
+
+.intro {
+  margin-top: 100rpx;
+  font-size: 38rpx;
+  font-weight: bold;
+  line-height: 1.9;
+  text-align: center;
+  color: #666
+}
+
+.header .userAvatar{
+  position: absolute;
+  left: 50%;
+  bottom: -70rpx;
+  width: 150rpx;
+  height:150rpx;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  display:block;
+  overflow:hidden;
 }
 .start-btn{
   position: absolute;
-  bottom:100rpx;
+  bottom:60rpx;
   left:0;
   width:100%;
   box-sizing: border-box;
@@ -21,7 +56,8 @@
 .start-btn button{
   border:none;
   color: #fff;
-  font-size: 36rpx
+  font-size: 36rpx;
+  margin-top: 30px
 }
 
 
@@ -29,3 +65,18 @@
 .button-hover{
   color: #999
 }
+
+.textData{
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+
+}
+
+
+
+
+
+
+

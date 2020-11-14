@@ -10,14 +10,17 @@
   </wux-notice-bar> -->
 
 
+
+
+
 <view class="circle_warpper" >
-      <navigator open-type="redirect" url="../publish/publish" hover-class="none">
+      <navigator  url="../publish/publish" hover-class="none">
 
      <view class="circle">
 
 
        <i-icon size="42" color="#ffffff"  type="add" />
-       <view class="new">发布新宝贝</view>
+       <view class="new"> 发 布 </view>
        
      </view>
           </navigator>
@@ -26,27 +29,25 @@
 
 
 
-<view class="smallTit">
-  选择模板快速创建：
+<!-- <view class="smallTit">
+  示例模板：
 </view>
+
+-->
+<!-- 
 <view class="center" >
   <navigator url="../publish/publish?temp=2" class="button-area flex_box">
-  <!-- <view> -->
+  <view> 
   <view class="flex-item">
 
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon1.jpg"></image>
-
-<!--   <i-icon type="success"  size="34" color="#c6c6c6" />
- -->  </view>
+ </view>
   <view class="flex-item-5 left">
-    <view class="f16 text-default"> <view>演示模板：特好吃的草莓</view>
+    <view class="f16 text-default"> <view>演示模板：草莓自取活动</view>
      <text class="f14 text-muted">填写提货点，用户自提</text> </view>
    </view>
-  <!-- </view> -->
   </navigator>
-</view>
-
-
+</view> -->
 
 <!-- <view class="center">
   <view class="button-area flex_box">
@@ -60,19 +61,18 @@
   </view>
 </view> -->
 
-<view class="center">
+<!--  <view class="center">
   <navigator url="../publish/publish?temp=1" class="button-area flex_box">
-  <!-- <view> -->
   <view class="flex-item">
     <image class="tmp-cover" mode="cover" src="https://static.kaixinmatuan.cn/staitc-img/tmp_icon3.jpg"></image>
   </view>
   <view class="flex-item-5 left">
-    <view class="f16 text-default"> <view>演示模板：特好吃的樱桃</view>
+    <view class="f16 text-default"> <view>演示：想吃樱桃的请报名</view>
      <text class="f14 text-muted">要求参与人填写收货地址</text> </view>
    </view>
-  <!-- </view> -->
   </navigator>
-</view>
+</view> 
+ -->
 
 <!-- <view class="smallTit">
   从已有商品复制：
@@ -91,9 +91,38 @@
 </view> -->
 
 
-<!-- <view class="smallTit">
-  从供应商库选择：
-</view> -->
+<view class="smallTit">
+  从我的供应商中选择：
+</view>
+
+<view class="list">
+  <view class="list-item" wx:for="{{suppList}}" data-id="{{item.supplier_id}}" bindtap="toSupphome">
+
+    <van-card
+  desc="{{item.supplier_intro}}"
+  title="{{item.supplier_name}}"
+  thumb="{{  item.supplier_logo }}"
+/>
+
+ 
+  </view>
+
+  </view>
+
+
+
+    <van-popup custom-class="authPopBox" show="{{ showAuth }}" >
+
+        <view class="content-pop">
+        <view class="logo">
+            <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
+        </view>
+        <view class="info f16">
+          请先授权登录
+        </view>
+        <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">登 录</button>
+         </view>
+    </van-popup>
 
 
 
@@ -103,7 +132,7 @@
 
             <view class="weui-footer__links">
 
-            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">开心麻团儿 北京原子动力科技</button>    
+            <button size="mini"   class="btn_no_style" open-type="contact" bindcontact="handleContact">开心麻团儿</button>    
 
             </view>
 

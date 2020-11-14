@@ -1,0 +1,39 @@
+@import "../../css/common.wxss";
+
+.goods-panel-bd .cover {
+width:140rpx;
+height:140rpx
+}
+.footer-btn{
+	height: 40px;
+	padding-top: 20px
+}
+
+.btn-toset_del{
+    background: #f00
+}
+.btn-toset_cancel{
+	background: #ff9000
+}
+.btn-toset_confirm{
+    background: #ff9000
+}
+.rightAction{
+	float: right;
+	margin-right: 10px}
+
+.title{
+	font-weight: bold;
+	font-size: 30rpx
+}
+
+.order-fixed-footer{
+	padding:10px;
+	display: flex;
+}
+.order-fixed-footer button{
+
+	flex: 1;
+	margin: 0 10px
+
+}

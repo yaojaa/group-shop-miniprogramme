@@ -1,0 +1,10 @@
+{
+  "disableScroll":true,
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#ffaa4f",
+  "navigationBarTitleText": "提现",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+  	 "van-dialog": "../../../vant/dialog/index"
+  }
+}

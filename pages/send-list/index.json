@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单收货人列表",
+  "usingComponents": {
+  "van-checkbox": "../../vant/checkbox/index",
+  "van-checkbox-group": "../../vant/checkbox-group/index"
+  }
+}

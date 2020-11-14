@@ -1,0 +1,43 @@
+@import "../../../css/common.wxss";
+.gradual-bg {
+    background-image: -webkit-linear-gradient(#ffaa4f, #ffaa4f);
+}
+.gradual-bg{
+	min-height: 200rpx;
+	position: relative;
+}
+.money{
+	font-weight: bold;
+	font-size: 60rpx;
+}
+.record-btn{
+	position: absolute;
+	right:0;
+	top:40%;
+	background:rgba(255,255,255,0.1);
+	color:#fff;
+	font-size: 24rpx;
+	padding: 10rpx 20rpx;
+	border-radius:30rpx 0 0 30rpx;
+}
+.money-input{
+	font-size: 52rpx;
+	height: 2rem;
+	line-height: 2rem;
+}
+.t-all{
+	border-left: 1px solid #f2f2f2;
+	padding-left: 20rpx;
+	margin-left: 30rpx;
+}
+.btn[disabled]:not([type]) {
+	opacity: 1;
+	background-color: rgba(232, 232, 232, 1);
+	color:#666;
+}
+.btn:after{
+	display: none;
+}
+.btn.primary{
+	background-color: #ffaa4f;
+}

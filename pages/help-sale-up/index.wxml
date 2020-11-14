@@ -1,0 +1,66 @@
+<!--点击我要帮卖跳转的价格设置页-->
+
+<view class="container gray-wrap  cf">
+    
+
+        <view class="notice mt-sm">
+        转发上架到主页成为你的商品,可让顾客在您的商品页自助下单。
+        利润会自动结算到您的账户。方便省事！
+    </view>
+
+
+
+     <view class="center" wx:if="{{is_loading}}">
+         <wux-spin wux-class="spin" />
+     </view>       
+
+
+
+    <form bindsubmit="submitForm">
+        <view class="white-bg ph-df pv-sm flex align-center">
+             <image src="{{info.goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75" class="img-df"></image>
+             <view class="flex-sub ml-sm">{{info.goods_name}}</view>
+        </view>
+    <!--     <van-cell-group custom-class="mt-sm">
+            <van-field value="{{scopeTitle}}" name=" " label="商品分类" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
+        </van-cell-group> -->
+        <view class="specs-item" wx:for="{{goods_spec}}" wx:key="index">
+            <van-cell-group custom-class="mt-sm">
+                <van-field value="{{item.spec_name}}" name="" label="规格名称" placeholder="" input-align="right" readonly></van-field>
+                  <van-field value="{{item.spec_price}}元" name="" label="参考售价" placeholder="" input-align="right" readonly></van-field>
+                <van-field value="{{item.sub_agent_price}}元" name="" label="代理价" placeholder="" input-align="right" readonly></van-field>
+            </van-cell-group>
+            <view class="mh-df mv-sm solid round-df">
+                <van-field use-button-slot value="{{item.spec_price}}" error-message="{{errorMsg}}" name="" label="您的售价" 
+                data-goods_spec_id="{{item.goods_spec_id}}"
+                data-sub_agent_price="{{item.sub_agent_price}}"
+
+                data-index="{{index}}" placeholder="请输入零售价" bind:blur="validate" bind:change="change" input-align="right" input-class="text-lg coral-text">
+                    <view slot="button">元</view> 
+                </van-field>
+            </view>
+            <view class="ph-df  text-sm text-muted">
+                <view> 温馨提示：提现需要手续费哦</view>
+            </view>
+        </view>
+
+
+   <!--      <van-cell-group custom-class="mt-sm">
+                <van-field bindtap="toModify" value="修改内容" name="" label="修改介绍" placeholder="" input-align="right" readonly></van-field>
+          
+            </van-cell-group> -->
+
+
+
+        <view class="m-df">
+
+            <button class="btn primary block linenear_bg" bindtap="goDetail" disabled="{{btnDisable}}">
+                确定
+            </button>
+
+        </view>
+    </form>
+
+    <van-notify id="custom-selector" />
+    <van-toast id="van-toast" />
+</view>

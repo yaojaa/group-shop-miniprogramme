@@ -2,38 +2,33 @@
 const app = getApp()
 const util = require('../../utils/util')
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
         share: false,
+        onshare:false,
         avatar: '',
         order_id: '',
         ordersInfo: '',
         order_goods: '',
         order_time: '',
         wx_collection_code: '',
-        imagePath: "",
         goods_id: "",
         create_number: 54,
-        painterData: {},
+        clickShare:false,
+        qty:1,
         numers: '❶❶❷❸❹❺❻❼❽❾❿'.split(''),
         wordArr: {
-            1: '',
-            2: '',
-            3: '',
-            4: '',
-            5: '',
-            6: '',
-            7: '',
-            8: '',
-            9: ' ',
-            11: '',
-            12: '',
-            13: ''
+            1: '跟着买 就对了',
+            2: '跟着买 就对了',
+            3: '错过又要等一年 该出手时就出手',
+            4: '该出手时就出手',
+            5: '不要睡 起来嗨',
+            6: '机不可失，失不再来'
         },
-        order:{}
+        seller_name:'',
+        seller_store_id:''
     },
 
     /**
@@ -45,13 +40,12 @@ Page({
 
         this.setData({
             goods_id: options.goods_id,
+            order_count:options.order_count
         })
 
         //开始绘制
 
         // util.get_painter_data_and_draw.call(this, options.goods_id, true)
-
-
     },
     // onImgOk(e) {
 
@@ -78,24 +72,29 @@ Page({
 
         }).then(res => {
 
+            console.log('没走成公')
+
                     wx.hideLoading()
 
 
             if (res.data.code == 200) {
-                // var order = res.data.data;
-                // this.setData({
-                //     orders_info: order.order,
-                //     goods_name: order.goods.goods_name,
-                //     order_goods: order.order_goods,
-                //     create_number: order.order.create_number,
-                //     wx_collection_code: order.store.wx_collection_code,
-                //     order_time: this.timetrans(order.order.add_time)
-                // })
+
+                //订购数量
+                var qty = 0;
+                 res.data.data.order_detail.forEach(item=>{
+                    qty+= parseInt(item.qty)
+                 })
+
+                console.log('res.data.data.order_detail[0].goods_name',res.data.data.order_detail[0].goods_name)
+                
                 this.setData({
                     order: res.data.data,
                     create_number: res.data.data.create_number,
                     goods_name: res.data.data.order_detail[0].goods_name,
-                    order_time: res.data.data.addtime
+                    order_time: res.data.data.addtime,
+                    qty:qty,
+                    seller_name:res.data.data.seller.nickname,
+                    seller_store_id:res.data.data.store.store_id
                 })
             }
         })
@@ -119,26 +118,40 @@ Page({
         })
 
     },
+    goUserSite(){
 
+         wx.redirectTo({
+            url: '../userhome/index?id='+this.data.seller_store_id
+        })
+
+    },
+    // addListener:util.userListner,
     /**
      * 用户点击右上角分享
      */
     onShareAppMessage: function(res) {
-        let shareTitle = this.data.wordArr[this.data.create_number] || '大家再接再厉...' + this.data.goods_name
-        let numberIcon = this.data.create_number <= 10 ? this.data.numers[this.data.create_number] : '「No.' + this.data.create_number + '」'
+
+        this.setData({
+            clickShare:true,
+            onshare:true
+        })
+
+
+
+        let shareTitle = this.data.wordArr[1] 
+        let numberIcon = ''
         return {
-            title: numberIcon + app.globalData.userInfo.nickname + '成功参团👍' + shareTitle,
-            imageUrl: this.data.imagePath,
-            path: '/pages/goods/goods?goods_id=' + this.data.goods_id,
-            complete() {
-                console.log('ok')
-                wx.navigateTo({
-                    url: '../pages/home/index'
-                })
-            }
+            title: '',
+            path: '/pages/goods/goods?goods_id=' + this.data.goods_id
         }
     },
     formSubmit: function(e) {
         util.formSubmitCollectFormId.call(this, e)
+    },
+    addListener:function () {
+          wx.requestSubscribeMessage({
+              tmplIds: ['17y_mLplxTn0resiR34oUsJMZu2E2W6i0x2YIRZgvZ4','Wu_vie78kgoRr8y90IAsxoEn87BJ3nDrEBLP0MK6208'],
+              success (res) { }
+            })
     }
 })

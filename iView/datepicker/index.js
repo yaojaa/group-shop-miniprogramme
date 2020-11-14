@@ -5,33 +5,36 @@ const days = []
 const hours = [];
 const minutes = [];
 
-for (let i = 2018; i <= d.getFullYear() + 10; i++) {
-  years.push(i)
+for (let i = 2019; i <= d.getFullYear() + 10; i++) {
+  years.push(i.toString())
 }
 
 for (let i = 1; i <= 12; i++) {
   if (i < 10) i = "0" + i;
-  months.push(i)
+  months.push(i.toString())
 }
 
 for (let i = 0; i < 24; i++) {
  if (i < 10) i = "0" + i;
-  hours.push(i)
+  hours.push(i.toString())
 }
 
-for (let i = 0; i < 60; i+=5) {
+for (let i = 0; i < 60; i+=1) {
   if (i < 10) i = "0" + i;
-  minutes.push(i)
+  minutes.push(i.toString())
   i = parseInt(i)
 }
 
 Component({
-  externalClasses: ['time-class', 'pick-class', 'indicator-class'],
+  externalClasses: ['time-class', 'pick-class', 'indicator-class', "i-picker-title"],
 
   properties: {
     date: {   //格式 ＹＹ－ＭＭ－ＤＤ
       type: String,
-      value: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+      value: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(),
+      observer: function (newVal, oldVal) {
+        this.valTime();
+      }
     },
     time: {   //格式 HH：MM
       type: String,
@@ -70,36 +73,39 @@ Component({
   },
 
   ready() {
-
-    let date = this.data.date.split("-");
-    let time = this.data.time.split(":");
-
-    let y = date[0];
-    let m = date[1].toString().length < 2 ? "0" + date[1] : date[1];
-    let d = date[2].toString().length < 2 ? "0" + date[2] : date[2];
-    let h = time[0].toString().length < 2 ? "0" + time[0] : time[0];
-    let mm = time[1].toString().length < 2 ? "0" + time[1] : time[1];
-
-    this.getMonthDays(y, m);
-
-    this.setData({
-      value: {
-        y: [this.data.years.indexOf(y.toString())],
-        m: [this.data.months.indexOf(m.toString())],
-        d: [this.data.days.indexOf(d.toString())],
-        h: [this.data.hours.indexOf(h.toString())],
-        mm: [this.data.minutes.indexOf(mm.toString())]
-      },
-      year: y,
-      month: m,
-      day: d,
-      hour: h,
-      minute: mm
-    });
-    
+    this.valTime();
   },
 
   methods: {
+    valTime() {
+      let date = this.data.date.split("-");
+      let time = this.data.time.split(":");
+
+      let y = date[0];
+      let m = date[1].toString().length < 2 ? "0" + date[1] : date[1];
+      let d = date[2].toString().length < 2 ? "0" + date[2] : date[2];
+      let h = time[0].toString().length < 2 ? "0" + time[0] : time[0];
+      let mm = time[1].toString().length < 2 ? "0" + time[1] : time[1];
+
+      this.getMonthDays(y, m);
+
+      this.setData({
+        value: {
+      
+
+          y: [this.data.years.indexOf(this.toFixedTwo(y))],
+          m: [this.data.months.indexOf(this.toFixedTwo(m))],
+          d: [this.data.days.indexOf(this.toFixedTwo(d))],
+          h: [this.data.hours.indexOf(this.toFixedTwo(h))],
+          mm: [this.data.minutes.indexOf(this.toFixedTwo(mm))]
+        },
+        year: y,
+        month: m,
+        day: d,
+        hour: h,
+        minute: mm
+      });
+    },
     bindChange (e) {
       const val = e.detail.value;
 
@@ -123,7 +129,6 @@ Component({
         default:
           break;
       }
-     console.log('change')
     },
     openPicker() {
       this.setData({
@@ -148,7 +153,7 @@ Component({
         hour: this.data.hour,
         minute: this.data.minute
       })
-            this.triggerEvent('datachange', [this.data.year, this.data.month, this.data.day, this.data.hour, this.data.minute])
+      this.triggerEvent('datachange', [this.data.year, this.data.month, this.data.day, this.data.hour, this.data.minute])
 
       this.triggerEvent('change', [this.data.year, this.data.month, this.data.day, this.data.hour, this.data.minute])
     },
@@ -162,6 +167,15 @@ Component({
       this.setData({
         days: days
       });
+    },
+
+    toFixedTwo(n){
+      n = n.toString();
+      if(n.length < 2){
+        return '0' + n;
+      }else{
+        return n;
+      }
     },
 
 

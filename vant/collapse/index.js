@@ -1,48 +1,47 @@
 import { VantComponent } from '../common/component';
 VantComponent({
-    relation: {
-        name: 'collapse-item',
-        type: 'descendant',
-        linked(child) {
-            this.set({
-                items: [...this.data.items, child]
-            }, () => {
-                child.updateExpanded();
-            });
-        }
+  relation: {
+    name: 'collapse-item',
+    type: 'descendant',
+    current: 'collapse',
+  },
+  props: {
+    value: {
+      type: null,
+      observer: 'updateExpanded',
     },
-    props: {
-        accordion: Boolean,
-        value: null
+    accordion: {
+      type: Boolean,
+      observer: 'updateExpanded',
     },
-    data: {
-        items: []
+    border: {
+      type: Boolean,
+      value: true,
     },
-    watch: {
-        value() {
-            this.data.items.forEach(child => {
-                child.updateExpanded();
-            });
-        },
-        accordion() {
-            this.data.items.forEach(child => {
-                child.updateExpanded();
-            });
-        }
+  },
+  methods: {
+    updateExpanded() {
+      this.children.forEach((child) => {
+        child.updateExpanded();
+      });
     },
-    methods: {
-        switch(name, expanded) {
-            const { accordion, value } = this.data;
-            if (!accordion) {
-                name = expanded
-                    ? value.concat(name)
-                    : value.filter(activeName => activeName !== name);
-            }
-            else {
-                name = expanded ? name : '';
-            }
-            this.$emit('change', name);
-            this.$emit('input', name);
-        }
-    }
+    switch(name, expanded) {
+      const { accordion, value } = this.data;
+      const changeItem = name;
+      if (!accordion) {
+        name = expanded
+          ? (value || []).concat(name)
+          : (value || []).filter((activeName) => activeName !== name);
+      } else {
+        name = expanded ? name : '';
+      }
+      if (expanded) {
+        this.$emit('open', changeItem);
+      } else {
+        this.$emit('close', changeItem);
+      }
+      this.$emit('change', name);
+      this.$emit('input', name);
+    },
+  },
 });

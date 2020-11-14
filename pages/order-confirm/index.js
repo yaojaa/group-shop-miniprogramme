@@ -4,6 +4,7 @@ const util = require('../../utils/util.js')
 
 import Toast from '../../vant/toast/toast';
 
+
 Page({
 
     /**
@@ -15,20 +16,21 @@ Page({
         self_address: [],
         goods_name: '',
         seller: {},
-        delivery_method: 0,
+        payment_method: 0,
+        pay_btn_txt:'立即支付',
         consignee: '',
         mobile: '',
         user_message: '',
         btn_load: false,
         loading: false,
-        address_load: false
-    },
+        address_load: false,
+        shipping_money:0    },
     getUserAddress() {
         this.setData({
             address_load: true
         })
         util.wx.get('/api/user/address_list',{
-            pagesize:5
+            pagesize:10
         })
             .then(res => {
                 this.setData({
@@ -38,19 +40,16 @@ Page({
                 if (res.data.code == 200) {
                     if (data.length > 0) {
                         data.forEach((item) => {
-                            console.log(item, 'item')
                             if (item.is_address_default == 1) {
                                 this.setData({
                                     address: item,
                                     address_id: item.address_id
                                 })
-                            } else {
-                                this.setData({
-                                    address: data[0],
-                                    address_id: data[0].address_id
-                                })
-                            }
+
+                            } 
                         })
+
+
                     } else {
                         this.setData({
                             address: null,
@@ -121,6 +120,27 @@ Page({
             address_id: e.currentTarget.dataset.name
         });
     },
+    //获取邮费
+    get_shipping_money(){
+
+         util.wx.get('/api/goods/get_shipping_money', {
+                goods_id: this.data.goods_id,
+                address_id:this.data.address_id,
+                qty:this.data.totalNumer
+            })
+            .then(res => {
+                console.log('邮费',res.data.data)
+                this.setData({
+                    shipping_money:res.data.data==-1?'该地区不发货' : parseInt(res.data.data)
+                })
+
+            })
+
+
+
+    },
+
+    
 
     getGoodsInfo(){
         wx.showLoading()
@@ -174,39 +194,67 @@ Page({
      */
     onLoad: function(options) {
 
+
+        getApp().setWatcher(this.data, this.watch, this); // 设置监听器
+
+
         this.data.goods_id = options.goods_id
+        this.data.from_id = options.from_id || ''
+
+        this.data.payment_method = options.payment_method
+
+            if(options.payment_method==1){
+                this.setData({
+                    pay_btn_txt:'立即参与'
+                })
+           }
+
+
         this.getGoodsInfo()
        
 
         let amountMoney = 0;
         let totalNumer = 0
         let cartSource = wx.getStorageSync('cart')
+        console.log('cartSource',cartSource)
+        if(!cartSource){
+
+            return wx.navigateBack()
+        }
         let cart = typeof cartSource === 'string' ? JSON.parse(cartSource) : cartSource;
-
-        // let goodsSource = wx.getStorageSync('goods');
-
-        // let goods = typeof goodsSource === 'string' ? JSON.parse(goodsSource) : goodsSource;
 
 
         cart.map(value => {
-            amountMoney += parseInt(value.spec_price * 100) * parseInt(value.item_num)
+            amountMoney += value.spec_price * 1000 * parseInt(value.item_num)
             totalNumer += parseInt(value.item_num)
 
 
         })
 
+        console.log(cart)
+
 
 
         this.setData({
-          
             goods_id: options.goods_id,
             cart: cart || [],
-            amountMoney: amountMoney / 100,
+            amountMoney: amountMoney / 1000,
             totalNumer: totalNumer       
              })
 
    
     },
+    watch: {
+        address_id: (newValue, val, context) => {
+
+
+           context.address_id = newValue
+
+           context.get_shipping_money()
+        }
+
+    },
+
     inputConsignee(e) {
         this.setData({
             consignee: e.detail
@@ -232,14 +280,13 @@ Page({
     createOrder: function() {
 
 
+
+
         let addressData = {
             'consignee': this.data.consignee,
             'mobile': this.data.mobile
         }
-        this.setData({
-            loading: true
-        })
-        wx.showLoading()
+     
 
         const specs = this.data.cart.map(item => {
             return {
@@ -247,6 +294,9 @@ Page({
                 qty: item.item_num
             }
         })
+
+
+        console.log('specs is',specs)
 
 
         var postData = {}
@@ -265,25 +315,58 @@ Page({
 
         }
 
-        console.log(postData)
+          if(!this.data.address_id && this.data.delivery_method == 1){
 
+           return wx.showToast({
+                title: '请先选择收货地址',
+                icon: 'none'
+            })
+            
+        }
+
+        this.setData({
+            loading: true
+        })
+        wx.showLoading()
 
         util.wx.post('/api/order/create_order', Object.assign({
             specs: specs,
             user_message: this.data.user_message,
-            goods_id: this.data.goods_id
+            goods_id: this.data.goods_id,
+            from_user_id:this.data.from_id
         }, postData)).then(res => {
-                this.data.order_id = res.data.data.order_id;
-                this.pay(res.data.data)
 
-        }, (e) => {
+
+                if(res.data.code == 200){
+
+                    this.data.order_id = res.data.data.order_id;
+
+                  //创建订单成功
+                  if(this.data.payment_method==0){
+                      
+                      this.pay(res.data.data)
+
+                    }else{
+                      this.jumpToSuccess(res.data.data.order_count);
+                   }
+                }else{
             this.setData({
                 loading: false
             })
             wx.showToast({
-                title: e.data.msg,
+                title: res.data.msg,
                 icon: 'none'
             })
+
+   
+                }
+                  
+
+ this.setData({
+                loading: false
+            })
+
+
 
         }).catch(e => {
             wx.showToast({
@@ -334,9 +417,9 @@ Page({
 
     },
 
-    jumpToSuccess() {
+    jumpToSuccess(order_count) {
         wx.redirectTo({
-            url: '../paySuccess/index?order_id=' + this.data.order_id + '&goods_id=' + this.data.goods_id
+            url: '../paySuccess/index?order_id=' + this.data.order_id + '&goods_id=' + this.data.goods_id+'&order_count='+order_count
         })
     },
 
@@ -357,17 +440,14 @@ Page({
                 signType: data['signType'],
                 paySign: data['paySign'],
                 success: (res) => {
+                    wx.hideLoading()
 
-                    console.log(res)
+                    // util.wx.post('/api/pay/orderpay', {
+                    //     order_sn: order_sn
+                    // })
+                  util.userListner()
 
-
-                    util.wx.post('/api/pay/orderpay', {
-                        order_sn: order_sn
-                    })
-
-
-
-                    this.jumpToSuccess();
+                  this.jumpToSuccess(data.order_count);
                 },
                 fail: (res) => {
                     wx.redirectTo({
@@ -477,6 +557,7 @@ Page({
        this.clearTimer()
 
     },
+
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作

@@ -1,0 +1,9 @@
+{
+
+  "navigationBarTitleText": "恭喜您 下单成功",
+  "usingComponents": {
+    "i-panel": "../../../iView/panel/index",
+    "i-cell": "../../..//iView/cell/index",
+    "van-icon": "../../../vant/icon/index"
+  }
+}

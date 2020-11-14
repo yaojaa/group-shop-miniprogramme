@@ -1,0 +1,60 @@
+<view class="container cf">
+    <view class="defult-rules white-bg">
+        
+<radio-group class="radio-group" bindchange="radioChange">
+
+        <view class="default-rule-title rule-title">
+            <van-row>
+                <van-col span="17">
+                   <text class="">运费模板管理</text>
+                </van-col>
+                <van-col span="7" style="text-align: right;">
+                    <van-button class="linenear_bg" type="primary" size="small" round bind:click="addPostageTpl">
+                        + 添加新模板
+                    </van-button>
+                </van-col>
+            </van-row>
+        </view>
+
+  <!--       <view class="default-rule-list table">
+            <view class="default-rule-item tr">
+                <view class="th">地区</view>
+                <view class="th">运费</view>
+            </view>
+            <view class="default-rule-item tr">
+                <view class="td">全国</view>
+                <view class="td">0元</view>
+            </view>
+        </view> -->
+        <view class="custom-rule" wx:for="{{tpl_list}}"  wx:for-index="index" wx:for-item="item">
+            <view class="custom-rule-title rule-title">
+                <van-row>
+                    <van-col span="16">
+                        <view class="title"> 
+   <radio wx:if="{{hasSelect}}" value="{{item.freight_tpl_id}}" class="radio" 
+   checked="{{hasSelect == item.freight_tpl_id}}"/>
+               {{item.freight_tpl_name}}</view>
+                    </van-col>
+                    <van-col span="8" wx:if="{{item.freight_tpl_id != 0}}">
+                        <view class="custom-option custom-edit-option" data-id="{{item.freight_tpl_id}}" data-index="{{index}}" bindtap="editPostageTpl">修改</view>
+                        <view class="custom-option custom-delete-option" data-index="{{index}}" data-id="{{item.freight_tpl_id}}" bindtap="deletePostageTpl">删除</view>
+                    </van-col>
+                </van-row>
+            </view>
+            <view class="table">
+                <view class="custom-rule-item tr">
+                    <view class="th">地区</view>
+                    <view class="th">运费</view>
+                </view>
+                <view class="custom-rule-item tr" wx:if="{{freight_tpl_item.price>0}}" wx:for="{{item.freight_tpl_info_list}}" wx:key="{{index}}" wx:for-item="freight_tpl_item">
+                    <view class="th">{{freight_tpl_item.name}}</view>
+                    <view class="th">{{freight_tpl_item.price}}元</view>
+                </view>
+            </view>
+        </view>
+</radio-group>
+    </view>
+    <van-notify id="custom-selector" />
+    <van-dialog id="van-dialog" />
+
+</view>

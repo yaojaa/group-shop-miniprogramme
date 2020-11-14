@@ -1,0 +1,3 @@
+<view class="container gray-wrap cf">
+  <web-view src="https://mp.weixin.qq.com/s/gn0uWcizv9nwO2uvQQx_Ow"/>
+</view>

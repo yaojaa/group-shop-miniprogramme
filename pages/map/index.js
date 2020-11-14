@@ -15,13 +15,14 @@ Page({
 
     },
     getHistoryList(){
-
+        wx.showLoading()
         util.wx.get('/api/seller/self_address_list').then(res=>{
             if(res.data.code == 200){
                 this.setData({
                     hisList:res.data.data.self_address_list
                 })
             }
+        wx.hideLoading()
         })
     },
     onLoad: function(e) {
@@ -187,6 +188,26 @@ Page({
     useIt(e){
       console.log('应用当前地址')
       let index = e.currentTarget.dataset.index;
+
+      var isSame = false
+
+      this.data.newAddress.forEach(item=>{
+
+        if(item.self_address_id == this.data.hisList[index].self_address_id){
+
+            isSame = true
+        }
+
+      })
+
+      if(isSame){
+        return wx.showToast({
+            title:'已经有该地点啦',
+            icon:'none'
+        })
+      }
+
+
 
       this.data.newAddress.push(this.data.hisList[index])
 

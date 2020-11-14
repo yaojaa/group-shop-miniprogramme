@@ -1,7 +1,5 @@
 const app = getApp()
-const { $Message } = require('../../iView/base/index')
 const util = require('../../utils/util.js')
-
 Page({
 
     /**
@@ -9,7 +7,14 @@ Page({
      */
     data: {
         mobile: '',
-        wechatnumber: ''
+        wechatnumber: '',
+        wx_paycode:''
+    },
+
+    removePic(){
+      this.setData({
+        wx_paycode:''
+      })
     },
 
     getInfo() {
@@ -20,8 +25,8 @@ Page({
             if (res.data.code == 200) {
                 this.setData({
                     mobile: res.data.data.mobile,
-                    wechatnumber: res.data.data.wechatnumber
-                })
+                    wechatnumber: res.data.data.wechatnumber,
+                    wx_paycode:res.data.data.wx_paycode                })
             } else {
                wx.showToast({
                     title: res.data.msg,
@@ -39,9 +44,9 @@ Page({
     postInfo() {
 
      if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.data.mobile))){ 
-             $Message({
-                        content: '手机号码有误，请重填',
-                        type: 'error'
+             wx.showToast({
+                        title: '手机号码有误',
+                        icon: 'none'
                     });
             return false; 
         }
@@ -50,24 +55,22 @@ Page({
         util.wx.post('/api/user/user_set_info', {
 
             mobile: this.data.mobile,
-            wechatnumber: this.data.wechatnumber
-        }).then(res => {
-            console.log(res)
+            wechatnumber: this.data.wechatnumber,
+            wx_paycode:this.data.wx_paycode || '',
+            user_id : app.globalData.userInfo.user_id
 
-            if (res.data.code == 200) {
-                $Message({
-                    content: '保存成功',
-                    type: 'success'
-                });
-            } else {
-                $Message({
-                    content: res.data.msg,
-                    type: 'error'
-                });
-            }
-
-
-
+        }).then(res=>{
+          console.log('1',res)
+          wx.showToast({
+            title:res.data.msg,
+            icon:'none'
+          })
+        },res=>{
+          console.log('2',res)
+          wx.showToast({
+            title:res.data.msg,
+            icon:'none'
+          })
         })
 
     },
@@ -88,6 +91,9 @@ Page({
 
     clearStorage() {
 
+
+        app.globalData.userInfo = null
+
         wx.clearStorageSync()
 
         wx.redirectTo({
@@ -96,6 +102,47 @@ Page({
 
         //上传相册
     },
+
+        //上传相册
+    chooseImage: function(e) {
+
+        wx.chooseImage({
+            count: 1, //最多可以选择的图片总数  
+            sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+            sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有  
+            success: (res) => {
+
+                var tempFilePaths = res.tempFilePaths[0];
+                wx.showLoading()
+                util.uploadFile({
+                  filePath:tempFilePaths
+                }).then((res)=>{
+                  console.log('图片',res.data.file_url)
+                  this.setData({
+                    wx_paycode:res.data.file_url
+                  })
+                  wx.hideLoading()
+                },res=>{
+                   wx.hideLoading()
+                   wx.showToast({
+                    title:'上传失败请重试',
+                    icon:'none'
+                   })
+
+                }).catch(e=>{
+                    wx.hideLoading()
+
+                    wx.showToast({
+                    title:'上传失败请重试',
+                    icon:'none'
+                   })
+                })
+              }
+            })
+      }
+    ,
+
+
 
 
     /**

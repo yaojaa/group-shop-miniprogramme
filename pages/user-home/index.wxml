@@ -1,0 +1,155 @@
+<view class="container">
+
+
+	<view class="head-box">
+		<view class="flex align-center">
+			<navigator url="../identify/identify" hover-class="none">
+				<view class="user-avatar mh-df">
+					<image class="user-avatar" src="{{userInfo.headimg}}" />
+					<view class="set-icon">
+						<i-icon type="setup_fill" color="#ffa70f" size="16" />
+					</view>
+				</view>
+			</navigator>
+			<view class="flex-sub pr-lg">
+				<view class="flex justify-between text-white">
+					<view class="user-box">
+						<view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}} </view>
+
+						<navigator url="../address/index" class="mini-tag mt-xs" hover-class="none">收货地址管理</navigator>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+
+
+    <i-panel i-class="marginTop" title="我的订单" extra="查看" link="../order-list/index">
+        <view slot="content">
+
+       
+                  <view class="flex-box myorder">
+                <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">
+                    <view class="icon">
+                        <i-icon type="redpacket" size="28" color="#4fac05" />
+                    </view>
+                    待付款
+                    <view class="badge" wx:if="{{waitpay>0}}">{{waitpay}}</view>
+                </navigator>
+                <navigator url="../order-list/index?search_status=2" hover-class="none" class="flex-item">
+                    <view class="icon">
+                        <i-icon type="service" size="28" color="#4fac05" />
+                    </view>
+                    待收货<view class="badge" wx:if="{{waitreceived>0}}">{{waitreceived}}</view>
+                </navigator>
+                <navigator url="../order-list/index?search_status=3" hover-class="none" class="flex-item">
+                    <view class="icon">
+                        <i-icon type="interactive" size="28" color="#4fac05" />
+                    </view>
+                    已完成
+                </navigator>
+            </view>
+        </view>
+    </i-panel>
+
+
+
+
+	<i-panel wx:if="{{proList.length}}" >
+		<block wx:for="{{proList}}" wx:key="{{index}}">
+
+			<view class='product-item'>
+				<view class='item-body'>
+					<navigator class="flex align-center pb-sm van-hairline--bottom " url="../userhome/index?id={{item.store.store_id}}" hover-class="none">
+						<view class="item-avatar">
+							<image class="avatar" src="{{item.user.headimg}}" />
+						</view>
+						<view class="item-name flex-sub">
+							<view class="text-justify">
+								<text class="f12">{{item.user.nickname}}</text>
+								
+							</view>
+							<view class="time text-xs text-muted">
+								{{item.pageview_count}}次查看 <text style="font-size: 12rpx">|</text> {{item._buy_users_count}}人参与
+							</view>
+						</view>
+					</navigator>
+					<view class='item-title' data-id="{{item.goods_id}}" bindtap="toDetail">
+						<text>{{item.goods_name}}</text>
+						<!--     <text class='text-red' wx:if="{{item.price_range.min == item.price_range.max}}">￥{{item.price_range.min}}</text><text class="text-red" wx:else>￥{{item.price_range.min}}~{{item.price_range.max}}</text> -->
+					</view>
+					<view class="item-cover-box" data-id="{{item.goods_id}}" bindtap="toDetail">
+						<block wx:if="{{item.goods_images.length == 1}}">
+							<view class="item-img-box-one">
+								<image mode="widthFix" class="cover" src="{{item.goods_images[0].img_url}}?imageView2/1/w/600/h/400/interlace/1"></image>
+							</view>
+						</block>
+						<block wx:if="{{item.goods_images.length == 2}}">
+							<view class='item-img-box-tow' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}">
+								<image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/400/h/300/interlace/1"></image>
+							</view>
+						</block>
+						<block wx:if="{{item.goods_images.length >= 3}}">
+							<view class='item-img-box-three' wx:for-key="idx" wx:for-item="im" wx:for="{{item.goods_images}}" wx:key="{{index}}" wx:if="{{index<=2}}">
+								<image class="cover" mode="widthFix" src="{{im.img_url}}?imageView2/1/w/200/h/180/interlace/1"></image>
+							</view>
+						</block>
+						<!--  <scroll-view class="item-cover-scroll" scroll-x>
+                            <view class='item-cover' wx:for-key="idx" wx:for-item="im" wx:for="{{item.img_list}}" wx:key="{{index}}">
+                                <image  src="{{im}}"></image>
+                            </view>
+                        </scroll-view> -->
+					</view>
+				</view>
+			</view>
+		</block>
+	</i-panel>
+
+	<view class="text-center">
+		<wux-spin wx:if="{{is_loading}}"></wux-spin>
+	</view>
+
+
+
+	<view style="margin-bottom:100rpx; text-align: center;">
+		
+	     
+	</view>
+
+	<view class="weui-footer weui-footer_fixed-bottom">
+
+	
+
+		<view class="weui-footer__links">
+
+		<view class="center" style="margin-bottom:10px; text-align: center;"> 
+			<text bindtap="goPublish" class="text-primary">开通团长主页</text>  
+			<text class="text-muted"> | </text>
+			<text bindtap="goSupperReg" class="text-primary">开通供应商主页</text> 
+		</view> 
+
+			<button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">由开心麻团提供技术支持</button>
+
+		</view>
+	</view>
+
+
+	<!--  <view wx:if="{{goodslist.length >= 0}}">
+        <view class='new-goods' bindtap="new_btn">
+            <i-icon type="add" size="22" />
+            <text>发布一个团购 </text>
+        </view>
+    </view> -->
+	<!--    <view class="footer_bar">
+        <i-tab-bar current="nearby" color="#188f00" bindchange="handleTabBarChange">
+            <i-tab-bar-item key="nearby" icon="browse" current-icon="browse_fill" title="我的"></i-tab-bar-item>
+            <i-tab-bar-item key="publish" icon="add" current-icon="add" title="发布"></i-tab-bar-item>
+            <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
+        </i-tab-bar>
+    </view> -->
+
+    <footerbar active="4"/>
+
+</view>

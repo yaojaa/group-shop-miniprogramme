@@ -15,6 +15,10 @@
     background: #f8f8f8;
 }
 
+.flex2{
+    flex:2
+}
+
 .f10 {
     font-size: 20rpx !important;
 }
@@ -55,6 +59,10 @@
     font-size: 48rpx !important;
 }
 
+.left{
+    float:left
+}
+
 .text-left {
     text-align: left;
 }
@@ -81,6 +89,13 @@ button.linenear_bg_light {
     background: -webkit-linear-gradient(left top, #f8f8f8, #eee);
     background: linear-gradient(left top, #f8f8f8, #eee);
     color: #69b90b
+}
+
+
+button.mini{
+    display: inline-block;
+    line-height: 2.3;
+    font-size: 12px;
 }
 
 /*button.linenear_bg_light:active {
@@ -474,6 +489,14 @@ fieldset[disabled] .btn-link {
     text-align: left;
 }
 
+.fl_left {
+float:left
+}
+
+.fl_right {
+float:right
+}
+
 .list-flex {
     display: flex;
 }
@@ -514,40 +537,7 @@ fieldset[disabled] .btn-link {
     filter: grayScale(1);
 }
 
-/*波浪*/
-@keyframes move_wave {
-    0% {
-        transform: translateX(0) translateZ(0) scaleY(1)
-    }
 
-    50% {
-        transform: translateX(-25%) translateZ(0) scaleY(0.55)
-    }
-
-    100% {
-        transform: translateX(-50%) translateZ(0) scaleY(1)
-    }
-}
-
-.waveWrapper {
-    overflow: hidden;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: auto;
-}
-
-.waveWrapperInner {
-    position: absolute;
-    width: 100%;
-    overflow: hidden;
-    height: 30%;
-    bottom: -1px;
-    left: 0;
-    /*    background-image: linear-gradient(to top, #86377b 20%, #27273c 80%); */
-}
 
 .bgTop {
     z-index: 15;
@@ -563,42 +553,7 @@ fieldset[disabled] .btn-link {
     z-index: 5;
 }
 
-.wave {
-    position: absolute;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background-repeat: repeat no-repeat;
-    background-position: 0 bottom;
-    transform-origin: center bottom;
-}
 
-.waveTop {
-    background-size: 50% 30%;
-}
-
-.waveAnimation .waveTop {
-    animation: move-wave 3s;
-    -webkit-animation: move-wave 3s;
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
-}
-
-.waveMiddle {
-    background-size: 50% 40%;
-}
-
-.waveAnimation .waveMiddle {
-    animation: move_wave 10s linear infinite;
-}
-
-.waveBottom {
-    background-size: 50% 20%;
-}
-
-.waveAnimation .waveBottom {
-    animation: move_wave 15s linear infinite;
-}
 
 .clearfix:after {
     content: ".";
@@ -1148,8 +1103,8 @@ fieldset[disabled] .btn-link {
 }
 
 .no-content-icon {
-    width: 270rpx;
-    height: 270rpx;
+    width: 170rpx;
+    height: 170rpx;
 }
 
 
@@ -1440,7 +1395,7 @@ fieldset[disabled] .btn-link {
     left: 0;
     right: 0;
     background-color: #fff;
-    z-index: 8;
+    z-index: 9;
 }
 
 .service-code .code {
@@ -1540,6 +1495,7 @@ fieldset[disabled] .btn-link {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    z-index:3
 }
 
 .search-default {
@@ -1571,10 +1527,11 @@ fieldset[disabled] .btn-link {
 }
 
 .goods-panel-bd .cover {
-    width: 150rpx;
-    height: 150rpx;
+    width: 120rpx;
+    height: 120rpx;
     border-radius: 8rpx;
 }
+
 
 .goods-panel-bd .bt-bar {
     position: absolute;
@@ -1635,6 +1592,9 @@ fieldset[disabled] .btn-link {
     box-shadow: none;
 }
 
+.right{
+    float: right;
+}
 
 /**loading样式**/
 
@@ -1673,5 +1633,127 @@ fieldset[disabled] .btn-link {
 }
 
 
+
+
+
+
+.icon-nav-box {}
+
+.icon-nav-hd {
+    height: 84rpx;
+    line-height: 84rpx;
+    color: #333;
+    font-size: 32rpx;
+    padding: 0 30rpx;
+    font-family: PingFangSC-Medium;
+    background: #fff;
+}
+
+.icon-nav-bd {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+}
+
+.icon-nav-fd {
+    height: 7px;
+    background-size: cover;
+}
+
+.icon-nav-item {
+    width: 33.33333%;
+    text-align: center;
+    padding: 20rpx;
+}
+
+.icon-nav-item .icon {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.icon-nav-item .icon image {
+    width: 56rpx;
+    height: 56rpx;
+    vertical-align: middle;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.icon-nav-item .label {
+    font-size: 24rpx;
+    color: #333;
+    padding-top: 5rpx;
+}
+
+
+.bgTop { 
+    z-index: 15; 
+    opacity: 0.3; 
+} 
+.bgMiddle { 
+    z-index: 10; 
+    opacity: 0.5; 
+} 
+.bgBottom { 
+    z-index: 5; 
+    opacity: 0.9
+} 
+
+.authPopBox .logo image {
+    width: 120rpx;
+    height: 120rpx;
+    margin-bottom: 15px
+}
+
+.content-pop{
+    padding: 30rpx;
+    width: 450rpx;
+    text-align: center;
+}
+
+.content-pop button{
+    margin: 15px 5px
+}
+
+.avatar-mini {
+    width: 34rpx;
+    height: 34rpx;
+    border-radius: 100%;
+    overflow: hidden;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+.primary.btn.hollow {
+  color: #49b34d;
+}
+
+.primary.btn.hollow::after {
+  border: 2px solid #49b34d;
+  display: block;
+}
+
+
+.no-content {
+background: url('https: //static.kaixinmatuan.cn/tmp/wx6ac9955f87c289f0.o6zAJswbLfZtqnLUD5RXc3Q9FUIM.L93aAkSP1WBu55d11a6a3dd783840a0c548161476571.jpg');
+background-color: #ffffff;
+background-size: 50%;
+background-position: center 40%;
+background-repeat: no-repeat;
+width: 100%;
+height: 370rpx;
+line-height: 315px;
+text-align: center;
+color: #888;
+}
 
 

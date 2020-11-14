@@ -1,10 +1,7 @@
 {
     "navigationBarTitleText": "收货地址",
     "usingComponents":
-    {
-        "van-swipe-cell": "../../vant/swipe-cell/index",
-        "van-cell": "../../vant/cell/index",
-        "van-icon": "../../vant/icon/index",
+    {   "van-icon": "../../vant/icon/index",
         "van-cell-group": "../../vant/cell-group/index",
         "van-toast": "../../vant/toast/index",
         "i-custom-bar": "../../components/custom-bar/index"

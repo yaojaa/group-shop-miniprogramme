@@ -19,8 +19,10 @@ Page({
         city: '',
         district: '',
         address: '',
-        is_address_default: '',
-        address_str:''
+        is_address_default: true,
+        address_str:'',
+        btnTxt:'立即添加',
+        isEdit:false
     },
     addressDefault(event) {
         this.setData({
@@ -83,15 +85,66 @@ Page({
             id: options.id || ''
         })
 
+
+
+
+
         if (options.id) {
             this.getDetail()
+            this.setData({
+                 btnTxt:'立即保存' ,
+                isEdit:true
+            })
             wx.setNavigationBarTitle({
                 title: '编辑地址'
             })
+        }else{
+
+                     wx.getClipboardData({
+          success:(res)=>{
+            //检测粘贴板是否含有省市区 含有则自动识别
+            
+            var reg = /.+?(省|市|自治区|自治州|县|区)/g
+
+            if(res.data.match(reg)){
+
+
+              wx.showModal({
+         title: '检测到粘贴板地址信息',
+         content: res.data,
+         showCancel: true,//是否显示取消按钮
+         cancelText:"取消",//默认是“取消”
+         confirmText:"粘贴",//默认是“确定”
+         success:  (r) =>{
+            if (r.confirm) {
+                 this.setData({
+                    address_str:res.data
+                })
+
+             wx.showToast({
+                title:'检测到粘贴板地址信息'
+             })
+
+             this.bindTextAreaBlur()
+            }
         }
+         })
+
+                }
+          }
+        })
+
+
+
+
+
+        }
+
+
+
     },
 
-    bindTextAreaBlur(e){
+    setValue(e){
 
         const text= e.detail.value
 
@@ -99,11 +152,39 @@ Page({
             return
         }
 
+        this.data.address_str = text
 
+        console.log(text)
+
+
+    },
+
+    bindTextAreaBlur(){
+
+        　　var text =  this.data.address_str 
+
+        console.log(text)
+               text = text.split('\n').join(' ')
+
+        if(text==''){
+            return  wx.showToast({
+                title:'请先输入收件人地址信息',
+                icon:'none'
+            })
+        }
+
+        wx.showLoading()
         util.wx.post('/api/index/kuaibao_cloud_address_resolve',{
-            text:e.detail.value
+            text:text
         }).then(res=>{
-            console.log(res)
+
+            wx.hideLoading()
+
+            wx.showToast({
+                title:'已识别 请仔细核对信息',
+                icon:'none' 
+            })
+
             this.setData({
                 consignee:res.data.data[0].name,
                 mobile:res.data.data[0].mobile,
@@ -112,6 +193,14 @@ Page({
                 district: res.data.data[0].county_name,
                 address:res.data.data[0].detail
             })
+        }).catch(e=>{
+
+            wx.showToast({
+                title:e.data.msg,
+                icon:'none'
+            })
+            wx.hideLoading()
+
         })
 
 

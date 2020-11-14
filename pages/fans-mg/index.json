@@ -1,0 +1,13 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "粉丝管理",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee",
+    "usingComponents":
+    {
+        "van-button": "../../vant/button/index",
+        "van-icon": "../../vant/icon/index",
+        "wux-filterbar": "../../wux/filterbar/index"
+    }
+}

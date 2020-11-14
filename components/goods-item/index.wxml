@@ -1,12 +1,12 @@
 <view class="goods-item">
     <view class="goods-body">
-        <navigator  url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+        <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
             <image src='{{item.goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75' class='hd'></image>
         </navigator>
         <view class="bd">
-            <navigator  url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
-                <view class="flex align-center">
-                    <i-icon type="lock" color="#ffa200" size="18" wx:if="{{item.is_recommend==0}}" />
+            <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
+                <view class="flex align-start">
+                    <i-icon type="lock" color="#ffa200" size="18" wx:if="{{item.is_recommend==0}}" style="margin-top:-4rpx" />
                     <view class="flex-sub ml-xs">
                         <view class="tit ">
                             <view class="">{{item.goods_name}}</view>
@@ -14,37 +14,50 @@
                     </view>
                 </view>
             </navigator>
-            <view class="link">
-                <button class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" size="mini"> 编辑 </button>
-                <button class="hollow" data-id="{{item.goods_id}}" bindtap="delGoods" size="mini"> 删除 </button>
-                <button class="hollow" data-id="{{item.goods_id}}" bindtap="moreAction" size="mini">
-                    <i-icon size="28" color="#49b34d" type="other" />
-                </button>
+            <view class="gray-text ">
+                <text class="ph-xs ph-xs f12px">浏览({{item.pageview_count}})</text>
+                <text class="ph-xs ph-xs f12px">收款总额(￥{{item._order_total}})</text>
+                <view class="f12px" style="color: #ff8900" wx:if="{{item.link_goods.length==2 && item.link_goods[1]!==null}}">
+                    由“{{item.link_goods[1].nickname}}”发货<text wx:if="{{item.link_goods[1].is_del!=-1 && item.link_goods[1].is_on_sale==1}}">[上架中]</text>
+                    <text wx:if="{{item.link_goods[1].is_del==-1}}">[已删除]</text>
+                </view>
+                <view wx:if="{{item.link_goods.length==1 && item.link_goods[0]!==null}}" class="f12px" style="color: #ff8900">
+                    由"{{item.link_goods[0].store_name}}" 发货
+                </view>
             </view>
         </view>
         <view class="statusBar">
-            <!--                                 _expires //是否过期 1正常 2未开始 3已过期
- -->
-            <text wx:if="{{item._expires==2}}" style="color:#2d8cf0">未开始</text>
-            <text wx:if="{{item._expires==1}}" style="color:#19be6b">开团中</text>
-            <text wx:if="{{item._expires==3}}" style="color:#666">已结束</text>
+            <text style="color:#666">
+                {{['','进行中','未开始','已结束','已下架'][item.goods_expires.status]}}
+            </text>
         </view>
     </view>
-    <view class="goods-count">
-        <view class="count-item" data-name="{{item.goods_name}}" data-id="{{item.goods_id}}" bindtap="gofans">
-            <text class="num">{{item.pageview_count}}</text>
-            <text class="label">浏览人数</text>
-        </view>
-        <view class="count-item">
-            <text class="num">￥{{item._order_total}}</text>
-            <text class="label">收款总额</text>
-        </view>
-        <view class="count-item" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}">
-            <text class="num text-primary">{{item._order_count}}</text>
-            <view class="badge" wx:if="{{item._order_status1_count>0}}">+{{item._order_status1_count}}</view>
-            <text class="label ">订单管理</text>
-        </view>
+    <view style="display:flex; justify-content:center">
+        <!-- <button  class="hollow" 
+    data-type="goods"
+    data-cover ="{{item.goods_cover}}"
+    data-goods_name = "{{item.goods_name}}"
+    data-goods_id = "{{item.goods_id}}"
+
+     size="mini" open-type="share">分享</button> -->
+        <button wx:if="{{item.link_goods.length == 1 && item.link_goods[0]==null}}" class="hollow" data-url="{{item.goods_id}}" bindtap="editPage" data-name="{{item.goods_name}}" data-id="{{item.goods_id}}" size="mini">
+            修改
+        </button>
+        <button wx:else class="hollow" bindtap="editPrice" data-link_goods="{{item.link_goods}}" data-id="{{item.supplier_goods_id}}" data-goods_id="{{item.goods_id}}" size="mini">
+            改价
+        </button>
+        <button class="hollow" data-url="{{item.goods_id}}" bindtap="gofans" data-name="{{item.goods_name}}" data-id="{{item.goods_id}}" size="mini">
+            访客
+        </button>
+        <button class="hollow" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}" size="mini">
+            订单({{item._order_count}})
+        </button>
+        <button class="hollow" size="mini" data-id="{{item.goods_id}}" bindtap="handleAction">
+            操作
+            <i-icon size="22" color="#36cc3b" type="unfold" />
+        </button>
     </view>
-    <!--      <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" />  -->
+    <!-- <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" /> -->
+    <van-action-sheet show="{{ show }}" actions="{{ itemList }}" bind:close="onClose" bind:select="onSelect" />
     <van-dialog id="van-dialog" />
 </view>

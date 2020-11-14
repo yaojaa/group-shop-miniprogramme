@@ -1,0 +1,11 @@
+@import "../../css/common.wxss";
+.coupon-item,.coupon-guest{
+	border:1px solid #49b34d;
+	border-radius: 8rpx;
+	background: #fff;
+	margin:30rpx;
+	padding: 20rpx;
+}
+.w-min-160{
+	width:160rpx !important;
+}

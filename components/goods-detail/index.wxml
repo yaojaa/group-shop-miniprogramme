@@ -1,0 +1,25 @@
+<view class='goods-content-wraper por'>
+    <block wx:if="{{content.html}}">
+        <rich-text nodes="{{content.html}}"></rich-text>
+    </block>
+    <block wx:if="{{content.length}}">
+        <!--编辑器正文区-->
+        <view class="content-item" wx:for="{{content}}">
+            <view class="text" wx:if="{{ item.type === 'text' }}">
+                <text> {{item.desc}} </text>
+            </view>
+            <block wx:if="{{ item.type === 'image' }}">
+                <image class="image" src="{{ item.src }}" mode="widthFix"></image>
+            </block>
+            <block wx:if="{{ item.type === 'video' }}">
+                <video class="video" width="100%" src="{{ item.src }}"></video>
+            </block>
+            <block wx:if="{{item.type == null}}">
+                <rich-text nodes="{{item}}"></rich-text>
+            </block>
+        </view>
+    </block>
+    <view class="load-area" wx:if="{{!content}}">
+        <wux-spin wux-class="spin" />
+    </view>
+</view>

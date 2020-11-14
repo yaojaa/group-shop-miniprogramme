@@ -1,0 +1,45 @@
+@import "../../css/common.wxss";
+
+.goods-content-wraper {
+  /*    border-radius: 10px;
+    box-shadow: 0 0px 33px #eee;*/
+  background: #fff;
+  border: 1px solid #f9f9f9;
+  padding:30rpx 10px ;
+}
+
+.goods-content:before {
+  content: '“';
+  color: #888;
+  font-size: 22px;
+  position: relative;
+  left: 0px;
+  bottom: 3px;
+}
+
+.goods-content:after {
+  content: '”';
+  color: #888;
+  font-size: 22px;
+  position: relative;
+  right: 0px;
+  bottom: 3px;
+}
+
+.content-item{
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.content-item .image, .content-item .video{
+  width: 100%;
+  margin: 0;
+  padding:0;
+  display: block;
+}
+
+.text{
+    margin:3px 0;
+  word-wrap : break-word ;
+  word-break : break-all 
+}

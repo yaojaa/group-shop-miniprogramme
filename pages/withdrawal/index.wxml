@@ -1,43 +1,45 @@
-
 <view class="container">
-	<view class="text-justify f14">
-		<view>账户余额（元）</view>
-<!-- 		<view>余额明细</view>
- -->	</view>
-	<view class="money-box"><view class="money-yuan">¥ </view><view class="money-num"> {{pending_money}}</view></view>
-	<view class="withdraw-box">
-	<input value="{{inputMoney}}" type="number" bindinput="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
-	</view>
-	<button type="primary" class="linenear_bg" bindtap="getMoney"> 立即提现 </button>
-
-
-	<scroll-view scroll-y  style="height: 120px" class="list" wx:if="{{withdrawalslist.length}}">
-
-		<view class="item" wx:key="{{index}}" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
-			
-{{item.apply_time_txt}}
- 申请金额：{{item.apply_money}}
- {{item.withdraw_status_txt}}
-
-		</view>
-
-	
+    <view class="text-justify f14">
+        <view>账户余额（元）</view>
+        <navigator class="blue_txt" url="../withdrawal-record/index">累计为您收款{{store_money}}元></navigator>
+    </view>
+    <view class="money-box">
+        <view class="money-yuan">¥ </view>
+        <view class="money-num"> {{pending_money}}</view>
+    </view>
+    <view class="withdraw-box">
+        <input value="{{inputMoney}}" type="number" bindinput="inputMoneyChange" title="提现金额" autofocus placeholder="0.00" />
+    </view>
+    <button type="primary" class="linenear_bg" bindtap="getMoney"> 立即提现 </button>
+    <scroll-view scroll-y style="height: 120px" class="list" wx:if="{{withdrawalslist.length}}">
+        <view class="item" wx:key="{{index}}" wx:index="{{index}}" wx:for="{{withdrawalslist}}">
+            {{item.apply_time_txt}}
+            申请金额：{{item.apply_money}}
+            {{item.withdraw_status_txt}}
+        </view>
     </scroll-view>
-
     <!-- <view>累计收款：{{store_money}}元</view>
      <view>约为您节省{{store_money/40*4}}小时</view> -->
+    <view class="erweima" style="font-size: 14px;line-height: 1.5; text-align: left;color: #cc0000">
+        <view>提现微信收取手续费0.6%，平台不收任何费用。全网最低！</view>
+          <view>微信限制每天最高提现2万元。</view>
+         <view> 有疑问可联系客服。</view>
+    </view>
+    <view class="center">
+        <button open-type="contact" bindcontact="handleContact">联系客服</button>
+    </view>
 
-    	<view class="erweima" style="font-size: 14px;line-height: 1.5; text-align: left;color: #cc0000">
-
-			提现微信收取手续费0.6%，平台不收任何费用。微信限制每天最高提现5000元，超过次日到账。
-			默认1天内到账，有疑问可联系客服。
-
-		</view>
-
-		<view class="center">
-			<button  open-type="contact" bindcontact="handleContact">联系客服</button> 
-	    <i-message id="message" />
-		</view>
+     <van-dialog   show="{{ showDialog }}" id="dialog-success" use-slot>
+        <view class="dialog-head">
+            <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
+            <view class="title">
+                <view>提现成功</view>
+            </view>
+        </view>
+        <view class="p-lg text-center text-gray text-df">
+        请查收 如有疑问联系客服
+        </view>
+    </van-dialog>
 
 
 </view>

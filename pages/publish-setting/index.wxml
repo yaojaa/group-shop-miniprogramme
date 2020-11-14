@@ -1,0 +1,19 @@
+<view class="container">
+  <van-cell-group title="其它设置">
+  <van-cell title="隐藏跟团名单"  label="不展示跟团名单 不显示已售数量" >
+<van-switch  slot="right-icon"
+  checked="{{ show_buyerlist }}"
+   bind:change="onChange" 
+  active-color="#69b90b"
+/>
+  </van-cell>
+</van-cell-group>
+
+
+<view class="footer-btn">
+
+	  <button style="margin: 0 30px" bindtap="save"  class="weui-btn weui-btn_primary linenear_bg">保存</button>
+
+	
+</view>
+</view>

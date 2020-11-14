@@ -1,0 +1,29 @@
+<view class="container">
+    <text class="iconfont icon-calendar text-xxl text-gray top-filter"></text>
+    <view class="record-box">
+        <view class="record-bd ph-df" wx:if="{{info.length}}">
+            <view class="record-item flex" wx:for="{{info}}" wx:key="{{index}}">
+                <view class="flex-sub">
+                    <view class="text-justify">
+                        <text>提现到微信零钱</text>
+                        <text class="">¥ {{item.apply_money}}</text>
+                    </view>
+                    <view class="text-justify f13 mt-lt">
+                        <text class="text-muted">{{item.apply_time_txt}}</text>
+                        <text class="text-sm {{item.user_withdraw_status == 0?'danger-text':''}} {{item.user_withdraw_status == 1?'warning-text':''}} {{item.user_withdraw_status == 2?'success-text':''}}">{{item.withdraw_status_txt}}</text>
+                    </view>
+                    <view class="solid-bottom mt-df"></view>
+                </view>
+            </view>
+        </view>
+        <view class="no-content" style="height:80vh" wx:else>
+            <view class="no-content-bd">
+                <view class="no-content-des"><text>您还没有提现记录</text></view>
+            </view>
+        </view>
+    </view>
+    <view class="load-box" wx:if="{{loading}}">
+        <wux-spin wux-class="spin" size="large" />
+    </view>
+
+</view>

@@ -1,0 +1,38 @@
+<view class="container ">
+    <view class="header flex">
+        <!-- <image class="logo mr-df" src="{{info.supplier_logo}}?imageView2/2/w/200/h/200/format/jpg/q/75"  /> -->
+        <view class="title">{{info.supplier_intro}}</view>
+    </view>
+    <view class="goods-panel white-bg cf">
+        <view class="goods-panel-bd" wx:for="{{goodsList}}" wx:key="index">
+            <navigator url="/business/pages/goods-user/goods?id={{item.goods_id}}" hover-class="none" class="flex p-df goods-panel-item">
+                <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
+                <view class="flex-sub por">
+                    <view class="text-hide two-line  bold title">{{item.goods_name}}</view>
+                    <view class="text-muted mt-xs text-sm des text-justify">
+                        <text class="pr-sm">已售 {{item.sold_number}}</text>
+   <text wx:if="{{item.goods_expires ==3}}" style="color:#ffcc00">已结束</text>
+   <text wx:if="{{item.goods_expires ==2}}" style="color:#19be6b">未开始</text>
+
+                    </view>
+                    <view class="mt-xs des text-justify">
+                        <view>
+                            <text class="text-muted text-sm ">采购：</text>
+                            <text class="coral-text ">¥{{item.price_min}}</text>
+                        </view>
+                        <view class="flex align-center text-gray ">
+                            <van-icon name="shopping-cart-o" size="46rpx" />
+                            <text class="text-muted ph-xs"></text>
+                            <van-icon name="share" size="46rpx" data-id="{{item.goods_id}}" bindtap="goods_up" />
+                        </view>
+                    </view>
+                </view>
+            </navigator>
+            <view class="solid-bottom mh-df"></view>
+        </view>
+    </view>
+    <footerbar active="{{active}}" />
+    <view class="load-box" wx:if="{{loading}}">
+        <wux-spin wux-class="spin" size="large" />
+    </view>
+</view>

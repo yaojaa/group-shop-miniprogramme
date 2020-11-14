@@ -1,0 +1,36 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents":
+    {
+        "i-icon": "../../../iView/icon/index",
+        "i-spin": "../../../iView/spin/index",
+        "i-cell-group": "../../../iView/cell-group/index",
+        "i-cell": "../../../iView/cell/index",
+        "i-panel": "../../../iView/panel/index",
+        "i-input-number": "../../../iView/input-number/index",
+        "i-modal": "../../../iView/modal/index",
+        "i-action-sheet": "../../../iView/action-sheet/index",
+        "i-button": "../../../iView/button/index",
+        "i-card": "../../../iView/card/index",
+        "i-message": "../../../iView/message/index",
+        "i-count-down": "../../../iView/count-down/index",
+        "i-badge": "../../../iView/badge/index",
+        "share-painter": "/iView/share-painter/share-painter",
+        "imgs": "../../../components/imgs/imgs",
+        "preview-view": "../../../components/preview-img/view",
+        "comment": "../../../components/comment/index",
+        "van-popup": "../../../vant/popup/index",
+        "van-action-sheet": "../../../vant/action-sheet/index",
+        "custom-bar": "../../../components/custom-bar/index",
+        "goods-detail": "../../../components/goods-detail/index",
+        "wux-gallery": "../../../wux/gallery/index",
+        "van-dialog": "../../../vant/dialog/index",
+        "van-cell": "../../../vant/cell/index",
+        "van-cell-group": "../../../vant/cell-group/index",
+        "van-icon": "../../../vant/icon/index",
+        "i-modal": "../../../iView/modal/index",
+          "van-goods-action": "../../../vant/goods-action/index",
+          "van-goods-action-icon": "../../../vant/goods-action-icon/index",
+          "van-goods-action-button": "../../../vant/goods-action-button/index"
+    }
+}

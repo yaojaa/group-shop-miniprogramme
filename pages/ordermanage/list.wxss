@@ -90,8 +90,8 @@ border-radius:8rpx;
     padding-bottom: 8px;
 }
 .order-hd .number{
-    width: 80rpx;
-    height: 80rpx;
+    width: 70rpx;
+    height: 70rpx;
     text-align: center;
     line-height: 50rpx;
     background: #f2f2f2;
@@ -113,17 +113,16 @@ border-radius:8rpx;
 
 .order-hd .user-info .name{
     color:#555;
-    font-size: 26rpx;
-    width: 260rpx;
+    font-size: 24rpx;
     text-overflow: ellipsis;
     display: inline-block;
+    margin-bottom: 2px;
 }
 .order-hd .user-info .tel{
     color:#999;
     font-size: 22rpx
 }
 .order-hd .order-status{
-    width: 200rpx;
     text-align: right;
     font-size: 28rpx;
     line-height: 1.2;
@@ -158,6 +157,7 @@ border-radius:8rpx;
 }
 .order-fd{
     text-align: right;
+    overflow: hidden;
 
 }
 .order-fd form{
@@ -190,7 +190,7 @@ padding: 15rpx 30rpx
 .remark{
     font-size: 24rpx;
     color: #666;
-    padding: 18rpx 20rpx 18rpx
+    padding: 0 20rpx 18rpx
 }
 .tabsArea{
         border-radius: 10px 10px 0 0;
@@ -232,7 +232,9 @@ padding: 15rpx 30rpx
 }
 .note-box{
     position: relative;
-    margin-bottom: -5px;
+    margin-top: 10px;
+    color:#999;
+
 }
 .note-icon{
     position: absolute;
@@ -241,14 +243,20 @@ padding: 15rpx 30rpx
     z-index: 11;
 }
 .note-input{
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.2;
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
     margin-bottom: -1px;
     overflow: hidden;
     padding-left: 10px
 
+}
+
+.right{
+    float: right;
+    font-size: 12px;
+    margin-top: 10rpx;
 }
 
 .modifybtn{
@@ -260,8 +268,8 @@ padding: 15rpx 30rpx
 .copybtn{
     position: absolute;
     right: 10px;
-    top: 40rpx
-}
+    top: 40rpx;
+    background: #f8f8f8}
 .btn-toset_del{
     background: #f00
 }
@@ -285,8 +293,8 @@ padding: 15rpx 30rpx
 }
 .actionsButtons{
     position: absolute;
-    right: 10rpx;
-    top: -5rpx
+    right: 25rpx;
+    top: 23rpx
 }
 .goods_title{
     max-width: 300rpx;
@@ -296,7 +304,14 @@ padding: 15rpx 30rpx
       white-space: nowrap;
 }
 .address{
-    font-size:12px
+    font-size:10px;
+    padding:24rpx 5px;
+    line-height:1.6;
+    color:#999
+
+}
+.blue_text{
+    color:#105f96!important
 }
 
 .copy-address{
@@ -310,8 +325,8 @@ padding: 15rpx 30rpx
     margin: 3rpx 0 25rpx
 }
 .userinfo-avatar{
-    width: 80rpx;
-    height: 80rpx;
+    width: 70rpx;
+    height: 70rpx;
     border-radius: 50%
 
 }
@@ -336,9 +351,13 @@ padding: 15rpx 30rpx
     display: flex;
     align-items: center;
     justify-content:flex-end;
+    margin:10px 0
 }
 .express-msg{
-    height: 80rpx;
-    width: 84rpx;
+    height: 30rpx;
+    width: 280rpx;
+    line-height:30rpx;
+    color:#999;
+    font-size:12px;
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAcCAYAAADr9QYhAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1QTEyRTA0MUI4NDYxMUU5QTQwM0UwNjQ5MEVBMEUzOCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1QTEyRTA0MkI4NDYxMUU5QTQwM0UwNjQ5MEVBMEUzOCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjVBMTJFMDNGQjg0NjExRTlBNDAzRTA2NDkwRUEwRTM4IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjVBMTJFMDQwQjg0NjExRTlBNDAzRTA2NDkwRUEwRTM4Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+4hbPPgAAA+VJREFUeNrMVjFP21AQvmccpG5h6NIFUH8AiVQYGzMxdCBIDVKnGHXsACxdk/QPAGuXmKUDUGHY2oWwQqXGUteK8AuApQNO8vqd8wzGenHsFKRaOBZ+vnt3333vuxOU4VrYt108lmmM66ziiFHfmFkcSkl5AZd9osUsdl2TOmm+M8fJ8kfFadETXAb9R9dQZOb37AIJOkFV8o+xEftDiX/q1m5NmmqvONfaYAqHdp58aqpAGpElG/d00qawncn5YloIaZGkghSUl0RHvkmO2aVNI5Yc+HfNgQxFJufTFrIogLBr56uOE8nOwnttMAsHa1UwvEI9ekNC8qtL/F4joRe4Lfzvgmvbmcr0at/egLENR7vRQBLLSdREIAhe/hKobZfo9QTRJwRuISEPz+dAZQbfdVIHE9SVaAvwen6ONlIFwrySQEFSUQhRRkAvJ4Q45nd9AQmAQ/ydPLRbK8V9+TnpmVGeCJ8O4fQGgZTDOiZwI/zeO1t1rAGq1Y+GEM+A6h7e2QppKyoH8/s21E9W4/4mfboPJtelQ6QwA0eLCGSkSE32wAN8D2IWFUo2EHgX5xkIy6W6uVdO2oZdRyMybVPJfJ0GJGukFTRsUIbjU0aQs0cgTbz7xgRHYOtAd5fX8I5Jf+cTgbbxaGs5o2Cs4T5C/6in7w0BIan49f200et9D7ghaAmvlrhl4ETeoJSu6FKJ0UolesYAEb6WgZBMgUgIOWdXmuj3PiujDyjZlyjXGHHFQTeTAvNRFjS6oQljADGeLRitK0RWzt46rubI17DWiAY4IDBVNUmeRoNxzjM0QN4cG/aFFH9whGX0lE12ESRRXVd63keXtAgJPGavsZG1AV35jVK7KImaF+4y3QFZN4Z0/Nbjdm1BVYYWGxbQ6GYVSRs863Dj0wXyJPOMwtvDb6AnSpcc+sfLTFJYdN85JdWXcSFMyjxm641S88QyMR+gyBcYA1p8g5AX4EQt5Zxcw/dXoS37YX9jBbNwYJdBTHRhDAIgIfNAaUudO/qIQOrqFF0qux2eidgf+81cJtkP1JiFqhCWBrA7UNQ2nPLa9nAa0Tq6tXebIyssDRJwkfGJ8psofkJlEy8B68ODTIaJVfzCadqMD1HYoxOdEHnoglrPxrlkwriFyHmqC8ZBZF/Sn2SMj4NytYet42fO0M3MkmUnYouurSO10NQ9yIKHJdVh74bpYPqrOPbwE0QdOLxCmYrhZkocmzrERgajekoLKxL1D5QSQ7XFk1uUCwmq3OQyAA2X551g/h0MYIXMp4nRYPLCySmc8eA0C2e7owJRtg4rcGBLtIIEpvhUsW2ao/1XgAEAQzTrGERLVVEAAAAASUVORK5CYII=') no-repeat center/35rpx 28rpx;
 }

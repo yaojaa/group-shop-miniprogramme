@@ -1,0 +1,123 @@
+<view class="container gray-wrap cf">
+
+    <footerbar active="{{0}}" />
+
+
+    <view wx:if="{{userInfo.store.store_id}}" class="switch" bindtap="swichToLeader" style="top:{{top}}px"><van-icon name="exchange" color="#fff" size="24px"/>
+    </view>
+
+    <view class="head-box">
+        <view class="flex align-center">
+            <navigator url="../base-info/index" hover-class="none">
+                <view class="user-avatar mh-df">
+                    <image class="user-avatar" src="{{info.supplier_logo}}" />
+                    <view class="set-icon">
+                        <i-icon type="setup_fill" color="#ffa70f" size="16" />
+                    </view>
+                </view>
+            </navigator>
+            <view class="flex-sub pr-lg">
+                <view class="flex justify-between text-white">
+                    <view class="user-box">
+                        <view class="shop-name mr-sm">{{info.supplier_name}} </view>
+                        <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" >{{userInfo.nickname}}
+                        </navigator>
+                    </view>
+                
+                    <navigator url="../withdrawal/index" hover-class="none" class="text-center"  wx:if="{{!isCustome}}">
+                        <view class="text-lg bold">¥ {{pending_money || 0}}</view>
+                        <view class="text-sm mt-xs">账户提现</view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+<!--                 <view class="ads one-line">{{info.supplier_intro}}</view>
+ -->
+    </view>
+
+<!--     <view class="head-box gradual-bg">
+
+    <van-icon name="exchange" size="18px" />
+
+        <view class="shop-box">
+            <view class="flex align-center" bindtap="goInfoSet">
+                <block>
+                    <image src="{{info.supplier_logo}}" class="round align-self-center home-avatar"></image>
+                </block>
+                <view class="flex-sub mh-sm">
+                    <text class="shop-name">{{info.supplier_name}}</text>
+
+                    <text class="f12">红叶舞秋山</text>
+
+                </view>
+            </view>
+
+<van-icon name="cash-back-record" />
+
+        </view>
+
+        <view class="ads">{{info.supplier_intro}}</view>
+
+    </view> -->
+
+
+    <view class="icon-nav-box mt-sm round-df">
+        <van-button bindtap="goAdd"  block>+ 添加新产品</van-button>
+
+        <view class="goods-panel white-bg cf">
+
+
+          <view class="no-content" wx:if="{{goodsList.length == 0}}">
+
+          </view>
+
+
+           
+
+
+
+            <view class="goods-panel-bd" wx:for="{{goodsList}}" wx:key="index">
+                <view class="solid-bottom"></view>
+                <navigator url="/business/pages/goods/goods?id={{item.goods_id}}" hover-class="none" class="flex pv-df mh-sm pv-dh goods-panel-item">
+                    <image src="{{item.goods_cover}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm"></image>
+                    <view class="flex-sub por">
+                        <view class="text-hide two-line  bold title">
+                            {{item.goods_name}}    
+                        </view>
+                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 {{item.sold_number}}             <text style="color:#19be6b" wx:if="{{item.is_on_sale==2}}">已下架</text>
+</text>
+
+        
+
+            {{is_on_sale}}
+
+                        </view>
+                     
+                    </view>
+                </navigator>
+
+
+<view  style="display:flex; justify-content:center" >
+
+    <button size="mini" class="hollow"  bindtap="goEdit" data-goods_id="{{item.goods_id}}" text="修改" >修改</button>
+  <button size="mini" class="hollow"  bindtap="removeGoods" data-index="{{index}}"   data-goods_id="{{item.goods_id}}" text="删除" >删除</button>
+
+  <button size="mini" class="hollow" text="下架"   data-index="{{index}}"  bindtap="changOnSale" data-status="{{item.is_on_sale}}"  wx:if="{{item.is_on_sale==1}}" data-goods_id="{{item.goods_id}}">下架</button>
+
+  <button size="mini" class="hollow" text="上架"  bindtap="changOnSale" data-status="{{item.is_on_sale}}" wx:if="{{item.is_on_sale==2}}" data-index="{{index}}"  data-goods_id="{{item.goods_id}}">上架</button>
+
+  <button size="mini" class="hollow"  text="订单"  bindtap="goGoodsOrder" data-goods_id="{{item.goods_id}}" data-goods_name="{{item.goods_name}}" > 订单</button>
+
+
+</view>
+
+            </view>
+        </view>
+    </view>
+
+
+
+    <van-dialog id="van-dialog" />
+    <van-toast id="van-toast" />
+    <auth />
+</view>

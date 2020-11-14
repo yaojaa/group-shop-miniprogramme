@@ -36,7 +36,7 @@ baseComponent({
         header: {
             type: Object,
             value: {
-                'Authorization': getApp().globalData.userInfo?getApp().globalData.userInfo.token : wx.getStorageSync('userInfo').token,
+                'Authorization': '',
                 'content-type' : 'multipart/form-data'
             },
         },
@@ -317,6 +317,8 @@ baseComponent({
             const file = this.tempFilePaths.shift()
             const { uid, url: filePath } = file
 
+            header.Authorization = getApp().globalData.userInfo.token
+
 
             console.log( filePath)
 
@@ -324,11 +326,7 @@ baseComponent({
 
             this.onStart(file)
 
-           console.log( url,
-                filePath,
-                name,
-                header,
-                formData)
+           console.log(getApp())
 
             this.uploadTask[uid] = wx.uploadFile({
                 url,

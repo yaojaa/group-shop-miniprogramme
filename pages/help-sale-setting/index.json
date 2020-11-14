@@ -1,0 +1,26 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "帮卖价格设置",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee",
+    "usingComponents":
+    {
+        "van-cell": "../../vant/cell/index",
+        "van-field": "../../vant/field/index",
+        "van-cell-group": "../../vant/cell-group/index",
+        "van-notify": "../../vant/notify/index",
+        "van-checkbox": "../../vant/checkbox/index",
+        "van-checkbox-group": "../../vant/checkbox-group/index",
+        "van-area": "../../vant/area/index",
+        "van-popup": "../../vant/popup/index",
+        "van-icon": "../../vant/icon/index",
+        "van-datetime-picker": "../../vant/datetime-picker/index",
+        "van-popup": "../../vant/popup/index",
+        "van-radio": "../../vant/radio/index",
+        "van-radio-group": "../../vant/radio-group/index",
+        "van-switch": "../../vant/switch/index",
+        "van-dialog": "../../vant/dialog/index"
+
+    }
+}

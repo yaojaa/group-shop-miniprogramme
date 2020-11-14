@@ -1,0 +1,121 @@
+<view wx:if="{{ !isScrollView && !containHeight  }}" class="rich-editor-wrp" style="{{ containWidth ? 'width: ' + containWidth + drawUnit  + ';' : '' }}">
+  <view class="main-editor-ctx">
+    <!-- 如果内容为空，初始的时候显示一个文本框 -->
+    <view wx:for="{{ innerInitData }}" wx:key="{{ index }}" class="item{{index}}">
+      <!-- 编辑中 -->
+      <block wx:if="{{ item.type === 'image' }}">
+        <view class="common-contain image-contain">
+          <view class="up-ctx" bindtap='tapEvent' data-index="{{ index }}" data-type="image">
+            <image wx:if="{{ item.src }}" src="{{ item.src }}?imageView2/2/w/400/h/400/format/jpg/q/75" mode="{{ item.mode ? item.mode : 'widthFix' }}" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : 'width: auto;' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : 'height: auto;' }}"></image>
+          </view>
+          <view class="down-ctx">
+            <view class="op-btn-wrp nt op-style">
+              <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
+                <van-icon color="#999" name="plus" size="22px" />
+                <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
+                  <view class="float-tri"></view>
+                  <view class="item" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
+                    插入{{ item.name }}
+                  </view>
+                </view>
+              </view>
+              <view class='op-btn' bindtap='moveUp' data-index="{{ index }}">
+                <van-icon color="#999" name="arrow-up" size="22px" />
+              </view>
+              <view class='op-btn' bindtap='moveDown' data-index="{{ index }}">
+                <van-icon color="#999" name="arrow-down" size="22px" />
+              </view>
+              <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">
+                <van-icon color="#999" name="delete" size="22px" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <!-- 文本类型 -->
+      <block wx:if="{{ item.type === 'text' }}">
+        <!-- 完成编辑 -->
+        <block>
+          <view class="common-contain text-contain" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.color ? 'color: ' + item.color + ';' : 'color: #33333;' }}{{ item.size ? 'font-size:q ' + item.size + 'rpx;' : 'font-size: 28rpx;' }}">
+            <view class="up-ctx">
+              <textarea auto-height maxlength="3000" bindinput='changeInput' data-index="{{ index }}" class="common-edit-contain" placeholder='请输入文字描述' value="{{item.desc}}"></textarea>
+            </view>
+            <view class="down-ctx" wx:if="{{innerInitData.length > 1}}">
+              <view class="op-btn-wrp nt op-style">
+                <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
+                  <van-icon color="#999" name="plus" size="22px" />
+                  <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
+                    <view class="float-tri"></view>
+                    <view class="item" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
+                      插入{{ item.name }}
+                    </view>
+                  </view>
+                </view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}">
+                  <van-icon color="#999" name="arrow-up" size="22px" />
+                </view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}">
+                  <van-icon color="#999" name="arrow-down" size="22px" />
+                </view>
+                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">
+                  <van-icon color="#999" name="delete" size="22px" />
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <!-- 编辑中 -->
+      </block>
+      <!-- 视频类型 -->
+      <block wx:if="{{ item.type === 'video' }}">
+        <!-- 完成编辑 -->
+        <block>
+          <view class="common-contain video-contain" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : '' }}">
+            <view class="up-ctx" bindtap='tapEvent' data-index="{{ index }}" data-type="video">
+              <video wx:if="{{ item.src }}" src="{{ item.src }}" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : '' }}"></video>
+              <image wx:else class="add-video" src='../../assets/icon/addvideo.png'></image>
+            </view>
+            <view class="down-ctx">
+              <view class="op-btn-wrp op-style">
+                <view class='op-btn' bindtap='newItem' data-index="{{ index }}">
+                  <van-icon color="#999" name="plus" size="22px" />
+                  <view class="float-ctl" wx:if="{{ index === newCurIndex }}">
+                    <view class="float-tri"></view>
+                    <view class="item" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent" data-index="{{ index }}">
+                      插入{{ item.name }}
+                    </view>
+                  </view>
+                </view>
+                <view class='op-btn' bindtap='moveUp' data-index="{{ index }}">
+                  <van-icon color="#999" name="arrow-up" size="22px" />
+                </view>
+                <view class='op-btn' bindtap='moveDown' data-index="{{ index }}">
+                  <van-icon color="#999" name="arrow-down" size="22px" />
+                </view>
+                <view class='op-btn' bindtap='deleteBlock' data-index="{{ index }}">
+                  <van-icon color="#999" name="delete" size="22px" />
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <!-- 编辑中 -->
+      </block>
+    </view>
+  </view>
+  <!-- 主要的控制栏 -->
+  <!-- <view class="main-editor-ctl">
+    <view class="editor-ctl-item ctl-style" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent">
+      插入{{ item.name }}
+    </view>
+  </view> -->
+  <view class="editor-nav">
+    <view class="item" data-type="{{ item.type }}" wx:for="{{ supportType }}" wx:key="{{ index }}" wx:for-index="key" bindtap="insertEvent">
+      <van-icon name="photo-o" size="26" color="#666" wx:if="{{item.type == 'image'}}" />
+      <van-icon name="orders-o" size="26" color="#666" wx:if="{{item.type == 'text'}}" />
+      <van-icon name="video-o" size="26" color="#666" wx:if="{{item.type == 'video'}}" />
+      <view class="label">插入{{ item.name }}</view>
+    </view>
+  </view>
+</view>
+<scroll-view class="rich-editor-wrp" wx:else scroll-y style="{{ containHeight ? 'height: ' + containHeight + drawUnit + ';' : '' }}"></scroll-view>

@@ -1,0 +1,228 @@
+<view class="container">
+    <view class="order-title ">
+
+
+        <view class="link text-success" bindtap="copyLink">去PC端管理订单(点击复制链接)</view>
+
+<van-dialog id="van-dialog" />
+
+      
+      <button type="success"   size="mini" bindtap="exportExcel">导出订单</button>
+          <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
+                    <i-icon size="20" type="other" />
+                </i-button> -->
+
+
+               <!--  <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}" bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx" bind:click="handleClickItem1" />
+                  <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
+                <!--            <i-switch value="{{switchOrderList}}" size="large" bind:change="onChangeOrderSwitch" slot="footer">
+            <view slot="open">展开</view>
+            <view slot="close">收起</view>
+        </i-switch> -->
+        </view>
+    <view class="tabsArea">
+        <van-tabs current="{{ tab }}" color="#ffaa4f" bindchange="handleTab">
+            <van-tab name="3" title="待发货"></van-tab>
+            <van-tab name="4" title="已发货"></van-tab>
+            <van-tab name="6" title="退款售后"></van-tab>
+        </van-tabs>
+    </view>
+    <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
+ -->
+
+
+ <view class="no-content" wx:if="{{dataList[0].length == 0}}">
+     还没有相关订单
+ </view>
+    
+<block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
+
+    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="{{item.order_id}}" wx:if="{{!item.removed}}">
+        <view class="order-hd">
+            <view class="number">
+
+                <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
+            </view>
+            <view class="user-info"><text class="name"> {{item.consignee}}</text>
+              </view>
+                <view class="msg_btn">
+               <!--  <button   class="btn round   mv-sm ml-sm btn-{{btn.opt}}" formType="submit" data-id="{{item.order_id}}" bindtap="openMsgTips" style="color: #999">
+微信通知                </button> -->
+                </view>
+
+            <view wx:if="{{item.order_status == 3}}" data-pi="{{pindex}}" data-ci="{{cindex}}" data-id="{{item.order_id}}" bindtap="checkexpress" class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
+
+               
+
+            </view>
+            <view wx:else class="order-status">
+                <text class="color_{{item.order_status}}"> {{item.order_status_txt}}</text>
+            </view>
+        </view>
+        <view class="order-bd">
+                         <view class="goods_title f12">{{item.order_detail[0].goods_name}}</view>
+
+            <view class="   scale-b-1px" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="g">
+                <view class="text-justify type">
+                <view>{{g.spec_name}} ×{{g.qty}}</view>
+                <view class="text-info">¥ {{g.agent_price}} </view>
+                </view>
+            </view>
+
+            <view class="copy-address f14 scale-b-1px" wx:if="{{item.delivery_method==1}}"  >
+              <!--  <button bindtap="modifyAddress" 
+               data-order_id = "{{item.order_id}}" 
+               class="modifybtn btn gray hollow xs round button-hover"> 修改地址</button>
+ -->
+
+                <button bindtap="copy" 
+                data-province="{{item.province}}"
+                data-city="{{item.city}}"
+                data-district="{{item.district}}"
+
+
+                data-address="{{item.address}}"
+                data-consignee="{{item.consignee}}"
+                data-mobile="{{item.mobile}}"
+                data-order_detail="{{item.order_detail}}"
+                data-text="{{item.province+item.city+item.district+item.address+'（'+item.user_message+'）,'+item.consignee+','+item.mobile+','+item.order_detail[0].spec_name+','+item.order_detail[0].qty}}" class="copybtn btn gray hollow xs round button-hover"> 
+                复制地址
+                </button>
+
+
+                <view class="address">
+                   <view> 收件人：{{item.consignee}} {{item.mobile}} <text   bindtap="copyTxt" data-text="{{item.mobile}}" class="blue_text">复制电话</text></view>
+                   <view>  地址：{{item.province}}{{item.city}}{{item.district}}{{item.address}} {{item.user_message}}</view>
+                </view>
+            </view>
+            <view class="remark scale-b-1px" wx:if="{{item.user_message}}">
+                <text class="text-danger" selectable="true" data-text="{{item.user_message}}" bindtap="copy" data-text="{{item.user_message}} ">
+                    用户备注：{{item.user_message}}
+                </text>
+            </view>
+            <view class="total text-justify scale-b-1px">
+                <view><text class="warning-text f18">¥{{item.total_price - item.profit}} </text>
+                    <text class="success-text" wx:if="{{item.pay_status==1}}">已支付</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==0}}">待支付</text>
+                    <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败</text>
+                </view>
+                <view class="text-right"> <text class="order-date">{{item.addtime}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="order-fd scale-b-1px">
+
+            <button wx:if="{{item.order_refund_id && item.order_refundstatus!==2}}" 
+            data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}"
+            bindtap="to_refund" class="f12 {{item.order_refundstatus==1?'text-danger':'gray-text'}} " style="float: left;margin-top: 25rpx">
+        
+        <text wx:if="{{item.order_refundstatus==1}}">有退款申请</text>
+        <text wx:else>退款信息</text>
+
+    </button>
+            <!--  <view class="spec_item">
+                
+            <text  wx:for="{{item.goods}}" wx:key="{{index}}" wx:for-item="g">
+                {{g.spec_key_name}} ×{{g.goods_num}}
+            </text>
+            </view> -->
+
+            <block wx:if="{{item.order_refundstatus!==4}}" wx:for="{{item.supplier_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
+                    <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" 
+                    data-id="{{item.order_id}}" 
+                    data-opt = "{{btn.opt}}"
+                    data-cindex = "{{cindex}}"
+                    data-pindex = "{{pindex}}"
+                    data-txt = "{{btn.txt}}" 
+                    bindtap = "orderActions"
+                    >{{btn.txt}}</button>
+            </block>
+
+            <view class="express" wx:if="{{item.order_status == 3 && item.delivery_method == 1 }}">
+                <view wx:if="{{item.express.length > 0}}" class="express-msg" bindtap="checkexpress" data-ci="{{cindex}}" data-sn="{{item.order_sn}}" data-id="{{item.order_id}}" data-pi="{{pindex}}"></view>
+                <button data-pi="{{pindex}}" class="btn round primary  w-min-big mv-sm ml-sm" data-ci="{{cindex}}" data-id="{{item.order_id}}" data-sn="{{item.order_sn}}" bindtap="checkexpressorder">
+                    <block wx:if="{{item.express.length > 0}}">快递单号</block>
+                    <block wx:else>录入单号</block>
+                </button>
+            </view>
+        </view>
+
+    </view>
+
+</block>
+
+   <view class="text-center" wx:if="{{dataList.length == 0}}">
+        暂无订单
+    </view>
+
+   <view class="text-center mb-sm">
+        <wux-spin wx:if="{{loading}}"></wux-spin>
+  </view>
+
+
+
+
+
+    <i-modal title="订单确认" visible="{{ visible1 }}" actions="{{ actionsConfirm }}" bind:click="toConfirm">
+        <view>确认订单信息无误，可以接单</view>
+    </i-modal>
+    <i-modal title="取消订单" visible="{{ visible3 }}" actions="{{ actionsCancel }}" bind:click="toCancel">
+        <view>确定要取消这个订单吗？</view>
+    </i-modal>
+    <i-modal title="确认发货" visible="{{ visible2 }}" bind:ok="toShipping" bind:cancel="closeShipping">
+        <view class="price-input">
+            已经给Ta发完货了吗？
+            <!--             <input bindinput="noteInput" value="{{note}}" placeholder="备注(选填)" />
+ -->
+        </view>
+    </i-modal>
+    <i-modal title="确认已支付" visible="{{ visible4_pay }}" bind:ok="setPay" bind:cancel="closePay">
+        <view class="price-input">
+            请确认Ta已经线下支付过了哦
+        </view>
+    </i-modal>
+    <i-message id="message" />
+</view>
+
+<view class="alert-box" hidden="{{!isShowTui}}">
+    <view class="alert-main">
+        <view class="top-cell">
+            <text>操作退款</text>
+            <icon type="cancel" size="23" bind:tap="closeTui"></icon>
+        </view>
+
+        <view class="mid-cell">
+            <view>￥ {{orderData.pay_price}}             {{item.order_refundstatus}} </view>
+            <text class="f28">退款金额将从您的账户余额中扣除，请确保账户余额。</text>
+        </view>
+        <view class="center-content">
+            <scroll-view scroll-y>
+                <van-collapse value="{{ activeNames }}" bind:change="onChange">
+                  <van-collapse-item title="明细" name="1">
+                    <view class="f28">已退：0  剩余可退：{{orderData.pay_price}}元</view>
+                    <view class="f28">订单金额：{{orderData.pay_price}}</view>
+                    <view class="f28">商品总金额：{{orderData.pay_price}}</view>
+                  </van-collapse-item>
+                  <van-collapse-item title="商品信息" name="2">
+                    <view class="f28">{{orderData.order_detail[0].goods_name}}</view>
+                    <block wx:for="{{orderData.order_detail}}">
+                        <view class="f28">{{item.spec_name}} × {{item.qty}}</view>
+                        <view class="f28">¥ {{item.total_price}}</view>
+                    </block>
+                  </van-collapse-item>
+                </van-collapse>
+
+            </scroll-view>
+        </view>
+        <view class="bottom-btn">
+            {{item.order_refundstatus}}
+            <button wx:if="{{item.order_refundstatus==1}}" type="primary" data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}">确认退款</button>
+            <button wx:else type="primary" data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}" bind:tap="closeTui">关闭</button>
+        </view>
+    </view>
+</view>
+
+        <footerbar active="{{1}}" />
+
+

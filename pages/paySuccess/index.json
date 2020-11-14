@@ -1,4 +1,6 @@
 {
+
+  "navigationBarTitleText": "恭喜您 参与成功",
   "usingComponents": {
     "i-panel": "/iView/panel/index",
     "i-cell": "/iView/cell/index",

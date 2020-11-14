@@ -1,0 +1,19 @@
+{
+    "navigationBarTitleText": "最新订单",
+    "usingComponents":
+    {
+        "van-notify": "../../vant/notify/index",
+        "van-tab": "../../vant/tab/index",
+        "van-tabs": "../../vant/tabs/index",
+        "van-popup": "../../vant/popup/index",
+        "van-dialog": "../../vant/dialog/index",
+        "order-list": "../../components/order-item-seller/index",
+        "i-custom-bar": "../../components/custom-bar/index",
+        "i-spin": "../../iView/spin/index",
+        "van-cell": "../../vant/cell/index",
+        "van-cell-group": "../../vant/cell-group/index",
+        "van-icon": "../../vant/icon/index",
+        "footerbar": "../../components/footerbar/index"
+
+    }
+}

@@ -1,0 +1,5 @@
+<view class="page-body">
+  <view class="page-section page-section-gap">
+    <web-view src="https://www.kaixinmatuan.cn/ems.php"></web-view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+{
+    "navigationBarBackgroundColor": "#ffaa4f",
+    "navigationBarTextStyle": "white",
+    "usingComponents":
+    {
+       "i-panel": "../../iView/panel/index",
+       "van-card": "../../vant/card/index",
+       "van-grid": "../../vant/grid/index",
+       "van-grid-item": "../../vant/grid-item/index",
+       "van-icon": "../../vant/icon/index",
+       "van-cell": "../../vant/cell/index",
+       "van-cell-group": "../../vant/cell-group/index",
+       "footerbar": "../../components/footerbar/index",
+       "van-tag": "../../vant/tag/index",
+       "van-dialog": "../../vant/dialog/index"
+
+    }
+}

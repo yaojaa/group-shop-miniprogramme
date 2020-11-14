@@ -1,0 +1,17 @@
+{
+    "navigationBarTitleText": "快递单号",
+    "usingComponents":
+    {
+        "van-cell": "../../../vant/cell/index",
+        "van-cell-group": "../../../vant/cell-group/index",
+        "van-field": "../../../vant/field/index",
+        "van-picker": "../../../vant/picker/index",
+        "van-popup": "../../../vant/popup/index",
+        "van-button": "../../../vant/button/index",
+        "i-custom-bar": "../../../components/custom-bar/index",
+        "wux-timeline": "../../../wux/timeline/index",
+        "wux-timeline-item": "../../../wux/timeline-item/index",
+        "van-switch": "../../../vant/switch/index",
+        "i-icon": "../../../iView/icon/index"
+    }
+}

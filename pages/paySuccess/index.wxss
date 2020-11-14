@@ -1,13 +1,8 @@
+@import "../../css/common.wxss";
 page{
-   background-color: #fcfffa; 
+  background: #ffffff
 }
-.body{
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 60px;
-  right: 0;
-}
+
 .scroll-view{
   height: 100%;
 }
@@ -27,22 +22,24 @@ page{
 }
 .content{
   height: 100%;
-  padding: 0 15px 200rpx;
 }
 .header{
  align-items: center;
-  height: 100rpx;
   text-align: center;
   display: block;
-  line-height: 150rpx
 }
 .header .title{
-  font-size: 24px;
-  color: green;
-  font-weight:bold
+  font-size: 40rpx;
+  color: #ff7200;
+  font-weight:bold;
+ margin-bottom:25rpx;
+ text-overflow: ellipsis;
+ word-break: keep-all;
+ white-space: nowrap;
+
 }
 .order{
-  margin: 25px 0;
+  margin: 25px 20px;
   background-color: #f7efe3;
   border-radius: 8px;
   overflow-x: hidden;
@@ -166,6 +163,12 @@ page{
 
 }
 
+.photos-mini{
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+
 .user{
   display: flex;
   justify-content: space-between;
@@ -180,6 +183,71 @@ page{
   width: 30px;
   border-radius: 50%;
   overflow: hidden;
+}
+
+.img2{
+
+  height: 160rpx;
+  width: 160rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  display: inline-block;
+  margin:0 auto 35rpx;
+
+}
+
+.emoji{
+  font-size: 60rpx;
+  text-align: center;
+}
+.imglist{
+  text-align: center;
+  background: #f7efe3;
+  border-radius:8px;
+  margin-bottom: 180rpx;
+  margin-top: 20rpx;
+  margin-left: 5px;
+  margin-right: 5px;
+  overflow: hidden;
+  display: flex;
+
+}
+
+
+#left{
+  width: 200px;
+  height: 100px;
+}
+#right{
+  height: 100px;
+  flex: 1;
+}
+
+.count{
+  color: #ff7200
+}
+
+.imglist .right{
+  font-size: 46rpx;
+text-align: left;
+line-height: 1.6;
+height: 160rpx;
+overflow: hidden;
+  flex: 1;
+  padding: 10px;
+
+}
+.photos{
+
+  height: 160rpx;
+  width: 160rpx;
+  overflow: hidden;
+    border-radius:8px;
+
+  text-align: center;
+  display: inline-block;
+  margin: 0 5px
 }
 .user .name{
   width: 200rpx;
@@ -205,3 +273,11 @@ page{
 .back button{
   text-align: center;
 }
+
+.cover_img{
+  opacity: 0.6;
+  width: 100%
+}
+
+
+

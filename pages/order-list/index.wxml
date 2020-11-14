@@ -1,4 +1,4 @@
-<view class="container gray-wrap cf" >
+<view class="container gray-wrap cf">
     <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" swipe-threshold="{{4}}" color="#49b34d">
         <van-tab title="全部"></van-tab>
         <van-tab title="待付款"></van-tab>
@@ -9,13 +9,44 @@
         <view class="order-box">
             <block wx:for="{{order_list}}" wx:key="{{index}}">
                 <order-list item="{{item}}">
-                    <view class="text-right text-gray mt-df" slot="total">
-                        总计：¥<text class="text-black">{{item.total_price}}</text>
-                    </view>
-                    <view class="flex justify-end align-center" slot="footer">
-                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.express.length > 0}}" data-id="{{item.order_id}}" data-index="{{index}}" bindtap="checkexpress">查看物流</button>
+                   
 
-                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}"  wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
+
+
+                    <view class="flex relative justify-end align-center" slot="footer">
+
+
+                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" 
+                        bindtap="goContact" data-phone="{{item.seller.mobile}}" 
+                        data-wx="{{item.seller.wechatnumber}}"
+                        data-nickname="{{item.seller.nickname}}"
+
+                        data-wx_code="{{item.seller.wx_paycode}}"
+
+                         wx:if="{{item.seller.mobile || item.seller.wechatnumber}}"><van-icon name="chat-o" color="#07c160" size="20px" />
+                     </button>
+                    
+            <block wx:if="{{item.order_status==2 || item.order_status==1 }}">
+
+                <button wx:if="{{item.order_status>0}}" data-order_refund_id="{{item.order_refund_id}}" bindtap="toRefund" data-order_id="{{item.order_id}}"  class="btn round primary hollow w-min-big mv-sm ml-sm {{item.order_refund_id?'red':''}}"
+                    >
+                    <block wx:if="{{item.order_refund_id}}">
+                    退款信息
+                </block>
+                    <block wx:else>申请退款</block>
+                </button>
+            </block>
+
+
+
+                    
+                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{item.express && item.express.length > 0}}" 
+
+                            data-user="{{item.user.nickname}}"
+
+                            data-order_sn="{{item.order_sn}}" data-index="{{index}}" bindtap="checkexpress">物流信息</button>
+                        <button class="btn round primary  w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{item.order_id}}" data-txt="{{act.txt}}" data-sn="{{item.order_sn}}" bindtap="orderActions" wx:for="{{item.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
+
                     </view>
                 </order-list>
             </block>
@@ -24,12 +55,24 @@
             <view class="no-content-bd">
                 <image src="https://static.kaixinmatuan.cn/no_data.png" class="no-content-icon"></image>
                 <view class="no-content-des"><text>您还没有相关订单</text></view>
-              
             </view>
         </view>
     </view>
     <van-notify id="custom-selector" />
     <van-dialog id="van-dialog" />
+    <van-dialog id="contact" use-slot>
+        <van-cell-group border="{{false}}" custom-class="mv-df">
+             <van-cell title="昵称：{{nickname}}"  icon="phone-o" title-width="300rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+            <van-cell title="手机号：{{phone}}" value="拨号"  icon="phone-o" title-width="300rpx" bindtap="phoneCall" wx:if="{{phone}}" />
+
+            <van-cell border="{{false}}" title="微信号：{{weChat}}" value="复制" title-width="300rpx"icon="chat-o"  bindtap="copyWx" wx:if="{{weChat}}" />
+
+            <view class="code" wx:if="{{wx_code}}">
+                <image src="{{wx_code}}" data-src="{{wx_code}}" bindtap="previewImage" />
+            </view>
+
+        </van-cell-group>
+    </van-dialog>
     <view class="load-box" wx:if="{{loading}}">
         <wux-spin wux-class="spin" size="large" />
     </view>

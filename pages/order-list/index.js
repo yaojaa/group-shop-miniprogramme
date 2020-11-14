@@ -11,7 +11,9 @@ Page({
         order_list: [],
         loading: false,
         cpage: 1,
-        totalpage: 1
+        totalpage: 1,
+        phone: '',
+        weChat: ''
     },
     handleCancelOrder(event) {
 
@@ -34,6 +36,25 @@ Page({
 
         }
 
+
+    },
+
+    toRefund(e){
+
+        const order_refund_id = e.currentTarget.dataset.order_refund_id || null
+        const order_id = e.currentTarget.dataset.order_id
+
+        if(order_refund_id){
+
+           wx.navigateTo({
+            url:'../refundment-detail/index?order_id='+order_id+'&id='+order_refund_id
+          })
+
+        }else{
+          wx.navigateTo({
+            url:'../refundment/index?order_id='+order_id
+          })
+        }
 
     },
 
@@ -147,7 +168,37 @@ Page({
         })
 
     },
-
+    goContact(e) {
+        const { phone, wx,wx_code,nickname } = e.currentTarget.dataset
+        this.setData({
+            phone: phone,
+            weChat: wx,
+            wx_code:wx_code,
+            nickname:nickname
+        })
+        Dialog.alert({
+            selector: '#contact'
+        })
+    },
+    copyWx(event) {
+        wx.setClipboardData({
+            data: this.data.weChat,
+            success: function(res) {
+                wx.getClipboardData({
+                    success: function(res) {
+                        wx.showToast({
+                            title: '复制成功'
+                        })
+                    }
+                })
+            }
+        })
+    },
+    phoneCall() {
+        wx.makePhoneCall({
+            phoneNumber: this.data.phone
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -156,6 +207,9 @@ Page({
         this.setData({
             active: options.search_status || 0
         })
+
+        this.data.cpage = 1
+        this.getOrderList()
     },
 
     /**
@@ -169,9 +223,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        this.data.order_list = []
-        this.data.cpage = 1
-        this.getOrderList()
+    
     },
 
     /**
@@ -222,21 +274,19 @@ Page({
         }
     },
     checkexpress(e) {
-        let data = '';
-        let index = e.currentTarget.dataset.index;
-        let current = this.data.order_list[index];
-
-        current.express.forEach((e,i) => {
-            data += 'code'+ i +'='+ e.express_code + '&com'+ i +'='+ e.express_company + '&'
-        })
-
-        data += 'index=0&order_id='+ e.currentTarget.dataset.id
-            + '&user=' + current.consignee
-            + '&goods=' + current.order_detail[0].goods_name
-
+        let order_sn = e.currentTarget.dataset.order_sn
+        let user = e.currentTarget.dataset.user
         wx.navigateTo({
-          url: '/pages/ems-detail/index?' + data
+            url: '/pages/ems-detail/index?order_sn=' +order_sn+'&user='+user
         })
+
+    },
+    previewImage(e){
+        var current = e.target.dataset.src;  
+    wx.previewImage({  
+        current: current, // 当前显示图片的http链接 
+        urls: [current] // 需要预览的图片http链接列表 
+    })
 
     }
 

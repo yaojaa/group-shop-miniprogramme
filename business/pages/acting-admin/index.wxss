@@ -1,0 +1,213 @@
+@import "../../../css/common.wxss";
+
+.container{
+    padding-bottom: 50px;
+}
+
+.flex{
+    display: flex;
+}
+.shrink0{
+    flex-shrink: 0;
+    margin-right: 5px
+}
+.grow1{
+    flex-grow: 1;
+}
+
+.act-admin{
+    padding: 0 30rpx 100rpx;
+}
+
+.act-cell{
+    border-bottom: 1px solid #efefef;
+    padding: 20rpx 0;
+}
+.act-img{
+    width: 100rpx;
+    height: 100rpx;
+    margin-right: 10px;
+}
+
+.act-img .act-logo{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.act-main{
+    width: 50%;
+    line-height: 40rpx;
+}
+.act-top{
+    width: 100%;
+    margin-bottom: 40rpx;
+}
+.act-top .name{
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 28rpx;
+    margin-right: 20rpx;
+}
+.act-bottom .reason{
+    margin-right: 20rpx;
+    text-align: justify;
+}
+
+.act-bottom .button{
+    padding: 0 20rpx;
+    border-radius: 20rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #fff;
+    background: #ffaa4f;
+    font-size: 24rpx;
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+}
+.act-more-list{
+    font-size: 32rpx;
+    text-align: center;
+    padding: 20rpx;
+}
+
+.act-submit{
+
+ 
+    display: flex;
+     flex-direction:row-reverse;
+     box-shadow: 0 -2px 5px #eee;
+     padding: 10px 0;
+     justify-content:space-between;
+     background: #f8f8f8;
+   
+}
+
+.act-submit button{
+    background-color: #ffaa4f;
+    color: #fff;
+    border-radius: 40rpx;
+    margin: 0 auto;
+    padding: 0 30px;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.total{
+    margin: 10rpx 0 0 30px;
+    color: #666
+}
+.icon-img {
+    width: 20px;
+    height: 16px;
+    padding-bottom: 2px;
+    vertical-align: middle;
+}
+
+.share-friends-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 9333398888888
+}
+
+.share-img-box {
+    height: 100%;
+}
+
+.share-friends-img {
+    height: 100%;
+    padding-bottom: 126rpx;
+}
+
+.share-friends-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.share-friends-loading {
+    background-color: rgba(0, 0, 0, 0) !important;
+    height: 80% !important;
+}
+
+.share-friends-img .share-img-box .images swiper-item,
+.share-friends-img .share-img-box .images{
+    height: 100%;
+    width: 100%;
+}
+
+.share-friends-indicator{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    bottom: 140rpx; 
+}
+
+.share-friends-indicator .dots-box{
+    padding: 0 3px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+}
+
+.share-friends-indicator .dots{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,.8);
+    margin: 0 3px;
+}
+
+.share-friends-indicator .dots.on{
+    background-color: #5bb305;
+}
+
+.share-friends-img .share-img-box .btn {
+    bottom: -22rpx;
+}
+
+.share-friends-loading-txt {
+    color: #fff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-friends-loading-txt text {
+    padding-top: 100rpx;
+}
+.act-logo{
+    border-radius: 50%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

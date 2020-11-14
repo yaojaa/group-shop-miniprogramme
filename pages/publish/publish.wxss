@@ -87,6 +87,10 @@ border-radius:10rpx;
 
 }
 
+.weui-uploader__files{
+  min-height:142rpx;
+}
+
 
 .weui-uploader__file {
 
@@ -105,12 +109,19 @@ background-size: cover;
   z-index: 99;
   background:#333
 }
+.weui-uploader__bd{
+  width:100%;
+}
 .weui-uploader__input-box {
 
 width:133rpx;
 height:133rpx;
 border:1px solid #d9d9d9;
 
+}
+
+.drag-box{
+  display: flex;
 }
 
 .loading{
@@ -193,7 +204,7 @@ video{
   padding-bottom: 60px;
 }
 .maxheight{
-    max-height:60vh;
+    max-height:80vh;
 }
 .icons{
   position: absolute;
@@ -235,3 +246,56 @@ video{
   margin-left: 10rpx
 }
 
+.closeX{
+  position: absolute;
+  right: 10px;
+  top: 5px
+}
+
+.goods-cell-set{
+  padding-left: 30rpx;
+}
+.goods-cell-set button{
+  margin-right: 12rpx;
+}
+.editor-btn{
+  font-size: 13px;
+  float: right;
+  margin-top:10rpx;
+}
+.editorContentCss{
+  max-height: 250rpx;
+  width: 100%;
+  /*overflow: auto;*/
+  word-wrap: break-word;
+  word-break: break-all;
+  line-height: 50rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+.editor-box{
+  min-height: 320rpx;
+  display: block;
+}
+.to-editor{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.imgList{
+  padding-top: 10px
+}
+
+
+.orther{
+  text-align: center;
+  line-height: 2;
+  font-size: 28rpx;
+  margin-bottom: 10px
+}
+
+.spec_detail{
+  width: 60rpx;
+  text-align: right;
+}

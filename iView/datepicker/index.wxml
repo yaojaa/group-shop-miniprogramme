@@ -1,7 +1,7 @@
-<view class="time-class" bindtap='openPicker'>{{label}}{{year}}-{{month}}-{{day}}  {{hour}}:{{minute}}</view>
+<view class="time-class" bindtap='openPicker'>{{label}}{{year}}-{{month}}-{{day}}  {{hour}}:{{minute}} </view>
 <view class='picker-mask' hidden='{{hidden}}' bindtap='closePicker'></view>
 <view class='picker pick-class' style='bottom:{{bottom}}'>
-  <view class='picker-title'> 
+  <view class='picker-title i-picker-title'> 
     <text class="tit-text">{{title}}</text>
     <button size="mini" plain bindtap='closePicker'>取消</button>
     <button class='right' size='mini' plain bindtap='confirm'>确定</button>
@@ -27,14 +27,14 @@
     <view class='space'> </view>
     <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.h}}" data-type="hour" bindchange="bindChange">
       <picker-view-column>
-        <view wx:for="{{hours}}" wx:key="item"  class='picker-row'>{{item}}点</view>
+        <view wx:for="{{hours}}" wx:key="item"  class='picker-row'>{{item}}时</view>
       </picker-view-column>
     </picker-view>
-<!--     <view class='space'>:</view>
- -->    <!-- <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.mm}}" data-type="minute" bindchange="bindChange">
+ <view class='space'>:</view>
+  <picker-view indicator-class="picker-row-out" class='picker-cow' value="{{value.mm}}" data-type="minute" bindchange="bindChange">
       <picker-view-column>
-        <view wx:for="{{minutes}}" wx:key="item" class='picker-row'>{{item}}</view>
+        <view wx:for="{{minutes}}" wx:key="item" class='picker-row'>{{item}}分</view>
       </picker-view-column>
-    </picker-view> -->
+    </picker-view> 
   </view>
 </view>

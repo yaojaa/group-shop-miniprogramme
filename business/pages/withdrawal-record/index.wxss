@@ -1,0 +1,15 @@
+@import "../../../css/common.wxss";
+.record-item{
+  padding-top: 30rpx;
+}
+.record-item .icon{
+	width: 32rpx;
+}
+.mt-lt{
+	margin-top: 6rpx;
+}
+.top-filter{
+	position: absolute;
+	right:30rpx;
+	top:14rpx;
+}

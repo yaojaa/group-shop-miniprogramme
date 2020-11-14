@@ -1,0 +1,57 @@
+@import "../../../css/common.wxss";
+
+.rule-title {
+    padding: 20rpx;
+    position: relative;
+}
+
+.custom-option {
+    display: inline-block;
+    position: absolute;
+    color: #1989fa;
+}
+
+.custom-edit-option {
+    right: 120rpx;
+}
+.custom-delete-option {
+    right: 40rpx;
+}
+
+.table {
+    border-top: 1px solid #eee;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+
+}
+
+.tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.th, .td {
+    padding: 10rpx;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    text-align: center;
+    color: #555;
+    font-size: 12px
+}
+
+.th {
+    font-weight: 400;
+}
+
+.title{
+    font-size: 16px;
+    font-weight: bold;
+}
+.box{
+	margin: 10px;
+	background: #fcfff9;
+	margin-bottom: 20px
+}

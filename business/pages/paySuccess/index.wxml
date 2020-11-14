@@ -1,0 +1,60 @@
+<view class="container">
+                
+            
+               
+                      
+
+
+    <view class='content'>
+
+
+        <view class='order' wx:if="{{!onshare}}">
+          <block wx:if="{{order.delivery_method == 1}}">
+                  <view class='title'>  
+                    <van-icon name="user-o" size="20px" color="#999" />
+                  {{order.consignee}} <text class="small">{{order.mobile}}</text></view>
+
+                  <view class="address">
+                    {{order.city}}{{order.district}}{{order.province}}{{order.address}}
+                  </view>
+        </block>
+            <view class="goodsList">
+                <view class='goods' wx:for="{{order.order_detail}}" wx:key="@index">
+                    <view class='cell'>
+                        <view class='left'>{{item.spec_name}} x {{item.qty}}</view>
+                        <view class='right'><text>￥</text>{{(item.spec_price*100*item.qty)/100}}</view>
+                    </view>
+                </view>
+            </view>
+   <view class="user">
+        <view class='img'>
+                   <image class="photos-mini"  src="{{order.order_detail[0].goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75"></image>
+             </view> 
+              
+                <view class='date'>{{order_time}}</view>
+            </view>
+            <view class='line'></view>
+            <view class='paycell'>
+                <view class='pay'>
+                    <view class='left'>总金额</view>
+                    <view class='right'><text>￥</text>{{order.total_price}}</view>
+                </view>
+                <view class='icon'>
+                    <view></view>
+                    <view></view>
+                    <view></view>
+                    <view></view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class='share'>
+        <button class="linenear_bg" bindtap="goback" hove-class="linenear_bg_hover" type='primary' >再来一单</button>
+
+    </view>
+  <view></view>
+
+  <button bindtap="addListener" size="mini"></button>
+  
+</view> 

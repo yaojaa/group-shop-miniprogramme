@@ -1,0 +1,13 @@
+@import '../../css/common.wxss';
+.spce-main {
+  margin: 30rpx;
+  padding: 30rpx;
+  background: #f8f8f8;
+  border-radius: 8rpx;
+}
+.textarea-box {
+  overflow: hidden;
+}
+.solid-bottom {
+  border-bottom: 1px solid #f1f1f1;
+}

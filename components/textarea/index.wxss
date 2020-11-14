@@ -1,0 +1,4 @@
+.textarea-placeholder{
+	color:#888;
+	line-height: 1 !important;
+}

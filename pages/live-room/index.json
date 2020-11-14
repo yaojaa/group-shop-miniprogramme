@@ -1,0 +1,15 @@
+{
+    "navigationBarTitleText": "直播间列表",
+    "usingComponents":
+    {
+        "i-button": "../../iView/button/index",
+        "i-modal": "../../iView/modal/index",
+        "wux-cell-group": "../../wux/cell-group/index",
+        "wux-cell": "../../wux/cell/index",
+        "wux-cascader": "../../wux/cascader/index",
+        "wux-upload": "../../wux/upload/index",
+        "wux-textarea": "../../wux/textarea/index",
+        "wux-input": "../../wux/input/index",
+        "wux-icon": "../../wux/icon/index"
+    }
+}

@@ -2,6 +2,7 @@
     color: #495060;
     display: flex;
     align-items: center;
+    float: right;
 }
 
 .i-input-number view {
@@ -27,7 +28,9 @@
 .i-input-number-plus {
     border-left: none;
     background: -webkit-linear-gradient(left top, #a3df00, #69b90b);
-    background: linear-gradient(left top, #a3df00, #69b90b)
+    background: linear-gradient(left top, #a3df00, #69b90b);
+    float: right;
+    width: 30px
 }
 
 .i-input-number-text {
@@ -35,16 +38,16 @@
     text-align: center;
     vertical-align: middle;
     height: 30px;
-    width: 40px;
+    width: 30px;
     min-height: auto;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     line-height: 30px
 }
 
 .i-input-number-disabled {
-    border-color: #dddee1;
     color: #bbbec4;
-    background: #f7f7f7
+    font-weight: normal;
 }
 
 .radus {

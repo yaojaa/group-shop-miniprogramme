@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "正在下单...",
+    "usingComponents":
+    {
+        "van-cell": "../../../vant/cell/index",
+        "van-cell-group": "../../../vant/cell-group/index",
+        "van-field": "../../../vant/field/index",
+        "van-icon": "../../../vant/icon/index",
+        "i-panel": "../../../iView/panel/index",
+        "van-toast": "../../../vant/toast/index",
+        "van-button": "../../../vant/button/index",
+        "van-stepper": "../../../vant/stepper/index"
+    }
+}

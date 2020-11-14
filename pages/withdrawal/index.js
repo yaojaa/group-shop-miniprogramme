@@ -1,6 +1,6 @@
 const app = getApp()
-const { $Message } = require('../../iView/base/index');
 const util = require('../../utils/util')
+import Dialog from '../../vant/dialog/dialog'
 
 Page({
 
@@ -13,7 +13,8 @@ Page({
         inputMoney: '',
         withdrawalslist: [],
         totalpage: 1,
-        store_money:'*'
+        store_money:'*',
+        showDialog:false
     },
 
     /**
@@ -23,7 +24,30 @@ Page({
 
         this.get_store_info()
         this.finance_withdrawal_list()
+        this.checkUinfo()
 
+    },
+    checkUinfo(){
+     util.wx.get('/api/user/user_info').then((res)=>{
+      if(res.data.data.mobile=='' || res.data.data.wechatnumber=='' ){
+
+        wx.showModal({
+         title: '请先完善联系方式',
+         content: '完善后即可提现 方便粉丝联系',
+         showCancel: false,//是否显示取消按钮
+         confirmText:"去设置",//默认是“确定”
+         success: function (res) {
+            wx.navigateTo({
+              url:'../identify/identify'
+            })
+         },
+         fail: function (res) { },//接口调用失败的回调函数
+         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+      })
+
+       
+      }
+    })
     },
     inputMoneyChange(e) {
         if (e.detail.value) {
@@ -35,58 +59,68 @@ Page({
     },
     getMoney() {
 
-      if(this.data.inputMoney>5000){
-        return wx.showToast({
-          title:'每日限额5000',
-          icon:'none'
-        })
-      }
 
-      if(this.data.inputMoney<10){
-        return wx.showToast({
-          title:'至少提现10元',
-          icon:'none'
-        })
-      }
+      // if(this.data.inputMoney<1){
+      //   return wx.showToast({
+      //     title:'至少提现1元',
+      //     icon:'none'
+      //   })
+      // }
 
-        if (this.data.inputMoney) {
+
+
+      // return console.log(typeof this.data.inputMoney)
+
+
+
+      //   if (this.data.inputMoney=='') {
+      //      return  wx.showToast({
+      //                   title: '请输入提现金额',
+      //                   icon:'none'
+      //               })
+
+      //   }
+
+
 
           wx.showLoading()
 
             util.wx.post('/api/seller/apply_withdraw', {
                 apply_money: this.data.inputMoney
             }).then((res) => {
-                   wx.showToast({
-                        title: '申请提现成功，请耐心等待审核',
-                        icon: 'success'
+
+                if(res.data.code == 200){
+
+                     Dialog.alert({
+                        selector: '#dialog-success',
+                        confirmButtonText: '好的'
+                    }).then(() => {
+
                     })
 
-                   this.setData({
-                    inputMoney:''
+                    this.setData({
+                    inputMoney:'' 
                    })
 
                    wx.hideLoading()
-
                     this.finance_withdrawal_list()
+                    this.get_store_info()
 
+                }else{
+
+                    wx.hideLoading()
+                      wx.showToast({
+                                title: res.data.msg,
+                                icon:'none',
+                                duration:5000
+                            })
+
+                }
+
+               
                 
-            },(res)=>{
-
-
-              wx.showToast({
-                        title: res.data.msg,
-                        icon:'none',
-                        duration:5000
-                    })
             })
-        }else{
-
-          wx.showToast({
-                        title: '请输入提现金额',
-                        icon:'none'
-                    })
-
-        }
+       
 
     },
     get_store_info() {
@@ -109,7 +143,10 @@ Page({
     //获取提醒记录
     finance_withdrawal_list() {
 
-      util.wx.get('/api/seller/withdraw_list')
+      util.wx.get('/api/seller/withdraw_list',{
+        pagesize:10,
+        cpage:1
+      })
       .then(res=>{
 
         if (res.data.code == 200) {
@@ -164,13 +201,6 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
 
     }
 })

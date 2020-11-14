@@ -1,0 +1,30 @@
+<view class="act-view">
+    <image wx:if="{{info._user.headimg}}" class="act-logo" mode="aspectFill" src="{{info._user.headimg}}"></image>
+    <view class="act-title">
+        {{info._user.nickname}}
+    </view>
+
+    <view class="desc text-muted mv-xs">
+        {{info.store_intro}}
+    </view>
+
+    <form bindsubmit='actSubmit'>
+
+
+    
+
+    <view class="act-submit">
+
+        <button type="primary" wx:if="{{showLoginbtn}}"  plain="true" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt"> 授权登录 </button>
+        <button class="linenear_bgsss" wx:else form-type='submit' loading="{{loading}}"> 立即申请 </button>
+
+    </view>
+
+</form>
+
+</view>
+
+
+
+
+<van-dialog id="van-dialog" />

@@ -1,0 +1,19 @@
+{
+   "navigationBarTitleText": "免费开通个人主页",
+  "usingComponents": {
+  	     "i-panel": "../../iView/panel/index",
+        "i-input": "../../iView/input/index",
+        "i-notice-bar": "../../iView/notice-bar/index",
+        "wux-cell-group": "../../wux/cell-group/index",
+        "wux-cell": "../../wux/cell/index",
+        "wux-cascader": "../../wux/cascader/index",
+        "wux-upload": "../../wux/upload/index",
+        "wux-textarea": "../../wux/textarea/index",
+        "wux-input": "../../wux/input/index",
+        "wux-icon": "../../wux/icon/index",
+        "wux-toptips": "../../wux/toptips/index",
+        "i-custom-bar": "../../components/custom-bar/index"
+
+
+  }
+}

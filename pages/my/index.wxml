@@ -1,0 +1,148 @@
+<view class="container">
+
+
+	<view class="head-box">
+		<view class="flex align-center">
+			<navigator url="../identify/identify" hover-class="none">
+				<view class="user-avatar mh-df">
+					<image class="user-avatar" src="{{userInfo.headimg}}" />
+					<view class="set-icon">
+						<i-icon type="setup_fill" color="#ffa70f" size="16" />
+					</view>
+				</view>
+			</navigator>
+			<view class="flex-sub pr-lg">
+				<view class="flex justify-between text-white">
+					<view class="user-box">
+						<view class="user-name mr-sm" bindtap="goSite">{{userInfo.nickname}} </view>
+
+						<navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none">完善信息</navigator>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<i-panel i-class="marginTop">
+		<view slot="content" style="text-align:center;padding:40rpx;">
+
+			<view class="icon" >
+				可提现金额
+			</view>
+
+			<view class="icon" style="font-size: 32px">
+				¥ {{pending_money}}
+			</view>
+
+			<view>
+				<button class='btn linenear_bg block' bindtap="new_btn">
+					立即提现
+				</button>
+			</view>
+		</view>
+	</i-panel>
+	<!-- 
+
+    <i-panel i-class="marginTop" title="我参与的" extra="查看全部订单" link="../order-list/index">
+        <view slot="content">
+            <view class="flex-box myorder">
+                <navigator url="../order-list/index?search_status=1" hover-class="none" class="flex-item">
+                    <view class="icon">
+                        <i-icon type="redpacket" size="28" color="#4fac05" />
+                    </view>
+                    待付款
+                    <view class="badge" wx:if="{{waitpay>0}}">{{waitpay}}</view>
+                </navigator>
+                <navigator url="../order-list/index?search_status=2" hover-class="none" class="flex-item">
+                    <view class="icon">
+                        <i-icon type="service" size="28" color="#4fac05" />
+                    </view>
+                    待收货<view class="badge" wx:if="{{waitreceived>0}}">{{waitreceived}}</view>
+                </navigator>
+                <navigator url="../order-list/index?search_status=3" hover-class="none" class="flex-item">
+                    <view class="icon">
+                        <i-icon type="interactive" size="28" color="#4fac05" />
+                    </view>
+                    已完成
+                </navigator>
+            </view>
+        </view>
+    </i-panel>
+ -->
+<i-panel>
+
+	<van-cell-group>
+
+		
+
+		<van-cell icon="home-o" title="我的主页" is-link link-type="navigateTo" url="../userhome/index?id={{userInfo.store.store_id}}" />
+		<van-cell icon="friends-o" title="我的顾客 （{{fansNum}}）" is-link link-type="navigateTo" url="../fans-mg/index" />
+
+
+	</van-cell-group>
+</i-panel>
+
+<i-panel>
+	<van-cell-group>
+		<van-cell icon="cart-circle-o" title="我参与的订单 " is-link link-type="navigateTo" url="../order-list/index" />
+	</van-cell-group>
+
+	<!-- <van-cell-group>
+		<van-cell icon="logistics" wx:if="{{!is_supperlier}}" title="开通供应商主页" is-link link-type="navigateTo" url="/business/pages/create-home/index" />
+		<van-cell icon="logistics" wx:if="{{is_supperlier}}" title="切换为供应商身份" is-link link-type="navigateTo" url="/business/pages/home/index" />
+	</van-cell-group> -->
+
+</i-panel>
+
+<i-panel>
+
+ <van-cell-group>
+<van-cell
+  
+>  
+<button open-type="share">分享朋友使用</button>  </van-cell>
+  
+ </van-cell-group>
+ </i-panel>
+
+
+
+	<!--    <view class="new_order"  wx:if="{{orderList.length}}"> <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
+    <i-panel hide-border title="最新订单" extra="更多新订单" link="../new-order-list/index">
+        <view class="control">
+
+            <view class="newlist">
+
+                <scroll-view style="height: 100px" scroll-y>
+                    <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_detail[0].goods_id}}" data-delivery_method="{{item.delivery_method}}" data-name="{{item.order_detail[0].goods_name}}" bindtap="managePage">
+                        <text class="bold">{{item.user.nickname}}</text> {{item.time_ago}}
+                        参与了你的
+                        <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                    </view>
+                </scroll-view>
+                <button class='pubbtn' bindtap="new_btn">
+                    <i-icon type="add" size="20" />新发布
+                </button>
+   
+            </view>
+        </view>
+    </i-panel>
+    </view> -->
+
+
+	<view style="margin-bottom:200rpx"></view>
+
+	<view class="weui-footer weui-footer_fixed-bottom">
+
+		<view class="weui-footer__links">
+
+			<button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">技术支持</button>
+
+		</view>
+	</view>
+	<view style="margin-bottom:200rpx"></view>
+
+
+    <footerbar active="{{3}}"/>
+
+</view>

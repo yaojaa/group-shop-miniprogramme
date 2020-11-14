@@ -1,0 +1,30 @@
+
+.title{
+	font-weight:bold;
+	font-size: 16px
+}
+.goods-panel-fd{
+	min-height: 0;
+	text-align: right;
+}
+.goods-panel-bd{
+	box-shadow: none;
+}
+.color_3,.color_4{
+    color: #5db85d;
+    font-weight: bold;
+}
+
+.color_1,.color_2{
+    color: #ff6633
+}
+.bt-bar{
+	padding: 4px 0
+}
+ .text-hide {
+     display: -webkit-box;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      height: 45rpx
+
+ }

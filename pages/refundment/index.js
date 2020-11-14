@@ -1,5 +1,7 @@
 import Notify from '../../vant/notify/notify'
 import Dialog from '../../vant/dialog/dialog';
+const util = require('../../utils/util')
+
 Page({
 
     /**
@@ -8,11 +10,71 @@ Page({
     data: {
         fileList: [],
         problemModal: false,
-        problemValue: '',
-        problemTitle:'',
+        problemValue: 2,
+        problemTitle:'计划有变，不想要了',
         goodsNumber:'2',
-        tkType:'1'
+        tkType:'1',
+        order_detail:{},
+        explain:'',
+        refund_fee:''
     },
+    setExplain(e){
+        this.data.explain = e.detail
+    },
+
+     setRefund_fee(e){
+        this.data.refund_fee = e.detail
+    },
+
+    getOrderdetail(){
+        util.wx.get('/api/user/get_order_detail?order_id='+this.order_id)
+        .then(res=>{
+            this.setData({
+                order_detail:res.data.data,
+                refund_fee:res.data.data.pay_price
+            })
+        })
+    },
+    refund(){
+
+          wx.showModal({
+            content: '您确定要申请退款吗？',
+            success :(res)=> {
+              if (res.confirm) {
+               　this.refundIt()
+              }
+            }
+          })
+    },
+
+    refundIt(){
+        wx.showLoading()
+        util.wx.post('/api/user/order_refund_apply',{
+              order_id:    this.order_id,
+              refund_fee:  this.data.refund_fee,
+              reason :    this.data.problemTitle,
+              explain:this.data.explain
+        }).then(res=>{
+
+        if(res.data.code ==200){
+        wx.hideLoading()
+
+        wx.redirectTo({
+            url:'../refundment-detail/index?id='+res.data.data+'&order_id='+this.order_id
+        })}
+        else{
+
+            wx.hideLoading()
+            wx.showToast({
+                title:res.data.msg,
+                icon:'none'
+            })
+        }
+
+        })
+    },
+
+
     handleProblemModal() {
         this.setData({
             problemModal: !this.data.problemModal
@@ -88,6 +150,12 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        if(options.order_id){
+            this.order_id = options.order_id
+            this.getOrderdetail()
+        }
+
 
     },
 

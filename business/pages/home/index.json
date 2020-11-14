@@ -1,0 +1,15 @@
+{     "navigationStyle": "custom",
+  "navigationBarBackgroundColor": "#ffaa4f",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+  	 "van-tabbar": "../../../vant/tabbar/index",
+  	 "van-button": "../../../vant/button/index",
+     "van-tabbar-item": "../../../vant/tabbar-item/index",
+       "van-grid": "../../../vant/grid/index",
+       "van-grid-item": "../../../vant/grid-item/index",
+       "van-icon": "../../../vant/icon/index",
+       "van-dialog": "../../../vant/dialog/index",
+        "footerbar": "../../components/footerbar/index"
+
+  }
+}

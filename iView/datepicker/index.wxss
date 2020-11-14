@@ -1,5 +1,11 @@
 .container{
   background-color: #fc0;
+  font-family: 'Arial'
+
+}
+
+.time-class{
+    font-family: 'Arial'
 }
 
 .picker-mask{

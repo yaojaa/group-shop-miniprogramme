@@ -1,13 +1,14 @@
 const qiniuUploader = require("./qiniuUploader");
-import Card from '../palette/card';
-import shareCard from '../palette/shareCard';
+// import Card from '../palette/card';
+// import shareCard from '../palette/shareCard';
+// import shareCard2 from '../palette/shareCard2';
+// import shareCard3 from '../palette/shareCard3'; // 供应商海报
+import shareCard4 from '../palette/shareCard4';
 const app = getApp();
 
+import config from './conf.js'
 
-
-const config = {
-    apiUrl: 'https://www.kaixinmatuan.cn'
-}
+console.log('config',config)
 
 const formatTime = date => {
     var date = new Date(date);
@@ -33,6 +34,19 @@ const formatNumber = n => {
     n = n.toString()
     return n[1] ? n : '0' + n
 }
+
+
+const isMoney = val =>{
+
+     var reg = /((^[1-9]\d*)|^0)(\.\d{0,2}){0,1}$/;
+     if(!reg.test(val)){
+            return false
+        }else{
+            return true
+        }
+    }
+
+
 
 const countTime = (nowDate, endDate) => {
 
@@ -84,6 +98,29 @@ const throttle = function (fn, gapTime) {
   }
 }
 
+function debounce (fn, delay) {
+    let timer   = null;
+
+    return function () {
+    let args = arguments;
+    let context = this;
+
+        if (timer) {
+            clearTimeout(timer);
+
+            timer = setTimeout(function () {
+                fn.apply(context, args);
+            }, delay);
+        } else {
+            timer = setTimeout(function () {
+                fn.apply(context, args);
+            }, delay);
+        }
+    }
+}
+
+
+
 
 //input双向绑定 注意context
 
@@ -121,18 +158,25 @@ const uploadFile = function(opt) {
             },
             success: function(res) {
 
+                console.log('success',res)
+
+                if(res.statusCode == 413){
+                    reject('文件体积太大')
+                    return
+                }
+
                 if (typeof res.data == 'string') {
                     res = JSON.parse(res.data)
                 }
-                console.log('res.data.data', res)
-                if(res.code == 200){
+                if(res.code == 200 ){
                   reslove(res)
-              }else{
-                reject(res)
-              }
+                  }else{
+                    reject(res)
+                  }
 
             },
             fail: function(e) {
+                console.log('fail',res)
 
                 reject(e)
 
@@ -444,9 +488,14 @@ const getUserloaction = function(callback) {
 const WX = {}
 /**封装request请求**/
 const request = (url, data, method) => {
+
+    if(app.globalData.noLogin){
+        return
+    }
+
     return new Promise((resolve, reject) => {
         wx.request({
-            url: 'https://www.kaixinmatuan.cn' + url,
+            url: config.apiUrl + url,
             data: data,
             method: method,
             header: {
@@ -454,20 +503,20 @@ const request = (url, data, method) => {
                 'Authorization': app.globalData.token
             },
             success: function(res) { //服务器返回数据
-                console.log(res.data.code)
+               
+               console.log('success',url,res.data.code)
 
-                if (res.data.code == 200) {
-                    resolve(res)
-                } else if (res.data.code == '-99' || res.data.code == '-100') {
+                if (res.data.code == '-99' || res.data.code == '-100') {
                     console.log('应该调到等路')
+                    app.globalData.noLogin = true
                      wx.clearStorageSync() 
                      app.redirectToLogin()
 
-                } else{ //返回错误提示信息
-                    reject(res)
+                } else { //返回错误提示信息
+                    resolve(res)
                 }
             },
-            error: function(e) {
+            fail: function(e) {
                 reject('网络出错' + e)
             }
         })
@@ -547,64 +596,85 @@ const bezier = function(pots, amount) {
     };
 }
 
+// //绘制分享朋友圈图片
+// function drawShareFriends(_this, res, buyuser, from) {
+//     var config = _this.data.shareCardConfig;
+//     var height = 0;
+//     var goods = res.goods;
+
+//     console.log(res, buyuser)
+
+//     let goods_content = goods.goods_content ? goods.goods_content.split(/[\r\n↵]/g) : [];
+//     config.content.des = [];
+//     //分段
+//     [goods.goods_name].concat(goods_content).forEach((e, i) => {
+//         config.content.des.push({ txt: e });
+//     })
+//     // 规格最小值
+//     // config.spec_price = parseFloat(goods.goods_spec[0].spec_price);
+//     // goods.goods_spec.forEach((e,i)=>{
+//     //     if(parseFloat(e.spec_price) < config.spec_price){
+//     //         config.spec_price = parseFloat(e.spec_price)
+//     //     }
+//     // })
+//     // 规格
+//     config.spec = goods.goods_spec;
+
+//     // 购买头像
+//     config.buyuser = buyuser;
+
+//     // 商品最大值和最小值
+//     config.price_max = goods.price_max;
+//     config.price_min = goods.price_min;
+
+//     //内容赋值获取高度
+//     _this.setData({
+//         shareCardConfig: _this.data.shareCardConfig
+//     }, () => {
+
+//         config.content.lineHeight = config.content.lineHeight || 56;
+//         config.content.fontSize = config.content.fontSize || 34;
+//         config.headImg.src = goods.user.headimg;
+//         config.userName = goods.user.nickname;
+//         // config.goodsImg.src = res[1].data.images[0];
+//         config.goodsImg.src = goods.goods_cover;
+
+//         //获取文本高度 绘制图片
+//         wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
+//             rects = rects[0];
+//             let dpr = (config.width - config.content.margin * 2) / rects[0].width;
+
+//             rects.forEach((e, i) => {
+//                 config.content.des[i].width = Math.ceil(e.width);
+//                 config.content.des[i].lines = Math.ceil(e.height / config.content.lineHeight * dpr);
+//                 config.content.des[i].height = config.content.des[i].lines * config.content.lineHeight;
+//                 height += config.content.des[i].height;
+
+//                 config.height = height;
+//             })
+//             console.log(config);
+//             if(from == 'businessGoods'){
+//                 config.qrcode.src = goods.qrcode;
+//                 _this.setData({
+//                     template: new shareCard3().palette(config),
+//                 });
+//             }else{
+//                 config.qrcode.src = goods.xcx_qrcode;
+//                 _this.setData({
+//                     template: new shareCard().palette(config),
+//                     template2: new shareCard2().palette(config),
+//                 });
+//             }
+
+//         })
+
+//     });
+// }
 //绘制分享朋友圈图片
-function drawShareFriends(_this, res, buyuser) {
-    var config = _this.data.shareCardConfig;
-    var height = 0;
-    var goods = res.goods;
-
-    let goods_content = goods.goods_content.split(/[\r\n↵]/g);
-    config.content.des = [];
-    //分段
-    [goods.goods_name].concat(goods_content).forEach((e, i) => {
-        config.content.des.push({ txt: e });
-    })
-    // 规格最小值
-    // config.spec_price = parseFloat(goods.goods_spec[0].spec_price);
-    // goods.goods_spec.forEach((e,i)=>{
-    //     if(parseFloat(e.spec_price) < config.spec_price){
-    //         config.spec_price = parseFloat(e.spec_price)
-    //     }
-    // })
-    // 规格
-    config.spec = goods.goods_spec;
-
-    // 购买头像
-    config.buyuser = buyuser;
-
-    //内容赋值获取高度
+function drawShareFriends(_this, goods) {
+    console.log(goods)
     _this.setData({
-        shareCardConfig: _this.data.shareCardConfig
-    }, () => {
-
-        config.qrcode.src = goods.xcx_qrcode;
-        config.content.lineHeight = config.content.lineHeight || 56;
-        config.content.fontSize = config.content.fontSize || 34;
-        config.headImg.src = goods.user.headimg;
-        config.userName = goods.user.nickname;
-        // config.goodsImg.src = res[1].data.images[0];
-        config.goodsImg.src = goods.goods_cover;
-
-        //获取文本高度 绘制图片
-        wx.createSelectorQuery().selectAll('.des-content').boundingClientRect().exec(rects => {
-            rects = rects[0];
-            let dpr = (config.width - config.content.margin * 2) / rects[0].width;
-
-            rects.forEach((e, i) => {
-                config.content.des[i].width = Math.ceil(e.width);
-                config.content.des[i].lines = Math.ceil(e.height / config.content.lineHeight * dpr);
-                config.content.des[i].height = config.content.des[i].lines * config.content.lineHeight;
-                height += config.content.des[i].height;
-
-                config.height = height;
-            })
-            console.log(config);
-            _this.setData({
-                template: new shareCard().palette(config),
-            });
-
-        })
-
+        template: new shareCard4().palette(goods)
     });
 }
 
@@ -643,7 +713,7 @@ const url2json = function(string, overwrite) {
 }
 
 //上一页赋值
-const setParentData = function(data) {
+const setParentData = function(data,back) {
 
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1]; //当前页面
@@ -652,19 +722,168 @@ const setParentData = function(data) {
 
     prevPage.setData(data, () => {
         console.log('赋值成功', data)
+        if(!back){
         wx.navigateBack({
             delta: 1
         })
+        }
     })
 }
 
+//订阅提醒
+//
+
+const addListener = function (who) {
+
+       if(who=='user'){
+        var tmplIds=['v_pkvU1y21HcA69K6Rsde4ivcsMExxptWHdcr2abADg', // 发货提醒
+              'KEpGvkFWzV8bGV_cKLp9BUdEGVY6RwSijolExu5M5dY', // 留言通知
+              'Wu_vie78kgoRr8y90IAsxmmQQvqy3l8f4NsYC_1xMqg'] //新品上架
+       }else{
+
+        var tmplIds= [
+        'MlhFii7cRSnXZf-HFT20eccXD77MPByPLY6LQvUkidI',//新订单
+        'LxxXR_fCI9WE8vxbvWvGLdlghHsJfxEcM_9QdofzfaI'] //经营报告
+
+       }
+
+       if(!wx.requestSubscribeMessage){
+        return  wx.showToast({
+                        title:'您的微信版本低，请升级微信',
+                        icon:'none'
+                      })
+       }
+
+       return function(){
+            wx.requestSubscribeMessage({
+              tmplIds:tmplIds ,
+              success (res) {
+
+                for (var key in res) {
+                  if (key !='errMsg') {
+                    if (res[key] =='reject') {
+                      // wx.showModal({
+                      //   title:'订阅消息',
+                      //   content:'您已拒绝了订阅消息，将不会收到微信通知',
+                      //   confirmText:'知道了',
+                      //   //showCancel: false,
+                      //   success: res => {
+                         
+                      //   }
+                      // })
+                      return
+                    }else{
+                      wx.showToast({
+                        title:'已订阅',
+                        icon:'none'
+                      })
+                    }
+                  }
+                }
+
+
+               }
+            })
+       }
+
+
+
+    }
+
+//验证手机号函数
+
+ const checkMobile = function(mobile){
+
+     if(!mobile || !(/^1(3|4|5|6|7|8|9)\d{9}$/.test(mobile))){ 
+             wx.showToast({
+                        title: '手机号码有误',
+                        icon: 'none'
+                    });
+            return false; 
+        }
+
+        return true
+
+ }
+
+ //检查是否是订单管理者
+const checkIsOrderManege = function(link_store,store_id){
+
+    console.log(link_store,store_id)
+
+    const user_store_id = store_id || app.globalData.userInfo.store_id
+    let orderManager = false
+
+    if(!link_store){
+         return true
+    }
+   
+    // link_store[null]
+    if(link_store.length ==1 && link_store[0] == null){
+        return orderManager = true
+    }
+   
+    // link_store[null,{...}]
+
+     if(link_store.length ==2 && link_store[0] == null && link_store[1].store_id == user_store_id){
+        return orderManager = true
+    }
+
+   // link_store[{...},{...}]
+
+    if(link_store[0] !== null && link_store[2]!==null ){
+        return orderManager = false
+    }
+
+    return orderManager
+
+}
+
+ //正则提取汉字
+
+function getChinese(strValue) {  
+    if(strValue!= null && strValue!= ""){  
+        var reg = /[\u4e00-\u9fa5]/g;   
+        return strValue.match(reg).join("");  
+    }  
+    else  
+        return "";  
+} 
+
+//卖家订单类型
+
+function sellerLevel(o){
+    //第一种 上级供应商 下级帮卖  客户
+    //第二种 上级供应商  客户
+    //第三种 上级空     下级帮卖  客户
+    //第四种 上级空     下级空    客户
+    //第五种 上级帮卖    客户
+    //
+    sendUser =='sup'
+    sendUser =='seller'
+    sendUser =='self'
+
+    const uid = app.globalData.userInfo.user_id
+
+}
+
+ //正则提取汉字
+
+
+
+const userListner = addListener('user')
+const sellerListner = addListener('seller')
+
 module.exports = {
+    getChinese,
+    apiUrl:config.apiUrl,
     formatTime,
     fmtDate,
     inputDuplex,
     uploadPicture,
     distance,
-    // get_painter_data_and_draw,
+    userListner,
+    sellerListner,
     // getShareImg,
     formSubmitCollectFormId,
     getUserloaction,
@@ -677,5 +896,9 @@ module.exports = {
     bezier,
     setParentData,
     throttle,
-    url2json
+    debounce,
+    url2json,
+    checkMobile,
+    isMoney,
+    checkIsOrderManege
 }
