@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"description": "项目配置文件",
 	"packOptions": {
 		"ignore": [
@@ -23,15 +22,12 @@
 	"libVersion": "2.7.1",
 	"appid": "wx6ac9955f87c289f0",
 	"projectname": "%E5%BC%80%E5%BF%83%E9%BA%BB%E5%9B%A2%E5%84%BF",
-<<<<<<< HEAD
 	"isGameTourist": false,
-=======
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"scripts": {},
->>>>>>> shop
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -58,11 +54,6 @@
 			"list": []
 		},
 		"miniprogram": {
-<<<<<<< HEAD
-			"current": 26,
-=======
-			"current": 57,
->>>>>>> shop
 			"list": [
 				{
 					"id": 0,
@@ -87,14 +78,7 @@
 				{
 					"id": 3,
 					"name": "详情页启动",
-					"pathName": "pages/goods/goods",
-<<<<<<< HEAD
-					"query": "goods_id=85",
-					"scene": "1001"
-=======
-					"query": "goods_id=348",
-					"scene": 1008
->>>>>>> shop
+					"pathName": "pages/goods/goods"
 				},
 				{
 					"id": 4,
@@ -249,8 +233,6 @@
 					"pathName": "pages/create_shop/index",
 					"query": "",
 					"scene": "1001"
-<<<<<<< HEAD
-=======
 				},
 				{
 					"id": 27,
@@ -461,12 +443,10 @@
 					"pathName": "pages/address/index",
 					"query": "",
 					"scene": null
->>>>>>> shop
 				}
 			]
 		}
-	}
-=======
+	},
   "description": "项目配置文件",
   "packOptions": {
     "ignore": [
@@ -1976,5 +1956,4 @@
       ]
     }
   }
->>>>>>> shop
 }

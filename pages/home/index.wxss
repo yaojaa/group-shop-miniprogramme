@@ -700,50 +700,6 @@ button::after {
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-.footer_bar{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 999
-}
->>>>>>> shop
-/* sort example */
-.sort{
-  padding: 0 40rpx;
-}
-.sort-style{
-  height: 400rpx;
-  line-height: 400rpx;
-  text-align: center;
-  background-color: #efefef;
-}
-.sort-color{
-  color: #f00;
-  font-size: 48rpx;
-<<<<<<< HEAD
-}
-=======
-}
-.siteBtn{
-  text-align:center;
-background:#ff9000;
-border-radius:30px;
-color:#fff;
-width:90px;
-font-size:14px;
-margin-right:20px;
-padding:8px 12px;
-margin-top:15px;
-}
-.marginTop{
-    margin-top: -100rpx!important
-}
-
-.badge{
-=======
 .footer_bar {
     position: fixed;
     bottom: 0;
@@ -785,7 +741,6 @@ margin-top:15px;
 }
 
 .badge {
->>>>>>> shop
     position: absolute;
     top: 0;
     right: 8rpx;
@@ -841,9 +796,6 @@ margin-top:15px;
     display: flex;
     justify-content: space-between;
 }
-<<<<<<< HEAD
->>>>>>> shop
-=======
 
 .item-cover-box .cover {
     width: 100%;
@@ -1179,4 +1131,3 @@ margin-top:15px;
     color: #999;
     text-align: center;
 }
->>>>>>> shop

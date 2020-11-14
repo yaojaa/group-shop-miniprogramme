@@ -1,5 +1,3 @@
-<i-share-painter palette="{{template}}" bind:imgOK="onImgOK"></i-share-painter>
-<!-- <image src="{{imgOkPath}}"></image> -->
 <preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view>
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
     <view slot="bottom">
@@ -11,30 +9,6 @@
             <van-icon color="#a3df00" name="wap-home-o" size="22px" />
         </view>
     </view>
-<<<<<<< HEAD
-    <!-- 动画相册 -->
-    <i-imgs imgs="{{imgs}}"></i-imgs>
-
-    <view class="page-section page-section-spacing swiper goods-manage">
-            <!--   <view class="manage">
-            <navigator class="min-btn-s" url="../publish/publish?id=6">修改活动</navigator>
-            <navigator class="min-btn-s" url="../orderDefault/orderDefault">管理订单</navigator>
-        </view> -->
-            <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="swiper-primary">
-                <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-                    <swiper-item>
-                        <image bindtap="imgPreview" data-list="{{imgUrls}}"  mode="widthFix" src="{{item}}?imageView2/1/w/750/h/550/q/95" class="slide-image" />
-                    </swiper-item>
-                </block>
-            </swiper>
-        </view>
-    <view class="page-wrap">
-        <view class="countdownTime">
-            <block wx:if="{{countdownTime && goods._expires ==1 }}">
-                <view class="time-block-box">
-                    <i-count-down target="{{countdownTime}}" clear-timer="{{clearTimer}}" format="{{myFormat}}" i-class="time-block" show-day="{{true}}">
-                    </i-count-down>
-=======
 </custom-bar>
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}"></view>
@@ -45,13 +19,7 @@
             </view>
             <view class="user-body" catchtap="goContact">
                 <view class="user-info-hd">
-<<<<<<< HEAD
-                    <image src="{{goods.user.headimg}}" class="avatar">
-                    </image>
->>>>>>> shop
-=======
                     <image src="{{goods.user.headimg}}" class="avatar"></image>
->>>>>>> shop
                 </view>
                 <view class="user-info-bd">
                     <view class="name">{{goods.user.nickname}}</view>

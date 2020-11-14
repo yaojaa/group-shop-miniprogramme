@@ -1,37 +1,4 @@
 {
-<<<<<<< HEAD
-  "pages": [
-    "pages/login/login",
-    "pages/index/index",
-    "pages/goods/goods",
-    "pages/publish/publish",
-    "pages/publish-select/index",
-    "pages/publish-success/publish-success",
-    "pages/identify/identify",
-    "pages/ordermanage/list",
-    "pages/orderList/orderList",
-    "pages/orderDefault/orderDefault",
-    "pages/order/index",
-    "pages/home/index",
-    "pages/map/index",
-    "pages/paySuccess/index",
-    "pages/withdrawal/index",
-    "pages/userLocation/index",
-    "pages/myPartake/index",
-    "pages/myPublish/index",
-    "pages/example/example",
-    "pages/paymethod/index",
-    "pages/create_shop/create_shop"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "开心麻团儿",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#eeeeee"
-  },
-  "sitemapLocation": "sitemap.json"
-=======
     "pages": [
         "pages/login/login",
         "pages/home/index",
@@ -178,5 +145,4 @@
         "backgroundColor": "#eeeeee"
     },
     "sitemapLocation": "sitemap.json"
->>>>>>> shop
 }

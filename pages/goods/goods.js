@@ -1,13 +1,3 @@
-//index.js
-//获取应用实例
-//
-//
-// goods_link
-// store_link
-// spec_link
-// price_link
-
-
 const util = require('../../utils/util')
 const { $Message } = require('../../iView/base/index')
 import { $wuxGallery } from '../../wux/index'
@@ -41,94 +31,6 @@ function formatDateTime(inputTime) {
 }
 
 Page({
-<<<<<<< HEAD
-    data: {
-<<<<<<< HEAD
-        imgs:{ // 动画相册配置
-            src:[
-                "https://www.daohangwa.com/public/upload/local_cover/tmp_71a8a18f8d4e18b8cf892a4c3e28424cf3997fe5c76f3157.jpg",
-                "https://www.daohangwa.com/public/upload/local_cover/wx6ac9955f87c289f0.o6zAJsx6hMSC0UBabsyLYJuKY6ew.7z0KiIbdNBif8c155dfc2e203591a2bc726215709f2e.jpg",
-                "https://www.daohangwa.com/public/upload/local_cover/tmp_8789e959d03e6124356439808cc0354c81fd598848c33517.jpg",
-                "https://www.daohangwa.com/public/upload/local_cover/tmp_cd85c827575f94b291aacf7552af15971fe3b1083d6d6374.jpg",
-                "https://wx.qlogo.cn/mmopen/vi_32/QIbmMAaoLUEQg7pwSpjOEtMOPLxXxBsjQ4RNaIZQ7u7gngDjvU3RJC4ibez6ia2pX98dnnGserc9tqoniaicRg5aGA/132",
-            ],
-            height: 800
-        },
-=======
-        StatusBar: app.globalData.StatusBar,
-        CustomBar: app.globalData.CustomBar,
-        previewImgs:{
-            current:"",
-            urls:[],
-        },
-        previewImgHidden: true,
-        imgs: { // 动画相册配置
-            src: [],
-            height: 800, //动态图片高度
-            animationDuration: 13, // 动画持续时间基数
-            minScaleVal: 50, //最小缩放值
-            minXYVale: 50, //xy轴最小运动值
-        },
-        scrollTop: 0,
->>>>>>> shop
-        hasScope: false, //是否授权
-        goods: '',
-        visibleU: false,
-        seller: {},
-        sell_address: [],
-        goods_spec: [],
-        code: false,
-        cartPanel: false,
-        amountMoney: 0,
-        countdownTime: 0,
-        clearTimer: false,
-        myFormat: ['天', '小时', '分', '秒'],
-        orderUsers: [],
-        _orderUsers: [], // 存储
-        _orderUsers_: [], // 执行
-        orderUsersLoading: false,
-        imagePath: "",
-        collection_methods: '',
-        copy: false,
-        msgvisible: false,
-        showShareFriendsCard: false,
-        shareFriendsImg: '',
-        template: {},
-        shareCardConfig: {
-            width: 750,
-            goodsImg: {
-                height: 380 //默认400
-            },
-            headImg: {
-                size: 140, //默认140
-            },
-            userName: '开心麻团儿',
-            content: {
-                des: [], //一个元素一个段落
-                margin: 30, //左右边界默认30
-                lineHeight: 52,
-                fontSize: 30,
-                title: {
-                    fontSize: 38,
-                    lineHeight: 50
-                },
-            },
-            qrcode: {
-                src: '',
-                size: 300 //二维码显示尺寸默认300
-            },
-            hw_data: null,
-            showAuth: false,
-            showRoll: 0,
-            totalNum: 0, //已选择的总数
-            notice: '', //价格提示框class
-            StatusBar: '',
-            toShowPic: false,
-            poster: false,
-            winWidth: app.globalData.winWidth,
-            imgPreviewFlag: false, // 是否查看图片预览  true 是  false 否
-        },
-=======
   data: {
     menuBarTop: app.globalData.menuBarTop,
     CustomBar: app.globalData.CustomBar,
@@ -137,7 +39,6 @@ Page({
     previewImgs: {
       current: '',
       urls: [],
->>>>>>> shop
     },
     previewImgHidden: true,
     imgs: {

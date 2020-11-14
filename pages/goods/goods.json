@@ -13,24 +13,14 @@
     "i-message": "../../iView/message/index",
     "i-count-down": "../../iView/count-down/index",
     "i-badge": "../../iView/badge/index",
-<<<<<<< HEAD
-    "share-painter": "/iView/share-painter/share-painter",
-<<<<<<< HEAD
-    "i-imgs": "../../iView/imgs/imgs"
-=======
-=======
->>>>>>> shop
+    "i-imgs": "../../iView/imgs/imgs",
     "imgs": "../../components/imgs/imgs",
     "preview-view": "../../components/preview-img/view",
     "comment": "../../components/comment/index",
     "van-popup": "../../vant/popup/index",
     "van-action-sheet": "../../vant/action-sheet/index",
     "custom-bar": "../../components/custom-bar/index",
-<<<<<<< HEAD
-    "wux-gallery": "../../wux/gallery/index"
-
->>>>>>> shop
-=======
+    "wux-gallery": "../../wux/gallery/index",
     "wux-gallery": "../../wux/gallery/index",
     "van-dialog": "../../vant/dialog/index",
     "van-cell": "../../vant/cell/index",
@@ -39,6 +29,5 @@
     "i-share-painter": "../../iView/share-painter/share-painter",
     "i-modal": "../../iView/modal/index",
     "goods-detail": "../../components/goods-detail/index"
->>>>>>> shop
   }
 }
