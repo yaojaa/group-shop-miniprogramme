@@ -57,6 +57,14 @@ Page({
         isShowTui: false,
         orderData: {},
     },
+    onSearch(e){
+        const value = e.detail.trim()
+        if(value){
+            this.keyword= value
+            this.getOrderList()
+        }
+
+    },
     closeTui(){
         this.setData({
             isShowTui: false
@@ -391,7 +399,8 @@ Page({
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
                 search_order_status: this.data.search_order_status,
-                pagesize: 30
+                pagesize: 30,
+                keyword: this.keyword || ''
             }).then(res=>{
 
                 if(res.data.code == 200){

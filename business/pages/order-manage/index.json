@@ -13,14 +13,17 @@
         "i-cell": "../../../iView/input/index",
         "i-custom-bar": "../../../components/custom-bar/index",
         "wux-spin": "../../../wux/spin/index",
+        "van-search": "../../../vant/search/index",
         "van-button": "../../../vant/button/index",
-         "van-card": "../../../vant/card/index",
-          "van-tab": "../../../vant/tab/index",
-          "van-tabs": "../../../vant/tabs/index",
-          "footerbar": "../../components/footerbar/index",
-          "van-collapse": "../../../vant/collapse/index",
-          "van-dialog": "../../../vant/dialog/index",
-          "van-collapse-item": "../../../vant/collapse-item/index"
+        "van-card": "../../../vant/card/index",
+        "van-tab": "../../../vant/tab/index",
+        "van-tabs": "../../../vant/tabs/index",
+         "van-tabbar": "../../../vant/tabbar/index",
+  "van-tabbar-item": "../../../vant/tabbar-item/index",
+        "footerbar": "../../components/footerbar/index",
+        "van-collapse": "../../../vant/collapse/index",
+        "van-dialog": "../../../vant/dialog/index",
+        "van-collapse-item": "../../../vant/collapse-item/index"
     }
 
 }

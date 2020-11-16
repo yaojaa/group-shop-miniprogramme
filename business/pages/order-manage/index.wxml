@@ -2,12 +2,10 @@
     <view class="order-title ">
 
 
-        <view class="link text-success" bindtap="copyLink">去PC端管理订单(点击复制链接)</view>
+        <view class=" text-success" bindtap="copyLink">去PC端管理订单(点击复制链接)</view>
 
-<van-dialog id="van-dialog" />
 
       
-      <button type="success"   size="mini" bindtap="exportExcel">导出订单</button>
           <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
                     <i-icon size="20" type="other" />
                 </i-button> -->
@@ -20,6 +18,18 @@
             <view slot="close">收起</view>
         </i-switch> -->
         </view>
+
+          <van-search 
+            value="{{ value }}" 
+            shape="round" 
+            background="#fff" 
+            placeholder="请输入姓名、手机号"
+            show-action="{{searchWords}}"
+            bind:search="onSearch"
+            bind:cancel="onCancel"
+            />
+
+
     <view class="tabsArea">
         <van-tabs current="{{ tab }}" color="#ffaa4f" bindchange="handleTab">
             <van-tab name="3" title="待发货"></van-tab>
@@ -223,6 +233,14 @@
     </view>
 </view>
 
-        <footerbar active="{{1}}" />
-
+<van-tabbar
+  active="{{ active }}"
+  active-color="#07c160"
+  inactive-color="#000"
+  bind:change="onChange"
+>
+  <van-tabbar-item icon="home-o">返回主页</van-tabbar-item>
+  <van-tabbar-item icon="friends-o">批量发货</van-tabbar-item>
+  <van-tabbar-item icon="setting-o" bindtap="exportExcel">导出订单</van-tabbar-item>
+</van-tabbar>
 
