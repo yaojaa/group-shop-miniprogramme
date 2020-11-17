@@ -22,7 +22,9 @@
                 <view class="flex justify-between text-white">
                     <view class="user-box">
                         <view class="user-name mr-sm">{{userInfo.nickname}}</view>
-                        <text bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">我的主页</text>
+                        <text bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">
+                            我的主页
+                        </text>
                     </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
@@ -37,11 +39,17 @@
     </view>
     <view class="new_order" wx:if="{{orderList.length}}">
         <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
-        <i-panel hide-border title="最新订单" >
+        <i-panel hide-border title="最新订单" extra="更多" link="pages/new-order-list/index">
             <view class="control">
                 <view class="newlist">
                     <scroll-view style="height: 100px" scroll-y>
-                        <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}" bindtap="todetail">{{item.time_ago}} <text wx:if="{{item.isFromSlef}}">{{item.user.nickname}} 下单：</text><text wx:else>{{item.store.nickname}} 帮卖：</text> <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                        <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}" bindtap="todetail">
+                            <text class="bold" wx:if="{{item.is_valet=='0'}}">
+                                {{item.user.nickname}}
+                            </text>
+                            <text class="bold" wx:else>{{item.store.nickname}}</text>
+                            {{item.time_ago}}下单
+                            <text class="bold">{{item.order_detail[0].goods_name}}</text>
                         </view>
                     </scroll-view>
                 </view>
@@ -59,15 +67,7 @@
           <i-icon type="add" size="20" />新发布
         </button> -->
         <i-panel wx:if="{{goodslist.length > 0 }}">
-            <van-search 
-            value="{{ value }}" 
-            shape="round" 
-            background="#fff" 
-            placeholder="请输入搜索关键词"
-            show-action="{{searchWords}}"
-            bind:search="onSearch"
-            bind:cancel="onCancel"
-            />
+            <van-search value="{{ value }}" shape="round" background="#fff" placeholder="请输入搜索关键词" show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
             <!-- <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
   <van-tab title="进行中"></van-tab>
   <van-tab title="已结束"></van-tab>
@@ -76,12 +76,14 @@
             <!-- search -->
             <view class="goods-box" wx:if='{{searchWords}}'>
                 <block wx:key="index" wx:for="{{searchGoodslist}}">
-    <i-goods-item  bindupdateList="getGoodsList" bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
+                    <i-goods-item bindupdateList="updateList" bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
                 </block>
                 <view class="text-center pt20">
                     <wux-spin wx:if="{{search_is_loading}}"></wux-spin>
                 </view>
-                <view class="no-data-txt" wx:if="{{searchGoodslist.length == 0 && !search_is_loading}}">没有找到商品，换个关键词试试吧~</view>
+                <view class="no-data-txt" wx:if="{{searchGoodslist.length == 0 && !search_is_loading}}">
+                    没有找到商品，换个关键词试试吧~
+                </view>
             </view>
             <!-- ./search -->
             <view class="goods-box" wx:else>
