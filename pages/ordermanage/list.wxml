@@ -1,5 +1,20 @@
 <view class="container">
+
+    <view class="search">
+        <van-search 
+            value="{{ value }}" 
+            shape="round" 
+            background="#fff" 
+            placeholder="请输入收件人姓名或者电话"
+            show-action="{{searchWords}}"
+            bind:search="onSearch"
+            bind:cancel="onCancel"
+            />
+    </view>
+
     <view class="order-title text-primary">
+           
+
         <view bindtap="toGoods" hover-class="none">
             <text class="goods_title">回到商品</text>
         </view>

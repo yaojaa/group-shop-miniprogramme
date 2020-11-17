@@ -113,7 +113,9 @@ Page({
       this.setData({
         isloading: false
       });
-    });
+    }).catch(e=>{
+        console.log(e)
+    })
   },
 
   handleTabBarChange({ detail }) {
@@ -150,7 +152,9 @@ Page({
           });
         }
       }
-    });
+    }).catch(e=>{
+        console.log(e)
+    })
   },
 
   //切换显示隐藏状态事件

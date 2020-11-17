@@ -105,14 +105,14 @@ Page({
   },
 
   goods_up(e) {
-    const { id } = e.target.dataset
+    const { goods_id } = e.target.dataset
 
     console.log('goods uppppp')
 
     if(this.type == 'supplier'){
 
         wx.navigateTo({
-          url: '/pages/goods-up/index?supid=' + id,
+          url: '/pages/goods-up/index?goods_id=' + goods_id,
         })
 
     }else{

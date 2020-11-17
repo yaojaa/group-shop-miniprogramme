@@ -9,7 +9,7 @@
     ]
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -18,7 +18,7 @@
     "newFeature": true,
     "coverView": true,
     "nodeModules": false,
-    "autoAudits": false,
+    "autoAudits": true,
     "showShadowRootInWxmlPanel": false,
     "scopeDataCheck": false,
     "uglifyFileName": true,
@@ -1503,6 +1503,13 @@
           "name": "pages/help-sale-up/index",
           "pathName": "pages/help-sale-up/index",
           "query": "goods_id=3517",
+          "scene": null
+        },
+        {
+          "id": 204,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=supplier&id=4",
           "scene": null
         }
       ]

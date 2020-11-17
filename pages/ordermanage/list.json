@@ -17,7 +17,8 @@
         "i-pop-menu": "../../iView/pop-menu/index",
         "wux-spin": "../../wux/spin/index",
         "van-button": "../../vant/button/index",
-        "vant-icon": "../../vant/icon/index"
+        "vant-icon": "../../vant/icon/index",
+        "van-search": "../../vant/search/index"
 
     }
 

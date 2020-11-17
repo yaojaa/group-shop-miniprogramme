@@ -511,6 +511,8 @@ const request = (url, data, method) => {
                     app.globalData.noLogin = true
                      wx.clearStorageSync() 
                      app.redirectToLogin()
+                    resolve(res)
+
 
                 } else { //返回错误提示信息
                     resolve(res)
