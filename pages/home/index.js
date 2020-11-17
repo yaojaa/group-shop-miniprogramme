@@ -414,7 +414,8 @@ Page({
     },
   updateList(e) {
     this.setData({
-      goodslist: []
+      goodslist: [],
+      cpage: 1,
     });
     console.log(this.data.goodslist, '夺夺夺');
     console.log(e)
