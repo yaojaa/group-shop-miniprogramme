@@ -68,6 +68,8 @@ Page({
         if(sv){
             this.setData({
                 searchWords: sv,
+                dataList: [],
+                totalpage: 1,
                 cpage: 1
             })
 
@@ -78,6 +80,8 @@ Page({
     onCancel(){
         this.setData({
             searchWords: '',
+            dataList: [],
+            totalpage: 1,
             cpage: 1
         })
         this.getOrderList()
