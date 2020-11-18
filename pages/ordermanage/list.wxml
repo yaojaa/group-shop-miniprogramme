@@ -1,5 +1,14 @@
 <view class="container">
+    <van-search 
+        value=""
+        shape="round"
+        background="#fff"
+        placeholder="请输入搜索关键词"
+        show-action="{{searchWords}}"
+        bind:search="onSearch"
+        bind:cancel="onCancel" />
     <view class="order-title text-primary">
+
         <view bindtap="toGoods" hover-class="none">
             <text class="goods_title">回到商品</text>
         </view>
