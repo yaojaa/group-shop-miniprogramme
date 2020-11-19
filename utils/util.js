@@ -489,10 +489,6 @@ const WX = {}
 /**封装request请求**/
 const request = (url, data, method) => {
 
-    if(app.globalData.noLogin){
-        return
-    }
-
     return new Promise((resolve, reject) => {
         wx.request({
             url: config.apiUrl + url,
@@ -508,10 +504,15 @@ const request = (url, data, method) => {
 
                 if (res.data.code == '-99' || res.data.code == '-100') {
                     console.log('应该调到等路')
-                    app.globalData.noLogin = true
-                     wx.clearStorageSync() 
-                     app.redirectToLogin()
-                    resolve(res)
+                                          wx.showToast({
+                                            title:'登录已过期',
+                                            icon:'none'
+                                          })
+
+                     resolve(res)
+                      // wx.redirectTo({
+                      //       url: '/pages/login/login'
+                      //   })
 
 
                 } else { //返回错误提示信息

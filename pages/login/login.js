@@ -12,7 +12,7 @@ Page({
 
     const userInfo = app.globalData.userInfo
 
-    if(userInfo!==null){
+    if(userInfo!==null && Object.keys(userInfo).length>0){
          this.jump(userInfo)
     }
 
@@ -38,7 +38,7 @@ Page({
 
   jump(d){
 
-    console.log('d',d)
+    console.log('d',d,Object.keys(d).length)
 
 
      var lastVisit = wx.getStorageSync('lastVisit') 

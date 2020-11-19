@@ -151,9 +151,27 @@ Page({
             pending_money: res.data.data.store.pending_money
           });
         }
+      }else{
+         wx.clearStorageSync()
+         app.globalData.userInfo = null
+
+         wx.showModal({
+          title: '您的登录信息失效',
+          content: '请重新登录',
+          success (res) {
+            if (res.confirm) {
+
+              app.redirectToLogin()
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+
+         // app.redirectToLogin()
       }
+
     }).catch(e=>{
-        console.log(e)
     })
   },
 
@@ -383,10 +401,6 @@ Page({
                 }
             }).catch(e=>{
 
-
-                wx.showToast({
-                    title:'读取超时 请稍后重试'
-                })
                 if(this.data.searchWords){
                     this.setData({
                         search_is_loading: false

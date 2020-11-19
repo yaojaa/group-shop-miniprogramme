@@ -21,7 +21,7 @@ Page({
         Custom: app.globalData.Custom,
         show_tips: false,
         orderList: [],
-        isCustome: true    
+        isCustome: true
     },
     closleTips() {
         this.setData({
@@ -42,64 +42,70 @@ Page({
 
     getProList() {
         util.wx.get('/api/user/get_bought_store_goods').then(res => {
+            if (res.data.code == 200) {
                 this.setData({
                     proList: res.data.data.goods,
                     is_loading: false
                 })
+            } else {
+                wx.clearStorageSync()
+                app.globalData.userInfo = null
+                app.redirectToLogin()
+            }
         })
     },
 
-    goSupperReg(){
+    goSupperReg() {
         wx.navigateTo({
-            url:'/business/pages/create-home/index'
+            url: '/business/pages/create-home/index'
         })
 
     },
 
-    goPublish(){
+    goPublish() {
         wx.navigateTo({
-            url:'../create-home/index'
+            url: '../create-home/index'
         })
 
     },
 
-     reGetUserInfo(){
+    reGetUserInfo() {
 
-        util.wx.get('/api/user/get_user_info').then(res=>{
-            if(res.data.code == 200){
+        util.wx.get('/api/user/get_user_info').then(res => {
+            if (res.data.code == 200) {
                 const d = res.data.data
 
 
-                        var userInfo = d.user
-                            
-                            if(d.hasOwnProperty('store')){
-                                userInfo.store =  d.store
-                            }
+                var userInfo = d.user
 
-                             if(d.hasOwnProperty('supplier')){
-                                userInfo.supplier =  d.supplier
-                            }
-                            
-                        app.globalData.token = userInfo.token 
-                        app.globalData.userInfo = userInfo
+                if (d.hasOwnProperty('store')) {
+                    userInfo.store = d.store
+                }
 
-                        wx.setStorage({ //存储到本地
-                            key: "userInfo",
-                            data: userInfo
-                        })
+                if (d.hasOwnProperty('supplier')) {
+                    userInfo.supplier = d.supplier
+                }
 
-                         if(d.store){
+                app.globalData.token = userInfo.token
+                app.globalData.userInfo = userInfo
 
-                             wx.redirectTo({
-                                            url:'../home/index'
-                                        })
-                           }
-                
+                wx.setStorage({ //存储到本地
+                    key: "userInfo",
+                    data: userInfo
+                })
+
+                if (d.store) {
+
+                    wx.redirectTo({
+                        url: '../home/index'
+                    })
+                }
+
 
             }
         })
 
-      },
+    },
 
 
     /**
@@ -117,13 +123,13 @@ Page({
             this.setData({
                 userInfo: app.globalData.userInfo
             })
-           
+
         }
 
         wx.hideHomeButton()
 
 
-         // this.reGetUserInfo()
+        // this.reGetUserInfo()
 
         this.getProList()
     },
