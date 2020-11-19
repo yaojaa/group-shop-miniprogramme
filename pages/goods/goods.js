@@ -1331,46 +1331,36 @@ Page({
     })
   },
   copyDetail() {
-    var price = '规格：\n'
+    var price = '\n'
     console.log(this.data.goods_spec)
     this.data.goods_spec.forEach((item, index) => {
       price += item.spec_name + ' \b 💰' + item.spec_price + '元\n'
     })
-    var userList = []
-    var len = this.data.orderUsers.length
-    this.data.orderUsers.forEach((item, index) => {
-      let spec = ''
-      console.log(item)
-      item.spec.forEach((k, v) => {
-        spec += k.spec_name + '' + k.qty + '\b '
-      })
-      userList.unshift(
-        item.create_number +
-          '.' +
-          item.nickname +
-          ' \b ' +
-          spec +
-          (item.pay_status == 1 ? '(已付)' : '未付')
-      )
-    })
+  
 
-    var content = this.data.goods.goods_name + '\n'
-    if (this.data.goods.goods_content)
+    var content = '【'+this.data.goods.goods_name+'】' + '\n\n'
+    if (this.data.goods.goods_content){
       content += this.data.goods.goods_content + '\n'
-    content =
-      content +
-      price +
-      '----' +
-      this.data.seller.nickname +
-      '\n' +
-      '请大家在小程序里接龙哦:\n' +
-      userList.join('\n')
+    }
+
+    if(this.data.content.length){
+
+      this.data.content.forEach(item=>{
+        if(item.type == 'text'){
+          content += item.desc + '\n'
+        }
+      })
+
+    }
+
+    content += price
+    
 
     wx.setClipboardData({
       data: content,
       success: function (res) {
         wx.showToast({
-          title: '已复制去粘贴吧',
+          title: '文字已复制',
           icon: 'none',
           duration: 2000,
         })

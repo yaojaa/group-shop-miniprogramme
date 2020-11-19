@@ -250,7 +250,7 @@
             <button size="large" style="margin-right: 20px" class="btn primary hollow" bindtap="copyGoods">
                 复制此商品
             </button>
-            <button size="large" bindtap="toPublish" class="btn primary hollow">+ 发布新商品</button>
+            <button size="large" bindtap="copyDetail" class="btn primary hollow">复制文字</button>
         </view>
     </view>
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->
