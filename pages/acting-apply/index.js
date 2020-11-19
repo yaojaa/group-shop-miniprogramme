@@ -153,7 +153,7 @@ Page({
                   //如果是从商品邀请进来的
                   if(this.goods_id){
                     wx.redirectTo({
-                      url:`pages/goods/goods?goods_id=${this.goods_id}&help_sale=true`
+                      url:`/pages/goods/goods?goods_id=${this.goods_id}&help_sale=true`
                     })
 
                   //从邀请码进来的
