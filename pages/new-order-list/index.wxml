@@ -1,4 +1,5 @@
 <view class="container gray-wrap cf">
+<<<<<<< HEAD
  <van-search 
             value="{{ value }}" 
             shape="round" 
@@ -8,6 +9,16 @@
             bind:search="onSearch"
             bind:cancel="onCancel"
             />
+=======
+    <van-search 
+        value=""
+        shape="round"
+        background="#fff"
+        placeholder="请输入搜索关键词"
+        show-action="{{searchWords}}"
+        bind:search="onSearch"
+        bind:cancel="onCancel" />
+>>>>>>> bee275164e130a0612a42be0b55a6f3ef3290537
   <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" color="#49b34d">
         <van-tab title="最新订单"  ></van-tab>
         <van-tab title="待确认" ></van-tab>

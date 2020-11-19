@@ -60,6 +60,33 @@ Page({
             name: '发货名单'
         }],
         excelUrl: '',
+        searchWords: ''
+    },// 搜索
+    onSearch(e){
+        var sv = e.detail.replace(/(^\s*)|(\s*$)/g,'');
+        console.log(sv)
+        if(sv){
+            this.setData({
+                searchWords: sv,
+                dataList: [],
+                totalpage: 1,
+                cpage: 1
+            })
+
+            this.getOrderList()
+            this.getStatistics()
+        }
+    },
+    onCancel(){
+        this.setData({
+            searchWords: '',
+            dataList: [],
+            totalpage: 1,
+            cpage: 1
+        })
+        this.getOrderList()
+        this.getStatistics()
+
     },
 
     sendMsgAll() {
@@ -468,15 +495,23 @@ Page({
             loading: true
         })
 
-        return new Promise((resolve, reject) => {
-            util.wx.get('/api/seller/get_order_list', {
+        let ajaxData = {
                 goods_id: this.data.goods_id,
                 cpage: this.data.cpage,
                 transform_store_id: this.data.store_id,
                 search_order_status: this.data.search_order_status,
                 pagesize: 30
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
-            }).then((res) => {
+            };
+
+        if(this.data.searchWords){
+            ajaxData.keyword = this.data.searchWords
+        }
+
+        console.log(ajaxData)
+
+        return new Promise((resolve, reject) => {
+            util.wx.get('/api/seller/get_order_list', ajaxData).then((res) => {
 
                 var resdata = res.data.data.order_list
                 var key = 'dataList[' + (this.data.cpage - 1) + ']'

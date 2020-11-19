@@ -15,6 +15,7 @@
     <view class="order-title text-primary">
            
 
+
         <view bindtap="toGoods" hover-class="none">
             <text class="goods_title">回到商品</text>
         </view>
