@@ -8,6 +8,10 @@
             bind:search="onSearch"
             bind:cancel="onCancel"
             />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 71e460a62189dd15d6a702a9f5e5b41447c16fb2
   <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" color="#49b34d">
         <van-tab title="最新订单"  ></van-tab>
         <van-tab title="待确认" ></van-tab>

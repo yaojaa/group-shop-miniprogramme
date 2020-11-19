@@ -19,6 +19,10 @@
         "van-button": "../../vant/button/index",
         "vant-icon": "../../vant/icon/index",
         "van-search": "../../vant/search/index"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 71e460a62189dd15d6a702a9f5e5b41447c16fb2
     }
 
 }

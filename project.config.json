@@ -38,7 +38,6 @@
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "enableEngineNative": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
@@ -56,14 +55,6 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
     "plugin": {
       "list": [
         {
@@ -1478,10 +1469,9 @@
           "scene": null
         },
         {
-          "id": 200,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2688",
+          "query": "goods_id=989&from_id=1&help_sale=true",
           "scene": null
         },
         {
