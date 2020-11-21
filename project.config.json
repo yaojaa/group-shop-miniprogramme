@@ -55,6 +55,14 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
       "list": [
         {
@@ -1465,13 +1473,7 @@
           "id": 199,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3651&from_id=1&help_sale=true",
-          "scene": null
-        },
-        {
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=989&from_id=1&help_sale=true",
+          "query": "goods_id=3640",
           "scene": null
         },
         {
@@ -1500,6 +1502,13 @@
           "name": "pages/supplier-home/index",
           "pathName": "pages/supplier-home/index",
           "query": "type=supplier&id=4",
+          "scene": null
+        },
+        {
+          "id": 204,
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
+          "query": "goods_id=3640",
           "scene": null
         }
       ]
