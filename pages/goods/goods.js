@@ -314,6 +314,7 @@ Page({
     if(e.from == 'menu'){
       
             title = this.data.goods.goods_name
+            img_url = this.shareImg
 
 
     }else{
@@ -728,9 +729,10 @@ Page({
 
           const d = res.data.data
 
-          console.log(d)
+          console.log(d.goods.content)
 
-          util.drawShareFriends(this, d.goods)
+
+          // util.drawShareFriends(this, d.goods)
 
           //把数量设为0
           //
@@ -742,27 +744,29 @@ Page({
 
           // 没有规格图片使用第一张头图
           d.goods.goods_spec.forEach((item) => {
-            console.log(
-              'item.spec_pic',
-              item.spec_pic.length == 0,
-              d.goods.goods_images[0].img_url
-            )
             if (item.spec_pic.length == 0) {
               item.spec_pic.push(d.goods.goods_images[0].img_url)
             }
           })
 
+          console.log('d.goods.content',d.goods.content)
+
+          console.log(typeof d.goods.content,d.goods.content.length)
+
+          console.log(d.goods.content == null)
+
   //转换内容数据
-          if(d.goods.content){
+          if(d.goods.content !== 'null'){
+
+            console.log('cainimawsm')
 
              var content = JSON.parse(d.goods.content)
-
-
+             console.log('json.parse',content)
           }else{
             var content = []
           }
 
-
+return
 
 
            if(content.length == 0 || content.html == ''){
@@ -787,33 +791,10 @@ Page({
             console.log('else',content.html)
            }
 
-           console.log(typeof content,content)
+           console.log('1111119999999999',typeof content,content)
 
           
 
-
-          // let editorContent = JSON.parse(d.goods.content)
-          // editorContent = editorContent ? editorContent : { html: '', text: '' }
-
-          // if(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p><p( wx:nodeid="\d+")?><img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/.test(editorContent.html)){
-          //   editorContent.html = editorContent.html.replace(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p>/,'<p>');
-          // }
-          
-          // let isEmptyEditor = editorContent.text.replace(/\n/g, '').length == 0 &&
-          //   !/img/g.test(editorContent.html)
-
-          // editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
-          // editorContent.htmlArr = editorContent.html.split(/<img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/);
-
-          // if(editorContent.video){
-          //   editorContent.video = editorContent.video.map(e => {
-          //     return e.replace(/(alt=)|["']/g,'')
-          //   })
-          // }else{
-          //   editorContent.video=[]
-          // }
-
-          // editorContent.html = editorContent.html.replace(/<img\s/g,'<img class="editor-img" ')
 
           this.setData({
             content: content,

@@ -14,6 +14,7 @@
 </custom-bar>
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}"></view>
+    {{imgs}}
     <imgs imgs="{{imgs}}">
         <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{menuBarTop}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
             <view class="icon-back" wx:if="{{showBackIcon}}" catchtap="goBack">
@@ -83,7 +84,7 @@
                 <text class="text-sm n-bold">/起</text>
             </view>
             <view class="text-sm text-muted">
-                访问人数 {{goods.pageview_count+1}}
+                访问次数 {{goods.pageview_count+1}}
                 <text wx:if="{{goods.show_buyerlist!==1}}">已售 {{goods.total_qty}}</text>
                 <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text>
             </view>
@@ -250,7 +251,7 @@
             <button size="large" style="margin-right: 20px" class="btn primary hollow" bindtap="copyGoods">
                 复制此商品
             </button>
-            <button size="large" bindtap="copyDetail" class="btn primary hollow">复制文字</button>
+            <button size="large" bindtap="copyDetail" class="btn primary hollow">复制为文字</button>
         </view>
     </view>
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->

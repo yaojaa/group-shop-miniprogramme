@@ -9,7 +9,7 @@
     ]
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -56,11 +56,9 @@
   "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "plugin": {
@@ -1473,7 +1471,7 @@
           "id": 199,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3640",
+          "query": "goods_id=3500",
           "scene": null
         },
         {
