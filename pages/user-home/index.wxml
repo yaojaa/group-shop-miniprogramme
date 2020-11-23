@@ -107,9 +107,10 @@
 		</block>
 	</i-panel>
 
-	<view class="text-center">
-		<wux-spin wx:if="{{is_loading}}"></wux-spin>
-	</view>
+	 <view class="text-center" style="padding: 30px" wx:if="{{is_loading}}">
+        <wux-spin wx:if="{{is_loading}}"></wux-spin>
+    </view>
+
 
 
 

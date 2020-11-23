@@ -243,9 +243,6 @@ Page({
       weChat: this.data.goods.user.wechatnumber,
     })
 
-
-    console.log(this.data.goods)
-
     Dialog.confirm({
       confirmButtonText: '逛逛Ta的主页',
       selector: '#contact',
@@ -314,6 +311,7 @@ Page({
     if(e.from == 'menu'){
       
             title = this.data.goods.goods_name
+            img_url = this.shareImg
 
 
     }else{
@@ -753,10 +751,9 @@ Page({
           })
 
   //转换内容数据
-          if(d.goods.content){
+          if(d.goods.content & d.goods.content!=='null'){
 
              var content = JSON.parse(d.goods.content)
-
 
           }else{
             var content = []
