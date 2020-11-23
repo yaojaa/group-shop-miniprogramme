@@ -260,9 +260,6 @@ App({
 
     onLaunch: function(option) {
 
-        console.group('启动检测onLaunch---')
-        console.log('option', option)
-
         this.comeInfo = {}
 
     
