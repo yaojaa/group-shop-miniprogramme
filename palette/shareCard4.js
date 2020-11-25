@@ -30,7 +30,7 @@ console.log(goods.goods_cover)
       type: 'image',
       url: goods.goods_cover,
       css: {
-        top: `55px`,
+        top: `50px`,
         left: `${wid/2}px`,
         width: '200px',
         height: '160px',
@@ -46,7 +46,7 @@ console.log(goods.goods_cover)
       type: 'text',
       text: '#绑定商品#',
       css: {
-        top: `225px`,
+        top: `230px`,
         left: `${wid/2}px`,
         color: '#444',
         fontSize: "26px",
