@@ -7,9 +7,31 @@ Component({
   },
   data: {
     // 这里是一些组件内部数据
+    previewImgs: {
+      current: '',
+      urls: [],
+    },
+    previewImgHidden: true
+  },
+  ready(){
+    try{
+      this.properties.content.forEach(e=>{
+        if(e.type == 'image'){
+          this.data.previewImgs.urls.push(e.src)
+        }
+      })
+    }catch(err){console.log(err)}
   },
   methods: {
-    // 这里是一个自定义方法
-    customMethod: function(){}
+    showPreview(e){
+      let currentSrc = e.currentTarget.dataset.src;
+      let index = this.data.previewImgs.urls.indexOf(currentSrc)
+      index = index > 0 ? index : 0;
+      this.data.previewImgs.current = index;
+      this.setData({
+        previewImgs: this.data.previewImgs,
+        previewImgHidden: false
+      })
+    }
   }
 })

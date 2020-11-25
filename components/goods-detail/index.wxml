@@ -9,7 +9,7 @@
                 <text> {{item.desc}} </text>
             </view>
             <block wx:if="{{ item.type === 'image' }}">
-                <image class="image" src="{{ item.src }}" mode="widthFix"></image>
+                <image bindtap="showPreview" data-src="{{item.src}}" class="image" src="{{ item.src }}" mode="widthFix"></image>
             </block>
             <block wx:if="{{ item.type === 'video' }}">
                 <video class="video" width="100%" src="{{ item.src }}"></video>
@@ -23,3 +23,4 @@
         <wux-spin wux-class="spin" />
     </view>
 </view>
+<preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view>
