@@ -322,7 +322,6 @@ Page({
   // },
   //
   addPictureDone() {
-    console.log('close!!!!')
 
     this.setData({
       visible_pictures: false,
@@ -922,7 +921,7 @@ Page({
   editor: function(data) {
 
 
-    if (!this.data.is_edit) {
+    if (!this.data.is_edit || this.data.is_copy) {
       return
     }
 
@@ -1130,7 +1129,9 @@ Page({
 
     }
 
+    //如果是复制商品 ，商品开启了帮卖复制的要不开启帮卖
     if (isCopy) {
+      gs.agent_opt = 0
       var spec = gs.goods_spec.map(item => {
 
         return {
@@ -1145,8 +1146,6 @@ Page({
     } else {
       var spec = gs.goods_spec
     }
-
-    console.log(content)
 
 
     this.setData({

@@ -1,5 +1,3 @@
-<!-- <i-custom-bar showBackIcon="{{showIcon}}" hidden="{{shareIng}}" backUrl="/pages/home/index" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
-</i-custom-bar> -->
 <view class="container cf">
     <view class="swiper" style="background:url({{store_slide}}?imageView2/2/w/600/h/400/format/jpg/q/75) center bottom;background-size:cover">
         <!-- <image src="{{store_slide}}" height="400" class="slide-image" /> -->

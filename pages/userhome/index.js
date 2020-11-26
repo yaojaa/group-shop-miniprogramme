@@ -62,8 +62,6 @@ Page({
       actions: this.data.actions
     })
 
-    console.log(this.goods_id)
-
     this.setData({
       show: true
     })

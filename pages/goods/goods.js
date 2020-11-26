@@ -138,7 +138,6 @@ Page({
   },
 
   onImgOK(e){
-    console.log('imgOK',e)
     this.setData({
       imgOkPath: e.detail.path
     })

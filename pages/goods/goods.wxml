@@ -14,7 +14,6 @@
 </custom-bar>
 <view class="container">
     <view class="roll_box" style="transform: translate({{bus_x}}px, {{bus_y}}px);opacity: {{showRoll || 0}}"></view>
-    {{imgs}}
     <imgs imgs="{{imgs}}">
         <view class="user-info" wx:if="{{scrollTop < 340}}" style="padding-top:{{menuBarTop}}px;height:{{CustomBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
             <view class="icon-back" wx:if="{{showBackIcon}}" catchtap="goBack">
@@ -189,7 +188,7 @@
                             暂时还没有人参与哦 点击这里分享转发
                         </button>
                     </view>
-                    <scroll-view wx:else scroll-y style="max-height: 650rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
+                    <scroll-view wx:else scroll-y style="max-height: 1000rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
                     <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
                         <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
                             <text class="number">{{item.create_number}}</text>

@@ -202,6 +202,7 @@ button.button {
 
 .user-container {
   padding: 0 30rpx;
+  margin-bottom: 50px
 }
 
 .act-submit {

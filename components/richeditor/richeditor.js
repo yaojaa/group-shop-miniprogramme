@@ -152,10 +152,7 @@ Component({
 
                                 uploadFile({ filePath: item }).then(resp => {
 
-
-
                                     i++
-
                                     const imageObj = {
                                         "type": "image",
                                         "src": resp.data.file_url,
@@ -239,7 +236,7 @@ Component({
                         isCompress: self.properties.supportType.video.isCompress,
                         maxDuration: self.properties.supportType.video.maxDuration,
                         camera: self.properties.supportType.video.camera,
-                        success: function(res) {
+                        success:(res)=> {
 
                             wx.showLoading({
                                 title: '上传中'
@@ -248,7 +245,7 @@ Component({
 
 
                                 if (index !== undefined) {
-                                    self.data.innerInitData.splice(index + 1, 0, {
+                                    this.data.innerInitData.splice(index + 1, 0, {
                                         isEditing: true,
                                         // 模块类型
                                         "type": "video",
@@ -257,7 +254,7 @@ Component({
 
                                     })
                                 } else {
-                                    self.data.innerInitData.push({
+                                    this.data.innerInitData.push({
                                         isEditing: true,
                                         // 模块类型
                                         "type": "video",
@@ -266,8 +263,8 @@ Component({
                                     })
                                 }
 
-                                self.setData({
-                                    innerInitData: self.data.innerInitData
+                                this.setData({
+                                    innerInitData: this.data.innerInitData
                                 })
 
                                 this.saveBlock()
@@ -292,19 +289,7 @@ Component({
 
                     break
             }
-            // if (index !== undefined) {
-            //   self.setData({
-            //     globalEditing: true,
-            //     innerInitData: self.data.innerInitData,
-            //     curIndex: index + 1
-            //   })
-            // } else {
-            //   self.setData({
-            //     globalEditing: true,
-            //     innerInitData: self.data.innerInitData,
-            //     curIndex: self.data.innerInitData.length - 1
-            //   })
-            // }
+          
         },
         deleteBlock: function(e) {
             let index = e.currentTarget.dataset.index
@@ -324,6 +309,8 @@ Component({
         },
         //保存数据
         saveBlock: function() {
+
+            console.log('触发saveblock')
 
             this.triggerEvent('updateData', this.data.innerInitData)
 
@@ -453,7 +440,6 @@ Component({
                     newCurIndex: index
                 })
             }
-            this.saveBlock()
         },
         pageScrollToPosition(selector) {
             wx.pageScrollTo({

@@ -63,7 +63,7 @@
             <view class="flex-sub por" data-id="{{item.supplier_id || item.store_id}}" data-type="{{item.supplier_id?'supplier':'store'}}" bindtap="toSupphome">
               <view class="text-hide two-line  bold">{{item.supplier_name || item.nickname}}</view>
               <view class="text-muted mt-xs text-sm des">
-                商品：{{item.goods_count || item.goods_num}} 成员：{{item.agent_count || item.helper_num}}
+                商品：{{item.goods_count || item.helper_goods_num}} 成员：{{item.agent_count || item.helper_num}}
               </view>
               <view class="text-muted mt-xs text-sm des">{{item.supplier_intro}}</view>
               <view class="mt-xs des text-justify"></view>

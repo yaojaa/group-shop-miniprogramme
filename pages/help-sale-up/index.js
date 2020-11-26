@@ -88,7 +88,9 @@ Page({
 
         const value = e.detail.value
 
-         if(value<sub_agent_price){
+        console.log(parseFloat(value), parseFloat(sub_agent_price))
+
+         if(parseFloat(value)<parseFloat(sub_agent_price)){
 
             wx.showToast({
                 title:'价格请在合理范围',
@@ -124,10 +126,7 @@ Page({
             spec_price:price
         }).then(res=>{
           if(res.data.code == 200){
-            wx.showToast({
-              title:'价格修改成功',
-              icon:'none'
-            })
+           
           }else{
             wx.showToast({
               title:'价格修改失败',

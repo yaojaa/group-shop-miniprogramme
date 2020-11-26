@@ -120,7 +120,7 @@ Page({
     wx.showLoading()
 
     util.wx.post('/api/helper/add_agent_goods',{
-      goods_id:id
+      goods_id:goods_id
     }).then(res=>{
 
        wx.hideLoading()
