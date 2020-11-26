@@ -456,8 +456,8 @@ Page({
             data: url,
             success: function(res) {
                 wx.showToast({
-                    title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦',
-                    duration: 5000,
+                    title: '文件地址已复制,去浏览器中粘贴下载吧！注意不要泄露哦',
+                    duration: 3000,
                     icon: 'none'
                 })
             }

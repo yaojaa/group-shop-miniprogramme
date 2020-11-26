@@ -471,12 +471,12 @@ Page({
       })
       .then((res) => {
         if (res.data.code == 200) {
-          const uInfo = app.globalData.userInfo
+          const uInfo = app.globalData.userInfo || {}
 
           if (
             uInfo &&
             uInfo.hasOwnProperty('store') &&
-            uInfo.store.hasOwnProperty('store_id') &
+            uInfo.store.hasOwnProperty('store_id') &&
               (app.globalData.userInfo.store.store_id == this.store_id)
           ) {
             this.setData({

@@ -86,7 +86,7 @@ Page({
                 const d = res.data.data
 
 
-                var userInfo = d.user
+                var userInfo = d.user 
 
                 if (d.hasOwnProperty('store')) {
                     userInfo.store = d.store

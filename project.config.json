@@ -13,7 +13,7 @@
     "es6": true,
     "enhance": false,
     "postcss": true,
-    "preloadBackgroundData": false,
+    "preloadBackgroundData": true,
     "minified": true,
     "newFeature": true,
     "coverView": true,
@@ -41,7 +41,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.12.2",
+  "libVersion": "2.8.3",
   "appid": "wx6ac9955f87c289f0",
   "projectname": "group",
   "cloudfunctionTemplateRoot": "",
@@ -1470,7 +1470,7 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "",
+          "query": "goods_id=3682",
           "scene": null
         },
         {
@@ -1512,6 +1512,18 @@
           "name": "pages/send-list/index",
           "pathName": "pages/send-list/index",
           "query": "goods_id=1167",
+          "scene": null
+        },
+        {
+          "name": "pages/withdrawal-record/index",
+          "pathName": "pages/withdrawal-record/index",
+          "query": "goods_id=3682",
+          "scene": null
+        },
+        {
+          "name": "pages/userhome/index",
+          "pathName": "pages/userhome/index",
+          "query": "store_id=1",
           "scene": null
         }
       ]

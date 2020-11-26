@@ -435,8 +435,6 @@ Page({
       goodslist: [],
       cpage: 1,
     });
-    console.log(this.data.goodslist, '夺夺夺');
-    console.log(e)
     this.getGoodsList();
     try{
       if(e.detail.id == 5){
@@ -450,10 +448,7 @@ Page({
     
   },
   new_btn: function () {
-    const uInfo = app.globalData.userInfo;
-
-    console.log(app.globalData.userInfo);
-    console.log(uInfo.store_id, uInfo.store);
+    const uInfo = app.globalData.userInfo || {};
 
     if (uInfo.hasOwnProperty('store') || uInfo.hasOwnProperty('store_id')) {
       wx.navigateTo({

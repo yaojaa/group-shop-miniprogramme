@@ -30,7 +30,7 @@
                 订阅关注
             </van-button>
         </view>
-        <navigator wx:if="{{access_list.length>0}}" hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&source=store&name={{info.store_name}}">
+        <navigator wx:if="{{access_list.length>0 && showSetting}}" hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&source=store&name={{info.store_name}}">
             <view class="flex-box align-center justify-center " style="padding: 10px 0">
                 <view class="avatar-group">
                     <image class="head" src="{{user.headimg}}" wx:for-item="user" wx:for="{{access_list}}" wx:key="index"></image>
@@ -120,8 +120,8 @@
             暂无内容
         </view>
     </view>
-    <view class="text-center mb-sm">
-        <wux-spin wx:if="{{loading}}"></wux-spin>
+    <view class="text-center mb-sm"  wx:if="{{loading}}" style="margin:100px 0">
+        <wux-spin></wux-spin>
     </view>
     <van-popup custom-class="authPopBox" show="{{ showAuth }}">
         <view class="logo">

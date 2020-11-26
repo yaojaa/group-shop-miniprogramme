@@ -89,7 +89,7 @@
     
 <block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
 
-    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="{{item.order_id}}" wx:if="{{!item.removed}}">
+    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="item.order_id" wx:if="{{!item.removed}}">
         <view class="order-hd">
 
 
@@ -118,14 +118,13 @@
         <block wx:else>
 
              <view class="number">
-                <text class="create_number">{{item.create_number}}</text>
+                <text class="create_number">帮</text>
                 <image class="userinfo-avatar" mode="cover" src="{{item.store.headimg}}" />
             </view>
             <view class="user-info"><view class="name"> {{item.store.nickname}}</view> 
                 <view class="tel">帮卖订单</view>
                 
             </view>
-            
 
         </block>
 
@@ -140,11 +139,11 @@
             </view>
         </view>
         <view class="order-bd">
-            <view class="type text-justify  scale-b-1px" wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="g">
+            <view class="type text-justify  scale-b-1px" wx:for="{{item.order_detail}}" wx:key="index" wx:for-item="g">
                 <view>{{g.spec_name}} ×{{g.qty}}</view>
 
     <view class="text-info" wx:if="{{user_id == item.store.user_id }}">¥ {{g.total_price}} </view>
-    <view class="text-info" wx:else="{{user_id == item.store.user_id }}">¥ {{g.agent_price*g.qty}} </view>
+    <view class="text-info" wx:else>¥ {{g.agent_price*1000*g.qty/1000}} </view>
 
 
 
@@ -198,7 +197,7 @@
                    <!--如果下单的店铺不是自己的店铺，就显示是来自代理的-->
                     <text class="warning-text f18" wx:if="{{user_id == item.store.user_id }}" >¥{{item.pay_price}} </text>
                     
-                    <text class="warning-text f18" wx:else>¥{{item.pay_price-item.profit}}
+                    <text class="warning-text f18" wx:else>¥{{(item.pay_price*100-item.profit*100)/100}}
 
                 </text>
 
@@ -226,7 +225,7 @@
 
            
   
-<block wx:if="{{item.showAction}}" wx:for="{{item.seller_next_handle}}" wx:key="{{item.order_id}}" wx:for-item="btn">
+<block wx:if="{{item.showAction}}" wx:for="{{item.seller_next_handle}}" wx:key="item.order_id" wx:for-item="btn">
                     <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" 
                     data-id="{{item.order_id}}" 
                     data-opt = "{{btn.opt}}"
