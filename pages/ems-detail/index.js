@@ -96,13 +96,32 @@ Page({
         //     express_code:options.code || '',
         //     order_id:options.id || ''
         // })
-        this.data.user = decodeURIComponent(options.user)
-        this.data.goods = decodeURIComponent(options.goods)
+        // 
+        // 
+        const eventChannle = this.getOpenerEventChannel()
 
+
+        eventChannle.on('info', (res)=> {
+            console.log(res.user)
+            this.data.user = res.user
+            this.data.goods = res.goods
+            this.data.order_sn = res.order_sn
+
+            this.getExpess()
+        })
+    
 
         // 
-        util.wx.get('/api/user/get_express_byordersn',{
-            order_sn:options.order_sn
+     
+
+     
+
+
+    },
+
+    getExpess(){
+           util.wx.get('/api/user/get_express_byordersn',{
+            order_sn:this.data.order_sn
         })
         .then(res=>{
 
@@ -133,10 +152,10 @@ Page({
 
         })
 
-     
-
-
     },
+
+
+
     toCheckExpress(e) {
 
         console.log('tockeck')
