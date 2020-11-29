@@ -13,14 +13,18 @@ Component({
     },
     previewImgHidden: true
   },
-  ready(){
-    try{
-      this.properties.content.forEach(e=>{
+  observers:{
+    'content':function (obj) {
+
+      if(obj.length){
+        obj.forEach(e=>{
         if(e.type == 'image'){
           this.data.previewImgs.urls.push(e.src)
         }
       })
-    }catch(err){console.log(err)}
+      }
+
+    }
   },
   methods: {
     showPreview(e){

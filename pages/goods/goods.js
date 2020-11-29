@@ -1172,7 +1172,6 @@ Page({
       })
 
       if (len == 0) {
-        console.log(len)
         this.setData({
           showRoll: 0,
         })

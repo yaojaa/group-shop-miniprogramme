@@ -174,7 +174,7 @@
             </i-cell-group>
         </view>
         <view>
-            <goods-detail content="{{content}}"></goods-detail>
+            <goods-detail wx:if="content.length" content="{{content}}"></goods-detail>
             <block wx:if="{{goods.show_buyerlist!==1}}">
                 <view class='sub-title scale-b-1px contentBox'>
                     <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
