@@ -175,6 +175,15 @@ Component({
     animationFun(random){
       let i = this.data.index;
       let img = this.data.imgsPath[i];
+      if(!img){
+        this.data.imgsPath.splice(i,1);
+        this.data.index = 0;
+        i = this.data.index;
+        img = this.data.imgsPath[i]
+      }
+      if(!img){
+        return;
+      }
       let _img = i == 0 ? this.data.imgsPath[this.data.imgsPath.length-1] : this.data.imgsPath[i-1];
       //初始数据
       this.animationReset(random);
