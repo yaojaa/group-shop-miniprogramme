@@ -20,6 +20,15 @@ Component({
             type: Boolean,
             value: false
         },
+        // scrollTop
+        currentScrollTop: {
+            type: Number,
+            value: 0,
+            observer: function (newVal, oldVal) {
+                this.data.scrollTop = newVal;
+                // console.log(this.data.scrollTop)
+            },
+        },
         // 容器宽度
         containWidth: {
             type: Number
@@ -107,7 +116,8 @@ Component({
     data: {
         innerInitData: [],
         curIndex: -1,
-        newCurIndex: -1
+        newCurIndex: -1,
+        scrollTop: 0
     },
     observers: {
         'initData': function(data) { //  'params'是要监听的字段，（data）是已更新变化后的数据
@@ -131,8 +141,7 @@ Component({
         insertEvent: function(e) {
             console.log(e)
             let self = this
-            let index = e.currentTarget.dataset.index
-
+            let index = e.currentTarget.dataset.index;
             let insertType = e.currentTarget.dataset.type
             switch (insertType) {
                 case "image":
@@ -169,6 +178,11 @@ Component({
 
                                     this.setData({
                                         innerInitData: this.data.innerInitData
+                                    }, ()=>{
+                                        wx.pageScrollTo({
+                                          scrollTop: this.data.scrollTop,
+                                            duration: 0
+                                        })
                                     })
 
                                     if (i == res.tempFilePaths.length) {
@@ -224,7 +238,12 @@ Component({
 
                     self.setData({
                         innerInitData: self.data.innerInitData
-                    })
+                    }, ()=>{
+                                        wx.pageScrollTo({
+                                          scrollTop: this.data.scrollTop,
+                                            duration: 0
+                                        })
+                                    })
 
                     break
 
@@ -237,6 +256,7 @@ Component({
                         maxDuration: self.properties.supportType.video.maxDuration,
                         camera: self.properties.supportType.video.camera,
                         success:(res)=> {
+                            console.log(res)
 
                             wx.showLoading({
                                 title: '上传中'
@@ -265,6 +285,11 @@ Component({
 
                                 this.setData({
                                     innerInitData: this.data.innerInitData
+                                }, ()=>{
+                                    wx.pageScrollTo({
+                                      scrollTop: this.data.scrollTop,
+                                        duration: 0
+                                    })
                                 })
 
                                 this.saveBlock()
