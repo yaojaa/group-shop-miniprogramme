@@ -1,4 +1,5 @@
 const app = getApp()
+import config from '../../utils/conf.js'
 
 const {
     $Message
@@ -32,6 +33,7 @@ Page({
         delivery_method: 0,
         sendAll: false,
         user_id: '',
+        showImport:false,
         // switchOrderList:false,//折叠展开订单
         actionsConfirm: [{
             name: '取消'
@@ -943,6 +945,50 @@ Page({
             })
 
         }
+    },
+    showImportModal(){
+        this.setData({
+            showImport: true
+        })
+    },
+    onImportClose(){
+         this.setData({
+            showImport: false
+        })
+    },
+    chooseFile(){
+         wx.chooseMessageFile({
+                count:1,
+                // type:'file', 
+                success(res){
+                  var fname = res.tempFiles[0].name
+                  console.log(res.tempFiles[0])
+                  if (res.tempFiles[0].size < 31457280) {
+
+                           wx.uploadFile({
+                            url: config.apiUrl + '/api/seller/improt_order_express',
+                            filePath: res.tempFiles[0].path,
+                            name: 'excel',
+                            header: {
+                                "Content-Type": "multipart/form-data",
+                                "Authorization": app.globalData.token
+                            },
+                            success: function(res) {
+
+                            }
+                        })
+
+
+
+                
+                  }else{
+                    wx.showToast({
+                      title: '你选中的文件超过30M！',
+                      icon: 'none'
+                    })
+                  }
+                }
+              })
     },
     /**
      * 页面上拉触底事件的处理函数
