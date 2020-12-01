@@ -11,9 +11,12 @@ Page({
     disabled: false,
     content: '',
     info: {},
+    autoFocus:false
   },
   onChange(e) {
-    const { file } = e.detail
+    const {
+      file
+    } = e.detail
     if (file.status === 'uploading') {
       wx.showLoading()
     }
@@ -24,9 +27,9 @@ Page({
 
     wx.hideLoading()
 
-    if(!e.detail.statusCode == 200){
+    if (!e.detail.statusCode == 200) {
       return wx.showToast({
-        title:'上传失败请重试'
+        title: '上传失败请重试'
       })
     }
 
@@ -42,17 +45,22 @@ Page({
     }
   },
   onPreview(e) {
-    const { file, fileList } = e.detail
+    const {
+      file,
+      fileList
+    } = e.detail
     wx.previewImage({
       current: file.url,
       urls: fileList.map((n) => n.url),
     })
   },
   onRemove(e) {
-    const { file } = e.detail
+    const {
+      file
+    } = e.detail
     Dialog.confirm({
-      message: '确定要删除这张图片？',
-    })
+        message: '确定要删除这张图片？',
+      })
       .then(() => {
         this.setData({
           fileList: this.data.fileList.filter((n) => n.url !== file.url),
@@ -62,9 +70,10 @@ Page({
         // on cancel
       })
   },
-  getValue(e) {
+  setValue(e) {
+    console.log(11,e)
     this.setData({
-      'info.spec_desc': e.detail,
+      'info.spec_desc': e.detail.value,
     })
   },
   setName(e) {
@@ -73,7 +82,12 @@ Page({
     })
   },
   submit() {
-    let { index, spec_name, spec_pic, spec_desc } = this.data.info
+    let {
+      index,
+      spec_name,
+      spec_pic,
+      spec_desc
+    } = this.data.info
     spec_pic = this.data.fileList.map((item) => item.url)
     util.setParentData({
       ['spec[' + index + '].spec_name']: spec_name,
@@ -85,17 +99,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.getStorage({
-      key: 'specItem',
-      success: (res) => {
-        this.data.fileList = res.data.spec_pic.map((item) => {
-          return { url: item }
-        })
-        this.setData({
-          fileList: this.data.fileList,
-          info: res.data,
-        })
-      },
+    const eventChannle = this.getOpenerEventChannel()
+    eventChannle.on('spceDetail', (res) => {
+      console.log(res)
+      this.data.fileList = res.spec_pic.map((item) => {
+        return {
+          url: item
+        }
+      })
+      this.setData({
+        fileList: this.data.fileList,
+        autoFocus:res.isFocus,
+        info: res,
+      })
     })
   },
 
@@ -112,12 +128,17 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () {
+  },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () {
+    this.setData({
+      autoFocus:false
+    })
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -128,4 +149,5 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {},
+  inputDuplex: util.inputDuplex
 })
