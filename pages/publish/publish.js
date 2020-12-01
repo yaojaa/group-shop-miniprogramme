@@ -88,6 +88,7 @@ Page({
     agent_opt: 0, //'是否可以代理:0否;1是',
     show_buyerlist: 0,
     is_timelimit: 0,
+    currentScrollTop: 0
   },
   // darg start5
   // 改变监听
@@ -1312,6 +1313,11 @@ Page({
     } else {
       this.setWatcher()
     }
+  },
+  onPageScroll(e){
+    this.setData({
+      currentScrollTop: e.scrollTop
+    });
   },
   inputDuplex: util.inputDuplex,
 })

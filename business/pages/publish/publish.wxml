@@ -46,7 +46,8 @@
                 </view> -->
 
                 <!--富文本编辑器-->
-                <rich-editor 
+                <rich-editor
+                currentScrollTop="{{currentScrollTop}}"
                 ctl-style="main-color" 
                 init-data="{{ content }}" 
                 op-style="btn-color" 
