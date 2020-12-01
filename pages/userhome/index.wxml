@@ -1,7 +1,6 @@
 <view class="container cf">
-    <view class="swiper" style="background:url({{store_slide}}?imageView2/2/w/600/h/400/format/jpg/q/75) center bottom;background-size:cover">
+    <view class="swiper" style="background:url({{store_slide}}) center bottom;background-size:cover">
         <!-- <image src="{{store_slide}}" height="400" class="slide-image" /> -->
-        <image src="http://img.daohangwa.com/mark.png" mode="widthFix" class="marker" />
     </view>
     <view class="user-head pb-sm">
         <view class="avatar" bindtap="goContact" data-phone="{{info._user.mobile}}" data-wx="{{info._user.wechatnumber}}">

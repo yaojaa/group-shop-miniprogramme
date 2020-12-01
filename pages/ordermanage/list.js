@@ -894,17 +894,10 @@ Page({
         let pi = e.currentTarget.dataset.pi;
         let ci = e.currentTarget.dataset.ci;
         let current = this.data.dataList[pi][ci];
+        let data = '';
 
         wx.navigateTo({
-            url: '/pages/ems-detail/index',
-            success:(res)=>{
-                console.log('跳转成功！',res)
-                res.eventChannel.emit('info',{
-                                    order_sn:e.currentTarget.dataset.sn,
-                                    user:current.consignee,
-                                    goods:current.order_detail[0].goods_name
-                                    })
-            }
+            url: '/pages/ems-detail/index?order_sn=' + e.currentTarget.dataset.sn
         })
 
 

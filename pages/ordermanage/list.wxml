@@ -89,7 +89,7 @@
     
 <block wx:for="{{dataList}}"  wx:for-index="pindex" wx:key="index">
 
-    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="item.order_id" wx:if="{{!item.removed}}">
+    <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="order_id" wx:if="{{!item.removed}}">
         <view class="order-hd">
 
 
