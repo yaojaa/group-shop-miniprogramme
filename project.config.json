@@ -1538,6 +1538,12 @@
           "pathName": "pages/userhome/index",
           "query": "id=1",
           "scene": null
+        },
+        {
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=3404&goods_name=「云南石林风化岩人参果」树上熟 自然甜&delivery_method=1&store_id=1",
+          "scene": null
         }
       ]
     }

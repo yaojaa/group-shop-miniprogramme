@@ -363,7 +363,12 @@ Component({
                                     self.data.innerInitData[index].src = res.data.file_url
                                     self.setData({
                                         innerInitData: self.data.innerInitData
+                                    }, ()=>{
+                                    wx.pageScrollTo({
+                                      scrollTop: this.data.scrollTop,
+                                        duration: 0
                                     })
+                                })
 
                                     if (i == res.tempFilePaths.length) {
                                         this.saveBlock()
@@ -393,7 +398,12 @@ Component({
                             console.log(self.data.innerInitData)
                             self.setData({
                                 innerInitData: self.data.innerInitData
-                            })
+                            }, ()=>{
+                                    wx.pageScrollTo({
+                                      scrollTop: this.data.scrollTop,
+                                        duration: 0
+                                    })
+                                })
                             this.saveBlock()
                         }
                     })

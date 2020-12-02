@@ -161,42 +161,19 @@ Page({
   },
   //规格描述获得焦点 如果有详情图片,进入详情页
   specDescFocus(e) {
-
-    const {
+    let {
       index
     } = e.currentTarget.dataset
-
-    if (this.data.spec[index].spec_pic.length || e.detail.value.length > 20) {
-
-      let {
-        spec_name,
-        spec_pic,
-        spec_desc
-      } = this.data.spec[index]
-      wx.setStorage({
-        key: 'specItem',
-        data: {
-          index,
-          spec_name,
-          spec_pic,
-          spec_desc,
-        },
-        success() {
-          wx.navigateTo({
-            url: '../spec-detail/index',
-          })
-        },
-      })
+    if (this.data.spec[index].spec_pic.length || this.data.spec[index].spec_desc.length > 20) {
+      this.fromSpec(e,true)
     }
-
-
   },
   // 删除图片
   deleteClick(e) {
     this.removePhoto(e)
   },
   //删除一张照片
-  removePhoto: function(e) {
+  removePhoto: function (e) {
     let index = e.currentTarget.dataset.index || e.detail.newKey
     this.data.goods_images.splice(index, 1)
     if (this.data.goods_images.length) {
@@ -214,13 +191,13 @@ Page({
   },
   // dart end
 
-  showTimePicker: function() {
+  showTimePicker: function () {
     this.setData({
       isShowTimePicker: true,
       is_timelimit: 1,
     })
   },
-  hideTimePicker: function(e) {
+  hideTimePicker: function (e) {
     this.setData({
       isShowTimePicker: false,
       is_timelimit: 0
@@ -451,7 +428,7 @@ Page({
   },
 
   //添加商品
-  addGoods: function() {
+  addGoods: function () {
     const dataTpl = {
       spec_name: '',
       spec_price: '',
@@ -468,7 +445,7 @@ Page({
     })
   },
   //删除商品
-  removeGoods: function(e) {
+  removeGoods: function (e) {
     if (this.data.spec.length <= 1) {
       wx.showToast({
         title: '请至少保留一个商品',
@@ -486,7 +463,7 @@ Page({
   },
 
   //上移商品
-  upGoods: function(e) {
+  upGoods: function (e) {
     let index = e.currentTarget.dataset.index
     let good = this.data.spec.splice(index, 1)
     // console.log(good)
@@ -499,7 +476,7 @@ Page({
   },
 
   //置顶商品
-  topGoods: function(e) {
+  topGoods: function (e) {
     let index = e.currentTarget.dataset.index
     let good = this.data.spec.splice(index, 1)
     // console.log(good)
@@ -512,7 +489,7 @@ Page({
   },
 
   //下移商品
-  downGoods: function(e) {
+  downGoods: function (e) {
     let index = e.currentTarget.dataset.index
     let good = this.data.spec.splice(index, 1)
     this.data.spec.splice(index + 1, 0, good[0])
@@ -540,7 +517,7 @@ Page({
 
   },
 
-  onShow: function(option) {
+  onShow: function (option) {
     if (app.globalData.userInfo) {
       this.getTplList()
     }
@@ -554,18 +531,18 @@ Page({
       currentInput: e.detail.value,
     })
   },
-  switch2Change: function(e) {
+  switch2Change: function (e) {
     this.setData({
       hasType: e.detail.value
     })
   },
-  deliverChange: function(e) {
+  deliverChange: function (e) {
     this.setData({
       deliver: e.detail.value
     })
   },
   //上传相册
-  chooseImage: function(e) {
+  chooseImage: function (e) {
     wx.chooseImage({
       count: 9, //最多可以选择的图片总数
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -665,7 +642,7 @@ Page({
                 title: '错误提示',
                 content: '上传图片失败',
                 showCancel: false,
-                success: function(res) {},
+                success: function (res) {},
               })
             },
           })
@@ -674,7 +651,7 @@ Page({
     })
   },
   //删除一张照片
-  removePicture: function(e) {
+  removePicture: function (e) {
     let index = e.currentTarget.dataset.index
 
     this.data.content_imgs.splice(index, 1)
@@ -686,32 +663,32 @@ Page({
       icon: 'none',
     })
   },
-  handleAnimalChange: function(event) {
+  handleAnimalChange: function (event) {
     const detail = event.detail
     this.setData({
       morePic: detail.value,
     })
   },
-  navigateToAddress: function() {
+  navigateToAddress: function () {
     wx.navigateTo({
       url: '../../address/list/list',
     })
   },
-  chooseMap: function(e) {
+  chooseMap: function (e) {
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: function(res) {
+      success: function (res) {
         var latitude = res.latitude
         var longitude = res.longitude
         wx.chooseLocation({
-          success: function(res) {
+          success: function (res) {
             console.log(res)
           },
         })
       },
     })
   },
-  initValidate: function() {
+  initValidate: function () {
     // 验证字段的规则
     const rules = {
       goods_name: {
@@ -745,7 +722,7 @@ Page({
       url: '../goods/goods?goods_id=' + this.data.goods_id,
     })
   },
-  getObject: util.debounce(function(res) {
+  getObject: util.debounce(function (res) {
 
     this.data.content = res.detail
 
@@ -824,7 +801,7 @@ Page({
         this.data.spec[index].spec_price = 0
       }
       if (value.sub_agent_price == '') {
-        value.sub_agent_price = value.spec_price 
+        value.sub_agent_price = value.spec_price
       }
     })
 
@@ -919,7 +896,7 @@ Page({
 
   },
 
-  editor: function(data) {
+  editor: function (data) {
 
 
     if (!this.data.is_edit || this.data.is_copy) {
@@ -940,18 +917,18 @@ Page({
   },
 
 
-  deliveryChange: function(e) {
+  deliveryChange: function (e) {
     this.setData({
       delivery_method: e.detail.value ? 1 : 2,
     })
   },
-  start_time: function(e) {
+  start_time: function (e) {
     let t = e.detail //"2018", "10", "20", "16", "00"
     this.setData({
       start_time: t[0] + '-' + t[1] + '-' + t[2] + ' ' + t[3] + ':' + t[4],
     })
   },
-  end_time: function(e) {
+  end_time: function (e) {
     let t = e.detail //"2018", "10", "20", "16", "00"
 
     this.setData({
@@ -992,7 +969,7 @@ Page({
       visible2: false,
     })
   },
-  fromSpec(e) {
+  fromSpec(e,isFocus=false) {
     let {
       index
     } = e.currentTarget.dataset
@@ -1001,19 +978,17 @@ Page({
       spec_pic,
       spec_desc
     } = this.data.spec[index]
-    wx.setStorage({
-      key: 'specItem',
-      data: {
-        index,
-        spec_name,
-        spec_pic,
-        spec_desc,
-      },
-      success() {
-        wx.navigateTo({
-          url: '../spec-detail/index',
+    wx.navigateTo({
+      url: '../spec-detail/index',
+      success({eventChannel}){
+        eventChannel.emit('spceDetail',{
+          index,
+          spec_name,
+          spec_pic,
+          spec_desc,
+          isFocus
         })
-      },
+      }
     })
   },
   /**收款方式**/
@@ -1085,20 +1060,18 @@ Page({
       var content = JSON.parse(gs.content)
 
       //旧数据有富文本数据
-      if(content.html){
+      if (content.html) {
 
-        content = [
-          {
-            "type": "text",
-            "desc": util.getChinese(content.html)
-          }
-        ]
+        content = [{
+          "type": "text",
+          "desc": util.getChinese(content.html)
+        }]
 
-       this.editor({
-        content: content,
-        goods_content: '',
-        content_imgs: []
-      })
+        this.editor({
+          content: content,
+          goods_content: '',
+          content_imgs: []
+        })
 
       }
 
@@ -1310,7 +1283,7 @@ Page({
 
   },
 
-  onLoad: function(option) {
+  onLoad: function (option) {
 
     var user
     if (app.globalData.userInfo) {
