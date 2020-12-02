@@ -1086,10 +1086,9 @@
           "scene": null
         },
         {
-          "id": 145,
           "name": "pages/acting-apply/index",
           "pathName": "pages/acting-apply/index",
-          "query": "id=1",
+          "query": "store_id=1",
           "scene": null
         },
         {
@@ -1531,7 +1530,7 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=913",
+          "query": "goods_id=3725&from_id=1&help_sale=true",
           "scene": null
         },
         {
