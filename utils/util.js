@@ -145,7 +145,6 @@ const inputDuplex = function(e) {
 
 const uploadFile = function(opt) {
 
-    console.log('上传方法 app.globalData.token', app.globalData.token)
 
     return new Promise((reslove, reject) => {
         wx.uploadFile({
@@ -187,6 +186,12 @@ const uploadFile = function(opt) {
 
 
 }
+
+//导入excel
+// const importExcel = function(){
+//     /api/seller/improt_order_express
+// /api/supplier/improt_order_express
+// }
 
 
 

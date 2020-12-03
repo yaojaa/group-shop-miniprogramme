@@ -104,14 +104,6 @@ Page({
     this.setData({ show: false })
   },
 
-  toLiveRoom(){
-
-      wx.redirectTo({
-          url: '../live-room/index'
-        })
-
-  },
-
   goOrders() {
     wx.redirectTo({
       url:
@@ -265,29 +257,29 @@ Page({
     })
   },
 
-  copyList() {
-    var copyTxt = ''
+  // copyList() {
+  //   var copyTxt = ''
 
-    this.data.goodsList.forEach((item) => {
-      copyTxt += '💕' + item.goods_name + '💰¥'
-      copyTxt += item._price_range.min + '\n\n'
-    })
+  //   this.data.goodsList.forEach((item) => {
+  //     copyTxt += '💕' + item.goods_name + '💰¥'
+  //     copyTxt += item._price_range.min + '\n\n'
+  //   })
 
-    console.log(copyTxt)
+  //   console.log(copyTxt)
 
-    wx.setClipboardData({
-      data: copyTxt,
-      success: function (res) {
-        wx.getClipboardData({
-          success: function (res) {
-            wx.showToast({
-              title: '复制成功'
-            })
-          }
-        })
-      }
-    })
-  },
+  //   wx.setClipboardData({
+  //     data: copyTxt,
+  //     success: function (res) {
+  //       wx.getClipboardData({
+  //         success: function (res) {
+  //           wx.showToast({
+  //             title: '复制成功'
+  //           })
+  //         }
+  //       })
+  //     }
+  //   })
+  // },
   phoneCall() {
     wx.makePhoneCall({
       phoneNumber: this.data.phone
@@ -396,7 +388,7 @@ Page({
    */
   onLoad: function (options) {
     this.loadPage(options)
-    this.getVisiter()
+    this.add_access()
   },
   onShow() {
     if (this.is_previewImage) {
@@ -435,7 +427,7 @@ Page({
 
     // }
 
-    this.add_access()
+  
 
     this.cpage = 1
     this.getDataList(options)
@@ -471,17 +463,16 @@ Page({
       })
       .then((res) => {
         if (res.data.code == 200) {
-          const uInfo = app.globalData.userInfo || {}
+          const uInfo = app.globalData.userInfo || null
 
-          if (
-            uInfo &&
-            uInfo.hasOwnProperty('store') &&
-            uInfo.store.hasOwnProperty('store_id') &&
-              (app.globalData.userInfo.store.store_id == this.store_id)
-          ) {
+          console.log(uInfo)
+
+          if (uInfo && uInfo.store_id == this.store_id) {
             this.setData({
               showSetting: true
             })
+              this.getVisiter()
+
           }
 
           this.setData({
@@ -508,13 +499,12 @@ Page({
         this.data.onLoadOpt = options
 
         if (res.data.code == 200) {
-          res.data.data.goodslist.forEach((item) => {
-            item._buy_users = item._buy_users.slice(0, 16)
-          })
 
-          this.data.goodsList = this.data.goodsList.concat(
-            res.data.data.goodslist
-          )
+          // res.data.data.goodslist.forEach((item) => {
+          //   item._buy_users = item._buy_users.slice(0, 16)
+          // })
+
+          this.data.goodsList = this.data.goodsList.concat(res.data.data.goodslist)
 
           this.setData({
             goodsList: this.data.goodsList,

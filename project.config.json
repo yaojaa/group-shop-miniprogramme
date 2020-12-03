@@ -36,9 +36,11 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "bundle": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.8.3",
@@ -1084,10 +1086,9 @@
           "scene": null
         },
         {
-          "id": 145,
           "name": "pages/acting-apply/index",
           "pathName": "pages/acting-apply/index",
-          "query": "id=1",
+          "query": "store_id=1",
           "scene": null
         },
         {
@@ -1529,7 +1530,19 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=913",
+          "query": "goods_id=3725&from_id=1&help_sale=true",
+          "scene": null
+        },
+        {
+          "name": "pages/userhome/index",
+          "pathName": "pages/userhome/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=3404&goods_name=「云南石林风化岩人参果」树上熟 自然甜&delivery_method=1&store_id=1",
           "scene": null
         }
       ]
