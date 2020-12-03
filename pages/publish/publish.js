@@ -1154,6 +1154,14 @@ Page({
 
   watch: {
 
+    freight_tpl_id:(newValue, val, context) => {
+
+      context.editor({
+        freight_tpl_id: newValue
+      })
+
+    },
+
     agent_opt: (newValue, val, context) => {
 
       context.editor({
