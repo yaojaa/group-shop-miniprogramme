@@ -657,7 +657,7 @@ Page({
 
     //提交
     //
-    util.wx.post('/api/supplier/goods_add_or_edit', data).then((res) => {
+    util.wx.post('/api/seller/goods_add_or_edit', data).then((res) => {
       wx.hideLoading()
       if (res.data.code == 200) {
         this.data.goods_id = res.data.data.goods_id
@@ -759,7 +759,7 @@ Page({
     wx.showLoading()
 
     util.wx
-      .get('/api/supplier/get_goods_detail', {
+      .get('/api/seller/get_goods_detail', {
         goods_id: goods_id
       })
       .then((res) => {

@@ -952,11 +952,22 @@ Page({
     chooseFile(){
          wx.chooseMessageFile({
                 count:1,
-                // type:'file', 
-                success(res){
+                type:'file', 
+                success:(res)=>{
+                 this.onImportClose()
                   var fname = res.tempFiles[0].name
                   console.log(res.tempFiles[0])
+
+                  wx.showToast({
+                    title:'已选择文件：'+fname,
+                    icon:'none'
+                  })
+
                   if (res.tempFiles[0].size < 31457280) {
+
+                        wx.showLoading({
+                          title: '上传中'
+                        })
 
                            wx.uploadFile({
                             url: config.apiUrl + '/api/seller/improt_order_express',
@@ -968,6 +979,49 @@ Page({
                             },
                             success: function(res) {
 
+                                wx.hideLoading()
+
+                                if(res.statusCode == 200){
+
+                                    console.log(res.data,typeof res.data)
+
+                                    var res = JSON.parse(res.data)
+
+                                    const {success,error} = res.data
+
+                                        wx.showModal({
+                                     title: '导出结果',
+                                     content: `成功导入${success}条,失败${error}条`,
+                                     showCancel: false,//是否显示取消按钮
+                                     confirmText:"我知道了",//默认是“确定”
+                                     confirmColor: 'green',//确定文字的颜色
+                                     success: function (res) {
+                                        if (res.cancel) {
+                                           //点击取消,默认隐藏弹框
+                                        } else {
+                                          
+                                        }
+                                     },
+                                     fail: function (res) { },//接口调用失败的回调函数
+                                     complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+                                  })
+
+
+                                }
+
+
+                            
+
+                            },
+                            fail:(e)=>{
+                              wx.hideLoading()
+
+                              wx.showToast({
+                                title:'上传失败',
+                                icon: 'none'
+                              })
+
+                                console.log(e)
                             }
                         })
 

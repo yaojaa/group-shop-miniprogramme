@@ -367,3 +367,9 @@ padding: 15rpx 30rpx
     left: 0;
     right: 0
 }
+.importbox{
+    padding: 68rpx
+}
+.importbox .line{
+    padding: 10px 0
+}

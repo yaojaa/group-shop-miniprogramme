@@ -324,8 +324,8 @@
   closeable    
 >
 <view class="importbox">
-     <view class="line">第一步：下载模板（如果已导出过发货单，无需下载）</view>
-     <view class="line" bindtap = "chooseFile">第二步： 导入运单号（微信文件）</view>
+     <view class="line">第一步：先导出发货单表格，回填表格中的快递单号，然后下方选择导入 </view>
+     <view class="line" ><button bindtap = "chooseFile">导入运单号（微信文件）</button></view>
 </view>
 </van-popup>
 

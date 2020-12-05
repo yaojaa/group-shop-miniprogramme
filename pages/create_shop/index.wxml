@@ -35,7 +35,7 @@
     <!-- sssss -->
     <i-panel i-class="shadow-panel" title="主页背景头图(建议宽高比6:4)">
         <view class="up-area">
-            <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
+            <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.net/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
                 <image src="{{ store_slide }}" wx:if="{{ store_slide }}" />
                 <text wx:else>+上传</text>
             </wux-upload>
