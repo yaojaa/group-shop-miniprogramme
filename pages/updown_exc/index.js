@@ -46,6 +46,16 @@ Page({
     })
   },
 
+  getExportHistory(){
+
+    util.wx.get('/api/seller/order_export_log').then(res=>{
+      console.log('导出记录:',res)
+    })
+
+
+
+  },
+
   onChange1(event) {
     let val = event.detail;
     this.setData({
@@ -75,13 +85,28 @@ Page({
       value3: event.detail
     });
 
-    data = {
+    console.log(event.detail)
+
+    //待发货
+    if(event.detail == 0){
+
+     data = {
       cpage: 1,
       send_status: this.data.value1,
       export_status: this.data.value3
     }
     
     this.getGoodsOrders(data);
+
+    }
+
+    //已发货
+    if(event.detail == 1){
+
+      this.getExportHistory()
+    }
+
+
   },
 
   onChange(event) {
@@ -126,6 +151,8 @@ Page({
       send_status: 0
     }
     this.getGoodsOrders(data);
+
+    
 
   },
   onReachBottom: function(){
