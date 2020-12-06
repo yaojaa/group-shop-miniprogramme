@@ -289,7 +289,7 @@ App({
 
 
                   try {
-                   let custom = wx.getMenuButtonBoundingClientRect();
+                let custom = wx.getMenuButtonBoundingClientRect();
                 this.globalData.Custom = custom;
                 this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
                 
@@ -316,6 +316,7 @@ App({
         if (userInfo) {
             this.globalData.token = userInfo.token
             this.globalData.userInfo = userInfo
+            this.globalData.store_id = userInfo.supplier.store_id
 
             //兼容旧版本
             //
