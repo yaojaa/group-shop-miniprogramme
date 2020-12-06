@@ -558,7 +558,7 @@ Component({
 
             self.setData({
                 ['innerInitData['+ index +']']: self.data.innerInitData[index],
-                ['innerInitData['+ index-1 +']']: self.data.innerInitData[index-1],
+                ['innerInitData['+ (index-1) +']']: self.data.innerInitData[index-1],
                 newCurIndex: -1
             })
 
@@ -585,9 +585,9 @@ Component({
             let nextData = this.data.innerInitData[index + 1]
             this.data.innerInitData[index] = nextData
             this.data.innerInitData[index + 1] = thisData
-            self.setData({
-                ['innerInitData['+ index +']']: self.data.innerInitData[index],
-                ['innerInitData['+ index+1 +']']: self.data.innerInitData[index+1],
+            this.setData({
+                ['innerInitData['+ index +']']: this.data.innerInitData[index],
+                ['innerInitData['+ (index+1) +']']: this.data.innerInitData[index+1],
                 newCurIndex: -1
             })
             // this.setData({
