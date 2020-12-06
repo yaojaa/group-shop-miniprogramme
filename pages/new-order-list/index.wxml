@@ -1,4 +1,25 @@
 <view class="container gray-wrap cf">
+ <van-button icon="star-o" type="primary">导出订单</van-button>
+
+ <van-button icon="star-o" type="primary">批量发货</van-button>
+
+ <van-popup
+  show="{{ showImport }}"
+  position="bottom"
+  close-on-click-overlay    
+  custom-style="height: 30%"
+  bind:close="onImportClose"
+  safe-area-inset-bottom
+  closeable    
+>
+<view class="importbox">
+     <view class="line">第一步：下载模板（如果已导出过发货单，无需下载）</view>
+     <view class="line" bindtap = "chooseFile">第二步： 导入运单号（微信文件）</view>
+</view>
+</van-popup>
+
+
+
  <van-search 
             value="{{ value }}" 
             shape="round" 

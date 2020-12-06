@@ -501,12 +501,11 @@ const request = (url, data, method) => {
             method: method,
             header: {
                 'content-type': 'application/json',
-                'Authorization': app.globalData.token
+                'Authorization': app.globalData.token,
+                'systemInfo'   : app.globalData.systemInfo
             },
             success: function(res) { //服务器返回数据
                
-               console.log('success',url,res.data.code)
-
                 if (res.data.code == '-99' || res.data.code == '-100') {
                     console.log('应该调到等路')
                                           wx.showToast({
