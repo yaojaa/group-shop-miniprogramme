@@ -2,7 +2,7 @@
   <view class="main-editor-ctx">
     <view class='common-contain content-size'></view>
     <!-- 如果内容为空，初始的时候显示一个文本框 -->
-    <view wx:for="{{ innerInitData }}" wx:key="{{ index }}" class="item{{index}}">
+    <view wx:for="{{ innerInitData }}" wx:key="{{ item }}" class="item{{index}}">
       <!-- 编辑中 -->
       <block wx:if="{{ item.type === 'image' }}">
         <view class="common-contain image-contain">

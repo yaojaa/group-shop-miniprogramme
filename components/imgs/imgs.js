@@ -250,6 +250,7 @@ Component({
     },
 
     animationReset(r){
+      this.data.imgsPath = this.data.imgsPath.filter(e=>{ return e.size })
       this.data.imgsPath.forEach(e => {
         if(e.type == 0){
           e.scale = e.size._s;
