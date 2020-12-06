@@ -208,7 +208,7 @@ Page({
     },
 
     getGoodsList() {
-        util.wx.get('/api/supplier/get_goods_list',{
+        util.wx.get('/api/seller/get_goods_list',{
           pagesize:50
         })
             .then((res) => {

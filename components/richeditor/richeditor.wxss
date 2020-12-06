@@ -179,3 +179,7 @@ input {
   color: #666;
   font-size: 14px;
 }
+.content-size{
+  height: 0;
+  overflow: hidden;
+}

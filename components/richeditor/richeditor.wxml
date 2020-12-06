@@ -1,5 +1,6 @@
 <view wx:if="{{ !isScrollView && !containHeight  }}" class="rich-editor-wrp" style="{{ containWidth ? 'width: ' + containWidth + drawUnit  + ';' : '' }}">
   <view class="main-editor-ctx">
+    <view class='common-contain content-size'></view>
     <!-- 如果内容为空，初始的时候显示一个文本框 -->
     <view wx:for="{{ innerInitData }}" wx:key="{{ index }}" class="item{{index}}">
       <!-- 编辑中 -->
@@ -70,9 +71,9 @@
       <block wx:if="{{ item.type === 'video' }}">
         <!-- 完成编辑 -->
         <block>
-          <view class="common-contain video-contain" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : '' }}">
-            <view class="up-ctx" bindtap='tapEvent' data-index="{{ index }}" data-type="video">
-              <video wx:if="{{ item.src }}" src="{{ item.src }}" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : '' }}"></video>
+          <view class="common-contain video-contain">
+            <view class="up-ctx" bindtap='tapEvent' data-index="{{ index }}" data-type="video" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : 'height:' + item.cH + 'rpx' }}">
+              <video wx:if="{{ item.src }}" src="{{ item.src }}" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.height ? 'height: ' + item.height + 'rpx;' : 'height:' + item.cH + 'rpx' }}"></video>
               <image wx:else class="add-video" src='../../assets/icon/addvideo.png'></image>
             </view>
             <view class="down-ctx">

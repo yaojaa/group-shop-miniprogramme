@@ -434,13 +434,13 @@ Page({
     },
     // 导出名单
     exportExcel() {
-        wx.showToast({ title: '开始为你生成...', icon: 'none' })
-        this.getExcelUrl(url => {
-            this.copyLoadFile(url);
-        })
-        // wx.navigateTo({
-        //     url: '../updown_exc/index?role=seller&goods_id=' + this.data.goods_id
+        // wx.showToast({ title: '开始为你生成...', icon: 'none' })
+        // this.getExcelUrl(url => {
+        //     this.copyLoadFile(url);
         // })
+        wx.navigateTo({
+            url: '../updown_exc/index?role=seller&goods_id=' + this.data.goods_id
+        })
 
     },
     // 查看名单
@@ -981,7 +981,7 @@ Page({
 
                                 wx.hideLoading()
 
-                                if(res.statusCode == 200){
+                                if(res.data.code == 200){
 
                                     console.log(res.data,typeof res.data)
 
@@ -989,7 +989,7 @@ Page({
 
                                     const {success,error} = res.data
 
-                                        wx.showModal({
+                                    wx.showModal({
                                      title: '导出结果',
                                      content: `成功导入${success}条,失败${error}条`,
                                      showCancel: false,//是否显示取消按钮
@@ -1006,6 +1006,17 @@ Page({
                                      complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
                                   })
 
+
+                                }else{
+
+                                     wx.showModal({
+                                     title: res.data.msg,
+                                     content: '请检查表格文件',
+                                     showCancel: false,//是否显示取消按钮
+                                     confirmText:"我知道了",//默认是“确定”
+                                     confirmColor: 'green',//确定文字的颜色
+                                     success: function (res) {}
+                                   })
 
                                 }
 

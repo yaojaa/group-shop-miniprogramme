@@ -46,6 +46,9 @@ App({
                                     this.session_key = response.data.data.session_key;
 
                                     this.globalData.openid = this.openId;
+
+                                    // this.globalData.store_id = response.data.data.store.store_id
+
                                     resolve(response.data.data.openid)
                                 } else {
                                     reject()
@@ -164,10 +167,13 @@ App({
                             
                             if(d.hasOwnProperty('store')){
                                 userInfo.store =  d.store
+                                this.globalData.store_id = d.store.store_id
                             }
 
                              if(d.hasOwnProperty('supplier')){
                                 userInfo.supplier =  d.supplier
+                                this.globalData.store_id = d.supplier.store_id
+
                             }
                             
                         this.globalData.token = d.token 

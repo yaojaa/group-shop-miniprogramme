@@ -26,7 +26,7 @@ Component({
             value: 0,
             observer: function (newVal, oldVal) {
                 this.data.scrollTop = newVal;
-                // console.log(this.data.scrollTop)
+                console.log(this.data.scrollTop)
             },
         },
         // 容器宽度
@@ -117,7 +117,9 @@ Component({
         innerInitData: [],
         curIndex: -1,
         newCurIndex: -1,
-        scrollTop: 0
+        scrollTop: 0,
+        contentSize: [],
+        pr: ''
     },
     observers: {
         'initData': function(data) { //  'params'是要监听的字段，（data）是已更新变化后的数据
@@ -132,6 +134,17 @@ Component({
         this.setData({
             innerInitData: this.properties.initData
         })
+    },
+    ready(){
+        this.createSelectorQuery().selectAll('.content-size').boundingClientRect().exec(res => {
+            console.log(res[0])
+            this.data.contentSize.push(res[0][0].width);
+            console.log(this.data.contentSize)
+        })
+        let sys = wx.getSystemInfoSync()
+        this.data.pr = sys ? sys.pixelRatio : 1;
+
+        console.log(this.data.pr)
     },
 
     /**
@@ -257,7 +270,7 @@ Component({
                         camera: self.properties.supportType.video.camera,
                         success:(res)=> {
                             console.log(res)
-
+                            let vInfo=res;
                             wx.showLoading({
                                 title: '上传中'
                             })
@@ -271,6 +284,11 @@ Component({
                                         "type": "video",
                                         // 视频地址
                                         "src": res.data.file_url,
+                                        "vSize": {
+                                            w: vInfo.width,
+                                            h: vInfo.height
+                                        },
+                                        'cH': this.data.contentSize[0] ? vInfo.height*this.data.contentSize[0]*this.data.pr/vInfo.width : 0
 
                                     })
                                 } else {
@@ -279,7 +297,12 @@ Component({
                                         // 模块类型
                                         "type": "video",
                                         // 视频地址
-                                        "src": res.data.file_url
+                                        "src": res.data.file_url,
+                                        "vSize": {
+                                            w: vInfo.width,
+                                            h: vInfo.height
+                                        },
+                                        'cH': this.data.contentSize[0] ? vInfo.height*this.data.contentSize[0]*this.data.pr/vInfo.width : 0
                                     })
                                 }
 

@@ -1,7 +1,7 @@
 const util = require('../../utils/util.js');
 let data = {};
 let flag = true;
-let role = "supplier";
+let role = "seller";
 
 
 Page({
@@ -46,6 +46,16 @@ Page({
     })
   },
 
+  getExportHistory(){
+
+    util.wx.get('/api/seller/order_export_log').then(res=>{
+      console.log('导出记录:',res)
+    })
+
+
+
+  },
+
   onChange1(event) {
     let val = event.detail;
     this.setData({
@@ -75,13 +85,28 @@ Page({
       value3: event.detail
     });
 
-    data = {
+    console.log(event.detail)
+
+    //待发货
+    if(event.detail == 0){
+
+     data = {
       cpage: 1,
       send_status: this.data.value1,
       export_status: this.data.value3
     }
     
     this.getGoodsOrders(data);
+
+    }
+
+    //已发货
+    if(event.detail == 1){
+
+      this.getExportHistory()
+    }
+
+
   },
 
   onChange(event) {
@@ -109,7 +134,7 @@ Page({
         isGoodsOrder:true //有商品ID的订单 不显示商品选择
       })
     }
-    role = options.role ? options.role : "supplier";
+    role = options.role ? options.role : "seller";
 
     let t = util.formatTime(new Date());
     t = t.split(' ')
@@ -126,6 +151,8 @@ Page({
       send_status: 0
     }
     this.getGoodsOrders(data);
+
+    
 
   },
   onReachBottom: function(){
@@ -158,8 +185,6 @@ Page({
         if(res.data.data.lists.length == 0){
           flag = false;
         }
-
-        console.log(flag)
 
         if(res.data.data.lists.length > 0){
           this.setData({
@@ -286,7 +311,10 @@ Page({
 
     thisData.goods_spec_ids = thisData.goods_spec_id_arr.toString();
 
-    wx.showToast({ title: '开始为你生成...', icon: 'none', mask: true })
+
+    wx.showLoading({
+      title:'正在导出'
+    })
 
     util.wx.post('/api/'+role+'/order_export', thisData).then(res => {
 
@@ -294,8 +322,8 @@ Page({
           wx.hideToast()
           let path = res.data.data.filepath
 
-          wx.redirectTo({
-            url:'../business/pages/export-success/index?path='+path
+          wx.navigateTo({
+            url:'/business/pages/export-success/index?path='+path
           })
 
             

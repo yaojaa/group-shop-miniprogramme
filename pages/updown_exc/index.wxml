@@ -49,7 +49,6 @@
 	</view> -->
 
 <view class="select-time-body" wx:if="{{value1 != 1 && value2 != 1}}">
-<view class="tips">请选择：</view>
 	<!-- <scroll-view> -->
 		<van-checkbox-group value="{{ result }}" bind:change="onChange">
 			<block wx:if="{{list.length > 0}}">
@@ -67,7 +66,7 @@
 							<view class="width200"> 
 				<text class="f18 bold">{{item.total_qty}}</text> 件 
 			                </view> 
-								<view class="desc" style="text-align: right;">已导出2件</view> 
+								<view class="desc" style="text-align: right;">已导出*件</view> 
 						</view>
 				  <!--  		<text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text> -->
 				  	</view>
@@ -98,7 +97,8 @@
 	
 
 	<view class="create-link">
-		<button class="btn linenear_bg" type="primary" bindtap="exportExcel">下一步</button>
+	 <button class="btn linenear_bg" type="primary" bindtap="exportExcel">导出</button>
+
 	</view>
 	
 

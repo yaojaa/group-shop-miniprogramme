@@ -40,23 +40,15 @@ Page({
 
     console.log('d',d,Object.keys(d).length)
 
+    console.log('跳转。。。')
 
-     var lastVisit = wx.getStorageSync('lastVisit') 
 
-     if(d.supplier && d.store && lastVisit){
+     if(d.supplier){
 
-        if(lastVisit=='seller'){
-          return wx.switchTab({
-                url:'../home/index'
-              })
-        }else{
-
-              return   wx.redirectTo({
+      
+      return   wx.redirectTo({
               url:'/business/pages/home/index'
             })
-        }
-
-       
 
      } 
 
@@ -123,7 +115,7 @@ Page({
                userInfo.supplier= d.supplier
 
 
-           this.jump(userInfo)
+             this.jump(userInfo)
 
 
           wx.hideLoading()

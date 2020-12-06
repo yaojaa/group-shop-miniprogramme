@@ -500,13 +500,13 @@ const request = (url, data, method) => {
             data: data,
             method: method,
             header: {
-                'content-type': 'application/json',
-                'Authorization': app.globalData.token
+                'content-type' : 'application/json',
+                'Authorization': app.globalData.token,
+                'systemInfo'   : app.globalData.systemInfo,
+                'store_id'     : app.globalData.store_id || '' // 团长0 供应商1 用户为空
             },
             success: function(res) { //服务器返回数据
                
-               console.log('success',url,res.data.code)
-
                 if (res.data.code == '-99' || res.data.code == '-100') {
                     console.log('应该调到等路')
                                           wx.showToast({
