@@ -171,13 +171,14 @@ Page({
          confirmColor: '#90d200',//确定文字的颜色
          success: function (res) {
             if (res.confirm) {
-                wx.redirectTo({
+              app.globalData['store_id'] = app.globalData.userInfo.store.store_id
+              console.log(1,app.globalData.userInfo.store.store_id)
+              console.log(2,app.globalData)
+                wx.switchTab({
                   url:'/pages/home/index'
                 })
             }
-         },
-         fail: function (res) { },//接口调用失败的回调函数
-         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+         }
       })
 
   },

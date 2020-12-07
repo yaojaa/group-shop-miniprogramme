@@ -111,7 +111,7 @@ Page({
      
 
         var returnData = {
-            title: '【'+this.data.goods.supplier.supplier_name+'】邀请你上架'+this.data.goods.goods_name,
+            title: '【'+this.data.goods.seller.seller_name+'】邀请你上架'+this.data.goods.goods_name,
             path: 'business/pages/goods-user/goods?id=' + this.data.goods.goods_id,
             
         }
@@ -125,7 +125,7 @@ Page({
     openShareFriends() {
         if (!this.data.shareFriendsImgStart) {
             this.data.shareFriendsImgStart = true;
-            util.wx.get('/api/supplier/get_goods_card', {
+            util.wx.get('/api/seller/get_goods_card', {
                 goods_id: this.data.goods_id
             })
             .then(res => {
@@ -392,7 +392,7 @@ Page({
   },  
   getGoodsInfo() {
     util.wx
-      .get('/api/supplier/get_goods_detail', {
+      .get('/api/seller/get_goods_detail', {
         goods_id: this.data.goods_id
       })
       .then((res) => {
@@ -737,7 +737,7 @@ Page({
           message: '删除后暂时不可恢复'
         }).then(() => {
 
-             util.wx.post('/api/supplier/goods_del',{
+             util.wx.post('/api/seller/goods_del',{
               goods_id:goods_id
              })
             .then((res) => {
