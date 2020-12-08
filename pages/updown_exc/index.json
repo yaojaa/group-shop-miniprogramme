@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "导出订单",
+  "navigationBarTitleText": "导出待发货订单",
   "usingComponents": {
         "i-datepicker": "../../iView/datepicker/index",
          "van-checkbox": "../../vant/checkbox/index",

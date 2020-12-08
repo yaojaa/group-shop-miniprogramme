@@ -3,7 +3,5 @@
   "navigationBarTitleText": "上架成功",
   "usingComponents": {
     "van-card": "../../vant/card/index"
-
-
   }
 }

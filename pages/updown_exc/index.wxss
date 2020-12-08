@@ -1,153 +1,168 @@
 @import "../../css/common.wxss";
-.view-page{
-	background-color:#fff;
-  padding-bottom: 200rpx;
+
+.view-page {
+    background-color: #fff;
+    padding-bottom: 200rpx;
 }
 
-.menu{
-  background: #f8f8f8
+.menu {
+    background: #f8f8f8
 }
 
-.page-title{
-  font-size: 20px;
-  line-height: 36px;
-  padding: 20px 0 40px;
-  text-align: center;
-  letter-spacing: 1px;
-}
-.exc-btn-list .btn-cell{
-  margin-left:10px;
-  width: 250rpx
-}
-.exc-btn-list{
-  font-size: 14px;
-}
-.exc-select-time{
-  display: flex;
-  font-size: 16px;
-  line-height: 46px;
-  border-bottom: 1px solid #eee;
-  margin: 0 14px;
-}
-.exc-select-time .left{
-  width: 75px;
-  flex-shrink: 0;
-  color: #666
-}
-.exc-select-time .right{
-  flex-shrink: 0;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #666;
+.page-title {
+    font-size: 20px;
+    line-height: 36px;
+    padding: 20px 0 40px;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
-i-datepicker{
-  width: 100%;
-  height: 100%;
+.exc-btn-list .btn-cell {
+    margin-left: 10px;
+    width: 250rpx
 }
 
-.i-picker-title{
-  text-align: right;
+.exc-btn-list {
+    font-size: 14px;
 }
 
-.create-link{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  background-color: #fff;
-  padding: 20rpx 0 40rpx;
-  width: 100%;
-  text-align: center;
+.exc-select-time {
+    display: flex;
+    font-size: 16px;
+    line-height: 46px;
+    border-bottom: 1px solid #eee;
+    margin: 0 14px;
 }
 
-.create-link .btn{
-  font-size: 16px;
-  letter-spacing: 1px;
-  width: 60%;
-}
-.select-time-body{
-  margin:0 10px;
+.exc-select-time .left {
+    width: 75px;
+    flex-shrink: 0;
+    color: #666
 }
 
-.goods-list{
-  padding: 15px 10px;
-  position: relative;
-  width: 100%;
-  overflow: hidden;
+.exc-select-time .right {
+    flex-shrink: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
 }
 
-.tac{ text-align: center; padding: 10px;}
-
-.pt10{ padding-top: 10px; }
-
-.checkorder{ 
-  padding: 4px; color: #105f96; 
-  position: absolute;
-  right: 10px;
-  bottom: 0px
-
-}
-.item-list{
-  position: relative;
+i-datepicker {
+    width: 100%;
+    height: 100%;
 }
 
-
-.radio-group{
-  display: flex;
-  padding: 10px;
-
-}
-.radio-group .radio{
-  margin-left: 20px;
+.i-picker-title {
+    text-align: right;
 }
 
-.list-checkbox{
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  background: #f8f8f8;
-  padding: 0 2px 0 5px;
-  margin-bottom: 5px;
+.create-link {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    padding: 20rpx 0 40rpx;
+    width: 100%;
+    text-align: center;
 }
 
-.list-checkbox .van-checkbox__label{
-  flex-grow: 1;
+.create-link .btn {
+    font-size: 16px;
+    letter-spacing: 1px;
+    width: 60%;
 }
 
-.width50{
-  width:300rpx
+.select-time-body {
+    margin: 0 10px;
 }
 
-.width200{
-  width:80px;
-  display: inline-block;
-  text-align: right;
-  color: #666
-}
-.tips{
-  padding:10px;
-}
-.desc{
-  color: #999;
-  line-height: 2
+.goods-list {
+    padding: 15px 10px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
 }
 
-.cover{
-   width: 100rpx;
-   height: 100rpx;
-   float: left;
-   margin-right: 10px;
-   border-radius: 10px
+.tac {
+    text-align: center;
+    padding: 10px;
+}
+
+.pt10 {
+    padding-top: 10px;
+}
+
+.checkorder {
+    padding: 4px;
+    color: #105f96;
+    position: absolute;
+    right: 10px;
+    bottom: 0px
+}
+
+.item-list {
+    position: relative;
 }
 
 
+.radio-group {
+    display: flex;
+    padding: 10px;
 
+}
 
+.radio-group .radio {
+    margin-left: 20px;
+}
 
+.list-checkbox {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    background: #f8f8f8;
+    padding: 0 2px 0 5px;
+    margin-bottom: 5px;
+}
 
+.list-checkbox .van-checkbox__label {
+    flex-grow: 1;
+    margin-top: 10px
+}
 
+.width50 {
+    width: 300rpx
+}
 
+.width200 {
+    width: 80px;
+    display: inline-block;
+    text-align: right;
+    color: #666
+}
 
+.tips {
+    padding: 10px;
+}
 
+.desc {
+    color: #999;
+    line-height: 2;
+    line-height: 14px;
+    height: 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+
+.cover {
+    width: 100rpx;
+    height: 100rpx;
+    float: left;
+    margin-right: 10px;
+    border-radius: 10px
+}
