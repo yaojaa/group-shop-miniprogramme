@@ -67,7 +67,7 @@
           <i-icon type="add" size="20" />新发布
         </button> -->
         <i-panel wx:if="{{goodslist.length > 0 || searchGoodslist.length > 0}}">
-            <van-search value="{{ value }}" shape="round" background="#fff" placeholder="请输入搜索关键词" show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
+            <van-search value="{{ searchWords }}" shape="round" background="#fff" placeholder="请输入搜索关键词" show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
             <!-- <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
   <van-tab title="进行中"></van-tab>
   <van-tab title="已结束"></van-tab>

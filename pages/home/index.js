@@ -44,6 +44,7 @@ Page({
     this.setData({
       searchWords: ''
     });
+    this.updateList();
   },
   isShowPopTips() {
     console.log('获取本地日期');
