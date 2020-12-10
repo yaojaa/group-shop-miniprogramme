@@ -25,27 +25,26 @@ Page({
     showDialog: false, // 订阅提示弹窗
     searchGoodslist: [],
     searchWords: '',
-    search_is_loading: true,
+    search_is_loading: true
   },
-    // 搜索
-    onSearch(e){
-        var sv = e.detail.replace(/(^\s*)|(\s*$)/g,'');
-        console.log(sv)
-        if(sv){
-            this.data.s_cpage = 1;
-            this.setData({
-                searchWords: sv,
-                searchGoodslist: []
-            })
-            this.getGoodsList();
-        }
-    },
-    onCancel(){
-        this.setData({
-            searchWords: ''
-        })
-
-    },
+  // 搜索
+  onSearch(e) {
+    var sv = e.detail.replace(/(^\s*)|(\s*$)/g, '');
+    console.log(sv);
+    if (sv) {
+      this.data.s_cpage = 1;
+      this.setData({
+        searchWords: sv,
+        searchGoodslist: []
+      });
+      this.getGoodsList();
+    }
+  },
+  onCancel() {
+    this.setData({
+      searchWords: ''
+    });
+  },
   isShowPopTips() {
     console.log('获取本地日期');
 
@@ -104,18 +103,21 @@ Page({
   },
 
   getProList() {
-    util.wx.get('/api/user/get_bought_store_goods').then((res) => {
-      if (res.data.code == 200) {
+    util.wx
+      .get('/api/user/get_bought_store_goods')
+      .then((res) => {
+        if (res.data.code == 200) {
+          this.setData({
+            proList: res.data.data.goods
+          });
+        }
         this.setData({
-          proList: res.data.data.goods
+          isloading: false
         });
-      }
-      this.setData({
-        isloading: false
+      })
+      .catch((e) => {
+        console.log(e);
       });
-    }).catch(e=>{
-        console.log(e)
-    })
   },
 
   handleTabBarChange({ detail }) {
@@ -139,40 +141,40 @@ Page({
   //重新获取用户信息 矫正旧数据 如果没有店铺的跳转到个人 并覆盖本地
   //
   reGetUserInfo() {
-    util.wx.get('/api/user/get_user_info').then((res) => {
-      if (res.data.code == 200) {
-        const d = res.data.data;
-        if (d.store == null && d.supplier == null) {
-          wx.redirectTo({
-            url: '../user-home/index'
-          });
-        } else {
-          this.setData({
-            pending_money: res.data.data.store.pending_money
-          });
-        }
-      }else{
-         wx.clearStorageSync()
-         app.globalData.userInfo = null
-
-         wx.showModal({
-          title: '您的登录信息失效',
-          content: '请重新登录',
-          success (res) {
-            if (res.confirm) {
-
-              app.redirectToLogin()
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
+    util.wx
+      .get('/api/user/get_user_info')
+      .then((res) => {
+        if (res.data.code == 200) {
+          const d = res.data.data;
+          if (d.store == null && d.supplier == null) {
+            wx.redirectTo({
+              url: '../user-home/index'
+            });
+          } else {
+            this.setData({
+              pending_money: res.data.data.store.pending_money
+            });
           }
-        })
+        } else {
+          wx.clearStorageSync();
+          app.globalData.userInfo = null;
 
-         // app.redirectToLogin()
-      }
+          wx.showModal({
+            title: '您的登录信息失效',
+            content: '请重新登录',
+            success(res) {
+              if (res.confirm) {
+                app.redirectToLogin();
+              } else if (res.cancel) {
+                console.log('用户点击取消');
+              }
+            }
+          });
 
-    }).catch(e=>{
-    })
+          // app.redirectToLogin()
+        }
+      })
+      .catch((e) => {});
   },
 
   //切换显示隐藏状态事件
@@ -311,17 +313,12 @@ Page({
       })
       .then((res) => {
         if (res.data.code == 200) {
-
-          let data = res.data.data.order_list
-                data.forEach(item =>{
-              if (item.store.user_id == app.globalData.userInfo.user_id) {
-
-                  item.isFromSlef = true
-              }
-
-
-                })
-
+          let data = res.data.data.order_list;
+          data.forEach((item) => {
+            if (item.store.user_id == app.globalData.userInfo.user_id) {
+              item.isFromSlef = true;
+            }
+          });
 
           this.setData({
             orderList: data
@@ -340,112 +337,98 @@ Page({
   },
   addListen: util.sellerListner,
 
-    getGoodsList: function() {
-        let ajaxData = {
-                cpage: this.data.cpage,
-                pagesize: 15
-            }
-        if(this.data.searchWords){ // 搜索模式
-            ajaxData = {
-                cpage: this.data.s_cpage,
-                pagesize: 15,
-                keyword: this.data.searchWords
-            }
-            this.setData({
-                search_is_loading: true
-            })
-        }else{
-            this.setData({
-                is_loading: true
-            })
+  getGoodsList: function () {
+    let ajaxData = {
+      cpage: this.data.cpage,
+      pagesize: 15
+    };
+    if (this.data.searchWords) {
+      // 搜索模式
+      ajaxData = {
+        cpage: this.data.s_cpage,
+        pagesize: 15,
+        keyword: this.data.searchWords
+      };
+      this.setData({
+        search_is_loading: true
+      });
+    } else {
+      this.setData({
+        is_loading: true
+      });
+    }
+
+    util.wx
+      .get('/api/seller/get_goods_list', ajaxData)
+      .then((res) => {
+        if (this.data.searchWords) {
+          //搜索
+          this.searchLoadData(res);
+          return;
         }
 
-        
-
-        util.wx.get('/api/seller/get_goods_list', ajaxData)
-            .then(res => {
-
-                if(this.data.searchWords){ //搜索
-                    this.searchLoadData(res);
-                    return;
-                }
-
-                if (res.data.code == 200) {
-                    this.setData({
-                        goodslist: this.data.goodslist.concat(res.data.data.goodslist),
-                        is_loading: false
-                    })
-
-                    this.data.goodslist.forEach(item => {
-
-                        if (item._order_status1_count > 0) {
-                            this.setData({
-                                hasNewOrder: true
-                            })
-                        }
-
-
-
-                    })
-
-
-
-
-                    this.totalpage = res.data.data.page.totalpage
-
-
-                } else {
-                    this.setData({
-                        is_loading: false
-                    })
-                }
-            }).catch(e=>{
-
-                if(this.data.searchWords){
-                    this.setData({
-                        search_is_loading: false
-                    })
-                }else{
-                    this.setData({
-                        is_loading: false
-                    })
-                }
-
-
-
-            })
-
-    },
-
-    searchLoadData(res){
         if (res.data.code == 200) {
-            this.setData({
-                searchGoodslist: this.data.searchGoodslist.concat(res.data.data.goodslist),
-            })
-            this.s_totalpage = res.data.data.page.totalpage
+          this.setData({
+            goodslist: this.data.goodslist.concat(res.data.data.goodslist),
+            is_loading: false
+          });
 
+          this.data.goodslist.forEach((item) => {
+            if (item._order_status1_count > 0) {
+              this.setData({
+                hasNewOrder: true
+              });
+            }
+          });
 
+          this.totalpage = res.data.data.page.totalpage;
+        } else {
+          this.setData({
+            is_loading: false
+          });
         }
-        this.setData({
+      })
+      .catch((e) => {
+        if (this.data.searchWords) {
+          this.setData({
             search_is_loading: false
-        })
-    },
+          });
+        } else {
+          this.setData({
+            is_loading: false
+          });
+        }
+      });
+  },
+
+  searchLoadData(res) {
+    if (res.data.code == 200) {
+      this.setData({
+        searchGoodslist: this.data.searchGoodslist.concat(
+          res.data.data.goodslist
+        )
+      });
+      this.s_totalpage = res.data.data.page.totalpage;
+    }
+    this.setData({
+      search_is_loading: false
+    });
+  },
   updateList(e) {
     this.setData({
       goodslist: [],
-      cpage: 1,
+      searchGoodslist: [],
+      cpage: 1
     });
     this.getGoodsList();
-    try{
-      if(e.detail.id == 5){
+    try {
+      if (e.detail.id == 5) {
         wx.pageScrollTo({
           scrollTop: 50,
           duration: 300
-        })
+        });
       }
-    }
-    catch(err){}
-    
+    } catch (err) {}
   },
   new_btn: function () {
     const uInfo = app.globalData.userInfo || {};
@@ -533,10 +516,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    if(!this.data.searchWords){
-        this.data.cpage = 1
-        this.data.goodslist = []
-        this.getGoodsList()
+    if (!this.data.searchWords) {
+      this.data.cpage = 1;
+      this.data.goodslist = [];
+      this.getGoodsList();
     }
     this.getOrderList();
     wx.stopPullDownRefresh();
@@ -546,15 +529,16 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(this.data.searchWords){  // 搜索状态
-        ++this.data.s_cpage
+    if (this.data.searchWords) {
+      // 搜索状态
+      ++this.data.s_cpage;
 
-        if (this.data.s_cpage <= this.s_totalpage) {
-            this.getGoodsList(); //重新调用请求获取下一页数据 
-        } else {
-            this.data.s_cpage = this.s_totalpage
-        }
-        return;
+      if (this.data.s_cpage <= this.s_totalpage) {
+        this.getGoodsList(); //重新调用请求获取下一页数据
+      } else {
+        this.data.s_cpage = this.s_totalpage;
+      }
+      return;
     }
     ++this.data.cpage;
 

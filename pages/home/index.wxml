@@ -22,7 +22,9 @@
                 <view class="flex justify-between text-white">
                     <view class="user-box">
                         <view class="user-name mr-sm">{{userInfo.nickname}}</view>
-                        <text bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">我的主页</text>
+                        <text bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">
+                            我的主页
+                        </text>
                     </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
@@ -42,8 +44,12 @@
                 <view class="newlist">
                     <scroll-view style="height: 100px" scroll-y>
                         <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}" bindtap="todetail">
-                            <text class="bold" wx:if="{{item.is_valet=='0'}}">{{item.user.nickname}}</text>
-                            <text class="bold" wx:else>{{item.store.nickname}}</text>{{item.time_ago}}下单 <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                            <text class="bold" wx:if="{{item.is_valet=='0'}}">
+                                {{item.user.nickname}}
+                            </text>
+                            <text class="bold" wx:else>{{item.store.nickname}}</text>
+                            {{item.time_ago}}下单
+                            <text class="bold">{{item.order_detail[0].goods_name}}</text>
                         </view>
                     </scroll-view>
                 </view>
@@ -60,7 +66,7 @@
         <!-- <button class='new-btn hollow' bindtap="new_btn">
           <i-icon type="add" size="20" />新发布
         </button> -->
-        <i-panel wx:if="{{goodslist.length > 0 }}">
+        <i-panel wx:if="{{goodslist.length > 0 || searchGoodslist.length > 0}}">
             <van-search value="{{ value }}" shape="round" background="#fff" placeholder="请输入搜索关键词" show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
             <!-- <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
   <van-tab title="进行中"></van-tab>
@@ -90,7 +96,7 @@
             </view>
         </i-panel>
     </view>
-    <i-panel title="新人小贴士" wx:if="{{goodslist.length== 0 && !is_loading }}">
+    <i-panel title="新人小贴士" wx:if="{{goodslist.length== 0 && !is_loading &&!searchWords}}">
         <view class='new-goods' bindtap="new_btn" style="margin-bottom:100rpx">
             <view class="bold">问：使用开心麻团小程序收费吗？</view>
             <view class="mb-df text-muted">答：不收费，但使用在线支付微信会收取0.6%的通道费，全网最低，拿金钱换高效值得！</view>
