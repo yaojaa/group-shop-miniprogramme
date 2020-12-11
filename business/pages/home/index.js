@@ -27,11 +27,11 @@ Page({
 
     getInfo(){
 
-    util.wx.get('/api/seller/get_supplier_detail').then(res=>{
+    util.wx.get('/api/seller/get_store_info').then(res=>{
       this.setData({
         info:res.data.data,
-        supplier_logo:res.data.data.supplier_logo,
-        pending_money:res.data.data.pending_money
+        supplier_logo:res.data.data.store_logo,
+        pending_money:res.data.data.store_money
       })
 
     if(res.data.code == -1){
@@ -210,7 +210,7 @@ Page({
 
     getGoodsList() {
         util.wx.get('/api/seller/get_goods_list',{
-          pagesize:50
+          pagesize:500
         })
             .then((res) => {
                     this.setData({
