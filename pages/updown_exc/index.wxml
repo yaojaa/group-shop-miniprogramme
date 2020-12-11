@@ -1,10 +1,10 @@
 <view class="view-page">
 
-	<van-radio-group class="radio-group" value="{{ value1 }}" bind:change="onChange1">
+<!-- 	<van-radio-group class="radio-group" value="{{ value1 }}" bind:change="onChange1">
 	  <van-radio class="radio width50" name="0" checked-color="#07c160">待发货</van-radio>
 	  <van-radio class="radio" name="1" checked-color="#07c160">已发货</van-radio>
 	</van-radio-group>
-
+ -->
 	<!-- <block wx:if="{{value1 == 0 && !isGoodsOrder}}">
 		<van-radio-group class="radio-group" value="{{ value2 }}" bind:change="onChange2">
 		  <van-radio class="radio width50" name="0" checked-color="#07c160">按商品选择</van-radio>
@@ -74,11 +74,10 @@
 				</view>
 			</block>
 		  	<block wx:else>
-			  	<view class="tac"><van-empty description="暂无数据" />
+			  	<view class="tac"><van-empty description="暂无待发货订单" />
 </view>
 			</block>
 		</van-checkbox-group>
-		<view wx:if="{{list.length > 0}}" class="tac pt10" hidden="{{listmore}}">没有更多了~</view>
 	<!-- </scroll-view> -->
 </view>
 
@@ -97,7 +96,7 @@
 	
 
 	<view class="create-link">
-	 <button class="btn linenear_bg" type="primary" bindtap="exportExcel">导出</button>
+	 <button class="btn linenear_bg" disabled="{{result.length == 0}}" type="primary" bindtap="exportExcel">导出</button>
 
 	</view>
 	
