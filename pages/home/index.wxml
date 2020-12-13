@@ -1,5 +1,6 @@
 <view class="container">
-    <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;" wx:if="{{show_tips}}">
+    <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;"
+        wx:if="{{show_tips}}">
         <view class="collect-box">
             "点击右边
             <van-icon name="weapp-nav" size="28rpx;" />
@@ -22,9 +23,9 @@
                 <view class="flex justify-between text-white">
                     <view class="user-box">
                         <view class="user-name mr-sm">{{userInfo.nickname}}</view>
-                        <text bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">
+                        <view bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">
                             我的主页
-                        </text>
+                        </view>
                     </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
@@ -43,7 +44,8 @@
             <view class="control">
                 <view class="newlist">
                     <scroll-view style="height: 100px" scroll-y>
-                        <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}" bindtap="todetail">
+                        <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}"
+                            bindtap="todetail">
                             <text class="bold" wx:if="{{item.is_valet=='0'}}">
                                 {{item.user.nickname}}
                             </text>
@@ -67,7 +69,8 @@
           <i-icon type="add" size="20" />新发布
         </button> -->
         <i-panel wx:if="{{goodslist.length > 0 || searchGoodslist.length > 0}}">
-            <van-search value="{{ searchWords }}" shape="round" background="#fff" placeholder="请输入搜索关键词" show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
+            <van-search value="{{ searchWords }}" shape="round" background="#fff" placeholder="请输入搜索关键词"
+                show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
             <!-- <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
   <van-tab title="进行中"></van-tab>
   <van-tab title="已结束"></van-tab>
@@ -76,7 +79,8 @@
             <!-- search -->
             <view class="goods-box" wx:if='{{searchWords}}'>
                 <block wx:key="index" wx:for="{{searchGoodslist}}">
-                    <i-goods-item bindupdateList="updateList" bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
+                    <i-goods-item bindupdateList="updateList" bindrecommend="recommendHandle" bindremove="removeHandle"
+                        item="{{item}}" index="{{index}}" />
                 </block>
                 <view class="text-center pt20">
                     <wux-spin wx:if="{{search_is_loading}}"></wux-spin>
@@ -88,7 +92,8 @@
             <!-- ./search -->
             <view class="goods-box" wx:else>
                 <block wx:key="index" wx:for="{{goodslist}}">
-                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" bind:updateList="updateList" />
+                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}"
+                        index="{{index}}" bind:updateList="updateList" />
                 </block>
                 <view class="text-center">
                     <wux-spin wx:if="{{is_loading}}"></wux-spin>
