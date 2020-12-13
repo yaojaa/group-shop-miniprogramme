@@ -1,8 +1,10 @@
 {
-  "navigationStyle": "custom",
-  "usingComponents": {
+    "navigationBarTitleText": "导出成功",
+    "navigationStyle": "custom",
+    "usingComponents":
+    {
 
-  "van-icon": "../../../vant/icon/index"
+        "van-icon": "../../../vant/icon/index"
 
-  }
+    }
 }

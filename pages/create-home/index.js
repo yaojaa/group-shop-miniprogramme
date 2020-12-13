@@ -190,7 +190,7 @@ Page({
                      app.globalData.backUrl = null
                 }else{
 
-                   wx.redirectTo({
+                   wx.switchTab({
                     url:'/pages/home/index'
                   })
 

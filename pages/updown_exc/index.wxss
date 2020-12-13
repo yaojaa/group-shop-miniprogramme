@@ -166,3 +166,13 @@ i-datepicker {
     margin-right: 10px;
     border-radius: 10px
 }
+.record-item{
+    margin:10px 0
+}
+
+.record-item button{
+    margin:0 10px
+}
+
+
+

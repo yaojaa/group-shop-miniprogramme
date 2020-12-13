@@ -64,9 +64,8 @@
 
 						<view class="right f14">
 							<view class="width200"> 
-				<text class="f18 bold">{{item.total_qty}}</text> 件 
+				待导出<text class="f18 bold">{{item.total_qty}}</text>件 
 			                </view> 
-								<view class="desc" style="text-align: right;">已导出*件</view> 
 						</view>
 				  <!--  		<text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text> -->
 				  	</view>
@@ -83,16 +82,30 @@
 
 
 <view class="record select-time-body" wx:if="{{value3 == 1}}">
-	<view class="title">导出记录:</view>
-		<view class="record-item" wx:for="{{historyList}}">
-			{{item.addtime}} {{item.filepath}} <text class="blue-text">复制链接下载</text></view>
+
+
+<view class="record-item" wx:for="{{historyList}}">
+
+<van-card
+  tag="2020-08-09"
+  desc="描述信息"
+  title="商品标题"
+  thumb="{{ imageURL }}"
+>
+  <view slot="footer">
+    <button class="btn" type="primary">预览表格</button> 
+    <button class="btn" type="primary">复制链接下载</button>
+  </view>
+</van-card>
+
+</view>
 
 </view>
 
 
 	
 
-	<view class="create-link">
+	<view class="create-link" wx:if="{{value3 == 0}}">
 	 <button class="btn linenear_bg" disabled="{{result.length == 0}}" type="primary" bindtap="exportExcel">导出</button>
 
 	</view>

@@ -1,8 +1,4 @@
 <view class="container gray-wrap cf">
- <van-button icon="star-o" type="primary">导出订单</van-button>
-
- <van-button icon="star-o" type="primary">批量发货</van-button>
-
  <van-popup
   show="{{ showImport }}"
   position="bottom"

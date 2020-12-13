@@ -48,11 +48,14 @@ Page({
 
   getExportHistory(){
 
+    wx.showLoading()
+
     util.wx.get('/api/seller/order_export_log?goods_id='+this.data.goods_id).then(res=>{
-      console.log('导出记录:',res.data.data.log)
+      console.log('导出记录:',res.data.data.logs)
+      wx.hideLoading()
       if(res.data.code == 200){
         this.setData({
-          historyList : res.data.data.log
+          historyList : res.data.data.logs
         })
       }
     })
@@ -328,7 +331,7 @@ Page({
           let path = res.data.data.filepath
 
           wx.navigateTo({
-            url:'/business/pages/export-success/index?path='+path
+            url:'../export-success/index?path='+path
           })
 
             

@@ -316,13 +316,14 @@ App({
         if (userInfo) {
             this.globalData.token = userInfo.token
             this.globalData.userInfo = userInfo
-            this.globalData.store_id = userInfo.supplier.store_id
 
             //兼容旧版本
             //
             if(userInfo.store && userInfo.store.store_id ){
 
                 this.globalData.userInfo.store_id = userInfo.store.store_id
+                this.globalData.store_id = userInfo.store.store_id 
+
             }
 
             if( userInfo.hasOwnProperty('store_id')){

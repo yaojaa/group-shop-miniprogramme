@@ -1556,6 +1556,12 @@
           "pathName": "pages/ordermanage/list",
           "query": "goods_id=989&goods_name=2020赣南脐橙–全球最佳产地最受欢迎超甜的橙子 优选赣南高品质果园&delivery_method=1&store_id=1",
           "scene": null
+        },
+        {
+          "name": "pages/updown_exc/index",
+          "pathName": "pages/updown_exc/index",
+          "query": "role=seller&goods_id=3725",
+          "scene": null
         }
       ]
     }

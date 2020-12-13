@@ -494,6 +494,8 @@ const WX = {}
 /**封装request请求**/
 const request = (url, data, method) => {
 
+    console.log('app.globalData',app.globalData)
+
     return new Promise((resolve, reject) => {
         wx.request({
             url: config.apiUrl + url,
