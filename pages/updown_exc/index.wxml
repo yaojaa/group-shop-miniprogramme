@@ -48,7 +48,7 @@
 		</van-dropdown-menu>
 	</view> -->
 
-<view class="select-time-body" wx:if="{{value1 != 1 && value2 != 1}}">
+<view class="select-time-body" wx:if="{{value3 == 0}}">
 	<!-- <scroll-view> -->
 		<van-checkbox-group value="{{ result }}" bind:change="onChange">
 			<block wx:if="{{list.length > 0}}">
@@ -82,15 +82,12 @@
 </view>
 
 
-<!-- <view class="record select-time-body">
+<view class="record select-time-body" wx:if="{{value3 == 1}}">
 	<view class="title">导出记录:</view>
-		<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-			<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-				<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-					<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-						<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
+		<view class="record-item" wx:for="{{historyList}}">
+			{{item.addtime}} {{item.filepath}} <text class="blue-text">复制链接下载</text></view>
 
-</view> -->
+</view>
 
 
 	

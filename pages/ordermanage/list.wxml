@@ -12,22 +12,22 @@
             />
     </view>
 
-    <view class="order-title text-primary">
-           
+<!--     <view class="order-title text-primary">
+ -->           
 
 
-        <view bindtap="toGoods" hover-class="none">
+       <!--  <view bindtap="toGoods" hover-class="none">
             <text class="goods_title">回到商品</text>
         </view>
         <view class="actionsButtons">
-            <view>
+            <view> -->
              
-
+<!-- 
                  <van-button class="ml-sm" type="primary" plain size="mini" bindtap="sendMsgAll">群发通知</van-button>
 
 
                    <van-button wx:if="{{delivery_method==1}}" class="ml-sm" type="primary" plain size="mini" bindtap="toAddressList">地址列表</van-button>
-                <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">导出名单</van-button>
+                <van-button class="ml-sm" type="primary" plain size="mini" bindtap="exportExcel">导出名单</van-button> -->
 <!--                 <van-button class="ml-sm" type="primary" plain size="mini" bindtap="checkExcel">查看名单</van-button>
  -->          <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
                     <i-icon size="20" type="other" />
@@ -40,9 +40,9 @@
             <view slot="open">展开</view>
             <view slot="close">收起</view>
         </i-switch> -->
-            </view>
+    <!--         </view>
         </view>
-    </view>
+    </view> -->
     <view class="tabsArea">
         <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
             <i-tab key="0" title="所有订单"></i-tab>
@@ -306,10 +306,10 @@
     <i-message id="message" />
 
 <view class="fix-footer">
-<van-tabbar >
-  <van-tabbar-item icon="search">群发通知</van-tabbar-item>
-  <van-tabbar-item icon="friends-o">导出发货单</van-tabbar-item>
-  <van-tabbar-item icon="setting-o" bindtap = "showImportModal">批量发货</van-tabbar-item>
+<van-tabbar>
+  <van-tabbar-item icon="envelop-o" bindtap="sendMsgAll">群发通知</van-tabbar-item>
+  <van-tabbar-item icon="orders-o" bindtap="exportExcel">导出发货单</van-tabbar-item>
+  <van-tabbar-item icon="ascending" bindtap = "showImportModal">批量发货</van-tabbar-item>
 </van-tabbar>
 </view>
 

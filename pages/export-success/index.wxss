@@ -1,23 +1,28 @@
 @import "../../css/common.wxss";
 
-.notice {
+.icon {
   color: #ed6a0c;
-  background-color: #fffbe8;
-  padding: 25rpx 30rpx;
-  font-size: 24rpx
-}
-
-.share_btn {
+  padding: 125rpx 30rpx 10px;
   text-align: center;
 }
 
-.share_btn button {
-  margin: 20px
+.btns {
+  text-align: center;
 }
-.goods-panel-bd{
-  box-shadow: 0 0 0;
+
+.btns button{
+
+	margin: 0 10px;
+	padding-left: 50rpx!important;
+	padding-right: 50rpx!important;
+	border-radius: 20px;
+	box-shadow: 0 0 10px #ccc
 }
-.goods-panel-bd .cover {
-  width: 140rpx;
-  height: 140rpx;
+
+.link{
+  padding: 20px;
+  word-break: break-all;
+}
+.desc{
+	text-align: center;
 }

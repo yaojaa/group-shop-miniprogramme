@@ -48,8 +48,13 @@ Page({
 
   getExportHistory(){
 
-    util.wx.get('/api/seller/order_export_log').then(res=>{
-      console.log('导出记录:',res)
+    util.wx.get('/api/seller/order_export_log?goods_id='+this.data.goods_id).then(res=>{
+      console.log('导出记录:',res.data.data.log)
+      if(res.data.code == 200){
+        this.setData({
+          historyList : res.data.data.log
+        })
+      }
     })
 
 
