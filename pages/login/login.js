@@ -38,24 +38,7 @@ Page({
 
     jump(d) {
 
-        console.log('d', d, Object.keys(d).length)
-
-        console.log('跳转。。。')
-
-
-
-
-        //暂时不跳转供应商
-
-        // if(d.supplier && !lastVisit){
-
-        //     return   wx.redirectTo({
-        //          url:'/business/pages/home/index'
-        //        })
-
-        //       } 
-
-
+       
         if (d.store && d.store.store_id) {
 
             return wx.switchTab({
@@ -113,7 +96,6 @@ Page({
                     userInfo = d.user
                     userInfo['store'] = d.store
                     userInfo.supplier = d.supplier
-
 
                     this.jump(userInfo)
 

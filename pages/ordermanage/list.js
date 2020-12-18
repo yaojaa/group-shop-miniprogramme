@@ -323,8 +323,6 @@ Page({
                                         [key3]: res.data.data.order_status_txt
                                     }, () => {
 
-                                        console.log('111', this.data.dataList[pindex][cindex])
-
 
                                         wx.showToast({
                                             title: '操作成功',
@@ -966,7 +964,7 @@ Page({
                   if (res.tempFiles[0].size < 31457280) {
 
                         wx.showLoading({
-                          title: '上传中'
+                          title: '导入中...'
                         })
 
                            wx.uploadFile({
@@ -975,13 +973,17 @@ Page({
                             name: 'excel',
                             header: {
                                 "Content-Type": "multipart/form-data",
-                                "Authorization": app.globalData.token
+                                "Authorization": app.globalData.token,
+                                "store-id"  : app.globalData.store_id || 'null' // 团长0 供应商1 用户为空
+
                             },
                             success: function(res) {
 
+                                console.log('上传结果',res)
+
                                 wx.hideLoading()
 
-                                if(res.data.code == 200){
+                                if(res.statusCode == 200){
 
                                     console.log(res.data,typeof res.data)
 

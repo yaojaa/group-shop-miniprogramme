@@ -170,18 +170,18 @@ App({
                                 this.globalData.store_id = d.store.store_id
                             }
 
-                             if(d.hasOwnProperty('supplier')){
-                                userInfo.supplier =  d.supplier
-                                this.globalData.store_id = d.supplier.store_id
+                            //  if(d.hasOwnProperty('supplier')){
+                            //     userInfo.supplier =  d.supplier
+                            //     this.globalData.store_id = d.supplier.store_id
 
-                            }
+                            // }
                             
                         this.globalData.token = d.token 
                         this.globalData.userInfo = userInfo
 
                         wx.setStorage({ //存储到本地
                             key: "userInfo",
-                            data: this.globalData.userInfo
+                            data: userInfo
                         })
                     
 

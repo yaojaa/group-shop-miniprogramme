@@ -18,7 +18,9 @@
 .flex2{
     flex:2
 }
-
+.ptb5{
+    padding:5px 0
+}
 .f10 {
     font-size: 20rpx !important;
 }

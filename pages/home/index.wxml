@@ -101,7 +101,7 @@
             </view>
         </i-panel>
     </view>
-    <i-panel title="新人小贴士" wx:if="{{goodslist.length== 0 && !is_loading &&!searchWords}}">
+    <i-panel title="小贴士" wx:if="{{goodslist.length== 0 && !is_loading &&!searchWords}}">
         <view class='new-goods' bindtap="new_btn" style="margin-bottom:100rpx">
             <view class="bold">问：使用开心麻团小程序收费吗？</view>
             <view class="mb-df text-muted">答：不收费，但使用在线支付微信会收取0.6%的通道费，全网最低，拿金钱换高效值得！</view>

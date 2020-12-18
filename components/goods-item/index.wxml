@@ -1,7 +1,7 @@
 <view class="goods-item">
     <view class="goods-body">
         <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
-            <image src='{{item.goods_cover}}?imageView2/2/w/66/h/66/format/jpg/q/75' class='hd'></image>
+            <image src='{{item.goods_cover}}?imageView2/1/w/66/h/66/format/jpg/q/75' class='hd'></image>
         </navigator>
         <view class="bd">
             <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">

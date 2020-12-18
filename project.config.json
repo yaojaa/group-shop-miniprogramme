@@ -97,10 +97,9 @@
           "scene": null
         },
         {
-          "id": 3,
           "name": "详情页启动",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2798",
+          "query": "goods_id=2000081",
           "scene": 1008
         },
         {
@@ -1561,6 +1560,12 @@
           "name": "pages/updown_exc/index",
           "pathName": "pages/updown_exc/index",
           "query": "role=seller&goods_id=3725",
+          "scene": null
+        },
+        {
+          "name": "pages/updown_exc/index",
+          "pathName": "pages/updown_exc/index",
+          "query": "",
           "scene": null
         }
       ]
