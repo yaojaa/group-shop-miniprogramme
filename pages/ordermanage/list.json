@@ -21,7 +21,10 @@
         "van-search": "../../vant/search/index",
         "van-tabbar": "../../vant/tabbar/index",
         "van-tabbar-item": "../../vant/tabbar-item/index",
-        "van-popup": "../../vant/popup/index"
+        "van-popup": "../../vant/popup/index",
+        "van-cell": "../../vant/cell/index",
+        "van-dialog": "../../vant/dialog/index",
+        "van-switch": "../../vant/switch/index"
     }
 
 }

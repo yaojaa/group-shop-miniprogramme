@@ -1562,6 +1562,12 @@
           "pathName": "pages/updown_exc/index",
           "query": "role=seller&goods_id=3725",
           "scene": null
+        },
+        {
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=981&goods_name=天下一奇 吃橘带皮 正宗高山涌泉蜜橘 甜嫩无核&delivery_method=1&store_id=1",
+          "scene": null
         }
       ]
     }

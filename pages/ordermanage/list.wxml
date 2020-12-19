@@ -280,6 +280,24 @@
 
 </block>
 
+
+<van-dialog
+  use-slot
+  title="您要{{action_name}}吗？"
+  show="{{ orderActionVisbile }}"
+  show-cancel-button
+  bind:confirm = "orderActionsRun"
+>
+
+<van-cell title="是否全部{{action_name}}" style="margin: 10px 0">
+
+     <van-switch  size="20px"  active-color="#49b34d"
+  inactive-color="#eeeeee" slot="right-icon" checked="{{ isAllAction }}" bind:change="onisAllActionChange" />
+
+    </van-cell>
+
+</van-dialog>
+
    
 
 

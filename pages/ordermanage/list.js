@@ -62,7 +62,9 @@ Page({
             name: '发货名单'
         }],
         excelUrl: '',
-        searchWords: ''
+        searchWords: '',
+        orderActionVisbile: false,
+        isAllAction: false
     },// 搜索
     onSearch(e){
         var sv = e.detail.replace(/(^\s*)|(\s*$)/g,'');
@@ -278,6 +280,14 @@ Page({
 
         //     return
         // }
+        // 
+        // 
+        this.setData({
+            orderActionVisbile:true,
+            action_name: txt,
+            opt
+        })
+        return
 
         wx.showModal({
             title: '确定要' + txt + '吗？',
@@ -355,6 +365,122 @@ Page({
 
             }
         })
+
+
+    },
+    orderActionsRun(){
+
+        //全部发货
+         if(this.data.isAllAction) {
+
+            //       api/seller/setorderstatus_by_goodsid
+            // 参数：goods_id、opt (toset_confirm、toset_send)
+
+              util.wx.post('/api/seller/setorderstatus_by_goodsid', {
+                            opt:this.data.opt,
+                            goods_id: this.data.goods_id
+                        }).then(res=>{
+
+                             if (res.data.code == 200) {
+
+                               this.getStatistics()
+                               this.getOrderList()
+                               wx.showToast({
+                                title: '操作成功！',
+                                icon : 'none'
+                               })
+
+
+                             }
+
+
+
+                        })
+
+                        return
+
+      
+
+
+
+
+                    util.wx.post('/api/seller/set_order_status', {
+                            opt,
+                            order_id
+                        }).then(res => {
+                            wx.hideLoading()
+                            if (res.data.code == 200) {
+
+                                this.getStatistics()
+                                //操作完成之后的回调
+                                const currentItemKey = 'dataList[' + pindex + '][' + cindex + ']'
+                                //当前操作的item
+                                const key = 'dataList[' + pindex + '][' + cindex + '].seller_next_handle'
+                                const key2 = 'dataList[' + pindex + '][' + cindex + '].order_status'
+                                const key3 = 'dataList[' + pindex + '][' + cindex + '].order_status_txt'
+
+
+                                //删除逻辑
+                                if (opt == 'toset_del') {
+
+                                    this.data.dataList[pindex][cindex].removed = true
+
+                                    this.setData({
+                                        [currentItemKey]: this.data.dataList[pindex][cindex]
+                                    }, () => {
+                                        wx.showToast({
+                                            title: '删除成功',
+                                            icon: "none"
+                                        })
+                                    })
+
+                                } else {
+
+                                    this.setData({
+                                        [key]: res.data.data.seller_next_handle,
+                                        [key2]: res.data.data.order_status,
+                                        [key3]: res.data.data.order_status_txt
+                                    }, () => {
+
+                                        console.log('111', this.data.dataList[pindex][cindex])
+
+
+                                        wx.showToast({
+                                            title: '操作成功',
+                                            icon: "none"
+                                        })
+
+                                    })
+
+
+
+                                }
+
+
+                            } else {
+                                wx.showToast({
+                                    title: '订单操作失败'
+                                })
+
+                            }
+                        }, () => {
+
+                        })
+                        .catch(e => {
+
+
+                        })
+                }
+                else{
+
+
+                }
+
+    },
+    onisAllActionChange(e){
+
+        console.log(e)
+            this.setData({ isAllAction: e.detail });
 
 
     },
