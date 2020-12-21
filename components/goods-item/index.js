@@ -88,10 +88,10 @@ Component({
         this.delGoods();
       } else if (item.id == 4) {
         this.copyGoods();
-      } else if(item.id == 5) {
+      } else if (item.id == 5) {
         this.upTop(item);
-      } else if(item.id == 6) {
-        this.onClose()
+      } else if (item.id == 6) {
+        this.onClose();
       }
     },
     /*下拉菜单*/
@@ -218,7 +218,7 @@ Component({
     upTop(s) {
       util.wx
         .post('/api/seller/set_goods_sort', {
-          goods_id: this.data.item.goods_id,
+          goods_id: this.data.item.goods_id
         })
         .then((res) => {
           wx.showToast({
@@ -365,7 +365,7 @@ Component({
                     icon: 'none'
                   });
 
-                  this.triggerEvent('remove', this.data.item.goods_id);
+                  this.triggerEvent('updateList');
                 } else {
                   wx.showToast({
                     title: res.data.msg,

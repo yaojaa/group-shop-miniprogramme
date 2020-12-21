@@ -55,8 +55,6 @@ Page({
         //成功的话 说明之前执行过，再判断时间是否是当天
         if (res.data && res.data != new Date().toLocaleDateString()) {
           this.getDayReport();
-
-         
         } else {
           this.setData({
             showDialog: false
@@ -192,25 +190,25 @@ Page({
   removeHandle(e) {
     console.log(e, '删除成功事件');
 
-    var id = e.detail;
+    // var id = e.detail;
 
-    var c = null;
+    // var c = null;
 
-    this.data.goodslist.forEach((item, index) => {
-      console.log(item.goods_id, id);
+    // this.data.goodslist.forEach((item, index) => {
+    //   console.log(item.goods_id, id);
 
-      if (item.goods_id == id) {
-        c = index;
-      }
-    });
+    //   if (item.goods_id == id) {
+    //     c = index;
+    //   }
+    // });
 
-    if (c !== null) {
-      this.data.goodslist.splice(c, 1);
+    // if (c !== null) {
+    //   this.data.goodslist.splice(c, 1);
 
-      this.setData({
-        goodslist: this.data.goodslist
-      });
-    }
+    //   this.setData({
+    //     goodslist: this.data.goodslist
+    //   });
+    // }
   },
   onShow() {
     wx.hideHomeButton();
@@ -489,7 +487,7 @@ Page({
       if (res.data.code == 200) {
         this.setData({
           reportData: res.data.data,
-           showDialog: true
+          showDialog: true
         });
       } else if (res.data.code == 2000) {
         app.redirectToLogin();
