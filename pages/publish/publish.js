@@ -662,16 +662,14 @@ Page({
             url: '../goods/goods?goods_id=' + this.data.goods_id,
         })
     },
-    getObject: util.debounce(function(res) {
+    getObject: function(res) {
 
         this.data.content = res.detail
-
-        this.editor({
-            content: res.detail
-        })
-
+        // this.editor({
+        //     content: res.detail
+        // })
         console.log('编辑器内容改变：', this.data.content)
-    }, 2000),
+    },
 
     //提交表单
     submitForm(e) {
