@@ -24,44 +24,7 @@
             </view>
             <!-- 富文本编辑器 -->
             <rich-editor currentScrollTop="{{currentScrollTop}}" ctl-style="main-color" init-data="{{ content }}" op-style="btn-color" bind:updateData="getObject" bind:moveItem="moveItemEvent" />
-            <!-- 富文本编辑器 -->
-            <!-- <block wx:if='{{isEmptyEditor}}'>
-                <view class="weui-cell">
-                    <view class="weui-cell__bd">
-                        <view class='row' id="textareawrap">
-                            <text>{{currentInput}}</text>
-                            <textarea style="display: {{displayTextArea}};" maxlength="2000" bindinput="getInput" value="{{goods_content}}" name="goods_content" bindblur="editGoodsContent" class="weui-textarea" placeholder="简介描述" rows="6"></textarea>
-                        </view>
-                    </view>
-                </view>
-                <view class="add_btn_pic ph-sm pb-sm pt-xs" >
-                        <view class="flex-space">
-                            <text data-type="photo" bindtap="add" class="left mr-xs text-lg f12">+ 上传介绍图片（选填)</text>
-
-                             <text class="editor-btn primary-text" bindtap='goEditor'>使用图文编辑模式 〉</text>
-                        </view>
-
-                       <view class="imgList" wx:if="{{content_imgs.length}}" bindtap="add">
-
-                         <image wx:key="item" class="img-small" wx:for="{{content_imgs}}" src="{{item}}?imageMogr2/thumbnail/100x" />
-                           
-                       </view>
-
-          
-
-                </view>
-            </block>
-            <view wx:else class="weui-cell editor-box" bindtap='goEditor'>
-                <view class="editorContentCss"><text>{{editorContent.text}}</text></view>
-                <view class="to-editor primary-text">(点击进入图文编辑)</view>
-            </view> -->
-            <!-- <view class="new_add_btn" data-type="video" bindtap="addVideo">
-                <i-badge dot="{{goods_video.length}}">
-                    <i-icon type="add" size="16" color="#69b90b" /> 视频短片（选填）
-                </i-badge>
-                <i-spin i-class="i-loading" wx:if="{{video_progress}}" size="small"></i-spin>
-            </view> -->
-            <!-- 上传规格图弹框 -->
+            
             <wux-popup closable catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
                 <view class="poptit">规格图片</view>
                 <scroll-view scroll-y class="maxheight">
@@ -121,19 +84,7 @@
                     </view>
                 </scroll-view>
             </wux-popup>
-            <!-- 上传视频弹框 -->
-            <wux-popup catchtouchmove="ture" position="bottom" visible="{{visible_video}}" bind:close="onClose2">
-                <view class="poptit">上传视频</view>
-                <view class="con_video">
-                    <video id="myVideo" src="{{goods_video}}" poster="{{goods_video_cover}}" controls></video>
-                    <view class="footer-btn">
-                        <button bindtap="removeVideo" class="btn btn-round linenear_bg_light">
-                            移除
-                        </button>
-                        <button bindtap="addVideoDone" class="btn btn-round linenear_bg">完成</button>
-                    </view>
-                </view>
-            </wux-popup>
+         
         </view>
         <i-panel i-class="no-margin" title="商品或规格名称">
             <view class="weui-cells_form">

@@ -280,45 +280,49 @@ Page({
 
   // 生成链接并复制
   exportExcel() {
-    let _this = this;
-    let thisData = {}
-    if(this.data.value1 == 1){
-      thisData = {
-        send_status: 1,
-        goods_spec_id_arr: [],
-        start_date: this.data.startDate[0] + ' ' + this.data.startDate[1],
-        end_date: this.data.endDate[0] + ' ' + this.data.endDate[1]
-      }
-      if(this.data.goods_id){
-        thisData.goods_id = this.data.goods_id;
-      }
-    }else if(this.data.value2 == 1){
-      thisData = {
-        send_status: 0,
-        goods_spec_id_arr: []
-      }
-      if(this.data.goods_id){
-        thisData.goods_id = this.data.goods_id;
-      }
-    }else{
-      thisData = {
-        goods_spec_id_arr: this.data.result,
-        export_status: this.data.value3,
-        send_status: this.data.value1
-      }
-      if(this.data.list.length == 0 ){
-        console.log('暂无订单')
-        return
-      }
-      if(thisData.goods_spec_id_arr.length == 0){
-        wx.showToast({ title: '请先选择要导出的商品', icon: 'none' })
-        return;
-      }
+    // let _this = this;
+    // let thisData = {}
+    // if(this.data.value1 == 1){
+    //   thisData = {
+    //     send_status: 1,
+    //     goods_spec_id_arr: [],
+    //     start_date: this.data.startDate[0] + ' ' + this.data.startDate[1],
+    //     end_date: this.data.endDate[0] + ' ' + this.data.endDate[1]
+    //   }
+    //   if(this.data.goods_id){
+    //     thisData.goods_id = this.data.goods_id;
+    //   }
+    // }else if(this.data.value2 == 1){
+    //   thisData = {
+    //     send_status: 0,
+    //     goods_spec_id_arr: []
+    //   }
+    //   if(this.data.goods_id){
+    //     thisData.goods_id = this.data.goods_id;
+    //   }
+    // }else{
+    //   thisData = {
+    //     goods_spec_id_arr: this.data.result,
+    //     export_status: this.data.value3,
+    //     send_status: this.data.value1
+    //   }
+    //   if(this.data.list.length == 0 ){
+    //     console.log('暂无订单')
+    //     return
+    //   }
+    //   if(thisData.goods_spec_id_arr.length == 0){
+    //     wx.showToast({ title: '请先选择要导出的商品', icon: 'none' })
+    //     return;
+    //   }
+    // }
+
+    // thisData.goods_spec_ids = thisData.goods_spec_id_arr.toString();
+
+    let thisData = {
+      goods_id:this.data.goods_id ,
+      is_batch: 1
+
     }
-
-    thisData.goods_spec_ids = thisData.goods_spec_id_arr.toString();
-
-
     wx.showLoading({
       title:'正在导出'
     })
@@ -335,9 +339,14 @@ Page({
 
             
         }else{
-          wx.showToast({ title: res.data.msg, duration: 5000, icon: 'none' })
+          wx.showToast({ title: '操作失败' ||res.data.msg, duration: 5000, icon: 'none' })
         }
 
+    }).catch(e=>{
+      wx.hideLoading()
+      wx.showToast({
+        title:''
+      })
     })
 
   },
