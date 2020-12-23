@@ -97,10 +97,9 @@
           "scene": null
         },
         {
-          "id": 3,
           "name": "详情页启动",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2798",
+          "query": "goods_id=2000081",
           "scene": 1008
         },
         {
@@ -1555,18 +1554,6 @@
           "name": "pages/ordermanage/list",
           "pathName": "pages/ordermanage/list",
           "query": "goods_id=989&goods_name=2020赣南脐橙–全球最佳产地最受欢迎超甜的橙子 优选赣南高品质果园&delivery_method=1&store_id=1",
-          "scene": null
-        },
-        {
-          "name": "pages/updown_exc/index",
-          "pathName": "pages/updown_exc/index",
-          "query": "role=seller&goods_id=3725",
-          "scene": null
-        },
-        {
-          "name": "pages/ordermanage/list",
-          "pathName": "pages/ordermanage/list",
-          "query": "goods_id=981&goods_name=天下一奇 吃橘带皮 正宗高山涌泉蜜橘 甜嫩无核&delivery_method=1&store_id=1",
           "scene": null
         }
       ]

@@ -51,7 +51,6 @@ Page({
     wx.showLoading()
 
     util.wx.get('/api/seller/order_export_log?goods_id='+this.data.goods_id).then(res=>{
-      console.log('导出记录:',res.data.data.logs)
       wx.hideLoading()
       if(res.data.code == 200){
         this.setData({
@@ -327,7 +326,7 @@ Page({
     util.wx.post('/api/'+role+'/order_export', thisData).then(res => {
 
         if (res.data.code == 200) {
-          wx.hideToast()
+          wx.hideLoading()
           let path = res.data.data.filepath
 
           wx.navigateTo({
@@ -341,36 +340,48 @@ Page({
 
     })
 
-  }
-  // 生成链接并复制
-  // exportExcel() {
-  //   wx.showToast({ title: '开始为你生成...', icon: 'none' })
+  },
+  copylink(e){
+      console.log(e)
 
-  //   let data = {
-  //     goods_id: this.data.goods_id
-  //   }
+    const {link} = e.currentTarget.dataset
 
-  //   if(this.data.timeFlag != 2){
-  //     data.start_time = this.data.startDate[0] + ' ' + this.data.startDate[1]
-  //     data.end_time = this.data.endDate[0] + ' ' + this.data.endDate[1]
-  //   }
+        wx.setClipboardData({
+          data: link,
+          success (res) {
 
-  //   console.log(data)
+          }
+        }  )
 
-  //   util.wx.get('/api/seller/order_export_by_goods_id', data).then(res => {
+    },
+    preview(e) {
 
-  //       if (res.data.code == 200) {
+      console.log(e)
 
-  //           wx.setClipboardData({
-  //               data: res.data.data.filepath,
-  //               success: function(res) {
-  //                   wx.showToast({ title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦', duration: 5000, icon: 'none' })
-  //               }
-  //           })
-  //       }
+    const {link} = e.currentTarget.dataset
 
-  //   })
+      wx.showLoading()
+  //下载文件，生成临时地址
+        wx.downloadFile({
+            url: link,
+            success(res) {
+                // 打开文档
+               wx.hideLoading()
+                wx.openDocument({
+                    filePath: res.tempFilePath,
+                    fileType:'xls',
+                    success: function() {
+                        wx.hideLoading()
+                        wx.removeSavedFile({
+                            filePath: res.tempFilePath
+                        })
+                    }
+                });
+            }
+        })
 
-  // }
+
+    }
+
 })
 

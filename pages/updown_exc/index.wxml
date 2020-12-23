@@ -55,18 +55,27 @@
 				<view wx:for="{{list}}" class="item-list" wx:key='index' wx:for-item="lis">
 				  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}" custom-class="list-checkbox">
 				  	<view class='goods-list'>
-				  						  			<image mode="widthFix" class="cover" src="{{item.goods_cover}}" />
+
+				  		<view class="cover">
+				  			<image  src="{{item.goods_cover}}?imageView2/2/w/100/h/100/format/jpg/q/75" />
+				  		</view>
+				  		
+
+				  		
 
 				  		<view class="left">
-				  		<view class="f16 bold">{{item.spec_name}} </view>
+				  		<view class="f14 bold">{{item.spec_name}} </view>
+
+				  		<view class="big ptb5">待导出<text class="f18 bold">{{item.total_qty}}</text>件 
+				  	     </view>
+
+				  		<view class="desc">
+				  		总金额：{{item.total_price}}元 
+				  		</view>
 				  	    <text class="f12 desc">{{item.goods_name}}</text>
 				  		</view>
 
-						<view class="right f14">
-							<view class="width200"> 
-				待导出<text class="f18 bold">{{item.total_qty}}</text>件 
-			                </view> 
-						</view>
+						
 				  <!--  		<text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text> -->
 				  	</view>
 				  </van-checkbox>
@@ -87,14 +96,21 @@
 <view class="record-item" wx:for="{{historyList}}">
 
 <van-card
-  tag="2020-08-09"
-  desc="描述信息"
-  title="商品标题"
-  thumb="{{ imageURL }}"
+  desc="{{item.addtime}}"
+  title="{{ item.spec[0].spec_name }}"
+  thumb="{{ item.spec[0].goods_cover}}?imageView2/1/w/80/h/80/format/jpg/q/75"
 >
   <view slot="footer">
-    <button class="btn" type="primary">预览表格</button> 
-    <button class="btn" type="primary">复制链接下载</button>
+
+    	<button class="btn primary hollow " bindtap="preview" data-link ="{{item.filepath}}">
+			预览表格
+		</button>
+
+		<button class="btn  primary  linenear_bg" bindtap="copylink" data-link ="{{item.filepath}}">
+			复制下载链接
+		</button>
+
+
   </view>
 </van-card>
 

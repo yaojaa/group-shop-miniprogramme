@@ -262,11 +262,11 @@ Page({
 
     orderActions(e) {
         console.log(e)
-        const opt = e.currentTarget.dataset.opt
-        const cindex = e.currentTarget.dataset.cindex
-        const pindex = e.currentTarget.dataset.pindex
+        this.opt = e.currentTarget.dataset.opt
+        this.cindex = e.currentTarget.dataset.cindex
+        this.pindex = e.currentTarget.dataset.pindex
 
-        const order_id = e.currentTarget.dataset.id
+        this.order_id = e.currentTarget.dataset.id
         const txt = e.currentTarget.dataset.txt
         const avatar = e.currentTarget.dataset.avatar
         const user_name = e.currentTarget.dataset.user_name
@@ -284,88 +284,8 @@ Page({
         // 
         this.setData({
             orderActionVisbile:true,
-            action_name: txt,
-            opt
+            action_name: txt
         })
-        return
-
-        wx.showModal({
-            title: '确定要' + txt + '吗？',
-            success: (res) => {
-
-                if (res.confirm) {
-
-                    util.wx.post('/api/seller/set_order_status', {
-                            opt,
-                            order_id
-                        }).then(res => {
-                            wx.hideLoading()
-                            if (res.data.code == 200) {
-
-                                this.getStatistics()
-                                //操作完成之后的回调
-                                const currentItemKey = 'dataList[' + pindex + '][' + cindex + ']'
-                                //当前操作的item
-                                const key = 'dataList[' + pindex + '][' + cindex + '].seller_next_handle'
-                                const key2 = 'dataList[' + pindex + '][' + cindex + '].order_status'
-                                const key3 = 'dataList[' + pindex + '][' + cindex + '].order_status_txt'
-
-
-                                //删除逻辑
-                                if (opt == 'toset_del') {
-
-                                    this.data.dataList[pindex][cindex].removed = true
-
-                                    this.setData({
-                                        [currentItemKey]: this.data.dataList[pindex][cindex]
-                                    }, () => {
-                                        wx.showToast({
-                                            title: '删除成功',
-                                            icon: "none"
-                                        })
-                                    })
-
-                                } else {
-
-                                    this.setData({
-                                        [key]: res.data.data.seller_next_handle,
-                                        [key2]: res.data.data.order_status,
-                                        [key3]: res.data.data.order_status_txt
-                                    }, () => {
-
-                                        console.log('111', this.data.dataList[pindex][cindex])
-
-
-                                        wx.showToast({
-                                            title: '操作成功',
-                                            icon: "none"
-                                        })
-
-                                    })
-
-
-
-                                }
-
-
-                            } else {
-                                wx.showToast({
-                                    title: '订单操作失败'
-                                })
-
-                            }
-                        }, () => {
-
-                        })
-                        .catch(e => {
-
-
-                        })
-                }
-
-            }
-        })
-
 
     },
     orderActionsRun(){
@@ -377,7 +297,7 @@ Page({
             // 参数：goods_id、opt (toset_confirm、toset_send)
 
               util.wx.post('/api/seller/setorderstatus_by_goodsid', {
-                            opt:this.data.opt,
+                            opt:this.opt,
                             goods_id: this.data.goods_id
                         }).then(res=>{
 
@@ -396,20 +316,19 @@ Page({
 
 
                         })
-
-                        return
-
-      
-
-
-
+                }
+            //单独发货
+                else{
 
                     util.wx.post('/api/seller/set_order_status', {
-                            opt,
-                            order_id
+                            opt:this.opt,
+                            order_id:this.order_id
                         }).then(res => {
                             wx.hideLoading()
                             if (res.data.code == 200) {
+
+                                const pindex = this.pindex
+                                const cindex = this.cindex
 
                                 this.getStatistics()
                                 //操作完成之后的回调
@@ -421,7 +340,7 @@ Page({
 
 
                                 //删除逻辑
-                                if (opt == 'toset_del') {
+                                if (this.data.opt == 'toset_del') {
 
                                     this.data.dataList[pindex][cindex].removed = true
 
@@ -441,8 +360,6 @@ Page({
                                         [key2]: res.data.data.order_status,
                                         [key3]: res.data.data.order_status_txt
                                     }, () => {
-
-                                        console.log('111', this.data.dataList[pindex][cindex])
 
 
                                         wx.showToast({
@@ -470,8 +387,6 @@ Page({
 
 
                         })
-                }
-                else{
 
 
                 }
@@ -1092,7 +1007,7 @@ Page({
                   if (res.tempFiles[0].size < 31457280) {
 
                         wx.showLoading({
-                          title: '上传中'
+                          title: '导入中...'
                         })
 
                            wx.uploadFile({
@@ -1101,13 +1016,17 @@ Page({
                             name: 'excel',
                             header: {
                                 "Content-Type": "multipart/form-data",
-                                "Authorization": app.globalData.token
+                                "Authorization": app.globalData.token,
+                                "store-id"  : app.globalData.store_id || 'null' // 团长0 供应商1 用户为空
+
                             },
                             success: function(res) {
 
+                                console.log('上传结果',res)
+
                                 wx.hideLoading()
 
-                                if(res.data.code == 200){
+                                if(res.statusCode == 200){
 
                                     console.log(res.data,typeof res.data)
 

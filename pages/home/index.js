@@ -56,9 +56,7 @@ Page({
         if (res.data && res.data != new Date().toLocaleDateString()) {
           this.getDayReport();
 
-          this.setData({
-            showDialog: true
-          });
+         
         } else {
           this.setData({
             showDialog: false
@@ -490,7 +488,8 @@ Page({
     util.wx.get('/api/seller/today_sale_reports').then((res) => {
       if (res.data.code == 200) {
         this.setData({
-          reportData: res.data.data
+          reportData: res.data.data,
+           showDialog: true
         });
       } else if (res.data.code == 2000) {
         app.redirectToLogin();
