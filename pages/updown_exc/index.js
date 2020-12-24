@@ -32,7 +32,8 @@ Page({
     value3: '0', // 未导出
     list: [],
     listmore: true,
-    show: false
+    show: false,
+    active:0
 
   },
   popShow(){
@@ -163,52 +164,32 @@ Page({
 
   },
   onReachBottom: function(){
-    ++ data.cpage;
-    this.getGoodsOrders(data)
+    // ++ data.cpage;
+    // this.getGoodsOrders(data)
   },
   // 获取商品订单
   getGoodsOrders(_data){
     if(this.data.goods_id){
       _data.goods_id = this.data.goods_id;
     }
-    if(_data.cpage == 1){
-      this.setData({
-        list: [],
-        result: [],
-        listmore: true,
-        show: false
-      })
-
-      flag = true;
-    }
-    if(!flag){
-      return;
-    }
+   
     wx.showLoading()
-    util.wx.get('/api/'+role+'/order_export_show', _data).then( res => {
-
-      if(res.data.code == 200){
+    util.wx.get('/api/'+role+'/order_export_show', {goods_id :this.data.goods_id} ).then( res => {
         wx.hideLoading()
-        if(res.data.data.lists.length == 0){
-          flag = false;
-        }
+      if(res.data.code == 200){
 
-        if(res.data.data.lists.length > 0){
-          this.setData({
-            ['list['+(_data.cpage-1)+']']: res.data.data.lists,
-            listmore: true
+         this.setData({
+            list: res.data.spec_list
           })
-        }else if(this.data.list.length > 0){
-          this.setData({
-            listmore: false
-          })
-        }else{
-          this.setData({
-            list: this.data.list
-          })
-        }
+      
+      }
+      else if (res.data.code == 0){
 
-        
+          this.setData({
+            list: []
+          })
+
+
       }
     })
   },

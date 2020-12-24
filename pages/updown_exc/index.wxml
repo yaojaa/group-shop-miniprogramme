@@ -1,59 +1,15 @@
 <view class="view-page">
 
-<!-- 	<van-radio-group class="radio-group" value="{{ value1 }}" bind:change="onChange1">
-	  <van-radio class="radio width50" name="0" checked-color="#07c160">待发货</van-radio>
-	  <van-radio class="radio" name="1" checked-color="#07c160">已发货</van-radio>
-	</van-radio-group>
- -->
-	<!-- <block wx:if="{{value1 == 0 && !isGoodsOrder}}">
-		<van-radio-group class="radio-group" value="{{ value2 }}" bind:change="onChange2">
-		  <van-radio class="radio width50" name="0" checked-color="#07c160">按商品选择</van-radio>
-		  <van-radio class="radio" name="1" checked-color="#07c160">全部商品</van-radio>
-		</van-radio-group>
-	</block> -->
 
-	<block wx:if="{{ value1 == 0}}">
-		<van-radio-group class="radio-group" value="{{ value3 }}" bind:change="onChange3">
-		  <van-radio class="radio width50" name="0" checked-color="#07c160">未导出</van-radio>
-		  <van-radio class="radio" name="1" checked-color="#07c160">已导出</van-radio>
-		</van-radio-group>
-	</block>
+	 <button class="logbtn btn round " type="primary" bindtap="exportExcel" >导出日志</button>
 
-	<view hidden="{{value1 != 1}}" class="select-time-body">
-		<view class="exc-select-time">
-			<view class="left">起始时间</view>
-			<view class="right">
-				<i-datepicker label='' i-picker-title='i-picker-title' title="开始时间" date="{{startDate[0]}}" time="{{startDate[1]}}" bind:datachange="bindStartDateChange"></i-datepicker>
-			</view>
-		</view>
-		<view class="exc-select-time">
-			<view class="left">结束时间</view>
-			<view class="right">
-				<i-datepicker label='' i-picker-title='i-picker-title' title="结束时间" date="{{endDate[0]}}" time="{{endDate[1]}}" bind:datachange="bindEndDateChange"></i-datepicker>
-			</view>
-		</view>
-	</view>
+	 <van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="待发货订单">
+55{{list}}
 
-	<!-- <view class="menu">
-		<van-dropdown-menu>
-
-		  <van-dropdown-item value="{{ value1 }}" bind:change="onChange1" options="{{ option1 }}" />
-		  <block wx:if="{{value1 == 0}}">
-			  <van-dropdown-item  value="{{ value2 }}" bind:change="onChange2" options="{{ option2 }}" />
-			</block>
-		  <block wx:if="{{value2 == 0 && value1 == 0}}">
-		  	<van-dropdown-item  value="{{ value3 }}" bind:change="onChange3" options="{{ option3 }}" />
-		  </block>
-
-		</van-dropdown-menu>
-	</view> -->
-
-<view class="select-time-body" wx:if="{{value3 == 0}}">
-	<!-- <scroll-view> -->
-		<van-checkbox-group value="{{ result }}" bind:change="onChange">
-			<block wx:if="{{list.length > 0}}">
+  	<block wx:if="{{list.length > 0}}">
 				<view wx:for="{{list}}" class="item-list" wx:key='index' wx:for-item="lis">
-				  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}" custom-class="list-checkbox">
+				  <view wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}"  name="{{item.goods_spec_id}}" >
 				  	<view class='goods-list'>
 
 				  		<view class="cover">
@@ -78,14 +34,77 @@
 						
 				  <!--  		<text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text> -->
 				  	</view>
-				  </van-checkbox>
+				  </view>
 				</view>
+{{list.length == 0}}
+				<view class="nodata" wx:if="{{list.length == 0}}">
+					暂无待导出订单
+				</view>
+
+
 			</block>
 		  	<block wx:else>
 			  	<view class="tac"><van-empty description="暂无待发货订单" />
 </view>
 			</block>
-		</van-checkbox-group>
+  	
+
+  </van-tab>
+  <van-tab title="导出日志">内容 2</van-tab>
+</van-tabs>
+
+
+<!-- 	<van-radio-group class="radio-group" value="{{ value1 }}" bind:change="onChange1">
+	  <van-radio class="radio width50" name="0" checked-color="#07c160">待发货</van-radio>
+	  <van-radio class="radio" name="1" checked-color="#07c160">已发货</van-radio>
+	</van-radio-group>
+ -->
+	<!-- <block wx:if="{{value1 == 0 && !isGoodsOrder}}">
+		<van-radio-group class="radio-group" value="{{ value2 }}" bind:change="onChange2">
+		  <van-radio class="radio width50" name="0" checked-color="#07c160">按商品选择</van-radio>
+		  <van-radio class="radio" name="1" checked-color="#07c160">全部商品</van-radio>
+		</van-radio-group>
+	</block> -->
+
+<!-- 	<block wx:if="{{ value1 == 0}}">
+		<van-radio-group class="radio-group" value="{{ value3 }}" bind:change="onChange3">
+		  <van-radio class="radio width50" name="0" checked-color="#07c160">未导出</van-radio>
+		  <van-radio class="radio" name="1" checked-color="#07c160">已导出</van-radio>
+		</van-radio-group>
+	</block>
+ -->
+<!-- 	<view hidden="{{value1 != 1}}" class="select-time-body">
+		<view class="exc-select-time">
+			<view class="left">起始时间</view>
+			<view class="right">
+				<i-datepicker label='' i-picker-title='i-picker-title' title="开始时间" date="{{startDate[0]}}" time="{{startDate[1]}}" bind:datachange="bindStartDateChange"></i-datepicker>
+			</view>
+		</view>
+		<view class="exc-select-time">
+			<view class="left">结束时间</view>
+			<view class="right">
+				<i-datepicker label='' i-picker-title='i-picker-title' title="结束时间" date="{{endDate[0]}}" time="{{endDate[1]}}" bind:datachange="bindEndDateChange"></i-datepicker>
+			</view>
+		</view>
+	</view> -->
+
+	<!-- <view class="menu">
+		<van-dropdown-menu>
+
+		  <van-dropdown-item value="{{ value1 }}" bind:change="onChange1" options="{{ option1 }}" />
+		  <block wx:if="{{value1 == 0}}">
+			  <van-dropdown-item  value="{{ value2 }}" bind:change="onChange2" options="{{ option2 }}" />
+			</block>
+		  <block wx:if="{{value2 == 0 && value1 == 0}}">
+		  	<van-dropdown-item  value="{{ value3 }}" bind:change="onChange3" options="{{ option3 }}" />
+		  </block>
+
+		</van-dropdown-menu>
+	</view> -->
+
+<view class="select-time-body" wx:if="{{value3 == 0}}">
+	<!-- <scroll-view> -->
+			
 	<!-- </scroll-view> -->
 </view>
 
@@ -122,7 +141,7 @@
 	
 
 	<view class="create-link" wx:if="{{value3 == 0}}">
-	 <button class="btn linenear_bg" type="primary" bindtap="exportExcel">导出</button>
+	 <button class="btn linenear_bg round" type="primary" bindtap="exportExcel" :disabled="{{list.length == 0}}">导出</button>
 
 	</view>
 	

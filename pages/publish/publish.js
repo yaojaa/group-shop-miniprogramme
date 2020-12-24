@@ -646,15 +646,6 @@ Page({
             }
         }
 
-        // if (this.data.isEmptyEditor) {
-        //   rules.goods_content = {
-        //     required: true,
-        //   }
-        //   messages.goods_content = {
-        //     required: '请输入描述',
-        //   }
-        // }
-
         this.WxValidate = new WxValidate(rules, messages)
     },
     jump() {
