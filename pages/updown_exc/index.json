@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "导出待发货订单",
+    "navigationBarTitleText": "导出当前商品待发货订单",
     "usingComponents":
     {
         "i-datepicker": "../../iView/datepicker/index",
@@ -7,8 +7,10 @@
         "van-checkbox-group": "../../vant/checkbox-group/index",
         "van-dropdown-menu": "../../vant/dropdown-menu/index",
         "van-dropdown-item": "../../vant/dropdown-item/index",
+          "van-tab": "../../vant/tab/index",
+         "van-tabs": "../../vant/tabs/index",
         "van-popup": "../../vant/popup/index",
-        "van-radio": "../../vant/radio/index",
+        "van-empty": "../../vant/empty/index",
         "van-radio-group": "../../vant/radio-group/index",
         "van-button": "../../vant/button/index",
         "van-card": "../../vant/card/index"
