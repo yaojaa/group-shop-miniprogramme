@@ -4,7 +4,10 @@
     {
         "i-datepicker": "../../iView/datepicker/index",
         "van-checkbox": "../../vant/checkbox/index",
-        "van-checkbox-group": "../../vant/checkbox-group/index",
+        "van-cell-group": "../../vant/cell-group/index",
+        "van-cell": "../../vant/cell/index",
+                "van-switch": "../../vant/switch/index",
+
         "van-dropdown-menu": "../../vant/dropdown-menu/index",
         "van-dropdown-item": "../../vant/dropdown-item/index",
           "van-tab": "../../vant/tab/index",

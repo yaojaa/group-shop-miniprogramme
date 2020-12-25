@@ -33,7 +33,8 @@ Page({
     list: [],
     listmore: true,
     show: false,
-    active:0
+    active:0,
+    is_batch: true
 
   },
   popShow(){
@@ -46,6 +47,11 @@ Page({
       show: false
     })
   },
+  on_is_batch_change({detail}){
+    this.setData({
+      is_batch :detail
+    })
+  },
 
   getExportHistory(){
 
@@ -53,6 +59,7 @@ Page({
 
     util.wx.get('/api/seller/order_export_log?goods_id='+this.data.goods_id).then(res=>{
       wx.hideLoading()
+      console.log(res.data.code == 200)
       if(res.data.code == 200){
         this.setData({
           historyList : res.data.data.logs
@@ -176,10 +183,17 @@ Page({
     wx.showLoading()
     util.wx.get('/api/'+role+'/order_export_show', {goods_id :this.data.goods_id} ).then( res => {
         wx.hideLoading()
+
+
+
+
       if(res.data.code == 200){
 
+            console.log(res.data.data.spec_list)
+
+
          this.setData({
-            list: res.data.spec_list
+            list: res.data.data.spec_list
           })
       
       }
@@ -301,7 +315,7 @@ Page({
 
     let thisData = {
       goods_id:this.data.goods_id ,
-      is_batch: 1
+      is_batch: this.data.is_batch? 1 : 0
 
     }
     wx.showLoading({
