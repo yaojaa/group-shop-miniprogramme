@@ -34,7 +34,8 @@ Page({
     listmore: true,
     show: false,
     active:0,
-    is_batch: true
+    is_batch: true,
+    historyList:[]
 
   },
   popShow(){
@@ -57,12 +58,12 @@ Page({
 
     wx.showLoading()
 
-    util.wx.get('/api/seller/order_export_log?goods_id='+this.data.goods_id).then(res=>{
+    util.wx.get('/api/seller/get_exported_histories?goods_id='+this.data.goods_id).then(res=>{
       wx.hideLoading()
       console.log(res.data.code == 200)
       if(res.data.code == 200){
         this.setData({
-          historyList : res.data.data.logs
+          historyList : res.data.data.histories
         })
       }
     })
@@ -124,11 +125,17 @@ Page({
 
   },
 
-  onChange(event) {
+  onTabChange(event) {
+
     this.setData({
-      result: event.detail
-    });
-    console.log(this.data.result)
+      active:event.detail.index
+    })
+ 
+    if(this.data.historyList.length == 0 && event.detail.index == 1){
+
+      this.getExportHistory()
+
+    }
   },
   checkorder(e){
     console.log(e)

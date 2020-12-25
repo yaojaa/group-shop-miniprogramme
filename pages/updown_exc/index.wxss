@@ -95,6 +95,9 @@ i-datepicker {
 .pt10 {
     padding-top: 10px;
 }
+.warning_text{
+    color: #ff8900
+}
 
 .checkorder {
     padding: 4px;

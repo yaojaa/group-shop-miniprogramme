@@ -1,10 +1,10 @@
 <view class="view-page">
     <button class="logbtn btn round " type="primary" bindtap="exportExcel">导出日志</button>
-    <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tabs active="{{ active }}" bind:change="onTabChange"    >
         <van-tab title="待发货订单">
         	<view class="mtop10">
 
-           <view class="tac" wx:if="{{list.length == 0}}"><van-empty description="暂无待发货订单" /></view>
+           <view class="tac" wx:if="{{list.length == 0}}"><van-empty description="暂无待导出订单" /></view>
             <view wx:for="{{list}}" class="item-list" wx:key='index'>
             
                 <view class='goods-list'>
@@ -26,13 +26,13 @@
             </view>
 
             <view >
-                    <van-cell title="是否拆分订单" label="一个规格购买多件，拆分成多行">
+                    <van-cell title="是否拆分订单" label="一个规格购买多件，导出时拆分成多行">
                         <van-switch slot="right-icon" checked="{{ is_batch }}" bind:change="on_is_batch_change" active-color="#06ae5c" />
                     </van-cell>
             </view>
 
-             <view class="blue_text p10">
-            	!导出表格不包含退款的订单
+             <view class="warning_text p10">
+            	(导出表格不包含退款的订单，不包含已发货的订单)
             </view>
 
          
@@ -42,7 +42,24 @@
 
    
         </van-tab>
-        <van-tab title="导出日志">内容 2</van-tab>
+        <van-tab title="导出日志">
+
+                <view class="record select-time-body" wx:if="{{historyList.length > 0}}">
+                    <view class="record-item" wx:for="{{historyList}}">
+                        <van-card desc="已导出{{item.order_num}}件 {{item.exported_time}}" title="{{ item.goods_name }}" thumb="{{ item.goods_cover}}?imageView2/1/w/80/h/80/format/jpg/q/75">
+                            <view slot="footer">
+                                <button class="btn primary hollow " bindtap="preview" data-link="{{item.filepath}}">
+                                    预览表格
+                                </button>
+                                <button class="btn  primary  linenear_bg" bindtap="copylink" data-link="{{item.filepath}}">
+                                    复制下载链接
+                                </button>
+                            </view>
+                        </van-card>
+                    </view>
+                </view>
+            
+        </van-tab>
     </van-tabs>
     <!-- 	<van-radio-group class="radio-group" value="{{ value1 }}" bind:change="onChange1">
 	  <van-radio class="radio width50" name="0" checked-color="#07c160">待发货</van-radio>
@@ -89,25 +106,9 @@
 
 		</van-dropdown-menu>
 	</view> -->
-    <view class="select-time-body" wx:if="{{value3 == 0}}">
-        <!-- <scroll-view> -->
-        <!-- </scroll-view> -->
-    </view>
-    <view class="record select-time-body" wx:if="{{value3 == 1}}">
-        <view class="record-item" wx:for="{{historyList}}">
-            <van-card desc="{{item.addtime}}" title="{{ item.spec[0].spec_name }}" thumb="{{ item.spec[0].goods_cover}}?imageView2/1/w/80/h/80/format/jpg/q/75">
-                <view slot="footer">
-                    <button class="btn primary hollow " bindtap="preview" data-link="{{item.filepath}}">
-                        预览表格
-                    </button>
-                    <button class="btn  primary  linenear_bg" bindtap="copylink" data-link="{{item.filepath}}">
-                        复制下载链接
-                    </button>
-                </view>
-            </van-card>
-        </view>
-    </view>
-    <view class="create-link" wx:if="{{value3 == 0}}">
+
+
+    <view class="create-link" wx:if="{{active == 0}}">
         <button class="btn linenear_bg round" type="primary" bindtap="exportExcel" disabled="{{list.length == 0}}">全部导出</button>
     </view>
 </view>
