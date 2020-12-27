@@ -532,6 +532,7 @@ Component({
 
         },
         changeInput: function(e) {
+            console.log('失去焦点保存')
             let index = e.currentTarget.dataset.index
             let self = this
             self.data.innerInitData[index].desc = e.detail.value
