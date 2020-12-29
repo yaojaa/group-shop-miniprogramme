@@ -802,16 +802,23 @@ Page({
     //点击保存只提交商品规格部分 
     saveEdit() {
 
+        let postObj = {}
 
         if (JSON.stringify(this.data.spec) == this.data.oldSpec) {
-            this.jump()
-            return
+            postObj = {
+                goods_id: this.data.goods_id,
+                content: this.data.content
+            }
+        } else {
+
+            postObj = {
+                goods_id: this.data.goods_id,
+                spec: this.data.spec,
+                content: this.data.content
+            }
         }
 
-        util.wx.post('/api/seller/goods_add_or_edit', Object.assign({
-            goods_id: this.data.goods_id,
-            spec: this.data.spec
-        })).then(res => {
+        util.wx.post('/api/seller/goods_add_or_edit', postObj).then(res => {
             if (res.data.code !== 200) {
                 wx.showToast({
                     title: res.data.msg,
@@ -952,7 +959,6 @@ Page({
         // 是否是模板   1包邮模板   2自提模板
 
         wx.showLoading()
-
         util.wx
             .get('/api/goods/get_goods_detail', {
                 goods_id: goods_id,
@@ -1193,6 +1199,7 @@ Page({
     },
 
     //回显运费模版名称
+    
 
     getTplList() {
 

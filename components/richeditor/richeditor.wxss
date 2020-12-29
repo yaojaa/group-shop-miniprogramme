@@ -137,6 +137,8 @@ input {
   font-size: 16px;
   height: 100px;
   width: 100%;
+  background: #fff;
+  padding: 0 4px
 }
 
 .float-ctl {

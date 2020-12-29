@@ -39,7 +39,7 @@
         <block>
           <view class="common-contain text-contain" style="{{ item.width ? 'width: ' + item.width + 'rpx;' : '' }}{{ item.color ? 'color: ' + item.color + ';' : 'color: #33333;' }}{{ item.size ? 'font-size:q ' + item.size + 'rpx;' : 'font-size: 28rpx;' }}">
             <view class="up-ctx">
-              <textarea auto-height maxlength="3000" bindinput='changeInput' data-index="{{ index }}" class="common-edit-contain" placeholder='请输入文字描述' value="{{item.desc}}"></textarea>
+              <textarea auto-height maxlength="3000" bindblur='changeInput' adjust-position   data-index="{{ index }}" class="common-edit-contain" placeholder='请输入文字描述' value="{{item.desc}}"></textarea>
             </view>
             <view class="down-ctx" wx:if="{{innerInitData.length > 1}}">
               <view class="op-btn-wrp nt op-style">
