@@ -45,9 +45,10 @@
     </view> -->
     <view class="tabsArea">
         <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-            <i-tab key="0" title="所有订单"></i-tab>
-            <i-tab key="3" title="待发货（{{back_order.count}}）"></i-tab>
-            <i-tab key="4" title="已发货（{{shipped_order.count}}）"></i-tab>
+            <i-tab key="0" title="全部"></i-tab>
+            <i-tab key="2" title="待确认({{wait_confirm.count}})"></i-tab>
+            <i-tab key="3" title="待发货({{back_order.count}})"></i-tab>
+            <i-tab key="4" title="已发货({{shipped_order.count}})"></i-tab>
         </i-tabs>
     </view>
     <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
