@@ -1115,3 +1115,9 @@
   border-top-right-radius: 999px;
   border-bottom-right-radius: 999px;
 }
+.goods-item-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}

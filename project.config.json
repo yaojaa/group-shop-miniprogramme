@@ -18,7 +18,7 @@
     "newFeature": true,
     "coverView": true,
     "nodeModules": false,
-    "autoAudits": true,
+    "autoAudits": false,
     "showShadowRootInWxmlPanel": false,
     "scopeDataCheck": false,
     "uglifyFileName": true,
@@ -33,6 +33,7 @@
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -99,7 +100,7 @@
         {
           "name": "详情页启动",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2000081",
+          "query": "goods_id=504",
           "scene": 1008
         },
         {
