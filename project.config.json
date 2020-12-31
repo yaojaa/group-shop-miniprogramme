@@ -1573,6 +1573,12 @@
           "pathName": "pages/updown_exc/index",
           "query": "role=seller&goods_id=3475",
           "scene": null
+        },
+        {
+          "name": "pages/updown_exc/index",
+          "pathName": "pages/updown_exc/index",
+          "query": "role=seller&goods_id=2000004",
+          "scene": null
         }
       ]
     }

@@ -72,7 +72,6 @@ Page({
 
         }).then(res => {
 
-            console.log('没走成公')
 
                     wx.hideLoading()
 
@@ -114,7 +113,7 @@ Page({
     goback() {
 
         wx.redirectTo({
-            url: '../home/index'
+            url: '/pages/goods/goods?goods_id=' + this.data.goods_id
         })
 
     },

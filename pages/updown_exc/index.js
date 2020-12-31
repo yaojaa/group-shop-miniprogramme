@@ -191,7 +191,7 @@ Page({
                     data: path,
                     success: function(res) {
                         wx.showModal({
-                            title: '复制成功',
+                            title: '下载链接已复制',
                             content: '可在浏览器中访问下载表格，或者直接发送给好友，注意保密哦！'+path,
                             confirmText: "我知道了", //默认是“确定”
                             showCancel: false, //是否显示取消按钮
@@ -211,10 +211,7 @@ Page({
     },
     // 获取商品订单
     getGoodsOrders(_data) {
-        if (this.data.goods_id) {
-            _data.goods_id = this.data.goods_id;
-        }
-
+      
         wx.showLoading()
         util.wx.get('/api/' + role + '/order_export_show', { goods_id: this.data.goods_id }).then(res => {
             wx.hideLoading()
@@ -223,9 +220,6 @@ Page({
 
 
             if (res.data.code == 200) {
-
-                console.log(res.data.data.spec_list)
-
 
                 this.setData({
                     list: res.data.data.spec_list
@@ -239,6 +233,8 @@ Page({
 
 
             }
+
+            console.log(this.data.list)
         })
     },
 

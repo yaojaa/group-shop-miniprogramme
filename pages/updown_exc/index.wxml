@@ -13,7 +13,7 @@
                     </view>
                     <view class="left">
                         <view class="f14 bold">{{item.spec_name}} </view>
-                        <view class="big ptb5">待导出 <text class="f18 bold">{{item.order_num}}</text> 件
+                        <view class="big ptb5"> 订单{{item.order_num}}笔 待导出 <text class="f18 bold">{{item.batch_num}}</text> 件
                         </view>
                         <view class="desc">
                             金额：{{item.total_price}}元
@@ -25,6 +25,7 @@
              
             </view>
 
+
             <view  wx:if="{{list.length > 0}}" >
                     <van-cell title="是否拆分订单" label="一个规格购买多件，导出时拆分成多行">
                         <van-switch slot="right-icon" checked="{{ is_batch }}" bind:change="on_is_batch_change" active-color="#06ae5c" />
@@ -35,7 +36,7 @@
             	(导出表格不包含退款的订单，不包含已发货的订单)
             </view>
 
-            <view class="center text-primary" bindtap="getExcelUrl">
+            <view class="center text-primary mtop10" bindtap="getExcelUrl">
             	下载全部订单表格
             </view>
 
