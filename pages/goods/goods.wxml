@@ -120,7 +120,7 @@
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
-                <i-icon type="send" size="24" color="#f90" />
+                <van-icon name="share-o" size="24" color="#f90" />
                 <view class="text-muted text-xs">分享海报</view>
             </button>
         </view>
@@ -144,7 +144,7 @@
                         </view>
                     </view>
                     <view class="info">
-                        <view class="f14 text-default">{{item.spec_name}}</view>
+                        <view class="f14 bold text-default">{{item.spec_name}}</view>
                         <view wx:if="{{item.spec_desc}}" class="f12 text-warning" style="margin-top: 10rpx;">
                             {{item.spec_desc}}
                         </view>
@@ -160,8 +160,13 @@
                             代理价：¥{{item.sub_agent_price}}
                         </view>
                     </view>
-                    <view class="buy" catchtap="addAnimate">
-                        <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
+                    <view class="goods-item-actions" catchtap="()=>{}">
+                        <button data-name="{{item.spec_name}}" data-image="{{item.spec_pic[0]}}" open-type="share" class="btn-reset">
+                            <van-icon name="share-o" size="24" color="#69b90b" />
+                        </button>
+                        <view class="buy" catchtap="addAnimate">
+                            <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
+                        </view>
                     </view>
                 </view>
             </block>
@@ -189,26 +194,26 @@
                         </button>
                     </view>
                     <scroll-view wx:else scroll-y style="max-height: 1000rpx" lower-threshold="600" bindscrolltolower="buyUserScroll">
-                    <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
-                        <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
-                            <text class="number">{{item.create_number}}</text>
-                            <image class="buyer-avatar" src="{{item.headimg}}"></image>
-                            <view class="buyer-info">
-                                <view class="name">{{item.nickname}}</view>
-                                <view class="type">
-                                    <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
-                                        {{gds.spec_name}} + {{gds.qty}}
+                        <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
+                            <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
+                                <text class="number">{{item.create_number}}</text>
+                                <image class="buyer-avatar" src="{{item.headimg}}"></image>
+                                <view class="buyer-info">
+                                    <view class="name">{{item.nickname}}</view>
+                                    <view class="type">
+                                        <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
+                                            {{gds.spec_name}} + {{gds.qty}}
+                                        </view>
                                     </view>
                                 </view>
+                                <view class="buyer-date">{{item.timeago}}</view>
+                                <view class="bottom-line"></view>
                             </view>
-                            <view class="buyer-date">{{item.timeago}}</view>
-                            <view class="bottom-line"></view>
+                        </block>
+                        <view class="text-center" hidden="{{!orderUsersLoading}}">
+                            <wux-spin></wux-spin>
                         </view>
-                    </block>
-                    <view class="text-center" hidden="{{!orderUsersLoading}}">
-                    <wux-spin></wux-spin>
-                </view>
-            </scroll-view>
+                    </scroll-view>
                 </view>
             </block>
             <!-- <view class='sub-title scale-b-1px'>图文介绍</view>
@@ -387,7 +392,6 @@
             </button>
         </view>
     </van-action-sheet>
- 
     <!-- <view show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;"> -->
     <view hidden="{{ !poster }}" class="share-friends-box">
         <view class='share-friends-img' bindtap='handlePoster'>
