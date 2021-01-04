@@ -1530,7 +1530,7 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3725&from_id=1&help_sale=true",
+          "query": "goods_id=320&from_id=1&help_sale=true",
           "scene": null
         },
         {

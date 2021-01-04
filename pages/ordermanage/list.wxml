@@ -326,9 +326,9 @@
 
 <view class="fix-footer">
 <van-tabbar>
-  <van-tabbar-item icon="envelop-o" bindtap="sendMsgAll">群发通知</van-tabbar-item>
-  <van-tabbar-item icon="orders-o" bindtap="exportExcel">导出发货单</van-tabbar-item>
-  <van-tabbar-item icon="ascending" bindtap = "showImportModal">批量发货</van-tabbar-item>
+  <van-tabbar-item icon="envelop-o" color="#49b34d" bindtap="sendMsgAll">群发通知</van-tabbar-item>
+  <van-tabbar-item icon="orders-o"  color="#49b34d" bindtap="exportExcel">导出订单</van-tabbar-item>
+  <van-tabbar-item icon="logistics" color="#49b34d" bindtap = "showImportModal">批量发货</van-tabbar-item>
 </van-tabbar>
 </view>
 
@@ -343,8 +343,8 @@
   closeable    
 >
 <view class="importbox">
-     <view class="line">第一步：先导出发货单表格，回填表格中的快递单号，然后下方选择导入 </view>
-     <view class="line" ><button bindtap = "chooseFile">导入运单号（微信文件）</button></view>
+     <view class="line">请先导出发货单表格，填写完表格中的快递公司和快递单号，然后下方选择导入，即可完成批量发货和录入单号 </view>
+     <view class="line" ><button class="round primary linenear_bg" bindtap = "chooseFile">导入运单号（微信文件）</button></view>
 </view>
 </van-popup>
 

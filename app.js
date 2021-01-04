@@ -160,6 +160,9 @@ App({
                 },
                 success: (res) => {
 
+
+                    console.log(res)
+
                     if (res.data.code === 200) {
                       
                       const d = res.data.data

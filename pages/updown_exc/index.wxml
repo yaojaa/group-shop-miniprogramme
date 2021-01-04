@@ -1,6 +1,6 @@
 <view class="view-page">
     <button class="logbtn btn round " type="primary" bindtap="exportExcel">导出日志</button>
-    <van-tabs active="{{ active }}" bind:change="onTabChange"    >
+    <van-tabs active="{{ active }}" bind:change="onTabChange" >
         <van-tab title="待发货订单">
         	<view class="mtop10">
 
@@ -36,7 +36,7 @@
             	(导出表格不包含退款的订单，不包含已发货的订单)
             </view>
 
-            <view class="center text-primary mtop10" bindtap="getExcelUrl">
+            <view class="center text-primary" bindtap="getExcelUrl" style="margin-top: 30px">
             	下载全部订单表格
             </view>
 
@@ -63,6 +63,8 @@
                         </van-card>
                     </view>
                 </view>
+                <view  wx:else="{{list.length == 0}}"><van-empty description="暂无导出记录" /></view>
+
             
         </van-tab>
     </van-tabs>

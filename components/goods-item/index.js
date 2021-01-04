@@ -304,7 +304,7 @@ Component({
     editPage(e) {
       const { id } = e.currentTarget.dataset;
 
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../publish/publish?goods_id=' + id
       });
     },
