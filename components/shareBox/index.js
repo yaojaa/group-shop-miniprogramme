@@ -66,7 +66,7 @@ Component({
               type: 'image',
               url:
                 (wx.getStorageSync('userInfo') || {}).headimg ||
-                'https://qiniu-image.qtshe.com/default-avatar20170707.png',
+                'https://static.kaixinmatuan.cn/logo.png',
               css: {
                 top: '404rpx',
                 left: '328rpx',
@@ -74,12 +74,14 @@ Component({
                 height: '96rpx',
                 borderWidth: '6rpx',
                 borderColor: '#FFF',
-                borderRadius: '96rpx'
+                borderRadius: '96rpx',
+                backgroundColor: '#FFF'
               }
             },
             {
               type: 'text',
-              text: (wx.getStorageSync('userInfo') || {}).nickname,
+              text:
+                (wx.getStorageSync('userInfo') || {}).nickname || '开心麻团儿',
               css: {
                 top: '532rpx',
                 fontSize: '28rpx',
@@ -101,15 +103,18 @@ Component({
             },
             {
               type: 'text',
-              text: this.data.shareData.title.substring(0, 10) + '...',
+              text: this.data.shareData.title,
               css: {
+                width: '600rpx',
                 top: '644rpx',
                 left: '375rpx',
-                maxLines: 1,
                 align: 'center',
+                maxLines: 3,
                 fontWeight: 'bold',
                 fontSize: '44rpx',
-                color: '#3c3c3c'
+                lineHeight: '56rpx',
+                color: '#3c3c3c',
+                textAlign: 'center'
               }
             },
             {
