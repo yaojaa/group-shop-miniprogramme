@@ -111,8 +111,8 @@ Component({
                 align: 'center',
                 maxLines: 3,
                 fontWeight: 'bold',
-                fontSize: '44rpx',
-                lineHeight: '56rpx',
+                fontSize: '36rpx',
+                lineHeight: '52rpx',
                 color: '#3c3c3c',
                 textAlign: 'center'
               }
