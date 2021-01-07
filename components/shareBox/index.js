@@ -47,7 +47,8 @@ Component({
         imgDraw: {
           width: '750rpx',
           height: '1334rpx',
-          background: 'https://img.yesmywine.com/img/20190506share-bg.png',
+          background:
+            'https://static.kaixinmatuan.cn/c4ca4238a0b923820dcc509a6f75849b202101071222491131.png',
           views: [
             {
               type: 'image',
