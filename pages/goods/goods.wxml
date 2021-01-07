@@ -161,8 +161,8 @@
                         </view>
                     </view>
                     <view class="goods-item-actions" catchtap="()=>{}">
-                       <!--  <button data-name="{{item.spec_name}}" data-image="{{item.spec_pic[0]}}" open-type="share" class="btn-reset">
-                            <van-icon name="share-o" size="24" color="#69b90b" />
+                        <!-- <button data-name="{{item.spec_name}}" data-image="{{item.spec_pic[0]}}" open-type="share" class="btn-reset">
+                            <van-icon name="share-o" size="20" color="#69b90b" />
                         </button> -->
                         <view class="buy" catchtap="addAnimate">
                             <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
@@ -382,17 +382,14 @@
     </van-popup>
     <van-action-sheet show="{{ showShareFriendsCard }}" title="分享到" bind:close="closeShareFriends">
         <view class="flex text-center p-xl ">
-           
             <button class="flex-sub btn-reset" open-type="share">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm text-df">微信群</view>
             </button>
-
-             <view bindtap='handlePoster' class="flex-sub share-pyq">
+            <view bindtap='createShareImage' class="flex-sub share-pyq">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm">生成海报</view>
             </view>
-
         </view>
     </van-action-sheet>
     <!-- <view show="{{ poster }}" bind:close="handlePoster" custom-style="background:none;"> -->
@@ -459,4 +456,5 @@
         </view>
         <view class="p-lg text-center text-gray text-df">点击我要帮卖上架商品吧</view>
     </van-dialog>
+    <share-box isCanDraw="{{isCanDraw}}" shareData="{{shareData}}" bind:initData="createShareImage" />
 </view>
