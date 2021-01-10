@@ -126,7 +126,9 @@ Page({
     specPopup: false,
     specItem: {},
     showInviteFriend: false,
-    is_help_sale: false
+    is_help_sale: false,
+    isCanDraw: false,
+    shareData: {}
   },
   handleSpecPopup(e) {
     let { item } = e.currentTarget.dataset;
@@ -297,6 +299,13 @@ Page({
     });
   },
   onReady: function () {},
+
+  createShareImage() {
+    this.setData({
+      showShareFriendsCard: false,
+      isCanDraw: !this.data.isCanDraw
+    });
+  },
   onShareAppMessage: function (e) {
     var title = '';
     var img_url = '';
@@ -760,7 +769,13 @@ Page({
             // hw_data: d.hw_data,
             countdownTime: new Date(d.goods.end_time * 1000).getTime()
           });
-
+          this.setData({
+            shareData: {
+              cover: this.data.goods.goods_cover,
+              title: this.data.goods.goods_name,
+              code: this.data.goods.xcx_qrcode
+            }
+          });
           if (d.goods.is_timelimit == 1) {
             this.wuxCountDown(formatDateTime(d.goods.end_time));
           }
@@ -829,7 +844,7 @@ Page({
       });
     }
   },
-  onLoad: function (option) {
+  onLoad: async function (option) {
     if (option.scene) {
       option = decodeURIComponent(option.scene);
 
@@ -855,7 +870,7 @@ Page({
     console.log('option', option);
 
     this.getShareImg();
-    this.getGoodsInfo();
+    await this.getGoodsInfo();
 
     this.add_access();
 
