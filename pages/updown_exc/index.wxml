@@ -26,19 +26,17 @@
             </view>
 
 
-            <view  wx:if="{{list.length > 0}}" >
+
+            <view  >
                     <van-cell title="是否拆分订单" label="一个规格购买多件，导出时拆分成多行">
                         <van-switch slot="right-icon" checked="{{ is_batch }}" bind:change="on_is_batch_change" active-color="#06ae5c" />
                     </van-cell>
             </view  >
 
-             <view class="warning_text p10" wx:if="{{list.length > 0}}">
+             <view class="warning_text p10">
             	(导出表格不包含退款的订单，不包含已发货的订单)
             </view>
 
-            <view class="center text-primary" bindtap="getExcelUrl" style="margin-top: 30px">
-            	下载全部订单表格
-            </view>
 
          
 
@@ -54,7 +52,7 @@
                         <van-card desc="已导出{{item.order_num}}件 {{item.exported_time}}" title="{{ item.goods_name }}" thumb="{{ item.goods_cover}}?imageView2/1/w/80/h/80/format/jpg/q/75">
                             <view slot="footer">
                                 <button class="btn primary hollow " bindtap="preview" data-link="{{item.filepath}}">
-                                    预览表格
+                                    预览数据
                                 </button>
                                 <button class="btn  primary  linenear_bg" bindtap="copylink" data-link="{{item.filepath}}">
                                     复制下载链接
@@ -64,6 +62,11 @@
                     </view>
                 </view>
                 <view  wx:else="{{list.length == 0}}"><van-empty description="暂无导出记录" /></view>
+
+
+            <view class="center text-primary" bindtap="getExcelUrl" style="margin: 30px">
+                <button>导出全部订单</button>
+            </view>
 
             
         </van-tab>

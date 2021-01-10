@@ -27,9 +27,10 @@
     </view>
 
     <view class='footer-btn' style="background: #fff;bottom: 0;left: 0;right:0;padding: 10px 0">
-      <button class="btn" bind:tap="copyAll"> 复制全部 </button> 
-      <button class="btn center-btn" bind:tap="copySend"> 复制未发货的 </button> 
-      <button class="btn" bind:tap="copyChecked"> 复制已选</button>
+      <button type="primary" class="btn  primary" disabled="{{result.length <= 0}}" bind:tap="copyChecked"> 复制已选</button>
+
+      <button class="btn hollow" bind:tap="copyAll"> 复制全部 </button> 
+      <button class="btn hollow center-btn" bind:tap="copySend"> 复制未发货的 </button> 
     </view>
   </view>
 </view>

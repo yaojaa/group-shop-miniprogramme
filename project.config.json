@@ -26,14 +26,13 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -41,7 +40,8 @@
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "useApiHostProcess": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.8.3",
@@ -1579,6 +1579,24 @@
           "name": "pages/updown_exc/index",
           "pathName": "pages/updown_exc/index",
           "query": "role=seller&goods_id=2000004",
+          "scene": null
+        },
+        {
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=2000154&goods_name=测试帮忙退款&delivery_method=1&store_id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/order-confirm/index",
+          "pathName": "pages/order-confirm/index",
+          "query": "goods_id=2000166&payment_method=0&delivery_method=1&from_id=",
+          "scene": null
+        },
+        {
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=989&goods_name=2020赣南脐橙–全球最佳产地最受欢迎超甜的橙子 优选赣南高品质果园&delivery_method=1",
           "scene": null
         }
       ]

@@ -32,6 +32,7 @@ Page({
         totalpage: 1,
         delivery_method: 0,
         sendAll: false,
+        importResultShow:false,
         user_id: '',
         showImport:false,
         // switchOrderList:false,//折叠展开订单
@@ -397,6 +398,11 @@ Page({
             this.setData({ isAllAction: e.detail });
 
 
+    },
+    toHome(){
+        wx.switchTab({
+            url:'../home/index'
+        })
     },
     //发货操作
 
@@ -887,15 +893,16 @@ Page({
         const consignee = e.target.dataset.consignee
         const mobile = e.target.dataset.mobile
         const order_detail = e.target.dataset.order_detail
+        const user_message = e.target.dataset.user_message || ''
 
         console.log(order_detail)
 
         var order_string = ''
         order_detail.forEach(item => {
-            order_string += item.spec_name + ' 数量：' + item.qty + '\n'
+            order_string += item.spec_name + ' 数量：' + item.qty + '件\n'
         })
 
-        const txt = consignee + '\n' + mobile + '\n' + province + city + district + address + '\n' + order_string
+        const txt = consignee + '\n' + mobile + '\n' + province + city + district + address + user_message + '\n' + order_string
 
 
 
@@ -991,6 +998,9 @@ Page({
             showImport: false
         })
     },
+    importOk(){
+        this.onPullDownRefresh()
+    },
     chooseFile(){
          wx.chooseMessageFile({
                 count:1,
@@ -1032,10 +1042,7 @@ Page({
 
                                     var res = JSON.parse(res.data)
 
-                                      console.log(res,typeof res.data)
-
-
-                                    const {success,error} = res.data
+                                    const {success,error,error_msg} = res.data
 
                                     if(res.status == false){
 
@@ -1052,18 +1059,28 @@ Page({
 
                                     }else{
 
-                                         wx.showModal({
-                                     title: '导出结果',
-                                     content: `成功导入${success}条,失败${error}条`,
-                                     showCancel: false,//是否显示取消按钮
-                                     confirmText:"我知道了",//默认是“确定”
-                                     confirmColor: 'green',//确定文字的颜色
-                                     success:  (res) =>{
-                                       this.onPullDownRefresh()
-                                     },
-                                     fail: function (res) { },//接口调用失败的回调函数
-                                     complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
-                                  })
+                                           this.setData({
+                                            importResultShow:true,
+                                            importResultcontent:`成功导入${success}条,失败${error}条`,
+                                            error_msg:error_msg
+
+                                        })
+
+                                  //        wx.showModal({
+                                  //    title: '导出结果',
+                                  //    content: `成功导入${success}条,失败${error}条`,
+                                  //    showCancel: false,//是否显示取消按钮
+                                  //    confirmText:"我知道了",//默认是“确定”
+                                  //    confirmColor: 'green',//确定文字的颜色
+                                  //    success:  (res) =>{
+                                  //      this.onPullDownRefresh()
+                                  //    },
+                                  //    fail: function (res) { },//接口调用失败的回调函数
+                                  //    complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+                                  // })
+
+
+
                                     }
 
                                    

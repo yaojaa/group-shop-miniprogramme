@@ -55,9 +55,7 @@ Page({
     },
 
     getExportHistory() {
-
         wx.showLoading()
-
         util.wx.get('/api/seller/get_exported_histories?goods_id=' + this.data.goods_id).then(res => {
             wx.hideLoading()
             console.log(res.data.code == 200)
@@ -67,8 +65,6 @@ Page({
                 })
             }
         })
-
-
 
     },
 
@@ -131,10 +127,12 @@ Page({
             active: event.detail.index
         })
 
-        if (this.data.historyList.length == 0 && event.detail.index == 1) {
+         if (event.detail.index == 0) {
+            this.getGoodsOrders()
+        }
 
+        if (event.detail.index == 1) {
             this.getExportHistory()
-
         }
     },
     checkorder(e) {
@@ -192,8 +190,8 @@ Page({
                     success: function(res) {
                         wx.showModal({
                             title: '下载链接已复制',
-                            content: '可在浏览器中访问下载表格，或者直接发送给好友，注意保密哦！'+path,
-                            confirmText: "我知道了", //默认是“确定”
+                            content: '请在浏览器中粘贴地址访问，即可下载表格，或者直接发送给好友，注意保密哦！',
+                            confirmText: "知道了", //默认是“确定”
                             showCancel: false, //是否显示取消按钮
 
                         });
@@ -210,7 +208,7 @@ Page({
         // this.getGoodsOrders(data)
     },
     // 获取商品订单
-    getGoodsOrders(_data) {
+    getGoodsOrders() {
       
         wx.showLoading()
         util.wx.get('/api/' + role + '/order_export_show', { goods_id: this.data.goods_id }).then(res => {
