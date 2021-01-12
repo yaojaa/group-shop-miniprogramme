@@ -117,6 +117,8 @@
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
             <view class="goods-name pv-xs">{{goods.goods_name}}</view>
+        
+
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
@@ -124,10 +126,21 @@
                 <view class="text-muted text-xs">分享海报</view>
             </button>
         </view>
+
         <view class="load-area" wx:if="{{!goods}}">
             <wux-spin wux-class="spin" />
         </view>
+
+        
     </view>
+
+    <view class="coupon  white-bg">
+         <van-tag custom-class="tags" size="mini" type="warning">满1200减220</van-tag>
+        <van-tag custom-class="tags"  type="warning">满100减20</van-tag>
+        <van-tag custom-class="tags"  type="warning">满100减20</van-tag>
+        <van-tag custom-class="tags"  type="warning">满100减20</van-tag>
+    </view>
+
     <view class='painter'>
         <image src="{{imagePath}}"></image>
     </view>
@@ -272,6 +285,7 @@
     </view>
     <!-- 正常客户下单 -->
     <view class='footer-cart' wx:if="{{!is_help_sale}}">
+
         <view class='icon' bindtap='homepage' style="flex: 22">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
@@ -296,8 +310,19 @@
             </form>
         </block>
     </view>
+
+
+<view class="coupon_tips">
+    <van-notice-bar
+  left-icon="coupon-o"
+  text="下享满减优惠最高可减30元"
+/>
+</view>    
     <!-- 是团长自己自己 -->
+
+
     <view class='footer-cart' wx:if="{{showPanel}}">
+
         <view class='icon' bindtap='homepage' style="flex: 25">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
