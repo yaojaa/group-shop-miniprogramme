@@ -55,8 +55,9 @@
             </view>
         </i-panel>
     </view>
-    <view class="mt-xl">
-        <button class="pubbtn" bindtap="new_btn">+ 新发布</button>
+    <view class="mt-xl flex">
+        <!-- <button class="pubbtn fg1" bindtap="admin_class">管理分类</button> -->
+        <button class="pubbtn fg1" bindtap="new_btn">+ 新发布</button>
     </view>
     <view class="text-center" style="padding: 120px" wx:if="{{is_loading}}">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>

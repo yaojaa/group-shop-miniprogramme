@@ -22,7 +22,9 @@ Page({
     btn_load: false,
     loading: false,
     address_load: false,
-    shipping_money: 0
+    shipping_money: 0,
+    goodsTotal: {},
+    cartData: []
   },
   getUserAddress() {
     this.setData({
@@ -170,27 +172,50 @@ Page({
         wx.hideLoading();
       });
   },
-
+  getGoodsTotal() {
+    const params = {
+      specs: this.getCartParams(),
+      address_id: this.data.address_id,
+      goods_id: this.data.goods_id
+    };
+    util.wx.post('/api/order/get_price_info', params).then((res) => {
+      this.setData({
+        goodsTotal: res.data.data
+      });
+    });
+  },
   /**
      * 生命周期函数--监听页面加载 /order/create_order
 
      */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     getApp().setWatcher(this.data, this.watch, this); // 设置监听器
-    this.cartData = wx.getStorageSync('cart') || [];
     this.data.goods_id = options.goods_id;
     this.data.from_id = options.from_id || '';
-
     this.data.payment_method = options.payment_method;
-
     if (options.payment_method == 1) {
       this.setData({
         pay_btn_txt: '立即参与'
       });
     }
-
-    this.getGoodsInfo();
-    this.initCart();
+    try {
+      const cartData = wx.getStorageSync('cart') || [];
+      this.setData({
+        cartData
+      });
+      await this.getGoodsInfo();
+      console.log('this.data.address_id', this.data.address_id);
+      this.getGoodsTotal();
+      this.initCart();
+    } catch (error) {
+      wx.showToast({
+        title: '请添加购物车商品',
+        icon: 'none',
+        complete() {
+          wx.navigateBack();
+        }
+      });
+    }
   },
   initCart() {
     let amountMoney = 0;
@@ -207,8 +232,6 @@ Page({
       amountMoney += value.spec_price * 1000 * parseInt(value.item_num);
       totalNumer += parseInt(value.item_num);
     });
-
-    console.log(cart);
     this.setData({
       cart: cart || [],
       amountMoney: amountMoney / 1000,
@@ -220,6 +243,7 @@ Page({
       context.address_id = newValue;
 
       context.get_shipping_money();
+      context.getGoodsTotal();
     }
   },
 
@@ -241,14 +265,25 @@ Page({
   handleCountChange(e) {
     let num = e.detail.value;
     let index = e.currentTarget.id - 0;
-    this.cartData[index].item_num = num;
-    console.log(num, index, '这是数据 ');
-    wx.setStorage({
-      key: 'cart',
-      data: this.cartData,
-      success: () => {
-        this.initCart();
-      }
+    this.data.cartData[index].item_num = num;
+    this.setData({
+      cartData: this.data.cartData
+    });
+    this.getGoodsTotal();
+    // wx.setStorage({
+    //   key: 'cart',
+    //   data: this.cartData,
+    //   success: () => {
+    //     this.initCart();
+    //   }
+    // });
+  },
+  getCartParams() {
+    return this.data.cartData.map((item) => {
+      return {
+        id: item.goods_spec_id,
+        qty: item.item_num
+      };
     });
   },
   /**
@@ -263,15 +298,6 @@ Page({
       consignee: this.data.consignee,
       mobile: this.data.mobile
     };
-
-    const specs = this.data.cart.map((item) => {
-      return {
-        id: item.goods_spec_id,
-        qty: item.item_num
-      };
-    });
-
-    console.log('specs is', specs);
 
     var postData = {};
 
@@ -304,7 +330,7 @@ Page({
         '/api/order/create_order',
         Object.assign(
           {
-            specs: specs,
+            specs: this.getCartParams(),
             user_message: this.data.user_message,
             goods_id: this.data.goods_id,
             from_user_id: this.data.from_id
