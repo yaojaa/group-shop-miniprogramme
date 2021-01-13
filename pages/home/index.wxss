@@ -362,7 +362,7 @@
 }
 
 .goods-body .bd .tit {
-    font-size: 16px;
+    font-size: 36rpx;
     color: #474245;
     width: 100%;
     display: -webkit-box;

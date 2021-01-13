@@ -40,9 +40,8 @@
 }
 
 .goods-body .bd .tit {
-    font-size: 14px;
+    font-size: 34rpx;
     color: #474245;
-    width: 80%;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -135,12 +134,7 @@ work-break:keep-all;
  margin: 0 auto;
 
 }
-.statusBar{
-    position: absolute;
-    right: 20rpx;
-    top: 10rpx;
-    font-size: 12px
-}
+
 .badge{
 
     position: absolute;

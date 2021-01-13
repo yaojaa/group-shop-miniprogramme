@@ -373,3 +373,18 @@ padding: 15rpx 30rpx
 .importbox .line{
     padding: 10px 0
 }
+
+.result-content{
+    padding: 20px
+}
+
+.importResult{
+
+    padding: 10px;
+    color: #f00;
+    font-size: 12px;
+    height: 300rpx;
+    overflow-y: scroll;
+    line-height: 1.7
+
+}

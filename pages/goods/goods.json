@@ -17,6 +17,7 @@
     "preview-view": "../../components/preview-img/view",
     "comment": "../../components/comment/index",
     "van-popup": "../../vant/popup/index",
+    "van-tag": "../../vant/tag/index",
     "van-action-sheet": "../../vant/action-sheet/index",
     "custom-bar": "../../components/custom-bar/index",
     "wux-gallery": "../../wux/gallery/index",
@@ -26,6 +27,9 @@
     "van-icon": "../../vant/icon/index",
     "i-share-painter": "../../iView/share-painter/share-painter",
     "i-modal": "../../iView/modal/index",
-    "goods-detail": "../../components/goods-detail/index"
+    "goods-detail": "../../components/goods-detail/index",
+    "share-box": "/components/shareBox/index",
+      "van-notice-bar": "../../vant/notice-bar/index"
+
   }
 }

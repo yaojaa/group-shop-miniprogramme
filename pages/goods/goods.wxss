@@ -58,7 +58,7 @@
 .goods-info {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: 10px 15px 0;
 }
 
 .goods-name {
@@ -129,6 +129,9 @@
   }
 }
 
+.tags{
+}
+
 .goods-price .price {
   font-size: 26rpx !important;
   font-weight: bold;
@@ -168,6 +171,14 @@
   word-wrap: break-word;
   overflow: hidden;
   word-break: break-all;
+}
+
+.coupon_tips{
+
+  position: fixed;
+   bottom: 50px;
+  left: 0;
+  right: 0;
 }
 
 .footer-cart {

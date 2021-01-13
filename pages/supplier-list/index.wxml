@@ -53,27 +53,30 @@
         <view class="center">你还有没有帮卖成员</view>
       </view>
     </van-tab>
+
+    
     <van-tab title="我加入的团队">
-      <view class="goods-panel white-bg cf">
+      <view class="goods-panel white-bg">
+
         <view class="goods-panel-bd" wx:for="{{suppList}}" wx:key="index">
           <view hover-class="none" class="flex p-df goods-panel-item">
 
-            <image src="{{item.supplier_logo || item.headimg}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm" data-id="{{item.supplier_id || item.store_id}}" data-type="{{item.supplier_id?'supplier':'store'}}" bindtap="toSupphome"></image>
+            <image src="{{item.store_logo || item.headimg}}?imageView2/2/w/200/h/200/format/jpg/q/75" class="cover mr-sm" data-id="{{item.supplier_id || item.store_id}}" data-type="{{item.supplier_id?'supplier':'store'}}" bindtap="toSupphome"></image>
 
             <view class="flex-sub por" data-id="{{item.supplier_id || item.store_id}}" data-type="{{item.supplier_id?'supplier':'store'}}" bindtap="toSupphome">
-              <view class="text-hide two-line  bold">{{item.supplier_name || item.nickname}}</view>
+              <view class="text-hide two-line  bold">{{item.store_name || item.nickname}}</view>
               <view class="text-muted mt-xs text-sm des">
                 商品：{{item.goods_count || item.helper_goods_num}} 成员：{{item.agent_count || item.helper_num}}
               </view>
               <view class="text-muted mt-xs text-sm des">{{item.supplier_intro}}</view>
               <view class="mt-xs des text-justify"></view>
             </view>
-            <view class="flex ">
+          <!--   <view class="flex ">
               <button size="mini" data-supplier_id="{{item.supplier_id}}" data-store_id="{{item.store_id}}" open-type="share" data-supplier_name="{{item.supplier_name}}" data-type="{{item.supplier_id?'supplier':'store'}}" class="btn-reset p-n coral-text">
                 <van-icon name="add-o" size="30rpx" />
                 邀请好友加入
               </button>
-            </view>
+            </view> -->
           </view>
           <view class="solid-bottom mh-df"></view>
         </view>

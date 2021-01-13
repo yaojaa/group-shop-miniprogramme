@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "van-dialog": "../../vant/dialog/index",
+    "van-tag": "../../vant/tag/index",
     "i-badge": "../../iView/badge/index",
     "i-icon": "../../../iView/icon/index",
     "van-grid": "../../vant/grid/index",
