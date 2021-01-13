@@ -132,6 +132,20 @@ Page({
                 this.data.freight_tpl_id,
         })
     },
+
+    /**跳转到满减设置页。如果是编辑，把满减信息带过去 app.globalData.fullreduce_data**/
+    toCouponSetting() {
+
+        if (this.data.is_edit) {
+            app.globalData.fullreduce_data = this.gs.fullreduce_data
+        }
+
+        wx.navigateTo({
+            url: 'pages/full_reduction/index'
+        })
+
+    },
+
     toHelpSetting() {
 
         if (this.data.goods_name == '' || this.data.spec[0].spec_name == '' || this.data.spec[0].spec_price == '') {
@@ -724,6 +738,12 @@ Page({
             return false
         }
 
+         var fullreduce_data ={}
+
+        if(this.data.fullreduce_data){
+           fullreduce_data:this.data.fullreduce_data
+        }
+
         //默认重置价格为0 默认代理价格为零售价
         this.data.spec.forEach((value, index) => {
             if (value.spec_price == '') {
@@ -747,7 +767,8 @@ Page({
             {
                 goods_images: this.data.goods_images,
                 content: this.data.content
-            }, {
+            }, 
+               {
                 self_address_id: this.data.sell_address.map((item) => {
                     return item.self_address_id
                 }),
@@ -756,13 +777,13 @@ Page({
                 start_time: this.data.start_time,
                 end_time: this.data.end_time,
                 content_imgs: this.data.content_imgs,
-                goods_video: this.data.goods_video,
                 freight_tpl_id: this.data.freight_tpl_id,
                 show_buyerlist: this.data.show_buyerlist,
                 agent_opt: this.data.agent_opt,
                 cat_id: 8,
-                is_timelimit: this.data.is_timelimit,
-            }
+                is_timelimit: this.data.is_timelimit
+                },
+                fullreduce_data
         )
 
         wx.showLoading()
@@ -967,6 +988,7 @@ Page({
                 wx.hideLoading()
                 let d = res.data
                 let gs = d.data.goods
+                this.gs = gs
 
                 if (d.code == 200) {
                     this.data.oldSpec = JSON.stringify(gs.goods_spec)
@@ -1199,7 +1221,7 @@ Page({
     },
 
     //回显运费模版名称
-    
+
 
     getTplList() {
 

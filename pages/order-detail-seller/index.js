@@ -12,7 +12,8 @@ Page({
         id: '',
         info: {},
         addtime: '',
-        pay_time: ''
+        pay_time: '',
+        currentGoodsId:''
     },
     handleConfirmReceipt() {
         Dialog.confirm({
@@ -72,8 +73,20 @@ Page({
                     var data = res.data.data
 
                     console.log(data.seller.user_id ,app.globalData.userInfo.user_id)
+                    //订单的店铺人 不是当前卖家 ,证明来自帮卖下级
+                    //
+                    //没有商品link自己的商品
+                    //
+                    // if(data.order_detail[0].goods_link=='0'){
 
-                    //订单的店铺人 不是当前卖家 证明来自帮卖下级
+                    //     this.data.currentGoodsId = 
+
+                    // }
+
+
+                    
+
+
                     if (data.seller.user_id == app.globalData.userInfo.user_id) {
 
                         data.isFromAgent = false
@@ -127,6 +140,13 @@ Page({
             })
     },
     ordermanage() {
+
+
+        if(this.data.info.isFromAgent){
+            this.data.goods_id = this.data.info.order_detail[0].goods_link.split('-')[1]
+        }
+
+
         wx.navigateTo({
             url: '../ordermanage/list?id=' + this.data.goods_id + '&goods_name=' + this.data.goods_name + '&delivery_method=' + this.data.delivery_method
         })

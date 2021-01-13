@@ -244,7 +244,7 @@
                     <view class="weui-label">满减优惠：</view>
                 </view>
                 <view class="weui-cell__bd"></view>
-                <view class="weui-cell__ft" bindtap="toHelpSetting">
+                <view class="weui-cell__ft" bindtap="toCouponSetting">
                     <view class="weui-icon-warn">
                         <text>设置</text>
                         <i-icon type="enter" size="26" />
