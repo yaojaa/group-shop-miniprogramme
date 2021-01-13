@@ -18,7 +18,9 @@ Component({
     expires: '',
     urls: [],
     show: false,
-    itemList: []
+    itemList: [],
+    classShow: false,
+    checked: false
   },
   lifetimes: {
     attached: function () {
@@ -49,6 +51,10 @@ Component({
             id: 5,
             name: '置顶'
           },
+          // {
+          //   id: 7,
+          //   name: '设置分类'
+          // },
           {
             id: 6,
             name: '取消'
@@ -68,6 +74,23 @@ Component({
     },
     handleAction() {
       this.setData({ show: !this.data.show });
+    },
+    onCloseClass() {
+      this.setData({ classShow: false });
+    },
+    toAddClass() {
+      wx.navigateTo({
+          url: '../class_edit/index'
+      });
+      this.onCloseClass();
+    },
+    onChange() {
+      console.log('change')
+      this.setData({ checked: !this.data.checked });
+    },
+    onSelectClass(event) {
+      const item = event.detail;
+      console.log(item);
     },
     onClose() {
       this.setData({ show: false });
@@ -92,6 +115,8 @@ Component({
         this.upTop(item);
       } else if (item.id == 6) {
         this.onClose();
+      } else if (item.id == 7) {
+        this.setData({ classShow: true });
       }
     },
     /*下拉菜单*/

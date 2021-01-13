@@ -8,6 +8,8 @@
     "van-grid-item": "../../vant/grid-item/index",
     "van-dropdown-menu": "../../vant/dropdown-menu/index",
     "van-dropdown-item": "../../vant/dropdown-item/index",
-    "van-action-sheet": "../../vant/action-sheet/index"
+    "van-action-sheet": "../../vant/action-sheet/index",
+    "van-switch": "../../vant/switch/index",
+        "van-button": "../../vant/button/index"
   }
 }

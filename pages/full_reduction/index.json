@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "满减优惠",
+    "usingComponents":
+    {
+        "van-button": "../../vant/button/index"
+
+    }
+}

@@ -427,6 +427,11 @@ Page({
       }
     } catch (err) {}
   },
+  admin_class: function(){
+    wx.navigateTo({
+        url: '../class/class'
+    });
+  },
   new_btn: function () {
     const uInfo = app.globalData.userInfo || {};
 

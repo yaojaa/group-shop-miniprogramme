@@ -1131,3 +1131,10 @@ button::after {
     color: #999;
     text-align: center;
 }
+.flex{
+    display: flex;
+}
+.pubbtn{
+    margin: 0 20px;
+}
+.fg1{ flex-grow: 1; }
