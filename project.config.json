@@ -59,6 +59,14 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
       "list": [
         {
@@ -97,12 +105,6 @@
           "pathName": "pages/publish/publish",
           "query": "goods_id=470",
           "scene": null
-        },
-        {
-          "name": "详情页启动",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=504",
-          "scene": 1008
         },
         {
           "id": 4,
@@ -1087,12 +1089,6 @@
           "scene": null
         },
         {
-          "name": "pages/acting-apply/index",
-          "pathName": "pages/acting-apply/index",
-          "query": "store_id=1",
-          "scene": null
-        },
-        {
           "id": -1,
           "name": "帮卖修改",
           "pathName": "pages/help-sale-setting/index",
@@ -1464,18 +1460,6 @@
           "scene": null
         },
         {
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=3500",
-          "scene": null
-        },
-        {
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=3682",
-          "scene": null
-        },
-        {
           "id": 202,
           "name": "pages/order-detail-seller/index",
           "pathName": "pages/order-detail-seller/index",
@@ -1511,99 +1495,9 @@
           "scene": null
         },
         {
-          "name": "pages/send-list/index",
-          "pathName": "pages/send-list/index",
-          "query": "goods_id=1167",
-          "scene": null
-        },
-        {
-          "name": "pages/withdrawal-record/index",
-          "pathName": "pages/withdrawal-record/index",
-          "query": "goods_id=3682",
-          "scene": null
-        },
-        {
-          "name": "pages/userhome/index",
-          "pathName": "pages/userhome/index",
-          "query": "store_id=1",
-          "scene": null
-        },
-        {
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=320&from_id=1&help_sale=true",
-          "scene": null
-        },
-        {
-          "name": "pages/userhome/index",
-          "pathName": "pages/userhome/index",
-          "query": "id=1",
-          "scene": null
-        },
-        {
-          "name": "pages/ordermanage/list",
-          "pathName": "pages/ordermanage/list",
-          "query": "goods_id=3404&goods_name=「云南石林风化岩人参果」树上熟 自然甜&delivery_method=1&store_id=1",
-          "scene": null
-        },
-        {
-          "name": "pages/updown_exc/index",
-          "pathName": "pages/updown_exc/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/ordermanage/list",
-          "pathName": "pages/ordermanage/list",
-          "query": "goods_id=989&goods_name=2020赣南脐橙–全球最佳产地最受欢迎超甜的橙子 优选赣南高品质果园&delivery_method=1&store_id=1",
-          "scene": null
-        },
-        {
-          "name": "pages/updown_exc/index",
-          "pathName": "pages/updown_exc/index",
-          "query": "role=seller&goods_id=3725",
-          "scene": null
-        },
-        {
-          "name": "pages/updown_exc/index",
-          "pathName": "pages/updown_exc/index",
-          "query": "goods_id=3750",
-          "scene": null
-        },
-        {
-          "name": "pages/updown_exc/index",
-          "pathName": "pages/updown_exc/index",
-          "query": "role=seller&goods_id=3475",
-          "scene": null
-        },
-        {
-          "name": "pages/updown_exc/index",
-          "pathName": "pages/updown_exc/index",
-          "query": "role=seller&goods_id=2000004",
-          "scene": null
-        },
-        {
-          "name": "pages/ordermanage/list",
-          "pathName": "pages/ordermanage/list",
-          "query": "goods_id=2000154&goods_name=测试帮忙退款&delivery_method=1&store_id=1",
-          "scene": null
-        },
-        {
-          "name": "pages/order-confirm/index",
-          "pathName": "pages/order-confirm/index",
-          "query": "goods_id=2000166&payment_method=0&delivery_method=1&from_id=",
-          "scene": null
-        },
-        {
-          "name": "pages/ordermanage/list",
-          "pathName": "pages/ordermanage/list",
-          "query": "id=989&goods_name=2020赣南脐橙–全球最佳产地最受欢迎超甜的橙子 优选赣南高品质果园&delivery_method=1",
-          "scene": null
-        },
-        {
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=917",
+          "id": -1,
+          "name": "pages/full_reducetion/index",
+          "pathName": "pages/full_reduction/index",
           "scene": null
         }
       ]

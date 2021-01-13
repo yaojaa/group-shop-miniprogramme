@@ -19,7 +19,7 @@ Page({
   onLoad(){
     let data = app.globalData.fullreduce_data
     console.log(app.globalData.fullreduce_data)
-    if(data){
+    if(data && data.length > 0){
       this.setData({
         list: data
       })
@@ -69,6 +69,9 @@ Page({
         data[i].fullreduce_id = e.fullreduce_id;
       }
     });
+    // data = data.filter(e => {
+    //   return e.full > 0.5 && e.reduce > 0.5;
+    // })
     console.log(data)
     util.setParentData({
       fullreduce_data: data
