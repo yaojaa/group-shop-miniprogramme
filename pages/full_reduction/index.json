@@ -2,7 +2,7 @@
     "navigationBarTitleText": "满减优惠",
     "usingComponents":
     {
-        "van-button": "../../vant/button/index"
-
+        "van-button": "../../vant/button/index",
+        "van-toast": "../../vant/toast/index"
     }
 }

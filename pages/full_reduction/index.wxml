@@ -8,12 +8,12 @@
     <view class="flex" wx:for="{{list}}" wx:key="fullreduce_id">
       <view class="fg1 cell-list flex aic f12">
         <text class="fs0">满</text>
-        <input class="fg1" data-index="{{index}}" bindinput="inputFull" value="{{item.full}}" placeholder="金额"/>
+        <input type="digit" class="fg1" data-index="{{index}}" bindinput="inputFull" value="{{item.full}}" placeholder="金额"/>
         <text class="fs0">元</text>
       </view>
       <view class="fg1 cell-list flex aic f12">
         <text class="fs0">减</text>
-        <input class="fg1" data-index="{{index}}" bindinput="inputReduce" value="{{item.reduce}}" placeholder="金额"/>
+        <input type="digit" class="fg1" data-index="{{index}}" bindinput="inputReduce" value="{{item.reduce}}" placeholder="金额"/>
         <text class="fs0">元</text>
       </view>
       <van-button icon="clear" bind:click="delectCell" data-index='{{index}}' custom-class='btn fs0' type="primary" />
@@ -29,4 +29,4 @@
   <van-button bind:click='saveFullReduce' custom-class='btn' type="primary">确认保存</van-button>
 </view>
 
-
+<van-toast id="van-toast" />
