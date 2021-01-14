@@ -2,7 +2,9 @@
 
 const app = getApp()
 
-const util = require('../../utils/util.js')
+const util = require('../../utils/util.js');
+
+import Toast from '../../vant/toast/toast';
 
 Page({
   data: {
@@ -19,7 +21,7 @@ Page({
   onLoad(){
     let data = app.globalData.fullreduce_data
     console.log(app.globalData.fullreduce_data)
-    if(data){
+    if(data && data.length > 0){
       this.setData({
         list: data
       })
@@ -27,6 +29,9 @@ Page({
   },
   // 添加满减
   addCell(e){
+    if(!this.verification()){
+      return;
+    }
     this.data.list.push({
       fullreduce_id: '',
       full: '',
@@ -60,6 +65,9 @@ Page({
   // 保存满减
   saveFullReduce(){
     let data = [];
+    if(!this.verification()){
+      return;
+    }
     this.data.list.forEach((e, i) => {
       data[i] = {
         full: e.full,
@@ -69,8 +77,6 @@ Page({
         data[i].fullreduce_id = e.fullreduce_id;
       }
     });
-    console.log(data)
-
 
     /*保存后清除app.globalData.fullreduce_data*/
 
@@ -82,31 +88,39 @@ Page({
 
 
   },
+  // 验证信息
+  verification(){
+    let data = this.data.list;
+    let priceReg = /(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/;
+    for(var i=0; i<data.length; i++){
+      if(!data[i].full){
+        Toast('第'+ (i+1) +'行满金额不能为空');
+        return false;
+      }else if(data[i].full <= 0.5){
+        Toast('第'+ (i+1) +'行满金额不能小于0.5');
+        return false;
+      }else if(!priceReg.test(data[i].full)){
+        Toast('第'+ (i+1) +'行满金额要求整数或保留两位小数')
+        return false;
+      }
+      if(!data[i].reduce){
+        Toast('第'+ (i+1) +'行减金额不能为空');
+        return false;
+      }else if(data[i].reduce <= 0.5){
+        Toast('第'+ (i+1) +'行减金额不能小于0.5');
+        return false;
+      }else if(!priceReg.test(data[i].reduce)){
+        Toast('第'+ (i+1) +'行减金额要求整数或保留两位小数')
+        return false;
+      }
+      if(parseFloat(data[i].full) <= parseFloat(data[i].reduce)){
+        Toast('第'+ (i+1) +'行满金额必须大于减金额')
+        return false;
+      }
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-
+    return true;
+  },
 
 })
