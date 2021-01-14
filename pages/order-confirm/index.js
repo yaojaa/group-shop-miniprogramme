@@ -203,10 +203,11 @@ Page({
       this.setData({
         cartData
       });
+      this.getTotalNumer(); //商品总数
       await this.getGoodsInfo();
-      console.log('this.data.address_id', this.data.address_id);
+
       this.getGoodsTotal();
-      this.initCart();
+      //this.initCart();
     } catch (error) {
       wx.showToast({
         title: '请添加购物车商品',
@@ -242,7 +243,7 @@ Page({
     address_id: (newValue, val, context) => {
       context.address_id = newValue;
 
-      context.get_shipping_money();
+      //context.get_shipping_money();
       context.getGoodsTotal();
     }
   },
@@ -269,6 +270,7 @@ Page({
     this.setData({
       cartData: this.data.cartData
     });
+    this.getTotalNumer();
     this.getGoodsTotal();
     // wx.setStorage({
     //   key: 'cart',
@@ -284,6 +286,14 @@ Page({
         id: item.goods_spec_id,
         qty: item.item_num
       };
+    });
+  },
+  getTotalNumer() {
+    const total = this.data.cartData.reduce((prev, next) => {
+      return prev + next.item_num;
+    }, 0);
+    this.setData({
+      totalNumer: total || 0
     });
   },
   /**
