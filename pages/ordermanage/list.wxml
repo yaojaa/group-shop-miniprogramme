@@ -135,7 +135,7 @@
                     <text class="warning-text f18" wx:if="{{user_id == item.store.user_id }}">¥{{item.pay_price}} </text>
                     <text class="warning-text f18" wx:else>¥{{(item.pay_price*1000-item.profit*1000)/1000}}</text>
 
-                   <text class="warning-text f18" wx:if="{{info.discounts.length}}">满减优惠{{info.discounts[0].reduce}}元"</text>
+                   <text class="warning-text f12" wx:if="{{item.discounts.length}}">满减{{item.discounts[0].reduce}}元"</text>
 
 
                     <text class="order-date text-right">{{item.addtime}}</text>
