@@ -247,7 +247,7 @@
                 <view class="weui-cell__ft" bindtap="toCouponSetting">
                     <view class="weui-icon-warn">
                      <text wx:if="{{fullreduce_data}}" >满{{fullreduce_data[0].full}}减{{fullreduce_data[0].reduce}}</text>
-                     <text esle>设置</text>
+                     <text wx:esle>设置</text>
 
                         <i-icon type="enter" size="26" />
                     </view>
@@ -257,7 +257,7 @@
 
 
         <view class="orther" bindtap="toMore">其它设置 〉</view>
-        <button wx:if="{{!is_edit || is_copy}}" style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">
+        <button disabled="{{btnDisabled}}" wx:if="{{!is_edit || is_copy}}" style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">
             确定发布
         </button>
         <button wx:else style="margin: 15px" bindtap="saveEdit" class="weui-btn weui-btn_primary linenear_bg">

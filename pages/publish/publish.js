@@ -88,7 +88,8 @@ Page({
         show_buyerlist: 0,
         is_timelimit: 0,
         currentScrollTop: 0,
-        fullreduce_data:''
+        fullreduce_data:'',
+        btnDisabled:false //发布按钮不可用 防止多次点击
     },
     // darg start5
     // 改变监听
@@ -791,6 +792,11 @@ Page({
 
         wx.showLoading()
 
+        this.setData({
+            btnDisabled:true
+        })
+
+
         //提交
         //
         util.wx.post('/api/seller/goods_add_or_edit', data).then((res) => {
@@ -868,9 +874,10 @@ Page({
             goods_id: this.data.goods_id
         }, data)).then(res => {
             if (res.data.code !== 200) {
-                wx.showToast({
-                    title: res.data.msg,
-                    icon: 'none'
+                 wx.showModal({
+                    title: '温馨提示',
+                    content:res.data.msg,
+                    showCancel: false,
                 })
             }
         })
