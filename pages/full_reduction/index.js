@@ -123,11 +123,11 @@ Page({
       for(var j=i+1; j<data.length; j++){
         var v2 = data[j];
         if(parseFloat(v.full) == parseFloat(v2.full)){
-          Toast('第'+(i+1)+'行满金额重复了');
+          Toast('第'+(j+1)+'行满金额重复了');
           return false;
         }
-        if(parseFloat(v.full) > parseFloat(v2.full) && parseFloat(v.reduce) <= parseFloat(v2.reduce)){
-          Toast('第'+(i+1)+'行高门槛金额必须大于第'+(j+1)+'行低门槛金额')
+        if(parseFloat(v2.full) > parseFloat(v.full) && parseFloat(v2.reduce) <= parseFloat(v.reduce)){
+          Toast('第'+(j+1)+'行高门槛金额必须大于第'+(i+1)+'行低门槛金额')
           return false;
         }
       }
