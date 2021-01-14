@@ -134,11 +134,11 @@
         
     </view>
 
-    <view class="coupon  white-bg">
-         <van-tag custom-class="tags" size="mini" type="warning">满1200减220</van-tag>
-        <van-tag custom-class="tags"  type="warning">满100减20</van-tag>
-        <van-tag custom-class="tags"  type="warning">满100减20</van-tag>
-        <van-tag custom-class="tags"  type="warning">满100减20</van-tag>
+    <view class="coupon  white-bg" wx:if="{{goods.fullreduce_data}}">
+
+         <van-tag wx:for="{{goods.fullreduce_data}}" custom-class="tags" size="mini" type="warning">满{{item.full}}减{{item.reduce}}
+         </van-tag>
+
     </view>
 
     <view class='painter'>
@@ -312,10 +312,10 @@
     </view>
 
 
-<view class="coupon_tips">
+<view class="coupon_tips"  wx:if="{{goods.fullreduce_data.length}}">
     <van-notice-bar
   left-icon="coupon-o"
-  text="下享满减优惠最高可减30元"
+  text="满减优惠：{{reduce_txt}}"
 />
 </view>    
     <!-- 是团长自己自己 -->

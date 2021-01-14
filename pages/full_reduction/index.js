@@ -70,9 +70,17 @@ Page({
       }
     });
     console.log(data)
+
+
+    /*保存后清除app.globalData.fullreduce_data*/
+
+    app.globalData.fullreduce_data = ''
+
     util.setParentData({
       fullreduce_data: data
     })
+
+
   },
 
 

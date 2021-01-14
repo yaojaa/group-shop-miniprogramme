@@ -1098,7 +1098,7 @@ Page({
             goods_video: gs.goods_video,
             start_time: starFormatTime,
             end_time: endFormatTime,
-            fullreduce_data:gs.fullreduce,
+            fullreduce_data:gs.fullreduce_data,
             picker: {
                 start_date: starFormatTime.split(' ')[0],
                 start_time: starFormatTime.split(' ')[1],
