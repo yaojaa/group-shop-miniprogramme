@@ -3,7 +3,7 @@
         <view class="flex align-center">
             <view class="mh-df text-muted text-sm">共计 {{totalNumer}} 件</view>
             <view class="pb-xs" wx:if="{{shipping_money!=='该地区不发货'}}">
-                <text class="text-muted text-sm">应付金额：</text>
+                <text class="text-muted text-sm">实付金额：</text>
                 <text class="text-lg bold coral-text">{{goodsTotal.pay_price || '¥0'}}</text>
                 <text class="text-muted text-sm">元</text>
             </view>
@@ -114,8 +114,11 @@
             <!-- <van-cell title="购买数量">
                 <van-stepper value="{{ 2 }}" min="1" integer bind:change="handleNumber" />
             </van-cell> -->
+            <van-cell title="商品总额" value="{{goodsTotal.full_price}}" readonly />
             <van-cell wx:if="{{delivery_method==1}}" title="运费" value="{{goodsTotal.shipping || 0}}" readonly value-class="" />
-            <van-cell wx:for="{{goodsTotal.discounts}}" title="{{item.name}}" value="-{{item.reduce}}" readonly value-class="coral-text" />
+            <view>
+                <van-cell wx:for="{{goodsTotal.discounts || []}}" title="{{item.name}}" value="{{item.reduce}}" readonly value-class="coral-text" />
+            </view>
             <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
     </view>
