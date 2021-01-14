@@ -117,7 +117,20 @@ Page({
         Toast('第'+ (i+1) +'行满金额必须大于减金额')
         return false;
       }
-
+    }
+    for(var i=0; i<data.length; i++){
+      var v = data[i];
+      for(var j=i+1; j<data.length; j++){
+        var v2 = data[j];
+        if(parseFloat(v.full) == parseFloat(v2.full)){
+          Toast('第'+(i+1)+'行满金额重复了');
+          return false;
+        }
+        if(parseFloat(v.full) > parseFloat(v2.full) && parseFloat(v.reduce) <= parseFloat(v2.reduce)){
+          Toast('第'+(i+1)+'行高门槛金额必须大于第'+(j+1)+'行低门槛金额')
+          return false;
+        }
+      }
     }
 
     return true;
