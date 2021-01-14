@@ -115,7 +115,7 @@
                 <van-stepper value="{{ 2 }}" min="1" integer bind:change="handleNumber" />
             </van-cell> -->
             <van-cell wx:if="{{delivery_method==1}}" title="运费" value="{{goodsTotal.shipping || 0}}" readonly value-class="" />
-            <van-cell wx:for="{{goodsTotal.discounts}}" title="{{item.name}}" value="{{item.reduce}}" readonly value-class="" />
+            <van-cell wx:for="{{goodsTotal.discounts}}" title="{{item.name}}" value="-{{item.reduce}}" readonly value-class="coral-text" />
             <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
     </view>

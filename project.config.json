@@ -26,15 +26,13 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": true,
+    "useMultiFrameRuntime": false,
     "useApiHook": true,
-    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -105,6 +103,12 @@
           "pathName": "pages/publish/publish",
           "query": "goods_id=470",
           "scene": null
+        },
+        {
+          "name": "详情页启动",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=2000015",
+          "scene": 1008
         },
         {
           "id": 4,
@@ -1498,6 +1502,12 @@
           "id": -1,
           "name": "pages/full_reducetion/index",
           "pathName": "pages/full_reduction/index",
+          "scene": null
+        },
+        {
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=31681",
           "scene": null
         }
       ]

@@ -87,7 +87,8 @@ Page({
         agent_opt: 0, //'是否可以代理:0否;1是',
         show_buyerlist: 0,
         is_timelimit: 0,
-        currentScrollTop: 0
+        currentScrollTop: 0,
+        fullreduce_data:''
     },
     // darg start5
     // 改变监听
@@ -132,6 +133,20 @@ Page({
                 this.data.freight_tpl_id,
         })
     },
+
+    /**跳转到满减设置页。如果是编辑，把满减信息带过去 app.globalData.fullreduce_data**/
+    toCouponSetting() {
+
+        if (this.data.is_edit) {
+            app.globalData.fullreduce_data = this.gs.fullreduce_data
+        }
+
+        wx.navigateTo({
+            url: '../full_reduction/index'
+        })
+
+    },
+
     toHelpSetting() {
 
         if (this.data.goods_name == '' || this.data.spec[0].spec_name == '' || this.data.spec[0].spec_price == '') {
@@ -724,6 +739,14 @@ Page({
             return false
         }
 
+         var fullreduce_data ={}
+
+         console.log('this.data.full_reduction',this.data.full_reduction)
+
+        if(this.data.fullreduce_data){
+           fullreduce_data = {fullreduce_data:this.data.fullreduce_data}
+        }
+
         //默认重置价格为0 默认代理价格为零售价
         this.data.spec.forEach((value, index) => {
             if (value.spec_price == '') {
@@ -747,7 +770,8 @@ Page({
             {
                 goods_images: this.data.goods_images,
                 content: this.data.content
-            }, {
+            }, 
+               {
                 self_address_id: this.data.sell_address.map((item) => {
                     return item.self_address_id
                 }),
@@ -756,13 +780,13 @@ Page({
                 start_time: this.data.start_time,
                 end_time: this.data.end_time,
                 content_imgs: this.data.content_imgs,
-                goods_video: this.data.goods_video,
                 freight_tpl_id: this.data.freight_tpl_id,
                 show_buyerlist: this.data.show_buyerlist,
                 agent_opt: this.data.agent_opt,
                 cat_id: 8,
-                is_timelimit: this.data.is_timelimit,
-            }
+                is_timelimit: this.data.is_timelimit
+                },
+                fullreduce_data
         )
 
         wx.showLoading()
@@ -967,6 +991,7 @@ Page({
                 wx.hideLoading()
                 let d = res.data
                 let gs = d.data.goods
+                this.gs = gs
 
                 if (d.code == 200) {
                     this.data.oldSpec = JSON.stringify(gs.goods_spec)
@@ -1073,6 +1098,7 @@ Page({
             goods_video: gs.goods_video,
             start_time: starFormatTime,
             end_time: endFormatTime,
+            fullreduce_data:gs.fullreduce_data,
             picker: {
                 start_date: starFormatTime.split(' ')[0],
                 start_time: starFormatTime.split(' ')[1],
@@ -1162,22 +1188,11 @@ Page({
             })
 
         },
-
-        visible_pictures: (newValue, val, context) => {
-            context.setData({
-                displayTextArea: newValue ? 'none' : 'block',
+        fullreduce_data:(newValue, val, context) => {
+            context.editor({
+                fullreduce_data: newValue
             })
-        },
-        visible_video: (newValue, val, context) => {
-            context.setData({
-                displayTextArea: newValue ? 'none' : 'block',
-            })
-        },
-        visible_spec: (newValue, val, context) => {
-            context.setData({
-                displayTextArea: newValue ? 'none' : 'block',
-            })
-        },
+        }
     },
 
     showCurrentTplName(lists, currentId) {
@@ -1199,7 +1214,7 @@ Page({
     },
 
     //回显运费模版名称
-    
+
 
     getTplList() {
 

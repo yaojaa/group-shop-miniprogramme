@@ -128,7 +128,8 @@ Page({
     showInviteFriend: false,
     is_help_sale: false,
     isCanDraw: false,
-    shareData: {}
+    shareData: {},
+    reduce_txt:''
   },
   handleSpecPopup(e) {
     let { item } = e.currentTarget.dataset;
@@ -732,31 +733,26 @@ Page({
             console.log('else', content.html);
           }
 
-          console.log(typeof content, content);
+          /**如果有满减优惠 显示文字提示**/
 
-          // let editorContent = JSON.parse(d.goods.content)
-          // editorContent = editorContent ? editorContent : { html: '', text: '' }
+          if(d.goods.fullreduce_data ){
 
-          // if(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p><p( wx:nodeid="\d+")?><img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/.test(editorContent.html)){
-          //   editorContent.html = editorContent.html.replace(/^<p( wx:nodeid="\d+")?><br( wx:nodeid="\d+")?><\/p>/,'<p>');
-          // }
+            let reduce_txt = ''
 
-          // let isEmptyEditor = editorContent.text.replace(/\n/g, '').length == 0 &&
-          //   !/img/g.test(editorContent.html)
+            d.goods.fullreduce_data.forEach(item=>{
 
-          // editorContent.video = editorContent.html.match(/alt=["'][a-zA-Z0-9\/\\\.:=_\-]+['"]/g);
-          // editorContent.htmlArr = editorContent.html.split(/<img[ 0-9a-zA-Z'"\.=_\-\/\\%:]+editorCONTENTVIDEO[ 0-9a-zA-Z'"\.=_\-\/\\%:]+>/);
 
-          // if(editorContent.video){
-          //   editorContent.video = editorContent.video.map(e => {
-          //     return e.replace(/(alt=)|["']/g,'')
-          //   })
-          // }else{
-          //   editorContent.video=[]
-          // }
+              reduce_txt+='满'+item.full+'减'+item.reduce +' '
 
-          // editorContent.html = editorContent.html.replace(/<img\s/g,'<img class="editor-img" ')
+            })
 
+            this.setData({
+              reduce_txt : reduce_txt
+            })
+
+          }
+
+    
           this.setData({
             content: content,
             goods_content: d.goods.goods_content,

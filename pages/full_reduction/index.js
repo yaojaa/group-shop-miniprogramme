@@ -73,9 +73,17 @@ Page({
     //   return e.full > 0.5 && e.reduce > 0.5;
     // })
     console.log(data)
+
+
+    /*保存后清除app.globalData.fullreduce_data*/
+
+    app.globalData.fullreduce_data = ''
+
     util.setParentData({
       fullreduce_data: data
     })
+
+
   },
 
 

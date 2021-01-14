@@ -1,13 +1,9 @@
 <view class="container gray-wrap cf">
-
     <view class="order-wrap">
         <view class="primary ph-df pv-sm text-white mb-sm  flex align-center" style="min-height: 120rpx">
             <text wx:if="{{info.order_status==2}}">等待收货</text>
             <text wx:else>{{info.order_status_txt}}</text>
-
         </view>
-
-
         <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 1}}">
             <van-icon name="location" color="#999" />
             <view class="flex-sub ml-xs">
@@ -35,10 +31,10 @@
                 <view class="pt-xs text-sm text-gray">
                     提货码： <text class="text-danger">{{info.create_number}}</text>
                 </view>
-                 <view class="pt-xs text-sm text-gray">
+                <view class="pt-xs text-sm text-gray">
                     提货人姓名： <text class="text-danger">{{info.consignee}}</text>
                 </view>
-                 <view class="pt-xs text-sm text-gray">
+                <view class="pt-xs text-sm text-gray">
                     提货人电话： <text class="text-danger">{{info.mobile}}</text>
                 </view>
             </view>
@@ -76,23 +72,19 @@
         <van-cell-group custom-class="mv-sm">
             <van-cell title="订单用户" value="{{info.user.nickname}}" border="{{ false }}" />
             <van-cell title="订单运费" value="￥{{info.shipping_money}}" border="{{ false }}" />
-
+            <van-cell wx:if="{{info.discounts.length}}" customStyle="padding:5px 20px" title="满减优惠" value="{{info.discounts[0].reduce}}元" border="{{ false }}" />
             <van-cell title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
             <van-cell title="订单编号" title-width="200rpx" border="{{ false }}" value="{{info.order_sn}}" value-class="text-gray" />
             <van-cell title="创建时间" value="{{addtime}}" border="{{ false }}" value-class="text-gray" />
             <van-cell title="付款时间" wx:if="{{info.pay_time}}" value="{{pay_time}}" border="{{ false }}" value-class="text-gray" />
         </van-cell-group>
     </view>
-
-        <view >
+    <view>
         <!--         <block wx:for="{{info.order_action}}" wx:key="{{index}}">
             <button class="btn round gray  ml-sm w-min-df" bindtap="handleConfirmReceipt" data-status="{{item.action_status}}">{{item.action_status_txt}}</button>
         </block> -->
-    
-
-         <!--     <navigator url="../ems-detail/index?name={{info.express_company}}&code={{info.express_code}}&id={{info.order_id}}" class="btn round primary hollow  ml-sm mv-sm w-min-df" wx:if="{{info.express.length}}">查看物流</navigator> -->
-         </view>
-
+        <!--     <navigator url="../ems-detail/index?name={{info.express_company}}&code={{info.express_code}}&id={{info.order_id}}" class="btn round primary hollow  ml-sm mv-sm w-min-df" wx:if="{{info.express.length}}">查看物流</navigator> -->
+    </view>
     <van-notify id="custom-selector" />
     <van-dialog id="van-dialog" />
 </view>
