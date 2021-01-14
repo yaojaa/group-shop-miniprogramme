@@ -173,6 +173,7 @@ Page({
       });
   },
   getGoodsTotal() {
+    wx.showLoading();
     const params = {
       specs: this.getCartParams(),
       address_id: this.data.address_id,
@@ -182,6 +183,7 @@ Page({
       this.setData({
         goodsTotal: res.data.data
       });
+      wx.hideLoading();
     });
   },
   /**
