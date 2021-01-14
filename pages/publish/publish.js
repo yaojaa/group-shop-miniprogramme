@@ -87,7 +87,8 @@ Page({
         agent_opt: 0, //'是否可以代理:0否;1是',
         show_buyerlist: 0,
         is_timelimit: 0,
-        currentScrollTop: 0
+        currentScrollTop: 0,
+        fullreduce_data:''
     },
     // darg start5
     // 改变监听
@@ -141,7 +142,7 @@ Page({
         }
 
         wx.navigateTo({
-            url: 'pages/full_reduction/index'
+            url: '../full_reduction/index'
         })
 
     },
@@ -740,8 +741,10 @@ Page({
 
          var fullreduce_data ={}
 
+         console.log('this.data.full_reduction',this.data.full_reduction)
+
         if(this.data.fullreduce_data){
-           fullreduce_data:this.data.fullreduce_data
+           fullreduce_data = {fullreduce_data:this.data.fullreduce_data}
         }
 
         //默认重置价格为0 默认代理价格为零售价
@@ -1095,6 +1098,7 @@ Page({
             goods_video: gs.goods_video,
             start_time: starFormatTime,
             end_time: endFormatTime,
+            fullreduce_data:gs.fullreduce,
             picker: {
                 start_date: starFormatTime.split(' ')[0],
                 start_time: starFormatTime.split(' ')[1],
@@ -1184,22 +1188,11 @@ Page({
             })
 
         },
-
-        visible_pictures: (newValue, val, context) => {
-            context.setData({
-                displayTextArea: newValue ? 'none' : 'block',
+        fullreduce_data:(newValue, val, context) => {
+            context.editor({
+                fullreduce_data: newValue
             })
-        },
-        visible_video: (newValue, val, context) => {
-            context.setData({
-                displayTextArea: newValue ? 'none' : 'block',
-            })
-        },
-        visible_spec: (newValue, val, context) => {
-            context.setData({
-                displayTextArea: newValue ? 'none' : 'block',
-            })
-        },
+        }
     },
 
     showCurrentTplName(lists, currentId) {

@@ -246,7 +246,9 @@
                 <view class="weui-cell__bd"></view>
                 <view class="weui-cell__ft" bindtap="toCouponSetting">
                     <view class="weui-icon-warn">
-                        <text>设置</text>
+                     <text wx:if="{{fullreduce_data}}" >满{{fullreduce_data[0].full}}减{{fullreduce_data[0].reduce}}</text>
+                     <text esle>设置</text>
+
                         <i-icon type="enter" size="26" />
                     </view>
                 </view>
