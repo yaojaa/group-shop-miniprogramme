@@ -178,7 +178,7 @@
 .coupon_tips{
 
   position: fixed;
-  bottom: 40px;
+  bottom: 50px;
   left: 0;
   right: 0;
   z-index: 9;
