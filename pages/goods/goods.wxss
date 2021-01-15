@@ -172,7 +172,9 @@
   overflow: hidden;
   word-break: break-all;
 }
-
+.coupon{
+  padding-left:10px
+}
 .coupon_tips{
 
   position: fixed;
