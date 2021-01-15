@@ -394,7 +394,7 @@
                 <image src="https://static.kaixinmatuan.cn/staitc-img/wx_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm text-df">微信群</view>
             </button>
-            <view bindtap='createShareImage' class="flex-sub share-pyq">
+            <view bindtap='handlePoster' class="flex-sub share-pyq">
                 <image src="https://static.kaixinmatuan.cn/staitc-img/quan_icon.png" class="img-lg"></image>
                 <view class="text-weak mt-sm">生成海报</view>
             </view>
