@@ -315,9 +315,9 @@
             分享顾客
         </button>
         <form wx:if="{{totalNum > 0 }}" style="flex:78;position: relative;" bindtap="cartPanelShow">
-            <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
+            <view wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
-            </text>
+            </view>
             <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg left-raduis right-raduis" formType="submit">
                 立即参与
             </button>
