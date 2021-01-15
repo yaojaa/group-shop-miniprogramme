@@ -136,6 +136,7 @@ Component({
       wx.showToast({
         title: '生成分享图失败，请刷新页面重试'
       });
+      console.log(e);
     },
     onImgOK(e) {
       wx.hideLoading();

@@ -146,9 +146,6 @@
   font-size: 26rpx;
 }
 
-.goods-type-box {
-}
-
 .wx-group-pic {
   width: 46rpx;
   height: 46rpx;
