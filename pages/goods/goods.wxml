@@ -117,8 +117,6 @@
     <view class="goods-info por white-bg p-df cf">
         <view class="goods-info-bd">
             <view class="goods-name pv-xs">{{goods.goods_name}}</view>
-        
-
         </view>
         <view class="goods-share">
             <button bindtap='openShareFriends' class="btn-reset">
@@ -126,21 +124,14 @@
                 <view class="text-muted text-xs">分享海报</view>
             </button>
         </view>
-
         <view class="load-area" wx:if="{{!goods}}">
             <wux-spin wux-class="spin" />
         </view>
-
-        
     </view>
-
     <view class="coupon  white-bg" wx:if="{{goods.fullreduce_data}}">
-
          <view wx:for="{{goods.fullreduce_data}}" class="tags" >满{{item.full}}减{{item.reduce}}
          </view>
-
     </view>
-
     <view class='painter'>
         <image src="{{imagePath}}"></image>
     </view>
@@ -285,16 +276,15 @@
     </view>
     <!-- 正常客户下单 -->
     <view class='footer-cart' wx:if="{{!is_help_sale}}">
-
         <view class='icon' bindtap='homepage' style="flex: 22">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
         <block>
             <form style="flex:78;position: relative;" bindtap="cartPanelShow">
-                <text wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
+                <view wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                     {{totalNum}}
-                </text>
+                </view>
                 <button wx:if="{{goods.goods_expires.status == 1 }}" class="buy linenear_bg" formType="submit">
                     立即参与
                 </button>
@@ -310,19 +300,11 @@
             </form>
         </block>
     </view>
-
-
-<view class="coupon_tips"  wx:if="{{goods.fullreduce_data.length}}">
-    <van-notice-bar
-  left-icon="coupon-o"
-  text="满减优惠：{{reduce_txt}}"
-/>
-</view>    
+    <view class="coupon_tips" wx:if="{{goods.fullreduce_data.length}}">
+        <van-notice-bar left-icon="coupon-o" text="满减优惠：{{reduce_txt}}" />
+    </view>
     <!-- 是团长自己自己 -->
-
-
     <view class='footer-cart' wx:if="{{showPanel}}">
-
         <view class='icon' bindtap='homepage' style="flex: 25">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>

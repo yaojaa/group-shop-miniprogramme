@@ -129,7 +129,7 @@
   }
 }
 
-.tags{
+.tags {
 }
 
 .goods-price .price {
@@ -177,10 +177,10 @@
 }
 .coupon_tips{
 
-  position: fixed;
-   bottom: 50px;
+  bottom: 50px;
   left: 0;
   right: 0;
+  z-index: 9;
 }
 
 .footer-cart {
@@ -767,16 +767,18 @@
 
 .default-badge {
   border-radius: 1000px;
-  font-size: 16rpx;
+  font-size: 24rpx;
   color: #fff;
   background: #fa7268;
   position: absolute;
   top: -10rpx;
   left: -10rpx;
-  padding: 8rpx;
-  min-width: 34rpx;
+  padding: 0 10rpx;
+  min-width: 32rpx;
   z-index: 999;
-  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .roll_box {
@@ -948,7 +950,7 @@
   text-decoration: none;
   border-radius: 3px;
   display: inline-block;
-  margin: 0 5px;
+  margin: 2px 5px;
 }
 
 .user-info-bd {
