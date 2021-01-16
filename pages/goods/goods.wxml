@@ -134,10 +134,11 @@
         
     </view>
 
-    <view class="coupon  white-bg" wx:if="{{goods.fullreduce_data}}">
+    <view class="coupon  white-bg" wx:if="{{goods.fullreduce_data && goods.fullreduce_data.length}}">
 
-         <van-tag wx:for="{{goods.fullreduce_data}}" custom-class="tags" size="mini" type="warning">满{{item.full}}减{{item.reduce}}
-         </van-tag>
+         <view class="tags" wx:for="{{goods.fullreduce_data}}">
+             满{{item.full}}减{{item.reduce}}
+         </view>
 
     </view>
 
