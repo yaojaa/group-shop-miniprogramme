@@ -66,7 +66,7 @@ Page({
             name: '线下收款 只统计报名 ',
         }, ],
         actions2: [{
-            name: '快递邮寄',
+            name: '快递配送',
         }, {
             name: '用户自提',
         }, ],
@@ -916,13 +916,7 @@ Page({
         })
     },
     handleOpen2() {
-        if (this.data.is_edit) {
-            return wx.showToast({
-                title: '配送方式不允许修改',
-                icon: 'none'
-            })
-        }
-
+        
         this.setData({
             visible2: true,
         })
@@ -1123,6 +1117,18 @@ Page({
     },
 
     watch: {
+
+        sell_address:(newValue, val, context) => {
+
+            context.editor({
+                self_address_id: newValue.map((item) => {
+                    return item.self_address_id
+                }),
+                delivery_method:2
+            })
+
+        },
+
 
         freight_tpl_id: (newValue, val, context) => {
 

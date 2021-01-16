@@ -202,9 +202,7 @@
                             <!-- <navigator url="/pages/map/index?delivery_method={{delivery_method}}"> -->
                             <text wx:if="{{delivery_method==0}}">选择配送方式</text>
                             <text wx:if="{{delivery_method==1}}">快递配送</text>
-                            <text class="address-txt" wx:if="{{delivery_method==2}}">
-                                自提：{{sell_address[0].name}}...
-                            </text>
+                            <text class="address-txt" wx:if="{{delivery_method==2}}">自提：{{sell_address[0].name}}...</text>
                             <i-icon type="enter" size="28" />
                         </view>
                     </view>

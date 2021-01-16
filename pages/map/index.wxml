@@ -1,4 +1,6 @@
 <view class="container">
+            <view class="his">添加自提点，支持多个自提点下单时选择</view>
+
     <view class="bgimg">
         <block wx:for="{{newAddress}}" wx:key="{{item.self_address_id}}">
             <view class='address button-area'>
