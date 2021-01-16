@@ -1344,43 +1344,43 @@ Page({
         }
       });
   },
-  // buyUserScroll: function(e) {
-  //     if(orderUsersFlag){
-  //         return;
-  //     }
+  buyUserScroll: function(e) {
+      if(orderUsersFlag){
+          return;
+      }
 
-  //     orderUsersFlag = true;
+      orderUsersFlag = true;
 
-  //     this.setData({
-  //         orderUsersLoading: true
-  //     })
+      this.setData({
+          orderUsersLoading: true
+      })
 
-  // util.wx.get('/api/goods/get_minorders_by_goods_id', {
-  //     goods_id: this.data.goods_id,
-  //     pagesize: orderUsersLen,
-  //     cpage: orderUsersPage
-  // }).then(res => {
+  util.wx.get('/api/goods/get_minorders_by_goods_id', {
+      goods_id: this.data.goods_id,
+      pagesize: orderUsersLen,
+      cpage: orderUsersPage
+  }).then(res => {
 
-  //             console.log(res)
+              console.log(res)
 
-  //         if(res.data.data.order_list && res.data.data.order_list.length > 0){
-  //             orderUsersPage ++;
+          if(res.data.data.order_list && res.data.data.order_list.length > 0){
+              orderUsersPage ++;
 
-  //             orderUsersFlag = false;
+              orderUsersFlag = false;
 
-  //             this.setData({
-  //                 orderUsersLoading: false,
-  //                 ['_orderUsers_[' + this.data._orderUsers_.length + ']']: res.data.data.order_list
-  //             })
-  //         }else{
-  //             this.setData({
-  //                 orderUsersLoading: false
-  //             })
-  //         }
+              this.setData({
+                  orderUsersLoading: false,
+                  ['_orderUsers_[' + this.data._orderUsers_.length + ']']: res.data.data.order_list
+              })
+          }else{
+              this.setData({
+                  orderUsersLoading: false
+              })
+          }
 
-  //     })
+      })
 
-  // },
+  },
   onPageScroll: function (e) {
     if (e.scrollTop > 50 && !this.data.toShowPic) {
       this.setData({
