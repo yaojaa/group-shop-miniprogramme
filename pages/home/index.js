@@ -211,6 +211,10 @@ Page({
     // }
   },
   onShow() {
+    this.data.cpage = 1;
+    this.data.goodslist = [];
+    this.getGoodsList();
+
     wx.hideHomeButton();
 
     this.reGetUserInfo();
@@ -252,9 +256,6 @@ Page({
       data: 'seller'
     });
 
-    this.data.cpage = 1;
-    this.data.goodslist = [];
-    this.getGoodsList();
     this.getOrderList();
   },
   goCreate() {
@@ -358,7 +359,7 @@ Page({
     util.wx
       .get('/api/seller/get_goods_list', ajaxData)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (this.data.searchWords) {
           //搜索
           this.searchLoadData(res);
@@ -428,9 +429,9 @@ Page({
       }
     } catch (err) {}
   },
-  admin_class: function(){
+  admin_class: function () {
     wx.navigateTo({
-        url: '../class/class'
+      url: '../class/class'
     });
   },
   new_btn: function () {
