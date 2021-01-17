@@ -214,3 +214,13 @@ work-break:keep-all;
     color: #07c160;
 }
 
+.mini-tags{
+    font-size: 40rpx;
+    line-height: 1;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 6rpx;
+    color: #FF5757;
+    border: 1px solid #FF5757;
+    transform: scale(0.5) translateX(-50%);
+}

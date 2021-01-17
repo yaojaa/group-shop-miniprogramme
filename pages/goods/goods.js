@@ -1247,6 +1247,29 @@ Page({
       return;
     }
 
+
+     if (!app.globalData.userInfo.hasOwnProperty('store')) {
+
+        wx.showModal({
+            title: '你需要先创建团长主页',
+            content: '免费个人卖货主页',
+            confirmText: '一秒拥有',
+            confirmColor: '#4bb000',
+            success: (res) => {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '../create-home/index'
+                });
+              } else if (res.cancel) {
+                console.log('用户点击取消');
+              }
+            }
+          });
+
+      
+      return;
+    }
+
     wx.redirectTo({
       url:
         '../publish/publish?goods_id=' + this.data.goods.goods_id + '&copy=true'

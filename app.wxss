@@ -1762,4 +1762,13 @@ text-align: center;
 color: #888;
 }
 
+.mini-tags{
+    font-size: 20rpx;
+    line-height: 1;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2rpx;
+    color: #FF5757;
+    border: 1px solid #FF5757;
+}
 

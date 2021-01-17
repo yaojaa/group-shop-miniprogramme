@@ -204,7 +204,17 @@
                             <text class="number">{{item.create_number}}</text>
                             <image class="buyer-avatar" src="{{item.headimg}}"></image>
                             <view class="buyer-info">
-                                <view class="name">{{item.nickname}}</view>
+                                <view class="name">{{item.nickname}} 
+                                    <text class="mini-tags" wx:if="{{item.order_pay_total>0}}">跟团{{item.order_pay_total}}次</text>
+                                   <!--  <text class="mini-tags" wx:if="{{item.order_pay_total==2}}">回头客</text>
+                                    <text class="mini-tags" wx:if="{{item.order_pay_total>2 && item.order_pay_total<=10 }}">有空就来逛逛</text>
+                                    <text class="mini-tags" wx:if="{{item.order_pay_total>10 && item.order_pay_total<=30 }}">高级粉丝</text>
+                                    <text class="mini-tags" wx:if="{{item.order_pay_total>30 && item.order_pay_total<=50 }}">铁杆粉丝</text>
+                                     <text class="mini-tags" wx:if="{{item.order_pay_total>50 }}">超级粉丝</text> -->
+
+
+
+                                </view>
                                 <view class="type">
                                     <view wx:for="{{item.spec}}" wx:key="index" wx:for-item="gds">
                                         {{gds.spec_name}} + {{gds.qty}}

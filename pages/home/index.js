@@ -358,6 +358,7 @@ Page({
     util.wx
       .get('/api/seller/get_goods_list', ajaxData)
       .then((res) => {
+        console.log(res)
         if (this.data.searchWords) {
           //搜索
           this.searchLoadData(res);
