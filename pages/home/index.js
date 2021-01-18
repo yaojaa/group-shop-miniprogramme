@@ -211,11 +211,11 @@ Page({
     // }
   },
   onShow() {
-    this.data.cpage = 1;
-    // this.data.goodslist = [];
     this.setData({
-      goodslist: []
-    })
+      searchWords: ''
+    });
+    this.data.cpage = 1;
+    this.data.goodslist = [];
     this.getGoodsList();
 
     wx.hideHomeButton();
