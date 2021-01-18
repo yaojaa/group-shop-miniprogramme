@@ -212,7 +212,10 @@ Page({
   },
   onShow() {
     this.data.cpage = 1;
-    this.data.goodslist = [];
+    // this.data.goodslist = [];
+    this.setData({
+      goodslist: []
+    })
     this.getGoodsList();
 
     wx.hideHomeButton();
