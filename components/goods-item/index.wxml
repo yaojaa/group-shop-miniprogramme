@@ -14,25 +14,33 @@
                     </view>
                 </view>
             </navigator>
-            <view class="gray-text ">
-
-                <text class="ph-xs ph-xs f12px">浏览({{item.pageview_count}})</text>
-                <text class="ph-xs ph-xs f12px">收款总额(￥{{item._order_total}})</text>
-                 <text class="ph-xs ph-xs f12px right"> {{['','进行中','未开始','已结束','已下架'][item.goods_expires.status]}}</text>
-
+            <view class="gray-text flex mb-xs">
+                <view class="flex-sub">
+                    <text class="f12px mr-sm">浏览({{item.pageview_count}})</text>
+                    <text class="f12px">收款总额(￥{{item._order_total}})</text>
+                </view>
+                <view class="f12px right">
+                    {{['','进行中','未开始','已结束','已下架'][item.goods_expires.status]}}
+                </view>
             </view>
-                <view class="f12px" style="color: #ff8900" wx:if="{{item.link_goods.length==2 && item.link_goods[1]!==null}}">
-                    由“{{item.link_goods[1].nickname}}”发货<text wx:if="{{item.link_goods[1].is_del!=-1 && item.link_goods[1].is_on_sale==1}}">[上架中]</text>
-                    <text wx:if="{{item.link_goods[1].is_del==-1}}">[已删除]</text>
+            <view class="f12px flex mb-xs" style="color: #ff8900" wx:if="{{item.link_goods.length==2 && item.link_goods[1]!==null}}">
+                <view class="flex-sub">
+                    <text>由“{{item.link_goods[1].nickname}}”发货</text>
+                    <block wx:if="{{item.link_goods[1].is_del!=-1 && item.link_goods[1].is_on_sale==1}}">
+                        <text>[上架中]</text>
+                    </block>
                 </view>
-                <view wx:if="{{item.link_goods.length==1 && item.link_goods[0]!==null}}">
-                    <van-tag type="warning" size="medium">由"{{item.link_goods[0].store_name}}" 发货</van-tag>
-                </view>
-                <view>
-                    <view wx:if="{{item.agent_opt==1}}"  class="mini-tags">已开启帮卖</view>
-                </view>
+                <view wx:if="{{item.link_goods[1].is_del==-1}}">[已删除]</view>
+            </view>
+            <view wx:if="{{item.link_goods.length==1 && item.link_goods[0]!==null}}">
+                <van-tag type="warning" size="medium">
+                    由"{{item.link_goods[0].store_name}}" 发货
+                </van-tag>
+            </view>
+            <view>
+                <view wx:if="{{item.agent_opt==1}}" class="mini-tags">已开启帮卖</view>
+            </view>
         </view>
-
     </view>
     <view style="display:flex; justify-content:center">
         <!-- <button  class="hollow" 
@@ -61,44 +69,47 @@
     </view>
     <!-- <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" /> -->
     <van-action-sheet show="{{ show }}" actions="{{ itemList }}" bind:close="onClose" bind:select="onSelect" />
-    <van-action-sheet show="{{ classShow }}"  bind:close="onCloseClass" bind:select="onSelectClass">
+    <van-action-sheet show="{{ classShow }}" bind:close="onCloseClass" bind:select="onSelectClass">
         <view class="class-main">
             <view class="all-class">
-              <view class="class-cell flex jsb aic">
-                <text>水果</text>
-                <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-              </view>
-              <view class="class-cell flex jsb aic">
-                <text>水果</text>
-                <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-              </view>
-              <view class="class-cell flex jsb aic">
-                <text>水果</text>
-                <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-              </view>
-              <view class="class-cell flex jsb aic">
-                <text>水果</text>
-                <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-              </view>
-              <view class="class-cell flex jsb aic">
-                <text>水果</text>
-                <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-              </view>
-              <view class="class-cell flex jsb aic">
-                <text>水果</text>
-                <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-              </view>
-              <view class="class-cell flex jsb aic">
-                <text>水果</text>
-                <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-              </view>
+                <view class="class-cell flex jsb aic">
+                    <text>水果</text>
+                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                </view>
+                <view class="class-cell flex jsb aic">
+                    <text>水果</text>
+                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                </view>
+                <view class="class-cell flex jsb aic">
+                    <text>水果</text>
+                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                </view>
+                <view class="class-cell flex jsb aic">
+                    <text>水果</text>
+                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                </view>
+                <view class="class-cell flex jsb aic">
+                    <text>水果</text>
+                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                </view>
+                <view class="class-cell flex jsb aic">
+                    <text>水果</text>
+                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                </view>
+                <view class="class-cell flex jsb aic">
+                    <text>水果</text>
+                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                </view>
             </view>
-            <view class="class-cell flex jcc aic" bindtap="toAddClass">还没有分类，<text class="fcg">去添加分类</text></view>
+            <view class="class-cell flex jcc aic" bindtap="toAddClass">
+                还没有分类，
+                <text class="fcg">去添加分类</text>
+            </view>
             <view class="class-cell flex jsb aic">
                 <van-button bind:click="onCloseClass" custom-class='btn' round plain>取消</van-button>
                 <van-button custom-class='btn' round type="primary">保存</van-button>
             </view>
-      </view>
+        </view>
     </van-action-sheet>
     <van-dialog id="van-dialog" />
 </view>
