@@ -1118,6 +1118,14 @@ Page({
 
     watch: {
 
+         delivery_method:(newValue, val, context) => {
+
+            context.editor({
+                delivery_method:newValue
+            })
+
+        },
+
         sell_address:(newValue, val, context) => {
 
             context.editor({
