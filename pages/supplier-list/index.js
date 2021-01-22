@@ -34,7 +34,7 @@ Page({
     let that = this
     wx.showModal({
       title: '确定要将' + user_name + state_txt + '管理员吗？',
-      content: '他将' + state_txt1 + '权限帮你操作订单',
+      content: '他将' + state_txt1 + '权限管理你的商品和处理订单',
       showCancel: true, //是否显示取消按钮
       cancelText: '取消', //默认是“取消”
       confirmText: '确定', //默认是“确定”
