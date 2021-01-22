@@ -211,6 +211,9 @@ Page({
     // }
   },
   onShow() {
+    this.setData({
+      searchWords: ''
+    });
     this.data.cpage = 1;
     this.data.goodslist = [];
     this.getGoodsList();

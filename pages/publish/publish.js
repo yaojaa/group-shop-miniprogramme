@@ -88,8 +88,8 @@ Page({
         show_buyerlist: 0,
         is_timelimit: 0,
         currentScrollTop: 0,
-        fullreduce_data:'',
-        btnDisabled:false //发布按钮不可用 防止多次点击
+        fullreduce_data: '',
+        btnDisabled: false //发布按钮不可用 防止多次点击
     },
     // darg start5
     // 改变监听
@@ -577,9 +577,7 @@ Page({
                                 goods_images: this.data.goods_images
                             })
 
-                            this.editor({
-                                goods_images: this.data.goods_images
-                            })
+                      
 
 
                             //如果是最后一张,则隐藏等待中
@@ -740,12 +738,12 @@ Page({
             return false
         }
 
-         var fullreduce_data ={}
+        var fullreduce_data = {}
 
-         console.log('this.data.full_reduction',this.data.full_reduction)
+        console.log('this.data.full_reduction', this.data.full_reduction)
 
-        if(this.data.fullreduce_data){
-           fullreduce_data = {fullreduce_data:this.data.fullreduce_data}
+        if (this.data.fullreduce_data) {
+            fullreduce_data = { fullreduce_data: this.data.fullreduce_data }
         }
 
         //默认重置价格为0 默认代理价格为零售价
@@ -771,8 +769,7 @@ Page({
             {
                 goods_images: this.data.goods_images,
                 content: this.data.content
-            }, 
-               {
+            }, {
                 self_address_id: this.data.sell_address.map((item) => {
                     return item.self_address_id
                 }),
@@ -786,14 +783,14 @@ Page({
                 agent_opt: this.data.agent_opt,
                 cat_id: 8,
                 is_timelimit: this.data.is_timelimit
-                },
-                fullreduce_data
+            },
+            fullreduce_data
         )
 
         wx.showLoading()
 
         this.setData({
-            btnDisabled:true
+            btnDisabled: true
         })
 
 
@@ -837,14 +834,17 @@ Page({
         if (JSON.stringify(this.data.spec) == this.data.oldSpec) {
             postObj = {
                 goods_id: this.data.goods_id,
-                content: this.data.content
+                content: this.data.content,
+                goods_images:this.data.goods_images
+
             }
         } else {
 
             postObj = {
                 goods_id: this.data.goods_id,
                 spec: this.data.spec,
-                content: this.data.content
+                content: this.data.content,
+                goods_images:this.data.goods_images
             }
         }
 
@@ -874,9 +874,9 @@ Page({
             goods_id: this.data.goods_id
         }, data)).then(res => {
             if (res.data.code !== 200) {
-                 wx.showModal({
+                wx.showModal({
                     title: '温馨提示',
-                    content:res.data.msg,
+                    content: res.data.msg,
                     showCancel: false,
                 })
             }
@@ -884,12 +884,6 @@ Page({
 
     },
 
-
-    deliveryChange: function(e) {
-        this.setData({
-            delivery_method: e.detail.value ? 1 : 2,
-        })
-    },
     start_time: function(e) {
         let t = e.detail //"2018", "10", "20", "16", "00"
         this.setData({
@@ -916,7 +910,7 @@ Page({
         })
     },
     handleOpen2() {
-        
+
         this.setData({
             visible2: true,
         })
@@ -1099,7 +1093,7 @@ Page({
             goods_video: gs.goods_video,
             start_time: starFormatTime,
             end_time: endFormatTime,
-            fullreduce_data:gs.fullreduce_data,
+            fullreduce_data: gs.fullreduce_data,
             picker: {
                 start_date: starFormatTime.split(' ')[0],
                 start_time: starFormatTime.split(' ')[1],
@@ -1117,8 +1111,7 @@ Page({
     },
 
     watch: {
-
-         delivery_method:(newValue, val, context) => {
+        delivery_method: (newValue, val, context) => {
 
             context.editor({
                 delivery_method:newValue
@@ -1128,11 +1121,12 @@ Page({
 
         sell_address:(newValue, val, context) => {
 
+
             context.editor({
                 self_address_id: newValue.map((item) => {
                     return item.self_address_id
                 }),
-                delivery_method:2
+                delivery_method: 2
             })
 
         },
@@ -1209,7 +1203,7 @@ Page({
             })
 
         },
-        fullreduce_data:(newValue, val, context) => {
+        fullreduce_data: (newValue, val, context) => {
             context.editor({
                 fullreduce_data: newValue
             })
