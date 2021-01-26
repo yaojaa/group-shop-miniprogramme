@@ -1111,6 +1111,13 @@ Page({
     },
 
     watch: {
+        show_buyerlist:(newValue, val, context) => {
+
+            context.editor({
+                show_buyerlist:newValue
+            })
+
+        },
         delivery_method: (newValue, val, context) => {
 
             context.editor({

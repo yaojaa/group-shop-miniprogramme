@@ -27,8 +27,8 @@
                         <view class="user-name mr-sm">{{userInfo.nickname}} 
 
                         </view>
-<!-- <view bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份</view>
- -->                    </view>
+<view bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份</view>
+                    </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
                         <view class="text-sm mt-xs">我的粉丝</view>

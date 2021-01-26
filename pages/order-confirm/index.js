@@ -306,11 +306,11 @@ Page({
   },
   beforeCreateOrder() {
     console.log('object', this.data.order_count);
-    if (this.data.order_count < 30000) {
+    if (this.data.order_count < 10000000) {
       wx.showModal({
         confirmText: '支付',
         title: '风险提示',
-        content: `当前商户为新用户，订单数少${this.data.order_count},继续支付将可能无法退款`,
+        content: '请自行确定商家诚实守信，开心麻团小程序只提供技术支持，不提供担保服务',
         success: (res) => {
           if (res.confirm) {
             this.createOrder();
