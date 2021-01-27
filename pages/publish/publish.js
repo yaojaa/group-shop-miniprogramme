@@ -1112,6 +1112,13 @@ Page({
     },
 
     watch: {
+        show_buyerlist:(newValue, val, context) => {
+
+            context.editor({
+                show_buyerlist:newValue
+            })
+
+        },
         delivery_method: (newValue, val, context) => {
 
             context.editor({
@@ -1120,7 +1127,8 @@ Page({
 
         },
 
-        sell_address: (newValue, val, context) => {
+        sell_address:(newValue, val, context) => {
+
 
             context.editor({
                 self_address_id: newValue.map((item) => {

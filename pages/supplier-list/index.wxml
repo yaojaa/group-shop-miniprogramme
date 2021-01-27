@@ -3,7 +3,7 @@
     <van-tab title="我创建的团队">
       <view class="text-justify p-df top-head">
         <view>
-          共有{{fansCount}}个成员 
+          共有{{fansCount}}个团队成员 
           <!-- <van-icon bindtap="openSetting" size="20px" name="setting-o" /> -->
         </view>
         <button class="btn sm primary round" data-type="store" open-type="share" bindtap="openShareFriends">
@@ -18,7 +18,7 @@
           <view class="grow1 flex-sub">
             <view class=" flex">
               <view class="name grow1">
-                {{item.nickname}}
+                {{item.nickname}} <view x:if="{{item.is_admin == 1}}" class="mini-tags">管理员</view>
                 <text class="right f10">{{item.apply_time}}</text>
               </view>
             </view>
@@ -35,15 +35,15 @@
             </button>
           </view>
           <view class="flex align-center" wx:else>
-         <!--    <button wx:if="{{item.is_admin == 0}}" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm primary" class="btn sm  ml-sm">
+            <button wx:if="{{item.is_admin == 0}}" data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm primary" class="btn sm  ml-sm">
               设为管理员
             </button> 
-            <button wx:else data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm  coral ml-sm">
+            <button wx:else data-user_name="{{item.nickname}}" data-user_id="{{item.h_user_id}}" data-is_admin="{{item.is_admin}}" bindtap="setAdmin" class="btn sm   ml-sm">
               取消管理员
             </button>
-          -->
+         
             <button class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-h_store_id="{{item.h_store_id}}" data-agent_user="{{item.nickname}}" data-agent_status="1" bindtap="removeHelper" class="btn sm ml-sm">
-              删除成员
+              移除
             </button>
           </view>
         </view>
