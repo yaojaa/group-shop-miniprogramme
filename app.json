@@ -63,7 +63,8 @@
         "pages/help-sale-invite/index",
         "pages/help-sale-up/index",
         "pages/acting-apply/index",
-        "pages/user-help-home/index"
+        "pages/user-help-home/index",
+        "pages/add_self/index"
     ],
     "subpackages": [
     {

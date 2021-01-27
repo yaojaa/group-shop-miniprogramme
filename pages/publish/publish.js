@@ -967,6 +967,7 @@ Page({
             visible2: false,
         })
         if (index == 2) {
+            app.globalData.sell_address = this.data.sell_address;
             wx.navigateTo({
                 url: '../map/index',
             })

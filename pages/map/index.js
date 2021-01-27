@@ -25,26 +25,36 @@ Page({
         wx.hideLoading()
         })
     },
+    onShow(){
+        this.getHistoryList();
+    },
     onLoad: function(e) {
 
         this.getHistoryList()
 
         //获取用户已经填写的提货点
-        var pages = getCurrentPages();
+        // var pages = getCurrentPages();
 
-        var prevPage = pages[pages.length - 2]; //上一个页面
+        // var prevPage = pages[pages.length - 2]; //上一个页面
 
-        if (prevPage && prevPage.data.sell_address.length) {
+        // if (prevPage && prevPage.data.sell_address.length) {
 
-            this.setData({
-                newAddress: prevPage.data.sell_address
-            })
+        //     this.setData({
+        //         newAddress: prevPage.data.sell_address
+        //     })
 
-           return //已经有地点 肯定是授权过的不需要验证
+        //    return //已经有地点 肯定是授权过的不需要验证
 
+        // }
+
+        let data = app.globalData.sell_address;
+        app.globalData.sell_address = null;
+        console.log(data)
+        if(data && data.length > 0){
+          this.setData({
+            newAddress: data
+          })
         }
-
-
 
         //获取用户授权状态
         // wx.getSetting({
@@ -71,14 +81,7 @@ Page({
         //     }
         // })
 
-
-
         // console.log('prevPage.data.sell_address', prevPage.data.sell_address)
-
-
-
-
-
     },
     limitChange(e) {
         this.setData({
@@ -98,8 +101,6 @@ Page({
         },(res)=>{
           console.log('编辑失败',res)
         })
-
-
 
     },
 
@@ -274,9 +275,13 @@ Page({
         sell_address:this.data.newAddress
        })
        
-
-
-      
+    },
+    // 去添加自提点
+    toAddAddress(e){
+        app.globalData.sell_address = this.data.newAddress;
+        wx.navigateTo({
+          url: '../add_self/index' + (e.currentTarget.dataset.id ? '?self_address_id=' + e.currentTarget.dataset.id : '')
+        })
     },
 
      // name: e.name,
