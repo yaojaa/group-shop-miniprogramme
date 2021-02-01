@@ -43,10 +43,24 @@ Page({
   },
   /**同步昵称**/
   sameNickname(){
-    util.wx.post('/user/update_wx_basicinfo',{
-      nickname:'nickname',
-      headimg:'headimg'
+
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(res);
+        var avatarUrl = res.userInfo.avatarUrl;
+        var nickName = res.userInfo.nickName;
+
+        console.log(res)
+
+            util.wx.post('/user/update_wx_basicinfo',{
+              nickname:nickName,
+              headimg:avatarUrl
+            })
+      
+      }
     })
+
+
   },
   doChange(e){
     console.log(e)

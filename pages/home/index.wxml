@@ -24,7 +24,7 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm">{{userInfo.nickname}} <van-icon name="replay" />
+                        <view class="user-name mr-sm">{{userInfo.nickname}} <van-icon bindtap="sameNickname" name="replay" />
 
                         </view>
 <view bindtap="showExchange" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份</view>
@@ -165,7 +165,6 @@
   
   <view></view>
   <view></view>
-
 </van-action-sheet>
 
 
