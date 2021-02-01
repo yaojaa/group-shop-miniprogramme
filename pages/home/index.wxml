@@ -24,10 +24,10 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm">{{userInfo.nickname}} 
+                        <view class="user-name mr-sm">{{userInfo.nickname}} <van-icon name="replay" />
 
                         </view>
-<view bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份</view>
+<view bindtap="showExchange" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份</view>
                     </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
@@ -156,6 +156,19 @@
             <button bindtap="setHasTips" class="linenear_bg">我知道了</button>
         </view>
     </van-dialog>
+
+<van-action-sheet show="{{ exchange }}" title="切换身份"   bind:close="hidenExchange">
+  <view class="flex-box" wx:for="{{manageShops}}" bindtap="doChange" data-store-id="{{item.store_id}}" >  
+    <image class="user-avatar" src="{{item.headimg}}" /> {{item.nickname}}  
+    <view wx:if="item.user_id == user_id"><van-icon color="green" name="success" /> </view>
+  </view>
+  
+  <view></view>
+  <view></view>
+
+</van-action-sheet>
+
+
     <!-- <van-popup
   show="{{ showDialog }}"
   overlay="{{false}}"

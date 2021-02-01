@@ -25,7 +25,34 @@ Page({
     showDialog: false, // 订阅提示弹窗
     searchGoodslist: [],
     searchWords: '',
-    search_is_loading: true
+    search_is_loading: true,
+    exchange:false,
+    manageShops:[],
+    user_id:app.globalData.userInfo.user_id
+  },
+  /***显示切换身份***/
+  showExchange(){
+    this.setData({
+      exchange:true
+    })
+  },
+  hidenExchange(){
+     this.setData({
+      exchange:false
+    })
+  },
+  /**同步昵称**/
+  sameNickname(){
+    util.wx.post('/user/update_wx_basicinfo',{
+      nickname:'nickname',
+      headimg:'headimg'
+    })
+  },
+  doChange(e){
+    console.log(e)
+    const store_id = e.currentTarget.dataset.storeId
+    console.log(store_id)
+
   },
   // 搜索
   onSearch(e) {
@@ -149,7 +176,8 @@ Page({
             });
           } else {
             this.setData({
-              pending_money: res.data.data.store.pending_money
+              pending_money: res.data.data.store.pending_money,
+              manageShops:res.data.data.manage
             });
           }
         } else {

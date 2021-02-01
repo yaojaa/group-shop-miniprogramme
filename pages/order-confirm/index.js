@@ -306,7 +306,7 @@ Page({
   },
   beforeCreateOrder() {
     console.log('object', this.data.order_count);
-    if (this.data.order_count < 10000000) {
+    if (this.data.order_count < 15) {
       wx.showModal({
         confirmText: '支付',
         title: '风险提示',
