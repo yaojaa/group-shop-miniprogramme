@@ -503,9 +503,9 @@ const request = (url, data, method) => {
             method: method,
             header: {
                 'content-type' : 'application/json',
-                'Authorization': app.globalData.token,
+                'Authorization': app.globalData.token || '',
                 'system-info'   : JSON.stringify(app.globalData.systemInfo),
-                'store-id'     : app.globalData.store_id || 'null' // 团长0 供应商1 用户为空
+                'store-id'     : app.globalData.store_id || '' // 团长0 供应商1 用户为空
             },
             success: function(res) { //服务器返回数据
                
