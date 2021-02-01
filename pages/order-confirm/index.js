@@ -24,7 +24,8 @@ Page({
     address_load: false,
     shipping_money: 0,
     goodsTotal: {},
-    cartData: []
+    cartData: [],
+    order_count: 0
   },
   getUserAddress() {
     this.setData({
@@ -103,7 +104,7 @@ Page({
       .then((res) => {
         if (res.data.code == 200) {
           let data = res.data.data.goods.self_address;
-          console.log(data);
+          console.log('res.data.data.goods', res.data.data.goods);
           this.setData({
             self_address: data,
             address_id: data[0].self_address_id || ''
@@ -166,7 +167,8 @@ Page({
         this.setData({
           seller: goods.user,
           goods_name: goods.goods_name,
-          delivery_method: goods.delivery_method
+          delivery_method: goods.delivery_method,
+          order_count: res.data.data.goods.store.order_count
         });
 
         wx.hideLoading();
@@ -301,6 +303,23 @@ Page({
    */
   onShow: function () {
     //this.getAddress();
+  },
+  beforeCreateOrder() {
+    console.log('object', this.data.order_count);
+    if (this.data.order_count < 10000000) {
+      wx.showModal({
+        confirmText: '支付',
+        title: '风险提示',
+        content: '请自行确定商家诚实守信，开心麻团小程序只提供技术支持，不提供担保服务',
+        success: (res) => {
+          if (res.confirm) {
+            this.createOrder();
+          }
+        }
+      });
+    } else {
+      //this.createOrder();
+    }
   },
   //确认订单
   createOrder: function () {

@@ -1,0 +1,52 @@
+<view class="mb20 input">
+  <van-cell-group>
+    <van-field
+      value="{{ addressData.name }}"
+      required
+      label="自提点名称"
+      placeholder="自提点简称"
+      bind:change="nameInput"
+    />
+
+    <van-field
+      value="{{ addressData.address }}"
+      required
+      label="位置"
+      placeholder="请输入自提点位置或点击右侧定位"
+      bind:change="addressInput"
+      >
+      <van-button wx:if="{{locationFlag}}" icon="location" custom-class='type-btn' bind:click="addAddress" slot="button"></van-button>
+      <van-button wx:else icon="location" custom-class='type-btn' bindopensetting="addAddress" open-type="openSetting" slot="button"></van-button>
+    </van-field>
+
+    <van-field
+      value="{{ addressData.door_number }}"
+      required
+      label="详细地址"
+      placeholder="详细地址"
+      bind:change="numberInput"
+      border="{{ false }}"
+    />
+  </van-cell-group>
+</view>
+<view class="mb20">
+  <van-cell-group class="mb20">
+    <van-field
+      value="{{ addressData.contact_name }}"
+      label="自提点联系人"
+      placeholder="请输入自提点联系人"
+      bind:change="contInput"
+    />
+
+    <van-field
+      value="{{ addressData.contact_tel }}"
+      label="自提点电话"
+      placeholder="请输入自提点电话"
+      bind:change="phoneInput"
+      border="{{ false }}"
+    />
+  </van-cell-group>
+</view>
+<view class="bottom-button pt30 pb30 pr30 pl30">
+    <van-button custom-class='btn' block bind:click="save" round type="primary">确认添加</van-button>
+</view>

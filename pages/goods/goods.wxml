@@ -84,8 +84,10 @@
         </view>
         <view class="text-sm text-muted">
             访问次数 {{goods.pageview_count+1}}
-            <text wx:if="{{goods.show_buyerlist!==1}}">已售 {{goods.total_qty}}</text>
+            <text>已售 {{goods.total_qty}}</text>
             <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text>
+            <text wx:if="{{goods.delivery_method == 2}}">（用户自提）</text>
+
         </view>
     </view>
     <block wx:if="{{goods.goods_expires.status== 1}}">
@@ -185,7 +187,11 @@
     </view>
     <view>
         <goods-detail wx:if="content.length" content="{{content}}"></goods-detail>
-        <block wx:if="{{goods.show_buyerlist!==1}}">
+
+        <view class="code center" wx:if="{{goods.user.wx_paycode}}">
+            <image src="{{goods.user.wx_paycode}}"  mode="widthFix"/>
+        </view>
+        <block wx:if="{{goods.show_buyerlist == 0}}">
             <view class='sub-title scale-b-1px contentBox'>
                 <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
                     查看所有订单 〉

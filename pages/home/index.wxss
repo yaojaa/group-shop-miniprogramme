@@ -15,6 +15,22 @@
     align-items: center;
     justify-content: flex-end;
 }
+
+
+
+.change-user {
+    position: absolute;
+    padding-left: 220rpx;
+    top: 0;
+    left: 10px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+
 .tips{
     padding:10px 0
 }
