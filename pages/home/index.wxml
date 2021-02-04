@@ -27,7 +27,7 @@
                         <view class="user-name mr-sm">{{nickname}} <van-icon bindtap="sameNickname" name="replay" />
 
                         </view>
-<view bindtap="showExchange" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份</view>
+<view wx:if="{{manageShops.length}}" bindtap="showExchange" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份 {{manageShops.length}}</view>
                     </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
@@ -158,15 +158,23 @@
     </van-dialog>
 
 <van-action-sheet show="{{ exchange }}" title="切换身份"   bind:close="hidenExchange">
-  
+  <view class="changContent">
+      
+
   <view class="flex-box" wx:for="{{manageShops}}" data-index="{{index}}" bindtap="doChange" data-store-id="{{item.store_id}}" >  
-    <image class="user-avatar" src="{{item.headimg}}" /> {{item.nickname}}  
-    <view wx:if="item.user_id == user_id"><van-icon color="green" name="success" /> </view>
+    <image class="user-avatar" src="{{item.headimg}}" /> 
+    <view class="f18"> <view class="name">{{item.nickname}}</view> 
+
+    <view class="name"><van-tag type="warning" wx:if="{{item.role == 0}}">自己的</van-tag>
+        <van-tag type="warning" wx:if="{{item.role == 1}}">管理的</van-tag>
+    </view>
+
+ </view> 
+    <view style="flex: 1"><van-icon wx:if="{{store_id == item.store_id}}" color="green" size="30" name="success" /> </view>
 
   </view>
-  
-  <view></view>
-  <view></view>
+</view>
+
 </van-action-sheet>
 
 

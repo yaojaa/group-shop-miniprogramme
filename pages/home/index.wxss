@@ -1154,3 +1154,29 @@ button::after {
     margin: 0 20px;
 }
 .fg1{ flex-grow: 1; }
+
+/*切换身份弹窗*/
+.changContent{
+    height: 600rpx;
+    padding:30px;
+}
+.changContent .flex-box{
+
+    display: flex;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee
+
+}
+.changContent .flex-box view{
+    flex: 2;
+    padding: 0 10px
+}
+
+/*切换身份弹窗*/
+
+
+
+
+
+

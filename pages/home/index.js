@@ -26,9 +26,9 @@ Page({
     searchGoodslist: [],
     searchWords: '',
     search_is_loading: true,
-    exchange:false,
+    exchange:true,
     manageShops:[],
-    user_id:app.globalData.userInfo.user_id
+    store_id:''
   },
   /***显示切换身份***/
   showExchange(){
@@ -53,7 +53,7 @@ Page({
         var avatarUrl = res.userInfo.avatarUrl;
         var nickName = res.userInfo.nickName;
 
-            util.wx.post('/user/update_wx_basicinfo',{
+            util.wx.post('/api/user/update_wx_basicinfo',{
               nickname:nickName,
               headimg:avatarUrl
             })
@@ -69,14 +69,20 @@ Page({
 
     const index = e.currentTarget.dataset.index
 
-    const user= this.manageShops[index]
+    const user= this.data.manageShops[index]
 
+    this.setData({
+      exchange:false,
+      store_id:user.store_id
+    })
 
 
     app.globalData.store_id = user.store_id
-
+    app.globalData.userInfo.store_id = user.store_id
     app.globalData.userInfo.headimg = user.headimg
     app.globalData.userInfo.nickname = user.nickname
+
+    console.log(app.globalData.userInfo)
 
     this.setUserInView()
 
@@ -207,7 +213,8 @@ Page({
             this.setData({
               pending_money: res.data.data.store.pending_money,
               manageShops:res.data.data.manage
-            });
+            })
+
           }
         } else {
           wx.clearStorageSync();
@@ -297,6 +304,12 @@ Page({
     }
 
 
+    this.setData({
+      store_id: app.globalData.userInfo.store_id
+    })
+
+
+
     wx.getStorage({
       key: 'show_tips',
       fail: (res) => {
@@ -323,6 +336,12 @@ Page({
          headimg: app.globalData.userInfo.headimg,
          nickname:app.globalData.userInfo.nickname
     });
+
+        this.get_store_info()
+        this.getOrderList();
+        this.getGoodsList()
+
+
   },
   goCreate() {
     wx.redirectTo({
@@ -353,16 +372,16 @@ Page({
     });
   },
 
-  // get_store_info() {
-  //     util.wx.get('/api/seller/get_store_money').then(res => {
-  //         this.setData({
-  //             pending_money: res.data.data.pending_money,
-  //             fansNum :res.data.data.fans_count
-  //              })
+  get_store_info() {
+      util.wx.get('/api/seller/get_store_money').then(res => {
+          this.setData({
+              pending_money: res.data.data.pending_money,
+              fansNum :res.data.data.fans_count
+               })
 
-  //     })
+      })
 
-  // },
+  },
 
   ///////////
   //获取最新订单 //
