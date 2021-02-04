@@ -15,7 +15,7 @@
         <view class="flex align-center">
             <navigator url="../identify/identify" hover-class="none">
                 <view class="user-avatar mh-df">
-                    <image class="user-avatar" src="{{userInfo.headimg}}" />
+                    <image class="user-avatar" src="{{headimg}}" />
                     <view class="set-icon">
                         <i-icon type="setup_fill" color="#ffa70f" size="16" />
                     </view>
@@ -24,7 +24,7 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm">{{userInfo.nickname}} <van-icon bindtap="sameNickname" name="replay" />
+                        <view class="user-name mr-sm">{{nickname}} <van-icon bindtap="sameNickname" name="replay" />
 
                         </view>
 <view bindtap="showExchange" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份</view>
@@ -158,9 +158,11 @@
     </van-dialog>
 
 <van-action-sheet show="{{ exchange }}" title="切换身份"   bind:close="hidenExchange">
-  <view class="flex-box" wx:for="{{manageShops}}" bindtap="doChange" data-store-id="{{item.store_id}}" >  
+  
+  <view class="flex-box" wx:for="{{manageShops}}" data-index="{{index}}" bindtap="doChange" data-store-id="{{item.store_id}}" >  
     <image class="user-avatar" src="{{item.headimg}}" /> {{item.nickname}}  
     <view wx:if="item.user_id == user_id"><van-icon color="green" name="success" /> </view>
+
   </view>
   
   <view></view>

@@ -62,10 +62,24 @@ Page({
 
 
   },
+
+  /**点击切换身份按钮**/
   doChange(e){
-    console.log(e)
-    const store_id = e.currentTarget.dataset.storeId
-    console.log(store_id)
+
+    const index = e.currentTarget.dataset.index
+
+    const user= this.manageShops[index]
+
+
+
+    app.globalData.store_id = user.store_id
+
+    app.globalData.userInfo.headimg = user.headimg
+    app.globalData.userInfo.nickname = user.nickname
+
+    this.setUserInView()
+
+
 
   },
   // 搜索
@@ -281,9 +295,7 @@ Page({
       return;
     }
 
-    this.setData({
-      userInfo: app.globalData.userInfo
-    });
+
     wx.getStorage({
       key: 'show_tips',
       fail: (res) => {
@@ -302,6 +314,14 @@ Page({
     });
 
     this.getOrderList();
+    this.setUserInView()
+  },
+
+  setUserInView(){
+        this.setData({
+         headimg: app.globalData.userInfo.headimg,
+         nickname:app.globalData.userInfo.nickname
+    });
   },
   goCreate() {
     wx.redirectTo({
