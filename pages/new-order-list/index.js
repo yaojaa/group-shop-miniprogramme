@@ -48,7 +48,7 @@ Page({
         })
         let ajaxData = {
                 cpage: this.data.cpage,
-                pagesize: 25,
+                pagesize: 50,
                 search_order_status: this.data.search_order_status,
 
             }

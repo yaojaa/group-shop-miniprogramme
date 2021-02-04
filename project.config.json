@@ -26,8 +26,9 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -1498,6 +1499,12 @@
           "name": "pages/order-detail-seller/index",
           "pathName": "pages/order-detail-seller/index",
           "query": "id=31681",
+          "scene": null
+        },
+        {
+          "name": "pages/new-order-list/index",
+          "pathName": "pages/new-order-list/index",
+          "query": "goods_id=3579",
           "scene": null
         }
       ]

@@ -43,14 +43,15 @@ Page({
   },
   /**同步昵称**/
   sameNickname(){
-
+    wx.showLoading({
+      title:'同步中...',
+      icon:'none'
+    })
     wx.getUserInfo({
       success: function (res) {
         console.log(res);
         var avatarUrl = res.userInfo.avatarUrl;
         var nickName = res.userInfo.nickName;
-
-        console.log(res)
 
             util.wx.post('/user/update_wx_basicinfo',{
               nickname:nickName,
