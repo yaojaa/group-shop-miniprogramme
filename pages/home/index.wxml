@@ -1,5 +1,5 @@
 <view class="container">
-    <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;"
+<!--     <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;"
         wx:if="{{show_tips}}">
         <view class="collect-box">
             "点击右边
@@ -7,7 +7,19 @@
             添加到我的小程序"
             <van-icon name="close" size="28rpx;" />
         </view>
-    </view>
+    </view> -->
+
+
+    <button type="default" style="z-index:100;position:absolute;top:{{menuBarTop}}px; left: 10px" 
+    wx:if="{{manageShops.length}}" class="exchange_btn" size="mini" bindtap="showExchange" > <van-icon name="exchange" /> 切换身份 </button>
+   
+
+
+   <view class="pubbtn fg1" bindtap="new_btn">
+  <view style="padding-top: 5px"><van-icon name="add" size="25px" /></view> 
+  <view class="add">发布</view> 
+
+</view>
 
 
     <view class="head-box">
@@ -24,10 +36,10 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm">{{nickname}} <van-icon bindtap="sameNickname" name="replay" />
+                        <view class="user-name mr-sm">{{nickname}} <van-icon size="16"  bindtap="sameNickname" name="replay" />
 
                         </view>
-<view wx:if="{{manageShops.length}}" bindtap="showExchange" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份 {{manageShops.length}}</view>
+<view wx:if="{{manageShops.length}}" bindtap="showExchange" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份 </view>
                     </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
@@ -59,9 +71,7 @@
             </view>
         </i-panel>
     </view>
-    <view class="mt-xl flex">
-        <button class="pubbtn fg1" bindtap="new_btn">+ 新发布</button>
-    </view>
+
     <view class="text-center" style="padding: 120px" wx:if="{{is_loading}}">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
@@ -79,8 +89,23 @@
   <van-tab title="已结束"></van-tab>
   <van-tab title="已删除"></van-tab>
 </van-tabs> -->
-<van-search value="{{ searchWords }}" shape="round" background="#fff" placeholder="请输入标题关键词搜索"
+<!-- <van-search value="{{ searchWords }}" shape="round" background="#fff" placeholder="请输入标题关键词搜索"
                 show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
+                 -->
+
+                <van-search
+  value="{{ searchWords }}"
+  placeholder="请输入标题关键词搜索"
+  use-action-slot
+  bind:cancel="onCancel"
+  bind:search="onSearch"
+>
+  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view>
+
+
+</van-search>
+
+
             <!-- search -->
             <view class="goods-box" wx:if='{{searchWords}}'>
                 <block wx:key="index" wx:for="{{searchGoodslist}}">
@@ -163,7 +188,7 @@
 
   <view class="flex-box" wx:for="{{manageShops}}" data-index="{{index}}" bindtap="doChange" data-store-id="{{item.store_id}}" >  
     <image class="user-avatar" src="{{item.headimg}}" /> 
-    <view class="f18"> <view class="name">{{item.nickname}}</view> 
+    <view class="f18" style="flex: 3"> <view class="name">{{item.nickname}}</view> 
 
     <view class="name"><van-tag type="warning" wx:if="{{item.role == 0}}">自己的</van-tag>
         <van-tag type="warning" wx:if="{{item.role == 1}}">管理的</van-tag>

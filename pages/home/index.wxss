@@ -47,18 +47,7 @@
     margin-bottom: 60px
 }
 
-.new-btn {
-    position: absolute;
-    right: 10px;
-    top: 9rpx;
-    z-index: 9999;
-    color: #fff;
-    border-radius: 50rpx;
-    border: 1px solid #ebffdb;
-    margin-right: 10px;
-    font-size: 24rpx;
-    background: #85c002
-}
+
 
 
 .panelbox {
@@ -69,10 +58,10 @@
     position: relative;
     background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center bottom no-repeat #fff;
     background-size: 100% auto;
-    height: 280rpx;
+    height: 290rpx;
     position: relative;
     width: 100%;
-    padding-top: 158rpx;
+    padding-top: 160rpx;
     overflow: hidden;
 }
 
@@ -122,14 +111,25 @@
 }
 
 .pubbtn {
-    color: #49b34d;
-    border-radius: 50rpx;
-    border: 1px solid #85c002;
+    color: #fff;
+    border-radius: 100%;
     background: #f9fff5;
     display: block;
-    width: 80%;
+    width: 60px;
+    height: 60px;
     font-size: 14px;
-    margin: 0 auto 10px;
+    position: fixed;
+    right: 15px;
+    bottom: 80px;
+    line-height: 1.2;
+    background: #85c002;
+    z-index: 100;
+    text-align: center;
+}
+
+.exchange_btn{
+    border-radius: 50rpx;
+    background: #f9fff5;
 }
 
 
