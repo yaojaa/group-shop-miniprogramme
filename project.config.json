@@ -459,7 +459,7 @@
   "setting": {
     "urlCheck": false,
     "es6": true,
-    "enhance": false,
+    "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
@@ -474,23 +474,25 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "enableEngineNative": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.12.2",
+  "libVersion": "2.8.3",
   "appid": "wx6ac9955f87c289f0",
   "projectname": "group",
   "cloudfunctionTemplateRoot": "",
@@ -504,14 +506,6 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
     "plugin": {
       "list": [
         {
@@ -552,10 +546,9 @@
           "scene": null
         },
         {
-          "id": 3,
           "name": "详情页启动",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2798",
+          "query": "goods_id=2000015",
           "scene": 1008
         },
         {
@@ -1541,13 +1534,6 @@
           "scene": null
         },
         {
-          "id": 145,
-          "name": "pages/acting-apply/index",
-          "pathName": "pages/acting-apply/index",
-          "query": "id=1",
-          "scene": null
-        },
-        {
           "id": -1,
           "name": "帮卖修改",
           "pathName": "pages/help-sale-setting/index",
@@ -1646,10 +1632,9 @@
           "scene": null
         },
         {
-          "id": 160,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3473",
+          "query": "goods_id=3579",
           "scene": null
         },
         {
@@ -1807,10 +1792,9 @@
           "scene": null
         },
         {
-          "id": -1,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=3161&from_id=1576&help_sale=true",
+          "query": "goods_id=1167",
           "scene": null
         },
         {
@@ -1856,10 +1840,9 @@
           "scene": null
         },
         {
-          "id": 190,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id= 3200",
+          "query": "goods_id= 504",
           "scene": null
         },
         {
@@ -1919,20 +1902,6 @@
           "scene": null
         },
         {
-          "id": 199,
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=3651&from_id=1&help_sale=true",
-          "scene": null
-        },
-        {
-          "id": 200,
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=2688",
-          "scene": null
-        },
-        {
           "id": 202,
           "name": "pages/order-detail-seller/index",
           "pathName": "pages/order-detail-seller/index",
@@ -1951,6 +1920,39 @@
           "name": "pages/help-sale-up/index",
           "pathName": "pages/help-sale-up/index",
           "query": "goods_id=3517",
+          "scene": null
+        },
+        {
+          "id": 204,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=supplier&id=4",
+          "scene": null
+        },
+        {
+          "id": 204,
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
+          "query": "goods_id=3640",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/full_reducetion/index",
+          "pathName": "pages/full_reduction/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=31681",
+          "scene": null
+        },
+        {
+          "name": "pages/new-order-list/index",
+          "pathName": "pages/new-order-list/index",
+          "query": "goods_id=3579",
           "scene": null
         }
       ]

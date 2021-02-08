@@ -72,9 +72,14 @@
       😘跪求分享，以免遗漏～同时活跃群气氛
   </view><view></view>
 
-    <view class="center" style="padding-top: 30px" hidden="{{!onshare}}">
+    <view class="center" style="padding-top: 30px">
           <button bindtap="goUserSite"  class="button-area">去{{seller_name}}的主页看看</button>
     </view>
+
+      <view class="center" style="padding-top: 30px">
+          <button bindtap="goback"  class="button-area">返回商品</button>
+    </view>
+
 
 
 

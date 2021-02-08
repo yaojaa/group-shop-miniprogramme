@@ -20,6 +20,14 @@ Component({
             type: Boolean,
             value: false
         },
+        // scrollTop
+        currentScrollTop: {
+            type: Number,
+            value: 0,
+            observer: function (newVal, oldVal) {
+                this.data.scrollTop = newVal;
+            },
+        },
         // 容器宽度
         containWidth: {
             type: Number
@@ -107,10 +115,16 @@ Component({
     data: {
         innerInitData: [],
         curIndex: -1,
-        newCurIndex: -1
+        newCurIndex: -1,
+        scrollTop: 0,
+        contentSize: [],
+        pr: ''
     },
     observers: {
         'initData': function(data) { //  'params'是要监听的字段，（data）是已更新变化后的数据
+            data = data.filter(e=>{
+                return e.type
+            })
             this.setData({
                 innerInitData: data
             })
@@ -119,9 +133,21 @@ Component({
 
     attached: function() {
         console.log('组件初始化', this.properties.initData)
-        this.setData({
-            innerInitData: this.properties.initData
+        let data = this.properties.initData.filter(e=>{
+            return e.type;
         })
+        this.setData({
+            innerInitData: data
+        })
+    },
+    ready(){
+        this.createSelectorQuery().selectAll('.content-size').boundingClientRect().exec(res => {
+            console.log(res[0])
+            this.data.contentSize.push(res[0][0].width);
+            console.log(this.data.contentSize)
+        })
+        let sys = wx.getSystemInfoSync()
+        this.data.pr = sys ? sys.pixelRatio : 1;
     },
 
     /**
@@ -131,8 +157,7 @@ Component({
         insertEvent: function(e) {
             console.log(e)
             let self = this
-            let index = e.currentTarget.dataset.index
-
+            let index = e.currentTarget.dataset.index;
             let insertType = e.currentTarget.dataset.type
             switch (insertType) {
                 case "image":
@@ -152,10 +177,7 @@ Component({
 
                                 uploadFile({ filePath: item }).then(resp => {
 
-
-
                                     i++
-
                                     const imageObj = {
                                         "type": "image",
                                         "src": resp.data.file_url,
@@ -164,15 +186,37 @@ Component({
 
                                     if (index !== undefined) {
                                         self.data.innerInitData.splice(index + 1, 0, imageObj)
+                                        let data = self.data.innerInitData.filter(e=>{
+                                            return e.type;
+                                        })
+                                         self.setData({
+                                            innerInitData: data
+                                        }, ()=>{
+                                            wx.pageScrollTo({
+                                              scrollTop: self.data.scrollTop,
+                                                duration: 0
+                                            })
+                                        })
+                                        // this.setData({
+                                        //     ['innerInitData['+ index +']']: imageObj
+                                        // })
                                     } else {
-                                        self.data.innerInitData.push(imageObj)
+                                        // self.data.innerInitData.push(imageObj)
+                                        this.setData({
+                                            ['innerInitData['+ self.data.innerInitData.length +']']: imageObj
+                                        })
                                     }
 
                                     
 
-                                    this.setData({
-                                        innerInitData: this.data.innerInitData
-                                    })
+                                    // this.setData({
+                                    //     innerInitData: this.data.innerInitData
+                                    // }, ()=>{
+                                    //     wx.pageScrollTo({
+                                    //       scrollTop: this.data.scrollTop,
+                                    //         duration: 0
+                                    //     })
+                                    // })
 
                                     if (i == res.tempFilePaths.length) {
 
@@ -205,29 +249,46 @@ Component({
                         })
                     }
 
-                    console.log('index', index)
-
-
-                    if (index !== undefined) {
-                        self.data.innerInitData.splice(index + 1, 0, {
+                    let txtObj = {
                             // 模块类型
                             "type": "text",
                             // 文本内容
                             "desc": "",
+                        }
+
+
+                    if (index !== undefined) {
+                        self.data.innerInitData.splice(index + 1, 0, txtObj)
+                        let data = self.data.innerInitData.filter(e=>{return e.type})
+                        self.setData({
+                            innerInitData: data
+                        }, ()=>{
+                            wx.pageScrollTo({
+                              scrollTop: self.data.scrollTop,
+                                duration: 0
+                            })
                         })
                     } else {
-                        self.data.innerInitData.push({
-                            // 模块类型
-                            "type": "text",
-                            // 文本内容
-                            "desc": ""
+                        // self.data.innerInitData.push({
+                        //     // 模块类型
+                        //     "type": "text",
+                        //     // 文本内容
+                        //     "desc": ""
+                        // })
+                        self.setData({
+                            ['innerInitData['+ self.data.innerInitData.length +']']: txtObj
                         })
                     }
 
 
-                    self.setData({
-                        innerInitData: self.data.innerInitData
-                    })
+                    // self.setData({
+                    //     innerInitData: self.data.innerInitData
+                    // }, ()=>{
+                    //                     wx.pageScrollTo({
+                    //                       scrollTop: this.data.scrollTop,
+                    //                         duration: 0
+                    //                     })
+                    //                 })
 
                     break
 
@@ -239,36 +300,61 @@ Component({
                         isCompress: self.properties.supportType.video.isCompress,
                         maxDuration: self.properties.supportType.video.maxDuration,
                         camera: self.properties.supportType.video.camera,
-                        success: function(res) {
-
+                        success:(res)=> {
+                            console.log(res)
+                            let vInfo=res;
                             wx.showLoading({
                                 title: '上传中'
                             })
                             uploadFile({ filePath: res.tempFilePath }).then(res => {
-
-
-                                if (index !== undefined) {
-                                    self.data.innerInitData.splice(index + 1, 0, {
+                                let videoObj = {
                                         isEditing: true,
                                         // 模块类型
                                         "type": "video",
                                         // 视频地址
                                         "src": res.data.file_url,
+                                        "vSize": {
+                                            w: vInfo.width,
+                                            h: vInfo.height
+                                        },
+                                        'cH': this.data.contentSize[0] ? vInfo.height*this.data.contentSize[0]*this.data.pr/vInfo.width : 0
+                                    }
 
+                                // if (index !== undefined) {
+                                //     this.data.innerInitData.splice(index + 1, 0, videoObj)
+                                // } else {
+                                //     this.data.innerInitData.push(videoObj)
+                                // }
+                                if (index !== undefined) {
+                                    self.data.innerInitData.splice(index + 1, 0, videoObj)
+                                    let data = self.data.innerInitData.filter(e=>{return e.type})
+                                     this.setData({
+                                        innerInitData: data
+                                    }, ()=>{
+                                        wx.pageScrollTo({
+                                          scrollTop: this.data.scrollTop,
+                                            duration: 0
+                                        })
                                     })
+                                    // this.setData({
+                                    //     ['innerInitData['+ index +']']: videoObj
+                                    // })
                                 } else {
-                                    self.data.innerInitData.push({
-                                        isEditing: true,
-                                        // 模块类型
-                                        "type": "video",
-                                        // 视频地址
-                                        "src": res.data.file_url
+                                    // self.data.innerInitData.push(videoObj)
+                                    this.setData({
+                                        ['innerInitData['+ self.data.innerInitData.length +']']: videoObj
                                     })
                                 }
 
-                                self.setData({
-                                    innerInitData: self.data.innerInitData
-                                })
+
+                                // this.setData({
+                                //     innerInitData: this.data.innerInitData
+                                // }, ()=>{
+                                //     wx.pageScrollTo({
+                                //       scrollTop: this.data.scrollTop,
+                                //         duration: 0
+                                //     })
+                                // })
 
                                 this.saveBlock()
 
@@ -292,19 +378,7 @@ Component({
 
                     break
             }
-            // if (index !== undefined) {
-            //   self.setData({
-            //     globalEditing: true,
-            //     innerInitData: self.data.innerInitData,
-            //     curIndex: index + 1
-            //   })
-            // } else {
-            //   self.setData({
-            //     globalEditing: true,
-            //     innerInitData: self.data.innerInitData,
-            //     curIndex: self.data.innerInitData.length - 1
-            //   })
-            // }
+          
         },
         deleteBlock: function(e) {
             let index = e.currentTarget.dataset.index
@@ -314,9 +388,10 @@ Component({
                     icon: 'none'
                 })
             }
-            this.data.innerInitData.splice(index, 1)
+            // this.data.innerInitData.splice(index, 1)
+            this.data.innerInitData[index] = {}
             this.setData({
-                innerInitData: this.data.innerInitData,
+                ['innerInitData['+ index +']']: this.data.innerInitData[index],
                 curIndex: -1,
                 newCurIndex: -1
             })
@@ -325,7 +400,13 @@ Component({
         //保存数据
         saveBlock: function() {
 
-            this.triggerEvent('updateData', this.data.innerInitData)
+            console.log('触发saveblock')
+
+            let data = this.data.innerInitData.filter( e => {
+                return e.type
+            })
+
+            this.triggerEvent('updateData', data)
 
         },
         tapEvent: function(e) {
@@ -348,13 +429,25 @@ Component({
 
                                     i++
 
+
                                     self.data.innerInitData[index].src = res.data.file_url
+
+
                                     self.setData({
-                                        innerInitData: self.data.innerInitData
+                                        ['innerInitData['+ index +']']: self.data.innerInitData[index]
                                     })
 
+                                    // self.setData({
+                                    //     innerInitData: self.data.innerInitData
+                                    // }, ()=>{
+                                    // wx.pageScrollTo({
+                                    //   scrollTop: this.data.scrollTop,
+                                    //     duration: 0
+                                    // })
+                                    // })
+
                                     if (i == res.tempFilePaths.length) {
-                                        this.saveBlock()
+                                        self.saveBlock()
                                     }
 
                                 })
@@ -377,23 +470,77 @@ Component({
                         maxDuration: self.properties.supportType.video.maxDuration,
                         camera: self.properties.supportType.video.camera,
                         success: function(res) {
-                            self.data.innerInitData[index].src = res.tempFilePath
-                            console.log(self.data.innerInitData)
-                            self.setData({
-                                innerInitData: self.data.innerInitData
+
+                            let vInfo=res;
+                            wx.showLoading({
+                                title: '上传中'
                             })
-                            this.saveBlock()
+                            uploadFile({ filePath: res.tempFilePath }).then(res => {
+                                let videoObj = {
+                                    isEditing: true,
+                                    // 模块类型
+                                    "type": "video",
+                                    // 视频地址
+                                    "src": res.data.file_url,
+                                    "vSize": {
+                                        w: vInfo.width,
+                                        h: vInfo.height
+                                    },
+                                    'cH': this.data.contentSize[0] ? vInfo.height*this.data.contentSize[0]*this.data.pr/vInfo.width : 0
+                                }
+
+
+                                this.setData({
+                                    ['innerInitData['+ index +']']: videoObj
+                                })
+
+                                this.saveBlock()
+
+                                wx.hideLoading()
+
+
+                            }).catch(e => {
+                                console.log(e)
+                                wx.showToast({
+                                    title: e,
+                                    icon: 'none'
+                                })
+
+                                wx.hideLoading()
+                            })
+
+                            // self.data.innerInitData[index].src = res.tempFilePath
+                            // console.log(self.data.innerInitData)
+
+                            // self.setData({
+                            //     ['innerInitData['+ index +']']: self.data.innerInitData[index]
+                            // })
+
+
+                            // self.setData({
+                            //     innerInitData: self.data.innerInitData
+                            // }, ()=>{
+                            //         wx.pageScrollTo({
+                            //           scrollTop: this.data.scrollTop,
+                            //             duration: 0
+                            //         })
+                            //     })
+                            // self.saveBlock()
                         }
                     })
             }
 
         },
         changeInput: function(e) {
+            console.log('失去焦点保存')
             let index = e.currentTarget.dataset.index
             let self = this
             self.data.innerInitData[index].desc = e.detail.value
+            // self.setData({
+            //     innerInitData: self.data.innerInitData
+            // })
             self.setData({
-                innerInitData: self.data.innerInitData
+                ['innerInitData['+ index +']']: self.data.innerInitData[index]
             })
             this.saveBlock()
 
@@ -409,10 +556,17 @@ Component({
             let prevData = self.data.innerInitData[index - 1]
             self.data.innerInitData[index] = prevData
             self.data.innerInitData[index - 1] = thisData
+
             self.setData({
-                innerInitData: self.data.innerInitData,
+                ['innerInitData['+ index +']']: self.data.innerInitData[index],
+                ['innerInitData['+ (index-1) +']']: self.data.innerInitData[index-1],
                 newCurIndex: -1
             })
+
+            // self.setData({
+            //     innerInitData: self.data.innerInitData,
+            //     newCurIndex: -1
+            // })
 
             this.triggerEvent('moveItem', +index - 1)
 
@@ -433,9 +587,14 @@ Component({
             this.data.innerInitData[index] = nextData
             this.data.innerInitData[index + 1] = thisData
             this.setData({
-                innerInitData: this.data.innerInitData,
+                ['innerInitData['+ index +']']: this.data.innerInitData[index],
+                ['innerInitData['+ (index+1) +']']: this.data.innerInitData[index+1],
                 newCurIndex: -1
             })
+            // this.setData({
+            //     innerInitData: this.data.innerInitData,
+            //     newCurIndex: -1
+            // })
 
             this.triggerEvent('moveItem', +index + 1)
 
@@ -453,7 +612,6 @@ Component({
                     newCurIndex: index
                 })
             }
-            this.saveBlock()
         },
         pageScrollToPosition(selector) {
             wx.pageScrollTo({

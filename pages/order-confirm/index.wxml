@@ -1,22 +1,18 @@
 <view class="container cf ">
     <view class="fixed-btn text-justify">
         <view class="flex align-center">
-            <view class="mh-df text-muted text-sm">
-                共计 {{totalNumer}} 件
-            </view>
+            <view class="mh-df text-muted text-sm">共计 {{totalNumer}} 件</view>
             <view class="pb-xs" wx:if="{{shipping_money!=='该地区不发货'}}">
-                <text class="text-muted text-sm">应付金额：</text>
-                <text class="text-lg bold coral-text">¥{{amountMoney+shipping_money}}</text>
-                <text class="text-muted text-sm"> 元</text>
+                <text class="text-muted text-sm">实付金额：</text>
+                <text class="text-lg bold coral-text">{{goodsTotal.pay_price || '¥0'}}</text>
+                <text class="text-muted text-sm">元</text>
             </view>
-            <view wx:else>
-
-                该地区不发货
-                
-            </view>
+            <view wx:else>该地区不发货</view>
         </view>
-        <form bindsubmit="formSubmit" report-submit="true" data-fn="createOrder">
-            <button class="btn primary w-min-lg lg linenear_bg" formType="submit" loading="{{loading}}" disabled="{{loading}}">{{pay_btn_txt}}</button>
+        <form bindsubmit="formSubmit" report-submit="true" data-fn="beforeCreateOrder">
+            <button class="btn primary w-min-lg lg linenear_bg" formType="submit" loading="{{loading}}" disabled="{{loading}}">
+                {{pay_btn_txt}}
+            </button>
         </form>
     </view>
     <view class="content-wrap">
@@ -32,7 +28,12 @@
                     <van-radio-group value="{{ address_id }}" bind:change="" wx:if="{{self_address.length>1}}">
                         <van-cell-group>
                             <van-cell clickable data-name="{{item.self_address_id}}" bind:click="onClick" size="small" wx:for="{{self_address}}" wx:key="{{index}}" value-class="self-ad-radio" bind:click="onAddressChange">
-                                <view slot="title" class="flex"><text class="self-ad-label">提货点{{index+1}}</text><text class="self-ad-content flex-sub">{{item.name}} {{item.door_number}}</text></view>
+                                <view slot="title" class="flex">
+                                    <text class="self-ad-label">提货点{{index+1}}</text>
+                                    <text class="self-ad-content flex-sub">
+                                        {{item.name}} {{item.door_number}}
+                                    </text>
+                                </view>
                                 <van-radio name="{{item.self_address_id}}" checked-color="#49b34d" />
                             </van-cell>
                         </van-cell-group>
@@ -46,7 +47,9 @@
                 <van-cell-group>
                     <van-field label="姓名" value="{{consignee}}" size="small" bind:input="inputConsignee" />
                     <van-field label="手机号" type="number" value="{{mobile}}" center clearable use-button-slot size="small" bind:input="inputMobile" placeholder="请输入手机号">
-                        <van-button plain round slot="button" size="mini" type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!mobile}}" block="{{true}}"><text class="ph-sm">使用微信手机号</text></van-button>
+                        <van-button plain round slot="button" size="mini" type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!mobile}}" block="{{true}}">
+                            <text class="ph-sm">使用微信手机号</text>
+                        </van-button>
                     </van-field>
                 </van-cell-group>
                 <view class="address-line"></view>
@@ -57,9 +60,14 @@
                     <view class="flex-sub mh-sm">
                         <view class="flex align-center">
                             <text class="bold text-lg mr-xs">{{address.consignee}}</text>
-                            <text class="text-muted">{{address.mobile}}</text></view>
-                        <view class="text-sm mt-xs"><text class="text-gray">配送地址：</text>
-                            <text class="">{{address.province}}{{address.city}}{{address.district}}{{address.address}}</text></view>
+                            <text class="text-muted">{{address.mobile}}</text>
+                        </view>
+                        <view class="text-sm mt-xs">
+                            <text class="text-gray">配送地址：</text>
+                            <text class="">
+                                {{address.province}}{{address.city}}{{address.district}}{{address.address}}
+                            </text>
+                        </view>
                     </view>
                     <van-icon name="arrow" color="#999" />
                 </navigator>
@@ -81,9 +89,8 @@
             <view class="goods-panel-hd pv-sm flex align-center">
                 <view class="flex-sub mr-df">
                     <view class="flex align-center">
-                        <image src="{{seller.headimg}}" class="shop-tb mr-xs img-lg">
-                        </image>
-                         <view class="flex-sub text-hide">{{seller.nickname}}</view>
+                        <image src="{{seller.headimg}}" class="shop-tb mr-xs img-lg"></image>
+                        <view class="flex-sub text-hide">{{seller.nickname}}</view>
                         <view class="flex-sub text-hide">{{goods_name}}</view>
                     </view>
                 </view>
@@ -91,28 +98,27 @@
             </view>
             <view class="solid-bottom"></view>
             <view class="goods-panel-bd pb-df">
-                <view wx:for="{{cart}}" wx:key="{{index}}" hover-class="none" class="flex mt-df goods-panel-item">
+                <view wx:for="{{cartData}}" wx:key="{{index}}" hover-class="none" class="flex mt-df goods-panel-item">
                     <image class="goods-cover-image" src="{{item.spec_pic[0]}}"></image>
                     <view class="flex-sub por">
-                        <view class="text-hide two-line  bold title">
-                            {{item.spec_name}}
-                        </view>
+                        <view class="text-hide two-line  bold title">{{item.spec_name}}</view>
                         <view class="text-justify bt-bar">
                             <view class="price text-muted">￥{{item.spec_price}}</view>
-                            <view class="text-muted"><text>x </text>
-                                <text>{{item.item_num}}</text></view>
+                            <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="1" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                         </view>
                     </view>
                 </view>
             </view>
         </view>
         <van-cell-group custom-class="mb-sm">
-
-             <!--  <van-cell title="购买数量">
+            <!-- <van-cell title="购买数量">
                 <van-stepper value="{{ 2 }}" min="1" integer bind:change="handleNumber" />
             </van-cell> -->
-            <van-cell wx:if="{{delivery_method==1}}" title="运费（{{address.province}}）" value="{{shipping_money}}" readonly value-class="" />
-
+            <van-cell title="商品总额" value="{{goodsTotal.full_price}}" readonly />
+            <van-cell wx:if="{{delivery_method==1}}" title="运费" value="+{{goodsTotal.shipping || '¥0'}}" readonly value-class="" />
+            <view>
+                <van-cell wx:for="{{goodsTotal.discounts || []}}" title="{{item.name}}" value="{{item.reduce}}" readonly value-class="coral-text" />
+            </view>
             <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
     </view>

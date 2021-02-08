@@ -73,7 +73,8 @@
             </view>
         </view>
     </van-popup>
-    <van-popup show="{{ emsPopup }}" position="bottom" bind:close="handleEmsPopup">
+    <van-popup   custom-style="height: 50%"
+ show="{{ emsPopup }}" position="bottom" bind:close="handleEmsPopup">
         <van-picker show-toolbar title="请选择快递公司" columns="{{ columns }}" bind:cancel="handleEmsPopup" bind:confirm="changeEms" />
     </van-popup>
     <!--物流信息弹窗-->

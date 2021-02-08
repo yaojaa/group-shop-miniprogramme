@@ -11,23 +11,23 @@
             </view>
 
         </view>
+        <view class="text-muted text-sm">{{item.time_ago}}  </view>
         <view class="text-muted {{'color_'+item.order_status}}">
-            <text>{{item.order_status_txt}}</text>
+           <text> {{item.order_status_txt}}</text>
         </view>
     </view>
     <view class="solid-bottom"></view>
     <view class="goods-panel-bd pb-df" >
-    
-
          <navigator  wx:for="{{item.order_detail}}" wx:key="{{index}}" wx:for-item="goods" 
          url="../order-detail-seller/index?id={{item.order_id}}" 
          hover-class="none" class="flex mt-df goods-panel-item">
-            <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/159/h/150/format/jpg/q/75" class="cover mr-sm"></image>
+            <image src="{{goods.spec_pic[0] || goods.goods_cover}}?imageView2/2/w/120/h/120/format/jpg/q/75" class="cover mr-sm"></image>
             <view class="flex-sub por">
                 <view class="text-hide title">
-                    {{goods.spec_name}}  <text class="text-muted"> x{{goods.qty}}</text>
+                    {{goods.spec_name}}  
                 </view>
-                <view class="text-muted text-hide text-sm" style="padding: 4px 0">{{goods.goods_name}}</view>
+                <view class="text-muted text-hide text-sm" style="padding: 4px 0">{{goods.goods_name}} 
+                    </view>
                 <view >
                     <text class="price bold ">￥{{goods.spec_price}}</text>
                     <block wx:if="{{item.shipping_money && item.shipping_money!='0.00'}}">
@@ -35,7 +35,11 @@
                     </block>
                 </view>
             </view>
-           <view >{{item.time_ago}}</view>
+           <view >
+
+            <view class="f18">x{{goods.qty}}</view>
+
+           </view>
         </navigator>
     </view>
 </view>

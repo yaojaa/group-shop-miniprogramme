@@ -24,7 +24,33 @@ Page({
         }],
         cpage: 1,
         totalpage: 1,
-        sortstr: ''
+        sortstr: '',
+        searchWords: ''
+    },// 搜索
+    onSearch(e){
+        var sv = e.detail.replace(/(^\s*)|(\s*$)/g,'');
+        console.log(sv)
+        if(sv){
+            this.setData({
+                searchWords: sv,
+                list: [],
+                totalpage: 1,
+                fansNum: 0,
+                cpage: 1
+            })
+            this.getDataList(this.data.sortstr);
+        }
+    },
+    onCancel(){
+        this.setData({
+            searchWords: '',
+            list: [],
+            totalpage: 1,
+            fansNum: 0,
+            cpage: 1
+        })
+        this.getDataList(this.data.sortstr);
+
     },
     onOpen(e) {
         this.setData({ opened: true })
@@ -70,6 +96,13 @@ Page({
             cpage: this.data.cpage,
             pagesize: 15
         }
+
+        if(this.data.searchWords){
+            data.keyword = this.data.searchWords
+        }
+
+        console.log(data)
+
         return new Promise((resolve, reject) => {
             util.wx.get('/api/seller/get_fans_list', data).then((res) => {
                 this.setData({

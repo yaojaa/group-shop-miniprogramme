@@ -4,3 +4,7 @@
 width:140rpx;
 height:140rpx
 }
+
+.price{
+	color:#ff8900
+}

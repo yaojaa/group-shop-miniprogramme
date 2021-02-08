@@ -1,18 +1,33 @@
 <view class="container">
-    <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;" wx:if="{{show_tips}}">
+<!--     <view class="collect-tips" bindtap="closleTips" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;"
+        wx:if="{{show_tips}}">
         <view class="collect-box">
             "点击右边
             <van-icon name="weapp-nav" size="28rpx;" />
             添加到我的小程序"
             <van-icon name="close" size="28rpx;" />
         </view>
-    </view>
+    </view> -->
+
+
+    <button type="default" style="z-index:100;position:absolute;top:{{menuBarTop}}px; left: 10px" 
+    wx:if="{{manageShops.length}}" class="exchange_btn" size="mini" bindtap="showExchange" > <van-icon name="exchange" /> 切换身份 </button>
+   
+
+
+   <view class="pubbtn fg1" bindtap="new_btn">
+  <view style="padding-top: 5px"><van-icon name="plus" size="25px" /></view> 
+  <view class="add">发布</view> 
+
+</view>
+
+
     <view class="head-box">
         <!-- <view class="top_user mini-tag mt-xs">供应商入驻</view> -->
         <view class="flex align-center">
             <navigator url="../identify/identify" hover-class="none">
                 <view class="user-avatar mh-df">
-                    <image class="user-avatar" src="{{userInfo.headimg}}" />
+                    <image class="user-avatar" src="{{headimg}}" />
                     <view class="set-icon">
                         <i-icon type="setup_fill" color="#ffa70f" size="16" />
                     </view>
@@ -21,8 +36,10 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm">{{userInfo.nickname}}</view>
-                        <text bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">我的主页</text>
+                        <view class="user-name mr-sm">{{nickname}} <van-icon size="16"  bindtap="sameNickname" name="replay" />
+
+                        </view>
+<view bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">查看主页 </view>
                     </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
@@ -30,6 +47,8 @@
                     </navigator> -->
                     <navigator url="../withdrawal/index" hover-class="none" class="text-center">
                         <view class="text-lg bold">¥ {{pending_money}}</view>
+                                                <view class="f12 ">账户余额</view>
+
                     </navigator>
                 </view>
             </view>
@@ -37,20 +56,22 @@
     </view>
     <view class="new_order" wx:if="{{orderList.length}}">
         <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
-        <i-panel hide-border title="最新订单" >
+        <i-panel hide-border title="最新订单">
             <view class="control">
                 <view class="newlist">
                     <scroll-view style="height: 100px" scroll-y>
-                        <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}" bindtap="todetail">{{item.time_ago}} <text wx:if="{{item.isFromSlef}}">{{item.user.nickname}} 下单：</text><text wx:else>{{item.store.nickname}} 帮卖：</text> <text class="bold">{{item.order_detail[0].goods_name}}</text>
+                        <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}"
+                            bindtap="todetail">
+                            <text class="bold" wx:if="{{item.is_valet=='0'}}">{{item.user.nickname}}</text>
+                            <text class="bold" wx:else>{{item.store.nickname}}</text>{{item.time_ago}}下单
+                            <text class="bold">{{item.order_detail[0].goods_name}}</text>
                         </view>
                     </scroll-view>
                 </view>
             </view>
         </i-panel>
     </view>
-    <view class="mt-xl">
-        <button class="pubbtn" bindtap="new_btn">+ 新发布</button>
-    </view>
+
     <view class="text-center" style="padding: 120px" wx:if="{{is_loading}}">
         <wux-spin wx:if="{{is_loading}}"></wux-spin>
     </view>
@@ -58,35 +79,51 @@
         <!-- <button class='new-btn hollow' bindtap="new_btn">
           <i-icon type="add" size="20" />新发布
         </button> -->
-        <i-panel wx:if="{{goodslist.length > 0 }}">
-            <van-search 
-            value="{{ value }}" 
-            shape="round" 
-            background="#fff" 
-            placeholder="请输入搜索关键词"
-            show-action="{{searchWords}}"
-            bind:search="onSearch"
-            bind:cancel="onCancel"
-            />
-            <!-- <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
+
+        
+        <i-panel wx:if="{{goodslist.length > 0 || searchGoodslist.length > 0}}">
+            
+<!--             <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
+  <van-tab title="全部"></van-tab>
   <van-tab title="进行中"></van-tab>
   <van-tab title="已结束"></van-tab>
   <van-tab title="已删除"></van-tab>
 </van-tabs> -->
+<!-- <van-search value="{{ searchWords }}" shape="round" background="#fff" placeholder="请输入标题关键词搜索"
+                show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
+                 -->
+
+                <van-search
+  value="{{ searchWords }}"
+  placeholder="请输入标题关键词搜索"
+  use-action-slot
+  bind:cancel="onCancel"
+  bind:search="onSearch"
+>
+ <!--  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view> -->
+
+
+</van-search>
+
+
             <!-- search -->
             <view class="goods-box" wx:if='{{searchWords}}'>
                 <block wx:key="index" wx:for="{{searchGoodslist}}">
-    <i-goods-item  bindupdateList="getGoodsList" bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" />
+                    <i-goods-item bindupdateList="updateList" bindrecommend="recommendHandle" bindremove="removeHandle"
+                        item="{{item}}" index="{{index}}" />
                 </block>
                 <view class="text-center pt20">
                     <wux-spin wx:if="{{search_is_loading}}"></wux-spin>
                 </view>
-                <view class="no-data-txt" wx:if="{{searchGoodslist.length == 0 && !search_is_loading}}">没有找到商品，换个关键词试试吧~</view>
+                <view class="no-data-txt" wx:if="{{searchGoodslist.length == 0 && !search_is_loading}}">
+                    没有找到商品，换个关键词试试吧~
+                </view>
             </view>
             <!-- ./search -->
             <view class="goods-box" wx:else>
                 <block wx:key="index" wx:for="{{goodslist}}">
-                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}" index="{{index}}" bind:updateList="updateList" />
+                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}"
+                        index="{{index}}" bind:updateList="updateList" />
                 </block>
                 <view class="text-center">
                     <wux-spin wx:if="{{is_loading}}"></wux-spin>
@@ -94,7 +131,7 @@
             </view>
         </i-panel>
     </view>
-    <i-panel title="新人小贴士" wx:if="{{goodslist.length== 0 && !is_loading }}">
+    <i-panel title="小贴士" wx:if="{{goodslist.length== 0 && !is_loading &&!searchWords}}">
         <view class='new-goods' bindtap="new_btn" style="margin-bottom:100rpx">
             <view class="bold">问：使用开心麻团小程序收费吗？</view>
             <view class="mb-df text-muted">答：不收费，但使用在线支付微信会收取0.6%的通道费，全网最低，拿金钱换高效值得！</view>
@@ -144,6 +181,28 @@
             <button bindtap="setHasTips" class="linenear_bg">我知道了</button>
         </view>
     </van-dialog>
+
+<van-action-sheet show="{{ exchange }}" title="切换身份"   bind:close="hidenExchange">
+  <view class="changContent">
+      
+
+  <view class="flex-box" wx:for="{{manageShops}}" data-index="{{index}}" bindtap="doChange" data-store-id="{{item.store_id}}" >  
+    <image class="user-avatar" src="{{item.headimg}}" /> 
+    <view class="f18" style="flex: 3"> <view class="name">{{item.nickname}}</view> 
+
+    <view class="name"><van-tag type="warning" wx:if="{{item.role == 0}}">自己的</van-tag>
+        <van-tag type="warning" wx:if="{{item.role == 1}}">管理的</van-tag>
+    </view>
+
+ </view> 
+    <view style="flex: 1"><van-icon wx:if="{{store_id == item.store_id}}" color="green" size="30" name="success" /> </view>
+
+  </view>
+</view>
+
+</van-action-sheet>
+
+
     <!-- <van-popup
   show="{{ showDialog }}"
   overlay="{{false}}"

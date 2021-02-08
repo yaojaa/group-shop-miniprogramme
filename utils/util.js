@@ -145,7 +145,6 @@ const inputDuplex = function(e) {
 
 const uploadFile = function(opt) {
 
-    console.log('上传方法 app.globalData.token', app.globalData.token)
 
     return new Promise((reslove, reject) => {
         wx.uploadFile({
@@ -187,6 +186,12 @@ const uploadFile = function(opt) {
 
 
 }
+
+//导入excel
+// const importExcel = function(){
+//     /api/seller/improt_order_express
+// /api/supplier/improt_order_express
+// }
 
 
 
@@ -489,9 +494,7 @@ const WX = {}
 /**封装request请求**/
 const request = (url, data, method) => {
 
-    if(app.globalData.noLogin){
-        return
-    }
+    console.log('app.globalData',app.globalData)
 
     return new Promise((resolve, reject) => {
         wx.request({
@@ -499,18 +502,25 @@ const request = (url, data, method) => {
             data: data,
             method: method,
             header: {
-                'content-type': 'application/json',
-                'Authorization': app.globalData.token
+                'content-type' : 'application/json',
+                'Authorization': app.globalData.token || '',
+                'system-info'   : JSON.stringify(app.globalData.systemInfo),
+                'store-id'     : app.globalData.store_id || '' // 团长0 供应商1 用户为空
             },
             success: function(res) { //服务器返回数据
                
-               console.log('success',url,res.data.code)
-
                 if (res.data.code == '-99' || res.data.code == '-100') {
                     console.log('应该调到等路')
-                    app.globalData.noLogin = true
-                     wx.clearStorageSync() 
-                     app.redirectToLogin()
+                                          wx.showToast({
+                                            title:'登录已过期',
+                                            icon:'none'
+                                          })
+
+                     resolve(res)
+                      // wx.redirectTo({
+                      //       url: '/pages/login/login'
+                      //   })
+
 
                 } else { //返回错误提示信息
                     resolve(res)

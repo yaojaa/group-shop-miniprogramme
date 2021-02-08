@@ -18,7 +18,9 @@
 .flex2{
     flex:2
 }
-
+.ptb5{
+    padding:5px 0
+}
 .f10 {
     font-size: 20rpx !important;
 }
@@ -561,6 +563,10 @@ float:right
     height: 0;
     clear: both;
     visibility: hidden
+}
+
+.p10{
+    padding: 10px
 }
 
 .mtop100 {
@@ -1756,4 +1762,13 @@ text-align: center;
 color: #888;
 }
 
+.mini-tags{
+    font-size: 20rpx;
+    line-height: 1;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2rpx;
+    color: #FF5757;
+    border: 1px solid #FF5757;
+}
 

@@ -11,3 +11,7 @@
 .solid-bottom {
   border-bottom: 1px solid #f1f1f1;
 }
+.textarea-placeholder{
+	color:#888;
+	line-height: 1 !important;
+}

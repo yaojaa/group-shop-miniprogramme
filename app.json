@@ -3,7 +3,6 @@
         "pages/login/login",
         "pages/home/index",
         "pages/create-home/index",
-        "pages/creat-goods/index",
         "pages/publish-select/index",
         "pages/index/index",
         "pages/withdrawal/index",
@@ -23,6 +22,9 @@
         "pages/address-form/index",
         "pages/order-list/index",
         "pages/class/class",
+        "pages/class_edit/index",
+        "pages/class_goods/index",
+        "pages/full_reduction/index",
         "pages/new-order-list/index",
         "pages/order-detail/index",
         "pages/ems-detail/index",
@@ -61,7 +63,8 @@
         "pages/help-sale-invite/index",
         "pages/help-sale-up/index",
         "pages/acting-apply/index",
-        "pages/user-help-home/index"
+        "pages/user-help-home/index",
+        "pages/add_self/index"
     ],
     "subpackages": [
     {
@@ -118,16 +121,7 @@
 
     "plugins":
     {
-        "live-player-plugin":
-        {
-            "version": "1.0.13",
-            "provider": "wx2b03c6e691cd7370"
-        },
-        "richeditor":
-        {
-            "version": "1.0.0",
-            "provider": "wxe65a0c242998f59f"
-        }
+        
     },
     "permission":
     {

@@ -62,6 +62,8 @@
         <van-cell-group>
             <van-cell wx:if="{{info.isFromAgent}}" customStyle="padding:5px 20px" title="帮卖订单" value="{{info.seller.nickname}}" border="{{ false }}" />
             <van-cell customStyle="padding:5px 20px" title="订单用户" value="{{info.user.nickname}}" border="{{ false }}" />
+             <van-cell wx:if="{{info.discounts.length}}" customStyle="padding:5px 20px" title="满减优惠" value="{{info.discounts[0].reduce}}元" border="{{ false }}" />
+
             <van-cell customStyle="padding:5px 20px" title="订单运费" value="￥{{info.shipping_money}}" border="{{ false }}" />
             <van-cell customStyle="padding:5px 20px" title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
             <van-cell customStyle="padding:5px 20px" title="订单编号" title-width="200rpx" border="{{ false }}" value="{{info.order_sn}}" value-class="text-gray" />

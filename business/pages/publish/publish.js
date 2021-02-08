@@ -101,7 +101,8 @@ Page({
     is_on_sale_status: true,
     freight_tpl_id: 0, //运费模版ID 默认0
     freight_tpl_name: '默认方案全国包邮', //运费模版ID 默认0
-    editorContent: null  
+    editorContent: null,
+    currentScrollTop: 0
   },
 
   sale_status_onChange(event) {
@@ -656,7 +657,7 @@ Page({
 
     //提交
     //
-    util.wx.post('/api/supplier/goods_add_or_edit', data).then((res) => {
+    util.wx.post('/api/seller/goods_add_or_edit', data).then((res) => {
       wx.hideLoading()
       if (res.data.code == 200) {
         this.data.goods_id = res.data.data.goods_id
@@ -758,7 +759,7 @@ Page({
     wx.showLoading()
 
     util.wx
-      .get('/api/supplier/get_goods_detail', {
+      .get('/api/seller/get_goods_detail', {
         goods_id: goods_id
       })
       .then((res) => {
@@ -965,6 +966,11 @@ Page({
       // 是否是模板
       this.getPublishedData('', '', option.temp)
     }
+  },
+  onPageScroll(e){
+    this.setData({
+      currentScrollTop: e.scrollTop
+    });
   },
   inputDuplex: util.inputDuplex
 })

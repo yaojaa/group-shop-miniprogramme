@@ -1,16 +1,19 @@
 <view class="container">
+            <view class="his">添加自提点，支持多个自提点下单时选择</view>
+
     <view class="bgimg">
         <block wx:for="{{newAddress}}" wx:key="{{item.self_address_id}}">
             <view class='address button-area'>
                 <!-- <view class='address' wx:if="{{index == 0}}"> -->
-                <view class='icon-img'>
+                <view class='icon-img' bindtap="toAddAddress" data-id="{{item.self_address_id}}">
                     <i-icon type="coordinates" size="48" color="#ddd" />
                 </view>
-                <view class='content'>
+                <view class='content' bindtap="toAddAddress" data-id="{{item.self_address_id}}">
                     <view class='name'>{{item.name}}</view>
                     <view class='des'>{{item.address}}</view>
                     <view class='des door_number'>
-                        <input value="{{item.door_number}}" data-id="{{item.self_address_id}}" data-index="{{index}}" bindchange='inputChange' focus='ture' placeholder="完善地址 如8号楼888、东门、西门、物业" type="text" name="" />
+                        <!-- <input value="{{item.door_number}}" data-id="{{item.self_address_id}}" data-index="{{index}}" bindchange='inputChange' focus='ture' placeholder="完善地址 如8号楼888、东门、西门、物业" type="text" name="" /> -->
+                        <input value="{{item.door_number}}" disabled placeholder="完善地址 如8号楼888、东门、西门、物业" type="text" name="" />
                     </view>
                     <!--       <view class='limit'>
     <view class='header'>
@@ -33,17 +36,20 @@
             </view>
         </block>
         <view class="center" style="margin-top:60rpx" wx:if="{{newAddress.length==0}}">
-            <view wx:if="{{openLocation}}" bindtap='addAddress'>
+            <view bindtap='toAddAddress'>
+                <button class="btn btn-round linenear_bg"><i-icon type="add" size="20" color="#fff"/>添加提货点</button>
+            </view>
+            <!-- <view wx:if="{{openLocation}}" bindtap='addAddress'>
                 <button class="btn btn-round linenear_bg">
                     <i-icon type="add" size="20" color="#fff" />地图标注地点
                 </button>
             </view>
             <view class='get-location' wx:else>
                 <button open-type='openSetting' bindopensetting="openSet"><text class='icon'>+</text><text>去授权添加地点</text></button>
-            </view>
+            </view> -->
         </view>
         <view class="footer-btn" wx:if="{{newAddress.length>0}}">
-            <button bindtap="addAddress" class="btn btn-round linenear_bg_light">
+            <button bindtap="toAddAddress" class="btn btn-round linenear_bg_light">
                 + 增加提货点
             </button>
             <button bindtap="done" class="btn btn-round linenear_bg">

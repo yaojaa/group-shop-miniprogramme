@@ -1,28 +1,25 @@
-<view class="container gray-wrap cf">
-	<view class="goods-panel p-df white-bg cf">
-		<view class="goods-panel-bd">
-			<view class="flex goods-panel-item" bindtap="toDetail">
-				<image src="{{info.goods_cover}}?imageView2/2/w/150/h/150/format/jpg/q/75" class="cover mr-sm"></image>
-				<view class="flex-sub por">
-					<view class="text-hide bold title">
-						{{info.goods_name}}
-					</view>
-					<view class="text-muted text-hide mt-xs text-sm des"><text class="pr-sm">{{info.goods_content}}</text></view>
-					<view class="text-justify bt-bar">
-						<view class="price bold">￥{{info.price_min}}</view>
-						<view class="text-muted"></view>
-					</view>
-				</view>
-			</view>
-		</view>
+<view class="container">
+
+	<view class="icon">
+		<van-icon size="50px" name="passed" />
 	</view>
-	<view class="notice mt-sm">
-		恭喜您成功上架,将由{{info.supplier_name}}负责发货，您只需要引导顾客在您的商品链接下单即可。
-		利润会自动结算到您的账户。
+	<view class="bold center f20">
+		导出完成	
 	</view>
-	<view class="m-df mt-xl">
-		<button class="btn xl primary block linenear_bg" bindtap="toDetail">
-			点击查看
+	<view class="link mt-sm">
+		{{link}}
+	</view>
+
+	<view class="desc">
+		复制链接在浏览器中下载订单表格
+	</view>
+	<view class="btns m-df mt-xl">
+		<button class="btn xl" bindtap="preview">
+			预览表格
+		</button>
+
+		<button class="btn xl primary  linenear_bg" bindtap="copylink">
+			复制链接
 		</button>
 	</view>
 </view>

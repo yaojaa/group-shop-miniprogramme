@@ -1,11 +1,35 @@
 <view class="container gray-wrap cf">
+ <van-popup
+  show="{{ showImport }}"
+  position="bottom"
+  close-on-click-overlay    
+  custom-style="height: 30%"
+  bind:close="onImportClose"
+  safe-area-inset-bottom
+  closeable    
+>
+<view class="importbox">
+     <view class="line">第一步：下载模板（如果已导出过发货单，无需下载）</view>
+     <view class="line" bindtap = "chooseFile">第二步： 导入运单号（微信文件）</view>
+</view>
+</van-popup>
 
+
+
+ <van-search 
+            value="{{ value }}" 
+            shape="round" 
+            background="#fff" 
+            placeholder="请输入收件人姓名或者电话"
+            show-action="{{searchWords}}"
+            bind:search="onSearch"
+            bind:cancel="onCancel"
+            />
   <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" color="#49b34d">
         <van-tab title="最新订单"  ></van-tab>
         <van-tab title="待确认" ></van-tab>
         <van-tab title="待发货"></van-tab>
     </van-tabs>
-
 
     <view class="order-coentent">
         <view class="order-box">

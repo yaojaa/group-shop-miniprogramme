@@ -18,7 +18,7 @@
         </view>
         <view>
 
-            <button class="btn primary sm hollow button-hover" data-index="{{index}}" bindtap="toCheckExpress">重试</button>
+            <button class="btn primary sm hollow button-hover" data-index="{{index}}" bindtap="toCheckExpress">查询</button>
             
             <button class="btn primary sm hollow button-hover" data-index="{{index}}" bindtap="copyOrder">复制单号</button>
         </view>

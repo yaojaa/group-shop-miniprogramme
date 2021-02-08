@@ -27,11 +27,11 @@ Page({
 
     getInfo(){
 
-    util.wx.get('/api/supplier/get_supplier_detail').then(res=>{
+    util.wx.get('/api/seller/get_store_info').then(res=>{
       this.setData({
         info:res.data.data,
-        supplier_logo:res.data.data.supplier_logo,
-        pending_money:res.data.data.pending_money
+        supplier_logo:res.data.data.store_logo,
+        pending_money:res.data.data.store_money
       })
 
     if(res.data.code == -1){
@@ -171,13 +171,14 @@ Page({
          confirmColor: '#90d200',//确定文字的颜色
          success: function (res) {
             if (res.confirm) {
-                wx.redirectTo({
+              app.globalData['store_id'] = app.globalData.userInfo.store.store_id
+              console.log(1,app.globalData.userInfo.store.store_id)
+              console.log(2,app.globalData)
+                wx.switchTab({
                   url:'/pages/home/index'
                 })
             }
-         },
-         fail: function (res) { },//接口调用失败的回调函数
-         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+         }
       })
 
   },
@@ -208,8 +209,8 @@ Page({
     },
 
     getGoodsList() {
-        util.wx.get('/api/supplier/get_goods_list',{
-          pagesize:50
+        util.wx.get('/api/seller/get_goods_list',{
+          pagesize:500
         })
             .then((res) => {
                     this.setData({

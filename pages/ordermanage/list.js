@@ -1,4 +1,5 @@
 const app = getApp()
+import config from '../../utils/conf.js'
 
 const {
     $Message
@@ -31,7 +32,9 @@ Page({
         totalpage: 1,
         delivery_method: 0,
         sendAll: false,
+        importResultShow:false,
         user_id: '',
+        showImport:false,
         // switchOrderList:false,//折叠展开订单
         actionsConfirm: [{
             name: '取消'
@@ -60,6 +63,35 @@ Page({
             name: '发货名单'
         }],
         excelUrl: '',
+        searchWords: '',
+        orderActionVisbile: false,
+        isAllAction: false
+    },// 搜索
+    onSearch(e){
+        var sv = e.detail.replace(/(^\s*)|(\s*$)/g,'');
+        console.log(sv)
+        if(sv){
+            this.setData({
+                searchWords: sv,
+                dataList: [],
+                totalpage: 1,
+                cpage: 1
+            })
+
+            this.getOrderList()
+            this.getStatistics()
+        }
+    },
+    onCancel(){
+        this.setData({
+            searchWords: '',
+            dataList: [],
+            totalpage: 1,
+            cpage: 1
+        })
+        this.getOrderList()
+        this.getStatistics()
+
     },
 
     sendMsgAll() {
@@ -231,11 +263,11 @@ Page({
 
     orderActions(e) {
         console.log(e)
-        const opt = e.currentTarget.dataset.opt
-        const cindex = e.currentTarget.dataset.cindex
-        const pindex = e.currentTarget.dataset.pindex
+        this.opt = e.currentTarget.dataset.opt
+        this.cindex = e.currentTarget.dataset.cindex
+        this.pindex = e.currentTarget.dataset.pindex
 
-        const order_id = e.currentTarget.dataset.id
+        this.order_id = e.currentTarget.dataset.id
         const txt = e.currentTarget.dataset.txt
         const avatar = e.currentTarget.dataset.avatar
         const user_name = e.currentTarget.dataset.user_name
@@ -249,19 +281,54 @@ Page({
 
         //     return
         // }
+        // 
+        // 
+        this.setData({
+            orderActionVisbile:true,
+            action_name: txt
+        })
 
-        wx.showModal({
-            title: '确定要' + txt + '吗？',
-            success: (res) => {
+    },
+    orderActionsRun(){
 
-                if (res.confirm) {
+        //全部发货
+         if(this.data.isAllAction) {
+            //       api/seller/setorderstatus_by_goodsid
+            // 参数：goods_id、opt (toset_confirm、toset_send)
+              util.wx.post('/api/seller/setorderstatus_by_goodsid', {
+                            opt:this.opt,
+                            goods_id: this.data.goods_id
+                        }).then(res=>{
+
+                             if (res.data.code == 200) {
+
+                               this.getStatistics()
+                               this.getOrderList()
+                               wx.showToast({
+                                title: '操作成功！',
+                                icon : 'none'
+                               })
+
+                               this.setData({
+                                isAllAction:false
+                               })
+
+                             }
+
+                        })
+                }
+            //单独发货
+                else{
 
                     util.wx.post('/api/seller/set_order_status', {
-                            opt,
-                            order_id
+                            opt:this.opt,
+                            order_id:this.order_id
                         }).then(res => {
                             wx.hideLoading()
                             if (res.data.code == 200) {
+
+                                const pindex = this.pindex
+                                const cindex = this.cindex
 
                                 this.getStatistics()
                                 //操作完成之后的回调
@@ -273,7 +340,7 @@ Page({
 
 
                                 //删除逻辑
-                                if (opt == 'toset_del') {
+                                if (this.data.opt == 'toset_del') {
 
                                     this.data.dataList[pindex][cindex].removed = true
 
@@ -293,8 +360,6 @@ Page({
                                         [key2]: res.data.data.order_status,
                                         [key3]: res.data.data.order_status_txt
                                     }, () => {
-
-                                        console.log('111', this.data.dataList[pindex][cindex])
 
 
                                         wx.showToast({
@@ -322,12 +387,22 @@ Page({
 
 
                         })
+
+
                 }
 
-            }
+    },
+    onisAllActionChange(e){
+
+        console.log(e)
+            this.setData({ isAllAction: e.detail });
+
+
+    },
+    toHome(){
+        wx.switchTab({
+            url:'../home/index'
         })
-
-
     },
     //发货操作
 
@@ -347,6 +422,8 @@ Page({
                     valid_order: res.data.data.valid_order,
                     shipped_order: res.data.data.shipped_order,
                     back_order: res.data.data.back_order,
+                    wait_confirm: res.data.data.wait_confirm,
+
                 })
 
             }
@@ -405,13 +482,13 @@ Page({
     },
     // 导出名单
     exportExcel() {
-        wx.showToast({ title: '开始为你生成...', icon: 'none' })
-        this.getExcelUrl(url => {
-            this.copyLoadFile(url);
-        })
-        // wx.navigateTo({
-        //     url: '../updown_exc/index?role=seller&goods_id=' + this.data.goods_id
+        // wx.showToast({ title: '开始为你生成...', icon: 'none' })
+        // this.getExcelUrl(url => {
+        //     this.copyLoadFile(url);
         // })
+        wx.navigateTo({
+            url: '../updown_exc/index?role=seller&goods_id=' + this.data.goods_id
+        })
 
     },
     // 查看名单
@@ -429,8 +506,8 @@ Page({
             data: url,
             success: function(res) {
                 wx.showToast({
-                    title: '文件地址已复制,去粘贴打开吧！注意不要泄露哦',
-                    duration: 5000,
+                    title: '文件地址已复制,去浏览器中粘贴下载吧！注意不要泄露哦',
+                    duration: 3000,
                     icon: 'none'
                 })
             }
@@ -468,15 +545,23 @@ Page({
             loading: true
         })
 
-        return new Promise((resolve, reject) => {
-            util.wx.get('/api/seller/get_order_list', {
+        let ajaxData = {
                 goods_id: this.data.goods_id,
                 cpage: this.data.cpage,
                 transform_store_id: this.data.store_id,
                 search_order_status: this.data.search_order_status,
                 pagesize: 30
                 // 0待确认，1已确认，2已收货，3已取消，4已完成，5已作废
-            }).then((res) => {
+            };
+
+        if(this.data.searchWords){
+            ajaxData.keyword = this.data.searchWords
+        }
+
+        console.log(ajaxData)
+
+        return new Promise((resolve, reject) => {
+            util.wx.get('/api/seller/get_order_list', ajaxData).then((res) => {
 
                 var resdata = res.data.data.order_list
                 var key = 'dataList[' + (this.data.cpage - 1) + ']'
@@ -808,15 +893,16 @@ Page({
         const consignee = e.target.dataset.consignee
         const mobile = e.target.dataset.mobile
         const order_detail = e.target.dataset.order_detail
+        const user_message = e.target.dataset.user_message || ''
 
         console.log(order_detail)
 
         var order_string = ''
         order_detail.forEach(item => {
-            order_string += item.spec_name + ' 数量：' + item.qty + '\n'
+            order_string += item.spec_name + ' 数量：' + item.qty + '件\n'
         })
 
-        const txt = consignee + '\n' + mobile + '\n' + province + city + district + address + '\n' + order_string
+        const txt = consignee + '\n' + mobile + '\n' + province + city + district + address + user_message + '\n' + order_string
 
 
 
@@ -861,12 +947,8 @@ Page({
         let current = this.data.dataList[pi][ci];
         let data = '';
 
-        data += 'order_sn=' + e.currentTarget.dataset.sn +
-            '&user=' + current.consignee +
-            '&goods=' + current.order_detail[0].goods_name
-
         wx.navigateTo({
-            url: '/pages/ems-detail/index?' + data
+            url: '/pages/ems-detail/index?order_sn=' + e.currentTarget.dataset.sn
         })
 
 
@@ -905,6 +987,145 @@ Page({
             })
 
         }
+    },
+    showImportModal(){
+        this.setData({
+            showImport: true
+        })
+    },
+    onImportClose(){
+         this.setData({
+            showImport: false
+        })
+    },
+    importOk(){
+        this.onPullDownRefresh()
+    },
+    chooseFile(){
+         wx.chooseMessageFile({
+                count:1,
+                type:'file', 
+                success:(res)=>{
+                 this.onImportClose()
+                  var fname = res.tempFiles[0].name
+                  console.log(res.tempFiles[0])
+
+                  wx.showToast({
+                    title:'已选择文件：'+fname,
+                    icon:'none'
+                  })
+
+                  if (res.tempFiles[0].size < 31457280) {
+
+                        wx.showLoading({
+                          title: '导入中...'
+                        })
+
+                           wx.uploadFile({
+                            url: config.apiUrl + '/api/seller/improt_order_express',
+                            filePath: res.tempFiles[0].path,
+                            name: 'excel',
+                            header: {
+                                "Content-Type": "multipart/form-data",
+                                "Authorization": app.globalData.token,
+                                "store-id"  : app.globalData.store_id || 'null' // 团长0 供应商1 用户为空
+
+                            },
+                            success: (res)=> {
+
+                                console.log('上传结果',res)
+
+                                wx.hideLoading()
+
+                                if(res.statusCode == 200){
+
+
+                                    var res = JSON.parse(res.data)
+
+                                    const {success,error,error_msg} = res.data
+
+                                    if(res.status == false){
+
+
+                                     wx.showModal({
+                                     title: res.msg,
+                                     content: '请检查表格文件',
+                                     showCancel: false,//是否显示取消按钮
+                                     confirmText:"我知道了",//默认是“确定”
+                                     confirmColor: 'green',//确定文字的颜色
+                                     success: function (res) {}
+                                    })
+
+
+                                    }else{
+
+                                           this.setData({
+                                            importResultShow:true,
+                                            importResultcontent:`成功导入${success}条,失败${error}条`,
+                                            error_msg:error_msg
+
+                                        })
+
+                                  //        wx.showModal({
+                                  //    title: '导出结果',
+                                  //    content: `成功导入${success}条,失败${error}条`,
+                                  //    showCancel: false,//是否显示取消按钮
+                                  //    confirmText:"我知道了",//默认是“确定”
+                                  //    confirmColor: 'green',//确定文字的颜色
+                                  //    success:  (res) =>{
+                                  //      this.onPullDownRefresh()
+                                  //    },
+                                  //    fail: function (res) { },//接口调用失败的回调函数
+                                  //    complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+                                  // })
+
+
+
+                                    }
+
+                                   
+
+
+                                }else{
+
+                                     wx.showModal({
+                                     title: res.data.msg,
+                                     content: '请检查表格文件',
+                                     showCancel: false,//是否显示取消按钮
+                                     confirmText:"我知道了",//默认是“确定”
+                                     confirmColor: 'green',//确定文字的颜色
+                                     success: function (res) {}
+                                   })
+
+                                }
+
+
+                            
+
+                            },
+                            fail:(e)=>{
+                              wx.hideLoading()
+
+                              wx.showToast({
+                                title:'上传失败',
+                                icon: 'none'
+                              })
+
+                                console.log(e)
+                            }
+                        })
+
+
+
+                
+                  }else{
+                    wx.showToast({
+                      title: '你选中的文件超过30M！',
+                      icon: 'none'
+                    })
+                  }
+                }
+              })
     },
     /**
      * 页面上拉触底事件的处理函数

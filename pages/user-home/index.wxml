@@ -107,9 +107,10 @@
 		</block>
 	</i-panel>
 
-	<view class="text-center">
-		<wux-spin wx:if="{{is_loading}}"></wux-spin>
-	</view>
+	 <view class="text-center" style="padding: 30px" wx:if="{{is_loading}}">
+        <wux-spin wx:if="{{is_loading}}"></wux-spin>
+    </view>
+
 
 
 
@@ -126,8 +127,8 @@
 
 		<view class="center" style="margin-bottom:10px; text-align: center;"> 
 			<text bindtap="goPublish" class="text-primary">开通团长主页</text>  
-			<text class="text-muted"> | </text>
-			<text bindtap="goSupperReg" class="text-primary">开通供应商主页</text> 
+	<!-- 		<text class="text-muted"> | </text>
+			<text bindtap="goSupperReg" class="text-primary">开通供应商主页</text>  -->
 		</view> 
 
 			<button size="mini" class="btn_no_style" open-type="contact" bindcontact="handleContact">由开心麻团提供技术支持</button>
@@ -149,7 +150,5 @@
             <i-tab-bar-item key="home" icon="mine" current-icon="mine_fill" title="主页"></i-tab-bar-item>
         </i-tab-bar>
     </view> -->
-
-    <footerbar active="4"/>
 
 </view>

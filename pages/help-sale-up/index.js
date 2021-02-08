@@ -14,10 +14,10 @@ Page({
         scopeValue: '',
         scopeTitle: '',
         checked: false,
-        errorMsg:'',
-        btnDisable:false,
-        is_modify:false,
-        is_loading:true
+        errorMsg: '',
+        btnDisable: false,
+        is_modify: false,
+        is_loading: true
     },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
@@ -55,20 +55,20 @@ Page({
     onLoad: function(options) {
 
 
-        this.data.goods_id = options.goods_id 
+        this.data.goods_id = options.goods_id
 
         // is_modify=true&supid=7&sellid=1708
 
-        if(options.is_modify){
+        if (options.is_modify) {
 
-              wx.setNavigationBarTitle({
-                  title: '修改价格' 
-                })
+            wx.setNavigationBarTitle({
+                title: '修改价格'
+            })
 
 
-        this.setData({
-            is_modify:true
-        })
+            this.setData({
+                is_modify: true
+            })
 
 
 
@@ -79,125 +79,130 @@ Page({
 
     },
 
-    validate(e){
+    validate(e) {
+
+        console.log(e)
 
 
 
 
-        const {sub_agent_price,goods_spec_id} = e.currentTarget.dataset
+        const { sub_agent_price, goods_spec_id } = e.currentTarget.dataset
 
-        const value = e.detail.value
+        const value = e.detail.value || e.detail
 
-         if(value<sub_agent_price){
+        var reg = (/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/).test(value)
+
+
+        if (!reg) {
+            this.setData({
+                btnDisable: true
+            })
+        }
+
+        console.log(parseFloat(value), parseFloat(sub_agent_price))
+
+        if (parseFloat(value) < parseFloat(sub_agent_price)) {
 
             wx.showToast({
-                title:'价格请在合理范围',
-                icon:'none'
+                title: '价格请在合理范围',
+                icon: 'none'
             })
 
             this.setData({
-                btnDisable:true
+                btnDisable: true
             })
 
             return false
 
-         }else{
+        } else {
 
-            this.spec_edit(goods_spec_id,value)
-
-           
+            this.spec_edit(goods_spec_id, value)
 
 
-              this.setData({
-                btnDisable:false
+
+
+            this.setData({
+                btnDisable: false
             })
-         }
+        }
 
     },
 
-    spec_edit(id,price){
+    spec_edit(id, price) {
+        util.wx.post('/api/seller/spec_edit', {
+            goods_spec_id: id,
+            spec_price: price
+        }).then(res => {
+            if (res.data.code == 200) {
 
-      wx.showLoading()
-
-       util.wx.post('/api/seller/spec_edit',{
-            goods_spec_id:id,
-            spec_price:price
-        }).then(res=>{
-          if(res.data.code == 200){
-            wx.showToast({
-              title:'价格修改成功',
-              icon:'none'
-            })
-          }else{
-            wx.showToast({
-              title:'价格修改失败',
-              icon:'none'
-            })
-          }
+            } else {
+                wx.showToast({
+                    title: '价格设置失败',
+                    icon: 'none'
+                })
+            }
         })
-      wx.hideLoading()
     },
 
     /**先获取父商品数据，再获取子商品数据，两个数据合并一下**/
 
     getGoodsInfo() {
         util.wx.get('/api/goods/get_goods_detail', {
-                goods_id: this.data.goods_id 
+                goods_id: this.data.goods_id
             })
             .then(res => {
 
-              if(res.data.code ==200){
-                  var data = res.data.data.goods
+                if (res.data.code == 200) {
+                    var data = res.data.data.goods
 
-                  var parent_goods_id =res.data.data.goods.link_goods[1].goods_id
+                    var parent_goods_id = res.data.data.goods.link_goods[1].goods_id
 
-                  var goods_spec =res.data.data.goods.goods_spec
-                  
-                  console.log('goods_spec',goods_spec)
+                    var goods_spec = res.data.data.goods.goods_spec
 
-                  util.wx.get('/api/goods/get_goods_detail', {
-                      goods_id: parent_goods_id
-                  }).then(re => {
+                    console.log('goods_spec', goods_spec)
 
-                      let parent_goods_spec =re.data.data.goods.goods_spec
+                    util.wx.get('/api/goods/get_goods_detail', {
+                        goods_id: parent_goods_id
+                    }).then(re => {
 
-                      goods_spec.forEach((item,index) =>{
+                        let parent_goods_spec = re.data.data.goods.goods_spec
 
-                        item.sub_agent_price = parent_goods_spec[index].sub_agent_price
+                        goods_spec.forEach((item, index) => {
 
-                      })
+                            item.sub_agent_price = parent_goods_spec[index].sub_agent_price
 
-                      console.log('goods_spec',goods_spec)
+                        })
 
-                      this.setData({
-                                    info: data,
-                                    goods_spec: goods_spec,
-                                    is_loading:false
-                                 })
+                        console.log('goods_spec', goods_spec)
 
-
-
-                  })
+                        this.setData({
+                            info: data,
+                            goods_spec: goods_spec,
+                            is_loading: false
+                        })
 
 
 
-
-                                  
-              }
-
-            }
-        )
-        },
+                    })
 
 
-    modifyPrice(){
+
+
+
+                }
+
+            })
+    },
+
+
+    modifyPrice() {
 
 
         //供应商商品规格id 和商家的规格id 不一样 。提交需要商家规格id
         //
         //
         //
-        for(var i=0;  i<this.data.info.goods_spec.length;i++ ){
+        for (var i = 0; i < this.data.info.goods_spec.length; i++) {
 
 
             this.data.info.goods_spec[i].goods_spec_id = this.data.currentGoodsSpec[i].goods_spec_id
@@ -209,33 +214,33 @@ Page({
 
 
 
-         util.wx.post('/api/seller/edit_supplier_goods',{
+        util.wx.post('/api/seller/edit_supplier_goods', {
 
-            goods_id:this.data.sellid,
-            spec:this.data.info.goods_spec
+            goods_id: this.data.sellid,
+            spec: this.data.info.goods_spec
 
-        }).then(res=>{
+        }).then(res => {
 
-           if(res.data.code ==200){ 
-           wx.showToast({
-            title:'修改成功'
-           })
+            if (res.data.code == 200) {
+                wx.showToast({
+                    title: '修改成功'
+                })
 
-            wx.redirectTo({
-                url:'../upSuccess/index?goods_id='+res.data.data.goods_id
-            })
+                wx.redirectTo({
+                    url: '../upSuccess/index?goods_id=' + res.data.data.goods_id
+                })
 
 
-       }else{
-           {
+            } else {
+                {
 
-            wx.showToast({
-                title:res.data.msg,
-                icon:'none'
-            })
+                    wx.showToast({
+                        title: res.data.msg,
+                        icon: 'none'
+                    })
 
-        }
-       }
+                }
+            }
 
 
         })
@@ -243,19 +248,19 @@ Page({
 
     },
 
-    goDetail(){
+    goDetail() {
 
         wx.redirectTo({
-            url:'../goods/goods?goods_id='+this.data.goods_id
+            url: '../goods/goods?goods_id=' + this.data.goods_id
         })
 
 
     },
 
-    toModify(){
-      wx.navigateTo({
-        url:'../publish/publish?goods_id='+this.data.goods_id
-      })
+    toModify() {
+        wx.navigateTo({
+            url: '../publish/publish?goods_id=' + this.data.goods_id
+        })
     },
 
     /**

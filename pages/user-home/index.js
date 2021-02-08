@@ -8,7 +8,7 @@ Page({
      */
     data: {
         userInfo: {},
-        goodslist: [],
+        proList: [],
         goods_id: "",
         order_id: "",
         link_url: "",
@@ -21,7 +21,9 @@ Page({
         Custom: app.globalData.Custom,
         show_tips: false,
         orderList: [],
-        isCustome: true    
+        isCustome: true,
+        cpage:1,
+        totalpage:0
     },
     closleTips() {
         this.setData({
@@ -41,65 +43,79 @@ Page({
     },
 
     getProList() {
-        util.wx.get('/api/user/get_bought_store_goods').then(res => {
+        this.setData({
+            is_loading: true
+        })
+
+        util.wx.get('/api/user/get_browsed_store_goods',{
+            pagesize:15,
+            cpage:this.data.cpage
+        }).then(res => {
+            if (res.data.code == 200) {
+                var data= this.data.proList.concat(res.data.data.goods)
                 this.setData({
-                    proList: res.data.data.goods,
+                    proList: data,
+                    totalpage:res.data.data.page.totalpage,
                     is_loading: false
                 })
+            } else {
+                wx.clearStorageSync()
+                app.globalData.userInfo = null
+                app.redirectToLogin()
+            }
         })
     },
 
-    goSupperReg(){
+    goSupperReg() {
         wx.navigateTo({
-            url:'/business/pages/create-home/index'
+            url: '/business/pages/create-home/index'
         })
-
     },
 
-    goPublish(){
+    goPublish() {
         wx.navigateTo({
-            url:'../create-home/index'
+            url: '../create-home/index'
         })
 
     },
 
-     reGetUserInfo(){
+    reGetUserInfo() {
 
-        util.wx.get('/api/user/get_user_info').then(res=>{
-            if(res.data.code == 200){
+        util.wx.get('/api/user/get_user_info').then(res => {
+            if (res.data.code == 200) {
                 const d = res.data.data
 
 
-                        var userInfo = d.user
-                            
-                            if(d.hasOwnProperty('store')){
-                                userInfo.store =  d.store
-                            }
+                var userInfo = d.user 
 
-                             if(d.hasOwnProperty('supplier')){
-                                userInfo.supplier =  d.supplier
-                            }
-                            
-                        app.globalData.token = userInfo.token 
-                        app.globalData.userInfo = userInfo
+                if (d.hasOwnProperty('store')) {
+                    userInfo.store = d.store
+                }
 
-                        wx.setStorage({ //存储到本地
-                            key: "userInfo",
-                            data: userInfo
-                        })
+                if (d.hasOwnProperty('supplier')) {
+                    userInfo.supplier = d.supplier
+                }
 
-                         if(d.store){
+                app.globalData.token = userInfo.token
+                app.globalData.userInfo = userInfo
 
-                             wx.redirectTo({
-                                            url:'../home/index'
-                                        })
-                           }
-                
+                wx.setStorage({ //存储到本地
+                    key: "userInfo",
+                    data: userInfo
+                })
+
+                if (d.store) {
+
+                    wx.redirectTo({
+                        url: '../home/index'
+                    })
+                }
+
 
             }
         })
 
-      },
+    },
 
 
     /**
@@ -117,13 +133,13 @@ Page({
             this.setData({
                 userInfo: app.globalData.userInfo
             })
-           
+
         }
 
         wx.hideHomeButton()
 
 
-         // this.reGetUserInfo()
+        // this.reGetUserInfo()
 
         this.getProList()
     },
@@ -137,5 +153,18 @@ Page({
                 })
             }
         })
+    },
+      /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+    console.log('bottom',this.data.cpage , this.data.totalpage)
+
+    if (this.data.cpage <= this.data.totalpage) {
+      this.data.cpage ++;
+
+      this.getProList(); //重新调用请求获取下一页数据
     }
+  }
 })

@@ -1,9 +1,6 @@
-<!-- <i-custom-bar showBackIcon="{{showIcon}}" hidden="{{shareIng}}" backUrl="/pages/home/index" backColor="transport" bottomLayerBackColor="#ffffff" showBackBar="true" fixed changeStartHeight="300" changeEndHeight="400" backTitle="{{info._user.nickname}}" scrollTop="{{scrollTop}}" back_tit_txt_color="#333333">
-</i-custom-bar> -->
 <view class="container cf">
-    <view class="swiper" style="background:url({{store_slide}}?imageView2/2/w/600/h/400/format/jpg/q/75) center bottom;background-size:cover">
+    <view class="swiper" style="background:url({{store_slide}}) center bottom;background-size:cover">
         <!-- <image src="{{store_slide}}" height="400" class="slide-image" /> -->
-        <image src="http://img.daohangwa.com/mark.png" mode="widthFix" class="marker" />
     </view>
     <view class="user-head pb-sm">
         <view class="avatar" bindtap="goContact" data-phone="{{info._user.mobile}}" data-wx="{{info._user.wechatnumber}}">
@@ -32,7 +29,7 @@
                 订阅关注
             </van-button>
         </view>
-        <navigator wx:if="{{access_list.length>0}}" hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&source=store&name={{info.store_name}}">
+        <navigator wx:if="{{access_list.length>0 && showSetting}}" hover-class="none" open-type="navigate" url="../fans/index?id={{info.store_id}}&source=store&name={{info.store_name}}">
             <view class="flex-box align-center justify-center " style="padding: 10px 0">
                 <view class="avatar-group">
                     <image class="head" src="{{user.headimg}}" wx:for-item="user" wx:for="{{access_list}}" wx:key="index"></image>
@@ -122,8 +119,8 @@
             暂无内容
         </view>
     </view>
-    <view class="text-center mb-sm">
-        <wux-spin wx:if="{{loading}}"></wux-spin>
+    <view class="text-center mb-sm"  wx:if="{{loading}}" style="margin:100px 0">
+        <wux-spin></wux-spin>
     </view>
     <van-popup custom-class="authPopBox" show="{{ showAuth }}">
         <view class="logo">

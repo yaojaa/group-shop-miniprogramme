@@ -57,8 +57,6 @@ input {
 .up-ctx textarea {
   font-size: 16px;
   line-height: 28px;
-  background: #fff;
-  padding: 4px;
   min-height: 88px;
 }
 
@@ -139,6 +137,8 @@ input {
   font-size: 16px;
   height: 100px;
   width: 100%;
+  background: #fff;
+  padding: 0 4px
 }
 
 .float-ctl {
@@ -178,4 +178,8 @@ input {
 .editor-nav .item .label {
   color: #666;
   font-size: 14px;
+}
+.content-size{
+  height: 0;
+  overflow: hidden;
 }

@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "新增自提点",
+    "usingComponents":
+    {
+    	"van-field": "../../vant/field/index",
+    	"van-button": "../../vant/button/index"
+    }
+}

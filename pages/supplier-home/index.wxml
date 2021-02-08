@@ -34,20 +34,10 @@
                     <view class="text-muted mt-xs text-sm des text-justify">
 
 
-                        <text class="pr-sm">已售 {{item.sold_number || item.order_num}}</text>
+                        <text class="pr-sm">已售 {{item.sold_number || item.order_num}} 拿货价：¥{{item.price_min || item.sub_agent_price[0]}}</text>
 
+                        <button size="mini" data-goods_id="{{item.goods_id}}" class="btn  btn-warning" catchtap="goods_up">绑定上架</button>
 
-                    </view>
-                    <view class="mt-xs des text-justify">
-                        <view>
-                            <text class="text-muted text-sm ">拿货价：</text>
-                            <text class="coral-text ">¥{{item.price_min || item.sub_agent_price[0]}} </text>
-                        </view>
-                        <view class="flex align-center text-gray ">
-                            <van-icon name="shopping-cart-o" size="46rpx" />
-                            <text class="text-muted ph-xs"></text>
-                            <van-icon name="share" size="46rpx" data-id="{{item.goods_id}}" catchtap="goods_up" />
-                        </view>
                     </view>
                 </view>
             </view>

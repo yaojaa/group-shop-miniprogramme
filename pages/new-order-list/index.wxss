@@ -136,6 +136,9 @@ border-radius:8rpx;
     min-height: 100rpx
 
 }
+.order-box{
+    padding-bottom: 50px
+}
 .order-fd form{
 /*    -webkit-flex: 1;
     -moz-flex: 1;
