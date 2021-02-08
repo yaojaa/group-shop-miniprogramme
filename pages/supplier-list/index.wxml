@@ -7,7 +7,7 @@
           <!-- <van-icon bindtap="openSetting" size="20px" name="setting-o" /> -->
         </view>
         <button class="btn sm primary round" data-type="store" open-type="share" bindtap="openShareFriends">
-          邀请新成员
+          邀请成员
         </button>
       </view>
       <view class="user-container">
@@ -18,7 +18,7 @@
           <view class="grow1 flex-sub">
             <view class=" flex">
               <view class="name grow1">
-                {{item.nickname}} <view x:if="{{item.is_admin == 1}}" class="mini-tags">管理员</view>
+                {{item.nickname}} <view wx:if="{{item.is_admin == 1}}" class="mini-tags">管理员</view>
                 <text class="right f10">{{item.apply_time}}</text>
               </view>
             </view>
@@ -43,7 +43,7 @@
             </button>
          
             <button class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-h_store_id="{{item.h_store_id}}" data-agent_user="{{item.nickname}}" data-agent_status="1" bindtap="removeHelper" class="btn sm ml-sm">
-              移除
+              <van-icon name="delete-o" />
             </button>
           </view>
         </view>

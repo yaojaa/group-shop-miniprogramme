@@ -16,7 +16,7 @@
 
 
    <view class="pubbtn fg1" bindtap="new_btn">
-  <view style="padding-top: 5px"><van-icon name="add" size="25px" /></view> 
+  <view style="padding-top: 5px"><van-icon name="plus" size="25px" /></view> 
   <view class="add">发布</view> 
 
 </view>
@@ -39,7 +39,7 @@
                         <view class="user-name mr-sm">{{nickname}} <van-icon size="16"  bindtap="sameNickname" name="replay" />
 
                         </view>
-<view wx:if="{{manageShops.length}}" bindtap="showExchange" class="f mini-tag mt-xs" hover-class="none" hover-class="none">切换身份 </view>
+<view bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">查看主页 </view>
                     </view>
                     <!-- <navigator url="../fans-mg/index" hover-class="none" class="text-center" wx:if="{{!isCustome}}">
                         <view class="text-lg bold">{{fansNum}}</view>
@@ -100,7 +100,7 @@
   bind:cancel="onCancel"
   bind:search="onSearch"
 >
-  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view>
+ <!--  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view> -->
 
 
 </van-search>

@@ -26,7 +26,7 @@ Page({
         searchGoodslist: [],
         searchWords: '',
         search_is_loading: true,
-        exchange: true,
+        exchange: false,
         manageShops: [],
         store_id: ''
     },
