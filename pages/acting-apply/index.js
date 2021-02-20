@@ -127,7 +127,7 @@ Page({
               
               })
 
-          } else if(res.data.code == 20001){
+          } else if(res.data.code == 20001 || res.data.code == -2000){
 
 
                     wx.showModal({

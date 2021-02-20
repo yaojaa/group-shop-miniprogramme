@@ -153,6 +153,7 @@ Page({
                 userInfo.store = res.data.data.store
 
             app.globalData.userInfo = userInfo
+            app.globalData.store_id = res.data.data.store.store_id
          
             wx.setStorage({ //存储到本地
                 key: "userInfo",

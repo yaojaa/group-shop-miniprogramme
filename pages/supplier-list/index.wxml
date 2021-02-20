@@ -50,7 +50,7 @@
       </view>
       <view wx:if="{{groupUserList.length==0}}">
         <view class="no-content"></view>
-        <view class="center">你还有没有帮卖成员</view>
+        <view class="center">你还有没有团队成员，邀请小伙伴可以一起帮你卖货~</view>
       </view>
     </van-tab>
 
