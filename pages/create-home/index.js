@@ -169,7 +169,7 @@ Page({
 
                   }else{
 
-                     wx.redirectTo({
+                     wx.switchTab({
                     url:'/pages/home/index'
                   })
 

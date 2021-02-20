@@ -107,7 +107,7 @@ Page({
 
                 Dialog.alert({
                 title: '申请成功',
-                message: res.data.msg
+                message: '已自动通过'
                 }).then(() => {
                   //如果是从商品邀请进来的
                   if(this.goods_id){

@@ -234,7 +234,6 @@ Page({
                         });
                     } else {
                         this.setData({
-                            pending_money: res.data.data.store.pending_money,
                             manageShops: res.data.data.manage
                         })
 
@@ -634,6 +633,7 @@ Page({
             this.getGoodsList();
         }
         this.getOrderList();
+        this.reGetUserInfo()
         wx.stopPullDownRefresh();
     },
 
