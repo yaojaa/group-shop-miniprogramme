@@ -1,17 +1,23 @@
 <view class="pl30 pr30 f28 pb200">
+
+
+
+    
     <view class="input fc9 pl20 pr20">
         <view class="lists" wx:if="{{list.length > 0}}">
-            <view class="list aic" wx:for="{{list}}">
-                <image class="head-pic" mode="aspectFill" src="https://img3.autoimg.cn/soudfs/g3/M05/B0/EF/autohomecar__ChsEkV_0TT-AH-tlAAMDKdpTD6A118.png"></image>
+            <view class="list aic {{item.checked == 1 ? '' : 'nochecked'}}" wx:for="{{list}}" wx:key="item.order_id">
+                <image class="head-pic" mode="aspectFill" src="{{item.goods_cover}}"></image>
                 <view class="name">
-                    <view class="mb20 fc6 txt">{{item.cat_name}}</view>
-                    <view class="f28 txt">{{item.cat_name}}</view>
+                    <view class="mb20 fc6 txt">{{item.goods_name}}</view>
+                    <view class="f28 txt">{{item.goods_name}}</view>
                 </view>
-                <van-switch
+                <van-icon name="checked" custom-class="checkbox"/>
+                <!-- <van-switch
                     checked="{{ checked }}"
                     active-color="#07c160"
+                    size="24px"
                     bind:change="onChange"
-                />
+                /> -->
             </view>
         </view>
         <view class="flex loading jcc aic tac" wx:else="{{loading}}">

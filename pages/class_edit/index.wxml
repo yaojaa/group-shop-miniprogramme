@@ -4,7 +4,7 @@
 </view>
 <view class="pl30 pr30 f28 pb200">
     <view class="input mb40 pl20 pr20 pb30 pt30">
-        <input value="" placeholder="请填写分类名称"/>
+        <input value="{{inputValue}}" bindinput="bindKeyInput" maxlength="10" placeholder="请填写分类名称"/>
     </view>
     <view class="input fc9 pl20 pr20">
         <view class="f28 pt30 pb30 fc6">添加商品</view>
@@ -25,7 +25,7 @@
 </view>  
 
 <view class="bottom-button pt30 pb30 pr30 pl30">
-    <van-button custom-class='btn' round plain>删除</van-button>
+    <van-button custom-class='btn' round plain>取消</van-button>
     <van-button custom-class='btn' round type="primary">保存</van-button>
 </view>
 

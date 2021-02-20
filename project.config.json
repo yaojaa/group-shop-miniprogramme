@@ -26,9 +26,8 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": true,
+    "useMultiFrameRuntime": false,
     "useApiHook": true,
-    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -38,9 +37,10 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
+    "useApiHostProcess": false,
+    "userConfirmedBundleSwitch": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
@@ -58,6 +58,14 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
       "list": [
         {
@@ -96,12 +104,6 @@
           "pathName": "pages/publish/publish",
           "query": "goods_id=470",
           "scene": null
-        },
-        {
-          "name": "详情页启动",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=2000015",
-          "scene": 1008
         },
         {
           "id": 4,
@@ -1184,12 +1186,6 @@
           "scene": null
         },
         {
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=3579",
-          "scene": null
-        },
-        {
           "id": 161,
           "name": "business/pages/goods/goods",
           "pathName": "business/pages/goods/goods",
@@ -1344,12 +1340,6 @@
           "scene": null
         },
         {
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id=1167",
-          "scene": null
-        },
-        {
           "id": 184,
           "name": "pages/order-detail-seller/index",
           "pathName": "pages/order-detail-seller/index",
@@ -1389,12 +1379,6 @@
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
           "query": "goods_id=3404",
-          "scene": null
-        },
-        {
-          "name": "pages/goods/goods",
-          "pathName": "pages/goods/goods",
-          "query": "goods_id= 504",
           "scene": null
         },
         {
@@ -1496,15 +1480,24 @@
           "scene": null
         },
         {
-          "name": "pages/order-detail-seller/index",
-          "pathName": "pages/order-detail-seller/index",
-          "query": "id=31681",
+          "id": 200,
+          "name": "pages/class/class",
+          "pathName": "pages/class/class",
+          "query": "",
           "scene": null
         },
         {
-          "name": "pages/new-order-list/index",
-          "pathName": "pages/new-order-list/index",
-          "query": "goods_id=3579",
+          "id": -1,
+          "name": "pages/class_edit/index",
+          "pathName": "pages/class_edit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/class_goods/index",
+          "pathName": "pages/class_goods/index",
+          "query": "",
           "scene": null
         }
       ]

@@ -49,15 +49,18 @@ Page({
   // 添加分类
   addClass(e){
     if(this.closeAdd()) return;
-    this.setData({
-      show: true,
-      inputValue: '',
-      alert: {
-        title: '添加新分类',
-        btn: '添加',
-        id: ''
-      }
+    wx.navigateTo({
+      url: '../class_edit/index'
     })
+    // this.setData({
+    //   show: true,
+    //   inputValue: '',
+    //   alert: {
+    //     title: '添加新分类',
+    //     btn: '添加',
+    //     id: ''
+    //   }
+    // })
   },
   // 删除分类
   delete(e){
@@ -76,15 +79,18 @@ Page({
   // 修改分类
   edit(e){
     let i = e.currentTarget.dataset.index;
-    this.setData({
-      show: true,
-      inputValue: this.data.list[i].cat_name,
-      alert: {
-        title: '修改分类',
-        btn: '修改',
-        id: this.data.list[i].cat_id
-      }
+    wx.navigateTo({
+      url: '../class_edit/index?id=' + this.data.list[i].cat_id
     })
+    // this.setData({
+    //   show: true,
+    //   inputValue: this.data.list[i].cat_name,
+    //   alert: {
+    //     title: '修改分类',
+    //     btn: '修改',
+    //     id: this.data.list[i].cat_id
+    //   }
+    // })
   },
   // 置顶分类
   up(e){
@@ -111,10 +117,13 @@ Page({
   addLoveClass(e){
     if(this.closeAdd()) return;
     let i = e.currentTarget.dataset.index;
-    this.submitClass({
-      cat_name: this.data.loves[i].name,
-      enable: 1
-    });
+    wx.navigateTo({
+      url: '../class_edit/index?name=' + this.data.loves[i].name
+    })
+    // this.submitClass({
+    //   cat_name: this.data.loves[i].name,
+    //   enable: 1
+    // });
   },
   // 取消添加/修改
   cancel(){

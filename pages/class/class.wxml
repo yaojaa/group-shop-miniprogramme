@@ -7,7 +7,7 @@
         <view class="name">{{item.cat_name}}</view>
         <van-button color="#666" custom-class='btn' plain size="small" icon="delete" type="primary" data-index="{{index}}" bind:click="delete">删除</van-button>
         <van-button color="#666" custom-class='btn' plain size="small" icon="edit" type="primary" data-index="{{index}}" bind:click="edit">修改</van-button>
-        <van-button color="#666" custom-class='btn' plain size="small" icon="upgrade" type="primary" data-index="{{index}}" bind:click="up">置顶</van-button>
+        <van-button wx:if="{{index != 0}}" color="#666" custom-class='btn' plain size="small" icon="upgrade" type="primary" data-index="{{index}}" bind:click="up">置顶</van-button>
     </view>
 </view>
 <view style="display: flex; justify-content: center; padding-top: 20px;" wx:elif="{{loading}}"><van-loading size="24px" type="spinner" /></view>

@@ -5,6 +5,7 @@
         "van-overlay": "../../vant/overlay/index",
         "van-dialog": "../../vant/dialog/index",
     	"van-switch": "../../vant/switch/index",
+  		"van-icon": "../../vant/icon/index",
         "van-loading": "../../vant/loading/index"
     }
 }

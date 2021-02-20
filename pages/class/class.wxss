@@ -32,7 +32,7 @@
 }
 .lists .list .btn{
   border: none;
-  margin-left: 30rpx;
+  /*margin-left: 30rpx;*/
 }
 .love-title{
   font-size: 32rpx;

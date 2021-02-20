@@ -6,39 +6,25 @@ const util = require('../../utils/util.js')
 
 import Dialog from '../../vant/dialog/dialog';
 
-let loveCopy = [{
-      name: '水果'
-    },{
-      name: '蔬菜'
-    },{
-      name: '零食'
-    },{
-      name: '鲜花'
-    },{
-      name: '肉蛋'
-    },{
-      name: '海鲜'
-    },{
-      name: '美妆'
-    },{
-      name: '服装'
-    },{
-      name: '居家'
-    },{
-      name: '日用品'
-    }];
-
 Page({
   data: {
     loading: true,
     list:[],
-    loves: loveCopy,
+    loves: [],
     inputValue:'',
     show: false,
     alert: {}
   },
-  onLoad(){
-    this.getList();
+  onLoad(opt){
+    console.log(opt)
+    if(opt.name){
+      this.setData({
+        inputValue: opt.name
+      })
+    }
+    if(opt.id){
+      this.getList();
+    }
   },
   // 监听输入
   bindKeyInput: function (e) {
