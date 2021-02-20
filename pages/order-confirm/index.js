@@ -318,7 +318,7 @@ Page({
         }
       });
     } else {
-      //this.createOrder();
+      this.createOrder();
     }
   },
   //确认订单

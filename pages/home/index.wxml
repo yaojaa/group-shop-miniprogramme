@@ -10,8 +10,8 @@
     </view> -->
 
 
-    <button type="default" style="z-index:100;position:absolute;top:{{menuBarTop}}px; left: 10px" 
-    wx:if="{{manageShops.length}}" class="exchange_btn" size="mini" bindtap="showExchange" > <van-icon name="exchange" /> 切换身份 </button>
+    <viem type="default" style="z-index:100;position:absolute;top:{{menuBarTop+2}}px; left: 10px" 
+    wx:if="{{manageShops.length}}" class="exchange_btn tags" size="mini" bindtap="showExchange" > <van-icon name="exchange" /> 切换身份 </viem>
    
 
 
