@@ -2,7 +2,7 @@
 
 
 	<view class="head-box">
-		<view class="flex align-center">
+<!-- 		<view class="flex align-center">
 			<navigator url="../identify/identify" hover-class="none">
 				<view class="user-avatar mh-df">
 					<image class="user-avatar" src="{{userInfo.headimg}}" />
@@ -20,7 +20,7 @@
 					</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 
 	<i-panel i-class="marginTop">

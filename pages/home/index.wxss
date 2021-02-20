@@ -131,6 +131,10 @@
 .exchange_btn{
     border-radius: 50rpx;
     background: #f9fff5;
+    font-size: 24rpx;
+    padding: 10rpx 20rpx;
+    color: #333;
+    opacity: .8
 }
 
 

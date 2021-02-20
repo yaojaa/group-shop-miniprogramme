@@ -59,6 +59,12 @@
         </view>
         管理订单
     </view>
+        <view class="flex-item" data-is_on_sale = "{{goods.is_on_sale}}" bindtap="goodsUp">
+        <view class="num">
+            <van-icon name="orders-o" color="#4fac05" size="20px" />
+        </view>
+        上下架
+    </view>
     <view class="flex-item" bindtap="openInviteFriends" wx:if="{{goods.link_goods.length!==2}}">
         <view class="num">
             <van-icon name="friends-o" color="#4fac05" size="20px" />
@@ -185,10 +191,10 @@
     </view>
     <view>
         <goods-detail wx:if="content.length" content="{{content}}"></goods-detail>
-
+<!-- 
         <view class="code center" wx:if="{{goods.user.wx_paycode}}">
             <image src="{{goods.user.wx_paycode}}"  mode="widthFix"/>
-        </view>
+        </view> -->
         <block wx:if="{{goods.show_buyerlist == 0}}">
             <view class='sub-title scale-b-1px contentBox'>
                 <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
@@ -215,8 +221,6 @@
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>10 && item.order_pay_total<=30 }}">高级粉丝</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>30 && item.order_pay_total<=50 }}">铁杆粉丝</text>
                                      <text class="mini-tags" wx:if="{{item.order_pay_total>50 }}">超级粉丝</text> -->
-
-
 
                                 </view>
                                 <view class="type">
@@ -478,4 +482,6 @@
     </view>
     <view class="p-lg text-center text-gray text-df">点击我要帮卖上架商品吧</view>
 </van-dialog>
+
+
 <share-box isCanDraw="{{isCanDraw}}" shareData="{{shareData}}" bind:initData="createShareImage" /></view>

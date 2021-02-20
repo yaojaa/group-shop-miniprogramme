@@ -628,6 +628,49 @@ Page({
     }
   },
 
+  /*上下架*/
+
+  goodsUp(e) {
+    const is_on_sale = e.currentTarget.dataset.is_on_sale
+    const status_txt = is_on_sale == 2 ? '上架' : '下架'
+
+    console.log(is_on_sale)
+
+    wx.showModal({
+         title: '确定要'+status_txt+'此商品吗？',
+         showCancel: true,//是否显示取消按钮
+         cancelText:"取消",//默认是“取消”
+         confirmText:"确定",//默认是“确定”
+         success:  (res) =>{
+            if (res.cancel) {
+               //点击取消,默认隐藏弹框
+            } else {
+
+              this.goodsUpDown(is_on_sale ==2 ? 1:2);
+              
+            }
+         },
+         fail: function (res) { },//接口调用失败的回调函数
+         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+      })
+
+   },
+
+   goodsUpDown(s) {
+      util.wx
+        .post('/api/seller/goods_change_on_sale', {
+          goods_id: this.data.goods_id,
+          is_on_sale: s
+        })
+        .then((res) => {
+          wx.showToast({
+            title:'设置成功',
+            icon :'none'
+          })
+          this.getGoodsInfo()
+        });
+    },
+
   getShareImg() {
     util.wx
       .get('/api/index/goods_card', {
@@ -767,12 +810,14 @@ Page({
             this.wuxCountDown(formatDateTime(d.goods.end_time));
           }
 
-          (this.data.seller = d.goods.user),
+
+          (this.data.seller = d.goods.store),
             (this.data.store_id = d.goods.store.store_id);
 
           //显示管理面板
+          console.log('this.data.seller',this.data.seller,app.globalData.userInfo)
 
-          if (this.data.seller.user_id == app.globalData.userInfo.user_id) {
+          if (this.data.seller.store_id == app.globalData.userInfo.store_id) {
             console.log('是管理');
 
             this.setData({

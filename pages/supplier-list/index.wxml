@@ -43,7 +43,7 @@
             </button>
          
             <button class="f10 " wx:if="{{item.status==1}}" data-supplier_agent_id="{{item.supplier_agent_id}}" data-h_store_id="{{item.h_store_id}}" data-agent_user="{{item.nickname}}" data-agent_status="1" bindtap="removeHelper" class="btn sm ml-sm">
-              <van-icon name="delete-o" />
+              移除
             </button>
           </view>
         </view>

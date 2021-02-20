@@ -104,10 +104,12 @@ Page({
         app.globalData.userInfo.store_id = user.store_id
         app.globalData.userInfo.headimg = user.headimg
         app.globalData.userInfo.nickname = user.nickname
+        this.setUserInView()
+
+        wx.setStorageSync('userInfo',app.globalData.userInfo)
 
         console.log(app.globalData.userInfo)
 
-        this.setUserInView()
 
 
 
@@ -359,9 +361,12 @@ Page({
             nickname: app.globalData.userInfo.nickname
         });
 
+        this.data.goodslist = []
+
         this.get_store_info()
         this.getOrderList();
         this.getGoodsList()
+
 
 
     },
