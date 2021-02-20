@@ -9,11 +9,9 @@
             </view>
             <view wx:else>该地区不发货</view>
         </view>
-        <form bindsubmit="formSubmit" report-submit="true" data-fn="beforeCreateOrder">
-            <button class="btn primary w-min-lg lg linenear_bg" formType="submit" loading="{{loading}}" disabled="{{loading}}">
+            <button bindtap="beforeCreateOrder" class="btn primary w-min-lg lg linenear_bg"  loading="{{loading}}" disabled="{{loading}}">
                 {{pay_btn_txt}}
             </button>
-        </form>
     </view>
     <view class="content-wrap">
         <view class="por">

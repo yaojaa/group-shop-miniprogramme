@@ -125,11 +125,16 @@
     background: #85c002;
     z-index: 100;
     text-align: center;
+    box-shadow: 0 0 6px #ccc;
 }
 
 .exchange_btn{
     border-radius: 50rpx;
     background: #f9fff5;
+    font-size: 24rpx;
+    padding: 10rpx 20rpx;
+    color: #333;
+    opacity: .8
 }
 
 
@@ -1150,9 +1155,7 @@ button::after {
 .flex{
     display: flex;
 }
-.pubbtn{
-    margin: 0 20px;
-}
+
 .fg1{ flex-grow: 1; }
 
 /*切换身份弹窗*/

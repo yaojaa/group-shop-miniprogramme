@@ -20,7 +20,7 @@
     position: relative;
     background: #80cc2b;
     background-size: 100% auto;
-    height: 240rpx;
+    height: 140rpx;
     position: relative;
     width: 100%;
     overflow: hidden;
