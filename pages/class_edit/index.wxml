@@ -7,7 +7,7 @@
         <input value="{{inputValue}}" bindinput="bindKeyInput" maxlength="10" placeholder="请填写分类名称"/>
     </view>
     <view class="input fc9 pl20 pr20">
-        <view class="f28 pt30 pb30 fc6">添加商品</view>
+        <view class="f28 pt30 pb30 fc6" bindtap="selectGoods"><van-icon name="plus" /> 添加商品</view>
 
         <view class="lists" wx:if="{{list.length > 0}}">
             <view class="list" wx:for="{{list}}">
@@ -25,8 +25,8 @@
 </view>  
 
 <view class="bottom-button pt30 pb30 pr30 pl30">
-    <van-button custom-class='btn' round plain>取消</van-button>
-    <van-button custom-class='btn' round type="primary">保存</van-button>
+    <van-button custom-class='btn' bind:click="goBack" round plain>取消</van-button>
+    <van-button custom-class='btn' bind:click="goSave" round type="primary">保存</van-button>
 </view>
 
 

@@ -1,11 +1,18 @@
+
+
+        <van-search
+          value="{{ searchWords }}"
+          placeholder="请输入标题关键词搜索"
+          use-action-slot
+          bind:clear="onCancel"
+          bind:search="onSearch"
+        ></van-search>
+
 <view class="pl30 pr30 f28 pb200">
-
-
-
     
     <view class="input fc9 pl20 pr20">
         <view class="lists" wx:if="{{list.length > 0}}">
-            <view class="list aic {{item.checked == 1 ? '' : 'nochecked'}}" wx:for="{{list}}" wx:key="item.order_id">
+            <view data-index="{{index}}" bindtap="goodsSelect" class="list aic {{item.checked == 1 ? '' : 'nochecked'}}" wx:for="{{list}}" wx:key="item.order_id">
                 <image class="head-pic" mode="aspectFill" src="{{item.goods_cover}}"></image>
                 <view class="name">
                     <view class="mb20 fc6 txt">{{item.goods_name}}</view>
@@ -26,11 +33,12 @@
         
 
     </view>
+        <view wx:if="{{nomore}}" class="tac fc9 pt20">没有更多了</view>
 </view>  
 
 <view class="bottom-button pt30 pb30 pr30 pl30">
-    <van-button custom-class='btn' round plain>取消</van-button>
-    <van-button custom-class='btn' round type="primary">保存</van-button>
+    <van-button custom-class='btn' bind:click="goBack" round plain>取消</van-button>
+    <van-button custom-class='btn' bind:click="goSave" round type="primary">保存</van-button>
 </view>
 
 

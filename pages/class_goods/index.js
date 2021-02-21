@@ -13,21 +13,56 @@ Page({
     show: false,
     alert: {},
     checked: false,
-    cpage: 1
+    cpage: 1,
+    searchWords: '',
+    nomore: false
   },
-  onChange(){
+  goodsSelect(e){
+    let index = e.currentTarget.dataset.index
+    let checked = this.data.list[index].checked == 1 ? 0 : 1;
     this.setData({
-      checked: !this.data.checked
+      ['list['+ index +'].checked']: checked
     })
   },
   onLoad(){
     this.getGoodsList();
-  },    
+  }, // 搜索
+  onSearch(e) {
+      var sv = e.detail.replace(/(^\s*)|(\s*$)/g, '');
+      console.log(sv);
+      if (sv) {
+          this.data.cpage = 1;
+          this.setData({
+              searchWords: sv
+          });
+          this.getGoodsList();
+      }
+  },
+  onCancel() {
+      this.setData({
+          searchWords: ''
+      });
+      this.data.cpage = 1;
+      this.getGoodsList();
+  },
+  goBack(){
+    wx.navigateBack()
+  },
+  goSave(){
+
+  },
   getGoodsList: function() {
     let ajaxData = {
         cpage: this.data.cpage,
-        pagesize: 10
+        pagesize: 15
     };
+    if(this.data.searchWords) ajaxData.keyword=this.data.searchWords
+    if(ajaxData.cpage == 1){
+      this.setData({
+        nomore: false,
+        list: []
+      })
+    }
 
     util.wx
         .get('/api/seller/get_goods_list', ajaxData)
@@ -35,6 +70,7 @@ Page({
             if (res.data.code == 200) {
               let data = res.data.data.goodslist;
               let dataList = [];
+
               data.forEach(e=>{
                 dataList.push({
                   goods_id: e.goods_id,
@@ -49,6 +85,8 @@ Page({
                     list: this.data.list.concat(res.data.data.goodslist),
                     loading: false
                 });
+
+                if(dataList.length == 0) this.setData({nomore: true})
             } else {
                 this.setData({
                     loading: false
@@ -62,7 +100,7 @@ Page({
         });
     },
     onReachBottom: function() {
-      this.data.cpage++;
+      if(!this.data.nomore) this.data.cpage++;
       this.getGoodsList();
     },
 })

@@ -182,5 +182,16 @@ Page({
     .catch((e) => {
 
     })
-  }
+  },
+  goBack(){
+    wx.navigateBack()
+  },
+  goSave(){
+
+  },
+  selectGoods(){
+    wx.navigateTo({
+      url: '../class_goods/index'
+    })
+  },
 })
