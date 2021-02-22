@@ -91,8 +91,10 @@ Page({
 
                         data.isFromAgent = false
 
-                    }else{
-                        data.isFromAgent = true
+                    }else if(data.store.store_id == app.globalData.store_id ) //是客服
+
+                    {
+                        data.isFromAgent = false
                     }
 
                     if (data.link_store) {
@@ -140,6 +142,8 @@ Page({
             })
     },
     ordermanage() {
+
+        console.log('this.data.info.isFromAgent',this.data.info.isFromAgent)
 
 
         if(this.data.info.isFromAgent){

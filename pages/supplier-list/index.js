@@ -21,7 +21,11 @@ Page({
       })
     }
 
-    this.getMySupp()
+    this.data.suppList = []
+    this.data.suppList=[],
+    this.data.helpSaleList= [],
+    this.data.groupUserList= [],
+   // this.getMySupp()
     this.getMyHelpSale()
     this.getMyHelpSaleUser()
   },

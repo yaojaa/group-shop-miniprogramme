@@ -1513,6 +1513,12 @@
           "pathName": "pages/acting-apply/index",
           "query": "store_id=1",
           "scene": null
+        },
+        {
+          "name": "pages/add_self/index",
+          "pathName": "pages/add_self/index",
+          "query": "goods_id=2000294",
+          "scene": null
         }
       ]
     }

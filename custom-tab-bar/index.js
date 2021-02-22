@@ -30,7 +30,21 @@ Component({
       console.log(event)
       this.setData({ active: event.detail });
       wx.switchTab({
-        url: this.data.list[event.detail].url
+        url: this.data.list[event.detail].url,
+        success:()=>{
+
+        let page = getCurrentPages().pop();
+
+        console.log(page)
+        //我的 页面刷新 切换客服后不更新不行
+        if (page.route == "pages/my/index" || page.route == 'pages/supplier-list/index') {
+                      page.onLoad();
+
+        }
+ 
+ 
+
+        }
       })
     },
 

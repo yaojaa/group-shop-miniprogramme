@@ -71,7 +71,7 @@
         <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="order_id" wx:if="{{!item.removed}}">
             <view class="order-hd">
                 <!--如果下单的店铺不是自己的店铺，就显示是来自代理的头像而不是下单用户的头像-->
-                <block wx:if="{{user_id == item.store.user_id }}">
+                <block wx:if="{{store_id == item.store.store_id }}">
                     <view class="number">
                         <text class="create_number">{{item.create_number}}</text>
                         <image class="userinfo-avatar" mode="cover" src="{{item.user.headimg}}" />
@@ -103,7 +103,7 @@
             <view class="order-bd">
                 <view class="type text-justify  scale-b-1px" wx:for="{{item.order_detail}}" wx:key="index" wx:for-item="g">
                     <view>{{g.spec_name}} ×{{g.qty}}</view>
-                    <view class="text-info" wx:if="{{user_id == item.store.user_id }}">¥ {{g.total_price}} </view>
+                    <view class="text-info" wx:if="{{store_id == item.store.store_id }}">¥ {{g.total_price}} </view>
                     <view class="text-info" wx:else>¥ {{g.agent_price*1000*g.qty/1000}} </view>
                 </view>
                 <view class="type text-justify  scale-b-1px" wx:if="{{item.shipping_money!='0.00'}}">
@@ -132,7 +132,7 @@
                     <text class="danger-text" wx:if="{{item.pay_status==0}}">未支付 </text>
                     <text class="danger-text" wx:if="{{item.pay_status==2}}">支付失败 </text>
                     <!--如果下单的店铺不是自己的店铺，就显示是来自代理的-->
-                    <text class="warning-text f18" wx:if="{{user_id == item.store.user_id }}">¥{{item.pay_price}} </text>
+                    <text class="warning-text f18" wx:if="{{store_id == item.store.store_id }}">¥{{item.pay_price}} </text>
                     <text class="warning-text f18" wx:else>¥{{(item.pay_price*1000-item.profit*1000)/1000}}</text>
 
                    <text class="warning-text f12" wx:if="{{item.discounts.length}}">满减{{item.discounts[0].reduce}}</text>

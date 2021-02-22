@@ -20,7 +20,7 @@
         </view>
         <view class="weui-cells weui-cells_form white-bg cf">
             <view>
-                <input name="goods_name" bindblur="editGoodsName" data-key="goods_name" bindchange="inputDuplex" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="请输入标题" />
+                <input name="goods_name" bindblur="editGoodsName" data-key="goods_name" bindchange="goods_name_Change" class="goods_name" value="{{goods_name}}" maxlength="50" placeholder="请输入标题" />
             </view>
             <!-- 富文本编辑器 -->
             <rich-editor currentScrollTop="{{currentScrollTop}}" ctl-style="main-color" init-data="{{ content }}" op-style="btn-color" bind:updateData="getObject" bind:moveItem="moveItemEvent" />

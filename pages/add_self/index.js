@@ -52,8 +52,16 @@ Page({
 
         util.wx.post('/api/seller/self_address_add_or_edit',this.data.addressData)
         .then((res)=>{
-            if(res.data.code != 200) return;
             wx.hideLoading();
+
+            if(res.data.code != 200) {
+               return wx.showModal({
+                    title: res.data.msg || '错误',
+                    showCancel: false,
+                })
+            };
+
+
             if(this.data.addressData.self_address_id){
                 this.data.newAddress[current[1]] = res.data.data.address;    
             }else{

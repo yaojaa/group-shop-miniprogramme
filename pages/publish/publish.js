@@ -662,6 +662,10 @@ Page({
 
         this.WxValidate = new WxValidate(rules, messages)
     },
+
+    goods_name_Change(e){
+        this.data.goods_name = e.detail.value
+    },
     jump() {
         wx.redirectTo({
             url: '../goods/goods?goods_id=' + this.data.goods_id,
@@ -681,7 +685,14 @@ Page({
 
         console.log(e.detail.value)
 
-        this.initValidate()
+
+         if (this.data.goods_name =='') {
+            wx.showModal({
+                title: '请填写标题',
+                showCancel: false
+            })
+            return util.playSound('../../img/error.mp3')
+        }
 
         if (this.data.goods_images.length <= 0) {
             wx.showModal({
@@ -787,10 +798,14 @@ Page({
             fullreduce_data
         )
 
-        wx.showLoading()
 
         this.setData({
             btnDisabled: true
+        })
+
+        wx.showLoading({
+            title:'发布中...',
+            icon:'none'
         })
 
 
@@ -848,7 +863,13 @@ Page({
             }
         }
 
+        wx.showLoading({
+            title:'发布中...',
+            icon:'none'
+        })
+
         util.wx.post('/api/seller/goods_add_or_edit', postObj).then(res => {
+            wx.hideLoading()
             if (res.data.code !== 200) {
                 wx.showToast({
                     title: res.data.msg,
@@ -1270,14 +1291,20 @@ Page({
         })
     },
 
+    onUnload(){
+        // wx.showModal({
+        //         title: '提示',
+        //         content: '是否上传本地数据？',
+        //         success: function(res) {}
+        //     })
+    },
+
     autoSave() {
 
-        setInterval(() => {
-            wx.setStorage({
-                key: 'publish-data',
-                data: this.data
-            })
-        }, 5000)
+
+        app.globalData.tempData = this.data
+
+      
 
     },
 

@@ -32,6 +32,10 @@ page{
 	padding: 0;
 	height: 100%;
 }
+.input-style{
+	font-size:20px;
+	padding:10px
+}
 
 
 

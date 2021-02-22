@@ -206,7 +206,8 @@ Page({
         app.globalData.apiPrix = 'seller'
 
         this.setData({
-            user_id: app.globalData.userInfo.user_id,
+            user_id: app.globalData.userInfo.user_id, //判断身份 稍后废弃
+            store_id:app.globalData.userInfo.store_id,
             goods_id: optiton.id || optiton.goods_id,
             delivery_method: optiton.delivery_method,
             goods_name: optiton.goods_name

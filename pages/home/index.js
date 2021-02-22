@@ -102,6 +102,8 @@ Page({
 
         app.globalData.store_id = user.store_id
         app.globalData.userInfo.store_id = user.store_id
+        app.globalData.userInfo.store.store_id = user.store_id
+
         app.globalData.userInfo.headimg = user.headimg
         app.globalData.userInfo.nickname = user.nickname
         this.setUserInView()
@@ -186,23 +188,7 @@ Page({
         });
     },
 
-    getProList() {
-        util.wx
-            .get('/api/user/get_bought_store_goods')
-            .then((res) => {
-                if (res.data.code == 200) {
-                    this.setData({
-                        proList: res.data.data.goods
-                    });
-                }
-                this.setData({
-                    isloading: false
-                });
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    },
+ 
 
     handleTabBarChange({ detail }) {
         this.setData({
@@ -352,7 +338,12 @@ Page({
         });
 
         this.getOrderList();
-        this.setUserInView()
+        this.get_store_info()
+
+        this.setData({
+            headimg: app.globalData.userInfo.headimg,
+            nickname: app.globalData.userInfo.nickname
+        });
     },
 
     setUserInView() {
@@ -366,9 +357,6 @@ Page({
         this.get_store_info()
         this.getOrderList();
         this.getGoodsList()
-
-
-
     },
     goCreate() {
         wx.redirectTo({
@@ -639,6 +627,8 @@ Page({
         }
         this.getOrderList();
         this.reGetUserInfo()
+        this.get_store_info()
+
         wx.stopPullDownRefresh();
     },
 

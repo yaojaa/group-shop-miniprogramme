@@ -54,7 +54,7 @@
 
         <view class="m-df">
 
-            <button class="btn primary block linenear_bg" bindtap="goDetail" disabled="{{btnDisable}}">
+            <button class="primary block linenear_bg" bindtap="goDetail" disabled="{{btnDisable}}">
                 确定
             </button>
 

@@ -34,7 +34,7 @@ Page({
         listmore: true,
         show: false,
         active: 0,
-        is_batch: true,
+        is_batch: false,
         historyList: []
 
     },
