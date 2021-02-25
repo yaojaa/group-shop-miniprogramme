@@ -21,7 +21,11 @@
                     <view class="user-box">
                         <view class="shop-name mr-sm">{{info.store_name}} </view>
                         <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" >{{userInfo.nickname}}
+                        </navigator> 
+
+                         <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" >我的产品主页
                         </navigator>
+
                     </view>
                 
                     <navigator url="../withdrawal/index" hover-class="none" class="text-center"  wx:if="{{!isCustome}}">

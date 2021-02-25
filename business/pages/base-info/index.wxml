@@ -3,7 +3,7 @@
      
 
      <view class="uploadArea">
-     <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
+     <wux-upload listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.net/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
             <image src="{{ supplier_logo }}" wx:if="{{ supplier_logo }}" />
             <text wx:else>+LOGO</text>
      </wux-upload>

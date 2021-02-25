@@ -9,7 +9,7 @@ Page({
   data: {
       loading: false,
       showAuth: false,
-      supplier_logo: '',
+      store_logo: '',
       apiUrl:util.apiUrl
   },
 
@@ -46,7 +46,7 @@ Page({
         const data = JSON.parse(e.detail)
 
         this.setData({
-          supplier_logo:data.data.file_url
+          store_logo:data.data.file_url
         })
     },
     onFail(e) {
@@ -86,22 +86,23 @@ Page({
   submitForm(e){
     let _this = this;
 
-    if(this.data.supplier_logo == ''){
+    if(this.data.store_logo == ''){
       return wx.showToast({
         title:'请上传LOGO',
         icon: 'none'
       })
     }
 
-    if(!util.checkMobile(e.detail.value.supplier_mobile)){
+    if(!util.checkMobile(e.detail.value.store_mobile)){
       return 
     }
 
+    wx.showLoading()
 
-
-    const postData=Object.assign({supplier_logo:this.data.supplier_logo},e.detail.value)
+    const postData=Object.assign({store_logo:this.data.store_logo},e.detail.value)
     util.wx.post('/api/user/apply_supplier',postData).then(res=>{
 
+      wx.hideLoading()
       wx.showToast({
         title:res.data.msg,
         icon:'none'
@@ -130,7 +131,6 @@ Page({
 
     }).catch(e=>{
 
-      console.log(e)
 
     })
 
