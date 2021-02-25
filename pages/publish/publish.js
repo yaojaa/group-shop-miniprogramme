@@ -702,16 +702,7 @@ Page({
             return util.playSound('../../img/error.mp3')
         }
 
-        // 传入表单数据，调用验证方法
-        if (!this.WxValidate.checkForm(e)) {
-            const error = this.WxValidate.errorList[0]
-            wx.showModal({
-                title: error.msg,
-                showCancel: false
-            })
-            return util.playSound('../../img/error.mp3')
-        }
-
+  
         //校验规则名
         let hasKeyName = true
 
