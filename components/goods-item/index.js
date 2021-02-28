@@ -49,7 +49,7 @@ Component({
           },
           {
             id: 5,
-            name: '置顶'
+            name: this.properties.item.store_sort == 999999 ? '取消置顶' : '置顶'
           },
           // {
           //   id: 7,
@@ -72,7 +72,7 @@ Component({
     addListen(e) {
       util.sellerListner();
     },
-    handleAction() {
+    handleAction(e) {
       this.setData({ show: !this.data.show });
     },
     onCloseClass() {
@@ -112,7 +112,7 @@ Component({
       } else if (item.id == 4) {
         this.copyGoods();
       } else if (item.id == 5) {
-        this.upTop(item);
+        this.upTop(item, this.properties.item.store_sort == 999999 ? 0 : 999999);
       } else if (item.id == 6) {
         this.onClose();
       } else if (item.id == 7) {
@@ -240,14 +240,16 @@ Component({
     },
 
     //置顶
-    upTop(s) {
+    upTop(s, sort) {
+      let txt = sort == 0 ? '取消':'置顶'
       util.wx
         .post('/api/seller/set_goods_sort', {
-          goods_id: this.data.item.goods_id
+          goods_id: this.data.item.goods_id,
+          sort: sort
         })
         .then((res) => {
           wx.showToast({
-            title: '已置顶',
+            title: '已' + txt,
             icon: 'none'
           });
           this.triggerEvent('updateList', s);
