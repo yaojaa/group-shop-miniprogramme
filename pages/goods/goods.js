@@ -129,7 +129,7 @@ Page({
     is_help_sale: false,
     isCanDraw: false,
     shareData: {},
-    reduce_txt:''
+    reduce_txt: ''
   },
   handleSpecPopup(e) {
     let { item } = e.currentTarget.dataset;
@@ -640,45 +640,42 @@ Page({
   /*上下架*/
 
   goodsUp(e) {
-    const is_on_sale = e.currentTarget.dataset.is_on_sale
-    const status_txt = is_on_sale == 2 ? '上架' : '下架'
+    const is_on_sale = e.currentTarget.dataset.is_on_sale;
+    const status_txt = is_on_sale == 2 ? '上架' : '下架';
 
-    console.log(is_on_sale)
+    console.log(is_on_sale);
 
     wx.showModal({
-         title: '确定要'+status_txt+'此商品吗？',
-         showCancel: true,//是否显示取消按钮
-         cancelText:"取消",//默认是“取消”
-         confirmText:"确定",//默认是“确定”
-         success:  (res) =>{
-            if (res.cancel) {
-               //点击取消,默认隐藏弹框
-            } else {
+      title: '确定要' + status_txt + '此商品吗？',
+      showCancel: true, //是否显示取消按钮
+      cancelText: '取消', //默认是“取消”
+      confirmText: '确定', //默认是“确定”
+      success: (res) => {
+        if (res.cancel) {
+          //点击取消,默认隐藏弹框
+        } else {
+          this.goodsUpDown(is_on_sale == 2 ? 1 : 2);
+        }
+      },
+      fail: function (res) {}, //接口调用失败的回调函数
+      complete: function (res) {} //接口调用结束的回调函数（调用成功、失败都会执行）
+    });
+  },
 
-              this.goodsUpDown(is_on_sale ==2 ? 1:2);
-              
-            }
-         },
-         fail: function (res) { },//接口调用失败的回调函数
-         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+  goodsUpDown(s) {
+    util.wx
+      .post('/api/seller/goods_change_on_sale', {
+        goods_id: this.data.goods_id,
+        is_on_sale: s
       })
-
-   },
-
-   goodsUpDown(s) {
-      util.wx
-        .post('/api/seller/goods_change_on_sale', {
-          goods_id: this.data.goods_id,
-          is_on_sale: s
-        })
-        .then((res) => {
-          wx.showToast({
-            title:'设置成功',
-            icon :'none'
-          })
-          this.getGoodsInfo()
+      .then((res) => {
+        wx.showToast({
+          title: '设置成功',
+          icon: 'none'
         });
-    },
+        this.getGoodsInfo();
+      });
+  },
 
   getShareImg() {
     util.wx
@@ -778,24 +775,18 @@ Page({
 
           /**如果有满减优惠 显示文字提示**/
 
-          if(d.goods.fullreduce_data ){
+          if (d.goods.fullreduce_data) {
+            let reduce_txt = '';
 
-            let reduce_txt = ''
-
-            d.goods.fullreduce_data.forEach(item=>{
-
-
-              reduce_txt+='满'+item.full+'减'+item.reduce +' '
-
-            })
+            d.goods.fullreduce_data.forEach((item) => {
+              reduce_txt += '满' + item.full + '减' + item.reduce + ' ';
+            });
 
             this.setData({
-              reduce_txt : reduce_txt
-            })
-
+              reduce_txt: reduce_txt
+            });
           }
 
-    
           this.setData({
             content: content,
             goods_content: d.goods.goods_content,
@@ -819,12 +810,15 @@ Page({
             this.wuxCountDown(formatDateTime(d.goods.end_time));
           }
 
-
           (this.data.seller = d.goods.store),
             (this.data.store_id = d.goods.store.store_id);
 
           //显示管理面板
-          console.log('this.data.seller',this.data.seller,app.globalData.userInfo)
+          console.log(
+            'this.data.seller',
+            this.data.seller,
+            app.globalData.userInfo
+          );
 
           if (this.data.seller.store_id == app.globalData.userInfo.store_id) {
             console.log('是管理');
@@ -964,7 +958,7 @@ Page({
   },
   handleCountChange(e) {
     let id = e.target.id;
-
+    console.log('object', e.detail.type);
     this.type = e.detail.type;
 
     let key = 'goods_spec[' + id + '].item_num';
@@ -1005,6 +999,7 @@ Page({
       this.starPos['y'] = e.detail.y - this.data.scrollTop;
       console.log('starPos', this.starPos);
       this.startAnimation();
+      this.type = 'minus';
     }
   },
   cartPanelHide() {
@@ -1292,26 +1287,23 @@ Page({
       return;
     }
 
+    if (!app.globalData.userInfo.hasOwnProperty('store')) {
+      wx.showModal({
+        title: '你需要先创建团长主页',
+        content: '免费个人卖货主页',
+        confirmText: '一秒拥有',
+        confirmColor: '#4bb000',
+        success: (res) => {
+          if (res.confirm) {
+            wx.redirectTo({
+              url: '../create-home/index'
+            });
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
+        }
+      });
 
-     if (!app.globalData.userInfo.hasOwnProperty('store')) {
-
-        wx.showModal({
-            title: '你需要先创建团长主页',
-            content: '免费个人卖货主页',
-            confirmText: '一秒拥有',
-            confirmColor: '#4bb000',
-            success: (res) => {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: '../create-home/index'
-                });
-              } else if (res.cancel) {
-                console.log('用户点击取消');
-              }
-            }
-          });
-
-      
       return;
     }
 
@@ -1412,42 +1404,42 @@ Page({
         }
       });
   },
-  buyUserScroll: function(e) {
-      if(orderUsersFlag){
-          return;
-      }
+  buyUserScroll: function (e) {
+    if (orderUsersFlag) {
+      return;
+    }
 
-      orderUsersFlag = true;
+    orderUsersFlag = true;
 
-      this.setData({
-          orderUsersLoading: true
+    this.setData({
+      orderUsersLoading: true
+    });
+
+    util.wx
+      .get('/api/goods/get_minorders_by_goods_id', {
+        goods_id: this.data.goods_id,
+        pagesize: orderUsersLen,
+        cpage: orderUsersPage
       })
+      .then((res) => {
+        console.log(res);
 
-  util.wx.get('/api/goods/get_minorders_by_goods_id', {
-      goods_id: this.data.goods_id,
-      pagesize: orderUsersLen,
-      cpage: orderUsersPage
-  }).then(res => {
+        if (res.data.data.order_list && res.data.data.order_list.length > 0) {
+          orderUsersPage++;
 
-              console.log(res)
+          orderUsersFlag = false;
 
-          if(res.data.data.order_list && res.data.data.order_list.length > 0){
-              orderUsersPage ++;
-
-              orderUsersFlag = false;
-
-              this.setData({
-                  orderUsersLoading: false,
-                  ['_orderUsers_[' + this.data._orderUsers_.length + ']']: res.data.data.order_list
-              })
-          }else{
-              this.setData({
-                  orderUsersLoading: false
-              })
-          }
-
-      })
-
+          this.setData({
+            orderUsersLoading: false,
+            ['_orderUsers_[' + this.data._orderUsers_.length + ']']: res.data
+              .data.order_list
+          });
+        } else {
+          this.setData({
+            orderUsersLoading: false
+          });
+        }
+      });
   },
   onPageScroll: function (e) {
     if (e.scrollTop > 50 && !this.data.toShowPic) {
