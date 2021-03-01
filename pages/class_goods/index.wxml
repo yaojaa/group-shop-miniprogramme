@@ -12,20 +12,17 @@
     
     <view class="input fc9 pl20 pr20">
         <view class="lists" wx:if="{{list.length > 0}}">
-            <view data-index="{{index}}" bindtap="goodsSelect" class="list aic {{item.checked == 1 ? '' : 'nochecked'}}" wx:for="{{list}}" wx:key="item.order_id">
+            <block wx:for="{{list}}" wx:key="goods_id">
+            <view data-index="{{index}}" bindtap="goodsSelect" class="list aic">
                 <image class="head-pic" mode="aspectFill" src="{{item.goods_cover}}"></image>
                 <view class="name">
                     <view class="mb20 fc6 txt">{{item.goods_name}}</view>
-                    <view class="f28 txt">{{item.goods_name}}</view>
+                    <view class="f28 txt">{{item.goods_id}}</view>
                 </view>
-                <van-icon name="checked" custom-class="checkbox"/>
-                <!-- <van-switch
-                    checked="{{ checked }}"
-                    active-color="#07c160"
-                    size="24px"
-                    bind:change="onChange"
-                /> -->
+                <!-- <van-icon name="checked" custom-class="checkbox"/> -->
+                <icon class="icon-small" type="{{ item.checked ? 'success' : 'circle' }}" size="23"></icon>
             </view>
+            </block>
         </view>
         <view class="flex loading jcc aic tac" wx:else="{{loading}}">
             <van-loading size="24px" type="spinner" />

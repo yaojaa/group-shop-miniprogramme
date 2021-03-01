@@ -1,6 +1,6 @@
 <view class="top-title">
     <text class='txt'>编辑分类</text>
-    <view class="fc9 f28">商品数量（{{list.length}}）</view>
+    <view class="fc9 f28">商品数量（{{list.goods.length}}）</view>
 </view>
 <view class="pl30 pr30 f28 pb200">
     <view class="input mb40 pl20 pr20 pb30 pt30">
@@ -9,17 +9,17 @@
     <view class="input fc9 pl20 pr20">
         <view class="f28 pt30 pb30 fc6" bindtap="selectGoods"><van-icon name="plus" /> 添加商品</view>
 
-        <view class="lists" wx:if="{{list.length > 0}}">
-            <view class="list" wx:for="{{list}}">
-                <image class="head-pic" mode="aspectFill" src="https://img3.autoimg.cn/soudfs/g3/M05/B0/EF/autohomecar__ChsEkV_0TT-AH-tlAAMDKdpTD6A118.png"></image>
+        <view class="lists">
+            <view class="list" wx:for="{{list.goods}}">
+                <image class="head-pic" mode="aspectFill" src="{{item.goods_cover}}"></image>
                 <view class="name">
-                    <view class="mb20 fc6 txt">{{item.cat_name}}</view>
-                    <view class="f28 txt">{{item.cat_name}}</view>
+                    <view class="mb20 fc6 txt">{{item.goods_name}}</view>
+                    <view class="f28 txt">{{item.goods_name}}</view>
                 </view>
                 <van-button color="#666" custom-class='btn' plain size="" icon="delete" type="primary" data-index="{{index}}" bind:click="delete"></van-button>
             </view>
         </view>
-        <view wx:else="{{loading}}"><van-loading size="24px" type="spinner" /></view>
+        <!-- <view wx:else="{{loading}}"><van-loading size="24px" type="spinner" /></view> -->
 
     </view>
 </view>  
@@ -29,6 +29,7 @@
     <van-button custom-class='btn' bind:click="goSave" round type="primary">保存</van-button>
 </view>
 
+<van-dialog id="van-dialog" />
 
 
 

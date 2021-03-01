@@ -73,33 +73,21 @@
     <van-action-sheet show="{{ classShow }}" bind:close="onCloseClass" bind:select="onSelectClass">
         <view class="class-main">
             <view class="all-class">
-                <view class="class-cell flex jsb aic">
+                <view class="class-cell flex jsb aic" bindtap="onChange">
                     <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
                 </view>
-                <view class="class-cell flex jsb aic">
+                <view class="class-cell flex jsb aic" bindtap="onChange">
                     <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
                 </view>
-                <view class="class-cell flex jsb aic">
+                <view class="class-cell flex jsb aic" bindtap="onChange">
                     <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
                 </view>
-                <view class="class-cell flex jsb aic">
+                <view class="class-cell flex jsb aic" bindtap="onChange">
                     <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-                </view>
-                <view class="class-cell flex jsb aic">
-                    <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-                </view>
-                <view class="class-cell flex jsb aic">
-                    <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-                </view>
-                <view class="class-cell flex jsb aic">
-                    <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
                 </view>
             </view>
             <view class="class-cell flex jcc aic" bindtap="toAddClass">

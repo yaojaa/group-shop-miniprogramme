@@ -2,7 +2,9 @@
 
 const app = getApp()
 
-const util = require('../../utils/util.js')
+const util = require('../../utils/util.js');
+
+let class_list = []
 
 import Dialog from '../../vant/dialog/dialog';
 
@@ -19,12 +21,16 @@ Page({
   },
   goodsSelect(e){
     let index = e.currentTarget.dataset.index
-    let checked = this.data.list[index].checked == 1 ? 0 : 1;
     this.setData({
-      ['list['+ index +'].checked']: checked
+      ['list['+ index +'].checked']: !this.data.list[index].checked
     })
   },
   onLoad(){
+    console.log(app.globalData.class_list)
+    if(app.globalData.class_list){
+      class_list = app.globalData.class_list;
+      app.globalData.class_list = null;
+    }
     this.getGoodsList();
   }, // 搜索
   onSearch(e) {
@@ -49,7 +55,18 @@ Page({
     wx.navigateBack()
   },
   goSave(){
+    let selectGoods = [];
+    this.data.list.forEach( e=> {
+      if(e.checked){
+        selectGoods.push(e)
+      }
 
+    })
+
+
+    util.setParentData({
+        ['list.goods']: selectGoods
+    })
   },
   getGoodsList: function() {
     let ajaxData = {
@@ -69,24 +86,20 @@ Page({
         .then((res) => {
             if (res.data.code == 200) {
               let data = res.data.data.goodslist;
-              let dataList = [];
-
               data.forEach(e=>{
-                dataList.push({
-                  goods_id: e.goods_id,
-                  goods_name: e.goods_name,
-                  goods_cover: e.goods_cover,
-                  checked: 0,
-                  store_cat_id: 2
+                let checkeds = class_list.filter(c => {
+                  return e.goods_id == c.goods_id;
                 })
+
+                e.checked = checkeds.length > 0 ? true : false
               })
 
                 this.setData({
-                    list: this.data.list.concat(res.data.data.goodslist),
+                    list: this.data.list.concat(data),
                     loading: false
                 });
 
-                if(dataList.length == 0) this.setData({nomore: true})
+                if(data.length == 0) this.setData({nomore: true})
             } else {
                 this.setData({
                     loading: false
