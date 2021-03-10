@@ -1,1 +1,13 @@
 @import "../../css/common.wxss";
+.value-class {
+  flex: none !important;
+  color: #c00
+}
+
+
+.van-cell__title{
+	word-break: keep-all;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

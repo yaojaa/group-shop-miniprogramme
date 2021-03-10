@@ -1,0 +1,36 @@
+<view class="pl30 pr30 f28 pb200">
+    <view class="input fc9 pl20 pr20">
+        <view class="lists" wx:if="{{list.length > 0}}">
+            <view class="list aic" wx:for="{{list}}">
+                <image class="head-pic" mode="aspectFill" src="https://img3.autoimg.cn/soudfs/g3/M05/B0/EF/autohomecar__ChsEkV_0TT-AH-tlAAMDKdpTD6A118.png"></image>
+                <view class="name">
+                    <view class="mb20 fc6 txt">{{item.cat_name}}</view>
+                    <view class="f28 txt">{{item.cat_name}}</view>
+                </view>
+                <van-switch
+                    checked="{{ checked }}"
+                    active-color="#07c160"
+                    bind:change="onChange"
+                />
+            </view>
+        </view>
+        <view class="flex loading jcc aic tac" wx:else="{{loading}}">
+            <van-loading size="24px" type="spinner" />
+        </view>
+        
+
+    </view>
+</view>  
+
+<view class="bottom-button pt30 pb30 pr30 pl30">
+    <van-button custom-class='btn' round plain>取消</van-button>
+    <van-button custom-class='btn' round type="primary">保存</van-button>
+</view>
+
+
+
+
+
+
+
+

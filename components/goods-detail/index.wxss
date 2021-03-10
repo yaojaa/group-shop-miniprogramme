@@ -31,7 +31,7 @@
   line-height: 1.7;
 }
 
-.content-item .image, .content-item .video{
+.content-item .image{
   width: 100%;
   margin: 0;
   padding:0;
@@ -42,4 +42,10 @@
     margin:3px 0;
   word-wrap : break-word ;
   word-break : break-all 
+}
+.video{
+  margin:10px 0;
+  width: 100%;
+  padding:0;
+  display: block;
 }

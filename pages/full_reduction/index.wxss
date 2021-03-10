@@ -1,0 +1,82 @@
+page{ background-color: #f5f6f7; color: #333; font-size: 28rpx;}
+.body{ background-color: #fff; margin-bottom: 120rpx;}
+.f12{ font-size: 24rpx;}
+.f14{ font-size: 28rpx; }
+.f15{ font-size: 30rpx;}
+.f16{ font-size: 32rpx;}
+.fc0{ color: #000;}
+.fc3{ color: #333;}
+.fc6{ color: #666;}
+.fc9{ color: #999;}
+.pl30{ padding-left: 30rpx;}
+.pr30{ padding-right: 30rpx;}
+.pb30{ padding-bottom: 30rpx;}
+.bold{ font-weight: bold;}
+.fn{ font-weight: normal;}
+.flex{ display: flex; }
+.aic{ align-items: center;}
+.jcc{ justify-content: center;}
+.jsb{ justify-content: space-between;}
+.fg1{ flex-grow: 1;}
+.fs0{ flex-shrink: 0;}
+.page-title{
+  padding:10rpx 30rpx;
+  line-height: 50rpx;
+  border-bottom: 1px solid #eee;
+}
+.main-list .title{
+  padding-top: 10rpx;
+  line-height: 68rpx;
+}
+.main-list .cell-list{
+  width: 40%;
+  height: 80rpx;
+  padding: 14rpx 18rpx;
+  margin-right: 10rpx;
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+.main-list .btn{
+  height: 80rpx;
+  padding: 10rpx;
+  background-color: #fff;
+  color: #666;
+  border: none;
+}
+.main-list input{
+  margin: 0 10rpx;
+  color: #f00;
+}
+.bottom-btn{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+}
+.bottom-btn .btn{
+  width: 100%;
+  height: 80rpx;
+}
+.add-btn{ padding: 6rpx 0 30rpx;}
+.add-btn .btn2{
+  height: 80rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -27,12 +27,27 @@ Page({
 
     getInfo(){
 
-    util.wx.get('/api/supplier/get_supplier_detail').then(res=>{
+    util.wx.get('/api/user/get_user_info').then(res=>{
+
+
+      if(res.data.code == -99 || res.data.code == -100){
+           return   wx.redirectTo({
+                            url: '/pages/login/login'
+                        })
+      }
+
+
       this.setData({
-        info:res.data.data,
-        supplier_logo:res.data.data.supplier_logo,
-        pending_money:res.data.data.pending_money
+        info:res.data.data.supplier,
+        supplier_logo:res.data.data.supplier.store_logo,
+        pending_money:res.data.data.supplier.padding_money
       })
+
+      app.globalData.store_id = res.data.data.supplier.store_id
+
+      this.getGoodsList()
+
+
 
     if(res.data.code == -1){
 
@@ -126,7 +141,7 @@ Page({
           message: '删除后不可恢复'
         }).then(() => {
 
-             util.wx.post('/api/supplier/goods_del',{
+             util.wx.post('/api/seller/goods_del',{
               goods_id:goods_id
              })
             .then((res) => {
@@ -171,13 +186,14 @@ Page({
          confirmColor: '#90d200',//确定文字的颜色
          success: function (res) {
             if (res.confirm) {
-                wx.redirectTo({
+              app.globalData['store_id'] = app.globalData.userInfo.store.store_id
+              console.log(1,app.globalData.userInfo.store.store_id)
+              console.log(2,app.globalData)
+                wx.switchTab({
                   url:'/pages/home/index'
                 })
             }
-         },
-         fail: function (res) { },//接口调用失败的回调函数
-         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+         }
       })
 
   },
@@ -187,7 +203,7 @@ Page({
     const goods_id = e.currentTarget.dataset.goods_id
 
     wx.navigateTo({
-        url:'/business/pages/publish/publish?goods_id='+goods_id
+        url:'/pages/publish/publish?user_type=supplier&goods_id='+goods_id
       })
   },
 
@@ -208,8 +224,8 @@ Page({
     },
 
     getGoodsList() {
-        util.wx.get('/api/supplier/get_goods_list',{
-          pagesize:50
+        util.wx.get('/api/seller/get_goods_list',{
+          pagesize:500
         })
             .then((res) => {
                     this.setData({
@@ -261,6 +277,9 @@ Page({
           data:'supplier'
         })
 
+       this.getInfo()
+
+
 
     },
     goOrder(){
@@ -288,7 +307,7 @@ Page({
     goAdd(){
 
          wx.navigateTo({
-                url:'/business/pages/publish/publish'
+                url:'/pages/publish/publish?user_type=supplier'
             })
 
     },
@@ -326,9 +345,7 @@ Page({
 
       wx.hideHomeButton()
 
-        this.getInfo()
         //this.getDetail()
-        this.getGoodsList()
 
         
     },

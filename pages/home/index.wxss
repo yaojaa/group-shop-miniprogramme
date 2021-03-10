@@ -15,6 +15,22 @@
     align-items: center;
     justify-content: flex-end;
 }
+
+
+
+.change-user {
+    position: absolute;
+    padding-left: 220rpx;
+    top: 0;
+    left: 10px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+
 .tips{
     padding:10px 0
 }
@@ -31,18 +47,7 @@
     margin-bottom: 60px
 }
 
-.new-btn {
-    position: absolute;
-    right: 10px;
-    top: 9rpx;
-    z-index: 9999;
-    color: #fff;
-    border-radius: 50rpx;
-    border: 1px solid #ebffdb;
-    margin-right: 10px;
-    font-size: 24rpx;
-    background: #85c002
-}
+
 
 
 .panelbox {
@@ -53,10 +58,10 @@
     position: relative;
     background: url('https://static.kaixinmatuan.cn/staitc-img/u_center_bg.jpg') center bottom no-repeat #fff;
     background-size: 100% auto;
-    height: 280rpx;
+    height: 310rpx;
     position: relative;
     width: 100%;
-    padding-top: 158rpx;
+    padding-top: 180rpx;
     overflow: hidden;
 }
 
@@ -106,14 +111,30 @@
 }
 
 .pubbtn {
-    color: #49b34d;
-    border-radius: 50rpx;
-    border: 1px solid #85c002;
+    color: #fff;
+    border-radius: 100%;
     background: #f9fff5;
     display: block;
-    width: 80%;
+    width: 60px;
+    height: 60px;
     font-size: 14px;
-    margin: 0 auto 10px;
+    position: fixed;
+    right: 15px;
+    bottom: 80px;
+    line-height: 1.2;
+    background: #85c002;
+    z-index: 100;
+    text-align: center;
+    box-shadow: 0 0 6px #ccc;
+}
+
+.exchange_btn{
+    border-radius: 50rpx;
+    background: #f9fff5;
+    font-size: 24rpx;
+    padding: 10rpx 20rpx;
+    color: #333;
+    opacity: .8
 }
 
 
@@ -362,7 +383,7 @@
 }
 
 .goods-body .bd .tit {
-    font-size: 16px;
+    font-size: 36rpx;
     color: #474245;
     width: 100%;
     display: -webkit-box;
@@ -1131,3 +1152,30 @@ button::after {
     color: #999;
     text-align: center;
 }
+
+.flex{
+    display: flex;
+}
+
+.fg1{ flex-grow: 1; }
+
+/*切换身份弹窗*/
+.changContent{
+    height: 600rpx;
+    padding:30px;
+}
+.changContent .flex-box{
+
+    display: flex;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee
+
+}
+.changContent .flex-box view{
+    flex: 2;
+    padding: 0 10px
+}
+
+/*切换身份弹窗*/
+

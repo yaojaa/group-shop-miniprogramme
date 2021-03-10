@@ -2,6 +2,15 @@
 <wxs module="filters" src="../../utils/filters.wxs"></wxs>
 
 <view class="container">
+      <van-search 
+            value="{{ value }}" 
+            shape="round" 
+            background="#fff" 
+            placeholder="请输入收件人姓名或者电话"
+            show-action="{{searchWords}}"
+            bind:search="onSearch"
+            bind:cancel="onCancel"
+            />
     <view class="text-justify ph-df pb-sm pt-df">
         <view class="f14">顾客消费数据({{fansNum}}) </view>
 <!--         <van-button icon="star-o" type="primary" plain size="mini" >群发通知</van-button>

@@ -1,0 +1,40 @@
+@import "../../css/common.wxss";
+page{
+    background: #f8f8f8
+}
+
+.fans-list .avatar{
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 8rpx;
+}
+.text-sm{
+    font-size: 11px;
+    color: #666;
+
+}
+.name{
+    max-width: 200rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    white-space: nowrap;
+    font-size:30rpx
+}
+
+.a{
+    max-width: 400rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    white-space: nowrap;
+}
+
+
+.text-fixed-width{
+display: inline-block;
+    width: 100rpx
+}
+/*.fans-list{
+    height: 1500rpx;
+}*/

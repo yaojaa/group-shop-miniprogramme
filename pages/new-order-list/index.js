@@ -13,20 +13,54 @@ Page({
         phone: '',
         weChat: '',
         active:0,
-        search_order_status:0
+        search_order_status:0,
+        searchWords: ''
+    },
+    // 搜索
+    onSearch(e){
+        var sv = e.detail.replace(/(^\s*)|(\s*$)/g,'');
+        console.log(sv)
+        if(sv){
+            this.setData({
+                searchWords: sv,
+                order_list: [],
+                totalpage: 1,
+                cpage: 1
+            })
+
+            this.getOrderList()
+        }
+    },
+    onCancel(){
+        this.setData({
+            searchWords: '',
+            order_list: [],
+            totalpage: 1,
+            cpage: 1
+        })
+        this.getOrderList()
+
     },
 
     getOrderList() {
         this.setData({
             loading: true
         })
-        return new Promise((resolve, reject) => {
-            util.wx.get('/api/seller/get_order_list', {
+        let ajaxData = {
                 cpage: this.data.cpage,
-                pagesize: 25,
+                pagesize: 50,
                 search_order_status: this.data.search_order_status,
 
-            }).then((res) => {
+            }
+
+        if(this.data.searchWords){
+            ajaxData.keyword = this.data.searchWords
+        }
+
+        console.log(ajaxData)
+
+        return new Promise((resolve, reject) => {
+            util.wx.get('/api/seller/get_order_list', ajaxData).then((res) => {
                 this.setData({
                     loading: false,
                     order_list: this.data.order_list.concat(res.data.data.order_list),

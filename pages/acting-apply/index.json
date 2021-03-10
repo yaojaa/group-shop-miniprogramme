@@ -1,7 +1,7 @@
 { 
   "navigationBarBackgroundColor": "#69b90b",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "申请帮卖",
+  "navigationBarTitleText": "申请帮卖权限",
   "usingComponents": {
 
   "van-dialog": "../../vant/dialog/index"

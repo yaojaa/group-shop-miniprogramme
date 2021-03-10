@@ -46,6 +46,9 @@ App({
                                     this.session_key = response.data.data.session_key;
 
                                     this.globalData.openid = this.openId;
+
+                                    // this.globalData.store_id = response.data.data.store.store_id
+
                                     resolve(response.data.data.openid)
                                 } else {
                                     reject()
@@ -157,6 +160,9 @@ App({
                 },
                 success: (res) => {
 
+
+                    console.log(res)
+
                     if (res.data.code === 200) {
                       
                       const d = res.data.data
@@ -164,18 +170,21 @@ App({
                             
                             if(d.hasOwnProperty('store')){
                                 userInfo.store =  d.store
+                                this.globalData.store_id = d.store.store_id
                             }
 
-                             if(d.hasOwnProperty('supplier')){
-                                userInfo.supplier =  d.supplier
-                            }
+                            //  if(d.hasOwnProperty('supplier')){
+                            //     userInfo.supplier =  d.supplier
+                            //     this.globalData.store_id = d.supplier.store_id
+
+                            // }
                             
                         this.globalData.token = d.token 
                         this.globalData.userInfo = userInfo
 
                         wx.setStorage({ //存储到本地
                             key: "userInfo",
-                            data: this.globalData.userInfo
+                            data: userInfo
                         })
                     
 
@@ -260,9 +269,6 @@ App({
 
     onLaunch: function(option) {
 
-        console.group('启动检测onLaunch---')
-        console.log('option', option)
-
         this.comeInfo = {}
 
     
@@ -286,7 +292,7 @@ App({
 
 
                   try {
-                   let custom = wx.getMenuButtonBoundingClientRect();
+                let custom = wx.getMenuButtonBoundingClientRect();
                 this.globalData.Custom = custom;
                 this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
                 
@@ -319,6 +325,8 @@ App({
             if(userInfo.store && userInfo.store.store_id ){
 
                 this.globalData.userInfo.store_id = userInfo.store.store_id
+                this.globalData.store_id = userInfo.store.store_id 
+
             }
 
             if( userInfo.hasOwnProperty('store_id')){

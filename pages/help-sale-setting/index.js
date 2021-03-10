@@ -266,6 +266,32 @@ Page({
         }
 
     },
+    closeHelpSale(){
+           util.wx.post('/api/seller/goods_add_or_edit',{
+            goods_id: this.data.goods_id,
+            agent_opt:0
+        }).then(res => {
+            if (res.data.code !== 200) {
+               return wx.showModal({
+                    title: '温馨提示',
+                    content: res.data.msg,
+                    showCancel: false,
+                })
+            }
+
+             Dialog.alert({
+                      title: '关闭成功',
+                      message: '关闭帮卖后，代理们的商品将自动下架！'
+                    }).then(() => {
+                       util.setParentData({
+                                      'goods.agent_opt':0
+                                     })
+
+                    });
+
+
+        })
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

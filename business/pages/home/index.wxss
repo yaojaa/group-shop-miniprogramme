@@ -10,7 +10,7 @@
     left: 10px
 }
 .title{
-    font-size: 38rpx;
+    font-size: 34rpx;
     font-weight: bold;
 }
 

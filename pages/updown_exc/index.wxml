@@ -1,25 +1,95 @@
 <view class="view-page">
+    <button class="logbtn btn round " type="primary" bindtap="exportExcel">导出日志</button>
+    <van-tabs active="{{ active }}" bind:change="onTabChange" >
+        <van-tab title="待发货订单">
+        	<view class="mtop10">
 
-	<van-radio-group class="radio-group" value="{{ value1 }}" bind:change="onChange1">
+           <view class="tac" wx:if="{{list.length == 0}}"><van-empty description="暂无待导出订单" /></view>
+            <view wx:for="{{list}}" class="item-list" wx:key='index'>
+            
+                <view class='goods-list'>
+                    <view class="cover">
+                        <image src="{{item.goods_cover}}?imageView2/2/w/100/h/100/format/jpg/q/75" />
+                    </view>
+                    <view class="left">
+                        <view class="f14 bold">{{item.spec_name}} </view>
+                        <view class="big ptb5"> 订单{{item.order_num}}笔 待导出 <text class="f18 bold">{{item.batch_num}}</text> 件
+                        </view>
+                        <view class="desc">
+                            金额：{{item.total_price}}元
+                        </view>
+                        <text class="f12 desc">{{item.goods_name}}</text>
+                    </view>
+                    <!--  		<text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text> -->
+                </view>
+             
+            </view>
+
+
+
+            <view  >
+                    <van-cell title="是否拆分订单" label="一个规格购买多件，导出时拆分成多行">
+                        <van-switch slot="right-icon" checked="{{ is_batch }}" bind:change="on_is_batch_change" active-color="#06ae5c" />
+                    </van-cell>
+            </view  >
+
+             <view class="warning_text p10">
+            	(导出表格不包含退款的订单，不包含已发货的订单)
+            </view>
+
+
+         
+
+        </view>
+
+
+   
+        </van-tab>
+        <van-tab title="导出日志">
+
+                <view class="record select-time-body" wx:if="{{historyList.length > 0}}">
+                    <view class="record-item" wx:for="{{historyList}}">
+                        <van-card desc="已导出{{item.order_num}}件 {{item.exported_time}}" title="{{ item.goods_name }}" thumb="{{ item.goods_cover}}?imageView2/1/w/80/h/80/format/jpg/q/75">
+                            <view slot="footer">
+                                <button class="btn primary hollow " bindtap="preview" data-link="{{item.filepath}}">
+                                    预览数据
+                                </button>
+                                <button class="btn  primary  linenear_bg" bindtap="copylink" data-link="{{item.filepath}}">
+                                    复制下载链接
+                                </button>
+                            </view>
+                        </van-card>
+                    </view>
+                </view>
+                <view  wx:else="{{list.length == 0}}"><van-empty description="暂无导出记录" /></view>
+
+
+            <view class="center text-primary" bindtap="getExcelUrl" style="margin: 30px">
+                <button>导出全部订单</button>
+            </view>
+
+            
+        </van-tab>
+    </van-tabs>
+    <!-- 	<van-radio-group class="radio-group" value="{{ value1 }}" bind:change="onChange1">
 	  <van-radio class="radio width50" name="0" checked-color="#07c160">待发货</van-radio>
 	  <van-radio class="radio" name="1" checked-color="#07c160">已发货</van-radio>
 	</van-radio-group>
-
-	<!-- <block wx:if="{{value1 == 0 && !isGoodsOrder}}">
+ -->
+    <!-- <block wx:if="{{value1 == 0 && !isGoodsOrder}}">
 		<van-radio-group class="radio-group" value="{{ value2 }}" bind:change="onChange2">
 		  <van-radio class="radio width50" name="0" checked-color="#07c160">按商品选择</van-radio>
 		  <van-radio class="radio" name="1" checked-color="#07c160">全部商品</van-radio>
 		</van-radio-group>
 	</block> -->
-
-	<block wx:if="{{ value1 == 0}}">
+    <!-- 	<block wx:if="{{ value1 == 0}}">
 		<van-radio-group class="radio-group" value="{{ value3 }}" bind:change="onChange3">
 		  <van-radio class="radio width50" name="0" checked-color="#07c160">未导出</van-radio>
 		  <van-radio class="radio" name="1" checked-color="#07c160">已导出</van-radio>
 		</van-radio-group>
 	</block>
-
-	<view hidden="{{value1 != 1}}" class="select-time-body">
+ -->
+    <!-- 	<view hidden="{{value1 != 1}}" class="select-time-body">
 		<view class="exc-select-time">
 			<view class="left">起始时间</view>
 			<view class="right">
@@ -32,9 +102,8 @@
 				<i-datepicker label='' i-picker-title='i-picker-title' title="结束时间" date="{{endDate[0]}}" time="{{endDate[1]}}" bind:datachange="bindEndDateChange"></i-datepicker>
 			</view>
 		</view>
-	</view>
-
-	<!-- <view class="menu">
+	</view> -->
+    <!-- <view class="menu">
 		<van-dropdown-menu>
 
 		  <van-dropdown-item value="{{ value1 }}" bind:change="onChange1" options="{{ option1 }}" />
@@ -48,60 +117,8 @@
 		</van-dropdown-menu>
 	</view> -->
 
-<view class="select-time-body" wx:if="{{value1 != 1 && value2 != 1}}">
-<view class="tips">请选择：</view>
-	<!-- <scroll-view> -->
-		<van-checkbox-group value="{{ result }}" bind:change="onChange">
-			<block wx:if="{{list.length > 0}}">
-				<view wx:for="{{list}}" class="item-list" wx:key='index' wx:for-item="lis">
-				  <van-checkbox wx:for='{{lis}}' wx:key="{{item.goods_spec_id}}" checked-color="#07c160" name="{{item.goods_spec_id}}" custom-class="list-checkbox">
-				  	<view class='goods-list'>
-				  						  			<image mode="widthFix" class="cover" src="{{item.goods_cover}}" />
 
-				  		<view class="left">
-				  		<view class="f16 bold">{{item.spec_name}} </view>
-				  	    <text class="f12 desc">{{item.goods_name}}</text>
-				  		</view>
-
-						<view class="right f14">
-							<view class="width200"> 
-				<text class="f18 bold">{{item.total_qty}}</text> 件 
-			                </view> 
-								<view class="desc" style="text-align: right;">已导出2件</view> 
-						</view>
-				  <!--  		<text class="checkorder blue_text" data-id="{{item.goods_spec_id}}" catchtap="checkorder">查看</text> -->
-				  	</view>
-				  </van-checkbox>
-				</view>
-			</block>
-		  	<block wx:else>
-			  	<view class="tac"><van-empty description="暂无数据" />
-</view>
-			</block>
-		</van-checkbox-group>
-		<view wx:if="{{list.length > 0}}" class="tac pt10" hidden="{{listmore}}">没有更多了~</view>
-	<!-- </scroll-view> -->
-</view>
-
-
-<!-- <view class="record select-time-body">
-	<view class="title">导出记录:</view>
-		<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-			<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-				<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-					<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-						<view class="record-item">2020-05-11 hhdh333s932s.xsl <text class="blue-text">下载</text></view>
-
-</view> -->
-
-
-	
-
-	<view class="create-link">
-		<button class="btn linenear_bg" type="primary" bindtap="exportExcel">下一步</button>
-	</view>
-	
-
-
-
+    <view class="create-link" wx:if="{{active == 0}}">
+        <button class="btn linenear_bg round" type="primary" bindtap="exportExcel" disabled="{{list.length == 0}}">立即导出</button>
+    </view>
 </view>

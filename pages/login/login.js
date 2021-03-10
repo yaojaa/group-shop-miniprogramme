@@ -3,138 +3,113 @@ const app = getApp()
 const util = require('../../utils/util.js')
 
 Page({
-  data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    hasScope:false
-  },
-  onLoad: function () {
+    data: {
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        hasScope: false
+    },
+    onLoad: function() {
 
 
-    const userInfo = app.globalData.userInfo
+        const userInfo = app.globalData.userInfo
 
-    if(userInfo!==null){
-         this.jump(userInfo)
-    }
-
-
-  },
-
-  goView(){
-
-    wx.navigateTo({
-      url:'../create-home/index'
-    })
+        if (userInfo !== null && Object.keys(userInfo).length > 0) {
+            this.jump(userInfo)
+        }
 
 
-  },
+    },
 
-      onShareAppMessage: function() {
-       
+    goView() {
+
+        wx.navigateTo({
+            url: '../create-home/index'
+        })
+
+
+    },
+
+    onShareAppMessage: function() {
+
         return {
-        title:'开心麻团 让团购简单'
+            title: '开心麻团 让团购简单'
         }
     },
 
 
-  jump(d){
+    jump(d) {
 
-    console.log('d',d)
+       if (d.supplier) {
 
-
-     var lastVisit = wx.getStorageSync('lastVisit') 
-
-     if(d.supplier && d.store && lastVisit){
-
-        if(lastVisit=='seller'){
-          return wx.switchTab({
-                url:'../home/index'
-              })
-        }else{
-
-              return   wx.redirectTo({
-              url:'/business/pages/home/index'
-            })
-        }
-
-       
-
-     } 
-
-     //暂时不跳转供应商
-
-     // if(d.supplier && !lastVisit){
-
-     //     return   wx.redirectTo({
-     //          url:'/business/pages/home/index'
-     //        })
-
-     //       } 
-
-
-      if(d.store && d.store.store_id){
-
-             return wx.switchTab({
-                url:'../home/index'
-              })
-
-           }else{
 
             return wx.redirectTo({
-                url:'../user-home/index'
-              })
+                url: '/business/pages/home/index'
+            })
 
-           }
-  },
-
-
-
-  /***点击授权按钮***/
-  getUserInfoEvt: function (e) {
-
-
-    console.log(e)
-
-    wx.showLoading()
-
-    if(e.detail.errMsg.indexOf('fail') >= 0){
-
-       wx.showToast({
-         title: '请允许授权',//提示文字
-         duration:2000,
-         icon:'none'
-         //显示时长
-      })
-
+        } 
        
-       return
-     }
+        else if (d.store && d.store.store_id) {
 
-    app.getOpenId().then(openid=>{
+            return wx.switchTab({
+                url: '../home/index'
+            })
 
-          app.openid = openid;
+        }else {
 
-          app.login_third(e.detail).then((res)=>{ 
+            return wx.redirectTo({
+                url: '../user-home/index'
+            })
 
-
-           const d = res.data.data
-           var userInfo ={}
-                userInfo = d.user
-               userInfo['store']= d.store
-               userInfo.supplier= d.supplier
-
-
-           this.jump(userInfo)
-
-
-          wx.hideLoading()
-                    })
-    .catch( e => console.log(e) )
+        }
+    },
 
 
 
-    })
+    /***点击授权按钮***/
+    getUserInfoEvt: function(e) {
+
+
+        console.log(e)
+
+        wx.showLoading()
+
+        if (e.detail.errMsg.indexOf('fail') >= 0) {
+
+            wx.showToast({
+                title: '请允许授权', //提示文字
+                duration: 2000,
+                icon: 'none'
+                //显示时长
+            })
+
+
+            return
+        }
+
+        app.getOpenId().then(openid => {
+
+            app.openid = openid;
+
+            app.login_third(e.detail).then((res) => {
+
+
+                    const d = res.data.data
+                    var userInfo = {}
+                    userInfo = d.user
+                    userInfo['store'] = d.store
+                    userInfo.supplier = d.supplier
+
+                    this.jump(userInfo)
+
+
+                    wx.hideLoading()
+                })
+                .catch(e => console.log(e))
 
 
 
-  }
+        })
+
+
+
+    }
 })

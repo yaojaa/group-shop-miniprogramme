@@ -41,7 +41,17 @@
             <button class="btn flex-item  xl primary  linenear_bg" bindtap="modifyPrice" disabled="{{btnDisable}}">
                 确 定
             </button>
-    
+ 
+
+        </view>
+
+            <view class="m-df flex">
+
+          
+
+      <button class="btn flex-item  xl   default" bindtap="closeHelpSale" disabled="{{btnDisable}}">
+                关闭帮卖
+            </button>
 
 
         </view>

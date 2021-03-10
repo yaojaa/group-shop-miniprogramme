@@ -61,6 +61,8 @@ Page({
     onLoad: function(options) {
         wx.hideHomeButton()
 
+        console.log('onLoad.....')
+
         if (typeof app.globalData.userInfo == 'undefined' || app.globalData.userInfo == null) {
             app.redirectToLogin()
 

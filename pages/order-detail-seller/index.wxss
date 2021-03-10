@@ -1,5 +1,8 @@
 @import "../../css/common.wxss";
 
+.order-wrap{
+	padding-bottom: 65px
+}
 .goods-panel-bd .cover {
 width:140rpx;
 height:140rpx

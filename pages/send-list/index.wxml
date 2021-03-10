@@ -1,7 +1,7 @@
 <view class="container">
   <view class='content'>
     <view class="tips">
-        当前商品的全部收货地址。注意：1、同一地址下单多件的自动被拆分为了多条。2、序号可能不是连续的，因为有退款订单或取消订单的。3、地址数量特别多的时候，超出粘贴板长度限制将无法全部复制，可使用导出Excel订单功能
+        当前商品的全部收货地址。注意：1、同一地址下单多件的自动被拆分为了多条。2、序号可能不是连续的，因为有退款订单或取消订单的。3、地址数量特别多的时候，可使用导出Excel订单功能
     </view> 
     <view class='order'>
       <view class="goodsList">
@@ -20,16 +20,17 @@
             {{item.mobile}},
             {{item.province}}{{item.city}}{{item.district}}{{item.address}},
             {{item.spec_name}},
-            {{item.qty}}件
+            {{item.qty}}件 ({{item.send_status}})
           </van-checkbox>
         </van-checkbox-group>
       </view>
     </view>
 
-    <view class='header'>
-      <button class="btn" bind:tap="copyAll"> 复制全部地址 </button> 
-      <button class="btn center-btn" bind:tap="copySend"> 复制待发货的地址 </button> 
-      <button class="btn" bind:tap="copyChecked"> 复制已选的 </button>
+    <view class='footer-btn' style="background: #fff;bottom: 0;left: 0;right:0;padding: 10px 0">
+      <button type="primary" class="btn  primary" disabled="{{result.length <= 0}}" bind:tap="copyChecked"> 复制已选</button>
+
+      <button class="btn hollow" bind:tap="copyAll"> 复制全部 </button> 
+      <button class="btn hollow center-btn" bind:tap="copySend"> 复制未发货的 </button> 
     </view>
   </view>
 </view>

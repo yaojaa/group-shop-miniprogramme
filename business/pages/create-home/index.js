@@ -1,6 +1,8 @@
 const util = require('../../../utils/util')
 const app = getApp()
 
+console.log(app.globalData)
+
 Page({
 
   /**
@@ -9,7 +11,8 @@ Page({
   data: {
       loading: false,
       showAuth: false,
-      supplier_logo: '',
+      supplier_logo: app.globalData.userInfo.headimg,
+      supplier_name: app.globalData.userInfo.nickname,
       apiUrl:util.apiUrl
   },
 
@@ -91,10 +94,6 @@ Page({
         title:'请上传LOGO',
         icon: 'none'
       })
-    }
-
-    if(!util.checkMobile(e.detail.value.supplier_mobile)){
-      return 
     }
 
 

@@ -1,9 +1,10 @@
 {
+    "navigationBarTitleText": "导出成功",
+    "navigationStyle": "custom",
+    "usingComponents":
+    {
 
-  "navigationBarTitleText": "上架成功",
-  "usingComponents": {
-    "van-card": "../../vant/card/index"
+        "van-icon": "../../../vant/icon/index"
 
-
-  }
+    }
 }

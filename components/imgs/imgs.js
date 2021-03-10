@@ -175,6 +175,15 @@ Component({
     animationFun(random){
       let i = this.data.index;
       let img = this.data.imgsPath[i];
+      if(!img){
+        this.data.imgsPath.splice(i,1);
+        this.data.index = 0;
+        i = this.data.index;
+        img = this.data.imgsPath[i]
+      }
+      if(!img){
+        return;
+      }
       let _img = i == 0 ? this.data.imgsPath[this.data.imgsPath.length-1] : this.data.imgsPath[i-1];
       //初始数据
       this.animationReset(random);
@@ -241,6 +250,7 @@ Component({
     },
 
     animationReset(r){
+      this.data.imgsPath = this.data.imgsPath.filter(e=>{ return e.size })
       this.data.imgsPath.forEach(e => {
         if(e.type == 0){
           e.scale = e.size._s;

@@ -80,49 +80,8 @@ Page({
                     info:res.data.data
                 })
 
-
-                }else if(res.data.code == -2000){
-
-
-                    wx.showModal({
-                    title:'您还没有创建主页',
-                    content:'请先免费创建主页',
-                    confirmText:'好的马上',
-                    showCancel: false,
-                    success:(res)=>{
-
-                    //申请通过后再跳转回来
-                    app.globalData.backUrl = '/business/pages/acting-apply/index?supplier_id'+this.supplier_id
-
-                     wx.redirectTo({
-                      url:'/pages/create-home/index'
-                     })
-                     
-                    }
-                  })
-
                 }
 
-                //申请通过的弹窗
-                // if(res.data.data.supplier_status==2){
-
-                //   wx.showModal({
-                //     title:'您已经申请过了哦',
-                //     content:'请直接前往查看吧',
-                //     confirmText:'好的',
-                //     showCancel: false,
-                //     success:(res)=>{
-
-                //      wx.redirectTo({
-                //     url:'/pages/supplier-list/index'
-                //    })
-                     
-                //     }
-                //   })
-
-                // }
-
-               
         })
     },
 
@@ -148,12 +107,12 @@ Page({
 
                 Dialog.alert({
                 title: '申请成功',
-                message: res.data.msg
+                message: '已自动通过'
                 }).then(() => {
                   //如果是从商品邀请进来的
                   if(this.goods_id){
                     wx.redirectTo({
-                      url:`pages/goods/goods?goods_id=${this.goods_id}&help_sale=true`
+                      url:`/pages/goods/goods?goods_id=${this.goods_id}&help_sale=true`
                     })
 
                   //从邀请码进来的
@@ -168,7 +127,26 @@ Page({
               
               })
 
-          }else{
+          } else if(res.data.code == 20001 || res.data.code == -2000){
+
+
+                    wx.showModal({
+                    title:'您还没有创建主页',
+                    content:'请先免费创建主页',
+                    confirmText:'好的马上',
+                    showCancel: false,
+                    success:(res)=>{
+
+                     wx.redirectTo({
+                      url:'/pages/create-home/index'
+                     })
+                     
+                    }
+                  })
+
+                }
+
+          else{
 
 
             Dialog.alert({

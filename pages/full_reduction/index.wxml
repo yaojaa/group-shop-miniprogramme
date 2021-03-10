@@ -1,0 +1,32 @@
+<view class="body">
+  <view class="page-title pl30 pr30">
+    <view class="f16 bold">满减优惠</view>
+    <view class="fc9 f12">已创建<text class="fc0">{{list.length}}</text>/5个满减优惠</view>
+  </view>
+  <view class="pl30 pr30 main-list">
+    <view class="title">金额设置：</view>
+    <view class="flex" wx:for="{{list}}" wx:key="fullreduce_id">
+      <view class="fg1 cell-list flex aic f12">
+        <text class="fs0">满</text>
+        <input type="digit" class="fg1" data-index="{{index}}" bindinput="inputFull" value="{{item.full}}" placeholder="金额"/>
+        <text class="fs0">元</text>
+      </view>
+      <view class="fg1 cell-list flex aic f12">
+        <text class="fs0">减</text>
+        <input type="digit" class="fg1" data-index="{{index}}" bindinput="inputReduce" value="{{item.reduce}}" placeholder="金额"/>
+        <text class="fs0">元</text>
+      </view>
+      <van-button icon="clear" bind:click="delectCell" data-index='{{index}}' custom-class='btn fs0' type="primary" />
+    </view>
+    <view wx:if="{{list.length < 5}}" class="add-btn">
+      <van-button bind:click="addCell" icon="plus" plain custom-class='btn2' block type="primary">继续添加</van-button>
+    </view>
+    <view wx:else class="fc9 f12 pb30">*每个团活动最多创建5个满减优惠</view>
+  </view>
+</view>
+
+<view class="bottom-btn">
+  <van-button bind:click='saveFullReduce' custom-class='btn' type="primary">确认保存</van-button>
+</view>
+
+<van-toast id="van-toast" />

@@ -18,7 +18,9 @@ Component({
     expires: '',
     urls: [],
     show: false,
-    itemList: []
+    itemList: [],
+    classShow: false,
+    checked: false
   },
   lifetimes: {
     attached: function () {
@@ -49,6 +51,10 @@ Component({
             id: 5,
             name: '置顶'
           },
+          // {
+          //   id: 7,
+          //   name: '设置分类'
+          // },
           {
             id: 6,
             name: '取消'
@@ -69,6 +75,23 @@ Component({
     handleAction() {
       this.setData({ show: !this.data.show });
     },
+    onCloseClass() {
+      this.setData({ classShow: false });
+    },
+    toAddClass() {
+      wx.navigateTo({
+          url: '../class_edit/index'
+      });
+      this.onCloseClass();
+    },
+    onChange() {
+      console.log('change')
+      this.setData({ checked: !this.data.checked });
+    },
+    onSelectClass(event) {
+      const item = event.detail;
+      console.log(item);
+    },
     onClose() {
       this.setData({ show: false });
     },
@@ -88,10 +111,12 @@ Component({
         this.delGoods();
       } else if (item.id == 4) {
         this.copyGoods();
-      } else if(item.id == 5) {
+      } else if (item.id == 5) {
         this.upTop(item);
-      } else if(item.id == 6) {
-        this.onClose()
+      } else if (item.id == 6) {
+        this.onClose();
+      } else if (item.id == 7) {
+        this.setData({ classShow: true });
       }
     },
     /*下拉菜单*/
@@ -218,7 +243,7 @@ Component({
     upTop(s) {
       util.wx
         .post('/api/seller/set_goods_sort', {
-          goods_id: this.data.item.goods_id,
+          goods_id: this.data.item.goods_id
         })
         .then((res) => {
           wx.showToast({
@@ -304,7 +329,7 @@ Component({
     editPage(e) {
       const { id } = e.currentTarget.dataset;
 
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../publish/publish?goods_id=' + id
       });
     },
@@ -365,7 +390,7 @@ Component({
                     icon: 'none'
                   });
 
-                  this.triggerEvent('remove', this.data.item.goods_id);
+                  this.triggerEvent('updateList');
                 } else {
                   wx.showToast({
                     title: res.data.msg,

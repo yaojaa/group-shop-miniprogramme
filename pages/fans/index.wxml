@@ -11,7 +11,7 @@
                 </view>
                 <view class="date">
                     {{item.time_ago}}
-                    <!-- 使用{{item.user_phone}} 手机  -->浏览了{{item.last_user_staytime_txt}} <text wx:if="{{item.user_scene_txt & type =='store'}}">通过{{item.user_scene_txt}} </text> 
+                  浏览了{{item.last_user_staytime_txt}} <text wx:if="{{item.user_scene_txt}}">通过{{item.user_scene_txt}} </text> 
 
 <!--                     <text wx:if="{{type =='store'}}">累计</text>看过{{item.acount}}次
  -->                    <!-- {{secen[item.user_scene]}}打开， -->

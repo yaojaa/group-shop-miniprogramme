@@ -394,8 +394,7 @@ Page({
 
 
         return new Promise((resolve, reject) => {
-            util.wx.get('/api/supplier/get_order_list', {
-                goods_id: this.data.goods_id || '',
+            util.wx.get('/api/seller/get_order_list', {
                 cpage: this.data.cpage,
                 // shipping_status:this.data.shipping_status,
                 search_order_status: this.data.search_order_status,

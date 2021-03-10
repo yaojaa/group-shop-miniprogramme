@@ -1,8 +1,6 @@
 <view class="container gray-wrap cf">
 
     <footerbar active="{{0}}" />
-
-
     <view wx:if="{{userInfo.store.store_id}}" class="switch" bindtap="swichToLeader" style="top:{{top}}px"><van-icon name="exchange" color="#fff" size="24px"/>
     </view>
 
@@ -10,7 +8,7 @@
         <view class="flex align-center">
             <navigator url="../base-info/index" hover-class="none">
                 <view class="user-avatar mh-df">
-                    <image class="user-avatar" src="{{info.supplier_logo}}" />
+                    <image class="user-avatar" src="{{supplier_logo}}" />
                     <view class="set-icon">
                         <i-icon type="setup_fill" color="#ffa70f" size="16" />
                     </view>
@@ -19,7 +17,7 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="shop-name mr-sm">{{info.supplier_name}} </view>
+                        <view class="shop-name mr-sm">{{info.store_name}} </view>
                         <navigator url="../userhome/index?id={{userInfo.store_id}}" class="mini-tag mt-xs" hover-class="none" hover-class="none" >{{userInfo.nickname}}
                         </navigator>
                     </view>
@@ -84,7 +82,7 @@
                         <view class="text-hide two-line  bold title">
                             {{item.goods_name}}    
                         </view>
-                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 {{item.sold_number}}             <text style="color:#19be6b" wx:if="{{item.is_on_sale==2}}">已下架</text>
+                        <view class="text-muted mt-xs text-sm des"><text class="pr-sm">已售 {{item.order_num}}   <text style="color:#19be6b" wx:if="{{item.is_on_sale==2}}">已下架</text>
 </text>
 
         

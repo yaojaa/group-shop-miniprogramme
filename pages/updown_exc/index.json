@@ -1,16 +1,21 @@
 {
-  "navigationBarTitleText": "导出订单",
-  "usingComponents": {
+    "navigationBarTitleText": "导出当前商品待发货订单",
+    "usingComponents":
+    {
         "i-datepicker": "../../iView/datepicker/index",
-         "van-checkbox": "../../vant/checkbox/index",
-  "van-checkbox-group": "../../vant/checkbox-group/index",
-    "van-dropdown-menu": "../../vant/dropdown-menu/index",
-  "van-dropdown-item": "../../vant/dropdown-item/index",
-  "van-popup": "../../vant/popup/index",
-  
-  "van-radio": "../../vant/radio/index",
-  "van-radio-group": "../../vant/radio-group/index",
-    "van-empty": "../../vant/empty/index"
+        "van-checkbox": "../../vant/checkbox/index",
+        "van-cell-group": "../../vant/cell-group/index",
+        "van-cell": "../../vant/cell/index",
+                "van-switch": "../../vant/switch/index",
 
-  }
+        "van-dropdown-menu": "../../vant/dropdown-menu/index",
+        "van-dropdown-item": "../../vant/dropdown-item/index",
+          "van-tab": "../../vant/tab/index",
+         "van-tabs": "../../vant/tabs/index",
+        "van-popup": "../../vant/popup/index",
+        "van-empty": "../../vant/empty/index",
+        "van-radio-group": "../../vant/radio-group/index",
+        "van-button": "../../vant/button/index",
+        "van-card": "../../vant/card/index"
+      }
 }
