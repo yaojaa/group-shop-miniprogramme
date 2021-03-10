@@ -27,12 +27,27 @@ Page({
 
     getInfo(){
 
-    util.wx.get('/api/seller/get_store_info').then(res=>{
+    util.wx.get('/api/user/get_user_info').then(res=>{
+
+
+      if(res.data.code == -99 || res.data.code == -100){
+           return   wx.redirectTo({
+                            url: '/pages/login/login'
+                        })
+      }
+
+
       this.setData({
-        info:res.data.data,
-        supplier_logo:res.data.data.store_logo,
-        pending_money:res.data.data.store_money
+        info:res.data.data.supplier,
+        supplier_logo:res.data.data.supplier.store_logo,
+        pending_money:res.data.data.supplier.padding_money
       })
+
+      app.globalData.store_id = res.data.data.supplier.store_id
+
+      this.getGoodsList()
+
+
 
     if(res.data.code == -1){
 
@@ -126,7 +141,7 @@ Page({
           message: '删除后不可恢复'
         }).then(() => {
 
-             util.wx.post('/api/supplier/goods_del',{
+             util.wx.post('/api/seller/goods_del',{
               goods_id:goods_id
              })
             .then((res) => {
@@ -188,7 +203,7 @@ Page({
     const goods_id = e.currentTarget.dataset.goods_id
 
     wx.navigateTo({
-        url:'/business/pages/publish/publish?goods_id='+goods_id
+        url:'/pages/publish/publish?user_type=supplier&goods_id='+goods_id
       })
   },
 
@@ -262,6 +277,9 @@ Page({
           data:'supplier'
         })
 
+       this.getInfo()
+
+
 
     },
     goOrder(){
@@ -289,7 +307,7 @@ Page({
     goAdd(){
 
          wx.navigateTo({
-                url:'/business/pages/publish/publish'
+                url:'/pages/publish/publish?user_type=supplier'
             })
 
     },
@@ -327,9 +345,7 @@ Page({
 
       wx.hideHomeButton()
 
-        this.getInfo()
         //this.getDetail()
-        this.getGoodsList()
 
         
     },

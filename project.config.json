@@ -26,14 +26,14 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -1518,6 +1518,23 @@
           "name": "pages/add_self/index",
           "pathName": "pages/add_self/index",
           "query": "goods_id=2000294",
+          "scene": null
+        },
+        {
+          "name": "business/pages/goods/goods",
+          "pathName": "business/pages/goods/goods",
+          "query": "id=390000",
+          "scene": null
+        },
+        {
+          "name": "pages/coupon/index",
+          "pathName": "pages/coupon/index",
+          "query": "id=390000",
+          "scene": null
+        },
+        {
+          "name": "pages/fans/index",
+          "pathName": "pages/fans-select/index",
           "scene": null
         }
       ]

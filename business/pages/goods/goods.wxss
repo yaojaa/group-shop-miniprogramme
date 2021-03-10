@@ -956,7 +956,7 @@
 
 .user-info .name {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .user-info .info {

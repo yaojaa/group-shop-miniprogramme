@@ -15,10 +15,10 @@ Page({
         disabled: false
     },
     getFinance() {
-        util.wx.get('/api/supplier/get_supplier_detail')
+        util.wx.get('/api/user/get_user_info')
             .then(res => {
                 this.setData({
-                    money: res.data.data.pending_money
+                    money: res.data.data.supplier.pending_money
                 })
             })
     },

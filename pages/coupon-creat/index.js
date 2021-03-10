@@ -24,13 +24,75 @@ Page({
         maxDate: new Date().getTime(),
         scopeModal: false,
         scopeValue: '',
-        scopeTitle: '',
-        checked: false
+        scopeTitle: '不限制',
+        checked: false,
+        goodsList: [],
+        goodsArr: [],
+        coupon_type:'',
+        couponTypeName:'',
+        actions:[
+        {
+        name: '固定金额红包',
+        subname: '描述信息',
+        type:1
+      },
+          {
+        name: '随机金额红包',
+        subname: '描述信息',
+        type:2
+      },    {
+        name: '指定客人红包',
+        subname: '描述信息',
+        type:3
+      },
+        ]
     },
-    onChange({ detail }) {
+    onSwitchChange(e){
+        this.setData({
+            checked:e.detail
+        })
+    },
+    handlecouponTypeModal(){
+        this.setData({
+            show:true
+        })
+    },
+    oncpSelect(event){
+    console.log(event.detail);
+
+    this.setData({
+        couponTypeName:event.detail.name
+    })
+
+    },
+
+      oncpClose(event){
+  this.setData({
+            show:false
+        })
+    },
+    onChange( event) {
         // 需要手动对 checked 状态进行更新
-        this.setData({ checked: detail });
+        this.setData({
+            goodsArr: event.detail
+        });
+
+        if(event.detail.length){
+            this.setData({
+                scopeTitle:'已选'+event.detail.length+'个商品'
+            })
+        }
+
+
     },
+   toggle(event) {
+    const { index } = event.currentTarget.dataset;
+    const checkbox = this.selectComponent(`.checkboxes-${index}`);
+    checkbox.toggle();
+  },
+  noop(){
+    console.log(this.data.goodsArr)
+  },
     handleDateModal() {
         this.setData({
             dateModal: !this.data.dateModal
@@ -49,19 +111,35 @@ Page({
             scopeModal: !this.data.scopeModal
         });
     },
-    changeScope(event) {
-        console.log(event)
-        this.setData({
-            scopeValue: event.target.dataset.name,
-            scopeTitle: event.target.dataset.title,
-            scopeModal: false
-        });
-    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        this.getGoodsList()
 
+    },
+
+    getGoodsList() {
+
+        util.wx
+            .get('/api/seller/get_goods_list', { pagesize: 50 })
+            .then((res) => {
+
+                if (res.data.code == 200) {
+                    this.setData({
+                        goodsList: res.data.data.goodslist,
+                        is_loading: false
+                    })
+
+                } else {
+                    this.setData({
+                        is_loading: false
+                    });
+                }
+            })
+            .catch((e) => {
+
+            })
     },
 
     /**
@@ -92,38 +170,7 @@ Page({
 
     },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-        // 显示顶部刷新图标
-        wx.showNavigationBarLoading();
-        this.getDataList(this.data.sortstr).then(() => {
-            // 隐藏导航栏加载框
-            wx.hideNavigationBarLoading();
-            // 停止下拉动作
-            wx.stopPullDownRefresh();
-        })
-    },
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-        if (this.data.cpage && !this.data.loading) {
-            this.setData({
-                cpage: this.data.cpage + 1, //每次触发上拉事件，把requestPageNum+1
-            })
-            if (this.data.cpage > this.data.totalpage) {
-                return
-            }
-            this.getDataList(this.data.sortstr).then(() => {
-                // 隐藏导航栏加载框
-                wx.hideNavigationBarLoading();
-                // 停止下拉动作
-                wx.stopPullDownRefresh();
-            })
-        }
-    },
+
 
     /**
      * 用户点击右上角分享

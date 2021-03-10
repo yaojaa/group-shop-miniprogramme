@@ -3,9 +3,9 @@
 
 	<view class="head-box">
 		<view class="flex align-center">
-			<navigator url="../identify/identify" hover-class="none">
+			<navigator url="/pages/identify/identify" hover-class="none">
 				<view class="user-avatar mh-df">
-					<image class="user-avatar" src="{{info.supplier_logo}}" />
+					<image class="user-avatar" src="{{supplier_logo}}" />
 					<view class="set-icon">
 						<i-icon type="setup_fill" color="#ffa70f" size="16" />
 					</view>
@@ -14,7 +14,7 @@
 			<view class="flex-sub pr-lg">
 				<view class="flex justify-between text-white">
 					<view class="user-box">
-						<view class="user-name mr-sm" bindtap="goSite">{{info.supplier_name}} </view>
+						<view class="user-name mr-sm" bindtap="goSite">{{info.store_name}} </view>
 
 						<navigator url="../identify/identify" class="mini-tag mt-xs" hover-class="none">{{nickname}}</navigator>
 					</view>
@@ -31,7 +31,7 @@
 			</view>
 
 			<view class="icon" style="font-size: 32px">
-				¥ {{info.pending_money}}
+				¥ {{pending_money}}
 			</view>
 
 			<view>

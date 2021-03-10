@@ -19,6 +19,7 @@ const default_end_time = util.formatTime(date)
 
 Page({
     data: {
+        is_supplier: false, //是否是供应商
         height: '300', //文本框的高度
         link_url: '',
         goods_id: '',
@@ -50,6 +51,7 @@ Page({
         },
         spec: [{
             spec_name: '',
+            agent_price: '',
             spec_price: '',
             sub_agent_price: '',
             spec_stock: '',
@@ -395,8 +397,10 @@ Page({
             spec_price: '',
             spec_stock: '',
             spec_pic: [],
+            agent_price:'',
             spec_desc: '',
-            sub_agent_price: ''
+            sub_agent_price: '',
+            spec_price:''
         }
 
         this.data.spec = this.data.spec.concat([dataTpl])
@@ -577,7 +581,7 @@ Page({
                                 goods_images: this.data.goods_images
                             })
 
-                      
+
 
 
                             //如果是最后一张,则隐藏等待中
@@ -663,13 +667,32 @@ Page({
         this.WxValidate = new WxValidate(rules, messages)
     },
 
-    goods_name_Change(e){
+    goods_name_Change(e) {
         this.data.goods_name = e.detail.value
     },
     jump() {
-        wx.redirectTo({
-            url: '../goods/goods?goods_id=' + this.data.goods_id,
-        })
+
+
+
+        if (this.data.is_supplier) {
+
+            wx.redirectTo({
+                url: '/business/pages/goods/goods?goods_id=' + this.data.goods_id,
+            })
+
+        } else {
+
+            wx.redirectTo({
+                url: '/pages/goods/goods?goods_id=' + this.data.goods_id,
+            })
+
+        }
+
+
+
+
+
+
     },
     getObject: function(res) {
 
@@ -686,7 +709,7 @@ Page({
         console.log(e.detail.value)
 
 
-         if (this.data.goods_name =='') {
+        if (this.data.goods_name == '') {
             wx.showModal({
                 title: '请填写标题',
                 showCancel: false
@@ -702,7 +725,7 @@ Page({
             return util.playSound('../../img/error.mp3')
         }
 
-  
+
         //校验规则名
         let hasKeyName = true
 
@@ -795,8 +818,8 @@ Page({
         })
 
         wx.showLoading({
-            title:'发布中...',
-            icon:'none'
+            title: '发布中...',
+            icon: 'none'
         })
 
 
@@ -815,6 +838,11 @@ Page({
                     showCancel: false,
                 })
             }
+
+       this.setData({
+            btnDisabled: false
+        })
+
         })
     },
     /*修改商品名称*/
@@ -841,7 +869,7 @@ Page({
             postObj = {
                 goods_id: this.data.goods_id,
                 content: this.data.content,
-                goods_images:this.data.goods_images
+                goods_images: this.data.goods_images
 
             }
         } else {
@@ -850,13 +878,13 @@ Page({
                 goods_id: this.data.goods_id,
                 spec: this.data.spec,
                 content: this.data.content,
-                goods_images:this.data.goods_images
+                goods_images: this.data.goods_images
             }
         }
 
         wx.showLoading({
-            title:'发布中...',
-            icon:'none'
+            title: '发布中...',
+            icon: 'none'
         })
 
         util.wx.post('/api/seller/goods_add_or_edit', postObj).then(res => {
@@ -1124,22 +1152,22 @@ Page({
     },
 
     watch: {
-        show_buyerlist:(newValue, val, context) => {
+        show_buyerlist: (newValue, val, context) => {
 
             context.editor({
-                show_buyerlist:newValue
+                show_buyerlist: newValue
             })
 
         },
         delivery_method: (newValue, val, context) => {
 
             context.editor({
-                delivery_method:newValue
+                delivery_method: newValue
             })
 
         },
 
-        sell_address:(newValue, val, context) => {
+        sell_address: (newValue, val, context) => {
 
 
             context.editor({
@@ -1282,7 +1310,7 @@ Page({
         })
     },
 
-    onUnload(){
+    onUnload() {
         // wx.showModal({
         //         title: '提示',
         //         content: '是否上传本地数据？',
@@ -1295,7 +1323,7 @@ Page({
 
         app.globalData.tempData = this.data
 
-      
+
 
     },
 
@@ -1314,6 +1342,12 @@ Page({
 
         if (option.copy) {
             this.copy = true
+        }
+
+        if (option.user_type == 'supplier') {
+            this.setData({
+                is_supplier: true
+            })
         }
 
 

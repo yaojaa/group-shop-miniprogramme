@@ -38,21 +38,22 @@ Page({
 
     jump(d) {
 
-       
-        if (d.store && d.store.store_id) {
-
-            return wx.switchTab({
-                url: '../home/index'
-            })
-
-        } else if (d.supplier) {
+       if (d.supplier) {
 
 
             return wx.redirectTo({
                 url: '/business/pages/home/index'
             })
 
-        } else {
+        } 
+       
+        else if (d.store && d.store.store_id) {
+
+            return wx.switchTab({
+                url: '../home/index'
+            })
+
+        }else {
 
             return wx.redirectTo({
                 url: '../user-home/index'

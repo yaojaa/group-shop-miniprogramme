@@ -21,10 +21,12 @@ Page({
       },
 
     getInfo(){
-         util.wx.get('/api/supplier/get_supplier_detail').then(res=>{
-      this.setData({
-        info:res.data.data,
-        supplier_logo:res.data.data.supplier_logo
+         util.wx.get('/api/user/get_user_info').then(res=>{
+        this.setData({
+        info:res.data.data.supplier,
+        supplier_logo:res.data.data.supplier.store_logo,
+        nickname: res.data.data.user.nickname,
+        pending_money:res.data.data.supplier.pending_money
       })
       this.setData({
         is_loading:false

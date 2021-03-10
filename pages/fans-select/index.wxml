@@ -1,0 +1,34 @@
+
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+
+<view class="container">
+      <van-search 
+            value="{{ value }}" 
+            shape="round" 
+            background="#fff" 
+            placeholder="请输入收件人姓名或者电话"
+            show-action="{{searchWords}}"
+            bind:search="onSearch"
+            bind:cancel="onCancel"
+            />
+    <view class="white-bg">
+        <view class="solid-bottom p-df flex fans-list" wx:for="{{list}}" wx:key="{{index}}">
+            <image class="avatar mr-sm" src="{{item.headimg}}"></image>
+            <view class="flex-sub">
+                <view class="text-justify">
+                    <view class="name">{{item.nickname}}</view>
+                    <view>
+                                                <text class="ml-xs mr-df text-sm text-fixed-width">订单数{{item.order_pay_count}} </text>
+
+                        <text class="ml-xs mr-df text-sm text-fixed-width">¥{{item.order_pay_total}} </text>
+
+                    </view>
+                </view>
+            
+            </view>
+        </view>
+    </view>
+    <view class="load-box" wx:if="{{loading}}">
+        <wux-spin wux-class="spin" size="large" />
+    </view>
+</view>

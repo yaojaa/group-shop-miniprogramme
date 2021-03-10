@@ -1,0 +1,14 @@
+{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "选择顾客",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee",
+    "usingComponents":
+    {
+        "van-button": "../../vant/button/index",
+        "van-icon": "../../vant/icon/index",
+        "van-search": "../../vant/search/index",
+        "wux-filterbar": "../../wux/filterbar/index"
+    }
+}

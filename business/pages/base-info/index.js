@@ -72,10 +72,9 @@ Page({
 
   getInfo(){
 
-    util.wx.get('/api/supplier/get_supplier_detail').then(res=>{
+    util.wx.get('/api/user/get_user_info').then(res=>{
       this.setData({
-        info:res.data.data,
-        supplier_logo:res.data.data.supplier_logo
+        info:res.data.data.supplier      
       })
     })
 

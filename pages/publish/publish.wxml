@@ -105,14 +105,29 @@
                         </view>
                         <!-- 添加规格图片 -->
                     </view>
+
+                    
+
+                       <view class="weui-cell" wx:if="{{is_supplier}}">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">供货价:</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input value="{{item.agent_price}}" type="digit" bindinput="inputDuplex" data-key="spec[{{index}}].agent_price" maxlength="50" placeholder="0.00" />
+                        </view>
+                    </view>
+
+
                     <view class="weui-cell">
                         <view class="weui-cell__hd">
-                            <view class="weui-label">价格:</view>
+                            <view class="weui-label">售价:</view>
                         </view>
                         <view class="weui-cell__bd">
                             <input value="{{item.spec_price}}" type="digit" bindinput="inputDuplex" data-key="spec[{{index}}].spec_price" maxlength="50" placeholder="0.00" />
                         </view>
                     </view>
+
+
                     <view class="weui-cell">
                         <view class="weui-cell__hd">
                             <view class="weui-label">描述:</view>
@@ -155,7 +170,7 @@
         </i-panel>
         <i-panel title="设置" i-class="no-margin">
             <view class="weui-cells_form">
-                <view class="weui-cell">
+                <view class="weui-cell" wx:if="{{!is_supplier}}">
                     <view class="weui-cell__hd">
                         <view class="weui-label">收款方式：</view>
                     </view>
@@ -221,7 +236,7 @@
                 </view>
             </view>
         </i-panel>
-        <i-panel i-class="no-margin">
+        <i-panel i-class="no-margin" wx:if="{{!is_supplier}}">
             <view class="weui-cell">
                 <view class="weui-cell__hd">
                     <view class="weui-label">好友帮卖：</view>
@@ -236,7 +251,7 @@
             </view>
         </i-panel>
 
-               <i-panel i-class="no-margin">
+         <i-panel i-class="no-margin" wx:if="{{!is_supplier}}">
             <view class="weui-cell">
                 <view class="weui-cell__hd">
                     <view class="weui-label">满减优惠：</view>
@@ -254,7 +269,7 @@
         </i-panel>
 
 
-        <view class="orther" bindtap="toMore">其它设置 〉</view>
+        <view class="orther" bindtap="toMore" wx:if="{{!is_supplier}}" >其它设置 〉</view>
         <button disabled="{{btnDisabled}}" wx:if="{{!is_edit || is_copy}}" style="margin: 15px" formType="submit" class="weui-btn weui-btn_primary linenear_bg">
             确定发布
         </button>
