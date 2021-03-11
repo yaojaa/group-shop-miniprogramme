@@ -281,7 +281,7 @@ Page({
 
              Dialog.alert({
                       title: '关闭成功',
-                      message: '关闭帮卖后，代理们的商品将自动下架！'
+                      message: '关闭帮卖后，代理们的商品将自动下架！再次开启需要重新绑定'
                     }).then(() => {
                        util.setParentData({
                                       'goods.agent_opt':0

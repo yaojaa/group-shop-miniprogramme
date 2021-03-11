@@ -49,7 +49,7 @@
 
           
 
-      <button class="btn flex-item  xl   default" bindtap="closeHelpSale" disabled="{{btnDisable}}">
+      <button wx:if="{{info.agent_opt == 1}}" class="btn flex-item  xl   default" bindtap="closeHelpSale" disabled="{{btnDisable}}">
                 关闭帮卖
             </button>
 
