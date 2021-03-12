@@ -11,7 +11,7 @@
             </view>
 
         </view>
-        <view class="text-muted text-sm">{{item.time_ago}}  </view>
+        <view class="text-muted text-sm" style="margin-right: 10px">{{item.time_ago}}</view>
         <view class="text-muted {{'color_'+item.order_status}}">
            <text> {{item.order_status_txt}}</text>
         </view>
