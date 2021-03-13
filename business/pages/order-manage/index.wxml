@@ -2,8 +2,8 @@
     <view class="order-title ">
 
 
-        <view class=" text-success" bindtap="copyLink">去PC端管理订单(点击复制链接)</view>
-
+<!--         <view class=" text-success" bindtap="copyLink">去PC端管理订单(点击复制链接)</view>
+ -->
 
       
           <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">

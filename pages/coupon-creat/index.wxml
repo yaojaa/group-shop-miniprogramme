@@ -1,7 +1,7 @@
 <view class="container gray-wrap  cf">
     <form bindsubmit="submitForm">
         <van-cell-group custom-class="mt-sm">
-            <van-field value="{{ couponTypeName}}" name=" date" label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handlecouponTypeModal" />
+            <van-field value="{{ couponTypeName}}"  label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handlecouponTypeModal" />
            
         </van-cell-group>
 
@@ -31,8 +31,16 @@
             </van-field>
  
         </van-cell-group>
+
+        <van-cell-group custom-class="mt-sm">
+            <van-field use-button-slot value="{{}}" name="" label="订单金额必须大于" placeholder="">
+                <view slot="button">元</view>
+            </van-field>
+        </van-cell-group>
+
+
         <view class="ph-df mt-xs text-sm warning-text">
-            红包用于下单您铺子的商品时使用
+            红包用于下单您的商品时使用
         </view>
         <view class="m-df mt-xl">
             <button class="btn xxl primary block" form-type="submit" disabled="{{disabled}}">
@@ -46,6 +54,11 @@
 
     <van-action-sheet show="{{ scopeModal }}" title="选择红包适用的商品" bind:close="handleScopeModal">
        <view class="pv-df">
+
+        <view class="no-content" wx:if="{{goodsArr.length == 0}}">
+            您还没有发布过商品！
+        </view>
+
             <van-checkbox-group value="{{ goodsArr }}" bind:change="onChange">
               <van-cell-group>
                 <van-cell

@@ -111,7 +111,7 @@ Page({
      
 
         var returnData = {
-            title: '【'+this.data.goods.seller.seller_name+'】邀请你上架'+this.data.goods.goods_name,
+            title: '【绑定上架】'+this.data.goods.goods_name,
             path: 'business/pages/goods-user/goods?id=' + this.data.goods.goods_id,
             
         }
@@ -397,6 +397,27 @@ Page({
         goods_id: this.data.goods_id
       })
       .then((res) => {
+
+
+        if(res.data.code == -113 || res.data.code == -114 || res.data.code == -115)
+// 如果-99(没登陆)，-2000(没店铺、审核中、未通过审核)，-113(无权访问，先申请代理), -114(无权访问，代理审核中)，-115(无权访问，代理申请被拒绝)
+                      {
+
+                    Dialog.alert({
+                      title: '您没权限访问此商品',
+                      message: '请先联系供货商 申请代理权限',
+                      theme: 'round-button'
+
+                    }).then(() => {
+                      return  wx.redirectTo({
+                            url:'/business/pages/acting-apply/index?supplier_id='+res.data.data.supplier_id
+                        })
+                    })
+
+                }
+
+
+
         if (res.data.code == 200) {
           const d = res.data.data
 
@@ -483,18 +504,7 @@ Page({
               showPanel: true
             })
           }
-        } else {
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none'
-          })
-
-          setTimeout(() => {
-            wx.redirectTo({
-              url: '../home/index'
-            })
-          }, 3000)
-        }
+        } 
       })
       .catch((e) => {
         return

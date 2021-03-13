@@ -29,21 +29,21 @@ Page({
         goodsList: [],
         goodsArr: [],
         coupon_type:'',
-        couponTypeName:'',
+        couponTypeName:'固定金额红包',
         actions:[
         {
         name: '固定金额红包',
         subname: '描述信息',
-        type:1
+        coupon_type:1
       },
           {
         name: '随机金额红包',
         subname: '描述信息',
-        type:2
+        coupon_type:2
       },    {
         name: '指定客人红包',
         subname: '描述信息',
-        type:3
+        coupon_type:3
       },
         ]
     },

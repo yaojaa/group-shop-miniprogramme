@@ -737,9 +737,8 @@
           "scene": null
         },
         {
-          "id": 78,
-          "name": "pages/coupon-send/index",
-          "pathName": "pages/coupon-send/index",
+          "name": "pages/coupon/index",
+          "pathName": "pages/coupon/index",
           "query": "",
           "scene": null
         },
@@ -758,10 +757,9 @@
           "scene": null
         },
         {
-          "id": 98,
           "name": "business/pages/goods/goods",
           "pathName": "business/pages/goods/goods",
-          "query": "id=10",
+          "query": "id=390000",
           "scene": null
         },
         {
