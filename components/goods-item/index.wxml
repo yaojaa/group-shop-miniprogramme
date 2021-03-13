@@ -7,6 +7,7 @@
             <navigator url="../goods/goods?goods_id={{item.goods_id}}" hover-class="none">
                 <view class="flex align-start">
                     <i-icon type="lock" color="#ffa200" size="18" wx:if="{{item.is_recommend==0}}" style="margin-top:-4rpx" />
+                    <van-icon name="back-top" color="red" size="18" wx:if="{{item.store_sort==999999}}"/>
                     <view class="flex-sub ml-xs">
                         <view class="tit ">
                             <view class="">{{item.goods_name}}</view>
@@ -62,7 +63,7 @@
         <button class="hollow" bindtap="managePage" data-id="{{item.goods_id}}" data-name="{{item.goods_name}}" data-delivery_method="{{item.delivery_method}}" size="mini">
             订单({{item._order_count}})
         </button>
-        <button class="hollow" size="mini" data-id="{{item.goods_id}}" bindtap="handleAction">
+        <button class="hollow" size="mini" data-id="{{item.goods_id}}" data-uptop='{{item.store_sort == 999999 ? 1 : 0}}' bindtap="handleAction">
             操作
             <i-icon size="22" color="#36cc3b" type="unfold" />
         </button>
@@ -72,33 +73,21 @@
     <van-action-sheet show="{{ classShow }}" bind:close="onCloseClass" bind:select="onSelectClass">
         <view class="class-main">
             <view class="all-class">
-                <view class="class-cell flex jsb aic">
+                <view class="class-cell flex jsb aic" bindtap="onChange">
                     <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
                 </view>
-                <view class="class-cell flex jsb aic">
+                <view class="class-cell flex jsb aic" bindtap="onChange">
                     <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
                 </view>
-                <view class="class-cell flex jsb aic">
+                <view class="class-cell flex jsb aic" bindtap="onChange">
                     <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
                 </view>
-                <view class="class-cell flex jsb aic">
+                <view class="class-cell flex jsb aic" bindtap="onChange">
                     <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-                </view>
-                <view class="class-cell flex jsb aic">
-                    <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-                </view>
-                <view class="class-cell flex jsb aic">
-                    <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
-                </view>
-                <view class="class-cell flex jsb aic">
-                    <text>水果</text>
-                    <van-switch active-color="#07c160" size="24px" checked="{{ checked }}" bind:change="onChange" />
+                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
                 </view>
             </view>
             <view class="class-cell flex jcc aic" bindtap="toAddClass">

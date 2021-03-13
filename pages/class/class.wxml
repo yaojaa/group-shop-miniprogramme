@@ -4,7 +4,7 @@
 </view>
 <view class="lists" wx:if="{{list.length > 0}}">
     <view class="list" wx:for="{{list}}">
-        <view class="name">{{item.cat_name}}</view>
+        <view class="name">{{item.cat_name}}<text wx:if="{{item.goods.length > 0}}" class="f14 fc9">（{{item.goods.length}}）</text></view>        
         <van-button color="#666" custom-class='btn' plain size="small" icon="delete" type="primary" data-index="{{index}}" bind:click="delete">删除</van-button>
         <van-button color="#666" custom-class='btn' plain size="small" icon="edit" type="primary" data-index="{{index}}" bind:click="edit">修改</van-button>
         <van-button wx:if="{{index != 0}}" color="#666" custom-class='btn' plain size="small" icon="upgrade" type="primary" data-index="{{index}}" bind:click="up">置顶</van-button>

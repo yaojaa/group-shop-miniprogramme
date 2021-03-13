@@ -79,6 +79,8 @@ Page({
   // 修改分类
   edit(e){
     let i = e.currentTarget.dataset.index;
+    
+    app.globalData.class_list = this.data.list;
     wx.navigateTo({
       url: '../class_edit/index?id=' + this.data.list[i].cat_id
     })
@@ -117,6 +119,7 @@ Page({
   addLoveClass(e){
     if(this.closeAdd()) return;
     let i = e.currentTarget.dataset.index;
+
     wx.navigateTo({
       url: '../class_edit/index?name=' + this.data.loves[i].name
     })

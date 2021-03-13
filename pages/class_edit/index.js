@@ -9,7 +9,7 @@ import Dialog from '../../vant/dialog/dialog';
 Page({
   data: {
     loading: true,
-    list:[],
+    list:{goods:[]},
     loves: [],
     inputValue:'',
     show: false,
@@ -23,7 +23,17 @@ Page({
       })
     }
     if(opt.id){
-      this.getList();
+      let list = app.globalData.class_list.filter( e => {
+        return e.cat_id == parseInt(opt.id);
+      })
+      app.globalData.class_list = null;
+
+      console.log(list)
+
+      this.setData({
+        list: list[0],
+        inputValue: list[0].cat_name
+      })
     }
   },
   // 监听输入
@@ -45,18 +55,18 @@ Page({
       }
     })
   },
-  // 删除分类
+  // 删除
   delete(e){
     let i = e.currentTarget.dataset.index;
     Dialog.confirm({
       message: '确定删除？'
     })
     .then(() => {
-      this.submitClass({
-        cat_name: this.data.list[i].cat_name,
-        cat_id: this.data.list[i].cat_id,
-        enable: -1
+      let goods = this.data.list.goods.splice(i, 1);
+      this.setData({
+        list: this.data.list
       })
+
     });
   },
   // 修改分类
@@ -108,22 +118,6 @@ Page({
       show: false
     })
   },
-  // 提交添加
-  sure(){
-    if(this.data.inputValue){
-      this.setData({
-        show: false
-      })
-      let data = {
-        cat_name: this.data.inputValue,
-        enable: 1
-      };
-      if(this.data.alert.id){
-        data.cat_id = this.data.alert.id;
-      }
-      this.submitClass(data)
-    }
-  },
   submitClass(data){
     wx.showLoading()
     util.wx.post('/api/seller/cat_add_or_edit', data)
@@ -134,16 +128,12 @@ Page({
           this.getList();
         }else{
           wx.showToast({
-            title: this.data.alert.btn+'失败',
+            title: res.data.msg,
             icon:'none'
           })
         }
       })
       .catch((e) => {
-        wx.showToast({
-          title: this.data.alert.btn+'失败',
-          icon:'none'
-        })
       })
   },
   closeAdd(){
@@ -161,8 +151,7 @@ Page({
     .then((res) => {
       if(res.data.code == 200){
         res.data.data.cats = res.data.data.cats.filter(e => {return e.enable == 1})
-        this.setData({
-          loading: false,
+        util.setParentData({
           list: res.data.data.cats
         })
         this.data.loves = loveCopy.filter(e=>{
@@ -174,13 +163,39 @@ Page({
           })
           return flag;
         })
-        this.setData({
+        util.setParentData({
           loves: this.data.loves
         })
+        wx.navigateBack()
       }
     })
     .catch((e) => {
 
     })
-  }
+  },
+  goBack(){
+    wx.navigateBack()
+  },
+  goSave(){
+    let goods_id = [];
+    this.data.list.goods.forEach( e => goods_id.push(e.goods_id))
+
+    if(this.data.inputValue){
+      let data = {
+        cat_name: this.data.inputValue,
+        enable: 1,
+        goods_id: goods_id
+      };
+      if(this.data.list.cat_id){
+        data.cat_id = this.data.list.cat_id;
+      }
+      this.submitClass(data)
+    }
+  },
+  selectGoods(){
+    app.globalData.class_list = this.data.list.goods;
+    wx.navigateTo({
+      url: '../class_goods/index'
+    })
+  },
 })

@@ -181,8 +181,8 @@
   box-sizing: border-box;
   overflow: hidden;
 }
-
-
+.pt20{ padding-top: 20px; }
+.tac{ text-align: center; }
 
 
 
