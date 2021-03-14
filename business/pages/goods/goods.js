@@ -726,7 +726,8 @@ Page({
             showAuth: false
           })
 
-          this.add_access()
+          this.getGoodsInfo()
+
         })
         .catch((e) => console.log(e))
     })

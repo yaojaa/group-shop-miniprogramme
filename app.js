@@ -161,7 +161,6 @@ App({
                 success: (res) => {
 
 
-                    console.log(res)
 
                     if (res.data.code === 200) {
                       
@@ -171,13 +170,16 @@ App({
                             if(d.hasOwnProperty('store')){
                                 userInfo.store =  d.store
                                 this.globalData.store_id = d.store.store_id
+                                                    console.log('shop')
+
                             }
 
-                            //  if(d.hasOwnProperty('supplier')){
-                            //     userInfo.supplier =  d.supplier
-                            //     this.globalData.store_id = d.supplier.store_id
+                             if(d.hasOwnProperty('supplier')){
+                                userInfo.supplier =  d.supplier
+                                this.globalData.store_id = d.supplier.store_id
+                                                    console.log('supplier')
 
-                            // }
+                            }
                             
                         this.globalData.token = d.token 
                         this.globalData.userInfo = userInfo
@@ -320,19 +322,25 @@ App({
             this.globalData.token = userInfo.token
             this.globalData.userInfo = userInfo
 
-            //兼容旧版本
-            //
-            if(userInfo.store && userInfo.store.store_id ){
 
-                this.globalData.userInfo.store_id = userInfo.store.store_id
-                this.globalData.store_id = userInfo.store.store_id 
 
-            }
+                            if (userInfo.hasOwnProperty('store')) {
+                             this.globalData.store_id = userInfo.store.store_id
+                             console.log('shop')
 
-            if( userInfo.hasOwnProperty('store_id')){
+                         }
 
-                this.globalData.userInfo.store_id = userInfo.store_id
-            }
+                         if (userInfo.hasOwnProperty('supplier')) {
+                             this.globalData.store_id = userInfo.supplier.store_id
+                             console.log('supplier')
+
+                         }
+
+
+              console.log('this.globalData.store_id',this.globalData.store_id)
+
+
+
 
         
             if (this.userLoginReadyCallback) {

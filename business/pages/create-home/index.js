@@ -11,8 +11,8 @@ Page({
   data: {
       loading: false,
       showAuth: false,
-      supplier_logo: app.globalData.userInfo.headimg,
-      supplier_name: app.globalData.userInfo.nickname,
+      supplier_logo: app.globalData.userInfo? app.globalData.userInfo.headimg : '' ,
+      supplier_name: app.globalData.userInfo? app.globalData.userInfo.nickname : '',
       apiUrl:util.apiUrl
   },
 

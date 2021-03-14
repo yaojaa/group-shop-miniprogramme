@@ -63,7 +63,8 @@ Page({
 
     getinfo(){
       wx.showLoading()
-        util.wx.get('/api/index/get_supplier_detail?supplier_id='+this.supplier_id).then(res=>{
+
+        util.wx.get('/api/store/get_store_homepage?store_id='+this.store_id).then(res=>{
 
                 wx.hideLoading()
 

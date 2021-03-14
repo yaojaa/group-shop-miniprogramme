@@ -1476,7 +1476,7 @@
         {
           "name": "business/pages/goods/goods",
           "pathName": "business/pages/goods/goods",
-          "query": "goods_id=2000031",
+          "query": "id=2000032",
           "scene": null
         }
       ]
