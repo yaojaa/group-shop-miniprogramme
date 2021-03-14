@@ -111,21 +111,7 @@
      </block>
 
     </view>
-    <view class="goods-info por white-bg p-df cf">
-        <view class="goods-info-bd">
-            <view class="goods-name pv-xs">{{goods.goods_name}} 
-            </view>
-        </view>
-        <view class="goods-share">
-            <button bindtap='handlePoster' class="btn-reset">
-                <i-icon type="send" size="24" color="#f90" />
-                <view class="text-muted text-xs">产品海报</view>
-            </button>
-        </view>
-        <view class="load-area" wx:if="{{!goods}}">
-            <wux-spin wux-class="spin" />
-        </view>
-    </view>
+
     <view class='painter'>
         <image src="{{imagePath}}"></image>
     </view>

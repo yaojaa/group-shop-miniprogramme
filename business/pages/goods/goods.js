@@ -783,7 +783,7 @@ Page({
               break;
            case 1:
             wx.navigateTo({
-              url:'/business/pages/publish/publish?goods_id='+this.data.goods_id
+              url:'/pages/publish/publish?goods_id='+this.data.goods_id
             })
 
               break;
