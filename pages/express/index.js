@@ -20,7 +20,7 @@ Page({
         checked: true,
         emsPopup: false,
         btnText:'返 回',
-        send_msg:false,
+        send_msg:true,
         express_data:[
         {"name":"\u81ea\u52a8\u8bc6\u522b\u5feb\u9012\u516c\u53f8"},
         {"name":"\u987a\u4e30\u901f\u8fd0"},

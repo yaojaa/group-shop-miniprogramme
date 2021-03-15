@@ -49,41 +49,7 @@
                     </view>
                 </scroll-view>
             </wux-popup>
-            <!-- 上传图片弹框 -->
-            <wux-popup closable catchtouchmove="ture" position="bottom" visible="{{ visible_pictures }}" bind:close="addPictureDone">
-                <view class="p-sm solid-bottom mb-df text-default">上传介绍图片</view>
-                <view class="pic_loading">
-                    <i-spin wx:if="{{uploadProgress}}" />
-                </view>
-                <scroll-view scroll-y class="maxheight">
-                    <view class="con">
-                        <view class="picture-item" wx:if="{{type=='photo'}}" wx:key="item" wx:for="{{content_imgs}}">
-                            <view class="img-list">
-                                <image mode="widthFix" src="{{item}}?imageView2/4/w/400/h/800" />
-                            </view>
-                            <view class="icons">
-                                <view class="icon-list">
-                                    <i-icon data-index="{{index}}" bindtap="toUp" color="#999" size="28" type="packup" />
-                                </view>
-                                <view class="icon-list">
-                                    <i-icon data-index="{{index}}" bindtap="toDown" color="#999" size="28" type="unfold" />
-                                </view>
-                                <view class="icon-list">
-                                    <i-icon data-index="{{index}}" bindtap="removePicture" color="#999" size="28" type="close" />
-                                </view>
-                            </view>
-                        </view>
-                        <view class="footer-btn" wx:if="{{!uploadProgress}}">
-                            <button bindtap="addPicture" class="btn btn-round linenear_bg_light">
-                                + 继续添加
-                            </button>
-                            <button bindtap="addPictureDone" class="btn btn-round linenear_bg">
-                                完成
-                            </button>
-                        </view>
-                    </view>
-                </scroll-view>
-            </wux-popup>
+       
          
         </view>
         <i-panel i-class="no-margin" title="商品或规格名称">
@@ -94,7 +60,7 @@
                             <view class="weui-label">名称:</view>
                         </view>
                         <view class="weui-cell__bd" class="width70">
-                            <input value="{{item.spec_name}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_name" maxlength="50" placeholder="如：白色、大号、10斤" />
+                            <input value="{{item.spec_name}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_name" maxlength="30" placeholder="如：白色、大号、10斤" />
                         </view>
                         <!-- 添加规格图片 -->
                         <view class="weui-cell__bd " data-index="{{index}}" bindtap="fromSpec">

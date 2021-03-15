@@ -25,7 +25,7 @@ Page({
         isShowTimePicker: false,
         goods_images: [],
         content_imgs: [],
-        delivery_method: 0, //配送方式配送方式 1:送货 2:自提',
+        delivery_method: 1, //配送方式配送方式 1:送货 2:自提',
         sell_address: [],
         isGave: 0,
         address: 0,
@@ -688,7 +688,7 @@ Page({
                 title: '请上传商品相册',
                 showCancel: false
             })
-            return util.playSound('../../img/error.mp3')
+            return 
         }
 
         // 传入表单数据，调用验证方法
@@ -698,7 +698,7 @@ Page({
                 title: error.msg,
                 showCancel: false
             })
-            return util.playSound('../../img/error.mp3')
+            return 
         }
 
         //校验规则名
@@ -787,7 +787,9 @@ Page({
             fullreduce_data
         )
 
-        wx.showLoading()
+        wx.showLoading({
+            title:'发布中...'
+        })
 
         this.setData({
             btnDisabled: true
@@ -798,6 +800,10 @@ Page({
         //
         util.wx.post('/api/seller/goods_add_or_edit', data).then((res) => {
             wx.hideLoading()
+
+         this.setData({
+            btnDisabled: false
+        })
 
             if (res.data.data) {
                 this.data.goods_id = res.data.data.goods_id
