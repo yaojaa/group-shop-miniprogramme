@@ -143,7 +143,7 @@ Page({
         }
         else if (index == 2) {
            wx.navigateTo({
-            url:'../send-list/index?goods_id='+this.data.goods_id
+            url:'../send-list/index'
            })
 
         }

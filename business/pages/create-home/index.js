@@ -1,7 +1,6 @@
 const util = require('../../../utils/util')
 const app = getApp()
 
-console.log(app.globalData)
 
 Page({
 

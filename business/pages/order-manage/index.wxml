@@ -6,10 +6,9 @@
  -->
 
       
-          <!--       <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
+          <!-- <i-button bindtap="handleOpen1" size="mini" bindtap="showPopMenu">
                     <i-icon size="20" type="other" />
                 </i-button> -->
-
 
                <!--  <i-pop-menu visible="{{ showPop }}" actions="{{ pop_name_arr }}" bind:cancel="handleCancel1" width="200rpx" left="-100rpx" top="95rpx" bind:click="handleClickItem1" />
                   <button class="btn linenear_bg round   mv-sm ml-sm  button-hover" size="mini" bindtap="sendMsg">群发通知</button> -->
@@ -19,7 +18,10 @@
         </i-switch> -->
         </view>
 
-          <van-search 
+
+        <view class="searchBar">
+
+              <van-search 
             value="{{ value }}" 
             shape="round" 
             background="#fff" 
@@ -28,6 +30,12 @@
             bind:search="onSearch"
             bind:cancel="onCancel"
             />
+              <view icon="setting-o" bindtap="exportExcel">导出订单</view>
+              <view icon="setting-o" bindtap="exportExcel">批量发货</view>
+
+        </view>
+
+        
 
 
     <view class="tabsArea">
@@ -233,14 +241,4 @@
     </view>
 </view>
 
-<van-tabbar
-  active="{{ active }}"
-  active-color="#07c160"
-  inactive-color="#000"
-  bind:change="onChange"
->
-  <van-tabbar-item icon="home-o">返回主页</van-tabbar-item>
-  <van-tabbar-item icon="friends-o">批量发货</van-tabbar-item>
-  <van-tabbar-item icon="setting-o" bindtap="exportExcel">导出订单</van-tabbar-item>
-</van-tabbar>
 

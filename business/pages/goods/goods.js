@@ -410,7 +410,7 @@ Page({
 
                     }).then(() => {
                       return  wx.redirectTo({
-                            url:'/business/pages/acting-apply/index?supplier_id='+res.data.data.supplier_id
+                            url:'/business/pages/acting-apply/index?id='+res.data.data.supplier_id
                         })
                     })
 

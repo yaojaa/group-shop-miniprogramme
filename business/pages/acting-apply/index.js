@@ -49,9 +49,9 @@ Page({
 
 
  
-        this.supplier_id = options.supplier_id || ''
+        this.id = options.id || ''
 
-        if(this.supplier_id){
+        if(this.id){
             this.getinfo()
         }else{
             wx.showToast({
@@ -63,8 +63,7 @@ Page({
 
     getinfo(){
       wx.showLoading()
-
-        util.wx.get('/api/store/get_store_homepage?store_id='+this.store_id).then(res=>{
+        util.wx.get('/api/store/get_store_homepage?store_id='+this.id).then(res=>{
 
                 wx.hideLoading()
 
@@ -84,7 +83,7 @@ Page({
                     success:(res)=>{
 
                     //申请通过后再跳转回来
-                    app.globalData.backUrl = '/business/pages/acting-apply/index?supplier_id'+this.supplier_id
+                    app.globalData.backUrl = '/business/pages/acting-apply/index?supplier_id'+this.id
 
                      wx.redirectTo({
                       url:'/pages/create-home/index'
@@ -135,7 +134,7 @@ Page({
         })
 
         util.wx.get('/api/seller/apply_agent',{
-            supplier_id:this.supplier_id,
+            supplier_id:this.id,
            apply_remark:e.detail.value.apply_remark        
         })
         .then(res=>{

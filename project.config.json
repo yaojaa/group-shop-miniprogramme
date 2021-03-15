@@ -1476,7 +1476,19 @@
         {
           "name": "business/pages/goods/goods",
           "pathName": "business/pages/goods/goods",
-          "query": "id=2000032",
+          "query": "id=2000034",
+          "scene": null
+        },
+        {
+          "name": "business/pages/acting-apply/index",
+          "pathName": "business/pages/acting-apply/index",
+          "query": "id=60000",
+          "scene": null
+        },
+        {
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "id=60000&type=supplier",
           "scene": null
         }
       ]
