@@ -58,12 +58,6 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": [
         {
@@ -1502,6 +1496,12 @@
           "name": "pages/class_goods/index",
           "pathName": "pages/class_goods/index",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=2000371&goods_name=出口级无添加山楂条&delivery_method=1&store_id=1",
           "scene": null
         }
       ]

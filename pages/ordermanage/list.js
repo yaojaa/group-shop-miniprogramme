@@ -33,7 +33,7 @@ Page({
         delivery_method: 0,
         sendAll: false,
         importResultShow:false,
-        user_id: '',
+        store_id: '',
         showImport:false,
         // switchOrderList:false,//折叠展开订单
         actionsConfirm: [{
@@ -206,7 +206,7 @@ Page({
         app.globalData.apiPrix = 'seller'
 
         this.setData({
-            user_id: app.globalData.userInfo.user_id,
+            store_id: app.globalData.store_id,
             goods_id: optiton.id || optiton.goods_id,
             delivery_method: optiton.delivery_method,
             goods_name: optiton.goods_name
