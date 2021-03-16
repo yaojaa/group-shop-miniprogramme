@@ -13,7 +13,6 @@ Page({
     showIcon: false,
     goodsList: [],
     loading: false,
-    store_id: '',
     info: {},
     scrollTop: 0,
     showSetting: false,
@@ -387,6 +386,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.store_id = ''
     this.loadPage(options)
     this.add_access()
   },
@@ -412,7 +412,7 @@ Page({
       options = util.url2json(options)
     }
 
-    this.store_id = options.id || options.store_id
+    this.store_id = options.id || options.store_id || 1
 
     // let pages = getCurrentPages(); //当前页面栈
 

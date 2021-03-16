@@ -51,6 +51,8 @@ Page({
             
             oldExpress.push(data)
         })
+
+        console.log('oldExpress',oldExpress)
     },
     onSend_msgChange({detail}){
 
@@ -66,6 +68,44 @@ Page({
             order_id:this.data.order_id
         }).then(res=>{
 
+            console.log(res)
+
+            
+
+
+        })
+
+    },
+    express_code_change(e){
+        const code = e.detail.value
+        const index = e.target.dataset.index
+        console.log(e)
+        if(code && code.length > 7){
+            this.getCompenyByCode(code,index)
+        }
+
+    },
+
+    getCompenyByCode(code,index){
+
+        if(code.length < 5){ return}
+
+        util.wx.post('/api/order/get_express_com',{
+            express_code:code
+        }).then(res=>{
+
+            if(res.data.code == 200){
+                 this.setData({
+                    ['express[' + index + '].express_company']: res.data.data[0].expName,
+                    columns: res.data.data.map(item => {
+                        return item.expName
+                    })
+                })
+
+              this.editExpress(index);
+
+            }
+            
 
         })
 
@@ -149,8 +189,11 @@ Page({
                       success:  (r)=>{
                             if (r.confirm) {
                             this.setData({
-                            [key]:code}
+                            [key]:code
+                              }
                             )
+
+                            this.getCompenyByCode(code, this.data.express.length-1)
 
                              wx.setClipboardData({
                                    data: '',
@@ -364,6 +407,7 @@ Page({
         })
 
         console.log(express)
+
         this.setData({
             btnText: express.length == 0 ? '返 回' : '确 认 添 加'
         })
@@ -409,15 +453,25 @@ Page({
         index = e.currentTarget.dataset.index;
 
         this.setData({
-            ['express[' + index + '].express_code']: e.detail
+            ['express[' + index + '].express_code']: e.detail.value
         })
 
         this.setBtnStatus()
 
     },
     blurInput(e){
-        let i = e.currentTarget.dataset.index;
-        this.editExpress(i);
+        let index = e.currentTarget.dataset.index;
+        let code = e.detail.value
+
+
+
+         this.setData({
+            ['express[' + index + '].express_code']: code
+        })
+
+         this.getCompenyByCode(code,index)
+
+
 
     },
     saomaInput(e) {
@@ -426,13 +480,16 @@ Page({
         wx.scanCode({
           success (res) {
             wx.showToast({
-                title:'已识别',
+                title:'已识别单号',
                 icon:'none'
             })
             _this.setData({
                 ['express[' + index + '].express_code']: res.result
             })
-             _this.setBtnStatus();
+
+            this.getCompenyByCode(res.result,index)
+
+
 
           },
           fail(res) {
@@ -471,8 +528,11 @@ Page({
 
     },
     editExpress(i) {
+
         let currentExpress = this.data.express[i];
         let old = oldExpress[i];
+
+        console.log('编辑成功')
 
         if(currentExpress.express_id && (old.express_company != currentExpress.express_company || old.express_code != currentExpress.express_code)){
 
