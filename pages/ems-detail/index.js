@@ -113,8 +113,8 @@ Page({
 
                 this.setData({
                     express:d.express,
-                     user:d.orderinfo.consignee,
-                    goods:d.detail[0].goods_name
+                     user:d.orderinfo,
+                    goods:d.detail[0]
                 })
 
              this.checkExpress({
@@ -124,7 +124,7 @@ Page({
             })
 
                    wx.setNavigationBarTitle({
-                  title: this.data.user+'的物流信息' 
+                  title: this.data.user.consignee+'的物流信息' 
                 })
 
 
@@ -137,6 +137,15 @@ Page({
 
 
     },
+    goback() {
+
+        wx.redirectTo({
+            url: '/pages/goods/goods?goods_id=' + this.data.goods.goods_id
+        })
+
+    },
+
+
     toCheckExpress(e) {
 
         console.log('tockeck')
@@ -152,7 +161,7 @@ Page({
     },
     onShareAppMessage: function (res) {
     return {
-      title: this.data.user+ '的快递单号【'+this.data.goods+'】'
+      title: '亲～这是'+this.data.user.consignee+ '的快件信息，可以随时留意哦'
     }
   }
 })

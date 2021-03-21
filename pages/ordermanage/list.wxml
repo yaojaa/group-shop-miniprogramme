@@ -31,10 +31,12 @@
     </view> -->
     <view class="tabsArea">
         <i-tabs current="{{ tab }}" color="#47b34f" bindchange="handleTab">
-            <i-tab key="0" title="全部"></i-tab>
-            <i-tab key="2" title="待确认({{wait_confirm.count}})"></i-tab>
             <i-tab key="3" title="待发货({{back_order.count}})"></i-tab>
             <i-tab key="4" title="已发货({{shipped_order.count}})"></i-tab>
+            <i-tab key="-4" title="退款售后({{refund_order.count || 0}})"></i-tab>
+
+            <i-tab key="0" title="全部"></i-tab>
+
         </i-tabs>
     </view>
     <!--     状态 1:未支付,2:已支 付,3:待发货,4:已发货 不传默认所有
@@ -44,7 +46,7 @@
             <view class="tips_title">销量统计</view>
             <view class="spec text-justify " wx:key="index" wx:for="{{valid_order.spec}}">
                 <view>{{item.spec_name}}
-                    <text class="text-danger">× {{item.qty}}</text>
+                    <text class="text-danger">× {{item.qty}}件</text>
                 </view>
             </view>
         </block>
@@ -52,7 +54,7 @@
             <view class="tips_title">未发货统计</view>
             <view class="spec text-justify" wx:key="index" wx:for="{{back_order.spec}}">
                 <view>{{item.spec_name}}
-                    <text class="text-danger">× {{item.qty}}</text>
+                    <text class="text-danger">× {{item.qty}}件</text>
                 </view>
             </view>
         </block>
@@ -60,12 +62,17 @@
             <view class="tips_title">已发货统计</view>
             <view class="spec text-justify" wx:key="index" wx:for="{{shipped_order.spec}}">
                 <view>{{item.spec_name}}
-                    <text class="text-danger">× {{item.qty}}</text></view>
+                    <text class="text-danger">× {{item.qty}}件</text></view>
             </view>
         </block>
     </view>
     <view class="text-center mb-sm">
         <wux-spin wx:if="{{loading}}"></wux-spin>
+    </view>
+    <view class="no-content" wx:if="{{!loading && dataList[0].length == 0}}">
+
+        没有<block wx:if="tab == 3">待发货的</block> <block wx:if="tab == 4">待发货的</block> 订单哦～
+        
     </view>
     <block wx:for="{{dataList}}" wx:for-index="pindex" wx:key="index">
         <view class="order-item" wx:for="{{dataList[pindex]}}" wx:for-index="cindex" wx:key="order_id" wx:if="{{!item.removed}}">
@@ -160,7 +167,7 @@
                 </view>
             </view>
             <!--是帮卖团长查看 显示赚多少钱和发货人-->
-            <view wx:if="{{item.link_store.length ==2 && user_id !== item.link_store[1].user_id}}">
+            <view wx:if="{{item.link_store.length ==2 && store_id !== item.link_store[1].store_id}}">
                 <view class="mt-sm f12 clear_fix">赚<text class="text-warning">¥{{item.profit}}</text>元 由<text class="text-primary">{{item.link_store[1].nickname}}</text>发货
                 </view>
             </view>
@@ -186,7 +193,7 @@
         </view>
     </block>
     <van-dialog use-slot title="您要{{action_name}}吗？" show="{{ orderActionVisbile }}" show-cancel-button bind:confirm="orderActionsRun">
-        <van-cell title="是否全部{{action_name}}" style="margin: 10px 0">
+        <van-cell title="此商品的订单全部{{action_name}}" style="margin: 10px 0">
             <van-switch size="20px" active-color="#49b34d" inactive-color="#eeeeee" slot="right-icon" checked="{{ isAllAction }}" bind:change="onisAllActionChange" />
         </van-cell>
     </van-dialog>

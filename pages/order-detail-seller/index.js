@@ -87,7 +87,7 @@ Page({
                     
 
 
-                    if (data.seller.user_id == app.globalData.userInfo.user_id) {
+                    if (data.store.store_id == app.globalData.userInfo.store_id) {
 
                         data.isFromAgent = false
 

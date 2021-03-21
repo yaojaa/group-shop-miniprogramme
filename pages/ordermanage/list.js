@@ -9,7 +9,7 @@ const util = require('../../utils/util.js')
 
 Page({
     data: {
-        tab: 0,
+        tab: 3,
         current: "tab1",
         visible: false,
         goods_name: "",
@@ -54,7 +54,7 @@ Page({
         shipped_order: 0,
         back_order: 0,
         showPop: false,
-        search_order_status: '',
+        search_order_status: 3,
         pop_name_arr: [{
             name: '导出Excel'
         }, {
@@ -338,9 +338,59 @@ Page({
                                 const key2 = 'dataList[' + pindex + '][' + cindex + '].order_status'
                                 const key3 = 'dataList[' + pindex + '][' + cindex + '].order_status_txt'
 
+                                console.log('this.opt',this.opt,this.opt == 'toset_send')
+
+
+                                if(this.opt == 'toset_send'){
+
+                                    console.log('why???')
+
+                                            let pi = pindex;
+                                            let ci = cindex;
+                                            let current = this.data.dataList[pi][ci];
+                                            let data = '';
+
+                                            console.log(current)
+
+
+
+                                            //将列表的单号信息保存到
+
+                                            data += 'pi=' + pi + '&ci=' + ci + '&order_id=' + current.order_id +
+                                                '&user=' + current.consignee +
+                                                '&sn=' +current.order_sn +
+                                                '&goods=' + current.order_detail[0].goods_name
+
+
+                                           console.log(data)
+
+                                    this.data.dataList[pi][ci].removed = true
+
+                                    this.setData({
+                                        [currentItemKey]: this.data.dataList[pi][ci]
+                                    })
+
+                                    console.log(this.data.dataList[pi][ci].removed )
+
+                                    console.log(currentItemKey )
+
+                                    if(current.delivery_method == 1){
+
+                                              return      wx.navigateTo({
+                                                url: '/pages/express/index?' + data
+                                            })
+
+                                    }
+
+                                
+
+
+                                }
+
+                                console.log('this.opt',this.opt,this.opt == 'toset_send')
 
                                 //删除逻辑
-                                if (this.data.opt == 'toset_del') {
+                                if (this.opt == 'toset_del') {
 
                                     this.data.dataList[pindex][cindex].removed = true
 
@@ -353,7 +403,9 @@ Page({
                                         })
                                     })
 
-                                } else {
+                                } 
+                 
+                                else {
 
                                     this.setData({
                                         [key]: res.data.data.seller_next_handle,

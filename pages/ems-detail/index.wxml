@@ -1,4 +1,28 @@
+<wxs module="util">
+
+    var sub = function(val) {
+
+        return val.substring(0, 6)+'***'
+
+    }
+
+    module.exports.sub = sub;
+
+</wxs>
+
 <view class="container gray-wrap cf">
+    <view class="ph-df pv-sm mb-sm flex" wx:if="{{user.consignee}}">
+        <van-icon name="location" color="#999" />
+        <view class="flex-sub pt-xs text-sm text-gray">
+            <view class="text-justify">
+                <view><text class="mr-df">{{user.consignee}}</text>
+                    <text>{{util.sub(user.mobile)}} {{util.sub(user.address)}}</text>
+                </view>
+            </view>
+    <view class="pt-xs text-sm text-gray">【{{goods.spec_name}}】 {{goods.goods_name}} 
+            </view>
+        </view>
+    </view>
     <view wx:for="{{express}}" wx:key="{{item.express_code}}" class="pa white-bg flex mv-sm align-center">
         <view class="wuliu-box">
             <i-icon wx:if="{{currentIndex == index}}" type="time" color="#49b34d" size="48" />
@@ -17,19 +41,14 @@
             </view>
         </view>
         <view>
-
             <button class="btn primary sm hollow button-hover" data-index="{{index}}" bindtap="toCheckExpress">查询</button>
-            
             <button class="btn primary sm hollow button-hover" data-index="{{index}}" bindtap="copyOrder">复制单号</button>
         </view>
     </view>
     <view class="white-bg p-df">
-
-         <view class="load-box" wx:if="{{loading}}">
-        <wux-spin wux-class="spin" size="large" />
-    </view>
-
-
+        <view class="load-box" wx:if="{{loading}}">
+            <wux-spin wux-class="spin" size="large" />
+        </view>
         <wux-timeline wx:if="{{express[currentIndex].traces && express[currentIndex].traces.length > 0}}">
             <view class="trace" wx:for="{{express[currentIndex].traces}}" wx:key="{{index}}" wx:for-item="item2">
                 <wux-timeline-item content="{{item2.time}}" dotStyle="border-color: #49b34d; color: #49b34d">
@@ -38,9 +57,10 @@
             </view>
         </wux-timeline>
         <view class="trace" wx:else>
-          <text bindtap="toCheckExpress" data-index="{{currentIndex}}">{{express[currentIndex].errorMsg}}</text>     
+            <text bindtap="toCheckExpress" data-index="{{currentIndex}}">{{express[currentIndex].errorMsg}}</text>
         </view>
     </view>
-
-
+    <view class="order-fixed-footer" style="padding: 30px 8px">
+          <button bindtap="goback"  class="round primary linenear_bg">返回商品</button>
+    </view>
 </view>

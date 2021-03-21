@@ -13,7 +13,7 @@ Page({
         phone: '',
         weChat: '',
         active:0,
-        search_order_status:0,
+        search_order_status:3,
         searchWords: ''
     },
     // 搜索
@@ -81,15 +81,15 @@ Page({
         let order = event.detail.index
 
         if(order == 0){
-            this.data.search_order_status = ''
+            this.data.search_order_status = 3
         }
 
          if(order == 1){
-            this.data.search_order_status = 2
+            this.data.search_order_status = 4
         }
 
          if(order == 2){
-            this.data.search_order_status = 3
+            this.data.search_order_status = -4
         }
 
         console.log(event)
