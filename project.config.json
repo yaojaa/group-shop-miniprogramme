@@ -1031,10 +1031,9 @@
           "scene": null
         },
         {
-          "id": 138,
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2121",
+          "query": "help_sale=true&id=3720",
           "scene": null
         },
         {
@@ -1520,6 +1519,12 @@
           "name": "pages/ems-detail/index",
           "pathName": "pages/ems-detail/index",
           "query": "order_sn=202011060905499472591420",
+          "scene": null
+        },
+        {
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "help_sale=true&id=3729",
           "scene": null
         }
       ]

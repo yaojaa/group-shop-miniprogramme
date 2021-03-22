@@ -167,7 +167,7 @@
                             <text wx:if="{{item.spec_stock==0}}">（已售磬）</text>
                         </view>
                         <view class="f12 n-bold text-warning" wx:if="{{is_help_sale_user}}">
-                            代理价：¥{{item.sub_agent_price}}
+                            代理价：¥{{item.agent_price}}
                         </view>
                     </view>
                     <view class="goods-item-actions" catchtap="()=>{}">
@@ -285,9 +285,14 @@
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-        <view class='icon' style="flex:4">
+          <view class='icon' style="flex:2">
+            <button bindtap="cartPanelShow" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg">
+                直接下单
+            </button>
+        </view>
+        <view class='icon' style="flex:2">
             <button bindtap="helpSaleUp" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg">
-                我要帮卖
+                绑定上架
             </button>
         </view>
     </view>
@@ -358,9 +363,11 @@
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">
                         <i-cell wx:if="{{item.item_num>0}}" wx:for="{{goods_spec}}" wx:key="index">
                             <view class="type-box text-justify">
-                                <view>
+                                <view class="f18 bold">
                                     {{item.spec_name}} /
-                                    <text class="text-red f16">¥{{item.spec_price}}</text>
+                                    <text class="text-red f16" wx:if="{{is_help_sale_user}}">¥{{item.agent_price}}</text>
+                                    <text class="text-red f16" wx:else>¥{{item.spec_price}}</text>
+
                                 </view>
                                 <i-input-number disabled id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
                             </view>

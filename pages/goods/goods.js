@@ -970,11 +970,19 @@ Page({
     let totalNum = 0;
 
     this.data.goods_spec.forEach((value) => {
-      console.log(
-        'value.spec_price * 100 * parseInt(value.item_num)',
-        value.spec_price * 100 * parseInt(value.item_num)
-      );
-      amountMoney += value.spec_price * 1000 * parseInt(value.item_num);
+
+
+      if(this.data.is_help_sale_user){
+              amountMoney += value.agent_price * 1000 * parseInt(value.item_num);
+
+      }else{
+
+              amountMoney += value.spec_price * 1000 * parseInt(value.item_num);
+
+      }
+    
+
+
       totalNum += value.item_num;
     });
 
@@ -1019,9 +1027,10 @@ Page({
     if (this.data.goods_spec.length <= 1) {
       let value = this.data.goods_spec[0];
       let currentNum = value.item_num == 0 ? '1' : value.item_num;
+  
       this.setData({
         'goods_spec[0].item_num': currentNum,
-        amountMoney: (value.spec_price * 100 * currentNum) / 100,
+        amountMoney: ((this.data.is_help_sale_user? value.agent_price : value.spec_price) * 100 * currentNum) / 100,
         totalNum: 1
       });
 
