@@ -973,7 +973,7 @@ Page({
 
 
       if(this.data.is_help_sale_user){
-              amountMoney += value.agent_price * 1000 * parseInt(value.item_num);
+              amountMoney += value.sub_agent_price * 1000 * parseInt(value.item_num);
 
       }else{
 
@@ -1030,7 +1030,7 @@ Page({
   
       this.setData({
         'goods_spec[0].item_num': currentNum,
-        amountMoney: ((this.data.is_help_sale_user? value.agent_price : value.spec_price) * 100 * currentNum) / 100,
+        amountMoney: ((this.data.is_help_sale_user? value.sub_agent_price : value.spec_price) * 100 * currentNum) / 100,
         totalNum: 1
       });
 
@@ -1270,7 +1270,10 @@ Page({
             '&delivery_method=' +
             this.data.goods.delivery_method +
             '&from_id=' +
-            this.data.from_id
+            this.data.from_id +
+            '&is_help_sale=' +
+            this.data.is_help_sale
+
         });
       }
     });

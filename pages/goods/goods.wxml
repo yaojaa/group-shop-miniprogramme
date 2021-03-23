@@ -167,7 +167,7 @@
                             <text wx:if="{{item.spec_stock==0}}">（已售磬）</text>
                         </view>
                         <view class="f12 n-bold text-warning" wx:if="{{is_help_sale_user}}">
-                            代理价：¥{{item.agent_price}}
+                            代理价：¥{{item.sub_agent_price}}
                         </view>
                     </view>
                     <view class="goods-item-actions" catchtap="()=>{}">
@@ -280,12 +280,17 @@
         </view>
     </view>
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->
+
+    {{is_help_sale}} {{goods.agent_opt==1}}
     <view class='footer-cart' wx:if="{{is_help_sale && goods.agent_opt==1}}">
         <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-          <view class='icon' style="flex:2">
+          <view class='icon' style="flex:2; position: relative;" >
+            <view wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
+                {{totalNum}}
+            </view>
             <button bindtap="cartPanelShow" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg">
                 直接下单
             </button>
@@ -297,7 +302,7 @@
         </view>
     </view>
     <!-- 正常客户下单 -->
-    <view class='footer-cart' wx:if="{{!is_help_sale}}">
+    <view class='footer-cart' wx:if="{{!is_help_sale || goods.agent_opt==0}}">
         <view class='icon' bindtap='homepage' style="flex: 22">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
@@ -365,7 +370,7 @@
                             <view class="type-box text-justify">
                                 <view class="f18 bold">
                                     {{item.spec_name}} /
-                                    <text class="text-red f16" wx:if="{{is_help_sale_user}}">¥{{item.agent_price}}</text>
+                                    <text class="text-red f16" wx:if="{{is_help_sale_user}}">¥{{item.sub_agent_price}}</text>
                                     <text class="text-red f16" wx:else>¥{{item.spec_price}}</text>
 
                                 </view>

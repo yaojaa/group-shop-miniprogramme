@@ -474,7 +474,7 @@ Page({
                     valid_order: res.data.data.valid_order,
                     shipped_order: res.data.data.shipped_order,
                     back_order: res.data.data.back_order,
-                    wait_confirm: res.data.data.wait_confirm,
+                    refund_order: res.data.data.refund_order,
 
                 })
 
