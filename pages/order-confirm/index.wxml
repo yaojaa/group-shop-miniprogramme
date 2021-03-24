@@ -100,8 +100,9 @@
                     <image class="goods-cover-image" src="{{item.spec_pic[0]}}"></image>
                     <view class="flex-sub por">
                         <view class="text-hide two-line  bold title">{{item.spec_name}}</view>
-                        <view class="text-justify bt-bar">
-                            <view class="price text-muted">￥{{item.spec_price}}</view>
+                        <view class="text-justify bt-bar"> 
+                            <view class="price text-muted" wx:if="{{is_help_sale == 'true'}}">￥{{item.sub_agent_price}}</view>
+                            <view class="price text-muted" wx:else>￥{{item.spec_price}}</view>
                             <i-input-number i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="1" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                         </view>
                     </view>

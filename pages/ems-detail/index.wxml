@@ -12,14 +12,13 @@
 
 <view class="container gray-wrap cf">
     <view class="ph-df pv-sm mb-sm flex" wx:if="{{user.consignee}}">
-        <van-icon name="location" color="#999" />
         <view class="flex-sub pt-xs text-sm text-gray">
             <view class="text-justify">
                 <view><text class="mr-df">{{user.consignee}}</text>
                     <text>{{util.sub(user.mobile)}} {{util.sub(user.address)}}</text>
                 </view>
             </view>
-    <view class="pt-xs text-sm text-gray">【{{goods.spec_name}}】 {{goods.goods_name}} 
+    <view class="pt-xs text-sm text-gray">{{goods.spec_name}}- {{goods.goods_name}} 
             </view>
         </view>
     </view>

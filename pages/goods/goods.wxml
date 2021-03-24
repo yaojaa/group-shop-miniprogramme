@@ -89,7 +89,7 @@
                 <text class="text-sm n-bold">/起</text>
             </view>
             <view class="text-sm text-muted">
-                访问次数 {{goods.pageview_count+1}}
+                访问次数 {{goods.pageview_count}}
                 <text>已售 {{goods.total_qty}}</text>
                 <text wx:if="{{goods.delivery_method == 1}}">（快递邮寄）</text>
                 <text wx:if="{{goods.delivery_method == 2}}">（用户自提）</text>
@@ -153,7 +153,7 @@
                             {{item.spec_pic.length}}张
                         </view>
                     </view>
-                    <view class="info">
+                    <view class="info {{item.spec_stock==0 ? 'gray-line' : '' }}">
                         <view class="f14 bold text-default">{{item.spec_name}}</view>
                         <view wx:if="{{item.spec_desc}}" class="f12 text-warning text-hide two-line" style="margin-top: 10rpx;">
                             {{item.spec_desc}}
@@ -163,11 +163,12 @@
                         </view>
                         <view class="f12 gray-text">
                             <text class="price f12px">¥{{item.spec_price}}</text>
-                            <text wx:if="{{item.spec_stock}}">剩余:{{item.spec_stock}}</text>
-                            <text wx:if="{{item.spec_stock==0}}">（已售磬）</text>
-                        </view>
-                        <view class="f12 n-bold text-warning" wx:if="{{is_help_sale_user}}">
-                            代理价：¥{{item.sub_agent_price}}
+
+                            <view class="line" wx:if="{{is_help_sale_user}}">
+                                代理价：<text class="f12 n-bold text-warning" >¥{{item.sub_agent_price}}</text>
+                            </view>
+
+                            <text wx:if="{{item.spec_stock && item.spec_stock != 0 }}">剩余:{{item.spec_stock}}</text>
                         </view>
                     </view>
                     <view class="goods-item-actions" catchtap="()=>{}">
@@ -271,7 +272,7 @@
         </view> -->
         </view>
     </view>
-    <view class="weui-footer" style="margin-top:30px;margin-bottom: 30px">
+    <view class="weui-footer white-bg" style="padding-top:30px;padding-bottom: 30px;margin-bottom: 20px">
         <view class="weui-footer__links">
             <button size="large" style="margin-right: 20px" class="btn primary hollow" bindtap="copyGoods">
                 复制此商品
@@ -279,9 +280,13 @@
             <button size="large" bindtap="copyDetail" class="btn primary hollow">复制为文字</button>
         </view>
     </view>
+     <view class="weui-footer" wx:if="{{!showPanel}}">
+        <button bindtap="goCreateHome" size="mini" type="primary" wx:if="{{!showSetting}}">
+            +我也要拥有免费小程序
+        </button>
+    </view>
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->
 
-    {{is_help_sale}} {{goods.agent_opt==1}}
     <view class='footer-cart' wx:if="{{is_help_sale && goods.agent_opt==1}}">
         <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
@@ -291,12 +296,12 @@
             <view wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </view>
-            <button bindtap="cartPanelShow" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg">
-                直接下单
+            <button bindtap="cartPanelShow" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg left-raduis">
+                采购下单
             </button>
         </view>
         <view class='icon' style="flex:2">
-            <button bindtap="helpSaleUp" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg">
+            <button bindtap="helpSaleUp" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg right-raduis" >
                 绑定上架
             </button>
         </view>

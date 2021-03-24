@@ -192,7 +192,7 @@ Page({
         }
 
         this.setData({
-          is_help_sale_user: res.data.data == 0 ? false : true
+          is_help_sale: res.data.data == 0 ? false : true
         });
       });
   },
@@ -319,8 +319,7 @@ Page({
       var pathParam = '';
       if (type == 'invit') {
         title =
-          this.data.goods.user.nickname +
-          '邀请你帮卖【' +
+          '绑定上架【' +
           this.data.goods.goods_name +
           '】';
         pathParam = '&help_sale=true';
@@ -972,7 +971,7 @@ Page({
     this.data.goods_spec.forEach((value) => {
 
 
-      if(this.data.is_help_sale_user){
+      if(this.data.is_help_sale){
               amountMoney += value.sub_agent_price * 1000 * parseInt(value.item_num);
 
       }else{
@@ -1030,7 +1029,7 @@ Page({
   
       this.setData({
         'goods_spec[0].item_num': currentNum,
-        amountMoney: ((this.data.is_help_sale_user? value.sub_agent_price : value.spec_price) * 100 * currentNum) / 100,
+        amountMoney: ((this.data.is_help_sale? value.sub_agent_price : value.spec_price) * 100 * currentNum) / 100,
         totalNum: 1
       });
 

@@ -179,8 +179,15 @@ Page({
       specs: this.getCartParams(),
       address_id: this.data.address_id,
       goods_id: this.data.goods_id,
-      is_agent_order: this.data.is_help_sale ? 1: 0
-    };
+    }
+//order_mode=1代理,2帮卖
+console.log(typeof this.data.is_help_sale)
+    if(this.data.is_help_sale == 'true'){
+      params.order_mode = 2
+    }
+
+
+
     util.wx.post('/api/order/get_price_info', params).then((res) => {
       this.setData({
         goodsTotal: res.data.data
@@ -196,7 +203,12 @@ Page({
     this.data.goods_id = options.goods_id;
     this.data.from_id = options.from_id || '';
     this.data.payment_method = options.payment_method;
-    this.data.is_help_sale = options.is_help_sale || false
+
+    this.setData({
+      is_help_sale: options.is_help_sale
+    })
+
+
     if (options.payment_method == 1) {
       this.setData({
         pay_btn_txt: '立即参与'

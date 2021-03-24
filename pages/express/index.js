@@ -22,8 +22,16 @@ Page({
         btnText:'返 回',
         send_msg:true,
         express_data:[
-        {"name":"自动识别"}
-        ]
+        {"name":"\u81ea\u52a8\u8bc6\u522b\u5feb\u9012\u516c\u53f8"},
+        {"name":"\u987a\u4e30\u901f\u8fd0"},
+        {"name":"\u767e\u4e16\u5feb\u9012"},
+        {"name":"\u4e2d\u901a\u5feb\u9012"},
+        {"name":"\u7533\u901a\u5feb\u9012"},
+        {"name":"\u5706\u901a\u901f\u9012"},
+        {"name":"\u97f5\u8fbe\u901f\u9012"},
+        {"name":"\u90ae\u653f\u5feb\u9012\u5305\u88f9","kdniao_code":"YZPY","wyc_code":"YZPY"},{"name":"EMS","kdniao_code":"EMS","wyc_code":"EMS"},{"name":"\u5929\u5929\u5feb\u9012","kdniao_code":"HHTT","wyc_code":"HHTT"},{"name":"\u4eac\u4e1c\u5feb\u9012","kdniao_code":"JD","wyc_code":"JD"},{"name":"\u4f18\u901f\u5feb\u9012","kdniao_code":"UC","wyc_code":"UC"},{"name":"\u5fb7\u90a6\u5feb\u9012","kdniao_code":"DBL","wyc_code":"DBL"},{"name":"\u5b85\u6025\u9001","kdniao_code":"ZJS","wyc_code":"ZJS"},{"name":"TNT\u5feb\u9012","kdniao_code":"TNT","wyc_code":"TNT"},{"name":"UPS","kdniao_code":"UPS","wyc_code":"UPS"},{"name":"DHL","kdniao_code":"DHL","wyc_code":"DHL"},{"name":"FEDEX\u8054\u90a6","kdniao_code":"FEDEX","wyc_code":"FEDEX"},
+        {"name":"\u5176\u5b83","kdniao_code":"other","wyc_code":"other"}
+         ]
         },
     handleEmsPopup(e) {
         this.setData({
