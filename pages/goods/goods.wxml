@@ -332,7 +332,7 @@
             </form>
         </block>
     </view>
-    <view class="coupon_tips" wx:if="{{goods.fullreduce_data.length}}">
+    <view class="coupon_tips" wx:if="{{!is_help_sale && goods.fullreduce_data.length}}">
         <van-notice-bar left-icon="coupon-o" text="满减优惠：{{reduce_txt}}" />
     </view>
     <!-- 是团长自己自己 -->
@@ -341,9 +341,13 @@
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
+
+
         <button open-type="share" wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 30" data-type="invit" class="buy linenear_bg  left-raduis right-raduis">
             邀请好友帮卖
         </button>
+
+
         <button open-type="share" data-type="share" wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 45">
             分享顾客
         </button>

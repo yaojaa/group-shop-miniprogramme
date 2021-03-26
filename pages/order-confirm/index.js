@@ -181,7 +181,6 @@ Page({
       goods_id: this.data.goods_id,
     }
 //order_mode=1代理,2帮卖
-console.log(typeof this.data.is_help_sale)
     if(this.data.is_help_sale == 'true'){
       params.order_mode = 2
     }
@@ -368,9 +367,16 @@ console.log(typeof this.data.is_help_sale)
     });
     wx.showLoading();
 
+    var apiUrl = '/api/order/create_order'
+
+    if(this.data.is_help_sale == 'true'){
+      apiUrl =   '/api/order/create_helper_order'
+
+    }
+
     util.wx
       .post(
-        '/api/order/create_order',
+        apiUrl,
         Object.assign(
           {
             specs: this.getCartParams(),
