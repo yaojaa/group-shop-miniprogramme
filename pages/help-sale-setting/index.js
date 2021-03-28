@@ -88,6 +88,16 @@ Page({
       })
     },
 
+    onfocus(e){
+              const {index,spec_price,goods_spec_id} = e.currentTarget.dataset
+
+              console.log(index)
+
+
+
+
+    },
+
 
     spec_edit(id,price,index){
 
@@ -116,6 +126,8 @@ Page({
           }
         })
     },
+
+
 
 
 
@@ -152,7 +164,7 @@ Page({
 
          }
 
-         if(value > parseInt(spec_price)){
+         if(value > parseFloat(spec_price)){
 
             wx.showToast({
                 title:'代理价不能超过你的售价',

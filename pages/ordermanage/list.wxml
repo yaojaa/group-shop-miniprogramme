@@ -111,7 +111,7 @@
                 <view class="type text-justify  scale-b-1px" wx:for="{{item.order_detail}}" wx:key="index" wx:for-item="g">
                     <view>{{g.spec_name}} ×{{g.qty}}</view>
                     <view class="text-info" wx:if="{{store_id == item.store.store_id }}">¥ {{g.total_price}} </view>
-                    <view class="text-info" wx:else>¥ {{g.agent_price*1000*g.qty/1000}} </view>
+                    <view class="text-info" wx:else>¥ {{g.sub_agent_price*1000*g.qty/1000}} </view>
                 </view>
                 <view class="type text-justify  scale-b-1px" wx:if="{{item.shipping_money!='0.00'}}">
                     <view>运费</view>

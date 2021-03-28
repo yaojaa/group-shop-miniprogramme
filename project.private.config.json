@@ -1,0 +1,1482 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": [
+        {
+          "id": -1,
+          "name": "商品详情",
+          "pathName": "pages/goods/goods",
+          "query": ""
+        }
+      ]
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "确认订单",
+          "pathName": "pages/order-confirm/index",
+          "query": "goods_id=71&delivery_method=2",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "订单列表启动",
+          "pathName": "pages/order-list/index",
+          "query": "id=34",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "发布页",
+          "pathName": "pages/publish/publish",
+          "query": "goods_id=470",
+          "scene": null
+        },
+        {
+          "id": 4,
+          "name": "订单详情启动",
+          "pathName": "pages/order-detail/index",
+          "query": "goods_name=花花甜糯玉米&delivery_method=1",
+          "scene": 1001
+        },
+        {
+          "id": 5,
+          "name": "订单确认",
+          "pathName": "pages/order-confirm/index",
+          "query": "goods_id=10&delivery_method=2",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "首页",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": "1011"
+        },
+        {
+          "id": 7,
+          "name": "发布页",
+          "pathName": "pages/publish-select/index",
+          "query": "goods_id=470",
+          "scene": null
+        },
+        {
+          "id": 8,
+          "name": "个人中心",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 9,
+          "name": "pages/fans-mg/index",
+          "pathName": "pages/fans-mg/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 10,
+          "name": "支付成功！",
+          "pathName": "pages/paySuccess/index",
+          "query": "order_id= 7493&goods_id=988",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加地址",
+          "pathName": "pages/map/index",
+          "query": ""
+        },
+        {
+          "id": 12,
+          "name": "支付成功",
+          "pathName": "pages/paySuccess/index",
+          "query": "order_id= 8780&goods_id=771",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "完善资料",
+          "pathName": "pages/identify/identify",
+          "query": ""
+        },
+        {
+          "id": 14,
+          "name": "订单管理",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=406&goods_name=福建沙地六鳌蜜薯，甜到心里头，10.9包邮彩盒装震撼发布，包甜包鲜包现挖&delivery_method=1",
+          "scene": 1001
+        },
+        {
+          "id": -1,
+          "name": "提现",
+          "pathName": "pages/withdrawal/index",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "支付成功",
+          "pathName": "pages/paySuccess/index",
+          "query": ""
+        },
+        {
+          "id": 17,
+          "name": "地图",
+          "pathName": "pages/map/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 18,
+          "name": "订单管理页",
+          "pathName": "pages/create_shop/create_shop",
+          "query": "",
+          "scene": "1001"
+        },
+        {
+          "id": 19,
+          "name": "强制更新调试",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": "1001"
+        },
+        {
+          "id": -1,
+          "name": "强制更新调试",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": "1001"
+        },
+        {
+          "id": 21,
+          "name": "发布成功",
+          "pathName": "pages/publish-success/publish-success",
+          "query": "goods_id=3",
+          "scene": "1001"
+        },
+        {
+          "id": 22,
+          "name": "编辑商品",
+          "pathName": "pages/publish/publish",
+          "query": "goods_id=470",
+          "scene": 1001
+        },
+        {
+          "id": -1,
+          "name": "地理位置",
+          "pathName": "pages/map/index",
+          "query": "goods_id=36",
+          "scene": "1001"
+        },
+        {
+          "id": 24,
+          "name": "收款方式",
+          "pathName": "pages/paymethod/index",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "订单管理",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=61&goods_name=石门蜜橘金鱼团团群邻居专享&delivery_method=2",
+          "scene": "1014"
+        },
+        {
+          "id": 26,
+          "name": "创建店铺",
+          "pathName": "pages/create-home/index",
+          "query": "",
+          "scene": 1001
+        },
+        {
+          "id": 27,
+          "name": "个人主页",
+          "pathName": "pages/userhome/index",
+          "query": "id=115",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "创建成功",
+          "pathName": "pages/create_shop_success/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "加盟商登录",
+          "pathName": "pages/b-login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 30,
+          "name": "详情页",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=2184  ",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发布页",
+          "pathName": "pages/publish/publish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "上传图片",
+          "pathName": "pages/upload_pics/upload_pics",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "选择",
+          "pathName": "pages/map/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "登记群",
+          "pathName": "pages/wxgroup_add/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 35,
+          "name": "地图",
+          "pathName": "pages/map/index",
+          "query": "",
+          "scene": 1008
+        },
+        {
+          "id": -1,
+          "name": "地址管理",
+          "pathName": "pages/address/index",
+          "query": "goods_id=45",
+          "scene": null
+        },
+        {
+          "id": 37,
+          "name": "粉丝",
+          "pathName": "pages/fans-mg/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 38,
+          "name": "添加地址",
+          "pathName": "pages/address-form/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人信息",
+          "pathName": "pages/identify/identify",
+          "query": "goods_id=70",
+          "scene": null
+        },
+        {
+          "id": 40,
+          "name": "订单管理",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=173&goods_name=锦融尚御房本维权赞助收款与名单公布&delivery_method=2",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发布成功页启动",
+          "pathName": "pages/publish-success/publish-success",
+          "query": "goods_id=88",
+          "scene": null
+        },
+        {
+          "id": 42,
+          "name": "支付成功页启动",
+          "pathName": "pages/paySuccess/index",
+          "query": "order_id=52&goods_id=95",
+          "scene": null
+        },
+        {
+          "id": 43,
+          "name": "详情页启动",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=7&goods_name=zitimoban-24颗 新鲜水果&delivery_method=2",
+          "scene": null
+        },
+        {
+          "id": 44,
+          "name": "发货页",
+          "pathName": "pages/to-send/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 45,
+          "name": "个人主页",
+          "pathName": "pages/create_shop/index",
+          "query": "id=93",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "确认订单",
+          "pathName": "pages/order-confirm/index",
+          "query": "goods_id=2&delivery_method=2",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人资料",
+          "pathName": "pages/identify/identify",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "设置个人主页",
+          "pathName": "pages/create_shop/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订单管理",
+          "pathName": "pages/withdrawal/index",
+          "query": "id=257&goods_name=血桃发货&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人主页设置",
+          "pathName": "pages/create_shop/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "当前开发页",
+          "pathName": "pages/create_shop/index",
+          "query": "goods_id=2&goods_name=花花甜糯玉米&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "特多的商品",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=173&goods_name=锦融尚御房本维权赞助收款与名单公布&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "当前",
+          "pathName": "pages/create_shop/index",
+          "query": "goods_id=301",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "主页启动",
+          "pathName": "pages/userhome/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "详情页启动",
+          "pathName": "pages/userhome/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "地址管理",
+          "pathName": "pages/address/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "物流",
+          "pathName": "pages/ems-detail/index",
+          "query": "code0=3232323&com0=中通快递&code1=9999999&com1=顺丰速运&code2=9900099&com2=顺丰速运&index=0&order_id=4915&user=范先生&goods=湖南高山炎陵黄桃 CCTV国家品牌计划 桃醉天下的名桃  脆甜浓郁个头大",
+          "scene": null
+        },
+        {
+          "id": 58,
+          "name": "发货单",
+          "pathName": "pages/send-list/index",
+          "query": "goods_id=470",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "支付成功",
+          "pathName": "pages/paySuccess/index",
+          "query": "order_id=5368&goods_id=611",
+          "scene": null
+        },
+        {
+          "id": 60,
+          "name": "订单管理",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=543&goods_name=陕西大荔冬枣，暂时下架几天，等待阳光&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订单管理",
+          "pathName": "pages/send-list/index",
+          "query": "goods_id=543",
+          "scene": null
+        },
+        {
+          "id": 62,
+          "name": "business/pages/home/index",
+          "pathName": "business/pages/home/index",
+          "query": "goods_id=621",
+          "scene": null
+        },
+        {
+          "id": 63,
+          "name": "运费模板",
+          "pathName": "business/pages/postageSetting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加快递单号",
+          "pathName": "pages/express/index",
+          "query": "pi=0&ci=0&order_id=5389&user=书星&goods=红颜奶油草莓 约重500g/20-24颗 新鲜水果",
+          "scene": null
+        },
+        {
+          "id": 65,
+          "name": "个人主页",
+          "pathName": "pages/userhome/index",
+          "query": "id=93",
+          "scene": null
+        },
+        {
+          "id": 66,
+          "name": "自定义",
+          "pathName": "pages/supplier-home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 67,
+          "name": "pages/supplier-list/index",
+          "pathName": "pages/supplier-list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发货单",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=872&goods_name=沂蒙山紫罗兰紫薯 宝宝薯 秒杀 限量30单&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人主页",
+          "pathName": "pages/ems-detail/index",
+          "query": "code0=9896674977689&com0=邮政快递包裹&index=0&order_id=6710&user=孙克敏&goods=【臻·四季】石门蜜橘—来自中国柑橘之乡的甜蜜味道",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人主页",
+          "pathName": "pages/ems/ems",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "粉丝",
+          "pathName": "pages/ems-detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/identify/identify",
+          "pathName": "pages/identify/identify",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-list/index",
+          "pathName": "pages/order-list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/new-order-list/index",
+          "pathName": "pages/new-order-list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 76,
+          "name": "pages/user-home/index",
+          "pathName": "pages/user-home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/userhome/index",
+          "pathName": "pages/userhome/index",
+          "query": "store_id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=1295&goods_name=%E6%B5%8B%E8%AF%95%E4%B8%80%E5%88%86%E9%92%B1&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": 79,
+          "name": "pages/b-login/login",
+          "pathName": "pages/b-login/login",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/b-login/login",
+          "pathName": "pages/create-home/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": 81,
+          "name": "供应商我的主页",
+          "pathName": "business/pages/home/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": 82,
+          "name": "创建供应商",
+          "pathName": "business/pages/create-home/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": 83,
+          "name": "供应商主页",
+          "pathName": "business/pages/home/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": 84,
+          "name": "申请供应商代理",
+          "pathName": "business/pages/acting-apply/index",
+          "query": "supplier_id=7",
+          "scene": null
+        },
+        {
+          "id": 85,
+          "name": "代理申请",
+          "pathName": "business/pages/acting-apply/index",
+          "query": "supplier_id=4",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/acting-admin/index",
+          "pathName": "business/pages/acting-admin/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/set-price/index",
+          "pathName": "business/pages/set-price/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/tpl-list/index",
+          "pathName": "business/pages/tpl-list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的订单",
+          "pathName": "pages/order-list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 90,
+          "name": "pages/refundment index",
+          "pathName": "pages/refundment/index",
+          "query": "order_id=8763",
+          "scene": null
+        },
+        {
+          "id": 91,
+          "name": "退款详情买家",
+          "pathName": "pages/refundment-detail/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "卖家处理退款",
+          "pathName": "pages/refundment-detail-seller/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/refundment-detail-seller/index",
+          "pathName": "pages/refundment-detail-seller/index",
+          "query": "order_id=9442&id=3",
+          "scene": null
+        },
+        {
+          "id": 94,
+          "name": "business/pages/home/index",
+          "pathName": "business/pages/home/index",
+          "query": "id=93",
+          "scene": null
+        },
+        {
+          "id": 78,
+          "name": "pages/coupon-send/index",
+          "pathName": "pages/coupon-send/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 96,
+          "name": "供应商添加商品",
+          "pathName": "business/pages/publish/publish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 97,
+          "name": "供应商发布",
+          "pathName": "business/pages/publish/publish",
+          "query": "goods_id=1492",
+          "scene": null
+        },
+        {
+          "id": 98,
+          "name": "business/pages/goods/goods",
+          "pathName": "business/pages/goods/goods",
+          "query": "id=10",
+          "scene": null
+        },
+        {
+          "id": 99,
+          "name": "business/pages/goods-user/goods",
+          "pathName": "business/pages/goods-user/goods",
+          "query": "id=55",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加运费模版",
+          "pathName": "business/pages/set-price/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "团长创建店铺主页",
+          "pathName": "pages/create-home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的代理列表",
+          "pathName": "business/pages/acting-admin/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 103,
+          "name": "设置列表",
+          "pathName": "business/pages/setting-list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 104,
+          "name": "business/pages/postageSetting/index",
+          "pathName": "business/pages/postageSetting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订单管理",
+          "pathName": "business/pages/order-manage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 106,
+          "name": "团长查看分销页面",
+          "pathName": "business/pages/goods-user/goods",
+          "query": "id=2129",
+          "scene": null
+        },
+        {
+          "id": 107,
+          "name": "上架成功",
+          "pathName": "pages/upSuccess/index",
+          "query": "goods_id=1657",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "供应商主页",
+          "pathName": "pages/supplier-home/index",
+          "query": "goods_id=1657",
+          "scene": null
+        },
+        {
+          "id": 109,
+          "name": "运费模版列表",
+          "pathName": "business/pages/postageSetting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 110,
+          "name": "上架成功",
+          "pathName": "pages/upSuccess/index",
+          "query": "goods_id=1722",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "供货商主页",
+          "pathName": "pages/supplier-home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "供应商提现",
+          "pathName": "business/pages/withdrawal/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "确认订单页面",
+          "pathName": "pages/order-confirm/index",
+          "query": "goods_id=1745&delivery_method=1&from_id=",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "确认订单",
+          "pathName": "pages/order-confirm/index",
+          "query": "goods_id=1753&delivery_method=1&from_id=",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "供应商管理订单",
+          "pathName": "business/pages/order-manage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 117,
+          "name": "business/pages/goods-user/goods",
+          "pathName": "business/pages/goods-user/goods",
+          "query": "id=69",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/order-manage/index",
+          "pathName": "business/pages/order-manage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/identify/identify",
+          "pathName": "pages/identify/identify",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/express/index",
+          "pathName": "pages/express/index",
+          "query": "pi=0&ci=1&order_id=11482&user=%E8%91%A3%E5%8D%8E&sn=202003301529505300793437&goods=%E9%87%91%E7%85%8C%20%E8%B4%B5%E5%A6%83%20%E5%8F%B0%E5%86%9C%20%E9%AB%98%E5%93%81%E8%B4%A8%E6%A0%91%E4%B8%8A%E7%86%9F%20%E6%9D%A5%E8%87%AA%E6%B5%B7%E5%8D%97%E5%B2%9B%E7%9A%84%E7%94%9C%E8%9C%9C%E6%9A%B4%E5%87%BB",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/ems-detail/index",
+          "pathName": "pages/ems-detail/index",
+          "query": "code0=SF1020260420266&com0=%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E5%BF%AB%E9%80%92%E5%85%AC%E5%8F%B8&index=0&order_id=11570&user=%E5%A7%9A%E5%A7%9A&order_sn=202004011713102430764943&goods=%E6%B5%B7%E5%8D%97%E4%B8%89%E4%BA%9A%E7%A9%BA%E8%BF%90%E6%A0%91%E7%86%9F%E9%87%91%E8%83%96%E5%AD%90%E7%B2%BE%E5%93%81%E8%B6%85%E5%A4%A7%E7%81%AB%E9%BE%99%E6%9E%9C%20%E4%B8%8D%E5%AF%A1%E6%B7%A1%C2%A0%20%E7%86%9F%E5%BA%A6%E9%AB%98%C2%A0%20%E8%B5%B0%E5%BF%83%E7%94%9C",
+          "scene": null
+        },
+        {
+          "id": 122,
+          "name": "pages/spec-detail/index",
+          "pathName": "pages/spec-detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/editor/editor",
+          "pathName": "pages/editor/editor",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/editor/editor",
+          "pathName": "business/pages/editor/editor",
+          "query": "goods_id=350",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/setting-list/index",
+          "pathName": "business/pages/setting-list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 127,
+          "name": "pages/publish-setting/index",
+          "pathName": "pages/publish-setting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "c",
+          "pathName": "pages/create-home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 129,
+          "name": "business/pages/acting-apply/index",
+          "pathName": "business/pages/acting-apply/index",
+          "query": "supplier_id=4",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=2113",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "log",
+          "pathName": "pages/login/login",
+          "query": "goods_id=2113",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=12075",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/send-list/index",
+          "pathName": "pages/send-list/index",
+          "query": "goods_id=1854",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "帮卖设置",
+          "pathName": "pages/help-sale-setting/index",
+          "query": "goods_id=39",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/userhome/index",
+          "pathName": "pages/userhome/index",
+          "query": "id= 5665",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/home/index",
+          "pathName": "pages/help-sale-invite/index",
+          "query": "id= 5665",
+          "scene": null
+        },
+        {
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "help_sale=true&id=3720",
+          "scene": null
+        },
+        {
+          "id": 139,
+          "name": "帮卖查看商品",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=2129&from_id=&help_sale=true",
+          "scene": null
+        },
+        {
+          "id": 140,
+          "name": "订单管理",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=1867&goods_name=%E4%B8%9C%E5%8C%97%E7%94%9C%E7%B3%AF%E7%8E%89%E7%B1%B3%20%20%E5%90%83%E7%B2%97%E7%B2%AE%E5%B0%B1%E8%A6%81%E5%90%83%E5%81%A5%E5%BA%B7%E5%8F%88%E7%BE%8E%E5%91%B3%E7%9A%84&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": 141,
+          "name": "导出订单",
+          "pathName": "pages/updown_exc/index",
+          "query": "goods_id=470",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/refundment-detail-seller/index",
+          "pathName": "pages/refundment-detail-seller/index",
+          "query": "order_id=14306&id=92",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/postageSetting/index",
+          "pathName": "business/pages/postageSetting/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 144,
+          "name": "帮卖上架",
+          "pathName": "pages/help-sale-up/index",
+          "query": "goods_id=2101",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "帮卖修改",
+          "pathName": "pages/help-sale-setting/index",
+          "query": "goods_id=2003",
+          "scene": null
+        },
+        {
+          "id": 147,
+          "name": "pages/help-sale-up/index",
+          "pathName": "pages/help-sale-up/index",
+          "query": "goods_id=2048",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "us",
+          "pathName": "pages/userhome/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": 149,
+          "name": "申请代理",
+          "pathName": "pages/acting-apply/index",
+          "query": "store_id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/acting-apply/index",
+          "pathName": "business/pages/acting-apply/index",
+          "query": "supplier_id=4",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-list/index",
+          "pathName": "pages/supplier-list/index",
+          "query": "supplier_id=4",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=12102",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/paySuccess/index",
+          "pathName": "pages/paySuccess/index",
+          "query": "order_id=12103&goods_id=2082&order_count=191",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/acting-apply/index",
+          "pathName": "pages/acting-apply/index",
+          "query": "store_id=7312",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/goods-user/goods",
+          "pathName": "business/pages/goods-user/goods",
+          "query": "goods_id=41",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "帮卖设置",
+          "pathName": "pages/help-sale-setting/index",
+          "query": "goods_id=2108",
+          "scene": null
+        },
+        {
+          "id": 157,
+          "name": "pages/acting-apply/index",
+          "pathName": "pages/acting-apply/index",
+          "query": "store_id=7404",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-list/index",
+          "pathName": "pages/supplier-list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user-help-home/index",
+          "pathName": "pages/user-help-home/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": 161,
+          "name": "business/pages/goods/goods",
+          "pathName": "business/pages/goods/goods",
+          "query": "goods_id=2138",
+          "scene": null
+        },
+        {
+          "id": 162,
+          "name": "business/pages/goods-user/goods",
+          "pathName": "business/pages/goods-user/goods",
+          "query": "goods_id=65",
+          "scene": null
+        },
+        {
+          "id": 163,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=3103",
+          "scene": null
+        },
+        {
+          "id": 164,
+          "name": "添加商品",
+          "pathName": "pages/creat-goods/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 165,
+          "name": "business/pages/publish/publish",
+          "pathName": "business/pages/publish/publish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 166,
+          "name": "business/pages/goods/goods",
+          "pathName": "business/pages/goods/goods",
+          "query": "goods_id=57",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "创建供应商主页",
+          "pathName": "business/pages/create-home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/order-manage/index",
+          "pathName": "business/pages/order-manage/index",
+          "query": "goods_id=2798",
+          "scene": null
+        },
+        {
+          "id": 170,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=234",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/home/index",
+          "pathName": "business/pages/home/index",
+          "query": "goods_id=3112",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "id=4",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "创建申请供应商",
+          "pathName": "business/pages/create-home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/order-manage/index",
+          "pathName": "business/pages/order-manage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/refundment-detail-seller/index",
+          "pathName": "pages/refundment-detail-seller/index",
+          "query": "order_id=19814&id=226",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/home/index",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 177,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=3150&from_id=9490",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "id=3151&goods_name=牛奶&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/publish/publish",
+          "pathName": "business/pages/publish/publish",
+          "query": "id=3151&goods_name=牛奶&delivery_method=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=seller&id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/publish/publish",
+          "pathName": "business/pages/publish/publish",
+          "query": "type=seller&id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=19853",
+          "scene": null
+        },
+        {
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=2000294",
+          "scene": null
+        },
+        {
+          "id": 184,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=24752",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/publish/publish",
+          "pathName": "business/pages/publish/publish",
+          "query": "goods_id=234",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/userhome/index",
+          "pathName": "pages/userhome/index",
+          "query": "id=1585",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/order-manage/index",
+          "pathName": "business/pages/order-manage/index",
+          "query": "id=1585",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/home/index",
+          "pathName": "business/pages/home/index",
+          "query": "id=1585",
+          "scene": null
+        },
+        {
+          "id": 189,
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=3404",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=supplier&id=4",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "待客下单成功",
+          "pathName": "business/pages/paySuccess/index",
+          "query": "order_id=24750&goods_id=55",
+          "scene": null
+        },
+        {
+          "id": 193,
+          "name": "business/pages/goods-user/goods",
+          "pathName": "business/pages/goods-user/goods",
+          "query": "id=56",
+          "scene": null
+        },
+        {
+          "id": 194,
+          "name": "导出订单页",
+          "pathName": "pages/updown_exc/index",
+          "query": "id=56",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/export-success/index",
+          "pathName": "business/pages/export-success/index",
+          "query": "id=56",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=supplier&id=18",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/home/index",
+          "pathName": "business/pages/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "business/pages/order-manage/index",
+          "pathName": "business/pages/order-manage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 202,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=24753",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-detail-seller/index",
+          "pathName": "pages/order-detail-seller/index",
+          "query": "id=24755",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/help-sale-up/index",
+          "pathName": "pages/help-sale-up/index",
+          "query": "goods_id=3517",
+          "scene": null
+        },
+        {
+          "id": 204,
+          "name": "pages/supplier-home/index",
+          "pathName": "pages/supplier-home/index",
+          "query": "type=supplier&id=4",
+          "scene": null
+        },
+        {
+          "id": 204,
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
+          "query": "goods_id=3640",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/full_reducetion/index",
+          "pathName": "pages/full_reduction/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 200,
+          "name": "pages/class/class",
+          "pathName": "pages/class/class",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/class_edit/index",
+          "pathName": "pages/class_edit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/class_goods/index",
+          "pathName": "pages/class_goods/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/userhome/index",
+          "pathName": "pages/userhome/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=2000005&goods_name=车厘子自由的时间到了&delivery_method=1&store_id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/ordermanage/list",
+          "pathName": "pages/ordermanage/list",
+          "query": "goods_id=3404&goods_name=「云南石林风化岩人参果」树上熟 自然甜&delivery_method=1&store_id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/ems-detail/index",
+          "pathName": "pages/ems-detail/index",
+          "query": "order_sn=202011060905499472591420",
+          "scene": null
+        },
+        {
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "help_sale=true&id=2000405",
+          "scene": null
+        },
+        {
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "help_sale=true&id=2000482",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
