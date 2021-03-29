@@ -4,6 +4,7 @@ const qiniuUploader = require("./qiniuUploader");
 // import shareCard2 from '../palette/shareCard2';
 // import shareCard3 from '../palette/shareCard3'; // 供应商海报
 import shareCard4 from '../palette/shareCard4';
+import shareCard5 from '../palette/shareCard5';
 const app = getApp();
 
 import config from './conf.js'
@@ -681,11 +682,17 @@ const bezier = function(pots, amount) {
 //     });
 // }
 //绘制分享朋友圈图片
-function drawShareFriends(_this, goods) {
+function drawShareFriends(_this, goods, type) {
     console.log(goods)
-    _this.setData({
-        template: new shareCard4().palette(goods)
-    });
+    if(type == 2){
+        _this.setData({
+            template: new shareCard5().palette(goods)
+        });
+    }else{
+        _this.setData({
+            template: new shareCard4().palette(goods)
+        });
+    }
 }
 
 //播放背景音乐
