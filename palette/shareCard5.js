@@ -37,7 +37,7 @@ console.log(goods.goods_cover)
         align: 'center',
         borderRadius: '10px',
         borderWidth: '5px',
-        borderColor: '#ccc',
+        borderColor: '#fff',
         mode: 'aspectFill',
       },
     },
