@@ -827,7 +827,7 @@ Page({
           this.data.seller = d.goods.store;
           this.data.store_id = d.goods.store.store_id;
 
-           if(this.is_help_sale_page){
+           if(this.is_help_sale_page  && this.data.seller.store_id !== app.globalData.userInfo.store_id){
             this.checkIsHelper()
           }
 

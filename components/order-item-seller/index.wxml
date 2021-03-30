@@ -11,7 +11,7 @@
             </view>
 
         </view>
-        <view class="text-muted text-sm">{{item.time_ago}}  </view>
+        <view class="text-muted text-sm">（{{item.time_ago}}）  </view>
         <view class="text-muted {{'color_'+item.order_status}}">
            <text> {{item.order_status_txt}}</text>
         </view>
@@ -29,7 +29,7 @@
                 <view class="text-muted text-hide text-sm" style="padding: 4px 0">{{goods.goods_name}} 
                     </view>
                 <view >
-                    <text class="price bold ">￥{{goods.spec_price}}</text>
+                    <text class="price bold ">￥{{item.order_type == 2 ? goods.sub_agent_price :goods.spec_price}}</text>
                     <block wx:if="{{item.shipping_money && item.shipping_money!='0.00'}}">
                         + ¥ {{item.shipping_money}}(运费) 
                     </block>

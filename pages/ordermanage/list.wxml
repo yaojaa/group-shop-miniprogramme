@@ -142,7 +142,7 @@
                     <text class="warning-text f18" wx:if="{{store_id == item.store.store_id }}">¥{{item.pay_price}} </text>
                     <text class="warning-text f18" wx:else>¥{{(item.pay_price*1000-item.profit*1000)/1000}}</text>
 
-                   <text class="warning-text f12" wx:if="{{item.discounts.length}}">满减{{item.discounts[0].reduce}}</text>
+                   <text class="warning-text f12" wx:if="{{item.discounts.length}}">{{item.discounts[0].name}}{{item.discounts[0].reduce}}</text>
 
 
                     <text class="order-date text-right">{{item.addtime}}</text>

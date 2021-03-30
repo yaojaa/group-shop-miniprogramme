@@ -1467,7 +1467,7 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "help_sale=true&id=2000405",
+          "query": "goods_id=2000483&from_id=1&help_sale=true",
           "scene": null
         },
         {

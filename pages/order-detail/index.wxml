@@ -59,7 +59,10 @@
                             </view>
                             <view class="text-muted text-sm des">{{item.spec_name}}</view>
                             <view class="text-justify bt-bar">
-                                <view class="price bold">￥{{item.spec_price}}</view>
+                            
+                            <view class="price bold" >
+                                ￥{{info.order_type ==2 ? item.sub_agent_price :item.spec_price}}
+                            </view>
                                 <view class="text-muted"><text>x </text>
                                     <text>{{item.qty}}</text></view>
                             </view>
@@ -72,7 +75,7 @@
         <van-cell-group custom-class="mv-sm">
             <van-cell title="订单用户" value="{{info.user.nickname}}" border="{{ false }}" />
             <van-cell title="订单运费" value="￥{{info.shipping_money}}" border="{{ false }}" />
-            <van-cell wx:if="{{info.discounts.length}}" title="满减优惠" value="{{info.discounts[0].reduce}}元" border="{{ false }}" />
+            <van-cell wx:if="{{info.discounts.length}}" title="{{info.discounts[0].name}}" value="{{info.discounts[0].reduce}}元" border="{{ false }}" />
             <van-cell title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
             <van-cell title="订单编号" title-width="200rpx" border="{{ false }}" value="{{info.order_sn}}" value-class="text-gray" />
             <van-cell title="创建时间" value="{{addtime}}" border="{{ false }}" value-class="text-gray" />

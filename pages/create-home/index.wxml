@@ -42,6 +42,10 @@
             <button class="default" bindtap="goPublish" style="margin: 0 20px">
                 先看看别人的
             </button>
+
+               <view class="center">
+        <button open-type="contact" bindcontact="handleContact">联系客服</button>
+    </view>
         </view>
 
 
