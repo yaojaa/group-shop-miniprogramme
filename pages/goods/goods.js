@@ -738,7 +738,7 @@ Page({
 
           console.log(d);
 
-          util.drawShareFriends(this, d.goods);
+          util.drawShareFriends(this, d.goods, 2);
 
           //把数量设为0
           //
