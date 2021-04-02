@@ -1,4 +1,5 @@
 const util = require('../../utils/util')
+const app = getApp()
 Page({
 
     /**
@@ -13,8 +14,9 @@ Page({
         phone: '',
         weChat: '',
         active:0,
-        search_order_status:3,
-        searchWords: ''
+        search_order_status:'',
+        searchWords: '',
+        user_store_id:''
     },
     // 搜索
     onSearch(e){
@@ -41,8 +43,15 @@ Page({
         this.getOrderList()
 
     },
+    aaa(e){
+        console.log('aaaa',e)
+
+        this.data.order_list = []
+        this.getOrderList()
+    },
 
     getOrderList() {
+        console.log('getOrderList...')
         this.setData({
             loading: true
         })
@@ -176,6 +185,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        this.setData({
+            user_store_id : app.globalData.userInfo.store_id
+        })
+
       
     },
 
