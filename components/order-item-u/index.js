@@ -27,12 +27,50 @@ Component({
      */
     methods: {
 
-        pay() {
-            this.triggerEvent('getOrderList',{},{})
+          pay(id) {
+        wx.showLoading()
+        util.wx.post('/api/pay/pay', {
+            order_sn: id
+        }).then(res => {
+            var data = res.data.data;
+            wx.requestPayment({
+                timeStamp: data['timeStamp'],
+                nonceStr: data['nonceStr'],
+                package: data['package'],
+                signType: data['signType'],
+                paySign: data['paySign'],
+                success: (res) => {
+                    
+                    wx.hideLoading()
+                    util.wx.post('/api/pay/orderpay', {
+                        order_sn: id
+                    })
 
-            console.log(this.triggerEvent)
+                    wx.showToast({
+                        title:'支付成功'
+                    })
+                 
+                    this.setData({
+                        active: 0,
+                        cpage: 1,
+                        order_list: []
+                    })
+                  this.triggerEvent('getOrderList',{},{})
 
-        },
+                },
+                fail: (res) => {
+                    wx.hideLoading()
+                    wx.showToast({
+                        title:'支付失败',
+                        icon:'none'
+                    })
+                }
+            })
+
+        })
+
+    },
+
 
         toRefund(e) {
 

@@ -436,8 +436,13 @@ Page({
         let postId = e.currentTarget.dataset.id || e.target.dataset.id;
 
         let store_id = e.currentTarget.dataset.store_id || e.target.dataset.store_id;
+        let link_store_id = e.currentTarget.dataset.link_store_id || e.target.dataset.link_store_id;
 
-        if (store_id == this.data.store_id) {
+        
+
+
+
+        if (store_id == this.data.store_id || this.data.store_id == link_store_id) {
             wx.navigateTo({
                 url: '../order-detail-seller/index?id=' + id
             });

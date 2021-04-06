@@ -187,7 +187,8 @@ Page({
     onLoad: function(options) {
 
         this.setData({
-            user_store_id : app.globalData.userInfo.store_id
+            user_store_id : app.globalData.userInfo.store_id,
+            user_id : app.globalData.userInfo.user_id
         })
 
       

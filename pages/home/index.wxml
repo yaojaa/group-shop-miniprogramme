@@ -36,8 +36,10 @@
             <view class="flex-sub pr-lg">
                 <view class="flex justify-between text-white">
                     <view class="user-box">
-                        <view class="user-name mr-sm">{{nickname}} <van-icon size="16"  bindtap="sameNickname" name="replay" />
+                        <view class="user-name mr-sm">{{nickname}} 
 
+<!--                             <van-icon size="16"  bindtap="sameNickname" name="replay" />
+ -->
                         </view>
 <view bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">查看主页 </view>
                     </view>
@@ -55,13 +57,16 @@
         </view>
     </view>
     <view class="new_order" wx:if="{{orderList.length}}">
-        <button class="listen_btn hollow" bindtap="addListen">+订阅提醒 {{store_id}}</button>
+        <button class="listen_btn hollow" bindtap="addListen">+订阅提醒</button>
         <i-panel hide-border title="最新订单">
             <view class="control">
                 <view class="newlist">
                     <scroll-view style="height: 100px" scroll-y>
                         <view class="item" wx:key="index" wx:for="{{orderList}}" data-id="{{item.order_id}}"
-                            bindtap="toOrderdetail" data-store_id = "{{item.store.store_id}}">
+                            bindtap="toOrderdetail" 
+                            data-store_id = "{{item.store.store_id}}"
+                            data-link_store_id = "{{item.link_store[1].store_id}}"
+                            >
                             <text class="bold" wx:if="{{item.is_valet=='0'}}">{{item.user.nickname}}</text>
                             <text class="bold" wx:else>{{item.store.nickname}}</text>{{item.time_ago}}下单
                             <text class="bold">{{item.order_detail[0].goods_name}}</text>

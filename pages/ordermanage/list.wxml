@@ -71,7 +71,10 @@
     </view>
     <view class="no-content" wx:if="{{!loading && dataList[0].length == 0}}">
 
-        没有<block wx:if="tab == 3">待发货的</block> <block wx:if="tab == 4">待发货的</block> 订单哦～
+        没有 <block wx:if="{{tab == 3}}">待发货的</block> 
+        <block wx:if="{{tab == 4}}">已发货的</block> 
+        <block wx:if="{{tab == 3}}">退款的</block> 
+         订单了哦～
         
     </view>
     <block wx:for="{{dataList}}" wx:for-index="pindex" wx:key="index">

@@ -1134,3 +1134,24 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+
+
+.official-info{
+    margin:15px;
+    padding: 10px;
+    font-size: 13px;
+    background: #fefae9;
+    color: #ff8900;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+}
+.official-info .info{
+    flex:1;
+    margin-right: 10px;
+}
+.official-info .follow{
+    background: #49b34d;
+    color:#fff;
+    border:0;
+}

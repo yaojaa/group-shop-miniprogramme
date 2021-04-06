@@ -30,6 +30,11 @@
             </view>
         </view>
     </imgs>
+
+
+
+
+
     <view class="menu flex-box" wx:if="{{showPanel}}">
         <view class="flex-item" bindtap="goVisitor">
             <view class="num">
@@ -81,6 +86,8 @@
             更多
         </view> -->
     </view>
+
+   
     <view class="sale-panel">
         <view class="sale-panel-bd">
             <view class="price-group">
@@ -284,6 +291,11 @@
         <button bindtap="goCreateHome" size="mini" type="primary" wx:if="{{!showSetting}}">
             +我也要拥有免费小程序
         </button>
+    </view>
+
+    <view class="official-info" bindtap="linkOfficialInfo">
+        <view class="info">关注公从号，可接收订单通知等消息推送</view>
+        <button class="follow" size="mini">关注</button>
     </view>
 
 
