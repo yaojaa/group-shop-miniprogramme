@@ -1473,7 +1473,7 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "help_sale=true&id=2000482",
+          "query": "help_sale=true&id=2000042",
           "scene": null
         }
       ]

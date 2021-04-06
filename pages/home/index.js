@@ -48,11 +48,11 @@ Page({
             icon: 'none'
         })
         wx.getUserInfo({
-            success: (res) =>{
+            success: (res) => {
                 console.log(res);
                 var auinfo = app.globalData.userInfo
                 auinfo.nickname = res.userInfo.nickName;
-                auinfo.headimg  = res.userInfo.avatarUrl;
+                auinfo.headimg = res.userInfo.avatarUrl;
 
                 util.wx.post('/api/user/update_wx_basicinfo', {
                     nickname: auinfo.nickname,
@@ -108,7 +108,7 @@ Page({
         app.globalData.userInfo.nickname = user.nickname
         this.setUserInView()
 
-        wx.setStorageSync('userInfo',app.globalData.userInfo)
+        wx.setStorageSync('userInfo', app.globalData.userInfo)
 
         console.log(app.globalData.userInfo)
 
@@ -183,12 +183,16 @@ Page({
 
     toDetail(e) {
         let postId = e.currentTarget.dataset.id || e.target.dataset.id;
+
+
+
+
         wx.navigateTo({
             url: '../goods/goods?goods_id=' + postId
         });
     },
 
- 
+
 
     handleTabBarChange({ detail }) {
         this.setData({
@@ -406,7 +410,7 @@ Page({
         util.wx
             .get('/api/seller/get_order_list', {
                 // orderdate: 1,
-                order_status: 1,
+                search_order_status: '',
                 pagesize: 20
             })
             .then((res) => {
@@ -426,12 +430,24 @@ Page({
             .catch((e) => {});
     },
 
-    todetail(e) {
+    toOrderdetail(e) {
         let id = e.currentTarget.dataset.id;
 
-        wx.navigateTo({
-            url: '../order-detail-seller/index?id=' + id
-        });
+        let postId = e.currentTarget.dataset.id || e.target.dataset.id;
+
+        let store_id = e.currentTarget.dataset.store_id || e.target.dataset.store_id;
+
+        if (store_id == this.data.store_id) {
+            wx.navigateTo({
+                url: '../order-detail-seller/index?id=' + id
+            });
+        } else {
+            wx.navigateTo({
+                url: '../order-detail/index?id=' + id
+            });
+        }
+
+
     },
     addListen: util.sellerListner,
 

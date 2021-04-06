@@ -13,10 +13,6 @@
      <view class="line" bindtap = "chooseFile">第二步： 导入运单号（微信文件）</view>
 </view>
 </van-popup>
-
-         111 {{user_store_id}}
-
-
  <van-search 
             value="{{ value }}" 
             shape="round" 
@@ -37,10 +33,10 @@
             <block wx:for="{{order_list}}" wx:key="{{index}}">
 
 
-                <block wx:if="{{item.store.store_id == user_store_id}}" >
-                    sss<order-list-s item="{{item}}" />                  
+                <block wx:if="{{item.store.store_id == user_store_id || item.link_store[1].store_id == user_store_id}}" >
+                    <order-list-s item="{{item}}" />                  
                 </block>
-                   <block wx:else>uuu
+                   <block wx:else>
                     <order-list-u item="{{item}}" bindgetOrderList="aaa" />                  
                 </block>
               

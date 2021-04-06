@@ -5,7 +5,7 @@
                     <image src="{{item.user.headimg}}" class="shop-tb mr-xs">
                     </image>
                     <view class="flex-sub text-hide text-muted">
-                        {{item.user.nickname}} 我买的
+                        {{item.user.nickname}} 买家昵称
                     </view>
                 </view>
         </view>

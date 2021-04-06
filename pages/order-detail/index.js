@@ -50,12 +50,6 @@ Page({
                 },
                 fail: (res) => {
                     wx.hideLoading()
-                    Notify({
-                        text: '支付失败，请重新支付',
-                        duration: 1000,
-                        selector: '#custom-selector',
-                        backgroundColor: '#d0021b'
-                    })
                 }
             })
 
