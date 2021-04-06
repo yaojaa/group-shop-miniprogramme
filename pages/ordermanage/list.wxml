@@ -73,7 +73,7 @@
 
         没有 <block wx:if="{{tab == 3}}">待发货的</block> 
         <block wx:if="{{tab == 4}}">已发货的</block> 
-        <block wx:if="{{tab == 3}}">退款的</block> 
+        <block wx:if="{{tab == -4}}">退款的</block> 
          订单了哦～
         
     </view>

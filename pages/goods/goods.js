@@ -196,7 +196,6 @@ Page({
         store_id: this.data.store_id
       })
       .then((res) => {
-        console.log(res.data.data == 0);
 
         //不是帮卖成员
         if (res.data.data == 0) {
@@ -312,6 +311,11 @@ Page({
     });
   },
   onReady: function () {},
+  linkOfficialInfo(){
+    wx.redirectTo({
+      url:'../flow-us/index'
+    })
+  },
 
   createShareImage() {
     this.setData({
@@ -920,8 +924,10 @@ Page({
 
     console.log('option', option);
 
-    this.getShareImg();
     await this.getGoodsInfo();
+
+        this.getShareImg();
+
 
     this.add_access();
 
@@ -1191,7 +1197,11 @@ Page({
         cpage: orderUsersPage
       })
       .then((res) => {
-        orderUsersPage++;
+        console.log(res)
+
+        if(res.data.code == 200){
+
+               orderUsersPage++;
 
         this.data.orderUsers = res.data.data.order_list;
 
@@ -1203,6 +1213,10 @@ Page({
           _orderUsers_: this.data._orderUsers_,
           orderUsers: this.data.orderUsers
         });
+
+
+        }
+   
       });
   },
   userpage() {
