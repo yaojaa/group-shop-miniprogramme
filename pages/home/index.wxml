@@ -38,8 +38,8 @@
                     <view class="user-box">
                         <view class="user-name mr-sm">{{nickname}} 
 
-<!--                             <van-icon size="16"  bindtap="sameNickname" name="replay" />
- -->
+                            <van-icon size="16"  bindtap="sameNickname" name="replay" />
+
                         </view>
 <view bindtap="goSite" class="f mini-tag mt-xs" hover-class="none" hover-class="none">查看主页 </view>
                     </view>

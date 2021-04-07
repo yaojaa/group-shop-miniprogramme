@@ -287,15 +287,15 @@
             <button size="large" bindtap="copyDetail" class="btn primary hollow">复制为文字</button>
         </view>
     </view>
-     <view class="weui-footer" wx:if="{{!has_shop}}">
-        <button bindtap="goCreateHome" size="mini" type="primary" wx:if="{{!showSetting}}">
-            +我也要拥有免费小程序
+     <view class="weui-footer" wx:if="{{!showPanel}}">
+        <button bindtap="goCreateHome" class="linenear_bg left-raduis right-raduis" size="large" type="primary" style="margin:0 18px">
+            +我也要拥有这个漂亮的免费小程序
         </button>
     </view>
 
-    <view class="official-info" bindtap="linkOfficialInfo">
-        <view class="info">关注公从号，可接收订单通知等消息推送</view>
-        <button class="follow" size="mini">关注</button>
+    <view class="official-info " bindtap="linkOfficialInfo" wx:if="{{!showPanel}}">
+        <view class="info">关注公众号，接收订单通知等消息推送</view>
+        <button class="btn primary hollow" size="mini">关注</button>
     </view>
 
 
@@ -509,12 +509,11 @@
             </scroll-view>
         </view>
     </van-popup>
-    <wux-gallery id="wux-gallery" />
     <van-dialog wx:if="{{is_help_sale_user}}" id="dialog-success" use-slot>
         <view class="dialog-head">
             <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
             <view class="title">
-                <view>你已经是帮卖成员 {{is_help_sale_user}}</view>
+                <view>你已经是帮卖成员 </view>
             </view>
         </view>
         <view class="p-lg text-center text-gray text-df">点击我要帮卖上架商品吧</view>

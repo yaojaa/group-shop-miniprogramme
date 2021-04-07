@@ -10,14 +10,10 @@
         "i-spin": "../../iView/spin/index",
         "i-badge": "../../iView/badge/index",
         "i-action-sheet": "../../iView/action-sheet/index",
-        "painter": "/iView/painter/painter",
         "i-custom-bar": "../../components/custom-bar/index",
-        "wux-popup": "../../wux/popup/index",
         "drag": "../../components/drag/index",
         "preview-view": "../../components/preview-img/view",
         "van-switch": "../../vant/switch/index",
         "rich-editor":"../../components/richeditor/richeditor"
-
-
     }
 }

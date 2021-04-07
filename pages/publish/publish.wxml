@@ -25,30 +25,7 @@
             <!-- 富文本编辑器 -->
             <rich-editor currentScrollTop="{{currentScrollTop}}" ctl-style="main-color" init-data="{{ content }}" op-style="btn-color" bind:updateData="getObject" bind:moveItem="moveItemEvent" />
             
-            <wux-popup closable catchtouchmove="true" position="bottom" visible="{{ visible_spec}}">
-                <view class="poptit">规格图片</view>
-                <scroll-view scroll-y class="maxheight">
-                    <view class="con">
-                        <view class="pic_loading">
-                            <i-spin wx:if="{{specProgress}}" />
-                        </view>
-                        <view class="picture-item" wx:key="item" wx:for="{{current_spec_imgs}}">
-                            <view class="img-list">
-                                <image mode="widthFix" src="{{item}}?imageView2/4/w/400/h/800" />
-                                <i-icon class="close" data-index="{{index}}" bindtap="removeSpecPhoto" color="#ccc" size="26" type="close" />
-                            </view>
-                        </view>
-                        <view class="footer-btn">
-                            <button bindtap="addSpecPicContinue" class="btn btn-round linenear_bg_light">
-                                + 继续添加
-                            </button>
-                            <button bindtap="addspecPictureDone" class="btn btn-round linenear_bg">
-                                完成
-                            </button>
-                        </view>
-                    </view>
-                </scroll-view>
-            </wux-popup>
+ 
        
          
         </view>

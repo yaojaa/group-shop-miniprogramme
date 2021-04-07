@@ -6,7 +6,7 @@
                     <image src="{{item.seller.headimg}}" class="shop-tb mr-xs">
                     </image>
                     <view class="flex-sub text-hide text-muted">
-                        {{item.seller.nickname}} 9999
+                        {{item.seller.nickname}}
                     </view>
                 </view>
             </navigator>

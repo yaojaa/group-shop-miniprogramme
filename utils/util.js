@@ -1,4 +1,3 @@
-const qiniuUploader = require("./qiniuUploader");
 // import Card from '../palette/card';
 // import shareCard from '../palette/shareCard';
 // import shareCard2 from '../palette/shareCard2';
