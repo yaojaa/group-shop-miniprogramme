@@ -27,7 +27,7 @@
     "i-modal": "../../iView/modal/index",
     "goods-detail": "../../components/goods-detail/index",
     "share-box": "/components/shareBox/index",
-      "van-notice-bar": "../../vant/notice-bar/index"
-
+      "van-notice-bar": "../../vant/notice-bar/index",
+      "i-share-painter": "/components/painter/painter"
   }
 }

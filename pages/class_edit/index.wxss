@@ -46,7 +46,7 @@
   flex-grow: 1;
   width: 50%;
 }
-.lists .list .name .txt{
+.lists .list .name .txt, .ellipsis{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

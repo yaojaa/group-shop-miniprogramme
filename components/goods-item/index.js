@@ -98,7 +98,6 @@ Component({
 
     onSelect(event) {
       const item = event.detail;
-      console.log(item);
       if (item.id == 1) {
         this.switchInSite(this.properties.item.is_recommend == 1 ? 0 : 1);
       } else if (item.id == 2) {
@@ -116,8 +115,12 @@ Component({
       } else if (item.id == 6) {
         this.onClose();
       } else if (item.id == 7) {
-        this.setData({ classShow: true });
+        this.setClass(item);
       }
+    },
+    // 设置分类
+    setClass(e){
+      console.log(1,e)
     },
     /*下拉菜单*/
     moreAction(e) {

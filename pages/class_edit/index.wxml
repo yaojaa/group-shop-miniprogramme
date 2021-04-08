@@ -14,7 +14,9 @@
                 <image class="head-pic" mode="aspectFill" src="{{item.goods_cover}}"></image>
                 <view class="name">
                     <view class="mb20 fc6 txt">{{item.goods_name}}</view>
-                    <view class="f28 txt">{{item.goods_name}}</view>
+                    <view class="f12 txt ellipsis">
+                        <text wx:for="{{item.cat_arr}}" wx:for-item="cat">{{cat.cat_name}} </text>
+                    </view>
                 </view>
                 <van-button color="#666" custom-class='btn' plain size="" icon="delete" type="primary" data-index="{{index}}" bind:click="delete"></van-button>
             </view>
