@@ -323,7 +323,8 @@
 .dialog_content .data{
 
     font-size: 18px;
-    line-height: 2.0
+    line-height: 2.0;
+    text-align:center
 
 }
 

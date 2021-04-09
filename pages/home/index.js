@@ -28,7 +28,8 @@ Page({
         search_is_loading: true,
         exchange: false,
         manageShops: [],
-        store_id: ''
+        store_id: '',
+        tips_index:0
     },
     /***显示切换身份***/
     showExchange() {
@@ -159,12 +160,31 @@ Page({
         });
     },
 
+    toOrderRefund(){
+        app.globalData.tab = 2
+        wx.switchTab({
+            url:'/pages/new-order-list/index'
+        })
+    },
+
     setHasTips() {
         this.setData({
+            tips_index: ++ this.data.tips_index
+        })
+
+        if(this.data.tips_index >=4){
+
+              this.setData({
             showDialog: false
         });
 
         wx.setStorageSync('today', new Date().toLocaleDateString());
+
+
+        }
+
+        console.log(this.data.tips_index)
+      
         this.addListen();
     },
 
