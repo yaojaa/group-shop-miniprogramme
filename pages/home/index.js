@@ -47,9 +47,10 @@ Page({
             title: '同步微信昵称中',
             icon: 'none'
         })
-        wx.getUserInfo({
-            success: (res) => {
-                console.log(res);
+
+        app.getUserInfoFile(res => {
+            res = res[0]
+            console.log(res);
                 var auinfo = app.globalData.userInfo
                 auinfo.nickname = res.userInfo.nickName;
                 auinfo.headimg = res.userInfo.avatarUrl;
@@ -80,11 +81,7 @@ Page({
 
 
                 })
-
-            }
         })
-
-
     },
 
     /**点击切换身份按钮**/

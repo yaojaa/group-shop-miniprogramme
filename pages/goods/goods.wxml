@@ -434,7 +434,7 @@
                 <image class="avatar-mini" src="{{goods.user.headimg}}" />
             </view>
             <view class="info">微信授权登录</view>
-            <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">
+            <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">
                 登 录
             </button>
             <button size="mini" type="default" plain="false" bindtap="rejectAuth">取 消</button>

@@ -220,12 +220,19 @@ Page({
       url:'../userhome/index?id=7312'
     })
   },
+    getUserInfoFile: function(){
+        app.getUserInfoFile(res => {
+            this.getUserInfoEvt({
+                detail: res[0]
+            })
+        })
+    },
 
   getUserInfoEvt: function(e) {
       console.log(e)
-      if (e.detail.errMsg !== "getUserInfo:ok") {
-          return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
-      }
+      // if (e.detail.errMsg !== "getUserInfo:ok") {
+      //     return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
+      // }
 
       this.setData({
                       showAuth: false
