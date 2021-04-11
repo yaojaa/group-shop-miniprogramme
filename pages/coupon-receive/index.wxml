@@ -1,0 +1,13 @@
+<view class="container">
+  <van-popup show="{{ result }}" bind:close="resultPopup" custom-class="custom-popup" custom-style="background:none;">
+        <view class="result-box cf por">
+            <view class="marker" wx:if="{{true}}"></view>
+            <view class="coupon-price"><text>{{1000/100}}</text>
+                <text class="symbol">¥</text></view>
+            <view class="coupon-name">{{'满减券'}}</view>
+            <view class="coupon-date">{{'2018.11.20 - 2019.01.20'}}</view>
+            <navigator url="/pages/home/home" class="coupon-btn ">立即领取</navigator>
+            <!-- <text class="iconfont icon-close_icon popup-close" bindtap="resultPopup"></text> -->
+        </view>
+    </van-popup>
+</view>
