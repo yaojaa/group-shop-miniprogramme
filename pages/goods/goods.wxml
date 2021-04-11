@@ -30,6 +30,11 @@
             </view>
         </view>
     </imgs>
+
+
+
+
+
     <view class="menu flex-box" wx:if="{{showPanel}}">
         <view class="flex-item" bindtap="goVisitor">
             <view class="num">
@@ -81,6 +86,8 @@
             更多
         </view> -->
     </view>
+
+   
     <view class="sale-panel">
         <view class="sale-panel-bd">
             <view class="price-group">
@@ -164,7 +171,7 @@
                         <view class="f12 gray-text">
                             <text class="price f12px">¥{{item.spec_price}}</text>
 
-                            <view class="line" wx:if="{{is_help_sale_user}}">
+                            <view class="line" wx:if="{{is_help_sale}}">
                                 代理价：<text class="f12 n-bold text-warning" >¥{{item.sub_agent_price}}</text>
                             </view>
 
@@ -194,7 +201,7 @@
             <!-- <view class="code center" wx:if="{{goods.user.wx_paycode}}">
             <image src="{{goods.user.wx_paycode}}"  mode="widthFix"/>
         </view> -->
-            <block wx:if="{{goods.show_buyerlist == 0}}">
+            <block >
                 <view class='sub-title scale-b-1px contentBox'>
                     <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
                     查看所有订单 〉
@@ -211,10 +218,12 @@
                         <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
                             <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
                                 <text class="number">{{item.create_number}}</text>
-                                <image class="buyer-avatar" src="{{item.headimg}}"></image>
+                                <image wx:if="{{goods.show_buyerlist == 1}}" class="buyer-avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132"></image>
+                                <image wx:else class="buyer-avatar" src="{{item.headimg}}"></image>
                                 <view class="buyer-info">
                                     <view class="name">
-                                        {{item.nickname}}
+                                       <text wx:if="{{goods.show_buyerlist == 1}}">匿名小主{{index+1}} </text>
+                                       <text wx:else>{{item.nickname}}</text>
 <text class="mini-tags" wx:if="{{item.order_pay_total>0}}">跟团{{item.order_pay_total}}次</text>
                                         <!-- <text class="mini-tags" wx:if="{{item.order_pay_total==2}}">回头客</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>2 && item.order_pay_total<=10 }}">有空就来逛逛</text>
@@ -281,10 +290,17 @@
         </view>
     </view>
      <view class="weui-footer" wx:if="{{!showPanel}}">
-        <button bindtap="goCreateHome" size="mini" type="primary" wx:if="{{!showSetting}}">
-            +我也要拥有免费小程序
+        <button bindtap="goCreateHome" class="linenear_bg left-raduis right-raduis" size="large" type="primary" style="margin:0 18px">
+            +我也要拥有这个漂亮的免费小程序
         </button>
     </view>
+
+    <view class="official-info " bindtap="linkOfficialInfo" wx:if="{{!showPanel}}">
+        <view class="info">关注公众号，接收订单通知等消息推送</view>
+        <button class="btn primary hollow" size="mini">关注</button>
+    </view>
+
+
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->
 
     <view class='footer-cart' wx:if="{{is_help_sale && goods.agent_opt==1}}">
@@ -306,8 +322,9 @@
             </button>
         </view>
     </view>
+
     <!-- 正常客户下单 -->
-    <view class='footer-cart' wx:if="{{!is_help_sale || goods.agent_opt==0}}">
+    <view class='footer-cart' wx:if="{{!is_help_sale}}">
         <view class='icon' bindtap='homepage' style="flex: 22">
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
@@ -377,9 +394,9 @@
                     <i-cell-group style="max-height:500rpx;overflow: scroll;">
                         <i-cell wx:if="{{item.item_num>0}}" wx:for="{{goods_spec}}" wx:key="index">
                             <view class="type-box text-justify">
-                                <view class="f18 bold">
+                                <view class="f16 bold">
                                     {{item.spec_name}} /
-                                    <text class="text-red f16" wx:if="{{is_help_sale_user}}">¥{{item.sub_agent_price}}</text>
+                                    <text class="text-red f16" wx:if="{{is_help_sale}}">¥{{item.sub_agent_price}}</text>
                                     <text class="text-red f16" wx:else>¥{{item.spec_price}}</text>
 
                                 </view>
@@ -419,7 +436,7 @@
                 <image class="avatar-mini" src="{{goods.user.headimg}}" />
             </view>
             <view class="info">微信授权登录</view>
-            <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">
+            <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">
                 登 录
             </button>
             <button size="mini" type="default" plain="false" bindtap="rejectAuth">取 消</button>
@@ -476,7 +493,10 @@
                             <view class="bolds mr-xl">{{specItem.spec_name}}</view>
                             <view class="price-group text-lg mt-xs">
                                 <text class="symbol">￥</text>
-                                <text class="number">{{specItem.spec_price}}</text>
+                                <text class="number" wx:if="{{is_help_sale}}">{{specItem.spec_price}}</text>
+                                <text class="number" wx:else>{{specItem.spec_price}}</text>
+
+
                             </view>
                         </view>
                     </view>
@@ -491,12 +511,11 @@
             </scroll-view>
         </view>
     </van-popup>
-    <wux-gallery id="wux-gallery" />
     <van-dialog wx:if="{{is_help_sale_user}}" id="dialog-success" use-slot>
         <view class="dialog-head">
             <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
             <view class="title">
-                <view>你已经是帮卖成员 {{is_help_sale_user}}</view>
+                <view>你已经是帮卖成员 </view>
             </view>
         </view>
         <view class="p-lg text-center text-gray text-df">点击我要帮卖上架商品吧</view>

@@ -1,17 +1,16 @@
 <!-- pages/create_shop.wxml -->
 <view class="container">
-    <wux-toptips id="wux-toptips" />
     <i-panel i-class="shadow-panel" hideBorder>
-        <wux-cell-group>
-            <wux-cell hover-class="none">
-                <wux-input controlled="{{true}}" placeholder="输入主页名称" value="{{ store_name }}" bind:change="inputDuplex" data-key="store_name" />
-            </wux-cell>
-        </wux-cell-group>
-        <wux-cell-group>
-            <wux-cell hover-class="none">
-                <wux-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro" controlled="{{true}}" placeholder="输入小店名字" hasCount rows="3" cursorSpacing="80" value="{{store_intro}}" placeholder="输入一段真诚的介绍，更容易打动客户哦" />
-            </wux-cell>
-        </wux-cell-group>
+        <vant-cell-group>
+            <vant-cell hover-class="none">
+                <vant-input controlled="{{true}}" placeholder="输入主页名称" value="{{ store_name }}" bind:change="inputDuplex" data-key="store_name" />
+            </vant-cell>
+        </vant-cell-group>
+        <vant-cell-group>
+            <vant-cell hover-class="none">
+                <vant-textarea controlled="{{true}}" bind:change="inputDuplex" data-key="store_intro" controlled="{{true}}" placeholder="输入小店名字" hasCount rows="3" cursorSpacing="80" value="{{store_intro}}" placeholder="输入一段真诚的介绍，更容易打动客户哦" />
+            </vant-cell>
+        </vant-cell-group>
     </i-panel>
     <!-- ssss -->
     <!-- <wux-cascader visible="{{ visible1 }}" default-value="{{ value1 }}" title="所在地区" options="{{ options1 }}" bind:close="onClose1" bind:change="onChange1" />

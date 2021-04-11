@@ -1,4 +1,5 @@
 const util = require('../../utils/util')
+const app = getApp()
 Page({
 
     /**
@@ -12,15 +13,16 @@ Page({
         totalpage: 1,
         phone: '',
         weChat: '',
-        active:0,
-        search_order_status:3,
-        searchWords: ''
+        active: 0,
+        search_order_status: 3,
+        searchWords: '',
+        user_store_id: ''
     },
     // 搜索
-    onSearch(e){
-        var sv = e.detail.replace(/(^\s*)|(\s*$)/g,'');
+    onSearch(e) {
+        var sv = e.detail.replace(/(^\s*)|(\s*$)/g, '');
         console.log(sv)
-        if(sv){
+        if (sv) {
             this.setData({
                 searchWords: sv,
                 order_list: [],
@@ -31,7 +33,7 @@ Page({
             this.getOrderList()
         }
     },
-    onCancel(){
+    onCancel() {
         this.setData({
             searchWords: '',
             order_list: [],
@@ -41,19 +43,26 @@ Page({
         this.getOrderList()
 
     },
+    aaa(e) {
+        console.log('aaaa', e)
+
+        this.data.order_list = []
+        this.getOrderList()
+    },
 
     getOrderList() {
+        console.log('getOrderList...')
         this.setData({
             loading: true
         })
         let ajaxData = {
-                cpage: this.data.cpage,
-                pagesize: 50,
-                search_order_status: this.data.search_order_status,
+            cpage: this.data.cpage,
+            pagesize: 50,
+            search_order_status: this.data.search_order_status,
 
-            }
+        }
 
-        if(this.data.searchWords){
+        if (this.data.searchWords) {
             ajaxData.keyword = this.data.searchWords
         }
 
@@ -67,12 +76,12 @@ Page({
                     totalpage: res.data.data.page.totalpage
                 })
                 resolve(res)
-            }).catch(e=>{
+            }).catch(e => {
                 wx.showToast({
-                    title:'获取订单失败 稍微再试',
-                    icon:'none'
+                    title: '获取订单失败 稍微再试',
+                    icon: 'none'
                 })
-                 reject(res)
+                reject(res)
             })
         })
     },
@@ -80,15 +89,15 @@ Page({
     filterOrder(event) {
         let order = event.detail.index
 
-        if(order == 0){
+        if (order == 0) {
             this.data.search_order_status = 3
         }
 
-         if(order == 1){
+        if (order == 1) {
             this.data.search_order_status = 4
         }
 
-         if(order == 2){
+        if (order == 2) {
             this.data.search_order_status = -4
         }
 
@@ -172,17 +181,30 @@ Page({
             phoneNumber: this.data.phone
         })
     },
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function(options) {
-      
-    },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function() {
+
+    },
+    onLoad: function(opt) {
+
+        this.setData({
+            user_store_id: app.globalData.userInfo.store_id,
+            user_id: app.globalData.userInfo.user_id
+        })
+
+        if (app.globalData.tab == 2) {
+
+            this.setData({
+                active: 2,
+                search_order_status: -4,
+
+            })
+            app.globalData.tab = ''
+        }
 
     },
 
@@ -194,7 +216,7 @@ Page({
         this.data.order_list = []
         this.data.cpage = 1
         this.getOrderList()
-    this.getTabBar().init()
+        this.getTabBar().init()
 
     },
 

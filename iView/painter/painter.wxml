@@ -1,3 +1,0 @@
-<view class='style draw-class'>
-  <canvas canvas-id="k-canvas" style="{{painterStyle}}{{customStyle}}" />
-</view>

@@ -26,14 +26,14 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": true,
+    "useMultiFrameRuntime": false,
     "useApiHook": true,
-    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -1524,7 +1524,7 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "help_sale=true&id=2000405",
+          "query": "help_sale=true&id=2000042",
           "scene": null
         }
       ]

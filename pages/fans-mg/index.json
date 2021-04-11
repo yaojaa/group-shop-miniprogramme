@@ -8,7 +8,6 @@
     {
         "van-button": "../../vant/button/index",
         "van-icon": "../../vant/icon/index",
-        "van-search": "../../vant/search/index",
-        "wux-filterbar": "../../wux/filterbar/index"
+        "van-search": "../../vant/search/index"    
     }
 }

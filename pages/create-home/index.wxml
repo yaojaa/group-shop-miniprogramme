@@ -39,9 +39,11 @@
     </form>
 
       <view class="footer-btn ">
-            <button class="default" bindtap="goPublish" style="margin: 0 20px">
-                先看看别人的
-            </button>
+  
+
+               <view class="center">
+        <button open-type="contact" bindcontact="handleContact">联系客服</button>
+    </view>
         </view>
 
 
@@ -54,7 +56,7 @@
           <view class="info">
          注册需要获取您的身份信息
           </view>
-          <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">我同意</button>
+          <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">我同意</button>
 
            <button size="mini"  plain="false" bindtap="cancel">先看看</button>
         </view>

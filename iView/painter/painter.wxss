@@ -1,5 +1,0 @@
-.style{
-  position: fixed;
-  left: -200%;
-  top: 0;
-}

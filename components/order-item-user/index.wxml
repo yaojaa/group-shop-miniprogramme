@@ -25,7 +25,9 @@
                 </view>
                 <view class="text-muted text-hide mt-xs text-sm des"><text class="pr-sm">{{goods.goods_name}}</text></view>
                 <view class="text-justify bt-bar">
-                    <view class="f12">￥{{goods.spec_price}}</view>
+                    <view class="f12">
+                        ￥{{item.order_type ==2 ? goods.sub_agent_price :goods.spec_price}}
+</view>
                     <view class="text-muted"><text>x </text>
                         <text>{{goods.qty}}</text></view>
                 </view>

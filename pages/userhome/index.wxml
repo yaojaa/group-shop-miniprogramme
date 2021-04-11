@@ -95,7 +95,7 @@
                     <van-icon name="arrow-down" size="20px" />
                 </view>
                 <!-- 设置下拉菜单end -->
-                <image bindtap="goDetail" data-id="{{item.goods_id}}" class="cover" src="{{item.goods_images[0]}}?imageView2/1/w/200/h/200"></image>
+                <image bindtap="goDetail" data-id="{{item.goods_id}}" class="cover" src="{{item.goods_images[0]}}?imageView2/1/w/200/h/200/q/99"></image>
                 <view class="p-sm" data-id="{{item.goods_id}}" bindtap="goDetail">
                     <view class="title text-hide two-line">{{item.goods_name}}</view>
                     <view class="text-justify mt-xs">

@@ -27,9 +27,10 @@
           "scene": null
         },
         {
+          "id": 1,
           "name": "订单列表启动",
-          "pathName": "/pages/goods/goods",
-          "query": "goods_id=2000428&from_id=1&help_sale=true",
+          "pathName": "pages/order-list/index",
+          "query": "id=34",
           "scene": null
         },
         {
@@ -75,8 +76,9 @@
           "scene": null
         },
         {
-          "name": "直播",
-          "pathName": "pages/live-page/index",
+          "id": 9,
+          "name": "pages/fans-mg/index",
+          "pathName": "pages/fans-mg/index",
           "query": "",
           "scene": null
         },
@@ -1465,7 +1467,13 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "help_sale=true&id=2000405",
+          "query": "goods_id=2000483&from_id=1&help_sale=true",
+          "scene": null
+        },
+        {
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "help_sale=true&id=2000042",
           "scene": null
         }
       ]

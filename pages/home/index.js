@@ -28,7 +28,8 @@ Page({
         search_is_loading: true,
         exchange: false,
         manageShops: [],
-        store_id: ''
+        store_id: '',
+        tips_index:0
     },
     /***显示切换身份***/
     showExchange() {
@@ -47,12 +48,13 @@ Page({
             title: '同步微信昵称中',
             icon: 'none'
         })
-        wx.getUserInfo({
-            success: (res) =>{
-                console.log(res);
+
+        app.getUserInfoFile(res => {
+            res = res[0]
+            console.log(res);
                 var auinfo = app.globalData.userInfo
                 auinfo.nickname = res.userInfo.nickName;
-                auinfo.headimg  = res.userInfo.avatarUrl;
+                auinfo.headimg = res.userInfo.avatarUrl;
 
                 util.wx.post('/api/user/update_wx_basicinfo', {
                     nickname: auinfo.nickname,
@@ -80,11 +82,7 @@ Page({
 
 
                 })
-
-            }
         })
-
-
     },
 
     /**点击切换身份按钮**/
@@ -108,7 +106,7 @@ Page({
         app.globalData.userInfo.nickname = user.nickname
         this.setUserInView()
 
-        wx.setStorageSync('userInfo',app.globalData.userInfo)
+        wx.setStorageSync('userInfo', app.globalData.userInfo)
 
         console.log(app.globalData.userInfo)
 
@@ -162,12 +160,31 @@ Page({
         });
     },
 
+    toOrderRefund(){
+        app.globalData.tab = 2
+        wx.switchTab({
+            url:'/pages/new-order-list/index'
+        })
+    },
+
     setHasTips() {
         this.setData({
+            tips_index: ++ this.data.tips_index
+        })
+
+        if(this.data.tips_index >=4){
+
+              this.setData({
             showDialog: false
         });
 
         wx.setStorageSync('today', new Date().toLocaleDateString());
+
+
+        }
+
+        console.log(this.data.tips_index)
+      
         this.addListen();
     },
 
@@ -183,12 +200,16 @@ Page({
 
     toDetail(e) {
         let postId = e.currentTarget.dataset.id || e.target.dataset.id;
+
+
+
+
         wx.navigateTo({
             url: '../goods/goods?goods_id=' + postId
         });
     },
 
- 
+
 
     handleTabBarChange({ detail }) {
         this.setData({
@@ -406,7 +427,7 @@ Page({
         util.wx
             .get('/api/seller/get_order_list', {
                 // orderdate: 1,
-                order_status: 1,
+                search_order_status: '',
                 pagesize: 20
             })
             .then((res) => {
@@ -426,12 +447,29 @@ Page({
             .catch((e) => {});
     },
 
-    todetail(e) {
+    toOrderdetail(e) {
         let id = e.currentTarget.dataset.id;
 
-        wx.navigateTo({
-            url: '../order-detail-seller/index?id=' + id
-        });
+        let postId = e.currentTarget.dataset.id || e.target.dataset.id;
+
+        let store_id = e.currentTarget.dataset.store_id || e.target.dataset.store_id;
+        let link_store_id = e.currentTarget.dataset.link_store_id || e.target.dataset.link_store_id;
+
+        
+
+
+
+        if (store_id == this.data.store_id || this.data.store_id == link_store_id) {
+            wx.navigateTo({
+                url: '../order-detail-seller/index?id=' + id
+            });
+        } else {
+            wx.navigateTo({
+                url: '../order-detail/index?id=' + id
+            });
+        }
+
+
     },
     addListen: util.sellerListner,
 

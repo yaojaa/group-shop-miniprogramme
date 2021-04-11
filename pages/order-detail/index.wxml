@@ -59,7 +59,10 @@
                             </view>
                             <view class="text-muted text-sm des">{{item.spec_name}}</view>
                             <view class="text-justify bt-bar">
-                                <view class="price bold">￥{{item.spec_price}}</view>
+                            
+                            <view class="price bold" >
+                                ￥{{info.order_type ==2 ? item.sub_agent_price :item.spec_price}}
+                            </view>
                                 <view class="text-muted"><text>x </text>
                                     <text>{{item.qty}}</text></view>
                             </view>
@@ -72,18 +75,36 @@
         <van-cell-group custom-class="mv-sm">
             <van-cell title="订单用户" value="{{info.user.nickname}}" border="{{ false }}" />
             <van-cell title="订单运费" value="￥{{info.shipping_money}}" border="{{ false }}" />
-            <van-cell wx:if="{{info.discounts.length}}" title="满减优惠" value="{{info.discounts[0].reduce}}元" border="{{ false }}" />
+            <van-cell wx:if="{{info.discounts.length}}" title="{{info.discounts[0].name}}" value="{{info.discounts[0].reduce}}元" border="{{ false }}" />
             <van-cell title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
             <van-cell title="订单编号" title-width="200rpx" border="{{ false }}" value="{{info.order_sn}}" value-class="text-gray" />
             <van-cell title="创建时间" value="{{addtime}}" border="{{ false }}" value-class="text-gray" />
             <van-cell title="付款时间" wx:if="{{info.pay_time}}" value="{{pay_time}}" border="{{ false }}" value-class="text-gray" />
         </van-cell-group>
     </view>
-    <view>
-        <!--         <block wx:for="{{info.order_action}}" wx:key="{{index}}">
-            <button class="btn round gray  ml-sm w-min-df" bindtap="handleConfirmReceipt" data-status="{{item.action_status}}">{{item.action_status_txt}}</button>
-        </block> -->
-        <!--     <navigator url="../ems-detail/index?name={{info.express_company}}&code={{info.express_code}}&id={{info.order_id}}" class="btn round primary hollow  ml-sm mv-sm w-min-df" wx:if="{{info.express.length}}">查看物流</navigator> -->
+    <view style="padding: 0 20px">
+
+        <view class="flex relative justify-end align-center">
+
+
+                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" bindtap="goContact" data-phone="{{item.seller.mobile}}" data-wx="{{item.seller.wechatnumber}}" data-nickname="{{item.seller.nickname}}" data-wx_code="{{item.seller.wx_paycode}}" wx:if="{{item.seller.mobile || item.seller.wechatnumber}}">
+                            <van-icon name="chat-o" color="#07c160" size="20px" />
+                        </button>
+
+
+                        <block wx:if="{{info.order_status==2 || info.order_status==1 }}">
+                            <button wx:if="{{info.order_status>0}}" data-order_refund_id="{{info.order_refund_id}}" bindtap="toRefund" data-order_id="{{info.order_id}}" class="btn round primary hollow w-min-big mv-sm ml-sm {{info.order_refund_id?'red':''}}">
+                                <block wx:if="{{info.order_refund_id}}">
+                                    退款信息
+                                </block>
+                                <block wx:else>申请退款</block>
+                            </button>
+                        </block>
+
+                        <button class="btn round primary hollow w-min-big mv-sm ml-sm" wx:if="{{info.express && info.express.length > 0}}" data-user="{{info.user.nickname}}" data-order_sn="{{info.order_sn}}" data-index="{{index}}" bindtap="checkexpress">物流信息</button>
+                        <button class="btn round primary  w-min-big mv-sm ml-sm" data-opt="{{act.opt}}" data-order_id="{{info.order_id}}" data-txt="{{act.txt}}" data-sn="{{info.order_sn}}" bindtap="orderActions" wx:for="{{info.user_next_handle}}" wx:key="{{index}}" wx:for-item="act">{{act.txt}}</button>
+                    </view>
+  
     </view>
     <van-notify id="custom-selector" />
     <van-dialog id="van-dialog" />

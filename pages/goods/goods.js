@@ -129,7 +129,8 @@ Page({
     is_help_sale: false,
     isCanDraw: false,
     shareData: {},
-    reduce_txt: ''
+    reduce_txt: '',
+    has_shop:false
   },
   handleSpecPopup(e) {
     let { item } = e.currentTarget.dataset;
@@ -171,6 +172,17 @@ Page({
       }
     });
   },
+ /**
+   *@method  跳转到创建团长主页
+   * @return null
+   *
+   */
+
+    goCreateHome() {
+    wx.redirectTo({
+      url: '../create-home/index'
+    })
+  },
 
   /**
    *@method  检测当前用户是不是代理成员
@@ -184,11 +196,10 @@ Page({
         store_id: this.data.store_id
       })
       .then((res) => {
-        console.log(res.data.data == 0);
 
         //不是帮卖成员
         if (res.data.data == 0) {
-          this.showApplyModal('您没有权限帮卖Ta的商品！');
+          this.showApplyModal('您没有权限销售此商品！');
         }
 
         this.setData({
@@ -300,6 +311,11 @@ Page({
     });
   },
   onReady: function () {},
+  linkOfficialInfo(){
+    wx.redirectTo({
+      url:'../flow-us/index'
+    })
+  },
 
   createShareImage() {
     this.setData({
@@ -711,7 +727,8 @@ Page({
   },
 
   getGoodsInfo() {
-    console.log('getGoodsInfo');
+
+
 
     util.wx
       .get('/api/goods/get_goods_detail', {
@@ -725,7 +742,7 @@ Page({
 
           console.log(d);
 
-          util.drawShareFriends(this, d.goods);
+          util.drawShareFriends(this, d.goods, 2);
 
           //把数量设为0
           //
@@ -772,6 +789,8 @@ Page({
             console.log('else', content.html);
           }
 
+
+
           /**如果有满减优惠 显示文字提示**/
 
           if (d.goods.fullreduce_data) {
@@ -809,8 +828,12 @@ Page({
             this.wuxCountDown(formatDateTime(d.goods.end_time));
           }
 
-          (this.data.seller = d.goods.store),
-            (this.data.store_id = d.goods.store.store_id);
+          this.data.seller = d.goods.store;
+          this.data.store_id = d.goods.store.store_id;
+
+           if(this.is_help_sale_page  && this.data.seller.store_id !== app.globalData.userInfo.store_id){
+            this.checkIsHelper()
+          }
 
           //显示管理面板
           console.log(
@@ -896,15 +919,15 @@ Page({
 
     //url里有帮卖参数 表示邀请帮卖页面 这里首页要判断权限 没有权限的不让看
     if (option.help_sale) {
-      this.setData({
-        is_help_sale: true
-      });
+      this.is_help_sale_page = true
     }
 
     console.log('option', option);
 
-    this.getShareImg();
     await this.getGoodsInfo();
+
+        this.getShareImg();
+
 
     this.add_access();
 
@@ -923,6 +946,15 @@ Page({
       menuBarTop: app.globalData.menuBarTop,
       showBackIcon: pages.length > 1 ? true : false
     });
+
+
+    if(app.globalData.userInfo && app.globalData.userInfo.store_id){
+      this.setData({
+        has_shop:true
+      })
+    }
+
+
   },
   inputNote(e) {
     this.setData({
@@ -1092,11 +1124,18 @@ Page({
       });
     }
   },
+    getUserInfoFile: function(){
+        app.getUserInfoFile(res => {
+            this.getUserInfoEvt({
+                detail: res[0]
+            })
+        })
+    },
   getUserInfoEvt: function (e) {
     console.log(e);
-    if (e.detail.errMsg !== 'getUserInfo:ok') {
-      return wx.showToast({ title: e.detail.errMsg, icon: 'none' });
-    }
+    // if (e.detail.errMsg !== 'getUserInfo:ok') {
+    //   return wx.showToast({ title: e.detail.errMsg, icon: 'none' });
+    // }
 
     app.globalData.userInfo = e.detail.userInfo;
     wx.showLoading();
@@ -1117,6 +1156,7 @@ Page({
 
           this.getGoodsInfo();
           this.add_access();
+
         })
         .catch((e) => console.log(e));
     });
@@ -1164,7 +1204,11 @@ Page({
         cpage: orderUsersPage
       })
       .then((res) => {
-        orderUsersPage++;
+        console.log(res)
+
+        if(res.data.code == 200){
+
+               orderUsersPage++;
 
         this.data.orderUsers = res.data.data.order_list;
 
@@ -1176,6 +1220,10 @@ Page({
           _orderUsers_: this.data._orderUsers_,
           orderUsers: this.data.orderUsers
         });
+
+
+        }
+   
       });
   },
   userpage() {

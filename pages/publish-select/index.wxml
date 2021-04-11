@@ -120,7 +120,7 @@
         <view class="info f16">
           请先授权登录
         </view>
-        <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">登 录</button>
+        <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">登 录</button>
          </view>
     </van-popup>
 
