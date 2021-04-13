@@ -127,12 +127,12 @@ Page({
               
               })
 
-          } else if(res.data.code == 20001){
+          } else if(res.data.code == -2000){
 
-
+                    app.globalData.backUrl ='/pages/acting-apply/index'
                     wx.showModal({
                     title:'您还没有创建主页',
-                    content:'请先免费创建主页',
+                    content:'请先花3秒钟免费创建个主页',
                     confirmText:'好的马上',
                     showCancel: false,
                     success:(res)=>{
@@ -145,6 +145,22 @@ Page({
                   })
 
                 }
+          else if(res.data.code == -100){
+
+
+               Dialog.alert({
+                title: '请先登录',
+                message: ''
+                })
+
+                wx.redirectTo({
+                      url:'/pages/home/index'
+                     })
+
+
+
+
+          }
 
           else{
 

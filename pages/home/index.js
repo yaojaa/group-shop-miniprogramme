@@ -185,8 +185,6 @@ Page({
 
 
         }
-
-        console.log(this.data.tips_index)
       
         this.addListen();
     },

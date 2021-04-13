@@ -126,7 +126,7 @@
 		<view class="weui-footer__links">
 
 		<view class="center" style="margin-bottom:10px; text-align: center;"> 
-			<text bindtap="goPublish" class="text-primary">开通团长主页</text>  
+			<button bindtap="goPublish" class="text-primary">开通团长主页</button>  
 	<!-- 		<text class="text-muted"> | </text>
 			<text bindtap="goSupperReg" class="text-primary">开通供应商主页</text>  -->
 		</view> 

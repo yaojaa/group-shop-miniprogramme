@@ -1467,13 +1467,37 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2000483&from_id=1&help_sale=true",
+          "query": "goods_id=2000482&from_id=1&help_sale=true",
           "scene": null
         },
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
           "query": "help_sale=true&id=2000042",
+          "scene": null
+        },
+        {
+          "name": "pages/ems-detail/index",
+          "pathName": "pages/ems-detail/index",
+          "query": "order_sn=202103301513073449339730",
+          "scene": null
+        },
+        {
+          "name": "pages/create-home/index",
+          "pathName": "pages/create-home/index",
+          "query": "order_sn=202103301513073449339730",
+          "scene": null
+        },
+        {
+          "name": "pages/coupon/index",
+          "pathName": "pages/coupon/index",
+          "query": "goods_id=2000482&from_id=1&help_sale=true",
+          "scene": null
+        },
+        {
+          "name": "pages/coupon-creat/index",
+          "pathName": "pages/coupon-creat/index",
+          "query": "goods_id=2000482&from_id=1&help_sale=true",
           "scene": null
         }
       ]

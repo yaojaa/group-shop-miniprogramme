@@ -184,8 +184,8 @@
             </view>
              <view class="data"  wx:if="{{tips_index == 3}}">
                 申请退款的订单：
-                <text class="bold">{{reportData.refund_apply_count || 0}}</text> 
-                <text class="blue-text" bindtap="toOrderRefund" wx:if="{{reportData.refund_apply_count > 0}}">立即处理</text>
+                <text class="bold">{{reportData.refund_apply_count || 0}} </text> 
+                <text class="blue-text" bindtap="toOrderRefund" wx:if="{{reportData.refund_apply_count > 0}}"> 立即处理</text>
             </view>
 
             

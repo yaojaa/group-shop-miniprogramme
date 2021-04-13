@@ -63,6 +63,10 @@ Page({
     onLoad: function(options) {
 
     },
+    //创建优惠券
+    createCoupon(){
+        util.wx.post('/api/redpacket')
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

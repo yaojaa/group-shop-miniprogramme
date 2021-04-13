@@ -1,37 +1,51 @@
 <view class="container gray-wrap  cf">
     <form bindsubmit="submitForm">
         <van-cell-group custom-class="mt-sm">
-            <van-field use-button-slot value="{{}}" name="" label="红包总金额" placeholder="请输入金额">
+            <van-field use-button-slot value="{{}}" name="reduce" label="红包金额" placeholder="请输入金额">
                 <view slot="button">元</view>
             </van-field>
         </van-cell-group>
-        <van-cell-group title="每个红包金额大小随机">
-            <van-field use-button-slot value="{{}}" name="" label="最小值" placeholder="请输入最小值金额">
+
+         <van-field value="{{scopeTitle}}" name=" " label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
+         
+         <!-- type '0领取;1分配;2新人;3下单'; -->
+
+
+
+
+      <!--   <van-cell-group title="每个红包金额大小随机">
+            <van-field use-button-slot value="{{}}" name="reduce" label="最小值" placeholder="请输入最小值金额">
                 <view slot="button">元</view>
             </van-field>
             <van-field use-button-slot value="{{}}" name="" label="最大值" placeholder="请输入最大值金额">
                 <view slot="button">元</view>
             </van-field>
-        </van-cell-group>
+        </van-cell-group> -->
         <van-cell-group custom-class="mt-sm">
-            <van-field value="{{}}" name="" label="红包名称" placeholder="例：小明给您发搭伙红包拉！"></van-field>
-            <van-field value="{{}}" name="" label="红包描述" placeholder="例：小明给大家发红包拉，下单即可抵用"></van-field>
+            <van-field value="{{}}" name="title" label="红包名称" placeholder="例：小明给您发搭伙红包拉！"></van-field>
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">
             <van-field value="{{ date}}" name=" date" label="红包截至使用时间" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" />
+
+              <van-field value="{{ date}}" name="days" label="使用有效期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" />
+
+
             <van-field value="{{scopeTitle}}" name=" " label="红包适用范围" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">
             <van-field use-button-slot value="{{}}" name="" label="红包使用时须满足金额条件吗？" title-width="500rpx">
                 <van-switch checked="{{ checked }}" bind:change="onChange" size="34rpx"  slot="button"/>
             </van-field>
+
+              <van-field wx-if="{{checked}}" value="{{}}" name="title" label="满多少元" placeholder="例：100！"></van-field>
+
  
         </van-cell-group>
         <view class="ph-df mt-xs text-sm warning-text">
             红包用于下单您铺子的商品时使用
         </view>
         <view class="m-df mt-xl">
-            <button class="btn xxl primary block" form-type="submit" disabled="{{disabled}}">
+            <button class="btn xxl primary block linenear_bg" form-type="submit" disabled="{{disabled}}">
                 生成红包
             </button>
         </view>
