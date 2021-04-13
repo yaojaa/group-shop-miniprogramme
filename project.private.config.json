@@ -76,9 +76,8 @@
           "scene": null
         },
         {
-          "id": 9,
-          "name": "pages/fans-mg/index",
-          "pathName": "pages/fans-mg/index",
+          "name": "pages/coupon-receive/index",
+          "pathName": "pages/coupon-receive/index",
           "query": "",
           "scene": null
         },

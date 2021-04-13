@@ -1124,11 +1124,18 @@ Page({
       });
     }
   },
+    getUserInfoFile: function(){
+        app.getUserInfoFile(res => {
+            this.getUserInfoEvt({
+                detail: res[0]
+            })
+        })
+    },
   getUserInfoEvt: function (e) {
     console.log(e);
-    if (e.detail.errMsg !== 'getUserInfo:ok') {
-      return wx.showToast({ title: e.detail.errMsg, icon: 'none' });
-    }
+    // if (e.detail.errMsg !== 'getUserInfo:ok') {
+    //   return wx.showToast({ title: e.detail.errMsg, icon: 'none' });
+    // }
 
     app.globalData.userInfo = e.detail.userInfo;
     wx.showLoading();

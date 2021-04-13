@@ -122,7 +122,7 @@ App({
             wx.getUserInfo({
                 success: res => {
                     // 可以将 res 发送给后台解码出 unionId
-                    this.globalData.userInfo = res.userInfo
+                    this.globalData.userInfo = this.globalData.userInfo || res.userInfo
 
                     if (this.userInfoReadyCallback) {
                         this.userInfoReadyCallback(this.globalData.userInfo)
@@ -135,6 +135,51 @@ App({
 
 
     },
+    getUserInfoFile: function(callback) {
+        let userInfoArr = [
+            new Promise((resolve, reject) => {
+                wx.getUserInfo({
+                    success: res => {
+                        resolve(res)
+                    }
+                })
+
+            })
+        ];
+        if(wx.getUserProfile){
+            userInfoArr.push(
+                new Promise((resolve, reject) => {
+                    wx.getUserProfile({
+                      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                      success: res => {
+                        resolve(res)
+                      },
+                      fail: fail => {
+                        resolve(fail)
+                      }
+                    })
+
+                })
+            )
+        }
+
+        Promise.all(userInfoArr)
+        .then(e => {
+            if(e.length > 1 && e[1].userInfo){
+                e[0].userInfo = e[1].userInfo
+                this.globalData.userInfo = e[1].userInfo
+            }else{
+                this.globalData.userInfo = this.globalData.userInfo || e[0].userInfo
+            }
+
+            if (this.userInfoReadyCallback) {
+                this.userInfoReadyCallback(this.globalData.userInfo)
+            }
+            callback && callback(e)
+        })
+
+    },
+
 
     //第三方服务器登录
     //
@@ -270,8 +315,6 @@ App({
     onLaunch: function(option) {
 
         this.comeInfo = {}
-
-    
 
         /**记录用户打开的场景**/
         if (option.scene) {

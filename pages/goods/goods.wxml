@@ -201,7 +201,7 @@
             <!-- <view class="code center" wx:if="{{goods.user.wx_paycode}}">
             <image src="{{goods.user.wx_paycode}}"  mode="widthFix"/>
         </view> -->
-            <block wx:if="{{goods.show_buyerlist == 0}}">
+            <block >
                 <view class='sub-title scale-b-1px contentBox'>
                     <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
                     查看所有订单 〉
@@ -218,10 +218,12 @@
                         <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
                             <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
                                 <text class="number">{{item.create_number}}</text>
-                                <image class="buyer-avatar" src="{{item.headimg}}"></image>
+                                <image wx:if="{{goods.show_buyerlist == 1}}" class="buyer-avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132"></image>
+                                <image wx:else class="buyer-avatar" src="{{item.headimg}}"></image>
                                 <view class="buyer-info">
                                     <view class="name">
-                                        {{item.nickname}}
+                                       <text wx:if="{{goods.show_buyerlist == 1}}">匿名小主{{index+1}} </text>
+                                       <text wx:else>{{item.nickname}}</text>
 <text class="mini-tags" wx:if="{{item.order_pay_total>0}}">跟团{{item.order_pay_total}}次</text>
                                         <!-- <text class="mini-tags" wx:if="{{item.order_pay_total==2}}">回头客</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>2 && item.order_pay_total<=10 }}">有空就来逛逛</text>
@@ -434,7 +436,7 @@
                 <image class="avatar-mini" src="{{goods.user.headimg}}" />
             </view>
             <view class="info">微信授权登录</view>
-            <button size="mini" type="primary" plain="false" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt">
+            <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">
                 登 录
             </button>
             <button size="mini" type="default" plain="false" bindtap="rejectAuth">取 消</button>

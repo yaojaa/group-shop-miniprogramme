@@ -224,15 +224,19 @@ Page({
         })
     },
 
-    getUserInfoEvt: function(e) {
-        console.log(e)
-        if (e.detail.errMsg !== "getUserInfo:ok") {
-            return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
-        }
-
-        this.setData({
-            showAuth: false
+    getUserInfoFile: function(){
+        app.getUserInfoFile(res => {
+            this.getUserInfoEvt({
+                detail: res[0]
+            })
         })
+    },
+
+  getUserInfoEvt: function(e) {
+      console.log(e)
+      // if (e.detail.errMsg !== "getUserInfo:ok") {
+      //     return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
+      // }
 
         app.globalData.userInfo = e.detail.userInfo
         wx.showLoading()

@@ -1,0 +1,55 @@
+.result-box {
+  width: 530rpx;
+  height: 608rpx;
+  background: url(http://leileiimg.toutoumei.com/front/img/shake_result_bg.png) center no-repeat;
+  background-size: cover;
+  text-align: center;
+  padding-top: 106rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.result-box .coupon-price {
+  font-size: 120rpx;
+  font-weight: bold;
+  color: #FF544D;
+  line-height: 1.1;
+}
+
+.result-box .coupon-price .symbol {
+  font-size: 30%;
+}
+
+.result-box .coupon-name {
+  font-weight: bold;
+  color: #FF544D;
+}
+
+.result-box .coupon-date {
+  color: #fff;
+  font-size: 24rpx;
+  padding: 140rpx 0 20rpx;
+}
+
+.result-box .coupon-btn {
+  width: 240rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  background: #FFF4D2;
+  color: #C30000;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+}
+
+.result-box .marker {
+  position: absolute;
+  right: 40rpx;
+  top: 60rpx;
+  width: 140rpx;
+  height: 78rpx;
+  background: url(http://leileiimg.toutoumei.com/shake/shake_mark1.png) center no-repeat;
+  background-size: cover;
+}
