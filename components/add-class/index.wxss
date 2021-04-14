@@ -173,7 +173,7 @@ work-break:keep-all;
     padding-bottom: 120rpx;
 }
 .all-class{
-    max-height: 400rpx;
+    max-height: 364rpx;
     min-height: 200rpx;
     overflow-y: auto;
 }
