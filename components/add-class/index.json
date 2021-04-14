@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+                "van-icon": "../../vant/icon/index",
+
+        "van-action-sheet": "../../vant/action-sheet/index",
+        "van-button": "../../vant/button/index"
+  }
+}

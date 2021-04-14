@@ -178,6 +178,23 @@
                 </view>
             </view>
         </i-panel>
+        <i-panel i-class="no-margin">
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">添加分类：</view>
+                </view>
+                <view class="weui-cell__bd"></view>
+                <view class="weui-cell__ft" bindtap="setClass">
+                    <view class="weui-icon-warn show-class-weui">
+                        <text class="show-class" wx:if="{{goods_cat.length > 0}}">
+                            <block wx:for="{{goods_cat}}">{{item.cat_name}} </block>
+                        </text>
+                        <text wx:else>设置</text>
+                        <i-icon type="enter" size="26" />
+                    </view>
+                </view>
+            </view>
+        </i-panel>
 
                <i-panel i-class="no-margin">
             <view class="weui-cell">
@@ -206,3 +223,4 @@
         </button>
     </form>
 </view>
+<add-class bindchangeClass="changeClass" goodsItem="{{goodsItem}}" />

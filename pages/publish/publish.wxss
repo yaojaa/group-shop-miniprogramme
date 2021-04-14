@@ -299,3 +299,13 @@ video{
   width: 60rpx;
   text-align: right;
 }
+.show-class{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 400rpx;
+}
+.show-class-weui{
+  display: flex;
+  align-items: center;
+}

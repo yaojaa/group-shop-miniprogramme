@@ -30,93 +30,24 @@ Page({
         manageShops: [],
         store_id: '',
         tips_index:0,
-        classShow: false,
-        classGoodsId: '',
-        classList: [],
-        checked: false
-    },
-    // 设置分类
-    onCloseClass() {
-      this.setData({ classShow: false });
-    },
-    onSaveClass() {
-        wx.showLoading();
-        let store_cat = [];
-        let goods_cat = [];
-        this.data.classList.forEach(e=>{
-            if(e.checked){
-                store_cat.push(e.cat_id);
-                goods_cat.push(e);
-            }
-        })
-        util.wx.post('/api/seller/set_goods_cat',{
-            "goods_id": this.data.classGoodsId,
-            "store_cat": store_cat
-        }).then((res) => {
-          if(res.data.code == 200){
-            wx.hideLoading();
-            this.data.goodslist.forEach((e,i)=>{
-                if(e.goods_id == this.data.classGoodsId){
-                    this.setData({
-                        ['goodslist['+ i +'].store_cat']: goods_cat
-                    })
-                    return;
-                }
-            })
-          }
-        })
-        .catch((e) => {
-
-        })
-        this.setData({ classShow: false });
-    },
-    onChange(e) {
-        let index = e.currentTarget.dataset.index;
-        console.log(index)
-        this.setData({
-            ['classList[' + index + '].checked']: !this.data.classList[index].checked
-        });
-    },
-    toAddClass() {
-      wx.navigateTo({
-          url: '../class_edit/index'
-      });
-      this.onCloseClass();
+        goodsItem: null
     },
     setClass(e){
-        console.log(e.detail)
-        if (e.detail.goods_id > 0) {
-            this.data.classGoodsId = e.detail.goods_id
-
-            this.getClassList(e.detail)
-        }
+        this.setData({
+            goodsItem: e.detail
+        })
     },
-    getClassList(goods){
-        wx.showLoading();
-        util.wx.get('/api/seller/get_cat_list')
-        .then((res) => {
-          if(res.data.code == 200){
-            wx.hideLoading();
-            this.data.classList = res.data.data.cats.filter(e => {return e.enable == 1})
-
-            this.data.classList.forEach(e=>{
-                let checked = goods.store_cat.filter(c=>{
-                    return c.cat_id == e.cat_id
+    changeClass(cat){
+        console.log(cat)
+        this.data.goodslist.forEach((e,i)=>{
+            if(e.goods_id == cat.detail.classGoodsId){
+                this.setData({
+                    ['goodslist['+ i +'].store_cat']: cat.detail.goods_cat
                 })
-                e.checked = checked.length > 0;
-
-            })
-
-            this.setData({
-              classList: this.data.classList,
-              classShow: true
-            })
-          }
+                return;
+            }
         })
-        .catch((e) => {
-
-        })
-      },
+    },
     /***显示切换身份***/
     showExchange() {
         this.setData({

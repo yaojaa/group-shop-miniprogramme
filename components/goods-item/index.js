@@ -103,7 +103,6 @@ Component({
     },
     // 设置分类
     setClass(e){
-      console.log(1,e)
       this.triggerEvent('setClass', e);
     },
     /*下拉菜单*/
