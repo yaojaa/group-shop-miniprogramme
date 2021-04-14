@@ -15,6 +15,8 @@
                 <view class="pt-xs text-sm text-gray">
                     收货地址： {{info.province}}{{info.city}}{{info.district}}{{info.address}}
                 </view>
+                <view class="text-red f14" selectable="true">{{info.user_message}}</view>
+
             </view>
         </view>
         <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 2}}">

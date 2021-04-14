@@ -39,7 +39,7 @@
                 </van-tag>
             </view>
             <view>
-                <view wx:if="{{item.agent_opt==1}}" class="mini-tags">已开启帮卖</view>
+                <view  data-id="{{item.goods_id}}" bindtap="toHelpSetting" wx:if="{{item.agent_opt==1}}" class="mini-tags">已开启帮卖</view>
             </view>
         </view>
     </view>

@@ -47,7 +47,7 @@
                          wx:if="{{item.seller.mobile || item.seller.wechatnumber}}"><van-icon name="chat-o" color="#07c160" size="20px" />
                      </button>
                     
-            <block wx:if="{{item.order_status==2 || item.order_status==1 }}">
+           <!--  <block wx:if="{{item.order_status==2 || item.order_status==1 }}">
 
                 <button wx:if="{{item.order_status>0}}" data-order_refund_id="{{item.order_refund_id}}" bindtap="toRefund" data-order_id="{{item.order_id}}"  class="btn round primary hollow w-min-big mv-sm ml-sm {{item.order_refund_id?'red':''}}"
                     >
@@ -56,7 +56,7 @@
                 </block>
                     <block wx:else>申请退款</block>
                 </button>
-            </block>
+            </block> -->
 
 
 

@@ -16,13 +16,17 @@
         <view class="tab-one" wx:if="{{tab == 0}}">
             <view class="coupon-item" wx:for="{{5}}" wx:key="index">
                 <view class="flex align-center">
-                    <view class="flex-sub primary-text mr-sm">搭伙 | 店铺红包</view>
+                    <view class="flex-sub primary-text mr-sm">店铺红包</view>
                     <view><text class="text-sm">红包总额</text><text class="pink-text text-xxl bold-text">￥1000</text></view>
                 </view>
                 <view class="text-sm">回馈老用户</view>
                 <view class="text-justify mt-xs ">
                     <view class="text-sm text-muted">红包随机范围：1-5元</view>
                     <van-button type="info" size="mini" custom-class="w-min-160">发出红包链接</van-button>
+
+                               <van-button bindtap="sendTouser" type="info" size="mini" custom-class="w-min-160">
+                                   发送给客户
+                               </van-button>
                 </view>
                 <view class="solid-top mv-xs cf"></view>
                 <view class="text-justify">
@@ -35,7 +39,7 @@
                     <view><text>删除红包</text><text class="ph-xs">|</text><text>终止红包</text></view>
                 </view>
                 <view class="text-sm text-muted mt-xs">
-                    <text class="mr-sm">到期日期：2019-2-14 14:35</text><text>小铺可用</text>
+                    <text class="mr-sm">到期日期：2019-2-14 14:35</text><text>小铺可用 || 指定商品可用></text>
                 </view>
             </view>
         </view>

@@ -21,6 +21,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        this.getCouponList()
         
     },
 
@@ -28,6 +30,30 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function() {
+
+    },
+
+    getCouponList(){
+        util.wx.get('/api/redpacket/get_list_by_store').then(res=>{
+            console.log(res)
+        })
+    },
+    /*发送红包给指定客户*/
+    sendToUser(){
+        util.wx.post('/api/redpacket/alloc_redpacket',{
+            user_ids:[333,333,333,333],
+            redpacket_id:''
+
+        })
+        
+    },
+
+    getCouponList(){
+        // 0 
+          util.wx.post('/api/redpacket/redpacket_user_list',{
+            redpacket_id:''
+
+        })
 
     },
 

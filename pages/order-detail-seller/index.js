@@ -29,6 +29,8 @@ Page({
 
         const txt = e.target.dataset.text
 
+        console.log(txt)
+
         wx.setClipboardData({
             data: txt,
             success: function(res) {

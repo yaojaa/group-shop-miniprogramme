@@ -9,11 +9,12 @@
                 <view class="text-justify">
                     <view><text class="mr-df">{{info.consignee}}</text>
                         <text data-text="{{info.mobile}}" bindtap="copyTxt">{{info.mobile}}</text></view>
-                    <view class="text-sm warning-text" data-text="{{info.consignee}} {{info.mobile}} {{info.province}}{{info.city}}{{info.district}}{{info.address}}" bindtap="copyTxt">复制地址</view>
+                    <view class="text-sm warning-text" data-text="{{info.consignee}} {{info.mobile}} {{info.province}}{{info.city}}{{info.district}}{{info.address}} {{info.user_message}}" bindtap="copyTxt">复制地址</view>
                 </view>
-                <view class="pt-xs text-sm text-gray" data-text="{{info.consignee}} {{info.mobile}} {{info.province}}{{info.city}}{{info.district}}{{info.address}}" bindtap="copyTxt">
+                <view class="pt-xs text-sm text-gray" bindtap="copyTxt">
                     收货地址： {{info.province}}{{info.city}}{{info.district}}{{info.address}}
                 </view>
+                <view class="text-red f12" selectable="true">{{info.user_message}}</view>
             </view>
         </view>
         <view class="white-bg ph-df pv-sm mb-sm flex" wx:if="{{info.delivery_method == 2}}">

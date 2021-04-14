@@ -312,6 +312,13 @@ Component({
         });
       }
     },
+    toHelpSetting(e){
+      const { id } = e.currentTarget.dataset;
+
+      wx.navigateTo({
+        url: '../help-sale-setting/index?goods_id=' + id
+      });
+    },
 
     /**跳转到编辑页面**/
 
