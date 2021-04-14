@@ -29,8 +29,94 @@ Page({
         exchange: false,
         manageShops: [],
         store_id: '',
-        tips_index:0
+        tips_index:0,
+        classShow: false,
+        classGoodsId: '',
+        classList: [],
+        checked: false
     },
+    // 设置分类
+    onCloseClass() {
+      this.setData({ classShow: false });
+    },
+    onSaveClass() {
+        wx.showLoading();
+        let store_cat = [];
+        let goods_cat = [];
+        this.data.classList.forEach(e=>{
+            if(e.checked){
+                store_cat.push(e.cat_id);
+                goods_cat.push(e);
+            }
+        })
+        util.wx.post('/api/seller/set_goods_cat',{
+            "goods_id": this.data.classGoodsId,
+            "store_cat": store_cat
+        }).then((res) => {
+          if(res.data.code == 200){
+            wx.hideLoading();
+            this.data.goodslist.forEach((e,i)=>{
+                if(e.goods_id == this.data.classGoodsId){
+                    this.setData({
+                        ['goodslist['+ i +'].store_cat']: goods_cat
+                    })
+                    return;
+                }
+            })
+          }
+        })
+        .catch((e) => {
+
+        })
+        this.setData({ classShow: false });
+    },
+    onChange(e) {
+        let index = e.currentTarget.dataset.index;
+        console.log(index)
+        this.setData({
+            ['classList[' + index + '].checked']: !this.data.classList[index].checked
+        });
+    },
+    toAddClass() {
+      wx.navigateTo({
+          url: '../class_edit/index'
+      });
+      this.onCloseClass();
+    },
+    setClass(e){
+        console.log(e.detail)
+        if (e.detail.goods_id > 0) {
+            this.data.classGoodsId = e.detail.goods_id
+
+            this.getClassList(e.detail)
+        }
+    },
+    getClassList(goods){
+        wx.showLoading();
+        util.wx.get('/api/seller/get_cat_list')
+        .then((res) => {
+          if(res.data.code == 200){
+            wx.hideLoading();
+            this.data.classList = res.data.data.cats.filter(e => {return e.enable == 1})
+
+            this.data.classList.forEach(e=>{
+                let checked = goods.store_cat.filter(c=>{
+                    return c.cat_id == e.cat_id
+                })
+                e.checked = checked.length > 0;
+
+            })
+
+            this.setData({
+              classList: this.data.classList,
+              classShow: true
+            })
+          }
+        })
+        .catch((e) => {
+
+        })
+      },
     /***显示切换身份***/
     showExchange() {
         this.setData({
@@ -119,19 +205,21 @@ Page({
         var sv = e.detail.replace(/(^\s*)|(\s*$)/g, '');
         console.log(sv);
         if (sv) {
-            this.data.s_cpage = 1;
+            this.data.cpage = 1;
             this.setData({
                 searchWords: sv,
-                searchGoodslist: []
+                goodslist: []
             });
             this.getGoodsList();
         }
     },
     onCancel() {
+        this.data.cpage = 1;
         this.setData({
-            searchWords: ''
+            searchWords: '',
+            goodslist: []
         });
-        this.updateList();
+        this.getGoodsList();
     },
     isShowPopTips() {
         console.log('获取本地日期');
@@ -479,30 +567,21 @@ Page({
             pagesize: 15
         };
         if (this.data.searchWords) {
-            // 搜索模式
-            ajaxData = {
-                cpage: this.data.s_cpage,
-                pagesize: 15,
-                keyword: this.data.searchWords
-            };
-            this.setData({
-                search_is_loading: true
-            });
-        } else {
-            this.setData({
-                is_loading: true
-            });
+            ajaxData.keyword = this.data.searchWords
         }
+        this.setData({
+            is_loading: true
+        });
 
         util.wx
             .get('/api/seller/get_goods_list', ajaxData)
             .then((res) => {
                 console.log(res);
-                if (this.data.searchWords) {
-                    //搜索
-                    this.searchLoadData(res);
-                    return;
-                }
+                // if (this.data.searchWords) {
+                //     //搜索
+                //     this.searchLoadData(res);
+                //     return;
+                // }
 
                 if (res.data.code == 200) {
                     this.setData({
@@ -526,15 +605,15 @@ Page({
                 }
             })
             .catch((e) => {
-                if (this.data.searchWords) {
-                    this.setData({
-                        search_is_loading: false
-                    });
-                } else {
+                // if (this.data.searchWords) {
+                //     this.setData({
+                //         search_is_loading: false
+                //     });
+                // } else {
                     this.setData({
                         is_loading: false
                     });
-                }
+                // }
             });
     },
 
@@ -674,17 +753,17 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-        if (this.data.searchWords) {
-            // 搜索状态
-            ++this.data.s_cpage;
+        // if (this.data.searchWords) {
+        //     // 搜索状态
+        //     ++this.data.s_cpage;
 
-            if (this.data.s_cpage <= this.s_totalpage) {
-                this.getGoodsList(); //重新调用请求获取下一页数据
-            } else {
-                this.data.s_cpage = this.s_totalpage;
-            }
-            return;
-        }
+        //     if (this.data.s_cpage <= this.s_totalpage) {
+        //         this.getGoodsList(); //重新调用请求获取下一页数据
+        //     } else {
+        //         this.data.s_cpage = this.s_totalpage;
+        //     }
+        //     return;
+        // }
         ++this.data.cpage;
 
         if (this.data.cpage <= this.totalpage) {

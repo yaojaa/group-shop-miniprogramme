@@ -51,10 +51,10 @@ Component({
             id: 5,
             name: this.properties.item.store_sort == 999999 ? '取消置顶' : '置顶'
           },
-          // {
-          //   id: 7,
-          //   name: '设置分类'
-          // },
+          {
+            id: 7,
+            name: '设置分类'
+          },
           {
             id: 6,
             name: '取消'
@@ -74,23 +74,6 @@ Component({
     },
     handleAction(e) {
       this.setData({ show: !this.data.show });
-    },
-    onCloseClass() {
-      this.setData({ classShow: false });
-    },
-    toAddClass() {
-      wx.navigateTo({
-          url: '../class_edit/index'
-      });
-      this.onCloseClass();
-    },
-    onChange() {
-      console.log('change')
-      this.setData({ checked: !this.data.checked });
-    },
-    onSelectClass(event) {
-      const item = event.detail;
-      console.log(item);
     },
     onClose() {
       this.setData({ show: false });
@@ -115,12 +98,13 @@ Component({
       } else if (item.id == 6) {
         this.onClose();
       } else if (item.id == 7) {
-        this.setClass(item);
+        this.setClass(this.properties.item);
       }
     },
     // 设置分类
     setClass(e){
       console.log(1,e)
+      this.triggerEvent('setClass', e);
     },
     /*下拉菜单*/
     moreAction(e) {
