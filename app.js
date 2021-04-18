@@ -198,8 +198,6 @@ App({
                 data: {
                     openid: this.openId,
                     session_key: this.session_key,
-                    nickname: res.userInfo.nickName,
-                    headimg: res.userInfo.avatarUrl,
                     encryptedData: res.encryptedData,
                     ...this.comeInfo
                 },

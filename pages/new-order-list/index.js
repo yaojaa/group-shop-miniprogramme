@@ -16,7 +16,8 @@ Page({
         active: 0,
         search_order_status: 3,
         searchWords: '',
-        user_store_id: ''
+        user_store_id: '',
+        refund_apply_count:'4'
     },
     // 搜索
     onSearch(e) {
@@ -73,7 +74,8 @@ Page({
                 this.setData({
                     loading: false,
                     order_list: this.data.order_list.concat(res.data.data.order_list),
-                    totalpage: res.data.data.page.totalpage
+                    totalpage: res.data.data.page.totalpage,
+                    refund_apply_count:res.data.data.refund_apply_count
                 })
                 resolve(res)
             }).catch(e => {

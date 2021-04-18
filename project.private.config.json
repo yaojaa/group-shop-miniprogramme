@@ -1498,6 +1498,12 @@
           "pathName": "pages/coupon-creat/index",
           "query": "goods_id=2000482&from_id=1&help_sale=true",
           "scene": null
+        },
+        {
+          "name": "pages/ems-detail/index",
+          "pathName": "pages/ems-detail/index",
+          "query": "order_sn=202104121530061723491838",
+          "scene": null
         }
       ]
     }

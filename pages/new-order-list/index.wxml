@@ -25,7 +25,7 @@
   <van-tabs active="{{ active }}" bind:change="filterOrder" border="{{false}}" custom-class="custom-tab-df" animated="{{true}}" color="#49b34d">
         <van-tab title="待发货"  ></van-tab>
         <van-tab title="已发货" ></van-tab>
-        <van-tab title="退款售后"></van-tab>
+        <van-tab title="退款售后" info="{{refund_apply_count>0? refund_apply_count :''}}"></van-tab>
     </van-tabs>
 
     <view class="order-coentent">

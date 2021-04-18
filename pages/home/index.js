@@ -172,7 +172,7 @@ Page({
             tips_index: ++ this.data.tips_index
         })
 
-        if(this.data.tips_index >=4){
+        if(this.data.tips_index >=3){
 
               this.setData({
             showDialog: false

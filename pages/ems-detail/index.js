@@ -28,6 +28,18 @@ Page({
         this.setData({
             loading:true
         })
+
+        let mobile = this.data.user.mobile
+
+        mobile = mobile.substr(mobile.length -4)
+
+        console.log('this.data.user',mobile)
+
+        // if(options.express_company.indexOf('顺丰')> -1){
+        //     options.express_code = options.express_code+':'+mobile
+        // }
+
+
         util.wx.get('/api/order/get_express_info', {
             express_company: options.express_company,
             express_code: options.express_code
@@ -90,17 +102,8 @@ Page({
      */
     onLoad: function(options) {
 
-        console.log(options)
-        // this.setData({
-        //     express_company:options.name || '',
-        //     express_code:options.code || '',
-        //     order_id:options.id || ''
-        // })
-        this.data.user = decodeURIComponent(options.user)
-        this.data.goods = decodeURIComponent(options.goods)
+   
 
-
-        // 
         util.wx.get('/api/user/get_express_byordersn',{
             order_sn:options.order_sn
         })
