@@ -89,7 +89,22 @@ Page({
         is_timelimit: 0,
         currentScrollTop: 0,
         fullreduce_data: '',
-        btnDisabled: false //发布按钮不可用 防止多次点击
+        btnDisabled: false, //发布按钮不可用 防止多次点击,
+        goodsItem: null,
+        goods_cat: []
+    },
+    setClass(){
+        console.log(this.gs)
+        this.setData({
+            goodsItem: this.gs || {store_cat:this.data.goods_cat}
+        })
+    },
+    changeClass(e){
+        console.log(e)
+        this.setData({
+            goods_cat: e.detail.goods_cat
+        })
+        
     },
     // darg start5
     // 改变监听
@@ -853,6 +868,10 @@ Page({
                 goods_images:this.data.goods_images
             }
         }
+        postObj.store_cat = []
+        this.data.goods_cat.forEach(e=>{
+            postObj.store_cat.push(e.cat_id)
+        })
 
         util.wx.post('/api/seller/goods_add_or_edit', postObj).then(res => {
             if (res.data.code !== 200) {
@@ -1110,6 +1129,7 @@ Page({
             spec: spec,
             isShowTimePicker: gs.is_timelimit == 1,
             freight_tpl_id: gs.freight_tpl_id || 0,
+            goods_cat: gs.store_cat
         })
 
         this.showCurrentTplName(this.data.tplList, gs.freight_tpl_id)

@@ -29,7 +29,24 @@ Page({
         exchange: false,
         manageShops: [],
         store_id: '',
-        tips_index:0
+        tips_index:0,
+        goodsItem: null
+    },
+    setClass(e){
+        this.setData({
+            goodsItem: e.detail
+        })
+    },
+    changeClass(cat){
+        console.log(cat)
+        this.data.goodslist.forEach((e,i)=>{
+            if(e.goods_id == cat.detail.classGoodsId){
+                this.setData({
+                    ['goodslist['+ i +'].store_cat']: cat.detail.goods_cat
+                })
+                return;
+            }
+        })
     },
     /***显示切换身份***/
     showExchange() {
@@ -119,19 +136,21 @@ Page({
         var sv = e.detail.replace(/(^\s*)|(\s*$)/g, '');
         console.log(sv);
         if (sv) {
-            this.data.s_cpage = 1;
+            this.data.cpage = 1;
             this.setData({
                 searchWords: sv,
-                searchGoodslist: []
+                goodslist: []
             });
             this.getGoodsList();
         }
     },
     onCancel() {
+        this.data.cpage = 1;
         this.setData({
-            searchWords: ''
+            searchWords: '',
+            goodslist: []
         });
-        this.updateList();
+        this.getGoodsList();
     },
     isShowPopTips() {
         console.log('获取本地日期');
@@ -477,30 +496,21 @@ Page({
             pagesize: 15
         };
         if (this.data.searchWords) {
-            // 搜索模式
-            ajaxData = {
-                cpage: this.data.s_cpage,
-                pagesize: 15,
-                keyword: this.data.searchWords
-            };
-            this.setData({
-                search_is_loading: true
-            });
-        } else {
-            this.setData({
-                is_loading: true
-            });
+            ajaxData.keyword = this.data.searchWords
         }
+        this.setData({
+            is_loading: true
+        });
 
         util.wx
             .get('/api/seller/get_goods_list', ajaxData)
             .then((res) => {
                 console.log(res);
-                if (this.data.searchWords) {
-                    //搜索
-                    this.searchLoadData(res);
-                    return;
-                }
+                // if (this.data.searchWords) {
+                //     //搜索
+                //     this.searchLoadData(res);
+                //     return;
+                // }
 
                 if (res.data.code == 200) {
                     this.setData({
@@ -524,15 +534,15 @@ Page({
                 }
             })
             .catch((e) => {
-                if (this.data.searchWords) {
-                    this.setData({
-                        search_is_loading: false
-                    });
-                } else {
+                // if (this.data.searchWords) {
+                //     this.setData({
+                //         search_is_loading: false
+                //     });
+                // } else {
                     this.setData({
                         is_loading: false
                     });
-                }
+                // }
             });
     },
 
@@ -672,17 +682,17 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-        if (this.data.searchWords) {
-            // 搜索状态
-            ++this.data.s_cpage;
+        // if (this.data.searchWords) {
+        //     // 搜索状态
+        //     ++this.data.s_cpage;
 
-            if (this.data.s_cpage <= this.s_totalpage) {
-                this.getGoodsList(); //重新调用请求获取下一页数据
-            } else {
-                this.data.s_cpage = this.s_totalpage;
-            }
-            return;
-        }
+        //     if (this.data.s_cpage <= this.s_totalpage) {
+        //         this.getGoodsList(); //重新调用请求获取下一页数据
+        //     } else {
+        //         this.data.s_cpage = this.s_totalpage;
+        //     }
+        //     return;
+        // }
         ++this.data.cpage;
 
         if (this.data.cpage <= this.totalpage) {

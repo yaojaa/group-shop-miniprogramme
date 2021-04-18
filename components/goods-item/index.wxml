@@ -70,35 +70,6 @@
     </view>
     <!-- <i-icon class="rm_btn"  data-id="{{item.goods_id}}" bindtap="rmGoods" size="30" type="trash_fill" /> -->
     <van-action-sheet show="{{ show }}" actions="{{ itemList }}" bind:close="onClose" bind:select="onSelect" />
-    <van-action-sheet show="{{ classShow }}" bind:close="onCloseClass" bind:select="onSelectClass">
-        <view class="class-main">
-            <view class="all-class">
-                <view class="class-cell flex jsb aic" bindtap="onChange">
-                    <text>水果</text>
-                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
-                </view>
-                <view class="class-cell flex jsb aic" bindtap="onChange">
-                    <text>水果</text>
-                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
-                </view>
-                <view class="class-cell flex jsb aic" bindtap="onChange">
-                    <text>水果</text>
-                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
-                </view>
-                <view class="class-cell flex jsb aic" bindtap="onChange">
-                    <text>水果</text>
-                    <icon class="icon-small" type="{{ checked ? 'success' : 'circle' }}" size="23"></icon>
-                </view>
-            </view>
-            <view class="class-cell flex jcc aic" bindtap="toAddClass">
-                还没有分类，
-                <text class="fcg">去添加分类</text>
-            </view>
-            <view class="class-cell flex jsb aic">
-                <van-button bind:click="onCloseClass" custom-class='btn' round plain>取消</van-button>
-                <van-button custom-class='btn' round type="primary">保存</van-button>
-            </view>
-        </view>
-    </van-action-sheet>
+
     <van-dialog id="van-dialog" />
 </view>

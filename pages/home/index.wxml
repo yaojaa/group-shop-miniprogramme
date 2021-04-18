@@ -77,8 +77,8 @@
         </i-panel>
     </view>
 
-    <view class="text-center" style="padding: 120px" wx:if="{{is_loading}}">
-        <wux-spin wx:if="{{is_loading}}"></wux-spin>
+    <view class="text-center" style="padding: 120px" wx:if="{{goodslist.length == 0 && is_loading}}">
+        <wux-spin></wux-spin>
     </view>
     <view class="panelbox">
         <!-- <button class='new-btn hollow' bindtap="new_btn">
@@ -86,7 +86,7 @@
         </button> -->
 
         
-        <i-panel wx:if="{{goodslist.length > 0 || searchGoodslist.length > 0}}">
+        <i-panel wx:if="{{goodslist.length > 0}}">
             
 <!--             <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
   <van-tab title="全部"></van-tab>
@@ -104,6 +104,7 @@
   use-action-slot
   bind:cancel="onCancel"
   bind:search="onSearch"
+  bind:clear="onCancel"
 >
  <!--  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view> -->
 
@@ -112,9 +113,9 @@
 
 
             <!-- search -->
-            <view class="goods-box" wx:if='{{searchWords}}'>
+            <!-- <view class="goods-box" wx:if='{{searchWords}}'>
                 <block wx:key="index" wx:for="{{searchGoodslist}}">
-                    <i-goods-item bindupdateList="updateList" bindrecommend="recommendHandle" bindremove="removeHandle"
+                    <i-goods-item bindupdateList="updateList" bindsetClass="setClass" bindrecommend="recommendHandle" bindremove="removeHandle"
                         item="{{item}}" index="{{index}}" />
                 </block>
                 <view class="text-center pt20">
@@ -123,15 +124,18 @@
                 <view class="no-data-txt" wx:if="{{searchGoodslist.length == 0 && !search_is_loading}}">
                     没有找到商品，换个关键词试试吧~
                 </view>
-            </view>
+            </view> -->
             <!-- ./search -->
-            <view class="goods-box" wx:else>
+            <view class="goods-box">
                 <block wx:key="index" wx:for="{{goodslist}}">
-                    <i-goods-item bindrecommend="recommendHandle" bindremove="removeHandle" item="{{item}}"
+                    <i-goods-item bindrecommend="recommendHandle" bindsetClass="setClass" bindremove="removeHandle" item="{{item}}"
                         index="{{index}}" bind:updateList="updateList" />
                 </block>
                 <view class="text-center">
                     <wux-spin wx:if="{{is_loading}}"></wux-spin>
+                </view>
+                <view class="no-data-txt" style="padding: 20px" wx:if="{{goodslist.length == 0 && !is_loading && searchWords}}">
+                    没有找到商品，换个关键词试试吧~
                 </view>
             </view>
         </i-panel>
@@ -233,3 +237,4 @@
 
 </van-popup> -->
 </view>
+<add-class bindchangeClass="changeClass" goodsItem="{{goodsItem}}" />

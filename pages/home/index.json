@@ -24,7 +24,9 @@
         "van-tabs": "../../vant/tabs/index",
                 "van-icon": "../../vant/icon/index",
 
-        "van-action-sheet": "../../vant/action-sheet/index"
+        "van-action-sheet": "../../vant/action-sheet/index",
+        "add-class": "../../components/add-class/index",
+        "van-button": "../../vant/button/index"
 
     }
 }

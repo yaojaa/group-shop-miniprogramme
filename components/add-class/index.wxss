@@ -1,0 +1,220 @@
+@import "../../css/common.wxss";
+
+.goods-item {
+    margin: 15px 0 10px 0;
+    border-bottom:1px solid #eee;
+    padding-bottom: 20px
+}
+
+.goods-item .rm_btn{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: rgb(204, 203, 203)
+}
+
+.goods-body {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    padding: 0 20rpx;
+    position: relative;
+}
+
+.goods-body .hd {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 8rpx
+}
+
+.goods-body .bd {
+    margin-left:20rpx;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    -o-flex: 1;
+    flex: 1;
+    border-radius: 10px
+}
+
+.goods-body .bd .tit {
+    font-size: 34rpx;
+    color: #474245;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: bold;
+    margin-bottom:5px
+}
+
+.goods-body .bd .link {
+
+    padding: 14rpx 0 0 5rpx
+}
+
+.goods-body .link text {
+    font-size: 13px;
+    color: #49b34d;
+}
+
+.goods-body .fd {
+    color: #999;
+    font-size: 28rpx;
+    position: absolute;
+    right: 25rpx;
+    top: 0
+}
+
+.goods-count .count-item {
+    margin: 30rpx auto 0;
+}
+
+.goods-count .count-item .label {
+    color: #666;
+}
+
+.goods-count .count-item .num {
+    font-size: 28rpx;
+    color: #34a
+}
+.count-box {
+
+    display: flex;
+    background: #fff;
+}
+
+.count-item {
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    -o-flex: 1;
+    flex: 1;
+    text-align: center;
+    margin: 30rpx 0;
+    position: relative;
+}
+
+
+
+.count-item .label {
+    color: #666;
+    display: block;
+}
+
+.count-item .num {
+    font-size: 32rpx;
+    color: #333;
+    display: block;
+    padding: 15rpx 0;
+}
+
+.count-item.active{
+    border-bottom: 2px solid #6dbf0c
+}
+
+.goods-count {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+.hollow{
+
+color:#49b34d;
+border-radius:50rpx;
+border:1px solid #ebffdb;
+padding:0 15px!important;
+background:#f9fff5;
+work-break:keep-all;
+ white-space:nowrap;
+ margin: 0 auto;
+
+}
+
+.badge{
+
+    position: absolute;
+    top: 12rpx;
+    right: 14rpx;
+    height: 16px;
+    border-radius: 9px;
+    min-width: 16px;
+    background: #ff3300;
+    border: 1px solid transparent;
+    color: #fff;
+    font-weight: bold;
+    line-height: 14px;
+    text-align: center;
+    padding: 0 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility
+
+}
+.flex{
+    display: flex;
+}
+.align-center{
+    align-items: center;
+}
+.flex-sub{
+    flex: 1;
+}
+.ml-xs{
+    margin-left: 10rpx;
+}
+.class-main{
+    padding-top: 20rpx;
+    padding-bottom: 120rpx;
+}
+.all-class{
+    max-height: 364rpx;
+    min-height: 200rpx;
+    overflow-y: auto;
+}
+.class-cell{
+    height: 80rpx;
+    margin: 0 60rpx;
+}
+.jsb{
+    justify-content: space-between;
+}
+.jcc{
+    justify-content: center;
+}
+.aic{
+    align-items: center;
+}
+.ellispsi{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.fs0{
+    flex-shrink: 0;
+}
+.class-cell .btn{
+  width: 80px;
+  margin: 0 40rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+}
+.fcg{
+    color: #07c160;
+}
+
+.mini-tags{
+    font-size: 40rpx;
+    line-height: 1;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 6rpx;
+    color: #FF5757;
+    border: 1px solid #FF5757;
+    transform: scale(0.5) translateX(-50%);
+}
