@@ -6,7 +6,7 @@
             </van-field>
         </van-cell-group>
 
-         <van-field value="{{scopeTitle}}" name=" " label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
+         <van-field value="{{typeTitle}}" name=" " label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="自助领取" readonly="{{true}}" bindtap="showTypeModal" />
          
          <!-- type '0领取;1分配;2新人;3下单'; -->
 
@@ -22,7 +22,7 @@
             </van-field>
         </van-cell-group> -->
         <van-cell-group custom-class="mt-sm">
-            <van-field value="{{}}" name="title" label="红包名称" placeholder="例：小明给您发搭伙红包拉！"></van-field>
+            <van-field value="{{}}" name="title" label="红包名称" placeholder="例：亲，给你送红包啦！"></van-field>
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">
             <van-field value="{{ date}}" name=" date" label="红包截至使用时间" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" />
@@ -53,6 +53,36 @@
     <van-popup show="{{ dateModal }}" position="bottom" bind:close="handleDateModal">
         <van-datetime-picker type="date" value="{{ currentDate }}" bind:change="" bind:cancel="handleDateModal" bind:confirm="handleDate" min-date="{{minDate}}" max-date="{{maxDate}}" />
     </van-popup>
+
+        <van-popup show="{{ typeModal }}" is-title="true" title="红包类型" position="bottom" bind:close="showTypeModal">
+        <view class="pv-df">
+            <van-radio-group value="{{ type }}">
+                <van-cell-group border="{{false}}">
+                             <!-- type '0领取;1分配;2新人;3下单'; -->
+
+                    <van-cell title="自助领取" clickable title-width="600rpx" border="{{false}}" data-name="0"  bind:click="changeType">
+                        <van-radio name="0" />
+                    </van-cell>
+                    <van-cell title="指定客人" clickable title-width="600rpx" border="{{false}}" data-name="1" data-title="石门小蜜橘" bind:click="changeType">
+                        <van-radio name="1" />
+                    </van-cell>
+
+                    <van-cell title="新人专享（只有新人才可以领取）" clickable title-width="600rpx" border="{{false}}" data-name="2"  bind:click="changeType">
+                        <van-radio name="2" />
+                    </van-cell>
+
+
+                    <van-cell title="购买商品自动获取" clickable title-width="600rpx" border="{{false}}" data-name="3" data-title="石门小蜜橘" bind:click="changeType">
+                        <van-radio name="3" />
+                    </van-cell>
+
+                </van-cell-group>
+
+            </van-radio-group>
+        </view>
+    </van-popup>
+
+
     <van-popup show="{{ scopeModal }}" is-title="true" title="投诉原因" position="bottom" bind:close="handleScopeModal">
         <view class="pv-df">
             <van-radio-group value="{{ scopeValue }}">
@@ -67,6 +97,8 @@
             </van-radio-group>
         </view>
     </van-popup>
+
+
     <van-notify id="custom-selector" />
     <van-toast id="van-toast" />
 </view>

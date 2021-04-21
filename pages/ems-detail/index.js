@@ -42,7 +42,8 @@ Page({
 
         util.wx.get('/api/order/get_express_info', {
             express_company: options.express_company,
-            express_code: options.express_code
+            express_code: options.express_code,
+            receiverPhone: mobile
          }).then(res => {
             if (res.data.status) { // 物流单号正确
 

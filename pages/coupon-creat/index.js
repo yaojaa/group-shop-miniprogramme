@@ -23,6 +23,9 @@ Page({
         currentDate: new Date().getTime(),
         maxDate: new Date().getTime(),
         scopeModal: false,
+        type: 0 ,
+        
+        typeModal: false,
         scopeValue: '',
         scopeTitle: '',
         checked: false
@@ -44,18 +47,32 @@ Page({
         });
         console.log(event)
     },
+    showTypeModal(){
+
+          this.setData({
+            typeModal: !this.data.typeModal
+        });
+
+    },
     handleScopeModal() {
         this.setData({
             scopeModal: !this.data.scopeModal
         });
     },
     changeScope(event) {
-        console.log(event)
         this.setData({
             scopeValue: event.target.dataset.name,
             scopeTitle: event.target.dataset.title,
             scopeModal: false
         });
+    },
+
+    changeTpye(event) {
+         this.setData({
+            type: event.target.dataset.name,
+            typeTitle: event.target.title,
+            typeModal: false
+        })
     },
     /**
      * 生命周期函数--监听页面加载
