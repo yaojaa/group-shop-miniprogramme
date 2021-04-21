@@ -61,55 +61,45 @@ Page({
         }
     },
 
-    getUserInfoFile: function(){
-        app.getUserInfoFile(res => {
-            this.getUserInfoEvt({
-                detail: res[0]
-            })
-        })
-    },
-
     /***点击授权按钮***/
     getUserInfoEvt: function(e) {
 
         wx.showLoading()
 
-        // if (e.detail.errMsg.indexOf('fail') >= 0) {
-
-        //     wx.showToast({
-        //         title: '请允许授权', //提示文字
-        //         duration: 2000,
-        //         icon: 'none'
-        //         //显示时长
-        //     })
+        app.getUserInfoFile(r=>{
 
 
-        //     return
-        // }
-
-        app.getOpenId().then(openid => {
-
-            app.openid = openid;
-
-            app.login_third(e.detail).then((res) => {
-
-
-                    const d = res.data.data
+                    const d = r.data.data
                     var userInfo = {}
                     userInfo = d.user
                     userInfo['store'] = d.store
-                    userInfo.supplier = d.supplier
-
                     this.jump(userInfo)
-
-
                     wx.hideLoading()
-                })
-                .catch(e => console.log(e))
-
-
 
         })
+
+
+        // app.getOpenId().then(openid => {
+
+        //     app.openid = openid;
+
+        //     app.login_third(e.detail).then((res) => {
+
+
+        //             const d = res.data.data
+        //             var userInfo = {}
+        //             userInfo = d.user
+        //             userInfo['store'] = d.store
+        //             userInfo.supplier = d.supplier
+
+        //             this.jump(userInfo)
+        //             wx.hideLoading()
+        //         })
+        //         .catch(e => console.log(e))
+
+
+
+        // })
 
 
 

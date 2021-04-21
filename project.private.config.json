@@ -1504,6 +1504,17 @@
           "pathName": "pages/ems-detail/index",
           "query": "order_sn=202104121530061723491838",
           "scene": null
+        },
+        {
+          "name": "pages/goods/goods",
+          "pathName": "pages/goods/goods",
+          "query": "goods_id=2000040",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "scene": null
         }
       ]
     }

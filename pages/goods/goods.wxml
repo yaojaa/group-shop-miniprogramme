@@ -433,7 +433,7 @@
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页">
         <view class="content-pop">
             <view class="logo">
-                <image class="avatar-mini" src="{{goods.user.headimg}}" />
+                <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
             </view>
             <view class="info">微信授权登录</view>
             <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">

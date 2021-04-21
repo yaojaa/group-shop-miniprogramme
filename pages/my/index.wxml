@@ -83,11 +83,11 @@
 </i-panel>
 
 <i-panel>
-	<van-cell-group>
+<!-- 	<van-cell-group>
 		<van-cell icon="shop-o" title="优惠券 " is-link link-type="navigateTo" url="../coupon/index">
     <van-tag type="danger">新</van-tag>
 		</van-cell>
-	</van-cell-group>
+	</van-cell-group> -->
 
 	<!-- <van-cell-group>
 		<van-cell icon="logistics" wx:if="{{!is_supperlier}}" title="开通供应商主页" is-link link-type="navigateTo" url="/business/pages/create-home/index" />
