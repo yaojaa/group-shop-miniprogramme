@@ -47,18 +47,16 @@
         </view>
 
 
-      <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页" >
+      <van-popup custom-class="authPopBox" show="{{ showAuth }}" >
 
         <view class="content-pop">
           <view class="logo">
               <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
           </view>
           <view class="info">
-         注册需要获取您的身份信息
+         请先登录
           </view>
           <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">我同意</button>
-
-           <button size="mini"  plain="false" bindtap="cancel">先看看</button>
         </view>
     </van-popup>
 

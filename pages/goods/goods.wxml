@@ -1,5 +1,5 @@
-<i-share-painter palette="{{template}}" bind:imgOK="onImgOK"></i-share-painter>
-<!-- <image src="{{imgOkPath}}"></image> -->
+<!-- <i-share-painter palette="{{template}}" bind:imgOK="onImgOK"></i-share-painter>
+ --><!-- <image src="{{imgOkPath}}"></image> -->
 <preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view>
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
     <view slot="bottom">
@@ -290,8 +290,8 @@
         </view>
     </view>
      <view class="weui-footer" wx:if="{{!showPanel}}">
-        <button bindtap="goCreateHome" class="linenear_bg left-raduis right-raduis" size="large" type="primary" style="margin:0 18px">
-            +我也要拥有这个漂亮的免费小程序
+        <button bindtap="goCreateHome" class="linenear_bg left-raduis right-raduis" size="mini" type="primary" style="margin:0 18px">
+            +我也要使用开心麻团卖货
         </button>
     </view>
 

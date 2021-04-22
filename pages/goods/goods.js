@@ -1126,6 +1126,8 @@ Page({
   },
     getUserInfoFile: function(){
 
+      wx.showLoading()
+
         app.getUserInfoFile(r=>{
 
 

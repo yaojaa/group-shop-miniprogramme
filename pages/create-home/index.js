@@ -21,6 +21,13 @@ Page({
      */
     onLoad: function(options) {
 
+
+        if(!app.globalData.userInfo){
+           return this.setData({
+                showAuth:true
+            })
+        }
+
         const uInfo = app.globalData.userInfo || {}
 
         this.setData({
@@ -48,6 +55,7 @@ Page({
                     util.wx.get('/api/index/get_openid', {
                         js_code: res.code
                     }).then(res => {
+                        console.log(res,res.data.data.session_key)
                         if (res.data.code == 200) {
                             this.data.session_key = res.data.data.session_key
                         }
@@ -225,56 +233,24 @@ Page({
     },
 
     getUserInfoFile: function(){
-        app.getUserInfoFile(res => {
-            this.getUserInfoEvt({
-                detail: res[0]
-            })
-        })
-    },
 
-  getUserInfoEvt: function(e) {
-      console.log(e)
-      // if (e.detail.errMsg !== "getUserInfo:ok") {
-      //     return wx.showToast({ 'title': '允许一下又不会怀孕', icon: 'none' })
-      // }
-
-        app.globalData.userInfo = e.detail.userInfo
         wx.showLoading()
-        app.getOpenId().then((openid) => {
-            app.globalData.openid = openid
-            app.login_third(e.detail).then((res) => {
-                    wx.hideLoading()
 
-                    const uInfo = app.globalData.userInfo
+         app.getUserInfoFile(r=>{
 
-                    console.log('uInfouInfo', uInfo)
+            wx.hideLoading()
 
-                    if (uInfo.store && uInfo.store.store_id) {
-                        wx.showToast({
-                            title: '您已经申请过啦',
-                            icon: 'none'
-                        })
+                    this.setData({
+                        showAuth:false
+                    })
+                    this.getWxCode()
 
-                        wx.switchTab({
-                            url: '/pages/home/index'
-                        })
-                    } else {
-
-                        this.setData({
-                            showAuth: false
-                        })
-
-                        this.submitForm()
-
-
-                    }
-
-
-                })
-                .catch(e => console.log(e))
         })
+       
+
 
     },
+
     inputDuplex: util.inputDuplex,
 
     /**

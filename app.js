@@ -136,18 +136,16 @@ App({
 
     },
     getUserInfoFile: function(callback) {
-
-
-        if (wx.getUserProfile) {
-            wx.getUserProfile({
+        //检测哪个方法能用，兼容旧的方法
+        const wxGetUserProfile =  wx.getUserProfile ? wx.getUserProfile: wx.getUserInfo
+            wxGetUserProfile({
                 desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
                 success: res => {
-                    console.log(res)
                     this.getOpenId().then(r => {
                         this.login_third(res).then(r => callback(r)).catch(e => {
                             wx.hideLoading()
                             wx.showToast({
-                                title: '登陆失败请重试',
+                                title: '登陆失败请重试A',
                                 icon: 'none'
                             })
                         })
@@ -155,26 +153,6 @@ App({
                 },
                 fail: fail => {}
             })
-
-        } else {
-            wx.getUserInfo({
-                success: res => {
-                    console.log(res)
-                    this.getOpenId().then(r => {
-                        this.login_third(res).then(r => callback(r)).catch(e => {
-                            wx.hideLoading()
-                            wx.showToast({
-                                title: '登陆失败请重试',
-                                icon: 'none'
-                            })
-                        })
-                    })
-                },
-                fail: fail => {}
-            })
-
-        }
-
     },
 
 
@@ -206,6 +184,11 @@ App({
                     console.log(res)
 
                     if (res.data.code === 200) {
+
+                        wx.showToast({
+                            title:'登录成功',
+                            icon: 'none'
+                        })
 
                         const d = res.data.data
                         var userInfo = d.user

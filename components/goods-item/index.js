@@ -342,7 +342,7 @@ Component({
       let id = e.currentTarget.dataset.id;
       let delivery_method = e.currentTarget.dataset.delivery_method;
       let goods_name = e.currentTarget.dataset.name;
-      let store_id = app.globalData.userInfo.store.store_id;
+      let store_id = app.globalData.userInfo.store_id;
 
       wx.navigateTo({
         url:

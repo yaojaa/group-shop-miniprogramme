@@ -1508,12 +1508,13 @@
         {
           "name": "pages/goods/goods",
           "pathName": "pages/goods/goods",
-          "query": "goods_id=2000040",
+          "query": "goods_id=2000041",
           "scene": null
         },
         {
           "name": "pages/login/login",
           "pathName": "pages/login/login",
+          "query": "",
           "scene": null
         }
       ]
