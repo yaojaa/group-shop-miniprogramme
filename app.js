@@ -4,21 +4,21 @@ import config from './utils/conf.js'
 
 App({
 
-    url2json : function(string, overwrite) {
-    var obj = {},
-        pairs = string.split('&'),
-        d = decodeURIComponent,
-        name, value;
+    url2json: function(string, overwrite) {
+        var obj = {},
+            pairs = string.split('&'),
+            d = decodeURIComponent,
+            name, value;
 
-    pairs.forEach((item, i) => {
-        var pair = item.split('=');
-        name = d(pair[0]);
-        value = d(pair[1]);
-        obj[name] = value;
+        pairs.forEach((item, i) => {
+            var pair = item.split('=');
+            name = d(pair[0]);
+            value = d(pair[1]);
+            obj[name] = value;
 
-    })
-    return obj;
-},
+        })
+        return obj;
+    },
 
     //请求维系获取openId
     getOpenId: function() {
@@ -33,7 +33,7 @@ App({
                     if (res.code) {
                         //发起网络请求index/get_openid
                         wx.request({
-                            url: config.apiUrl+'/api/index/get_openid?js_code=' + res.code,
+                            url: config.apiUrl + '/api/index/get_openid?js_code=' + res.code,
                             data: {
                                 code: res.code
                             },
@@ -136,47 +136,44 @@ App({
 
     },
     getUserInfoFile: function(callback) {
-        let userInfoArr = [
-            new Promise((resolve, reject) => {
-                wx.getUserInfo({
-                    success: res => {
-                        resolve(res)
-                    }
-                })
 
-            })
-        ];
-        if(wx.getUserProfile){
-            userInfoArr.push(
-                new Promise((resolve, reject) => {
-                    wx.getUserProfile({
-                      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-                      success: res => {
-                        resolve(res)
-                      },
-                      fail: fail => {
-                        resolve(fail)
-                      }
+
+        if (wx.getUserProfile) {
+            wx.getUserProfile({
+                desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                success: res => {
+                    console.log(res)
+                    this.getOpenId().then(r => {
+                        this.login_third(res).then(r => callback(r)).catch(e => {
+                            wx.hideLoading()
+                            wx.showToast({
+                                title: '登陆失败请重试',
+                                icon: 'none'
+                            })
+                        })
                     })
+                },
+                fail: fail => {}
+            })
 
-                })
-            )
+        } else {
+            wx.getUserInfo({
+                success: res => {
+                    console.log(res)
+                    this.getOpenId().then(r => {
+                        this.login_third(res).then(r => callback(r)).catch(e => {
+                            wx.hideLoading()
+                            wx.showToast({
+                                title: '登陆失败请重试',
+                                icon: 'none'
+                            })
+                        })
+                    })
+                },
+                fail: fail => {}
+            })
+
         }
-
-        Promise.all(userInfoArr)
-        .then(e => {
-            if(e.length > 1 && e[1].userInfo){
-                e[0].userInfo = e[1].userInfo
-                this.globalData.userInfo = e[1].userInfo
-            }else{
-                this.globalData.userInfo = this.globalData.userInfo || e[0].userInfo
-            }
-
-            if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(this.globalData.userInfo)
-            }
-            callback && callback(e)
-        })
 
     },
 
@@ -193,12 +190,14 @@ App({
 
         return new Promise((resolve, reject) => {
             wx.request({
-                url: config.apiUrl+'/api/index/login_by_openid',
+                url: config.apiUrl + '/api/index/login_by_openid',
                 method: 'POST',
                 data: {
                     openid: this.openId,
                     session_key: this.session_key,
                     encryptedData: res.encryptedData,
+                    nickname: res.userInfo.nickName,
+                    head_pic: res.userInfo.avatarUrl,
                     ...this.comeInfo
                 },
                 success: (res) => {
@@ -207,29 +206,29 @@ App({
                     console.log(res)
 
                     if (res.data.code === 200) {
-                      
-                      const d = res.data.data
+
+                        const d = res.data.data
                         var userInfo = d.user
-                            
-                            if(d.hasOwnProperty('store')){
-                                userInfo.store =  d.store
-                                this.globalData.store_id = d.store.store_id
-                            }
 
-                            //  if(d.hasOwnProperty('supplier')){
-                            //     userInfo.supplier =  d.supplier
-                            //     this.globalData.store_id = d.supplier.store_id
+                        if (d.hasOwnProperty('store')) {
+                            userInfo.store = d.store
+                            this.globalData.store_id = d.store.store_id
+                        }
 
-                            // }
-                            
-                        this.globalData.token = d.token 
+                        //  if(d.hasOwnProperty('supplier')){
+                        //     userInfo.supplier =  d.supplier
+                        //     this.globalData.store_id = d.supplier.store_id
+
+                        // }
+
+                        this.globalData.token = d.token
                         this.globalData.userInfo = userInfo
 
                         wx.setStorage({ //存储到本地
                             key: "userInfo",
                             data: userInfo
                         })
-                    
+
 
                         resolve(res)
 
@@ -332,27 +331,27 @@ App({
                 this.globalData.systemInfo = e
 
 
-                  try {
-                let custom = wx.getMenuButtonBoundingClientRect();
-                this.globalData.Custom = custom;
-                this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-                
+                try {
+                    let custom = wx.getMenuButtonBoundingClientRect();
+                    this.globalData.Custom = custom;
+                    this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+
                 } catch (e) {
-                    this.globalData.CustomBar = e.statusBarHeight+20
+                    this.globalData.CustomBar = e.statusBarHeight + 20
                 }
 
             }
         })
         //检测胶囊高度
-           var menu = wx.getMenuButtonBoundingClientRect()
-    console.log('菜单按键宽度：',menu.width)
-    console.log('菜单按键高度：',menu.height)
-    console.log('菜单按键top：',menu.top)
+        var menu = wx.getMenuButtonBoundingClientRect()
+        console.log('菜单按键宽度：', menu.width)
+        console.log('菜单按键高度：', menu.height)
+        console.log('菜单按键top：', menu.top)
 
-         this.globalData.menuBarTop = menu.top;
+        this.globalData.menuBarTop = menu.top;
 
 
-    
+
 
 
         const userInfo = wx.getStorageSync('userInfo')
@@ -363,19 +362,19 @@ App({
 
             //兼容旧版本
             //
-            if(userInfo.store && userInfo.store.store_id ){
+            if (userInfo.store && userInfo.store.store_id) {
 
                 this.globalData.userInfo.store_id = userInfo.store.store_id
-                this.globalData.store_id = userInfo.store.store_id 
+                this.globalData.store_id = userInfo.store.store_id
 
             }
 
-            if( userInfo.hasOwnProperty('store_id')){
+            if (userInfo.hasOwnProperty('store_id')) {
 
                 this.globalData.userInfo.store_id = userInfo.store_id
             }
 
-        
+
             if (this.userLoginReadyCallback) {
                 this.userLoginReadyCallback(this.globalData.userInfo)
             }

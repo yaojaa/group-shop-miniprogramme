@@ -1125,11 +1125,27 @@ Page({
     }
   },
     getUserInfoFile: function(){
-        app.getUserInfoFile(res => {
-            this.getUserInfoEvt({
-                detail: res[0]
-            })
+
+        app.getUserInfoFile(r=>{
+
+
+              
+                     this.setData({
+                      showAuth: false
+                    });
+
+                    wx.showToast({
+                      title:'登陆成功',
+                      icon:'none'
+                    })
+
+                    this.getGoodsInfo();
+                    this.add_access();
+                    
+                    wx.hideLoading()
+
         })
+       
     },
   getUserInfoEvt: function (e) {
     console.log(e);

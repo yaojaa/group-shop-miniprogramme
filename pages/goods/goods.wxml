@@ -218,13 +218,13 @@
                         <block wx:for="{{ _orderUsers_ }}" wx:for-item="listItem" wx:key="index">
                             <view class="buyer-item buyer-item-cell" wx:for="{{listItem}}" wx:key="{{item.create_number}}">
                                 <text class="number">{{item.create_number}}</text>
-                                <image wx:if="{{goods.show_buyerlist == 1}}" class="buyer-avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132"></image>
+                                <image wx:if="{{goods.show_buyerlist == 1}}" class="buyer-avatar" src="https://static.kaixinmatuan.cn/logo.png"></image>
                                 <image wx:else class="buyer-avatar" src="{{item.headimg}}"></image>
                                 <view class="buyer-info">
                                     <view class="name">
-                                       <text wx:if="{{goods.show_buyerlist == 1}}">匿名小主{{index+1}} </text>
+                                       <text wx:if="{{goods.show_buyerlist == 1}}">匿名小主 </text>
                                        <text wx:else>{{item.nickname}}</text>
-<text class="mini-tags" wx:if="{{item.order_pay_total>0}}">跟团{{item.order_pay_total}}次</text>
+ <text class="mini-tags" wx:if="{{item.order_pay_total>0}}"> 跟团{{item.order_pay_total}}次</text>
                                         <!-- <text class="mini-tags" wx:if="{{item.order_pay_total==2}}">回头客</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>2 && item.order_pay_total<=10 }}">有空就来逛逛</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>10 && item.order_pay_total<=30 }}">高级粉丝</text>
@@ -433,7 +433,7 @@
     <van-popup custom-class="authPopBox" show="{{ showAuth }}" confirmButtonText="进入主页">
         <view class="content-pop">
             <view class="logo">
-                <image class="avatar-mini" src="{{goods.user.headimg}}" />
+                <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
             </view>
             <view class="info">微信授权登录</view>
             <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">
