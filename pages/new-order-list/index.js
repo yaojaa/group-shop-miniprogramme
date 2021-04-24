@@ -17,7 +17,7 @@ Page({
         search_order_status: 3,
         searchWords: '',
         user_store_id: '',
-        refund_apply_count:'4'
+        refund_apply_count:''
     },
     // 搜索
     onSearch(e) {

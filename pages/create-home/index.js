@@ -21,13 +21,6 @@ Page({
      */
     onLoad: function(options) {
 
-
-        if(!app.globalData.userInfo){
-           return this.setData({
-                showAuth:true
-            })
-        }
-
         const uInfo = app.globalData.userInfo || {}
 
         this.setData({
@@ -55,7 +48,6 @@ Page({
                     util.wx.get('/api/index/get_openid', {
                         js_code: res.code
                     }).then(res => {
-                        console.log(res,res.data.data.session_key)
                         if (res.data.code == 200) {
                             this.data.session_key = res.data.data.session_key
                         }
@@ -66,6 +58,13 @@ Page({
     },
     //通过绑定手机号登录
     getPhoneNumber: function(e) {
+
+
+        if(!app.globalData.userInfo){
+            return this.setData({
+                showAuth: true
+            })
+        }
 
 
         util.wx.post('/api/user/get_wx_mobile', {
@@ -234,21 +233,18 @@ Page({
 
     getUserInfoFile: function(){
 
+
         wx.showLoading()
 
-         app.getUserInfoFile(r=>{
+        app.getUserInfoFile(r=>{
 
-            wx.hideLoading()
-
+                    wx.hideLoading()
                     this.setData({
                         showAuth:false
                     })
-                    this.getWxCode()
 
         })
-       
-
-
+        
     },
 
     inputDuplex: util.inputDuplex,

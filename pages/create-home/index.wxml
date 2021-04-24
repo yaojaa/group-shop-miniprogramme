@@ -9,9 +9,6 @@
 
      <open-data wx:else type="userAvatarUrl" class="img" ></open-data>
 
-
-
-
      </view>
 
     </view>
@@ -54,9 +51,11 @@
               <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
           </view>
           <view class="info">
-         请先登录
+         请先授权登录
           </view>
           <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">我同意</button>
+          <button size="mini" type="default" plain="false" bindtap="cancel">取消</button>
+
         </view>
     </van-popup>
 
