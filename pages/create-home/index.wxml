@@ -1,32 +1,19 @@
 <view class="container cf">
     <view class="reg-head cf">
-     
-
-     <view class="uploadArea">
-     <wux-upload  wx:if="{{store_logo }}" listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
-            <image src="{{ store_logo }}" wx:if="{{store_logo }}" />
-     </wux-upload>
-
-     <open-data wx:else type="userAvatarUrl" class="img" ></open-data>
-
-     </view>
-
+        <view class="uploadArea">
+            <wux-upload wx:if="{{store_logo }}" listType="picture-card" showUploadList="{{ false }}" url="https://www.kaixinmatuan.cn/api/seller/upload" bind:change="onChange" bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
+                <image src="{{ store_logo }}" wx:if="{{store_logo }}" />
+            </wux-upload>
+            <open-data wx:else type="userAvatarUrl" class="img"></open-data>
+        </view>
     </view>
     <form bindsubmit="submitForm">
         <van-cell-group>
- 
-
-
-            <van-field required data-key="mobile" readonly name="mobile" label="手机号"  placeholder="点击右侧按钮" type="number"  value="{{mobile}}"     use-button-slot>
-             <button open-type="getPhoneNumber" value="{{mobile}}"  slot="button" size="mini" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+            <van-field required data-key="mobile" readonly name="mobile" label="手机号" placeholder="点击右侧按钮" type="number" value="{{mobile}}" use-button-slot>
+                <button open-type="getPhoneNumber" value="{{mobile}}" slot="button" size="mini" bindgetphonenumber="getPhoneNumber">获取手机号</button>
             </van-field>
-
-
-        <van-field required data-key="wechatnumber"  value="{{wechatnumber}}" bind:input="inputDuplex"  name="wechatnumber" label="微信号"  placeholder="请填写微信号方便客户咨询" type="text" />
-            
-
-    <van-field required name="realname" bind:input="inputDuplex"  data-key="realname" label="真实姓名"  placeholder="请填写真实姓名 提现使用" type="text" />
-
+            <van-field required data-key="wechatnumber" value="{{wechatnumber}}" bind:input="inputDuplex" name="wechatnumber" label="微信号" placeholder="请填写微信号方便客户咨询" type="text" />
+            <van-field required name="realname" bind:input="inputDuplex" data-key="realname" label="真实姓名" placeholder="请填写真实姓名 提现使用" type="text" />
         </van-cell-group>
         <view class="m-df mt-xl">
             <button class="btn xl linenear_bg primary block" form-type="submit" disabled="{{disabled}}">
@@ -34,32 +21,21 @@
             </button>
         </view>
     </form>
-
-      <view class="footer-btn ">
-  
-
-               <view class="center" style="padding: 30px">
-        <button open-type="contact" bindcontact="handleContact">联系客服</button>
-    </view>
+    <view class="footer-btn ">
+        <view class="center" style="padding: 30px">
+            <button open-type="contact" bindcontact="handleContact">联系客服</button>
         </view>
-
-
-      <van-popup custom-class="authPopBox" show="{{ showAuth }}" >
-
+    </view>
+    <van-popup custom-class="authPopBox" show="{{ showAuth }}">
         <view class="content-pop">
-          <view class="logo">
-              <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
-          </view>
-          <view class="info">
-         请先授权登录
-          </view>
-          <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">我同意</button>
-          <button size="mini" type="default" plain="false" bindtap="cancel">取消</button>
-
+            <view class="logo">
+                <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
+            </view>
+            <view class="info">
+                请先授权登录
+            </view>
+            <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">我同意</button>
+            <button size="mini" type="default" plain="false" bindtap="cancel">取消</button>
         </view>
     </van-popup>
-
-
-
-
 </view>

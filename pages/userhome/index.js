@@ -97,7 +97,6 @@ Page({
         break
     }
 
-    console.log(e)
   },
   onClose() {
     this.setData({ show: false })
@@ -476,7 +475,7 @@ Page({
           }
 
           this.setData({
-            store_slide: res.data.data.store_slide[0],
+            store_slide: res.data.data.store_slide[0] || 'background:url(https://static.kaixinmatuan.cn/d41d8cd98f00b204e9800998ecf8427e20210425234027234.jpeg) center bottom;background-size:cover',
             info: res.data.data
           })
         }

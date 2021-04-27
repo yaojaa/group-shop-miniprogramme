@@ -1516,6 +1516,12 @@
           "pathName": "pages/login/login",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/create_shop/index",
+          "pathName": "pages/create_shop/index",
+          "query": "goods_id=2000041",
+          "scene": null
         }
       ]
     }

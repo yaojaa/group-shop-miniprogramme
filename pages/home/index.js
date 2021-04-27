@@ -67,11 +67,10 @@ Page({
         })
 
         app.getUserInfoFile(res => {
-            res = res[0]
-            console.log(res);
+            console.log(res.data.data.user);
                 var auinfo = app.globalData.userInfo
-                auinfo.nickname = res.userInfo.nickName;
-                auinfo.headimg = res.userInfo.avatarUrl;
+                auinfo.nickname = res.data.data.user.nickname;
+                auinfo.headimg = res.data.data.user.headimg;
 
                 util.wx.post('/api/user/update_wx_basicinfo', {
                     nickname: auinfo.nickname,
@@ -85,8 +84,8 @@ Page({
                         })
 
                         this.setData({
-                            headimg: app.globalData.userInfo.headimg,
-                            nickname: app.globalData.userInfo.nickname
+                            headimg: auinfo.headimg,
+                            nickname: auinfo.nickname
                         });
 
 

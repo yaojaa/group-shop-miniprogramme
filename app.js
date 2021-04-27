@@ -143,6 +143,7 @@ App({
                 success: res => {
                     this.getOpenId().then(r => {
                         this.login_third(res).then(r => callback(r)).catch(e => {
+                            console.log(e)
                             wx.hideLoading()
                             wx.showToast({
                                 title: '登陆失败请重试A',
@@ -183,7 +184,7 @@ App({
 
                     console.log(res)
 
-                    if (res.data.code === 200) {
+                    if (res.data.code == 200) {
 
                         wx.showToast({
                             title:'登录成功',

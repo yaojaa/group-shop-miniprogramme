@@ -1,6 +1,13 @@
 {
-  "navigationBarTitleText": "主页设置",
-  "usingComponents": {
-    "i-panel": "../../iView/panel/index"  
-   }
+    "navigationBarTitleText": "主页设置",
+    "usingComponents":
+    {
+        "van-cell": "../../../vant/cell/index",
+        "van-field": "../../../vant/field/index",
+        "van-cell-group": "../../../vant/cell-group/index",
+        "wux-upload": "../../../wux/upload/index",
+        "van-radio": "../../../vant/radio/index",
+        "van-radio-group": "../../../vant/radio-group/index",
+        "van-divider": "../../../vant/divider/index"
+    }
 }
