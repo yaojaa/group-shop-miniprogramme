@@ -23,12 +23,15 @@ Page({
         currentDate: new Date().getTime(),
         maxDate: new Date().getTime(),
         scopeModal: false,
-        type: 0 ,
+        type: '0' ,
         
         typeModal: false,
         scopeValue: '',
         scopeTitle: '',
-        checked: false
+        checked: false,
+        typeTitle:'',
+        userSelectVisble:true,
+        customerList:[]
     },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
@@ -67,10 +70,10 @@ Page({
         });
     },
 
-    changeTpye(event) {
+    changeType(event) {
          this.setData({
             type: event.target.dataset.name,
-            typeTitle: event.target.title,
+            typeTitle: event.target.dataset.title,
             typeModal: false
         })
     },
@@ -78,6 +81,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+
+        this.getCustomers()
 
     },
     //创建优惠券
@@ -107,44 +112,39 @@ Page({
     },
 
     /**
-     * 生命周期函数--监听页面卸载
+     * 获取粉丝列表
      */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-        // 显示顶部刷新图标
-        wx.showNavigationBarLoading();
-        this.getDataList(this.data.sortstr).then(() => {
-            // 隐藏导航栏加载框
-            wx.hideNavigationBarLoading();
-            // 停止下拉动作
-            wx.stopPullDownRefresh();
+    getCustomers(params) {
+        this.setData({
+            loading: true
         })
-    },
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-        if (this.data.cpage && !this.data.loading) {
-            this.setData({
-                cpage: this.data.cpage + 1, //每次触发上拉事件，把requestPageNum+1
-            })
-            if (this.data.cpage > this.data.totalpage) {
-                return
-            }
-            this.getDataList(this.data.sortstr).then(() => {
-                // 隐藏导航栏加载框
-                wx.hideNavigationBarLoading();
-                // 停止下拉动作
-                wx.stopPullDownRefresh();
-            })
+        let data = {
+            sortstr: '',
+            cpage: 1,
+            pagesize: 15
         }
+
+        if(this.data.searchWords){
+            data.keyword = this.data.searchWords
+        }
+
+        console.log(data)
+
+        return new Promise((resolve, reject) => {
+            util.wx.get('/api/seller/get_fans_list', data).then((res) => {
+                this.setData({
+                    loading: false,
+                    customerList: this.data.list.concat(res.data.data.lists)
+                })
+                resolve(res)
+            }, (err) => {
+                reject(err)
+            })
+        })
+  
     },
+
+
 
     /**
      * 用户点击右上角分享

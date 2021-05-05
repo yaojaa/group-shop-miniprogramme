@@ -48,10 +48,10 @@
         <view style="padding: 10px 16px">
             <van-radio-group value="{{ style }}" bind:change="onChangeStyle">
                 <view class="pv-xs">
-                    <van-radio name="1">单排</van-radio>
+                    <van-radio name="1" checked-color="#69b90b">单排</van-radio>
                 </view>
                 <view class="pv-xs">
-                    <van-radio name="2">双排</van-radio>
+                    <van-radio name="2" checked-color="#69b90b">双排</van-radio>
                 </view>
             </van-radio-group>
         </view>
