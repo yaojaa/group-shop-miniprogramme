@@ -138,16 +138,20 @@ Page({
             this.data.cpage = 1;
             this.setData({
                 searchWords: sv,
-                goodslist: []
+                goodslist: [],
+                is_loading: true
             });
             this.getGoodsList();
+        }else{
+            this.onCancel()
         }
     },
     onCancel() {
         this.data.cpage = 1;
         this.setData({
             searchWords: '',
-            goodslist: []
+            goodslist: [],
+            is_loading: true
         });
         this.getGoodsList();
     },
