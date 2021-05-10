@@ -15,19 +15,21 @@
         </van-cell-group> -->
         <van-cell-group custom-class="mt-sm">
             <van-field value="{{title}}" name="title" label="红包名称" placeholder="例：亲，给你送红包啦！"></van-field>
-            <van-field use-button-slot value="{{reduce}}" name="reduce" label="红包金额" placeholder="请输入金额">
+            <van-field use-button-slot value="{{reduce}}" bind:input="inputDuplex" data-key="reduce" name="reduce" label="红包金额" placeholder="请输入金额">
                 <view slot="button">元</view>
             </van-field>
 
-               <van-field use-button-slot value="{{total}}" name="total" label="红包数量" placeholder="请输入红包的数量">
+               <van-field use-button-slot value="{{total}}" bind:input="inputDuplex" data-key="total" name="total" label="红包数量" placeholder="请输入红包的数量">
                 <view slot="button">个</view>
             </van-field>
 
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">
-            <van-field value="{{ date}}" name="date" label="红包截至使用时间" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" />
-            <!-- 
-              <van-field value="{{ date}}" name="days" label="使用有效期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" /> -->
+            <van-field value="{{ stop_time}}" name="date" label="红包截至使用日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" />
+            
+       <!--      <van-field value="{{ date}}" name="days" label="使用有效期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" /> -->
+
+              
             <van-field value="{{scopeTitle}}" name=" " label="红包适用范围" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">

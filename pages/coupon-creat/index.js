@@ -21,10 +21,10 @@ Page({
         dateModal: false,
         minDate: new Date(1950, 1, 1).getTime(),
         currentDate: new Date().getTime(),
-        maxDate: new Date().getTime(),
+        maxDate: new Date(2050,1,1).getTime(),
         scopeModal: false,
         type: '0' , // 红包类型
-        title:'' ,  //红包名称
+        title:'亲，给你送红包啦！' ,  //红包名称
         reduce:'', //红包减的金额
         total:'' ,//红包数量
         stop_time:'' ,// 过期时间
@@ -38,7 +38,6 @@ Page({
         userSelectVisble:true,
         customerList:[],
         customers:[],
-        title:'亲，给你送红包啦！',
         customerVisible:false,
         goodsVisible:false,
         goodslist:[],
@@ -55,11 +54,10 @@ Page({
     },
     handleDate(event) {
         this.setData({
-            currentDate: event.detail,
-            date: fmtDate(event.detail),
+            stop_time: fmtDate(event.detail),
             dateModal: !this.data.dateModal
         });
-        console.log(event)
+        console.log(fmtDate(event.detail))
     },
     showTypeModal(){
 
@@ -100,9 +98,31 @@ Page({
     },
     //创建优惠券
     createCoupon(){
-        util.wx.post('/api/redpacket',{
+
+
+        if(this.data.title == ''){
+            return wx.showToast({
+                title:'请填写名称',
+                icon: 'none'
+            })
+        }
+
+
+        if(this.data.reduce.trim() == ''){
+            return wx.showToast({
+                title:'请填写红包金额',
+                icon: 'none'
+            })
+        }
+
+
+
+        util.wx.post('/api/redpacket/add_redpacket',{
             type:this.data.type,
-            title:this.data.title
+            title:this.data.title,
+            reduce: this.data.reduce,
+            total: this.data.total,
+            stop_time: this.data.stop_time
         })
     },
 
@@ -243,6 +263,7 @@ Page({
         })
   
     },
+    inputDuplex:util.inputDuplex,
 
 
 
