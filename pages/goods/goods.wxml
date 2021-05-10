@@ -1,6 +1,5 @@
 
 <!-- <image src="{{imgOkPath}}"></image> -->
-    <official-account></official-account>
 
 <preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view>
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
@@ -297,10 +296,13 @@
         </button>
     </view>
 
+        <official-account></official-account>
+
+<!-- 
     <view class="official-info " bindtap="linkOfficialInfo" wx:if="{{!showPanel}}">
         <view class="info">关注公众号，接收订单通知等消息推送</view>
         <button class="btn primary hollow" size="mini">关注</button>
-    </view>
+    </view> -->
 
 
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->

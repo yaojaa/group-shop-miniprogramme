@@ -13,12 +13,14 @@
         "van-checkbox": "../../vant/checkbox/index",
         "van-checkbox-group": "../../vant/checkbox-group/index",
         "van-area": "../../vant/area/index",
-        "van-popup": "../../vant/popup/index",
+        "van-dialog": "../../vant/dialog/index",
         "van-icon": "../../vant/icon/index",
         "van-datetime-picker": "../../vant/datetime-picker/index",
         "van-popup": "../../vant/popup/index",
         "van-radio": "../../vant/radio/index",
         "van-radio-group": "../../vant/radio-group/index",
-        "van-switch": "../../vant/switch/index"
+        "van-switch": "../../vant/switch/index",
+        "van-search": "../../vant/search/index"
+
     }
 }

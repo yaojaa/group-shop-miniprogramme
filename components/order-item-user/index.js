@@ -1,5 +1,6 @@
 // components/order-panel/index.js
 const util = require('../../utils/util')
+import Dialog from '../../vant/dialog/dialog';
 
 Component({
     /**
@@ -34,6 +35,19 @@ Component({
      * 组件的方法列表
      */
     methods: {
+
+        goContact(e) {
+            const { phone, wx, wx_code, nickname } = e.currentTarget.dataset
+            this.setData({
+                phone: phone,
+                weChat: wx,
+                wx_code: wx_code,
+                nickname: nickname
+            })
+            Dialog.alert({
+                selector: '#contact'
+            })
+        }
 
     }
 })

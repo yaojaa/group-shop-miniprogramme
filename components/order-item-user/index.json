@@ -1,7 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-  	    "i-icon": "../../iView/icon/index"
+  	    "van-icon": "../../vant/icon/index",
+        "van-dialog": "../../../vant/dialog/index"
 
   }
 }

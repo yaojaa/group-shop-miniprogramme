@@ -23,7 +23,12 @@ Page({
         currentDate: new Date().getTime(),
         maxDate: new Date().getTime(),
         scopeModal: false,
-        type: '0' ,
+        type: '0' , // 红包类型
+        title:'' ,  //红包名称
+        reduce:'', //红包减的金额
+        total:'' ,//红包数量
+        stop_time:'' ,// 过期时间
+        goods_limit: 0 , //限制商品
         
         typeModal: false,
         scopeValue: '',
@@ -31,7 +36,13 @@ Page({
         checked: false,
         typeTitle:'',
         userSelectVisble:true,
-        customerList:[]
+        customerList:[],
+        customers:[],
+        title:'亲，给你送红包啦！',
+        customerVisible:false,
+        goodsVisible:false,
+        goodslist:[],
+        cpage:1
     },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
@@ -59,8 +70,10 @@ Page({
     },
     handleScopeModal() {
         this.setData({
-            scopeModal: !this.data.scopeModal
+            goodsVisible: !this.data.goodsVisible
         });
+
+        this.getGoodsList()
     },
     changeScope(event) {
         this.setData({
@@ -87,8 +100,95 @@ Page({
     },
     //创建优惠券
     createCoupon(){
-        util.wx.post('/api/redpacket')
+        util.wx.post('/api/redpacket',{
+            type:this.data.type,
+            title:this.data.title
+        })
     },
+
+    checkboxChange(e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    this.data.customers = e.detail.value
+    },
+    onCustomerClose(){
+        this.setData({
+            customers: this.data.customers
+        })
+    },
+    showUserSelect(){
+        this.setData({
+            customerVisible: true
+        })
+    },
+
+    getGoodsList: function() {
+        let ajaxData = {
+            cpage: this.data.cpage,
+            pagesize: 15
+        };
+        if (this.data.searchWords) {
+            ajaxData.keyword = this.data.searchWords
+        }
+        this.setData({
+            is_loading: true
+        });
+
+        util.wx
+            .get('/api/seller/get_goods_list', ajaxData)
+            .then((res) => {
+                console.log(res);
+                // if (this.data.searchWords) {
+                //     //搜索
+                //     this.searchLoadData(res);
+                //     return;
+                // }
+
+                if (res.data.code == 200) {
+                    this.setData({
+                        goodslist: this.data.goodslist.concat(res.data.data.goodslist),
+                        is_loading: false
+                    });
+
+                    this.data.goodslist.forEach((item) => {
+                        if (item._order_status1_count > 0) {
+                            this.setData({
+                                hasNewOrder: true
+                            });
+                        }
+                    });
+
+                    this.totalpage = res.data.data.page.totalpage;
+                } else {
+                    this.setData({
+                        is_loading: false
+                    });
+                }
+            })
+            .catch((e) => {
+                // if (this.data.searchWords) {
+                //     this.setData({
+                //         search_is_loading: false
+                //     });
+                // } else {
+                    this.setData({
+                        is_loading: false
+                    });
+                // }
+            });
+    },
+
+    scrolltolower(){
+
+          // }
+        ++this.data.cpage;
+
+        if (this.data.cpage <= this.totalpage) {
+            this.getGoodsList(); //重新调用请求获取下一页数据
+        } else {
+            this.data.cpage = this.totalpage;
+        }
+    },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
