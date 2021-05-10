@@ -70,7 +70,7 @@
         <!-- <button class='new-btn hollow' bindtap="new_btn">
           <i-icon type="add" size="20" />新发布
         </button> -->
-        <i-panel wx:if="{{goodslist.length > 0}}">
+        <i-panel wx:if="{{goodslist.length > 0 || searchWords}}">
             <!--             <van-tabs active="{{ active }}"  bind:change="onChange" color="#ff8900">
   <van-tab title="全部"></van-tab>
   <van-tab title="进行中"></van-tab>
@@ -80,9 +80,11 @@
             <!-- <van-search value="{{ searchWords }}" shape="round" background="#fff" placeholder="请输入标题关键词搜索"
                 show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
                  -->
-            <van-search value="{{ searchWords }}" placeholder="请输入标题关键词搜索" use-action-slot bind:cancel="onCancel" bind:search="onSearch" bind:clear="onCancel">
-                <!--  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view> -->
-            </van-search>
+
+                <van-search value="{{ searchWords }}" placeholder="请输入标题关键词搜索" use-action-slot bind:cancel="onCancel" bind:search="onSearch" bind:clear="onCancel">
+                    <!--  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view> -->
+                </van-search>
+                
             <!-- search -->
             <!-- <view class="goods-box" wx:if='{{searchWords}}'>
                 <block wx:key="index" wx:for="{{searchGoodslist}}">
@@ -100,17 +102,15 @@
             <view class="goods-box">
                 <block wx:key="index" wx:for="{{goodslist}}">
                     <i-goods-item bindrecommend="recommendHandle" bindsetClass="setClass" bindremove="removeHandle" item="{{item}}" index="{{index}}" bind:updateList="updateList" />
-                </block>
+                    </block>
                 <view class="text-center">
                     <wux-spin wx:if="{{is_loading}}"></wux-spin>
                 </view>
-                <view class="no-data-txt" style="padding: 20px" wx:if="{{goodslist.length == 0 && !is_loading && searchWords}}">
-                    没有找到商品，换个关键词试试吧~
-                </view>
+                <view class="no-data-txt" style="padding: 20px" wx:if="{{goodslist.length == 0 && !is_loading && searchWords}}">没有找到商品，换个关键词试试吧~</view>
             </view>
         </i-panel>
     </view>
-    <i-panel title="小贴士" wx:if="{{goodslist.length== 0 && !is_loading &&!searchWords}}">
+    <i-panel title="小贴士" wx:if="{{goodslist.length== 0 && !is_loading && !searchWords}}">
         <view class='new-goods' bindtap="new_btn" style="margin-bottom:100rpx">
             <view class="bold">问：使用开心麻团小程序收费吗？</view>
             <view class="mb-df text-muted">答：不收费，但使用在线支付微信会收取0.6%的通道费，全网最低，拿金钱换高效值得！</view>
