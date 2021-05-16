@@ -1,0 +1,38 @@
+@import "../../css/icon.wxss";
+
+.loading-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+.loading{
+    width: 160rpx;
+    height: 95rpx;
+}
+.place-holder{
+	color:#666
+}
+
+.tuikuan_btn{
+	display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 0 solid transparent;
+    white-space: nowrap;
+    padding: 2px 12px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    border-radius: 50px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #666!important
+}

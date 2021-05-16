@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="margin-bottom: 100tuiipx">
     <view class="search">
         <van-search value="{{ value }}" shape="round" background="#fff" placeholder="请输入收件人姓名或者电话" show-action="{{searchWords}}" bind:search="onSearch" bind:cancel="onCancel" />
     </view>
@@ -43,7 +43,6 @@
  -->
     <view class="totalCount">
         <block wx:if="{{tab == 0 && valid_order.spec }}">
-            <view class="tips_title">销量统计</view>
             <view class="spec text-justify " wx:key="index" wx:for="{{valid_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}件</text>
@@ -51,7 +50,6 @@
             </view>
         </block>
         <block wx:if="{{tab == 3 && back_order.spec.length}}">
-            <view class="tips_title">未发货统计</view>
             <view class="spec text-justify" wx:key="index" wx:for="{{back_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}件</text>
@@ -59,7 +57,6 @@
             </view>
         </block>
         <block wx:if="{{tab == 4 && shipped_order.spec.length}}">
-            <view class="tips_title">已发货统计</view>
             <view class="spec text-justify" wx:key="index" wx:for="{{shipped_order.spec}}">
                 <view>{{item.spec_name}}
                     <text class="text-danger">× {{item.qty}}件</text></view>
@@ -152,10 +149,16 @@
                 </view>
             </view>
             <view class="order-fd scale-b-1px">
+
+               
+
+
                 <button wx:if="{{item.order_refund_id && item.order_refundstatus!==2}}" data-order_refund_id="{{item.order_refund_id}}" data-order_id="{{item.order_id}}" bindtap="to_refund" class="f12 {{item.order_refundstatus==1?'text-danger':'gray-text'}} " style="float: left;margin-top:40rpx">
                     <text wx:if="{{item.order_refundstatus==1}}">有退款申请！</text>
                     <text wx:else>退款信息</text>
                 </button>
+
+
                 <block wx:if="{{item.showAction}}" wx:for="{{item.seller_next_handle}}" wx:key="item.order_id" wx:for-item="btn">
                     <button data-avatar="{{item.user.headimg}}" data-user_name="{{item.consignee}}" class="btn round primary  w-min-big mv-sm ml-sm btn-{{btn.opt}}" data-id="{{item.order_id}}" data-opt="{{btn.opt}}" data-cindex="{{cindex}}" data-pindex="{{pindex}}" data-txt="{{btn.txt}}" bindtap="orderActions">{{btn.txt}}</button>
                 </block>
@@ -184,8 +187,17 @@
             <view class="note-box">
                 <!--          <text  data-order_id="{{item.order_id}}" bindtap="toOrderDetail">查看订单详情</text>   
  -->
+
+    <view class="tk" style="float: right">
+                    <tuikuan refund_fee="{{item.pay_price}}" order_id="{{item.order_id}}"></tuikuan>
+                </view>
                 <view class="note-input">
+
                     <input style="width: 50px" type="text" name="order_remark" value="{{item. seller_remarks}}" placeholder="备注..." i-class="input-bd" data-id="{{item.order_id}}" bind:blur="order_remarkSubmit" />
+
+               
+
+
                 </view>
                 <!-- <view class="note-submit">
                     <input type="hidden" hidden="true" name="order_id" value="{{item.order_id}}" />

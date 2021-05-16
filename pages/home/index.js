@@ -66,15 +66,16 @@ Page({
             icon: 'none'
         })
 
-        app.getUserInfoFile(res => {
-            console.log(res.data.data.user);
-                var auinfo = app.globalData.userInfo
-                auinfo.nickname = res.data.data.user.nickname;
-                auinfo.headimg = res.data.data.user.headimg;
+        const wxGetUserProfile =  wx.getUserProfile 
+            wxGetUserProfile({
+                desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+                success: res => {
 
-                util.wx.post('/api/user/update_wx_basicinfo', {
-                    nickname: auinfo.nickname,
-                    headimg: auinfo.headimg
+                    console.log(res.userInfo)
+
+                      util.wx.post('/api/user/update_wx_basicinfo', {
+                    nickname: res.userInfo.nickName,
+                    headimg: res.userInfo.avatarUrl
                 }).then(res => {
                     wx.hideLoading()
 
@@ -84,8 +85,8 @@ Page({
                         })
 
                         this.setData({
-                            headimg: auinfo.headimg,
-                            nickname: auinfo.nickname
+                            headimg: res.userInfo.avatarUrl,
+                            nickname: res.userInfo.nickName
                         });
 
 
@@ -98,7 +99,9 @@ Page({
 
 
                 })
-        })
+
+                }
+            })
     },
 
     /**点击切换身份按钮**/

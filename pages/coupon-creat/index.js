@@ -124,7 +124,8 @@ Page({
                             title: this.data.title,
                             reduce: this.data.reduce,
                             total: this.data.total,
-                            stop_time: this.data.stop_time
+                            stop_time: this.data.stop_time,
+                            full: this.data.full
                         }
                     }).then(res => {
                             if (res.data.code == 200) {

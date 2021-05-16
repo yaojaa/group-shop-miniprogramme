@@ -23,6 +23,7 @@
 	word-break: keep-all;
 	text-overflow: ellipsis;
 	overflow:hidden; 
+	min-width: 40px;
 }
 .avatarlist{
 	font-size: 30rpx;

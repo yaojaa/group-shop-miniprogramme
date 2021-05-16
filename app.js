@@ -136,27 +136,14 @@ App({
 
     },
     getUserInfoFile: function(callback) {
-        console.log('getUserProfile',wx.getUserProfile)
 
-        if (wx.getUserProfile) {
-      console.log(true)
-
-      wx.getUserProfile({
-      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-      }
-    })
-  }
         //检测哪个方法能用，兼容旧的方法
         const wxGetUserProfile =  wx.getUserProfile 
             wxGetUserProfile({
                 desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
                 success: res => {
-                    console.log(res)
                     this.getOpenId().then(r => {
                         this.login_third(res).then(r => callback(r)).catch(e => {
-                            console.log(e)
                             wx.hideLoading()
                             wx.showToast({
                                 title: '登陆失败请重试A',

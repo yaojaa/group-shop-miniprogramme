@@ -2,7 +2,7 @@
     <form bindsubmit="submitForm">
         <van-cell-group custom-class="mt-sm">
             <van-field value="{{typeTitle}}" name=" " label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="自助领取" readonly="{{true}}" bindtap="showTypeModal" />
-            <van-field wx:if="{{type == 1}}" value="{{customers.length>0?'已选'+customers.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
+           
         </van-cell-group>
         <!-- type '0领取;1分配;2新人;3下单'; -->
         <!--   <van-cell-group title="每个红包金额大小随机">
@@ -30,20 +30,28 @@
        <!--      <van-field value="{{ date}}" name="days" label="使用有效期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" /> -->
 
               
-            <van-field value="{{scopeTitle}}" name=" " label="红包适用范围" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
+          
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">
             <van-field use-button-slot value="{{}}" name="" label="红包使用时须满足金额条件吗？" title-width="500rpx">
                 <van-switch checked="{{ checked }}" bind:change="onChange" size="34rpx" slot="button" />
             </van-field>
-            <van-field wx-if="{{checked}}" value="{{}}" name="title" label="满多少元" placeholder="例：100！"></van-field>
+            <van-field wx-if="{{checked}}" bind:input="inputDuplex" data-key="full" name="full"  name="title" label="满多少元" placeholder="例：100！"></van-field>
         </van-cell-group>
+
+        <van-cell-group custom-class="mt-sm">
+         <van-field wx:if="{{type == 1}}" value="{{customers.length>0?'已选'+customers.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
+
+         <van-field value="{{scopeTitle}}" name=" " label="红包适用商品" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
+       </van-cell-group>
+
+
         <view class="ph-df mt-xs text-sm warning-text">
             红包用于下单您铺子的商品时使用
         </view>
         <view class="m-df mt-xl">
-            <button class="btn xxl primary block linenear_bg" bindtap="createCoupon">
-                生成红包
+            <button class="btn  primary block linenear_bg" bindtap="createCoupon">
+                下一步
             </button>
         </view>
     </form>
@@ -120,7 +128,7 @@
                         <checkbox value="{{item.goods_id}}" checked="{{item.checked}}" />
                     </view>
                     <view class="name">
-                        <image class="avatar" width="50" src="{{item.goods_cover}}" />
+                        <image class="avatar" mode="widthfix" width="50" src="{{item.goods_cover}}?imageView2/1/w/50/h/50/format/jpg/q/75" />
                     </view>
                     <view class="name">{{item.goods_name}}</view>
                 </label>
@@ -131,21 +139,5 @@
 
 
 
-
-
-    <van-popup show="{{ scopeModal }}" is-title="true" title="投诉原因" position="bottom" bind:close="handleScopeModal">
-        <view class="pv-df">
-            <van-radio-group value="{{ scopeValue }}">
-                <van-cell-group border="{{false}}">
-                    <van-cell title="山东大西瓜" clickable title-width="600rpx" border="{{false}}" data-name="2" data-title="山东大西瓜" bind:click="changeScope">
-                        <van-radio name="2" />
-                    </van-cell>
-                    <van-cell title="石门小蜜橘" clickable title-width="600rpx" border="{{false}}" data-name="3" data-title="石门小蜜橘" bind:click="changeScope">
-                        <van-radio name="3" />
-                    </van-cell>
-                </van-cell-group>
-            </van-radio-group>
-        </view>
-    </van-popup>
     <van-toast id="van-toast" />
 </view>

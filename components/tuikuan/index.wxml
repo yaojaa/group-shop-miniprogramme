@@ -1,0 +1,13 @@
+<button bindtap="to_refund" class="tuikuan_btn" type="mini">
+    退款
+</button>
+<van-dialog use-slot title="订单退款" show="{{ visible }}" show-cancel-button bind:close="onCustomerClose" 
+bind:confirm="refund" confirm-button-text="确认退款">
+<view></view>
+    <van-cell-group>
+        <van-field value="{{refund_fee}}" bind:change="setRefund_fee" label="退款金额" input-align="right" />
+    </van-cell-group>
+        <van-cell-group>
+        <van-field  label="退款说明"  placeholder-class="place-holder" type="textarea" placeholder="可填写退款说明" bind:change="setExplain" autosize />
+    </van-cell-group>
+</van-dialog>
