@@ -41,7 +41,17 @@ Page({
                 customerVisible: false,
                 goodsVisible: false,
                 goodslist: [],
-                cpage: 1
+                cpage: 1,
+                step:0,
+                steps: [
+      {
+        text: '第一步',
+        desc: '优惠券基本信息',
+      },
+      {
+        text: '步骤二',
+        desc: '优惠券使用范围',
+      }    ],
             },
             onChange({ detail }) {
                 // 需要手动对 checked 状态进行更新
@@ -128,16 +138,40 @@ Page({
                             full: this.data.full
                         }
                     }).then(res => {
-                            if (res.data.code == 200) {
+                            if (res.data.code !== 200) {
+
+                                this.setData({
+                                    step : 1
+                                })
+
+
+                                if(this.type == 1){
+
+                                }
+
+                                // wx.showModal({
+                                //     title: '创建成功',
+                                //     showCancel: false, //是否显示取消按钮
+                                //     confirmText: "确定", //默认是“确定”
+                                //     confirmColor: 'green', //确定文字的颜色
+                                // })
+                                
+                            }else{
 
                                 wx.showModal({
-                                    title: '创建成功',
+                                    title: '创建失败',
                                     showCancel: false, //是否显示取消按钮
                                     confirmText: "确定", //默认是“确定”
                                     confirmColor: 'green', //确定文字的颜色
                                 })
-                                
+
+
                             }
+                        }).catch(e=>{
+                            wx.showToast({
+                                title:'创建失败',
+                                icon:'none'
+                            })
                         })
                     },
 

@@ -1,5 +1,8 @@
 <view class="container gray-wrap  cf">
-    <form bindsubmit="submitForm">
+
+<van-steps steps="{{ steps }}" active="{{ step }}" />
+
+    <block wx:if="{{step == 0}}">
         <van-cell-group custom-class="mt-sm">
             <van-field value="{{typeTitle}}" name=" " label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="自助领取" readonly="{{true}}" bindtap="showTypeModal" />
            
@@ -39,26 +42,41 @@
             <van-field wx-if="{{checked}}" bind:input="inputDuplex" data-key="full" name="full"  name="title" label="满多少元" placeholder="例：100！"></van-field>
         </van-cell-group>
 
-        <van-cell-group custom-class="mt-sm">
-         <van-field wx:if="{{type == 1}}" value="{{customers.length>0?'已选'+customers.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
-
-         <van-field value="{{scopeTitle}}" name=" " label="红包适用商品" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleScopeModal" />
-       </van-cell-group>
-
-
-        <view class="ph-df mt-xs text-sm warning-text">
-            红包用于下单您铺子的商品时使用
-        </view>
-        <view class="m-df mt-xl">
+                <view class="m-df mt-xl">
             <button class="btn  primary block linenear_bg" bindtap="createCoupon">
                 下一步
             </button>
         </view>
-    </form>
+
+        </block >
+    
+    <block wx:if="{{step == 1}}">
+
+        <van-cell-group custom-class="mt-sm">
+         <van-field wx:if="{{type == 1}}" value="{{customers.length>0?'已选'+customers.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
+
+         <van-field value="{{scopeTitle}}" name=" " label="红包适用商品" title-width="240rpx" input-align="right" is-link placeholder="默认不限制" readonly="{{true}}" bindtap="handleScopeModal" />
+       </van-cell-group>
+
+  
+
+                <view class="m-df mt-xl">
+            <button class="btn  primary block linenear_bg" bindtap="createCoupon">
+                确定完成
+            </button>
+        </view>
+
+    </block>
+
+
+
+
     <van-popup show="{{ dateModal }}" position="bottom" bind:close="handleDateModal">
         <van-datetime-picker type="date" value="{{ currentDate }}" bind:change="" bind:cancel="handleDateModal" bind:confirm="handleDate" min-date="{{minDate}}" max-date="{{maxDate}}" />
     </van-popup>
     <van-popup show="{{ typeModal }}" is-title="true" title="红包类型" position="bottom" bind:close="showTypeModal">
+
+
         <view class="pv-df">
             <van-radio-group value="{{ type }}">
                 <van-cell-group border="{{false}}">
