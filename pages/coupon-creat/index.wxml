@@ -55,13 +55,13 @@
         <van-cell-group custom-class="mt-sm">
          <van-field wx:if="{{type == 1}}" value="{{customers.length>0?'已选'+customers.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
 
-         <van-field value="{{scopeTitle}}" name=" " label="红包适用商品" title-width="240rpx" input-align="right" is-link placeholder="默认不限制" readonly="{{true}}" bindtap="handleScopeModal" />
+         <van-field value="{{scopeTitle}}" value="{{goods_ids.length>0?'已选'+goods_ids.length+'个商品' : '' }}"  name=" " label="红包适用商品" title-width="240rpx" input-align="right" is-link placeholder="默认不限制" readonly="{{true}}" bindtap="handleScopeModal" />
        </van-cell-group>
 
   
 
                 <view class="m-df mt-xl">
-            <button class="btn  primary block linenear_bg" bindtap="createCoupon">
+            <button class="btn  primary block linenear_bg" bindtap="bindredpacket">
                 确定完成
             </button>
         </view>
@@ -104,7 +104,7 @@
   show="{{ customerVisible }}"
   show-cancel-button
   bind:close="onCustomerClose"
-  bind:getuserinfo="getUserInfo"
+  bind:confirm  ="getUserInfo"
 >
 
         <van-search value="{{ value }}" input-align="center" placeholder="输入昵称搜索" />
@@ -133,14 +133,15 @@
   show="{{ goodsVisible }}"
   show-cancel-button
   bind:close="onCustomerClose"
-  bind:getuserinfo="getUserInfo"
+  bind:confirm  ="confirmGoods"
 >
 
         <van-search value="{{ value }}" input-align="center" placeholder="输入商品标题搜索" />
         
 
         <scroll-view scroll-y="true" style="height: 500rpx;" bindscrolltoupper="upper" bindscrolltolower="scrolltolower" scroll-top="{{scrollTop}}">
-            <checkbox-group bindchange="checkboxChange">
+            <checkbox-group bindchange="goodscheckboxChange">
+                {{goodslist}}
                 <label class="userlist" wx:for="{{goodslist}}" wx:key="{{item.goods_id}}">
                     <view class="name">
                         <checkbox value="{{item.goods_id}}" checked="{{item.checked}}" />
