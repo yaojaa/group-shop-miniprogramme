@@ -50,10 +50,7 @@ Page({
 
     getCouponList(){
         // 0 
-          util.wx.post('/api/redpacket/redpacket_user_list',{
-            redpacket_id:''
-
-        })
+          util.wx.get('/api/redpacket/get_redpacket_user_list')
 
     },
 

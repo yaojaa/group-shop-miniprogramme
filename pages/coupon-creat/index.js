@@ -19,7 +19,7 @@ Page({
         list: [],
         date: '',
         dateModal: false,
-        minDate: new Date(1950, 1, 1).getTime(),
+        minDate: new Date().getTime(),
         currentDate: new Date().getTime(),
         maxDate: new Date(2050, 1, 1).getTime(),
         scopeModal: false,
@@ -45,6 +45,7 @@ Page({
         step: 0,
         redpacket_id: '',
         goods_ids:[],
+        user_ids:[],
         steps: [{
                 text: '第一步',
                 desc: '优惠券基本信息',
@@ -131,7 +132,7 @@ Page({
         }
 
 
-
+        wx.showLoading()
         util.wx.post('/api/redpacket/add_redpacket', {
             redpacket: {
                 type: this.data.type,
@@ -142,6 +143,8 @@ Page({
                 full: this.data.full
             }
         }).then(res => {
+                    wx.hideLoading()
+
             if (res.data.code == 200) {
 
                 this.setData({
@@ -149,10 +152,6 @@ Page({
                     redpacket_id: res.data.data.redpacket_id
                 })
 
-
-                if (this.type == 1) {
-
-                }
 
                 // wx.showModal({
                 //     title: '创建成功',
@@ -184,6 +183,13 @@ Page({
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
         this.data.goods_ids = e.detail.value
     },
+
+    checkboxChange(e){
+        this.setData({
+            user_ids: e.detail.value
+        })
+
+    },
     onCustomerClose() {
         this.setData({
             customers: this.data.customers
@@ -201,15 +207,62 @@ Page({
     },
 
     bindredpacket(){
-          util.wx
+
+
+
+           if(this.data.type == 1 && this.data.user_ids.length == 0){
+                return wx.showToast({
+                        title:'请选择客人',
+                        icon:'none'
+                    })
+            }
+
+
+
+           if(this.data.type == 1 && this.data.user_ids.length > 0){
+                this.sendToUser()
+            }
+
+
+
+        if(this.data.goods_ids.length > 0){
+
+            util.wx
             .post('/api/redpacket/bind_redpacket', {
                 goods_ids:this.data.goods_ids,
                 redpacket_id: this.data.redpacket_id
             })
             .then((res) => {
-                
+
+                if(res.data.code == 200){
+                    wx.showToast({
+                        title:'创建成功',
+                        icon:'none'
+                    })
+                }
+
             })
 
+
+        }else{
+            wx.redirectTo({
+                url: 'pages/coupon/index'
+            })
+        }
+          
+
+
+
+    },
+
+        /*发送红包给指定客户*/
+    sendToUser(){
+        util.wx.post('/api/redpacket/alloc_redpacket',{
+            user_ids:this.data.user_ids,
+            redpacket_id: this.data.redpacket_id
+
+        })
+        
     },
 
     getGoodsList: function() {

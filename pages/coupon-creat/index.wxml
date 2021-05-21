@@ -53,7 +53,7 @@
     <block wx:if="{{step == 1}}">
 
         <van-cell-group custom-class="mt-sm">
-         <van-field wx:if="{{type == 1}}" value="{{customers.length>0?'已选'+customers.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
+         <van-field wx:if="{{type == 1}}" value="{{user_ids.length>0?'已选'+user_ids.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
 
          <van-field value="{{scopeTitle}}" value="{{goods_ids.length>0?'已选'+goods_ids.length+'个商品' : '' }}"  name=" " label="红包适用商品" title-width="240rpx" input-align="right" is-link placeholder="默认不限制" readonly="{{true}}" bindtap="handleScopeModal" />
        </van-cell-group>
@@ -104,11 +104,10 @@
   show="{{ customerVisible }}"
   show-cancel-button
   bind:close="onCustomerClose"
-  bind:confirm  ="getUserInfo"
 >
 
-        <van-search value="{{ value }}" input-align="center" placeholder="输入昵称搜索" />
-        
+<!--         <van-search value="{{ value }}" input-align="center" placeholder="输入昵称搜索" />
+ -->        
 
         <view class="avatarlist" style="width: 700rpx">
             <checkbox-group bindchange="checkboxChange">
@@ -136,12 +135,11 @@
   bind:confirm  ="confirmGoods"
 >
 
-        <van-search value="{{ value }}" input-align="center" placeholder="输入商品标题搜索" />
-        
+<!--         <van-search value="{{ value }}" input-align="center" placeholder="输入商品标题搜索" />
+ -->        
 
         <scroll-view scroll-y="true" style="height: 500rpx;" bindscrolltoupper="upper" bindscrolltolower="scrolltolower" scroll-top="{{scrollTop}}">
             <checkbox-group bindchange="goodscheckboxChange">
-                {{goodslist}}
                 <label class="userlist" wx:for="{{goodslist}}" wx:key="{{item.goods_id}}">
                     <view class="name">
                         <checkbox value="{{item.goods_id}}" checked="{{item.checked}}" />

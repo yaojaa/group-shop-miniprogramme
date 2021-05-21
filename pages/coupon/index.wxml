@@ -15,16 +15,11 @@
                 <view class="text-sm">回馈老用户</view>
                 <view class="text-justify mt-xs ">
                     <view class="text-sm text-muted">红包随机范围：1-5元</view>
-                    <van-button type="info" size="mini" custom-class="w-min-160">发出红包链接</van-button>
-
-                               <van-button bindtap="sendTouser" type="info" size="mini" custom-class="w-min-160">
-                                   发送给客户
-                               </van-button>
+                    <van-button type="info" size="mini" custom-class="w-min-160">发出红包</van-button>
                 </view>
                 <view class="solid-top mv-xs cf"></view>
                 <view class="text-justify">
                     <view class="text-sm blue-text"><text class="pr-xs">已领取：0人</text><text>已使用：0人</text></view>
-                    <van-button type="info" size="mini" custom-class="w-min-160">发出红包二维码</van-button>
                 </view>
                 <view class="mt-xs text-sm"><text class="pr-xs">已领金额：0元</text><text>已使用金额：0元</text></view>
                 <view class="mt-xs text-sm text-justify text-muted">
