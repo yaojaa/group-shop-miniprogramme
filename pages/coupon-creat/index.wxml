@@ -1,11 +1,8 @@
 <view class="container gray-wrap  cf">
-
-<van-steps steps="{{ steps }}" active="{{ step }}" />
-
+    <van-steps steps="{{ steps }}" active="{{ step }}" />
     <block wx:if="{{step == 0}}">
         <van-cell-group custom-class="mt-sm">
             <van-field value="{{typeTitle}}" name=" " label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="自助领取" readonly="{{true}}" bindtap="showTypeModal" />
-           
         </van-cell-group>
         <!-- type '0领取;1分配;2新人;3下单'; -->
         <!--   <van-cell-group title="每个红包金额大小随机">
@@ -17,66 +14,50 @@
             </van-field>
         </van-cell-group> -->
         <van-cell-group custom-class="mt-sm">
-            <van-field value="{{title}}" name="title" label="红包名称" placeholder="例：亲，给你送红包啦！"></van-field>
+            <van-field value="{{title}}" name="title" bind:input="inputDuplex" data-key="title" label="红包名称" placeholder="例：亲，给你送红包啦！"></van-field>
             <van-field use-button-slot value="{{reduce}}" bind:input="inputDuplex" data-key="reduce" name="reduce" label="红包金额" placeholder="请输入金额">
                 <view slot="button">元</view>
             </van-field>
-
-               <van-field use-button-slot value="{{total}}" bind:input="inputDuplex" data-key="total" name="total" label="红包数量" placeholder="请输入红包的数量">
+            <van-field use-button-slot value="{{total}}" bind:input="inputDuplex" data-key="total" name="total" label="红包数量" placeholder="请输入红包的数量">
                 <view slot="button">个</view>
             </van-field>
-
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">
-            <van-field value="{{ stop_time}}" name="date" label="红包截至使用日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" />
-            
-       <!--      <van-field value="{{ date}}" name="days" label="使用有效期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" /> -->
-
-              
-          
+            <van-field value="{{start_time}}" name="date" label="红包生效日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModalS" />
+            <van-field value="{{stop_time}}" name="date" label="红包失效日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModalE" />
+            <!--      <van-field value="{{ date}}" name="days" label="使用有效期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" /> -->
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">
             <van-field use-button-slot value="{{}}" name="" label="红包使用时须满足金额条件吗？" title-width="500rpx">
                 <van-switch checked="{{ checked }}" bind:change="onChange" size="34rpx" slot="button" />
             </van-field>
-            <van-field wx-if="{{checked}}" bind:input="inputDuplex" data-key="full" name="full"  name="title" label="满多少元" placeholder="例：100！"></van-field>
+            <van-field wx-if="{{checked}}" bind:input="inputDuplex" data-key="full" name="full" name="title" label="满多少元" placeholder="例：100！"></van-field>
         </van-cell-group>
-
-                <view class="m-df mt-xl">
+        <view class="fixed-btn">
             <button class="btn  primary block linenear_bg" bindtap="createCoupon">
                 下一步
             </button>
         </view>
-
-        </block >
-    
+    </block>
     <block wx:if="{{step == 1}}">
-
         <van-cell-group custom-class="mt-sm">
-         <van-field wx:if="{{type == 1}}" value="{{user_ids.length>0?'已选'+user_ids.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
-
-         <van-field value="{{scopeTitle}}" value="{{goods_ids.length>0?'已选'+goods_ids.length+'个商品' : '' }}"  name=" " label="红包适用商品" title-width="240rpx" input-align="right" is-link placeholder="默认不限制" readonly="{{true}}" bindtap="handleScopeModal" />
-       </van-cell-group>
-
-  
-
-                <view class="m-df mt-xl">
+            <van-field wx:if="{{type == 1}}" value="{{user_ids.length>0?'已选'+user_ids.length+'人' : '' }}" name=" date" label="选择客人" title-width="240rpx" input-align="right" is-link placeholder="请选择客人" readonly="{{true}}" bindtap="showUserSelect" />
+            <van-field value="{{scopeTitle}}" value="{{goods_ids.length>0?'已选'+goods_ids.length+'个商品' : '' }}" name=" " label="红包适用商品" title-width="240rpx" input-align="right" is-link placeholder="默认不限制" readonly="{{true}}" bindtap="handleScopeModal" />
+        </van-cell-group>
+        <view class="fixed-btn">
             <button class="btn  primary block linenear_bg" bindtap="bindredpacket">
                 确定完成
             </button>
         </view>
-
+       
     </block>
-
-
-
-
-    <van-popup show="{{ dateModal }}" position="bottom" bind:close="handleDateModal">
-        <van-datetime-picker type="date" value="{{ currentDate }}" bind:change="" bind:cancel="handleDateModal" bind:confirm="handleDate" min-date="{{minDate}}" max-date="{{maxDate}}" />
+    <van-popup show="{{ dateModalS }}" position="bottom" bind:close="handleDateModalS">
+        <van-datetime-picker type="date" value="{{ start_time }}" bind:cancel="handleDateModalS" bind:confirm="handleDateS" min-date="{{minDate}}" max-date="{{maxDate}}" />
+    </van-popup>
+    <van-popup show="{{ dateModalE }}" position="bottom" bind:close="handleDateModalE">
+        <van-datetime-picker type="date" value="{{ end_time }}" bind:cancel="handleDateModalE" bind:confirm="handleDateE" min-date="{{minDate}}" max-date="{{maxDate}}" />
     </van-popup>
     <van-popup show="{{ typeModal }}" is-title="true" title="红包类型" position="bottom" bind:close="showTypeModal">
-
-
         <view class="pv-df">
             <van-radio-group value="{{ type }}">
                 <van-cell-group border="{{false}}">
@@ -96,19 +77,9 @@
             </van-radio-group>
         </view>
     </van-popup>
-
-
-    <van-dialog
-  use-slot
-  title="选择顾客"
-  show="{{ customerVisible }}"
-  show-cancel-button
-  bind:close="onCustomerClose"
->
-
-<!--         <van-search value="{{ value }}" input-align="center" placeholder="输入昵称搜索" />
- -->        
-
+    <van-dialog use-slot title="选择顾客" show="{{ customerVisible }}" show-cancel-button bind:close="onCustomerClose">
+        <!--         <van-search value="{{ value }}" input-align="center" placeholder="输入昵称搜索" />
+ -->
         <view class="avatarlist" style="width: 700rpx">
             <checkbox-group bindchange="checkboxChange">
                 <label class="userlist" wx:for="{{customerList}}" wx:key="{{item.user_id}}">
@@ -122,22 +93,10 @@
                 </label>
             </checkbox-group>
         </view>
-
-</van-dialog>
-
-
-    <van-dialog
-  use-slot
-  title="选择商品"
-  show="{{ goodsVisible }}"
-  show-cancel-button
-  bind:close="onCustomerClose"
-  bind:confirm  ="confirmGoods"
->
-
-<!--         <van-search value="{{ value }}" input-align="center" placeholder="输入商品标题搜索" />
- -->        
-
+    </van-dialog>
+    <van-dialog use-slot title="选择商品" show="{{ goodsVisible }}" show-cancel-button bind:close="onCustomerClose" bind:confirm="confirmGoods">
+        <!--         <van-search value="{{ value }}" input-align="center" placeholder="输入商品标题搜索" />
+ -->
         <scroll-view scroll-y="true" style="height: 500rpx;" bindscrolltoupper="upper" bindscrolltolower="scrolltolower" scroll-top="{{scrollTop}}">
             <checkbox-group bindchange="goodscheckboxChange">
                 <label class="userlist" wx:for="{{goodslist}}" wx:key="{{item.goods_id}}">
@@ -151,10 +110,6 @@
                 </label>
             </checkbox-group>
         </scroll-view>
-
-</van-dialog>
-
-
-
+    </van-dialog>
     <van-toast id="van-toast" />
 </view>

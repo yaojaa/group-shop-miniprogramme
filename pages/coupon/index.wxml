@@ -1,56 +1,40 @@
 <view class="container gray-wrap">
 
     <view class="fixed-btn">
-        <navigator url="../coupon-creat/index" class="btn xxl primary block" wx:if="{{tab == 0}}">
+        <btuuon  class="btn  primary block linenear_bg" bindtap="toCreate"  wx:if="{{tab == 0}}">
             制作红包
-        </navigator>
+        </btuuon>
     </view>
     <view class="content-wrap">
         <view class="tab-one" >
-            <view class="coupon-item" wx:for="{{5}}" wx:key="index">
+            <view class="coupon-item" wx:for="{{data_list}}" wx:key="index">
                 <view class="flex align-center">
                     <view class="flex-sub primary-text mr-sm">店铺红包</view>
-                    <view><text class="text-sm">红包总额</text><text class="pink-text text-xxl bold-text">￥1000</text></view>
+                    <view><text class="text-sm">红包总额</text><text class="pink-text text-xxl bold-text">￥{{item.reduce}}</text></view>
                 </view>
-                <view class="text-sm">回馈老用户</view>
+                <view class="primary-text" wx:if="{{item.type == 1}}">客人：老孙、书星 ...》</view>
+
+                <view class="text-sm" wx:else>{{item.title}}</view>
+
+
                 <view class="text-justify mt-xs ">
-                    <view class="text-sm text-muted">红包随机范围：1-5元</view>
+                    <view class="text-sm text-muted">满{{item.full}}元可用</view>
                     <van-button type="info" size="mini" custom-class="w-min-160">发出红包</van-button>
                 </view>
                 <view class="solid-top mv-xs cf"></view>
                 <view class="text-justify">
                     <view class="text-sm blue-text"><text class="pr-xs">已领取：0人</text><text>已使用：0人</text></view>
                 </view>
-                <view class="mt-xs text-sm"><text class="pr-xs">已领金额：0元</text><text>已使用金额：0元</text></view>
                 <view class="mt-xs text-sm text-justify text-muted">
-                    <view>发放日期：2019-2-14 14:35</view>
+                    <view>生效日期：{{item.start_time_fmt}}</view>
                     <view><text>删除红包</text><text class="ph-xs">|</text><text>终止红包</text></view>
                 </view>
                 <view class="text-sm text-muted mt-xs">
-                    <text class="mr-sm">到期日期：2019-2-14 14:35</text><text>小铺可用 || 指定商品可用></text>
+                    <text class="mr-sm">到期日期：{{item.stop_time_fmt}}</text><text>小铺可用 || 指定商品可用></text>
                 </view>
             </view>
         </view>
-        <view class="tab-two" >
-            <view class="coupon-guest text-sm" wx:for="{{5}}" wx:key="index">
-                <view class="text-justify">
-                    <view class="primary-text">客人：啊民</view>
-                    <view><text class="text-sm">红包总额</text><text class="pink-text text-xxl bold-text">￥1000</text></view>
-                </view>
-                <view class="solid-top mv-xs cf"></view>
-                <view class="text-justify">
-                    <view><text class="pr-xs">红包个数：0</text><text>已使用：0</text></view>
-                    <view class="text-muted">小铺可用</view>
-                </view>
-                <view class="flex align-center mt-xs">
-                    <view class="flex-sub text-muted">
-                        <view>发放日期：2019-2-14 14:35</view>
-                        <view class="mt-lt">到期日期：2019-2-14 14:35</view>
-                    </view>
-                    <view class="primary-text">已充入他的红包账户</view>
-                </view>
-            </view>
-        </view>
+
     </view>
     <view class="load-box" wx:if="{{loading}}">
         <wux-spin wux-class="spin" size="large" />

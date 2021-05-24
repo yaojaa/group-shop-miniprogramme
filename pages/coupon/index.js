@@ -9,7 +9,7 @@ Page({
      */
     data: {
         tab:0,
-        list: []
+        data_list: []
     },
     handleTab(e){
         console.log(e)
@@ -20,7 +20,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onShow: function(options) {
 
         this.getCouponList()
         
@@ -32,10 +32,24 @@ Page({
     onReady: function() {
 
     },
+    toCreate(){
+      wx.navigateTo({
+        url:'../coupon-creat/index'
+      })
+    },
 
     getCouponList(){
+      wx.showLoading()
         util.wx.get('/api/redpacket/get_list_by_store').then(res=>{
+                wx.hideLoading()
+
+          if(res.data.code == 200){
+
+            this.setData({
+              data_list:res.data.data.order_list
+            })
             console.log(res)
+          }
         })
     },
     /*发送红包给指定客户*/
@@ -48,18 +62,9 @@ Page({
         
     },
 
-    getCouponList(){
-        // 0 
-          util.wx.get('/api/redpacket/get_redpacket_user_list')
 
-    },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
 
-    },
 
     /**
      * 生命周期函数--监听页面隐藏

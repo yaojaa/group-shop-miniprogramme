@@ -6,30 +6,29 @@ function fmtDate(obj) {
     var y = 1900 + date.getYear();
     var m = "0" + (date.getMonth() + 1);
     var d = "0" + date.getDate();
-    return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length);
+    return y + "" + m.substring(m.length - 2, m.length) + "" + d.substring(d.length - 2, d.length);
 }
 
 
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
         list: [],
         date: '',
-        dateModal: false,
+        dateModalS: false,
+        dateModalE: false,
         minDate: new Date().getTime(),
-        currentDate: new Date().getTime(),
+        start_time: fmtDate(new Date().getTime()),
         maxDate: new Date(2050, 1, 1).getTime(),
         scopeModal: false,
         type: '0', // 红包类型
         title: '亲，给你送红包啦！', //红包名称
         reduce: '', //红包减的金额
         total: '', //红包数量
-        stop_time: '', // 过期时间
+        stop_time: fmtDate(new Date().getTime()+30  *  (24  *  3600  *  1000)),
         goods_limit: 0, //限制商品
-
         typeModal: false,
         scopeValue: '',
         scopeTitle: '',
@@ -44,8 +43,8 @@ Page({
         cpage: 1,
         step: 0,
         redpacket_id: '',
-        goods_ids:[],
-        user_ids:[],
+        goods_ids: [],
+        user_ids: [],
         steps: [{
                 text: '第一步',
                 desc: '优惠券基本信息',
@@ -60,15 +59,33 @@ Page({
         // 需要手动对 checked 状态进行更新
         this.setData({ checked: detail });
     },
-    handleDateModal() {
+    handleDateModalE() {
         this.setData({
-            dateModal: !this.data.dateModal
+            dateModalE: !this.data.dateModalE
         });
     },
-    handleDate(event) {
+    handleDateModalS(){
         this.setData({
-            stop_time: fmtDate(event.detail),
-            dateModal: !this.data.dateModal
+            dateModalS: !this.data.dateModalS
+        })
+    },
+
+    handleDateE(event) {
+        console.log(fmtDate(event.detail))
+        this.setData({
+            end_time: fmtDate(event.detail),
+            dateModalE: !this.data.dateModalE
+        });
+    },
+    handleDateS(event) {
+
+        const time = fmtDate(event.detail)
+
+        console.log(typeof time)
+
+        this.setData({
+            start_time:'20200125' ,
+            dateModalS: !this.data.dateModalS
         });
         console.log(fmtDate(event.detail))
     },
@@ -84,7 +101,7 @@ Page({
             goodsVisible: true,
         });
 
-        if(this.data.goodslist.length == 0){
+        if (this.data.goodslist.length == 0) {
             this.getGoodsList()
         }
 
@@ -109,7 +126,6 @@ Page({
      */
     onLoad: function(options) {
 
-        this.getCustomers()
 
     },
     //创建优惠券
@@ -139,11 +155,13 @@ Page({
                 title: this.data.title,
                 reduce: this.data.reduce,
                 total: this.data.total,
-                stop_time: this.data.stop_time,
+                stop_time: this.data.stop_time+'23:59:59',
+                start_time: this.data.start_time,
+                goods_limit:1,
                 full: this.data.full
             }
         }).then(res => {
-                    wx.hideLoading()
+            wx.hideLoading()
 
             if (res.data.code == 200) {
 
@@ -184,7 +202,7 @@ Page({
         this.data.goods_ids = e.detail.value
     },
 
-    checkboxChange(e){
+    checkboxChange(e) {
         this.setData({
             user_ids: e.detail.value
         })
@@ -195,74 +213,99 @@ Page({
             customers: this.data.customers
         })
     },
-    confirmGoods(){
+    confirmGoods() {
         this.setData({
-            goods_ids:this.data.goods_ids
+            goods_ids: this.data.goods_ids
         })
     },
     showUserSelect() {
         this.setData({
             customerVisible: true
         })
+
+        if(this.data.user_ids.length == 0){
+           this.getCustomers()
+        }
+
+
+
     },
 
-    bindredpacket(){
+    bindredpacket() {
+
+                if (this.data.type == 1 && this.data.user_ids.length == 0) {
+             wx.showToast({
+                title: '请选择客人',
+                icon: 'none'
+            })
+
+          return
+        }
+
+
+         if (this.data.type !== 1 && this.data.goods_ids.length == 0) {
+
+              wx.showToast({
+                            title: '创建成功',
+                            icon: 'none'
+                        })
+
+                        wx.redirectTo({
+                            url: '/pages/coupon/index'
+                        })
+
+
+         }
 
 
 
-           if(this.data.type == 1 && this.data.user_ids.length == 0){
-                return wx.showToast({
-                        title:'请选择客人',
-                        icon:'none'
-                    })
-            }
 
 
 
-           if(this.data.type == 1 && this.data.user_ids.length > 0){
-                this.sendToUser()
-            }
+
+        if (this.data.type == 1 && this.data.user_ids.length > 0) {
+            this.sendToUser()
+        }
 
 
 
-        if(this.data.goods_ids.length > 0){
+        if (this.data.type !== 1 && this.data.goods_ids.length > 0) {
 
             util.wx
-            .post('/api/redpacket/bind_redpacket', {
-                goods_ids:this.data.goods_ids,
-                redpacket_id: this.data.redpacket_id
-            })
-            .then((res) => {
+                .post('/api/redpacket/bind_redpacket', {
+                    goods_ids: this.data.goods_ids,
+                    redpacket_id: this.data.redpacket_id
+                })
+                .then((res) => {
 
-                if(res.data.code == 200){
-                    wx.showToast({
-                        title:'创建成功',
-                        icon:'none'
-                    })
-                }
+                    if (res.data.code == 200) {
+                        wx.showToast({
+                            title: '创建成功',
+                            icon: 'none'
+                        })
 
-            })
+                        wx.redirectTo({
+                            url: '/pages/coupon/index'
+                        })
 
+                    }
 
-        }else{
-            wx.redirectTo({
-                url: 'pages/coupon/index'
-            })
+                })
+
         }
-          
 
 
 
     },
 
-        /*发送红包给指定客户*/
-    sendToUser(){
-        util.wx.post('/api/redpacket/alloc_redpacket',{
-            user_ids:this.data.user_ids,
+    /*发送红包给指定客户*/
+    sendToUser() {
+        util.wx.post('/api/redpacket/alloc_redpacket', {
+            user_ids: this.data.user_ids,
             redpacket_id: this.data.redpacket_id
 
         })
-        
+
     },
 
     getGoodsList: function() {
@@ -291,10 +334,10 @@ Page({
 
                     console.log(goodsdata)
 
-                    this.data.goods_ids.forEach(id=>{
+                    this.data.goods_ids.forEach(id => {
 
-                        goodsdata.forEach(gs=>{
-                            if(gs.goods_id == id ){
+                        goodsdata.forEach(gs => {
+                            if (gs.goods_id == id) {
                                 gs.checked = true
                             }
                         })
