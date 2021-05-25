@@ -116,7 +116,18 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function(e) {
+      console.log(e)
+
+      const title = e.target.dataset.title
+      const id = e.target.id
+
+        return {
+          title: title,
+          imageUrl: 'https://static.kaixinmatuan.cn/d41d8cd98f00b204e9800998ecf8427e202105251406484983.jpg',
+          path:
+            '/pages/coupon-receive/index?id=' +id
+        };
 
     }
 })

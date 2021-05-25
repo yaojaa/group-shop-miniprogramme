@@ -1488,9 +1488,9 @@
           "scene": null
         },
         {
-          "name": "pages/coupon/index",
-          "pathName": "pages/coupon/index",
-          "query": "goods_id=2000482&from_id=1&help_sale=true",
+          "name": "pages/coupon-receive/index",
+          "pathName": "pages/coupon-receive/index",
+          "query": "id=39",
           "scene": null
         },
         {
