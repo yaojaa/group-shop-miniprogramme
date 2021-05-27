@@ -1,4 +1,3 @@
-
 <view class="container gray-wrap">
 
     <view class="fixed-btn">
@@ -20,8 +19,7 @@
 
                 <view class="text-justify mt-xs ">
                     <view class="text-sm text-muted">满{{item.full}}元可用</view>
-
-                    <button id="{{item.redpacket_id}}" data-title="{{item.title}}" data-reduce="{{item.reduce}}" open-type="share" type="info" size="mini" custom-class="w-min-160">发出红包</button>
+                    <button open-type="share" size="mini" bindtap="sendToUser" custom-class="w-min-160">发出红包</button>
                 </view>
                 <view class="solid-top mv-xs cf"></view>
                 <view class="text-justify">
@@ -29,10 +27,12 @@
                 </view>
                 <view class="mt-xs text-sm text-justify text-muted">
                     <view>生效日期：{{item.start_time_fmt}}</view>
-                </view>
+<!--                     <view><text>删除红包</text></view>
+ -->                </view>
                 <view class="text-sm text-muted mt-xs">
                     <text class="mr-sm">到期日期：{{item.stop_time_fmt}}</text>
-                </view>
+<!--                     <text>小铺可用 || 指定商品可用></text>
+ -->                </view>
             </view>
         </view>
 

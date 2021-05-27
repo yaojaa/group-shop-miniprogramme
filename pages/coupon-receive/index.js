@@ -31,6 +31,11 @@ Page({
     onReady: function() {
 
     },
+    useCoupon(){
+        wx.redirectTo({
+            url:'/pages/userhome/index?id='+this.data.store_id 
+        })
+    },
     getCouponInfo(){
 
               util.wx.get('/api/redpacket/get_redpacket_info', {
@@ -40,7 +45,8 @@ Page({
                 this.setData({
                     reduce:res.data.data.reduce,
                     start_time_fmt: res.data.data.start_time_fmt,
-                    stop_time_fmt: res.data.data.stop_time_fmt
+                    stop_time_fmt: res.data.data.stop_time_fmt,
+                    store_id: res.data.data.store_id
 
                 })
             }

@@ -1488,8 +1488,8 @@
           "scene": null
         },
         {
-          "name": "pages/coupon-receive/index",
-          "pathName": "pages/coupon-receive/index",
+          "name": "pages/coupon/index",
+          "pathName": "pages/coupon/index",
           "query": "id=39",
           "scene": null
         },

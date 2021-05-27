@@ -7,7 +7,7 @@
             <view class="coupon-name">{{'小店红包🧧'}}</view>
             <view class="coupon-date">{{'2018.11.20 - 2019.01.20'}}</view>
             <button bindtap="getCoupon" class="coupon-btn" wx:if="{{!getSuccess}}">立即领取</button>
-            <button bindtap="getCoupon" class="coupon-btn" wx:if="{{getSuccess}}">去使用</button>
+            <button bindtap="useCoupon" class="coupon-btn" wx:if="{{getSuccess}}">去使用</button>
 
             <!-- <text class="iconfont icon-close_icon popup-close" bindtap="resultPopup"></text> -->
         </view>
