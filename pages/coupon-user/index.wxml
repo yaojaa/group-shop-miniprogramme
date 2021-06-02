@@ -1,10 +1,5 @@
 <view class="container gray-wrap">
 
-    <view class="fixed-btn">
-        <btuuon  class="btn  primary block linenear_bg" bindtap="toCreate"  wx:if="{{tab == 0}}">
-            制作红包
-        </btuuon>
-    </view>
     <view class="content-wrap">
         <view class="tab-one" >
             <view class="coupon-item" wx:for="{{data_list}}" wx:key="index">

@@ -1440,8 +1440,8 @@
           "scene": null
         },
         {
-          "name": "pages/userhome/index",
-          "pathName": "pages/userhome/index",
+          "name": "pages/user-home/index",
+          "pathName": "pages/user-home/index",
           "query": "id=1",
           "scene": null
         },
@@ -1527,6 +1527,12 @@
           "name": "pages/order-detail-seller/index",
           "pathName": "pages/order-detail-seller/index",
           "query": "id=29081",
+          "scene": null
+        },
+        {
+          "name": "pages/coupon/index",
+          "pathName": "pages/coupon/index",
+          "query": "id=39",
           "scene": null
         }
       ]

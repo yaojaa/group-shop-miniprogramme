@@ -52,6 +52,11 @@
                 </navigator>
             </view>
         </view>
+
+        <van-cell-group>
+		<van-cell icon="shop-o" title="店铺红包 " is-link link-type="navigateTo" url="../coupon-user/index">
+		</van-cell>
+	</van-cell-group>
     </i-panel>
 
 
