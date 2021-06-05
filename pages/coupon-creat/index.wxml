@@ -78,7 +78,9 @@
             </van-radio-group>
         </view>
     </van-popup>
-    <van-dialog use-slot title="选择顾客" show="{{ customerVisible }}" show-cancel-button bind:close="onCustomerClose">
+    <van-dialog use-slot title="选择顾客" show="{{ customerVisible }}" show-cancel-button bind:close="onCustomerClose"  
+    bind:confirm="sendToUser">
+
         <!--         <van-search value="{{ value }}" input-align="center" placeholder="输入昵称搜索" />
  -->
         <view class="avatarlist" style="width: 700rpx">

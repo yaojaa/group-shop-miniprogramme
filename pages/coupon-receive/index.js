@@ -7,12 +7,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        result: true,
-        title:'',
-        reduce:'',
-        getSuccess:false
+        result: true
     },
-    resultPopup() {},
     resultPopup() {},
     /**
      * 生命周期函数--监听页面加载
@@ -22,6 +18,7 @@ Page({
         this.id = options.id
 
         this.getCouponInfo()
+        this.getCoupon()
 
     },
 
@@ -31,25 +28,10 @@ Page({
     onReady: function() {
 
     },
-    useCoupon(){
-        wx.redirectTo({
-            url:'/pages/userhome/index?id='+this.data.store_id 
-        })
-    },
     getCouponInfo(){
 
               util.wx.get('/api/redpacket/get_redpacket_info', {
                 redpacket: this.id,
-        }).then(res=>{
-            if(res.data.code == 200){
-                this.setData({
-                    reduce:res.data.data.reduce,
-                    start_time_fmt: res.data.data.start_time_fmt,
-                    stop_time_fmt: res.data.data.stop_time_fmt,
-                    store_id: res.data.data.store_id
-
-                })
-            }
         })
 
     },
@@ -62,13 +44,6 @@ Page({
         util.wx.post('/api/redpacket/alloc_redpacket', {
                 redpacket_id: this.id,
                 user_ids: app.globalData.userInfo.user_id
-        }).then(res=>{
-            wx.hideLoading()
-            if(res.data.code == 200){
-                this.setData({
-                    getSuccess: true
-                })
-            }
         })
     },
 

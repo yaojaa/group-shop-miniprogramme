@@ -9,3 +9,34 @@
 .w-min-160{
 	width:160rpx !important;
 }
+
+.avatarlist{
+	height: 700rpx;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.avatar{
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 8rpx;
+}
+
+.userlist{
+	display: flex;
+	margin: 10px;
+	border-bottom: 1px solid #eee;
+	padding: 10px 0
+}
+.name{
+	padding-left: 10px;
+	white-space: nowrap;
+	word-break: keep-all;
+	text-overflow: ellipsis;
+	overflow:hidden; 
+	min-width: 40px;
+}
+.avatarlist{
+	font-size: 30rpx;
+	font-weight: bold;
+	color: #666
+}

@@ -9,7 +9,11 @@ Page({
      */
     data: {
         tab:0,
-        data_list: []
+        data_list: [],
+        customerVisible:false,
+        customerList:[],
+        cpage: 1,
+
     },
     handleTab(e){
         console.log(e)
@@ -40,7 +44,10 @@ Page({
 
     getCouponList(){
       wx.showLoading()
-        util.wx.get('/api/redpacket/get_list_by_store').then(res=>{
+        util.wx.get('/api/redpacket/get_list_by_store',{
+          page:1,
+          pagesize:200
+        }).then(res=>{
                 wx.hideLoading()
 
           if(res.data.code == 200){
@@ -55,11 +62,126 @@ Page({
     /*发送红包给指定客户*/
     sendToUser(){
         util.wx.post('/api/redpacket/alloc_redpacket',{
-            user_ids:[333,333,333,333],
-            redpacket_id:''
+            user_ids:this.data.user_ids,
+            redpacket_id:this.data.redpacket_id
+
+        }).then(res=>{
+
+          if(res.data.code == 200){
+
+            wx.showModal({
+
+         title: '发送成功',
+
+         content: '红包已发送到客人账户',
+         showCancel: false,//是否显示取消按钮
+         cancelText:"否",//默认是“取消”
+         confirmText:"我知道了",//默认是“确定”
+         confirmColor: 'green',//确定文字的颜色
+         success: function (res) {
+        
+         },
+         fail: function (res) { },//接口调用失败的回调函数
+         complete: function (res) { },//接口调用结束的回调函数（调用成功、失败都会执行）
+      })
+
+
+          }
+
 
         })
         
+    },
+    showCustomer(e){
+      console.log(e)
+      this.data.redpacket_id = e.target.dataset.redpacket_id
+      this.data.user_ids = e.target.dataset.user_ids.map(item=>{
+        return item.user_id
+      })
+      this.setData({
+        customerVisible:true
+      })
+
+     this.getCustomers()
+
+    },
+
+     /**
+     * 滑动到底部
+     */
+    scrolltolower() {
+
+        // }
+        ++this.data.cpage;
+
+        if (this.data.cpage <= this.totalpage) {
+            this.getCustomers(); //重新调用请求获取下一页数据
+        } else {
+            this.data.cpage = this.totalpage;
+        }
+    },
+
+     /**
+     * 选择顾客
+     */
+    checkboxUserChange(e) {
+            this.data.user_ids = e.detail.value
+             console.log(this.data.user_ids)
+
+    },
+    getRedpacketUser(){
+       util.wx.get('/api/seller/get_redpacket_user_list', data).then((res) => {
+
+
+       })
+
+    },
+     /**
+     * 获取粉丝列表
+     */
+    getCustomers(params) {
+        this.setData({
+            loading: true
+        })
+        let data = {
+            sortstr: '',
+            cpage: 1,
+            pagesize: 15
+        }
+
+        if (this.data.searchWords) {
+            data.keyword = this.data.searchWords
+        }
+
+        console.log(data)
+
+        return new Promise((resolve, reject) => {
+            util.wx.get('/api/seller/get_fans_list', data).then((res) => {
+              let listData = res.data.data.lists
+
+              this.data.user_ids.forEach(id=>{
+
+                listData.forEach(item=>{
+                  if(item.user_id == id){
+                    item.checked = true
+                    item.disabled = true
+                  }
+                })
+
+
+              })
+
+
+                this.setData({
+                    loading: false,
+                    customerList: this.data.customerList.concat(res.data.data.lists)
+                })
+                resolve(res)
+            }, (err) => {
+                reject(err)
+            })
+        })
+
     },
 
 
@@ -86,7 +208,7 @@ Page({
     onPullDownRefresh: function() {
         // 显示顶部刷新图标
         wx.showNavigationBarLoading();
-        this.getDataList(this.data.sortstr).then(() => {
+        this.getCouponList(this.data.sortstr).then(() => {
             // 隐藏导航栏加载框
             wx.hideNavigationBarLoading();
             // 停止下拉动作
@@ -104,7 +226,7 @@ Page({
             if (this.data.cpage > this.data.totalpage) {
                 return
             }
-            this.getDataList(this.data.sortstr).then(() => {
+            this.getCouponList(this.data.sortstr).then(() => {
                 // 隐藏导航栏加载框
                 wx.hideNavigationBarLoading();
                 // 停止下拉动作
@@ -130,4 +252,5 @@ Page({
         };
 
     }
+
 })
