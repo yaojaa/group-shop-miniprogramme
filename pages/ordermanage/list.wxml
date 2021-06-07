@@ -188,8 +188,8 @@
                 <!--          <text  data-order_id="{{item.order_id}}" bindtap="toOrderDetail">查看订单详情</text>   
  -->
 
-    <view class="tk" style="float: right">
-                    <tuikuan refund_fee="{{item.pay_price}}" order_id="{{item.order_id}}"></tuikuan>
+    <view class="tk" style="float: right" wx:if="{{!item.order_refund_id}}">
+                    <tuikuan bindtkSuccess="tkSuccess" refund_fee="{{item.pay_price}}" order_id="{{item.order_id}}" user_id="{{item.user.user_id}}"></tuikuan>
                 </view>
                 <view class="note-input">
 

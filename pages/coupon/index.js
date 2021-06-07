@@ -12,7 +12,7 @@ Page({
         data_list: [],
         customerVisible:false,
         customerList:[],
-        cpage: 1,
+        cpage: 1
 
     },
     handleTab(e){
@@ -45,15 +45,19 @@ Page({
     getCouponList(){
       wx.showLoading()
         util.wx.get('/api/redpacket/get_list_by_store',{
-          page:1,
-          pagesize:200
+          page:this.data.cpage,
+          pagesize:8
         }).then(res=>{
                 wx.hideLoading()
 
           if(res.data.code == 200){
 
+
+            const data = this.data.data_list.concat(res.data.data.order_list)
+
             this.setData({
-              data_list:res.data.data.order_list
+              data_list:data,
+              totalpage: res.data.data.page.totalpage
             })
             console.log(res)
           }
@@ -136,57 +140,6 @@ Page({
        })
 
     },
-     /**
-     * 获取粉丝列表
-     */
-    getCustomers(params) {
-        this.setData({
-            loading: true
-        })
-        let data = {
-            sortstr: '',
-            cpage: 1,
-            pagesize: 15
-        }
-
-        if (this.data.searchWords) {
-            data.keyword = this.data.searchWords
-        }
-
-        console.log(data)
-
-        return new Promise((resolve, reject) => {
-            util.wx.get('/api/seller/get_fans_list', data).then((res) => {
-              let listData = res.data.data.lists
-
-              this.data.user_ids.forEach(id=>{
-
-                listData.forEach(item=>{
-                  if(item.user_id == id){
-                    item.checked = true
-                    item.disabled = true
-                  }
-                })
-
-
-              })
-
-
-                this.setData({
-                    loading: false,
-                    customerList: this.data.customerList.concat(res.data.data.lists)
-                })
-                resolve(res)
-            }, (err) => {
-                reject(err)
-            })
-        })
-
-    },
-
-
-
-
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -223,15 +176,10 @@ Page({
             this.setData({
                 cpage: this.data.cpage + 1, //每次触发上拉事件，把requestPageNum+1
             })
-            if (this.data.cpage > this.data.totalpage) {
+            if (this.data.cpage-1 >= this.data.totalpage) {
                 return
             }
-            this.getCouponList(this.data.sortstr).then(() => {
-                // 隐藏导航栏加载框
-                wx.hideNavigationBarLoading();
-                // 停止下拉动作
-                wx.stopPullDownRefresh();
-            })
+            this.getCouponList()
         }
     },
 

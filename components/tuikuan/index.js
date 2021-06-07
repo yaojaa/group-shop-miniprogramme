@@ -11,7 +11,11 @@ Component({
             type: Number,
             value: 0
         },
-        order_id:{
+        order_id: {
+            type: String,
+            value: ''
+        },
+        user_id: {
             type: String,
             value: ''
         }
@@ -21,12 +25,18 @@ Component({
     },
     data: {
         visible: false,
-        explain:''
+        explain: ''
     },
     methods: {
-        setRefund_fee(e){
+        setRefund_fee(e) {
+            // console.log(e)
+            // this.data.refund_fee = e
+        },
+        setExplain(e) {
+
             console.log(e)
-            this.data.refund_fee = e
+            this.data.explain = e.detail
+
         },
 
         to_refund() {
@@ -55,16 +65,25 @@ Component({
             util.wx.post('/api/seller/order_active_refund', {
                 order_id: this.data.order_id,
                 refund_fee: this.data.refund_fee,
-                reason: '',
-                explain: ''
-            }).then(res=>{
-                if(res.data.code == 200){}
-                    else{
-                        wx.showToast({
-                            title: res.data.msg,
-                            icon : none
-                        })
-                    }
+                reason: '主动退款',
+                explain: this.data.explain,
+                user_id: this.data.user_id
+            }).then(res => {
+                if (res.data.code == 200) {
+
+                    wx.showToast({
+                        title: '退款成功',
+                        icon: "none"
+                    })
+
+                    this.triggerEvent('tkSuccess')
+
+                } else {
+                    wx.showToast({
+                        title: res.data.msg,
+                        icon: "none"
+                    })
+                }
             })
 
 

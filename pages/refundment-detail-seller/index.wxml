@@ -8,7 +8,7 @@
         <text  class="text-sm">{{detail.refund_desc}} {{detail.audittime}}  </text>
         </text>
 
-         <text wx:if="{{detail.status ==4}}">已退款
+         <text wx:if="{{detail.status ==4}}">已退款 （退款金额已原路返回）
         <text  class="text-sm">退款时间：{{detail.audittime}}  退款金额：¥{{detail.real_refund_fee}} </text>
          </text>
     </view>
@@ -34,7 +34,7 @@
         </view>
     <view class="item-list p-df mb-df">
         <view class="item">
-            <text class="text-gray">申请用户：</text>
+            <text class="text-gray">退款用户：</text>
             <text> <image src=" {{order_detail.user.avatar}}" /> {{order_detail.user.nickname}}</text>
         </view>
 
@@ -53,17 +53,14 @@
             <text class="secondary-text">￥{{detail.refund_fee}}</text>
         </view>
         <view class="item">
-            <text class="text-gray">申请原因：</text>
+            <text class="text-gray">退款原因：</text>
             <text class="">{{detail.reason}}</text>
         </view>
          <view class="item">
-            <text class="text-gray">申请说明：</text>
+            <text class="text-gray">退款说明：</text>
             <text class="">{{detail.explain || '无'}}</text>
         </view>
-        <view class="item">
-            <text class="text-gray">申请时间：</text>
-            <text class="">{{detail.apptime}}</text>
-        </view>
+    
      <!--    <view class="item">
             <text class="text-gray">凭证照片：</text>
             <text class="">

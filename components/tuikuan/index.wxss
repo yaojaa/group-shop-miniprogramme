@@ -36,3 +36,8 @@
     user-select: none;
     color: #666!important
 }
+
+
+.tuikuan_btn:after{
+    border: none;
+}

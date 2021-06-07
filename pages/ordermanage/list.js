@@ -192,6 +192,12 @@ Page({
 
 
     },
+    tkSuccess(){
+        console.log('监听到退款成功')
+        this.getOrderList()
+                this.getStatistics()
+
+    },
     onLoad: function(optiton) {
 
 

@@ -142,6 +142,7 @@ App({
             wxGetUserProfile({
                 desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
                 success: res => {
+                    console.log('getUserProfile',res)
                     this.getOpenId().then(r => {
                         this.login_third(res).then(r => callback(r)).catch(e => {
                             wx.hideLoading()
@@ -170,6 +171,7 @@ App({
     login_third: function(res) {
 
         return new Promise((resolve, reject) => {
+            console.log('新头像地址',res.userInfo.avatarUrl)
             wx.request({
                 url: config.apiUrl + '/api/index/login_by_openid',
                 method: 'POST',
@@ -178,7 +180,7 @@ App({
                     session_key: this.session_key,
                     encryptedData: res.encryptedData,
                     nickname: res.userInfo.nickName,
-                    head_pic: res.userInfo.avatarUrl,
+                    headimg: res.userInfo.avatarUrl,
                     ...this.comeInfo
                 },
                 success: (res) => {
