@@ -32,21 +32,22 @@ Page({
     onReady: function() {
 
     },
-    toCreate(){
+    toUse(e){
+      const id = e.target.dataset.store_id
       wx.navigateTo({
-        url:'../coupon-creat/index'
+        url:'../userhome/index?id='+id
       })
     },
 
     getCouponList(){
       wx.showLoading()
-        util.wx.get('/api/redpacket/get_redpacket_user_list').then(res=>{
-                wx.hideLoading()
-
+        util.wx.get('/api/redpacket/get_user_redpacket_list').then(res=>{
+          
+          wx.hideLoading()
           if(res.data.code == 200){
 
             this.setData({
-              data_list:res.data.data.order_list
+              data_list:res.data.data.list
             })
             console.log(res)
           }

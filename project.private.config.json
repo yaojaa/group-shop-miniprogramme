@@ -1546,6 +1546,24 @@
           "pathName": "pages/ordermanage/list",
           "query": "goods_id=1975&goods_name=海南精品台农芒果 京东快递包邮到家 到货约3天&delivery_method=1&store_id=1",
           "scene": null
+        },
+        {
+          "name": "pages/user-home/index",
+          "pathName": "pages/user-home/index",
+          "query": "id=39",
+          "scene": null
+        },
+        {
+          "name": "pages/coupon-receive/index",
+          "pathName": "pages/coupon-receive/index",
+          "query": "id=79",
+          "scene": null
+        },
+        {
+          "name": "pages/coupon-creat/index",
+          "pathName": "pages/coupon-creat/index",
+          "query": "id=79",
+          "scene": null
         }
       ]
     }

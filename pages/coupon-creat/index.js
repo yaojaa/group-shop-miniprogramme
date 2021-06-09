@@ -128,6 +128,13 @@ Page({
 
 
     },
+    changeDays(e){
+        this.setData({
+            days: e.detail.value
+        })
+
+        console.log(this.days)
+    },
     //创建优惠券
     createCoupon() {
 

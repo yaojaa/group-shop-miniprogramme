@@ -7,7 +7,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        result: true
+        result: true,
+        reduce:'**'
     },
     resultPopup() {},
     /**
@@ -32,6 +33,20 @@ Page({
 
               util.wx.get('/api/redpacket/get_redpacket_info', {
                 redpacket: this.id,
+        }).then(res=>{
+
+              if(res.data.code == 200){
+
+                this.setData({
+                    reduce:res.data.data.reduce,
+                    start_time:res.data.data.start_time,
+                    stop_time:res.data.data.stop_time
+
+                })
+
+                }else{
+
+                }
         })
 
     },
@@ -44,6 +59,22 @@ Page({
         util.wx.post('/api/redpacket/alloc_redpacket', {
                 redpacket_id: this.id,
                 user_ids: app.globalData.userInfo.user_id
+        }).then(res=>{
+
+            wx.hideLoading()
+
+            if(res.data.code == 200){
+
+            }else{
+
+                wx.showToast({
+                    title:res.data.msg,
+                    icon:'none'
+                })
+
+            }
+
+
         })
     },
 

@@ -24,6 +24,14 @@
             </van-field>
         </van-cell-group>
         <van-cell-group custom-class="mt-sm">
+           <van-field use-button-slot value="{{total}}" bind:input="changeDays" data-key="days" name="days" label="有效天数" placeholder="请输入有效天数，领取后开始计算">
+                           <view slot="button">天</view>
+                       </van-field>
+
+            <!--      <van-field value="{{ date}}" name="days" label="使用有效期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" /> -->
+        </van-cell-group>
+
+        <van-cell-group custom-class="mt-sm">
             <van-field value="{{start_time}}" name="date" label="红包生效日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModalS" />
             <van-field value="{{stop_time}}" name="date" label="红包失效日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModalE" />
             <!--      <van-field value="{{ date}}" name="days" label="使用有效期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModal" /> -->
