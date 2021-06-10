@@ -1,4 +1,5 @@
 // components/order-panel/index.js
+const app = getApp()
 Component({
     /**
      * 组件的属性列表
@@ -21,6 +22,7 @@ Component({
      * 组件的初始数据
      */
     data: {
+        store_id:app.globalData.userInfo ? app.globalData.userInfo.store_id : ''
 
     },
 

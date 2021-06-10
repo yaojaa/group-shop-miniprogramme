@@ -12,7 +12,6 @@
                     <view class="flex-sub primary-text mr-sm"  wx:if="{{item.type == 0}}">自助领取红包</view>
                     <view class="flex-sub primary-text mr-sm"  wx:if="{{item.type == 2}}">新人专享红包</view>
                     <view class="flex-sub primary-text mr-sm"  wx:if="{{item.type == 3}}">下单奖励红包</view>
-
                     <view><text class="pink-text text-xxl bold-text">￥{{item.reduce}}</text></view>
                 </view>
                 <view class="primary-text" wx:if="{{item.type == 1}}">客人：

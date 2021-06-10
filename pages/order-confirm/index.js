@@ -258,6 +258,8 @@ Page({
     address_id: (newValue, val, context) => {
       context.address_id = newValue;
 
+      console.log('address_idaddress_idaddress_idaddress_id')
+
       //context.get_shipping_money();
       context.getGoodsTotal();
     }

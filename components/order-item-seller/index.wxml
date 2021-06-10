@@ -1,13 +1,31 @@
 <view class="goods-panel ph-df white-bg mv-sm cf">
     <view class="goods-panel-hd pv-sm flex align-center">
         <view class="flex-sub mr-df">
-            <view class="flex align-center">
+
+            <view class="flex align-center" wx:if="{{item.link_store.length == 2 && item.link_store[1].store_id == store_id }}">
+
+                <image src="{{item.store.headimg}}" class="shop-tb mr-xs">
+                </image>
+                <view class="flex-sub text-hide" 
+                >
+                    {{item.store.nickname}}
+               </view>
+    
+
+
+            </view>
+
+           <view class="flex align-center" wx:else>
 
                 <image src="{{item.user.headimg}}" class="shop-tb mr-xs">
                 </image>
-                <view class="flex-sub text-hide" >
+             
+               <view class="flex-sub text-hide" >
                     {{item.user.nickname}}
+
                </view>
+
+
             </view>
 
         </view>

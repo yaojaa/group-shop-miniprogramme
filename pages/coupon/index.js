@@ -24,9 +24,9 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onShow: function(options) {
-
+    onLoad: function(options) {
         this.getCouponList()
+
         
     },
 
@@ -187,10 +187,14 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function(e) {
-      console.log(e)
 
       const title = e.target.dataset.title
       const id = e.target.id
+      console.log('/pages/coupon-receive/index?id=' +id)
+
+      wx.navigateTo({
+        url:'/pages/coupon-receive/index?id=' +id
+      })
 
         return {
           title: title,

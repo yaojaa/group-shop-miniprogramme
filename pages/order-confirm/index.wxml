@@ -27,10 +27,8 @@
                         <van-cell-group>
                             <van-cell clickable data-name="{{item.self_address_id}}" bind:click="onClick" size="small" wx:for="{{self_address}}" wx:key="{{index}}" value-class="self-ad-radio" bind:click="onAddressChange">
                                 <view slot="title" class="flex">
-                                    <text class="self-ad-label">提货点{{index+1}}</text>
-                                    <text class="self-ad-content flex-sub">
-                                        {{item.name}} {{item.door_number}}
-                                    </text>
+                                    <text >提货点{{index+1}} : {{item.name}} {{item.door_number}}</text>
+                               
                                 </view>
                                 <van-radio name="{{item.self_address_id}}" checked-color="#49b34d" />
                             </van-cell>

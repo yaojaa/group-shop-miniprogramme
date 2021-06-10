@@ -33,7 +33,7 @@ Page({
 
     },
     toUse(e){
-      const id = e.target.dataset.store_id
+      const id = e.target.id
       wx.navigateTo({
         url:'../userhome/index?id='+id
       })
