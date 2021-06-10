@@ -264,6 +264,11 @@ Page({
       context.getGoodsTotal();
     }
   },
+  toCoupon(){
+    wx.navigateTo({
+      url:'../coupon-user/index'
+    })
+  },
 
   inputConsignee(e) {
     this.setData({

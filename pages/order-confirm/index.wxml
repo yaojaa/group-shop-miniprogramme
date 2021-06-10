@@ -114,7 +114,9 @@
             <van-cell title="商品总额" value="{{goodsTotal.full_price}}" readonly />
             <van-cell wx:if="{{delivery_method==1}}" title="运费" value="+{{goodsTotal.shipping || '¥0'}}" readonly value-class="" />
             <view>
-                <van-cell wx:for="{{goodsTotal.discounts || []}}" title="{{item.name}}" value="{{item.reduce}}" readonly value-class="coral-text" />
+                <van-cell bindtap="toCoupon"  wx:for="{{goodsTotal.discounts || []}}" title="{{item.name}}" value="{{item.reduce}}" readonly value-class="coral-text" />
+
+
             </view>
             <van-field input-align="left" bindchange="inputUser_message" value="{{user_message}}" label="留言" type="textarea" placeholder="稍句话..." autosize />
         </van-cell-group>
