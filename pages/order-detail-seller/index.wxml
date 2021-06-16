@@ -81,7 +81,7 @@
     <view class="order-fixed-footer">
 
          <view wx:if="{{info.showAction}}" style="float: left;margin-top: 20rpx">
-                    <tuikuan refund_fee="{{info.pay_price}}" order_id="{{info.order_id}}" user_id="{{info.user.user_id}}"></tuikuan>
+                    <tuikuan bindtkSuccess="tkSuccess" refund_fee="{{info.pay_price}}" order_id="{{info.order_id}}" user_id="{{info.user.user_id}}"></tuikuan>
          </view>
 
         <button wx:if="{{info.order_refund_id && info.order_refundstatus!==2 }}" data-order_refund_id="{{info.order_refund_id}}" data-order_id="{{info.order_id}}" bindtap="to_refund" class=" primary btn hollow round {{info.order_refundstatus==1?'text-danger':'gray-text'}} ">

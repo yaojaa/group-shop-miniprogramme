@@ -65,7 +65,7 @@ Component({
             util.wx.post('/api/seller/order_active_refund', {
                 order_id: this.data.order_id,
                 refund_fee: this.data.refund_fee,
-                reason: '主动退款',
+                reason: '商户退款',
                 explain: this.data.explain,
                 user_id: this.data.user_id
             }).then(res => {

@@ -194,6 +194,12 @@ Page({
     },
     tkSuccess(){
         console.log('监听到退款成功')
+
+          this.setData({
+            tab: -4,
+            cpage: 1,
+            search_order_status: -4
+        })
         this.getOrderList()
                 this.getStatistics()
 
@@ -225,6 +231,7 @@ Page({
         wx.setNavigationBarTitle({
             title: '管理订单：' + optiton.goods_name
         })
+
     },
     handleTab({
         detail
