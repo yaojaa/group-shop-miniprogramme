@@ -21,7 +21,7 @@
                 <view class="text-justify mt-xs ">
                     <view class="text-sm text-muted" wx:if="{{item.full > 0 }}">满{{item.full}}元可用</view>
                     <view class="text-sm text-muted" wx:else >不限制金额</view>
-
+{{item.type}}
                     <button wx:if="{{item.type == 0}}" id="{{item.redpacket_id}}" data-title="{{item.title}}" data-reduce="{{item.reduce}}" open-type="share" type="info" size="mini" custom-class="w-min-160">发出红包</button>
 
 <!--                     <button wx:if="{{item.type == 1}}" data-user_ids="{{item.users}}" data-redpacket_id="{{item.redpacket_id}}" data-title="{{item.title}}" data-reduce="{{item.reduce}}" size="mini" custom-class="w-min-160" bindtap="showCustomer">指定客人</button>
