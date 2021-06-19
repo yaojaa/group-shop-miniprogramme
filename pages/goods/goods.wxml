@@ -1,6 +1,4 @@
-
 <!-- <image src="{{imgOkPath}}"></image> -->
-
 <preview-view previewImgs="{{previewImgs}}" previewImgHidden="{{previewImgHidden}}"></preview-view>
 <custom-bar fixed="true" scrollTop="{{scrollTop}}" changeStartHeight="500" bottomLayerBackColor="#ffffff" changeEndHeight="600" showBackBar="true">
     <view slot="bottom">
@@ -31,11 +29,6 @@
             </view>
         </view>
     </imgs>
-
-
-
-
-
     <view class="menu flex-box" wx:if="{{showPanel}}">
         <view class="flex-item" bindtap="goVisitor">
             <view class="num">
@@ -87,8 +80,6 @@
             更多
         </view> -->
     </view>
-
-   
     <view class="sale-panel">
         <view class="sale-panel-bd">
             <view class="price-group">
@@ -171,21 +162,25 @@
                         </view>
                         <view class="f12 gray-text">
                             <text class="price f12px">¥{{item.spec_price}}</text>
-
                             <view class="line" wx:if="{{is_help_sale}}">
-                                代理价：<text class="f12 n-bold text-warning" >¥{{item.sub_agent_price}}</text>
+                                代理价：
+                                <text class="f12 n-bold text-warning">
+                                    ¥{{item.sub_agent_price}}
+                                </text>
                             </view>
-
-                            <text wx:if="{{item.spec_stock && item.spec_stock != 0 }}">剩余:{{item.spec_stock}}</text>
+                            <text wx:if="{{item.spec_stock && item.spec_stock != 0 }}">
+                                剩余:{{item.spec_stock}}
+                            </text>
                         </view>
                     </view>
                     <view class="goods-item-actions" catchtap="()=>{}">
                         <!-- <button data-name="{{item.spec_name}}" data-image="{{item.spec_pic[0]}}" open-type="share" class="btn-reset">
                             <van-icon name="share-o" size="20" color="#69b90b" />
                         </button> -->
-                        <view class="buy" catchtap="addAnimate">
+                        <view class="buy" catchtap="addAnimate" wx:if="{{item.is_limited_stock != '0'}}">
                             <i-input-number class="inputNumber" i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                         </view>
+                        <view wx:else class="gray-text">暂无库存</view>
                     </view>
                 </view>
             </block>
@@ -202,7 +197,7 @@
             <!-- <view class="code center" wx:if="{{goods.user.wx_paycode}}">
             <image src="{{goods.user.wx_paycode}}"  mode="widthFix"/>
         </view> -->
-            <block >
+            <block>
                 <view class='sub-title scale-b-1px contentBox'>
                     <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
                     查看所有订单 〉
@@ -223,9 +218,11 @@
                                 <image wx:else class="buyer-avatar" src="{{item.headimg}}"></image>
                                 <view class="buyer-info">
                                     <view class="name">
-                                       <text wx:if="{{goods.show_buyerlist == 1}}">匿名小主 </text>
-                                       <text wx:else>{{item.nickname}}</text>
- <text class="mini-tags" wx:if="{{item.order_pay_total>0}}"> 跟团{{item.order_pay_total}}次</text>
+                                        <text wx:if="{{goods.show_buyerlist == 1}}">匿名小主</text>
+                                        <text wx:else>{{item.nickname}}</text>
+                                        <text class="mini-tags" wx:if="{{item.order_pay_total>0}}">
+                                            跟团{{item.order_pay_total}}次
+                                        </text>
                                         <!-- <text class="mini-tags" wx:if="{{item.order_pay_total==2}}">回头客</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>2 && item.order_pay_total<=10 }}">有空就来逛逛</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>10 && item.order_pay_total<=30 }}">高级粉丝</text>
@@ -290,29 +287,23 @@
             <button size="large" bindtap="copyDetail" class="btn primary hollow">复制为文字</button>
         </view>
     </view>
-     <view class="weui-footer" wx:if="{{!showPanel}}">
+    <view class="weui-footer" wx:if="{{!showPanel}}">
         <button bindtap="goCreateHome" class="linenear_bg left-raduis right-raduis" size="mini" type="primary" style="margin:0 18px">
             +我也要使用开心麻团卖货
         </button>
     </view>
-
-        <official-account></official-account>
-
-<!-- 
-    <view class="official-info " bindtap="linkOfficialInfo" wx:if="{{!showPanel}}">
+    <official-account></official-account>
+    <!-- <view class="official-info " bindtap="linkOfficialInfo" wx:if="{{!showPanel}}">
         <view class="info">关注公众号，接收订单通知等消息推送</view>
         <button class="btn primary hollow" size="mini">关注</button>
     </view> -->
-
-
     <!-- is_help_sale url里有帮卖参数 表示邀请帮卖页面  is_help_sale_user是帮卖成员且开通了帮卖显示的菜单 -->
-
     <view class='footer-cart' wx:if="{{is_help_sale && goods.agent_opt==1}}">
         <view class='icon' bindtap='homepage'>
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-          <view class='icon' style="flex:2; position: relative;" >
+        <view class='icon' style="flex:2; position: relative;">
             <view wx:if="{{totalNum > 0}}" class="default-badge {{showRoll==0?'cake':''}}">
                 {{totalNum}}
             </view>
@@ -321,12 +312,11 @@
             </button>
         </view>
         <view class='icon' style="flex:2">
-            <button bindtap="helpSaleUp" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg right-raduis" >
+            <button bindtap="helpSaleUp" wx:if="{{goods.goods_expires.status == 1}}" class="buy linenear_bg right-raduis">
                 绑定上架
             </button>
         </view>
     </view>
-
     <!-- 正常客户下单 -->
     <view class='footer-cart' wx:if="{{!is_help_sale}}">
         <view class='icon' bindtap='homepage' style="flex: 22">
@@ -362,13 +352,9 @@
             <i-icon type="mine" size="26" color="#333" />
             <text class="label">我 的</text>
         </view>
-
-
         <button open-type="share" wx:if="{{totalNum == 0 && showPanel && goods.agent_opt==1}}" style="flex: 30" data-type="invit" class="buy linenear_bg  left-raduis right-raduis">
             邀请好友帮卖
         </button>
-
-
         <button open-type="share" data-type="share" wx:if="{{totalNum == 0 && showPanel}}" class="buy linenear_bg left-raduis right-raduis" style="flex: 45">
             分享顾客
         </button>
@@ -400,9 +386,10 @@
                             <view class="type-box text-justify">
                                 <view class="f16 bold">
                                     {{item.spec_name}} /
-                                    <text class="text-red f16" wx:if="{{is_help_sale}}">¥{{item.sub_agent_price}}</text>
+                                    <text class="text-red f16" wx:if="{{is_help_sale}}">
+                                        ¥{{item.sub_agent_price}}
+                                    </text>
                                     <text class="text-red f16" wx:else>¥{{item.spec_price}}</text>
-
                                 </view>
                                 <i-input-number disabled id="{{index}}" value="{{item.item_num}}" min="0" max="100" bindchange="handleCountChange" slot="footer" />
                             </view>
@@ -440,9 +427,7 @@
                 <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
             </view>
             <view class="info">微信授权登录</view>
-            <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">
-                登 录
-            </button>
+            <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">登 录</button>
             <button size="mini" type="default" plain="false" bindtap="rejectAuth">取 消</button>
         </view>
     </van-popup>
@@ -497,10 +482,10 @@
                             <view class="bolds mr-xl">{{specItem.spec_name}}</view>
                             <view class="price-group text-lg mt-xs">
                                 <text class="symbol">￥</text>
-                                <text class="number" wx:if="{{is_help_sale}}">{{specItem.spec_price}}</text>
+                                <text class="number" wx:if="{{is_help_sale}}">
+                                    {{specItem.spec_price}}
+                                </text>
                                 <text class="number" wx:else>{{specItem.spec_price}}</text>
-
-
                             </view>
                         </view>
                     </view>
@@ -519,13 +504,11 @@
         <view class="dialog-head">
             <image src="https://static.kaixinmatuan.cn/static/dialog-head.png" mode="widthFix" class="w-full" />
             <view class="title">
-                <view>你已经是帮卖成员 </view>
+                <view>你已经是帮卖成员</view>
             </view>
         </view>
         <view class="p-lg text-center text-gray text-df">点击我要帮卖上架商品吧</view>
     </van-dialog>
     <share-box isCanDraw="{{isCanDraw}}" shareData="{{shareData}}" bind:initData="createShareImage" />
-
     <i-share-painter palette="{{template}}" bind:imgOK="onImgOK"></i-share-painter>
-
 </view>
