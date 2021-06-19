@@ -1,3 +1,5 @@
+
+<wxs src = "../../utils/filters.wxs"  module = "filter" />
 <view class="container">
   <van-popup show="{{ result }}" bind:close="resultPopup" custom-class="custom-popup" custom-style="background:none;">
         <view class="result-box cf por">
@@ -5,7 +7,7 @@
             <view class="coupon-price"><text>{{reduce}}</text>
                 <text class="symbol">¥</text></view>
             <view class="coupon-name">{{'小店红包🧧'}}</view>
-            <view class="coupon-date">{{'2018.11.20 - 2019.01.20'}}</view>
+            <view class="coupon-date">{{filter.formatDate(start_time*1000,'YY-MM-DD hh-mm')}} - {{filter.formatDate(stop_time*1000,'YY-MM-DD hh-mm')}}</view>
             <button bindtap="getCoupon" class="coupon-btn" wx:if="{{!getSuccess}}">立即领取</button>
             <button bindtap="useCoupon" class="coupon-btn" wx:if="{{getSuccess}}">去使用</button>
 

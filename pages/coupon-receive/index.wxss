@@ -1,7 +1,7 @@
 .result-box {
   width: 530rpx;
   height: 608rpx;
-  background: url(http://leileiimg.toutoumei.com/front/img/shake_result_bg.png) center no-repeat;
+  background: url(https://static.kaixinmatuan.cn/d41d8cd98f00b204e9800998ecf8427e202106172246286976.png) center no-repeat;
   background-size: cover;
   text-align: center;
   padding-top: 106rpx;

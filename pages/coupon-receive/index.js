@@ -8,7 +8,8 @@ Page({
      */
     data: {
         result: true,
-        reduce:'**'
+        reduce:'**',
+        getSuccess:false
     },
     resultPopup() {},
     /**
@@ -40,7 +41,8 @@ Page({
                 this.setData({
                     reduce:res.data.data.reduce,
                     start_time:res.data.data.start_time,
-                    stop_time:res.data.data.stop_time
+                    stop_time:res.data.data.stop_time,
+                    store_id: res.data.data.store_id,
 
                 })
 
@@ -49,6 +51,11 @@ Page({
                 }
         })
 
+    },
+    useCoupon(){
+        wx.redirectTo({
+            url:'../userhome/index?id='+this.data.store_id
+        })
     },
 
     /*分配红包*/
@@ -64,6 +71,10 @@ Page({
             wx.hideLoading()
 
             if(res.data.code == 200){
+
+                this.setData({
+                    getSuccess: true
+                })
 
             }else{
 

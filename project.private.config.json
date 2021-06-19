@@ -1570,6 +1570,12 @@
           "pathName": "pages/order-confirm/index",
           "query": "goods_id=1167&payment_method=0&delivery_method=2&from_id=&is_help_sale=false",
           "scene": null
+        },
+        {
+          "name": "pages/coupon-receive/index",
+          "pathName": "pages/coupon-receive/index",
+          "query": "id=82",
+          "scene": null
         }
       ]
     }

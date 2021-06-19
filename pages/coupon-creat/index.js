@@ -26,6 +26,7 @@ Page({
         type: '0', // 红包类型
         title: '亲，给你送红包啦！', //红包名称
         reduce: '', //红包减的金额
+        days:'',
         total: '', //红包数量
         stop_time: fmtDate(new Date().getTime()+30  *  (24  *  3600  *  1000)),
         goods_limit: 0, //限制商品
@@ -33,6 +34,8 @@ Page({
         scopeValue: '',
         scopeTitle: '',
         checked: false,
+                checked2: false,
+
         typeTitle: '',
         userSelectVisble: true,
         customerList: [],
@@ -45,6 +48,7 @@ Page({
         redpacket_id: '',
         goods_ids: [],
         user_ids: [],
+        dataType:'days',
         steps: [{
                 text: '第一步',
                 desc: '优惠券基本信息',
@@ -58,6 +62,16 @@ Page({
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
         this.setData({ checked: detail });
+    },
+    onDateTypeChange({ detail }) {
+        console.log(detail)
+        if(detail){
+            this.setData({
+                days:''
+            })
+        }
+        // 需要手动对 checked 状态进行更新
+        this.setData({ checked2: detail });
     },
     handleDateModalE() {
         this.setData({
@@ -129,11 +143,17 @@ Page({
 
     },
     changeDays(e){
-        this.setData({
-            days: e.detail.value
-        })
+      
 
-        console.log(this.days)
+        this.data.days = e.detail
+
+        if(e.detail){
+            this.setData({
+                checked2: false
+            })
+        }
+
+        console.log(e)
     },
     //创建优惠券
     createCoupon() {
