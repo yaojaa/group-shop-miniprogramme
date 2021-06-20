@@ -1251,11 +1251,11 @@ Page({
     this.setData({
       ['spec[' + index + '].is_limited_stock']: e.detail ? '1' : '0'
     });
-    if (!e.detail) {
-      this.setData({
-        ['spec[' + index + '].spec_stock']: 0
-      });
-    }
+    // if (!e.detail) {
+    //   this.setData({
+    //     ['spec[' + index + '].spec_stock']: 0
+    //   });
+    // }
   },
   onLoad: function (option) {
     var user;
