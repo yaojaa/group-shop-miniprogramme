@@ -31,11 +31,11 @@
                     <view class="text-sm blue-text"><text class="pr-xs">已领取：0人</text><text>已使用：0人</text></view>
                 </view> -->
                 <view class="mt-xs text-sm text-justify text-muted">
-                    <view>生效日期：{{item.start_time_fmt}}</view>
+                    <view>开始日期：{{item.start_time_fmt}}</view>
                 </view>
 
                 <view class="text-sm text-muted mt-xs">
-                    <text class="mr-sm">到期日期：{{item.stop_time_fmt}}</text>
+                    <text class="mr-sm">失效日期：{{item.stop_time_fmt}}</text>
 <!--                     <text>小铺可用 || 指定商品可用></text>
  -->                </view>
             </view>

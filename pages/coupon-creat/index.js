@@ -6,7 +6,7 @@ function fmtDate(obj) {
     var y = 1900 + date.getYear();
     var m = "0" + (date.getMonth() + 1);
     var d = "0" + date.getDate();
-    return y + "" + m.substring(m.length - 2, m.length) + "" + d.substring(d.length - 2, d.length);
+    return y + "年" + m.substring(m.length - 2, m.length) + "月" + d.substring(d.length - 2, d.length)+'日';
 }
 
 
@@ -20,7 +20,7 @@ Page({
         dateModalS: false,
         dateModalE: false,
         minDate: new Date().getTime(),
-        start_time: fmtDate(new Date().getTime()),
+        start_time: '',
         maxDate: new Date(2050, 1, 1).getTime(),
         scopeModal: false,
         type: '0', // 红包类型
@@ -28,7 +28,7 @@ Page({
         reduce: '', //红包减的金额
         days:'',
         total: '', //红包数量
-        stop_time: fmtDate(new Date().getTime()+30  *  (24  *  3600  *  1000)),
+        stop_time: '',
         goods_limit: 0, //限制商品
         typeModal: false,
         scopeValue: '',
@@ -93,12 +93,15 @@ Page({
     },
     handleDateS(event) {
 
+        console.log(event.detail)
+
         const time = fmtDate(event.detail)
 
         console.log(typeof time)
 
         this.setData({
-            start_time:'20200125' ,
+            start_time: event.detail ,
+            start_time_fmt: time,
             dateModalS: !this.data.dateModalS
         });
         console.log(fmtDate(event.detail))
@@ -166,6 +169,8 @@ Page({
             })
         }
 
+      
+
 
         if (this.data.reduce.trim() == '') {
             return wx.showToast({
@@ -174,7 +179,22 @@ Page({
             })
         }
 
+          if (this.data.total.trim() == '') {
+            return wx.showToast({
+                title: '请填写红包数量',
+                icon: 'none'
+            })
+        }
 
+          if (this.data.days.trim() == '' ||  this.data.stop_time =='')
+ {
+            return wx.showToast({
+                title: '请填写到期时间',
+                icon: 'none'
+            })
+        }
+
+        return;
         wx.showLoading()
         util.wx.post('/api/redpacket/add_redpacket', {
             redpacket: {

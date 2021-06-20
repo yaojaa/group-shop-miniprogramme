@@ -5,6 +5,8 @@
         <van-cell-group custom-class="mt-sm">
             <van-field value="{{typeTitle}}" name=" " label="红包类型" title-width="240rpx" input-align="right" is-link placeholder="自助领取" readonly="{{true}}" bindtap="showTypeModal" />
         </van-cell-group>
+
+
         <!-- type '0领取;1分配;2新人;3下单'; -->
         <!--   <van-cell-group title="每个红包金额大小随机">
             <van-field use-button-slot value="{{}}" name="reduce" label="最小值" placeholder="请输入最小值金额">
@@ -37,8 +39,8 @@
 
             <block wx:if="{{checked2}}">
 
-            <van-field value="{{start_time}}" name="date" label="红包开始日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModalS" />
-            <van-field value="{{stop_time}}" name="date" label="红包失效日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModalE" />
+            <van-field value="{{start_time_fmt}}" name="date" label="红包开始日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModalS" />
+            <van-field value="{{stop_time_fmt}}" name="date" label="红包失效日期" title-width="240rpx" input-align="right" is-link placeholder="请选择" readonly="{{true}}" bindtap="handleDateModalE" />
            </block>
 
         </van-cell-group>
@@ -71,12 +73,15 @@
         </view>
        
     </block>
+
     <van-popup show="{{ dateModalS }}" position="bottom" bind:close="handleDateModalS">
         <van-datetime-picker type="date" value="{{ start_time }}" bind:cancel="handleDateModalS" bind:confirm="handleDateS" min-date="{{minDate}}" max-date="{{maxDate}}" />
     </van-popup>
+
     <van-popup show="{{ dateModalE }}" position="bottom" bind:close="handleDateModalE">
-        <van-datetime-picker type="date" value="{{ end_time }}" bind:cancel="handleDateModalE" bind:confirm="handleDateE" min-date="{{minDate}}" max-date="{{maxDate}}" />
+        <van-datetime-picker type="date" value="{{ end_time_fmt }}" bind:cancel="handleDateModalE" bind:confirm="handleDateE" min-date="{{minDate}}" max-date="{{maxDate}}" />
     </van-popup>
+
     <van-popup show="{{ typeModal }}" is-title="true" title="红包类型" position="bottom" bind:close="showTypeModal">
         <view class="pv-df">
             <van-radio-group value="{{ type }}">
