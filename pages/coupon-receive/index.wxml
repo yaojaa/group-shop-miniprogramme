@@ -7,7 +7,15 @@
             <view class="coupon-price"><text>{{reduce}}</text>
                 <text class="symbol">¥</text></view>
             <view class="coupon-name">{{'小店红包🧧'}}</view>
-            <view class="coupon-date">{{filter.formatDate(start_time*1000,'YY-MM-DD hh-mm')}} - {{filter.formatDate(stop_time*1000,'YY-MM-DD hh-mm')}}</view>
+
+                            <view class="coupon-date mt-xs text-sm" wx:if="{{days !=='' && days !== '0' }}">
+
+                                {{days}}天后过期
+
+                            </view>
+
+
+            <view class="coupon-date" wx:else>{{filter.formatDate(start_time*1000,'YY-MM-DD hh-mm')}} - {{filter.formatDate(stop_time*1000,'YY-MM-DD hh-mm')}}</view>
             <button bindtap="getCoupon" class="coupon-btn" wx:if="{{!getSuccess}}">立即领取</button>
             <button bindtap="useCoupon" class="coupon-btn" wx:if="{{getSuccess}}">去使用</button>
 

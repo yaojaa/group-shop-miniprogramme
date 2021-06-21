@@ -29,6 +29,7 @@
   color: #fff;
   font-size: 24rpx;
   padding: 140rpx 0 20rpx;
+  text-align: center;
 }
 
 .result-box .coupon-btn {

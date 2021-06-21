@@ -32,8 +32,8 @@ Page({
     },
     getCouponInfo(){
 
-              util.wx.get('/api/redpacket/get_redpacket_info', {
-                redpacket: this.id,
+              util.wx.post('/api/redpacket/get_redpacket_info', {
+                redpacket_id: this.id,
         }).then(res=>{
 
               if(res.data.code == 200){
@@ -41,6 +41,7 @@ Page({
                 this.setData({
                     reduce:res.data.data.reduce,
                     start_time:res.data.data.start_time,
+                    days:res.data.data.days,
                     stop_time:res.data.data.stop_time,
                     store_id: res.data.data.store_id,
 

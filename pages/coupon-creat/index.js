@@ -6,7 +6,16 @@ function fmtDate(obj) {
     var y = 1900 + date.getYear();
     var m = "0" + (date.getMonth() + 1);
     var d = "0" + date.getDate();
-    return y + "年" + m.substring(m.length - 2, m.length) + "月" + d.substring(d.length - 2, d.length)+'日';
+    return y + "年" + m.substring(m.length - 2, m.length) + "月" + d.substring(d.length - 2, d.length) + '日';
+}
+
+// 不带年月日
+function fmtDatePre(obj) {
+    var date = new Date(obj);
+    var y = 1900 + date.getYear();
+    var m = "0" + (date.getMonth() + 1);
+    var d = "0" + date.getDate();
+    return y  + m.substring(m.length - 2, m.length) + d.substring(d.length - 2, d.length);
 }
 
 
@@ -26,7 +35,7 @@ Page({
         type: '0', // 红包类型
         title: '亲，给你送红包啦！', //红包名称
         reduce: '', //红包减的金额
-        days:'',
+        days: '',
         total: '', //红包数量
         stop_time: '',
         goods_limit: 0, //限制商品
@@ -34,7 +43,7 @@ Page({
         scopeValue: '',
         scopeTitle: '',
         checked: false,
-                checked2: false,
+        checked2: false,
 
         typeTitle: '',
         userSelectVisble: true,
@@ -48,7 +57,7 @@ Page({
         redpacket_id: '',
         goods_ids: [],
         user_ids: [],
-        dataType:'days',
+        dataType: 'days',
         steps: [{
                 text: '第一步',
                 desc: '优惠券基本信息',
@@ -65,9 +74,9 @@ Page({
     },
     onDateTypeChange({ detail }) {
         console.log(detail)
-        if(detail){
+        if (detail) {
             this.setData({
-                days:''
+                days: ''
             })
         }
         // 需要手动对 checked 状态进行更新
@@ -78,7 +87,7 @@ Page({
             dateModalE: !this.data.dateModalE
         });
     },
-    handleDateModalS(){
+    handleDateModalS() {
         this.setData({
             dateModalS: !this.data.dateModalS
         })
@@ -87,7 +96,8 @@ Page({
     handleDateE(event) {
         console.log(fmtDate(event.detail))
         this.setData({
-            end_time: fmtDate(event.detail),
+            stop_time_fmt: fmtDate(event.detail),
+            stop_time: event.detail,
             dateModalE: !this.data.dateModalE
         });
     },
@@ -100,7 +110,7 @@ Page({
         console.log(typeof time)
 
         this.setData({
-            start_time: event.detail ,
+            start_time: event.detail,
             start_time_fmt: time,
             dateModalS: !this.data.dateModalS
         });
@@ -145,12 +155,12 @@ Page({
 
 
     },
-    changeDays(e){
-      
+    changeDays(e) {
+
 
         this.data.days = e.detail
 
-        if(e.detail){
+        if (e.detail) {
             this.setData({
                 checked2: false
             })
@@ -161,6 +171,9 @@ Page({
     //创建优惠券
     createCoupon() {
 
+        console.log(this.data.checked2)
+
+
 
         if (this.data.title == '') {
             return wx.showToast({
@@ -169,7 +182,7 @@ Page({
             })
         }
 
-      
+
 
 
         if (this.data.reduce.trim() == '') {
@@ -179,34 +192,74 @@ Page({
             })
         }
 
-          if (this.data.total.trim() == '') {
+        if (this.data.type == 0 && this.data.total.trim() == '') {
             return wx.showToast({
                 title: '请填写红包数量',
                 icon: 'none'
             })
         }
 
-          if (this.data.days.trim() == '' ||  this.data.stop_time =='')
- {
+        if (!this.data.checked2 && this.data.days.trim() == '') {
             return wx.showToast({
-                title: '请填写到期时间',
+                title: '请填写有效天数',
                 icon: 'none'
             })
         }
 
-        return;
+
+
+
+        if (this.data.checked2 && this.data.start_time == '') {
+            return wx.showToast({
+                title: '请填写生效日期',
+                icon: 'none'
+            })
+        }
+        if (this.data.checked2 && this.data.stop_time == '') {
+            return wx.showToast({
+                title: '请填写失效日期',
+                icon: 'none'
+            })
+        }
+
+
+
         wx.showLoading()
+
+        let param = {
+            type: this.data.type,
+            title: this.data.title,
+            reduce: this.data.reduce,
+            total: this.data.total,
+            full: this.data.full || 0
+        }
+
+        //日期类型
+        if (this.data.checked2) {
+
+            param.days = ''
+
+            param.stop_time = fmtDatePre(this.data.stop_time)+'23:59:59'
+        //day 类型
+            param.start_time = fmtDatePre(this.data.start_time)+'00:00:00'
+        //day 类型
+        } else {
+
+
+            param.start_time = ''
+            param.stop_time = ''
+
+            param.days = this.data.days
+
+
+        }
+
+
+        console.log(param)
+
+
         util.wx.post('/api/redpacket/add_redpacket', {
-            redpacket: {
-                type: this.data.type,
-                title: this.data.title,
-                reduce: this.data.reduce,
-                total: this.data.total,
-                stop_time: this.data.stop_time+'23:59:59',
-                start_time: this.data.start_time,
-                goods_limit:1,
-                full: this.data.full
-            }
+            redpacket: param
         }).then(res => {
             wx.hideLoading()
 
@@ -270,8 +323,8 @@ Page({
             customerVisible: true
         })
 
-        if(this.data.user_ids.length == 0){
-           this.getCustomers()
+        if (this.data.user_ids.length == 0) {
+            this.getCustomers()
         }
 
 
@@ -280,29 +333,39 @@ Page({
 
     bindredpacket() {
 
-                if (this.data.type == 1 && this.data.user_ids.length == 0) {
-             wx.showToast({
-                title: '请选择客人',
+        if (this.data.type == 1 && this.data.user_ids.length == 0) {
+            wx.showToast({
+                title: '指定红包，请选择客人',
                 icon: 'none'
             })
 
-          return
+            return
+        }
+
+        if(this.data.type == 3 && this.data.goods_ids.length == 0){
+          wx.showToast({
+                title: '请指定商品',
+                icon: 'none'
+            })
+
+            return
+
         }
 
 
-         if (this.data.type !== 1 && this.data.goods_ids.length == 0) {
+        if (this.data.type !== 1 && this.data.goods_ids.length == 0) {
 
-              wx.showToast({
-                            title: '创建成功',
-                            icon: 'none'
-                        })
+            wx.showToast({
+                title: '创建成功',
+                icon: 'none'
+            })
 
-                        wx.redirectTo({
-                            url: '/pages/coupon/index'
-                        })
+            wx.redirectTo({
+                url: '/pages/coupon/index'
+            })
 
 
-         }
+        }
 
 
 

@@ -21,6 +21,10 @@
     border-radius: 8rpx;
 }
 
+.action{
+	text-align: right;
+}
+
 .userlist{
 	display: flex;
 	margin: 10px;

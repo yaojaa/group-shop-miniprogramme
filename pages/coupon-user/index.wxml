@@ -1,3 +1,5 @@
+<wxs src = "../../utils/filters.wxs"  module = "filter" />
+
 <view class="container gray-wrap">
 
     <view class="content-wrap">
@@ -24,14 +26,33 @@
 
                 </view>
                 <view class="solid-top mv-xs cf"></view>
+
+
+                <view class="mt-xs text-sm text-justify text-muted" wx:if="{{item.redpacket.days !=='' && item.redpacket.days !== '0' }}">
+                    失效日期：领取后{{item.redpacket.days}}天
+                </view>
+
+                <view  wx:else>
+
+
                 <view class="mt-xs text-sm text-justify text-muted">
-                    <view>生效日期：{{item.start_time_fmt}}</view>
-<!--                     <view><text>删除红包</text></view>
- -->                </view>
+                    <view>开始日期：
+
+                    {{filter.formatDate(item.redpacket.start_time*1000,'YY-MM-DD hh-mm')}}
+                </view>
+                </view>
+
                 <view class="text-sm text-muted mt-xs">
-                    <text class="mr-sm">到期日期：{{item.stop_time_fmt}}</text>
+                    <text class="mr-sm">过期日期：
+                    {{filter.formatDate(item.redpacket.stop_time*1000,'YY-MM-DD hh-mm')}}
+
+                    </text>
 <!--                     <text>小铺可用 || 指定商品可用></text>
  -->                </view>
+                    
+
+                </view>
+               
             </view>
         </view>
 
