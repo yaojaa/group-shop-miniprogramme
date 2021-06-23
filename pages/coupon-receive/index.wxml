@@ -1,25 +1,18 @@
-
-<wxs src = "../../utils/filters.wxs"  module = "filter" />
-<view class="container">
-  <van-popup show="{{ result }}" bind:close="resultPopup" custom-class="custom-popup" custom-style="background:none;">
-        <view class="result-box cf por">
+<wxs src="../../utils/filters.wxs" module="filter" />
+<view class="result-body">
+    <view class="result-box cf por">
             <view class="marker" wx:if="{{getSuccess}}"></view>
             <view class="coupon-price"><text>{{reduce}}</text>
-                <text class="symbol">¥</text></view>
+                <text class="symbol">¥</text>
+            </view>
             <view class="coupon-name">{{'小店红包🧧'}}</view>
-
-                            <view class="coupon-date mt-xs text-sm" wx:if="{{days !=='' && days !== '0' }}">
-
-                                {{days}}天后过期
-
-                            </view>
-
-
-            <view class="coupon-date" wx:else>{{filter.formatDate(start_time*1000,'YY-MM-DD hh-mm')}} - {{filter.formatDate(stop_time*1000,'YY-MM-DD hh-mm')}}</view>
+            <view class="coupon-date mt-xs text-sm" wx:if="{{days !=='' && days !== '0' }}">
+                {{days}}天后过期
+            </view>
+            <view class="coupon-date" wx:else>{{filter.formatDate(start_time*1000,'YY-MM-DD hh-mm')}} -
+                {{filter.formatDate(stop_time*1000,'YY-MM-DD hh-mm')}}</view>
             <button bindtap="getCoupon" class="coupon-btn" wx:if="{{!getSuccess}}">立即领取</button>
             <button bindtap="useCoupon" class="coupon-btn" wx:if="{{getSuccess}}">去使用</button>
-
             <!-- <text class="iconfont icon-close_icon popup-close" bindtap="resultPopup"></text> -->
         </view>
-    </van-popup>
 </view>
