@@ -15,7 +15,7 @@ function fmtDatePre(obj) {
     var y = 1900 + date.getYear();
     var m = "0" + (date.getMonth() + 1);
     var d = "0" + date.getDate();
-    return y  + m.substring(m.length - 2, m.length) + d.substring(d.length - 2, d.length);
+    return y + m.substring(m.length - 2, m.length) + d.substring(d.length - 2, d.length);
 }
 
 
@@ -53,6 +53,8 @@ Page({
         goodsVisible: false,
         goodslist: [],
         cpage: 1,
+        cpage2: 1, //顾客列表
+        totalpage2: '',
         step: 0,
         redpacket_id: '',
         goods_ids: [],
@@ -67,6 +69,7 @@ Page({
                 desc: '优惠券使用范围',
             }
         ],
+        searchWords: ''
     },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
@@ -239,10 +242,10 @@ Page({
 
             param.days = ''
 
-            param.stop_time = fmtDatePre(this.data.stop_time)+'23:59:59'
-        //day 类型
-            param.start_time = fmtDatePre(this.data.start_time)+'00:00:00'
-        //day 类型
+            param.stop_time = fmtDatePre(this.data.stop_time) + '23:59:59'
+            //day 类型
+            param.start_time = fmtDatePre(this.data.start_time) + '00:00:00'
+            //day 类型
         } else {
 
 
@@ -296,6 +299,57 @@ Page({
             })
         })
     },
+    // 搜索
+    onSearch(e) {
+        var sv = e.detail.replace(/(^\s*)|(\s*$)/g, '');
+        console.log(sv);
+        if (sv) {
+            this.data.cpage = 1;
+            this.setData({
+                searchWords: sv,
+                goodslist: [],
+                is_loading: true
+            });
+            this.getGoodsList();
+        } else {
+            this.onCancel()
+        }
+    },
+    onCancel() {
+        this.data.cpage = 1;
+        this.setData({
+            searchWords: '',
+            goodslist: [],
+            is_loading: true
+        });
+        this.getGoodsList();
+    },
+
+     // 搜索
+    onSearch2(e) {
+        var sv = e.detail.replace(/(^\s*)|(\s*$)/g, '');
+        console.log(sv);
+        if (sv) {
+            this.data.cpage2 = 1;
+            this.setData({
+                userWords: sv,
+                customerList: [],
+                is_loading: true
+            });
+            this.getCustomers();
+        } else {
+            this.onCancel2()
+        }
+    },
+    onCancel2() {
+        this.data.cpage2 = 1;
+        this.setData({
+            userWords: '',
+            customerList: [],
+            is_loading: true
+        });
+        this.getCustomers();
+    },
 
     goodscheckboxChange(e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
@@ -342,8 +396,8 @@ Page({
             return
         }
 
-        if(this.data.type == 3 && this.data.goods_ids.length == 0){
-          wx.showToast({
+        if (this.data.type == 3 && this.data.goods_ids.length == 0) {
+            wx.showToast({
                 title: '请指定商品',
                 icon: 'none'
             })
@@ -498,6 +552,21 @@ Page({
     },
 
 
+    scrolltolower2() {
+
+        console.log('scrolltolower2scrolltolower2')
+
+        // }
+        ++this.data.cpage2;
+
+        if (this.data.cpage2 <= this.data.totalpage2) {
+            this.getCustomers(); //重新调用请求获取下一页数据
+        } else {
+            this.data.cpage2 = this.data.totalpage2;
+        }
+    },
+
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -527,13 +596,12 @@ Page({
             loading: true
         })
         let data = {
-            sortstr: '',
-            cpage: 1,
+            cpage: this.data.cpage2,
             pagesize: 15
         }
 
-        if (this.data.searchWords) {
-            data.keyword = this.data.searchWords
+        if (this.data.userWords) {
+            data.keyword = this.data.userWords
         }
 
         console.log(data)
@@ -542,7 +610,8 @@ Page({
             util.wx.get('/api/seller/get_fans_list', data).then((res) => {
                 this.setData({
                     loading: false,
-                    customerList: this.data.list.concat(res.data.data.lists)
+                    customerList: this.data.list.concat(res.data.data.lists),
+                    totalpage2: res.data.data.page.totalpage
                 })
                 resolve(res)
             }, (err) => {

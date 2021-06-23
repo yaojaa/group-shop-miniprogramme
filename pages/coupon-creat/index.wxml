@@ -18,10 +18,10 @@
         </van-cell-group> -->
         <van-cell-group custom-class="mt-sm">
             <van-field value="{{title}}" name="title" bind:input="inputDuplex" data-key="title" label="红包名称" placeholder="例：亲，给你送红包啦！"></van-field>
-            <van-field use-button-slot value="{{reduce}}" bind:input="inputDuplex" data-key="reduce" name="reduce" label="红包金额" placeholder="请输入金额">
+            <van-field use-button-slot value="{{reduce}}" type="digit" bind:input="inputDuplex" data-key="reduce" name="reduce" label="红包金额" placeholder="请输入金额">
                 <view slot="button">元</view>
             </van-field>
-            <van-field wx:if="{{type == 0}}" use-button-slot value="{{total}}" bind:input="inputDuplex" data-key="total" name="total" label="红包总数量" placeholder="请输入红包的数量">
+            <van-field wx:if="{{type == 0}}" type="digit" use-button-slot value="{{total}}" bind:input="inputDuplex" data-key="total" name="total" label="红包总数量" placeholder="请输入红包的数量">
                 <view slot="button">个</view>
             </van-field>
         </van-cell-group>
@@ -33,7 +33,7 @@
                            <view slot="button">天</view>
                        </van-field>
 
-                        <van-field use-button-slot value="{{checked2}}" name="" label="使用起至日期" title-width="500rpx">
+                        <van-field use-button-slot type="digit" readonly value="" name="" label="使用起至日期" title-width="500rpx">
                 <van-switch checked="{{ checked2 }}" bind:change="onDateTypeChange" size="34rpx" slot="button" />
             </van-field>
 
@@ -105,9 +105,12 @@
     <van-dialog use-slot title="选择顾客" show="{{ customerVisible }}" show-cancel-button bind:close="onCustomerClose"  
     bind:confirm="sendToUser">
 
-        <!--         <van-search value="{{ value }}" input-align="center" placeholder="输入昵称搜索" />
- -->
-        <view class="avatarlist" style="width: 700rpx">
+ <van-search value="{{ userWords }}" placeholder="输入昵称搜索" use-action-slot bind:cancel="onCancel2" bind:search="onSearch2" bind:clear="onCancel2" >                </van-search>
+
+
+
+        <scroll-view scroll-y="true" style="height: 500rpx;" scroll-top ="200" bindscrolltolower="scrolltolower2" >
+
             <checkbox-group bindchange="checkboxChange">
                 <label class="userlist" wx:for="{{customerList}}" wx:key="{{item.user_id}}">
                     <view class="name">
@@ -118,13 +121,23 @@
                     </view>
                     <view class="name">{{item.nickname}}</view>
                 </label>
+
             </checkbox-group>
-        </view>
+            <view class="center">
+                            <van-loading size="24px" wx:if="{{loading}}">加载中...</van-loading>
+
+            </view>
+
+       </scroll-view>
+
+
+
     </van-dialog>
     <van-dialog use-slot title="选择商品" show="{{ goodsVisible }}" show-cancel-button bind:close="onCustomerClose" bind:confirm="confirmGoods">
-        <!--         <van-search value="{{ value }}" input-align="center" placeholder="输入商品标题搜索" />
- -->
-        <scroll-view scroll-y="true" style="height: 500rpx;" bindscrolltoupper="upper" bindscrolltolower="scrolltolower" scroll-top="{{scrollTop}}">
+ <van-search value="{{ searchWords }}" placeholder="输入标题关键词搜索" use-action-slot bind:cancel="onCancel" bind:search="onSearch" bind:clear="onCancel">
+                    <!--  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view> -->
+                </van-search>
+        <scroll-view scroll-y="true" style="height: 500rpx;" bindscrolltoupper="upper" bindscrolltolower="scrolltolower" >
             <checkbox-group bindchange="goodscheckboxChange">
                 <label class="userlist" wx:for="{{goodslist}}" wx:key="{{item.goods_id}}">
                     <view class="name">
