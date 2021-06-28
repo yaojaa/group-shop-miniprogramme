@@ -9,7 +9,8 @@ Page({
     data: {
         result: true,
         reduce:'**',
-        getSuccess:false
+        getSuccess:false,
+        showAuth: false
     },
     resultPopup() {},
     /**
@@ -20,7 +21,13 @@ Page({
         this.id = options.id
 
         this.getCouponInfo()
-        this.getCoupon()
+
+           if (!app.globalData.userInfo) {
+            this.setData({
+              showAuth: true
+            });
+            return;
+          }
 
     },
 
@@ -73,6 +80,11 @@ Page({
 
             if(res.data.code == 200){
 
+              wx.showToast({
+                title:'领取成功！',
+                icon:'none'
+              })
+
                 this.setData({
                     getSuccess: true
                 })
@@ -88,6 +100,24 @@ Page({
 
 
         })
+    },
+    getUserInfoFile: function(){
+
+
+        app.getUserInfoFile(r=>{
+
+              
+                     this.setData({
+                      showAuth: false
+                    });
+
+                    wx.showToast({
+                      title:'登陆成功',
+                      icon:'none'
+                    })                    
+
+        })
+       
     },
 
     /**

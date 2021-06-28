@@ -15,4 +15,18 @@
             <button bindtap="useCoupon" class="coupon-btn" wx:if="{{getSuccess}}">去使用</button>
             <!-- <text class="iconfont icon-close_icon popup-close" bindtap="resultPopup"></text> -->
         </view>
+
+
+          <van-popup custom-class="authPopBox" show="{{ showAuth }}">
+        <view class="content-pop">
+            <view class="logo">
+                <image class="avatar-mini" src="https://static.kaixinmatuan.cn/logo.png" />
+            </view>
+            <view class="info">微信授权登录</view>
+            <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">登 录</button>
+        </view>
+    </van-popup>
+
+
 </view>
+
