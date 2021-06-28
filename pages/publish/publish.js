@@ -687,6 +687,62 @@ Page({
     // })
     console.log('编辑器内容改变：', this.data.content);
   },
+  onHide: function(){
+    this.historyEdit();
+  },
+
+  historyEdit: function(){
+    var fullreduce_data = {};
+
+    if (this.data.fullreduce_data) {
+      fullreduce_data = { fullreduce_data: this.data.fullreduce_data };
+    }
+
+    this.data.sell_address = this.data.sell_address || []
+
+    //默认重置价格为0 默认代理价格为零售价
+    this.data.spec.forEach((value, index) => {
+      if (value.spec_price == '') {
+        this.data.spec[index].spec_price = 0;
+      }
+      if (value.sub_agent_price == '') {
+        value.sub_agent_price = value.spec_price;
+      }
+    });
+
+    let data = Object.assign(
+      {
+        spec: this.data.spec
+      }, //商品数组数据
+      {
+        goods_images: this.data.goods_images,
+        content: this.data.content
+      },
+      {
+        self_address_id: this.data.sell_address.map((item) => {
+          return item.self_address_id;
+        }),
+        delivery_method: this.data.delivery_method,
+        payment_method: this.data.payment_method,
+        start_time: this.data.start_time,
+        end_time: this.data.end_time,
+        content_imgs: this.data.content_imgs,
+        freight_tpl_id: this.data.freight_tpl_id,
+        show_buyerlist: this.data.show_buyerlist,
+        agent_opt: this.data.agent_opt,
+        cat_id: 8,
+        is_timelimit: this.data.is_timelimit
+      },
+      {
+        goods_name: this.data.goods_name
+      },
+      fullreduce_data
+    );
+
+
+    wx.setStorageSync('historyEdit',data)
+
+  },
 
   //提交表单
   submitForm(e) {
@@ -820,7 +876,9 @@ Page({
 
       if (res.data.data) {
         this.data.goods_id = res.data.data.goods_id;
-
+        if(app.historyEditTimer) clearInterval(app.historyEditTimer)
+        // 清除草稿
+        this.clearHistoryEdit();
         this.jump();
       } else {
         wx.showModal({
@@ -1108,6 +1166,70 @@ Page({
 
     this.setWatcher();
   },
+  // 加载未编辑完数据
+  setHistoryData(gs){
+
+    let starFormatTime = gs.start_time
+    let endFormatTime = gs.end_time
+
+      var content = gs.content
+
+    if (gs.goods_content) {
+      var content = [];
+      content.push({
+        type: 'text',
+        desc: gs.goods_content
+      });
+
+      gs.content_imgs.forEach((src) => {
+        content.push({
+          type: 'image',
+          src: src
+        });
+      });
+
+      this.editor({
+        content: content,
+        goods_content: '',
+        content_imgs: []
+      });
+    }
+
+      var spec = gs.spec;
+    
+
+    this.setData({
+      content,
+      goods_images: gs.goods_images,
+      goods_name: gs.goods_name,
+      agent_opt: gs.agent_opt,
+      goods_content: gs.goods_content,
+      show_buyerlist: gs.show_buyerlist,
+      is_timelimit: gs.is_timelimit,
+      sell_address: gs.self_address,
+      delivery_method: gs.delivery_method,
+      payment_method: gs.payment_method,
+      content_imgs: gs.content_imgs || [],
+      goods_video: gs.goods_video,
+      start_time: starFormatTime,
+      end_time: endFormatTime,
+      fullreduce_data: gs.fullreduce_data,
+      picker: {
+        start_date: starFormatTime.split(' ')[0],
+        start_time: starFormatTime.split(' ')[1],
+        end_date: endFormatTime.split(' ')[0],
+        end_time: endFormatTime.split(' ')[1]
+      },
+      spec: spec,
+      isShowTimePicker: gs.is_timelimit == 1,
+      freight_tpl_id: gs.freight_tpl_id || 0,
+      goods_cat: gs.store_cat
+    });
+
+    this.showCurrentTplName(this.data.tplList, gs.freight_tpl_id);
+
+    this.setWatcher();
+  },
 
   watch: {
     show_buyerlist: (newValue, val, context) => {
@@ -1259,6 +1381,7 @@ Page({
   },
   onLoad: function (option) {
     var user;
+    if(app.historyEditTimer) clearInterval(app.historyEditTimer)
     if (app.globalData.userInfo) {
       user = app.globalData.userInfo.nickname;
     } else {
@@ -1283,8 +1406,42 @@ Page({
 
       this.getPublishedData(option.goods_id, this.data.is_copy);
     } else {
-      this.setWatcher();
+      let historyEditData = wx.getStorageSync('historyEdit');
+      let _this = this;
+      console.log('historyEdit',historyEditData)
+      if(historyEditData){
+
+        wx.showModal({
+          title: '上次编辑未完成，是否继续？',
+          content: '',
+          success (res) {
+            if (res.confirm) {
+              _this.setHistoryData(historyEditData);
+            } else if (res.cancel) {
+              _this.clearHistoryEdit();
+              _this.setWatcher();
+            }
+            // 定时保存
+            app.historyEditTimer = setInterval(()=>{
+              _this.historyEdit();
+            }, 3000)
+
+          }
+        })
+      }else{
+        this.setWatcher();
+        // 定时保存
+        app.historyEditTimer = setInterval(()=>{
+          this.historyEdit();
+        }, 3000)
+      }
+      
+      // this.setWatcher();
     }
+  },
+  // 清除草稿
+  clearHistoryEdit(){
+    wx.removeStorageSync('historyEdit');
   },
   onPageScroll(e) {
     this.setData({
