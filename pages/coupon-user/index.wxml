@@ -36,15 +36,12 @@
 
 
                 <view class="mt-xs text-sm text-justify text-muted">
-                    <view>开始日期：
-
-                    {{filter.formatDate(item.redpacket.start_time*1000,'YY-MM-DD hh-mm')}}
+                    <view>开始日期：{{filter.formatDate(item.redpacket.start_time*1000,'YY-MM-DD hh-mm')}}
                 </view>
                 </view>
 
                 <view class="text-sm text-muted mt-xs">
-                    <text class="mr-sm">过期日期：
-                    {{filter.formatDate(item.redpacket.stop_time*1000,'YY-MM-DD hh-mm')}}
+                    <text class="mr-sm">过期日期：{{filter.formatDate(item.redpacket.stop_time*1000,'YY-MM-DD hh-mm')}}
 
                     </text>
 <!--                     <text>小铺可用 || 指定商品可用></text>

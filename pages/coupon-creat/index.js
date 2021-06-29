@@ -143,13 +143,21 @@ Page({
             scopeModal: false
         });
     },
-
+    //类型改变事件
     changeType(event) {
+        const type = event.target.dataset.name
+        console.log(type)
         this.setData({
-            type: event.target.dataset.name,
+            type,
             typeTitle: event.target.dataset.title,
             typeModal: false
         })
+
+        if(type==1){
+            this.setData({
+                title:'亲，你的专属红包到啦'
+            })
+        }
     },
     /**
      * 生命周期函数--监听页面加载
