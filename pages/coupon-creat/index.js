@@ -618,7 +618,7 @@ Page({
             util.wx.get('/api/seller/get_fans_list', data).then((res) => {
                 this.setData({
                     loading: false,
-                    customerList: this.data.list.concat(res.data.data.lists),
+                    customerList: this.data.customerList.concat(res.data.data.lists),
                     totalpage2: res.data.data.page.totalpage
                 })
                 resolve(res)
