@@ -2,7 +2,7 @@
     <text class="iconfont icon-calendar text-xxl text-gray top-filter"></text>
     <view class="record-box">
         <view class="record-hd ph-df pt-df pb-sm text-justify gray-bg-df" bindtap="handleDateModal">
-            <view class="">{{dateText}}月</view>
+            <view class="">{{dateText}}月</view><view class="mr-xs primary-text">总计：{{monty_total}}</view>
             <van-icon name="notes-o" size="48rpx" />
         </view>
         <van-collapse value="{{ activeNames }}" bind:change="onChangeItem" wx:if="{{info.length}}">

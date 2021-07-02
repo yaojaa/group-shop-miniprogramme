@@ -171,9 +171,12 @@
                             <text wx:if="{{item.spec_stock && item.spec_stock != 0 }}">
                                 剩余:{{item.spec_stock}}
                             </text>
+
+
+
                         </view>
                     </view>
-                    <view class="goods-item-actions" catchtap="()=>{}">
+                    <view class="goods-item-actions" catchtap="()=>{}" wx:if="{{item.spec_stock !== '0'}}">
                         <!-- <button data-name="{{item.spec_name}}" data-image="{{item.spec_pic[0]}}" open-type="share" class="btn-reset">
                             <van-icon name="share-o" size="20" color="#69b90b" />
                         </button> -->
@@ -181,7 +184,13 @@
                             <i-input-number class="inputNumber" i-class="input-number" id="{{index}}" value="{{item.item_num}}" min="0" max="{{1000}}" bindchange="handleCountChange"></i-input-number>
                         </view>
                     </view>
+
+                                        <view class="goods-item-actions"  wx:else style="line-height: 200%">
+已售罄
+                                        </view>
+
                 </view>
+              
             </block>
         </view>
         <view wx:if="{{goods.delivery_method == 2}}" data-lat="{{item.latitude}}" data-lng="{{item.longitude}}" wx:for="{{goods.self_address}}" wx:key="index" class="white-bg ph-sm mt-sm">

@@ -46,7 +46,8 @@ Page({
                 })
                 if (res.data.code == 200) {
                     this.setData({
-                        info: res.data.data.datas
+                        info: res.data.data.datas,
+                        monty_total:res.data.data.monty_total.toFixed(2)
                     })
                 }
             })

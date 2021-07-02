@@ -203,15 +203,12 @@
         <i-panel i-class="no-margin">
             <view class="weui-cell">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">满减优惠：</view>
+                    <view class="weui-label">满减优惠设置：</view>
                 </view>
                 <view class="weui-cell__bd"></view>
                 <view class="weui-cell__ft" bindtap="toCouponSetting">
                     <view class="weui-icon-warn">
-                        <text wx:if="{{fullreduce_data}}">
-                            满{{fullreduce_data[0].full}}减{{fullreduce_data[0].reduce}}
-                        </text>
-                        <text wx:esle>设置</text>
+                        <text wx:if="{{fullreduce_data}}">满{{fullreduce_data[0].full}}减{{fullreduce_data[0].reduce}}</text>
                         <i-icon type="enter" size="26" />
                     </view>
                 </view>
