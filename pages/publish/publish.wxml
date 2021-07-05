@@ -68,11 +68,11 @@
                             <input maxlength="50" type="number" bindinput="inputDuplex" data-key="spec[{{index}}].spec_stock" placeholder="默认不限制" value="{{item.spec_stock}}" />
                         </view>
                         <view class="weui-cell__fd pr-xs f13 gray-text">
-                            {{ item.is_limited_stock == '1'?'显示规格':'隐藏规格'}}
+                            {{ item.status == '0'?'显示规格':'隐藏规格'}}
                         </view>
                         <view class="weui-cell__fd" catchtap>
                             <view class="pt-xs">
-                                <van-switch checked="{{ item.is_limited_stock == '1'?true:false }}" active-color="#49b34d" data-index="{{index}}" bind:change="onChangeStock" size="34rpx" slot="button" />
+                                <van-switch checked="{{ item.status == '0'?true:false }}" active-color="#49b34d" data-index="{{index}}" bind:change="onChangeStock" size="34rpx" slot="button" />
                             </view>
                         </view>
                     </view>
@@ -203,7 +203,7 @@
         <i-panel i-class="no-margin">
             <view class="weui-cell">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">满减优惠设置：</view>
+                    <view class="weui-label">满减优惠：</view>
                 </view>
                 <view class="weui-cell__bd"></view>
                 <view class="weui-cell__ft" bindtap="toCouponSetting">

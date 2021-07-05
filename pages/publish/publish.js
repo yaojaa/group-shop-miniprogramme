@@ -56,7 +56,7 @@ Page({
         spec_price: '',
         sub_agent_price: '',
         spec_stock: '',
-        is_limited_stock: '0',
+        status: '0',
         spec_pic: [],
         spec_desc: ''
       }
@@ -416,6 +416,7 @@ Page({
       spec_name: '',
       spec_price: '',
       spec_stock: '',
+      status:'0',
       spec_pic: [],
       spec_desc: '',
       sub_agent_price: ''
@@ -1371,7 +1372,7 @@ Page({
   onChangeStock(e) {
     let { index } = e.currentTarget.dataset;
     this.setData({
-      ['spec[' + index + '].is_limited_stock']: e.detail ? '1' : '0'
+      ['spec[' + index + '].status']: e.detail ? '0' : '-2'
     });
     // if (!e.detail) {
     //   this.setData({
