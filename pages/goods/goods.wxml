@@ -143,7 +143,7 @@
     <!-- <button wx:if="{{copy}}" bindtap="copy">复制商品</button> -->
     <view class="page-wrap">
         <view id="spec_box" class="goods-price flash {{notice?'notice':''}} white-bg ph-df cf">
-            <block wx:for="{{goods_spec}}" wx:key="spec_id">
+            <block wx:for="{{goods_spec}}" wx:key="spec_id" wx:if="{{item.status !='-1'}}">
                 <view class="solid-top"></view>
                 <view class="goods-price-item flex-box" bindtap="handleSpecPopup" data-item="{{item}}" wx:if="{{item.status !== '-2'}}">
                     <view class="pics" wx:if="{{item.spec_pic}}">

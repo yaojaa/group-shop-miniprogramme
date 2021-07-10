@@ -309,3 +309,7 @@ video{
   display: flex;
   align-items: center;
 }
+.opacity{
+  opacity:.6;
+  text-decoration:line-through
+}

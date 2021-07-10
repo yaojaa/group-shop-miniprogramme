@@ -27,7 +27,7 @@
         </view>
         <i-panel i-class="no-margin" title="商品或规格名称">
             <view class="weui-cells_form">
-                <view class="item" wx:for="{{spec}}" wx:key="$this">
+                <view class="item {{ item.status == '0'?'':'opacity'}}" wx:for="{{spec}}" wx:key="$this" wx:if="{{item.status !='-1'}}">
                     <view class="weui-cell">
                         <view class="weui-cell__hd">
                             <view class="weui-label">名称:</view>

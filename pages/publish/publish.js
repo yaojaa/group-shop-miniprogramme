@@ -952,11 +952,11 @@ Page({
       )
       .then((res) => {
         if (res.data.code !== 200) {
-          wx.showModal({
-            title: '温馨提示',
-            content: res.data.msg,
-            showCancel: false
-          });
+          // wx.showModal({
+          //   title: '温馨提示',
+          //   content: res.data.msg,
+          //   showCancel: false
+          // });
         }
       });
   },
@@ -1245,6 +1245,7 @@ Page({
     },
 
     sell_address: (newValue, val, context) => {
+      
       context.editor({
         self_address_id: newValue.map((item) => {
           return item.self_address_id;
