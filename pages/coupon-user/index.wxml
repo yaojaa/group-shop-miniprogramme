@@ -20,28 +20,31 @@
 
 
                 <view class="text-justify mt-xs ">
-                    <view class="text-sm text-muted">满{{item.redpacket.full}}元可用</view>
+                    <view class="text-sm text-muted" wx:if="{{item.redpacket.full == '0.00'}}">无门槛</view>
+                    <view class="text-sm text-muted" wx:else>满{{item.redpacket.full}}元可用</view>
 
-                    <button id="{{item.store_id}}" data-title="{{item.title}}" data-reduce="{{item.reduce}}" bindtap="toUse" type="info" size="mini" custom-class="w-min-160">去使用</button>
+                    <button wx:if="{{item.status == 0}}" id="{{item.store_id}}" data-title="{{item.title}}" data-reduce="{{item.reduce}}" bindtap="toUse" type="primary" size="mini" custom-class="w-min-160">去使用</button>
+
+                         <button wx:if="{{item.status == 1}}" disabled="true" id="{{item.store_id}}" data-title="{{item.title}}" data-reduce="{{item.reduce}}" bindtap="toUse" type="default" size="mini" custom-class="w-min-160">已使用</button>
 
                 </view>
                 <view class="solid-top mv-xs cf"></view>
 
-
+<!-- 
                 <view class="mt-xs text-sm text-justify text-muted" wx:if="{{item.redpacket.days !=='' && item.redpacket.days !== '0' }}">
                     失效日期：领取后{{item.redpacket.days}}天
-                </view>
+                </view> -->
 
-                <view  wx:else>
+                <view >
 
 
                 <view class="mt-xs text-sm text-justify text-muted">
-                    <view>开始日期：{{filter.formatDate(item.redpacket.start_time*1000,'YY-MM-DD hh-mm')}}
+                    <view>开始日期：{{filter.formatDate(item.start_time*1000,'YY-MM-DD hh-mm')}}
                 </view>
                 </view>
 
                 <view class="text-sm text-muted mt-xs">
-                    <text class="mr-sm">过期日期：{{filter.formatDate(item.redpacket.stop_time*1000,'YY-MM-DD hh-mm')}}
+                    <text class="mr-sm">过期日期：{{filter.formatDate(item.stop_time*1000,'YY-MM-DD hh-mm')}}
 
                     </text>
 <!--                     <text>小铺可用 || 指定商品可用></text>

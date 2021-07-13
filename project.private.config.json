@@ -78,7 +78,7 @@
         {
           "name": "pages/coupon-receive/index",
           "pathName": "pages/coupon-receive/index",
-          "query": "",
+          "query": "id=149",
           "scene": null
         },
         {

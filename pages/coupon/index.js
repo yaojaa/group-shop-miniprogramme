@@ -133,8 +133,11 @@ Page({
              console.log(this.data.user_ids)
 
     },
-    getRedpacketUser(){
-       util.wx.get('/api/seller/get_redpacket_user_list', data).then((res) => {
+    getRedpacketUser(e){
+
+        const id = e.target.id
+
+       util.wx.get('/api/redpacket/get_redpacket_user_list?redpacket_id='+id).then((res) => {
 
 
        })

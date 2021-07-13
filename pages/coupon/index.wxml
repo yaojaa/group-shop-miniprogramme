@@ -45,7 +45,16 @@
  -->
                     </view>
                 </view>
-                                    <view class="action"> <text class="mt-xs text-sm  text-muted" id="{{item.redpacket_id}}" bindtap="rmCoupon">删除红包</text></view>
+
+                
+                                    <view class="action"> 
+
+                                                                                <text class="mt-xs text-sm  text-muted" id="{{item.redpacket_id}}" bindtap="getRedpacketUser">查看领取人</text>
+
+
+                                        <text class="mt-xs text-sm  text-muted" id="{{item.redpacket_id}}" bindtap="rmCoupon">删除红包</text>
+
+                                    </view>
 
             </view>
         </view>
