@@ -69,7 +69,7 @@
             <van-cell wx:for="{{info.discounts}}" customStyle="padding:5px 20px" title="{{item.name}}" value="{{item.reduce}}元" border="{{ false }}" />
 
             <van-cell customStyle="padding:5px 20px" title="订单运费" value="￥{{info.shipping_money}}" border="{{ false }}" />
-            <van-cell customStyle="padding:5px 20px" title="订单总价" value="￥{{info.pay_price}}" border="{{ false }}" />
+            <van-cell customStyle="padding:5px 20px" title="实付金额" value="￥{{info.pay_price}}" border="{{ false }}" />
             <van-cell customStyle="padding:5px 20px" title="订单编号" title-width="200rpx" border="{{ false }}" value="{{info.order_sn}}" value-class="text-gray" />
             <!--     <van-cell customStyle="padding:5px 20px" title="创建时间" value="{{info.addtime}}" border="{{ false }}" value-class="text-gray" /> -->
             <van-cell customStyle="padding:5px 20px" title="付款时间" wx:if="{{info.addtime}}" value="{{info.addtime}}" border="{{ false }}" value-class="text-gray" />

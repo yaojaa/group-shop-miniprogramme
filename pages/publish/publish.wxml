@@ -27,10 +27,11 @@
         </view>
         <i-panel i-class="no-margin" title="商品或规格名称">
             <view class="weui-cells_form">
-                <view class="item {{ item.status == '0'?'':'opacity'}}" wx:for="{{spec}}" wx:key="$this" wx:if="{{item.status !='-1'}}">
+                <view class="item {{ item.status == '-2' ? 'opacity':'' }}" wx:for="{{spec}}" wx:key="$this" wx:if="{{item.status !='-1'}}">
                     <view class="weui-cell">
                         <view class="weui-cell__hd">
-                            <view class="weui-label">名称:</view>
+                            <view class="weui-label">名称:
+</view>
                         </view>
                         <view class="weui-cell__bd" class="width70">
                             <input value="{{item.spec_name}}" bindinput="inputDuplex" data-key="spec[{{index}}].spec_name" maxlength="30" placeholder="如：白色、大号、10斤" />
@@ -68,7 +69,7 @@
                             <input maxlength="50" type="number" bindinput="inputDuplex" data-key="spec[{{index}}].spec_stock" placeholder="默认不限制" value="{{item.spec_stock}}" />
                         </view>
                         <view class="weui-cell__fd pr-xs f13 gray-text">
-                            {{ item.status == '0'?'显示规格':'隐藏规格'}}
+                         {{ item.status == '-2'?'隐藏规格':'显示规格'}}
                         </view>
                         <view class="weui-cell__fd" catchtap>
                             <view class="pt-xs">

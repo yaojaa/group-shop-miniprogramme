@@ -228,9 +228,9 @@
                                     <view class="name">
                                         <text wx:if="{{goods.show_buyerlist == 1}}">匿名小主</text>
                                         <text wx:else>{{item.nickname}}</text>
-                                        <text class="mini-tags" wx:if="{{item.order_pay_total>0}}">
+                                  <!--       <text class="mini-tags" wx:if="{{item.order_pay_total>0}}">
                                             跟团{{item.order_pay_total}}次
-                                        </text>
+                                        </text> -->
                                         <!-- <text class="mini-tags" wx:if="{{item.order_pay_total==2}}">回头客</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>2 && item.order_pay_total<=10 }}">有空就来逛逛</text>
                                     <text class="mini-tags" wx:if="{{item.order_pay_total>10 && item.order_pay_total<=30 }}">高级粉丝</text>

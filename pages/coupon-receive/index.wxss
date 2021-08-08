@@ -58,6 +58,6 @@
   top: 60rpx;
   width: 140rpx;
   height: 78rpx;
-  background: url(http://leileiimg.toutoumei.com/shake/shake_mark1.png) center no-repeat;
   background-size: cover;
 }
+

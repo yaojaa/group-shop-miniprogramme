@@ -69,7 +69,8 @@ Page({
                 desc: '优惠券使用范围',
             }
         ],
-        searchWords: ''
+        searchWords: '',
+        count:1
     },
     onChange({ detail }) {
         // 需要手动对 checked 状态进行更新
@@ -179,6 +180,12 @@ Page({
 
         console.log(e)
     },
+
+    changeCount(e) {
+        this.data.count = e.detail
+        console.log(e)
+    },
+
     //创建优惠券
     createCoupon() {
 
@@ -435,9 +442,9 @@ Page({
 
 
 
-        if (this.data.type == 1 && this.data.user_ids.length > 0) {
-            this.sendToUser()
-        }
+        // if (this.data.type == 1 && this.data.user_ids.length > 0) {
+        //     this.sendToUser()
+        // }
 
 
 
@@ -446,7 +453,9 @@ Page({
             util.wx
                 .post('/api/redpacket/bind_redpacket', {
                     goods_ids: this.data.goods_ids,
-                    redpacket_id: this.data.redpacket_id
+                    redpacket_id: this.data.redpacket_id,
+                    count: this.data.count 
+
                 })
                 .then((res) => {
 
@@ -474,7 +483,8 @@ Page({
     sendToUser() {
         util.wx.post('/api/redpacket/alloc_redpacket', {
             user_ids: this.data.user_ids,
-            redpacket_id: this.data.redpacket_id
+            redpacket_id: this.data.redpacket_id,
+            count: this.data.count 
 
         })
 

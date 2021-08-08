@@ -12,7 +12,9 @@ Page({
         data_list: [],
         customerVisible:false,
         customerList:[],
-        cpage: 1
+        cpage: 1,
+        showfetchUser:false,
+        fecthUserList:[]
 
     },
     handleTab(e){
@@ -136,8 +138,20 @@ Page({
     getRedpacketUser(e){
 
         const id = e.target.id
+        this.setData({
+            loading: true
+        })
 
-       util.wx.get('/api/redpacket/get_redpacket_user_list?redpacket_id='+id).then((res) => {
+       util.wx.post('/api/redpacket/get_redpacket_user_list',{redpacket_id: id,pagesize:100}).then((res) => {
+
+        wx.hideLoading()
+
+        this.setData({
+            loading:false,
+            showfetchUser: true,
+            fecthUserList: res.data.data.order_list
+
+        })
 
 
        })

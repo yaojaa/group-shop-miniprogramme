@@ -51,8 +51,8 @@
             <view class='line'></view>
             <view class='paycell'>
                 <view class='pay'>
-                    <view class='left'>总金额</view>
-                    <view class='right'><text>￥</text>{{order.total_price}}</view>
+                    <view class='left'>实付</view>
+                    <view class='right'><text>￥</text>{{order.pay_price}}</view>
                 </view>
                 <view class='icon'>
                     <view></view>
@@ -73,7 +73,7 @@
   </view><view></view>
 
     <view class="center" style="padding-top: 30px">
-          <button bindtap="goUserSite"  class="button-area">去{{seller_name}}的主页看看</button>
+          <button bindtap="goUserSite"  class="button-area">继续逛逛小店</button>
     </view>
 
       <view class="center" style="padding-top: 30px">

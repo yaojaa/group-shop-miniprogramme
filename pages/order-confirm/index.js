@@ -495,9 +495,9 @@ Page({
             success: (res) => {
               wx.hideLoading();
 
-              // util.wx.post('/api/pay/orderpay', {
-              //     order_sn: order_sn
-              // })
+              util.wx.post('/api/pay/orderpay', {
+                  order_sn: order_sn
+              })
               util.userListner();
 
               this.jumpToSuccess(data.order_count);

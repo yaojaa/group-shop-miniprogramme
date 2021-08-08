@@ -54,6 +54,9 @@
                 </view>
                
             </view>
+
+<!--           <text class="mt-xs text-sm  text-muted" id="{{item.redpacket_id}}" bindtap="rmCoupon">删除红包</text>
+ -->
         </view>
 
     </view>

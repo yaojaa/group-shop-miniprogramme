@@ -5,7 +5,7 @@
             <view class="coupon-price"><text>{{reduce}}</text>
                 <text class="symbol">¥</text>
             </view>
-            <view class="coupon-name">{{'小店红包🧧'}}</view>
+            <view class="coupon-name">111{{'小店红包🧧'}}</view>
             <view class="coupon-date mt-xs text-sm" wx:if="{{days !=='' && days !== '0' }}">
                 {{days}}天后过期
             </view>
@@ -25,8 +25,16 @@
             <view class="info">微信授权登录</view>
             <button size="mini" type="primary" plain="false" bindtap="getUserInfoFile">登 录</button>
         </view>
-    </van-popup>
 
+
+  
+
+
+
+    </van-popup>
+      <view class="footer-btn">
+            <button style="margin: 0 50px"  bindtap="toUserHome">进店逛逛</button>
+        </view>
 
 </view>
 

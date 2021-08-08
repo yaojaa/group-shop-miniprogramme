@@ -126,6 +126,15 @@ Page({
     onShow: function() {
 
     },
+    toUserHome(){
+
+      wx.redirectTo({
+            url:'../userhome/index?id='+this.data.store_id
+        })
+
+
+
+    },
 
     /**
      * 生命周期函数--监听页面隐藏

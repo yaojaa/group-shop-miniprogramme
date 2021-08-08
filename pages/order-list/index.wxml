@@ -17,16 +17,13 @@
 
 
                     
-            <block >
-
-                <button wx:if="{{item.order_status>0}}" data-order_refund_id="{{item.order_refund_id}}" bindtap="toRefund" data-order_id="{{item.order_id}}" size="mini"  class="btn round primary hollow  mv-sm ml-sm {{item.order_refund_id?'red':''}}"
+                <text wx:if="{{item.order_status>0}}" data-order_refund_id="{{item.order_refund_id}}" bindtap="toRefund" data-order_id="{{item.order_id}}" size="mini"  class="f12 text-blue {{item.order_refund_id?'red':''}}"
                     >
-                    <block wx:if="{{item.order_refund_id}}">
+                    <text wx:if="{{item.order_refund_id}}">
                     退款信息
-                </block>
-                    <block wx:else>申请退款</block>
-                </button>
-            </block>
+                </text>
+                    <text wx:else>申请退款</text>
+                </text>
 
 
 

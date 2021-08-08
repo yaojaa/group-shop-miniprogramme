@@ -21,7 +21,7 @@
             <van-field use-button-slot value="{{reduce}}" type="digit" bind:input="inputDuplex" data-key="reduce" name="reduce" label="红包金额" placeholder="请输入金额">
                 <view slot="button">元</view>
             </van-field>
-            <van-field wx:if="{{type == 0}}" type="digit" use-button-slot value="{{total}}" bind:input="inputDuplex" data-key="total" name="total" label="红包总数量" placeholder="请输入红包的数量">
+            <van-field wx:if="{{type == 0}}" type="digit" type="digit" use-button-slot value="{{total}}" bind:input="inputDuplex" data-key="total" name="total" label="红包总数量" placeholder="请输入红包的数量">
                 <view slot="button">个</view>
             </van-field>
         </van-cell-group>
@@ -29,7 +29,7 @@
 
 
         <van-cell-group custom-class="mt-sm">
-           <van-field use-button-slot value="{{days}}" bind:input="changeDays" data-key="days" name="days" label="有效天数" placeholder="请输入有效天数，领取后开始计算">
+           <van-field use-button-slot value="{{days}}" type="digit" bind:input="changeDays" data-key="days" name="days" label="有效天数" placeholder="请输入有效天数，领取后开始计算">
                            <view slot="button">天</view>
                        </van-field>
 
@@ -55,6 +55,15 @@
             </van-field>
             <van-field wx-if="{{checked}}" bind:input="inputDuplex" data-key="full" name="full" name="title" label="满多少元" placeholder="例：100！"></van-field>
         </van-cell-group>
+
+           <van-cell-group custom-class="mt-sm" wx:if="{{type == 1 || type == 3}}">
+          <van-field use-button-slot value="{{count}}" type="digit" bind:input="changeCount" data-key="count" name="count" label="红包数量" placeholder="请输入红包的数量">
+                           <view slot="button">个</view>
+                       </van-field>
+
+        </van-cell-group>
+
+
         <view class="fixed-btn">
             <button class="btn  primary block linenear_bg" bindtap="createCoupon">
                 下一步
@@ -102,10 +111,12 @@
             </van-radio-group>
         </view>
     </van-popup>
+
+
     <van-dialog use-slot title="选择顾客" show="{{ customerVisible }}" show-cancel-button bind:close="onCustomerClose"  
     bind:confirm="sendToUser">
 
- <van-search value="{{ userWords }}" placeholder="输入昵称搜索" use-action-slot bind:cancel="onCancel2" bind:search="onSearch2" bind:clear="onCancel2" >                </van-search>
+ <van-search value="{{ userWords }}" placeholder="输入微信昵称搜索" use-action-slot bind:cancel="onCancel2" bind:search="onSearch2" bind:clear="onCancel2" >                </van-search>
 
 
 
@@ -130,9 +141,9 @@
 
        </scroll-view>
 
+</van-dialog>
 
 
-    </van-dialog>
     <van-dialog use-slot title="选择商品" show="{{ goodsVisible }}" show-cancel-button bind:close="onCustomerClose" bind:confirm="confirmGoods">
  <van-search value="{{ searchWords }}" placeholder="输入标题关键词搜索" use-action-slot bind:cancel="onCancel" bind:search="onSearch" bind:clear="onCancel">
                     <!--  <view slot="action" style="width: 40px"> <van-icon size="28" color="#999" name="ellipsis" /></view> -->

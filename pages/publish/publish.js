@@ -642,6 +642,7 @@ Page({
       url: '../../address/list/list'
     });
   },
+
   chooseMap: function (e) {
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
@@ -1128,12 +1129,16 @@ Page({
           spec_stock: item.spec_stock,
           spec_pic: item.spec_pic,
           spec_desc: item.spec_desc,
-          sub_agent_price: item.sub_agent_price || item.spec_price
+          sub_agent_price: item.sub_agent_price || item.spec_price,
+          status: item.status || '0'
         };
       });
     } else {
       var spec = gs.goods_spec;
     }
+
+
+    console.log('spec',spec)
 
     this.setData({
       content,

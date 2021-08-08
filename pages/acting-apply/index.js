@@ -129,7 +129,7 @@ Page({
 
           } else if(res.data.code == -2000){
 
-                    app.globalData.backUrl ='/pages/acting-apply/index'
+                    app.globalData.backUrl ='/pages/acting-apply/index?store_id='+this.data.store_id +'&goods_id=' + this.goods_id
                     wx.showModal({
                     title:'您还没有创建主页',
                     content:'请先花3秒钟免费创建个主页',
@@ -214,59 +214,29 @@ Page({
       //   })
     },
     getUserInfoFile: function(){
-        app.getUserInfoFile(res => {
-            this.getUserInfoEvt({
-                detail: res[0]
-            })
+  
+
+       wx.showLoading()
+
+        app.getUserInfoFile(r=>{
+
+
+                    const d = r.data.data
+                    var userInfo = {}
+                    userInfo = d.user
+                    userInfo['store'] = d.store
+
+                    this.setData({
+                      showLoginbtn: false
+                    })
+
         })
+
+
+
     },
 
-     /***点击授权按钮***/
-  getUserInfoEvt: function (e) {
 
-
-    console.log(e)
-
-    wx.showLoading()
-
-    // if(e.detail.errMsg.indexOf('fail') >= 0){
-
-    //    wx.showToast({
-    //      title: '请允许授权',//提示文字
-    //      duration:2000,
-    //      icon:'none'
-    //      //显示时长
-    //   })
-
-       
-    //    return
-    //  }
-
-    app.getOpenId().then(openid=>{
-
-          app.openid = openid;
-
-          app.login_third(e.detail).then((res)=>{ 
-          console.group('登陆成功:',res)
-          this.setData({
-            showLoginbtn:false
-          })
-          wx.hideLoading()
-
-
-
-
-                      
-                    })
-    .catch( e => console.log(e) )
-
-
-
-    })
-
-
-
-  },
 
   checkIsGroup(res){
 

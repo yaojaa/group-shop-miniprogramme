@@ -63,6 +63,51 @@ Page({
         
     },
 
+    rmCoupon(e){
+      const id = e.target.id
+
+      wx.showModal({
+         title: '确定要删除该红包吗',
+         showCancel: true,//是否显示取消按钮
+         cancelText:"取消",//默认是“取消”
+         confirmText:"确定",//默认是“确定”
+         success:  (res) =>{
+            if (res.cancel) {
+               //点击取消,默认隐藏弹框
+            } else {
+               //点击确定
+                util.wx.post('/api/redpacket/del_redpacket', {redpacket_id:id}).then((res) => {
+                    if(res.data.code == 200){
+
+                        this.setData({
+                         data_list:[]
+                     })
+
+                        this.getCouponList()
+
+                        wx.showToast({
+                            title:'删除成功',
+                            icon:'none'
+                        })
+
+                    }else{
+
+                         wx.showToast({
+                            title:res.data.data.msg,
+                            icon:'none'
+                        })
+
+                    }
+          })
+              
+            }
+         }
+      })
+
+
+    },
+
+
 
 
 

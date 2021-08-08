@@ -66,6 +66,8 @@ Page({
             })
         }
 
+        console.log(e)
+
 
         util.wx.post('/api/user/get_wx_mobile', {
             'encryptedData': e.detail.encryptedData,

@@ -152,6 +152,13 @@ Page({
    */
 
   showApplyModal(msg) {
+
+    console.log('../acting-apply/index?store_id=' +
+              this.data.store_id +
+              '&goods_id=' +
+              this.data.goods_id)
+
+
     wx.showModal({
       title: msg,
       content: '是否立即申请',

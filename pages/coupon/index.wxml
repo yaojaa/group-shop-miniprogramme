@@ -23,7 +23,14 @@
                 <view class="text-sm" wx:else>{{item.title}}</view>
                 <view class="text-justify mt-xs ">
                     <view class="text-sm text-muted" wx:if="{{item.full > 0 }}">满{{item.full}}元可用</view>
-                    <view class="text-sm text-muted" wx:else>不限制金额</view>
+                    <view class="text-sm text-muted" wx:else>无门槛使用</view>
+
+                    <view class="text-sm text-muted" wx:if="{{item.total>0}}">红包总数量：{{item.total}}</view>
+
+
+
+
+
                     <button wx:if="{{item.type == 0}}" type="primary" id="{{item.redpacket_id}}" data-title="{{item.title}}" data-reduce="{{item.reduce}}" open-type="share" type="info" size="mini" class="btn linenear_bg">发出红包</button>
                     <!--                     <button wx:if="{{item.type == 1}}" data-user_ids="{{item.users}}" data-redpacket_id="{{item.redpacket_id}}" data-title="{{item.title}}" data-reduce="{{item.reduce}}" size="mini" custom-class="w-min-160" bindtap="showCustomer">指定客人</button>
  -->
@@ -49,7 +56,7 @@
                 
                                     <view class="action"> 
 
-                                                                                <text class="mt-xs text-sm  text-muted" id="{{item.redpacket_id}}" bindtap="getRedpacketUser">查看领取人</text>
+                                                                                <text class="mt-xs text-sm  text-muted" id="{{item.redpacket_id}}" bindtap="getRedpacketUser">查看领取人</text> |
 
 
                                         <text class="mt-xs text-sm  text-muted" id="{{item.redpacket_id}}" bindtap="rmCoupon">删除红包</text>
@@ -62,4 +69,28 @@
     <view class="load-box" wx:if="{{loading}}">
         <wux-spin wux-class="spin" size="large" />
     </view>
+
+
+
+        <van-dialog use-slot title="已领取顾客" show="{{ showfetchUser }}" show-cancel-button bind:close="onCustomerClose">
+
+        <scroll-view scroll-y="true" style="height: 500rpx;" scroll-top ="200" bindscrolltolower="scrolltolower2" >
+
+                <label class="userlist" wx:for="{{fecthUserList}}" wx:key="{{item.user_id}}">
+                    <view class="name">
+                        <image class="avatar" width="50" src="{{item.user.headimg}}" />
+                    </view>
+                    <view class="name">{{item.user.nickname}} ({{item.status == 1 ? '已使用' : '未使用'}})</view>
+                </label>
+
+            <view class="center">
+                   <text wx:if="{{fecthUserList.length == 0}}" class="text-muted" style="padding-top:100px">暂无记录</text>
+                   <van-loading size="24px" wx:if="{{loading}}">加载中...</van-loading>
+            </view>
+       </scroll-view>
+
+    </van-dialog>
+
+
+
 </view>
