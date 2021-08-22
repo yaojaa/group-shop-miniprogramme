@@ -58,7 +58,7 @@
   position: relative;
 }
 .goods-box {
-  margin-top: 25rpx;
+  margin-top: 30rpx;
 }
 .goods-item {
   margin-bottom: 30rpx;
@@ -85,11 +85,11 @@
   padding: 10rpx 0rpx 16rpx;
 
 }
-
 .goods-two-item .title{
   height: 40px;
   font-size: 14px;
   overflow: hidden;
+  font-weight: 500;
 }
 .gray {
   color: #999;
@@ -105,8 +105,7 @@
 .goods-item .content .price {
   font-size: 28rpx;
 }
-.goods-item .content .bottom {
-}
+
 .goods-item .buy {
   font-size: 24rpx;
   color: #fff;
@@ -298,15 +297,21 @@
 }
 .goods-two-item {
   background: #fff;
-  width: 350rpx;
-  margin-left: 18rpx;
+  width: 346rpx;
+  margin-left: 20rpx;
   margin-bottom: 20rpx;
   position: relative;
+  border-radius: 16rpx;
+  overflow: hidden;
 }
-
+.goods-two-item .price{
+  font-size: 32rpx;
+  font-weight: bold;
+}
 .goods-two-item .cover {
   width: 350rpx;
   height: 350rpx;
+  vertical-align: top;
 }
 .goods-two-item .btn {
   font-size: 24rpx;

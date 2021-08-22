@@ -1576,6 +1576,12 @@
           "pathName": "pages/coupon-receive/index",
           "query": "id=82",
           "scene": null
+        },
+        {
+          "name": "pages/userhome/index",
+          "pathName": "pages/userhome/index",
+          "query": "id=115",
+          "scene": null
         }
       ]
     }

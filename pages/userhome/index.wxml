@@ -99,9 +99,8 @@
                 <view class="p-sm" data-id="{{item.goods_id}}" bindtap="goDetail">
                     <view class="title text-hide two-line">{{item.goods_name}}</view>
                     <view class="text-justify mt-xs">
-                        <view class="price bold text-red">
-                            <text class="f12">￥</text>
-                            {{item._price_range.min}}
+                        <view class="price text-red">
+                            <text class="f10">￥</text>{{item._price_range.min}}
                         </view>
                         <view>
                             <button bindtap="goDetail" wx:if="{{item.goods_expires ==1 }}" data-id="{{item.goods_id}}" class="btn buy linenear_bg">
