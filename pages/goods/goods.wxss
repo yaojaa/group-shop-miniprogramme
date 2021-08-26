@@ -1155,3 +1155,90 @@
     color:#fff;
     border:0;
 }
+
+.add_user_wxcode{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 30rpx solid #fff;
+  padding: 20rpx;
+}
+.add_user_wxcode .user_name{
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  font-size: 28rpx;
+}
+.add_user_wxcode .user_name image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+.add_user_wxcode .btn{
+  flex-shrink: 0;
+}
+
+.fc9{ color: #999; }
+
+.add_wxcode_alert{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 99999;
+}
+
+.wx_code_main{
+  width: 85%;
+  border-radius: 10rpx;
+  background: #fff;
+  padding: 30rpx;
+}
+
+.wx_code_main .wx_heading{
+  display: block;
+  margin: 0 auto;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.wx_content{
+  padding-top: 30rpx;
+}
+
+.wx_content .cell{
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  border-bottom: 1px solid #eee;
+}
+.wx_content .cell .title{
+  flex-grow: 1;
+}
+
+.mr10{ margin-right: 10rpx; }
+
+.ml10{ margin-left: 10px; }
+
+.wx_content .cell:last-child{
+  border-bottom: none;
+}
+
+.wx_chatcode{
+  width: 100%;
+}
+
+
+
+
+
+
+

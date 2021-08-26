@@ -202,9 +202,48 @@
         </view>
         <view>
             <goods-detail wx:if="content.length" content="{{content}}"></goods-detail>
+
             <!-- <view class="code center" wx:if="{{goods.user.wx_paycode}}">
             <image src="{{goods.user.wx_paycode}}"  mode="widthFix"/>
         </view> -->
+            <view class="add_user_wxcode">
+                <view class="user_name">
+                    <image src="{{goods.user.headimg}}" mode="widthFix"/>
+                    <view>
+                        <view>{{goods.user.nickname}}</view>
+                        <view class="fc9">欢迎添加客服微信</view>
+                    </view>
+                </view>
+                <button size="large" class="btn primary hollow" bindtap="addWx">加微信</button>
+            </view>
+
+            <cover-view hidden="{{addqrcode}}" class="add_wxcode_alert">
+                <view class="wx_code_main">
+                    <image class="wx_heading" src="{{goods.user.headimg}}" mode="widthFix"/>
+                    <view class="wx_content">
+                        <view class="cell" bindtap="goSite">
+                            <van-icon class="mr10" name="manager-o"/>
+                            <view class="title">{{goods.user.nickname}}</view>
+                            <view class="fc9">主页</view>
+                            <van-icon name="arrow" class="fc9 ml10" />
+                        </view>
+                        <view class="cell" bindtap='makePhoneCall'>
+                            <van-icon class="mr10" name="phone-o" />
+                            <view class="title">手机号：{{goods.user.mobile}}</view>
+                            <view class="fc9">拨号</view>
+                            <van-icon name="arrow" class="fc9 ml10" />
+                        </view>
+                        <view class="cell" bindtap="copeWxCode">
+                            <van-icon class="mr10" name="chat-o" />
+                            <view class="title">微信号：{{goods.user.wechatnumber}}</view>
+                            <view class="fc9">复制</view>
+                            <van-icon name="arrow" class="fc9 ml10" />
+                        </view>
+                    </view>
+                    <image class="wx_chatcode" src="{{goods.user.wx_paycode}}" mode="widthFix"/>
+                    <button class="linenear_bg" bindtap="addWx">确定</button>
+                </view>
+            </cover-view>
             <block>
                 <view class='sub-title scale-b-1px contentBox'>
                     <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">

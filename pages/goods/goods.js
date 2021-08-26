@@ -130,7 +130,39 @@ Page({
     isCanDraw: false,
     shareData: {},
     reduce_txt: '',
-    has_shop:false
+    has_shop:false,
+    addqrcode: true
+  },
+  // 添加微信
+  addWx(){
+    this.setData({
+      addqrcode: !this.data.addqrcode
+    })
+  },
+  // 主页
+  goSite() {
+      const store_id =
+          app.globalData.userInfo.store_id ||
+          app.globalData.userInfo.store.store_id;
+
+      wx.navigateTo({
+          url: '../userhome/index?id=' + store_id
+      });
+  },
+  // 拨号
+  makePhoneCall(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.goods.user.mobile //仅为示例，并非真实的电话号码
+    })
+  },
+  // 复制微信号
+  copeWxCode(){
+    wx.setClipboardData({
+      data: this.data.goods.user.wechatnumber,
+      success (res) {
+
+      }
+    })
   },
   handleSpecPopup(e) {
     let { item } = e.currentTarget.dataset;
