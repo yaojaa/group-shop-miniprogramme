@@ -63,6 +63,7 @@
     "pages/acting-apply/index",
     "pages/user-help-home/index",
     "pages/add_self/index",
+    "pages/count/count",
     "pages/coupon-receive/index"
   ],
   "subpackages": [

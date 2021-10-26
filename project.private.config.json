@@ -1582,6 +1582,12 @@
           "pathName": "pages/userhome/index",
           "query": "id=115",
           "scene": null
+        },
+        {
+          "name": "pages/count/count",
+          "pathName": "pages/count/count",
+          "query": "",
+          "scene": null
         }
       ]
     }

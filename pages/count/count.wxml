@@ -1,0 +1,19 @@
+<view class="section">
+    <view class="top-title">
+        <text class='txt'>{{ date }}总销售业绩：{{total}} 件</text>
+        <picker mode="date" value="{{date}}" fields="month" start="2018-09" end="2024-09" bindchange="selectDate"><van-button custom-class='btn' plain size="mini" icon="search" type="primary">筛选</van-button></picker>
+    </view>
+    <view class="f12 tips fc9 flex aic"><van-icon name="info" size="16px" color="#ccc"/><view class="ml5">仅统计帮会内订单，不包含退款和售后</view></view>
+</view>
+<view class="lists" wx:if="{{list.length > 0}}">
+    <navigator url="pages/goods/goods?goods_id={{item.goods_id}}" class="list" wx:for="{{list}}">
+        <view class="num bold f14" wx:if="{{index > 2}}">{{index + 1}}</view>
+        <view class="num bold f14 icon_{{index + 1}}" wx:else></view>
+        <view class="img"><image src="{{item.goods_cover}}" mode="aspectFill"></image></view>
+        <view class="name">{{item.goods_name}}</view>
+        <text wx:if="{{item.goods.length > 0}}" class="f14 fc9 ml5">{{item.qtys}}件</text>
+        <van-icon name="arrow" class="ml5" color="#ccc" />
+    </navigator>
+</view>
+<view style="display: flex; justify-content: center; padding-top: 20px;" wx:elif="{{loading}}"><van-loading size="24px" type="spinner" /></view>
+<view wx:else class="no-data f14 fc9">您还没有销售业绩</view>
