@@ -217,7 +217,7 @@
                 <button size="large" class="btn primary hollow" bindtap="addWx">加微信</button>
             </view>
 
-            <view hidden="{{addqrcode}}" class="add_wxcode_alert">
+            <cover-view hidden="{{addqrcode}}" class="add_wxcode_alert">
                 <view class="wx_code_main">
                     <image class="wx_heading" src="{{goods.user.headimg}}" mode="widthFix"/>
                     <view class="wx_content">
@@ -243,7 +243,7 @@
                     <image class="wx_chatcode" src="{{goods.user.wx_paycode}}" mode="widthFix"/>
                     <button class="linenear_bg" bindtap="addWx">确定</button>
                 </view>
-            </view>
+            </cover-view>
             <block>
                 <view class='sub-title scale-b-1px contentBox'>
                     <!-- <text class="f12 blue-text" wx:if="{{showPanel}}" bindtap="goOrders" style="float: right;margin-top:-15rpx">
