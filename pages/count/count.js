@@ -15,7 +15,12 @@ Page({
     date: date.getFullYear()+'-'+(date.getMonth()+1),
     total: 0
   },
-  onLoad(){
+  onLoad(opt){
+    if(opt.date){
+      this.setData({
+        date: opt.date
+      })
+    }
     this.getList();
   },
   selectDate(e){
